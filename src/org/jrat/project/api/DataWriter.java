@@ -2,7 +2,7 @@ package org.jrat.project.api;
 
 import java.io.IOException;
 
-public abstract interface Writer {
+public abstract interface DataWriter {
 
 	/**
 	 * Writes byte to stream
