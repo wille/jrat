@@ -64,7 +64,7 @@ public final class RATServer {
 	 * @return Writer
 	 */
 	
-	public DataWriter getWriter() {
+	public DataWriter getDataWriter() {
 		return writer;
 	}
 	
@@ -73,7 +73,7 @@ public final class RATServer {
 	 * @return Reader
 	 */
 	
-	public DataReader getReader() {
+	public DataReader getDataReader() {
 		return reader;
 	}
 	
