@@ -53,7 +53,7 @@ public class JarUtil {
 				}
 			}
 			
-			throw new MainClassNotFoundException();
+			throw new Exception("Main class not found");
 		} catch (Exception e) {
 			throw new MainClassNotFoundException(e);
 		}
