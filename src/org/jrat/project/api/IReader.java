@@ -2,7 +2,7 @@ package org.jrat.project.api;
 
 import java.io.IOException;
 
-public abstract interface DataReader {
+public abstract interface IReader {
 
 	/**
 	 * Reads byte from stream
