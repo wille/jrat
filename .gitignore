@@ -1,0 +1,41 @@
+## General
+*.lnk
+*.jar
+*.dat
+*.exe
+
+
+
+## Eclipse
+bin/**
+tmp/**
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.loadpath
+.metadata
+.buildpath
+.classpath
+.project
+.settings/
+
+
+# Build results
+[Bb]in/
+
+#Folders
+API/
+Other/
+API Stub/
+Plugin*
+Remover/
+Reverser/
+
+help/
+lib/
+plugins/
+
+# Mac crap
+.DS_Store
