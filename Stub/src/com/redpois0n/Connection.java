@@ -189,7 +189,9 @@ public class Connection implements Runnable {
 				enc = s;
 			}
 			
-			dos.writeUTF(enc);//pw.println(enc);
+			//dos.writeUTF(enc);
+			dos.writeShort(enc.length());
+			dos.writeChars(enc);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -197,7 +199,15 @@ public class Connection implements Runnable {
 
 	public static String readLine() {
 		try {
-			String s = dis.readUTF(); //br.readLine();
+			//String s = dis.readUTF();
+			short len = dis.readShort();
+			
+			StringBuilder builder = new StringBuilder();
+			for (int i = 0; i < len; i++) {
+				builder.append(dis.readChar());
+			}
+			
+			String s = builder.toString();
 			
 			if (s.startsWith("-h ")) {
 				s = Hex.decode(s.substring(3, s.length()));

