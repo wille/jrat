@@ -78,6 +78,7 @@ public class Settings {
 		Settings.setVal("askurl", true);
 		Settings.setVal("max", -1);
 		Settings.setVal("geoip", false);
+		Settings.setVal("encryption", true);
 	}
 
 }

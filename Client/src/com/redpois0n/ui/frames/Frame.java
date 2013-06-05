@@ -12,6 +12,7 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -26,6 +27,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
+import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
@@ -45,6 +47,7 @@ import org.jrat.project.api.RATServer;
 import com.redpois0n.Constants;
 import com.redpois0n.Main;
 import com.redpois0n.Sample;
+import com.redpois0n.Settings;
 import com.redpois0n.Slave;
 import com.redpois0n.common.Version;
 import com.redpois0n.events.Event;
@@ -65,8 +68,6 @@ import com.redpois0n.ui.renderers.table.MainTableRenderer;
 import com.redpois0n.util.FlagUtils;
 import com.redpois0n.util.IconUtils;
 import com.redpois0n.util.Util;
-import javax.swing.JRadioButtonMenuItem;
-import javax.swing.ButtonGroup;
 
 @SuppressWarnings("serial")
 public class Frame extends BaseFrame {
@@ -131,6 +132,7 @@ public class Frame extends BaseFrame {
 		rdbtnmntmEnable.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Slave.toggleEncryption(true);
+				Settings.setVal("encryption", true);
 			}
 		});
 		rdbtnmntmEnable.setSelected(true);
@@ -141,6 +143,7 @@ public class Frame extends BaseFrame {
 		rdbtnmntmDisable.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Slave.toggleEncryption(false);
+				Settings.setVal("encryption", false);
 			}
 		});
 		encryptionButtonGroup.add(rdbtnmntmDisable);
