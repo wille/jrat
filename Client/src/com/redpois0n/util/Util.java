@@ -34,9 +34,9 @@ public class Util {
 	}
 
 	public static Slave getSlave(String ip) {
-		for (int i = 0; i < Main.servers.size(); i++) {
-			if (Main.servers.get(i).getIP().equals(ip)) {
-				return Main.servers.get(i);
+		for (int i = 0; i < Main.connections.size(); i++) {
+			if (Main.connections.get(i).getIP().equals(ip)) {
+				return Main.connections.get(i);
 			}
 		}
 		return null;

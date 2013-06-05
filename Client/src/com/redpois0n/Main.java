@@ -22,7 +22,7 @@ import com.redpois0n.util.TrayIconUtils;
 
 public class Main {
 
-	public static final List<Slave> servers = new ArrayList<Slave>();
+	public static final List<Slave> connections = new ArrayList<Slave>();
 	public static Frame instance;
 
 	public static void main(String[] args) throws Exception {
@@ -117,7 +117,7 @@ public class Main {
 	}
 
 	public static String formatTitle() {
-		return "jRAT [" + servers.size() + "] BETA " + Version.getVersion();
+		return "jRAT [" + connections.size() + "] BETA " + Version.getVersion();
 	}
 
 }

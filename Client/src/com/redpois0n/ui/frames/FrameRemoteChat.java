@@ -102,7 +102,7 @@ public class FrameRemoteChat extends BaseFrame {
 	public void send() {
 		try {
 			if (txtMsg.getText().length() > 0) {
-				slave.addToSendQueue(new PacketBuilder(Header.CHAT, new String[] { txtMsg.getText().trim() }));
+				slave.addToSendQueue(new PacketBuilder(Header.CHAT, new String[] { "-c " + txtMsg.getText().trim() }));
 				
 				StyleContext sc = StyleContext.getDefaultStyleContext();
 				AttributeSet set = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, Color.blue);

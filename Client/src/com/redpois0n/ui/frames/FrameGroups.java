@@ -92,7 +92,7 @@ public class FrameGroups extends BaseFrame {
 		
 		HashMap<String, DefaultMutableTreeNode> nodes = new HashMap<String, DefaultMutableTreeNode>();
 		
-		List<Slave> list = Main.servers; 
+		List<Slave> list = Main.connections; 
 		
 		renderer.icons.clear();
 		

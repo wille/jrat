@@ -85,7 +85,7 @@ public class FrameChat extends JFrame {
 			if (textField.getText().trim().length() > 0) {
 				StyleContext sc = StyleContext.getDefaultStyleContext();
 				AttributeSet set = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, Color.blue);
-				Connection.addToSendQueue(new PacketBuilder(Header.CHAT, textField.getText().trim()));
+				Connection.addToSendQueue(new PacketBuilder(Header.CHAT, "-c " + textField.getText().trim()));
 				txtChat.getDocument().insertString(txtChat.getDocument().getLength(), "You: " + textField.getText().trim() + "\n", set);
 				textField.setText("");
 				txtChat.setSelectionEnd(Connection.frameChat.txtChat.getText().length());

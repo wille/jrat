@@ -13,8 +13,8 @@ public class ThreadPing extends Thread {
 	public void run() {
 		while (true) {
 			try {
-				for (int i = 0; i < Main.servers.size(); i++) {
-					Slave slave = Main.servers.get(i);
+				for (int i = 0; i < Main.connections.size(); i++) {
+					Slave slave = Main.connections.get(i);
 					slave.ping();
 				}
 				Thread.sleep(2500L);

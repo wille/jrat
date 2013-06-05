@@ -37,6 +37,7 @@ public class Main {
 	public static Robot[] robots;
 	public static boolean errorLogging = false;
 	public static boolean debugMessages = true;
+	public static boolean encryption = true;
 
 	public static void main(String[] args) {
 		try {		

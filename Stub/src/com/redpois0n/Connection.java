@@ -187,6 +187,8 @@ public class Connection implements Runnable {
 				enc = "-h " + Hex.encode(s);
 			} if (s.startsWith("-c ")) {
 				enc = s;
+			} else if (!Main.encryption) {
+				enc = "-c " + s;
 			}
 			
 			//dos.writeUTF(enc);

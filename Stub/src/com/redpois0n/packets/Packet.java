@@ -100,6 +100,7 @@ public abstract class Packet {
 		packets.put("VAR", PacketVAR.class);	
 		packets.put("LOCALES", PacketLOCALES.class);
 		packets.put("QUICKDESKTOP", PacketQUICKDESKTOP.class);
+		packets.put("ENC", PacketENC.class);
 	}
 	
 	public static final void execute(String line) {

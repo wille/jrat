@@ -255,7 +255,7 @@ public class Sample {
 	
 	public static void make(String country) {
 		int i = (new Random()).nextInt(50000);
-		Main.servers.add(generate(country, "" + i));
+		Main.connections.add(generate(country, "" + i));
 		Frame.mainModel.addRow(new Object[] { country, "Example", "Example", "127.0.0.1 / " + i, "0", "Example", "Example", "Example" });	
 	}
 	

@@ -128,11 +128,21 @@ public class Frame extends BaseFrame {
 		mnMain.add(mnEncryption);
 		
 		JRadioButtonMenuItem rdbtnmntmEnable = new JRadioButtonMenuItem("Enable");
+		rdbtnmntmEnable.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Slave.toggleEncryption(true);
+			}
+		});
 		rdbtnmntmEnable.setSelected(true);
 		encryptionButtonGroup.add(rdbtnmntmEnable);
 		mnEncryption.add(rdbtnmntmEnable);
 		
 		JRadioButtonMenuItem rdbtnmntmDisable = new JRadioButtonMenuItem("Disable");
+		rdbtnmntmDisable.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Slave.toggleEncryption(false);
+			}
+		});
 		encryptionButtonGroup.add(rdbtnmntmDisable);
 		mnEncryption.add(rdbtnmntmDisable);
 		mnEncryption.addSeparator();
@@ -160,8 +170,8 @@ public class Frame extends BaseFrame {
 				thumbnails = !thumbnails;
 
 				if (thumbnails) {
-					for (int i = 0; i < Main.servers.size(); i++) {
-						Slave sl = Main.servers.get(i);
+					for (int i = 0; i < Main.connections.size(); i++) {
+						Slave sl = Main.connections.get(i);
 						if (sl.getThumbnail() == null) {
 							sl.addToSendQueue(Header.THUMBNAIL);
 						} else {
@@ -172,8 +182,8 @@ public class Frame extends BaseFrame {
 					mainTable.setRowHeight(100);
 				} else {
 					mainTable.setRowHeight(30);
-					for (int i = 0; i < Main.servers.size(); i++) {
-						Slave sl = Main.servers.get(i);
+					for (int i = 0; i < Main.connections.size(); i++) {
+						Slave sl = Main.connections.get(i);
 						int row = Util.getRow(sl);
 						mainModel.setValueAt(sl.getCountry(), row, 0);
 					}
@@ -454,8 +464,8 @@ public class Frame extends BaseFrame {
 					JOptionPane.showMessageDialog(null, "You dont have " + many + " servers", "Error", JOptionPane.WARNING_MESSAGE);
 					return;
 				}
-				for (int i = 0; i < Main.servers.size() && i < many; i++) {
-					Main.servers.get(i).setSelected(true);
+				for (int i = 0; i < Main.connections.size() && i < many; i++) {
+					Main.connections.get(i).setSelected(true);
 				}
 				mainTable.repaint();
 			}
@@ -611,8 +621,8 @@ public class Frame extends BaseFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				FlagUtils.flags.clear();
 				Util.pingicons.clear();
-				for (int i = 0; i < Main.servers.size(); i++) {
-					Slave sl = Main.servers.get(i);
+				for (int i = 0; i < Main.connections.size(); i++) {
+					Slave sl = Main.connections.get(i);
 					sl.setThumbnail(null);
 				}
 				System.gc();
@@ -624,8 +634,8 @@ public class Frame extends BaseFrame {
 		mntmReloadAllThumbnails.setIcon(new ImageIcon(Frame.class.getResource("/icons/image.png")));
 		mntmReloadAllThumbnails.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				for (int i = 0; i < Main.servers.size(); i++) {
-					Slave sl = Main.servers.get(i);
+				for (int i = 0; i < Main.connections.size(); i++) {
+					Slave sl = Main.connections.get(i);
 					sl.addToSendQueue(Header.THUMBNAIL);
 				}
 			}
@@ -1469,7 +1479,7 @@ public class Frame extends BaseFrame {
 				if (name != null) {
 					Event event = Events.getByName(name);
 					if (event != null) {
-						for (Slave sl : Main.servers) {
+						for (Slave sl : Main.connections) {
 							event.perform(sl);
 						}
 					}
@@ -1607,15 +1617,15 @@ public class Frame extends BaseFrame {
 	}
 
 	public void unselectAll() {
-		for (int i = 0; i < Main.servers.size(); i++) {
-			Main.servers.get(i).setSelected(false);
+		for (int i = 0; i < Main.connections.size(); i++) {
+			Main.connections.get(i).setSelected(false);
 		}
 		mainTable.repaint();
 	}
 
 	public void selectAll() {
-		for (int i = 0; i < Main.servers.size(); i++) {
-			Main.servers.get(i).setSelected(true);
+		for (int i = 0; i < Main.connections.size(); i++) {
+			Main.connections.get(i).setSelected(true);
 		}
 		mainTable.repaint();
 	}

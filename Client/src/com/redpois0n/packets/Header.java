@@ -95,7 +95,8 @@ public enum Header {
 	GET_TORRENTS("GETUT"), 
 	PING("PING"), 
 	GET_RAM("GETRAM"),
-	QUICK_DESKTOP("QUICKDESKTOP");
+	QUICK_DESKTOP("QUICKDESKTOP"), 
+	ENCRYPTION("ENC");
 
 	private final String header;
 
