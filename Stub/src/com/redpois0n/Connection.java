@@ -110,7 +110,7 @@ public class Connection implements Runnable {
 		} else {
 			computerName = System.getProperty("user.name");
 		}
-		addToSendQueue(new PacketBuilder(Header.INIT_COMPUTER_NAME, computerName + " ныкэжчятатябюз "));
+		addToSendQueue(new PacketBuilder(Header.INIT_COMPUTER_NAME, computerName));
 
 		addToSendQueue(new PacketBuilder(Header.INIT_OS_NAME, System.getProperty("os.name")));
 
