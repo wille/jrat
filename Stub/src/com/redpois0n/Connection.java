@@ -60,18 +60,18 @@ public class Connection implements Runnable {
 			Connection.dos = new DataOutputStream(outputStream);
 			
 			br = new BufferedReader(new InputStreamReader(dis));
-			pw = new PrintWriter(dos, true);
-
-			for (Plugin plugin : Plugin.list) {
-				plugin.methods.get("onconnect").invoke(plugin.instance, new Object[] { dis, dos });
-			}
+			pw = new PrintWriter(dos, true);		
 			
-			Main.encryption = readBoolean();
+			Main.encryption = inputStream.read() == 1;
 			
 			initialize();
 
 			status(Constants.STATUS_READY);
 
+			for (Plugin plugin : Plugin.list) {
+				plugin.methods.get("onconnect").invoke(plugin.instance, new Object[] { dis, dos });
+			}
+			
 			while (true) {
 				String line = readLine();
 

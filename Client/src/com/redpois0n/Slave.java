@@ -114,7 +114,7 @@ public class Slave extends CustomStream implements Runnable {
 			this.pw = new PrintWriter(dos, true);
 			this.br = new BufferedReader(new InputStreamReader(dis));
 			
-			writeBoolean(encryption);
+			this.outputStream.write(encryption ? 1 : 0);
 
 			while (true) {
 				String line = readLine();
