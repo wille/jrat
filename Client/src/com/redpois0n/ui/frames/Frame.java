@@ -46,7 +46,7 @@ import org.jrat.project.api.RATServer;
 
 import com.redpois0n.Constants;
 import com.redpois0n.Main;
-import com.redpois0n.Sample;
+import com.redpois0n.SampleMode;
 import com.redpois0n.Settings;
 import com.redpois0n.Slave;
 import com.redpois0n.common.Version;
@@ -417,7 +417,7 @@ public class Frame extends BaseFrame {
 		mntmSampleMode.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (Util.yesNo("Confirm", "This will break jRAT until restarted and begin a photo friendly session")) {
-					Sample.addSample();
+					SampleMode.start();
 				}
 			}
 		});

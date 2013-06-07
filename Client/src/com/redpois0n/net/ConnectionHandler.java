@@ -1,6 +1,7 @@
 package com.redpois0n.net;
 
 import com.redpois0n.Main;
+import com.redpois0n.SampleMode;
 import com.redpois0n.Slave;
 import com.redpois0n.Sound;
 import com.redpois0n.exceptions.CloseException;
@@ -37,6 +38,10 @@ public class ConnectionHandler {
 	}
 
 	public static void removeSlave(Slave client, Exception e) {
+		if (SampleMode.isInSampleMode()) {
+			return;
+		}
+		
 		Main.connections.remove(client);
 		try {
 			Frame.mainModel.removeRow(Util.getRow(3, client.getIP()));

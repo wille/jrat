@@ -6,10 +6,10 @@ import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
 @SuppressWarnings("resource")
-public class MemoryMappedRandoeAccessFile implements RandomAccessInput {
+public class MemoryMappedRandomAccessFile implements RandomAccessInput {
 	private ByteBuffer m_roBuf;
 
-	public MemoryMappedRandoeAccessFile(String paramString1, String paramString2) throws IOException {
+	public MemoryMappedRandomAccessFile(String paramString1, String paramString2) throws IOException {
 		RandomAccessFile localRandomAccessFile = new RandomAccessFile(paramString1, paramString2);
 		FileChannel localFileChannel = localRandomAccessFile.getChannel();
 		this.m_roBuf = localFileChannel.map(FileChannel.MapMode.READ_ONLY, 0L, (int) localFileChannel.size());

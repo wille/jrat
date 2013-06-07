@@ -77,7 +77,7 @@ public class Settings {
 		Settings.setVal("theme", UIManager.getSystemLookAndFeelClassName());
 		Settings.setVal("askurl", true);
 		Settings.setVal("max", -1);
-		Settings.setVal("geoip", false);
+		Settings.setVal("geoip", true);
 		Settings.setVal("encryption", true);
 	}
 

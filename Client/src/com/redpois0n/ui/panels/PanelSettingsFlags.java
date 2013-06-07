@@ -7,8 +7,6 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-import com.redpois0n.Settings;
-
 @SuppressWarnings("serial")
 public class PanelSettingsFlags extends JPanel {
 	
@@ -23,7 +21,7 @@ public class PanelSettingsFlags extends JPanel {
 	public PanelSettingsFlags() {
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(BorderFactory.createTitledBorder("Finding flags"));
+		panel.setBorder(BorderFactory.createTitledBorder("Locating connection"));
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
@@ -41,13 +39,12 @@ public class PanelSettingsFlags extends JPanel {
 					.addContainerGap(13, Short.MAX_VALUE))
 		);
 		
-		rdbtnUseLocationTo = new JRadioButton("Use http://freegeoip.net/ to get flag");
+		rdbtnUseLocationTo = new JRadioButton("Use IP to Country library to get flag");
 		buttonGroup.add(rdbtnUseLocationTo);
-		rdbtnUseLocationTo.setSelected(Settings.getBoolean("geoip"));
+		rdbtnUseLocationTo.setSelected(true);
 		
-		rdbtnUseSystemLanguage = new JRadioButton("Use system language to get flag");
+		rdbtnUseSystemLanguage = new JRadioButton("Use system locale to get flag");
 		buttonGroup.add(rdbtnUseSystemLanguage);
-		rdbtnUseSystemLanguage.setSelected(!Settings.getBoolean("geoip"));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)

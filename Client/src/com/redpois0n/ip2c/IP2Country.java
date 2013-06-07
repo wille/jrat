@@ -1,9 +1,7 @@
 package com.redpois0n.ip2c;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.StringTokenizer;
-import java.util.Vector;
 
 public class IP2Country {
 	public static final int WEBHOSTING_INFO_CSV_FORMAT = 0;
@@ -33,7 +31,7 @@ public class IP2Country {
 			this.m_input = new RandomAccessFile2(paramString, "r");
 			break;
 		case 1:
-			this.m_input = new MemoryMappedRandoeAccessFile(paramString, "r");
+			this.m_input = new MemoryMappedRandomAccessFile(paramString, "r");
 			break;
 		case 2:
 			this.m_input = new RandomAccessBuffer(paramString);

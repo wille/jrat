@@ -7,23 +7,39 @@ import java.util.Random;
 
 import javax.swing.ImageIcon;
 
-import net.firefang.ip2c.IP2Country;
-
 import com.redpois0n.Main;
 import com.redpois0n.Slave;
+import com.redpois0n.ip2c.Country;
+import com.redpois0n.ip2c.IP2Country;
 
 public class FlagUtils {
 
-	public static HashMap<String, ImageIcon> flags = new HashMap<String, ImageIcon>();
+	public static final HashMap<String, ImageIcon> flags = new HashMap<String, ImageIcon>();
 	
-	public static IP2Country ip2c;
+	private static IP2Country ip2c;
 
 	static {
 		try {
-			ip2c = new IP2Country("db.dat", IP2Country.MEMORY_MAPPED);
+			ip2c = new IP2Country("files/db.dat", IP2Country.MEMORY_MAPPED);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static Country getCountry(Slave s) {
+		return getCountry(s.getRawIP());
+	}
+	
+	public static Country getCountry(String ip) {
+		Country country = null;
+		
+		try {
+			country = ip2c.getCountry(ip);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		return country;
 	}
 	
 	public static ImageIcon getFlag(Slave s) {
