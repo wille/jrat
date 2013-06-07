@@ -155,7 +155,7 @@ public class FrameAbout extends BaseFrame {
 		JTextPane txtAbout = new JTextPane();
 		txtAbout.setEditable(false);
 		try {
-			txtAbout.setText(IOUtils.readString(WebRequest.getUrl(Constants.HOST + "/misc/about.txt").openStream()));
+			txtAbout.setText(IOUtils.readString(WebRequest.getInputStream(Constants.HOST + "/misc/about.txt")));
 			txtAbout.setSelectionStart(0);
 			txtAbout.setSelectionEnd(0);
 		} catch (Exception e) {

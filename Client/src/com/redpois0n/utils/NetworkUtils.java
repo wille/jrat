@@ -2,10 +2,8 @@ package com.redpois0n.utils;
 
 import java.awt.Desktop;
 import java.io.BufferedReader;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URI;
-import java.net.URL;
 
 import com.redpois0n.Constants;
 import com.redpois0n.ErrorDialog;
@@ -23,9 +21,7 @@ public class NetworkUtils {
 	}
 
 	public static String getIP() throws Exception {
-		URL url = WebRequest.getUrl(Constants.HOST + "/misc/getip.php");
-		InputStream in = url.openStream();
-		BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(WebRequest.getInputStream(Constants.HOST + "/misc/getip.php")));
 		String ip = reader.readLine();
 		reader.close();
 		return ip;

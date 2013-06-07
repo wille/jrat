@@ -90,20 +90,31 @@ public class FramePlugins extends BaseFrame {
 			}
 		});
 		btnFolder.setIcon(new ImageIcon(FramePlugins.class.getResource("/icons/plugin_go.png")));
-
-		JButton btnInstall = new JButton("Install");
-		btnInstall.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				FrameInstallPlugin frame = new FrameInstallPlugin();
-				frame.setVisible(true);
-				setVisible(false);
-				dispose();
-			}
-		});
-		btnInstall.setIcon(new ImageIcon(FramePlugins.class.getResource("/icons/plugin_go.png")));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addGroup(gl_contentPane.createSequentialGroup().addComponent(btnFolder).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnInstall, GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnDelete, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnReload)).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)).addGap(2)));
-		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(btnReload).addComponent(btnDelete, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE).addComponent(btnFolder).addComponent(btnInstall, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)).addGap(3)));
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(btnFolder)
+							.addPreferredGap(ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
+							.addComponent(btnDelete, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnReload))
+						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE))
+					.addGap(2))
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnReload)
+						.addComponent(btnDelete, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnFolder))
+					.addGap(3))
+		);
 
 		table = new JTable();
 		table.setDefaultRenderer(Object.class, new PluginTableRenderer());

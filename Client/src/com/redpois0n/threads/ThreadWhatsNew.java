@@ -2,7 +2,6 @@ package com.redpois0n.threads;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +21,7 @@ public class ThreadWhatsNew extends Thread {
 		try {
 			lines = new ArrayList<String>();
 
-			URL u = WebRequest.getUrl(url);
-			BufferedReader reader = new BufferedReader(new InputStreamReader(u.openStream()));
+			BufferedReader reader = new BufferedReader(new InputStreamReader(WebRequest.getInputStream(url)));
 
 			String s = null;
 			while ((s = reader.readLine()) != null) {

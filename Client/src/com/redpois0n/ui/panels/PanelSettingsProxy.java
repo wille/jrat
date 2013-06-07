@@ -1,9 +1,21 @@
 package com.redpois0n.ui.panels;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
+import java.net.URL;
+import java.net.URLConnection;
+
 import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -11,8 +23,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import com.redpois0n.Settings;
 import com.redpois0n.ui.components.JPortSpinner;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 
 @SuppressWarnings("serial")
 public class PanelSettingsProxy extends JPanel {
@@ -58,13 +68,31 @@ public class PanelSettingsProxy extends JPanel {
 		
 		cbType = new JComboBox<String>();
 		cbType.setModel(new DefaultComboBoxModel<String>(new String[] {"SOCKS", "HTTP"}));
+		
+		JButton btnTest = new JButton("Test");
+		btnTest.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {	
+					Proxy proxy = new Proxy(useSocks() ? Proxy.Type.SOCKS : Proxy.Type.HTTP, new InetSocketAddress(getHost(), getPort()));
+					URLConnection connection = new URL("http://jrat-project.org/misc/getip.php").openConnection(proxy);
+						
+					String ip = new BufferedReader(new InputStreamReader(connection.getInputStream())).readLine();	
+					System.out.println(ip);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addGap(30)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(chckbxUseProxy)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(chckbxUseProxy)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(btnTest))
 						.addGroup(gl_panel.createSequentialGroup()
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
@@ -76,13 +104,15 @@ public class PanelSettingsProxy extends JPanel {
 								.addComponent(txtIP, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE)
 								.addComponent(spPort, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
 								.addComponent(cbType, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE))))
-					.addContainerGap(226, Short.MAX_VALUE))
+					.addContainerGap(218, Short.MAX_VALUE))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(chckbxUseProxy)
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(chckbxUseProxy)
+						.addComponent(btnTest))
 					.addGap(18)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(txtIP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -95,7 +125,7 @@ public class PanelSettingsProxy extends JPanel {
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblType)
 						.addComponent(cbType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(138, Short.MAX_VALUE))
+					.addContainerGap(132, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
 		setLayout(groupLayout);

@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URI;
-import java.net.URL;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -100,8 +99,7 @@ public class FrameChangelog extends BaseFrame {
 		contentPane.setLayout(gl_contentPane);
 
 		try {
-			URL u = WebRequest.getUrl(url);
-			BufferedReader reader = new BufferedReader(new InputStreamReader(u.openStream()));
+			BufferedReader reader = new BufferedReader(new InputStreamReader(WebRequest.getInputStream(url)));
 
 			String s = null;
 			while ((s = reader.readLine()) != null) {

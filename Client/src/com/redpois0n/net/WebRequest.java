@@ -12,7 +12,7 @@ import com.redpois0n.utils.Util;
 
 public class WebRequest {
 	
-	public static URL getUrl(String surl) throws Exception {
+	private static URL getUrl(String surl) throws Exception {
 		System.out.println("Requesting " + surl);
 		
 		URL url = null;

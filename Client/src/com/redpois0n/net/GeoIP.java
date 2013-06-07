@@ -2,7 +2,6 @@ package com.redpois0n.net;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.net.URL;
 
 
 public class GeoIP {
@@ -42,8 +41,7 @@ public class GeoIP {
 
 	private static String readLine(String urlString) {
 		try {
-			URL url = WebRequest.getUrl(urlString);
-			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
+			BufferedReader in = new BufferedReader(new InputStreamReader(WebRequest.getInputStream(urlString)));
 			return in.readLine();
 		} catch (Throwable t) {
 			return null;
