@@ -17,16 +17,16 @@ import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import com.redpois0n.common.Version;
-import com.redpois0n.util.NetworkUtils;
 
 
 @SuppressWarnings("serial")
 public class FrameAd extends BaseDialog {
 	
 	public static final String BTC_ADDRESS = "19jr3SU9wKyCxdgApo1KiHmoY59iWztrdv";
-	public static final String LR_ADDRESS = "U3902875";
+	public static final String LTC_ADDRESS = "LWSRG5APbDn7R699Wjj9b5g5CgJE8PR9Ez";
 
 	public FrameAd() {
+		setTitle("Welcome");
 		setAlwaysOnTop(true);
 		setResizable(false);
 		setBounds(100, 100, 450, 300);
@@ -38,17 +38,8 @@ public class FrameAd extends BaseDialog {
 		
 		JLabel lblPleaseConsiderDonating = new JLabel("Please consider donating, any amount, ");
 		
-		JLabel lblLr = new JLabel("");
-		lblLr.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				NetworkUtils.openUrl("https://sci.libertyreserve.com/?lr_acc=" + LR_ADDRESS + "&lr_currency=LRUSD");
-			}
-		});
-		lblLr.setIcon(new ImageIcon(FrameAd.class.getResource("/files/lr.png")));
-		
-		JLabel lblBtc = new JLabel("");
-		lblBtc.addMouseListener(new MouseAdapter() {
+		JLabel lblBitcoin = new JLabel("");
+		lblBitcoin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -58,7 +49,7 @@ public class FrameAd extends BaseDialog {
 				JOptionPane.showMessageDialog(null, "BTC Address copied to clipboard\n\r\n\r" + BTC_ADDRESS);
 			}
 		});
-		lblBtc.setIcon(new ImageIcon(FrameAd.class.getResource("/files/btc.png")));
+		lblBitcoin.setIcon(new ImageIcon(FrameAd.class.getResource("/files/btc.png")));
 		
 		JButton btnContinue = new JButton("Continue");
 		btnContinue.addActionListener(new ActionListener() {
@@ -69,29 +60,42 @@ public class FrameAd extends BaseDialog {
 		});
 		
 		JLabel lblToKeepThis = new JLabel("to keep this project running and growing!");
+		
+		JLabel lblLitecoin = new JLabel("");
+		lblLitecoin.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Toolkit toolkit = Toolkit.getDefaultToolkit();
+				Clipboard clipboard = toolkit.getSystemClipboard();
+				StringSelection strSel = new StringSelection(BTC_ADDRESS);
+				clipboard.setContents(strSel, null);
+				JOptionPane.showMessageDialog(null, "LTC Address copied to clipboard\n\r\n\r" + LTC_ADDRESS);
+			}
+		});
+		lblLitecoin.setIcon(new ImageIcon(FrameAd.class.getResource("/files/ltc.png")));
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
+			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblJrat)
 						.addComponent(lblPleaseConsiderDonating))
-					.addContainerGap(46, Short.MAX_VALUE))
+					.addContainerGap(244, Short.MAX_VALUE))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap(359, Short.MAX_VALUE)
 					.addComponent(btnContinue)
 					.addContainerGap())
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblLr)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblBtc)
-					.addContainerGap(266, Short.MAX_VALUE))
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(lblToKeepThis)
-					.addContainerGap(388, Short.MAX_VALUE))
+					.addContainerGap(236, Short.MAX_VALUE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblBitcoin)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblLitecoin, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(266, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -103,11 +107,12 @@ public class FrameAd extends BaseDialog {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(lblToKeepThis)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(lblLr)
-						.addComponent(lblBtc))
-					.addPreferredGap(ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
-					.addComponent(btnContinue)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lblBitcoin)
+							.addPreferredGap(ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
+							.addComponent(btnContinue))
+						.addComponent(lblLitecoin, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap())
 		);
 		getContentPane().setLayout(groupLayout);
