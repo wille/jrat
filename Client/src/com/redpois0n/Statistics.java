@@ -108,7 +108,7 @@ public class Statistics {
 			Frame.statModel.addRow(new Object[] { IconUtils.getIcon("all", true), "Total: " + list.size(), "Total: " + getNoConnects(), "Total: " + getDifConnects() });
 			for (StatEntry e : list) {
 				String latest = e.list.size() > 0 ? e.list.get(0) : "None";
-				Frame.statModel.addRow(new Object[] { FlagUtils.getCountry(e.country), e.longcountry, e.connects.toString(), e.list.size(), latest });
+				Frame.statModel.addRow(new Object[] { FlagUtils.getFlag(e.country), e.longcountry, e.connects.toString(), e.list.size(), latest });
 			}
 		} catch (Exception ex) {
 			// ex.printStackTrace();

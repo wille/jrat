@@ -256,7 +256,7 @@ public class Slave extends CustomStream implements Runnable {
 	}
 
 	public ImageIcon getFlag() {
-		return FlagUtils.getCountry(country);
+		return FlagUtils.getFlag(country);
 	}
 
 	public boolean isUpToDate() {

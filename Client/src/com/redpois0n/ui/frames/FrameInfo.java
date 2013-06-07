@@ -159,7 +159,7 @@ public class FrameInfo extends BaseFrame {
 			lblFlag.setIcon(Util.getCountry(slave.getIP()));
 		} else {*/
 			lblLocation.setText(slave.getCountry());
-			lblFlag.setIcon(FlagUtils.getCountry(slave));
+			lblFlag.setIcon(FlagUtils.getFlag(slave));
 		//}
 		txtServerID.setText(slave.getServerID());
 		txtIP.setText(slave.getIP());

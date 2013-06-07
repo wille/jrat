@@ -31,7 +31,7 @@ public class PanelControlLocales extends PanelControlParent {
 		JLabel lblCountrys = new JLabel("Country:");
 		
 		lblCountry = new JLabel(slave.getCountry());
-		lblCountry.setIcon(FlagUtils.getCountry(slave));
+		lblCountry.setIcon(FlagUtils.getFlag(slave));
 		
 		JLabel lblDisplayCountry = new JLabel("Display Country: " + slave.getLongCountry());
 		

@@ -320,7 +320,7 @@ public class FrameControlPanel extends BaseFrame {
 				r.icons.put("config", IconUtils.getIcon("tab_settings"));
 				r.icons.put("view installed plugins", IconUtils.getIcon("plugin_go"));
 				r.icons.put("notes", IconUtils.getIcon("sticky-notes-pin"));
-				r.icons.put("locales", FlagUtils.getCountry(slave));
+				r.icons.put("locales", FlagUtils.getFlag(slave));
 				r.icons.put("quick remote screen", IconUtils.getIcon("quick_remote_desktop"));
 
 				ImageIcon plugin = IconUtils.getIcon("plugin");

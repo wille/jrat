@@ -15,7 +15,7 @@ public class LocaleTableRenderer extends DefaultTableCellRenderer {
 		JLabel lbl = (JLabel)super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 		
 		if (column == 0) {
-			lbl.setIcon(FlagUtils.getCountry(value.toString()));
+			lbl.setIcon(FlagUtils.getFlag(value.toString()));
 		} else {
 			lbl.setIcon(null);
 		}

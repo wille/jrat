@@ -63,7 +63,7 @@ public class FrameStats extends BaseFrame {
 			StatMeterEntry en = new StatMeterEntry();
 			en.color = Color.green.brighter();
 			en.country = entry.longcountry;
-			en.flag = FlagUtils.getCountry(entry.country.toLowerCase());
+			en.flag = FlagUtils.getFlag(entry.country.toLowerCase());
 			en.entry = entry;
 			en.scountry = entry.country;
 			
