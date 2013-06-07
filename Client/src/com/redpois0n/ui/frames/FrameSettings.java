@@ -28,6 +28,7 @@ import com.redpois0n.listeners.EulaListener;
 import com.redpois0n.listeners.Performable;
 import com.redpois0n.ui.panels.PanelSettingsFlags;
 import com.redpois0n.ui.panels.PanelSettingsMain;
+import com.redpois0n.ui.panels.PanelSettingsProxy;
 import com.redpois0n.ui.panels.PanelSettingsSound;
 import com.redpois0n.ui.panels.PanelSettingsStats;
 import com.redpois0n.ui.panels.PanelSettingsTheme;
@@ -69,7 +70,7 @@ public class FrameSettings extends BaseFrame {
 			public void valueChanged(TreeSelectionEvent arg0) {
 				try {
 					String path = arg0.getPath().getPath()[1].toString();
-					if (panel(path)) {
+					if (isPanel(path)) {
 						panel.removeAll();
 						panel.add(panels.get(path.toLowerCase()));
 						panel.revalidate();
@@ -78,7 +79,7 @@ public class FrameSettings extends BaseFrame {
 						perform(path);
 					}
 				} catch (Exception ex) {
-
+					ex.printStackTrace();
 				}
 			}
 		});
@@ -90,6 +91,7 @@ public class FrameSettings extends BaseFrame {
 		}));
 
 		JTreeIconsRenderer renderer = new JTreeIconsRenderer();
+		
 		renderer.icons.put("main", IconUtils.getIcon("tab_settings", true));
 		renderer.icons.put("themes", IconUtils.getIcon("themes", true));
 		renderer.icons.put("editor", IconUtils.getIcon("list", true));
@@ -99,6 +101,7 @@ public class FrameSettings extends BaseFrame {
 		renderer.icons.put("eula", IconUtils.getIcon("gavel", true));
 		renderer.icons.put("changelog", IconUtils.getIcon("changelog", true));
 		renderer.icons.put("about", IconUtils.getIcon("info", true));
+		
 		tree.setCellRenderer(renderer);
 		reload();
 		panel.add(panels.get("main"));
@@ -125,6 +128,7 @@ public class FrameSettings extends BaseFrame {
 		panels.put("flags", new PanelSettingsFlags());
 		panels.put("stats", new PanelSettingsStats());
 		panels.put("sound", new PanelSettingsSound());
+		panels.put("proxy", new PanelSettingsProxy());
 
 		actions.clear();
 		actions.put("eula", new EulaListener());
@@ -138,6 +142,7 @@ public class FrameSettings extends BaseFrame {
 		PanelSettingsTheme themes = (PanelSettingsTheme) panels.get("themes");
 		PanelSettingsStats stats = (PanelSettingsStats) panels.get("stats");
 		PanelSettingsSound sound = (PanelSettingsSound) panels.get("sound");
+		PanelSettingsProxy proxy = (PanelSettingsProxy) panels.get("proxy");
 
 		Settings.setVal("traynote", main.useTrayIcon());
 		Settings.setVal("soundonc", sound.onConnect());
@@ -148,16 +153,22 @@ public class FrameSettings extends BaseFrame {
 		Settings.setVal("askurl", main.askOnConnect());
 		Settings.setVal("max", main.getMaximum());
 		Settings.setVal("geoip", flags.useWeb());
+		Settings.setVal("proxy", proxy.useProxy());
+		Settings.setVal("proxyhost", proxy.getHost());
+		Settings.setVal("proxyport", proxy.getPort());
+		Settings.setVal("proxysocks", proxy.useSocks());
+		
 		if (!stats.trackStats()) {
 			Statistics.list.clear();
 			Statistics.saveEmpty();
 		}
+		
 		Settings.save();
 		Settings.load();
 		Sound.initialize();
 	}
 
-	public boolean panel(String str) {
+	public boolean isPanel(String str) {
 		return panels.containsKey(str.toLowerCase());
 	}
 
@@ -172,6 +183,7 @@ public class FrameSettings extends BaseFrame {
 		root.add(new DefaultMutableTreeNode("Flags"));
 		root.add(new DefaultMutableTreeNode("Stats"));
 		root.add(new DefaultMutableTreeNode("Sound"));
+		root.add(new DefaultMutableTreeNode("Proxy"));
 		root.add(new DefaultMutableTreeNode("EULA"));
 		root.add(new DefaultMutableTreeNode("Changelog"));
 		root.add(new DefaultMutableTreeNode("About"));

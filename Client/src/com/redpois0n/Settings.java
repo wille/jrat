@@ -79,6 +79,10 @@ public class Settings {
 		Settings.setVal("max", -1);
 		Settings.setVal("geoip", true);
 		Settings.setVal("encryption", true);
+		Settings.setVal("proxy", false);
+		Settings.setVal("proxyhost", "127.0.0.1");
+		Settings.setVal("proxyport", 9050);
+		Settings.setVal("proxysocks", true);
 	}
 
 }
