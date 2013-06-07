@@ -1,4 +1,4 @@
-package com.redpois0n.util;
+package com.redpois0n.utils;
 
 import java.io.IOException;
 import java.io.InputStream;

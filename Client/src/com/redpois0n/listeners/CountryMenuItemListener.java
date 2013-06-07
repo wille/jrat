@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JMenuItem;
 
-import com.redpois0n.util.NetworkUtils;
+import com.redpois0n.utils.NetworkUtils;
 
 
 

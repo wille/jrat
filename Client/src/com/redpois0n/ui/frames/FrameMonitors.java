@@ -26,7 +26,7 @@ import javax.swing.border.EmptyBorder;
 import com.redpois0n.Monitor;
 import com.redpois0n.Slave;
 import com.redpois0n.ui.renderers.JComboBoxIconRenderer;
-import com.redpois0n.util.IconUtils;
+import com.redpois0n.utils.IconUtils;
 
 @SuppressWarnings("serial")
 public class FrameMonitors extends BaseDialog {

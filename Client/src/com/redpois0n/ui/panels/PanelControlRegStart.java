@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 
 import com.redpois0n.Slave;
 import com.redpois0n.packets.Header;
-import com.redpois0n.util.IconUtils;
+import com.redpois0n.utils.IconUtils;
 
 @SuppressWarnings("serial")
 public class PanelControlRegStart extends PanelControlParent {

@@ -38,7 +38,7 @@ import com.redpois0n.Constants;
 import com.redpois0n.Help;
 import com.redpois0n.io.Files;
 import com.redpois0n.ui.renderers.table.HelpTableRenderer;
-import com.redpois0n.util.NetworkUtils;
+import com.redpois0n.utils.NetworkUtils;
 
 @SuppressWarnings("serial")
 public class FrameHelp extends BaseFrame {

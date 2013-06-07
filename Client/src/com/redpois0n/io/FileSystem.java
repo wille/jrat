@@ -10,7 +10,7 @@ import java.util.List;
 import javax.swing.Icon;
 import javax.swing.table.DefaultTableModel;
 
-import com.redpois0n.util.IconUtils;
+import com.redpois0n.utils.IconUtils;
 
 public class FileSystem {
 

@@ -1,4 +1,4 @@
-package com.redpois0n.util;
+package com.redpois0n.utils;
 
 import java.awt.SystemTray;
 import java.awt.TrayIcon;

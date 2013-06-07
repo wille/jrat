@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JList;
 
-import com.redpois0n.util.ImageUtils;
+import com.redpois0n.utils.ImageUtils;
 
 
 @SuppressWarnings("serial")

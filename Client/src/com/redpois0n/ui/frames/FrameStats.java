@@ -16,7 +16,7 @@ import com.redpois0n.StatMeterEntry;
 import com.redpois0n.Statistics;
 import com.redpois0n.ui.panels.PanelImage;
 import com.redpois0n.ui.renderers.StatMeter;
-import com.redpois0n.util.FlagUtils;
+import com.redpois0n.utils.FlagUtils;
 
 
 @SuppressWarnings("serial")

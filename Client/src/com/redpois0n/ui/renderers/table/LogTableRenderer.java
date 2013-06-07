@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
-import com.redpois0n.util.IconUtils;
+import com.redpois0n.utils.IconUtils;
 
 
 @SuppressWarnings("serial")

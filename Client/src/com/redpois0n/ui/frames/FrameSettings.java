@@ -32,7 +32,7 @@ import com.redpois0n.ui.panels.PanelSettingsSound;
 import com.redpois0n.ui.panels.PanelSettingsStats;
 import com.redpois0n.ui.panels.PanelSettingsTheme;
 import com.redpois0n.ui.renderers.JTreeIconsRenderer;
-import com.redpois0n.util.IconUtils;
+import com.redpois0n.utils.IconUtils;
 
 @SuppressWarnings("serial")
 public class FrameSettings extends BaseFrame {

@@ -39,7 +39,7 @@ import com.redpois0n.ui.panels.PanelBuildTimeout;
 import com.redpois0n.ui.panels.PanelBuildUSB;
 import com.redpois0n.ui.panels.PanelBuildVisible;
 import com.redpois0n.ui.renderers.JTreeIconsRenderer;
-import com.redpois0n.util.IconUtils;
+import com.redpois0n.utils.IconUtils;
 
 
 @SuppressWarnings("serial")

@@ -20,7 +20,7 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import com.redpois0n.ErrorDialog;
-import com.redpois0n.util.IconUtils;
+import com.redpois0n.utils.IconUtils;
 
 @SuppressWarnings("serial")
 public class PanelBuildVisible extends JPanel {

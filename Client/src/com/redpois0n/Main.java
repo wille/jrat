@@ -17,7 +17,7 @@ import com.redpois0n.threads.ThreadPing;
 import com.redpois0n.ui.frames.Frame;
 import com.redpois0n.ui.frames.FrameAd;
 import com.redpois0n.ui.frames.FrameEULA;
-import com.redpois0n.util.TrayIconUtils;
+import com.redpois0n.utils.TrayIconUtils;
 
 
 public class Main {

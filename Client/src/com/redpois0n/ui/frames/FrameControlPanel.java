@@ -74,9 +74,9 @@ import com.redpois0n.ui.panels.PanelControlSystemMonitor;
 import com.redpois0n.ui.panels.PanelControlTrace;
 import com.redpois0n.ui.panels.PanelControluTorrentDownloads;
 import com.redpois0n.ui.renderers.ControlPanelRenderer;
-import com.redpois0n.util.FlagUtils;
-import com.redpois0n.util.IconUtils;
-import com.redpois0n.util.Util;
+import com.redpois0n.utils.FlagUtils;
+import com.redpois0n.utils.IconUtils;
+import com.redpois0n.utils.Util;
 
 @SuppressWarnings({ "serial" })
 public class FrameControlPanel extends BaseFrame {

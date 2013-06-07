@@ -20,8 +20,8 @@ import com.redpois0n.Slave;
 import com.redpois0n.packets.Header;
 import com.redpois0n.ui.frames.FrameRawSystemInfo;
 import com.redpois0n.ui.renderers.table.ComputerInfoTableRenderer;
-import com.redpois0n.util.FlagUtils;
-import com.redpois0n.util.IconUtils;
+import com.redpois0n.utils.FlagUtils;
+import com.redpois0n.utils.IconUtils;
 
 
 @SuppressWarnings("serial")

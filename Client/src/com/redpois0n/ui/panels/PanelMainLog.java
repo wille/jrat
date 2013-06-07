@@ -26,7 +26,7 @@ import com.redpois0n.Main;
 import com.redpois0n.Slave;
 import com.redpois0n.ui.frames.QuickFrame;
 import com.redpois0n.ui.renderers.table.LogTableRenderer;
-import com.redpois0n.util.IconUtils;
+import com.redpois0n.utils.IconUtils;
 
 @SuppressWarnings("serial")
 public class PanelMainLog extends JPanel {

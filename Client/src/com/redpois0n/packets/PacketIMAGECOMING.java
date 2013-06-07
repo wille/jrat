@@ -16,7 +16,7 @@ import com.redpois0n.common.crypto.Crypto;
 import com.redpois0n.threads.ThreadImage;
 import com.redpois0n.threads.ThreadRemoteScreenRecorder;
 import com.redpois0n.ui.frames.FrameRemoteScreen;
-import com.redpois0n.util.ImageUtils;
+import com.redpois0n.utils.ImageUtils;
 
 
 public class PacketIMAGECOMING extends Packet {

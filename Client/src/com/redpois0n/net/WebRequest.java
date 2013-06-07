@@ -4,7 +4,7 @@ import java.net.URL;
 
 import com.redpois0n.Settings;
 import com.redpois0n.exceptions.RequestNotAllowedException;
-import com.redpois0n.util.Util;
+import com.redpois0n.utils.Util;
 
 public class WebRequest {
 	

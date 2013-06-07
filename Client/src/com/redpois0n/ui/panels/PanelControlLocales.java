@@ -15,7 +15,7 @@ import com.redpois0n.Locale;
 import com.redpois0n.Slave;
 import com.redpois0n.packets.Header;
 import com.redpois0n.ui.renderers.table.LocaleTableRenderer;
-import com.redpois0n.util.FlagUtils;
+import com.redpois0n.utils.FlagUtils;
 
 @SuppressWarnings("serial")
 public class PanelControlLocales extends PanelControlParent {

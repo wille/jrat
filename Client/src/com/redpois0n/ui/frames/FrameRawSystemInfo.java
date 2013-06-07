@@ -3,7 +3,7 @@ package com.redpois0n.ui.frames;
 import java.util.HashMap;
 
 import com.redpois0n.Slave;
-import com.redpois0n.util.IconUtils;
+import com.redpois0n.utils.IconUtils;
 
 
 

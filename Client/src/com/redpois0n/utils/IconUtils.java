@@ -1,4 +1,4 @@
-package com.redpois0n.util;
+package com.redpois0n.utils;
 
 import java.io.File;
 import java.net.URL;

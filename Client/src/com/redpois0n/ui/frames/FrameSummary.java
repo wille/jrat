@@ -17,7 +17,7 @@ import com.redpois0n.common.codec.Md5;
 import com.redpois0n.common.codec.Sha1;
 import com.redpois0n.ui.components.Table;
 import com.redpois0n.ui.renderers.table.BuildTableRenderer;
-import com.redpois0n.util.IconUtils;
+import com.redpois0n.utils.IconUtils;
 
 @SuppressWarnings("serial")
 public class FrameSummary extends BaseDialog {

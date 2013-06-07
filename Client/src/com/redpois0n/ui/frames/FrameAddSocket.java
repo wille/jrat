@@ -22,7 +22,7 @@ import javax.swing.border.EmptyBorder;
 import com.redpois0n.ErrorDialog;
 import com.redpois0n.net.PortListener;
 import com.redpois0n.ui.components.EncryptionKeyJTextField;
-import com.redpois0n.util.Util;
+import com.redpois0n.utils.Util;
 
 @SuppressWarnings("serial")
 public class FrameAddSocket extends BaseFrame {

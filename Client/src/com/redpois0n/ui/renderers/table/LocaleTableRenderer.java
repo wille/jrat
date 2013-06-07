@@ -6,7 +6,7 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
-import com.redpois0n.util.FlagUtils;
+import com.redpois0n.utils.FlagUtils;
 
 @SuppressWarnings("serial")
 public class LocaleTableRenderer extends DefaultTableCellRenderer {

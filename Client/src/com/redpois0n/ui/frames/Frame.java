@@ -65,9 +65,9 @@ import com.redpois0n.ui.panels.PanelMainLog;
 import com.redpois0n.ui.panels.PanelMainPlugins;
 import com.redpois0n.ui.panels.PanelMainSockets;
 import com.redpois0n.ui.renderers.table.MainTableRenderer;
-import com.redpois0n.util.FlagUtils;
-import com.redpois0n.util.IconUtils;
-import com.redpois0n.util.Util;
+import com.redpois0n.utils.FlagUtils;
+import com.redpois0n.utils.IconUtils;
+import com.redpois0n.utils.Util;
 
 @SuppressWarnings("serial")
 public class Frame extends BaseFrame {

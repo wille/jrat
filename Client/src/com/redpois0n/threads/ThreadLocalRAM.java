@@ -1,7 +1,7 @@
 package com.redpois0n.threads;
 
 import com.redpois0n.ui.frames.FramePerformance;
-import com.redpois0n.util.Util;
+import com.redpois0n.utils.Util;
 
 public class ThreadLocalRAM extends Thread {
 

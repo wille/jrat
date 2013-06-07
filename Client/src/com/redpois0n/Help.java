@@ -6,7 +6,7 @@ import java.io.FileInputStream;
 import javax.swing.JOptionPane;
 
 import com.redpois0n.io.Files;
-import com.redpois0n.util.IOUtils;
+import com.redpois0n.utils.IOUtils;
 
 public class Help {
 

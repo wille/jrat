@@ -1,6 +1,6 @@
 package com.redpois0n;
 
-import com.redpois0n.util.Util;
+import com.redpois0n.utils.Util;
 
 public class LogEntry {
 

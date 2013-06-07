@@ -19,7 +19,7 @@ import com.redpois0n.Slave;
 import com.redpois0n.packets.Header;
 import com.redpois0n.packets.PacketBuilder;
 import com.redpois0n.ui.renderers.JComboBoxIconRenderer;
-import com.redpois0n.util.IconUtils;
+import com.redpois0n.utils.IconUtils;
 
 
 @SuppressWarnings("serial")

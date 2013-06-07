@@ -20,7 +20,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
 import com.redpois0n.ui.panels.PanelImage;
-import com.redpois0n.util.IconUtils;
+import com.redpois0n.utils.IconUtils;
 
 
 @SuppressWarnings("serial")

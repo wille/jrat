@@ -27,8 +27,8 @@ import com.redpois0n.Constants;
 import com.redpois0n.common.Version;
 import com.redpois0n.net.WebRequest;
 import com.redpois0n.ui.panels.PanelImage;
-import com.redpois0n.util.IOUtils;
-import com.redpois0n.util.NetworkUtils;
+import com.redpois0n.utils.IOUtils;
+import com.redpois0n.utils.NetworkUtils;
 
 
 @SuppressWarnings("serial")

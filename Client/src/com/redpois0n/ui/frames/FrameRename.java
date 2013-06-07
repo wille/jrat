@@ -16,7 +16,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.redpois0n.ServerID;
 import com.redpois0n.Slave;
-import com.redpois0n.util.Util;
+import com.redpois0n.utils.Util;
 
 @SuppressWarnings("serial")
 public class FrameRename extends BaseFrame {

@@ -39,8 +39,8 @@ import com.redpois0n.common.os.OperatingSystem;
 import com.redpois0n.io.Files;
 import com.redpois0n.listeners.MinimalBuildListener;
 import com.redpois0n.plugins.PluginList;
-import com.redpois0n.util.NetworkUtils;
-import com.redpois0n.util.Util;
+import com.redpois0n.utils.NetworkUtils;
+import com.redpois0n.utils.Util;
 
 @SuppressWarnings("serial")
 public class FrameBuildMinimal extends BaseFrame {

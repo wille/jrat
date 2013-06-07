@@ -4,7 +4,7 @@ import javax.swing.Icon;
 
 import com.redpois0n.Slave;
 import com.redpois0n.ui.frames.FramePreviewZip;
-import com.redpois0n.util.IconUtils;
+import com.redpois0n.utils.IconUtils;
 
 
 public class PacketZIP extends Packet {

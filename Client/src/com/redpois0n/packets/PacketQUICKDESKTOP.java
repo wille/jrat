@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 
 import com.redpois0n.Slave;
 import com.redpois0n.ui.frames.FrameQuickRemoteScreen;
-import com.redpois0n.util.ImageUtils;
+import com.redpois0n.utils.ImageUtils;
 
 public class PacketQUICKDESKTOP extends Packet {
 

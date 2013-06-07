@@ -5,7 +5,7 @@ import javax.swing.ImageIcon;
 import com.redpois0n.Slave;
 import com.redpois0n.ui.frames.FrameControlPanel;
 import com.redpois0n.ui.panels.PanelControlDownloadManager;
-import com.redpois0n.util.IconUtils;
+import com.redpois0n.utils.IconUtils;
 
 
 public class PacketURLSTAT extends Packet {

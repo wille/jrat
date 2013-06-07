@@ -24,8 +24,8 @@ import com.redpois0n.Status;
 import com.redpois0n.exceptions.CloseException;
 import com.redpois0n.packets.Header;
 import com.redpois0n.ui.panels.PanelImage;
-import com.redpois0n.util.FlagUtils;
-import com.redpois0n.util.IconUtils;
+import com.redpois0n.utils.FlagUtils;
+import com.redpois0n.utils.IconUtils;
 
 
 @SuppressWarnings("serial")

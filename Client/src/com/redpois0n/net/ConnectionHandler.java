@@ -7,8 +7,8 @@ import com.redpois0n.exceptions.CloseException;
 import com.redpois0n.packets.Header;
 import com.redpois0n.plugins.PluginEventHandler;
 import com.redpois0n.ui.frames.Frame;
-import com.redpois0n.util.TrayIconUtils;
-import com.redpois0n.util.Util;
+import com.redpois0n.utils.TrayIconUtils;
+import com.redpois0n.utils.Util;
 
 public class ConnectionHandler {
 

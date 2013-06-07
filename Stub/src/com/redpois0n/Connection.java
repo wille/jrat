@@ -64,6 +64,8 @@ public class Connection implements Runnable {
 			
 			Main.encryption = inputStream.read() == 1;
 			
+			addToSendQueue(new PacketBuilder(Header.INIT_PASSWORD, Main.getPass()));
+
 			initialize();
 
 			status(Constants.STATUS_READY);
@@ -98,8 +100,6 @@ public class Connection implements Runnable {
 	}
 
 	public static void initialize() {
-		addToSendQueue(new PacketBuilder(Header.INIT_PASSWORD, Main.getPass()));
-
 		addToSendQueue(new PacketBuilder(Header.INIT_DATE, Main.date));
 
 		addToSendQueue(new PacketBuilder(Header.INIT_VERSION, Version.getVersion()));

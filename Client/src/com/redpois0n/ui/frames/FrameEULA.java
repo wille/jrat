@@ -22,7 +22,7 @@ import com.redpois0n.Main;
 import com.redpois0n.Settings;
 import com.redpois0n.common.Version;
 import com.redpois0n.threads.ThreadCountDown;
-import com.redpois0n.util.IOUtils;
+import com.redpois0n.utils.IOUtils;
 
 
 @SuppressWarnings("serial")

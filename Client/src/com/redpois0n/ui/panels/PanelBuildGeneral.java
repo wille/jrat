@@ -20,7 +20,7 @@ import com.redpois0n.Help;
 import com.redpois0n.Settings;
 import com.redpois0n.common.crypto.Crypto;
 import com.redpois0n.ui.components.EncryptionKeyJTextField;
-import com.redpois0n.util.Util;
+import com.redpois0n.utils.Util;
 
 @SuppressWarnings("serial")
 public class PanelBuildGeneral extends JPanel {

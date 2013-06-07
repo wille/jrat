@@ -19,7 +19,7 @@ import javax.swing.SpinnerNumberModel;
 import com.redpois0n.ErrorDialog;
 import com.redpois0n.Help;
 import com.redpois0n.Settings;
-import com.redpois0n.util.NetworkUtils;
+import com.redpois0n.utils.NetworkUtils;
 
 
 @SuppressWarnings("serial")

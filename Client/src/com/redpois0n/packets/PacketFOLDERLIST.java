@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.redpois0n.Slave;
 import com.redpois0n.ui.frames.FrameRemoteFiles;
-import com.redpois0n.util.IconUtils;
+import com.redpois0n.utils.IconUtils;
 
 
 public class PacketFOLDERLIST extends Packet {

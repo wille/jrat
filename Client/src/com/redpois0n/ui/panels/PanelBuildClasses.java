@@ -15,7 +15,7 @@ import javax.swing.tree.DefaultTreeModel;
 
 import com.redpois0n.io.Files;
 import com.redpois0n.ui.renderers.JTreeIconRenderer;
-import com.redpois0n.util.IconUtils;
+import com.redpois0n.utils.IconUtils;
 
 
 @SuppressWarnings("serial")
