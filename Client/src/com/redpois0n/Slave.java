@@ -110,7 +110,7 @@ public class Slave extends CustomStream implements Runnable {
 				if (country != null) {
 					this.country = country.get2cStr();
 					
-					if (this.country.equals("ZZ")) {
+					if (this.country.equalsIgnoreCase("ZZ")) {
 						this.country = "?";
 					}
 				} else {
