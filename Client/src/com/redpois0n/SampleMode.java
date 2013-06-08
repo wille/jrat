@@ -277,7 +277,7 @@ public class SampleMode {
 	public static Slave generate(String country, String ip) {
 		Slave slave = new Slave(null, null);
 		
-		if (Settings.getBoolean("geoip")) {
+		if (Settings.getGlobal().getBoolean("geoip")) {
 			Country c = FlagUtils.getCountry(ip.split(" / ")[0]);
 			
 			if (c != null) {

@@ -6,83 +6,86 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.UIManager;
 
 import com.redpois0n.io.Files;
 
-public class Settings {
+public class Settings extends AbstractSettings {
 
-	private static HashMap<String, Object> settings = new HashMap<String, Object>();
+	private static final Settings instance = new Settings();
+	
+	private Map<String, Object> settings = new HashMap<String, Object>();
 
-	public static String get(String key) {
-		Object obj = settings.get(key);
-		return obj == null ? "" : (String)obj;
+	public static Settings getGlobal() {
+		return instance;
 	}
 	
-	public static int getInt(String key) {
+	public String get(String key) {
 		Object obj = settings.get(key);
-		return obj == null ? -1 : (Integer)obj;
-	}
-	
-	public static boolean getBoolean(String key) {
-		Object obj = settings.get(key);
-		return obj == null ? false : (Boolean)obj;
+		return obj == null ? "" : (String) obj;
 	}
 
-	public static void setVal(String key, Object value) {
+	public int getInt(String key) {
+		Object obj = settings.get(key);
+		return obj == null ? -1 : (Integer) obj;
+	}
+
+	public boolean getBoolean(String key) {
+		Object obj = settings.get(key);
+		return obj == null ? false : (Boolean) obj;
+	}
+
+	public void setVal(String key, Object value) {
 		settings.put(key, value);
 	}
 
 	@SuppressWarnings("unchecked")
-	public static void load() {
-		try {
-			ObjectInputStream str = new ObjectInputStream(new FileInputStream(new File(Files.getSettings(), "settings.dat")));
-			settings = (HashMap<String, Object>) str.readObject();
-			str.close();		
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		
+	public void load() throws Exception {
+		ObjectInputStream str = new ObjectInputStream(new FileInputStream(getFile()));
+		settings = (HashMap<String, Object>) str.readObject();
+		str.close();
+
 		if (settings.size() == 0) {
 			addDefault();
 		}
 	}
 
-	public static void save() {
-		try {
-			ObjectOutputStream str = new ObjectOutputStream(new FileOutputStream(new File(Files.getSettings(), "settings.dat")));
-			str.writeObject(settings);
-			str.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public void save() throws Exception {
+		ObjectOutputStream str = new ObjectOutputStream(new FileOutputStream(getFile()));
+		str.writeObject(settings);
+		str.close();
 	}
 
-	public static void addDefault() {
-		Settings.setVal("bip", "127.0.0.1");
-		Settings.setVal("bport", 1336);
-		Settings.setVal("bid", "Name");
-		Settings.setVal("bkey", "enckey");
-		Settings.setVal("bpass", "pass");
-		Settings.setVal("bcrypt", true);
-		Settings.setVal("brecat", 10);
-		Settings.setVal("traynote", true);
-		Settings.setVal("soundondc", false);
-		Settings.setVal("soundonc", false);
-		Settings.setVal("stats", true);
-		Settings.setVal("jarname", "File");
-		Settings.setVal("autologin", false);
-		Settings.setVal("remotescreenstartup", false);
-		Settings.setVal("theme", UIManager.getSystemLookAndFeelClassName());
-		Settings.setVal("askurl", true);
-		Settings.setVal("max", -1);
-		Settings.setVal("geoip", true);
-		Settings.setVal("encryption", true);
-		Settings.setVal("proxy", false);
-		Settings.setVal("proxyhost", "127.0.0.1");
-		Settings.setVal("proxyport", 9050);
-		Settings.setVal("proxysocks", true);
+	public void addDefault() {
+		setVal("bip", "127.0.0.1");
+		setVal("bport", 1336);
+		setVal("bid", "Name");
+		setVal("bkey", "enckey");
+		setVal("bpass", "pass");
+		setVal("bcrypt", true);
+		setVal("brecat", 10);
+		setVal("traynote", true);
+		setVal("soundondc", false);
+		setVal("soundonc", false);
+		setVal("stats", true);
+		setVal("jarname", "File");
+		setVal("autologin", false);
+		setVal("remotescreenstartup", false);
+		setVal("theme", UIManager.getSystemLookAndFeelClassName());
+		setVal("askurl", true);
+		setVal("max", -1);
+		setVal("geoip", true);
+		setVal("encryption", true);
+		setVal("proxy", false);
+		setVal("proxyhost", "127.0.0.1");
+		setVal("proxyport", 9050);
+		setVal("proxysocks", true);
 	}
 
+	@Override
+	public File getFile() {
+		return new File(Files.getSettings(), "settings.dat");
+	}
 }

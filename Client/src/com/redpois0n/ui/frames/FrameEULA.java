@@ -73,7 +73,7 @@ public class FrameEULA extends BaseDialog {
 					// TODO
 					Main.instance.setVisible(true);
 				}
-				Settings.setVal("showeula", "true");
+				Settings.getGlobal().setVal("showeula", "true");
 				setVisible(false);
 				dispose();
 			}

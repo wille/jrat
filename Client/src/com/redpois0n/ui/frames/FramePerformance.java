@@ -24,14 +24,14 @@ import javax.swing.border.EmptyBorder;
 import com.redpois0n.common.Version;
 import com.redpois0n.threads.ThreadLocalRAM;
 import com.redpois0n.ui.panels.PanelImage;
-import com.redpois0n.ui.renderers.Meter;
+import com.redpois0n.ui.renderers.MemoryMeter;
 
 @SuppressWarnings("serial")
 public class FramePerformance extends BaseFrame {
 
 	private JPanel contentPane;
 	public PanelImage panel;
-	public Meter ramMeter = new Meter(Color.blue);
+	public MemoryMeter ramMeter = new MemoryMeter(Color.blue);
 	public static FramePerformance instance;
 	public JProgressBar barRAM;
 	public JLabel lblMaxRam;

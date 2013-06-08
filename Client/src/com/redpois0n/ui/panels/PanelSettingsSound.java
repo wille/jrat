@@ -35,10 +35,10 @@ public class PanelSettingsSound extends JPanel {
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(panel, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE).addContainerGap(13, Short.MAX_VALUE)));
 
 		chckbxOnConnect = new JCheckBox("On Connect");
-		chckbxOnConnect.setSelected(Settings.getBoolean("soundonc"));
+		chckbxOnConnect.setSelected(Settings.getGlobal().getBoolean("soundonc"));
 
 		chckbxOnDisconnect = new JCheckBox("On Disconnect");
-		chckbxOnDisconnect.setSelected(Settings.getBoolean("soundondc"));
+		chckbxOnDisconnect.setSelected(Settings.getGlobal().getBoolean("soundondc"));
 
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(PanelSettingsSound.class.getResource("/icons/action_join.png")));

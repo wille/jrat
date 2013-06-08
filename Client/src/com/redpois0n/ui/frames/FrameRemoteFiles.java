@@ -452,7 +452,7 @@ public class FrameRemoteFiles extends BaseFrame {
 			public void popupMenuWillBecomeVisible(PopupMenuEvent arg0) {
 				File bm = new File(txtDir.getText());
 
-				if (FileBookmarks.contains(bm)) {
+				if (FileBookmarks.getGlobal().contains(bm)) {
 					mnAdd.setEnabled(false);
 					mnRemove.setEnabled(true);
 				} else {
@@ -647,7 +647,7 @@ public class FrameRemoteFiles extends BaseFrame {
 		mnAdd = new JMenuItem("Add");
 		mnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				FileBookmarks.paths.add(new File(txtDir.getText()));
+				FileBookmarks.getGlobal().getBookmarks().add(new File(txtDir.getText()));
 				txtChanged();
 			}
 		});
@@ -657,7 +657,7 @@ public class FrameRemoteFiles extends BaseFrame {
 		mnRemove = new JMenuItem("Remove");
 		mnRemove.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				FileBookmarks.remove(new File(txtDir.getText()));
+				FileBookmarks.getGlobal().remove(new File(txtDir.getText()));
 				txtChanged();
 			}
 		});
@@ -802,7 +802,7 @@ public class FrameRemoteFiles extends BaseFrame {
 
 		super.setMinimumSize(super.getSize());
 
-		if (FileBookmarks.paths.size() > 0) {
+		if (FileBookmarks.getGlobal().getBookmarks().size() > 0) {
 			ActionListener listener = new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					JMenuItem item = (JMenuItem) arg0.getSource();
@@ -816,7 +816,7 @@ public class FrameRemoteFiles extends BaseFrame {
 
 			ImageIcon icon = IconUtils.getIcon("bookmark");
 
-			for (File file : FileBookmarks.paths) {
+			for (File file : FileBookmarks.getGlobal().getBookmarks()) {
 				JMenuItem item = new JMenuItem();
 				item.setText(file.getAbsolutePath());
 				item.setIcon(icon);
@@ -828,7 +828,6 @@ public class FrameRemoteFiles extends BaseFrame {
 	}
 
 	public void exit() {
-		FileBookmarks.save();
 		instances.remove(slave);
 	}
 
@@ -908,7 +907,7 @@ public class FrameRemoteFiles extends BaseFrame {
 
 	public void txtChanged() {
 		File dir = new File(txtDir.getText());
-		if (FileBookmarks.contains(dir)) {
+		if (FileBookmarks.getGlobal().contains(dir)) {
 			txtDir.setForeground(Color.red);
 		} else {
 			txtDir.setForeground(Color.black);

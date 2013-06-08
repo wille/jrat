@@ -37,7 +37,7 @@ public class MainTableRenderer extends DefaultTableCellRenderer {
 		Slave slave = Util.getSlave(table.getValueAt(row, 3).toString());
 
 		if (slave != null && !isSelected && !slave.getVersion().equals(Version.getVersion()) && !slave.getVersion().equals("")) {
-			setForeground(Colors.getColorFromIndex(Colors.get("outdated servers").getIndex()));
+			setForeground(Colors.getGlobal().getColorFromIndex(Colors.getGlobal().get("outdated servers").getIndex()));
 		} else if (isSelected) {
 			setForeground(Color.white);
 		} else {

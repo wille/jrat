@@ -51,19 +51,19 @@ public class PanelBuildNetwork extends JPanel {
 
 		JLabel lblIp = new JLabel("IP:");
 
-		txtIP = new JTextField(Settings.get("bip"));
+		txtIP = new JTextField(Settings.getGlobal().get("bip"));
 		txtIP.setColumns(10);
 
 		JLabel lblPort = new JLabel("Port:");
 
 		spinPort = new JSpinner();
-		spinPort.setModel(new SpinnerNumberModel(Settings.getInt("bport"), 1, 65535, 1));
+		spinPort.setModel(new SpinnerNumberModel(Settings.getGlobal().getInt("bport"), 1, 65535, 1));
 
 		JLabel lblReconnectRate = new JLabel("Reconnect rate:");
 
 		spinRate = new JSpinner();
 		spinRate.setToolTipText("Seconds between server reconnect attempts");
-		spinRate.setModel(new SpinnerNumberModel(Settings.getInt("brecat"), 1, 120, 1));
+		spinRate.setModel(new SpinnerNumberModel(Settings.getGlobal().getInt("brecat"), 1, 120, 1));
 
 		JLabel lblseconds = new JLabel("(seconds)");
 

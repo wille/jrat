@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -53,21 +54,23 @@ public class PanelSettingsProxy extends JPanel {
 		);
 		
 		chckbxUseProxy = new JCheckBox("Use Proxy");
+		chckbxUseProxy.setSelected(Settings.getGlobal().getBoolean("proxy"));
 		
 		JLabel lblHost = new JLabel("Host:");
 		
 		txtIP = new JTextField();
-		txtIP.setText("127.0.0.1");
+		txtIP.setText(Settings.getGlobal().get("proxyhost"));
 		txtIP.setColumns(10);
 		
 		JLabel lblPort = new JLabel("Port:");
 		
-		spPort = new JPortSpinner(Settings.getInt("proxyport"));
+		spPort = new JPortSpinner(Settings.getGlobal().getInt("proxyport"));
 		
 		JLabel lblType = new JLabel("Type:");
 		
 		cbType = new JComboBox<String>();
 		cbType.setModel(new DefaultComboBoxModel<String>(new String[] {"SOCKS", "HTTP"}));
+		cbType.setSelectedIndex(Settings.getGlobal().getBoolean("proxysocks") ? 0 : 1);
 		
 		JButton btnTest = new JButton("Test");
 		btnTest.addActionListener(new ActionListener() {
@@ -77,9 +80,11 @@ public class PanelSettingsProxy extends JPanel {
 					URLConnection connection = new URL("http://jrat-project.org/misc/getip.php").openConnection(proxy);
 						
 					String ip = new BufferedReader(new InputStreamReader(connection.getInputStream())).readLine();	
-					System.out.println(ip);
-				} catch (Exception e) {
-					e.printStackTrace();
+
+					JOptionPane.showMessageDialog(null, "Connection successful, current IP address: " + ip, "Proxy Test", JOptionPane.INFORMATION_MESSAGE);
+				} catch (Exception ex) {
+					ex.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Failed to connect to proxy: " + ex.getClass().getSimpleName() + ": " + ex.getMessage(), "Proxy Test", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});

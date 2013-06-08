@@ -7,6 +7,8 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
+import com.redpois0n.Settings;
+
 @SuppressWarnings("serial")
 public class PanelSettingsFlags extends JPanel {
 	
@@ -41,9 +43,10 @@ public class PanelSettingsFlags extends JPanel {
 		
 		rdbtnUseLocationTo = new JRadioButton("Use IP to Country library to get flag");
 		buttonGroup.add(rdbtnUseLocationTo);
-		rdbtnUseLocationTo.setSelected(true);
+		rdbtnUseLocationTo.setSelected(Settings.getGlobal().getBoolean("geoip"));
 		
 		rdbtnUseSystemLanguage = new JRadioButton("Use system locale to get flag");
+		rdbtnUseSystemLanguage.setSelected(!Settings.getGlobal().getBoolean("geoip"));
 		buttonGroup.add(rdbtnUseSystemLanguage);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(

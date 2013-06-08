@@ -54,7 +54,7 @@ public class FrameRename extends BaseFrame {
 		btnRename = new JButton("Rename");
 		btnRename.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ServerID.add(txtNewID.getText(), sl.getServerID(), sl.getRawIP());
+				ServerID.getGlobal().add(txtNewID.getText(), sl.getServerID(), sl.getRawIP());
 				for (int i = 0; i < Frame.mainModel.getRowCount(); i++) {
 					Slave sla = Util.getSlave(Frame.mainModel.getValueAt(i, 3).toString());
 					if (sla != null) {

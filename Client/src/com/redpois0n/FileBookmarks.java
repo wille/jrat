@@ -12,65 +12,69 @@ import java.util.List;
 
 import com.redpois0n.io.Files;
 
-public class FileBookmarks {
+public class FileBookmarks extends AbstractSettings {
+
+	private final List<File> bookmarks = new ArrayList<File>();
+
+	private static final FileBookmarks instance = new FileBookmarks();
+
+	public static FileBookmarks getGlobal() {
+		return instance;
+	}
 	
-	public static final List<File> paths = new ArrayList<File>();
-	
-	public static boolean contains(File file) {
-		for (File local : paths) {
-			if (local.getAbsolutePath().equalsIgnoreCase(file.getAbsolutePath())) {
+	public List<File> getBookmarks() {
+		return bookmarks;
+	}
+
+	public boolean contains(File file) {
+		return contains(file.getAbsolutePath());
+	}
+
+	public boolean contains(String file) {
+		for (File local : bookmarks) {
+			if (local.getAbsolutePath().replace("\\", "/").equalsIgnoreCase(file.replace("\\", "/"))) {
 				return true;
 			}
 		}
 		return false;
 	}
-	
-	public static boolean contains(String file) {
-		for (File local : paths) {
-			if (local.getAbsolutePath().equalsIgnoreCase(file)) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public static void remove(File file) {
-		for (int i = 0; i < paths.size(); i++) {
-			File local = paths.get(i);
+
+	public void remove(File file) {
+		for (int i = 0; i < bookmarks.size(); i++) {
+			File local = bookmarks.get(i);
 			if (local.getAbsolutePath().equalsIgnoreCase(file.getAbsolutePath())) {
-				paths.remove(i);
+				bookmarks.remove(i);
 				break;
 			}
 		}
 	}
-	
-	public static void load() {
-		try {
-			BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File(Files.getSettings(), "bookmarks.dat"))));
-			String line;
-			
-			while ((line = reader.readLine()) != null) {
-				paths.add(new File(line));
-			}
-			
-			reader.close();
-		} catch (Exception ex) {
-			ex.printStackTrace();
+
+	@Override
+	public void load() throws Exception {
+		BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(getFile())));
+		String line;
+
+		while ((line = reader.readLine()) != null) {
+			bookmarks.add(new File(line));
 		}
+
+		reader.close();
+
+	}
+
+	@Override
+	public void save() throws Exception {
+		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(getFile())));
+		for (File file : bookmarks) {
+			writer.write(file.getAbsolutePath());
+			writer.newLine();
+		}
+		writer.close();
 	}
 	
-	public static void save() {
-		try {
-			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(Files.getSettings(), "bookmarks.dat"))));
-			for (File file : paths) {
-				writer.write(file.getAbsolutePath());
-				writer.newLine();
-			}
-			writer.close();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			ErrorDialog.create(ex);
-		}
+	@Override
+	public File getFile() {
+		return new File(Files.getSettings(), "bookmarks.dat");
 	}
 
 }

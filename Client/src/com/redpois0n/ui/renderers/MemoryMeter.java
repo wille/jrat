@@ -10,7 +10,7 @@ import com.redpois0n.Constants;
 import com.redpois0n.utils.Util;
 
 
-public class Meter {
+public class MemoryMeter {
 
 	public static final int LINE_SPACE = 16;
 	
@@ -20,7 +20,7 @@ public class Meter {
 	public int mode = Constants.MODE_LINES;
 	public int loc = LINE_SPACE;
 
-	public Meter(Color color) {
+	public MemoryMeter(Color color) {
 		this.color = color;
 	}
 

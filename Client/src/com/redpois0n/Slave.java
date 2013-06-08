@@ -104,7 +104,7 @@ public class Slave extends CustomStream implements Runnable {
 			this.ip = socket.getInetAddress().getHostAddress() + " / " + socket.getPort();
 			this.host = socket.getInetAddress().getHostName();
 			
-			if (Settings.getBoolean("geoip")) {
+			if (Settings.getGlobal().getBoolean("geoip")) {
 				Country country = FlagUtils.getCountry(this);
 				
 				if (country != null) {

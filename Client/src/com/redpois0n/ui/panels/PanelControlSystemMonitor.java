@@ -23,12 +23,12 @@ import com.redpois0n.Slave;
 import com.redpois0n.packets.Header;
 import com.redpois0n.threads.ThreadRAM;
 import com.redpois0n.ui.components.JColorBox;
-import com.redpois0n.ui.renderers.Meter;
+import com.redpois0n.ui.renderers.MemoryMeter;
 
 @SuppressWarnings("serial")
 public class PanelControlSystemMonitor extends PanelControlParent {
 
-	public Meter ramMeter;
+	public MemoryMeter ramMeter;
 	public PanelImage panelRAM;
 	public JSlider sliderRam;
 	public boolean needRam = false;
@@ -50,9 +50,9 @@ public class PanelControlSystemMonitor extends PanelControlParent {
 			}
 		});
 		
-		colorBox.setProfile(Colors.get("system monitor"));
+		colorBox.setProfile(Colors.getGlobal().get("system monitor"));
 		
-		ramMeter = new Meter(colorBox.getColor());	
+		ramMeter = new MemoryMeter(colorBox.getColor());	
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(BorderFactory.createTitledBorder("System Monitor"));

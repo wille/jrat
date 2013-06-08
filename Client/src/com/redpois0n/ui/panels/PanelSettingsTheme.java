@@ -73,7 +73,7 @@ public class PanelSettingsTheme extends JPanel {
 					if (obj != null) {
 						UIManager.setLookAndFeel(obj.toString());
 						txtTheme.setText(obj.toString());
-						Settings.save();
+						Settings.getGlobal().save();
 					}
 					SwingUtilities.updateComponentTreeUI(mother);
 					mother.pack();

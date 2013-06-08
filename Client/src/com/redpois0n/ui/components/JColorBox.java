@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
 
-import com.redpois0n.ColorProfile;
+import com.redpois0n.Colors;
 import com.redpois0n.ui.renderers.JColorBoxRenderer;
 
 
@@ -27,17 +27,17 @@ public class JColorBox extends JComboBox<String> {
 		super.setRenderer(new JColorBoxRenderer());
 	}
 	
-	public JColorBox(ColorProfile profile) {
+	public JColorBox(Colors.ColorProfile profile) {
 		this();
 		setProfile(profile);
 	}
 	
-	public void setProfile(ColorProfile profile) {
+	public void setProfile(Colors.ColorProfile profile) {
 		super.setSelectedIndex(profile.getIndex());
 	}
 	
-	public ColorProfile getProfile() {
-		ColorProfile profile = new ColorProfile();
+	public Colors.ColorProfile getProfile() {
+		Colors.ColorProfile profile = Colors.getGlobal().new ColorProfile();
 		profile.setIndex(super.getSelectedIndex());
 		return profile;
 	}

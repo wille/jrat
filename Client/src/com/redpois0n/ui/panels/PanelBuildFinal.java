@@ -252,15 +252,15 @@ public class PanelBuildFinal extends JPanel {
 						Build.build(new AdvancedBuildListener(frame), Files.getStub(), new File(file), ip, port, ID, pass, key, crypt, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, hiddenFile, bind, bindpath, bindname, binddrop, usemutex, mutexport, plist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, usb, usbexclude, usbname, debugmsg, osconfig, true);
 					}
 
-					Settings.setVal("brecat", reconSec);
-					Settings.setVal("jarname", name);
-					Settings.setVal("bip", ip);
-					Settings.setVal("bport", port);
-					Settings.setVal("bid", ID);
-					Settings.setVal("bkey", key);
-					Settings.setVal("bpass", pass);
-					Settings.setVal("bcrypt", crypt);
-					Settings.save();
+					Settings.getGlobal().setVal("brecat", reconSec);
+					Settings.getGlobal().setVal("jarname", name);
+					Settings.getGlobal().setVal("bip", ip);
+					Settings.getGlobal().setVal("bport", port);
+					Settings.getGlobal().setVal("bid", ID);
+					Settings.getGlobal().setVal("bkey", key);
+					Settings.getGlobal().setVal("bpass", pass);
+					Settings.getGlobal().setVal("bcrypt", crypt);
+					Settings.getGlobal().save();
 				} catch (Exception ex) {
 					ErrorDialog.create(ex);
 					ex.printStackTrace();

@@ -17,7 +17,7 @@ public class WebRequest {
 		
 		URL url = null;
 		
-		if (Settings.getBoolean("askurl")) {
+		if (Settings.getGlobal().getBoolean("askurl")) {
 			if (Util.yesNo("HTTP Request", "jRAT tries to connect to:\n\r\n\r" + surl + "\n\r\n\rDo you want to accept it?")) {
 				url = new URL(surl);
 			} else {
@@ -35,8 +35,8 @@ public class WebRequest {
 		
 		URLConnection connection = null;
 		
-		if (Settings.getBoolean("proxy")) {
-			Proxy proxy = new Proxy(Settings.getBoolean("proxysocks") ? Proxy.Type.SOCKS : Proxy.Type.HTTP, new InetSocketAddress(Settings.get("proxyhost"), Settings.getInt("proxyport")));
+		if (Settings.getGlobal().getBoolean("proxy")) {
+			Proxy proxy = new Proxy(Settings.getGlobal().getBoolean("proxysocks") ? Proxy.Type.SOCKS : Proxy.Type.HTTP, new InetSocketAddress(Settings.getGlobal().get("proxyhost"), Settings.getGlobal().getInt("proxyport")));
 			connection = url.openConnection(proxy);
 		} else {
 			connection = url.openConnection();

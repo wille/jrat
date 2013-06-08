@@ -35,7 +35,7 @@ public class PanelSettingsStats extends JPanel {
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(panel, GroupLayout.PREFERRED_SIZE, 275, GroupLayout.PREFERRED_SIZE).addContainerGap(14, Short.MAX_VALUE)));
 
 		chckbxTrackStatistics = new JCheckBox("Track statistics");
-		chckbxTrackStatistics.setSelected(Settings.getBoolean("stats"));
+		chckbxTrackStatistics.setSelected(Settings.getGlobal().getBoolean("stats"));
 
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(PanelSettingsStats.class.getResource("/icons/statistics.png")));
@@ -44,9 +44,7 @@ public class PanelSettingsStats extends JPanel {
 		btnClearStats.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (JOptionPane.showConfirmDialog(null, "Confirm clearing all stats (Cant be undone)", "Confirm", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
-					Statistics.list.clear();
-					Statistics.saveEmpty();
-					Statistics.reload();
+					Statistics.getGlobal().getList().clear();
 				}
 			}
 		});

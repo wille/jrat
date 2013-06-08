@@ -56,13 +56,13 @@ public class PanelSettingsMain extends JPanel {
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(panel, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE).addContainerGap(13, Short.MAX_VALUE)));
 
 		chckbxRequestScreenOn = new JCheckBox("Request screen on remote screen open");
-		chckbxRequestScreenOn.setSelected(Settings.getBoolean("remotescreenstartup"));
+		chckbxRequestScreenOn.setSelected(Settings.getGlobal().getBoolean("remotescreenstartup"));
 
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(PanelSettingsMain.class.getResource("/icons/screen.png")));
 
 		chckbxTrayIcon = new JCheckBox("Tray Icon");
-		chckbxTrayIcon.setSelected(Settings.getBoolean("traynote"));
+		chckbxTrayIcon.setSelected(Settings.getGlobal().getBoolean("traynote"));
 
 		JLabel label_2 = new JLabel("");
 		label_2.setIcon(new ImageIcon(PanelSettingsMain.class.getResource("/icons/icon.png")));
@@ -71,8 +71,7 @@ public class PanelSettingsMain extends JPanel {
 		btnClearRenamedServers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (JOptionPane.showConfirmDialog(null, "Confirm clearing all saved names (Cant be undone)", "Confirm", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
-					ServerID.list.clear();
-					ServerID.save();
+					ServerID.getGlobal().getIDList().clear();
 				}
 			}
 		});
@@ -81,12 +80,12 @@ public class PanelSettingsMain extends JPanel {
 		JLabel label_1 = new JLabel("");
 		label_1.setIcon(new ImageIcon(PanelSettingsMain.class.getResource("/icons/question.png")));
 		
-		chckbxAskBeforeConnect = new JCheckBox("Ask before connect", Settings.getBoolean("askurl"));
+		chckbxAskBeforeConnect = new JCheckBox("Ask before connect", Settings.getGlobal().getBoolean("askurl"));
 		
 		JLabel label_3 = new JLabel("");
 		label_3.setIcon(new ImageIcon(PanelSettingsMain.class.getResource("/icons/computer_info.png")));
 		
-		chckbxMaximum = new JCheckBox("Maximum amount of connections", Settings.getInt("max") != -1);
+		chckbxMaximum = new JCheckBox("Maximum amount of connections", Settings.getGlobal().getInt("max") != -1);
 		chckbxMaximum.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				spinner.setEnabled(((JCheckBox)arg0.getSource()).isSelected());
@@ -95,7 +94,7 @@ public class PanelSettingsMain extends JPanel {
 		
 		spinner = new JSpinner();
 		spinner.setEnabled(chckbxMaximum.isSelected());
-		int max = Settings.getInt("max");
+		int max = Settings.getGlobal().getInt("max");
 		spinner.setModel(new SpinnerNumberModel(max == -1 ? 10 : max, 1, 999999999, 1));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(

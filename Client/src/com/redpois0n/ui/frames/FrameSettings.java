@@ -92,15 +92,16 @@ public class FrameSettings extends BaseFrame {
 
 		JTreeIconsRenderer renderer = new JTreeIconsRenderer();
 		
-		renderer.icons.put("main", IconUtils.getIcon("tab_settings", true));
-		renderer.icons.put("themes", IconUtils.getIcon("themes", true));
-		renderer.icons.put("editor", IconUtils.getIcon("list", true));
+		renderer.icons.put("main", IconUtils.getIcon("tab_settings"));
+		renderer.icons.put("themes", IconUtils.getIcon("themes"));
+		renderer.icons.put("editor", IconUtils.getIcon("list"));
 		renderer.icons.put("flags", IconUtils.getIcon("errorflag"));
-		renderer.icons.put("stats", IconUtils.getIcon("statistics", true));
-		renderer.icons.put("sound", IconUtils.getIcon("sound", true));
-		renderer.icons.put("eula", IconUtils.getIcon("gavel", true));
-		renderer.icons.put("changelog", IconUtils.getIcon("changelog", true));
-		renderer.icons.put("about", IconUtils.getIcon("info", true));
+		renderer.icons.put("stats", IconUtils.getIcon("statistics"));
+		renderer.icons.put("sound", IconUtils.getIcon("sound"));
+		renderer.icons.put("eula", IconUtils.getIcon("gavel"));
+		renderer.icons.put("changelog", IconUtils.getIcon("changelog"));
+		renderer.icons.put("about", IconUtils.getIcon("info"));
+		renderer.icons.put("proxy", IconUtils.getIcon("settings_proxy"));
 		
 		tree.setCellRenderer(renderer);
 		reload();
@@ -144,27 +145,24 @@ public class FrameSettings extends BaseFrame {
 		PanelSettingsSound sound = (PanelSettingsSound) panels.get("sound");
 		PanelSettingsProxy proxy = (PanelSettingsProxy) panels.get("proxy");
 
-		Settings.setVal("traynote", main.useTrayIcon());
-		Settings.setVal("soundonc", sound.onConnect());
-		Settings.setVal("soundondc", sound.onDisconnect());
-		Settings.setVal("stats", stats.trackStats());
-		Settings.setVal("remotescreenstartup", main.useAutoScreen());
-		Settings.setVal("theme", themes.getTheme());
-		Settings.setVal("askurl", main.askOnConnect());
-		Settings.setVal("max", main.getMaximum());
-		Settings.setVal("geoip", flags.useWeb());
-		Settings.setVal("proxy", proxy.useProxy());
-		Settings.setVal("proxyhost", proxy.getHost());
-		Settings.setVal("proxyport", proxy.getPort());
-		Settings.setVal("proxysocks", proxy.useSocks());
+		Settings.getGlobal().setVal("traynote", main.useTrayIcon());
+		Settings.getGlobal().setVal("soundonc", sound.onConnect());
+		Settings.getGlobal().setVal("soundondc", sound.onDisconnect());
+		Settings.getGlobal().setVal("stats", stats.trackStats());
+		Settings.getGlobal().setVal("remotescreenstartup", main.useAutoScreen());
+		Settings.getGlobal().setVal("theme", themes.getTheme());
+		Settings.getGlobal().setVal("askurl", main.askOnConnect());
+		Settings.getGlobal().setVal("max", main.getMaximum());
+		Settings.getGlobal().setVal("geoip", flags.useWeb());
+		Settings.getGlobal().setVal("proxy", proxy.useProxy());
+		Settings.getGlobal().setVal("proxyhost", proxy.getHost());
+		Settings.getGlobal().setVal("proxyport", proxy.getPort());
+		Settings.getGlobal().setVal("proxysocks", proxy.useSocks());
 		
 		if (!stats.trackStats()) {
-			Statistics.list.clear();
-			Statistics.saveEmpty();
+			Statistics.getGlobal().getList().clear();
 		}
-		
-		Settings.save();
-		Settings.load();
+
 		Sound.initialize();
 	}
 

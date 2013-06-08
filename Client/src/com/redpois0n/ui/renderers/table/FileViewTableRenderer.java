@@ -46,7 +46,7 @@ public class FileViewTableRenderer extends DefaultTableCellRenderer {
 		
 		if (val != null && val.length() > 0) {
 			setForeground(Color.blue);
-		} else if (column == 1 && FileBookmarks.contains(value.toString())) {
+		} else if (column == 1 && FileBookmarks.getGlobal().contains(value.toString())) {
 			setForeground(Color.red);
 			setIcon(bookmark);
 		}

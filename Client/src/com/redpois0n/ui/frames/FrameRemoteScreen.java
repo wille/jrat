@@ -377,7 +377,7 @@ public class FrameRemoteScreen extends BaseFrame {
 		progressBar.setForeground(Color.LIGHT_GRAY);
 		contentPane.setLayout(gl_contentPane);
 
-		if (Settings.getBoolean("remotescreenstartup")) {
+		if (Settings.getGlobal().getBoolean("remotescreenstartup")) {
 			FrameLoader loader = new FrameLoader();
 			loader.setVisible(true);
 			running = true;

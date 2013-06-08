@@ -10,33 +10,37 @@ import java.util.List;
 
 import com.redpois0n.io.Files;
 
-public class ServerID {
+public class ServerID extends AbstractSettings {
 
-	public static List<ServerIDEntry> list = new ArrayList<ServerIDEntry>();
-
+	private List<ServerIDEntry> list = new ArrayList<ServerIDEntry>();
+	private static final ServerID instance = new ServerID();
+	
+	public static ServerID getGlobal() {
+		return instance;
+	}
+	
+	public List<ServerIDEntry> getIDList() {
+		return list;
+	}
+	
+	@Override
 	@SuppressWarnings("unchecked")
-	public static void load() {
-		try {
-			list.clear();
-			ObjectInputStream in = new ObjectInputStream(new FileInputStream(new File(Files.getSettings(), "id.dat")));
-			list = (ArrayList<ServerIDEntry>) in.readObject();
-			in.close();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
+	public void load() throws Exception {
+		list.clear();
+		ObjectInputStream in = new ObjectInputStream(new FileInputStream(getFile()));
+		list = (ArrayList<ServerIDEntry>) in.readObject();
+		in.close();
+
 	}
 
-	public static void save() {
-		try {
-			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(new File(Files.getSettings(), "id.dat")));
-			out.writeObject(list);
-			out.close();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
+	@Override
+	public void save() throws Exception {
+		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(getFile()));
+		out.writeObject(list);
+		out.close();
 	}
 
-	public static ServerIDEntry findEntry(String ip) {
+	public ServerIDEntry findEntry(String ip) {
 		for (int i = 0; i < list.size(); i++) {
 			ServerIDEntry entry = list.get(i);
 			if (entry.ip.equals(ip)) {
@@ -46,19 +50,45 @@ public class ServerID {
 		return null;
 	}
 
-	public static void remove(String ip) {
+	public void remove(String ip) {
 		ServerIDEntry entry = findEntry(ip);
 		if (entry != null) {
 			list.remove(entry);
 		}
 	}
 
-	public static void add(String name, String realname, String ip) {
-		ServerIDEntry entry = new ServerIDEntry();
-		entry.name = name;
-		entry.ip = ip;
-		entry.realname = realname;
+	public void add(String name, String realname, String ip) {
+		ServerID.ServerIDEntry entry = new ServerID.ServerIDEntry(ip, name, realname);
 		list.add(entry);
 	}
 
+	public class ServerIDEntry {
+
+		private final String ip;
+		private final String name;
+		private final String realname;
+
+		public ServerIDEntry(String ip, String name, String realname) {
+			this.ip = ip;
+			this.name = name;
+			this.realname = realname;
+		}
+
+		public String getIP() {
+			return ip;
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		public String getRealName() {
+			return realname;
+		}
+	}
+	
+	@Override
+	public File getFile() {
+		return new File(Files.getSettings(), "id.dat");
+	}
 }

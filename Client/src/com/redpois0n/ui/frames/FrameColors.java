@@ -49,7 +49,7 @@ public class FrameColors extends BaseFrame {
 		
 		JLabel lblOutdatedServers = new JLabel("Outdated servers:");
 		
-		cbOutdatedServers = new JColorBox(Colors.get("outdated servers"));
+		cbOutdatedServers = new JColorBox(Colors.getGlobal().get("outdated servers"));
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
@@ -91,7 +91,7 @@ public class FrameColors extends BaseFrame {
 		
 		JLabel lblSystemMonitor = new JLabel("System Monitor:");
 		
-		cbSystemMonitor = new JColorBox(Colors.get("system monitor"));
+		cbSystemMonitor = new JColorBox(Colors.getGlobal().get("system monitor"));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -116,8 +116,7 @@ public class FrameColors extends BaseFrame {
 	}
 
 	public void exit() {
-		Colors.put("system monitor", cbSystemMonitor.getProfile());
-		Colors.put("outdated servers", cbOutdatedServers.getProfile());
-		Colors.save();
+		Colors.getGlobal().put("system monitor", cbSystemMonitor.getProfile());
+		Colors.getGlobal().put("outdated servers", cbOutdatedServers.getProfile());
 	}
 }

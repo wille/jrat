@@ -25,8 +25,7 @@ public class Main {
 	public static final List<Slave> connections = new ArrayList<Slave>();
 	public static Frame instance;
 
-	public static void main(String[] args) throws Exception {
-		
+	public static void main(String[] args) throws Exception {	
 		if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
 			System.setProperty("apple.laf.useScreenMenuBar", "true");
 		}
@@ -34,10 +33,10 @@ public class Main {
 		System.setProperty("jrat.dir", System.getProperty("user.dir"));
 		System.setProperty("jrat.version", Version.getVersion());
 		
-		Settings.load();
+		AbstractSettings.loadAllGlobals();
 		
 		try {
-			UIManager.setLookAndFeel(Settings.get("theme"));
+			UIManager.setLookAndFeel(Settings.getGlobal().get("theme"));
 		} catch (Exception ex) {
 			Main.debug("Could not use look and feel, setting default");
 			ex.printStackTrace();
@@ -53,7 +52,7 @@ public class Main {
 		
 		instance = new Frame();
 
-		boolean showEULA = Boolean.parseBoolean(Settings.get("showeula"));
+		boolean showEULA = Boolean.parseBoolean(Settings.getGlobal().get("showeula"));
 		if (!showEULA) {
 			FrameEULA frame = new FrameEULA(false);
 			frame.setVisible(true);
@@ -74,10 +73,6 @@ public class Main {
 		
 		TrayIconUtils.initialize();
 		Sound.initialize();
-		Statistics.load();
-		Sockets.load();
-		FileBookmarks.load();
-		Colors.load();
 		
 		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
 			public void run() {
@@ -90,10 +85,7 @@ public class Main {
 					}
 				}
 
-				Settings.save();
-				Statistics.save();
-				ServerID.save();
-				Sockets.save();
+				AbstractSettings.saveAllGlobals();
 			}
 		}));
 	}
