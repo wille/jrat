@@ -12,8 +12,10 @@ import java.util.List;
 import com.redpois0n.io.Files;
 import com.redpois0n.net.PortListener;
 
-public class Sockets extends AbstractSettings {
+public class Sockets extends AbstractSettings implements Serializable {
 
+	private static final long serialVersionUID = -4638162646507652405L;
+	
 	private static final Sockets instance = new Sockets();
 
 	public static Sockets getGlobal() {

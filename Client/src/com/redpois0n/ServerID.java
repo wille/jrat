@@ -5,13 +5,16 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.redpois0n.io.Files;
 
-public class ServerID extends AbstractSettings {
+public class ServerID extends AbstractSettings implements Serializable {
 
+	private static final long serialVersionUID = 720261533636222207L;
+	
 	private List<ServerIDEntry> list = new ArrayList<ServerIDEntry>();
 	private static final ServerID instance = new ServerID();
 	
@@ -62,8 +65,10 @@ public class ServerID extends AbstractSettings {
 		list.add(entry);
 	}
 
-	public class ServerIDEntry {
+	public class ServerIDEntry implements Serializable {
 
+		private static final long serialVersionUID = -7849684598729199956L;
+		
 		private final String ip;
 		private final String name;
 		private final String realname;

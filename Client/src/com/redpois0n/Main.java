@@ -33,10 +33,9 @@ public class Main {
 		System.setProperty("jrat.dir", System.getProperty("user.dir"));
 		System.setProperty("jrat.version", Version.getVersion());
 		
-		AbstractSettings.loadAllGlobals();
 		
 		try {
-			UIManager.setLookAndFeel(Settings.getGlobal().get("theme"));
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); // TODO
 		} catch (Exception ex) {
 			Main.debug("Could not use look and feel, setting default");
 			ex.printStackTrace();
@@ -51,8 +50,10 @@ public class Main {
 		}			
 		
 		instance = new Frame();
+		
+		AbstractSettings.loadAllGlobals();
 
-		boolean showEULA = Boolean.parseBoolean(Settings.getGlobal().get("showeula"));
+		boolean showEULA = Settings.getGlobal().getBoolean("showeula");
 		if (!showEULA) {
 			FrameEULA frame = new FrameEULA(false);
 			frame.setVisible(true);

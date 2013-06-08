@@ -14,7 +14,9 @@ import com.redpois0n.ui.frames.Frame;
 import com.redpois0n.utils.FlagUtils;
 import com.redpois0n.utils.IconUtils;
 
-public class Statistics extends AbstractSettings {
+public class Statistics extends AbstractSettings implements Serializable {
+
+	private static final long serialVersionUID = -7692558803046215384L;
 
 	private static final Statistics instance = new Statistics();
 

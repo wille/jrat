@@ -8,13 +8,16 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Map;
 
 import com.redpois0n.io.Files;
 import com.redpois0n.ui.components.JColorBox;
 
-public class Colors extends AbstractSettings {
+public class Colors extends AbstractSettings implements Serializable {
 
-	private HashMap<String, ColorProfile> colors = new HashMap<String, ColorProfile>();
+	private static final long serialVersionUID = 973106735935668990L;
+
+	private Map<String, ColorProfile> colors = new HashMap<String, ColorProfile>();
 
 	private static final Colors instance = new Colors();
 
@@ -25,19 +28,19 @@ public class Colors extends AbstractSettings {
 	@Override
 	@SuppressWarnings("unchecked")
 	public void load() throws Exception {
-			ObjectInputStream in = new ObjectInputStream(new FileInputStream(getFile()));
-			colors = (HashMap<String, ColorProfile>) in.readObject();
-			in.close();
-			if (colors.size() == 0) {
-				putDefault();
-			}
+		ObjectInputStream in = new ObjectInputStream(new FileInputStream(getFile()));
+		colors = (HashMap<String, ColorProfile>) in.readObject();
+		in.close();
+		if (colors.size() == 0) {
+			putDefault();
+		}
 	}
 
 	@Override
 	public void save() throws Exception {
-			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(getFile()));
-			out.writeObject(colors);
-			out.close();
+		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(getFile()));
+		out.writeObject(colors);
+		out.close();
 	}
 
 	public void put(String str, ColorProfile col) {
@@ -86,7 +89,7 @@ public class Colors extends AbstractSettings {
 			this.index = index;
 		}
 	}
-	
+
 	public ColorProfile generate(String color) {
 		ColorProfile profile = new ColorProfile();
 		for (int i = 0; i < JColorBox.colors.length; i++) {
