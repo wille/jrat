@@ -37,5 +37,8 @@ help/
 lib/
 plugins/
 
+# jRAT
+settings/*
+
 # Mac crap
 .DS_Store
