@@ -94,6 +94,6 @@ public class ServerID extends AbstractSettings implements Serializable {
 	
 	@Override
 	public File getFile() {
-		return new File(Files.getSettings(), "id.dat");
+		return new File(Files.getSettings(), ".id");
 	}
 }

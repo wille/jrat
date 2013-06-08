@@ -36,7 +36,7 @@ public class WebRequest {
 		URLConnection connection = null;
 		
 		if (Settings.getGlobal().getBoolean("proxy")) {
-			Proxy proxy = new Proxy(Settings.getGlobal().getBoolean("proxysocks") ? Proxy.Type.SOCKS : Proxy.Type.HTTP, new InetSocketAddress(Settings.getGlobal().get("proxyhost"), Settings.getGlobal().getInt("proxyport")));
+			Proxy proxy = new Proxy(Settings.getGlobal().getBoolean("proxysocks") ? Proxy.Type.SOCKS : Proxy.Type.HTTP, new InetSocketAddress(Settings.getGlobal().getString("proxyhost"), Settings.getGlobal().getInt("proxyport")));
 			connection = url.openConnection(proxy);
 		} else {
 			connection = url.openConnection();

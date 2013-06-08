@@ -69,7 +69,7 @@ public class PanelBuildGeneral extends JPanel {
 					.addContainerGap())
 		);
 
-		txtID = new JTextField(Settings.getGlobal().get("bid"));
+		txtID = new JTextField(Settings.getGlobal().getString("bid"));
 		txtID.setColumns(10);
 
 		JLabel lblServerId = new JLabel("Server ID");
@@ -117,7 +117,7 @@ public class PanelBuildGeneral extends JPanel {
 		JLabel lblSecurityPassword = new JLabel("Security Password");
 		lblSecurityPassword.setBounds(55, 35, 88, 14);
 
-		passPass = new JPasswordField(Settings.getGlobal().get("bpass"));
+		passPass = new JPasswordField(Settings.getGlobal().getString("bpass"));
 		passPass.setBounds(147, 32, 174, 20);
 
 		JLabel lblEncryptionKey = new JLabel("Encryption key");
@@ -182,7 +182,7 @@ public class PanelBuildGeneral extends JPanel {
 		txtKey.setColumns(10);
 		setLayout(groupLayout);
 
-		txtKey.setText(Settings.getGlobal().get("bkey").length() == Crypto.KEY_LENGTH ? Settings.getGlobal().get("bkey") : Util.randomString(Crypto.KEY_LENGTH));
+		txtKey.setText(Settings.getGlobal().getString("bkey").length() == Crypto.KEY_LENGTH ? Settings.getGlobal().getString("bkey") : Util.randomString(Crypto.KEY_LENGTH));
 		
 		lblLength = new JLabel(txtKey.getText().length() + "");
 		lblLength.setBounds(331, 60, 46, 14);

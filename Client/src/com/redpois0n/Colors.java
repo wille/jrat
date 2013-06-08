@@ -103,6 +103,6 @@ public class Colors extends AbstractSettings implements Serializable {
 
 	@Override
 	public File getFile() {
-		return new File(Files.getSettings(), "colors.dat");
+		return new File(Files.getSettings(), ".colors");
 	}
 }

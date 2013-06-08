@@ -51,7 +51,7 @@ public class PanelBuildNetwork extends JPanel {
 
 		JLabel lblIp = new JLabel("IP:");
 
-		txtIP = new JTextField(Settings.getGlobal().get("bip"));
+		txtIP = new JTextField(Settings.getGlobal().getString("bip"));
 		txtIP.setColumns(10);
 
 		JLabel lblPort = new JLabel("Port:");

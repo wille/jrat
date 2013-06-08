@@ -22,9 +22,13 @@ public class Settings extends AbstractSettings {
 		return instance;
 	}
 	
-	public String get(String key) {
+	public String getString(String key) {
 		Object obj = settings.get(key);
 		return obj == null ? "" : (String) obj;
+	}
+	
+	public Object get(String key) {
+		return settings.get(key);
 	}
 
 	public int getInt(String key) {
@@ -34,7 +38,7 @@ public class Settings extends AbstractSettings {
 
 	public boolean getBoolean(String key) {
 		Object obj = settings.get(key);
-		return obj == null ? false : (Boolean) obj;
+		return obj == null ? false : obj.toString().equalsIgnoreCase("true");
 	}
 
 	public void setVal(String key, Object value) {
@@ -43,9 +47,13 @@ public class Settings extends AbstractSettings {
 
 	@SuppressWarnings("unchecked")
 	public void load() throws Exception {
-		ObjectInputStream str = new ObjectInputStream(new FileInputStream(getFile()));
-		settings = (HashMap<String, Object>) str.readObject();
-		str.close();
+		try {
+			ObjectInputStream str = new ObjectInputStream(new FileInputStream(getFile()));
+			settings = (HashMap<String, Object>) str.readObject();
+			str.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		if (settings.size() == 0) {
 			addDefault();
@@ -86,6 +94,6 @@ public class Settings extends AbstractSettings {
 
 	@Override
 	public File getFile() {
-		return new File(Files.getSettings(), "settings.dat");
+		return new File(Files.getSettings(), ".settings");
 	}
 }

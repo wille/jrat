@@ -74,7 +74,7 @@ public class FileBookmarks extends AbstractSettings {
 	
 	@Override
 	public File getFile() {
-		return new File(Files.getSettings(), "bookmarks.dat");
+		return new File(Files.getSettings(), ".bookmarks");
 	}
 
 }

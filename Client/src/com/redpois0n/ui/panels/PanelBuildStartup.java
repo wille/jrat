@@ -65,7 +65,7 @@ public class PanelBuildStartup extends JPanel {
 
 		JLabel lblDroppedFileAnd = new JLabel("Dropped file and reg key name:");
 
-		txtName = new JTextField(Settings.getGlobal().get("jarname"));
+		txtName = new JTextField(Settings.getGlobal().getString("jarname"));
 		txtName.setToolTipText("File name of dropped server and key in registry on windows");
 		txtName.setColumns(10);
 

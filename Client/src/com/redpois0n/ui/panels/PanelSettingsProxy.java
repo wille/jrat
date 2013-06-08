@@ -59,7 +59,7 @@ public class PanelSettingsProxy extends JPanel {
 		JLabel lblHost = new JLabel("Host:");
 		
 		txtIP = new JTextField();
-		txtIP.setText(Settings.getGlobal().get("proxyhost"));
+		txtIP.setText(Settings.getGlobal().getString("proxyhost"));
 		txtIP.setColumns(10);
 		
 		JLabel lblPort = new JLabel("Port:");

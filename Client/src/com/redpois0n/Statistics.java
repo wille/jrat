@@ -79,9 +79,7 @@ public class Statistics extends AbstractSettings implements Serializable {
 			return;
 		}
 
-		StatEntry entry;
-
-		entry = getEntry(client.getCountry(), client.getCountry());
+		StatEntry entry = getEntry(client.getCountry(), client.getCountry());
 
 		entry.connects++;
 		boolean exists = false;
@@ -175,7 +173,7 @@ public class Statistics extends AbstractSettings implements Serializable {
 	
 	@Override
 	public File getFile() {
-		return new File(Files.getSettings(), "stats.dat");
+		return new File(Files.getSettings(), ".stats");
 	}
 
 }

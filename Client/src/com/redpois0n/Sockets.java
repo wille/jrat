@@ -102,7 +102,7 @@ public class Sockets extends AbstractSettings implements Serializable {
 
 	@Override
 	public File getFile() {
-		return new File(Files.getSettings(), "sockets.dat");
+		return new File(Files.getSettings(), ".sockets");
 	}
 
 }
