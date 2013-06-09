@@ -210,7 +210,6 @@ public class Slave extends CustomStream implements Runnable {
 
 	@Override
 	public String readLine() throws Exception {
-		// String s = dis.readUTF();
 		short len = dis.readShort();
 
 		StringBuilder builder = new StringBuilder();
@@ -225,7 +224,12 @@ public class Slave extends CustomStream implements Runnable {
 		} else if (s.startsWith("-c ")) {
 			s = s.substring(3, s.length());
 		} else {
-			s = Crypto.decrypt(s, connection.getKey());
+			try {
+				s = Crypto.decrypt(s, connection.getKey());
+			} catch (Exception e) {
+				e.printStackTrace();
+				s = null;
+			}
 		}
 
 		return s;
