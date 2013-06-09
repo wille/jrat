@@ -17,7 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import com.redpois0n.Help;
-import com.redpois0n.Settings;
+import com.redpois0n.settings.Settings;
 
 @SuppressWarnings("serial")
 public class PanelBuildStartup extends JPanel {

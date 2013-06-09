@@ -27,6 +27,7 @@ import com.redpois0n.packets.Header;
 import com.redpois0n.packets.PacketBuilder;
 import com.redpois0n.packets.Packets;
 import com.redpois0n.plugins.PluginEventHandler;
+import com.redpois0n.settings.Settings;
 import com.redpois0n.ui.frames.Frame;
 import com.redpois0n.ui.panels.PanelMainLog;
 import com.redpois0n.utils.FlagUtils;

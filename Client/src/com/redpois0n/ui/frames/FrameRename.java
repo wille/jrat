@@ -14,8 +14,8 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
-import com.redpois0n.ServerID;
 import com.redpois0n.Slave;
+import com.redpois0n.settings.ServerID;
 import com.redpois0n.utils.Util;
 
 @SuppressWarnings("serial")

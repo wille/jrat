@@ -20,7 +20,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
-import com.redpois0n.Settings;
+import com.redpois0n.settings.Settings;
 
 @SuppressWarnings("serial")
 public class PanelSettingsTheme extends JPanel {

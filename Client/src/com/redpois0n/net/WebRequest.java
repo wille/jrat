@@ -6,8 +6,8 @@ import java.net.Proxy;
 import java.net.URL;
 import java.net.URLConnection;
 
-import com.redpois0n.Settings;
 import com.redpois0n.exceptions.RequestNotAllowedException;
+import com.redpois0n.settings.Settings;
 import com.redpois0n.utils.Util;
 
 public class WebRequest {

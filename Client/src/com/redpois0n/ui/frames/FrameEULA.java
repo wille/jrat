@@ -19,8 +19,8 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
 import com.redpois0n.Main;
-import com.redpois0n.Settings;
 import com.redpois0n.common.Version;
+import com.redpois0n.settings.Settings;
 import com.redpois0n.threads.ThreadCountDown;
 import com.redpois0n.utils.IOUtils;
 

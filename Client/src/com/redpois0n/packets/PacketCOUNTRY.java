@@ -1,8 +1,8 @@
 package com.redpois0n.packets;
 
-import com.redpois0n.Settings;
 import com.redpois0n.Slave;
-import com.redpois0n.Statistics;
+import com.redpois0n.settings.Settings;
+import com.redpois0n.settings.Statistics;
 import com.redpois0n.ui.frames.Frame;
 import com.redpois0n.utils.Util;
 

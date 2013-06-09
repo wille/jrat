@@ -3,6 +3,7 @@ package com.redpois0n;
 import java.util.Random;
 
 import com.redpois0n.ip2c.Country;
+import com.redpois0n.settings.Settings;
 import com.redpois0n.ui.frames.Frame;
 import com.redpois0n.utils.FlagUtils;
 import com.redpois0n.utils.NetworkUtils;

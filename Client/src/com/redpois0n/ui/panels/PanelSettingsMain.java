@@ -16,8 +16,8 @@ import javax.swing.JSpinner;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SpinnerNumberModel;
 
-import com.redpois0n.ServerID;
-import com.redpois0n.Settings;
+import com.redpois0n.settings.ServerID;
+import com.redpois0n.settings.Settings;
 
 @SuppressWarnings("serial")
 public class PanelSettingsMain extends JPanel {

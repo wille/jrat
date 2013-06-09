@@ -18,15 +18,15 @@ import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
-import com.redpois0n.Settings;
 import com.redpois0n.Sound;
-import com.redpois0n.Statistics;
-import com.redpois0n.Theme;
 import com.redpois0n.common.Version;
 import com.redpois0n.listeners.AboutListener;
 import com.redpois0n.listeners.ChangelogListener;
 import com.redpois0n.listeners.EulaListener;
 import com.redpois0n.listeners.Performable;
+import com.redpois0n.settings.Settings;
+import com.redpois0n.settings.Statistics;
+import com.redpois0n.settings.Theme;
 import com.redpois0n.ui.panels.PanelSettingsFlags;
 import com.redpois0n.ui.panels.PanelSettingsMain;
 import com.redpois0n.ui.panels.PanelSettingsProxy;

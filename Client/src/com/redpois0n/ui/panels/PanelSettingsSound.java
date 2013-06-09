@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import com.redpois0n.Settings;
+import com.redpois0n.settings.Settings;
 
 
 @SuppressWarnings("serial")

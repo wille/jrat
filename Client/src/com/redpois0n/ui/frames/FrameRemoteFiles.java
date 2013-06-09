@@ -44,7 +44,6 @@ import javax.swing.event.PopupMenuListener;
 import javax.swing.table.DefaultTableModel;
 
 import com.redpois0n.Drive;
-import com.redpois0n.FileBookmarks;
 import com.redpois0n.FileData;
 import com.redpois0n.Main;
 import com.redpois0n.SendFile;
@@ -53,6 +52,7 @@ import com.redpois0n.io.FileSystem;
 import com.redpois0n.listeners.DirListener;
 import com.redpois0n.packets.Header;
 import com.redpois0n.packets.PacketBuilder;
+import com.redpois0n.settings.FileBookmarks;
 import com.redpois0n.ui.components.Table;
 import com.redpois0n.ui.renderers.table.FileViewTableRenderer;
 import com.redpois0n.utils.IconUtils;

@@ -36,11 +36,11 @@ import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
 import com.redpois0n.ScreenCommands;
-import com.redpois0n.Settings;
 import com.redpois0n.Slave;
 import com.redpois0n.packets.Header;
 import com.redpois0n.packets.PacketBuilder;
 import com.redpois0n.packets.PacketIMAGECOMING;
+import com.redpois0n.settings.Settings;
 import com.redpois0n.threads.ThreadFPS;
 
 @SuppressWarnings({ "serial", "rawtypes", "unchecked" })

@@ -7,7 +7,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-import com.redpois0n.Settings;
+import com.redpois0n.settings.Settings;
 
 @SuppressWarnings("serial")
 public class PanelSettingsFlags extends JPanel {

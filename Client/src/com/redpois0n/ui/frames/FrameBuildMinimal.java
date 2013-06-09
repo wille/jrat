@@ -32,13 +32,13 @@ import javax.swing.border.EmptyBorder;
 import com.redpois0n.BuildStatus;
 import com.redpois0n.ErrorDialog;
 import com.redpois0n.OSConfig;
-import com.redpois0n.Settings;
 import com.redpois0n.build.Build;
 import com.redpois0n.common.crypto.Crypto;
 import com.redpois0n.common.os.OperatingSystem;
 import com.redpois0n.io.Files;
 import com.redpois0n.listeners.MinimalBuildListener;
 import com.redpois0n.plugins.PluginList;
+import com.redpois0n.settings.Settings;
 import com.redpois0n.utils.NetworkUtils;
 import com.redpois0n.utils.Util;
 

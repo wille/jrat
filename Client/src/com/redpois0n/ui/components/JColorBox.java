@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
 
-import com.redpois0n.Colors;
+import com.redpois0n.settings.Colors;
 import com.redpois0n.ui.renderers.JColorBoxRenderer;
 
 

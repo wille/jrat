@@ -6,7 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import com.redpois0n.Main;
-import com.redpois0n.Settings;
+import com.redpois0n.settings.Settings;
 import com.redpois0n.ui.frames.Frame;
 
 

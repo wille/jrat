@@ -18,7 +18,7 @@ import javax.swing.SpinnerNumberModel;
 
 import com.redpois0n.ErrorDialog;
 import com.redpois0n.Help;
-import com.redpois0n.Settings;
+import com.redpois0n.settings.Settings;
 import com.redpois0n.utils.NetworkUtils;
 
 

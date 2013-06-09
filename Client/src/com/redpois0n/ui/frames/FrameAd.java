@@ -27,7 +27,6 @@ public class FrameAd extends BaseDialog {
 
 	public FrameAd() {
 		setTitle("Welcome");
-		setAlwaysOnTop(true);
 		setResizable(false);
 		setBounds(100, 100, 450, 300);
 		setLocationRelativeTo(null);

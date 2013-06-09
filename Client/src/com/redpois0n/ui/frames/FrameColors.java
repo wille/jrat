@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
-import com.redpois0n.Colors;
+import com.redpois0n.settings.Colors;
 import com.redpois0n.ui.components.JColorBox;
 
 

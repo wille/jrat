@@ -22,7 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import com.redpois0n.Settings;
+import com.redpois0n.settings.Settings;
 import com.redpois0n.ui.components.JPortSpinner;
 
 @SuppressWarnings("serial")

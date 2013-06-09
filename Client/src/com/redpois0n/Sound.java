@@ -3,6 +3,8 @@ package com.redpois0n;
 import java.applet.Applet;
 import java.applet.AudioClip;
 
+import com.redpois0n.settings.Settings;
+
 public class Sound {
 
 	private static AudioClip add;
