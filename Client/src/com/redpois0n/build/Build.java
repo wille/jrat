@@ -244,7 +244,7 @@ public class Build {
 
 				outputStub.putNextEntry(entry);
 
-				outputStub.write(encodeLine(installerKey));
+				outputStub.write(installerKey);
 				outputStub.write(encodeLine(droppath));
 				outputStub.write(encodeLine(name));
 				outputStub.write(encodeLine(melt));
