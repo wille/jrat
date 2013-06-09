@@ -14,10 +14,10 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 
+import com.redpois0n.common.OperatingSystem;
 import com.redpois0n.common.Version;
 import com.redpois0n.common.codec.Hex;
 import com.redpois0n.common.crypto.Crypto;
-import com.redpois0n.common.os.OperatingSystem;
 import com.redpois0n.exceptions.CloseException;
 import com.redpois0n.io.CustomStream;
 import com.redpois0n.ip2c.Country;

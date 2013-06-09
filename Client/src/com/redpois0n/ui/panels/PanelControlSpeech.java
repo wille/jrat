@@ -20,7 +20,7 @@ import javax.swing.SwingConstants;
 import com.redpois0n.ErrorDialog;
 import com.redpois0n.Main;
 import com.redpois0n.Slave;
-import com.redpois0n.common.os.OperatingSystem;
+import com.redpois0n.common.OperatingSystem;
 import com.redpois0n.packets.Header;
 import com.redpois0n.packets.PacketBuilder;
 import com.redpois0n.utils.IOUtils;

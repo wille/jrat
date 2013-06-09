@@ -11,7 +11,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import com.redpois0n.Connection;
-import com.redpois0n.common.os.OperatingSystem;
+import com.redpois0n.common.OperatingSystem;
 import com.redpois0n.utils.Utils;
 
 

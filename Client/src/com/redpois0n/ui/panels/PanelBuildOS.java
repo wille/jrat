@@ -16,7 +16,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import com.redpois0n.Help;
 import com.redpois0n.OSConfig;
-import com.redpois0n.common.os.OperatingSystem;
+import com.redpois0n.common.OperatingSystem;
 
 @SuppressWarnings("serial")
 public class PanelBuildOS extends JPanel {
@@ -92,7 +92,7 @@ public class PanelBuildOS extends JPanel {
 		chckbxMacOsx.setSelected(true);
 
 		chckbxLinux = new JCheckBox("Linux");
-		chckbxLinux.setForeground(Color.RED);
+		chckbxLinux.setSelected(true);
 
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(PanelBuildOS.class.getResource("/icons/os.png")));

@@ -3,7 +3,7 @@ package com.redpois0n;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.redpois0n.common.os.OperatingSystem;
+import com.redpois0n.common.OperatingSystem;
 
 public final class OSConfig {
 

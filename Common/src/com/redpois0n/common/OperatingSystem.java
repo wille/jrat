@@ -1,4 +1,4 @@
-package com.redpois0n.common.os;
+package com.redpois0n.common;
 
 public enum OperatingSystem {
 

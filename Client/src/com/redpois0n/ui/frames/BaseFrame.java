@@ -2,7 +2,7 @@ package com.redpois0n.ui.frames;
 
 import javax.swing.JFrame;
 
-import com.redpois0n.common.os.OperatingSystem;
+import com.redpois0n.common.OperatingSystem;
 
 @SuppressWarnings("serial")
 public abstract class BaseFrame extends JFrame {

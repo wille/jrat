@@ -1,7 +1,7 @@
 package com.redpois0n.packets;
 
 import com.redpois0n.Slave;
-import com.redpois0n.common.os.OperatingSystem;
+import com.redpois0n.common.OperatingSystem;
 import com.redpois0n.ui.frames.FrameControlPanel;
 import com.redpois0n.ui.frames.FrameRemoteProcess;
 import com.redpois0n.ui.panels.PanelControlRemoteProcess;

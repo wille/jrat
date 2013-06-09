@@ -6,7 +6,7 @@ import javax.swing.Icon;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
-import com.redpois0n.common.os.OperatingSystem;
+import com.redpois0n.common.OperatingSystem;
 import com.redpois0n.utils.IconUtils;
 
 @SuppressWarnings("serial")

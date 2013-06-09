@@ -8,7 +8,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Random;
 
-import com.redpois0n.common.os.OperatingSystem;
+import com.redpois0n.common.OperatingSystem;
 import com.redpois0n.packets.Header;
 import com.redpois0n.utils.Utils;
 

@@ -7,7 +7,7 @@ import java.net.URI;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 
-import com.redpois0n.common.os.OperatingSystem;
+import com.redpois0n.common.OperatingSystem;
 
 public class Script {
 

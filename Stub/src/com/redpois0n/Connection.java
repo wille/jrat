@@ -16,10 +16,10 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.util.Locale;
 
+import com.redpois0n.common.OperatingSystem;
 import com.redpois0n.common.Version;
 import com.redpois0n.common.codec.Hex;
 import com.redpois0n.common.crypto.Crypto;
-import com.redpois0n.common.os.OperatingSystem;
 import com.redpois0n.packets.Header;
 import com.redpois0n.packets.AbstractPacket;
 import com.redpois0n.packets.PacketBuilder;

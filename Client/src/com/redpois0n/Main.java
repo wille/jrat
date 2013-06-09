@@ -7,8 +7,8 @@ import javax.swing.UIManager;
 
 import org.jrat.project.api.events.OnDisableEvent;
 
+import com.redpois0n.common.OperatingSystem;
 import com.redpois0n.common.Version;
-import com.redpois0n.common.os.OperatingSystem;
 import com.redpois0n.io.Files;
 import com.redpois0n.plugins.Plugin;
 import com.redpois0n.plugins.PluginLoader;

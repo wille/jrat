@@ -105,35 +105,35 @@ public class FrameBuild extends BaseFrame {
 					.addContainerGap())
 		);
 		
-				tree = new JTree();
-				scrollPane.setViewportView(tree);
-				tree.setShowsRootHandles(true);
-				tree.addTreeSelectionListener(new TreeSelectionListener() {
-					public void valueChanged(TreeSelectionEvent arg0) {
-						Object[] name = arg0.getPath().getPath();
-						final JPanel pan = getPanelFromString(name);
-						if (pan != null) {
-							Runnable test = new Runnable() {
-								public void run() {
-									panel.removeAll();
-									panel.add(pan);
-									panel.revalidate();
-									panel.repaint();
-								}
-							};
-							SwingUtilities.invokeLater(test);
+		tree = new JTree();
+		scrollPane.setViewportView(tree);
+		tree.setShowsRootHandles(true);
+		tree.addTreeSelectionListener(new TreeSelectionListener() {
+			public void valueChanged(TreeSelectionEvent arg0) {
+				Object[] name = arg0.getPath().getPath();
+				final JPanel pan = getPanelFromString(name);
+				if (pan != null) {
+					Runnable test = new Runnable() {
+						public void run() {
+							panel.removeAll();
+							panel.add(pan);
+							panel.revalidate();
+							panel.repaint();
 						}
-					}
-				});
-				tree.setModel(new DefaultTreeModel(new DefaultMutableTreeNode("Build Server\t") {
-					{
-						addNodes(this);
-					}
-				}));
-				
-				tree.setRootVisible(false);
-				
-						tree.setCellRenderer(renderer);
+					};
+					SwingUtilities.invokeLater(test);
+				}
+			}
+		});
+		tree.setModel(new DefaultTreeModel(new DefaultMutableTreeNode("Build Server\t") {
+			{
+				addNodes(this);
+			}
+		}));
+
+		tree.setRootVisible(false);
+
+		tree.setCellRenderer(renderer);
 		contentPane.setLayout(gl_contentPane);
 		
 		loadPanels();

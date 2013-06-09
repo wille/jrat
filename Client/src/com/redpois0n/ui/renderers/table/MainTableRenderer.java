@@ -12,8 +12,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 import com.redpois0n.Main;
 import com.redpois0n.Slave;
+import com.redpois0n.common.OperatingSystem;
 import com.redpois0n.common.Version;
-import com.redpois0n.common.os.OperatingSystem;
 import com.redpois0n.settings.Colors;
 import com.redpois0n.ui.frames.Frame;
 import com.redpois0n.utils.IconUtils;
