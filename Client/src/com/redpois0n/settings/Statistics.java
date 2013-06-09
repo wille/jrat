@@ -21,7 +21,7 @@ public class Statistics extends AbstractSettings implements Serializable {
 
 	private static final Statistics instance = new Statistics();
 
-	private List<StatEntry> list = new ArrayList<StatEntry>();
+	private transient List<StatEntry> list = new ArrayList<StatEntry>();
 
 	public static Statistics getGlobal() {
 		return instance;

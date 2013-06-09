@@ -15,7 +15,8 @@ public class ServerID extends AbstractSettings implements Serializable {
 
 	private static final long serialVersionUID = 720261533636222207L;
 	
-	private List<ServerIDEntry> list = new ArrayList<ServerIDEntry>();
+	private transient List<ServerIDEntry> list = new ArrayList<ServerIDEntry>();
+	
 	private static final ServerID instance = new ServerID();
 	
 	public static ServerID getGlobal() {

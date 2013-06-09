@@ -17,7 +17,7 @@ public class Colors extends AbstractSettings implements Serializable {
 
 	private static final long serialVersionUID = 973106735935668990L;
 
-	private Map<String, ColorProfile> colors = new HashMap<String, ColorProfile>();
+	private transient Map<String, ColorProfile> colors = new HashMap<String, ColorProfile>();
 
 	private static final Colors instance = new Colors();
 

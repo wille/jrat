@@ -14,7 +14,7 @@ import com.redpois0n.io.Files;
 
 public class FileBookmarks extends AbstractSettings {
 
-	private final List<File> bookmarks = new ArrayList<File>();
+	private transient final List<File> bookmarks = new ArrayList<File>();
 
 	private static final FileBookmarks instance = new FileBookmarks();
 
