@@ -21,6 +21,7 @@ import javax.swing.tree.DefaultTreeModel;
 import com.redpois0n.Settings;
 import com.redpois0n.Sound;
 import com.redpois0n.Statistics;
+import com.redpois0n.Theme;
 import com.redpois0n.common.Version;
 import com.redpois0n.listeners.AboutListener;
 import com.redpois0n.listeners.ChangelogListener;
@@ -150,7 +151,6 @@ public class FrameSettings extends BaseFrame {
 		Settings.getGlobal().setVal("soundondc", sound.onDisconnect());
 		Settings.getGlobal().setVal("stats", stats.trackStats());
 		Settings.getGlobal().setVal("remotescreenstartup", main.useAutoScreen());
-		Settings.getGlobal().setVal("theme", themes.getTheme());
 		Settings.getGlobal().setVal("askurl", main.askOnConnect());
 		Settings.getGlobal().setVal("max", main.getMaximum());
 		Settings.getGlobal().setVal("geoip", flags.useWeb());
@@ -158,6 +158,8 @@ public class FrameSettings extends BaseFrame {
 		Settings.getGlobal().setVal("proxyhost", proxy.getHost());
 		Settings.getGlobal().setVal("proxyport", proxy.getPort());
 		Settings.getGlobal().setVal("proxysocks", proxy.useSocks());
+		
+		Theme.getGlobal().setTheme(themes.getTheme());
 		
 		if (!stats.trackStats()) {
 			Statistics.getGlobal().getList().clear();

@@ -35,7 +35,8 @@ public class Main {
 		
 		
 		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); // TODO
+			Theme.getGlobal().load();
+			UIManager.setLookAndFeel(Theme.getGlobal().getTheme());
 		} catch (Exception ex) {
 			Main.debug("Could not use look and feel, setting default");
 			ex.printStackTrace();
@@ -87,6 +88,12 @@ public class Main {
 				}
 
 				AbstractSettings.saveAllGlobals();
+				
+				try {
+					Theme.getGlobal().save();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		}));
 	}

@@ -8,8 +8,6 @@ import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.swing.UIManager;
-
 import com.redpois0n.io.Files;
 
 public class Settings extends AbstractSettings {
@@ -81,7 +79,6 @@ public class Settings extends AbstractSettings {
 		setVal("jarname", "File");
 		setVal("autologin", false);
 		setVal("remotescreenstartup", false);
-		setVal("theme", UIManager.getSystemLookAndFeelClassName());
 		setVal("askurl", true);
 		setVal("max", -1);
 		setVal("geoip", true);

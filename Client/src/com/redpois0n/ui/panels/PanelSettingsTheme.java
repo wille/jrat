@@ -28,14 +28,14 @@ public class PanelSettingsTheme extends JPanel {
 	private DefaultListModel<String> model;
 	private JTextField txtTheme;
 	private JList<String> list;
-	public JFrame mother;
+	public JFrame parent;
 
 	public String getTheme() {
 		return txtTheme.getText();
 	}
 
 	public PanelSettingsTheme(JFrame m) {
-		this.mother = m;
+		this.parent = m;
 		JPanel panel = new JPanel();
 		panel.setBorder(BorderFactory.createTitledBorder("Themes"));
 		GroupLayout groupLayout = new GroupLayout(this);
@@ -75,8 +75,8 @@ public class PanelSettingsTheme extends JPanel {
 						txtTheme.setText(obj.toString());
 						Settings.getGlobal().save();
 					}
-					SwingUtilities.updateComponentTreeUI(mother);
-					mother.pack();
+					SwingUtilities.updateComponentTreeUI(parent);
+					parent.pack();
 				} catch (Exception ex) {
 					ex.printStackTrace();
 				}
