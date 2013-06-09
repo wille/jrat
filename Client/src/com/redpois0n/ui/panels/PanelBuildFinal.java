@@ -29,6 +29,7 @@ import com.redpois0n.ShellcodeGenerator;
 import com.redpois0n.build.Build;
 import com.redpois0n.build.BuildExecutable;
 import com.redpois0n.common.crypto.Crypto;
+import com.redpois0n.common.crypto.EncryptionKey;
 import com.redpois0n.io.Files;
 import com.redpois0n.listeners.AdvancedBuildListener;
 import com.redpois0n.plugins.ExternalPlugin;
@@ -183,7 +184,7 @@ public class PanelBuildFinal extends JPanel {
 					int port = network.getPort();
 					String ID = general.getID();
 					String pass = general.getPass();
-					String key = general.getKey();
+					EncryptionKey key = general.getKey();
 					boolean crypt = startup.dropper();
 					String droppath = startup.droploc();
 					int reconSec = network.getConnectionRate();
@@ -222,7 +223,7 @@ public class PanelBuildFinal extends JPanel {
 					boolean debugmsg = pdebug.keepDebugMessages();
 					OSConfig osconfig = os.getConfig();
 
-					if (key.length() != Crypto.KEY_LENGTH) {
+					if (key.getTextualKey().length() != Crypto.KEY_LENGTH) {
 						throw new InvalidKeyException("Encryption key has to be " + Crypto.KEY_LENGTH + " chars");
 					}
 
@@ -257,7 +258,7 @@ public class PanelBuildFinal extends JPanel {
 					Settings.getGlobal().setVal("bip", ip);
 					Settings.getGlobal().setVal("bport", port);
 					Settings.getGlobal().setVal("bid", ID);
-					Settings.getGlobal().setVal("bkey", key);
+					Settings.getGlobal().setVal("bkey", key.getTextualKey());
 					Settings.getGlobal().setVal("bpass", pass);
 					Settings.getGlobal().setVal("bcrypt", crypt);
 					Settings.getGlobal().save();

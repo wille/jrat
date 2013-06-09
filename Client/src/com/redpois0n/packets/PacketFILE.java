@@ -52,7 +52,7 @@ public class PacketFILE extends AbstractPacket {
 					frame2.reportProgress(remoteFile, progress, (int) bytesSent, (int) totalBytes);
 				}
 			}		
-		}, slave.getConnection().getKey());
+		}, slave.getConnection().getKey().getKey());
 		
 		if (frame != null) {
 			frame.done(remoteFile, output.length() + "");

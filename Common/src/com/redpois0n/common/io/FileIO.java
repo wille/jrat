@@ -10,7 +10,7 @@ import com.redpois0n.common.crypto.Crypto;
 
 public class FileIO {
 
-	public static void writeFile(File file, DataOutputStream dos, TransferListener listener, String key) throws Exception {
+	public static void writeFile(File file, DataOutputStream dos, TransferListener listener, byte[] key) throws Exception {
 		FileInputStream fileInput = new FileInputStream(file);
 
 		int chunkSize = 1024;
@@ -35,7 +35,7 @@ public class FileIO {
 		fileInput.close();
 	}
 
-	public static void readFile(File output, DataInputStream dis, TransferListener listener, String key) throws Exception {
+	public static void readFile(File output, DataInputStream dis, TransferListener listener, byte[] key) throws Exception {
 		FileOutputStream fileOutput = new FileOutputStream(output);
 
 		int read = 0;

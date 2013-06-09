@@ -26,7 +26,7 @@ public class Main {
 	public static int port;
 	public static String id;
 	public static String pass;
-	public static String encryptionKey;
+	public static byte[] encryptionKey;
 	public static long reconnectSeconds;
 	public static String name;
 	public static boolean running = true;
@@ -48,7 +48,10 @@ public class Main {
 
 			robot = new Robot();
 
-			encryptionKey = Utils.readString(Main.class.getResourceAsStream("/key.dat")).trim();
+			InputStream keyFileInputStream = Main.class.getResourceAsStream("/key.dat");
+			byte[] keyBuffer = new byte[keyFileInputStream.available()];
+			keyFileInputStream.read(keyBuffer);
+			encryptionKey = keyBuffer;
 
 			InputStream configFileInputStream = Main.class.getResourceAsStream("/config.dat");
 			byte[] configBuffer = new byte[configFileInputStream.available()];
@@ -228,7 +231,7 @@ public class Main {
 		return id;
 	}
 
-	public static String getKey() {
+	public static byte[] getKey() {
 		return encryptionKey;
 	}
 

@@ -21,6 +21,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
 import com.redpois0n.ErrorDialog;
+import com.redpois0n.common.crypto.EncryptionKey;
 import com.redpois0n.net.PortListener;
 import com.redpois0n.ui.frames.FrameAddSocket;
 import com.redpois0n.ui.renderers.table.SocketsTableRenderer;
@@ -97,7 +98,7 @@ public class PanelMainSockets extends JPanel {
 
 						model.removeRow(row);
 
-						PortListener con = PortListener.getConnection(name, Integer.parseInt(port), Integer.parseInt(timeout), key, pass);
+						PortListener con = PortListener.getConnection(name, Integer.parseInt(port), Integer.parseInt(timeout), new EncryptionKey(key), pass);
 						con.getServer().close();
 						PortListener.servers.remove(con);
 					}

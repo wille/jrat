@@ -21,7 +21,7 @@ public class FileCrypter {
 	 * @param key
 	 * @throws Exception
 	 */
-	public static void decrypt(File input, File output, String key) throws Exception {
+	public static void decrypt(File input, File output, byte[] key) throws Exception {
 		byte[] buffer = new byte[1024];
 
 		InputStream in = new FileInputStream(input);
@@ -29,7 +29,7 @@ public class FileCrypter {
 
 		Cipher dcipher = Cipher.getInstance("AES");
 
-		dcipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(key.getBytes("UTF-8"), "AES"));
+		dcipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(key, "AES"));
 
 		in = new CipherInputStream(in, dcipher);
 
@@ -50,7 +50,7 @@ public class FileCrypter {
 	 * @param key
 	 * @throws Exception
 	 */
-	public static void encrypt(File input, File output, String key) throws Exception {
+	public static void encrypt(File input, File output, byte[] key) throws Exception {
 		byte[] buffer = new byte[1024];
 
 		InputStream in = new FileInputStream(input);
@@ -58,7 +58,7 @@ public class FileCrypter {
 
 		Cipher ecipher = Cipher.getInstance("AES");
 
-		ecipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key.getBytes("UTF-8"), "AES"));
+		ecipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key, "AES"));
 
 		out = new CipherOutputStream(out, ecipher);
 

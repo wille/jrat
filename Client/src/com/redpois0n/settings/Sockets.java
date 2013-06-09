@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.redpois0n.common.crypto.EncryptionKey;
 import com.redpois0n.io.Files;
 import com.redpois0n.net.PortListener;
 
@@ -42,7 +43,7 @@ public class Sockets extends AbstractSettings implements Serializable {
 
 		for (int i = 0; i < PortListener.servers.size(); i++) {
 			PortListener connection = PortListener.servers.get(i);
-			SocketEntry save = new SocketEntry(connection.getName(), connection.getServer().getLocalPort(), connection.getTimeout(), connection.getKey(), connection.getPass());
+			SocketEntry save = new SocketEntry(connection.getName(), connection.getServer().getLocalPort(), connection.getTimeout(), connection.getKey().getTextualKey(), connection.getPass());
 			list.add(save);
 		}
 
@@ -91,7 +92,7 @@ public class Sockets extends AbstractSettings implements Serializable {
 
 		public void start() {
 			try {
-				PortListener connection = new PortListener(name, port, timeout, key, pass);
+				PortListener connection = new PortListener(name, port, timeout, new EncryptionKey(key), pass);
 				connection.start();
 			} catch (Exception e) {
 				e.printStackTrace();

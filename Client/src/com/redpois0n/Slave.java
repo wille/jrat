@@ -190,7 +190,7 @@ public class Slave extends CustomStream implements Runnable {
 	@Override
 	public void writeLine(String s) {
 		try {
-			String enc = Crypto.encrypt(s, connection.getKey());
+			String enc = Crypto.encrypt(s, connection.getKey().getKey());
 
 			if (enc.contains("\n")) {
 				enc = "-h " + Hex.encode(s);
@@ -200,7 +200,6 @@ public class Slave extends CustomStream implements Runnable {
 				enc = "-c " + s;
 			}
 
-			// dos.writeUTF(enc);
 			dos.writeShort(enc.length());
 			dos.writeChars(enc);
 		} catch (Exception ex) {
@@ -225,7 +224,7 @@ public class Slave extends CustomStream implements Runnable {
 			s = s.substring(3, s.length());
 		} else {
 			try {
-				s = Crypto.decrypt(s, connection.getKey());
+				s = Crypto.decrypt(s, connection.getKey().getKey());
 			} catch (Exception e) {
 				e.printStackTrace();
 				s = null;

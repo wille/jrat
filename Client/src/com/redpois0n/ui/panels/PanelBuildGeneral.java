@@ -18,6 +18,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import com.redpois0n.Help;
 import com.redpois0n.common.crypto.Crypto;
+import com.redpois0n.common.crypto.EncryptionKey;
 import com.redpois0n.settings.Settings;
 import com.redpois0n.ui.components.EncryptionKeyJTextField;
 import com.redpois0n.utils.Util;
@@ -34,8 +35,8 @@ public class PanelBuildGeneral extends JPanel {
 		return new String(passPass.getPassword());
 	}
 
-	public String getKey() {
-		return txtKey.getText();
+	public EncryptionKey getKey() throws Exception {
+		return new EncryptionKey(txtKey.getText().trim());
 	}
 
 	public String getID() {

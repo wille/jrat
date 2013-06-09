@@ -20,6 +20,8 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
 
 import com.redpois0n.ErrorDialog;
+import com.redpois0n.common.crypto.Crypto;
+import com.redpois0n.common.crypto.EncryptionKey;
 import com.redpois0n.net.PortListener;
 import com.redpois0n.ui.components.EncryptionKeyJTextField;
 import com.redpois0n.utils.Util;
@@ -167,13 +169,13 @@ public class FrameAddSocket extends BaseFrame {
 			int port = Integer.parseInt(sPort.getValue().toString());
 			int timeout = Integer.parseInt(sTimeout.getValue().toString()) * 1000;
 			String pass = txtPass.getText().trim();
-			String key = txtKey.getText().trim();
+			EncryptionKey key = new EncryptionKey(txtKey.getText().trim());
 			String name = txtName.getText().trim();
 
 			if (pass.length() == 0) {
 				throw new Exception("Password length must be over 0");
-			} else if (key.length() == 0) {
-				throw new Exception("Key length must be over 0");
+			} else if (key.getTextualKey().length() != Crypto.KEY_LENGTH) {
+				throw new Exception("Key length must be " + Crypto.KEY_LENGTH);
 			} else if (name.length() == 0) {
 				name = "Socket" + (new Random()).nextInt(10000);
 			}

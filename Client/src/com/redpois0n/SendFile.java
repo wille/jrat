@@ -45,7 +45,7 @@ public class SendFile {
 						frame2.reportProgress(file.getAbsolutePath(), Util.getPercentFromTotal((int) bytesSent, (int) totalBytes), (int) bytesSent, (int) totalBytes);
 					}
 				}		
-			}, slave.getConnection().getKey());
+			}, slave.getConnection().getKey().getKey());
 			
 			slave.lock();
 			

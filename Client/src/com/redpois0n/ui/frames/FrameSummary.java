@@ -26,7 +26,6 @@ public class FrameSummary extends BaseDialog {
 	private String host;
 	private int port;
 	private String pass;
-	private String key;
 	private String id;
 	private LinkedHashMap<String, BuildStatus> statuses;
 	
@@ -38,12 +37,11 @@ public class FrameSummary extends BaseDialog {
 	private Table table_1;
 	private Table table_2;
 
-	public FrameSummary(File file, String host, int port, String pass, String key, String id, LinkedHashMap<String, BuildStatus> statuses) {
+	public FrameSummary(File file, String host, int port, String pass, String id, LinkedHashMap<String, BuildStatus> statuses) {
 		this.file = file;
 		this.host = host;
 		this.port = port;
 		this.pass = pass;
-		this.key = key;
 		this.id = id;
 		this.statuses = statuses;
 		
@@ -142,7 +140,6 @@ public class FrameSummary extends BaseDialog {
 		generalmodel.addRow(new Object[] { "Host", host });
 		generalmodel.addRow(new Object[] { "Port", port });
 		generalmodel.addRow(new Object[] { "Password", pass });
-		generalmodel.addRow(new Object[] { "Encryption Key", key });
 		generalmodel.addRow(new Object[] { "ID", id });
 		
 		for (String str : statuses.keySet()) {
