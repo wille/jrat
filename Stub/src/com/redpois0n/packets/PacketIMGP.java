@@ -6,7 +6,7 @@ import java.io.File;
 import javax.imageio.ImageIO;
 
 import com.redpois0n.Connection;
-import com.redpois0n.ImageUtils;
+import com.redpois0n.utils.ImageUtils;
 
 
 public class PacketIMGP extends Packet {

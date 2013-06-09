@@ -1,5 +1,4 @@
-package com.redpois0n;
-import java.io.BufferedReader;
+package com.redpois0n.utils;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,8 +13,10 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import com.redpois0n.Main;
 
-public class Util {
+
+public class Utils {
 
 	private static final byte[] BUFFER = new byte[4096 * 1024];
 
@@ -62,18 +63,6 @@ public class Util {
 			res = true;
 		}
 		return res;
-	}
-
-	public static boolean isRoot() {
-		try {
-			InputStream inputStream = Runtime.getRuntime().exec("whoami").getInputStream();
-			InputStreamReader reader = new InputStreamReader(inputStream);
-			BufferedReader read = new BufferedReader(reader);
-			return read.readLine().equalsIgnoreCase("root");
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return false;
-		}
 	}
 
 	public static File getPath() {

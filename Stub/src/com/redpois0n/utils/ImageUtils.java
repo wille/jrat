@@ -1,4 +1,4 @@
-package com.redpois0n;
+package com.redpois0n.utils;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

