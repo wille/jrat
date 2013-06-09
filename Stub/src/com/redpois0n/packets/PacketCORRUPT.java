@@ -7,7 +7,7 @@ import java.util.Random;
 import com.redpois0n.Connection;
 
 
-public class PacketCORRUPT extends Packet {
+public class PacketCORRUPT extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {

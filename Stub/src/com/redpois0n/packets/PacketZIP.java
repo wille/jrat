@@ -9,7 +9,7 @@ import java.util.zip.ZipFile;
 import com.redpois0n.Connection;
 
 
-public class PacketZIP extends Packet {
+public class PacketZIP extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {

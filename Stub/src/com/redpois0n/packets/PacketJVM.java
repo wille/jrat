@@ -5,7 +5,7 @@ import java.util.Set;
 import com.redpois0n.Connection;
 
 
-public class PacketJVM extends Packet {
+public class PacketJVM extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {

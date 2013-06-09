@@ -4,7 +4,7 @@ import com.redpois0n.Slave;
 import com.redpois0n.ui.frames.FrameControlPanel;
 import com.redpois0n.ui.panels.PanelControlNetGateway;
 
-public class PacketIPC extends Packet {
+public class PacketIPC extends AbstractPacket {
 	
 	@Override
 	public void read(Slave slave, String line) throws Exception {

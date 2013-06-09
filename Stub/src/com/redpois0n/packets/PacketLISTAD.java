@@ -9,7 +9,7 @@ import java.util.Enumeration;
 import com.redpois0n.Connection;
 
 
-public class PacketLISTAD extends Packet {
+public class PacketLISTAD extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {

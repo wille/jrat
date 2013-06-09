@@ -5,7 +5,7 @@ import com.redpois0n.Status;
 import com.redpois0n.ui.frames.Frame;
 import com.redpois0n.utils.Util;
 
-public class PacketSTAT extends Packet {
+public class PacketSTAT extends AbstractPacket {
 
 	@Override
 	public void read(Slave slave, String line) throws Exception {

@@ -9,7 +9,7 @@ import com.redpois0n.Connection;
 import com.redpois0n.RemoteScreen;
 import com.redpois0n.utils.ImageUtils;
 
-public class PacketLISTI extends Packet {
+public class PacketLISTI extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {

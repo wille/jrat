@@ -9,9 +9,9 @@ import com.redpois0n.plugins.PluginEventHandler;
 
 public class Packets {
 
-	private static final HashMap<String, Class<? extends Packet>> incomingPackets = new HashMap<String, Class<? extends Packet>>();
+	private static final HashMap<String, Class<? extends AbstractPacket>> incomingPackets = new HashMap<String, Class<? extends AbstractPacket>>();
 	
-	public static HashMap<String, Class<? extends Packet>> getIncomingPackets() {
+	public static HashMap<String, Class<? extends AbstractPacket>> getIncomingPackets() {
 		return incomingPackets;
 	}
 
@@ -84,7 +84,7 @@ public class Packets {
 
 	public static boolean execute(String line, Slave slave) {
 		try {
-			Packet ac = null;
+			AbstractPacket ac = null;
 			Set<String> set = incomingPackets.keySet();
 			for (String str : set) {
 				if (str.equals(line)) {

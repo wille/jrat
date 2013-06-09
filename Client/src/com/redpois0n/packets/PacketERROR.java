@@ -4,7 +4,7 @@ import com.redpois0n.Slave;
 import com.redpois0n.exceptions.CloseException;
 import com.redpois0n.ui.panels.PanelMainLog;
 
-public class PacketERROR extends Packet {
+public class PacketERROR extends AbstractPacket {
 
 	@Override
 	public void read(Slave slave, String line) throws Exception {

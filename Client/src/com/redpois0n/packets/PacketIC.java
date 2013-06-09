@@ -8,7 +8,7 @@ import com.redpois0n.ui.frames.FramePreviewImage;
 import com.redpois0n.utils.ImageUtils;
 
 
-public class PacketIC extends Packet {
+public class PacketIC extends AbstractPacket {
 
 	@Override
 	public void read(Slave slave, String line) throws Exception {

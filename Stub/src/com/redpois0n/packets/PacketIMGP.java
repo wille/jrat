@@ -9,7 +9,7 @@ import com.redpois0n.Connection;
 import com.redpois0n.utils.ImageUtils;
 
 
-public class PacketIMGP extends Packet {
+public class PacketIMGP extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {

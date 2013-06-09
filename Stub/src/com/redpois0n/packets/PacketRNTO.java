@@ -6,7 +6,7 @@ import com.redpois0n.Connection;
 import com.redpois0n.common.codec.Hex;
 
 
-public class PacketRNTO extends Packet {
+public class PacketRNTO extends AbstractPacket {
 	
 	public void read(String line) throws Exception {
 		String file = Connection.readLine();

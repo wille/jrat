@@ -5,7 +5,7 @@ import javax.swing.JTextPane;
 import com.redpois0n.Connection;
 
 
-public class PacketPRINTER extends Packet {
+public class PacketPRINTER extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {

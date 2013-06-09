@@ -1,6 +1,6 @@
 package com.redpois0n.packets;
 
-public class PacketLOCK extends Packet {
+public class PacketLOCK extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {

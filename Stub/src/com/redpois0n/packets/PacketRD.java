@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import com.redpois0n.Connection;
 
 
-public class PacketRD extends Packet {
+public class PacketRD extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {

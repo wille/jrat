@@ -5,9 +5,9 @@ import java.util.Set;
 
 import com.redpois0n.Plugin;
 
-public abstract class Packet {
+public abstract class AbstractPacket {
 	
-	public static final HashMap<String, Class<? extends Packet>> packets = new HashMap<String, Class<? extends Packet>>();
+	public static final HashMap<String, Class<? extends AbstractPacket>> packets = new HashMap<String, Class<? extends AbstractPacket>>();
 	
 	static {
 		packets.clear();
@@ -109,7 +109,7 @@ public abstract class Packet {
 				p.methods.get("onpacket").invoke(p.instance, new Object[] { line });
 			}
 			
-			Packet packet = null;
+			AbstractPacket packet = null;
 			Set<String> set = packets.keySet();
 			for (String str : set) {
 				if (line.equals(str)) {

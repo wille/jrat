@@ -4,7 +4,7 @@ import java.util.Locale;
 
 import com.redpois0n.Connection;
 
-public class PacketLOCALES extends Packet {
+public class PacketLOCALES extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {

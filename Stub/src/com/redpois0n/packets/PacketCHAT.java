@@ -10,7 +10,7 @@ import javax.swing.text.StyleContext;
 import com.redpois0n.Connection;
 
 
-public class PacketCHAT extends Packet {
+public class PacketCHAT extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {

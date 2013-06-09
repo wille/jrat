@@ -5,7 +5,7 @@ import java.io.File;
 import com.redpois0n.Connection;
 
 
-public class PacketDELETEFILE extends Packet {
+public class PacketDELETEFILE extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {

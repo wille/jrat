@@ -11,7 +11,7 @@ import com.redpois0n.ui.frames.FrameInfo;
 import com.redpois0n.utils.Util;
 
 
-public class PacketTHUMBNAIL extends Packet {
+public class PacketTHUMBNAIL extends AbstractPacket {
 
 	public BufferedImage bufferedImage;
 	public byte[] buffer;

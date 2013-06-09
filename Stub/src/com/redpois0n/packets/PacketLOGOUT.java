@@ -1,6 +1,6 @@
 package com.redpois0n.packets;
 
-public class PacketLOGOUT extends Packet {
+public class PacketLOGOUT extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {

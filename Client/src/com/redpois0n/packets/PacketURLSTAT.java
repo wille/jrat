@@ -8,7 +8,7 @@ import com.redpois0n.ui.panels.PanelControlDownloadManager;
 import com.redpois0n.utils.IconUtils;
 
 
-public class PacketURLSTAT extends Packet {
+public class PacketURLSTAT extends AbstractPacket {
 
 	@Override
 	public void read(Slave slave, String line) throws Exception {

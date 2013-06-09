@@ -7,7 +7,7 @@ import com.redpois0n.ui.frames.FrameRemoteProcess;
 import com.redpois0n.ui.panels.PanelControlRemoteProcess;
 
 
-public class PacketPROCESS extends Packet {
+public class PacketPROCESS extends AbstractPacket {
 
 	@Override
 	public void read(Slave slave, String line) throws Exception {

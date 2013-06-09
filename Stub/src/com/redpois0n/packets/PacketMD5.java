@@ -4,7 +4,7 @@ import com.redpois0n.Connection;
 import com.redpois0n.common.codec.Md5;
 
 
-public class PacketMD5 extends Packet {
+public class PacketMD5 extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {

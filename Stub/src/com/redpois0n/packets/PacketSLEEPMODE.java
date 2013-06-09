@@ -1,6 +1,6 @@
 package com.redpois0n.packets;
 
-public class PacketSLEEPMODE extends Packet {
+public class PacketSLEEPMODE extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {

@@ -15,7 +15,7 @@ import com.redpois0n.common.os.OperatingSystem;
 import com.redpois0n.utils.Utils;
 
 
-public class PacketFZ extends Packet {
+public class PacketFZ extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {

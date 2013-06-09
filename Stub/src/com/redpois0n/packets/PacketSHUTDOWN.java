@@ -3,7 +3,7 @@ package com.redpois0n.packets;
 import com.redpois0n.Connection;
 import com.redpois0n.Constants;
 
-public class PacketSHUTDOWN extends Packet{
+public class PacketSHUTDOWN extends AbstractPacket{
 
 	@Override
 	public void read(String line) throws Exception {

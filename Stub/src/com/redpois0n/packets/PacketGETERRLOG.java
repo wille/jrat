@@ -8,7 +8,7 @@ import com.redpois0n.common.crypto.Crypto;
 import com.redpois0n.utils.Utils;
 
 
-public class PacketGETERRLOG extends Packet {
+public class PacketGETERRLOG extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {

