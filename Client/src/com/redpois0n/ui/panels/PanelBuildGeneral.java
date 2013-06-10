@@ -158,7 +158,7 @@ public class PanelBuildGeneral extends JPanel {
 		JButton button_2 = new JButton("");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				txtKey.setText(Util.randomString(24));
+				txtKey.setText(Util.randomString(Crypto.KEY_LENGTH));
 				txtKey.onUpdate(true);
 			}
 		});
