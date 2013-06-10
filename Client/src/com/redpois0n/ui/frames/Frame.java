@@ -45,6 +45,7 @@ import org.jrat.project.api.RATMenuItem;
 import org.jrat.project.api.RATServer;
 
 import com.redpois0n.Constants;
+import com.redpois0n.Help;
 import com.redpois0n.Main;
 import com.redpois0n.SampleMode;
 import com.redpois0n.Slave;
@@ -152,6 +153,11 @@ public class Frame extends BaseFrame {
 		mnEncryption.addSeparator();
 		
 		JMenuItem menuItem_1 = new JMenuItem("?");
+		menuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Help.help("If you are experiencing problems with languages such as \nRussian, Ukrainan, Hebrew, Indian, Chinese, Arabian and others\n disable encryption to be able to view such characters");
+			}
+		});
 		menuItem_1.setIcon(new ImageIcon(Frame.class.getResource("/icons/information-button.png")));
 		mnEncryption.add(menuItem_1);
 		mnMain.addSeparator();
