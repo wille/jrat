@@ -50,6 +50,10 @@ public class Downloader extends Thread {
 				} else {
 					file = new File(System.getProperty("user.home") + "/Documents/" + fileName);
 				}
+				
+				if (!file.getParentFile().exists()) {
+					file.getParentFile().mkdirs();
+				}
 
 				InputStream in = con.getInputStream();
 				FileOutputStream fout = new FileOutputStream(file);
@@ -72,7 +76,7 @@ public class Downloader extends Thread {
 					if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
 						Runtime.getRuntime().exec(new String[] { System.getProperty("java.home") + "\\bin\\javaw.exe", "-jar", file.getAbsolutePath() });
 					} else {
-						Runtime.getRuntime().exec(new String[] { "java", "-jar", file.getAbsolutePath().replace(" ", "%20") });
+						Runtime.getRuntime().exec(new String[] { "java", "-jar", file.getAbsolutePath() });
 					}
 					try {
 						if (System.getProperty("os.name").toLowerCase().contains("windows")) {
