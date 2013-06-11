@@ -8,7 +8,7 @@ import com.redpois0n.common.exceptions.PacketAlreadySentException;
 
 public class PacketBuilder {
 
-	private final String header;
+	private final short header;
 	private List<Object> list;
 	private boolean sent;
 
@@ -21,7 +21,7 @@ public class PacketBuilder {
 	}
 
 	public PacketBuilder(Header header, Object[] extra) {
-		String h = header.getHeader();
+		short h = header.getHeader();
 
 		for (Object obj : extra) {
 			add(obj);
@@ -44,7 +44,7 @@ public class PacketBuilder {
 				throw new PacketAlreadySentException();
 			}
 
-			Connection.writeLine(header);
+			Connection.writeInt(header);
 
 			for (int i = 0; list != null && i < list.size(); i++) {
 				Object obj = list.get(i);

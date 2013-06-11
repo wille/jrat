@@ -75,14 +75,14 @@ public class Connection implements Runnable {
 			}
 			
 			while (true) {
-				String line = readLine();
+				short line = (short) readInt();
 
-				if (line == null) {
+				if (line == -1) {
 					throw new NullPointerException();
 				}
 				
-				if (line.equals("PING")) {
-					Connection.writeLine("PONG");
+				if (line == 0) {
+					Connection.writeInt(0);
 					continue;
 				}
 
@@ -260,13 +260,11 @@ public class Connection implements Runnable {
 	}
 
 	public static void status(String status) {
-		writeLine("STAT");
-		writeLine(status);
+		addToSendQueue(new PacketBuilder(Header.STAT, status));
 	}
 
 	public static void status(int status) {
-		writeLine("STAT");
-		writeLine(status + "");
+		addToSendQueue(new PacketBuilder(Header.STAT, status + ""));
 	}
 
 	public static void lock() {

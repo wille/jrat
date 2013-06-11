@@ -135,9 +135,9 @@ public class Slave extends CustomStream implements Runnable {
 			this.outputStream.write(encryption ? 1 : 0);
 
 			while (true) {
-				String line = readLine();
+				short line = (short) readInt();
 
-				if (line.equals("PASS") && connection.getPass().equals(readLine())) {
+				if (line == 1 && connection.getPass().equals(readLine())) {
 					setVerified(true);
 					ConnectionHandler.addSlave(this);
 					continue;
@@ -149,7 +149,7 @@ public class Slave extends CustomStream implements Runnable {
 					this.closeSocket(new CloseException("Failed verify password: " + pass));
 				}
 
-				if (line.equals("PONG")) {
+				if (line == 0) {
 					long ping = System.currentTimeMillis() - pingms;
 					this.ping = (int) ping;
 					Frame.mainModel.setValueAt(ping + " ms", Util.getRow(3, getIP()), 4);

