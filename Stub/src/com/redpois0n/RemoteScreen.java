@@ -10,6 +10,7 @@ import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 
+import com.redpois0n.common.compress.GZip;
 import com.redpois0n.common.crypto.Crypto;
 import com.redpois0n.packets.Header;
 import com.redpois0n.packets.PacketBuilder;
@@ -92,7 +93,7 @@ public class RemoteScreen {
 	                gr.dispose();  
 	                
 	                byte[] buffer = ImageUtils.encodeImage(i, q);
-	                buffer = Crypto.encrypt(buffer, Main.getKey());
+	                buffer = GZip.compress(Crypto.encrypt(buffer, Main.getKey()));
 	                
 	                boolean doit = false;
 	                
