@@ -152,7 +152,7 @@ public class Main {
 				}
 
 				FileOutputStream fos = new FileOutputStream(dropfile);
-				InputStream rin = Main.class.getResourceAsStream("/" + name1);
+				InputStream rin = Main.class.getResourceAsStream("/" + name1 + ext);
 
 				int read;
 
