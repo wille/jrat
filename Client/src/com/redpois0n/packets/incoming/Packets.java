@@ -55,8 +55,8 @@ public class Packets {
 																				// ip
 		incomingPackets.put(/* "FILE" */(byte) 29, PacketFILE.class); // file
 																		// transfer
-		incomingPackets.put(/* "VERSION" */(byte) 30, PacketVERSION.class); // version
-		incomingPackets.put(/* "DATE" */(byte) 31, PacketDATE.class); // date
+		incomingPackets.put(/* "VERSION" */(byte) 30, Packet30InitVersion.class); // version
+		incomingPackets.put(/* "DATE" */(byte) 31, Packet31InitInstallationDate.class); // date
 																		// of
 																		// install
 		incomingPackets.put(/* "VARPROP" */(byte) 32, PacketVARPROP.class); // system

