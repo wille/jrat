@@ -57,11 +57,11 @@ public class PacketBuilder {
 				throw new PacketAlreadySentException();
 			}
 			
-			slave.writeInt(header);
+			slave.writeByte(header);
 
 			
 			// TODO PluginEventHandler.onSendPacket(header, slave);
-
+String s;
 			for (int i = 0; list != null && i < list.size(); i++) {
 				Object obj = list.get(i);
 
@@ -80,8 +80,10 @@ public class PacketBuilder {
 						slave.writeLong((Long) obj);
 					} else if (obj instanceof Boolean) {
 						slave.writeBoolean((Boolean) obj);
+					} else if (obj instanceof Short) {
+						slave.writeShort((Short) obj);
 					} else {
-						slave.writeLine(obj);
+						slave.writeLine(obj.toString());
 					}
 				}
 			}

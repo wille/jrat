@@ -12,7 +12,7 @@ public class PacketRD extends AbstractPacket {
 	@Override
 	public void read(String line) throws Exception {
 		String file = Connection.readLine();
-		int l = Integer.parseInt(Connection.readLine());
+		int l = Connection.readInt();
 		int readed = 0;
 		BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
 		while ((line = reader.readLine()) != null) {

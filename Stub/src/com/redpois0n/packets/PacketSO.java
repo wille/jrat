@@ -8,7 +8,7 @@ public class PacketSO extends AbstractPacket {
 	@Override
 	public void read(String line) throws Exception {
 		if (Connection.readLine().equalsIgnoreCase("true")) {
-			int quality = Integer.parseInt(Connection.readLine());
+			int quality = Connection.readInt();
 			Connection.write(Header.SOUND);
 			Sound.initialize(quality);
 			Sound.write();

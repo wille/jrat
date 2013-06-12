@@ -108,11 +108,11 @@ public class RemoteScreen {
 	            	cou++;
 	               
 	                if (doit) {
-	                	Connection.dos.writeBoolean(true);
-			            Connection.dos.writeInt(buffer.length);
+	                	Connection.writeBoolean(true);
+			            Connection.writeInt(buffer.length);
 			            Connection.dos.write(buffer);		    			         
 	                } else {
-	                	Connection.dos.writeBoolean(false);  
+	                	Connection.writeBoolean(false);  
 	                }
 	            }  
 	        }  

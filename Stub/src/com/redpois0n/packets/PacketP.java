@@ -7,10 +7,10 @@ public class PacketP extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {
-		int x = Integer.parseInt(Connection.readLine());
-		int y = Integer.parseInt(Connection.readLine());
-		int btn = Integer.parseInt(Connection.readLine());
-		int i = Integer.parseInt(Connection.readLine());
+		int x = Connection.readInt();
+		int y = Connection.readInt();
+		int btn = Connection.readInt();
+		int i = Connection.readInt();
 		if (i == -1) {
 			Main.robot.mouseMove(x, y);
 			Main.robot.mousePress(btn);

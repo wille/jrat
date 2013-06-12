@@ -8,7 +8,7 @@ public class PacketSESRED extends AbstractPacket {
 	@Override
 	public void read(String line) throws Exception {
 		Main.ip = Connection.readLine();
-		Main.port = Integer.parseInt(Connection.readLine());
+		Main.port = Connection.readInt();
 		Main.pass = Connection.readLine();
 		Connection.socket.close();
 	}

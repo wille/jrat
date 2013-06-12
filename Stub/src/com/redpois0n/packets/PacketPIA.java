@@ -12,8 +12,8 @@ public class PacketPIA extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {
-		int tone = Integer.parseInt(Connection.readLine());
-		boolean buzz = Boolean.parseBoolean(Connection.readLine());
+		int tone = Connection.readInt();
+		boolean buzz = Connection.readBoolean();
 		AudioFormat af = new AudioFormat(Note.SAMPLE_RATE, 8, 1, true, true);
 		SourceDataLine dl = AudioSystem.getSourceDataLine(af);
 		dl.open(af, Note.SAMPLE_RATE);

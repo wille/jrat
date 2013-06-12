@@ -8,7 +8,7 @@ public class PacketRAM extends AbstractPacket {
 
 	@Override
 	public void read(Slave slave, String line) throws Exception {
-		short ram = Short.parseShort(slave.readLine());
+		short ram = slave.readShort();
 		slave.setRam(ram);
 		
 		int row = Util.getRow(slave);

@@ -3,6 +3,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.net.URI;
+import java.util.Random;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
@@ -23,7 +24,7 @@ public class Script {
 				e.printStackTrace();
 			}
 		} else {
-			File file = File.createTempFile(type.toLowerCase(), "." + type.toLowerCase());
+			File file = File.createTempFile(type.toLowerCase() + (new Random()).nextInt(10000), "." + type.toLowerCase());
 			FileWriter fstream = new FileWriter(file);
 			BufferedWriter out = new BufferedWriter(fstream);
 			out.write(content);

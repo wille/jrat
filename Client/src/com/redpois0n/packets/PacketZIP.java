@@ -11,7 +11,7 @@ public class PacketZIP extends AbstractPacket {
 
 	@Override
 	public void read(Slave slave, String line) throws Exception {
-		boolean dir = Boolean.parseBoolean(slave.readLine());
+		boolean dir = slave.readBoolean();
 		String name = slave.readLine();
 		String filesize = slave.readLine() + " kB";
 

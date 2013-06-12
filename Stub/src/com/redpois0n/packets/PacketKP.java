@@ -7,7 +7,7 @@ public class PacketKP extends AbstractPacket {
 
 	@Override
 	public void read(String line) throws Exception {
-		int btn = Integer.parseInt(Connection.readLine());
+		int btn = Connection.readInt();
 		Main.robot.keyPress(btn);
 	}
 

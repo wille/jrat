@@ -44,20 +44,22 @@ public class PacketBuilder {
 				throw new PacketAlreadySentException();
 			}
 
-			Connection.writeInt(header);
+			Connection.writeByte(header);
 
 			for (int i = 0; list != null && i < list.size(); i++) {
 				Object obj = list.get(i);
-
 				if (obj instanceof Integer) {
 					Connection.writeInt((Integer) obj);
 				} else if (obj instanceof Long) {
 					Connection.writeLong((Long) obj);
 				} else if (obj instanceof Boolean) {
 					Connection.writeBoolean((Boolean) obj);
+				} else if (obj instanceof Short) {
+					Connection.writeShort((Short) obj);
 				} else {
 					Connection.writeLine(obj.toString());
 				}
+				
 			}
 
 			sent = true;

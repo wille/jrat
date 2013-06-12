@@ -6,7 +6,7 @@ public class PacketAPS extends AbstractPacket {
 
 	@Override
 	public void read(Slave slave, String line) throws Exception {
-		short processors = Short.parseShort(slave.readLine());
+		short processors = slave.readShort();
 		slave.setProcessors(processors);
 	}
 
