@@ -28,8 +28,8 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 
 import com.redpois0n.Slave;
-import com.redpois0n.packets.in.PacketBuilder;
-import com.redpois0n.packets.out.Header;
+import com.redpois0n.packets.incoming.PacketBuilder;
+import com.redpois0n.packets.outgoing.Header;
 
 @SuppressWarnings("serial")
 public class FrameRemoteChat extends BaseFrame {

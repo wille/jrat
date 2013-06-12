@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.redpois0n.packets.in.PacketFILE;
+import com.redpois0n.packets.incoming.PacketFILE;
 
 
 public class FileData {

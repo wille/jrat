@@ -2,8 +2,8 @@ package com.redpois0n;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-import com.redpois0n.packets.in.PacketBuilder;
-import com.redpois0n.packets.out.Header;
+import com.redpois0n.packets.incoming.PacketBuilder;
+import com.redpois0n.packets.outgoing.Header;
 
 
 public class Netstat extends Thread {

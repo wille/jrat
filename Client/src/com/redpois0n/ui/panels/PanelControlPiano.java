@@ -23,8 +23,8 @@ import javax.swing.SpinnerNumberModel;
 import com.redpois0n.ErrorDialog;
 import com.redpois0n.Piano;
 import com.redpois0n.Slave;
-import com.redpois0n.packets.in.PacketBuilder;
-import com.redpois0n.packets.out.Header;
+import com.redpois0n.packets.incoming.PacketBuilder;
+import com.redpois0n.packets.outgoing.Header;
 
 @SuppressWarnings("serial")
 public class PanelControlPiano extends PanelControlParent {

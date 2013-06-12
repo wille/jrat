@@ -25,8 +25,8 @@ import javax.swing.table.DefaultTableModel;
 
 import com.redpois0n.Drive;
 import com.redpois0n.Slave;
-import com.redpois0n.packets.in.PacketBuilder;
-import com.redpois0n.packets.out.Header;
+import com.redpois0n.packets.incoming.PacketBuilder;
+import com.redpois0n.packets.outgoing.Header;
 import com.redpois0n.ui.frames.FrameRemoteFiles;
 import com.redpois0n.ui.renderers.JComboBoxIconRenderer;
 import com.redpois0n.utils.IconUtils;

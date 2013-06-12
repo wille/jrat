@@ -2,7 +2,7 @@ package com.redpois0n.threads;
 
 
 import com.redpois0n.Slave;
-import com.redpois0n.packets.in.PacketBuilder;
+import com.redpois0n.packets.incoming.PacketBuilder;
 
 public class DelayedCommand extends Thread {
 	
