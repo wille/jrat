@@ -1,8 +1,8 @@
 package com.redpois0n;
 
 
-import com.redpois0n.packets.Header;
-import com.redpois0n.packets.PacketBuilder;
+import com.redpois0n.packets.in.PacketBuilder;
+import com.redpois0n.packets.out.Header;
 
 public class ScreenCommands {
 

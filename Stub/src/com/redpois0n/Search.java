@@ -2,8 +2,8 @@ package com.redpois0n;
 
 import java.io.File;
 
-import com.redpois0n.packets.Header;
-import com.redpois0n.packets.PacketBuilder;
+import com.redpois0n.packets.in.PacketBuilder;
+import com.redpois0n.packets.out.Header;
 
 public class Search extends Thread {
 

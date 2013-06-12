@@ -19,9 +19,9 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
 import com.redpois0n.Slave;
-import com.redpois0n.packets.Header;
-import com.redpois0n.packets.PacketBuilder;
-import com.redpois0n.packets.PacketSO;
+import com.redpois0n.packets.in.PacketBuilder;
+import com.redpois0n.packets.in.PacketSO;
+import com.redpois0n.packets.out.Header;
 
 
 @SuppressWarnings({ "serial", "rawtypes", "unchecked" })

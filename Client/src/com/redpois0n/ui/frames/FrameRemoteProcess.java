@@ -22,8 +22,8 @@ import javax.swing.table.DefaultTableModel;
 
 import com.redpois0n.Slave;
 import com.redpois0n.common.OperatingSystem;
-import com.redpois0n.packets.Header;
-import com.redpois0n.packets.PacketBuilder;
+import com.redpois0n.packets.in.PacketBuilder;
+import com.redpois0n.packets.out.Header;
 import com.redpois0n.ui.renderers.table.ProcessTableRenderer;
 import com.redpois0n.utils.Util;
 

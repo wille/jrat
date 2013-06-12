@@ -4,8 +4,8 @@ import java.io.File;
 
 import com.redpois0n.common.io.FileIO;
 import com.redpois0n.common.io.TransferListener;
-import com.redpois0n.packets.Header;
-import com.redpois0n.packets.PacketBuilder;
+import com.redpois0n.packets.in.PacketBuilder;
+import com.redpois0n.packets.out.Header;
 import com.redpois0n.ui.frames.FrameFileTransfer;
 import com.redpois0n.ui.frames.FrameRemoteFiles;
 import com.redpois0n.utils.Util;

