@@ -72,6 +72,7 @@ String s;
 						slave.writeLine("-c " + obj);
 					}
 				} else {
+					
 					if (obj instanceof byte[]) {
 						slave.getDataOutputStream().write((byte[]) obj);
 					} else if (obj instanceof Integer) {

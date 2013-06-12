@@ -48,6 +48,7 @@ public class PacketBuilder {
 
 			for (int i = 0; list != null && i < list.size(); i++) {
 				Object obj = list.get(i);
+				
 				if (obj instanceof Integer) {
 					Connection.writeInt((Integer) obj);
 				} else if (obj instanceof Long) {

