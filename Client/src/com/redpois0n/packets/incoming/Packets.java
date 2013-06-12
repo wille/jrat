@@ -41,7 +41,7 @@ public class Packets {
 		incomingPackets.put(/* "CMD" */(byte) 21, PacketCMD.class); // command
 																		// prompt
 																		// line
-		incomingPackets.put(/* "USERNAME" */(byte) 22, PacketUSERNAME.class); // username
+		incomingPackets.put(/* "USERNAME" */(byte) 22, Packet22InitUsername.class); // username
 		incomingPackets.put(/* "SERVERPATH" */(byte) 23, PacketSERVERPATH.class); // server
 																					// path
 		incomingPackets.put(/* "HERERAM" */(byte) 24, PacketHERERAM.class); // ram

