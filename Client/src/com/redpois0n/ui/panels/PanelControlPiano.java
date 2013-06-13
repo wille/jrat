@@ -202,7 +202,7 @@ public class PanelControlPiano extends PanelControlParent {
 		JButton btnSend = new JButton("Send");
 		btnSend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				slave.addToSendQueue(new PacketBuilder(Header.SEND_PIANO, new String[] { spinnerSound.getValue().toString(), spinnerSec.getValue().toString() }));
+				slave.addToSendQueue(new PacketBuilder(Header.SEND_PIANO, new Integer[] { (Integer) spinnerSound.getValue(), (Integer) spinnerSec.getValue() }));
 			}
 		});
 		btnSend.setIcon(new ImageIcon(PanelControlPiano.class.getResource("/icons/right.png")));
@@ -215,7 +215,7 @@ public class PanelControlPiano extends PanelControlParent {
 					SourceDataLine dl = AudioSystem.getSourceDataLine(af);
 					dl.open(af, Piano.SAMPLE_RATE);
 					dl.start();
-					Piano.play(dl, Piano.values()[Integer.parseInt(spinnerSound.getValue().toString())], Integer.parseInt(spinnerSec.getValue().toString()) * 1000);
+					Piano.play(dl, Piano.values()[(Integer) spinnerSound.getValue()], (Integer) spinnerSec.getValue() * 1000);
 					dl.drain();
 					dl.close();
 				} catch (Exception ex) {

