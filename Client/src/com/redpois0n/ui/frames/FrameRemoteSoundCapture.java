@@ -19,8 +19,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
 import com.redpois0n.Slave;
-import com.redpois0n.packets.incoming.PacketBuilder;
 import com.redpois0n.packets.incoming.Packet58Microphone;
+import com.redpois0n.packets.incoming.PacketBuilder;
 import com.redpois0n.packets.outgoing.Header;
 
 

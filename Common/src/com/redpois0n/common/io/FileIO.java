@@ -22,7 +22,7 @@ public class FileIO {
 		for (long pos = 0; pos < fileSize; pos += chunkSize) {
 			fileInput.read(chunk);
 			
-			byte[] crypt = Crypto.encrypt(chunk, key);
+			byte[] crypt = chunk;
 
 			dos.writeInt(crypt.length);
 			dos.write(crypt, 0, crypt.length);
@@ -50,7 +50,7 @@ public class FileIO {
 
 			dis.readFully(chunk);
 
-			fileOutput.write(Crypto.decrypt(chunk, key));
+			fileOutput.write(chunk);
 			//fileOutput.write(chunk);
 
 			if (listener != null) {

