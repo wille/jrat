@@ -20,7 +20,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.redpois0n.Slave;
 import com.redpois0n.packets.incoming.PacketBuilder;
-import com.redpois0n.packets.incoming.PacketSO;
+import com.redpois0n.packets.incoming.Packet58Microphone;
 import com.redpois0n.packets.outgoing.Header;
 
 
@@ -31,7 +31,7 @@ public class FrameRemoteSoundCapture extends BaseDialog {
 	private Slave slave;
 	private JButton btnStart;
 	private JButton btnStop;
-	public PacketSO packet;
+	public Packet58Microphone packet;
 	
 	public static HashMap<Slave, FrameRemoteSoundCapture> instances = new HashMap<Slave, FrameRemoteSoundCapture>();
 	private JComboBox comboBox;
@@ -47,7 +47,7 @@ public class FrameRemoteSoundCapture extends BaseDialog {
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRemoteSoundCapture.class.getResource("/icons/microphone.png")));
 		this.slave = sl;
-		packet = new PacketSO();
+		packet = new Packet58Microphone();
 		instances.put(slave, this);
 		setTitle("Sound capture - " + sl.getIP() + " - " + sl.getComputerName());
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

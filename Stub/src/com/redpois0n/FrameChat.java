@@ -21,7 +21,7 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 
-import com.redpois0n.packets.outgoing.Packet35ChatMessage;
+import com.redpois0n.stub.packets.outgoing.Packet35ChatMessage;
 
 @SuppressWarnings("serial")
 public class FrameChat extends JFrame {

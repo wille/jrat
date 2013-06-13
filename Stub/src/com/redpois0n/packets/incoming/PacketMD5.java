@@ -2,7 +2,7 @@ package com.redpois0n.packets.incoming;
 
 import com.redpois0n.Connection;
 import com.redpois0n.common.codec.Md5;
-import com.redpois0n.packets.outgoing.Header;
+import com.redpois0n.stub.packets.outgoing.Header;
 
 
 public class PacketMD5 extends AbstractIncomingPacket {

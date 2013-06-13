@@ -1,4 +1,6 @@
 package com.redpois0n;
+import java.io.DataOutputStream;
+
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.DataLine;
@@ -22,13 +24,13 @@ public class Sound {
 		line.start();
 	}
 	
-	public static void write() throws Exception {	
+	public static void write(DataOutputStream dos) throws Exception {	
 		byte[] data = new byte[line.getBufferSize() / 5];
 		
 		line.read(data, 0, data.length);
 		
-		Connection.writeInt(data.length);
-        Connection.dos.write(data);
+		dos.writeInt(data.length);
+        dos.write(data);
 	}
 
 }

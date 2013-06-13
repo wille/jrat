@@ -3,7 +3,7 @@ package com.redpois0n.packets.incoming;
 import java.util.Set;
 
 import com.redpois0n.Connection;
-import com.redpois0n.packets.outgoing.Header;
+import com.redpois0n.stub.packets.outgoing.Header;
 
 
 public class PacketPROP extends AbstractIncomingPacket {
