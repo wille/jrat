@@ -37,8 +37,8 @@ import javax.swing.border.EmptyBorder;
 
 import com.redpois0n.ScreenCommands;
 import com.redpois0n.Slave;
+import com.redpois0n.packets.incoming.Packet17RemoteScreen;
 import com.redpois0n.packets.incoming.PacketBuilder;
-import com.redpois0n.packets.incoming.PacketIMAGECOMING;
 import com.redpois0n.packets.outgoing.Header;
 import com.redpois0n.settings.Settings;
 import com.redpois0n.threads.ThreadFPS;
@@ -402,7 +402,7 @@ public class FrameRemoteScreen extends BaseFrame {
 		dispose();
 		System.gc();
 		thread.stopRunning();
-		PacketIMAGECOMING.instances.remove(slave);
+		Packet17RemoteScreen.instances.remove(slave);
 	}
 
 	public int getQuality() {

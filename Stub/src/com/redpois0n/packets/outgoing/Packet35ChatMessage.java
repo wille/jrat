@@ -4,22 +4,22 @@ import java.io.DataOutputStream;
 
 import com.redpois0n.common.io.StringWriter;
 
-
-public class Packet64InitAvailableProcessors extends AbstractOutgoingPacket {
-
-	private int processors;
-
-	public Packet64InitAvailableProcessors(int processors) {
-		this.processors = processors;
+public class Packet35ChatMessage extends AbstractOutgoingPacket {
+	
+	private String message;
+	
+	public Packet35ChatMessage(String message) {
+		this.message = message;
 	}
 
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		dos.writeShort(processors);
+		sw.writeLine(this.message);
 	}
 
 	@Override
 	public byte getPacketId() {
-		return (byte) 64;
+		return 35;
 	}
+
 }

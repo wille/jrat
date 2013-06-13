@@ -9,6 +9,8 @@ public abstract class AbstractIncomingPacket {
 
 	public abstract void read(Slave slave, DataInputStream dis) throws Exception;
 	
-	//public abstract byte getPacketId();
+	public byte getPacketId() {
+		return -1;
+	}
 
 }

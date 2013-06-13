@@ -11,7 +11,7 @@ public class PacketGETSCREENONCE extends AbstractIncomingPacket {
 		int monitor = Connection.readInt();
 		int rows = Connection.readInt();
 		int cols = Connection.readInt();
-		RemoteScreen.send(true, quality, monitor, rows, cols);
+		RemoteScreen.send(true, quality, monitor, rows, cols, Connection.dos);
 	}
 
 }

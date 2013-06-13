@@ -21,8 +21,7 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 
-import com.redpois0n.packets.incoming.PacketBuilder;
-import com.redpois0n.packets.outgoing.Header;
+import com.redpois0n.packets.outgoing.Packet35ChatMessage;
 
 @SuppressWarnings("serial")
 public class FrameChat extends JFrame {
@@ -85,7 +84,7 @@ public class FrameChat extends JFrame {
 			if (textField.getText().trim().length() > 0) {
 				StyleContext sc = StyleContext.getDefaultStyleContext();
 				AttributeSet set = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, Color.blue);
-				Connection.addToSendQueue(new PacketBuilder(Header.CHAT, "-c " + textField.getText().trim()));
+				Connection.addToSendQueue(new Packet35ChatMessage("-c " + textField.getText().trim()));
 				txtChat.getDocument().insertString(txtChat.getDocument().getLength(), "You: " + textField.getText().trim() + "\n", set);
 				textField.setText("");
 				txtChat.setSelectionEnd(Connection.frameChat.txtChat.getText().length());

