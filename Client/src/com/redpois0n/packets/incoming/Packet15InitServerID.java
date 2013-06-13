@@ -21,10 +21,4 @@ public class Packet15InitServerID extends AbstractIncomingPacket {
 		}
 
 	}
-
-	@Override
-	public byte getPacketId() {
-		return 15;
-	}
-
 }

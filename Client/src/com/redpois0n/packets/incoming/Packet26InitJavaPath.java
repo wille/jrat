@@ -13,10 +13,4 @@ public class Packet26InitJavaPath extends AbstractIncomingPacket {
 		slave.setJavaPath(path);
 
 	}
-
-	@Override
-	public byte getPacketId() {
-		return 26;
-	}
-
 }

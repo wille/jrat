@@ -12,9 +12,4 @@ public class Packet64InitAvailableProcessors extends AbstractIncomingPacket {
 		slave.setProcessors(processors);
 	}
 
-	@Override
-	public byte getPacketId() {
-		return 64;
-	}
-
 }

@@ -23,9 +23,4 @@ public class Packet62InitDrives extends AbstractIncomingPacket {
 		}
 	}
 
-	@Override
-	public byte getPacketId() {
-		return 62;
-	}
-
 }

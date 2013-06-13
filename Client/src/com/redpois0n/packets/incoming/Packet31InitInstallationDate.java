@@ -12,9 +12,4 @@ public class Packet31InitInstallationDate extends AbstractIncomingPacket {
 		slave.setInstallDate(date);
 	}
 
-	@Override
-	public byte getPacketId() {
-		return 31;
-	}
-
 }

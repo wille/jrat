@@ -11,10 +11,4 @@ public class Packet25InitJavaVersion extends AbstractIncomingPacket {
 		String version = slave.readLine();
 		slave.setJavaVersion(version);
 	}
-
-	@Override
-	public byte getPacketId() {
-		return 25;
-	}
-
 }

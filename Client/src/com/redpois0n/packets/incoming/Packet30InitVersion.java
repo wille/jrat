@@ -17,9 +17,4 @@ public class Packet30InitVersion extends AbstractIncomingPacket {
 		Frame.mainModel.setValueAt(version, row, 9);
 	}
 
-	@Override
-	public byte getPacketId() {
-		return 30;
-	}
-
 }

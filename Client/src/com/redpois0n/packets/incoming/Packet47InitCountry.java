@@ -28,9 +28,4 @@ public class Packet47InitCountry extends AbstractIncomingPacket {
 		Statistics.getGlobal().add(slave);
 	}
 
-	@Override
-	public byte getPacketId() {
-		return 47;
-	}
-
 }

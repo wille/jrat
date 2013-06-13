@@ -13,9 +13,4 @@ public class Packet23InitInstallPath extends AbstractIncomingPacket {
 
 	}
 
-	@Override
-	public byte getPacketId() {
-		return 23;
-	}
-
 }

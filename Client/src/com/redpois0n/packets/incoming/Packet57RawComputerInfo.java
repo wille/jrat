@@ -1,10 +1,8 @@
 package com.redpois0n.packets.incoming;
 
 import java.io.DataInputStream;
-import java.io.DataOutputStream;
 
 import com.redpois0n.Slave;
-import com.redpois0n.packets.outgoing.AbstractOutgoingPacket;
 import com.redpois0n.ui.frames.FrameRawSystemInfo;
 
 public class Packet57RawComputerInfo extends AbstractIncomingPacket {

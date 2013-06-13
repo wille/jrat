@@ -15,9 +15,4 @@ public class Packet22InitUsername extends AbstractIncomingPacket {
 		Frame.mainModel.setValueAt(slave.getUsername() + "@" + slave.getComputerName(), Util.getRow(3, slave.getIP()), 5);
 	}
 
-	@Override
-	public byte getPacketId() {
-		return 22;
-	}
-
 }

@@ -18,9 +18,4 @@ public class Packet63InitRAM extends AbstractIncomingPacket {
 		Frame.mainModel.setValueAt(ram + " mb", row, 7);
 	}
 
-	@Override
-	public byte getPacketId() {
-		return 63;
-	}
-
 }

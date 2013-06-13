@@ -22,10 +22,4 @@ public class Packet13Status extends AbstractIncomingPacket {
 			Frame.mainModel.setValueAt(status, Util.getRow(3, slave.getIP()), 2);
 		}				
 	}
-
-	@Override
-	public byte getPacketId() {
-		return 13;
-	}
-
 }

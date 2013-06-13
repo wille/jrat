@@ -10,7 +10,7 @@ public abstract class AbstractOutgoingPacket {
 	
 	public abstract byte getPacketId();
 	
-	public final void send(DataOutputStream dos, StringWriter sw) {
+	public synchronized final void send(DataOutputStream dos, StringWriter sw) {
 		try {
 			dos.writeByte(getPacketId());
 			this.write(dos, sw);

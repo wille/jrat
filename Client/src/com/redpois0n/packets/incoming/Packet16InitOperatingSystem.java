@@ -14,9 +14,4 @@ public class Packet16InitOperatingSystem extends AbstractIncomingPacket {
 		Frame.mainModel.setValueAt(slave.getOperatingSystem(), Util.getRow(3, slave.getIP()), 6);
 	}
 
-	@Override
-	public byte getPacketId() {
-		return 16;
-	}
-
 }

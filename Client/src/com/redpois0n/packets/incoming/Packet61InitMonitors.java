@@ -24,10 +24,4 @@ public class Packet61InitMonitors extends AbstractIncomingPacket {
 		}
 		
 	}
-
-	@Override
-	public byte getPacketId() {
-		return 61;
-	}
-
 }

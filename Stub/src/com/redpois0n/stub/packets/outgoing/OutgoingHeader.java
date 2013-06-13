@@ -1,6 +1,6 @@
 package com.redpois0n.stub.packets.outgoing;
 
-public enum Header {
+public enum OutgoingHeader {
 
 	INIT_DATE(/* "DATE" */(byte) 31),
 	INIT_VERSION(/* "VERSION" */(byte) 30),
@@ -68,7 +68,7 @@ public enum Header {
 	//	this.header = header;
 	//}
 	
-	private Header(byte header) {
+	private OutgoingHeader(byte header) {
 		this.header = header;
 	}
 

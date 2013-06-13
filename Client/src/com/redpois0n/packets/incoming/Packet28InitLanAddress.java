@@ -18,9 +18,4 @@ public class Packet28InitLanAddress extends AbstractIncomingPacket {
 		Frame.mainModel.setValueAt(raw, row, 8);
 	}
 
-	@Override
-	public byte getPacketId() {
-		return 28;
-	}
-
 }

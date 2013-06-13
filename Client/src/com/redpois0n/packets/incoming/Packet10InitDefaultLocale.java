@@ -13,10 +13,4 @@ public class Packet10InitDefaultLocale extends AbstractIncomingPacket {
 		slave.setLongCountry(slave.readLine());
 
 	}
-
-	@Override
-	public byte getPacketId() {
-		return 10;
-	}
-
 }
