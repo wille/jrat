@@ -5,7 +5,7 @@ import java.net.URI;
 import com.redpois0n.Connection;
 
 
-public class PacketVISITURLMUCH extends AbstractIncomingPacket {
+public class Packet39VisitManyURLs extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
@@ -16,6 +16,7 @@ public class PacketVISITURLMUCH extends AbstractIncomingPacket {
 				java.awt.Desktop.getDesktop().browse(new URI(url));
 			}
 		} catch (Exception ex) {
+			ex.printStackTrace();
 		}
 	}
 

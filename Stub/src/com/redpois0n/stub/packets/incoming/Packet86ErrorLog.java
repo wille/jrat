@@ -9,7 +9,7 @@ import com.redpois0n.stub.packets.outgoing.Packet65ErrorLog;
 import com.redpois0n.utils.Utils;
 
 
-public class PacketGETERRLOG extends AbstractIncomingPacket {
+public class Packet86ErrorLog extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {

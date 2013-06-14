@@ -13,7 +13,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
 
 import com.redpois0n.Slave;
-import com.redpois0n.packets.OutgoingHeader;
+import com.redpois0n.packets.outgoing.Packet59Clipboard;
 
 @SuppressWarnings("serial")
 public class PanelControlClipboard extends PanelControlParent {
@@ -43,7 +43,7 @@ public class PanelControlClipboard extends PanelControlParent {
 		btnReloadClipboard.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				txt.setText("");
-				sl.addToSendQueue(OutgoingHeader.GET_CLIPBOARD);
+				sl.addToSendQueue(new Packet59Clipboard());
 			}
 		});
 		btnReloadClipboard.setIcon(new ImageIcon(PanelControlClipboard.class.getResource("/icons/clipboard.png")));

