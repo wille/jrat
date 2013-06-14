@@ -77,7 +77,7 @@ import com.redpois0n.utils.FlagUtils;
 import com.redpois0n.utils.IconUtils;
 import com.redpois0n.utils.Util;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({ "serial", "unused" })
 public class Frame extends BaseFrame {
 
 	private JPanel contentPane;
