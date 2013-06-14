@@ -9,11 +9,11 @@ public final class RATServer {
 	private final DataInputStream dis;
 	private final DataOutputStream dos;
 	private final Connection con;
-	private final OutputStreamInterface writer;
-	private final InputStreamInterface reader;
+	private final IWriter writer;
+	private final IReader reader;
 	private final PacketWriter pw;
 	
-	public RATServer(String ip, Connection con, DataInputStream dis, DataOutputStream dos, OutputStreamInterface writer, InputStreamInterface reader, PacketWriter pw) {
+	public RATServer(String ip, Connection con, DataInputStream dis, DataOutputStream dos, IWriter writer, IReader reader, PacketWriter pw) {
 		this.ip = ip;
 		this.dis = dis;
 		this.dos = dos;
@@ -64,7 +64,7 @@ public final class RATServer {
 	 * @return Writer
 	 */
 	
-	public OutputStreamInterface getDataWriter() {
+	public IWriter getDataWriter() {
 		return writer;
 	}
 	
@@ -73,7 +73,7 @@ public final class RATServer {
 	 * @return Reader
 	 */
 	
-	public InputStreamInterface getDataReader() {
+	public IReader getDataReader() {
 		return reader;
 	}
 	

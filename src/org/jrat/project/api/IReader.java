@@ -2,7 +2,7 @@ package org.jrat.project.api;
 
 import java.io.IOException;
 
-public abstract interface InputStreamInterface {
+public abstract interface IReader {
 
 	/**
 	 * Reads byte from stream
@@ -23,7 +23,7 @@ public abstract interface InputStreamInterface {
 	 * @return String
 	 * @throws IOException
 	 */
-	public abstract String readString() throws IOException;
+	public abstract String readLine() throws IOException;
 	
 	/**
 	 * Reads bytes into array, until it is full

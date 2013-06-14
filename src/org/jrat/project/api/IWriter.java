@@ -2,7 +2,7 @@ package org.jrat.project.api;
 
 import java.io.IOException;
 
-public abstract interface OutputStreamInterface {
+public abstract interface IWriter {
 
 	/**
 	 * Writes byte to stream
@@ -23,7 +23,7 @@ public abstract interface OutputStreamInterface {
 	 * @param str
 	 * @throws IOException
 	 */
-	public abstract void writeString(String str) throws IOException;
+	public abstract void writeLine(String str) throws IOException;
 	
 	/**
 	 * Writes short to stream, 2 bytes
