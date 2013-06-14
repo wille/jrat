@@ -23,8 +23,6 @@ import javax.swing.SpinnerNumberModel;
 import com.redpois0n.ErrorDialog;
 import com.redpois0n.Piano;
 import com.redpois0n.Slave;
-import com.redpois0n.packets.OutgoingHeader;
-import com.redpois0n.packets.incoming.PacketBuilder;
 import com.redpois0n.packets.outgoing.Packet66PianoNote;
 import com.redpois0n.packets.outgoing.Packet67LongPianoNote;
 
