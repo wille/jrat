@@ -16,8 +16,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
 import com.redpois0n.Slave;
+import com.redpois0n.packets.OutgoingHeader;
 import com.redpois0n.packets.incoming.PacketBuilder;
-import com.redpois0n.packets.outgoing.Header;
 
 @SuppressWarnings({ "serial", "rawtypes", "unchecked" })
 public class FrameCustomReg extends BaseDialog {
@@ -46,7 +46,7 @@ public class FrameCustomReg extends BaseDialog {
 		JButton btnExecuteRegexeCommand = new JButton("Execute reg.exe command");
 		btnExecuteRegexeCommand.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				slave.addToSendQueue(new PacketBuilder(Header.REGISTRY_CUSTOM, new String[] { comboBox.getSelectedItem().toString().trim() }));
+				slave.addToSendQueue(new PacketBuilder(OutgoingHeader.REGISTRY_CUSTOM, new String[] { comboBox.getSelectedItem().toString().trim() }));
 			}
 		});
 		btnExecuteRegexeCommand.setIcon(new ImageIcon(FrameCustomReg.class.getResource("/icons/key_arrow.png")));

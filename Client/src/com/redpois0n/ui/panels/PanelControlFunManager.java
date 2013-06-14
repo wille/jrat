@@ -18,8 +18,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SpinnerNumberModel;
 
 import com.redpois0n.Slave;
+import com.redpois0n.packets.OutgoingHeader;
 import com.redpois0n.packets.incoming.PacketBuilder;
-import com.redpois0n.packets.outgoing.Header;
 
 @SuppressWarnings("serial")
 public class PanelControlFunManager extends PanelControlParent {
@@ -73,7 +73,7 @@ public class PanelControlFunManager extends PanelControlParent {
 					return;
 				}
 				
-				sl.addToSendQueue(new PacketBuilder(Header.PLAY_SOUND_FROM_URL, new String[] { txtURLwav.getText().trim(), spinnerwav.getValue().toString() } ));
+				sl.addToSendQueue(new PacketBuilder(OutgoingHeader.PLAY_SOUND_FROM_URL, new String[] { txtURLwav.getText().trim(), spinnerwav.getValue().toString() } ));
 			}
 		});
 		btnPlay.setIcon(new ImageIcon(PanelControlFunManager.class.getResource("/icons/start.png")));
@@ -107,7 +107,7 @@ public class PanelControlFunManager extends PanelControlParent {
 					JOptionPane.showMessageDialog(null, "Input valid values!", "Error", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
-				sl.addToSendQueue(new PacketBuilder(Header.VISIT_URL_MUCH, new String[] { txtURLwebsite.getText().trim(), spinner.getValue().toString() }));
+				sl.addToSendQueue(new PacketBuilder(OutgoingHeader.VISIT_URL_MUCH, new String[] { txtURLwebsite.getText().trim(), spinner.getValue().toString() }));
 			}
 		});
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
@@ -129,7 +129,7 @@ public class PanelControlFunManager extends PanelControlParent {
 					JOptionPane.showMessageDialog(null, "Input valid values", "Error", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
-				sl.addToSendQueue(new PacketBuilder(Header.CRAZY_MOUSE, seconds));
+				sl.addToSendQueue(new PacketBuilder(OutgoingHeader.CRAZY_MOUSE, seconds));
 			}
 		});
 		btnCrazyMouse.setIcon(new ImageIcon(PanelControlFunManager.class.getResource("/icons/mouse.png")));
@@ -137,7 +137,7 @@ public class PanelControlFunManager extends PanelControlParent {
 		JButton btnBeep = new JButton("Beep");
 		btnBeep.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				sl.addToSendQueue(Header.BEEP);
+				sl.addToSendQueue(OutgoingHeader.BEEP);
 			}
 		});
 		btnBeep.setIcon(new ImageIcon(PanelControlFunManager.class.getResource("/icons/sound.png")));

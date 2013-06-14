@@ -8,7 +8,7 @@ import javax.sound.sampled.DataLine;
 import javax.sound.sampled.SourceDataLine;
 
 import com.redpois0n.Slave;
-import com.redpois0n.packets.outgoing.Header;
+import com.redpois0n.packets.OutgoingHeader;
 import com.redpois0n.ui.frames.FrameRemoteSoundCapture;
 
 
@@ -62,7 +62,7 @@ public class Packet58Microphone extends AbstractIncomingPacket {
 			frame.packet.read(sl, dis);
 			
 			if (frame.isRunning()) {
-				sl.addToSendQueue(new PacketBuilder(Header.SOUND_CAPTURE, false));
+				sl.addToSendQueue(new PacketBuilder(OutgoingHeader.SOUND_CAPTURE, false));
 			}
 		}
 	}

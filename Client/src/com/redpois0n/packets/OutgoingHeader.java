@@ -1,6 +1,6 @@
-package com.redpois0n.packets.outgoing;
+package com.redpois0n.packets;
 
-public enum Header {
+public enum OutgoingHeader {
 
 	DISCONNECT(/* "DISCONNECT" */(byte) 11),
 	RESTART_JVM(/* "RESTARTC" */(byte) 37),
@@ -93,7 +93,7 @@ public enum Header {
 
 	private final byte header;
 
-	private Header(byte header) {
+	private OutgoingHeader(byte header) {
 		this.header = header;
 	}
 

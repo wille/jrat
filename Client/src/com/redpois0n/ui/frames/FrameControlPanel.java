@@ -38,7 +38,7 @@ import com.redpois0n.Script;
 import com.redpois0n.Slave;
 import com.redpois0n.exceptions.CloseException;
 import com.redpois0n.listeners.Performable;
-import com.redpois0n.packets.outgoing.Header;
+import com.redpois0n.packets.OutgoingHeader;
 import com.redpois0n.plugins.Plugin;
 import com.redpois0n.plugins.PluginLoader;
 import com.redpois0n.plugins.RATServerFormat;
@@ -607,7 +607,7 @@ public class FrameControlPanel extends BaseFrame {
 		actions.put("shutdown", new Performable() {
 			public void perform() {
 				if (Util.yesNo("Confirm", "Are you sure you want to shutdown this computer?")) {
-					slave.addToSendQueue(Header.COMPUTER_SHUTDOWN);
+					slave.addToSendQueue(OutgoingHeader.COMPUTER_SHUTDOWN);
 				}
 			}
 		});
@@ -615,7 +615,7 @@ public class FrameControlPanel extends BaseFrame {
 		actions.put("restart", new Performable() {
 			public void perform() {
 				if (Util.yesNo("Confirm", "Are you sure you want to restart this computer?")) {
-					slave.addToSendQueue(Header.COMPUTER_RESTART);
+					slave.addToSendQueue(OutgoingHeader.COMPUTER_RESTART);
 				}
 			}
 		});
@@ -623,7 +623,7 @@ public class FrameControlPanel extends BaseFrame {
 		actions.put("sleep mode", new Performable() {
 			public void perform() {
 				if (Util.yesNo("Confirm", "Are you sure you want to put this computer in sleep mode?")) {
-					slave.addToSendQueue(Header.COMPUTER_SLEEP);
+					slave.addToSendQueue(OutgoingHeader.COMPUTER_SLEEP);
 				}
 			}
 		});
@@ -631,7 +631,7 @@ public class FrameControlPanel extends BaseFrame {
 		actions.put("lock", new Performable() {
 			public void perform() {
 				if (Util.yesNo("Confirm", "Are you sure you want to lock this computer?")) {
-					slave.addToSendQueue(Header.COMPUTER_LOCK);
+					slave.addToSendQueue(OutgoingHeader.COMPUTER_LOCK);
 				}
 			}
 		});
@@ -639,7 +639,7 @@ public class FrameControlPanel extends BaseFrame {
 		actions.put("logout", new Performable() {
 			public void perform() {
 				if (Util.yesNo("Confirm", "Are you sure you want to logout this computer?")) {
-					slave.addToSendQueue(Header.COMPUTER_LOGOUT);
+					slave.addToSendQueue(OutgoingHeader.COMPUTER_LOGOUT);
 				}
 			}
 		});
@@ -647,7 +647,7 @@ public class FrameControlPanel extends BaseFrame {
 		actions.put("restart connection", new Performable() {
 			public void perform() {
 				try {
-					slave.addToSendQueue(Header.RESTART_JVM);
+					slave.addToSendQueue(OutgoingHeader.RESTART_JVM);
 					slave.closeSocket(new CloseException("Restarting connection"));
 				} catch (Exception ex) {
 					ex.printStackTrace();
@@ -658,7 +658,7 @@ public class FrameControlPanel extends BaseFrame {
 		actions.put("reconnect", new Performable() {
 			public void perform() {
 				try {
-					slave.addToSendQueue(Header.RECONNECT);
+					slave.addToSendQueue(OutgoingHeader.RECONNECT);
 					slave.closeSocket(new CloseException("Reconnecting"));
 				} catch (Exception ex) {
 					ex.printStackTrace();
@@ -669,7 +669,7 @@ public class FrameControlPanel extends BaseFrame {
 		actions.put("disconnect", new Performable() {
 			public void perform() {
 				try {
-					slave.addToSendQueue(Header.DISCONNECT);
+					slave.addToSendQueue(OutgoingHeader.DISCONNECT);
 					slave.closeSocket(new CloseException("Disconnecting"));
 				} catch (Exception ex) {
 					ex.printStackTrace();
@@ -681,7 +681,7 @@ public class FrameControlPanel extends BaseFrame {
 			public void perform() {
 				if (Util.yesNo("Confirm", "Confirm uninstalling this server?")) {
 					try {
-						slave.addToSendQueue(Header.UNINSTALL);
+						slave.addToSendQueue(OutgoingHeader.UNINSTALL);
 						slave.closeSocket(new CloseException("Uninstalling"));
 					} catch (Exception ex) {
 						ex.printStackTrace();

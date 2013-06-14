@@ -1,4 +1,4 @@
-package com.redpois0n.stub.packets.outgoing;
+package com.redpois0n.stub.packets;
 
 public enum OutgoingHeader {
 

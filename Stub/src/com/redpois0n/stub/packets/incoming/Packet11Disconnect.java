@@ -1,6 +1,6 @@
 package com.redpois0n.stub.packets.incoming;
 
-public class PacketDISCONNECT extends AbstractIncomingPacket {
+public class Packet11Disconnect extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {

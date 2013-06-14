@@ -28,8 +28,8 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 
 import com.redpois0n.Slave;
+import com.redpois0n.packets.OutgoingHeader;
 import com.redpois0n.packets.incoming.PacketBuilder;
-import com.redpois0n.packets.outgoing.Header;
 
 @SuppressWarnings("serial")
 public class FrameRemoteChat extends BaseFrame {
@@ -85,7 +85,7 @@ public class FrameRemoteChat extends BaseFrame {
 		btnNudge.setIcon(new ImageIcon(FrameRemoteChat.class.getResource("/icons/nudge.png")));
 		btnNudge.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				sl.addToSendQueue(Header.CHAT_NUDGE);
+				sl.addToSendQueue(OutgoingHeader.CHAT_NUDGE);
 			}
 		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
@@ -96,13 +96,13 @@ public class FrameRemoteChat extends BaseFrame {
 		scrollPane.setViewportView(txtChat);
 		contentPane.setLayout(gl_contentPane);
 
-		slave.addToSendQueue(Header.CHAT_START);
+		slave.addToSendQueue(OutgoingHeader.CHAT_START);
 	}
 
 	public void send() {
 		try {
 			if (txtMsg.getText().length() > 0) {
-				slave.addToSendQueue(new PacketBuilder(Header.CHAT, new String[] { "-c " + txtMsg.getText().trim() }));
+				slave.addToSendQueue(new PacketBuilder(OutgoingHeader.CHAT, new String[] { "-c " + txtMsg.getText().trim() }));
 				
 				StyleContext sc = StyleContext.getDefaultStyleContext();
 				AttributeSet set = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, Color.blue);
@@ -117,7 +117,7 @@ public class FrameRemoteChat extends BaseFrame {
 	}
 	
 	public void exit() {
-		slave.addToSendQueue(Header.CHAT_END);
+		slave.addToSendQueue(OutgoingHeader.CHAT_END);
 		instances.remove(slave);
 		slave = null;
 	}

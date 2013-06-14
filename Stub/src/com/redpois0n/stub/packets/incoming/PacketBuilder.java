@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.redpois0n.Connection;
 import com.redpois0n.common.exceptions.PacketAlreadySentException;
-import com.redpois0n.stub.packets.outgoing.OutgoingHeader;
+import com.redpois0n.stub.packets.OutgoingHeader;
 
 public class PacketBuilder {
 

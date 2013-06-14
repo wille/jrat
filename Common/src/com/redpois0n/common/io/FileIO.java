@@ -6,8 +6,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
-import com.redpois0n.common.crypto.Crypto;
-
 public class FileIO {
 
 	public static void writeFile(File file, DataOutputStream dos, TransferListener listener, byte[] key) throws Exception {

