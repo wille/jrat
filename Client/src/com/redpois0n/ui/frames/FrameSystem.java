@@ -25,7 +25,6 @@ import javax.swing.table.DefaultTableModel;
 
 import com.redpois0n.Constants;
 import com.redpois0n.Slave;
-import com.redpois0n.packets.OutgoingHeader;
 import com.redpois0n.packets.outgoing.Packet90SystemProperties;
 import com.redpois0n.packets.outgoing.Packet96EnvironmentVariables;
 

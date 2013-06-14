@@ -14,7 +14,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
 
 import com.redpois0n.Slave;
-import com.redpois0n.packets.OutgoingHeader;
 import com.redpois0n.packets.outgoing.Packet72IPConfig;
 
 @SuppressWarnings("serial")

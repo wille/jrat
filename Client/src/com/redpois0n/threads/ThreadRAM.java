@@ -1,7 +1,7 @@
 package com.redpois0n.threads;
 
 import com.redpois0n.Slave;
-import com.redpois0n.packets.OutgoingHeader;
+import com.redpois0n.packets.outgoing.Packet33RAM;
 import com.redpois0n.ui.frames.FrameControlPanel;
 import com.redpois0n.ui.panels.PanelControlSystemMonitor;
 
@@ -17,7 +17,7 @@ public class ThreadRAM extends Thread {
 		FrameControlPanel frame = FrameControlPanel.instances.get(slave);
 		PanelControlSystemMonitor panel = (PanelControlSystemMonitor) frame.panels.get("system monitor");
 		while (frame != null && panel != null && panel.needRam && panel.slave.getIP().equals(slave.getIP())) {
-			slave.addToSendQueue(OutgoingHeader.GET_RAM);
+			slave.addToSendQueue(new Packet33RAM());
 			try {
 				if (panel.sliderRam.getValue() <= 1) {			
 					Thread.sleep(100L);

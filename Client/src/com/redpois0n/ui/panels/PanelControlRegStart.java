@@ -1,6 +1,5 @@
 package com.redpois0n.ui.panels;
 
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,7 +14,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
 import com.redpois0n.Slave;
-import com.redpois0n.packets.OutgoingHeader;
+import com.redpois0n.packets.outgoing.Packet78RegistryStartup;
 import com.redpois0n.utils.IconUtils;
 
 @SuppressWarnings("serial")
@@ -41,7 +40,7 @@ public class PanelControlRegStart extends PanelControlParent {
 		btnReloadList.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				clear();
-				slave.addToSendQueue(OutgoingHeader.LIST_REG_STARTUP);
+				slave.addToSendQueue(new Packet78RegistryStartup());
 			}
 		});
 		

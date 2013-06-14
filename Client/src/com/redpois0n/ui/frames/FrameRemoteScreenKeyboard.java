@@ -19,8 +19,8 @@ import javax.swing.JToggleButton;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
-import com.redpois0n.packets.OutgoingHeader;
-import com.redpois0n.packets.incoming.PacketBuilder;
+import com.redpois0n.packets.outgoing.Packet94KeyPress;
+import com.redpois0n.packets.outgoing.Packet95KeyRelease;
 
 @SuppressWarnings("serial")
 public class FrameRemoteScreenKeyboard extends BaseFrame {
@@ -80,14 +80,14 @@ public class FrameRemoteScreenKeyboard extends BaseFrame {
 			@Override
 			public void keyPressed(KeyEvent arg0) {
 				if (button.isSelected()) {
-					frame.slave.addToSendQueue(new PacketBuilder(OutgoingHeader.KEY_PRESS, new String[] { arg0.getKeyCode() + "" }));
+					frame.slave.addToSendQueue(new Packet94KeyPress(arg0.getKeyCode()));
 				}
 			}
 
 			@Override
 			public void keyReleased(KeyEvent arg0) {
 				if (button.isSelected()) {
-					frame.slave.addToSendQueue(new PacketBuilder(OutgoingHeader.KEY_RELEASE, new String[] { arg0.getKeyCode() + "" }));
+					frame.slave.addToSendQueue(new Packet95KeyRelease(arg0.getKeyCode()));
 				}
 			}
 		});

