@@ -165,10 +165,22 @@ public class Slave implements Runnable {
 		}
 	}
 
-	public void addToSendQueue(Header header) {
+	/*public void addToSendQueue(Header header) {
 		PacketBuilder builder = new PacketBuilder(header);
 		addToSendQueue(builder);
 	}
+	
+	public synchronized void addToSendQueue(PacketBuilder packet) {
+		while (lock) {
+			try {
+				Thread.sleep(10L);
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+
+		}
+		packet.write(this);
+	}*/
 
 	public void writeShort(short i) throws Exception {
 		dos.writeShort(i);
@@ -208,18 +220,6 @@ public class Slave implements Runnable {
 
 	public void writeLong(long l) throws Exception {
 		dos.writeLong(l);
-	}
-
-	public synchronized void addToSendQueue(PacketBuilder packet) {
-		while (lock) {
-			try {
-				Thread.sleep(10L);
-			} catch (Exception ex) {
-				ex.printStackTrace();
-			}
-
-		}
-		packet.write(this);
 	}
 
 	public void writeLine(Object obj) {
