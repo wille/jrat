@@ -26,6 +26,8 @@ import javax.swing.table.DefaultTableModel;
 import com.redpois0n.Constants;
 import com.redpois0n.Slave;
 import com.redpois0n.packets.OutgoingHeader;
+import com.redpois0n.packets.outgoing.Packet90SystemProperties;
+import com.redpois0n.packets.outgoing.Packet96EnvironmentVariables;
 
 @SuppressWarnings("serial")
 public class FrameSystem extends BaseFrame {
@@ -67,10 +69,10 @@ public class FrameSystem extends BaseFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				if (mode == Constants.MODE_PROP) {
 					clear();
-					sl.addToSendQueue(OutgoingHeader.SYSTEM_PROPERTIES);
+					sl.addToSendQueue(new Packet90SystemProperties());
 				} else if (mode == Constants.MODE_ENV) {
 					clear();
-					sl.addToSendQueue(OutgoingHeader.ENVIRONMENT_VARIABLES);
+					sl.addToSendQueue(new Packet96EnvironmentVariables());
 				}
 			}
 		});
@@ -118,9 +120,9 @@ public class FrameSystem extends BaseFrame {
 		scrollPane.setViewportView(table);
 		contentPane.setLayout(gl_contentPane);
 		if (mode == Constants.MODE_PROP) {
-			sl.addToSendQueue(OutgoingHeader.SYSTEM_PROPERTIES);
+			sl.addToSendQueue(new Packet90SystemProperties());
 		} else if (mode == Constants.MODE_ENV) {
-			sl.addToSendQueue(OutgoingHeader.ENVIRONMENT_VARIABLES);
+			sl.addToSendQueue(new Packet96EnvironmentVariables());
 		}
 	}
 

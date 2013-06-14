@@ -24,6 +24,7 @@ import com.redpois0n.net.PortListener;
 import com.redpois0n.packets.OutgoingHeader;
 import com.redpois0n.packets.incoming.PacketBuilder;
 import com.redpois0n.packets.incoming.Packets;
+import com.redpois0n.packets.outgoing.AbstractOutgoingPacket;
 import com.redpois0n.plugins.PluginEventHandler;
 import com.redpois0n.settings.Settings;
 import com.redpois0n.ui.frames.Frame;
@@ -31,8 +32,6 @@ import com.redpois0n.ui.panels.PanelMainLog;
 import com.redpois0n.utils.FlagUtils;
 import com.redpois0n.utils.TrayIconUtils;
 import com.redpois0n.utils.Util;
-
-import com.redpois0n.packets.outgoing.*;
 
 @SuppressWarnings("unused")
 public class Slave implements Runnable {

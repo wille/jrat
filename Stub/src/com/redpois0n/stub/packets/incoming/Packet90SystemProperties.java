@@ -6,7 +6,7 @@ import com.redpois0n.Connection;
 import com.redpois0n.stub.packets.outgoing.Packet32SystemProperties;
 
 
-public class PacketPROP extends AbstractIncomingPacket {
+public class Packet90SystemProperties extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {

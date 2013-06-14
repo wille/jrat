@@ -23,10 +23,10 @@ import com.redpois0n.Slave;
 import com.redpois0n.Status;
 import com.redpois0n.exceptions.CloseException;
 import com.redpois0n.packets.OutgoingHeader;
+import com.redpois0n.packets.outgoing.Packet40Thumbnail;
 import com.redpois0n.ui.panels.PanelImage;
 import com.redpois0n.utils.FlagUtils;
 import com.redpois0n.utils.IconUtils;
-
 
 @SuppressWarnings("serial")
 public class FrameInfo extends BaseFrame {
@@ -119,7 +119,7 @@ public class FrameInfo extends BaseFrame {
 				try {
 					sl.closeSocket(new CloseException("Disconnecting"));
 				} catch (Exception ex) {
-					
+
 				}
 				setVisible(false);
 				dispose();
@@ -144,7 +144,7 @@ public class FrameInfo extends BaseFrame {
 		JButton button = new JButton("");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				sl.addToSendQueue(OutgoingHeader.THUMBNAIL);
+				sl.addToSendQueue(new Packet40Thumbnail());
 			}
 		});
 		button.setIcon(new ImageIcon(FrameInfo.class.getResource("/icons/update.png")));
@@ -153,14 +153,8 @@ public class FrameInfo extends BaseFrame {
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addContainerGap().addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addComponent(lblCountry).addComponent(lblFlag).addComponent(lblLocation)).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(lblServerId).addComponent(txtServerID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(lblIp).addComponent(txtIP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(lblUsername).addComponent(txtUsername, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(lblOsName).addComponent(txtOSname, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(lblStat).addComponent(lblStatus)).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(lblPingT).addComponent(lblPing)).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(lblSpeedT).addComponent(lblSpeed)).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addComponent(panel, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE).addComponent(button)).addPreferredGap(ComponentPlacement.RELATED, 11, Short.MAX_VALUE).addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(btnClose, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE).addComponent(btnDisconnect)).addComponent(btnReload))).addComponent(lblThumbnail)).addContainerGap()));
 		contentPane.setLayout(gl_contentPane);
 
-		//Country c = Util.getCountryClass(slave.getIP());
-		/*if (c != null) {
-			lblLocation.setText(c.get2cStr() + " " + c.get3cStr() + " " + c.getName());
-			lblFlag.setIcon(Util.getCountry(slave.getIP()));
-		} else {*/
-			lblLocation.setText(slave.getCountry());
-			lblFlag.setIcon(FlagUtils.getFlag(slave));
-		//}
+		lblLocation.setText(slave.getCountry());
+		lblFlag.setIcon(FlagUtils.getFlag(slave));
 		txtServerID.setText(slave.getServerID());
 		txtIP.setText(slave.getIP());
 		txtOSname.setText(slave.getOperatingSystem());
@@ -177,7 +171,7 @@ public class FrameInfo extends BaseFrame {
 		int y = (dim.height - h) / 2;
 		setLocation(x, y);
 		if (sl.getThumbnail() == null) {
-			sl.addToSendQueue(OutgoingHeader.THUMBNAIL);
+			sl.addToSendQueue(new Packet40Thumbnail());
 		} else {
 			panel.image = slave.getThumbnail().getImage();
 			// sl.thumbnail = null;

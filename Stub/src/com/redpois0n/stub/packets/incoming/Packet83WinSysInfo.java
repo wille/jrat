@@ -8,7 +8,7 @@ import com.redpois0n.common.OperatingSystem;
 import com.redpois0n.stub.packets.outgoing.Packet57RawComputerInfo;
 
 
-public class PacketSYSINFO extends AbstractIncomingPacket {
+public class Packet83WinSysInfo extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {

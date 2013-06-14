@@ -10,7 +10,7 @@ import javax.swing.text.StyleContext;
 import com.redpois0n.Connection;
 
 
-public class PacketCHAT extends AbstractIncomingPacket {
+public class Packet51ChatMessage extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
