@@ -140,7 +140,6 @@ public class Slave implements Runnable {
 				}
 
 				if (!isVerified()) {
-					// String pass = readLine();
 					PanelMainLog.instance.addEntry("Warning", this, "Failed verify password");
 					this.closeSocket(new CloseException("Failed verify password"));
 				}
@@ -165,17 +164,6 @@ public class Slave implements Runnable {
 			PluginEventHandler.onDisconnect(this);
 		}
 	}
-
-	/*
-	 * public void addToSendQueue(Header header) { PacketBuilder builder = new
-	 * PacketBuilder(header); addToSendQueue(builder); }
-	 * 
-	 * public synchronized void addToSendQueue(PacketBuilder packet) { while
-	 * (lock) { try { Thread.sleep(10L); } catch (Exception ex) {
-	 * ex.printStackTrace(); }
-	 * 
-	 * } packet.write(this); }
-	 */
 
 	public synchronized void addToSendQueue(AbstractOutgoingPacket packet) {
 		while (lock) {
