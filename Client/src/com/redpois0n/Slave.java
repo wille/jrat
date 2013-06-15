@@ -127,8 +127,8 @@ public class Slave implements Runnable {
 
 			this.dis = new DataInputStream(inputStream);
 			this.dos = new DataOutputStream(outputStream);
-			
-			this.outputStream.write(encryption ? 1 : 0);	
+
+			this.outputStream.write(encryption ? 1 : 0);
 
 			while (true) {
 				byte header = readByte();
@@ -166,23 +166,17 @@ public class Slave implements Runnable {
 		}
 	}
 
-	/*public void addToSendQueue(Header header) {
-		PacketBuilder builder = new PacketBuilder(header);
-		addToSendQueue(builder);
-	}
-	
-	public synchronized void addToSendQueue(PacketBuilder packet) {
-		while (lock) {
-			try {
-				Thread.sleep(10L);
-			} catch (Exception ex) {
-				ex.printStackTrace();
-			}
+	/*
+	 * public void addToSendQueue(Header header) { PacketBuilder builder = new
+	 * PacketBuilder(header); addToSendQueue(builder); }
+	 * 
+	 * public synchronized void addToSendQueue(PacketBuilder packet) { while
+	 * (lock) { try { Thread.sleep(10L); } catch (Exception ex) {
+	 * ex.printStackTrace(); }
+	 * 
+	 * } packet.write(this); }
+	 */
 
-		}
-		packet.write(this);
-	}*/
-	
 	public synchronized void addToSendQueue(AbstractOutgoingPacket packet) {
 		while (lock) {
 			try {
@@ -645,5 +639,9 @@ public class Slave implements Runnable {
 			slave.addToSendQueue(new Packet99Encryption(b));
 		}
 
+	}
+
+	public boolean isLocked() {
+		return lock;
 	}
 }
