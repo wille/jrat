@@ -3,7 +3,7 @@ package org.jrat.project.api.events;
 import org.jrat.project.api.Packet;
 import org.jrat.project.api.RATObject;
 
-public class OnSendPacketEvent extends RATServerEvent {
+public class OnSendPacketEvent extends RATObjectEvent {
 
 	private Packet packet;
 

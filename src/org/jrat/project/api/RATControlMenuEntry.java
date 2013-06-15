@@ -11,7 +11,7 @@ public final class RATControlMenuEntry {
 	private ImageIcon icon;
 	
 	/**
-	 * Instances of this panel with a RATServer
+	 * Instances of this panel with a RATObject
 	 */
 	public final HashMap<String, BaseControlPanel> instances = new HashMap<String, BaseControlPanel>();
 	
