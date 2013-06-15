@@ -46,13 +46,21 @@ public class Packet19ListFiles extends AbstractIncomingPacket {
 			}
 			
 			for (Object[] string : dirs) {
-				fr.renderer.icons.put(string[0].toString(), IconUtils.getFileIconFromExtension(string[0].toString(), true));
-				fr.model.addRow(new Object[] { string[0], string[1], "", string[3] });
+				try {
+					fr.renderer.icons.put(string[0].toString(), IconUtils.getFileIconFromExtension(string[0].toString(), true));
+					fr.model.addRow(new Object[] { string[0], string[1], "", string[3] });
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 			
 			for (Object[] string : files) {
-				fr.renderer.icons.put(string[0].toString(), IconUtils.getFileIconFromExtension(string[0].toString(), false));
-				fr.model.addRow(new Object[] { string[0], string[1], string[2], string[3] });
+				try {
+					fr.renderer.icons.put(string[0].toString(), IconUtils.getFileIconFromExtension(string[0].toString(), false));
+					fr.model.addRow(new Object[] { string[0], string[1], string[2], string[3] });
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		}
 

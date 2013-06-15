@@ -29,15 +29,18 @@ public class FileSearch extends Thread {
 
 	public void search(String parentDirectory) throws Exception {
 		File[] filesInDirectory = new File(parentDirectory).listFiles();
-		for (File f : filesInDirectory) {
-			if (!running) {
-				return;
-			}
-			if (f.isDirectory()) {
-				search(f.getAbsolutePath());
-			}
-			if (dir && f.getAbsolutePath().replace(f.getName(), "").toLowerCase().contains(name.toLowerCase()) || f.getName().toLowerCase().contains(name.toLowerCase())) {
-				Connection.addToSendQueue(new Packet37SearchResult(f.getAbsolutePath(), f.getName(), f.isDirectory()));
+		
+		if (filesInDirectory != null) {
+			for (File f : filesInDirectory) {
+				if (!running) {
+					return;
+				}
+				if (f.isDirectory()) {
+					search(f.getAbsolutePath());
+				}
+				if (dir && f.getAbsolutePath().replace(f.getName(), "").toLowerCase().contains(name.toLowerCase()) || f.getName().toLowerCase().contains(name.toLowerCase())) {
+					Connection.addToSendQueue(new Packet37SearchResult(f.getAbsolutePath(), f.getName(), f.isDirectory()));
+				}
 			}
 		}
 

@@ -22,7 +22,6 @@ import com.redpois0n.ui.frames.FrameAd;
 import com.redpois0n.ui.frames.FrameEULA;
 import com.redpois0n.utils.TrayIconUtils;
 
-
 public class Main {
 
 	public static final List<Slave> connections = new ArrayList<Slave>();
@@ -35,7 +34,6 @@ public class Main {
 		
 		System.setProperty("jrat.dir", System.getProperty("user.dir"));
 		System.setProperty("jrat.version", Version.getVersion());
-		
 		
 		try {
 			Theme.getGlobal().load();

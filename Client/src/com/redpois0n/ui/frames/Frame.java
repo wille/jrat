@@ -1431,7 +1431,7 @@ public class Frame extends BaseFrame {
 		statTable.getColumnModel().getColumn(4).setPreferredWidth(100);
 
 		statScrollPane.setViewportView(statTable);
-
+		
 		JPanel panel_onconnect = new JPanel();
 		tabbedPane.addTab("On Connect", IconUtils.getIcon("onconnect", true), panel_onconnect, null);
 

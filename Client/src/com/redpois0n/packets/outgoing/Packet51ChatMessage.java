@@ -19,8 +19,7 @@ public class Packet51ChatMessage extends AbstractOutgoingPacket {
 
 	@Override
 	public byte getPacketId() {
-		// TODO Auto-generated method stub
-		return 0;
+		return 51;
 	}
 
 }
