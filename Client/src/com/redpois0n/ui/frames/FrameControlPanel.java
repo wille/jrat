@@ -47,7 +47,7 @@ import com.redpois0n.packets.outgoing.Packet37RestartJavaProcess;
 import com.redpois0n.packets.outgoing.Packet45Reconnect;
 import com.redpois0n.plugins.Plugin;
 import com.redpois0n.plugins.PluginLoader;
-import com.redpois0n.plugins.RATServerFormat;
+import com.redpois0n.plugins.RATObjectFormat;
 import com.redpois0n.ui.panels.PanelControlActivePorts;
 import com.redpois0n.ui.panels.PanelControlAdapters;
 import com.redpois0n.ui.panels.PanelControlCPU;
@@ -407,7 +407,7 @@ public class FrameControlPanel extends BaseFrame {
 			ImageIcon def = i.get("plugins");
 			for (RATControlMenuEntry entry : entries) {
 				try {
-					BaseControlPanel panel = entry.newPanelInstance(RATServerFormat.format(slave));
+					BaseControlPanel panel = entry.newPanelInstance(RATObjectFormat.format(slave));
 					tabbedPane.addTab(entry.getName(), entry.getIcon() == null ? def : entry.getIcon(), panel);
 					entry.instances.put(slave.getIP(), panel);
 

