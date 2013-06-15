@@ -61,7 +61,7 @@ public final class RATControlMenuEntry {
 	 * @throws Exception
 	 */
 	
-	public BaseControlPanel newPanelInstance(RATServer server) throws Exception {
+	public BaseControlPanel newPanelInstance(RATObject server) throws Exception {
 		BaseControlPanel p = panel.newInstance();
 		p.setServer(server);
 		return p;

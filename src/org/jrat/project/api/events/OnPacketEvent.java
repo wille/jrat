@@ -1,13 +1,13 @@
 package org.jrat.project.api.events;
 
 import org.jrat.project.api.Packet;
-import org.jrat.project.api.RATServer;
+import org.jrat.project.api.RATObject;
 
 public class OnPacketEvent extends RATServerEvent {
 
 	private final Packet packet;
 
-	public OnPacketEvent(RATServer server, Packet packet) {
+	public OnPacketEvent(RATObject server, Packet packet) {
 		super(server);
 		this.packet = packet;
 	}

@@ -2,9 +2,9 @@ package org.jrat.project.api;
 
 public class Packet {
 	
-	private final String header;
+	private final byte header;
 	
-	public Packet(String header) {
+	public Packet(byte header) {
 		this.header = header;
 	}
 	
@@ -13,7 +13,7 @@ public class Packet {
 	 * @return The header
 	 */
 	
-	public String getHeader() {
+	public byte getHeader() {
 		return header;
 	}
 	
@@ -23,7 +23,7 @@ public class Packet {
 	 */
 	@Override
 	public String toString() {
-		return this.getHeader();
+		return "Packet-" + this.getHeader();
 	}
 
 }
