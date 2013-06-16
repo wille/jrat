@@ -9,6 +9,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -19,8 +20,11 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import com.redpois0n.Help;
 import com.redpois0n.common.crypto.Crypto;
 import com.redpois0n.common.crypto.EncryptionKey;
+import com.redpois0n.listeners.SocketComboBoxListener;
+import com.redpois0n.net.PortListener;
 import com.redpois0n.settings.Settings;
 import com.redpois0n.ui.components.EncryptionKeyJTextField;
+import com.redpois0n.ui.components.PortListenerJComboBox;
 import com.redpois0n.utils.Util;
 
 @SuppressWarnings("serial")
@@ -30,7 +34,8 @@ public class PanelBuildGeneral extends JPanel {
 	public JTextField txtID;
 	private EncryptionKeyJTextField txtKey;
 	private JLabel lblLength;
-	
+	private JComboBox<?> comboBox;
+
 	public String getPass() {
 		return new String(passPass.getPassword());
 	}
@@ -51,24 +56,8 @@ public class PanelBuildGeneral extends JPanel {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(BorderFactory.createTitledBorder("General"));
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
-						.addComponent(panel_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE))
-					.addContainerGap())
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-		);
+		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE).addComponent(panel_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)).addContainerGap()));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup().addContainerGap().addComponent(panel, GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.RELATED).addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE).addContainerGap()));
 
 		txtID = new JTextField(Settings.getGlobal().getString("bid"));
 		txtID.setColumns(10);
@@ -85,34 +74,8 @@ public class PanelBuildGeneral extends JPanel {
 		});
 		btnHelp.setIcon(new ImageIcon(PanelBuildGeneral.class.getResource("/icons/help.png")));
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
-		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGap(92)
-					.addComponent(lblServerId)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblNameOfServer)
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addComponent(txtID, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnHelp, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(65, Short.MAX_VALUE))
-		);
-		gl_panel_1.setVerticalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnHelp, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-								.addComponent(txtID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblServerId))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblNameOfServer)))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
+		gl_panel_1.setHorizontalGroup(gl_panel_1.createParallelGroup(Alignment.LEADING).addGroup(gl_panel_1.createSequentialGroup().addGap(92).addComponent(lblServerId).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING).addComponent(lblNameOfServer).addGroup(gl_panel_1.createSequentialGroup().addComponent(txtID, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnHelp, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))).addContainerGap(65, Short.MAX_VALUE)));
+		gl_panel_1.setVerticalGroup(gl_panel_1.createParallelGroup(Alignment.LEADING).addGroup(gl_panel_1.createSequentialGroup().addContainerGap().addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING).addComponent(btnHelp, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE).addGroup(gl_panel_1.createSequentialGroup().addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE).addComponent(txtID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(lblServerId)).addPreferredGap(ComponentPlacement.RELATED).addComponent(lblNameOfServer))).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 		panel_1.setLayout(gl_panel_1);
 
 		JLabel lblSecurityPassword = new JLabel("Security Password");
@@ -123,12 +86,6 @@ public class PanelBuildGeneral extends JPanel {
 
 		JLabel lblEncryptionKey = new JLabel("Encryption key");
 		lblEncryptionKey.setBounds(72, 60, 71, 14);
-
-		JLabel lblInstructions = new JLabel("You need to have the same encryption key and");
-		lblInstructions.setBounds(55, 151, 227, 14);
-
-		JLabel lblInstructions_1 = new JLabel("password in listen settings as here");
-		lblInstructions_1.setBounds(55, 166, 165, 14);
 
 		JButton btnShowPassword = new JButton("Show password");
 		btnShowPassword.setBounds(147, 117, 107, 23);
@@ -150,11 +107,9 @@ public class PanelBuildGeneral extends JPanel {
 		panel.add(lblSecurityPassword);
 		panel.add(passPass);
 		panel.add(btnShowPassword);
-		panel.add(lblInstructions);
-		panel.add(lblInstructions_1);
 		panel.add(lblEncryptionKey);
 		panel.add(button);
-		
+
 		JButton button_2 = new JButton("");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -165,18 +120,18 @@ public class PanelBuildGeneral extends JPanel {
 		button_2.setIcon(new ImageIcon(PanelBuildGeneral.class.getResource("/icons/random.png")));
 		button_2.setBounds(193, 81, 37, 25);
 		panel.add(button_2);
-		
+
 		txtKey = new EncryptionKeyJTextField() {
 			@Override
 			public void onUpdate(boolean correct) {
 				lblLength.setText(txtKey.getText().length() + "");
-				
+
 				if (correct) {
 					lblLength.setForeground(Color.green);
 				} else {
 					lblLength.setForeground(Color.red);
 				}
-			}			
+			}
 		};
 		txtKey.setBounds(147, 57, 174, 20);
 		panel.add(txtKey);
@@ -184,10 +139,25 @@ public class PanelBuildGeneral extends JPanel {
 		setLayout(groupLayout);
 
 		txtKey.setText(Settings.getGlobal().getString("bkey").length() == Crypto.KEY_LENGTH ? Settings.getGlobal().getString("bkey") : Util.randomString(Crypto.KEY_LENGTH));
-		
+
 		lblLength = new JLabel(txtKey.getText().length() + "");
 		lblLength.setBounds(331, 60, 46, 14);
 		panel.add(lblLength);
+
+		comboBox = new PortListenerJComboBox(new SocketComboBoxListener() {
+			@Override
+			public void onChange(PortListener pl) {
+				txtKey.setText(pl.getKey().getTextualKey());
+				passPass.setText(pl.getPass());
+			}		
+		});
+		
+		comboBox.setBounds(147, 146, 107, 20);
+		panel.add(comboBox);
+		
+		JLabel lblLoad = new JLabel("Load");
+		lblLoad.setBounds(120, 149, 23, 14);
+		panel.add(lblLoad);
 		txtKey.onUpdate(txtKey.getText().length() == Crypto.KEY_LENGTH);
 	}
 }

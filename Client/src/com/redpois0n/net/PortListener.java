@@ -11,7 +11,7 @@ import com.redpois0n.ui.panels.PanelMainSockets;
 
 public class PortListener implements Runnable {
 
-	public static List<PortListener> servers = new ArrayList<PortListener>();
+	public static List<PortListener> listeners = new ArrayList<PortListener>();
 
 	private ServerSocket server;
 	private int timeout = 15 * 1000;
@@ -50,7 +50,7 @@ public class PortListener implements Runnable {
 		this.server = new ServerSocket(port);
 		this.key = key;
 		this.pass = pass;
-		servers.add(this);
+		listeners.add(this);
 	}
 
 	@Override
@@ -78,10 +78,21 @@ public class PortListener implements Runnable {
 		new Thread(this, "Port " + server.getLocalPort()).start();
 	}
 
-	public static PortListener getConnection(String name, int port, int timeout, EncryptionKey key, String pass) {
-		for (int i = 0; i < servers.size(); i++) {
-			PortListener con = servers.get(i);
+	public static PortListener getListener(String name, int port, int timeout, EncryptionKey key, String pass) {
+		for (int i = 0; i < listeners.size(); i++) {
+			PortListener con = listeners.get(i);
 			if (con.name.equals(name) && con.key.equals(key) && con.pass.equals(pass) && con.getServer().getLocalPort() == port && con.getTimeout() == timeout) {
+				return con;
+			}
+		}
+
+		return null;
+	}
+
+	public static PortListener getListener(String name) {
+		for (int i = 0; i < listeners.size(); i++) {
+			PortListener con = listeners.get(i);
+			if (con.name.equals(name)) {
 				return con;
 			}
 		}

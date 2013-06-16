@@ -98,9 +98,9 @@ public class PanelMainSockets extends JPanel {
 
 						model.removeRow(row);
 
-						PortListener con = PortListener.getConnection(name, Integer.parseInt(port), Integer.parseInt(timeout), new EncryptionKey(key), pass);
+						PortListener con = PortListener.getListener(name, Integer.parseInt(port), Integer.parseInt(timeout), new EncryptionKey(key), pass);
 						con.getServer().close();
-						PortListener.servers.remove(con);
+						PortListener.listeners.remove(con);
 					}
 				} catch (Exception ex) {
 					ex.printStackTrace();
@@ -117,8 +117,8 @@ public class PanelMainSockets extends JPanel {
 				while (model.getRowCount() > 0) {
 					model.removeRow(0);
 				}
-				for (int i = 0; i < PortListener.servers.size(); i++) {
-					PortListener con = PortListener.servers.get(i);
+				for (int i = 0; i < PortListener.listeners.size(); i++) {
+					PortListener con = PortListener.listeners.get(i);
 					try {
 						con.getServer().close();
 					} catch (Exception ex) {
@@ -126,7 +126,7 @@ public class PanelMainSockets extends JPanel {
 						ErrorDialog.create(ex);
 					}
 				}
-				PortListener.servers.clear();
+				PortListener.listeners.clear();
 			}
 		});
 		popupMenu.add(mntmCloseAllSockets);
