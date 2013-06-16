@@ -38,8 +38,11 @@ import com.redpois0n.common.crypto.Crypto;
 import com.redpois0n.common.crypto.EncryptionKey;
 import com.redpois0n.io.Files;
 import com.redpois0n.listeners.MinimalBuildListener;
+import com.redpois0n.listeners.SocketComboBoxListener;
+import com.redpois0n.net.PortListener;
 import com.redpois0n.plugins.PluginList;
 import com.redpois0n.settings.Settings;
+import com.redpois0n.ui.components.PortListenerJComboBox;
 import com.redpois0n.utils.NetworkUtils;
 import com.redpois0n.utils.Util;
 
@@ -66,7 +69,7 @@ public class FrameBuildMinimal extends BaseFrame {
 		setTitle("Normal Builder");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 376, 327);
+		setBounds(100, 100, 376, 329);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -133,6 +136,15 @@ public class FrameBuildMinimal extends BaseFrame {
 		
 		JToolBar toolBar = new JToolBar();
 		toolBar.setFloatable(false);
+		
+		JComboBox<?> comboBox = new PortListenerJComboBox(new SocketComboBoxListener() {
+			@Override
+			public void onChange(PortListener pl) {
+				txtKey.setText(pl.getKey().getTextualKey());
+				txtPass.setText(pl.getPass());
+				spPort.setValue(pl.getServer().getLocalPort());
+			}		
+		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -157,12 +169,16 @@ public class FrameBuildMinimal extends BaseFrame {
 								.addComponent(lblId))
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(spPort, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addComponent(txtHost, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addComponent(toolBar, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
-								.addComponent(txtId, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE))
+								.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+									.addGroup(gl_contentPane.createSequentialGroup()
+										.addComponent(spPort, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(comboBox, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+									.addComponent(txtId, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE)))
 							.addGap(21))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
@@ -190,13 +206,14 @@ public class FrameBuildMinimal extends BaseFrame {
 					.addContainerGap()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-							.addComponent(txtHost)
+							.addComponent(txtHost, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addComponent(lblHost))
 						.addComponent(toolBar, GroupLayout.PREFERRED_SIZE, 20, Short.MAX_VALUE))
 					.addGap(11)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(spPort, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblPort))
+						.addComponent(lblPort)
+						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(txtId, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
