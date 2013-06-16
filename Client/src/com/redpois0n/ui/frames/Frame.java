@@ -625,6 +625,31 @@ public class Frame extends BaseFrame {
 		mnServers.add(mntmRedirectAllTemporary);
 		mntmUpdateAllOutdated.setIcon(new ImageIcon(Frame.class.getResource("/icons/update.png")));
 		mnServers.add(mntmUpdateAllOutdated);
+		
+		JMenu mnPlugins = new JMenu("Plugins");
+		menuBar.add(mnPlugins);
+		
+		if (PluginLoader.plugins.size() == 0) {
+			JMenuItem item = new JMenuItem("No plugins loaded");
+			item.setEnabled(false);
+			mnPlugins.add(item);
+		}
+		
+		for (int i = 0; i < PluginLoader.plugins.size(); i++) {
+			Plugin p = PluginLoader.plugins.get(i);
+			
+			JMenuItem item = new JMenuItem(p.getName());
+			
+			ActionListener listener = p.getGlobalItemListener();
+			
+			item.setEnabled(listener != null);
+			
+			if (listener != null) {
+				item.addActionListener(listener);
+			}
+			
+			mnPlugins.add(item);
+		}
 
 		JMenu mnOther = new JMenu("Other");
 		menuBar.add(mnOther);

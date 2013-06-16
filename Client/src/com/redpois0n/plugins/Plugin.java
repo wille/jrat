@@ -1,5 +1,6 @@
 package com.redpois0n.plugins;
 
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.lang.reflect.Method;
 import java.net.URL;
@@ -30,6 +31,7 @@ public class Plugin {
 	private ClassLoader loader;
 	private Class classToLoad;
 	private Object instance;
+	private ActionListener globalItemListener;
 
 	private String name;
 	private String version;
@@ -67,6 +69,8 @@ public class Plugin {
 		setAuthor(getClassToLoad().getMethod("getAuthor", new Class[] {}).invoke(getInstance(), new Object[] {}).toString());
 		setDescription(getClassToLoad().getMethod("getDescription", new Class[] {}).invoke(getInstance(), new Object[] {}).toString());
 		setName(getClassToLoad().getMethod("getName", new Class[] {}).invoke(getInstance(), new Object[] {}).toString());
+		this.setGlobalItemListener((ActionListener) getClassToLoad().getMethod("getGlobalMenuItemListener", new Class[] {}).invoke(getInstance(), new Object[] {}));
+
 
 		List<RATMenuItem> menuitems = (List<RATMenuItem>) getClassToLoad().getMethod("getMenuItems", new Class[] {}).invoke(getInstance(), new Object[] {});
 		if (menuitems != null) {
@@ -92,7 +96,7 @@ public class Plugin {
 
 		Method onSendPacket = getClassToLoad().getMethod("onSendPacket", new Class[] { OnSendPacketEvent.class });
 		getMethods().put("onsendpacket", onSendPacket);
-
+		
 		Main.debug("Plugin " + getName() + " " + getVersion() + " enabled");
 		
 		PluginLoader.register(this);
@@ -184,6 +188,14 @@ public class Plugin {
 
 	public void setControlitems(List<RATControlMenuEntry> controlitems) {
 		this.controlitems = controlitems;
+	}
+
+	public ActionListener getGlobalItemListener() {
+		return globalItemListener;
+	}
+
+	public void setGlobalItemListener(ActionListener globalItemListener) {
+		this.globalItemListener = globalItemListener;
 	}
 
 }
