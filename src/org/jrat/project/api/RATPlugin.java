@@ -1,5 +1,6 @@
 package org.jrat.project.api;
 
+import java.awt.event.ActionListener;
 import java.util.List;
 
 import org.jrat.project.api.events.OnConnectEvent;
@@ -96,5 +97,11 @@ public abstract class RATPlugin {
 	 */
 	
 	public abstract List<RATControlMenuEntry> getControlTreeItems() throws Exception;
+	
+	/**
+	 * Display about dialog maybe?
+	 * @return ActionListener for button, null if none
+	 */
+	public abstract ActionListener getGlobalMenuItemListener();
 
 }
