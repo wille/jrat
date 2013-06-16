@@ -118,7 +118,7 @@ public class FramePlugins extends BaseFrame {
 
 		table = new JTable();
 		table.setDefaultRenderer(Object.class, new PluginTableRenderer());
-		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "Version", "Plugin name", "Author", "Description" }) {
+		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "Name", "Version", "Author", "Description" }) {
 			public boolean isCellEditable(int i, int i1) {
 				return false;
 			}
@@ -157,7 +157,7 @@ public class FramePlugins extends BaseFrame {
 	public void addPlugins() {
 		for (int i = 0; i < PluginLoader.plugins.size(); i++) {
 			Plugin p = PluginLoader.plugins.get(i);
-			model.addRow(new Object[] { p.getVersion(), p.getName(), p.getAuthor(), p.getDescription() });
+			model.addRow(new Object[] { p.getName(), p.getVersion(), p.getAuthor(), p.getDescription() });
 		}
 	}
 }
