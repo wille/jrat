@@ -11,7 +11,7 @@ public abstract class RATStubPlugin {
 	
 	public abstract void onConnect(DataInputStream dis, DataOutputStream dos) throws Exception;
 	
-	public abstract void onPacket(String header) throws Exception;
+	public abstract void onPacket(byte header) throws Exception;
 	
 	public abstract void onEnable() throws Exception;
 }
