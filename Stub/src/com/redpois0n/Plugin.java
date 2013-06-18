@@ -44,7 +44,7 @@ public class Plugin {
 			Method onDisconnect = classToLoad.getMethod("onDisconnect", new Class[] { Exception.class });
 			p.methods.put("ondisconnect", onDisconnect);
 			
-			Method onPacket = classToLoad.getMethod("onPacket", new Class[] { String.class });
+			Method onPacket = classToLoad.getMethod("onPacket", new Class[] { byte.class });
 			p.methods.put("onpacket", onPacket);
 			
 			p.name = (String) classToLoad.getMethod("getName", new Class[] { }).invoke(p.instance, new Object[] { });
