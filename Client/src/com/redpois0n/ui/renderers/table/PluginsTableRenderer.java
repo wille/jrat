@@ -12,7 +12,7 @@ import com.redpois0n.utils.IconUtils;
 
 
 @SuppressWarnings("serial")
-public class PluginTableRenderer extends DefaultTableCellRenderer {
+public class PluginsTableRenderer extends DefaultTableCellRenderer {
 	
 	public static final ImageIcon PLUGIN_ICON = IconUtils.getIcon("plugin");
 	

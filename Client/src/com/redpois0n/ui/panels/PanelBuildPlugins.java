@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
 
 import com.redpois0n.plugins.ExternalPlugin;
 import com.redpois0n.plugins.PluginList;
-import com.redpois0n.ui.renderers.table.PluginTableRenderer;
+import com.redpois0n.ui.renderers.table.PluginsTableRenderer;
 
 @SuppressWarnings("serial")
 public class PanelBuildPlugins extends JPanel {
@@ -113,7 +113,7 @@ public class PanelBuildPlugins extends JPanel {
 
 		table = new JTable();
 		table.setRowHeight(25);
-		table.setDefaultRenderer(Object.class, new PluginTableRenderer());
+		table.setDefaultRenderer(Object.class, new PluginsTableRenderer());
 		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "Plugin Name" }) {
 			public boolean isCellEditable(int i, int i1) {
 				return false;

@@ -22,7 +22,7 @@ import org.jrat.project.api.events.OnDisableEvent;
 
 import com.redpois0n.plugins.Plugin;
 import com.redpois0n.plugins.PluginLoader;
-import com.redpois0n.ui.renderers.table.PluginTableRenderer;
+import com.redpois0n.ui.renderers.table.PluginsTableRenderer;
 
 
 @SuppressWarnings("serial")
@@ -117,7 +117,7 @@ public class FramePlugins extends BaseFrame {
 		);
 
 		table = new JTable();
-		table.setDefaultRenderer(Object.class, new PluginTableRenderer());
+		table.setDefaultRenderer(Object.class, new PluginsTableRenderer());
 		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "Name", "Version", "Author", "Description" }) {
 			public boolean isCellEditable(int i, int i1) {
 				return false;

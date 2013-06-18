@@ -10,7 +10,7 @@ import javax.swing.table.DefaultTableModel;
 
 import com.redpois0n.plugins.Plugin;
 import com.redpois0n.plugins.PluginLoader;
-import com.redpois0n.ui.renderers.table.PluginTableRenderer;
+import com.redpois0n.ui.renderers.table.PluginsTableRenderer;
 
 @SuppressWarnings("serial")
 public class PanelMainPlugins extends JPanel {
@@ -40,7 +40,7 @@ public class PanelMainPlugins extends JPanel {
 		
 		table = new JTable();
 		table.setRowHeight(25);
-		table.setDefaultRenderer(Object.class, new PluginTableRenderer());
+		table.setDefaultRenderer(Object.class, new PluginsTableRenderer());
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 			},

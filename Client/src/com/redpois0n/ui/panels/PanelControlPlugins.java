@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 
 import com.redpois0n.Slave;
 import com.redpois0n.packets.outgoing.Packet89LoadedPlugins;
-import com.redpois0n.ui.renderers.table.PluginTableRenderer;
+import com.redpois0n.ui.renderers.table.PluginsTableRenderer;
 
 @SuppressWarnings("serial")
 public class PanelControlPlugins extends PanelControlParent {
@@ -78,7 +78,7 @@ public class PanelControlPlugins extends PanelControlParent {
 		);
 		
 		table = new JTable();
-		table.setDefaultRenderer(Object.class, new PluginTableRenderer());
+		table.setDefaultRenderer(Object.class, new PluginsTableRenderer());
 		table.setRowHeight(25);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {

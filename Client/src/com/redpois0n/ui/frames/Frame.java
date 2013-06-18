@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
@@ -73,6 +74,7 @@ import com.redpois0n.ui.panels.PanelMainLog;
 import com.redpois0n.ui.panels.PanelMainPlugins;
 import com.redpois0n.ui.panels.PanelMainSockets;
 import com.redpois0n.ui.renderers.table.MainTableRenderer;
+import com.redpois0n.ui.renderers.table.PluginsTableRenderer;
 import com.redpois0n.utils.FlagUtils;
 import com.redpois0n.utils.IconUtils;
 import com.redpois0n.utils.Util;
@@ -646,6 +648,14 @@ public class Frame extends BaseFrame {
 			
 			if (listener != null) {
 				item.addActionListener(listener);
+			}
+			
+			File iconFile = new File("plugins/" + p.getName() + "/icon.png");
+			
+			if (iconFile.exists()) {
+				item.setIcon(new ImageIcon(iconFile.getAbsolutePath()));
+			} else {
+				item.setIcon(PluginsTableRenderer.PLUGIN_ICON);
 			}
 			
 			mnPlugins.add(item);
