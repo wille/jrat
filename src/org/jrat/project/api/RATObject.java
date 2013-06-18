@@ -83,5 +83,13 @@ public final class RATObject {
 		
 		return false;
 	}
+	
+	/**
+	 * 
+	 * @return The packet queue
+	 */
+	public Queue getQueue() {
+		return queue;
+	}
 
 }
