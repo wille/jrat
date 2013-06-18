@@ -638,7 +638,7 @@ public class Frame extends BaseFrame {
 		}
 		
 		for (int i = 0; i < PluginLoader.plugins.size(); i++) {
-			Plugin p = PluginLoader.plugins.get(i);
+			final Plugin p = PluginLoader.plugins.get(i);
 			
 			JMenuItem item = new JMenuItem(p.getName());
 			
@@ -648,6 +648,13 @@ public class Frame extends BaseFrame {
 			
 			if (listener != null) {
 				item.addActionListener(listener);
+			} else {
+				item.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						JOptionPane.showMessageDialog(null, "Name: " + p.getName() + "\nVersion: " + p.getVersion() + "\nAuthor: " + p.getAuthor() + "\nDescription: " + p.getDescription());
+					}			
+				});
 			}
 			
 			File iconFile = new File("plugins/" + p.getName() + "/icon.png");
