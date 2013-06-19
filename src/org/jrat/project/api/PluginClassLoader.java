@@ -14,11 +14,17 @@ public class PluginClassLoader extends ClassLoader {
 		super(parent);
 	}
 	
+	/**
+	 * Returns null (for now) as we will get from Client.jar if we call this
+	 */
 	@Override
 	public InputStream getResourceAsStream(String resource) {
 		return null;
 	}
 	
+	/**
+	 * Returns null (for now) as we will get from Client.jar if we call this
+	 */
 	@Override
 	public URL getResource(String resource) {
 		return null;

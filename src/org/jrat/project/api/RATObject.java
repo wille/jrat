@@ -3,7 +3,7 @@ package org.jrat.project.api;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({ "unused", "deprecation" })
 public final class RATObject {
 
 	private final String ip;

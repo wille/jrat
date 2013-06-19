@@ -1,5 +1,5 @@
 package org.jrat.project.api.events;
 
-public class OnDisableEvent {
+public class OnDisableEvent implements Event {
 
 }

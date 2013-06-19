@@ -2,7 +2,7 @@ package org.jrat.project.api.events;
 
 import org.jrat.project.api.RATObject;
 
-public abstract class RATObjectEvent {
+public abstract class RATObjectEvent implements Event {
 
 	private RATObject server;
 

@@ -2,6 +2,7 @@ package org.jrat.project.api;
 
 import java.io.IOException;
 
+@Deprecated
 public abstract interface IReader {
 
 	/**

@@ -19,7 +19,7 @@ public class Packet {
 	
 	/**
 	 * 
-	 * @return getHeader()
+	 * @return Packet-getHeader()
 	 */
 	@Override
 	public String toString() {

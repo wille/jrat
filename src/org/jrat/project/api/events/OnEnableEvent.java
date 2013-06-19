@@ -1,6 +1,6 @@
 package org.jrat.project.api.events;
 
-public class OnEnableEvent {
+public class OnEnableEvent implements Event {
 
 	private String version;
 
