@@ -9,7 +9,7 @@ import com.redpois0n.stub.Connection;
 import com.redpois0n.stub.utils.Utils;
 
 
-public class PacketLOG extends AbstractIncomingPacket {
+public class Packet52Log extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {

