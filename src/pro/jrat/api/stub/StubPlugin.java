@@ -1,4 +1,4 @@
-package org.jrat.project.api;
+package pro.jrat.api.stub;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
