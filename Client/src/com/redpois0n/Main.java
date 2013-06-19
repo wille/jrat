@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.swing.UIManager;
 
-import org.jrat.project.api.events.OnDisableEvent;
+import pro.jrat.api.events.OnDisableEvent;
 
 import com.redpois0n.common.OperatingSystem;
 import com.redpois0n.common.Version;

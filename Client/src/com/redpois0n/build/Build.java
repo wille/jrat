@@ -14,7 +14,7 @@ import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
-import org.jrat.project.api.JarUtils;
+import pro.jrat.api.JarUtils;
 
 import com.redpois0n.BuildStatus;
 import com.redpois0n.ErrorDialog;

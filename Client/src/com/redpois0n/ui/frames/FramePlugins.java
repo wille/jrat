@@ -18,7 +18,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import org.jrat.project.api.events.OnDisableEvent;
+import pro.jrat.api.events.OnDisableEvent;
 
 import com.redpois0n.plugins.Plugin;
 import com.redpois0n.plugins.PluginLoader;
