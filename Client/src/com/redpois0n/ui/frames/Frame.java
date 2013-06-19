@@ -1583,6 +1583,15 @@ public class Frame extends BaseFrame {
 			if (plugin.getItems() != null && plugin.getItems().size() > 0) {
 				for (final RATMenuItem en : plugin.getItems()) {
 					JMenuItem item = en.getItem();
+					
+					File iconFile = new File("plugins/" + plugin.getName() + "/icon.png");
+					
+					if (iconFile.exists()) {
+						item.setIcon(new ImageIcon(iconFile.getAbsolutePath()));
+					} else {
+						item.setIcon(PluginsTableRenderer.PLUGIN_ICON);
+					}
+					
 					item.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							List<Slave> list = Util.getSlaves();
