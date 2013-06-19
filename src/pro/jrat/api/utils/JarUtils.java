@@ -1,4 +1,4 @@
-package pro.jrat.api;
+package pro.jrat.api.utils;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
