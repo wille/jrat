@@ -14,7 +14,7 @@ import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
-import org.jrat.project.api.JarUtil;
+import org.jrat.project.api.JarUtils;
 
 import com.redpois0n.BuildStatus;
 import com.redpois0n.ErrorDialog;
@@ -175,7 +175,7 @@ public class Build {
 					while (entries.hasMoreElements()) {
 						entry = entries.nextElement();
 
-						String mainClass = JarUtil.getMainClassFromInfo(plugin);
+						String mainClass = JarUtils.getMainClassFromInfo(plugin);
 
 						if (entry.getName().replace("/", ".").replace(".class", "").equals(mainClass)) {
 							plugins[i] = entry.getName().replace("/", ".").replace(".class", "");

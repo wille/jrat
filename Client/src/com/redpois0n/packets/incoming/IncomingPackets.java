@@ -147,7 +147,6 @@ public class IncomingPackets {
 			}
 			
 			PluginEventHandler.onPacket(slave, header); 
-
 			
 			if (ac != null) {
 				ac.read(slave, slave.getDataInputStream());
