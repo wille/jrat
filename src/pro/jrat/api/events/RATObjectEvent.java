@@ -1,6 +1,6 @@
-package org.jrat.project.api.events;
+package pro.jrat.api.events;
 
-import org.jrat.project.api.RATObject;
+import pro.jrat.api.RATObject;
 
 public abstract class RATObjectEvent implements Event {
 

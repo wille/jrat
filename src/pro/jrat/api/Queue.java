@@ -1,4 +1,4 @@
-package org.jrat.project.api;
+package pro.jrat.api;
 
 public abstract interface Queue {
 

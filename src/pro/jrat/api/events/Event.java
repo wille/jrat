@@ -1,4 +1,4 @@
-package org.jrat.project.api.events;
+package pro.jrat.api.events;
 
 public abstract interface Event {
 
