@@ -21,7 +21,7 @@ import com.redpois0n.exceptions.CloseException;
 import com.redpois0n.ip2c.Country;
 import com.redpois0n.net.ConnectionHandler;
 import com.redpois0n.net.PortListener;
-import com.redpois0n.packets.incoming.Packets;
+import com.redpois0n.packets.incoming.IncomingPackets;
 import com.redpois0n.packets.outgoing.AbstractOutgoingPacket;
 import com.redpois0n.packets.outgoing.Packet0Ping;
 import com.redpois0n.packets.outgoing.Packet99Encryption;
@@ -151,7 +151,7 @@ public class Slave implements Runnable {
 					continue;
 				}
 
-				Packets.execute(header, this);
+				IncomingPackets.execute(header, this);
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();

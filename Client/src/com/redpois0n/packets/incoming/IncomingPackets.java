@@ -6,7 +6,7 @@ import java.util.Set;
 import com.redpois0n.Slave;
 import com.redpois0n.plugins.PluginEventHandler;
 
-public class Packets {
+public class IncomingPackets {
 
 	//private static final HashMap<String, Class<? extends AbstractPacket>> incomingPackets = new HashMap<String, Class<? extends AbstractPacket>>();
 	private static final HashMap<Byte, Class<? extends AbstractIncomingPacket>> incomingPackets = new HashMap<Byte, Class<? extends AbstractIncomingPacket>>();
@@ -145,13 +145,15 @@ public class Packets {
 					break;
 				}
 			}
+			
+			PluginEventHandler.onPacket(slave, header); 
+
+			
 			if (ac != null) {
 				ac.read(slave, slave.getDataInputStream());
 			} else {
-				throw new NullPointerException("Could not find packet: " + header);
+				throw new NullPointerException("Could not find jRAT packet: " + header);
 			}
-
-			PluginEventHandler.onPacket(slave, header); 
 
 			return ac != null;
 		} catch (Exception ex) {
