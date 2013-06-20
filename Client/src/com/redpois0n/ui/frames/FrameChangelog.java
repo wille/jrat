@@ -1,6 +1,5 @@
 package com.redpois0n.ui.frames;
 
-import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -112,11 +111,9 @@ public class FrameChangelog extends BaseFrame {
 			ErrorDialog.create(ex);
 		}
 
-		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		int w = getSize().width;
-		int h = getSize().height;
-		int x = (dim.width - w) / 2;
-		int y = (dim.height - h) / 2;
-		setLocation(x, y);
+		txt.setSelectionStart(0);
+		txt.setSelectionEnd(0);
+
+		setLocationRelativeTo(null);
 	}
 }

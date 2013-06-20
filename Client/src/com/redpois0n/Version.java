@@ -15,7 +15,7 @@ public class Version {
 			String result = dis.readLine();
 			String latest = result;
 			if (!result.trim().equals(com.redpois0n.common.Version.getVersion())) {
-				FrameChangelog frame = new FrameChangelog(Constants.PARSE_CHANGELOG_URL.replace("%VERSION%", latest), latest);
+				FrameChangelog frame = new FrameChangelog(Constants.CHANGELOG_URL, latest);
 				frame.setVisible(true);
 				frame.setTitle("New version! - " + latest);
 				return true;
