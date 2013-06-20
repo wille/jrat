@@ -25,5 +25,12 @@ public class BaseControlPanel extends JPanel {
 	public RATObject getServer() {
 		return server;
 	}
+	
+	/**
+	 * Called when a parent frame or control panel gets closed
+	 */
+	public void onClose() {
+		
+	}
 
 }
