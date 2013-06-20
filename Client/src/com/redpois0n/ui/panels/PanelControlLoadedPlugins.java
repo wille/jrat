@@ -19,7 +19,7 @@ import com.redpois0n.packets.outgoing.Packet89LoadedPlugins;
 import com.redpois0n.ui.renderers.table.PluginsTableRenderer;
 
 @SuppressWarnings("serial")
-public class PanelControlPlugins extends PanelControlParent {
+public class PanelControlLoadedPlugins extends PanelControlParent {
 	
 	private JTable table;
 	
@@ -31,7 +31,7 @@ public class PanelControlPlugins extends PanelControlParent {
 		return (DefaultTableModel)table.getModel();
 	}
 
-	public PanelControlPlugins(Slave sl) {
+	public PanelControlLoadedPlugins(Slave sl) {
 		super(sl);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -44,7 +44,7 @@ public class PanelControlPlugins extends PanelControlParent {
 				slave.addToSendQueue(new Packet89LoadedPlugins());
 			}
 		});
-		btnReload.setIcon(new ImageIcon(PanelControlPlugins.class.getResource("/icons/update.png")));
+		btnReload.setIcon(new ImageIcon(PanelControlLoadedPlugins.class.getResource("/icons/update.png")));
 		
 		JButton btnClear = new JButton("Clear");
 		btnClear.addActionListener(new ActionListener() {
@@ -52,7 +52,7 @@ public class PanelControlPlugins extends PanelControlParent {
 				clear();
 			}
 		});
-		btnClear.setIcon(new ImageIcon(PanelControlPlugins.class.getResource("/icons/clear.png")));
+		btnClear.setIcon(new ImageIcon(PanelControlLoadedPlugins.class.getResource("/icons/clear.png")));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -84,7 +84,7 @@ public class PanelControlPlugins extends PanelControlParent {
 			new Object[][] {
 			},
 			new String[] {
-				"Name", "Author", "Description", "Version"
+				"Name"
 			}
 		) {
 			public boolean isCellEditable(int i, int i1) {
