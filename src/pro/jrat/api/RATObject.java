@@ -85,9 +85,10 @@ public final class RATObject {
 	}
 	
 	/**
-	 * 
+	 * Use addToSendQueue directly
 	 * @return The packet queue
 	 */
+	@Deprecated
 	public Queue getQueue() {
 		return queue;
 	}
