@@ -2,7 +2,7 @@ package com.redpois0n.stub;
 
 import java.io.File;
 
-import com.redpois0n.stub.stub.packets.outgoing.Packet37SearchResult;
+import com.redpois0n.stub.packets.outgoing.Packet37SearchResult;
 
 public class FileSearch extends Thread {
 

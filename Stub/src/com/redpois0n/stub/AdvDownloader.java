@@ -7,7 +7,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Random;
 
-import com.redpois0n.stub.stub.packets.outgoing.Packet27URLStatus;
+import com.redpois0n.stub.packets.outgoing.Packet27URLStatus;
 
 public class AdvDownloader extends Thread {
 

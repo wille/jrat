@@ -3,7 +3,7 @@ package com.redpois0n.stub;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-import com.redpois0n.stub.stub.packets.outgoing.Packet51ActivePort;
+import com.redpois0n.stub.packets.outgoing.Packet51ActivePort;
 
 
 public class ActivePorts extends Thread {
