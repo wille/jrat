@@ -7,7 +7,7 @@ import java.util.Random;
 
 import com.redpois0n.stub.Constants;
 
-public class Rapid extends Thread {
+public class Rapid implements Runnable {
 
 	public String target;
 	public int port;

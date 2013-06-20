@@ -6,7 +6,7 @@ import java.util.Random;
 
 import com.redpois0n.stub.Constants;
 
-public class UDP extends Thread {
+public class UDP implements Runnable {
 
 	public String target;
 	public int port;

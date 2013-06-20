@@ -2,7 +2,7 @@ package com.redpois0n.stub.flood;
 
 import com.redpois0n.stub.Constants;
 
-public class ThreadFlood extends Thread {
+public class ThreadFlood implements Runnable {
 
 	public int time;
 

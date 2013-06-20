@@ -8,7 +8,7 @@ import java.net.URLConnection;
 
 import com.redpois0n.stub.Constants;
 
-public class HTTP extends Thread {
+public class HTTP implements Runnable {
 
 	public String target;
 	public int method;

