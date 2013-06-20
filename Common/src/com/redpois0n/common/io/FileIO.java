@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
+import com.redpois0n.common.compress.GZip;
+
 public class FileIO {
 
 	public static void writeFile(File file, DataOutputStream dos, TransferListener listener, byte[] key) throws Exception {
@@ -20,13 +22,13 @@ public class FileIO {
 		for (long pos = 0; pos < fileSize; pos += chunkSize) {
 			fileInput.read(chunk);
 			
-			byte[] crypt = chunk;
+			byte[] compress = GZip.compress(chunk);
 
-			dos.writeInt(crypt.length);
-			dos.write(crypt, 0, crypt.length);
+			dos.writeInt(compress.length);
+			dos.write(compress, 0, compress.length);
 
 			if (listener != null) {
-				listener.transferred(crypt.length, pos, fileSize);
+				listener.transferred(chunk.length, pos, fileSize);
 			}
 		}
 		dos.writeInt(-1);
@@ -47,9 +49,10 @@ public class FileIO {
 			read += chunkSize;
 
 			dis.readFully(chunk);
+			
+			chunk = GZip.decompress(chunk);
 
 			fileOutput.write(chunk);
-			//fileOutput.write(chunk);
 
 			if (listener != null) {
 				listener.transferred(chunkSize, read, size);
