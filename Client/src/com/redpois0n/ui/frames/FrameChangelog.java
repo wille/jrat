@@ -3,27 +3,28 @@ package com.redpois0n.ui.frames;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.net.URI;
+import java.net.URL;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.HyperlinkEvent;
+import javax.swing.event.HyperlinkListener;
 
 import com.redpois0n.Constants;
 import com.redpois0n.ErrorDialog;
 import com.redpois0n.common.Version;
-import com.redpois0n.net.WebRequest;
+import com.redpois0n.utils.NetworkUtils;
 
 
 @SuppressWarnings("serial")
@@ -92,27 +93,52 @@ public class FrameChangelog extends BaseFrame {
 					.addGap(30))
 		);
 
-		JTextPane txt = new JTextPane();
-		txt.setEditable(false);
-		scrollPane.setViewportView(txt);
 		contentPane.setLayout(gl_contentPane);
-
+		
+		JEditorPane com;
 		try {
+			com = new JEditorPane(new URL(url));
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			ErrorDialog.create(ex);
+			return;
+		}
+		com.addHyperlinkListener(new HyperlinkListener() {
+			 public void hyperlinkUpdate(HyperlinkEvent e) {
+				if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
+					try {
+						NetworkUtils.openUrl(e.getURL().toURI().toString());
+					} catch (Exception localException) {
+						localException.printStackTrace();
+					}		 
+				}
+			 }
+		});
+		com.setEditable(false);
+		com.setContentType("text/html");
+		
+		scrollPane.setViewportView(com);
+
+
+		/*try {
+			com.getDocument().insertString(0, "<html>", null);
 			BufferedReader reader = new BufferedReader(new InputStreamReader(WebRequest.getInputStream(url)));
 
 			String s = null;
 			while ((s = reader.readLine()) != null) {
-				txt.getDocument().insertString(txt.getDocument().getLength(), s + "\n", null);
+				com.getDocument().insertString(com.getDocument().getLength(), s + "\n", null);
 			}
 			
 			reader.close();
+			
+			com.getDocument().insertString(com.getDocument().getLength(), "</html>", null);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			ErrorDialog.create(ex);
-		}
+		}*/
 
-		txt.setSelectionStart(0);
-		txt.setSelectionEnd(0);
+		com.setSelectionStart(0);
+		com.setSelectionEnd(0);
 
 		setLocationRelativeTo(null);
 	}
