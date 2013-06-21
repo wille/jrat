@@ -52,16 +52,12 @@ public class Connection implements Runnable {
 	public static DataInputStream dis;
 	public static DataOutputStream dos;
 
-	public static StringWriter sw = new StringWriter() {
+	public static final StringWriter sw = new StringWriter() {
 		@Override
 		public void writeLine(String s) throws Exception {
 			Connection.writeLine(s);
 		}
 	};
-
-	public Connection() {
-
-	}
 
 	public void run() {
 		try {

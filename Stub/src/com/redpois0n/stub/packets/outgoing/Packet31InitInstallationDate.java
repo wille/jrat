@@ -14,6 +14,9 @@ public class Packet31InitInstallationDate extends AbstractOutgoingPacket {
 
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
+		if (this.date == null) {
+			this.date = "Unknown";
+		}
 		sw.writeLine(this.date);
 	}
 
