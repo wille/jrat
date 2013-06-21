@@ -357,6 +357,7 @@ public class FrameBuildMinimal extends BaseFrame {
 				OSConfig osconfig = new OSConfig();
 				osconfig.addOS(OperatingSystem.WINDOWS);
 				osconfig.addOS(OperatingSystem.OSX);
+				osconfig.addOS(OperatingSystem.LINUX);
 				
 				Build.build(l, Files.getStub(), file, ip, port, id, pass, key, crypt, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, hiddenFile, bind, bindpath, bindname, droptarget, usemutex, mutexport, pluginlist, timeout, timeoutms, delay, delayms,
 						 usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems
@@ -366,7 +367,7 @@ public class FrameBuildMinimal extends BaseFrame {
 				Settings.getGlobal().setVal("bport", port);
 				Settings.getGlobal().setVal("bid", id);
 				Settings.getGlobal().setVal("bpass", pass);
-				Settings.getGlobal().setVal("bkey", key);
+				Settings.getGlobal().setVal("bkey", key.getTextualKey());
 				Settings.getGlobal().setVal("bcrypt", crypt);
 				Settings.getGlobal().setVal("brecat", reconSec);
 			}

@@ -16,7 +16,7 @@ import com.redpois0n.ui.components.JColorBox;
 public class Colors extends AbstractSettings implements Serializable {
 
 	private static final long serialVersionUID = 973106735935668990L;
-
+		
 	private transient Map<String, ColorProfile> colors = new HashMap<String, ColorProfile>();
 
 	private static final Colors instance = new Colors();
@@ -48,7 +48,13 @@ public class Colors extends AbstractSettings implements Serializable {
 	}
 
 	public ColorProfile get(String str) {
-		return colors.get(str);
+		ColorProfile profile = colors.get(str);
+		
+		if (profile == null) {
+			return generate("red");
+		}
+		
+		return profile;
 	}
 
 	public Color getColorFromIndex(int index) {
@@ -71,12 +77,14 @@ public class Colors extends AbstractSettings implements Serializable {
 
 	public void putDefault() {
 		colors.clear();
-		colors.put("system monitor", Colors.getGlobal().generate("blue"));
-		colors.put("outdated servers", Colors.getGlobal().generate("red"));
+		Colors.getGlobal();
+		colors.put("system monitor", Colors.generate("blue"));
+		Colors.getGlobal();
+		colors.put("outdated servers", Colors.generate("red"));
 	}
 
 	public class ColorProfile implements Serializable {
-
+	
 		private static final long serialVersionUID = 7819760998736045294L;
 
 		private int index;
@@ -90,8 +98,8 @@ public class Colors extends AbstractSettings implements Serializable {
 		}
 	}
 
-	public ColorProfile generate(String color) {
-		ColorProfile profile = new ColorProfile();
+	public static ColorProfile generate(String color) {
+		ColorProfile profile = Colors.getGlobal().new ColorProfile();
 		for (int i = 0; i < JColorBox.colors.length; i++) {
 			if (color.equalsIgnoreCase(JColorBox.colors[i])) {
 				profile.setIndex(i);
