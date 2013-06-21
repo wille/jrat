@@ -1,5 +1,9 @@
-package com.redpois0n.packets;
+package com.redpois0n.packets.outgoing;
 
+/**
+ * No longer in use.
+ */
+@Deprecated
 public enum OutgoingHeader {
 
 	DISCONNECT(/* "DISCONNECT" */(byte) 11),

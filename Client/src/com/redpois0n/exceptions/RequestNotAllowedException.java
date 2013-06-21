@@ -3,7 +3,7 @@ package com.redpois0n.exceptions;
 @SuppressWarnings("serial")
 public class RequestNotAllowedException extends Exception {
 
-	public RequestNotAllowedException(String str) {
-		super("Not allowed to request: " + str);
+	public RequestNotAllowedException(String s) {
+		super("Not allowed to request URL: " + s);
 	}
 }

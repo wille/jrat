@@ -92,8 +92,6 @@ public class PanelControlLoadedPlugins extends PanelControlParent {
 			}
 		});
 		table.getColumnModel().getColumn(0).setPreferredWidth(142);
-		table.getColumnModel().getColumn(1).setPreferredWidth(141);
-		table.getColumnModel().getColumn(2).setPreferredWidth(238);
 		scrollPane.setViewportView(table);
 		setLayout(groupLayout);
 	}
