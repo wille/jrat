@@ -13,8 +13,9 @@ public final class RATObject {
 	private final Queue queue;
 	private final DataInputStream in;
 	private final DataOutputStream out;
+	private final long uniqueId;
 	
-	public RATObject(String ip, Connection con, IWriter writer, IReader reader, DataInputStream in, DataOutputStream out, Queue queue) {
+	public RATObject(String ip, long uniqueId, Connection con, IWriter writer, IReader reader, DataInputStream in, DataOutputStream out, Queue queue) {
 		this.ip = ip;
 		this.con = con;
 		this.writer = writer;
@@ -22,6 +23,7 @@ public final class RATObject {
 		this.queue = queue;
 		this.in = in;
 		this.out = out;
+		this.uniqueId = uniqueId;
 	}
 	
 	/**
@@ -78,7 +80,7 @@ public final class RATObject {
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof RATObject) {
-			return ((RATObject)obj).ip.equals(this.ip);
+			return this == obj || ((RATObject)obj).uniqueId == uniqueId;
 		}
 		
 		return false;
@@ -99,6 +101,14 @@ public final class RATObject {
 	
 	public DataOutputStream getDataOutputStream() {
 		return out;
+	}
+
+	/**
+	 * Returns the unique ID for this Server/Slave/Object
+	 * @return
+	 */
+	public long getUniqueId() {
+		return uniqueId;
 	}
 
 }

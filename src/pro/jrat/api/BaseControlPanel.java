@@ -32,5 +32,12 @@ public class BaseControlPanel extends JPanel {
 	public void onClose() {
 		
 	}
+	
+	/**
+	 * Called when parent frame or control panel has loaded this
+	 */
+	public void onLoad() {
+		
+	}
 
 }
