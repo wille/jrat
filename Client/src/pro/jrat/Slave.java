@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 
@@ -88,6 +89,7 @@ public class Slave implements Runnable {
 	public long pingms = 0;
 	private long sent = 0;
 	private long received = 0;
+	private final long uniqueId = (new Random()).nextLong();
 
 	private ImageIcon thumbnail = null;
 
@@ -632,5 +634,9 @@ public class Slave implements Runnable {
 
 	public boolean isLocked() {
 		return lock;
+	}
+
+	public long getUniqueId() {
+		return uniqueId;
 	}
 }
