@@ -3,7 +3,7 @@ package pro.jrat.api;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 
-@SuppressWarnings({ "unused", "deprecation" })
+@SuppressWarnings({ "deprecation" })
 public final class RATObject {
 
 	private final String ip;
@@ -91,6 +91,14 @@ public final class RATObject {
 	@Deprecated
 	public Queue getQueue() {
 		return queue;
+	}
+	
+	public DataInputStream getDataInputStream() {
+		return in;
+	}
+	
+	public DataOutputStream getDataOutputStream() {
+		return out;
 	}
 
 }
