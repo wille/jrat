@@ -60,28 +60,28 @@ public abstract class RATPlugin {
 	 * @return Name of the plugin
 	 */
 
-	public abstract String getName() throws Exception;
+	public abstract String getName();
 	
 	/**
 	 * 
 	 * @return Plugin version
 	 */
 
-	public abstract String getVersion() throws Exception;
+	public abstract String getVersion();
 	
 	/**
 	 * 
 	 * @return Plugin description
 	 */
 
-	public abstract String getDescription() throws Exception;
+	public abstract String getDescription();
 	
 	/**
 	 * 
 	 * @return Author of plugin
 	 */
 
-	public abstract String getAuthor() throws Exception;
+	public abstract String getAuthor();
 	
 	/**
 	 * 
