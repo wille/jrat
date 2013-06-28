@@ -33,7 +33,7 @@ public class OnlinePlugin {
 	public ImageIcon getIcon() {
 		if (icon == null) {
 			try {
-				icon = new ImageIcon(ImageIO.read(WebRequest.getInputStream(Constants.HOST + "/plugins/" + this.name + "icon.png")));
+				icon = new ImageIcon(ImageIO.read(WebRequest.getInputStream(Constants.HOST + "/plugins/" + this.name + "/icon.png")));
 			} catch (Exception e) {
 				e.printStackTrace();
 				icon = PluginsTableRenderer.PLUGIN_ICON;
