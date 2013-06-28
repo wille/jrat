@@ -1,6 +1,7 @@
 package pro.jrat.ui.frames;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -27,6 +28,7 @@ import javax.swing.table.DefaultTableModel;
 import pro.jrat.ErrorDialog;
 import pro.jrat.extensions.ExtensionInstaller;
 import pro.jrat.extensions.OnlinePlugin;
+import pro.jrat.listeners.ExtensionInstallerListener;
 
 @SuppressWarnings("serial")
 public class FrameOnlinePlugins extends JFrame {
@@ -127,7 +129,12 @@ public class FrameOnlinePlugins extends JFrame {
 	}
 	
 	public void install(OnlinePlugin plugin) {
-		ExtensionInstaller installer = new ExtensionInstaller(plugin);
+		ExtensionInstaller installer = new ExtensionInstaller(plugin, new ExtensionInstallerListener() {
+			@Override
+			public void status(Color color, String message, int status) {
+				
+			}
+		});
 		installer.toggle();
 		
 		table.repaint();
