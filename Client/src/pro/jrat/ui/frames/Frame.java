@@ -277,6 +277,16 @@ public class Frame extends BaseFrame {
 		});
 		mntmPlugins.setIcon(new ImageIcon(Frame.class.getResource("/icons/plugin.png")));
 		mnMain.add(mntmPlugins);
+		
+		JMenuItem mntmBrowsePlugins = new JMenuItem("Browse Plugins");
+		mntmBrowsePlugins.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				FrameOnlinePlugins frame = new FrameOnlinePlugins();
+				frame.setVisible(true);
+			}
+		});
+		mntmBrowsePlugins.setIcon(new ImageIcon(Frame.class.getResource("/icons/application_icon_large.png")));
+		mnMain.add(mntmBrowsePlugins);
 		mnMain.addSeparator();
 		mntmExit.setIcon(new ImageIcon(Frame.class.getResource("/icons/exit.png")));
 		mnMain.add(mntmExit);
