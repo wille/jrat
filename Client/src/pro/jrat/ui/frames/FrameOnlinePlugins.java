@@ -1,20 +1,24 @@
 package pro.jrat.ui.frames;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.List;
 
 import javax.swing.JFrame;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-import java.awt.Toolkit;
-import javax.swing.JPopupMenu;
-import java.awt.Component;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import javax.swing.JMenuItem;
+
+import pro.jrat.ErrorDialog;
+import pro.jrat.extensions.OnlinePlugin;
 
 @SuppressWarnings("serial")
 public class FrameOnlinePlugins extends JFrame {
@@ -58,6 +62,22 @@ public class FrameOnlinePlugins extends JFrame {
 		mntmReload = new JMenuItem("Reload");
 		popupMenu.add(mntmReload);
 		scrollPane.setViewportView(table);
+		
+		reload();
+	}
+	
+	public void reload() {
+		try {
+			List<OnlinePlugin> plugins = OnlinePlugin.getAvailablePlugins();
+			
+			for (OnlinePlugin plugin : plugins) {
+				model.addRow(new Object[] { plugin.getName(), plugin.getAuthor(), plugin.getDescription(), plugin.getVersion(), plugin.getBuiltFor() });
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			ErrorDialog.create(e);
+		}	
 	}
 
 	private static void addPopup(Component component, final JPopupMenu popup) {

