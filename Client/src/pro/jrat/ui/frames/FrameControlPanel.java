@@ -83,7 +83,7 @@ import pro.jrat.ui.panels.PanelControluTorrentDownloads;
 import pro.jrat.ui.renderers.ControlPanelRenderer;
 import pro.jrat.utils.FlagUtils;
 import pro.jrat.utils.IconUtils;
-import pro.jrat.utils.Util;
+import pro.jrat.utils.Utils;
 
 
 @SuppressWarnings({ "serial" })
@@ -624,7 +624,7 @@ public class FrameControlPanel extends BaseFrame {
 
 		actions.put("shutdown", new Performable() {
 			public void perform() {
-				if (Util.yesNo("Confirm", "Are you sure you want to shutdown this computer?")) {
+				if (Utils.yesNo("Confirm", "Are you sure you want to shutdown this computer?")) {
 					slave.addToSendQueue(new Packet28ShutdownComputer());
 				}
 			}
@@ -632,7 +632,7 @@ public class FrameControlPanel extends BaseFrame {
 
 		actions.put("restart", new Performable() {
 			public void perform() {
-				if (Util.yesNo("Confirm", "Are you sure you want to restart this computer?")) {
+				if (Utils.yesNo("Confirm", "Are you sure you want to restart this computer?")) {
 					slave.addToSendQueue(new Packet29RestartComputer());
 				}
 			}
@@ -640,7 +640,7 @@ public class FrameControlPanel extends BaseFrame {
 
 		actions.put("sleep mode", new Performable() {
 			public void perform() {
-				if (Util.yesNo("Confirm", "Are you sure you want to put this computer in sleep mode?")) {
+				if (Utils.yesNo("Confirm", "Are you sure you want to put this computer in sleep mode?")) {
 					slave.addToSendQueue(new Packet31ComputerSleep());
 				}
 			}
@@ -648,7 +648,7 @@ public class FrameControlPanel extends BaseFrame {
 
 		actions.put("lock", new Performable() {
 			public void perform() {
-				if (Util.yesNo("Confirm", "Are you sure you want to lock this computer?")) {
+				if (Utils.yesNo("Confirm", "Are you sure you want to lock this computer?")) {
 					slave.addToSendQueue(new Packet32LockComputer());
 				}
 			}
@@ -656,7 +656,7 @@ public class FrameControlPanel extends BaseFrame {
 
 		actions.put("logout", new Performable() {
 			public void perform() {
-				if (Util.yesNo("Confirm", "Are you sure you want to logout this computer?")) {
+				if (Utils.yesNo("Confirm", "Are you sure you want to logout this computer?")) {
 					slave.addToSendQueue(new Packet30LogoutComputer());
 				}
 			}
@@ -694,7 +694,7 @@ public class FrameControlPanel extends BaseFrame {
 
 		actions.put("uninstall", new Performable() {
 			public void perform() {
-				if (Util.yesNo("Confirm", "Confirm uninstalling this server?")) {
+				if (Utils.yesNo("Confirm", "Confirm uninstalling this server?")) {
 					try {
 						slave.addToSendQueue(new Packet11Disconnect());
 					} catch (Exception ex) {

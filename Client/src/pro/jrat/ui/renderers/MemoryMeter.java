@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pro.jrat.Constants;
-import pro.jrat.utils.Util;
+import pro.jrat.common.utils.MathUtils;
 
 
 
@@ -54,7 +54,7 @@ public class MemoryMeter {
 			} else {
 				pos += 2;
 				g.setColor(color);
-				val = Util.getPercentFromTotal(val, maxram);
+				val = MathUtils.getPercentFromTotal(val, maxram);
 				
 				if (mode == Constants.MODE_LINES) {
 					g.drawRect(pos, h - (val), 1, 1);

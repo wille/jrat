@@ -5,7 +5,7 @@ import javax.swing.ImageIcon;
 import pro.jrat.Slave;
 import pro.jrat.packets.outgoing.Packet36Uninstall;
 import pro.jrat.utils.IconUtils;
-import pro.jrat.utils.Util;
+import pro.jrat.utils.Utils;
 
 
 
@@ -38,7 +38,7 @@ public class UninstallEvent extends Event {
 
 	@Override
 	public boolean add() {
-		return Util.yesNo("Confirm", "This will uninstall all connected servers, are you sure?");
+		return Utils.yesNo("Confirm", "This will uninstall all connected servers, are you sure?");
 	}
 
 	@Override

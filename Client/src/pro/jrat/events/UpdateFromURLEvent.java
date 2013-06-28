@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 import pro.jrat.Slave;
 import pro.jrat.packets.outgoing.Packet18Update;
 import pro.jrat.utils.IconUtils;
-import pro.jrat.utils.Util;
+import pro.jrat.utils.Utils;
 
 
 
@@ -36,7 +36,7 @@ public class UpdateFromURLEvent extends Event {
 
 	@Override
 	public boolean add() {
-		String result = Util.showDialog("Update from URL", "Input URL to update with");
+		String result = Utils.showDialog("Update from URL", "Input URL to update with");
 		if (result == null) {
 			return false;
 		}

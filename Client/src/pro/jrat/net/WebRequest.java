@@ -8,7 +8,7 @@ import java.net.URLConnection;
 
 import pro.jrat.exceptions.RequestNotAllowedException;
 import pro.jrat.settings.Settings;
-import pro.jrat.utils.Util;
+import pro.jrat.utils.Utils;
 
 
 public class WebRequest {
@@ -19,7 +19,7 @@ public class WebRequest {
 		URL url = null;
 		
 		if (Settings.getGlobal().getBoolean("askurl")) {
-			if (Util.yesNo("HTTP Request", "jRAT tries to connect to:\n\r\n\r" + surl + "\n\r\n\rDo you want to accept it?")) {
+			if (Utils.yesNo("HTTP Request", "jRAT tries to connect to:\n\r\n\r" + surl + "\n\r\n\rDo you want to accept it?")) {
 				url = new URL(surl);
 			} else {
 				throw new RequestNotAllowedException(surl);

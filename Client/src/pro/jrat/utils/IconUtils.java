@@ -68,14 +68,14 @@ public class IconUtils {
 	
 		ImageIcon icon;
 	
-		if (Util.pingicons.containsKey(str)) {
-			icon = Util.pingicons.get(str);
+		if (Utils.pingicons.containsKey(str)) {
+			icon = Utils.pingicons.get(str);
 		} else if (Frame.pingmode == Frame.PING_ICON_DOT) {
 			icon = new ImageIcon(Main.class.getResource(str));
-			Util.pingicons.put(str, icon);
+			Utils.pingicons.put(str, icon);
 		} else {
 			icon = getIcon(str);
-			Util.pingicons.put(str, icon);
+			Utils.pingicons.put(str, icon);
 		}
 	
 		return icon;

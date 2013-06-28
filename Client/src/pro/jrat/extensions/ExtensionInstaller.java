@@ -57,8 +57,7 @@ public class ExtensionInstaller {
 			ZipEntry entry = entries.nextElement();
 			
 			File output;
-			
-			System.out.println(entry.getName());
+
 			if (entry.getName().equals("Stub.jar")) {
 				output = new File("plugins/stubs/" + plugin.getName() + ".jar");
 			} else if (entry.getName().equals("Client.jar")) {
@@ -70,9 +69,7 @@ public class ExtensionInstaller {
 			if (!output.getParentFile().exists()) {
 				output.getParentFile().mkdirs();
 			}
-			
-			System.out.println(output.getAbsolutePath());
-			
+						
 			output.createNewFile();
 			
 			InputStream entryIs = zip.getInputStream(entry);	
@@ -85,7 +82,6 @@ public class ExtensionInstaller {
 		}
 		
 		zip.close();
-		
 		
 		temp.delete();
 	}

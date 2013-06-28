@@ -4,7 +4,7 @@ import java.io.DataInputStream;
 
 import pro.jrat.Slave;
 import pro.jrat.ui.frames.Frame;
-import pro.jrat.utils.Util;
+import pro.jrat.utils.Utils;
 
 
 public class Packet14InitComputerName extends AbstractIncomingPacket {
@@ -12,6 +12,6 @@ public class Packet14InitComputerName extends AbstractIncomingPacket {
 	@Override
 	public void read(Slave slave, DataInputStream dis) throws Exception {
 		slave.setComputerName(slave.readLine());
-		Frame.mainModel.setValueAt("Unknown@" + slave.getComputerName(), Util.getRow(3, slave.getIP()), 5);
+		Frame.mainModel.setValueAt("Unknown@" + slave.getComputerName(), Utils.getRow(3, slave.getIP()), 5);
 	}
 }

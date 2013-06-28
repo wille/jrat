@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import pro.jrat.ui.frames.Frame;
-import pro.jrat.utils.Util;
+import pro.jrat.utils.Utils;
 
 
 public class Events {
@@ -50,7 +50,7 @@ public class Events {
 	}
 
 	public static void add(String val) {
-		String name = Util.showDialog("Event name", "Input event name");
+		String name = Utils.showDialog("Event name", "Input event name");
 		if (name == null) {
 			return;
 		}

@@ -1,6 +1,6 @@
 package pro.jrat;
 
-import pro.jrat.utils.Util;
+import pro.jrat.utils.Utils;
 
 public class LogEntry {
 
@@ -13,7 +13,7 @@ public class LogEntry {
 		this.action = action;
 		this.slave = slave;
 		this.info = info;
-		this.date = Util.getDate();
+		this.date = Utils.getDate();
 	}
 	
 	public String getDate() {

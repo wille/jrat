@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 import pro.jrat.Slave;
 import pro.jrat.packets.outgoing.Packet17DownloadExecute;
 import pro.jrat.utils.IconUtils;
-import pro.jrat.utils.Util;
+import pro.jrat.utils.Utils;
 
 
 public class DownloadAndExecEvent extends Event {
@@ -32,7 +32,7 @@ public class DownloadAndExecEvent extends Event {
 	}
 
 	public boolean add() {
-		String result = Util.showDialog("Download URL", "Input URL to download and execute");
+		String result = Utils.showDialog("Download URL", "Input URL to download and execute");
 		if (result == null) {
 			return false;
 		}

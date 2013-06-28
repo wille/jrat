@@ -32,7 +32,7 @@ import pro.jrat.ui.frames.Frame;
 import pro.jrat.ui.panels.PanelMainLog;
 import pro.jrat.utils.FlagUtils;
 import pro.jrat.utils.TrayIconUtils;
-import pro.jrat.utils.Util;
+import pro.jrat.utils.Utils;
 
 
 @SuppressWarnings("unused")
@@ -150,7 +150,7 @@ public class Slave implements Runnable {
 				if (header == 0) {
 					long ping = System.currentTimeMillis() - pingms;
 					this.ping = (int) ping;
-					Frame.mainModel.setValueAt(ping + " ms", Util.getRow(3, getIP()), 4);
+					Frame.mainModel.setValueAt(ping + " ms", Utils.getRow(3, getIP()), 4);
 					continue;
 				}
 

