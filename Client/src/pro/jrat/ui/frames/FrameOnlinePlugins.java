@@ -1,6 +1,5 @@
 package pro.jrat.ui.frames;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Toolkit;
@@ -10,14 +9,18 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
+import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
@@ -45,6 +48,8 @@ public class FrameOnlinePlugins extends JFrame {
 	private JPopupMenu popupMenu;
 	private JMenuItem mntmReload;
 	private List<OnlinePlugin> plugins;
+	private JProgressBar progressBar;
+	private JLabel lblStatus;
 
 	public FrameOnlinePlugins() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameOnlinePlugins.class.getResource("/icons/application_icon_large.png")));
@@ -53,12 +58,10 @@ public class FrameOnlinePlugins extends JFrame {
 		setBounds(100, 100, 725, 418);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		contentPane.add(scrollPane, BorderLayout.CENTER);
 
 		table = new JTable() {
 			public Class<?> getColumnClass(int column) {
@@ -120,6 +123,32 @@ public class FrameOnlinePlugins extends JFrame {
 		mntmReload = new JMenuItem("Reload");
 		popupMenu.add(mntmReload);
 		scrollPane.setViewportView(table);
+		
+		lblStatus = new JLabel("Status");
+		lblStatus.setVisible(false);
+		
+		progressBar = new JProgressBar();
+		progressBar.setVisible(false);
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addComponent(progressBar, GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblStatus)
+					.addGap(171))
+				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE)
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(lblStatus, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(progressBar, GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)))
+		);
+		contentPane.setLayout(gl_contentPane);
 
 		reload();
 	}
@@ -129,15 +158,27 @@ public class FrameOnlinePlugins extends JFrame {
 	}
 	
 	public void install(OnlinePlugin plugin) {
-		ExtensionInstaller installer = new ExtensionInstaller(plugin, new ExtensionInstallerListener() {
+		final ExtensionInstaller installer = new ExtensionInstaller(plugin, new ExtensionInstallerListener() {
 			@Override
 			public void status(Color color, String message, int status) {
-				
+				lblStatus.setForeground(color);
+				lblStatus.setText(message);
+				progressBar.setValue(status);
 			}
 		});
-		installer.toggle();
 		
-		table.repaint();
+		progressBar.setVisible(true);
+		lblStatus.setVisible(true);
+		
+		new Thread(new Runnable() {
+			public void run() {
+				installer.toggle();
+				table.repaint();
+				
+				progressBar.setVisible(false);
+				lblStatus.setVisible(false);
+			}
+		}).start();	
 	}
 
 	public void reload() {
