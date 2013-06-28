@@ -19,8 +19,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import pro.jrat.api.events.OnDisableEvent;
-import pro.jrat.plugins.Plugin;
-import pro.jrat.plugins.PluginLoader;
+import pro.jrat.extensions.Plugin;
+import pro.jrat.extensions.PluginLoader;
 import pro.jrat.ui.renderers.table.PluginsTableRenderer;
 
 
@@ -52,33 +52,6 @@ public class FramePlugins extends BaseFrame {
 		});
 		btnReload.setIcon(new ImageIcon(FramePlugins.class.getResource("/icons/plugin.png")));
 
-		JButton btnDelete = new JButton("Delete");
-		btnDelete.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				int[] rows = table.getSelectedRows();
-				for (int i : rows) {
-					String version = table.getValueAt(i, 0).toString();
-					String name = table.getValueAt(i, 1).toString();
-					String author = table.getValueAt(i, 2).toString();
-					String desc = table.getValueAt(i, 3).toString();
-
-					Plugin toremove = null;
-
-					for (Plugin p : PluginLoader.plugins) {
-						if (p.getVersion().equals(version) && p.getName().equals(name) && p.getAuthor().equals(author) && p.getDescription().equals(desc)) {
-							toremove = p;
-							break;
-						}
-					}
-
-					if (toremove != null) {
-						PluginLoader.plugins.remove(toremove);
-					}
-				}
-			}
-		});
-		btnDelete.setIcon(new ImageIcon(FramePlugins.class.getResource("/icons/plugin_delete.png")));
-
 		JButton btnFolder = new JButton("Folder");
 		btnFolder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -97,9 +70,7 @@ public class FramePlugins extends BaseFrame {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(btnFolder)
-							.addPreferredGap(ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
-							.addComponent(btnDelete, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
+							.addPreferredGap(ComponentPlacement.RELATED, 211, Short.MAX_VALUE)
 							.addComponent(btnReload))
 						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE))
 					.addGap(2))
@@ -111,7 +82,6 @@ public class FramePlugins extends BaseFrame {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnReload)
-						.addComponent(btnDelete, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnFolder))
 					.addGap(3))
 		);

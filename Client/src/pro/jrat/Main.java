@@ -9,9 +9,9 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 import pro.jrat.api.events.OnDisableEvent;
+import pro.jrat.extensions.Plugin;
+import pro.jrat.extensions.PluginLoader;
 import pro.jrat.io.Files;
-import pro.jrat.plugins.Plugin;
-import pro.jrat.plugins.PluginLoader;
 import pro.jrat.settings.AbstractSettings;
 import pro.jrat.settings.Settings;
 import pro.jrat.settings.Theme;

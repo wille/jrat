@@ -16,8 +16,8 @@ import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
 
-import pro.jrat.plugins.ExternalPlugin;
-import pro.jrat.plugins.PluginList;
+import pro.jrat.extensions.ExternalPlugin;
+import pro.jrat.extensions.PluginList;
 import pro.jrat.ui.renderers.table.PluginsTableRenderer;
 
 

