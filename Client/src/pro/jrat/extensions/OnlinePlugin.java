@@ -2,7 +2,6 @@ package pro.jrat.extensions;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -71,6 +70,14 @@ public class OnlinePlugin {
 	
 	public boolean isInstalled() {
 		return new File("plugins/" + getName() + ".jar").exists();
+	}
+	
+	public File getDirectory() {
+		return new File("plugins/" + getName());
+	}
+	
+	public File getJar() {
+		return new File("plugins/" + getName() + ".jar");
 	}
 
 	public static List<OnlinePlugin> getAvailablePlugins() throws Exception {
