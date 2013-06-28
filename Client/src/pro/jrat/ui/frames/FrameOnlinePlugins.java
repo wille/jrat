@@ -19,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
 
 import pro.jrat.ErrorDialog;
 import pro.jrat.extensions.OnlinePlugin;
+import pro.jrat.ui.renderers.table.PluginsTableRenderer;
 
 @SuppressWarnings("serial")
 public class FrameOnlinePlugins extends JFrame {
@@ -49,6 +50,7 @@ public class FrameOnlinePlugins extends JFrame {
 				return false;
 			}
 		};
+		table.setDefaultRenderer(Object.class, new PluginsTableRenderer());
 		
 		table.setModel(model);
 		table.getColumnModel().getColumn(0).setPreferredWidth(144);
