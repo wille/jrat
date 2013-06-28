@@ -1,4 +1,4 @@
-package com.redpois0n.common.utils;
+package pro.jrat.common.utils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;

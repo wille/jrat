@@ -23,8 +23,8 @@ import javax.swing.ScrollPaneConstants;
 
 import pro.jrat.ErrorDialog;
 import pro.jrat.Help;
+import pro.jrat.common.OperatingSystem;
 
-import com.redpois0n.common.OperatingSystem;
 
 @SuppressWarnings("serial")
 public class PanelBuildHostFile extends JPanel {

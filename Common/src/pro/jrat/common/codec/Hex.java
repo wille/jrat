@@ -1,4 +1,4 @@
-package com.redpois0n.common.codec;
+package pro.jrat.common.codec;
 
 public class Hex {
 

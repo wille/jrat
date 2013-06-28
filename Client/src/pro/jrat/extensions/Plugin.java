@@ -21,8 +21,8 @@ import pro.jrat.api.events.OnEnableEvent;
 import pro.jrat.api.events.OnPacketEvent;
 import pro.jrat.api.events.OnSendPacketEvent;
 import pro.jrat.api.utils.JarUtils;
+import pro.jrat.common.Version;
 
-import com.redpois0n.common.Version;
 
 
 @SuppressWarnings({ "rawtypes", "unchecked", "deprecation" })

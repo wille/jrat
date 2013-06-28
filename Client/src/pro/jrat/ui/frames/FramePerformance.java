@@ -21,11 +21,11 @@ import javax.swing.JProgressBar;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
+import pro.jrat.common.Version;
 import pro.jrat.threads.ThreadLocalRAM;
 import pro.jrat.ui.panels.PanelImage;
 import pro.jrat.ui.renderers.MemoryMeter;
 
-import com.redpois0n.common.Version;
 
 @SuppressWarnings("serial")
 public class FramePerformance extends BaseFrame {

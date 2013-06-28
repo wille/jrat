@@ -1,4 +1,4 @@
-package com.redpois0n.common.io;
+package pro.jrat.common.io;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -6,7 +6,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
-import com.redpois0n.common.compress.GZip;
+import pro.jrat.common.compress.GZip;
+
 
 public class FileIO {
 

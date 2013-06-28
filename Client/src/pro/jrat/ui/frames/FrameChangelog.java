@@ -23,9 +23,9 @@ import javax.swing.event.HyperlinkListener;
 
 import pro.jrat.Constants;
 import pro.jrat.ErrorDialog;
+import pro.jrat.common.Version;
 import pro.jrat.utils.NetworkUtils;
 
-import com.redpois0n.common.Version;
 
 
 @SuppressWarnings("serial")

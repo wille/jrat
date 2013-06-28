@@ -3,9 +3,9 @@ package pro.jrat.stub;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+import pro.jrat.common.OperatingSystem;
 import pro.jrat.stub.packets.outgoing.Packet21RemoteShell;
 
-import com.redpois0n.common.OperatingSystem;
 
 public class RemoteShell extends Thread {
 

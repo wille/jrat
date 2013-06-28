@@ -3,7 +3,8 @@ package pro.jrat;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.redpois0n.common.OperatingSystem;
+import pro.jrat.common.OperatingSystem;
+
 
 public final class OSConfig {
 

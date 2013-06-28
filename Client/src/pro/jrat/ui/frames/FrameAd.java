@@ -16,7 +16,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import com.redpois0n.common.Version;
+import pro.jrat.common.Version;
+
 
 
 @SuppressWarnings("serial")

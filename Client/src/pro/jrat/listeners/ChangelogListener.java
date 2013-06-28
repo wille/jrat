@@ -1,9 +1,9 @@
 package pro.jrat.listeners;
 
 import pro.jrat.Constants;
+import pro.jrat.common.Version;
 import pro.jrat.ui.frames.FrameChangelog;
 
-import com.redpois0n.common.Version;
 
 public class ChangelogListener extends Performable {
 

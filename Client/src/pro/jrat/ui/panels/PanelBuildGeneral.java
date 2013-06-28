@@ -18,6 +18,8 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import pro.jrat.Help;
+import pro.jrat.common.crypto.Crypto;
+import pro.jrat.common.crypto.EncryptionKey;
 import pro.jrat.listeners.SocketComboBoxListener;
 import pro.jrat.net.PortListener;
 import pro.jrat.settings.Settings;
@@ -25,8 +27,6 @@ import pro.jrat.ui.components.EncryptionKeyJTextField;
 import pro.jrat.ui.components.PortListenerJComboBox;
 import pro.jrat.utils.Util;
 
-import com.redpois0n.common.crypto.Crypto;
-import com.redpois0n.common.crypto.EncryptionKey;
 
 @SuppressWarnings("serial")
 public class PanelBuildGeneral extends JPanel {

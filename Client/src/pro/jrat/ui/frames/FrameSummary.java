@@ -13,12 +13,12 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import pro.jrat.BuildStatus;
+import pro.jrat.common.codec.Md5;
+import pro.jrat.common.codec.Sha1;
 import pro.jrat.ui.components.Table;
 import pro.jrat.ui.renderers.table.BuildTableRenderer;
 import pro.jrat.utils.IconUtils;
 
-import com.redpois0n.common.codec.Md5;
-import com.redpois0n.common.codec.Sha1;
 
 @SuppressWarnings("serial")
 public class FrameSummary extends BaseDialog {

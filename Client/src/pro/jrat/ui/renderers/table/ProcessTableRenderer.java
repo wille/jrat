@@ -6,9 +6,9 @@ import javax.swing.Icon;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
+import pro.jrat.common.OperatingSystem;
 import pro.jrat.utils.IconUtils;
 
-import com.redpois0n.common.OperatingSystem;
 
 @SuppressWarnings("serial")
 public class ProcessTableRenderer extends DefaultTableCellRenderer {

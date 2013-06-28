@@ -33,6 +33,9 @@ import pro.jrat.BuildStatus;
 import pro.jrat.ErrorDialog;
 import pro.jrat.OSConfig;
 import pro.jrat.build.Build;
+import pro.jrat.common.OperatingSystem;
+import pro.jrat.common.crypto.Crypto;
+import pro.jrat.common.crypto.EncryptionKey;
 import pro.jrat.extensions.PluginList;
 import pro.jrat.io.Files;
 import pro.jrat.listeners.MinimalBuildListener;
@@ -43,9 +46,6 @@ import pro.jrat.ui.components.PortListenerJComboBox;
 import pro.jrat.utils.NetworkUtils;
 import pro.jrat.utils.Util;
 
-import com.redpois0n.common.OperatingSystem;
-import com.redpois0n.common.crypto.Crypto;
-import com.redpois0n.common.crypto.EncryptionKey;
 
 @SuppressWarnings("serial")
 public class FrameBuildMinimal extends BaseFrame {

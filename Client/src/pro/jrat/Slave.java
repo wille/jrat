@@ -14,6 +14,10 @@ import java.util.Random;
 
 import javax.swing.ImageIcon;
 
+import pro.jrat.common.OperatingSystem;
+import pro.jrat.common.Version;
+import pro.jrat.common.codec.Hex;
+import pro.jrat.common.crypto.Crypto;
 import pro.jrat.exceptions.CloseException;
 import pro.jrat.extensions.PluginEventHandler;
 import pro.jrat.ip2c.Country;
@@ -30,10 +34,6 @@ import pro.jrat.utils.FlagUtils;
 import pro.jrat.utils.TrayIconUtils;
 import pro.jrat.utils.Util;
 
-import com.redpois0n.common.OperatingSystem;
-import com.redpois0n.common.Version;
-import com.redpois0n.common.codec.Hex;
-import com.redpois0n.common.crypto.Crypto;
 
 @SuppressWarnings("unused")
 public class Slave implements Runnable {

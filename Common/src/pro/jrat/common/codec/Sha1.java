@@ -1,4 +1,4 @@
-package com.redpois0n.common.codec;
+package pro.jrat.common.codec;
 
 import java.io.File;
 import java.io.FileInputStream;

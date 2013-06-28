@@ -1,4 +1,4 @@
-package com.redpois0n.common.exceptions;
+package pro.jrat.common.exceptions;
 
 @SuppressWarnings("serial")
 public class PacketAlreadySentException extends RuntimeException {

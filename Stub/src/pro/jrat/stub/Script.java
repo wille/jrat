@@ -8,7 +8,8 @@ import java.util.Random;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 
-import com.redpois0n.common.OperatingSystem;
+import pro.jrat.common.OperatingSystem;
+
 
 public class Script {
 

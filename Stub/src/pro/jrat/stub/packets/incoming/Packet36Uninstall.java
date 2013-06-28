@@ -4,12 +4,12 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.Random;
 
+import pro.jrat.common.OperatingSystem;
 import pro.jrat.stub.Connection;
 import pro.jrat.stub.Main;
 import pro.jrat.stub.WinRegistry;
 import pro.jrat.stub.utils.Utils;
 
-import com.redpois0n.common.OperatingSystem;
 
 public class Packet36Uninstall extends AbstractIncomingPacket {
 

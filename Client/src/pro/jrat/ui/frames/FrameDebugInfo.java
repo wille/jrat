@@ -20,7 +20,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
-import com.redpois0n.common.Version;
+import pro.jrat.common.Version;
+
 
 @SuppressWarnings("serial")
 public class FrameDebugInfo extends BaseFrame {

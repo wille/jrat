@@ -24,12 +24,12 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
 import pro.jrat.Constants;
+import pro.jrat.common.Version;
 import pro.jrat.net.WebRequest;
 import pro.jrat.ui.panels.PanelImage;
 import pro.jrat.utils.IOUtils;
 import pro.jrat.utils.NetworkUtils;
 
-import com.redpois0n.common.Version;
 
 
 @SuppressWarnings("serial")

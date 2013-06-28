@@ -16,8 +16,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import pro.jrat.Help;
 import pro.jrat.OSConfig;
+import pro.jrat.common.OperatingSystem;
 
-import com.redpois0n.common.OperatingSystem;
 
 @SuppressWarnings("serial")
 public class PanelBuildOS extends JPanel {

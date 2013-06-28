@@ -19,6 +19,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
 import pro.jrat.Sound;
+import pro.jrat.common.Version;
 import pro.jrat.listeners.AboutListener;
 import pro.jrat.listeners.ChangelogListener;
 import pro.jrat.listeners.EulaListener;
@@ -35,7 +36,6 @@ import pro.jrat.ui.panels.PanelSettingsTheme;
 import pro.jrat.ui.renderers.JTreeIconsRenderer;
 import pro.jrat.utils.IconUtils;
 
-import com.redpois0n.common.Version;
 
 @SuppressWarnings("serial")
 public class FrameSettings extends BaseFrame {

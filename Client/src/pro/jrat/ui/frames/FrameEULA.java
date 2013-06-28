@@ -19,11 +19,11 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
 import pro.jrat.Main;
+import pro.jrat.common.Version;
 import pro.jrat.settings.Settings;
 import pro.jrat.threads.ThreadCountDown;
 import pro.jrat.utils.IOUtils;
 
-import com.redpois0n.common.Version;
 
 
 @SuppressWarnings("serial")

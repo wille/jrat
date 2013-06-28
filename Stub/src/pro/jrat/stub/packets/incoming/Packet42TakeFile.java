@@ -2,10 +2,10 @@ package pro.jrat.stub.packets.incoming;
 
 import java.io.File;
 
+import pro.jrat.common.io.FileIO;
 import pro.jrat.stub.Connection;
 import pro.jrat.stub.Main;
 
-import com.redpois0n.common.io.FileIO;
 
 
 public class Packet42TakeFile extends AbstractIncomingPacket {

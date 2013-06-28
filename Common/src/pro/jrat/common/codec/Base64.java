@@ -1,4 +1,4 @@
-package com.redpois0n.common.codec;
+package pro.jrat.common.codec;
 
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;

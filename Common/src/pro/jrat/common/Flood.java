@@ -1,4 +1,4 @@
-package com.redpois0n.common;
+package pro.jrat.common;
 
 public enum Flood {
 

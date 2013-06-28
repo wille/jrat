@@ -1,8 +1,9 @@
-package com.redpois0n.common.crypto;
+package pro.jrat.common.crypto;
 
 import java.io.Serializable;
 
-import com.redpois0n.common.codec.Md5;
+import pro.jrat.common.codec.Md5;
+
 
 public class EncryptionKey implements Serializable {
 

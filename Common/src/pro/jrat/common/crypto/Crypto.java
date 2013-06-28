@@ -1,4 +1,4 @@
-package com.redpois0n.common.crypto;
+package pro.jrat.common.crypto;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;

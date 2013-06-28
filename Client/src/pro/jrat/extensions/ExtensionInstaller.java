@@ -1,14 +1,16 @@
 package pro.jrat.extensions;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-
-import com.redpois0n.common.utils.IOUtils;
+import java.util.zip.ZipInputStream;
 
 import pro.jrat.Constants;
 import pro.jrat.ErrorDialog;
+import pro.jrat.common.utils.IOUtils;
 import pro.jrat.net.WebRequest;
+
 
 public class ExtensionInstaller {
 
@@ -36,14 +38,22 @@ public class ExtensionInstaller {
 		plugin.getDirectory().delete();
 	}
 
-	public void install() throws Exception  {
+	public void install() throws Exception {
+		File temp = File.createTempFile(plugin.getName() + "_temp_download", ".zip");
+		
 		InputStream archive = WebRequest.getInputStream(Constants.HOST + "/plugins/" + plugin.getName() + "/archive.zip");
-		FileOutputStream out = new FileOutputStream(File.createTempFile(plugin.getName() + "_temp_download", ".zip"));
+		FileOutputStream out = new FileOutputStream(temp);
 		
 		IOUtils.copy(archive, out);
 		
 		archive.close();
 		out.close();
+		
+		
+		ZipInputStream zis = new ZipInputStream(new FileInputStream(temp));
+		
+		
+		temp.delete();
 	}
 
 }

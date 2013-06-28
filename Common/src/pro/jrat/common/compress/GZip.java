@@ -1,4 +1,4 @@
-package com.redpois0n.common.compress;
+package pro.jrat.common.compress;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -6,7 +6,8 @@ import java.io.InputStream;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
-import com.redpois0n.common.utils.IOUtils;
+import pro.jrat.common.utils.IOUtils;
+
 
 public class GZip {
 

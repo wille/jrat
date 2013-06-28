@@ -6,7 +6,8 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JTextField;
 
-import com.redpois0n.common.crypto.Crypto;
+import pro.jrat.common.crypto.Crypto;
+
 
 @SuppressWarnings("serial")
 public abstract class EncryptionKeyJTextField extends JTextField {

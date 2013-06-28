@@ -2,7 +2,8 @@ package pro.jrat.ui.frames;
 
 import javax.swing.JDialog;
 
-import com.redpois0n.common.OperatingSystem;
+import pro.jrat.common.OperatingSystem;
+
 
 @SuppressWarnings("serial")
 public abstract class BaseDialog extends JDialog {

