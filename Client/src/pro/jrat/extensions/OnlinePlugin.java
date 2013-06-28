@@ -33,7 +33,7 @@ public class OnlinePlugin {
 	public ImageIcon getIcon() {
 		if (icon == null) {
 			try {
-				icon = new ImageIcon(ImageIO.read(WebRequest.getInputStream(Constants.HOST + "/plugins/" + this.name + "/icon.png")));
+				icon = new ImageIcon(ImageIO.read(WebRequest.getInputStream(Constants.HOST + "/plugins/" + getName() + "/icon.png")));
 			} catch (Exception e) {
 				e.printStackTrace();
 				icon = PluginsTableRenderer.PLUGIN_ICON;
@@ -49,9 +49,13 @@ public class OnlinePlugin {
 
 
 	public String getName() {
-		return name;
+		return name.replace(" ", "");
 	}
 
+	public String getDisplayName() {
+		return name;
+	}
+	
 	public String getBuiltFor() {
 		return builtFor;
 	}

@@ -20,6 +20,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
@@ -70,6 +72,13 @@ public class FrameOnlinePlugins extends JFrame {
 				return false;
 			}
 		};
+		
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+	        public void valueChanged(ListSelectionEvent event) {
+	        	table.repaint();
+	        }
+	    });
+		
 		table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
 			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 				JLabel lbl = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
@@ -124,7 +133,7 @@ public class FrameOnlinePlugins extends JFrame {
 			plugins = OnlinePlugin.getAvailablePlugins();
 
 			for (OnlinePlugin plugin : plugins) {
-				model.addRow(new Object[] { plugin.getName(), plugin.getAuthor(), plugin.getDescription(), plugin.getVersion(), plugin.getBuiltFor() });
+				model.addRow(new Object[] { plugin.getDisplayName(), plugin.getAuthor(), plugin.getDescription(), plugin.getVersion(), plugin.getBuiltFor() });
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
