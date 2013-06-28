@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -26,6 +25,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import pro.jrat.ErrorDialog;
+import pro.jrat.extensions.ExtensionInstaller;
 import pro.jrat.extensions.OnlinePlugin;
 
 @SuppressWarnings("serial")
@@ -93,9 +93,7 @@ public class FrameOnlinePlugins extends JFrame {
 						btn.setEnabled(false);
 						return btn;
 					} else {
-						File pluginFile = new File("plugins/" + plugin.getName() + ".jar");
-
-						JButton btn = new JButton(pluginFile.exists() ? "Uninstall" : "Install");
+						JButton btn = new JButton(plugin.isInstalled() ? "Uninstall" : "Install");
 						btn.addActionListener(listener);
 						return btn;
 					}
@@ -129,7 +127,10 @@ public class FrameOnlinePlugins extends JFrame {
 	}
 	
 	public void install(OnlinePlugin plugin) {
+		ExtensionInstaller installer = new ExtensionInstaller(plugin);
+		installer.toggle();
 		
+		table.repaint();
 	}
 
 	public void reload() {

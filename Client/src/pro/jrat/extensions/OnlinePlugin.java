@@ -79,6 +79,11 @@ public class OnlinePlugin {
 	public File getJar() {
 		return new File("plugins/" + getName() + ".jar");
 	}
+	
+	public File getStubJar() {
+		return new File("plugins/stubs/" + getName() + ".jar");
+	}
+
 
 	public static List<OnlinePlugin> getAvailablePlugins() throws Exception {
 		List<OnlinePlugin> plugins = new ArrayList<OnlinePlugin>();
