@@ -75,7 +75,7 @@ public class FrameOnlinePlugins extends JFrame {
 		
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
 	        public void valueChanged(ListSelectionEvent event) {
-	        	table.repaint();
+	        	install((String) table.getValueAt(table.getSelectedRow(), 0));
 	        }
 	    });
 		
@@ -124,6 +124,14 @@ public class FrameOnlinePlugins extends JFrame {
 		reload();
 	}
 
+	public void install(String pluginDisplayName) {
+		install(getPlugin(pluginDisplayName));
+	}
+	
+	public void install(OnlinePlugin plugin) {
+		
+	}
+
 	public void reload() {
 		try {
 			while (model.getRowCount() > 0) {
@@ -143,7 +151,7 @@ public class FrameOnlinePlugins extends JFrame {
 
 	public OnlinePlugin getPlugin(String name) {
 		for (OnlinePlugin plugin : plugins) {
-			if (plugin.getName().trim().equals(name.trim())) {
+			if (plugin.getName().trim().equals(name.trim().replace(" ", ""))) {
 				return plugin;
 			}
 		}
