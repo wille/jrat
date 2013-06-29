@@ -16,6 +16,8 @@ import pro.jrat.ui.renderers.table.PluginsTableRenderer;
 @SuppressWarnings("serial")
 public class PanelMainPlugins extends JPanel {
 	
+	public static PanelMainPlugins instance = new PanelMainPlugins();
+	
 	private JTable table;
 	
 	public DefaultTableModel getModel() {

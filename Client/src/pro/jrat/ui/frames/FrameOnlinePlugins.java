@@ -11,6 +11,7 @@ import java.util.List;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -30,6 +31,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import pro.jrat.ErrorDialog;
+import pro.jrat.common.Version;
 import pro.jrat.extensions.ExtensionInstaller;
 import pro.jrat.extensions.OnlinePlugin;
 import pro.jrat.listeners.ExtensionInstallerListener;
@@ -37,12 +39,6 @@ import pro.jrat.listeners.ExtensionInstallerListener;
 @SuppressWarnings("serial")
 public class FrameOnlinePlugins extends JFrame {
 
-	private ActionListener listener = new ActionListener() {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-
-		}
-	};
 	private JPanel contentPane;
 	private JTable table;
 	private DefaultTableModel model;
@@ -92,6 +88,12 @@ public class FrameOnlinePlugins extends JFrame {
 				JLabel lbl = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
 				OnlinePlugin plugin = getPlugin((String) table.getValueAt(row, 0));
+				
+				if (plugin.getVersion().substring(0, 3).equals(Version.getVersion().substring(0, 3))) {
+					setForeground(isSelected ? Color.white : Color.green);
+				} else {
+					setForeground(isSelected ? Color.white : Color.black);
+				}
 
 				if (column == 0 && plugin != null) {
 					lbl.setIcon(plugin.getIcon());
@@ -103,7 +105,6 @@ public class FrameOnlinePlugins extends JFrame {
 					} else {
 						JButton btn = new JButton(plugin.isInstalled() ? "Installed" : "Install");
 						btn.setEnabled(!plugin.isInstalled());
-						btn.addActionListener(listener);
 						return btn;
 					}
 				} else {
@@ -125,10 +126,16 @@ public class FrameOnlinePlugins extends JFrame {
 		addPopup(table, popupMenu);
 
 		mntmReload = new JMenuItem("Reload");
+		mntmReload.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				reload();
+			}
+		});
+		mntmReload.setIcon(new ImageIcon(FrameOnlinePlugins.class.getResource("/icons/update.png")));
 		popupMenu.add(mntmReload);
 		scrollPane.setViewportView(table);
 		
-		lblStatus = new JLabel("Status");
+		lblStatus = new JLabel("...");
 		lblStatus.setVisible(false);
 		
 		progressBar = new JProgressBar();

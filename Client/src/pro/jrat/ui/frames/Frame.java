@@ -105,6 +105,7 @@ public class Frame extends BaseFrame {
 	public static final int PING_ICON_DOT = 0;
 	public static final int PING_ICON_CIRC = 1;
 	private final ButtonGroup encryptionButtonGroup = new ButtonGroup();
+	private JMenu mnPlugins;
 
 	public Frame() {
 		super();
@@ -640,46 +641,9 @@ public class Frame extends BaseFrame {
 		mntmUpdateAllOutdated.setIcon(new ImageIcon(Frame.class.getResource("/icons/update.png")));
 		mnServers.add(mntmUpdateAllOutdated);
 		
-		JMenu mnPlugins = new JMenu("Plugins");
+		mnPlugins = new JMenu("Plugins");
 		menuBar.add(mnPlugins);
 		
-		if (PluginLoader.plugins.size() == 0) {
-			JMenuItem item = new JMenuItem("No plugins loaded");
-			item.setEnabled(false);
-			mnPlugins.add(item);
-		}
-		
-		for (int i = 0; i < PluginLoader.plugins.size(); i++) {
-			final Plugin p = PluginLoader.plugins.get(i);
-			
-			JMenuItem item = new JMenuItem(p.getName());
-			
-			ActionListener listener = p.getGlobalItemListener();
-			
-			item.setEnabled(listener != null);
-			
-			if (listener != null) {
-				item.addActionListener(listener);
-			} else {
-				item.addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						JOptionPane.showMessageDialog(null, "Name: " + p.getName() + "\nVersion: " + p.getVersion() + "\nAuthor: " + p.getAuthor() + "\nDescription: " + p.getDescription());
-					}			
-				});
-			}
-			
-			File iconFile = new File("plugins/" + p.getName() + "/icon.png");
-			
-			if (iconFile.exists()) {
-				item.setIcon(new ImageIcon(iconFile.getAbsolutePath()));
-			} else {
-				item.setIcon(PluginsTableRenderer.PLUGIN_ICON);
-			}
-			
-			mnPlugins.add(item);
-		}
-
 		JMenu mnOther = new JMenu("Other");
 		menuBar.add(mnOther);
 
@@ -1612,7 +1576,7 @@ public class Frame extends BaseFrame {
 
 		tabbedPane.addTab("Sockets", IconUtils.getIcon("sockets"), new PanelMainSockets(), null);
 		tabbedPane.addTab("Log", IconUtils.getIcon("log"), PanelMainLog.instance, null);
-		tabbedPane.addTab("Plugins", IconUtils.getIcon("plugin"), new PanelMainPlugins(), null);
+		tabbedPane.addTab("Plugins", IconUtils.getIcon("plugin"), PanelMainPlugins.instance, null);
 
 		toolBar = new JToolBar();
 		toolBar.setVisible(false);
@@ -1644,6 +1608,8 @@ public class Frame extends BaseFrame {
 		contentPane.setLayout(gl_contentPane);
 		
 		Statistics.getGlobal().reload();
+		
+		reloadPlugins();
 	}
 
 	private static void addPopup(Component component, final JPopupMenu popup) {
@@ -1664,6 +1630,48 @@ public class Frame extends BaseFrame {
 				popup.show(e.getComponent(), e.getX(), e.getY());
 			}
 		});
+	}
+	
+	public void reloadPlugins() {
+		mnPlugins.removeAll();
+		if (PluginLoader.plugins.size() == 0) {
+			JMenuItem item = new JMenuItem("No plugins loaded");
+			item.setEnabled(false);
+			mnPlugins.add(item);
+		}
+		
+		for (int i = 0; i < PluginLoader.plugins.size(); i++) {
+			final Plugin p = PluginLoader.plugins.get(i);
+			
+			JMenuItem item = new JMenuItem(p.getName());
+			
+			ActionListener listener = p.getGlobalItemListener();
+			
+			item.setEnabled(listener != null);
+			
+			if (listener != null) {
+				item.addActionListener(listener);
+			} else {
+				item.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						JOptionPane.showMessageDialog(null, "Name: " + p.getName() + "\nVersion: " + p.getVersion() + "\nAuthor: " + p.getAuthor() + "\nDescription: " + p.getDescription());
+					}			
+				});
+			}
+			
+			File iconFile = new File("plugins/" + p.getName() + "/icon.png");
+			
+			if (iconFile.exists()) {
+				item.setIcon(new ImageIcon(iconFile.getAbsolutePath()));
+			} else {
+				item.setIcon(PluginsTableRenderer.PLUGIN_ICON);
+			}
+			
+			mnPlugins.add(item);
+		}
+
+		PanelMainPlugins.instance.reload();
 	}
 
 	public void unselectAll() {
