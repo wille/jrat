@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.List;
 
 import javax.swing.GroupLayout;
@@ -80,7 +81,9 @@ public class FrameOnlinePlugins extends JFrame {
 		
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
 	        public void valueChanged(ListSelectionEvent event) {
-	        	install((String) table.getValueAt(table.getSelectedRow(), 0));
+	        	if (!event.getValueIsAdjusting()) {
+	        		install((String) table.getValueAt(table.getSelectedRow(), 0));
+	        	}
 	        }
 	    });
 		

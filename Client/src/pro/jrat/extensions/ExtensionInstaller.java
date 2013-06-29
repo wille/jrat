@@ -49,6 +49,8 @@ public class ExtensionInstaller {
 	}
 
 	public void install() throws Exception {
+		listener.status(Color.black, "Connecting...", 0);
+		
 		File temp = File.createTempFile(plugin.getName() + "_temp_download", ".zip");
 
 		URLConnection archiveConnection = WebRequest.getConnection(Constants.HOST + "/plugins/" + plugin.getName() + "/archive.zip");
