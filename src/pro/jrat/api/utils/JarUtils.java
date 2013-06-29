@@ -39,7 +39,7 @@ public class JarUtils {
 	/**
 	 * 
 	 * @param jar
-	 * @return The main class of the (plugin) from info.txt
+	 * @return The main class of the (plugin) from plugin.txt
 	 * @throws MainClassNotFoundException
 	 */
 	public static String getMainClassFromInfo(JarFile jar) throws MainClassNotFoundException {		
@@ -48,7 +48,7 @@ public class JarUtils {
 			
 			while (entries.hasMoreElements()) {
 				JarEntry entry = entries.nextElement();
-				if (entry.getName().equals("info.txt")) {
+				if (entry.getName().equals("plugin.txt")) {
 					return new BufferedReader(new InputStreamReader(jar.getInputStream(entry))).readLine();
 				}
 			}

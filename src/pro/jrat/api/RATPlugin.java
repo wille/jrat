@@ -56,7 +56,7 @@ public abstract class RATPlugin {
 	public abstract void onSendPacket(OnSendPacketEvent event) throws Exception;
 	
 	/**
-	 * 
+	 * Note that this is the display name, like "Test Plugin", but the working name in etc gallery is "TestPlugin"
 	 * @return Name of the plugin
 	 */
 
