@@ -32,10 +32,9 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-import com.sun.org.apache.xml.internal.serializer.Version;
-
 import pro.jrat.Constants;
 import pro.jrat.ErrorDialog;
+import pro.jrat.common.Version;
 import pro.jrat.extensions.ExtensionInstaller;
 import pro.jrat.extensions.OnlinePlugin;
 import pro.jrat.extensions.Plugin;

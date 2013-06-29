@@ -27,6 +27,7 @@ public class PanelBuildPlugins extends JPanel {
 	private JCheckBox chckbxDoNotLoad;
 
 	public PluginList getList() {
+		// TODO
 		if (list.plugins.size() == 0) {
 			return null;
 		} else {
