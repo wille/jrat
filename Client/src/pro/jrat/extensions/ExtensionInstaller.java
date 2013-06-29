@@ -13,6 +13,7 @@ import java.util.zip.ZipFile;
 
 import pro.jrat.Constants;
 import pro.jrat.ErrorDialog;
+import pro.jrat.UniqueKey;
 import pro.jrat.common.listeners.CopyStreamsListener;
 import pro.jrat.common.utils.IOUtils;
 import pro.jrat.common.utils.MathUtils;
@@ -53,7 +54,7 @@ public class ExtensionInstaller {
 		
 		File temp = File.createTempFile(plugin.getName() + "_temp_download", ".zip");
 
-		URLConnection archiveConnection = WebRequest.getConnection(Constants.HOST + "/plugins/getplugin.php?plugin=" + plugin.getName() + "&key=null");
+		URLConnection archiveConnection = WebRequest.getConnection(Constants.HOST + "/plugins/getplugin.php?plugin=" + plugin.getName() + "&key=" + UniqueKey.getKey());
 		archiveConnection.connect();
 		
 		long length = archiveConnection.getContentLengthLong();

