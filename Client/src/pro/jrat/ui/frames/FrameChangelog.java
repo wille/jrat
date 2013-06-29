@@ -24,6 +24,7 @@ import javax.swing.event.HyperlinkListener;
 import pro.jrat.Constants;
 import pro.jrat.ErrorDialog;
 import pro.jrat.common.Version;
+import pro.jrat.net.WebRequest;
 import pro.jrat.utils.NetworkUtils;
 
 
@@ -98,7 +99,7 @@ public class FrameChangelog extends BaseFrame {
 		
 		JEditorPane com;
 		try {
-			com = new JEditorPane(new URL(url));
+			com = new JEditorPane(WebRequest.getUrl(url));
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			ErrorDialog.create(ex);

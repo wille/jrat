@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JProgressBar;
@@ -160,7 +161,7 @@ public class FrameOnlinePlugins extends JFrame {
 		install(getPlugin(pluginDisplayName));
 	}
 	
-	public void install(OnlinePlugin plugin) {
+	public void install(final OnlinePlugin plugin) {
 		final ExtensionInstaller installer = new ExtensionInstaller(plugin, new ExtensionInstallerListener() {
 			@Override
 			public void status(Color color, String message, int status) {
@@ -175,11 +176,22 @@ public class FrameOnlinePlugins extends JFrame {
 		
 		new Thread(new Runnable() {
 			public void run() {
-				installer.toggle();
-				table.repaint();
-				
-				progressBar.setVisible(false);
-				lblStatus.setVisible(false);
+				try {
+					installer.toggle();
+					
+					progressBar.setVisible(false);
+					lblStatus.setVisible(false);
+					
+					JOptionPane.showMessageDialog(null, "Successfully installed and enabled " + plugin.getDisplayName(), "Plugin", JOptionPane.INFORMATION_MESSAGE);
+				} catch (Exception ex) {
+					ex.printStackTrace();
+					
+					progressBar.setVisible(false);
+					lblStatus.setVisible(false);
+					
+					JOptionPane.showMessageDialog(null, "Failed to install " + plugin.getDisplayName() + ", " + ex.getClass().getSimpleName() + ": " + ex.getMessage(), "Plugin", JOptionPane.ERROR_MESSAGE);
+				}
+				table.repaint();				
 			}
 		}).start();	
 	}
