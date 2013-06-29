@@ -20,14 +20,16 @@ public class OnlinePlugin {
 	private String builtFor;
 	private String description;
 	private String author;
+	private boolean downloadable;
 	private ImageIcon icon;
 	
-	public OnlinePlugin(String name, String version, String builtFor, String description, String author) {
+	public OnlinePlugin(String name, String version, String builtFor, String description, String author, boolean downloadable) {
 		this.name = name;
 		this.version = version;
 		this.builtFor = builtFor;
 		this.description = description;
 		this.author = author;
+		this.downloadable = downloadable;
 	}
 	
 	public ImageIcon getIcon() {
@@ -68,6 +70,10 @@ public class OnlinePlugin {
 		return author;
 	}
 	
+	public boolean isDownloadable() {
+		return downloadable;
+	}
+	
 	public boolean isInstalled() {
 		return new File("plugins/" + getName() + ".jar").exists();
 	}
@@ -96,7 +102,9 @@ public class OnlinePlugin {
 			String builtFor = reader.readLine();
 			String description = reader.readLine();
 			String author = reader.readLine();
-			OnlinePlugin plugin = new OnlinePlugin(line, version, builtFor, description, author);
+			boolean downloadable = reader.readLine().trim().equalsIgnoreCase("true");
+			
+			OnlinePlugin plugin = new OnlinePlugin(line, version, builtFor, description, author, downloadable);
 			
 			plugins.add(plugin);
 		}

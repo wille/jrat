@@ -32,6 +32,8 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+import com.sun.org.apache.xml.internal.serializer.Version;
+
 import pro.jrat.Constants;
 import pro.jrat.ErrorDialog;
 import pro.jrat.extensions.ExtensionInstaller;
@@ -57,7 +59,7 @@ public class FrameOnlinePlugins extends JFrame {
 
 	public FrameOnlinePlugins() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameOnlinePlugins.class.getResource("/icons/application_icon_large.png")));
-		setTitle("Browse Online Plugins");
+		setTitle("Browse Online Plugin Gallery - " + Version.getVersion());
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 725, 418);
 		contentPane = new JPanel();
@@ -112,8 +114,14 @@ public class FrameOnlinePlugins extends JFrame {
 						btn.setEnabled(false);
 						return btn;
 					} else {
-						JButton btn = new JButton(plugin.isInstalled() ? "Reinstall" : "Install");
-						//btn.setEnabled(!plugin.isInstalled());
+						String text = plugin.isInstalled() ? "Reinstall" : "Install";
+						
+						if (!plugin.isDownloadable()) {
+							text = "Not available";
+						}
+						
+						JButton btn = new JButton(text);
+						btn.setEnabled(plugin.isDownloadable());
 						return btn;
 					}
 				} else {
@@ -146,7 +154,7 @@ public class FrameOnlinePlugins extends JFrame {
 		mntmHelp = new JMenuItem("Help");
 		mntmHelp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String help = "Installs plugins from web\n\nAlways deal with caution as jRAT Project is not behind many of these plugins\n\nGreen text means that they are built for your current version or subversion";
+				String help = "Installs plugins from web\n\nAlways deal with caution as jRAT Project is not behind many of these plugins\n\nGreen text means that they are built for your current version or subversion\n\nPlugins shown as not available might be paid or premium by their authors";
 				
 				JOptionPane.showMessageDialog(null, help, "Help", JOptionPane.QUESTION_MESSAGE);
 			}
