@@ -51,9 +51,9 @@ public class ExtensionInstaller {
 		URLConnection archiveConnection = WebRequest.getConnection(Constants.HOST + "/plugins/getplugin.php?plugin=" + plugin.getName() + "&key=" + UniqueId.getTextual());
 		archiveConnection.connect();
 
-		long length = archiveConnection.getContentLengthLong();
-
 		InputStream archive = archiveConnection.getInputStream();
+		
+		long length = archiveConnection.getContentLengthLong();
 
 		FileOutputStream out = new FileOutputStream(temp);
 

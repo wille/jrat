@@ -58,7 +58,7 @@ public class Plugin {
 			mainClass = JarUtils.getMainClassFromInfo(new JarFile(file));
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			System.out.println("Failed loading main class from info.txt, trying meta-inf");
+			System.out.println("Failed loading main class from plugin.txt, trying meta-inf");
 			mainClass = JarUtils.getMainClass(new JarFile(file));
 		}
 		

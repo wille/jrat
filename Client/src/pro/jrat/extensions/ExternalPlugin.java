@@ -27,7 +27,7 @@ public class ExternalPlugin {
 				Enumeration<? extends ZipEntry> e = jar.entries();
 				while (e.hasMoreElements()) {
 					ZipEntry entry = e.nextElement();
-					if (entry.getName().equals("info.txt")) {
+					if (entry.getName().equals("plugin.txt")) {
 						clazz = IOUtils.readString(jar.getInputStream(entry));
 						break;
 					}

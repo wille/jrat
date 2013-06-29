@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.List;
 
 import javax.swing.GroupLayout;
@@ -82,7 +81,7 @@ public class FrameOnlinePlugins extends JFrame {
 		
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
 	        public void valueChanged(ListSelectionEvent event) {
-	        	if (!event.getValueIsAdjusting()) {
+	        	if (!event.getValueIsAdjusting() && table.getSelectedColumn() == 5) {
 	        		install((String) table.getValueAt(table.getSelectedRow(), 0));
 	        	}
 	        }
@@ -162,6 +161,11 @@ public class FrameOnlinePlugins extends JFrame {
 	}
 	
 	public void install(final OnlinePlugin plugin) {
+		String what = plugin.isInstalled() ? "uninstall" : "install";
+		if (JOptionPane.showConfirmDialog(null, "Are you sure that you want to " + what + " " + plugin.getDisplayName() + "?", "Plugin", JOptionPane.QUESTION_MESSAGE, JOptionPane.YES_NO_CANCEL_OPTION) != JOptionPane.YES_OPTION) {
+			return;
+		}
+		
 		final ExtensionInstaller installer = new ExtensionInstaller(plugin, new ExtensionInstallerListener() {
 			@Override
 			public void status(Color color, String message, int status) {
