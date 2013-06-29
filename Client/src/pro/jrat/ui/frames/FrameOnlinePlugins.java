@@ -47,6 +47,7 @@ public class FrameOnlinePlugins extends JFrame {
 	private List<OnlinePlugin> plugins;
 	private JProgressBar progressBar;
 	private JLabel lblStatus;
+	private JMenuItem mntmHelp;
 
 	public FrameOnlinePlugins() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameOnlinePlugins.class.getResource("/icons/application_icon_large.png")));
@@ -89,8 +90,8 @@ public class FrameOnlinePlugins extends JFrame {
 
 				OnlinePlugin plugin = getPlugin((String) table.getValueAt(row, 0));
 				
-				if (plugin.getVersion().substring(0, 3).equals(Version.getVersion().substring(0, 3))) {
-					setForeground(isSelected ? Color.white : Color.green);
+				if (plugin.getBuiltFor().substring(0, 3).equals(Version.getVersion().substring(0, 3))) {
+					setForeground(isSelected ? Color.white : Color.green.darker());
 				} else {
 					setForeground(isSelected ? Color.white : Color.black);
 				}
@@ -133,6 +134,17 @@ public class FrameOnlinePlugins extends JFrame {
 		});
 		mntmReload.setIcon(new ImageIcon(FrameOnlinePlugins.class.getResource("/icons/update.png")));
 		popupMenu.add(mntmReload);
+		
+		mntmHelp = new JMenuItem("Help");
+		mntmHelp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String help = "Installs plugins from web\n\nAlways deal with caution as jRAT Project is not behind many of these plugins\n\nGreen text means that they are built for your current version or subversion";
+				
+				JOptionPane.showMessageDialog(null, help, "Help", JOptionPane.QUESTION_MESSAGE);
+			}
+		});
+		mntmHelp.setIcon(new ImageIcon(FrameOnlinePlugins.class.getResource("/icons/help.png")));
+		popupMenu.add(mntmHelp);
 		scrollPane.setViewportView(table);
 		
 		lblStatus = new JLabel("...");
@@ -174,7 +186,7 @@ public class FrameOnlinePlugins extends JFrame {
 		}
 		
 		String what = plugin.isInstalled() ? "uninstall" : "install";
-		if (JOptionPane.showConfirmDialog(null, "Are you sure that you want to " + what + " " + plugin.getDisplayName() + "?", "Plugin", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE) != JOptionPane.YES_OPTION) {
+		if (JOptionPane.showConfirmDialog(null, "Are you sure that you want to " + what + " " + plugin.getDisplayName() + "?\n\njRAT Project is not behind many of these plugins and cannot verify their content", "Plugin", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE) != JOptionPane.YES_OPTION) {
 			return;
 		}
 		
