@@ -5,6 +5,6 @@ import java.util.List;
 
 public class PluginList {
 
-	public List<ExternalPlugin> plugins = new ArrayList<ExternalPlugin>();
+	public List<StubPlugin> plugins = new ArrayList<StubPlugin>();
 
 }

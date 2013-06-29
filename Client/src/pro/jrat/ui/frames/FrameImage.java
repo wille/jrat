@@ -3,6 +3,7 @@ package pro.jrat.ui.frames;
 import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Toolkit;
 
 import javax.swing.JPanel;
 
@@ -12,6 +13,9 @@ public class FrameImage extends BaseDialog {
 	private final Image image;
 
 	public FrameImage(Image img) {
+		setModal(true);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameImage.class.getResource("/icons/images-stack.png")));
+		setTitle("Preview");
 		this.image = img;
 
 		setBounds(100, 100, img.getWidth(null) + 20, img.getHeight(null) + 20);
@@ -24,6 +28,8 @@ public class FrameImage extends BaseDialog {
 			}
 		};
 		getContentPane().add(panel, BorderLayout.CENTER);
+		
+		setLocationRelativeTo(null);
 	}
 
 }

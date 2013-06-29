@@ -201,5 +201,15 @@ public class Plugin {
 	public void setGlobalItemListener(ActionListener globalItemListener) {
 		this.globalItemListener = globalItemListener;
 	}
+	
+	public boolean equals(Object o) {
+		if (o instanceof Plugin) {
+			Plugin plugin = (Plugin)o;
+			
+			return plugin.name.equals(this.name);
+		}
+		
+		return false;
+	}
 
 }

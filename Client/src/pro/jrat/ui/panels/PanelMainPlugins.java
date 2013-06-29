@@ -65,6 +65,7 @@ public class PanelMainPlugins extends JPanel {
 		while (getModel().getRowCount() > 0) {
 			getModel().removeRow(0);
 		}
+		
 		for (int i = 0; i < PluginLoader.plugins.size(); i++) {
 			Plugin p = PluginLoader.plugins.get(i);
 			getModel().addRow(new Object[] { p.getName(), p.getAuthor(), p.getDescription(), p.getVersion() });

