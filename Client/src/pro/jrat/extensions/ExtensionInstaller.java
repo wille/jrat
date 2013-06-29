@@ -53,7 +53,7 @@ public class ExtensionInstaller {
 		
 		File temp = File.createTempFile(plugin.getName() + "_temp_download", ".zip");
 
-		URLConnection archiveConnection = WebRequest.getConnection(Constants.HOST + "/plugins/" + plugin.getName() + "/archive.zip");
+		URLConnection archiveConnection = WebRequest.getConnection(Constants.HOST + "/plugins/getplugin.php?plugin=" + plugin.getName() + "&key=null");
 		archiveConnection.connect();
 		
 		long length = archiveConnection.getContentLengthLong();

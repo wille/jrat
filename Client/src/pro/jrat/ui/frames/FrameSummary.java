@@ -13,8 +13,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import pro.jrat.BuildStatus;
-import pro.jrat.common.codec.Md5;
-import pro.jrat.common.codec.Sha1;
+import pro.jrat.common.hash.Md5;
+import pro.jrat.common.hash.Sha1;
 import pro.jrat.ui.components.Table;
 import pro.jrat.ui.renderers.table.BuildTableRenderer;
 import pro.jrat.utils.IconUtils;

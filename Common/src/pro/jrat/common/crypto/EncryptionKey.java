@@ -2,7 +2,7 @@ package pro.jrat.common.crypto;
 
 import java.io.Serializable;
 
-import pro.jrat.common.codec.Md5;
+import pro.jrat.common.hash.Md5;
 
 
 public class EncryptionKey implements Serializable {

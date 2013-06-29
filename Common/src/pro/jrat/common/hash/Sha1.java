@@ -1,8 +1,10 @@
-package pro.jrat.common.codec;
+package pro.jrat.common.hash;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.security.MessageDigest;
+
+import pro.jrat.common.codec.Hex;
 
 public class Sha1 {
 	
