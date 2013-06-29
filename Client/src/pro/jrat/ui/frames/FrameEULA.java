@@ -96,8 +96,7 @@ public class FrameEULA extends BaseDialog {
 		} catch (Exception e) {
 			txtEULA.setText("Failed to load EULA: " + e.getMessage());
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Error loading eula: " + e.getClass().getSimpleName() + ": " + e.getMessage() + ", exiting", "Error", JOptionPane.ERROR_MESSAGE);
-			System.exit(0);
+			JOptionPane.showMessageDialog(null, "Error loading EULA: " + e.getClass().getSimpleName() + ": " + e.getMessage() + ", you now automatically agreed to it", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 		if (!view) {
 			new ThreadCountDown(this, btnAgree).start();
