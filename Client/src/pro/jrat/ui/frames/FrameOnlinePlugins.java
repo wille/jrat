@@ -101,7 +101,8 @@ public class FrameOnlinePlugins extends JFrame {
 						btn.setEnabled(false);
 						return btn;
 					} else {
-						JButton btn = new JButton(plugin.isInstalled() ? "Uninstall" : "Install");
+						JButton btn = new JButton(plugin.isInstalled() ? "Installed" : "Install");
+						btn.setEnabled(!plugin.isInstalled());
 						btn.addActionListener(listener);
 						return btn;
 					}
@@ -161,8 +162,12 @@ public class FrameOnlinePlugins extends JFrame {
 	}
 	
 	public void install(final OnlinePlugin plugin) {
+		if (plugin.isInstalled()) {
+			return;
+		}
+		
 		String what = plugin.isInstalled() ? "uninstall" : "install";
-		if (JOptionPane.showConfirmDialog(null, "Are you sure that you want to " + what + " " + plugin.getDisplayName() + "?", "Plugin", JOptionPane.QUESTION_MESSAGE, JOptionPane.YES_NO_CANCEL_OPTION) != JOptionPane.YES_OPTION) {
+		if (JOptionPane.showConfirmDialog(null, "Are you sure that you want to " + what + " " + plugin.getDisplayName() + "?", "Plugin", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE) != JOptionPane.YES_OPTION) {
 			return;
 		}
 		
