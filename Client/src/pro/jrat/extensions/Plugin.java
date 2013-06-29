@@ -44,6 +44,10 @@ public class Plugin {
 	private List<RATMenuItem> items = new ArrayList<RATMenuItem>();
 	private List<RATControlMenuEntry> controlitems = new ArrayList<RATControlMenuEntry>();
 
+	public Plugin(File jar) throws Exception {
+		this(jar.getAbsolutePath());
+	}
+	
 	public Plugin(String file) throws Exception {
 		setJarName(file);
 		setLoader(new PluginClassLoader(new URLClassLoader(new URL[] { new File(file).toURL() }, Main.class.getClassLoader())));

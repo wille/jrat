@@ -32,7 +32,7 @@ public class ExtensionInstaller {
 	public void toggle() {
 		try {
 			if (plugin.isInstalled()) {
-				uninstall();
+				install(); // TODO
 			} else {
 				install();
 			}
@@ -43,7 +43,9 @@ public class ExtensionInstaller {
 	}
 
 	public void uninstall() throws Exception {
-		// TODO UNINSTALL
+		System.out.println(plugin.getJar().delete());
+		System.out.println(plugin.getStubJar().delete());
+		System.out.println(plugin.getDirectory().delete());
 	}
 
 	public void install() throws Exception {
@@ -109,6 +111,8 @@ public class ExtensionInstaller {
 		zip.close();
 
 		temp.delete();
+		
+		new Plugin(plugin.getJar());
 	}
 
 }
