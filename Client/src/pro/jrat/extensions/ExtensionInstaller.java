@@ -2,9 +2,11 @@ package pro.jrat.extensions;
 
 import java.awt.Color;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.net.URLConnection;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -17,6 +19,7 @@ import pro.jrat.UniqueId;
 import pro.jrat.common.listeners.CopyStreamsListener;
 import pro.jrat.common.utils.IOUtils;
 import pro.jrat.common.utils.MathUtils;
+import pro.jrat.exceptions.InvalidKeyException;
 import pro.jrat.listeners.ExtensionInstallerListener;
 import pro.jrat.net.WebRequest;
 
@@ -49,9 +52,19 @@ public class ExtensionInstaller {
 
 		File temp = File.createTempFile(plugin.getName() + "_temp_download", ".zip");
 
-		URLConnection archiveConnection = WebRequest.getConnection(Constants.HOST + "/plugins/getplugin.php?plugin=" + plugin.getName() + "&key=" + UniqueId.getTextual());
+		HttpURLConnection archiveConnection = (HttpURLConnection) WebRequest.getConnection(Constants.HOST + "/plugins/getplugin.php?plugin=" + plugin.getName() + "&key=" + UniqueId.getTextual());
 		archiveConnection.connect();
-
+		
+		int response = archiveConnection.getResponseCode();
+		
+		if (response == 400) {
+			throw new MalformedURLException("Failed to send correct request");
+		} else if (response == 404) {
+			throw new FileNotFoundException("Failed to find plugin package: " + plugin.getName());
+		} else if (response == 401) {
+			throw new InvalidKeyException("Key not found");
+		}
+		
 		InputStream archive = archiveConnection.getInputStream();
 		
 		long length = archiveConnection.getContentLengthLong();

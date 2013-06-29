@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileNotFoundException;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -230,6 +231,13 @@ public class FrameOnlinePlugins extends JFrame {
 					lblStatus.setVisible(false);
 					
 					JOptionPane.showMessageDialog(null, "Successfully installed and enabled " + plugin.getDisplayName(), "Plugin", JOptionPane.INFORMATION_MESSAGE);
+				} catch (FileNotFoundException ex) {
+					ex.printStackTrace();
+					
+					progressBar.setVisible(false);
+					lblStatus.setVisible(false);
+					
+					JOptionPane.showMessageDialog(null, "Could not find package, maybe this is a paid plugin", "Plugin", JOptionPane.WARNING_MESSAGE);
 				} catch (Exception ex) {
 					ex.printStackTrace();
 					
