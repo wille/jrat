@@ -16,6 +16,8 @@ import javax.swing.JSeparator;
 import javax.swing.JTextPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.BadLocationException;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -73,7 +75,12 @@ public class Frame extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				txtLog.setText("");
 				
-				Extractor.extract(Frame.this);
+				new Thread(new Runnable() {
+					@Override
+					public void run() {
+						Extractor.extract(Frame.this);
+					}
+				});
 			}
 		});
 		btnAgreeInstall.setBounds(441, 429, 119, 23);
@@ -96,6 +103,30 @@ public class Frame extends JFrame {
 			reader.close();
 		} catch (Exception ex) {
 			ex.printStackTrace();
+		}
+	}
+
+	public JProgressBar getProgressBar() {
+		return progressBar;
+	}
+
+	public JLabel getStatusLabel() {
+		return lblStatus;
+	}
+
+	public JTextPane getLog() {
+		return txtLog;
+	}
+
+	public JButton getButton() {
+		return btnAgreeInstall;
+	}
+	
+	public void log(String str) {
+		try {
+			txtLog.getDocument().insertString(txtLog.getDocument().getLength(), str, null);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 }
