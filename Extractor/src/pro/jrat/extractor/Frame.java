@@ -1,12 +1,16 @@
 package pro.jrat.extractor;
 
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStreamReader;
 import java.net.URL;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -16,10 +20,6 @@ import javax.swing.JSeparator;
 import javax.swing.JTextPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.text.BadLocationException;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class Frame extends JFrame {
@@ -75,16 +75,26 @@ public class Frame extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				txtLog.setText("");
 				
-				new Thread(new Runnable() {
-					@Override
-					public void run() {
-						Extractor.extract(Frame.this);
-					}
-				});
+				JFileChooser ch = new JFileChooser();
+				ch.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				ch.showOpenDialog(null);
+				
+				final File path = ch.getSelectedFile();
+				
+				if (path != null) {
+					new Thread(new Runnable() {
+						@Override
+						public void run() {
+							Extractor.extract(path, Frame.this);
+						}
+					}).start();
+				}
 			}
 		});
 		btnAgreeInstall.setBounds(441, 429, 119, 23);
 		contentPane.add(btnAgreeInstall);
+		
+		setLocationRelativeTo(null);
 		
 		loadEula();
 	}
@@ -124,7 +134,10 @@ public class Frame extends JFrame {
 	
 	public void log(String str) {
 		try {
-			txtLog.getDocument().insertString(txtLog.getDocument().getLength(), str, null);
+			lblStatus.setText(str);
+			txtLog.getDocument().insertString(txtLog.getDocument().getLength(), str + "\n\r", null);
+			txtLog.setSelectionStart(txtLog.getDocument().getLength());
+			txtLog.setSelectionEnd(txtLog.getDocument().getLength());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
