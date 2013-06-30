@@ -21,7 +21,7 @@ public abstract class RATPlugin {
 	public abstract void onEnable(OnEnableEvent event) throws Exception;
 	
 	/**
-	 * 
+	 * WILL NOT BE CALLED IF PACKET IS JRAT PACKET
 	 * @param event OnPacketEvent when String packet header is received
 	 */
 
