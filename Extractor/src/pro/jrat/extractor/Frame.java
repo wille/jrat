@@ -2,6 +2,8 @@ package pro.jrat.extractor;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +12,7 @@ import java.io.File;
 import java.io.InputStreamReader;
 import java.net.URL;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -25,6 +28,8 @@ import javax.swing.border.EmptyBorder;
 
 @SuppressWarnings("serial")
 public class Frame extends JFrame {
+	
+	public static Image background;
 
 	public static File path;
 	
@@ -40,7 +45,17 @@ public class Frame extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 575, 490);
-		contentPane = new JPanel();
+		contentPane = new JPanel() {
+			@Override
+			public void paint(Graphics g) {
+				if (getBg() != null) {
+					g.drawImage(getBg(), 0, 0, null);
+				}
+				
+				super.paint(g);	
+			}
+		};
+		contentPane.setBackground(new Color(0, 0, 0, 0));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -68,7 +83,7 @@ public class Frame extends JFrame {
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setBounds(10, 115, 550, 288);
+		scrollPane.setBounds(10, 115, 550, 124);
 		contentPane.add(scrollPane);
 		
 		txtLog = new JTextPane();
@@ -170,5 +185,17 @@ public class Frame extends JFrame {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public Image getBg() {
+		if (background == null) {
+			try {
+				background = ImageIO.read(Main.class.getResource("/icons/background.png"));
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		}
+		
+		return background;
 	}
 }
