@@ -3,6 +3,8 @@ package pro.jrat.ui.frames;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,42 +12,54 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.imageio.ImageIO;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextPane;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
 import pro.jrat.Constants;
+import pro.jrat.Main;
 import pro.jrat.common.Version;
-import pro.jrat.net.WebRequest;
-import pro.jrat.ui.panels.PanelImage;
-import pro.jrat.utils.IOUtils;
 import pro.jrat.utils.NetworkUtils;
 
 
 
 @SuppressWarnings("serial")
 public class FrameAbout extends BaseFrame {
+	
+	public static Image BACKGROUND;
+	
+	static {
+		try {
+			BACKGROUND = ImageIO.read(Main.class.getResource("/files/bg_425x235.png"));
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			BACKGROUND = null;
+		}
+	}
 
 	private JPanel contentPane;
 
 	public FrameAbout() {
 		super();
 		setAlwaysOnTop(true);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameAbout.class.getResource("/icons/info.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameAbout.class.getResource("/icons/information-button.png")));
 		setTitle("About jRAT BETA " + Version.getVersion());
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 425, 235);
-		contentPane = new JPanel();
+		contentPane = new JPanel() {
+			@Override
+			public void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				
+				if (BACKGROUND != null) {
+					g.drawImage(BACKGROUND, 0, 0, null);
+				}
+			}
+		};
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		try {
@@ -101,7 +115,7 @@ public class FrameAbout extends BaseFrame {
 		});
 		lblRedpoisn.setIcon(new ImageIcon(FrameAbout.class.getResource("/icons/action_disconnect.png")));
 		lblRedpoisn.setForeground(Color.RED);
-		
+
 		contentPane.setLayout(null);
 		contentPane.add(btnClose);
 		contentPane.add(lblJrat);
