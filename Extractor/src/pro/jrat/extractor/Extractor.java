@@ -97,6 +97,12 @@ public class Extractor {
 			temp.delete();
 			
 			frame.log("Successfully installed jRAT");
+			
+			Frame.path = outputDir;
+			
+			frame.getButton().setText("Launch jRAT");
+			
+			frame.getButton().setEnabled(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

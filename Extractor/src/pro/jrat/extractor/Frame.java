@@ -1,5 +1,7 @@
 package pro.jrat.extractor;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,18 +26,20 @@ import javax.swing.border.EmptyBorder;
 @SuppressWarnings("serial")
 public class Frame extends JFrame {
 
+	public static File path;
+	
 	private JPanel contentPane;
 	private JProgressBar progressBar;
 	private JLabel lblStatus;
 	private JTextPane txtLog;
-	private JButton btnAgreeInstall;
+	private JButton btnAction;
 
 	public Frame() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Frame.class.getResource("/icons/icon.png")));
 		setTitle("jRAT Extractor");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 576, 491);
+		setBounds(0, 0, 575, 490);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -68,31 +72,56 @@ public class Frame extends JFrame {
 		contentPane.add(scrollPane);
 		
 		txtLog = new JTextPane();
+		txtLog.setEditable(false);
+		txtLog.setForeground(Color.BLACK);
+		txtLog.setBackground(Color.WHITE);
 		scrollPane.setViewportView(txtLog);
 		
-		btnAgreeInstall = new JButton("Agree & Install");
-		btnAgreeInstall.addActionListener(new ActionListener() {
+		btnAction = new JButton("Agree & Install");
+		btnAction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				txtLog.setText("");
-				
-				JFileChooser ch = new JFileChooser();
-				ch.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-				ch.showOpenDialog(null);
-				
-				final File path = ch.getSelectedFile();
-				
-				if (path != null) {
-					new Thread(new Runnable() {
-						@Override
-						public void run() {
-							Extractor.extract(path, Frame.this);
-						}
-					}).start();
+				if (btnAction.getText().equals("Agree & Install")) {
+					txtLog.setText("");
+					
+					JFileChooser ch = new JFileChooser();
+					ch.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+					ch.showOpenDialog(null);
+					
+					path = ch.getSelectedFile();
+					
+					if (path != null) {
+						btnAction.setEnabled(false);
+						new Thread(new Runnable() {
+							@Override
+							public void run() {
+								Extractor.extract(path, Frame.this);
+							}
+						}).start();
+					}
+				} else if (btnAction.getText().equals("Launch jRAT")) {
+					try {
+						if (System.getProperty("os.name").toLowerCase().contains("win")) {
+							ProcessBuilder b = new ProcessBuilder(System.getProperty("java.home") + File.separator + "bin" + File.separator + "javaw.exe", "-jar", "Client.jar");
+							b.directory(path);
+							b.start();
+ 						} else {
+ 							ProcessBuilder b = new ProcessBuilder("java", "-jar", "Client.jar");
+							b.directory(path);
+							b.start();
+ 						}
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		});
-		btnAgreeInstall.setBounds(441, 429, 119, 23);
-		contentPane.add(btnAgreeInstall);
+		btnAction.setBounds(441, 429, 119, 23);
+		contentPane.add(btnAction);
+		
+		JLabel lblJrat = new JLabel("jRAT Extractor");
+		lblJrat.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblJrat.setBounds(44, 11, 203, 24);
+		contentPane.add(lblJrat);
 		
 		setLocationRelativeTo(null);
 		
@@ -129,7 +158,7 @@ public class Frame extends JFrame {
 	}
 
 	public JButton getButton() {
-		return btnAgreeInstall;
+		return btnAction;
 	}
 	
 	public void log(String str) {
