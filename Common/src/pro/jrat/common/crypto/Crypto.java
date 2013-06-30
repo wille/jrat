@@ -21,25 +21,6 @@ public class Crypto {
 		return new String(decrypt(decoded, key), "UTF-8");
 	}
 
-	/*public static String encrypt(String unencryptedString, String key) throws Exception {	
-		return new BASE64Encoder().encode(encrypt(unencryptedString.getBytes("UTF-8"), key));
-	}
-
-	public static String decrypt(String encryptedString, String key) throws Exception {
-		byte[] decoded = new BASE64Decoder().decodeBuffer(encryptedString);
-		
-		return new String(decrypt(decoded, key), "UTF-8");
-	}
-	
-	public static byte[] decrypt(byte[] bytes, String key) throws Exception {
-		return decrypt(bytes, key.getBytes("UTF-8"));
-
-	}
-	
-	public static byte[] encrypt(byte[] bytes, String key) throws Exception {
-		return encrypt(bytes, key.getBytes("UTF-8"));
-	}
-	*/
 	public static byte[] encrypt(byte[] bytes, EncryptionKey key) throws Exception {
 		return encrypt(bytes, key.getKey());
 	}
