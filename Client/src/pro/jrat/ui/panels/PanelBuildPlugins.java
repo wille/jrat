@@ -17,6 +17,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import pro.jrat.extensions.PluginList;
 import pro.jrat.extensions.StubPlugin;
 import pro.jrat.ui.components.JCheckBoxList;
+import pro.jrat.ui.components.JCheckBoxList.Entry;
 import pro.jrat.ui.renderers.table.PluginsTableRenderer;
 
 @SuppressWarnings("serial")
@@ -25,14 +26,22 @@ public class PanelBuildPlugins extends JPanel {
 	private JCheckBoxList table;
 	private PluginList list;
 	private JCheckBox chckbxDoNotLoad;
+	private JCheckBoxList.CheckBoxListModel model;
 
 	public PluginList getList() {
-		// TODO
-		if (list.plugins.size() == 0) {
-			return null;
-		} else {
-			return list;
+		PluginList plugins = new PluginList();
+		
+		Entry[] entries = table.getValues();
+		
+		for (StubPlugin stubPlugin : list.plugins) {
+			for (Entry entry : entries) {
+				if (entry.getValue().toString().equals(stubPlugin.name) && entry.isChecked()) {
+					plugins.plugins.add(stubPlugin);
+				}
+ 			}
 		}
+		
+		return plugins.plugins.size() == 0 ? null : plugins;
 	}
 
 	public PanelBuildPlugins() {
@@ -50,9 +59,7 @@ public class PanelBuildPlugins extends JPanel {
 					if (file.isFile() && file.exists() && file.getName().endsWith(".jar")) {
 						StubPlugin p = new StubPlugin(file.getAbsolutePath(), !chckbxDoNotLoad.isSelected());
 						list.plugins.add(p);
-						
-						JCheckBoxList.CheckBoxListModel model = ((JCheckBoxList.CheckBoxListModel)table.getModel());
-						
+
 						model.items.addElement(model.createEntry(p.name));
 						table.repaint();
 					}
@@ -103,13 +110,9 @@ public class PanelBuildPlugins extends JPanel {
 		}
 
 		table = new JCheckBoxList(obj);
+		model = ((JCheckBoxList.CheckBoxListModel)table.getModel());
 		table.setRowHeight(25);
 		table.setDefaultRenderer(Object.class, new PluginsTableRenderer());
-		/*
-		 * table.setModel(model = new DefaultTableModel(new Object[][] {}, new
-		 * String[] { "Plugin Name" }) { public boolean isCellEditable(int i,
-		 * int i1) { return false; } });
-		 */
 		table.getTableHeader().setReorderingAllowed(false);
 		scrollPane.setViewportView(table);
 		setLayout(groupLayout);

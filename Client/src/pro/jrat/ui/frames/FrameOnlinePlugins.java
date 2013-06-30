@@ -77,7 +77,7 @@ public class FrameOnlinePlugins extends JFrame {
 				}
 			}
 		};
-		model = new DefaultTableModel(new Object[][] {}, new String[] { "Name", "Author", "Description", "Version", "Built for", "Toggle" }) {
+		model = new DefaultTableModel(new Object[][] {}, new String[] { "Name", "Author", "Description", "Version", "Built for", "" }) {
 			public boolean isCellEditable(int i, int i1) {
 				return false;
 			}
