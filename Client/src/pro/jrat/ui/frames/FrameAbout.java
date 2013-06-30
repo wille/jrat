@@ -44,22 +44,17 @@ public class FrameAbout extends BaseFrame {
 		setTitle("About jRAT BETA " + Version.getVersion());
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 428, 238);
+		setBounds(100, 100, 425, 235);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-
-		PanelImage panel = new PanelImage();
 		try {
-			panel.image = ImageIO.read(FrameAbout.class.getResource("/files/logo.png"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-
 		JButton btnClose = new JButton("Close");
+		btnClose.setBounds(15, 171, 79, 25);
 		btnClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setVisible(false);
@@ -69,16 +64,21 @@ public class FrameAbout extends BaseFrame {
 		btnClose.setIcon(new ImageIcon(FrameAbout.class.getResource("/icons/delete.png")));
 		
 		JLabel lblJrat = new JLabel("jRAT " + Version.getVersion());
+		lblJrat.setBounds(15, 12, 125, 31);
 		lblJrat.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		
 		JLabel lblPointOfOrigin = new JLabel("Point of origin:");
+		lblPointOfOrigin.setBounds(15, 84, 70, 14);
 		
 		JLabel lblSweden = new JLabel("Sweden");
+		lblSweden.setBounds(91, 84, 58, 14);
 		lblSweden.setIcon(new ImageIcon(FrameAbout.class.getResource("/flags/se.png")));
 		
 		JLabel lblWebsite = new JLabel("Website:");
+		lblWebsite.setBounds(42, 105, 43, 14);
 		
-		JLabel lblHttpredpoisncom = new JLabel(Constants.HOST + "");
+		JLabel lblHttpredpoisncom = new JLabel(Constants.HOST);
+		lblHttpredpoisncom.setBounds(91, 104, 94, 16);
 		lblHttpredpoisncom.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -89,8 +89,10 @@ public class FrameAbout extends BaseFrame {
 		lblHttpredpoisncom.setForeground(Color.BLUE);
 		
 		JLabel lblWrittenBy = new JLabel("Written by:");
+		lblWrittenBy.setBounds(30, 127, 55, 14);
 		
 		JLabel lblRedpoisn = new JLabel("redpois0n (.com)");
+		lblRedpoisn.setBounds(91, 126, 101, 16);
 		lblRedpoisn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -99,72 +101,16 @@ public class FrameAbout extends BaseFrame {
 		});
 		lblRedpoisn.setIcon(new ImageIcon(FrameAbout.class.getResource("/icons/action_disconnect.png")));
 		lblRedpoisn.setForeground(Color.RED);
-
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addComponent(btnClose)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblJrat)
-								.addComponent(panel, GroupLayout.PREFERRED_SIZE, 177, GroupLayout.PREFERRED_SIZE)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-										.addComponent(lblWebsite)
-										.addComponent(lblPointOfOrigin)
-										.addComponent(lblWrittenBy))
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblRedpoisn)
-										.addComponent(lblHttpredpoisncom)
-										.addComponent(lblSweden))))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 192, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(35, Short.MAX_VALUE))
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(7)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnClose))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(lblJrat)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblPointOfOrigin)
-								.addComponent(lblSweden))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblWebsite)
-								.addComponent(lblHttpredpoisncom))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblWrittenBy)
-								.addComponent(lblRedpoisn))))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
-
-		JTextPane txtAbout = new JTextPane();
-		txtAbout.setEditable(false);
-		try {
-			txtAbout.setText(IOUtils.readString(WebRequest.getInputStream(Constants.HOST + "/misc/about.txt")));
-			txtAbout.setSelectionStart(0);
-			txtAbout.setSelectionEnd(0);
-		} catch (Exception e) {
-			txtAbout.setText("Failed to load about: " + e.getMessage());
-			e.printStackTrace();
-		}
-		scrollPane.setViewportView(txtAbout);
-		contentPane.setLayout(gl_contentPane);
+		
+		contentPane.setLayout(null);
+		contentPane.add(btnClose);
+		contentPane.add(lblJrat);
+		contentPane.add(lblWebsite);
+		contentPane.add(lblPointOfOrigin);
+		contentPane.add(lblWrittenBy);
+		contentPane.add(lblRedpoisn);
+		contentPane.add(lblHttpredpoisncom);
+		contentPane.add(lblSweden);
 
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		int w = getSize().width;
