@@ -33,7 +33,7 @@ public class FrameAbout extends BaseFrame {
 	
 	static {
 		try {
-			BACKGROUND = ImageIO.read(Main.class.getResource("/files/bg_425x235.png"));
+			BACKGROUND = ImageIO.read(Main.class.getResource("/files/bg_450x300.png"));
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			BACKGROUND = null;
@@ -49,7 +49,7 @@ public class FrameAbout extends BaseFrame {
 		setTitle("About jRAT BETA " + Version.getVersion());
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 425, 235);
+		setBounds(100, 100, 386, 300);
 		contentPane = new JPanel() {
 			@Override
 			public void paintComponent(Graphics g) {
@@ -68,7 +68,7 @@ public class FrameAbout extends BaseFrame {
 		}
 
 		JButton btnClose = new JButton("Close");
-		btnClose.setBounds(15, 171, 79, 25);
+		btnClose.setBounds(283, 236, 79, 25);
 		btnClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setVisible(false);
@@ -78,21 +78,21 @@ public class FrameAbout extends BaseFrame {
 		btnClose.setIcon(new ImageIcon(FrameAbout.class.getResource("/icons/delete.png")));
 		
 		JLabel lblJrat = new JLabel("jRAT " + Version.getVersion());
-		lblJrat.setBounds(15, 12, 125, 31);
+		lblJrat.setBounds(186, 11, 125, 31);
 		lblJrat.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		
 		JLabel lblPointOfOrigin = new JLabel("Point of origin:");
-		lblPointOfOrigin.setBounds(15, 84, 70, 14);
+		lblPointOfOrigin.setBounds(186, 149, 70, 14);
 		
 		JLabel lblSweden = new JLabel("Sweden");
-		lblSweden.setBounds(91, 84, 58, 14);
+		lblSweden.setBounds(262, 149, 58, 14);
 		lblSweden.setIcon(new ImageIcon(FrameAbout.class.getResource("/flags/se.png")));
 		
 		JLabel lblWebsite = new JLabel("Website:");
-		lblWebsite.setBounds(42, 105, 43, 14);
+		lblWebsite.setBounds(213, 170, 43, 14);
 		
 		JLabel lblHttpredpoisncom = new JLabel(Constants.HOST);
-		lblHttpredpoisncom.setBounds(91, 104, 94, 16);
+		lblHttpredpoisncom.setBounds(262, 169, 94, 16);
 		lblHttpredpoisncom.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -103,10 +103,10 @@ public class FrameAbout extends BaseFrame {
 		lblHttpredpoisncom.setForeground(Color.BLUE);
 		
 		JLabel lblWrittenBy = new JLabel("Written by:");
-		lblWrittenBy.setBounds(30, 127, 55, 14);
+		lblWrittenBy.setBounds(201, 192, 55, 14);
 		
 		JLabel lblRedpoisn = new JLabel("redpois0n (.com)");
-		lblRedpoisn.setBounds(91, 126, 101, 16);
+		lblRedpoisn.setBounds(262, 191, 101, 16);
 		lblRedpoisn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
