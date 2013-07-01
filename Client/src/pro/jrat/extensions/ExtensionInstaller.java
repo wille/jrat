@@ -16,10 +16,12 @@ import java.util.zip.ZipFile;
 import pro.jrat.Constants;
 import pro.jrat.Main;
 import pro.jrat.UniqueId;
+import pro.jrat.common.codec.Hex;
 import pro.jrat.common.listeners.CopyStreamsListener;
 import pro.jrat.common.utils.IOUtils;
 import pro.jrat.common.utils.MathUtils;
 import pro.jrat.exceptions.InvalidKeyException;
+import pro.jrat.exceptions.MissingKeyException;
 import pro.jrat.listeners.ExtensionInstallerListener;
 import pro.jrat.net.WebRequest;
 
@@ -52,7 +54,14 @@ public class ExtensionInstaller {
 
 		File temp = File.createTempFile(plugin.getName() + "_temp_download", ".zip");
 
-		HttpURLConnection archiveConnection = (HttpURLConnection) WebRequest.getConnection(Constants.HOST + "/plugins/getplugin.php?plugin=" + plugin.getName() + "&key=" + UniqueId.getTextual());
+		String key;
+		try {
+			key = Hex.encode(UniqueId.getSystemId());
+		} catch (Exception e) {
+			throw new MissingKeyException("Failed to load key", e);
+		}
+		
+		HttpURLConnection archiveConnection = (HttpURLConnection) WebRequest.getConnection(Constants.HOST + "/plugins/getplugin.php?plugin=" + plugin.getName() + "&key=" + key);
 		archiveConnection.connect();
 		
 		int response = archiveConnection.getResponseCode();
@@ -62,7 +71,7 @@ public class ExtensionInstaller {
 		} else if (response == 404) {
 			throw new FileNotFoundException("Failed to find plugin package: " + plugin.getName());
 		} else if (response == 401) {
-			throw new InvalidKeyException("Key not found");
+			throw new InvalidKeyException("Key not found, not valid license?");
 		}
 		
 		InputStream archive = archiveConnection.getInputStream();
