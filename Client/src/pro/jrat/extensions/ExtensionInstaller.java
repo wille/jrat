@@ -15,8 +15,6 @@ import java.util.zip.ZipFile;
 
 import pro.jrat.Constants;
 import pro.jrat.Main;
-import pro.jrat.UniqueId;
-import pro.jrat.common.codec.Hex;
 import pro.jrat.common.listeners.CopyStreamsListener;
 import pro.jrat.common.utils.IOUtils;
 import pro.jrat.common.utils.MathUtils;

