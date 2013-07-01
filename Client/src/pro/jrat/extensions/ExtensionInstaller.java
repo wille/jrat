@@ -54,9 +54,9 @@ public class ExtensionInstaller {
 
 		File temp = File.createTempFile(plugin.getName() + "_temp_download", ".zip");
 
-		String key;
+		String key = "jrat";
 		try {
-			key = Hex.encode(UniqueId.getSystemId());
+			// TODO key = Hex.encode(UniqueId.getSystemId());
 		} catch (Exception e) {
 			throw new MissingKeyException("Failed to load key", e);
 		}

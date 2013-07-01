@@ -32,7 +32,6 @@ public class Main {
 
 	public static boolean debug;
 	public static Frame instance;
-	public static byte[] key;
 
 	public static void main(String[] args) throws Exception {
 		if (argsContains(args, "-genkey")) {
@@ -43,8 +42,6 @@ public class Main {
 			out.close();
 			System.out.println("Wrote key to jrat.key");
 			return;
-		} else {
-			
 		}
 		
 		debug = argsContains(args, "-debug");
