@@ -8,14 +8,14 @@ public final class RATObject {
 
 	private final String ip;
 	private final Connection con;
-	private final IWriter writer;
-	private final IReader reader;
+	private final Writer writer;
+	private final Reader reader;
 	private final Queue queue;
 	private final DataInputStream in;
 	private final DataOutputStream out;
 	private final long uniqueId;
 	
-	public RATObject(String ip, long uniqueId, Connection con, IWriter writer, IReader reader, DataInputStream in, DataOutputStream out, Queue queue) {
+	public RATObject(String ip, long uniqueId, Connection con, Writer writer, Reader reader, DataInputStream in, DataOutputStream out, Queue queue) {
 		this.ip = ip;
 		this.con = con;
 		this.writer = writer;
@@ -50,7 +50,7 @@ public final class RATObject {
 	 * @return Writer
 	 */
 	
-	public IWriter getDataWriter() {
+	public Writer getDataWriter() {
 		return writer;
 	}
 	
@@ -59,7 +59,7 @@ public final class RATObject {
 	 * @return Reader
 	 */
 	
-	public IReader getDataReader() {
+	public Reader getDataReader() {
 		return reader;
 	}
 	

@@ -3,7 +3,7 @@ package pro.jrat.api;
 import java.io.IOException;
 
 @Deprecated
-public abstract interface IReader {
+public abstract interface Reader {
 
 	/**
 	 * Reads byte from stream

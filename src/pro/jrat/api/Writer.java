@@ -3,7 +3,7 @@ package pro.jrat.api;
 import java.io.IOException;
 
 @Deprecated
-public abstract interface IWriter {
+public abstract interface Writer {
 
 	/**
 	 * Writes byte to stream
