@@ -25,21 +25,18 @@ local.properties
 # Build results
 [Bb]in/
 
-#Folders
+# Folders
 API/
 Other/
 API Stub/
 Remover/
 Reverser/
-
 Plugins/
-
 help/
 lib/
 Client/plugins/
-
-# jRAT
 Client/settings/
+Extractor/
 
 # Mac crap
 .DS_Store
