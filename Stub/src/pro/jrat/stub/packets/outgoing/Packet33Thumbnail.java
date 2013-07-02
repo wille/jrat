@@ -18,7 +18,7 @@ public class Packet33Thumbnail extends AbstractOutgoingPacket {
 		Rectangle screenRect = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());	
 		BufferedImage screenShot = Main.robot.createScreenCapture(screenRect);
 		screenShot = RemoteScreen.resize(screenShot, 150, 100);
-		BufferedImage bufferedImage = new BufferedImage(150, 100, BufferedImage.TYPE_3BYTE_BGR);
+		BufferedImage bufferedImage = new BufferedImage(150, 100, BufferedImage.TYPE_INT_ARGB);
 		bufferedImage.getGraphics().drawImage(screenShot, 0, 0, null);
 		byte[] buffer = ((DataBufferByte) bufferedImage.getRaster().getDataBuffer()).getData();
 		dos.write(buffer);
