@@ -9,15 +9,15 @@ public enum OperatingSystem {
 		
 		OperatingSystem os;
 		
-		if (str.equalsIgnoreCase("freebsd")) {
+		if (str.contains("freebsd")) {
 			os = OperatingSystem.FREEBSD;
-		} else if (str.equalsIgnoreCase("openbsd")) {
+		} else if (str.contains("openbsd")) {
 			os = OperatingSystem.OPENBSD;
 		} else if (str.contains("mac")) {
 			os = OperatingSystem.OSX;
-		} else if (str.equalsIgnoreCase("solaris") || str.equalsIgnoreCase("sunos")) {
+		} else if (str.contains("solaris") || str.contains("sunos")) {
 			os = OperatingSystem.SOLARIS;
-		} else if (str.equalsIgnoreCase("linux")) {
+		} else if (str.contains("linux")) {
 			os = OperatingSystem.LINUX;
 		} else if (str.contains("win")) {
 			os = OperatingSystem.WINDOWS;
