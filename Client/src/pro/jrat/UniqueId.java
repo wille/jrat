@@ -14,7 +14,7 @@ public final class UniqueId {
 		String os = System.getProperty("os.name") + " " + System.getProperty("os.version");
 		String country = System.getProperty("user.country") + " " + System.getProperty("user.country.format") + " " + System.getProperty("user.language");
 
-		String data = "&name=" + name + "&os=" + os + "&geo=" + country;
+		String data = name + "+" + os + "+" + country;
 
 		return Sha256.sha256(data.getBytes("UTF-8"));
 	}

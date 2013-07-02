@@ -56,6 +56,7 @@ public class Slave implements Runnable {
 	private Monitor[] monitors;
 	private Locale[] locales;
 	private Antivirus[] antiviruses;
+	private Firewall[] firewalls;
 
 	private String computername = "";
 	private String ip = "";
@@ -647,5 +648,13 @@ public class Slave implements Runnable {
 	
 	public Antivirus[] getAntiviruses() {
 		return this.antiviruses;
+	}
+
+	public void setFirewalls(Firewall[] firewalls) {
+		this.firewalls = firewalls;
+	}
+	
+	public Firewall[] getFirewalls() {
+		return firewalls;
 	}
 }
