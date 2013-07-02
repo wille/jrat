@@ -7,13 +7,12 @@ import java.io.IOException;
 import pro.jrat.Main;
 import pro.jrat.Slave;
 import pro.jrat.api.Connection;
-import pro.jrat.api.IReader;
-import pro.jrat.api.IWriter;
 import pro.jrat.api.PacketBuilder;
 import pro.jrat.api.Queue;
 import pro.jrat.api.RATObject;
+import pro.jrat.api.Reader;
+import pro.jrat.api.Writer;
 import pro.jrat.packets.outgoing.AbstractOutgoingPacket;
-
 
 @SuppressWarnings("deprecation")
 public class RATObjectFormat {
@@ -24,7 +23,7 @@ public class RATObjectFormat {
 		final DataOutputStream out = s.getDataOutputStream();
 		final DataInputStream in = s.getDataInputStream();
 		
-		RATObject j = new RATObject(s.getIP(), s.getUniqueId(), con, new IWriter() {
+		RATObject j = new RATObject(s.getIP(), s.getUniqueId(), con, new Writer() {
 
 			@Override
 			public void write(byte arg0) throws IOException {
@@ -66,7 +65,7 @@ public class RATObjectFormat {
 				out.writeChar(arg0);
 			}
 				
-		}, new IReader() {
+		}, new Reader() {
 
 			@Override
 			public byte read() throws IOException {
