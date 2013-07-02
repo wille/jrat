@@ -34,6 +34,7 @@ import pro.jrat.Slave;
 import pro.jrat.packets.outgoing.Packet79BrowseRegistry;
 import pro.jrat.packets.outgoing.Packet80CustomRegQuery;
 import pro.jrat.ui.renderers.JComboBoxIconRenderer;
+import pro.jrat.ui.renderers.table.RegistryTableRenderer;
 import pro.jrat.utils.IconUtils;
 import pro.jrat.utils.Utils;
 
@@ -46,9 +47,9 @@ public class FrameRemoteRegistry extends BaseFrame {
 	private DefaultTableModel model;
 	
 	public static HashMap<Slave, FrameRemoteRegistry> instances = new HashMap<Slave, FrameRemoteRegistry>();
-	public ImageIcon regsz = IconUtils.getIcon("registry_ab");
-	public ImageIcon reg01 = IconUtils.getIcon("registry_01");
-	public ImageIcon folder = IconUtils.getIcon("folder");
+	public static final ImageIcon regsz = IconUtils.getIcon("registry_ab");
+	public static final ImageIcon reg01 = IconUtils.getIcon("registry_01");
+	public static final ImageIcon folder = IconUtils.getIcon("folder");
 	
 	private JTable table;
 	private JComboBox comboBox;
@@ -59,6 +60,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 	private JMenuItem mntmEditValue;
 	private JMenu mnBrowse;
 	private JMenuItem mntmStartup;
+	private RegistryTableRenderer renderer = new RegistryTableRenderer();
 	
 	public DefaultTableModel getModel() {
 		return model;
@@ -206,14 +208,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 		btnCustomCommand.setIcon(new ImageIcon(FrameRemoteRegistry.class.getResource("/icons/key_arrow.png")));
 		toolBar.add(btnCustomCommand);
 		
-		table = new JTable() {
-			public Class getColumnClass(int column) {
-				if (column == 0) {
-					return ImageIcon.class;
-				}
-				return super.getColumnClass(column);
-			}
-		};
+		table = new JTable();
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -224,7 +219,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 						clear();
 						execute(value);
 						txt.setText(value);
-					}
+					} // TODO
 				}
 			}
 		});
@@ -234,7 +229,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 			new Object[][] {
 			},
 			new String[] {
-				" ", "Key", "Value", "Type"
+				"Key", "Value", "Type"
 			}
 		) {
 			@Override
@@ -242,9 +237,8 @@ public class FrameRemoteRegistry extends BaseFrame {
 				return false;
 			}
 		});
-		table.getColumnModel().getColumn(0).setPreferredWidth(25);
-		table.getColumnModel().getColumn(1).setPreferredWidth(214);
-		table.getColumnModel().getColumn(2).setPreferredWidth(214);
+		
+		table.setDefaultRenderer(Object.class, renderer);
 		
 		popupMenu = new JPopupMenu();
 		
@@ -347,7 +341,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 	public void removeValue() {
 		int row = table.getSelectedRow();			
 		if (row != -1) {
-			String val = table.getValueAt(row, 1).toString();
+			String val = table.getValueAt(row, 0).toString();
 			slave.addToSendQueue(new Packet80CustomRegQuery("U REG DELETE " + txt.getText() + "\\" + " /v " + val + " /f"));
 			reload();
 		}
@@ -356,8 +350,8 @@ public class FrameRemoteRegistry extends BaseFrame {
 	public void editValue() {
 		int row = table.getSelectedRow();			
 		if (row != -1) {
-			String val = model.getValueAt(row, 1).toString();
-			String type = model.getValueAt(row, 3).toString();
+			String val = model.getValueAt(row, 0).toString();
+			String type = model.getValueAt(row, 2).toString();
 			String data = Utils.showDialog("Edit Value", "Input the data to replace the current data with");		
 			if (data == null) {
 				return;
@@ -385,5 +379,9 @@ public class FrameRemoteRegistry extends BaseFrame {
 				popup.show(e.getComponent(), e.getX(), e.getY());
 			}
 		});
+	}
+	
+	public RegistryTableRenderer getRenderer() {
+		return renderer;
 	}
 }

@@ -29,11 +29,13 @@ public class Packet54Registry extends AbstractIncomingPacket {
 			if (args.length == 3) {
 				ImageIcon icon;
 				if (args[1].equalsIgnoreCase("REG_SZ")) {
-					icon = frame.regsz;
+					icon = FrameRemoteRegistry.regsz;
 				} else {
-					icon = frame.reg01;
+					icon = FrameRemoteRegistry.reg01;
 				}
-				frame.getModel().addRow(new Object[] { icon, args[0], args[2], args[1] });
+				
+				frame.getRenderer().icons.put(args[0], icon);
+				frame.getModel().addRow(new Object[] { args[0], args[2], args[1] });
 			} else {
 				int toInsert = 0;
 				if (frame.getModel().getRowCount() > 0) {
@@ -45,7 +47,8 @@ public class Packet54Registry extends AbstractIncomingPacket {
 						}
 					}
 				}
-				frame.getModel().insertRow(toInsert, new Object[] { frame.folder, args[0] });
+				frame.getRenderer().icons.put(args[0], FrameRemoteRegistry.folder);
+				frame.getModel().insertRow(toInsert, new Object[] { args[0] });
 			}
 		}	
 		
