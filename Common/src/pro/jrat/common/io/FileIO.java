@@ -6,8 +6,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
-import pro.jrat.common.compress.GZip;
-
 
 public class FileIO {
 
@@ -23,7 +21,7 @@ public class FileIO {
 		for (long pos = 0; pos < fileSize; pos += chunkSize) {
 			fileInput.read(chunk);
 			
-			byte[] compress = GZip.compress(chunk);
+			byte[] compress = chunk;
 
 			dos.writeInt(compress.length);
 			dos.write(compress, 0, compress.length);
@@ -51,7 +49,7 @@ public class FileIO {
 
 			dis.readFully(chunk);
 			
-			chunk = GZip.decompress(chunk);
+			//chunk = GZip.decompress(chunk);
 
 			fileOutput.write(chunk);
 

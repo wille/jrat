@@ -4,7 +4,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import pro.jrat.net.*;
+
+import pro.jrat.net.WebRequest;
 
 public class Contributors {
 	
