@@ -214,12 +214,12 @@ public class FrameRemoteRegistry extends BaseFrame {
 			public void mouseClicked(MouseEvent e) {
 				int row = table.getSelectedRow();
 				if (e.getClickCount() == 2 && row != -1) {
-					if (table.getValueAt(row, 0).toString().toLowerCase().contains("folder")) {
-						String value = table.getValueAt(row, 1).toString();
+					if (table.getValueAt(row, 1) == null) {
+						String value = table.getValueAt(row, 0).toString();
 						clear();
 						execute(value);
 						txt.setText(value);
-					} // TODO
+					}
 				}
 			}
 		});

@@ -793,7 +793,7 @@ public class Frame extends BaseFrame {
 		});
 		addPopup(scrollPane, popupMenu);
 
-		JMenuItem mntmControlPanel = new JMenuItem("Control Panel (1)");
+		JMenuItem mntmControlPanel = new JMenuItem("Control Panel");
 		mntmControlPanel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Slave slave = Utils.getSlave(mainModel.getValueAt(mainTable.getSelectedRow(), 3).toString());
@@ -939,6 +939,19 @@ public class Frame extends BaseFrame {
 			}
 		});
 		mnQuickOpen.add(mntmQuickRemoteScreen);
+		
+		JMenuItem mntmRemoteRegistry = new JMenuItem("Remote Registry");
+		mntmRemoteRegistry.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Slave slave = Utils.getSlave(mainModel.getValueAt(mainTable.getSelectedRow(), 3).toString());
+				if (slave != null) {
+					FrameRemoteRegistry frame = new FrameRemoteRegistry(slave);
+					frame.setVisible(true);
+				}	
+			}
+		});
+		mntmRemoteRegistry.setIcon(new ImageIcon(Frame.class.getResource("/icons/registry.png")));
+		mnQuickOpen.add(mntmRemoteRegistry);
 		mntmFileManager.setIcon(new ImageIcon(Frame.class.getResource("/icons/folder_go.png")));
 		mnQuickOpen.add(mntmFileManager);
 
