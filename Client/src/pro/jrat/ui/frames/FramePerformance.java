@@ -51,7 +51,7 @@ public class FramePerformance extends BaseFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FramePerformance.class.getResource("/icons/meter.png")));
 		setTitle("jRAT " + Version.getVersion() + " Performance");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 228);
+		setBounds(100, 100, 450, 233);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -92,8 +92,35 @@ public class FramePerformance extends BaseFrame {
 		});
 		btnGarbageCollector.setIcon(new ImageIcon(FramePerformance.class.getResource("/icons/garbage.png")));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false).addComponent(barRAM, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(panel, GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE).addGroup(gl_contentPane.createSequentialGroup().addComponent(lblMaxRam).addGap(51).addComponent(lblUsedRam).addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(btnGarbageCollector).addGap(85))).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)).addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup().addContainerGap(370, Short.MAX_VALUE).addComponent(btnClose).addContainerGap()));
-		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(panel, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(barRAM, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addGroup(gl_contentPane.createSequentialGroup().addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(lblMaxRam).addComponent(lblUsedRam)).addContainerGap(23, Short.MAX_VALUE)).addGroup(gl_contentPane.createSequentialGroup().addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(btnClose).addComponent(btnGarbageCollector))))));
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addComponent(barRAM, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
+						.addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
+						.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+							.addComponent(btnGarbageCollector)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnClose)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblMaxRam)
+							.addGap(43)
+							.addComponent(lblUsedRam)))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(barRAM, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnGarbageCollector)
+						.addComponent(btnClose)
+						.addComponent(lblMaxRam)
+						.addComponent(lblUsedRam)))
+		);
 		contentPane.setLayout(gl_contentPane);
 		new ThreadLocalRAM().start();
 	}
