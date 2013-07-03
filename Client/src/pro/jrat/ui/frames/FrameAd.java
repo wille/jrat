@@ -1,4 +1,5 @@
 package pro.jrat.ui.frames;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -9,16 +10,26 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 import javax.imageio.ImageIO;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ListModel;
+import javax.swing.ScrollPaneConstants;
 
+import pro.jrat.Contributors;
+import pro.jrat.Contributors.Donator;
 import pro.jrat.Main;
 import pro.jrat.common.Version;
+import pro.jrat.utils.FlagUtils;
 
 
 
@@ -26,6 +37,8 @@ import pro.jrat.common.Version;
 public class FrameAd extends BaseDialog {
 	
 	public static Image BACKGROUND;
+	
+	private DefaultListModel<String> model;
 	
 	static {
 		try {
@@ -110,5 +123,40 @@ public class FrameAd extends BaseDialog {
 		getContentPane().add(lblToKeepThis);
 		getContentPane().add(lblBitcoin);
 		getContentPane().add(lblLitecoin);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setBounds(185, 131, 168, 104);
+		getContentPane().add(scrollPane);
+		
+		final List<Donator> donators = new Contributors().getDonators();
+		
+		model = new DefaultListModel<String>();
+		
+		JList<String> list = new JList<String>();
+		list.setModel((ListModel<String>) model);
+		for (Donator donator : donators) {
+			model.addElement(donator.getName() + " - " + donator.getReason());
+		}
+		list.setCellRenderer(new DefaultListCellRenderer() {
+			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+				super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+				
+				Donator donor = null;
+				
+				for (Donator donator : donators) {
+					if (donator.getName().equals(value.toString().split(" - ")[0])) {
+						donor = donator;
+						break;
+					}
+				}
+				
+				setIcon(FlagUtils.getFlag(donor.getCountry()));
+				
+				
+				return this;
+			}
+		});
+		scrollPane.setViewportView(list);
 	}
 }
