@@ -20,11 +20,12 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import pro.jrat.ErrorDialog;
+import pro.jrat.Main;
 import pro.jrat.utils.IconUtils;
 
 
 @SuppressWarnings("serial")
-public class PanelBuildVisible extends JPanel {
+public class PanelBuildVisibility extends JPanel {
 	
 	private JCheckBox chckbxUseTrayIcon;
 	private PanelImage panelImage;
@@ -53,7 +54,7 @@ public class PanelBuildVisible extends JPanel {
 		return txtTitle.getText().trim();
 	}
 	
-	public PanelBuildVisible() {
+	public PanelBuildVisibility() {
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(BorderFactory.createTitledBorder("Visibility"));
@@ -75,10 +76,13 @@ public class PanelBuildVisible extends JPanel {
 		
 		chckbxUseTrayIcon = new JCheckBox("Use tray icon");
 		
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(PanelBuildVisible.class.getResource("/icons/glasses.png")));
+		if (Main.LEGACY) {
+			chckbxUseTrayIcon.setEnabled(false);
+			chckbxUseTrayIcon.setSelected(true);
+		}
 		
-		JLabel lblEnableThisIf = new JLabel("Enable this if you want a tray icon to be in the taskbar");
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(PanelBuildVisibility.class.getResource("/icons/glasses.png")));
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(BorderFactory.createLineBorder(Color.gray.brighter()));
@@ -91,7 +95,7 @@ public class PanelBuildVisible extends JPanel {
 		txtIcon.setColumns(10);
 		
 		JButton button = new JButton("");
-		button.setIcon(new ImageIcon(PanelBuildVisible.class.getResource("/icons/folder_go.png")));
+		button.setIcon(new ImageIcon(PanelBuildVisibility.class.getResource("/icons/folder_go.png")));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JFileChooser c = new JFileChooser();
@@ -121,7 +125,7 @@ public class PanelBuildVisible extends JPanel {
 				repaint();
 			}
 		});
-		btnDefault.setIcon(new ImageIcon(PanelBuildVisible.class.getResource("/icons/icon.png")));
+		btnDefault.setIcon(new ImageIcon(PanelBuildVisibility.class.getResource("/icons/icon.png")));
 		
 		JLabel lblMessages = new JLabel("Messages:");
 		
@@ -158,9 +162,6 @@ public class PanelBuildVisible extends JPanel {
 							.addGap(6)
 							.addComponent(chckbxUseTrayIcon))
 						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(42)
-							.addComponent(lblEnableThisIf))
-						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(45)
 							.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
 							.addGap(10)
@@ -194,9 +195,7 @@ public class PanelBuildVisible extends JPanel {
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addComponent(label, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
 						.addComponent(chckbxUseTrayIcon))
-					.addGap(6)
-					.addComponent(lblEnableThisIf)
-					.addGap(11)
+					.addGap(31)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_panel.createSequentialGroup()

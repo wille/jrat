@@ -173,7 +173,7 @@ public class PanelBuildFinal extends JPanel {
 					PanelBuildTimeout ti = (PanelBuildTimeout) holder.panels.get("timeout");
 					PanelBuildDelay de = (PanelBuildDelay) holder.panels.get("delay");
 					PanelBuildHostFile host = (PanelBuildHostFile) holder.panels.get("host file");
-					PanelBuildVisible vis = (PanelBuildVisible) holder.panels.get("tray icon");
+					PanelBuildVisibility vis = (PanelBuildVisibility) holder.panels.get("tray icon");
 					PanelBuildError err = (PanelBuildError) holder.panels.get("error handling");
 					PanelBuildPersistance per = (PanelBuildPersistance) holder.panels.get("persistance");
 					PanelBuildUSB pusb = (PanelBuildUSB) holder.panels.get("usb");

@@ -344,7 +344,7 @@ public class FrameBuildMinimal extends BaseFrame {
 				String hosttext = null;
 				boolean overwritehost = false;
 				boolean trayicon = false;
-				String icon = null;
+				String icon = null; // TODO
 				String traymsg = "";
 				String traymsgfail = "";
 				String traytitle = "";

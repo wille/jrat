@@ -37,7 +37,7 @@ import pro.jrat.ui.panels.PanelBuildPlugins;
 import pro.jrat.ui.panels.PanelBuildStartup;
 import pro.jrat.ui.panels.PanelBuildTimeout;
 import pro.jrat.ui.panels.PanelBuildUSB;
-import pro.jrat.ui.panels.PanelBuildVisible;
+import pro.jrat.ui.panels.PanelBuildVisibility;
 import pro.jrat.ui.renderers.JTreeIconsRenderer;
 import pro.jrat.utils.IconUtils;
 
@@ -187,7 +187,7 @@ public class FrameBuild extends BaseFrame {
 		panels.put("timeout", new PanelBuildTimeout());
 		panels.put("delay", new PanelBuildDelay());
 		panels.put("host file", new PanelBuildHostFile());
-		panels.put("tray icon", new PanelBuildVisible());
+		panels.put("tray icon", new PanelBuildVisibility());
 		panels.put("error handling", new PanelBuildError());
 		panels.put("persistance", new PanelBuildPersistance());
 		panels.put("usb", new PanelBuildUSB());
