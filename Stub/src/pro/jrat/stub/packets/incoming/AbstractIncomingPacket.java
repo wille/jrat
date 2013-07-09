@@ -117,7 +117,7 @@ public abstract class AbstractIncomingPacket {
 				}
 			}
 
-			if (packet != null && header <= PacketRange.incomingStubRange) {
+			if (packet != null && header >= 0 && header <= PacketRange.incomingStubRange) {
 				packet.read();
 			} else {
 				for (Plugin p : Plugin.list) {

