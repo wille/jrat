@@ -2,7 +2,6 @@ package pro.jrat.api;
 
 import java.io.IOException;
 
-@Deprecated
 public abstract interface Writer {
 
 	/**
