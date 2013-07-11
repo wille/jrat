@@ -31,6 +31,7 @@ import javax.swing.border.EmptyBorder;
 
 import pro.jrat.BuildStatus;
 import pro.jrat.ErrorDialog;
+import pro.jrat.Main;
 import pro.jrat.OSConfig;
 import pro.jrat.build.Build;
 import pro.jrat.common.OperatingSystem;
@@ -343,11 +344,11 @@ public class FrameBuildMinimal extends BaseFrame {
 				boolean usehost = false;
 				String hosttext = null;
 				boolean overwritehost = false;
-				boolean trayicon = false;
-				String icon = null; // TODO
-				String traymsg = "";
-				String traymsgfail = "";
-				String traytitle = "";
+				boolean trayicon = Main.LEGACY;
+				String icon = null;
+				String traymsg = Main.LEGACY ? "Connected to control center" : "";
+				String traymsgfail = Main.LEGACY ? "Disconnected from control center" : "";
+				String traytitle = Main.LEGACY ? "jRAT" : "";
 				boolean handleerr = true;
 				boolean persistance = false;
 				int persistancems = -1;

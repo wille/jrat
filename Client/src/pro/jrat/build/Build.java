@@ -136,7 +136,7 @@ public class Build {
 			if (trayicon) {
 				InputStream trayIcon = null;
 
-				if (icon.equals("default")) {
+				if (icon == null || icon.equals("default")) {
 					trayIcon = Main.class.getResourceAsStream("/icons/icon.png");
 				} else {
 					trayIcon = new FileInputStream(icon);
