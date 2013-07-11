@@ -47,23 +47,20 @@ public class PanelControlSpeech extends PanelControlParent {
 						writer1.write(IOUtils.readString(Main.class.getResourceAsStream("/files/speech.vbs")).replace("%TEXT%", txt.getText()));
 						writer1.close();
 						
-						Process p = Runtime.getRuntime().exec("cscript \"" + f.getAbsolutePath() + "\"");
+						Process p = Runtime.getRuntime().exec(new String[] { "cscript", f.getAbsolutePath() });
 						p.waitFor();
 						f.delete();
 					} catch (Exception e) {
 						e.printStackTrace();
 						ErrorDialog.create(e);
 					}
-				} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
+				} else {
 					try {
 						Runtime.getRuntime().exec("say " + txt.getText().trim());
 					} catch (Exception e) {
 						e.printStackTrace();
 						ErrorDialog.create(e);
 					}
-				} else {
-					Exception ex = new Exception("Cannot do text to speech on current OS");
-					ErrorDialog.create(ex);
 				}
 			}
 		});
@@ -117,7 +114,7 @@ public class PanelControlSpeech extends PanelControlParent {
 		);
 		
 		txt = new JTextPane();
-		txt.setText("ur computer is spekn 2 u");
+		txt.setText("Text to Speech");
 		scrollPane.setViewportView(txt);
 		setLayout(groupLayout);
 	}
