@@ -1,4 +1,4 @@
-package com.redpois0n;
+package pro.jrat;
 
 
 import sun.misc.BASE64Decoder;

