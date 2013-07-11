@@ -1,5 +1,6 @@
 package pro.jrat.ui.frames;
 
+import java.awt.Desktop;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -52,8 +53,7 @@ public class FrameChangelog extends BaseFrame {
 		btnDownloadLatestUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					java.awt.Desktop.getDesktop().browse(new URI(Constants.DOWNLOAD_URL));
-					System.exit(0);
+					Desktop.getDesktop().browse(new URI(Constants.DOWNLOAD_URL));
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

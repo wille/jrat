@@ -49,7 +49,7 @@ public class PanelBuildStartup extends JPanel {
 	public PanelBuildStartup() {
 
 		JPanel panel = new JPanel();
-		panel.setBorder(BorderFactory.createTitledBorder("Startup (Dropper)"));
+		panel.setBorder(BorderFactory.createTitledBorder("Startup (Installer)"));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup().addContainerGap(12, Short.MAX_VALUE).addComponent(panel, GroupLayout.PREFERRED_SIZE, 428, GroupLayout.PREFERRED_SIZE).addContainerGap()));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(panel, GroupLayout.PREFERRED_SIZE, 218, GroupLayout.PREFERRED_SIZE).addContainerGap(71, Short.MAX_VALUE)));
@@ -67,7 +67,7 @@ public class PanelBuildStartup extends JPanel {
 		JLabel lblDroppedFileAnd = new JLabel("Dropped file and reg key name:");
 
 		txtName = new JTextField(Settings.getGlobal().getString("jarname"));
-		txtName.setToolTipText("File name of dropped server and key in registry on windows");
+		txtName.setToolTipText("File name of installed file and key in registry in Windows");
 		txtName.setColumns(10);
 
 		chckbxMeltDropperAfter = new JCheckBox("Melt installer after it has been run (Delete itself)");

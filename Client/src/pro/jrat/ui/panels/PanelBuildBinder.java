@@ -54,7 +54,7 @@ public class PanelBuildBinder extends JPanel {
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(panel, GroupLayout.PREFERRED_SIZE, 425, GroupLayout.PREFERRED_SIZE).addContainerGap(15, Short.MAX_VALUE)));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(panel, GroupLayout.PREFERRED_SIZE, 238, GroupLayout.PREFERRED_SIZE).addContainerGap(51, Short.MAX_VALUE)));
 
-		chckbxBindFileTo = new JCheckBox("Bind file to be ran on execution (Along with dropper)");
+		chckbxBindFileTo = new JCheckBox("Bind file to be ran when installed");
 
 		JLabel lblPath = new JLabel("Path");
 
@@ -75,7 +75,7 @@ public class PanelBuildBinder extends JPanel {
 		});
 		button.setIcon(new ImageIcon(PanelBuildBinder.class.getResource("/icons/folder.png")));
 
-		JLabel lblDropPath = new JLabel("Drop path");
+		JLabel lblDropPath = new JLabel("Install path");
 
 		comboBox = new JComboBox<String>();
 		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "temp/documents (UNIX)", "appdata", "desktop" }));
@@ -92,7 +92,7 @@ public class PanelBuildBinder extends JPanel {
 		JButton button_1 = new JButton("");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Help.help("A file to be executed when program is launched, using dropper");
+				Help.help("A file to be executed when program is launched");
 			}
 		});
 		button_1.setIcon(new ImageIcon(PanelBuildBinder.class.getResource("/icons/help.png")));
