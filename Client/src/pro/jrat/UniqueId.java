@@ -44,7 +44,7 @@ public final class UniqueId {
 		return systemId;
 	}
 	
-	public static boolean validate() throws MissingKeyException, KeyNotFoundException, InvalidKeyException, Exception {
+	public static boolean validate() throws MissingKeyException, InvalidKeyException, Exception {
 		System.out.println("Checking key...");
 		
 		byte[] id = getSystemId();
@@ -60,7 +60,7 @@ public final class UniqueId {
 			return true;
 		}
 		
-		
+		throw new Exception("Response code: " + response);
 	}
 
 }
