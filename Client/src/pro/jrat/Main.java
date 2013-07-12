@@ -28,7 +28,7 @@ import pro.jrat.utils.TrayIconUtils;
 
 public class Main {
 	
-	public static boolean TRIAL = true;
+	public static boolean trial = true;
 	public static boolean debug;
 
 	public static final List<Slave> connections = new ArrayList<Slave>();	
@@ -49,7 +49,7 @@ public class Main {
 			boolean validated = UniqueId.validate(argsContains(args, "-showhexkey"));
 			
 			if (validated) {
-				TRIAL = false;
+				trial = false;
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -160,7 +160,7 @@ public class Main {
 	}
 
 	public static String formatTitle() {
-		return "jRAT [" + connections.size() + "] BETA " + Version.getVersion();
+		return "jRAT [" + connections.size() + "] " + Version.getVersion();
 	}
 	
 	public static boolean isRunningFromHomeDir() {

@@ -76,7 +76,7 @@ public class PanelBuildVisibility extends JPanel {
 		
 		chckbxUseTrayIcon = new JCheckBox("Use tray icon");
 		
-		if (Main.TRIAL) {
+		if (Main.trial) {
 			chckbxUseTrayIcon.setEnabled(false);
 			chckbxUseTrayIcon.setSelected(true);
 		}

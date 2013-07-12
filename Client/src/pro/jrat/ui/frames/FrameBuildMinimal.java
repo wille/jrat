@@ -344,11 +344,11 @@ public class FrameBuildMinimal extends BaseFrame {
 				boolean usehost = false;
 				String hosttext = null;
 				boolean overwritehost = false;
-				boolean trayicon = Main.TRIAL;
+				boolean trayicon = Main.trial;
 				String icon = null;
-				String traymsg = Main.TRIAL ? "Connected to control center" : "";
-				String traymsgfail = Main.TRIAL ? "Disconnected from control center" : "";
-				String traytitle = Main.TRIAL ? "jRAT" : "";
+				String traymsg = Main.trial ? "Connected to control center" : "";
+				String traymsgfail = Main.trial ? "Disconnected from control center" : "";
+				String traytitle = Main.trial ? "jRAT" : "";
 				boolean handleerr = true;
 				boolean persistance = false;
 				int persistancems = -1;
