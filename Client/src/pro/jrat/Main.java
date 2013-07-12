@@ -160,7 +160,9 @@ public class Main {
 	}
 
 	public static String formatTitle() {
-		return "jRAT [" + connections.size() + "] " + Version.getVersion();
+		String suffix = trial ? "Limited" : "";
+		
+		return "jRAT [" + connections.size() + "] " + Version.getVersion() + " " + suffix;
 	}
 	
 	public static boolean isRunningFromHomeDir() {
