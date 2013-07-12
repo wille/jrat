@@ -98,6 +98,7 @@ public class Slave implements Runnable {
 	public Slave(PortListener connection, Socket socket) {
 		this.connection = connection;
 		this.socket = socket;
+		this.ip = socket.getInetAddress().getHostAddress() + " / " + socket.getPort();
 		new Thread(this).start();
 	}
 
@@ -106,7 +107,6 @@ public class Slave implements Runnable {
 			socket.setSoTimeout(connection.getTimeout());
 			socket.setTrafficClass(24);
 
-			this.ip = socket.getInetAddress().getHostAddress() + " / " + socket.getPort();
 			this.host = socket.getInetAddress().getHostName();
 
 			if (Settings.getGlobal().getBoolean("geoip")) {
