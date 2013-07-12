@@ -29,14 +29,14 @@ import pro.jrat.utils.TrayIconUtils;
 public class Main {
 	
 	public static boolean TRIAL = true;
-	public static final List<Slave> connections = new ArrayList<Slave>();
-
 	public static boolean debug;
+
+	public static final List<Slave> connections = new ArrayList<Slave>();	
 	public static Frame instance;
 
 	public static void main(String[] args) throws Exception {
 		if (argsContains(args, "-genkey")) {
-			System.out.println("Generating system key");
+			System.out.println("Generating key");
 			File file = new File("jrat.key");
 			FileOutputStream out = new FileOutputStream(file);
 			out.write(UniqueId.generateBinary());
@@ -44,9 +44,9 @@ public class Main {
 			System.out.println("Wrote key to jrat.key");
 			System.exit(0);
 		}
-		
+
 		try {
-			boolean validated = UniqueId.validate();
+			boolean validated = UniqueId.validate(argsContains(args, "-showhexkey"));
 			
 			if (validated) {
 				TRIAL = false;

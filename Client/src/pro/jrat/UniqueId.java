@@ -44,10 +44,14 @@ public final class UniqueId {
 		return systemId;
 	}
 	
-	public static boolean validate() throws MissingKeyException, InvalidKeyException, Exception {		
+	public static boolean validate(boolean b) throws MissingKeyException, InvalidKeyException, Exception {		
 		byte[] id = getSystemId();
-				
-		HttpURLConnection archiveConnection = (HttpURLConnection) new URL(Constants.HOST + "/checkid.php?id=" + Hex.encode(id)).openConnection();
+		
+		if (b) {
+			System.out.println(Hex.encode(id));
+		}
+										
+		HttpURLConnection archiveConnection = (HttpURLConnection) new URL(Constants.HOST + "/misc/checkkey.php?key=" + Hex.encode(id)).openConnection();
 		archiveConnection.connect();
 		
 		int response = archiveConnection.getResponseCode();

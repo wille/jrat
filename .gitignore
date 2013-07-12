@@ -38,5 +38,7 @@ Client/plugins/
 Client/settings/
 Extractor/
 
+jrat.key
+
 # Mac crap
 .DS_Store
