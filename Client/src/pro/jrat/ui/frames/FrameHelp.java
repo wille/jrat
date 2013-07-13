@@ -38,7 +38,7 @@ import pro.jrat.Constants;
 import pro.jrat.Help;
 import pro.jrat.io.Files;
 import pro.jrat.ui.renderers.table.HelpTableRenderer;
-import pro.jrat.utils.NetworkUtils;
+import pro.jrat.utils.NetUtils;
 
 
 @SuppressWarnings("serial")
@@ -96,7 +96,7 @@ public class FrameHelp extends BaseFrame {
 			 public void hyperlinkUpdate(HyperlinkEvent e) {
 				if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
 					try {
-						NetworkUtils.openUrl(e.getURL().toURI().toString());
+						NetUtils.openUrl(e.getURL().toURI().toString());
 					} catch (Exception localException) {
 						localException.printStackTrace();
 					}		 

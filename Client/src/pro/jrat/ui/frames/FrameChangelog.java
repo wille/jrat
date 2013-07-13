@@ -25,7 +25,7 @@ import pro.jrat.Constants;
 import pro.jrat.ErrorDialog;
 import pro.jrat.common.Version;
 import pro.jrat.net.WebRequest;
-import pro.jrat.utils.NetworkUtils;
+import pro.jrat.utils.NetUtils;
 
 
 
@@ -108,7 +108,7 @@ public class FrameChangelog extends BaseFrame {
 			 public void hyperlinkUpdate(HyperlinkEvent e) {
 				if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
 					try {
-						NetworkUtils.openUrl(e.getURL().toURI().toString());
+						NetUtils.openUrl(e.getURL().toURI().toString());
 					} catch (Exception localException) {
 						localException.printStackTrace();
 					}		 

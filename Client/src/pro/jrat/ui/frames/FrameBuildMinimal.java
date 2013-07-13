@@ -44,7 +44,7 @@ import pro.jrat.listeners.SocketComboBoxListener;
 import pro.jrat.net.PortListener;
 import pro.jrat.settings.Settings;
 import pro.jrat.ui.components.PortListenerJComboBox;
-import pro.jrat.utils.NetworkUtils;
+import pro.jrat.utils.NetUtils;
 import pro.jrat.utils.Utils;
 
 
@@ -269,7 +269,7 @@ public class FrameBuildMinimal extends BaseFrame {
 		btnWan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					txtHost.setText(NetworkUtils.getIP());
+					txtHost.setText(NetUtils.getIP());
 				} catch (Exception e1) {
 					e1.printStackTrace();
 					ErrorDialog.create(e1);

