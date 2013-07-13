@@ -171,6 +171,19 @@ public class Frame extends BaseFrame {
 		});
 		menuItem_1.setIcon(new ImageIcon(Frame.class.getResource("/icons/information-button.png")));
 		mnEncryption.add(menuItem_1);
+		
+		if (Main.trial) {
+			mnMain.addSeparator();
+			
+			JMenuItem mntmUpgrade = new JMenuItem("Upgrade");
+			mntmUpgrade.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					
+				}
+			});
+			mntmUpgrade.setIcon(new ImageIcon(Frame.class.getResource("/icons/donate.png")));
+			mnMain.add(mntmUpgrade);
+		}
 		mnMain.addSeparator();
 		mntmClientSettings.setIcon(new ImageIcon(Frame.class.getResource("/icons/toolbox.png")));
 		mnMain.add(mntmClientSettings);
