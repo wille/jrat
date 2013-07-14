@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,10 +44,12 @@ import javax.swing.event.PopupMenuListener;
 import javax.swing.table.DefaultTableModel;
 
 import pro.jrat.Constants;
+import pro.jrat.ErrorDialog;
 import pro.jrat.Help;
 import pro.jrat.Main;
 import pro.jrat.SampleMode;
 import pro.jrat.Slave;
+import pro.jrat.UniqueId;
 import pro.jrat.api.RATMenuItem;
 import pro.jrat.api.RATObject;
 import pro.jrat.common.Flood;
@@ -303,6 +306,30 @@ public class Frame extends BaseFrame {
 		mntmBrowsePlugins.setIcon(new ImageIcon(Frame.class.getResource("/icons/application_icon_large.png")));
 		mnMain.add(mntmBrowsePlugins);
 		mnMain.addSeparator();
+		
+		JMenuItem mntmGenerateKey = new JMenuItem("Generate key");
+		mntmGenerateKey.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					File keyFile = new File("jrat.key");
+					
+					if (keyFile.exists() && JOptionPane.showConfirmDialog(null, "jrat.key already exists, do you want to overwrite and generate a new one?", "Generate key", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) != JOptionPane.YES_OPTION) {
+						return;
+					}
+					
+					FileOutputStream out = new FileOutputStream(keyFile);
+					out.write(UniqueId.generateBinary());
+					out.close();
+					
+					JOptionPane.showMessageDialog(null, "Generated a new key to jrat.key", "Generate key", JOptionPane.INFORMATION_MESSAGE);
+				} catch (Exception ex) {
+					ex.printStackTrace();
+					ErrorDialog.create(ex);
+				}
+			}
+		});
+		mntmGenerateKey.setIcon(new ImageIcon(Frame.class.getResource("/icons/key_plus.png")));
+		mnMain.add(mntmGenerateKey);
 		mntmExit.setIcon(new ImageIcon(Frame.class.getResource("/icons/exit.png")));
 		mnMain.add(mntmExit);
 
