@@ -18,7 +18,7 @@ public class Packet19ListFiles extends AbstractOutgoingPacket {
 
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		dos.writeInt(files.length);
+		dos.writeInt(files == null ? 0 : files.length);
 		
 		for (int i = 0; i < files.length; i++) {
 			File file = files[i];
