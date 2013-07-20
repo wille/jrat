@@ -8,13 +8,13 @@ import java.util.List;
 import pro.jrat.net.WebRequest;
 
 
-public class ThreadWhatsNew extends Thread {
+public class ThreadChangelog extends Thread {
 
 	public String url;
 	public boolean done = false;
 	public List<String> lines;
 
-	public ThreadWhatsNew(String url) {
+	public ThreadChangelog(String url) {
 		this.url = url;
 	}
 

