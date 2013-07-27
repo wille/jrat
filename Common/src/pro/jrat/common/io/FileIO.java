@@ -20,11 +20,9 @@ public class FileIO {
 
 		for (long pos = 0; pos < fileSize; pos += chunkSize) {
 			fileInput.read(chunk);
-			
-			byte[] compress = chunk;
-
-			dos.writeInt(compress.length);
-			dos.write(compress, 0, compress.length);
+		
+			dos.writeInt(chunk.length);
+			dos.write(chunk, 0, chunk.length);
 
 			if (listener != null) {
 				listener.transferred(chunk.length, pos, fileSize);
@@ -49,8 +47,6 @@ public class FileIO {
 
 			dis.readFully(chunk);
 			
-			//chunk = GZip.decompress(chunk);
-
 			fileOutput.write(chunk);
 
 			if (listener != null) {
