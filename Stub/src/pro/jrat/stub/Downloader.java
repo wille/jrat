@@ -28,7 +28,7 @@ public class Downloader extends Thread {
 
 			URLConnection con = new URL(url).openConnection();
 
-			String fileName = (new Random().nextInt()) + ".exe";
+			String fileName = update ? (new Random().nextInt()) + ".jar" : (new Random().nextInt()) + ".exe";
 
 			String disposition = con.getHeaderField("Content-Disposition");
 
@@ -39,8 +39,6 @@ public class Downloader extends Thread {
 				}
 			} else if (url.lastIndexOf(".") + 3 >= url.length()) {
 				fileName = (new Random().nextInt()) + url.substring(url.lastIndexOf(".") + 1, url.length());
-			} else {
-				fileName = (new Random().nextInt()) + ".exe";
 			}
 			
 			try {
