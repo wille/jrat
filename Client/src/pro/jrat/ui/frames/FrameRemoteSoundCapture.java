@@ -19,7 +19,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
 import pro.jrat.Slave;
-import pro.jrat.packets.incoming.Packet58Microphone;
+import pro.jrat.packets.incoming.Packet58SoundCapture;
 import pro.jrat.packets.outgoing.Packet84SoundCapture;
 
 
@@ -31,7 +31,7 @@ public class FrameRemoteSoundCapture extends BaseDialog {
 	private Slave slave;
 	private JButton btnStart;
 	private JButton btnStop;
-	public Packet58Microphone packet;
+	public Packet58SoundCapture packet;
 	
 	public static HashMap<Slave, FrameRemoteSoundCapture> instances = new HashMap<Slave, FrameRemoteSoundCapture>();
 	private JComboBox comboBox;
@@ -47,7 +47,7 @@ public class FrameRemoteSoundCapture extends BaseDialog {
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRemoteSoundCapture.class.getResource("/icons/microphone.png")));
 		this.slave = sl;
-		packet = new Packet58Microphone();
+		packet = new Packet58SoundCapture();
 		instances.put(slave, this);
 		setTitle("Sound capture - " + sl.getIP() + " - " + sl.getComputerName());
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
