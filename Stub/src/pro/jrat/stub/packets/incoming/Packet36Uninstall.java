@@ -30,12 +30,12 @@ public class Packet36Uninstall extends AbstractIncomingPacket {
 
 			if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
 				WinRegistry.deleteValue(WinRegistry.HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Run", Main.name);
-				file = new File(fileName + ".bat");
+				/*file = new File(fileName + ".bat");
 
 				text += "pause\n";
 				text += "del \"" + me.getAbsolutePath() + "\"" + "\n";
 				text += "del %0";
-				text = text.replace("\n", " & ");
+				text = text.replace("\n", " & ");*/
 			} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
 				File startupFile = new File(System.getProperty("user.home") + "/Library/LaunchAgents/" + Main.name + ".plist");
 				startupFile.delete();
