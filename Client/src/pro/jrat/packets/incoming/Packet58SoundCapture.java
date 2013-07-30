@@ -63,7 +63,7 @@ public class Packet58SoundCapture extends AbstractIncomingPacket {
 			frame.packet.read(sl, dis);
 			
 			if (frame.isRunning()) {
-				sl.addToSendQueue(new Packet84SoundCapture(false, null));
+				sl.addToSendQueue(new Packet84SoundCapture(false));
 			}
 		}
 	}

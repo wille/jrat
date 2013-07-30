@@ -13,11 +13,11 @@ public class Sound {
 	public static DataLine.Info info;
 	public static TargetDataLine line;
 	
-	public static void initialize(int q) throws Exception {
+	public static void initialize() throws Exception {
 		if (line != null) {
 			line.close();
 		}
-		format = new AudioFormat(q, 8, 1, true, true);
+		format = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 44100, 16, 2, 4, 44100, false);
 		info = new DataLine.Info(TargetDataLine.class, format);
 		line = (TargetDataLine) AudioSystem.getLine(info);
 		line.open();
