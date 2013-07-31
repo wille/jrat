@@ -8,6 +8,8 @@ public class RemoteScreenData {
 	private BufferedImage bufferedImage;
 	private byte[] buffer;
 	private boolean createdIcon;
+	private int chunks;
+	private int updatedChunks;
 
 	public RemoteScreenData(Slave slave, int w, int h) {
 		bufferedImage = new BufferedImage(w, h, BufferedImage.TYPE_3BYTE_BGR);
@@ -29,6 +31,22 @@ public class RemoteScreenData {
 
 	public void setIcon() {
 		createdIcon = true;
+	}
+
+	public int getUpdatedChunks() {
+		return updatedChunks;
+	}
+
+	public void setUpdatedChunks(int updatedChunks) {
+		this.updatedChunks = updatedChunks;
+	}
+
+	public int getChunks() {
+		return chunks;
+	}
+
+	public void setChunks(int chunks) {
+		this.chunks = chunks;
 	}
 
 }

