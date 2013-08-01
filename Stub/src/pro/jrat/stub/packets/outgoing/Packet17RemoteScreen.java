@@ -22,7 +22,6 @@ public class Packet17RemoteScreen extends AbstractOutgoingPacket {
 
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		
 		dos.writeInt(width);
 		dos.writeInt(height);
 		dos.writeInt(x);

