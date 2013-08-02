@@ -321,7 +321,7 @@ public class Frame extends BaseFrame {
 					out.write(UniqueId.generateBinary());
 					out.close();
 					
-					JOptionPane.showMessageDialog(null, "Generated a new key to jrat.key", "Generate key", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Generated a new key to jrat.key\nBackup this file and do not loose it", "Generate key", JOptionPane.INFORMATION_MESSAGE);
 				} catch (Exception ex) {
 					ex.printStackTrace();
 					ErrorDialog.create(ex);
