@@ -19,7 +19,7 @@ public class WebRequest {
 		URL url = null;
 		
 		if (Settings.getGlobal().getBoolean("askurl")) {
-			if (Utils.yesNo("HTTP Request", "jRAT tries to connect to:\n\r\n\r" + surl + "\n\r\n\rDo you want to accept it?")) {
+			if (Utils.yesNo("HTTP Request", "jRAT tries to connect to:\n\r\n\r" + surl + "\n\r\n\rDo you want to accept it?\n\r\n\r(You can turn off this notification in settings)")) {
 				url = new URL(surl);
 			} else {
 				throw new RequestNotAllowedException(surl);
