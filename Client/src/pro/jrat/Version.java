@@ -3,6 +3,8 @@ package pro.jrat;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+import javax.swing.JOptionPane;
+
 import pro.jrat.net.WebRequest;
 import pro.jrat.ui.frames.FrameChangelog;
 
@@ -19,6 +21,9 @@ public class Version {
 				FrameChangelog frame = new FrameChangelog(Constants.CHANGELOG_URL, latest);
 				frame.setVisible(true);
 				frame.setTitle("New version! - " + latest);
+				if (!Main.trial) {
+					JOptionPane.showMessageDialog(null, "When you are premium and upgrading, do not loose your jrat.key file", "Note", JOptionPane.WARNING_MESSAGE);
+				}
 				return true;
 			}
 			return false;
