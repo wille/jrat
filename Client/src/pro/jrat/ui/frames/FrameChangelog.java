@@ -36,7 +36,6 @@ public class FrameChangelog extends BaseFrame {
 
 	public FrameChangelog(String url, String version) {
 		super();
-		setAlwaysOnTop(true);
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameChangelog.class.getResource("/icons/question.png")));
 		setTitle("Whats new? " + Version.getVersion());
