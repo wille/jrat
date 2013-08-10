@@ -1,6 +1,5 @@
 package pro.jrat.ui.panels;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -86,9 +85,6 @@ public class PanelBuildBinder extends JPanel {
 		txtName.setText("Bind");
 		txtName.setColumns(10);
 
-		JLabel lblSelectedFileWill = new JLabel("Selected file will not be encrypted");
-		lblSelectedFileWill.setForeground(Color.RED);
-
 		JButton button_1 = new JButton("");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -120,8 +116,7 @@ public class PanelBuildBinder extends JPanel {
 										.addComponent(txtPath, GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE))
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addComponent(button))
-								.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 153, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblSelectedFileWill))))
+								.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 153, GroupLayout.PREFERRED_SIZE))))
 					.addGap(31))
 		);
 		gl_panel.setVerticalGroup(
@@ -145,9 +140,7 @@ public class PanelBuildBinder extends JPanel {
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblDropPath)
 						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(lblSelectedFileWill)
-					.addContainerGap(77, Short.MAX_VALUE))
+					.addContainerGap(102, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
 		setLayout(groupLayout);
