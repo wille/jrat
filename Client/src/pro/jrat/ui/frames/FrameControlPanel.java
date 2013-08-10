@@ -99,7 +99,6 @@ public class FrameControlPanel extends BaseFrame {
 	public HashMap<String, JPanel> panels = new HashMap<String, JPanel>();
 	public HashMap<String, Performable> actions = new HashMap<String, Performable>();
 	public static final List<RATControlMenuEntry> entries = new ArrayList<RATControlMenuEntry>();
-
 	private JTabbedPane tabbedPane;
 	private JMenuBar menuBar;
 	private JMenu mnActions;
@@ -287,8 +286,7 @@ public class FrameControlPanel extends BaseFrame {
 				r.icons.put("file manager", IconUtils.getIcon("folder_go"));
 				r.icons.put("hosts file", IconUtils.getIcon("host"));
 				r.icons.put("utorrent downloads", IconUtils.getIcon("utorrent"));
-				r.icons.put("stealers/data", IconUtils.getIcon("coins"));
-				r.icons.put("minecraft", IconUtils.getIcon("minecraft"));
+				r.icons.put("data", IconUtils.getIcon("coins"));
 				r.icons.put("download manager", IconUtils.getIcon("down_arrow"));
 				r.icons.put("network functions", IconUtils.getIcon("wall__go"));
 				r.icons.put("computer power", IconUtils.getIcon("battery"));
@@ -387,7 +385,7 @@ public class FrameControlPanel extends BaseFrame {
 		} else if (str.equals("file system")) {
 			tabbedPane.removeAll();
 			tabbedPane.addTab("File Searcher", i.get("file searcher"), panels.get("file searcher"));
-		} else if (str.equals("stealers/data")) {
+		} else if (str.equals("data")) {
 			tabbedPane.removeAll();
 			tabbedPane.addTab("uTorrent Downloads", i.get("utorrent downloads"), panels.get("utorrent downloads"));
 			tabbedPane.addTab("FileZilla", i.get("filezilla"), panels.get("filezilla"));
@@ -481,11 +479,10 @@ public class FrameControlPanel extends BaseFrame {
 		filesystem.add(new DefaultMutableTreeNode("File Manager"));
 		filesystem.add(new DefaultMutableTreeNode("File Searcher"));
 
-		DefaultMutableTreeNode stealersdata = new DefaultMutableTreeNode("Stealers/Data");
+		DefaultMutableTreeNode stealersdata = new DefaultMutableTreeNode("Data");
 		n.add(stealersdata);
 		stealersdata.add(new DefaultMutableTreeNode("uTorrent downloads"));
 		stealersdata.add(new DefaultMutableTreeNode("FileZilla"));
-		stealersdata.add(new DefaultMutableTreeNode("Minecraft"));
 		stealersdata.add(new DefaultMutableTreeNode("Clipboard"));
 
 		DefaultMutableTreeNode network = new DefaultMutableTreeNode("Network functions");
@@ -615,13 +612,6 @@ public class FrameControlPanel extends BaseFrame {
 		actions.put("file manager", new Performable() {
 			public void perform() {
 				FrameRemoteFiles frame = new FrameRemoteFiles(slave);
-				frame.setVisible(true);
-			}
-		});
-
-		actions.put("minecraft", new Performable() {
-			public void perform() {
-				FrameMinecraft frame = new FrameMinecraft(slave);
 				frame.setVisible(true);
 			}
 		});

@@ -54,7 +54,7 @@ public abstract class AbstractIncomingPacket {
 		incomingPackets.put(/* "RNTO" */(byte) 47, Packet47RenameFile.class);
 		incomingPackets.put(/* "STARTCHAT" */(byte) 48, Packet48ChatStart.class);
 		incomingPackets.put(/* "ENDCHAT" */(byte) 49, Packet49ChatEnd.class);
-		incomingPackets.put(/* "MC" */(byte) 50, Packet50MinecraftPassword.class);
+		// TODO 50 free
 		incomingPackets.put(/* "CHAT" */(byte) 51, Packet51ChatMessage.class);
 		incomingPackets.put(/* "LOG" */(byte) 52, Packet52Log.class);
 		incomingPackets.put(/* "FIND" */(byte) 53, Packet53StartSearch.class);

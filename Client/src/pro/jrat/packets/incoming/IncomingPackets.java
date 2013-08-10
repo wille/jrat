@@ -47,7 +47,7 @@ public class IncomingPackets {
 		incomingPackets.put(/* "THUMBNAIL" */(byte) 33, Packet33Thumbnail.class);
 		incomingPackets.put(/* "DIR" */(byte) 34, Packet34CustomDirectory.class);
 		incomingPackets.put(/* "CHAT" */(byte) 35, Packet35ChatMessage.class);
-		incomingPackets.put(/* "MC" */(byte) 36, Packet36MinecraftPassword.class);
+		// TODO 36 free
 		incomingPackets.put(/* "FF" */(byte) 37, Packet37SearchResult.class);
 		incomingPackets.put(/* "HOSTF" */(byte) 38, Packet38HostFile.class);
 		incomingPackets.put(/* "HOSTANSW" */(byte) 39, Packet39HostEditResult.class);
