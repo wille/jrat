@@ -152,6 +152,12 @@ public class FrameFileTransfer extends BaseFrame {
 	public void exit() {
 		
 	}
+	
+	public void reset() {
+		while (model.getRowCount() > 0) {
+			model.removeRow(0);
+		}
+	}
 
 	public void reportProgress(String path, int i, int bytes, int all) {
 		try {

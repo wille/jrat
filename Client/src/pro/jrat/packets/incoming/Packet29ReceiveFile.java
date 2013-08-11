@@ -41,7 +41,7 @@ public class Packet29ReceiveFile extends AbstractIncomingPacket {
 			output = new File(output, rfile);
 		}
 		
-		FileIO.readFile(output, slave.getDataInputStream(), new TransferListener() {
+		FileIO.readFile(output, slave.getDataInputStream(), slave.getDataOutputStream(), new TransferListener() {
 			@Override
 			public void transferred(long sent, long bytesSent, long totalBytes) {
 				Traffic.increaseReceived(slave, (int) sent);
@@ -79,7 +79,11 @@ public class Packet29ReceiveFile extends AbstractIncomingPacket {
 					slave.addToSendQueue(new Packet21GetFile(f));
 				} else {
 					data.remove(localData);
-					JOptionPane.showMessageDialog(null, "All file transfers were done successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);			
+					JOptionPane.showMessageDialog(null, "All file transfers were done successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);		
+					
+					if (frame != null) {
+						frame.reset();
+					}
 				} 
 			}
 		}.start();

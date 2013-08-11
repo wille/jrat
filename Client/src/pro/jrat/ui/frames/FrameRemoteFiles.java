@@ -887,6 +887,8 @@ public class FrameRemoteFiles extends BaseFrame {
 			frame = new FrameFileTransfer();
 		}
 		frame.setVisible(true);
+		
+		final FrameFileTransfer finalFrame = frame;
 
 		final List<File> files = new ArrayList<File>();
 
@@ -906,6 +908,9 @@ public class FrameRemoteFiles extends BaseFrame {
 						SendFile.sendFile(slave, file, txtDir.getText());
 					}
 					JOptionPane.showMessageDialog(null, "All file transfers were done successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+					if (finalFrame != null) {
+						finalFrame.reset();
+					}
 				}
 			}.start();
 		}

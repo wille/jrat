@@ -9,7 +9,7 @@ import java.io.FileOutputStream;
 
 public class FileIO {
 
-	public static void writeFile(File file, DataOutputStream dos, TransferListener listener, byte[] key) throws Exception {
+	public static void writeFile(File file, DataOutputStream dos, DataInputStream dis, TransferListener listener, byte[] key) throws Exception {
 		FileInputStream fileInput = new FileInputStream(file);
 
 		int chunkSize = 1024;
@@ -23,6 +23,8 @@ public class FileIO {
 		
 			dos.writeInt(chunk.length);
 			dos.write(chunk, 0, chunk.length);
+			
+			dis.readByte();
 
 			if (listener != null) {
 				listener.transferred(chunk.length, pos, fileSize);
@@ -32,7 +34,7 @@ public class FileIO {
 		fileInput.close();
 	}
 
-	public static void readFile(File output, DataInputStream dis, TransferListener listener, byte[] key) throws Exception {
+	public static void readFile(File output, DataInputStream dis, DataOutputStream dos, TransferListener listener, byte[] key) throws Exception {
 		FileOutputStream fileOutput = new FileOutputStream(output);
 
 		int read = 0;
@@ -47,8 +49,10 @@ public class FileIO {
 
 			dis.readFully(chunk);
 			
+			dos.writeByte(0);
+			
 			fileOutput.write(chunk);
-
+			
 			if (listener != null) {
 				listener.transferred(chunkSize, read, size);
 			}
