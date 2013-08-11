@@ -78,8 +78,8 @@ public class Packet29ReceiveFile extends AbstractIncomingPacket {
 					localData.getRemoteFiles().remove(0);
 					slave.addToSendQueue(new Packet21GetFile(f));
 				} else {
-					JOptionPane.showMessageDialog(null, "All file transfers were done successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);			
 					data.remove(localData);
+					JOptionPane.showMessageDialog(null, "All file transfers were done successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);			
 				} 
 			}
 		}.start();

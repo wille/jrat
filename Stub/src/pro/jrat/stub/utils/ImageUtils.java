@@ -19,9 +19,10 @@ public class ImageUtils {
 		writeParam.setCompressionQuality(quality);
 
 		ByteArrayOutputStream output = new ByteArrayOutputStream();
-		writer.setOutput(new MemoryCacheImageOutputStream(output));
+		MemoryCacheImageOutputStream mcios = new MemoryCacheImageOutputStream(output);
+		writer.setOutput(mcios);
 		writer.write(null, new IIOImage(image, null, null), writeParam);
-
+		mcios.close();
 		return output.toByteArray();
 	}
 
