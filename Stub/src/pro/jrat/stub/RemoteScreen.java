@@ -62,9 +62,11 @@ public class RemoteScreen {
 				image = robotForScreen.createScreenCapture(screenBounds);
 			}
 						
+			image = resize(image, 0.5D);
+			
 			Point point = MouseInfo.getPointerInfo().getLocation();
 			
-			AbstractOutgoingPacket packet = new Packet17RemoteScreen(image.getWidth(), image.getWidth(), point.x, point.y);
+			AbstractOutgoingPacket packet = new Packet17RemoteScreen(image.getWidth(), image.getHeight(), point.x, point.y);
 												
 	        int chunks = rows * columns;  
 	        int chunkWidth = image.getWidth() / columns; 

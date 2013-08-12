@@ -53,7 +53,7 @@ public class Packet17RemoteScreen extends AbstractIncomingPacket {
 		}
 		
 		BufferedImage bufferedImage = itd.getBufferedImage();
-
+		
 		FrameRemoteScreen frame = FrameRemoteScreen.instances.get(slave);
 
 		if (dis.readBoolean() && frame != null && frame.running) {
