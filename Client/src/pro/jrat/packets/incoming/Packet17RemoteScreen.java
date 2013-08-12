@@ -110,7 +110,7 @@ public class Packet17RemoteScreen extends AbstractIncomingPacket {
 				imageGraphics.drawImage(MOUSE_CURSOR, mouseX, mouseY, 16, 16, null);
 				frame.lbl.repaint();
 
-				frame.setSize(size);
+				frame.increaseSize(size);
 
 
 				if (!itd.hasCreatedIcon()) {

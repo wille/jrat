@@ -76,6 +76,7 @@ public class FrameRemoteScreen extends BaseFrame {
 	public int rows = 8;
 	public int cols = 8;
 	public double size = 1D;
+	public int imageSize = 0;
 	private JToggleButton tglbtnMove;
 	private JLabel lblFps;
 	private ThreadFPS thread = new ThreadFPS() {
@@ -99,10 +100,6 @@ public class FrameRemoteScreen extends BaseFrame {
 		return tglbtnMove.isSelected();
 	}
 	
-	public void setSize(int size) {
-		lblImageSize.setText("Image size: " + (size / 1024) + " kb");
-	}
-	
 	public void setTotalChunks(int v) {
 		lblTotalChunks.setText("Total chunks: " + v);
 	}
@@ -114,7 +111,17 @@ public class FrameRemoteScreen extends BaseFrame {
 	public void setLatestChunkSize(int size) {
 		lblLatestChunkSize.setText("Latest chunk size: " + (size / 1024) + " kb");
 	}
-
+	
+	public void clearSize() {
+		imageSize = 0;
+		lblImageSize.setText("Image size: 0 kb");
+	}
+	
+	public void increaseSize(int size) {
+		this.imageSize += imageSize;
+		lblImageSize.setText("Image size: " + (this.imageSize / 1024) + " kb");
+	}
+	
 	public FrameRemoteScreen(Slave slave) {
 		super();
 		thread.start();
@@ -190,6 +197,7 @@ public class FrameRemoteScreen extends BaseFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				running = true;
+				clearSize();
 				ScreenCommands.send(sl, getPercentSize(), monitorindex, rows, cols);
 				btnRequestOne.setEnabled(false);
 				btnStartCapture.setEnabled(false);
@@ -205,6 +213,7 @@ public class FrameRemoteScreen extends BaseFrame {
 			public void actionPerformed(ActionEvent e) {
 				btnRequestOne.setEnabled(false);
 				running = true;
+				clearSize();
 				ScreenCommands.sendOnce(sl, getPercentSize(), monitorindex, rows, cols);
 			}
 		});
@@ -220,6 +229,7 @@ public class FrameRemoteScreen extends BaseFrame {
 				progressBar.setValue(0);
 				btnStartCapture.setEnabled(true);
 				btnStop.setEnabled(false);
+				clearSize();
 			}
 		});
 		toolBar.add(btnStop);
@@ -408,4 +418,5 @@ public class FrameRemoteScreen extends BaseFrame {
 	public ThreadFPS getFPSThread() {
 		return thread;
 	}
+
 }
