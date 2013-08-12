@@ -21,7 +21,7 @@ public class ThreadImage extends Thread {
 			Thread.sleep(sleep);
 			FrameRemoteScreen frame = FrameRemoteScreen.instances.get(slave);
 			if (frame != null && frame.running && frame.slave.getIP().equals(slave.getIP())) {
-				ScreenCommands.send(slave, frame.getQuality(), frame.monitorindex, frame.rows, frame.cols);
+				ScreenCommands.send(slave, frame.getPercentSize(), frame.monitorindex, frame.rows, frame.cols);
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();

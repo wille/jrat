@@ -76,6 +76,7 @@ public class FrameRemoteScreen extends BaseFrame {
 	public int monitorindex = -1;
 	public int rows = 8;
 	public int cols = 8;
+	public double size = 1D;
 	private JToggleButton tglbtnMove;
 	private JLabel lblFps;
 	private ThreadFPS thread = new ThreadFPS() {
@@ -190,7 +191,7 @@ public class FrameRemoteScreen extends BaseFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				running = true;
-				ScreenCommands.send(sl, getQuality(), monitorindex, rows, cols);
+				ScreenCommands.send(sl, getPercentSize(), monitorindex, rows, cols);
 				btnRequestOne.setEnabled(false);
 				btnStartCapture.setEnabled(false);
 				btnStop.setEnabled(true);
@@ -205,7 +206,7 @@ public class FrameRemoteScreen extends BaseFrame {
 			public void actionPerformed(ActionEvent e) {
 				btnRequestOne.setEnabled(false);
 				running = true;
-				ScreenCommands.sendOnce(sl, getQuality(), monitorindex, rows, cols);
+				ScreenCommands.sendOnce(sl, getPercentSize(), monitorindex, rows, cols);
 			}
 		});
 		
@@ -383,7 +384,7 @@ public class FrameRemoteScreen extends BaseFrame {
 			FrameLoader loader = new FrameLoader();
 			loader.setVisible(true);
 			running = true;
-			ScreenCommands.sendOnce(sl, getQuality(), monitorindex, rows, cols);
+			ScreenCommands.sendOnce(sl, getPercentSize(), monitorindex, rows, cols);
 			while (running) {
 				try {
 					Thread.sleep(250L);
@@ -407,8 +408,8 @@ public class FrameRemoteScreen extends BaseFrame {
 		Packet17RemoteScreen.instances.remove(slave);
 	}
 
-	public int getQuality() {
-		return Integer.parseInt(cbQuality.getSelectedItem().toString());
+	public double getPercentSize() {
+		return size;
 	}
 	
 	public long getDelay() {

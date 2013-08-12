@@ -62,7 +62,7 @@ public class RemoteScreen {
 				image = robotForScreen.createScreenCapture(screenBounds);
 			}
 						
-			image = resize(image, 0.5D);
+			image = resize(image, size / 100D);
 			
 			Point point = MouseInfo.getPointerInfo().getLocation();
 			
