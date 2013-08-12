@@ -90,7 +90,6 @@ public class FrameMonitors extends BaseDialog {
 			public void actionPerformed(ActionEvent arg0) {
 				parent.monitorindex = cboxMonitors.getSelectedIndex() - 1;
 				parent.cbDelay.setSelectedIndex(slInterval.getValue());
-				parent.cbQuality.setSelectedIndex(slQuality.getValue());
 				parent.rows = (Integer) spW.getValue();
 				parent.cols = (Integer) spH.getValue();
 				parent.size = getSizeVal();

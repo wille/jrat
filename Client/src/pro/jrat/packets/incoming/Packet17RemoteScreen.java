@@ -66,6 +66,8 @@ public class Packet17RemoteScreen extends AbstractIncomingPacket {
 			if (requestAgain) {
 				new ThreadImage(frame.getDelay(), slave).start();
 			}
+			
+			frame.getFPSThread().increase();
 			return;
 		}
 
@@ -110,7 +112,6 @@ public class Packet17RemoteScreen extends AbstractIncomingPacket {
 
 				frame.setSize(size);
 
-				frame.getFPSThread().increase();
 
 				if (!itd.hasCreatedIcon()) {
 					ImageIcon imageicon = new ImageIcon(bufferedImage);
