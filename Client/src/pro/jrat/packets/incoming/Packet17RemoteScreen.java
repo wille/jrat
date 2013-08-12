@@ -99,6 +99,9 @@ public class Packet17RemoteScreen extends AbstractIncomingPacket {
 				itd.setChunks(itd.getChunks() + 1);
 				itd.setUpdatedChunks(itd.getUpdatedChunks() + 1);
 
+				frame.setTotalChunks(itd.getChunks() + 1);
+				frame.setUpdatedChunks(itd.getUpdatedChunks() + 1);
+
 				BufferedImage image = ImageUtils.decodeImage(buffer);
 				imageGraphics.drawImage(image, chunkWidth * y, chunkHeight * x, null);
 
@@ -106,6 +109,7 @@ public class Packet17RemoteScreen extends AbstractIncomingPacket {
 				frame.lbl.repaint();
 				frame.lbl.revalidate();
 				frame.progressBar.setValue(frame.progressBar.getValue() + 1);
+				System.out.println(frame.progressBar.getValue());
 				frame.setLatestChunkSize(blen);
 				size += blen;
 

