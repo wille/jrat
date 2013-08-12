@@ -56,7 +56,7 @@ public class Packet17RemoteScreen extends AbstractIncomingPacket {
 		
 		FrameRemoteScreen frame = FrameRemoteScreen.instances.get(slave);
 
-		if (dis.readBoolean() && frame != null && frame.running) {
+		if (dis.readBoolean() && frame != null) {
 			System.gc();
 
 			if (frame.record) {
@@ -78,8 +78,8 @@ public class Packet17RemoteScreen extends AbstractIncomingPacket {
 
 		byte[] buffer = new byte[blen];
 		slave.getDataInputStream().readFully(buffer);
-
-		if (frame != null && frame.running) {
+		
+		if (frame != null) {
 			try {
 				Graphics imageGraphics = bufferedImage.getGraphics();
 
