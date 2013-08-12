@@ -12,7 +12,7 @@ public class RemoteScreenData {
 	private int updatedChunks;
 
 	public RemoteScreenData(Slave slave, int w, int h) {
-		bufferedImage = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+		bufferedImage = new BufferedImage(w, h, BufferedImage.TYPE_3BYTE_BGR);
 		buffer = ((DataBufferByte) bufferedImage.getRaster().getDataBuffer()).getData();
 		createdIcon = false;
 	}
