@@ -46,6 +46,12 @@ public class Packet17RemoteScreen extends AbstractIncomingPacket {
 			itd = new RemoteScreenData(slave, w, h);
 			instances.put(slave, itd);
 		}
+		
+		if (itd.getBufferedImage().getWidth() != w || itd.getBufferedImage().getHeight() != h) {
+			itd = new RemoteScreenData(slave, w, h);
+			instances.put(slave, itd);
+		}
+		
 		BufferedImage bufferedImage = itd.getBufferedImage();
 
 		FrameRemoteScreen frame = FrameRemoteScreen.instances.get(slave);

