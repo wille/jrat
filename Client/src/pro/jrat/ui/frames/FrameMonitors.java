@@ -93,6 +93,7 @@ public class FrameMonitors extends BaseDialog {
 				parent.cbQuality.setSelectedIndex(slQuality.getValue());
 				parent.rows = (Integer) spW.getValue();
 				parent.cols = (Integer) spH.getValue();
+				parent.size = getSizeVal();
 				setVisible(false);
 				dispose();
 			}
@@ -225,14 +226,12 @@ public class FrameMonitors extends BaseDialog {
 		lblResize.setIcon(new ImageIcon(FrameMonitors.class.getResource("/icons/application-resize-full.png")));
 		
 		sdSize = new JSlider();
-		sdSize.setMinimum(1);
+		sdSize.setMinimum(25);
 		sdSize.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
 				double val = getSizeVal();
 				String display = Long.toString(Math.round(val));
 				lblResize.setText("Size " + display + "%");
-				
-				System.out.println(getSizeVal() / 100D);
 			}
 		});
 		sdSize.setPaintTicks(true);
