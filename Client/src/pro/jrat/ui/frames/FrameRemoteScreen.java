@@ -66,7 +66,6 @@ public class FrameRemoteScreen extends BaseFrame {
 	private JButton btnStartCapture;
 	public  JProgressBar progressBar;
 	public JComboBox cbDelay;
-	public JComboBox cbQuality;
 	private JToggleButton tglbtnMouse;
 	private JButton btnStop;
 	private JLabel lblImageSize;
@@ -309,14 +308,6 @@ public class FrameRemoteScreen extends BaseFrame {
 		
 		toolBar.addSeparator(new Dimension(25, 30));
 		
-		JLabel lblQuality = new JLabel("Quality    ");
-		toolBar.add(lblQuality);
-		
-		cbQuality = new JComboBox();
-		cbQuality.setModel(new DefaultComboBoxModel(new String[] {"10", "9", "8", "7", "6", "5", "4", "3", "2", "1", "0"}));
-		cbQuality.setSelectedIndex(9);
-		toolBar.add(cbQuality);
-		
 		JToolBar toolBar_1 = new JToolBar();
 		toolBar_1.setFloatable(false);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
@@ -361,8 +352,6 @@ public class FrameRemoteScreen extends BaseFrame {
 		
 		lblFps = new JLabel("FPS: ");
 		toolBar_1.add(lblFps);
-		
-		toolBar.addSeparator(new Dimension(25, 30));	
 		JCheckBox chckbxProgress = new JCheckBox("Progress    ");		
 		chckbxProgress.setSelected(true);
 		chckbxProgress.addActionListener(new ActionListener() {
