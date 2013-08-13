@@ -13,7 +13,7 @@ public class Startup {
 	public static final void addToStartup(String name) throws Exception {
 		File currentJar = Utils.getJarFile();
 		
-		String home = System.getProperty("java.home");
+		String home = System.getProperty("user.home");
 		
 		if (Utils.isRoot()) {
 			home = "/System/";
