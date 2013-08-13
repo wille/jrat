@@ -57,7 +57,7 @@ public class RemoteScreen {
 			}
 			BufferedImage image = null;
 			Rectangle screenBounds = null;
-
+			
 			if (monitor == -1) {
 				screenBounds = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
 				image = new Robot().createScreenCapture(screenBounds);

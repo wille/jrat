@@ -162,7 +162,7 @@ public class FrameMonitors extends BaseDialog {
 		JLabel lblH = new JLabel("H");
 		
 		spH = new JSpinner();
-		spH.setModel(new SpinnerNumberModel(8, 2, 256, 1));
+		spH.setModel(new SpinnerNumberModel(1, 1, 256, 1));
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
