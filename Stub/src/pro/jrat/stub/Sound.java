@@ -1,7 +1,5 @@
 package pro.jrat.stub;
 
-import java.io.DataOutputStream;
-
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.DataLine;

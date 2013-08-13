@@ -48,6 +48,9 @@ public class Plugin {
 			Method onPacket = classToLoad.getMethod("onPacket", new Class[] { byte.class });
 			p.methods.put("onpacket", onPacket);
 			
+			Method onStart = classToLoad.getMethod("onStart", new Class[] { });
+			p.methods.put("onstart", onStart);
+			
 			p.name = (String) classToLoad.getMethod("getName", new Class[] { }).invoke(p.instance, new Object[] { });
 			
 			list.add(p);
