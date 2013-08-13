@@ -14,6 +14,11 @@ public abstract class StubPlugin {
 	}
 	
 	/**
+	 * Called when jRAT is launched
+	 */
+	public abstract void onStart();
+	
+	/**
 	 * When we loose connection to controller and the reason
 	 * @param ex
 	 * @throws Exception
