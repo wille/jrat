@@ -70,6 +70,8 @@ public class FrameRemoteSoundCapture extends BaseDialog {
 		btnStop = new JButton("Stop");
 		btnStop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				slave.addToSendQueue(new Packet84SoundCapture(false));
+
 				btnStart.setEnabled(true);
 				btnStop.setEnabled(false);
 				comboBox.setEnabled(true);
