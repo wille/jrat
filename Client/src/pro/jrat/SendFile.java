@@ -28,7 +28,7 @@ public class SendFile {
 			slave.addToSendQueue(new Packet42TakeFile(destdir, file.getName()));
 					
 			FileIO fileio = new FileIO();
-			fileio.writeFile(file, slave.getDataOutputStream(), slave.getDataInputStream(), new TransferListener() {
+			fileio.writeFile(file, slave.getSocket(), slave.getDataOutputStream(), slave.getDataInputStream(), new TransferListener() {
 				public void transferred(long sent, long bytesSent, long totalBytes) {
 					Traffic.increaseSent(slave, (int) bytesSent);
 					

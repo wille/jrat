@@ -42,7 +42,7 @@ public class Packet29ReceiveFile extends AbstractIncomingPacket {
 		}
 		
 		FileIO fileio = new FileIO();
-		fileio.readFile(output, slave.getDataInputStream(), slave.getDataOutputStream(), new TransferListener() {
+		fileio.readFile(output, slave.getSocket(), slave.getDataInputStream(), slave.getDataOutputStream(), new TransferListener() {
 			@Override
 			public void transferred(long sent, long bytesSent, long totalBytes) {
 				Traffic.increaseReceived(slave, (int) sent);

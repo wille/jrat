@@ -24,7 +24,7 @@ public class Packet42TakeFile extends AbstractIncomingPacket {
 		Connection.lock();
 		
 		FileIO fileio = new FileIO();
-		fileio.readFile(file, Connection.dis, Connection.dos, null, Main.getKey());
+		fileio.readFile(file, Connection.socket, Connection.dis, Connection.dos, null, Main.getKey());
 		
 		Connection.lock();
 

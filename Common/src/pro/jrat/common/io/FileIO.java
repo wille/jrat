@@ -5,6 +5,7 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.net.Socket;
 
 
 public class FileIO {
@@ -13,7 +14,7 @@ public class FileIO {
 
 	public boolean enabled = true;
 	
-	public void writeFile(File file, DataOutputStream dos, DataInputStream dis, TransferListener listener, byte[] key) throws Exception {
+	public void writeFile(File file, Socket socket, DataOutputStream dos, DataInputStream dis, TransferListener listener, byte[] key) throws Exception {
 		FileInputStream fileInput = new FileInputStream(file);		
 		
 		byte[] chunk = new byte[CHUNKSIZE];
@@ -29,7 +30,7 @@ public class FileIO {
 				fileInput.close();
 				return;
 			}
-			
+						
 			fileInput.read(chunk);
 		
 			dos.writeInt(chunk.length);
@@ -39,11 +40,11 @@ public class FileIO {
 				listener.transferred(chunk.length, pos, fileSize);
 			}
 		}
-		dos.writeInt(-1);
+		//dos.writeInt(-1);
 		fileInput.close();
 	}
 
-	public void readFile(File output, DataInputStream dis, DataOutputStream dos, TransferListener listener, byte[] key) throws Exception {
+	public void readFile(File output, Socket socket, DataInputStream dis, DataOutputStream dos, TransferListener listener, byte[] key) throws Exception {
 		FileOutputStream fileOutput = new FileOutputStream(output);
 
 		int read = 0;
@@ -51,7 +52,7 @@ public class FileIO {
 		
 		long size = dis.readLong();
 		
-		while (dis.readBoolean()) {
+		while (dis.readBoolean()) {			
 			chunkSize = dis.readInt();
 			
 			byte[] chunk = new byte[chunkSize];
