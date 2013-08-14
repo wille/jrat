@@ -27,9 +27,12 @@ public class SendFile {
 		try {				
 			slave.addToSendQueue(new Packet42TakeFile(destdir, file.getName()));
 					
-			FileIO.writeFile(file, slave.getDataOutputStream(), slave.getDataInputStream(), new TransferListener() {
+			FileIO fileio = new FileIO();
+			fileio.writeFile(file, slave.getDataOutputStream(), slave.getDataInputStream(), new TransferListener() {
 				public void transferred(long sent, long bytesSent, long totalBytes) {
 					Traffic.increaseSent(slave, (int) bytesSent);
+					
+					System.out.println("Sent: " + sent + ", Bytes Sent: " + bytesSent + ", Total Bytes: " + totalBytes);
 					if (frame != null) {
 						frame.reportProgress(file.getAbsolutePath(), MathUtils.getPercentFromTotal((int) bytesSent, (int) totalBytes), (int) bytesSent, (int) totalBytes);
 					}

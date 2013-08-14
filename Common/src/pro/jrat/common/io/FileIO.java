@@ -8,24 +8,33 @@ import java.io.FileOutputStream;
 
 
 public class FileIO {
+	
+	public static final int CHUNKSIZE = 1024 * 10;
 
-	public static void writeFile(File file, DataOutputStream dos, DataInputStream dis, TransferListener listener, byte[] key) throws Exception {
-		FileInputStream fileInput = new FileInputStream(file);
-
-		int chunkSize = 1024;
-		byte[] chunk = new byte[chunkSize];
+	public boolean enabled = true;
+	
+	public void writeFile(File file, DataOutputStream dos, DataInputStream dis, TransferListener listener, byte[] key) throws Exception {
+		FileInputStream fileInput = new FileInputStream(file);		
+		
+		byte[] chunk = new byte[CHUNKSIZE];
 
 		long fileSize = file.length();
 		dos.writeLong(fileSize);
 
-		for (long pos = 0; pos < fileSize; pos += chunkSize) {
+		for (long pos = 0; pos < fileSize; pos += CHUNKSIZE) {
+			if (enabled) {
+				dos.writeBoolean(true);
+			} else {
+				dos.writeBoolean(false);
+				fileInput.close();
+				return;
+			}
+			
 			fileInput.read(chunk);
 		
 			dos.writeInt(chunk.length);
 			dos.write(chunk, 0, chunk.length);
 			
-			dis.readByte();
-
 			if (listener != null) {
 				listener.transferred(chunk.length, pos, fileSize);
 			}
@@ -34,7 +43,7 @@ public class FileIO {
 		fileInput.close();
 	}
 
-	public static void readFile(File output, DataInputStream dis, DataOutputStream dos, TransferListener listener, byte[] key) throws Exception {
+	public void readFile(File output, DataInputStream dis, DataOutputStream dos, TransferListener listener, byte[] key) throws Exception {
 		FileOutputStream fileOutput = new FileOutputStream(output);
 
 		int read = 0;
@@ -42,19 +51,19 @@ public class FileIO {
 		
 		long size = dis.readLong();
 		
-		while ((chunkSize = dis.readInt()) != -1) {
+		while (dis.readBoolean()) {
+			chunkSize = dis.readInt();
+			
 			byte[] chunk = new byte[chunkSize];
 
 			read += chunkSize;
 
 			dis.readFully(chunk);
-			
-			dos.writeByte(0);
-			
+						
 			fileOutput.write(chunk);
 			
 			if (listener != null) {
-				listener.transferred(chunkSize, read, size);
+				listener.transferred(chunk.length, read, size);
 			}
 		}
 		

@@ -41,7 +41,8 @@ public class Packet29ReceiveFile extends AbstractIncomingPacket {
 			output = new File(output, rfile);
 		}
 		
-		FileIO.readFile(output, slave.getDataInputStream(), slave.getDataOutputStream(), new TransferListener() {
+		FileIO fileio = new FileIO();
+		fileio.readFile(output, slave.getDataInputStream(), slave.getDataOutputStream(), new TransferListener() {
 			@Override
 			public void transferred(long sent, long bytesSent, long totalBytes) {
 				Traffic.increaseReceived(slave, (int) sent);
