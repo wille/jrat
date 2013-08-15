@@ -655,7 +655,7 @@ public class Frame extends BaseFrame {
 				}
 
 				result = result.trim().replace(" ", "%20");
-				
+
 				int servers = 0;
 				for (int i = 0; i < mainModel.getRowCount(); i++) {
 					Slave sl = Utils.getSlave(mainModel.getValueAt(i, 3).toString());

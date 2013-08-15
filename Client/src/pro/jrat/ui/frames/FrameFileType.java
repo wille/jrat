@@ -60,7 +60,7 @@ public class FrameFileType extends JDialog {
 		
 		JLabel lblExtension = new JLabel("Extension:");
 		
-		txtExtension = new JTextField(".exe");
+		txtExtension = new JTextField("exe");
 		txtExtension.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent arg0) {
@@ -124,6 +124,8 @@ public class FrameFileType extends JDialog {
 					.addContainerGap())
 		);
 		contentPane.setLayout(gl_contentPane);
+		
+		setLocationRelativeTo(null);
 	}
 	
 	public static String showDialog() {
