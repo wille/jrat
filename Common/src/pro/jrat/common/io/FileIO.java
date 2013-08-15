@@ -10,12 +10,11 @@ import java.net.Socket;
 
 public class FileIO {
 	
-	public static final int CHUNKSIZE = 1024 * 10;
+	public static final int CHUNKSIZE = 1024;
 
 	public boolean enabled = true;
 	
 	public void writeFile(File file, Socket socket, DataOutputStream dos, DataInputStream dis, TransferListener listener, byte[] key) throws Exception {
-		System.out.println(dis.readByte());
 		int timeout = socket.getSoTimeout();
 		socket.setSoTimeout(0);
 		
@@ -26,18 +25,10 @@ public class FileIO {
 		long fileSize = file.length();
 		dos.writeLong(fileSize);
 
-		for (long pos = 0; pos < fileSize; pos += CHUNKSIZE) {
-			dos.writeBoolean(true);
-
-			if (!enabled) {
-				dos.writeInt(-1);
-				break;
-			}
-						
+		for (long pos = 0; pos < fileSize; pos += CHUNKSIZE) {					
 			fileInput.read(chunk);
 		
 			dos.writeInt(chunk.length);
-			System.out.println(chunk.length);
 
 			dos.write(chunk, 0, chunk.length);
 			
@@ -47,11 +38,12 @@ public class FileIO {
 		}
 		fileInput.close();
 		
+		dos.writeInt(-1);
+		
 		socket.setSoTimeout(timeout);
 	}
 
 	public void readFile(File output, Socket socket, DataInputStream dis, DataOutputStream dos, TransferListener listener, byte[] key) throws Exception {
-		dos.writeByte(69);
 		FileOutputStream fileOutput = new FileOutputStream(output);
 
 		int read = 0;
@@ -59,10 +51,7 @@ public class FileIO {
 		
 		long size = dis.readLong();
 		
-		while (dis.readBoolean()) {			
-			chunkSize = dis.readInt();
-			System.out.println(chunkSize);
-			
+		while ((chunkSize = dis.readInt()) != -1) {						
 			byte[] chunk = new byte[chunkSize];
 
 			read += chunkSize;

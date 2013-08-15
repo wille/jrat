@@ -905,7 +905,6 @@ public class FrameRemoteFiles extends BaseFrame {
 			new Thread() {
 				public void run() {
 					for (File file : files) {
-						System.out.println("Sending: " + file.getAbsolutePath() + " to " + txtDir.getText());
 						SendFile.sendFile(slave, file, txtDir.getText());
 					}
 					JOptionPane.showMessageDialog(null, "All file transfers were done successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
