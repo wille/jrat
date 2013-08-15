@@ -32,7 +32,6 @@ public class SendFile {
 				public void transferred(long sent, long bytesSent, long totalBytes) {
 					Traffic.increaseSent(slave, (int) bytesSent);
 					
-					System.out.println("Sent: " + sent + ", Bytes Sent: " + bytesSent + ", Total Bytes: " + totalBytes);
 					if (frame != null) {
 						frame.reportProgress(file.getAbsolutePath(), MathUtils.getPercentFromTotal((int) bytesSent, (int) totalBytes), (int) bytesSent, (int) totalBytes);
 					}

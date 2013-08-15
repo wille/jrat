@@ -15,6 +15,10 @@ public class FileIO {
 	public boolean enabled = true;
 	
 	public void writeFile(File file, Socket socket, DataOutputStream dos, DataInputStream dis, TransferListener listener, byte[] key) throws Exception {
+		System.out.println(dis.readByte());
+		int timeout = socket.getSoTimeout();
+		socket.setSoTimeout(0);
+		
 		FileInputStream fileInput = new FileInputStream(file);		
 		
 		byte[] chunk = new byte[CHUNKSIZE];
@@ -23,28 +27,31 @@ public class FileIO {
 		dos.writeLong(fileSize);
 
 		for (long pos = 0; pos < fileSize; pos += CHUNKSIZE) {
-			if (enabled) {
-				dos.writeBoolean(true);
-			} else {
-				dos.writeBoolean(false);
-				fileInput.close();
-				return;
+			dos.writeBoolean(true);
+
+			if (!enabled) {
+				dos.writeInt(-1);
+				break;
 			}
 						
 			fileInput.read(chunk);
 		
 			dos.writeInt(chunk.length);
+			System.out.println(chunk.length);
+
 			dos.write(chunk, 0, chunk.length);
 			
 			if (listener != null) {
 				listener.transferred(chunk.length, pos, fileSize);
 			}
 		}
-		//dos.writeInt(-1);
 		fileInput.close();
+		
+		socket.setSoTimeout(timeout);
 	}
 
 	public void readFile(File output, Socket socket, DataInputStream dis, DataOutputStream dos, TransferListener listener, byte[] key) throws Exception {
+		dos.writeByte(69);
 		FileOutputStream fileOutput = new FileOutputStream(output);
 
 		int read = 0;
@@ -54,6 +61,7 @@ public class FileIO {
 		
 		while (dis.readBoolean()) {			
 			chunkSize = dis.readInt();
+			System.out.println(chunkSize);
 			
 			byte[] chunk = new byte[chunkSize];
 
@@ -69,7 +77,6 @@ public class FileIO {
 		}
 		
 		fileOutput.close();
-
 	}
 
 }
