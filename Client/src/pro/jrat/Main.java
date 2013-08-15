@@ -44,6 +44,12 @@ public class Main {
 			System.out.println("Wrote key to jrat.key");
 			System.exit(0);
 		}
+		
+		if (argsContains(args, "-proto")) {
+			String proto = getArg(args, "-proto");
+			
+			Constants.HOST = proto + "jrat.pro";
+		}
 
 		try {
 			boolean validated = UniqueId.validate(argsContains(args, "-showhexkey"));
@@ -149,6 +155,16 @@ public class Main {
 		}
 		
 		return false;
+	}
+	
+	public static String getArg(String[] args, String arg) {
+		for (int i = 0; i < args.length; i++) {
+			if (args[i].equalsIgnoreCase(arg)) {
+				return args[i + 1];
+			}
+		}
+		
+		return null;
 	}
 
 	public static String debug(Object s) {

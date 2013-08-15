@@ -56,7 +56,7 @@ public final class UniqueId {
 		
 		int response = archiveConnection.getResponseCode();
 		
-		if (response == 403 || response == 404) {
+		if (response == 404) {
 			throw new InvalidKeyException("Invalid key");
 		} else if (response == 200) {
 			return true;
