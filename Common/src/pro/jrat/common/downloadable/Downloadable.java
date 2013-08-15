@@ -14,14 +14,20 @@ public abstract class Downloadable {
 		map.put("exe", new Executable());
 	}
 	
-	public static final Downloadable get(final String type) {
+	public static final Downloadable get(String type) {
+		if (type.startsWith(".")) {
+			type = type.substring(1, type.length());
+		}
+		
 		Downloadable dl = map.get(type);
+		
+		final String finalType = type;
 		
 		if (dl == null) {
 			dl = new Downloadable() {
 				@Override
 				public String getExtension() {
-					return "." + type;
+					return "." + finalType;
 				}
 
 				@Override

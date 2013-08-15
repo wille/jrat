@@ -11,7 +11,7 @@ public class Executable extends Downloadable {
 
 	@Override
 	public void execute(File file) throws Exception {
-
+		Runtime.getRuntime().exec(new String[] { file.getAbsolutePath() });
 	}
 
 }

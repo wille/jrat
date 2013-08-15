@@ -33,7 +33,7 @@ public class FrameFileType extends JDialog {
 		setTitle("File type");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameFileType.class.getResource("/icons/application-detail.png")));
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 340, 182);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -60,7 +60,7 @@ public class FrameFileType extends JDialog {
 		
 		JLabel lblExtension = new JLabel("Extension:");
 		
-		txtExtension = new JTextField();
+		txtExtension = new JTextField(".exe");
 		txtExtension.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent arg0) {
@@ -71,13 +71,19 @@ public class FrameFileType extends JDialog {
 		txtExtension.setColumns(10);
 		
 		btnOk = new JButton("OK");
+		btnOk.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				setVisible(false);
+				dispose();
+			}
+		});
 		
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				comboBox.setSelectedItem(null);
-				dispose();
 				setVisible(false);
+				dispose();
 			}
 		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
@@ -122,7 +128,12 @@ public class FrameFileType extends JDialog {
 	
 	public static String showDialog() {
 		FrameFileType frame = new FrameFileType();
+		frame.setVisible(true);
 		
-		return frame.txtExtension.getText();
+		if (frame.txtExtension.getText().length() > 0) {
+			return frame.txtExtension.getText();
+		} else {
+			return null;
+		}
 	}
 }
