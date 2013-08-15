@@ -1,31 +1,35 @@
 package pro.jrat.ui.frames;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JLabel;
-import javax.swing.JComboBox;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JTextField;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.EmptyBorder;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 @SuppressWarnings("serial")
-public class FrameFileType extends JFrame {
+public class FrameFileType extends JDialog {
+	
+	public JTextField txtExtension;
 
 	private JPanel contentPane;
-	private JTextField txtExtension;
 	private JComboBox comboBox;
+	private JButton btnOk;
 
 	public FrameFileType() {
+		setModal(true);
 		setTitle("File type");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameFileType.class.getResource("/icons/application-detail.png")));
 		setResizable(false);
@@ -57,12 +61,25 @@ public class FrameFileType extends JFrame {
 		JLabel lblExtension = new JLabel("Extension:");
 		
 		txtExtension = new JTextField();
+		txtExtension.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent arg0) {
+				btnOk.setEnabled(txtExtension.getText().length() > 0);
+			}
+		});
 		txtExtension.setEnabled(false);
 		txtExtension.setColumns(10);
 		
-		JButton btnOk = new JButton("OK");
+		btnOk = new JButton("OK");
 		
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				comboBox.setSelectedItem(null);
+				dispose();
+				setVisible(false);
+			}
+		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -104,6 +121,8 @@ public class FrameFileType extends JFrame {
 	}
 	
 	public static String showDialog() {
-		return null;
+		FrameFileType frame = new FrameFileType();
+		
+		return frame.txtExtension.getText();
 	}
 }
