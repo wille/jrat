@@ -22,13 +22,13 @@ import javax.swing.JSpinner;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import pro.jrat.Monitor;
 import pro.jrat.Slave;
 import pro.jrat.ui.renderers.JComboBoxIconRenderer;
 import pro.jrat.utils.IconUtils;
-import javax.swing.event.ChangeListener;
-import javax.swing.event.ChangeEvent;
 
 
 @SuppressWarnings("serial")

