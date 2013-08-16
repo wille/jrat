@@ -45,12 +45,6 @@ public class Main {
 			System.exit(0);
 		}
 		
-		if (argsContains(args, "-proto")) {
-			String proto = getArg(args, "-proto");
-			
-			Constants.HOST = proto + "jrat.pro";
-		}
-
 		try {
 			boolean validated = UniqueId.validate(argsContains(args, "-showhexkey"));
 			
