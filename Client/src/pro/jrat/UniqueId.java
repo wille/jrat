@@ -3,13 +3,13 @@ package pro.jrat;
 import java.io.File;
 import java.io.FileInputStream;
 import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.Random;
 
 import pro.jrat.common.codec.Hex;
 import pro.jrat.common.hash.Sha256;
 import pro.jrat.exceptions.InvalidKeyException;
 import pro.jrat.exceptions.MissingKeyException;
+import pro.jrat.net.WebRequest;
 
 public final class UniqueId {
 	
@@ -51,7 +51,7 @@ public final class UniqueId {
 			System.out.println(Hex.encode(id));
 		}
 										
-		HttpURLConnection archiveConnection = (HttpURLConnection) new URL(Constants.HOST + "/misc/checkkey.php?key=" + Hex.encode(id)).openConnection();
+		HttpURLConnection archiveConnection = (HttpURLConnection) WebRequest.getUrl(Constants.HOST + "/misc/checkkey.php?key=" + Hex.encode(id), true).openConnection();
 		archiveConnection.connect();
 		
 		int response = archiveConnection.getResponseCode();
