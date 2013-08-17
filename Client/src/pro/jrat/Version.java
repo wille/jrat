@@ -16,6 +16,7 @@ public class Version {
 		try {
 			BufferedReader dis = new BufferedReader(new InputStreamReader(WebRequest.getInputStream(Constants.HOST + "/version.txt")));
 			String result = dis.readLine();
+
 			String latest = result;
 			if (!result.trim().equals(pro.jrat.common.Version.getVersion())) {
 				FrameChangelog frame = new FrameChangelog(Constants.CHANGELOG_URL, latest);

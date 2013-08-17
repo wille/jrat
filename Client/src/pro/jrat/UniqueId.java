@@ -51,7 +51,7 @@ public final class UniqueId {
 			System.out.println(Hex.encode(id));
 		}
 										
-		HttpURLConnection archiveConnection = (HttpURLConnection) WebRequest.getUrl(Constants.HOST + "/misc/checkkey.php?key=" + Hex.encode(id), true).openConnection();
+		HttpURLConnection archiveConnection = (HttpURLConnection) WebRequest.getConnection(Constants.HOST + "/misc/checkkey.php?key=" + Hex.encode(id), true);
 		archiveConnection.connect();
 		
 		int response = archiveConnection.getResponseCode();
