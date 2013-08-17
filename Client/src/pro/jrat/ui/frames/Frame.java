@@ -717,6 +717,7 @@ public class Frame extends BaseFrame {
 		mnOther.add(mntmReloadAllThumbnails);
 
 		JMenu mnAbout = new JMenu("Help");
+		mnAbout.setVisible(true);
 		menuBar.add(mnAbout);
 
 		JMenuItem menuItem = new JMenuItem("About jRAT " + Version.getVersion());

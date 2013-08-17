@@ -60,7 +60,7 @@ public class FrameAbout extends JFrame {
 		super();
 		setAlwaysOnTop(true);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameAbout.class.getResource("/icons/information-button.png")));
-		setTitle("About jRAT " + Version.getVersion());
+		setTitle("About " + Constants.HOST + " " + Version.getVersion());
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);

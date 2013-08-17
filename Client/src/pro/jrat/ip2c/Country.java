@@ -84,8 +84,3 @@ public class Country
     return false;
   }
 }
-
-/* Location:           C:\Users\William\Dropbox\jRAT\Client\lib\geoip.jar
- * Qualified Name:     net.firefang.ip2c.Country
- * JD-Core Version:    0.6.2
- */

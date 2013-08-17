@@ -153,7 +153,7 @@ public class FrameOnlinePlugins extends JFrame {
 		mntmHelp = new JMenuItem("Help");
 		mntmHelp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String help = "Installs plugins from web\n\nAlways deal with caution as jRAT Project is not behind many of these plugins\n\nGreen text means that they are built for your current version or subversion\n\nPlugins shown as not available might be paid or premium by their authors";
+				String help = "Installs plugins from web\n\nAlways deal with caution as " + Constants.HOST + " is not behind many of these plugins\n\nGreen text means that they are built for your current version or subversion\n\nPlugins shown as not available might be paid or premium by their authors";
 				
 				JOptionPane.showMessageDialog(null, help, "Help", JOptionPane.QUESTION_MESSAGE);
 			}
@@ -213,7 +213,7 @@ public class FrameOnlinePlugins extends JFrame {
 	
 	public void install(final OnlinePlugin plugin) {
 		String what = plugin.isInstalled() ? "reinstall" : "install";
-		if (JOptionPane.showConfirmDialog(null, "Are you sure that you want to " + what + " " + plugin.getDisplayName() + "?\n\njRAT Project is not behind many of these plugins and cannot verify their content", "Plugin", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE) != JOptionPane.YES_OPTION) {
+		if (JOptionPane.showConfirmDialog(null, "Are you sure that you want to " + what + " " + plugin.getDisplayName() + "?\n\n" + Constants.HOST + " is not behind many of these plugins and cannot verify their content", "Plugin", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE) != JOptionPane.YES_OPTION) {
 			return;
 		}
 		
