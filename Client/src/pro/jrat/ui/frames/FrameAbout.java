@@ -35,6 +35,7 @@ import pro.jrat.Contributors;
 import pro.jrat.Contributors.Contributor;
 import pro.jrat.Main;
 import pro.jrat.common.Version;
+import pro.jrat.net.WebRequest;
 import pro.jrat.utils.FlagUtils;
 import pro.jrat.utils.NetUtils;
 
@@ -104,7 +105,7 @@ public class FrameAbout extends JFrame {
 		lblHttpredpoisncom.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				NetUtils.openUrl(Constants.HOST + "");
+				NetUtils.openUrl(WebRequest.domains[0]);
 			}
 		});
 		lblHttpredpoisncom.setIcon(new ImageIcon(FrameAbout.class.getResource("/icons/url.png")));

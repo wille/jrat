@@ -15,6 +15,7 @@ import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
 import pro.jrat.BuildStatus;
+import pro.jrat.Constants;
 import pro.jrat.ErrorDialog;
 import pro.jrat.Main;
 import pro.jrat.OSConfig;
@@ -61,8 +62,8 @@ public class Build {
 		File tempCryptedNotRunnableJar = null;
 
 		try {
-			tempStubCleanJar = File.createTempFile("jRAT-Builder-Temp" + (new Random()).nextInt(), ".jar");
-			tempCryptedNotRunnableJar = File.createTempFile("jRAT-Builder-Installer-Temp" + (new Random()).nextInt(), ".jar");
+			tempStubCleanJar = File.createTempFile(Constants.NAME + "-Builder-Temp" + (new Random()).nextInt(), ".jar");
+			tempCryptedNotRunnableJar = File.createTempFile(Constants.NAME + "-Builder-Installer-Temp" + (new Random()).nextInt(), ".jar");
 			long start = System.currentTimeMillis();
 
 			inputStub = new ZipFile(buildFrom);

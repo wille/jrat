@@ -37,6 +37,7 @@ import javax.swing.tree.DefaultTreeModel;
 import pro.jrat.Constants;
 import pro.jrat.Help;
 import pro.jrat.io.Files;
+import pro.jrat.net.WebRequest;
 import pro.jrat.ui.renderers.table.HelpTableRenderer;
 import pro.jrat.utils.NetUtils;
 
@@ -57,7 +58,7 @@ public class FrameHelp extends BaseFrame {
 
 	public FrameHelp() {
 		super();
-		setTitle("jRAT help");
+		setTitle(Constants.NAME + " help");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameHelp.class.getResource("/icons/help.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 672, 384);
@@ -119,9 +120,9 @@ public class FrameHelp extends BaseFrame {
 				}
 				String site;
 				if (currentFile.startsWith("/") || currentFile.startsWith("\\")) {
-					site = Constants.HOST + "/help" + currentFile.trim().replace("\\", "/").replaceAll("/+", "/").replace(" ", "%20");
+					site = WebRequest.domains[0] + "/help" + currentFile.trim().replace("\\", "/").replaceAll("/+", "/").replace(" ", "%20");
 				} else {
-					site = Constants.HOST + "/misc/help/" + currentFile.trim().replace("\\", "/").replaceAll("/+", "/").replace(" ", "%20");
+					site = WebRequest.domains[0] + "/misc/help/" + currentFile.trim().replace("\\", "/").replaceAll("/+", "/").replace(" ", "%20");
 				}
 				try {
 					Desktop.getDesktop().browse(new URI(site));

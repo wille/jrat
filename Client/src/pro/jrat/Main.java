@@ -71,7 +71,7 @@ public class Main {
 		}
 		
 		if (isRunningFromHomeDir()) {
-			JOptionPane.showMessageDialog(null, "Could not find /settings/ or /files/, please specify your jRAT directory", "jRAT", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Could not find /settings/ or /files/, please specify your jRAT directory", Constants.NAME + "", JOptionPane.WARNING_MESSAGE);
 			JFileChooser chooser = new JFileChooser();
 			chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 			chooser.showOpenDialog(null);
@@ -172,7 +172,7 @@ public class Main {
 	public static String formatTitle() {
 		String suffix = trial ? "Limited" : "";
 		
-		return "jRAT [" + connections.size() + "] " + Version.getVersion() + " " + suffix;
+		return Constants.NAME + " [" + connections.size() + "] " + Version.getVersion() + " " + suffix;
 	}
 	
 	public static boolean isRunningFromHomeDir() {

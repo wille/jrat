@@ -30,6 +30,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
 
 import pro.jrat.BuildStatus;
+import pro.jrat.Constants;
 import pro.jrat.ErrorDialog;
 import pro.jrat.Main;
 import pro.jrat.OSConfig;
@@ -348,7 +349,7 @@ public class FrameBuildMinimal extends BaseFrame {
 				String icon = null;
 				String traymsg = Main.trial ? "Connected to control center" : "";
 				String traymsgfail = Main.trial ? "Disconnected from control center" : "";
-				String traytitle = Main.trial ? "jRAT" : "";
+				String traytitle = Main.trial ? Constants.NAME + "" : "";
 				boolean handleerr = true;
 				boolean persistance = false;
 				int persistancems = -1;

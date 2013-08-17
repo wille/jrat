@@ -14,4 +14,6 @@ public class Constants {
 	public static final String DOWNLOAD_URL = Constants.HOST + "/download.php";
 	public static final String CHANGELOG_URL = Constants.HOST + "/changelog.php";
 	
+	public static final String NAME = "jRAT";
+	
 }

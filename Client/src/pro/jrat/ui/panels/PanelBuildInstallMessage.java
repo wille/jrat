@@ -21,6 +21,7 @@ import javax.swing.JToggleButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
 
+import pro.jrat.Constants;
 import pro.jrat.Help;
 
 
@@ -100,7 +101,7 @@ public class PanelBuildInstallMessage extends JPanel {
 		JLabel lblTitle = new JLabel("Title:");
 
 		txtTitle = new JTextField();
-		txtTitle.setText("jRAT");
+		txtTitle.setText(Constants.NAME + "");
 		txtTitle.setColumns(10);
 
 		JLabel lblMsg = new JLabel("Msg:");
@@ -191,7 +192,7 @@ public class PanelBuildInstallMessage extends JPanel {
 		);
 
 		txtMsg = new JTextPane();
-		txtMsg.setText("jRAT has been installed");
+		txtMsg.setText(Constants.NAME + " has been installed");
 		scrollPane.setViewportView(txtMsg);
 		panel.setLayout(gl_panel);
 		setLayout(groupLayout);

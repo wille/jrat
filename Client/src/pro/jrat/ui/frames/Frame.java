@@ -61,6 +61,7 @@ import pro.jrat.extensions.PluginLoader;
 import pro.jrat.extensions.RATObjectFormat;
 import pro.jrat.listeners.CountryMenuItemListener;
 import pro.jrat.net.URLParser;
+import pro.jrat.net.WebRequest;
 import pro.jrat.packets.outgoing.Packet11Disconnect;
 import pro.jrat.packets.outgoing.Packet14VisitURL;
 import pro.jrat.packets.outgoing.Packet17DownloadExecute;
@@ -182,7 +183,7 @@ public class Frame extends BaseFrame {
 			JMenuItem mntmUpgrade = new JMenuItem("Upgrade");
 			mntmUpgrade.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					NetUtils.openUrl(Constants.HOST + "/upgrade.php");
+					NetUtils.openUrl(WebRequest.domains[0] + "/upgrade.php");
 				}
 			});
 			mntmUpgrade.setIcon(new ImageIcon(Frame.class.getResource("/icons/donate.png")));

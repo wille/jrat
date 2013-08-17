@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import pro.jrat.Constants;
 import pro.jrat.ErrorDialog;
 import pro.jrat.Main;
 import pro.jrat.utils.IconUtils;
@@ -143,7 +144,7 @@ public class PanelBuildVisibility extends JPanel {
 		txtDisconnect.setColumns(10);
 		
 		txtTitle = new JTextField();
-		txtTitle.setText("jRAT");
+		txtTitle.setText(Constants.NAME + "");
 		txtTitle.setColumns(10);
 		
 		JLabel lblConnect = new JLabel("Connect:");
