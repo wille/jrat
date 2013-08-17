@@ -486,7 +486,7 @@ public class Frame extends BaseFrame {
 		mntmSampleMode.setIcon(new ImageIcon(Frame.class.getResource("/icons/camera.png")));
 		mntmSampleMode.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (Utils.yesNo("Confirm", "This will break jRAT until restarted and begin a photo friendly session")) {
+				if (Utils.yesNo("Confirm", "This will break " + Constants.NAME + " until restarted and begin a photo friendly session")) {
 					SampleMode.start();
 				}
 			}
@@ -720,7 +720,7 @@ public class Frame extends BaseFrame {
 		mnAbout.setVisible(true);
 		menuBar.add(mnAbout);
 
-		JMenuItem menuItem = new JMenuItem("About jRAT " + Version.getVersion());
+		JMenuItem menuItem = new JMenuItem("About " + Constants.NAME + " " + Version.getVersion());
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				FrameAbout frame = new FrameAbout();

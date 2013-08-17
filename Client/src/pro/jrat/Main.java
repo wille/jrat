@@ -71,7 +71,7 @@ public class Main {
 		}
 		
 		if (isRunningFromHomeDir()) {
-			JOptionPane.showMessageDialog(null, "Could not find /settings/ or /files/, please specify your jRAT directory", Constants.NAME + "", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Could not find /settings/ or /files/, please specify your " + Constants.NAME + " directory", Constants.NAME + "", JOptionPane.WARNING_MESSAGE);
 			JFileChooser chooser = new JFileChooser();
 			chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 			chooser.showOpenDialog(null);
