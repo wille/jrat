@@ -58,7 +58,7 @@ public final class UniqueId {
 		
 		if (response == 404) {
 			throw new InvalidKeyException("Invalid key");
-		} else if (response == 202) {
+		} else if (response == 200) {
 			return true;
 		}
 		
