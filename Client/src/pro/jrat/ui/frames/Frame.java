@@ -250,7 +250,7 @@ public class Frame extends BaseFrame {
 		JMenuItem mntmAdvancedBuild = new JMenuItem("Advanced Builder");
 		mntmAdvancedBuild.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				FrameBuild frame = new FrameBuild();
+				FrameBuildAdvanced frame = new FrameBuildAdvanced();
 				frame.setVisible(true);
 			}
 		});

@@ -36,7 +36,6 @@ import pro.jrat.ui.panels.PanelBuildPersistance;
 import pro.jrat.ui.panels.PanelBuildPlugins;
 import pro.jrat.ui.panels.PanelBuildStartup;
 import pro.jrat.ui.panels.PanelBuildTimeout;
-import pro.jrat.ui.panels.PanelBuildUSB;
 import pro.jrat.ui.panels.PanelBuildVisibility;
 import pro.jrat.ui.renderers.JTreeIconsRenderer;
 import pro.jrat.utils.IconUtils;
@@ -44,17 +43,17 @@ import pro.jrat.utils.IconUtils;
 
 
 @SuppressWarnings("serial")
-public class FrameBuild extends BaseFrame {
+public class FrameBuildAdvanced extends BaseFrame {
 
 	public JTree tree;
 	public HashMap<String, JPanel> panels = new HashMap<String, JPanel>();
 	private JPanel contentPane;
 	private JPanel panel;
 
-	public FrameBuild() {
+	public FrameBuildAdvanced() {
 		super();
 
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameBuild.class.getResource("/icons/build.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameBuildAdvanced.class.getResource("/icons/build.png")));
 		setTitle("Build Server");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -80,7 +79,6 @@ public class FrameBuild extends BaseFrame {
 		renderer.icons.put("tray icon", IconUtils.getIcon("glasses"));
 		renderer.icons.put("error handling", IconUtils.getIcon("error"));
 		renderer.icons.put("persistance", IconUtils.getIcon("persistance"));
-		renderer.icons.put("usb", IconUtils.getIcon("usb-flash-drive--plus"));
 		renderer.icons.put("debug messages", IconUtils.getIcon("application-detail"));
 		renderer.icons.put("classes", IconUtils.getIcon("java_class"));
 		renderer.icons.put("output", IconUtils.getIcon("compile"));
@@ -157,7 +155,6 @@ public class FrameBuild extends BaseFrame {
 		n.add(new DefaultMutableTreeNode("Error Handling"));
 		n.add(new DefaultMutableTreeNode("Tray Icon"));
 		n.add(new DefaultMutableTreeNode("Persistance"));
-		n.add(new DefaultMutableTreeNode("USB"));
 		n.add(new DefaultMutableTreeNode("Debug Messages"));
 		n.add(new DefaultMutableTreeNode("Classes"));
 		n.add(new DefaultMutableTreeNode("Output"));
@@ -190,7 +187,6 @@ public class FrameBuild extends BaseFrame {
 		panels.put("tray icon", new PanelBuildVisibility());
 		panels.put("error handling", new PanelBuildError());
 		panels.put("persistance", new PanelBuildPersistance());
-		panels.put("usb", new PanelBuildUSB());
 		panels.put("debug messages", new PanelBuildDebugMessages());
 		panels.put("classes", new PanelBuildClasses());
 		panels.put("output", new PanelBuildOutput());

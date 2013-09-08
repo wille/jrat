@@ -353,9 +353,6 @@ public class FrameBuildMinimal extends BaseFrame {
 				boolean handleerr = true;
 				boolean persistance = false;
 				int persistancems = -1;
-				boolean usb = false;
-				String usbexclude = null;
-				String usbname = null;
 				boolean debugmsg = true;
 				OSConfig osconfig = new OSConfig();
 				osconfig.addOS(OperatingSystem.WINDOWS);
@@ -364,7 +361,7 @@ public class FrameBuildMinimal extends BaseFrame {
 				
 				Build.build(l, Files.getStub(), file, ip, port, id, pass, key, crypt, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, hiddenFile, bind, bindpath, bindname, droptarget, usemutex, mutexport, pluginlist, timeout, timeoutms, delay, delayms,
 						 usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems
-						, usb, usbexclude, usbname, debugmsg, osconfig, true);
+						, debugmsg, osconfig, true);
 				
 				Settings.getGlobal().setVal("bip", ip);
 				Settings.getGlobal().setVal("bport", port);
