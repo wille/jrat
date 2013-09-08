@@ -20,7 +20,7 @@ public class Packet76Speech extends AbstractOutgoingPacket {
 
 	@Override
 	public byte getPacketId() {
-		return 67;
+		return 76;
 	}
 
 }
