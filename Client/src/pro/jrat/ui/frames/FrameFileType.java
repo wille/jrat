@@ -25,7 +25,7 @@ public class FrameFileType extends JDialog {
 	public JTextField txtExtension;
 
 	private JPanel contentPane;
-	private JComboBox comboBox;
+	private JComboBox<String> comboBox;
 	private JButton btnOk;
 
 	public FrameFileType() {
@@ -41,7 +41,7 @@ public class FrameFileType extends JDialog {
 		
 		JLabel lblPickAFile = new JLabel("Pick a file type:");
 		
-		comboBox = new JComboBox();
+		comboBox = new JComboBox<String>();
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (comboBox.getSelectedIndex() == 0) {
@@ -56,7 +56,7 @@ public class FrameFileType extends JDialog {
 				}
 			}
 		});
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Windows Executable (.exe)", "Java Archive (.jar)", "Other"}));
+		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Windows Executable (.exe)", "Java Archive (.jar)", "Other"}));
 		
 		JLabel lblExtension = new JLabel("Extension:");
 		
