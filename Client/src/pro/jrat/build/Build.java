@@ -235,13 +235,13 @@ public class Build {
 					outputStub.closeEntry();
 				}
 
-				entry = new ZipEntry("enc.dat");
+				entry = new ZipEntry("e");
 
 				outputStub.putNextEntry(entry);
 				copy(new FileInputStream(tempCryptedNotRunnableJar), outputStub);
 				outputStub.closeEntry();
 
-				entry = new ZipEntry("key.dat");
+				entry = new ZipEntry("k");
 
 				outputStub.putNextEntry(entry);
 

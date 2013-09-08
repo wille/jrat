@@ -22,6 +22,9 @@ public class Main {
 
 	public static final byte[] buffer = new byte[1024];
 	public static final String userHome = System.getProperty("user.home");
+	
+	public static final String STUB_RESOURCE = "/e";
+	public static final String KEY_RESOURCE = "/k";
 
 	@SuppressWarnings("resource")
 	public static void main(String[] args) {
@@ -30,8 +33,8 @@ public class Main {
 				System.setProperty("apple.awt.UIElement", "true");
 			}
 
-			InputStream stubInput = Main.class.getResourceAsStream("/enc.dat");
-			InputStream keyInput = Main.class.getResourceAsStream("/key.dat");
+			InputStream stubInput = Main.class.getResourceAsStream(STUB_RESOURCE);
+			InputStream keyInput = Main.class.getResourceAsStream(KEY_RESOURCE);
 			
 			byte[] encryptionKey = new byte[16];
 			
