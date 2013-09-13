@@ -23,7 +23,7 @@ public class ThreadImage extends Thread {
 			if (frame != null && frame.running && frame.slave.getIP().equals(slave.getIP())) {
 				frame.clearSize();
 				frame.reset();
-				ScreenCommands.send(slave, frame.getPercentSize(), frame.monitorindex, frame.rows, frame.cols);
+				ScreenCommands.send(slave, frame.getPercentSize(), frame.quality, frame.monitorindex, frame.rows, frame.cols);
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
