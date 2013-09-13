@@ -79,6 +79,7 @@ public class FrameRemoteScreen extends BaseFrame {
 	public int imageSize = 0;
 	private JToggleButton tglbtnMove;
 	private JLabel lblFps;
+	public int quality;
 	private ThreadFPS thread = new ThreadFPS() {
 		public void onUpdate(int fps) {
 			lblFps.setText("FPS: " + fps);
@@ -199,7 +200,7 @@ public class FrameRemoteScreen extends BaseFrame {
 				running = true;
 				clearSize();
 				reset();
-				ScreenCommands.send(sl, getPercentSize(), monitorindex, rows, cols);
+				ScreenCommands.send(sl, getPercentSize(), quality, monitorindex, rows, cols);
 				btnRequestOne.setEnabled(false);
 				btnStartCapture.setEnabled(false);
 				btnStop.setEnabled(true);
@@ -216,7 +217,7 @@ public class FrameRemoteScreen extends BaseFrame {
 				running = true;
 				clearSize();
 				reset();
-				ScreenCommands.sendOnce(sl, getPercentSize(), monitorindex, rows, cols);
+				ScreenCommands.sendOnce(sl, getPercentSize(), quality, monitorindex, rows, cols);
 			}
 		});
 
@@ -369,7 +370,7 @@ public class FrameRemoteScreen extends BaseFrame {
 			FrameLoader loader = new FrameLoader();
 			loader.setVisible(true);
 			running = true;
-			ScreenCommands.sendOnce(sl, getPercentSize(), monitorindex, rows, cols);
+			ScreenCommands.sendOnce(sl, getPercentSize(), quality, monitorindex, rows, cols);
 			while (running) {
 				try {
 					Thread.sleep(250L);

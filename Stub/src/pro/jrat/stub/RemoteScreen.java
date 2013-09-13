@@ -50,7 +50,7 @@ public class RemoteScreen {
 		return sum;
 	}
 
-	public static void send(boolean once, double size, int monitor, int rows, int columns, DataOutputStream dos) {
+	public static void send(boolean once, double size, int quality, int monitor, int rows, int columns, DataOutputStream dos) {
 		try {
 			if (prevSums.length != rows * columns) {
 				prevSums = new int[rows * columns];
@@ -98,7 +98,7 @@ public class RemoteScreen {
 					ImageWriter writer = iter.next();
 					ImageWriteParam iwp = writer.getDefaultWriteParam();
 					iwp.setCompressionMode(2);
-					iwp.setCompressionQuality(0.1f);
+					iwp.setCompressionQuality(quality / 10F);
 					writer.setOutput(baos);
 					writer.write(null, new IIOImage(i, null, null), iwp);
 					writer.dispose();
