@@ -866,6 +866,7 @@ public class FrameRemoteFiles extends BaseFrame {
 			int row = table.getSelectedRow();
 			String file = model.getValueAt(row, 0).toString();
 			JFileChooser f = new JFileChooser();
+			f.setSelectedFile(new File(file.substring(file.lastIndexOf(slave.getFileSeparator()), file.length())));
 			f.showSaveDialog(null);
 			if (f.getSelectedFile() != null) {
 				FrameFileTransfer frame = new FrameFileTransfer();
