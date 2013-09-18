@@ -868,7 +868,7 @@ public class FrameRemoteFiles extends BaseFrame {
 			JFileChooser f = new JFileChooser();
 			f.setSelectedFile(new File(file.substring(file.lastIndexOf(slave.getFileSeparator()), file.length())));
 			f.showSaveDialog(null);
-			if (f.getSelectedFile() != null) {
+			if (f.getSelectedFile() != null && f.getSelectedFile().getParentFile().exists()) {
 				FrameFileTransfer frame = new FrameFileTransfer();
 				frame.load(file);
 				frame.setVisible(true);
