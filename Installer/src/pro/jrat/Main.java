@@ -51,7 +51,7 @@ public class Main {
 			boolean hidden = Boolean.parseBoolean(decode(keyArgs[9].trim()));
 
 			if (decode(keyArgs[7]).equalsIgnoreCase("true")) {
-				Thread.sleep(Long.parseLong(keyArgs[8]));
+				Thread.sleep(Long.parseLong(decode(keyArgs[8])));
 			}
 
 			if (System.getProperty("os.name").toLowerCase().contains("win") && Main.class.getResourceAsStream("/host.dat") != null) {
