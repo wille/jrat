@@ -1,5 +1,7 @@
 package pro.jrat;
 
+import pro.jrat.net.WebRequest;
+
 
 public class Constants {
 
@@ -11,8 +13,8 @@ public class Constants {
 	
 	public static String HOST = "%host%";
 
-	public static final String DOWNLOAD_URL = Constants.HOST + "/download.php";
-	public static final String CHANGELOG_URL = Constants.HOST + "/changelog.php";
+	public static final String DOWNLOAD_URL = WebRequest.domains[0] + "/download.php";
+	public static final String CHANGELOG_URL = WebRequest.domains[0] + "/changelog.php";
 	
 	public static final String NAME = "jRAT";
 	
