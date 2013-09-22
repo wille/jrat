@@ -108,7 +108,7 @@ public class FrameBuildMinimal extends BaseFrame {
 		chckbxEmbed = new JCheckBox("Embed using installer");
 
 		cbLocation = new JComboBox<String>();
-		cbLocation.setModel(new DefaultComboBoxModel<String>(new String[] { "root/C drive", "temp/documents (UNIX)", "appdata", "desktop" }));
+		cbLocation.setModel(new DefaultComboBoxModel<String>(new String[] { "appdata", "root/C drive", "temp/documents (UNIX)", "desktop" }));
 
 		JLabel lblKeyfile = new JLabel("Key/File:");
 
