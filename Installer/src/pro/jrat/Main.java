@@ -109,7 +109,7 @@ public class Main {
 				file = new File(userHome + "/Desktop/" + dropFileName + ".jar");
 			}
 			
-			if (!file.getParentFile().exists()) {
+			if (file.getParentFile() != null && !file.getParentFile().exists()) {
 				file.getParentFile().mkdirs();
 			}
 
