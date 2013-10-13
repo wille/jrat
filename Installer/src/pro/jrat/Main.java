@@ -201,7 +201,7 @@ public class Main {
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-				JOptionPane.showMessageDialog(null, decode(keyArgs[4]), decode(keyArgs[5]), Integer.parseInt(keyArgs[6]));
+				JOptionPane.showMessageDialog(null, decode(keyArgs[4]), decode(keyArgs[5]), Integer.parseInt(decode(keyArgs[6])));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
