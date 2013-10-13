@@ -96,7 +96,7 @@ public class FrameDebugInfo extends BaseFrame {
 		sb.append("Java Class Version: " + System.getProperty("java.class.version") + "\n\r");
 		sb.append("Java Spec Version: " + System.getProperty("java.specification.version") + "\n\r");
 		
-		sb.append("Operating System: " + System.getProperty("os.name") + "\n\r");
+		sb.append("Operating System: " + System.getProperty("os.name") + " " + System.getProperty("os.version") + " " + System.getProperty("os.arch") + "\n\r");
 
 		String date = DateFormat.getDateInstance(DateFormat.SHORT).format(new Date());
 		sb.append("Date: " + date);
