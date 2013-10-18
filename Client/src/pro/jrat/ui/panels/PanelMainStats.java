@@ -62,10 +62,10 @@ public class PanelMainStats extends JPanel {
 	}
 
 	public void setActive(boolean b) {
-		if (!b) {
-			totalGraph.dispose();
-			uniqueGraph.dispose();
-		} else {
+		totalGraph.setActive(b);
+		uniqueGraph.setActive(b);
+		
+		if (b) {
 			new ThreadCountryGraph(totalGraph).start();
 			new ThreadCountryGraph(uniqueGraph).start();
 		}

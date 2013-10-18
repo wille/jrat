@@ -10,10 +10,11 @@ public class ThreadCountryGraph extends Thread {
 		this.graph = graph;
 	}
 
+	@Override
 	public void run() {
 		while (graph.isActive()) {
 			graph.repaint();
-			
+
 			try {
 				Thread.sleep(100L);
 			} catch (Exception ex) {
