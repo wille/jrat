@@ -11,6 +11,8 @@ import com.redpois0n.graphs.country.CountryColors;
 import com.redpois0n.graphs.country.CountryGraph;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import pro.jrat.threads.ThreadCountryGraph;
+
 @SuppressWarnings("serial")
 public class PanelMainStats extends JPanel {
 
@@ -22,6 +24,8 @@ public class PanelMainStats extends JPanel {
 	
 	private int width = 630;
 	private int height = 320;
+	private CountryGraph totalGraph;
+	private CountryGraph uniqueGraph;
 	
 	public PanelMainStats() {
 	
@@ -39,7 +43,7 @@ public class PanelMainStats extends JPanel {
 		uniqueTable = new JTable(uniqueModel);
 		uniqueScrollPane.add(uniqueTable);
 		
-		CountryGraph uniqueGraph = new CountryGraph(new CountryColors());
+		uniqueGraph = new CountryGraph(new CountryColors());
 		uniqueGraph.setBounds(120, 5, width - 120 - 10, height / 2 - 10);
 		add(uniqueGraph);
 		
@@ -52,8 +56,18 @@ public class PanelMainStats extends JPanel {
 		totalTable = new JTable(totalModel);
 		totalScrollPane.add(totalTable);
 		
-		CountryGraph totalGraph = new CountryGraph(new CountryColors());
+		totalGraph = new CountryGraph(new CountryColors());
 		totalGraph.setBounds(120, height / 2, width - 120 - 10, height / 2 - 10);
 		add(totalGraph);
+	}
+
+	public void setActive(boolean b) {
+		if (!b) {
+			totalGraph.dispose();
+			uniqueGraph.dispose();
+		} else {
+			new ThreadCountryGraph(totalGraph).start();
+			new ThreadCountryGraph(uniqueGraph).start();
+		}
 	}
 }

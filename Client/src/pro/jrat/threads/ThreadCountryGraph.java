@@ -1,24 +1,29 @@
 package pro.jrat.threads;
 
-import javax.swing.JButton;
-
-import pro.jrat.ui.frames.FrameEULA;
-
-
+import com.redpois0n.graphs.country.CountryGraph;
 
 public class ThreadCountryGraph extends Thread {
 
-	public ThreadCountryGraph(FrameEULA f, JButton b) {
-		
+	private CountryGraph graph;
+
+	public ThreadCountryGraph(CountryGraph graph) {
+		this.graph = graph;
 	}
 
 	public void run() {
-	
+		while (graph.isActive()) {
+			graph.repaint();
+			
+			try {
+				Thread.sleep(100L);
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		}
 	}
-	
+
 	public static enum GraphMethod {
-		TOTAL, UNIQUE;
+		TOTAL,
+		UNIQUE;
 	}
 }
-
-

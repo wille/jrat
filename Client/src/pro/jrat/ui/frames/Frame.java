@@ -84,6 +84,8 @@ import pro.jrat.utils.FlagUtils;
 import pro.jrat.utils.IconUtils;
 import pro.jrat.utils.NetUtils;
 import pro.jrat.utils.Utils;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 
 @SuppressWarnings({ "serial" })
@@ -762,8 +764,16 @@ public class Frame extends BaseFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
+		
+		final PanelMainStats panelStats = new PanelMainStats();
 
 		tabbedPane = new DraggableTabbedPane(JTabbedPane.TOP);
+		tabbedPane.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {					
+				panelStats.setActive(tabbedPane.getSelectedIndex() == 1);	
+			}
+		});
+		
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -1474,8 +1484,6 @@ public class Frame extends BaseFrame {
 		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGap(0, 602, Short.MAX_VALUE));
 		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGap(0, 293, Short.MAX_VALUE));
 		panel.setLayout(gl_panel);
-
-		PanelMainStats panelStats = new PanelMainStats();
 		
 		tabbedPane.addTab("Statistics", IconUtils.getIcon("statistics", true), panelStats, null);
 
