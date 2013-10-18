@@ -73,11 +73,11 @@ import pro.jrat.packets.outgoing.Packet38RunCommand;
 import pro.jrat.packets.outgoing.Packet40Thumbnail;
 import pro.jrat.packets.outgoing.Packet45Reconnect;
 import pro.jrat.settings.Settings;
-import pro.jrat.settings.Statistics;
 import pro.jrat.ui.components.DraggableTabbedPane;
 import pro.jrat.ui.panels.PanelMainLog;
 import pro.jrat.ui.panels.PanelMainPlugins;
 import pro.jrat.ui.panels.PanelMainSockets;
+import pro.jrat.ui.panels.PanelMainStats;
 import pro.jrat.ui.renderers.table.MainTableRenderer;
 import pro.jrat.ui.renderers.table.PluginsTableRenderer;
 import pro.jrat.utils.FlagUtils;
@@ -98,11 +98,8 @@ public class Frame extends BaseFrame {
 	public static JTable mainTable;
 	public static DefaultTableModel mainModel;
 	public static DefaultTableModel onConnectModel;
-	public static DefaultTableModel statModel;
 	public static String[] columnNames = { "L", "Server ID", "Status", "IP/Port", "Ping", "User@Comp", "OS name" };
 	public static TrayIcon trayIcon;
-	public static JTable statTable;
-	public static JScrollPane statScrollPane;
 	public static int pingmode = Frame.PING_ICON_DOT;
 	public static boolean thumbnails = false;
 	private JPopupMenu popupMenu;
@@ -851,8 +848,6 @@ public class Frame extends BaseFrame {
 		popupMenu.add(mntmControlPanel);
 		popupMenu.addSeparator();
 
-		Object[][] data = {};
-
 		mainTable = new JTable() {
 			@SuppressWarnings({ "unchecked", "rawtypes" })
 			@Override
@@ -1480,38 +1475,10 @@ public class Frame extends BaseFrame {
 		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGap(0, 293, Short.MAX_VALUE));
 		panel.setLayout(gl_panel);
 
-		statScrollPane = new JScrollPane();
-		statScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-		statScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		tabbedPane.addTab("Statistics", IconUtils.getIcon("statistics", true), statScrollPane, null);
-
-		statModel = new DefaultTableModel(data, new Object[] { "L", "Country", "No. Connects", "Different Servers", "Latest Server" }) {
-			public boolean isCellEditable(int row, int column) {
-				return false;
-			}
-		};
-
-		statTable = new JTable(statModel) {
-			@SuppressWarnings({ "unchecked", "rawtypes" })
-			@Override
-			public Class getColumnClass(int column) {
-				if (column == 0) {
-					return ImageIcon.class;
-				}
-				return super.getColumnClass(column);
-			}
-		};
-
-		statTable.getTableHeader().setReorderingAllowed(false);
-		statTable.setRowHeight(30);
-		statTable.getColumnModel().getColumn(0).setPreferredWidth(20);
-		statTable.getColumnModel().getColumn(1).setPreferredWidth(70);
-		statTable.getColumnModel().getColumn(2).setPreferredWidth(100);
-		statTable.getColumnModel().getColumn(3).setPreferredWidth(50);
-		statTable.getColumnModel().getColumn(4).setPreferredWidth(100);
-
-		statScrollPane.setViewportView(statTable);
+		PanelMainStats panelStats = new PanelMainStats(tabbedPane.getWidth(), tabbedPane.getHeight());
 		
+		tabbedPane.addTab("Statistics", IconUtils.getIcon("statistics", true), panelStats, null);
+
 		JPanel panel_onconnect = new JPanel();
 		tabbedPane.addTab("On Connect", IconUtils.getIcon("onconnect", true), panel_onconnect, null);
 
@@ -1669,9 +1636,7 @@ public class Frame extends BaseFrame {
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addComponent(toolBar, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(tabbedPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)).addGap(0)));
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(toolBar, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(tabbedPane, GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE).addGap(0)));
 		contentPane.setLayout(gl_contentPane);
-		
-		Statistics.getGlobal().reload();
-		
+				
 		reloadPlugins();
 	}
 

