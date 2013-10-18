@@ -87,7 +87,7 @@ public class Main {
 		System.setProperty("jrat.version", Version.getVersion());
 		
 		try {
-			PluginLoader.loadAPI();
+			PluginLoader.loadLibs();
 			PluginLoader.loadPlugins();
 		} catch (Exception e) {
 			e.printStackTrace();

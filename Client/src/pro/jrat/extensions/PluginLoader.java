@@ -28,8 +28,11 @@ public class PluginLoader {
 		}
 	}
 	
-	public static void loadAPI() throws Exception {
-		ClassUtils.addToClassPath(new File("files/API.jar"));
+	public static void loadLibs() throws Exception {
+		File dir = new File("files/lib/");
+		for (File file : dir.listFiles()) {
+			ClassUtils.addToClassPath(file);
+		}
 	}
 
 	public static void register(Plugin plugin) {
