@@ -75,7 +75,7 @@ public class MainTableRenderer extends DefaultTableCellRenderer {
 			URL url = Main.class.getResource(path);
 			
 			if (url == null) {
-				url = Main.class.getResource("/flags/errorflag.png");
+				url = Main.class.getResource("/flags/unknown.png");
 			}
 			
 			b.setText("<html><table cellpadding=0><tr><td><img src=\"" + url.toString() + "\"/></td><td width=3><td><font color=\"#" + color + "\">" + value + "</font></td></tr></table></html>");	

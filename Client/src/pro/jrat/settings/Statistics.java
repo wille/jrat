@@ -9,9 +9,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.redpois0n.graphs.country.Country;
+
 import pro.jrat.Slave;
 import pro.jrat.io.Files;
-
+import pro.jrat.ui.frames.Frame;
+import pro.jrat.utils.IconUtils;
 
 public class Statistics extends AbstractSettings implements Serializable {
 
@@ -28,7 +31,7 @@ public class Statistics extends AbstractSettings implements Serializable {
 	public static boolean isTracking() {
 		return Settings.getGlobal().getBoolean("stats");
 	}
-	
+
 	public List<StatEntry> getList() {
 		return list;
 	}
@@ -59,6 +62,7 @@ public class Statistics extends AbstractSettings implements Serializable {
 		ObjectInputStream str = new ObjectInputStream(new FileInputStream(getFile()));
 		list = (ArrayList<StatEntry>) str.readObject();
 		str.close();
+		reload();
 	}
 
 	public void save() throws Exception {
@@ -69,7 +73,6 @@ public class Statistics extends AbstractSettings implements Serializable {
 		ObjectOutputStream str = new ObjectOutputStream(new FileOutputStream(getFile()));
 		str.writeObject(list);
 		str.close();
-
 	}
 
 	public void add(Slave client) {
@@ -88,6 +91,41 @@ public class Statistics extends AbstractSettings implements Serializable {
 		}
 		if (!exists) {
 			entry.list.add(0, client.getRawIP());
+		}
+		reload();
+	}
+
+	public void reload() {
+		/*try {
+			if (!isTracking()) {
+				return;
+			}
+			Frame.statModel.addRow(new Object[] { IconUtils.getIcon("all", true), "Total: " + list.size(), "Total: " + getNoConnects(), "Total: " + getDifferentConnects() });
+			for (StatEntry e : list) {
+				String latest = e.list.size() > 0 ? e.list.get(0) : "None";
+				Frame.statModel.addRow(new Object[] { FlagUtils.getFlag(e.country), e.longcountry, e.connects.toString(), e.list.size(), latest });
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}*/
+
+		for (int i = 0; i < list.size(); i++) {
+			StatEntry entry = list.get(i);
+			try {
+
+				if (entry.getCountry().equals("?")) {
+					entry.setCountry("unknown");
+				}
+				
+				Country total = new Country(entry.getCountry(), entry.getConnects());
+				Country unique = new Country(entry.getCountry(), entry.getList().size());
+
+				Frame.panelStats.totalGraph.add(total);
+				Frame.panelStats.uniqueGraph.add(unique);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -149,7 +187,7 @@ public class Statistics extends AbstractSettings implements Serializable {
 		}
 
 	}
-	
+
 	@Override
 	public File getFile() {
 		return new File(Files.getSettings(), ".stats");

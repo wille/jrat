@@ -80,15 +80,15 @@ public class Utils {
 	 * 
 	 * try { if (ip2c == null) { ip2c = new
 	 * IP2Country(IP2Country.MEMORY_MAPPED); } c = ip2c.getCountry(ip); if (c ==
-	 * null) { if (flags.containsKey("errorflag")) { icon =
-	 * flags.get("errorflag"); } else { icon = new
-	 * ImageIcon(Main.class.getResource("/icons/errorflag.png"));
+	 * null) { if (flags.containsKey("unknown")) { icon =
+	 * flags.get("unknown"); } else { icon = new
+	 * ImageIcon(Main.class.getResource("/icons/unknown.png"));
 	 * } } else { if (flags.containsKey(c.get2cStr().toLowerCase())) { icon =
 	 * flags.get(c.get2cStr().toLowerCase()); } else { icon = new
 	 * ImageIcon(Main.class.getResource("/flags/" +
 	 * c.get2cStr().toLowerCase() + ".png")); } } } catch (Exception e) {
 	 * e.printStackTrace(); icon = new
-	 * ImageIcon(Main.class.getResource("/icons/errorflag.png"));
+	 * ImageIcon(Main.class.getResource("/icons/unknown.png"));
 	 * }
 	 * 
 	 * if (!flags.containsKey(icon.toString().toLowerCase())) {
@@ -109,7 +109,7 @@ public class Utils {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			icon = new ImageIcon(Main.class.getResource("/icons/errorflag.png"));
+			icon = new ImageIcon(Main.class.getResource("/icons/unknown.png"));
 		}
 
 		if (!flags.containsKey(icon.toString().toLowerCase())) {

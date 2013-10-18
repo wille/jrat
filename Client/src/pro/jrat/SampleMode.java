@@ -86,7 +86,7 @@ public class SampleMode {
 		make("EH");
 		make("ENGLAND");
 		make("ER");
-		make("ERRORFLAG");
+		make("unknown");
 		make("ES");
 		make("ET");
 		make("FAM");

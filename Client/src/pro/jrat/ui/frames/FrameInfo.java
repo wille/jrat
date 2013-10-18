@@ -63,7 +63,7 @@ public class FrameInfo extends BaseFrame {
 		JLabel lblCountry = new JLabel("Country:");
 
 		JLabel lblFlag = new JLabel("");
-		lblFlag.setIcon(new ImageIcon(FrameInfo.class.getResource("/icons/errorflag.png")));
+		lblFlag.setIcon(new ImageIcon(FrameInfo.class.getResource("/icons/unknown.png")));
 
 		JLabel lblLocation = new JLabel("...");
 

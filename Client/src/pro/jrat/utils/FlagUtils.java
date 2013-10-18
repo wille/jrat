@@ -64,11 +64,11 @@ public class FlagUtils {
 			}
 	
 		} catch (Exception e) {
-			if (flags.containsKey("errorflag")) {
-				icon = flags.get("errorflag");
+			if (flags.containsKey("unknown")) {
+				icon = flags.get("unknown");
 			} else {
-				icon = new ImageIcon(Main.class.getResource("/icons/errorflag.png"));
-				flags.put("errorflag", icon);
+				icon = new ImageIcon(Main.class.getResource("/icons/unknown.png"));
+				flags.put("unknown", icon);
 			}
 		}
 		return icon;

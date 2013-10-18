@@ -104,10 +104,14 @@ public class Frame extends BaseFrame {
 	public static TrayIcon trayIcon;
 	public static int pingmode = Frame.PING_ICON_DOT;
 	public static boolean thumbnails = false;
+	public static PanelMainStats panelStats;
+	
 	private JPopupMenu popupMenu;
 	private JToolBar toolBar;
+	
 	public static final int PING_ICON_DOT = 0;
 	public static final int PING_ICON_CIRC = 1;
+	
 	private final ButtonGroup encryptionButtonGroup = new ButtonGroup();
 	private JMenu mnPlugins;
 
@@ -765,7 +769,7 @@ public class Frame extends BaseFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		final PanelMainStats panelStats = new PanelMainStats();
+		panelStats = new PanelMainStats();
 
 		tabbedPane = new DraggableTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addChangeListener(new ChangeListener() {

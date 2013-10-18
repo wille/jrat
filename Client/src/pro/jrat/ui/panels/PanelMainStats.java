@@ -1,17 +1,17 @@
 package pro.jrat.ui.panels;
 
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import pro.jrat.settings.Statistics;
+import pro.jrat.settings.Statistics.StatEntry;
+import pro.jrat.threads.ThreadCountryGraph;
+
+import com.redpois0n.graphs.country.Country;
 import com.redpois0n.graphs.country.CountryColors;
 import com.redpois0n.graphs.country.CountryGraph;
-import javax.swing.LayoutStyle.ComponentPlacement;
-
-import pro.jrat.threads.ThreadCountryGraph;
 
 @SuppressWarnings("serial")
 public class PanelMainStats extends JPanel {
@@ -24,11 +24,10 @@ public class PanelMainStats extends JPanel {
 	
 	private int width = 630;
 	private int height = 320;
-	private CountryGraph totalGraph;
-	private CountryGraph uniqueGraph;
+	public CountryGraph totalGraph;
+	public CountryGraph uniqueGraph;
 	
 	public PanelMainStats() {
-	
 		init();
 	}
 	
@@ -59,6 +58,9 @@ public class PanelMainStats extends JPanel {
 		totalGraph = new CountryGraph(new CountryColors());
 		totalGraph.setBounds(120, height / 2, width - 120 - 10, height / 2 - 10);
 		add(totalGraph);
+		
+		
+		
 	}
 
 	public void setActive(boolean b) {

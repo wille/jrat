@@ -97,7 +97,7 @@ public class FrameSettings extends BaseFrame {
 		renderer.icons.put("main", IconUtils.getIcon("tab_settings"));
 		renderer.icons.put("themes", IconUtils.getIcon("themes"));
 		renderer.icons.put("editor", IconUtils.getIcon("list"));
-		renderer.icons.put("flags", IconUtils.getIcon("errorflag"));
+		renderer.icons.put("flags", IconUtils.getIcon("unknown"));
 		renderer.icons.put("stats", IconUtils.getIcon("statistics"));
 		renderer.icons.put("sound", IconUtils.getIcon("sound"));
 		renderer.icons.put("eula", IconUtils.getIcon("gavel"));
