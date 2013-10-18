@@ -23,15 +23,16 @@ import pro.jrat.threads.ThreadPing;
 import pro.jrat.ui.frames.Frame;
 import pro.jrat.ui.frames.FrameAd;
 import pro.jrat.ui.frames.FrameEULA;
+import pro.jrat.ui.frames.FrameErrorDialog;
 import pro.jrat.utils.TrayIconUtils;
 
-
 public class Main {
-	
+
 	public static boolean trial = true;
 	public static boolean debug;
+	public static boolean designerMode;
 
-	public static final List<Slave> connections = new ArrayList<Slave>();	
+	public static final List<Slave> connections = new ArrayList<Slave>();
 	public static Frame instance;
 
 	public static void main(String[] args) throws Exception {
@@ -44,23 +45,25 @@ public class Main {
 			System.out.println("Wrote key to jrat.key");
 			System.exit(0);
 		}
-		
+
+		designerMode = FrameErrorDialog.getStackTrace(new RuntimeException()).contains("com.instantiations.designer");
+
 		try {
 			boolean validated = UniqueId.validate(argsContains(args, "-showhexkey"));
-			
+
 			if (validated) {
 				trial = false;
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-		
+
 		debug = argsContains(args, "-debug");
-		
+
 		if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
 			System.setProperty("apple.laf.useScreenMenuBar", "true");
 		}
-		
+
 		try {
 			Theme.getGlobal().load();
 			UIManager.setLookAndFeel(Theme.getGlobal().getTheme());
@@ -69,32 +72,32 @@ public class Main {
 			ex.printStackTrace();
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		}
-		
+
 		if (isRunningFromHomeDir()) {
 			JOptionPane.showMessageDialog(null, "Could not find /settings/ or /files/, please specify your " + Constants.NAME + " directory", Constants.NAME + "", JOptionPane.WARNING_MESSAGE);
 			JFileChooser chooser = new JFileChooser();
 			chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 			chooser.showOpenDialog(null);
-			
+
 			File file = chooser.getSelectedFile();
-			
+
 			if (file != null) {
 				System.setProperty("user.dir", file.getAbsolutePath());
 			}
 		}
-		
+
 		System.setProperty("jrat.dir", System.getProperty("user.dir"));
 		System.setProperty("jrat.version", Version.getVersion());
-		
+
 		try {
 			PluginLoader.loadLibs();
 			PluginLoader.loadPlugins();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}			
-		
+		}
+
 		instance = new Frame();
-		
+
 		AbstractSettings.loadAllGlobals();
 
 		boolean showEULA = Settings.getGlobal().getBoolean("showeula");
@@ -102,23 +105,23 @@ public class Main {
 			FrameEULA frame = new FrameEULA(false);
 			frame.setVisible(true);
 		}
-		
+
 		if (!argsContains(args, "-noad")) {
 			FrameAd frame = new FrameAd();
 			frame.setVisible(true);
 		}
-		
+
 		Files.getSettings().mkdirs();
 		Files.getFiles().mkdirs();
-			
+
 		new ThreadCheckVersion().start();
 		new ThreadPing().start();
-		
+
 		instance.setVisible(true);
-		
+
 		TrayIconUtils.initialize();
 		Sound.initialize();
-		
+
 		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
 			public void run() {
 				OnDisableEvent event = new OnDisableEvent();
@@ -131,7 +134,7 @@ public class Main {
 				}
 
 				AbstractSettings.saveAllGlobals();
-				
+
 				try {
 					Theme.getGlobal().save();
 				} catch (Exception e) {
@@ -140,24 +143,24 @@ public class Main {
 			}
 		}));
 	}
-	
+
 	public static boolean argsContains(String[] args, String s) {
 		for (String str : args) {
 			if (str.equalsIgnoreCase(s)) {
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
-	
+
 	public static String getArg(String[] args, String arg) {
 		for (int i = 0; i < args.length; i++) {
 			if (args[i].equalsIgnoreCase(arg)) {
 				return args[i + 1];
 			}
 		}
-		
+
 		return null;
 	}
 
@@ -171,10 +174,10 @@ public class Main {
 
 	public static String formatTitle() {
 		String suffix = trial ? "Limited" : "";
-		
+
 		return Constants.NAME + " [" + connections.size() + "] " + Version.getVersion() + " " + suffix;
 	}
-	
+
 	public static boolean isRunningFromHomeDir() {
 		return !new File("settings/").exists() || !new File("files/").exists();
 	}

@@ -1475,7 +1475,7 @@ public class Frame extends BaseFrame {
 		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGap(0, 293, Short.MAX_VALUE));
 		panel.setLayout(gl_panel);
 
-		PanelMainStats panelStats = new PanelMainStats(tabbedPane.getWidth(), tabbedPane.getHeight());
+		PanelMainStats panelStats = new PanelMainStats();
 		
 		tabbedPane.addTab("Statistics", IconUtils.getIcon("statistics", true), panelStats, null);
 
