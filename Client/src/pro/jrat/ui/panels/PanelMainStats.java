@@ -1,5 +1,7 @@
 package pro.jrat.ui.panels;
 
+import java.util.List;
+
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -55,7 +57,12 @@ public class PanelMainStats extends JPanel {
 		totalTable = new JTable(totalModel);
 		totalScrollPane.add(totalTable);
 		
-		totalGraph = new CountryGraph(new CountryColors());
+		totalGraph = new CountryGraph(new CountryColors()) {
+			@Override
+			public void onUpdate(List<Country> sorted, int recommendedX) {
+				
+			}
+		};
 		totalGraph.setBounds(120, height / 2, width - 120 - 10, height / 2 - 10);
 		add(totalGraph);
 		

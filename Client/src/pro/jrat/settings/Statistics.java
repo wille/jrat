@@ -37,9 +37,14 @@ public class Statistics extends AbstractSettings implements Serializable {
 	}
 
 	public StatEntry getEntry(String country, String longcountry) {
+		if (country.equals("?")) {
+			country = "unknown";
+		}
+		
 		for (int i = 0; i < list.size(); i++) {
 			StatEntry entry = list.get(i);
-			if (entry != null && entry.country != null && entry.connects != null && entry.longcountry.equalsIgnoreCase(longcountry) && entry.country.equalsIgnoreCase(country)) {
+			System.out.println(entry.getCountry() + ", " + country + ", " + entry.getCountry().equals(country));
+			if (entry.country.equalsIgnoreCase(country)) {
 				return entry;
 			}
 		}
@@ -49,6 +54,7 @@ public class Statistics extends AbstractSettings implements Serializable {
 		stat.longcountry = longcountry;
 
 		list.add(stat);
+		System.out.println("Added: " + country);
 		return stat;
 	}
 
@@ -116,9 +122,7 @@ public class Statistics extends AbstractSettings implements Serializable {
 			StatEntry entry = list.get(i);
 			try {
 
-				if (entry.getCountry().equals("?")) {
-					entry.setCountry("unknown");
-				}
+				System.out.println(entry.getCountry() + ", " + entry.getConnects() + ", " + entry.getList().size());
 				
 				Country total = new Country(entry.getCountry(), entry.getConnects());
 				Country unique = new Country(entry.getCountry(), entry.getList().size());
