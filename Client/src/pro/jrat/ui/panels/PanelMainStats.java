@@ -55,7 +55,7 @@ public class PanelMainStats extends JPanel {
 			uniqueGraph = new CountryGraph(new CountryColors()) {
 				@Override
 				public void onUpdate(List<Country> list, int x) {
-					uniqueGraph.setSize(new Dimension(x, totalGraph.getHeight()));
+					uniqueGraph.setPreferredSize(new Dimension(x, uniqueTableScrollPane.getHeight()));
 				}
 			};
 			
@@ -65,7 +65,7 @@ public class PanelMainStats extends JPanel {
 			totalGraph = new CountryGraph(new CountryColors()) {
 				@Override
 				public void onUpdate(List<Country> list, int x) {
-					totalGraph.setSize(new Dimension(x, totalGraph.getHeight()));
+					totalGraph.setPreferredSize(new Dimension(x, totalScrollPane.getHeight()));
 				}
 			};
 			
@@ -76,16 +76,12 @@ public class PanelMainStats extends JPanel {
 			uniqueTable = new JTable(uniqueModel);
 			uniqueTableScrollPane.add(uniqueTable);
 			
-			
-			
 			totalTableScrollPane = new JScrollPane();
 			add(totalTableScrollPane);
 			
 			totalModel = new DefaultTableModel(new Object[][] { { "Total" } }, 0);
 			totalTable = new JTable(totalModel);
-			totalTableScrollPane.add(totalTable);
-			
-			
+			totalTableScrollPane.add(totalTable);	
 		}
 		
 		uniqueTableScrollPane.setBounds(5, 5, 110, height / 2 - 10);		

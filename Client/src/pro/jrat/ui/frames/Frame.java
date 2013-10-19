@@ -39,6 +39,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
 import javax.swing.table.DefaultTableModel;
@@ -84,8 +86,6 @@ import pro.jrat.utils.FlagUtils;
 import pro.jrat.utils.IconUtils;
 import pro.jrat.utils.NetUtils;
 import pro.jrat.utils.Utils;
-import javax.swing.event.ChangeListener;
-import javax.swing.event.ChangeEvent;
 
 
 @SuppressWarnings({ "serial" })

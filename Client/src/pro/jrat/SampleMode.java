@@ -2,11 +2,8 @@ package pro.jrat;
 
 import java.util.Random;
 
-import pro.jrat.ip2c.Country;
-import pro.jrat.settings.Settings;
 import pro.jrat.settings.Statistics;
 import pro.jrat.ui.frames.Frame;
-import pro.jrat.utils.FlagUtils;
 import pro.jrat.utils.NetUtils;
 
 

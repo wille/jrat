@@ -9,12 +9,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.redpois0n.graphs.country.Country;
-
 import pro.jrat.Slave;
 import pro.jrat.io.Files;
 import pro.jrat.ui.frames.Frame;
-import pro.jrat.utils.IconUtils;
+
+import com.redpois0n.graphs.country.Country;
 
 public class Statistics extends AbstractSettings implements Serializable {
 
