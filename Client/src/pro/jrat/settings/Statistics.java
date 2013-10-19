@@ -108,6 +108,9 @@ public class Statistics extends AbstractSettings implements Serializable {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}*/
+		
+		Frame.panelStats.totalGraph.clear();	
+		Frame.panelStats.uniqueGraph.clear();
 
 		for (int i = 0; i < list.size(); i++) {
 			StatEntry entry = list.get(i);
@@ -122,7 +125,8 @@ public class Statistics extends AbstractSettings implements Serializable {
 
 				Frame.panelStats.totalGraph.add(total);
 				Frame.panelStats.uniqueGraph.add(unique);
-
+				Frame.panelStats.repaint();
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
