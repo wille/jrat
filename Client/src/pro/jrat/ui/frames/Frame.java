@@ -490,7 +490,7 @@ public class Frame extends BaseFrame {
 		mntmSampleMode.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (Utils.yesNo("Confirm", "This will break " + Constants.NAME + " until restarted and begin a photo friendly session")) {
-					SampleMode.start();
+					SampleMode.start(false);
 				}
 			}
 		});
@@ -1489,7 +1489,7 @@ public class Frame extends BaseFrame {
 		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGap(0, 293, Short.MAX_VALUE));
 		panel.setLayout(gl_panel);
 		
-		tabbedPane.addTab("Statistics", IconUtils.getIcon("statistics", true), panelStats, null);
+		tabbedPane.addTab("Statistics", IconUtils.getIcon("statistics", true), new JScrollPane(panelStats), null);
 
 		JPanel panel_onconnect = new JPanel();
 		tabbedPane.addTab("On Connect", IconUtils.getIcon("onconnect", true), panel_onconnect, null);

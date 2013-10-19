@@ -9,6 +9,7 @@ public class Commands {
 	
 	static {
 		commands.put("liststats", Commandliststats.class);
+		commands.put("addstats", Commandaddstats.class);
 	}
 	
 	public static synchronized void execute(String command) {

@@ -101,6 +101,10 @@ public class Slave implements Runnable {
 		this.ip = socket.getInetAddress().getHostAddress() + " / " + socket.getPort();
 		new Thread(this).start();
 	}
+	
+	public Slave(String ip) {
+		this.ip = ip;
+	}
 
 	public void run() {
 		try {
