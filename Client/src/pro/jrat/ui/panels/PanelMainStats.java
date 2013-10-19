@@ -72,16 +72,17 @@ public class PanelMainStats extends JPanel {
 			totalScrollPane = new JScrollPane(totalGraph);
 			add(totalScrollPane);
 
-			uniqueModel = new DefaultTableModel(new Object[][] { { "Unique" } }, 0);
+			uniqueModel = new DefaultTableModel(new Object[][] { { } }, new String[] { "Unique" } );
 			uniqueTable = new JTable(uniqueModel);
-			uniqueTableScrollPane.add(uniqueTable);
+			uniqueTableScrollPane.setViewportView(uniqueTable);
 			
 			totalTableScrollPane = new JScrollPane();
 			add(totalTableScrollPane);
 			
-			totalModel = new DefaultTableModel(new Object[][] { { "Total" } }, 0);
+			totalModel = new DefaultTableModel(new Object[][] { { } }, new String[] { "Total" } );
 			totalTable = new JTable(totalModel);
-			totalTableScrollPane.add(totalTable);	
+
+			totalTableScrollPane.setViewportView(totalTable);	
 		}
 		
 		uniqueTableScrollPane.setBounds(5, 5, 110, height / 2 - 10);		
