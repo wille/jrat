@@ -774,7 +774,7 @@ public class Frame extends BaseFrame {
 		tabbedPane = new DraggableTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {					
-				panelStats.setActive(tabbedPane.getSelectedIndex() == 1);	
+				panelStats.setActive(tabbedPane.getTitleAt(tabbedPane.getSelectedIndex()).equals("Statistics"));	
 			}
 		});
 		
