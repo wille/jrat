@@ -1,7 +1,10 @@
 package pro.jrat.ui.panels;
 
+import java.awt.Dimension;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.util.List;
+
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -9,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 
 import pro.jrat.threads.ThreadCountryGraph;
 
+import com.redpois0n.graphs.country.Country;
 import com.redpois0n.graphs.country.CountryColors;
 import com.redpois0n.graphs.country.CountryGraph;
 
@@ -28,9 +32,13 @@ public class PanelMainStats extends JPanel {
 	
 	public CountryGraph totalGraph;
 	public CountryGraph uniqueGraph;
+	
+	private JScrollPane totalTableScrollPane;
+	private JScrollPane uniqueTableScrollPane;
+	
 	private JScrollPane totalScrollPane;
 	private JScrollPane uniqueScrollPane;
-
+	
 	public PanelMainStats() {
 		init();
 	}
@@ -41,34 +49,52 @@ public class PanelMainStats extends JPanel {
 		if (!initialized) {
 			initialized = true;
 			
-			uniqueScrollPane = new JScrollPane();
+			uniqueTableScrollPane = new JScrollPane();
+			add(uniqueTableScrollPane);
+			
+			uniqueGraph = new CountryGraph(new CountryColors()) {
+				@Override
+				public void onUpdate(List<Country> list, int x) {
+					uniqueGraph.setSize(new Dimension(x, totalGraph.getHeight()));
+				}
+			};
+			
+			uniqueScrollPane = new JScrollPane(uniqueGraph);
 			add(uniqueScrollPane);
+			
+			totalGraph = new CountryGraph(new CountryColors()) {
+				@Override
+				public void onUpdate(List<Country> list, int x) {
+					totalGraph.setSize(new Dimension(x, totalGraph.getHeight()));
+				}
+			};
+			
+			totalScrollPane = new JScrollPane(totalGraph);
+			add(totalScrollPane);
 
 			uniqueModel = new DefaultTableModel(new Object[][] { { "Unique" } }, 0);
 			uniqueTable = new JTable(uniqueModel);
-			uniqueScrollPane.add(uniqueTable);
+			uniqueTableScrollPane.add(uniqueTable);
 			
-			uniqueGraph = new CountryGraph(new CountryColors());
-			add(uniqueGraph);
 			
-			totalScrollPane = new JScrollPane();
-			add(totalScrollPane);
+			
+			totalTableScrollPane = new JScrollPane();
+			add(totalTableScrollPane);
 			
 			totalModel = new DefaultTableModel(new Object[][] { { "Total" } }, 0);
 			totalTable = new JTable(totalModel);
-			totalScrollPane.add(totalTable);
+			totalTableScrollPane.add(totalTable);
 			
-			totalGraph = new CountryGraph(new CountryColors());
-			add(totalGraph);
+			
 		}
 		
-		uniqueScrollPane.setBounds(5, 5, 110, height / 2 - 10);		
+		uniqueTableScrollPane.setBounds(5, 5, 110, height / 2 - 10);		
 		
-		uniqueGraph.setBounds(120, 5, width - 120 - 10, height / 2 - 10);
+		uniqueScrollPane.setBounds(120, 5, width - 120 - 10, height / 2 - 10);
 		
-		totalScrollPane.setBounds(5, height / 2, 110, height / 2 - 10);
+		totalTableScrollPane.setBounds(5, height / 2, 110, height / 2 - 10);
 		
-		totalGraph.setBounds(120, height / 2, width - 120 - 10, height / 2 - 10);	
+		totalScrollPane.setBounds(120, height / 2, width - 120 - 10, height / 2 - 10);	
 		
 		addComponentListener(new ComponentListener() { 
 			

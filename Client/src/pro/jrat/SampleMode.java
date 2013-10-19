@@ -271,30 +271,25 @@ public class SampleMode {
 		String ip = NetUtils.randomizeIP() + " / " + i;
 		
 		Slave slave = generate(country, ip);
-				
+						
 		if (stats) {
-			Statistics.getGlobal().add(slave);
+			int howMany = new Random().nextInt(100);
+			for (int s = 0; s < howMany; s++) {
+				Statistics.getGlobal().add(slave);
+			}
 		} else {
-			Frame.mainModel.addRow(new Object[] { slave.getCountry(), "Example", "Example", ip, "0", "Example", "Example", "Example" });	
+			Frame.mainModel.addRow(new Object[] { country, "Example", "Example", ip, "0", "Example", "Example", "Example" });	
 		}
 	}
 	
-	public static Slave generate(String country, String ip) {
-		Slave slave = new Slave(ip);
-		
-		if (Settings.getGlobal().getBoolean("geoip")) {
-			Country c = FlagUtils.getCountry(ip.split(" / ")[0]);
-			
-			if (c != null) {
-				country = c.get2cStr().toUpperCase();
-			} else {
-				country = "?";
+	public static Slave generate(final String country, String ip) {
+		Slave slave = new Slave(ip) {
+			@Override
+			public String getCountry() {
+				return country;
 			}
-		}
-		
-		slave.setCountry(country);
-		
-		slave.setIP(ip);
+		};
+
 		return slave;
 	}
 
