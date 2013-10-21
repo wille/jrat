@@ -6,6 +6,7 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.util.List;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -44,11 +45,12 @@ public class PanelMainStats extends JPanel {
 	
 	private DefaultTableCellRenderer flagRenderer = new DefaultTableCellRenderer() {
 		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-	
+			JLabel c = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 			
-			setIcon(FlagUtils.getFlag(value.toString().toLowerCase()));
+			c.setIcon(FlagUtils.getFlag(value.toString().toLowerCase()));
+			c.setText(value.toString());
 			
-			return this;
+			return c;
 		}
 	};
 	
