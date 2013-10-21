@@ -53,7 +53,7 @@ public class FlagUtils {
 		ImageIcon icon = null;
 	
 		try {
-			if (name.equals("Unknown")) {
+			if (name.equalsIgnoreCase("unknown")) {
 				throw new Exception("Skip to error flag");
 			}
 			if (flags.containsKey(name)) {
@@ -67,7 +67,7 @@ public class FlagUtils {
 			if (flags.containsKey("unknown")) {
 				icon = flags.get("unknown");
 			} else {
-				icon = new ImageIcon(Main.class.getResource("/icons/unknown.png"));
+				icon = new ImageIcon(Main.class.getResource("/flags/unknown.png"));
 				flags.put("unknown", icon);
 			}
 		}
