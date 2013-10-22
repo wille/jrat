@@ -42,7 +42,6 @@ public class Statistics extends AbstractSettings implements Serializable {
 		
 		for (int i = 0; i < list.size(); i++) {
 			StatEntry entry = list.get(i);
-			System.out.println(entry.getCountry() + ", " + country + ", " + entry.getCountry().equals(country));
 			if (entry.country.equalsIgnoreCase(country)) {
 				return entry;
 			}
@@ -100,20 +99,7 @@ public class Statistics extends AbstractSettings implements Serializable {
 		reload();
 	}
 
-	public void reload() {
-		/*try {
-			if (!isTracking()) {
-				return;
-			}
-			Frame.statModel.addRow(new Object[] { IconUtils.getIcon("all", true), "Total: " + list.size(), "Total: " + getNoConnects(), "Total: " + getDifferentConnects() });
-			for (StatEntry e : list) {
-				String latest = e.list.size() > 0 ? e.list.get(0) : "None";
-				Frame.statModel.addRow(new Object[] { FlagUtils.getFlag(e.country), e.longcountry, e.connects.toString(), e.list.size(), latest });
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}*/
-		
+	public void reload() {	
 		Frame.panelStats.totalGraph.clear();	
 		Frame.panelStats.uniqueGraph.clear();
 
@@ -121,7 +107,6 @@ public class Statistics extends AbstractSettings implements Serializable {
 			StatEntry entry = list.get(i);
 			try {
 
-				System.out.println(entry.getCountry() + ", " + entry.getConnects() + ", " + entry.getList().size());
 				
 				Country total = new Country(entry.getCountry(), entry.getConnects());
 				Country unique = new Country(entry.getCountry(), entry.getList().size());
