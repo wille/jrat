@@ -19,7 +19,7 @@ public class WebRequest {
 		"http://jrat.pro",
 		"http://jrat-project.org"
 	};
-	
+		
 	public static URL getUrl(String surl) throws Exception {
 		return getUrl(surl, false);
 	}
@@ -34,7 +34,7 @@ public class WebRequest {
 				try {
 					URL url = new URL(domains[i]);
 					HttpURLConnection connection = null;
-					
+										
 					if (Settings.getGlobal().getBoolean("proxy")) {
 						Proxy proxy = new Proxy(Settings.getGlobal().getBoolean("proxysocks") ? Proxy.Type.SOCKS : Proxy.Type.HTTP, new InetSocketAddress(Settings.getGlobal().getString("proxyhost"), Settings.getGlobal().getInt("proxyport")));
 						connection = (HttpURLConnection)url.openConnection(proxy);
@@ -72,7 +72,7 @@ public class WebRequest {
 		
 		return url;
 	}
-	
+
 	public static HttpURLConnection getConnection(String surl) throws Exception {
 		return getConnection(surl, false);
 	}
@@ -89,7 +89,7 @@ public class WebRequest {
 				try {
 					URL url = new URL(surl.replace("%host%", domains[i]));
 					HttpURLConnection connection = null;
-					
+										
 					if (Settings.getGlobal().getBoolean("proxy")) {
 						Proxy proxy = new Proxy(Settings.getGlobal().getBoolean("proxysocks") ? Proxy.Type.SOCKS : Proxy.Type.HTTP, new InetSocketAddress(Settings.getGlobal().getString("proxyhost"), Settings.getGlobal().getInt("proxyport")));
 						connection = (HttpURLConnection)url.openConnection(proxy);
@@ -98,9 +98,9 @@ public class WebRequest {
 					}
 					
 					connection.setReadTimeout(2500);
-					
+										
 					connection.connect();
-					
+										
 					surl = surl.replace(Constants.HOST, domains[i]);
 					return connection;
 				} catch (Exception e) {
