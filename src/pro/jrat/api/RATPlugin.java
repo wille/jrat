@@ -43,7 +43,7 @@ public abstract class RATPlugin {
 	
 	/**
 	 * 
-	 * @param event OnDisableEvent when plugin is disabled (jRAT shut down
+	 * @param event OnDisableEvent when plugin is disabled (jRAT shut down)
 	 */
 
 	public abstract void onDisable(OnDisableEvent event) throws Exception;
