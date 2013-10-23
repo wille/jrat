@@ -28,6 +28,15 @@ public class FramePerformance extends BaseFrame {
 			
 		});
 		
+
+		setTitle("Performance");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Frame.class.getResource("/icons/meter.png")));
+		setLayout(null);
+		setResizable(false);
+		setBounds(100, 100, 600, 330);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
+		
 		JButton button = new JButton("Garbage Collect");
 		button.setBounds(10, 260, 130, 30);
 		button.setIcon(new ImageIcon(Frame.class.getResource("/icons/garbage.png")));
@@ -39,16 +48,9 @@ public class FramePerformance extends BaseFrame {
 		});
 		
 		add(button);
-
-		setTitle("Performance");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Frame.class.getResource("/icons/meter.png")));
-		setLayout(null);
-		setResizable(false);
-		setBounds(100, 100, 600, 330);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		graph = new TaskmgrGraph(new TaskmgrColors());
-		graph.setBounds(5, 5, 585, 250);
+		graph.setBounds(0, 0, 593, 250);
 		add(graph);
 				
 		new Thread("Memory thread") {
@@ -59,7 +61,6 @@ public class FramePerformance extends BaseFrame {
 					
 					long current = (rt.totalMemory() - rt.freeMemory()) / 1024L / 1024L;
 					long max = rt.totalMemory() / 1024L / 1024L;
-					int percent =  (int) (((float) current / (float) max) * 100);
 					
 					graph.setMaximum((int) max);
 										
