@@ -1,8 +1,13 @@
 package pro.jrat.ui.frames;
 
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import com.redpois0n.graphs.taskmgr.TaskmgrColors;
@@ -22,16 +27,30 @@ public class FramePerformance extends BaseFrame {
 			}
 			
 		});
+		
+		JButton button = new JButton("Garbage Collect");
+		button.setBounds(10, 260, 130, 30);
+		button.setIcon(new ImageIcon(Frame.class.getResource("/icons/garbage.png")));
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent event) {
+				System.gc();
+			}
+		});
+		
+		add(button);
 
+		setTitle("Performance");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Frame.class.getResource("/icons/meter.png")));
 		setLayout(null);
 		setResizable(false);
-		setBounds(100, 100, 600, 350);
+		setBounds(100, 100, 600, 330);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		graph = new TaskmgrGraph(new TaskmgrColors());
-		graph.setBounds(5, 5, this.getWidth() - 30, this.getHeight() - 80);
+		graph.setBounds(5, 5, 585, 250);
 		add(graph);
-		
+				
 		new Thread("Memory thread") {
 			@Override
 			public void run() {
@@ -42,15 +61,12 @@ public class FramePerformance extends BaseFrame {
 					long max = rt.totalMemory() / 1024L / 1024L;
 					int percent =  (int) (((float) current / (float) max) * 100);
 					
-					
 					graph.setMaximum((int) max);
 										
 					graph.addValue((int) current);
 					
 					graph.setText(current + " mb");
-					
-					System.out.println("Current usage: " + current + ", Maximum usage: " + max + ", Percent: " + percent);
-					
+										
 					try {
 						Thread.sleep(1000L);
 					} catch (Exception e) {
