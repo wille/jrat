@@ -3,7 +3,7 @@ package pro.jrat.threads;
 import pro.jrat.Slave;
 import pro.jrat.packets.outgoing.Packet33RAM;
 import pro.jrat.ui.frames.FrameControlPanel;
-import pro.jrat.ui.panels.PanelControlSystemMonitor;
+import pro.jrat.ui.panels.PanelControlPerformance;
 
 public class ThreadSystemMonitor extends Thread {
 
@@ -15,7 +15,7 @@ public class ThreadSystemMonitor extends Thread {
 
 	public void run() {
 		FrameControlPanel frame = FrameControlPanel.instances.get(slave);
-		PanelControlSystemMonitor panel = (PanelControlSystemMonitor) frame.panels.get("system monitor");
+		PanelControlPerformance panel = (PanelControlPerformance) frame.panels.get("system monitor");
 		while (frame != null && panel != null && panel.needRam && panel.slave.getIP().equals(slave.getIP())) {
 			slave.addToSendQueue(new Packet33RAM());
 			try {

