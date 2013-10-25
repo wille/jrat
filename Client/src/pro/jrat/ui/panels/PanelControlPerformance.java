@@ -23,14 +23,16 @@ import pro.jrat.packets.outgoing.Packet74GarbageCollect;
 import pro.jrat.settings.Colors;
 import pro.jrat.threads.ThreadSystemMonitor;
 import pro.jrat.ui.components.JColorBox;
-import pro.jrat.ui.renderers.MemoryMeter;
+
+import com.redpois0n.graphs.taskmgr.TaskmgrGraph;
+import javax.swing.BoxLayout;
 
 
 @SuppressWarnings("serial")
 public class PanelControlPerformance extends PanelControlParent {
 
-	public MemoryMeter ramMeter;
-	public PanelImage panelRAM;
+	public TaskmgrGraph ramMeter;
+	public JPanel panelRAM;
 	public JSlider sliderRam;
 	public boolean needRam = false;
 	public JProgressBar barRAM;
@@ -46,14 +48,14 @@ public class PanelControlPerformance extends PanelControlParent {
 				Color color = colorBox.getColor();
 				if (color != null && barRAM != null && ramMeter != null) {
 					barRAM.setForeground(color);
-					ramMeter.color = color;
+					// TODO ramMeter.color = color;
 				}
 			}
 		});
 		
 		colorBox.setProfile(Colors.getGlobal().get("system monitor"));
 		
-		ramMeter = new MemoryMeter(colorBox.getColor());	
+		ramMeter = new TaskmgrGraph(false);	
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(BorderFactory.createTitledBorder("System Monitor"));
@@ -61,31 +63,10 @@ public class PanelControlPerformance extends PanelControlParent {
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(panel, GroupLayout.PREFERRED_SIZE, 580, GroupLayout.PREFERRED_SIZE).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(panel, GroupLayout.PREFERRED_SIZE, 325, GroupLayout.PREFERRED_SIZE).addContainerGap(14, Short.MAX_VALUE)));
 
-		panelRAM = new PanelImage();
+		panelRAM = new JPanel();
+		panelRAM.setLayout(new BoxLayout(panelRAM, BoxLayout.X_AXIS));
+		panelRAM.add(ramMeter);
 		panelRAM.setBorder(BorderFactory.createLineBorder(Color.gray.brighter()));
-
-		JToggleButton tglbtnLines = new JToggleButton("Lines");
-		tglbtnLines.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JToggleButton src = (JToggleButton) e.getSource();
-				if (src.isSelected()) {
-					ramMeter.setMode(Constants.MODE_LINES);
-				}
-			}
-		});
-		buttonGroup.add(tglbtnLines);
-		tglbtnLines.setSelected(true);
-
-		JToggleButton tglbtnDots = new JToggleButton("Dots");
-		tglbtnDots.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JToggleButton src = (JToggleButton) e.getSource();
-				if (src.isSelected()) {
-					ramMeter.setMode(Constants.MODE_DOTS);
-				}
-			}
-		});
-		buttonGroup.add(tglbtnDots);
 
 		JCheckBox chckbxActiveRamMonitor = new JCheckBox("Active RAM monitor");
 		chckbxActiveRamMonitor.addActionListener(new ActionListener() {
@@ -102,7 +83,6 @@ public class PanelControlPerformance extends PanelControlParent {
 		});
 
 		sliderRam = new JSlider();
-		sliderRam.setMinimum(1);
 		sliderRam.setValue(1);
 		sliderRam.setMaximum(10);
 
@@ -126,18 +106,14 @@ public class PanelControlPerformance extends PanelControlParent {
 					.addContainerGap()
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addComponent(panelRAM, GroupLayout.PREFERRED_SIZE, 549, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(tglbtnLines)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(tglbtnDots)
-							.addPreferredGap(ComponentPlacement.RELATED)
+						.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
 							.addComponent(btnGc, GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(colorBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(lblInterval)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(sliderRam, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addComponent(lblInterval)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(sliderRam, GroupLayout.PREFERRED_SIZE, 324, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_panel.createSequentialGroup()
 							.addComponent(chckbxActiveRamMonitor)
 							.addPreferredGap(ComponentPlacement.RELATED)
@@ -152,11 +128,9 @@ public class PanelControlPerformance extends PanelControlParent {
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-							.addComponent(tglbtnLines)
-							.addComponent(tglbtnDots)
-							.addComponent(lblInterval)
+							.addComponent(btnGc)
 							.addComponent(colorBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(btnGc))
+							.addComponent(lblInterval))
 						.addComponent(sliderRam, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(13)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
