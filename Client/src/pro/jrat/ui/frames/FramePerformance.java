@@ -9,6 +9,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 import com.redpois0n.graphs.taskmgr.TaskmgrColors;
 import com.redpois0n.graphs.taskmgr.TaskmgrGraph;
@@ -35,8 +36,12 @@ public class FramePerformance extends BaseFrame {
 		setResizable(false);
 		setBounds(100, 100, 600, 330);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
 		
-		
+		final JLabel lblMaximum = new JLabel("Maximum: ");
+		lblMaximum.setBounds(150, 270, 100, 10);
+		add(lblMaximum);
+				
 		JButton button = new JButton("Garbage Collect");
 		button.setBounds(10, 260, 130, 30);
 		button.setIcon(new ImageIcon(Frame.class.getResource("/icons/garbage.png")));
@@ -63,6 +68,8 @@ public class FramePerformance extends BaseFrame {
 					long max = rt.totalMemory() / 1024L / 1024L;
 					
 					graph.setMaximum((int) max);
+					lblMaximum.setText("Maximum: " + max + " mb");
+
 										
 					graph.addValue((int) current);
 					
