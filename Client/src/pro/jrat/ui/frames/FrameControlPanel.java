@@ -50,7 +50,6 @@ import pro.jrat.packets.outgoing.Packet37RestartJavaProcess;
 import pro.jrat.packets.outgoing.Packet45Reconnect;
 import pro.jrat.ui.panels.PanelControlActivePorts;
 import pro.jrat.ui.panels.PanelControlAdapters;
-import pro.jrat.ui.panels.PanelControlCPU;
 import pro.jrat.ui.panels.PanelControlClipboard;
 import pro.jrat.ui.panels.PanelControlComputerInfo;
 import pro.jrat.ui.panels.PanelControlConfig;
@@ -313,7 +312,6 @@ public class FrameControlPanel extends BaseFrame {
 				r.icons.put("traffic", IconUtils.getIcon("speedometer"));
 				r.icons.put("active ports", IconUtils.getIcon("ports"));
 				r.icons.put("redirect", IconUtils.getIcon("redirect"));
-				r.icons.put("drain cpu", IconUtils.getIcon("burn"));
 				r.icons.put("speech", IconUtils.getIcon("balloon_sound"));
 				r.icons.put("trace", IconUtils.getIcon("location"));
 				r.icons.put("windows services", IconUtils.getIcon("block"));
@@ -368,7 +366,6 @@ public class FrameControlPanel extends BaseFrame {
 			tabbedPane.addTab("Fun Manager", i.get("fun manager"), panels.get("fun manager"));
 			tabbedPane.addTab("Piano", i.get("piano"), panels.get("piano"));
 			tabbedPane.addTab("Messagebox", i.get("messagebox"), panels.get("messagebox"));
-			tabbedPane.addTab("Drain CPU", i.get("drain cpu"), panels.get("drain cpu"));
 			tabbedPane.addTab("Speech", i.get("speech"), panels.get("speech"));
 		} else if (str.equals("system functions")) {
 			tabbedPane.removeAll();
@@ -444,7 +441,6 @@ public class FrameControlPanel extends BaseFrame {
 		fun.add(new DefaultMutableTreeNode("Piano"));
 		fun.add(new DefaultMutableTreeNode("Messagebox"));
 		fun.add(new DefaultMutableTreeNode("Remote Chat"));
-		fun.add(new DefaultMutableTreeNode("Drain CPU"));
 		fun.add(new DefaultMutableTreeNode("Speech"));
 
 		DefaultMutableTreeNode systemfunctions = new DefaultMutableTreeNode("System Functions");
@@ -553,7 +549,6 @@ public class FrameControlPanel extends BaseFrame {
 			addPanel("lan computers", new PanelControlLANComputers(slave));
 			addPanel("net gateway", new PanelControlNetGateway(slave));
 			addPanel("active ports", new PanelControlActivePorts(slave));
-			addPanel("drain cpu", new PanelControlCPU(slave));
 			addPanel("speech", new PanelControlSpeech(slave));
 			addPanel("windows services", new PanelControlServices(slave));
 			addPanel("registry startup", new PanelControlRegStart(slave));
