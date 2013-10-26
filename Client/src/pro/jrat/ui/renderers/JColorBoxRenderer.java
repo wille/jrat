@@ -20,20 +20,21 @@ public class JColorBoxRenderer extends DefaultListCellRenderer {
 
 	public JColorBoxRenderer() {
 		map.clear();
-		map.put("black", ImageUtils.generate(Color.black));
-		map.put("blue", ImageUtils.generate(Color.blue));
-		map.put("cyan", ImageUtils.generate(Color.cyan));
-		map.put("dark gray", ImageUtils.generate(Color.darkGray));
-		map.put("gray", ImageUtils.generate(Color.gray));
-		map.put("green", ImageUtils.generate(Color.green));
-		map.put("dark green", ImageUtils.generate(Color.green.darker()));
-		map.put("light gray", ImageUtils.generate(Color.lightGray));
-		map.put("magenta", ImageUtils.generate(Color.magenta));
-		map.put("orange", ImageUtils.generate(Color.orange));
-		map.put("pink", ImageUtils.generate(Color.pink));
-		map.put("red", ImageUtils.generate(Color.red));
-		map.put("white", ImageUtils.generate(Color.white));
-		map.put("yellow", ImageUtils.generate(Color.yellow));
+		map.put("default", ImageUtils.generateColorBoxSquare(Color.black));
+		map.put("black", ImageUtils.generateColorBoxSquare(Color.black));
+		map.put("blue", ImageUtils.generateColorBoxSquare(Color.blue));
+		map.put("cyan", ImageUtils.generateColorBoxSquare(Color.cyan));
+		map.put("dark gray", ImageUtils.generateColorBoxSquare(Color.darkGray));
+		map.put("gray", ImageUtils.generateColorBoxSquare(Color.gray));
+		map.put("green", ImageUtils.generateColorBoxSquare(Color.green));
+		map.put("dark green", ImageUtils.generateColorBoxSquare(Color.green.darker()));
+		map.put("light gray", ImageUtils.generateColorBoxSquare(Color.lightGray));
+		map.put("magenta", ImageUtils.generateColorBoxSquare(Color.magenta));
+		map.put("orange", ImageUtils.generateColorBoxSquare(Color.orange));
+		map.put("pink", ImageUtils.generateColorBoxSquare(Color.pink));
+		map.put("red", ImageUtils.generateColorBoxSquare(Color.red));
+		map.put("white", ImageUtils.generateColorBoxSquare(Color.white));
+		map.put("yellow", ImageUtils.generateColorBoxSquare(Color.yellow));
 	}
 
 	@SuppressWarnings("rawtypes")

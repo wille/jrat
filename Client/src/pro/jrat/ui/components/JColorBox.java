@@ -13,7 +13,7 @@ import pro.jrat.ui.renderers.JColorBoxRenderer;
 @SuppressWarnings("serial")
 public class JColorBox extends JComboBox<String> {
 	
-	public static final String[] colors = new String[] { "black", "blue",
+	public static final String[] colors = new String[] { "default", "black", "blue",
 		"cyan", "dark gray", "gray", "green", "dark green", "light gray", "magenta",
 		"orange", "pink", "red", "white", "yellow"};
 	
@@ -45,6 +45,11 @@ public class JColorBox extends JComboBox<String> {
 	
 	public Color getColor() {
 		String text = super.getSelectedItem().toString();
+		
+		if (text.equals("default")) {
+			return null;
+		}
+		
 		Color color;
 		if (text.equals("dark green")) {
 			color = Color.green.darker();
