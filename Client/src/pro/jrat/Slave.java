@@ -85,7 +85,7 @@ public class Slave implements Runnable {
 	private int ping = 0;
 	private int status = 5;
 
-	private short ram = 0;
+	private int ram = 0;
 	private short processors;
 
 	public long pingms = 0;
@@ -555,12 +555,12 @@ public class Slave implements Runnable {
 		this.processors = processors;
 	}
 
-	public short getRam() {
+	public int getRam() {
 		return ram;
 	}
 
-	public void setRam(short ram) {
-		this.ram = ram;
+	public void setRam(int ram2) {
+		this.ram = ram2;
 	}
 
 	public long getSent() {
