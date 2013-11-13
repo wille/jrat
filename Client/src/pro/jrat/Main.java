@@ -113,7 +113,7 @@ public class Main {
 			frame.setVisible(true);
 		}
 
-		if (!argsContains(args, "-noad")) {
+		if (!argsContains(args, "-noad") && trial) {
 			FrameAd frame = new FrameAd();
 			frame.setVisible(true);
 		}
