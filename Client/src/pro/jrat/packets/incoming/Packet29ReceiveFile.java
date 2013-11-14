@@ -69,7 +69,7 @@ public class Packet29ReceiveFile extends AbstractIncomingPacket {
 			public void run() {
 				if (localData.getRemoteFiles().size() > 0) {
 					try {
-						Thread.sleep(500L);
+						Thread.sleep(100L);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
