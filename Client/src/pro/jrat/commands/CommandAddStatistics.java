@@ -27,5 +27,4 @@ public class CommandAddStatistics extends AbstractCommand {
 		return "addstats";
 	}
 
-
 }

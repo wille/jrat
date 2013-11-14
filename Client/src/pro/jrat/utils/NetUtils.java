@@ -9,7 +9,6 @@ import pro.jrat.Constants;
 import pro.jrat.ErrorDialog;
 import pro.jrat.net.WebRequest;
 
-
 public class NetUtils {
 
 	public static void openUrl(String str) {
@@ -27,7 +26,7 @@ public class NetUtils {
 		reader.close();
 		return ip;
 	}
-	
+
 	public static String randomizeIP() {
 		int i = (short) (int) (Math.random() * 256.0D);
 		int j = (short) (int) (Math.random() * 256.0D);

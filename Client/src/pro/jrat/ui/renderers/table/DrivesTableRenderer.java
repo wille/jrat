@@ -10,16 +10,14 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 import pro.jrat.utils.IconUtils;
 
-
-
 @SuppressWarnings("serial")
 public class DrivesTableRenderer extends DefaultTableCellRenderer {
-	
+
 	public final HashMap<String, Icon> drives = new HashMap<String, Icon>();
-	
+
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 		JLabel lbl = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-		
+
 		if (value != null && column == 0) {
 			Icon icon = null;
 			if (drives.containsKey(value.toString())) {
@@ -28,12 +26,12 @@ public class DrivesTableRenderer extends DefaultTableCellRenderer {
 				icon = IconUtils.getFileIcon(value.toString());
 				drives.put(value.toString(), icon);
 			}
-			
+
 			setIcon(icon);
 		} else {
 			lbl.setIcon(null);
 		}
-		
+
 		return lbl;
 	}
 }

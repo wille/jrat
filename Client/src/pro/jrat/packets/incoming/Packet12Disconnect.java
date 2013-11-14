@@ -5,7 +5,6 @@ import java.io.DataInputStream;
 import pro.jrat.Slave;
 import pro.jrat.exceptions.CloseException;
 
-
 public class Packet12Disconnect extends AbstractIncomingPacket {
 
 	@Override

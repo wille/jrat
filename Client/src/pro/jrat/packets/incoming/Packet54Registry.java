@@ -7,8 +7,6 @@ import javax.swing.ImageIcon;
 import pro.jrat.Slave;
 import pro.jrat.ui.frames.FrameRemoteRegistry;
 
-
-
 public class Packet54Registry extends AbstractIncomingPacket {
 
 	@Override
@@ -18,13 +16,13 @@ public class Packet54Registry extends AbstractIncomingPacket {
 		for (int i = 0; i < count; i++) {
 			args[i] = slave.readLine();
 		}
-		
+
 		if (args[0].length() == 0) {
 			return;
 		}
-		
+
 		FrameRemoteRegistry frame = FrameRemoteRegistry.instances.get(slave);
-		
+
 		if (frame != null) {
 			if (args.length == 3) {
 				ImageIcon icon;
@@ -33,7 +31,7 @@ public class Packet54Registry extends AbstractIncomingPacket {
 				} else {
 					icon = FrameRemoteRegistry.reg01;
 				}
-				
+
 				frame.getRenderer().icons.put(args[0], icon);
 				frame.getModel().addRow(new Object[] { args[0], args[2], args[1] });
 			} else {
@@ -50,8 +48,8 @@ public class Packet54Registry extends AbstractIncomingPacket {
 				frame.getRenderer().icons.put(args[0], FrameRemoteRegistry.folder);
 				frame.getModel().insertRow(toInsert, new Object[] { args[0] });
 			}
-		}	
-		
+		}
+
 	}
 
 }

@@ -6,8 +6,6 @@ import java.util.LinkedHashMap;
 import pro.jrat.BuildStatus;
 import pro.jrat.ui.panels.PanelBuildFinal;
 
-
-
 public class AdvancedBuildListener extends BuildListener {
 
 	private final PanelBuildFinal panel;

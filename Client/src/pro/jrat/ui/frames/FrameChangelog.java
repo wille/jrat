@@ -27,8 +27,6 @@ import pro.jrat.common.Version;
 import pro.jrat.net.WebRequest;
 import pro.jrat.utils.NetUtils;
 
-
-
 @SuppressWarnings("serial")
 public class FrameChangelog extends BaseFrame {
 
@@ -71,30 +69,11 @@ public class FrameChangelog extends BaseFrame {
 		});
 		btnClose.setIcon(new ImageIcon(FrameChangelog.class.getResource("/icons/delete.png")));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(btnDownloadLatestUpdate)
-					.addPreferredGap(ComponentPlacement.RELATED, 304, Short.MAX_VALUE)
-					.addComponent(lblYourVersion)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnClose))
-				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 218, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnDownloadLatestUpdate)
-						.addComponent(btnClose)
-						.addComponent(lblYourVersion))
-					.addGap(30))
-		);
+		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(btnDownloadLatestUpdate).addPreferredGap(ComponentPlacement.RELATED, 304, Short.MAX_VALUE).addComponent(lblYourVersion).addPreferredGap(ComponentPlacement.UNRELATED).addComponent(btnClose)).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE));
+		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 218, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(btnDownloadLatestUpdate).addComponent(btnClose).addComponent(lblYourVersion)).addGap(30)));
 
 		contentPane.setLayout(gl_contentPane);
-		
+
 		JEditorPane com;
 		try {
 			com = new JEditorPane(WebRequest.getUrl(url));
@@ -104,38 +83,36 @@ public class FrameChangelog extends BaseFrame {
 			return;
 		}
 		com.addHyperlinkListener(new HyperlinkListener() {
-			 public void hyperlinkUpdate(HyperlinkEvent e) {
+			public void hyperlinkUpdate(HyperlinkEvent e) {
 				if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
 					try {
 						NetUtils.openUrl(e.getURL().toURI().toString());
 					} catch (Exception localException) {
 						localException.printStackTrace();
-					}		 
+					}
 				}
-			 }
+			}
 		});
 		com.setEditable(false);
 		com.setContentType("text/html");
-		
+
 		scrollPane.setViewportView(com);
 
-
-		/*try {
-			com.getDocument().insertString(0, "<html>", null);
-			BufferedReader reader = new BufferedReader(new InputStreamReader(WebRequest.getInputStream(url)));
-
-			String s = null;
-			while ((s = reader.readLine()) != null) {
-				com.getDocument().insertString(com.getDocument().getLength(), s + "\n", null);
-			}
-			
-			reader.close();
-			
-			com.getDocument().insertString(com.getDocument().getLength(), "</html>", null);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			ErrorDialog.create(ex);
-		}*/
+		/*
+		 * try { com.getDocument().insertString(0, "<html>", null);
+		 * BufferedReader reader = new BufferedReader(new
+		 * InputStreamReader(WebRequest.getInputStream(url)));
+		 * 
+		 * String s = null; while ((s = reader.readLine()) != null) {
+		 * com.getDocument().insertString(com.getDocument().getLength(), s +
+		 * "\n", null); }
+		 * 
+		 * reader.close();
+		 * 
+		 * com.getDocument().insertString(com.getDocument().getLength(),
+		 * "</html>", null); } catch (Exception ex) { ex.printStackTrace();
+		 * ErrorDialog.create(ex); }
+		 */
 
 		com.setSelectionStart(0);
 		com.setSelectionEnd(0);

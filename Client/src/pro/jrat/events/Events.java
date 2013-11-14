@@ -6,7 +6,6 @@ import java.util.HashMap;
 import pro.jrat.ui.frames.Frame;
 import pro.jrat.utils.Utils;
 
-
 public class Events {
 
 	public static ArrayList<String> events = new ArrayList<String>();

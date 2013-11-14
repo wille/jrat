@@ -1,6 +1,5 @@
 package pro.jrat.ui.panels;
 
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -22,7 +21,6 @@ import pro.jrat.packets.outgoing.Packet39VisitManyURLs;
 import pro.jrat.packets.outgoing.Packet44PlaySoundFromURL;
 import pro.jrat.packets.outgoing.Packet46CrazyMouse;
 import pro.jrat.packets.outgoing.Packet65Beep;
-
 
 @SuppressWarnings("serial")
 public class PanelControlFunManager extends PanelControlParent {
@@ -75,8 +73,8 @@ public class PanelControlFunManager extends PanelControlParent {
 					JOptionPane.showMessageDialog(null, "Input valid values!", "Error", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
-				
-				sl.addToSendQueue(new Packet44PlaySoundFromURL(txtURLwav.getText().trim(), (Integer) spinnerwav.getValue() ));
+
+				sl.addToSendQueue(new Packet44PlaySoundFromURL(txtURLwav.getText().trim(), (Integer) spinnerwav.getValue()));
 			}
 		});
 		btnPlay.setIcon(new ImageIcon(PanelControlFunManager.class.getResource("/icons/start.png")));
@@ -110,7 +108,7 @@ public class PanelControlFunManager extends PanelControlParent {
 					JOptionPane.showMessageDialog(null, "Input valid values!", "Error", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
-				sl.addToSendQueue(new Packet39VisitManyURLs(txtURLwebsite.getText().trim(), (Integer)spinner.getValue()));
+				sl.addToSendQueue(new Packet39VisitManyURLs(txtURLwebsite.getText().trim(), (Integer) spinner.getValue()));
 			}
 		});
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);

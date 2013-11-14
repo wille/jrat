@@ -1,6 +1,5 @@
 package pro.jrat.exceptions;
 
-
 @SuppressWarnings("serial")
 public class CloseException extends Exception {
 

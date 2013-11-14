@@ -82,15 +82,15 @@ public class FrameOnlinePlugins extends JFrame {
 				return false;
 			}
 		};
-		
-		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
-	        public void valueChanged(ListSelectionEvent event) {
-	        	if (!event.getValueIsAdjusting() && table.getSelectedColumn() == 5) {
-	        		install((String) table.getValueAt(table.getSelectedRow(), 0));
-	        	}
-	        }
-	    });
-		
+
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent event) {
+				if (!event.getValueIsAdjusting() && table.getSelectedColumn() == 5) {
+					install((String) table.getValueAt(table.getSelectedRow(), 0));
+				}
+			}
+		});
+
 		table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
 			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 				JLabel lbl = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
@@ -99,10 +99,10 @@ public class FrameOnlinePlugins extends JFrame {
 
 				if (column == 0 && plugin != null) {
 					lbl.setIcon(plugin.getIcon());
-					
+
 					if (plugin.isInstalled()) {
 						Plugin realPlugin = PluginLoader.getPlugin(plugin.getDisplayName());
-			
+
 						if (realPlugin != null && !plugin.getVersion().equals(realPlugin.getVersion())) {
 							setText("(Outdated) " + value);
 						}
@@ -114,11 +114,11 @@ public class FrameOnlinePlugins extends JFrame {
 						return btn;
 					} else {
 						String text = plugin.isInstalled() ? "Reinstall" : "Install";
-						
+
 						if (!plugin.isDownloadable()) {
 							text = "Not available";
 						}
-						
+
 						JButton btn = new JButton(text);
 						btn.setEnabled(plugin.isDownloadable());
 						return btn;
@@ -149,16 +149,16 @@ public class FrameOnlinePlugins extends JFrame {
 		});
 		mntmReload.setIcon(new ImageIcon(FrameOnlinePlugins.class.getResource("/icons/update.png")));
 		popupMenu.add(mntmReload);
-		
+
 		mntmHelp = new JMenuItem("Help");
 		mntmHelp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String help = "Installs plugins from web\n\nAlways deal with caution as " + Constants.HOST + " is not behind many of these plugins\n\nGreen text means that they are built for your current version or subversion\n\nPlugins shown as not available might be paid or premium by their authors";
-				
+
 				JOptionPane.showMessageDialog(null, help, "Help", JOptionPane.QUESTION_MESSAGE);
 			}
 		});
-		
+
 		mntmPreview = new JMenuItem("Preview");
 		mntmPreview.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -177,31 +177,15 @@ public class FrameOnlinePlugins extends JFrame {
 		mntmHelp.setIcon(new ImageIcon(FrameOnlinePlugins.class.getResource("/icons/help.png")));
 		popupMenu.add(mntmHelp);
 		scrollPane.setViewportView(table);
-		
+
 		lblStatus = new JLabel("...");
 		lblStatus.setVisible(false);
-		
+
 		progressBar = new JProgressBar();
 		progressBar.setVisible(false);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(progressBar, GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblStatus)
-					.addGap(171))
-				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE)
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(lblStatus, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(progressBar, GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)))
-		);
+		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addGroup(gl_contentPane.createSequentialGroup().addComponent(progressBar, GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.RELATED).addComponent(lblStatus).addGap(171)).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE));
+		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addGroup(gl_contentPane.createSequentialGroup().addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false).addComponent(lblStatus, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(progressBar, GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))));
 		contentPane.setLayout(gl_contentPane);
 
 		reload();
@@ -210,13 +194,13 @@ public class FrameOnlinePlugins extends JFrame {
 	public void install(String pluginDisplayName) {
 		install(getPlugin(pluginDisplayName));
 	}
-	
+
 	public void install(final OnlinePlugin plugin) {
 		String what = plugin.isInstalled() ? "reinstall" : "install";
 		if (JOptionPane.showConfirmDialog(null, "Are you sure that you want to " + what + " " + plugin.getDisplayName() + "?\n\n" + Constants.HOST + " is not behind many of these plugins and cannot verify their content", "Plugin", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE) != JOptionPane.YES_OPTION) {
 			return;
 		}
-		
+
 		final ExtensionInstaller installer = new ExtensionInstaller(plugin, new ExtensionInstallerListener() {
 			@Override
 			public void status(Color color, String message, int status) {
@@ -225,37 +209,37 @@ public class FrameOnlinePlugins extends JFrame {
 				progressBar.setValue(status);
 			}
 		});
-		
+
 		progressBar.setVisible(true);
 		lblStatus.setVisible(true);
-		
+
 		new Thread(new Runnable() {
 			public void run() {
 				try {
 					installer.toggle();
-					
+
 					progressBar.setVisible(false);
 					lblStatus.setVisible(false);
-					
+
 					JOptionPane.showMessageDialog(null, "Successfully installed and enabled " + plugin.getDisplayName(), "Plugin", JOptionPane.INFORMATION_MESSAGE);
 				} catch (FileNotFoundException ex) {
 					ex.printStackTrace();
-					
+
 					progressBar.setVisible(false);
 					lblStatus.setVisible(false);
-					
+
 					JOptionPane.showMessageDialog(null, "Could not find package, maybe this is a paid plugin", "Plugin", JOptionPane.WARNING_MESSAGE);
 				} catch (Exception ex) {
 					ex.printStackTrace();
-					
+
 					progressBar.setVisible(false);
 					lblStatus.setVisible(false);
-					
+
 					JOptionPane.showMessageDialog(null, "Failed to install " + plugin.getDisplayName() + ", " + ex.getClass().getSimpleName() + ": " + ex.getMessage(), "Plugin", JOptionPane.ERROR_MESSAGE);
 				}
-				table.repaint();				
+				table.repaint();
 			}
-		}).start();	
+		}).start();
 	}
 
 	public void reload() {

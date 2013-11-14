@@ -16,24 +16,22 @@ import javax.swing.table.DefaultTableModel;
 import pro.jrat.Slave;
 import pro.jrat.packets.outgoing.Packet73ActivePorts;
 
-
-
 @SuppressWarnings("serial")
 public class PanelControlActivePorts extends PanelControlParent {
-	
+
 	private JTable table;
 	private DefaultTableModel model;
-	
+
 	public DefaultTableModel getModel() {
 		return model;
 	}
 
 	public PanelControlActivePorts(Slave sl) {
 		super(sl);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		
+
 		JButton btnReload = new JButton("Reload");
 		btnReload.setIcon(new ImageIcon(PanelControlActivePorts.class.getResource("/icons/update.png")));
 		btnReload.addActionListener(new ActionListener() {
@@ -42,7 +40,7 @@ public class PanelControlActivePorts extends PanelControlParent {
 				slave.addToSendQueue(new Packet73ActivePorts());
 			}
 		});
-		
+
 		JButton btnClear = new JButton("Clear");
 		btnClear.setIcon(new ImageIcon(PanelControlActivePorts.class.getResource("/icons/clear.png")));
 		btnClear.addActionListener(new ActionListener() {
@@ -51,35 +49,11 @@ public class PanelControlActivePorts extends PanelControlParent {
 			}
 		});
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(btnReload)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnClear)
-					.addContainerGap(430, Short.MAX_VALUE))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnReload)
-						.addComponent(btnClear))
-					.addGap(18))
-		);
-		
+		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(btnReload).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnClear).addContainerGap(430, Short.MAX_VALUE)));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addGroup(groupLayout.createSequentialGroup().addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnReload).addComponent(btnClear)).addGap(18)));
+
 		table = new JTable();
-		table.setModel(model = new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Protocol", "Local address", "External address", "Status"
-			}
-		));
+		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "Protocol", "Local address", "External address", "Status" }));
 		table.getColumnModel().getColumn(1).setPreferredWidth(168);
 		table.getColumnModel().getColumn(2).setPreferredWidth(225);
 		table.getColumnModel().getColumn(3).setPreferredWidth(116);
@@ -87,7 +61,7 @@ public class PanelControlActivePorts extends PanelControlParent {
 		scrollPane.setViewportView(table);
 		setLayout(groupLayout);
 	}
-	
+
 	public void clear() {
 		while (model.getRowCount() > 0) {
 			model.removeRow(0);

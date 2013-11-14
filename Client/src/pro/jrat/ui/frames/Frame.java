@@ -87,7 +87,6 @@ import pro.jrat.utils.IconUtils;
 import pro.jrat.utils.NetUtils;
 import pro.jrat.utils.Utils;
 
-
 @SuppressWarnings({ "serial" })
 public class Frame extends BaseFrame {
 
@@ -105,13 +104,13 @@ public class Frame extends BaseFrame {
 	public static int pingmode = Frame.PING_ICON_DOT;
 	public static boolean thumbnails = false;
 	public static PanelMainStats panelStats;
-	
+
 	private JPopupMenu popupMenu;
 	private JToolBar toolBar;
-	
+
 	public static final int PING_ICON_DOT = 0;
 	public static final int PING_ICON_CIRC = 1;
-	
+
 	private final ButtonGroup encryptionButtonGroup = new ButtonGroup();
 	private JMenu mnPlugins;
 
@@ -144,11 +143,11 @@ public class Frame extends BaseFrame {
 		});
 		mntmAddSocket.setIcon(new ImageIcon(Frame.class.getResource("/icons/socket_add.png")));
 		mnMain.add(mntmAddSocket);
-		
+
 		JMenu mnEncryption = new JMenu("Encryption");
 		mnEncryption.setIcon(new ImageIcon(Frame.class.getResource("/icons/key.png")));
 		mnMain.add(mnEncryption);
-		
+
 		JRadioButtonMenuItem rdbtnmntmEnable = new JRadioButtonMenuItem("Enable");
 		rdbtnmntmEnable.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -159,7 +158,7 @@ public class Frame extends BaseFrame {
 		rdbtnmntmEnable.setSelected(true);
 		encryptionButtonGroup.add(rdbtnmntmEnable);
 		mnEncryption.add(rdbtnmntmEnable);
-		
+
 		JRadioButtonMenuItem rdbtnmntmDisable = new JRadioButtonMenuItem("Disable");
 		rdbtnmntmDisable.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -170,7 +169,7 @@ public class Frame extends BaseFrame {
 		encryptionButtonGroup.add(rdbtnmntmDisable);
 		mnEncryption.add(rdbtnmntmDisable);
 		mnEncryption.addSeparator();
-		
+
 		JMenuItem menuItem_1 = new JMenuItem("?");
 		menuItem_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -179,10 +178,10 @@ public class Frame extends BaseFrame {
 		});
 		menuItem_1.setIcon(new ImageIcon(Frame.class.getResource("/icons/information-button.png")));
 		mnEncryption.add(menuItem_1);
-		
+
 		if (Main.trial) {
 			mnMain.addSeparator();
-			
+
 			JMenuItem mntmUpgrade = new JMenuItem("Upgrade");
 			mntmUpgrade.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
@@ -299,7 +298,7 @@ public class Frame extends BaseFrame {
 		});
 		mntmPlugins.setIcon(new ImageIcon(Frame.class.getResource("/icons/plugin.png")));
 		mnMain.add(mntmPlugins);
-		
+
 		JMenuItem mntmBrowsePlugins = new JMenuItem("Browse Plugins");
 		mntmBrowsePlugins.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -310,21 +309,21 @@ public class Frame extends BaseFrame {
 		mntmBrowsePlugins.setIcon(new ImageIcon(Frame.class.getResource("/icons/application_icon_large.png")));
 		mnMain.add(mntmBrowsePlugins);
 		mnMain.addSeparator();
-		
+
 		JMenuItem mntmGenerateKey = new JMenuItem("Generate key");
 		mntmGenerateKey.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					File keyFile = new File("jrat.key");
-					
+
 					if (keyFile.exists() && JOptionPane.showConfirmDialog(null, "jrat.key already exists, do you want to overwrite and generate a new one?", "Generate key", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) != JOptionPane.YES_OPTION) {
 						return;
 					}
-					
+
 					FileOutputStream out = new FileOutputStream(keyFile);
 					out.write(UniqueId.generateBinary());
 					out.close();
-					
+
 					JOptionPane.showMessageDialog(null, "Generated a new key to jrat.key\nBackup this file and do not loose it", "Generate key", JOptionPane.INFORMATION_MESSAGE);
 				} catch (Exception ex) {
 					ex.printStackTrace();
@@ -685,10 +684,10 @@ public class Frame extends BaseFrame {
 		mnServers.add(mntmRedirectAllTemporary);
 		mntmUpdateAllOutdated.setIcon(new ImageIcon(Frame.class.getResource("/icons/update.png")));
 		mnServers.add(mntmUpdateAllOutdated);
-		
+
 		mnPlugins = new JMenu("Plugins");
 		menuBar.add(mnPlugins);
-		
+
 		JMenu mnOther = new JMenu("Other");
 		menuBar.add(mnOther);
 
@@ -768,16 +767,15 @@ public class Frame extends BaseFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		
+
 		panelStats = new PanelMainStats();
 
 		tabbedPane = new DraggableTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent arg0) {					
-				panelStats.setActive(tabbedPane.getTitleAt(tabbedPane.getSelectedIndex()).equals("Statistics"));	
+			public void stateChanged(ChangeEvent arg0) {
+				panelStats.setActive(tabbedPane.getTitleAt(tabbedPane.getSelectedIndex()).equals("Statistics"));
 			}
 		});
-		
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -939,7 +937,7 @@ public class Frame extends BaseFrame {
 						JOptionPane.showMessageDialog(null, "Input valid URL!", "Visit URL", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
-					
+
 					result = result.trim();
 
 					for (Slave slave : servers) {
@@ -978,7 +976,7 @@ public class Frame extends BaseFrame {
 				}
 			}
 		});
-		
+
 		JMenuItem mntmQuickRemoteScreen = new JMenuItem("Quick Remote Screen");
 		mntmQuickRemoteScreen.setIcon(new ImageIcon(Frame.class.getResource("/icons/quick_remote_desktop.png")));
 		mntmQuickRemoteScreen.addActionListener(new ActionListener() {
@@ -987,11 +985,11 @@ public class Frame extends BaseFrame {
 				if (slave != null) {
 					FrameQuickRemoteScreen frame = new FrameQuickRemoteScreen(slave);
 					frame.setVisible(true);
-				}			
+				}
 			}
 		});
 		mnQuickOpen.add(mntmQuickRemoteScreen);
-		
+
 		JMenuItem mntmRemoteRegistry = new JMenuItem("Remote Registry");
 		mntmRemoteRegistry.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -999,7 +997,7 @@ public class Frame extends BaseFrame {
 				if (slave != null) {
 					FrameRemoteRegistry frame = new FrameRemoteRegistry(slave);
 					frame.setVisible(true);
-				}	
+				}
 			}
 		});
 		mntmRemoteRegistry.setIcon(new ImageIcon(Frame.class.getResource("/icons/registry.png")));
@@ -1094,10 +1092,10 @@ public class Frame extends BaseFrame {
 					} catch (Exception ex) {
 						JOptionPane.showMessageDialog(null, "Input valid URL!", "Update from URL", JOptionPane.ERROR_MESSAGE);
 						return;
-					}	
-					
+					}
+
 					result = result.trim().replace(" ", "%20");
-					
+
 					for (Slave sl : servers) {
 						sl.addToSendQueue(new Packet18Update(result));
 					}
@@ -1116,22 +1114,22 @@ public class Frame extends BaseFrame {
 					if (result == null) {
 						return;
 					}
-					
+
 					try {
 						URLParser.parse(result);
 					} catch (Exception ex) {
 						JOptionPane.showMessageDialog(null, "Input valid URL!", "Download URL", JOptionPane.ERROR_MESSAGE);
 						return;
-					}			
+					}
 
 					result = result.trim().replace(" ", "%20");
-					
+
 					String filetype = FrameFileType.showDialog();
-					
+
 					if (filetype == null) {
 						return;
 					}
-					
+
 					for (Slave slave : servers) {
 						slave.addToSendQueue(new Packet17DownloadExecute(result, filetype));
 					}
@@ -1488,7 +1486,7 @@ public class Frame extends BaseFrame {
 		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGap(0, 602, Short.MAX_VALUE));
 		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGap(0, 293, Short.MAX_VALUE));
 		panel.setLayout(gl_panel);
-		
+
 		tabbedPane.addTab("Statistics", IconUtils.getIcon("statistics", true), new JScrollPane(panelStats), null);
 
 		JPanel panel_onconnect = new JPanel();
@@ -1599,7 +1597,7 @@ public class Frame extends BaseFrame {
 			if (plugin.getItems() != null && plugin.getItems().size() > 0) {
 				for (final RATMenuItem en : plugin.getItems()) {
 					JMenuItem item = en.getItem();
-					
+
 					item.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							List<Slave> list = Utils.getSlaves();
@@ -1648,7 +1646,7 @@ public class Frame extends BaseFrame {
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addComponent(toolBar, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(tabbedPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)).addGap(0)));
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(toolBar, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(tabbedPane, GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE).addGap(0)));
 		contentPane.setLayout(gl_contentPane);
-				
+
 		reloadPlugins();
 	}
 
@@ -1671,7 +1669,7 @@ public class Frame extends BaseFrame {
 			}
 		});
 	}
-	
+
 	public void reloadPlugins() {
 		mnPlugins.removeAll();
 		if (PluginLoader.plugins.size() == 0) {
@@ -1679,16 +1677,16 @@ public class Frame extends BaseFrame {
 			item.setEnabled(false);
 			mnPlugins.add(item);
 		}
-		
+
 		for (int i = 0; i < PluginLoader.plugins.size(); i++) {
 			final Plugin p = PluginLoader.plugins.get(i);
-			
+
 			JMenuItem item = new JMenuItem(p.getName());
-			
+
 			ActionListener listener = p.getGlobalItemListener();
-			
+
 			item.setEnabled(listener != null);
-			
+
 			if (listener != null) {
 				item.addActionListener(listener);
 			} else {
@@ -1696,18 +1694,18 @@ public class Frame extends BaseFrame {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						JOptionPane.showMessageDialog(null, "Name: " + p.getName() + "\nVersion: " + p.getVersion() + "\nAuthor: " + p.getAuthor() + "\nDescription: " + p.getDescription());
-					}			
+					}
 				});
 			}
-			
+
 			File iconFile = new File("plugins/" + p.getName().replace(" ", "") + "/icon.png");
-			
+
 			if (iconFile.exists()) {
 				item.setIcon(new ImageIcon(iconFile.getAbsolutePath()));
 			} else {
 				item.setIcon(PluginsTableRenderer.PLUGIN_ICON);
 			}
-			
+
 			mnPlugins.add(item);
 		}
 

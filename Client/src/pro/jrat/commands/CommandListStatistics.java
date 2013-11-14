@@ -12,7 +12,7 @@ public class CommandListStatistics extends AbstractCommand {
 	@Override
 	public void process(String[] args, PrintStream out) throws Exception {
 		List<StatEntry> list = Statistics.getGlobal().getList();
-		
+
 		for (StatEntry entry : list) {
 			out.println(entry.getLongCountry() + ", " + entry.getCountry() + ", " + entry.getConnects() + ", " + entry.getList().size());
 		}

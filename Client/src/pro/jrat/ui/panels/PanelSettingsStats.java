@@ -17,7 +17,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import pro.jrat.settings.Settings;
 import pro.jrat.settings.Statistics;
 
-
 @SuppressWarnings("serial")
 public class PanelSettingsStats extends JPanel {
 

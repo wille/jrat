@@ -20,8 +20,6 @@ import pro.jrat.Slave;
 import pro.jrat.ui.renderers.JComboBoxIconRenderer;
 import pro.jrat.utils.IconUtils;
 
-
-
 @SuppressWarnings("serial")
 public class FrameFlag extends BaseDialog {
 
@@ -65,21 +63,15 @@ public class FrameFlag extends BaseDialog {
 		btnFlag.setIcon(new ImageIcon(FrameFlag.class.getResource("/icons/enabled.png")));
 		btnFlag.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				/*String selected = comboBox.getSelectedItem().toString();
-				for (Slave sl : slaves) {
-					sl.flagged = !sl.flagged;
-					int row = Util.getRow(3, sl.ip);
-					if (row == -1) {
-						continue;
-					}
-					if (sl.flagged) {
-						Frame.model.setValueAt(Util.getIcon("flag_" + selected, true), row, 0);
-					} else {
-						Frame.model.setValueAt(Util.getCountry(sl.ip), row, 0);
-					}
-				}
-				Frame.table.repaint();
-				exit();*/
+				/*
+				 * String selected = comboBox.getSelectedItem().toString(); for
+				 * (Slave sl : slaves) { sl.flagged = !sl.flagged; int row =
+				 * Util.getRow(3, sl.ip); if (row == -1) { continue; } if
+				 * (sl.flagged) { Frame.model.setValueAt(Util.getIcon("flag_" +
+				 * selected, true), row, 0); } else {
+				 * Frame.model.setValueAt(Util.getCountry(sl.ip), row, 0); } }
+				 * Frame.table.repaint(); exit();
+				 */
 				// TODO FIX
 			}
 		});

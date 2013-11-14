@@ -24,8 +24,6 @@ import pro.jrat.ui.renderers.table.ComputerInfoTableRenderer;
 import pro.jrat.utils.FlagUtils;
 import pro.jrat.utils.IconUtils;
 
-
-
 @SuppressWarnings("serial")
 public class PanelControlComputerInfo extends PanelControlParent {
 
@@ -68,40 +66,19 @@ public class PanelControlComputerInfo extends PanelControlParent {
 			}
 		});
 		btnSave.setIcon(new ImageIcon(PanelControlComputerInfo.class.getResource("/icons/save.png")));
-		
+
 		JButton btnGetSysteminfoexe = new JButton("Get systeminfo.exe");
 		btnGetSysteminfoexe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				FrameRawSystemInfo frame = new FrameRawSystemInfo(slave);
 				frame.setVisible(true);
-				slave.addToSendQueue(new Packet83WinSysInfo());	
+				slave.addToSendQueue(new Packet83WinSysInfo());
 			}
 		});
 		btnGetSysteminfoexe.setIcon(new ImageIcon(PanelControlComputerInfo.class.getResource("/icons/down_arrow.png")));
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(btnReload)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnSave)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnGetSysteminfoexe)
-					.addContainerGap(327, Short.MAX_VALUE))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 299, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnReload)
-						.addComponent(btnSave)
-						.addComponent(btnGetSysteminfoexe))
-					.addContainerGap(15, Short.MAX_VALUE))
-		);
+		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(btnReload).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnSave).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnGetSysteminfoexe).addContainerGap(327, Short.MAX_VALUE)));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 299, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnReload).addComponent(btnSave).addComponent(btnGetSysteminfoexe)).addContainerGap(15, Short.MAX_VALUE)));
 
 		table = new JTable();
 		table.setDefaultRenderer(Object.class, new ComputerInfoTableRenderer());
@@ -113,11 +90,11 @@ public class PanelControlComputerInfo extends PanelControlParent {
 
 		refreshSystemInfo();
 	}
-	
+
 	public ComputerInfoTableRenderer getRenderer() {
 		return (ComputerInfoTableRenderer) table.getDefaultRenderer(Object.class);
 	}
-	
+
 	public void addRow(String icon, String key, String value) {
 		addRow(IconUtils.getIcon(icon), key, value);
 	}
@@ -146,9 +123,9 @@ public class PanelControlComputerInfo extends PanelControlParent {
 		addRow("key", "Server Version", slave.getVersion());
 		addRow("javascript", "Java Version", slave.getJavaVersion());
 		addRow("javascript", "Java Path", slave.getJavaPath());
-		
+
 		String antiviruses = "";
-		
+
 		if (slave.getAntiviruses().length == 1) {
 			antiviruses = slave.getAntiviruses()[0].getName();
 		} else {
@@ -160,11 +137,11 @@ public class PanelControlComputerInfo extends PanelControlParent {
 				}
 			}
 		}
-		
+
 		addRow("antivirus", "Antiviruses", antiviruses);
-		
+
 		String firewalls = "";
-		
+
 		if (slave.getFirewalls().length == 1) {
 			firewalls = slave.getFirewalls()[0].getName();
 		} else {
@@ -176,7 +153,7 @@ public class PanelControlComputerInfo extends PanelControlParent {
 				}
 			}
 		}
-		
+
 		addRow("http_flood", "Firewalls", firewalls);
 	}
 }

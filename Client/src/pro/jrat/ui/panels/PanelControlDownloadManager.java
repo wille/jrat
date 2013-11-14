@@ -22,7 +22,6 @@ import pro.jrat.packets.outgoing.Packet34AdvancedDownload;
 import pro.jrat.ui.renderers.JComboBoxIconRenderer;
 import pro.jrat.utils.IconUtils;
 
-
 @SuppressWarnings("serial")
 public class PanelControlDownloadManager extends PanelControlParent {
 
@@ -54,7 +53,7 @@ public class PanelControlDownloadManager extends PanelControlParent {
 		JLabel lblDropDir = new JLabel("Drop dir:");
 
 		comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"appdata", "temp/documents (UNIX)", "desktop"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] { "appdata", "temp/documents (UNIX)", "desktop" }));
 
 		JComboBoxIconRenderer renderer = new JComboBoxIconRenderer();
 		renderer.addIcon("appdata", IconUtils.getIcon("appdata"));
@@ -72,7 +71,7 @@ public class PanelControlDownloadManager extends PanelControlParent {
 					}
 				}
 				model.addRow(new Object[] { IconUtils.getIcon("update", true), txtURL.getText().trim(), chckbxExecute.isSelected() + "", comboBox.getSelectedItem().toString(), "Sent..." });
-				
+
 				sl.addToSendQueue(new Packet34AdvancedDownload(txtURL.getText().trim(), chckbxExecute.isSelected(), comboBox.getSelectedItem().toString().toLowerCase()));
 			}
 		});

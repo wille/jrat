@@ -18,7 +18,6 @@ import javax.swing.SpinnerNumberModel;
 
 import pro.jrat.Help;
 
-
 @SuppressWarnings("serial")
 public class PanelBuildDelay extends JPanel {
 

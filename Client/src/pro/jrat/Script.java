@@ -6,8 +6,6 @@ import pro.jrat.packets.outgoing.Packet35Script;
 import pro.jrat.ui.panels.PanelControlScript;
 import pro.jrat.utils.IconUtils;
 
-
-
 public class Script {
 
 	public static final int VB = 0;

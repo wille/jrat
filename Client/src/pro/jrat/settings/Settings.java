@@ -10,22 +10,21 @@ import java.util.Map;
 
 import pro.jrat.io.Files;
 
-
 public class Settings extends AbstractSettings {
 
 	private static final Settings instance = new Settings();
-	
+
 	private transient Map<String, Object> settings = new HashMap<String, Object>();
 
 	public static Settings getGlobal() {
 		return instance;
 	}
-	
+
 	public String getString(String key) {
 		Object obj = settings.get(key);
 		return obj == null ? "" : (String) obj;
 	}
-	
+
 	public Object get(String key) {
 		return settings.get(key);
 	}

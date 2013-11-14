@@ -18,8 +18,6 @@ import javax.swing.ScrollPaneConstants;
 import pro.jrat.Script;
 import pro.jrat.Slave;
 
-
-
 @SuppressWarnings("serial")
 public class PanelControlScript extends PanelControlParent {
 

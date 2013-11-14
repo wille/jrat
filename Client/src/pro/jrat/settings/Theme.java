@@ -12,13 +12,12 @@ import javax.swing.UIManager;
 
 import pro.jrat.io.Files;
 
-
 public class Theme extends AbstractSettings {
-	
+
 	private static final Theme instance = new Theme();
-	
+
 	private String theme;
-	
+
 	public static Theme getGlobal() {
 		return instance;
 	}
@@ -26,10 +25,10 @@ public class Theme extends AbstractSettings {
 	@Override
 	public void save() throws Exception {
 		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(getFile())));
-		
+
 		String[] themeargs = UIManager.getLookAndFeel().toString().split(" - ");
 		String className = themeargs[1].substring(0, themeargs[1].length() - 1);
-		
+
 		writer.write(className);
 		writer.newLine();
 		writer.close();

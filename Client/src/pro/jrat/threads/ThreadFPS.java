@@ -4,15 +4,15 @@ public abstract class ThreadFPS extends Thread {
 
 	private boolean running = true;
 	private volatile int fps;
-	
+
 	public void increase() {
 		fps++;
 	}
-	
+
 	public void stopRunning() {
 		running = false;
 	}
-	
+
 	public void run() {
 		try {
 			while (running) {
@@ -24,6 +24,6 @@ public abstract class ThreadFPS extends Thread {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public abstract void onUpdate(int fps);
 }

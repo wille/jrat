@@ -13,11 +13,10 @@ import java.util.Map;
 import pro.jrat.io.Files;
 import pro.jrat.ui.components.JColorBox;
 
-
 public class Colors extends AbstractSettings implements Serializable {
 
 	private static final long serialVersionUID = 973106735935668990L;
-		
+
 	private transient Map<String, ColorProfile> colors = new HashMap<String, ColorProfile>();
 
 	private static final Colors instance = new Colors();
@@ -50,11 +49,11 @@ public class Colors extends AbstractSettings implements Serializable {
 
 	public ColorProfile get(String str) {
 		ColorProfile profile = colors.get(str);
-		
+
 		if (profile == null) {
 			return generate("red");
 		}
-		
+
 		return profile;
 	}
 
@@ -85,7 +84,7 @@ public class Colors extends AbstractSettings implements Serializable {
 	}
 
 	public class ColorProfile implements Serializable {
-	
+
 		private static final long serialVersionUID = 7819760998736045294L;
 
 		private int index;

@@ -11,23 +11,22 @@ import java.util.List;
 
 import pro.jrat.io.Files;
 
-
 public class ServerID extends AbstractSettings implements Serializable {
 
 	private static final long serialVersionUID = 720261533636222207L;
-	
+
 	private transient List<ServerIDEntry> list = new ArrayList<ServerIDEntry>();
-	
+
 	private static final ServerID instance = new ServerID();
-	
+
 	public static ServerID getGlobal() {
 		return instance;
 	}
-	
+
 	public List<ServerIDEntry> getIDList() {
 		return list;
 	}
-	
+
 	@Override
 	@SuppressWarnings("unchecked")
 	public void load() throws Exception {
@@ -70,7 +69,7 @@ public class ServerID extends AbstractSettings implements Serializable {
 	public class ServerIDEntry implements Serializable {
 
 		private static final long serialVersionUID = -7849684598729199956L;
-		
+
 		private final String ip;
 		private final String name;
 		private final String realname;
@@ -93,7 +92,7 @@ public class ServerID extends AbstractSettings implements Serializable {
 			return realname;
 		}
 	}
-	
+
 	@Override
 	public File getFile() {
 		return new File(Files.getSettings(), ".id");

@@ -26,62 +26,49 @@ import pro.jrat.Constants;
 import pro.jrat.settings.Settings;
 import pro.jrat.ui.components.JPortSpinner;
 
-
 @SuppressWarnings("serial")
 public class PanelSettingsProxy extends JPanel {
-	
+
 	private JTextField txtIP;
 	private JPortSpinner spPort;
 	private JComboBox<String> cbType;
 	private JCheckBox chckbxUseProxy;
 
 	public PanelSettingsProxy() {
-		
+
 		JPanel panel = new JPanel();
 		panel.setBorder(BorderFactory.createTitledBorder("Proxy"));
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
-					.addContainerGap())
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
-					.addContainerGap())
-		);
-		
+		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(panel, GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE).addContainerGap()));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(panel, GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE).addContainerGap()));
+
 		chckbxUseProxy = new JCheckBox("Use Proxy");
 		chckbxUseProxy.setSelected(Settings.getGlobal().getBoolean("proxy"));
-		
+
 		JLabel lblHost = new JLabel("Host:");
-		
+
 		txtIP = new JTextField();
 		txtIP.setText(Settings.getGlobal().getString("proxyhost"));
 		txtIP.setColumns(10);
-		
+
 		JLabel lblPort = new JLabel("Port:");
-		
+
 		spPort = new JPortSpinner(Settings.getGlobal().getInt("proxyport"));
-		
+
 		JLabel lblType = new JLabel("Type:");
-		
+
 		cbType = new JComboBox<String>();
-		cbType.setModel(new DefaultComboBoxModel<String>(new String[] {"SOCKS", "HTTP"}));
+		cbType.setModel(new DefaultComboBoxModel<String>(new String[] { "SOCKS", "HTTP" }));
 		cbType.setSelectedIndex(Settings.getGlobal().getBoolean("proxysocks") ? 0 : 1);
-		
+
 		JButton btnTest = new JButton("Test");
 		btnTest.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				try {	
+				try {
 					Proxy proxy = new Proxy(useSocks() ? Proxy.Type.SOCKS : Proxy.Type.HTTP, new InetSocketAddress(getHost(), getPort()));
 					URLConnection connection = new URL(Constants.HOST + "/misc/getip.php").openConnection(proxy);
-						
-					String ip = new BufferedReader(new InputStreamReader(connection.getInputStream())).readLine();	
+
+					String ip = new BufferedReader(new InputStreamReader(connection.getInputStream())).readLine();
 
 					JOptionPane.showMessageDialog(null, "Connection successful, current IP address: " + ip, "Proxy Test", JOptionPane.INFORMATION_MESSAGE);
 				} catch (Exception ex) {
@@ -91,49 +78,8 @@ public class PanelSettingsProxy extends JPanel {
 			}
 		});
 		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(30)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(chckbxUseProxy)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(btnTest))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-								.addComponent(lblHost)
-								.addComponent(lblPort)
-								.addComponent(lblType))
-							.addGap(18)
-							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addComponent(txtIP, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE)
-								.addComponent(spPort, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
-								.addComponent(cbType, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE))))
-					.addContainerGap(218, Short.MAX_VALUE))
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(chckbxUseProxy)
-						.addComponent(btnTest))
-					.addGap(18)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(txtIP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblHost))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-						.addComponent(lblPort)
-						.addComponent(spPort, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblType)
-						.addComponent(cbType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(132, Short.MAX_VALUE))
-		);
+		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addGap(30).addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addComponent(chckbxUseProxy).addPreferredGap(ComponentPlacement.UNRELATED).addComponent(btnTest)).addGroup(gl_panel.createSequentialGroup().addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_panel.createParallelGroup(Alignment.TRAILING).addComponent(lblHost).addComponent(lblPort).addComponent(lblType)).addGap(18).addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addComponent(txtIP, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE).addComponent(spPort, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE).addComponent(cbType, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)))).addContainerGap(218, Short.MAX_VALUE)));
+		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addContainerGap().addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(chckbxUseProxy).addComponent(btnTest)).addGap(18).addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(txtIP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(lblHost)).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_panel.createParallelGroup(Alignment.TRAILING).addComponent(lblPort).addComponent(spPort, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(lblType).addComponent(cbType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addContainerGap(132, Short.MAX_VALUE)));
 		panel.setLayout(gl_panel);
 		setLayout(groupLayout);
 
@@ -150,8 +96,8 @@ public class PanelSettingsProxy extends JPanel {
 	public String getHost() {
 		return txtIP.getText().trim();
 	}
-	
+
 	public int getPort() {
-		return (Integer)spPort.getValue();
+		return (Integer) spPort.getValue();
 	}
 }

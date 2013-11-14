@@ -27,7 +27,6 @@ import pro.jrat.ErrorDialog;
 import pro.jrat.Notes;
 import pro.jrat.Slave;
 
-
 @SuppressWarnings("serial")
 public class FrameNotes extends BaseFrame {
 
@@ -52,11 +51,11 @@ public class FrameNotes extends BaseFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
+
 		JToolBar toolBar = new JToolBar();
 		toolBar.setFloatable(false);
 		contentPane.add(toolBar, BorderLayout.NORTH);
-		
+
 		JButton btnSave = new JButton("Save");
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -65,7 +64,7 @@ public class FrameNotes extends BaseFrame {
 		});
 		btnSave.setIcon(new ImageIcon(FrameNotes.class.getResource("/icons/save.png")));
 		toolBar.add(btnSave);
-		
+
 		JButton btnLoad = new JButton("Load");
 		btnLoad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -73,18 +72,18 @@ public class FrameNotes extends BaseFrame {
 					JFileChooser c = new JFileChooser();
 					c.showOpenDialog(null);
 					File file = c.getSelectedFile();
-					
+
 					if (file != null) {
 						BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
 						String line;
 						String s = "";
-						
+
 						while ((line = reader.readLine()) != null) {
 							s += line + "\n\r";
 						}
-						
+
 						reader.close();
-						
+
 						txt.setText(s);
 					}
 				} catch (Exception ex) {
@@ -95,7 +94,7 @@ public class FrameNotes extends BaseFrame {
 		});
 		btnLoad.setIcon(new ImageIcon(FrameNotes.class.getResource("/icons/folder_go.png")));
 		toolBar.add(btnLoad);
-		
+
 		JButton btnClose = new JButton("Close");
 		btnClose.setIcon(new ImageIcon(FrameNotes.class.getResource("/icons/delete.png")));
 		btnClose.addActionListener(new ActionListener() {
@@ -105,22 +104,22 @@ public class FrameNotes extends BaseFrame {
 			}
 		});
 		toolBar.add(btnClose);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		contentPane.add(scrollPane, BorderLayout.CENTER);
-		
+
 		txt = new JTextPane();
 		txt.setBackground(new Color(255, 250, 205));
 		scrollPane.setViewportView(txt);
-		
+
 		load();
 	}
-	
+
 	public String getDisplayName() {
 		return slave.getUsername() + "@" + slave.getComputerName();
 	}
-	
+
 	public void load() {
 		try {
 			String str = Notes.load(getDisplayName());
@@ -129,7 +128,7 @@ public class FrameNotes extends BaseFrame {
 			ex.printStackTrace();
 		}
 	}
-	
+
 	public void save() {
 		try {
 			Notes.save(txt.getText(), getDisplayName());

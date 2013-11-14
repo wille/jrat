@@ -18,7 +18,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import pro.jrat.Help;
 
-
 @SuppressWarnings("serial")
 public class PanelBuildMutex extends JPanel {
 	private JTextField txtMutex;

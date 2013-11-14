@@ -7,7 +7,6 @@ import java.util.List;
 
 import pro.jrat.net.WebRequest;
 
-
 public class ThreadChangelog extends Thread {
 
 	public String url;

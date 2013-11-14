@@ -18,7 +18,6 @@ import pro.jrat.Help;
 import pro.jrat.OSConfig;
 import pro.jrat.common.OperatingSystem;
 
-
 @SuppressWarnings("serial")
 public class PanelBuildOS extends JPanel {
 

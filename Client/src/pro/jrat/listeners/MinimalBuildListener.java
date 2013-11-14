@@ -5,12 +5,10 @@ import java.util.LinkedHashMap;
 import pro.jrat.BuildStatus;
 import pro.jrat.ui.frames.FrameBuildMinimal;
 
-
-
 public class MinimalBuildListener extends BuildListener {
-	
+
 	private final FrameBuildMinimal panel;
-	
+
 	public MinimalBuildListener(FrameBuildMinimal panel) {
 		this.panel = panel;
 	}

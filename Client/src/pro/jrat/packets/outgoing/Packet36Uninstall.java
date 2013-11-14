@@ -5,7 +5,6 @@ import java.io.DataOutputStream;
 import pro.jrat.Slave;
 import pro.jrat.exceptions.CloseException;
 
-
 public class Packet36Uninstall extends AbstractOutgoingPacket {
 
 	@Override

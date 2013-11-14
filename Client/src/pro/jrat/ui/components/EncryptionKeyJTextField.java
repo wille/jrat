@@ -8,10 +8,9 @@ import javax.swing.JTextField;
 
 import pro.jrat.common.crypto.Crypto;
 
-
 @SuppressWarnings("serial")
 public abstract class EncryptionKeyJTextField extends JTextField {
-	
+
 	public EncryptionKeyJTextField() {
 		super();
 		super.addKeyListener(new KeyAdapter() {
@@ -21,23 +20,23 @@ public abstract class EncryptionKeyJTextField extends JTextField {
 			}
 		});
 	}
-	
+
 	public final void updateTextField() {
 		String text = super.getText();
-		
-		//lblLength.setText(text.length() + "");
-		
+
+		// lblLength.setText(text.length() + "");
+
 		if (text.length() == Crypto.KEY_LENGTH) {
-			super.setBackground(Color.green); 
-			//lblLength.setForeground(Color.green);
+			super.setBackground(Color.green);
+			// lblLength.setForeground(Color.green);
 		} else {
 			super.setBackground(Color.red);
-			//lblLength.setForeground(Color.red);
+			// lblLength.setForeground(Color.red);
 		}
-		
+
 		onUpdate(text.length() == Crypto.KEY_LENGTH);
 	}
-	
+
 	public abstract void onUpdate(boolean correct);
 
 }

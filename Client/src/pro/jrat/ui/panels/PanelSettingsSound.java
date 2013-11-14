@@ -11,8 +11,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import pro.jrat.settings.Settings;
 
-
-
 @SuppressWarnings("serial")
 public class PanelSettingsSound extends JPanel {
 

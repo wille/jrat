@@ -64,7 +64,6 @@ import pro.jrat.ui.renderers.table.FileViewTableRenderer;
 import pro.jrat.utils.IconUtils;
 import pro.jrat.utils.Utils;
 
-
 @SuppressWarnings("serial")
 public class FrameRemoteFiles extends BaseFrame {
 
@@ -888,7 +887,7 @@ public class FrameRemoteFiles extends BaseFrame {
 			frame = new FrameFileTransfer();
 		}
 		frame.setVisible(true);
-		
+
 		final FrameFileTransfer finalFrame = frame;
 
 		final List<File> files = new ArrayList<File>();

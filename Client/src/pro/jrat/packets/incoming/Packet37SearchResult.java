@@ -7,7 +7,6 @@ import pro.jrat.ui.frames.FrameControlPanel;
 import pro.jrat.ui.panels.PanelControlSearch;
 import pro.jrat.utils.IconUtils;
 
-
 public class Packet37SearchResult extends AbstractIncomingPacket {
 
 	@Override

@@ -24,11 +24,11 @@ public class CommandHelp extends AbstractCommand {
 
 	@Override
 	public void process(String[] arg0, PrintStream out) throws Exception {
-		
+
 		for (String command : Commands.commands.keySet()) {
 			Class<? extends AbstractCommand> acommand = Commands.commands.get(command);
 			AbstractCommand cmd = acommand.newInstance();
-			
+
 			out.println("--------------------------");
 			out.println(command);
 			out.println("\tDescription: " + cmd.getDescription());

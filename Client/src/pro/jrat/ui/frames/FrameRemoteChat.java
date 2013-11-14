@@ -33,7 +33,6 @@ import pro.jrat.packets.outgoing.Packet49ChatEnd;
 import pro.jrat.packets.outgoing.Packet51ChatMessage;
 import pro.jrat.packets.outgoing.Packet58NudgeChat;
 
-
 @SuppressWarnings("serial")
 public class FrameRemoteChat extends BaseFrame {
 
@@ -106,9 +105,9 @@ public class FrameRemoteChat extends BaseFrame {
 		try {
 			if (txtMsg.getText().length() > 0) {
 				String msg = txtMsg.getText().trim();
-				
+
 				slave.addToSendQueue(new Packet51ChatMessage(msg));
-				
+
 				StyleContext sc = StyleContext.getDefaultStyleContext();
 				AttributeSet set = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, Color.blue);
 				txtChat.getDocument().insertString(txtChat.getDocument().getLength(), "You: " + txtMsg.getText().trim() + "\n", set);
@@ -120,7 +119,7 @@ public class FrameRemoteChat extends BaseFrame {
 			ex.printStackTrace();
 		}
 	}
-	
+
 	public void exit() {
 		slave.addToSendQueue(new Packet49ChatEnd());
 		instances.remove(slave);

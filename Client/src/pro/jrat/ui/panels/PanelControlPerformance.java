@@ -51,7 +51,7 @@ public class PanelControlPerformance extends PanelControlParent {
 		});
 
 		colorBox.setProfile(Colors.getGlobal().get("system monitor"));
-				
+
 		ramMeter = new TaskmgrGraph(getColors(colorBox.getColor()), false);
 
 		JPanel panel = new JPanel();
@@ -104,7 +104,7 @@ public class PanelControlPerformance extends PanelControlParent {
 
 	}
 
-	public ITaskmgrColors getColors(final Color originalColor) {	
+	public ITaskmgrColors getColors(final Color originalColor) {
 		return originalColor == null ? new TaskmgrColors() : new ITaskmgrColors() {
 			@Override
 			public Color getBorderColor() {

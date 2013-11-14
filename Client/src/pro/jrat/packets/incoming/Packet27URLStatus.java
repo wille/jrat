@@ -9,8 +9,6 @@ import pro.jrat.ui.frames.FrameControlPanel;
 import pro.jrat.ui.panels.PanelControlDownloadManager;
 import pro.jrat.utils.IconUtils;
 
-
-
 public class Packet27URLStatus extends AbstractIncomingPacket {
 
 	@Override

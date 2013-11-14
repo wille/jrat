@@ -6,7 +6,6 @@ import pro.jrat.Slave;
 import pro.jrat.packets.outgoing.Packet15ListFiles;
 import pro.jrat.ui.frames.FrameRemoteFiles;
 
-
 public class Packet34CustomDirectory extends AbstractIncomingPacket {
 
 	@Override

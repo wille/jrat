@@ -30,17 +30,17 @@ public class PanelBuildPlugins extends JPanel {
 
 	public PluginList getList() {
 		PluginList plugins = new PluginList();
-		
+
 		Entry[] entries = table.getValues();
-		
+
 		for (StubPlugin stubPlugin : list.plugins) {
 			for (Entry entry : entries) {
 				if (entry.getValue().toString().equals(stubPlugin.name) && entry.isChecked()) {
 					plugins.plugins.add(stubPlugin);
 				}
- 			}
+			}
 		}
-		
+
 		return plugins.plugins.size() == 0 ? null : plugins;
 	}
 
@@ -70,34 +70,12 @@ public class PanelBuildPlugins extends JPanel {
 
 		chckbxDoNotLoad = new JCheckBox("Do not load class");
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(10)
-							.addComponent(chckbxDoNotLoad)
-							.addPreferredGap(ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
-							.addComponent(btnAddServerPlugin))
-						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 428, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap())
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 238, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnAddServerPlugin)
-						.addComponent(chckbxDoNotLoad))
-					.addContainerGap(20, Short.MAX_VALUE))
-		);
+		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addGap(10).addComponent(chckbxDoNotLoad).addPreferredGap(ComponentPlacement.RELATED, 120, Short.MAX_VALUE).addComponent(btnAddServerPlugin)).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 428, GroupLayout.PREFERRED_SIZE)).addContainerGap()));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 238, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnAddServerPlugin).addComponent(chckbxDoNotLoad)).addContainerGap(20, Short.MAX_VALUE)));
 
 		File[] files = new File("plugins/stubs/").listFiles();
 
-		Object[] obj = new Object[] { };
+		Object[] obj = new Object[] {};
 
 		if (files != null) {
 			obj = new Object[files.length];
@@ -110,7 +88,7 @@ public class PanelBuildPlugins extends JPanel {
 		}
 
 		table = new JCheckBoxList(obj);
-		model = ((JCheckBoxList.CheckBoxListModel)table.getModel());
+		model = ((JCheckBoxList.CheckBoxListModel) table.getModel());
 		table.setRowHeight(25);
 		table.setDefaultRenderer(Object.class, new PluginsTableRenderer());
 		table.getTableHeader().setReorderingAllowed(false);

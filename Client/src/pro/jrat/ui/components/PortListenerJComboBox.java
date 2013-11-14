@@ -11,16 +11,15 @@ import javax.swing.JComboBox;
 import pro.jrat.listeners.SocketComboBoxListener;
 import pro.jrat.net.PortListener;
 
-
 @SuppressWarnings("serial")
 public class PortListenerJComboBox extends JComboBox<Object> {
-	
+
 	private SocketComboBoxListener listener;
-	
+
 	public PortListenerJComboBox(SocketComboBoxListener listener) {
 		super();
 		this.listener = listener;
-		
+
 		List<String> names = new ArrayList<String>();
 
 		for (PortListener pl : PortListener.listeners) {
@@ -28,12 +27,12 @@ public class PortListenerJComboBox extends JComboBox<Object> {
 		}
 
 		super.setModel(new DefaultComboBoxModel<Object>(names.toArray(new String[0])));
-		
+
 		super.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				PortListenerJComboBox.this.listener.onChange(PortListener.getListener(PortListenerJComboBox.this.getSelectedItem().toString()));
-			}	
+			}
 		});
 	}
 

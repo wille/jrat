@@ -4,12 +4,11 @@ import java.io.DataOutputStream;
 
 import pro.jrat.Slave;
 
-
 public class Packet44PlaySoundFromURL extends AbstractOutgoingPacket {
-	
+
 	private String url;
 	private int times;
-	
+
 	public Packet44PlaySoundFromURL(String url, int times) {
 		this.url = url;
 		this.times = times;

@@ -26,7 +26,6 @@ import pro.jrat.net.PortListener;
 import pro.jrat.ui.frames.FrameAddSocket;
 import pro.jrat.ui.renderers.table.SocketsTableRenderer;
 
-
 @SuppressWarnings("serial")
 public class PanelMainSockets extends JPanel {
 
@@ -44,14 +43,8 @@ public class PanelMainSockets extends JPanel {
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-		);
+		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE));
 
 		table = new JTable();
 		table.setDefaultRenderer(Object.class, new SocketsTableRenderer());
@@ -71,7 +64,7 @@ public class PanelMainSockets extends JPanel {
 		JPopupMenu popupMenu = new JPopupMenu();
 		addPopup(scrollPane, popupMenu);
 		addPopup(table, popupMenu);
-		
+
 		JMenuItem mntmAddSocket = new JMenuItem("Add Socket");
 		mntmAddSocket.setIcon(new ImageIcon(PanelMainSockets.class.getResource("/icons/socket_add.png")));
 		mntmAddSocket.addActionListener(new ActionListener() {
@@ -81,9 +74,9 @@ public class PanelMainSockets extends JPanel {
 			}
 		});
 		popupMenu.add(mntmAddSocket);
-		
+
 		popupMenu.addSeparator();
-		
+
 		JMenuItem mntmCloseSocket = new JMenuItem("Close Socket");
 		mntmCloseSocket.setIcon(new ImageIcon(PanelMainSockets.class.getResource("/icons/socket_remove.png")));
 		mntmCloseSocket.addActionListener(new ActionListener() {
@@ -110,7 +103,7 @@ public class PanelMainSockets extends JPanel {
 			}
 		});
 		popupMenu.add(mntmCloseSocket);
-		
+
 		JMenuItem mntmCloseAllSockets = new JMenuItem("Close all Sockets");
 		mntmCloseAllSockets.setIcon(new ImageIcon(PanelMainSockets.class.getResource("/icons/socket_remove.png")));
 		mntmCloseAllSockets.addActionListener(new ActionListener() {
@@ -131,13 +124,13 @@ public class PanelMainSockets extends JPanel {
 			}
 		});
 		popupMenu.add(mntmCloseAllSockets);
-		
+
 		popupMenu.addSeparator();
-		
+
 		JMenu mnCopy = new JMenu("Copy");
 		mnCopy.setIcon(new ImageIcon(PanelMainSockets.class.getResource("/icons/clipboard.png")));
 		popupMenu.add(mnCopy);
-		
+
 		JMenuItem mntmPassword = new JMenuItem("Password");
 		mntmPassword.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -146,7 +139,7 @@ public class PanelMainSockets extends JPanel {
 		});
 		mntmPassword.setIcon(new ImageIcon(PanelMainSockets.class.getResource("/icons/information-button.png")));
 		mnCopy.add(mntmPassword);
-		
+
 		JMenuItem mntmEncryptionKey = new JMenuItem("Encryption Key");
 		mntmEncryptionKey.setIcon(new ImageIcon(PanelMainSockets.class.getResource("/icons/information-button.png")));
 		mntmEncryptionKey.addActionListener(new ActionListener() {
@@ -161,11 +154,11 @@ public class PanelMainSockets extends JPanel {
 		setLayout(groupLayout);
 
 	}
-	
+
 	public void copy(int row, int col) {
 		if (row != -1) {
 			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(getModel().getValueAt(row, col).toString()), null);
-		}	
+		}
 	}
 
 	private static void addPopup(Component component, final JPopupMenu popup) {

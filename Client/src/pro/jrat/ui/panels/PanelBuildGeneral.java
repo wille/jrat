@@ -27,7 +27,6 @@ import pro.jrat.ui.components.EncryptionKeyJTextField;
 import pro.jrat.ui.components.PortListenerJComboBox;
 import pro.jrat.utils.Utils;
 
-
 @SuppressWarnings("serial")
 public class PanelBuildGeneral extends JPanel {
 
@@ -150,12 +149,12 @@ public class PanelBuildGeneral extends JPanel {
 			public void onChange(PortListener pl) {
 				txtKey.setText(pl.getKey().getTextualKey());
 				passPass.setText(pl.getPass());
-			}		
+			}
 		});
-		
+
 		comboBox.setBounds(147, 146, 107, 20);
 		panel.add(comboBox);
-		
+
 		JLabel lblLoad = new JLabel("Load");
 		lblLoad.setBounds(120, 149, 23, 14);
 		panel.add(lblLoad);

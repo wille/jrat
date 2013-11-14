@@ -11,8 +11,6 @@ import javax.swing.JList;
 
 import pro.jrat.utils.ImageUtils;
 
-
-
 @SuppressWarnings("serial")
 public class JColorBoxRenderer extends DefaultListCellRenderer {
 

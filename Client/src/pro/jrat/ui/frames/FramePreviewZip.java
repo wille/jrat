@@ -24,8 +24,6 @@ import javax.swing.table.DefaultTableModel;
 import pro.jrat.Slave;
 import pro.jrat.packets.outgoing.Packet63PreviewArchive;
 
-
-
 @SuppressWarnings("serial")
 public class FramePreviewZip extends BaseFrame {
 

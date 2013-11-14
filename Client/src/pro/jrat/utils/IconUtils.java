@@ -12,7 +12,6 @@ import pro.jrat.Main;
 import pro.jrat.Slave;
 import pro.jrat.ui.frames.Frame;
 
-
 public class IconUtils {
 
 	public static ImageIcon getIcon(String name, boolean defaultfolder) {
@@ -22,7 +21,7 @@ public class IconUtils {
 		} else {
 			url = Main.class.getResource(name);
 		}
-	
+
 		if (url != null) {
 			return new ImageIcon(url);
 		} else {
@@ -49,9 +48,9 @@ public class IconUtils {
 		} else {
 			ping = 5;
 		}
-	
+
 		String str = null;
-	
+
 		if (Frame.pingmode == Frame.PING_ICON_DOT) {
 			str = "/icons/ping" + ping + ".png";
 		} else {
@@ -65,9 +64,9 @@ public class IconUtils {
 				str = "network_offline";
 			}
 		}
-	
+
 		ImageIcon icon;
-	
+
 		if (Utils.pingicons.containsKey(str)) {
 			icon = Utils.pingicons.get(str);
 		} else if (Frame.pingmode == Frame.PING_ICON_DOT) {
@@ -77,7 +76,7 @@ public class IconUtils {
 			icon = getIcon(str);
 			Utils.pingicons.put(str, icon);
 		}
-	
+
 		return icon;
 	}
 
@@ -90,7 +89,7 @@ public class IconUtils {
 			return null;
 		}
 	}
-	
+
 	public static Icon getFolderIcon() {
 		return getFileIconFromExtension("", true);
 	}

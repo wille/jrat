@@ -6,7 +6,6 @@ import pro.jrat.Slave;
 import pro.jrat.ui.frames.FrameControlPanel;
 import pro.jrat.ui.panels.PanelControlClipboard;
 
-
 public class Packet41Clipboard extends AbstractIncomingPacket {
 
 	@Override

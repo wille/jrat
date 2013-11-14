@@ -22,18 +22,16 @@ import javax.swing.border.EmptyBorder;
 
 import pro.jrat.ErrorDialog;
 
-
-
 @SuppressWarnings("serial")
 public abstract class FrameTextPane extends BaseFrame {
 
 	private JPanel contentPane;
 	private JTextPane txt;
-	
+
 	public JTextPane getPane() {
 		return txt;
 	}
-	
+
 	public void append(String str) {
 		try {
 			txt.getDocument().insertString(txt.getDocument().getLength(), str + "\n", null);
@@ -56,13 +54,13 @@ public abstract class FrameTextPane extends BaseFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		
+
 		txt = new JTextPane();
 		scrollPane.setViewportView(txt);
-		
+
 		JButton btnOk = new JButton("OK");
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -72,7 +70,7 @@ public abstract class FrameTextPane extends BaseFrame {
 			}
 		});
 		btnOk.setIcon(new ImageIcon(FrameTextPane.class.getResource("/icons/enabled.png")));
-		
+
 		JButton btnSave = new JButton("Save");
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -93,31 +91,11 @@ public abstract class FrameTextPane extends BaseFrame {
 		});
 		btnSave.setIcon(new ImageIcon(FrameTextPane.class.getResource("/icons/save.png")));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(248)
-							.addComponent(btnSave)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnOk, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE))
-						.addComponent(scrollPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE))
-					.addGap(0))
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnOk)
-						.addComponent(btnSave))
-					.addGap(4))
-		);
+		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addGroup(gl_contentPane.createSequentialGroup().addGap(248).addComponent(btnSave).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnOk, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)).addComponent(scrollPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)).addGap(0)));
+		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(btnOk).addComponent(btnSave)).addGap(4)));
 		contentPane.setLayout(gl_contentPane);
 	}
-	
+
 	public abstract void exit();
 
 }

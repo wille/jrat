@@ -23,8 +23,6 @@ import pro.jrat.extensions.Plugin;
 import pro.jrat.extensions.PluginLoader;
 import pro.jrat.ui.renderers.table.PluginsTableRenderer;
 
-
-
 @SuppressWarnings("serial")
 public class FramePlugins extends BaseFrame {
 
@@ -64,27 +62,8 @@ public class FramePlugins extends BaseFrame {
 		});
 		btnFolder.setIcon(new ImageIcon(FramePlugins.class.getResource("/icons/plugin_go.png")));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(btnFolder)
-							.addPreferredGap(ComponentPlacement.RELATED, 211, Short.MAX_VALUE)
-							.addComponent(btnReload))
-						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE))
-					.addGap(2))
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnReload)
-						.addComponent(btnFolder))
-					.addGap(3))
-		);
+		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addGroup(gl_contentPane.createSequentialGroup().addComponent(btnFolder).addPreferredGap(ComponentPlacement.RELATED, 211, Short.MAX_VALUE).addComponent(btnReload)).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)).addGap(2)));
+		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(btnReload).addComponent(btnFolder)).addGap(3)));
 
 		table = new JTable();
 		table.setDefaultRenderer(Object.class, new PluginsTableRenderer());
@@ -104,7 +83,7 @@ public class FramePlugins extends BaseFrame {
 		while (model.getRowCount() > 0) {
 			model.removeRow(0);
 		}
-		
+
 		for (Plugin p : PluginLoader.plugins) {
 			try {
 				p.getMethods().get("ondisable").invoke(p.getInstance(), new Object[] { new OnDisableEvent() });

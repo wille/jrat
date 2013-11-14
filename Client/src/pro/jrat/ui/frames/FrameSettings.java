@@ -36,7 +36,6 @@ import pro.jrat.ui.panels.PanelSettingsTheme;
 import pro.jrat.ui.renderers.JTreeIconsRenderer;
 import pro.jrat.utils.IconUtils;
 
-
 @SuppressWarnings("serial")
 public class FrameSettings extends BaseFrame {
 
@@ -93,7 +92,7 @@ public class FrameSettings extends BaseFrame {
 		}));
 
 		JTreeIconsRenderer renderer = new JTreeIconsRenderer();
-		
+
 		renderer.icons.put("main", IconUtils.getIcon("tab_settings"));
 		renderer.icons.put("themes", IconUtils.getIcon("themes"));
 		renderer.icons.put("editor", IconUtils.getIcon("list"));
@@ -104,23 +103,13 @@ public class FrameSettings extends BaseFrame {
 		renderer.icons.put("changelog", IconUtils.getIcon("changelog"));
 		renderer.icons.put("about", IconUtils.getIcon("info"));
 		renderer.icons.put("proxy", IconUtils.getIcon("settings_proxy"));
-		
+
 		tree.setCellRenderer(renderer);
 		reload();
 		panel.add(panels.get("main"));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(tree, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE)
-					.addGap(10)
-					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE))
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addComponent(tree, GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
-				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
-		);
+		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(tree, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE).addGap(10).addComponent(panel, GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE)));
+		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addComponent(tree, GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE).addComponent(panel, GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE));
 		contentPane.setLayout(gl_contentPane);
 	}
 
@@ -159,9 +148,9 @@ public class FrameSettings extends BaseFrame {
 		Settings.getGlobal().setVal("proxyhost", proxy.getHost());
 		Settings.getGlobal().setVal("proxyport", proxy.getPort());
 		Settings.getGlobal().setVal("proxysocks", proxy.useSocks());
-		
+
 		Theme.getGlobal().setTheme(themes.getTheme());
-		
+
 		if (!stats.trackStats()) {
 			Statistics.getGlobal().getList().clear();
 		}
@@ -176,7 +165,7 @@ public class FrameSettings extends BaseFrame {
 	public void perform(String str) {
 		actions.get(str.toLowerCase()).perform();
 	}
-	
+
 	public void addNodes(DefaultMutableTreeNode root) {
 		root.add(new DefaultMutableTreeNode("Main"));
 		root.add(new DefaultMutableTreeNode("Themes"));

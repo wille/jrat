@@ -5,7 +5,6 @@ import java.io.DataInputStream;
 import pro.jrat.Slave;
 import pro.jrat.ui.frames.FrameSystem;
 
-
 public class Packet32SystemProperties extends AbstractIncomingPacket {
 
 	public void read(Slave slave, DataInputStream dis) throws Exception {

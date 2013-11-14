@@ -23,7 +23,6 @@ import javax.swing.border.EmptyBorder;
 import pro.jrat.Constants;
 import pro.jrat.common.Version;
 
-
 @SuppressWarnings("serial")
 public class FrameDebugInfo extends BaseFrame {
 
@@ -38,13 +37,13 @@ public class FrameDebugInfo extends BaseFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		
+
 		JLabel lblDebugAndError = new JLabel("Debug and error reporting information:");
-		
+
 		JButton btnCopyToClipboard = new JButton("Copy to Clipboard");
 		btnCopyToClipboard.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -56,51 +55,32 @@ public class FrameDebugInfo extends BaseFrame {
 			}
 		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
-					.addGap(1))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(lblDebugAndError)
-					.addPreferredGap(ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
-					.addComponent(btnCopyToClipboard)
-					.addContainerGap())
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(5)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblDebugAndError)
-						.addComponent(btnCopyToClipboard))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE))
-		);
-		
+		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE).addGap(1)).addGroup(gl_contentPane.createSequentialGroup().addComponent(lblDebugAndError).addPreferredGap(ComponentPlacement.RELATED, 97, Short.MAX_VALUE).addComponent(btnCopyToClipboard).addContainerGap()));
+		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addGap(5).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(lblDebugAndError).addComponent(btnCopyToClipboard)).addPreferredGap(ComponentPlacement.UNRELATED).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)));
+
 		textPane = new JTextPane();
 		textPane.setEditable(false);
 		scrollPane.setViewportView(textPane);
 		contentPane.setLayout(gl_contentPane);
-		
+
 		loadData();
 	}
-	
+
 	public void loadData() {
 		StringBuilder sb = new StringBuilder();
-		
+
 		sb.append(Constants.NAME + " Version: " + Version.getVersion() + "\n\r");
 		sb.append("JVM Version: " + System.getProperty("java.vm.version") + "\n\r");
 		sb.append("Java Runtime Version: " + System.getProperty("java.runtime.version") + "\n\r");
 		sb.append("Java Version: " + System.getProperty("java.version") + "\n\r");
 		sb.append("Java Class Version: " + System.getProperty("java.class.version") + "\n\r");
 		sb.append("Java Spec Version: " + System.getProperty("java.specification.version") + "\n\r");
-		
+
 		sb.append("Operating System: " + System.getProperty("os.name") + " " + System.getProperty("os.version") + " " + System.getProperty("os.arch") + "\n\r");
 
 		String date = DateFormat.getDateInstance(DateFormat.SHORT).format(new Date());
 		sb.append("Date: " + date);
-		
+
 		textPane.setText(sb.toString());
 	}
 }

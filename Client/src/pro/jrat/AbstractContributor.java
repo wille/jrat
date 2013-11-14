@@ -1,11 +1,11 @@
 package pro.jrat;
 
 public abstract class AbstractContributor {
-	
+
 	private final String name;
 	private final String country;
 	private final String reason;
-	
+
 	public AbstractContributor(String name, String country, String reason) {
 		this.name = name;
 		this.country = country;

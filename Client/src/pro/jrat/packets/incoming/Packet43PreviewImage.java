@@ -10,8 +10,6 @@ import pro.jrat.common.crypto.Crypto;
 import pro.jrat.ui.frames.FramePreviewImage;
 import pro.jrat.utils.ImageUtils;
 
-
-
 public class Packet43PreviewImage extends AbstractIncomingPacket {
 
 	@Override
@@ -29,7 +27,7 @@ public class Packet43PreviewImage extends AbstractIncomingPacket {
 			byte[] buffer = new byte[imageSize];
 
 			slave.getDataInputStream().readFully(buffer);
-			
+
 			buffer = Crypto.decrypt(GZip.decompress(buffer), slave.getConnection().getKey());
 
 			BufferedImage img = ImageUtils.decodeImage(buffer);
@@ -37,7 +35,7 @@ public class Packet43PreviewImage extends AbstractIncomingPacket {
 
 			frame.getPanel().image = image;
 			frame.getPanel().repaint();
-			
+
 			frame.setButtonEnabled(true);
 		}
 	}

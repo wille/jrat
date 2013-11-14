@@ -10,7 +10,7 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 public class JTreeIconRenderer extends DefaultTreeCellRenderer {
 
 	public ImageIcon icon;
-	
+
 	public JTreeIconRenderer(ImageIcon icon) {
 		this.icon = icon;
 	}

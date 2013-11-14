@@ -19,7 +19,7 @@ public class ThreadSystemMonitor extends Thread {
 		while (frame != null && panel != null && panel.needRam && panel.slave.getIP().equals(slave.getIP())) {
 			slave.addToSendQueue(new Packet33RAM());
 			try {
-				if (panel.sliderRam.getValue() < 1) {			
+				if (panel.sliderRam.getValue() < 1) {
 					Thread.sleep(100L);
 				} else {
 					Thread.sleep(panel.sliderRam.getValue() * 1000L);

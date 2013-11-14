@@ -4,7 +4,6 @@ import java.io.DataInputStream;
 
 import pro.jrat.Slave;
 
-
 public class Packet25InitJavaVersion extends AbstractIncomingPacket {
 
 	@Override

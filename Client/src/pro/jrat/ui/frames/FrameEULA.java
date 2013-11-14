@@ -25,8 +25,6 @@ import pro.jrat.settings.Settings;
 import pro.jrat.threads.ThreadCountDown;
 import pro.jrat.utils.IOUtils;
 
-
-
 @SuppressWarnings("serial")
 public class FrameEULA extends BaseDialog {
 
@@ -70,8 +68,8 @@ public class FrameEULA extends BaseDialog {
 		btnAgree.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (!view) {
-					//FrameLogin frame = new FrameLogin();
-					//frame.setVisible(true);
+					// FrameLogin frame = new FrameLogin();
+					// frame.setVisible(true);
 					// TODO
 					Main.instance.setVisible(true);
 				}

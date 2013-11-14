@@ -409,9 +409,9 @@ public class FrameRemoteScreen extends BaseFrame {
 	public void reset() {
 		frame.setTotalChunks(0);
 		frame.setUpdatedChunks(0);
-		
+
 		RemoteScreenData itd = Packet17RemoteScreen.instances.get(slave);
-		
+
 		if (itd != null) {
 			itd.setChunks(0);
 			itd.setUpdatedChunks(0);

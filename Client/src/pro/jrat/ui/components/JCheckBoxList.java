@@ -198,10 +198,9 @@ public class JCheckBoxList extends JTable {
 			return super.getTableCellRendererComponent(table, null /* value */, isSelected, false /* hasFocus */, row, column);
 		}
 	} // }}}
-	
-	
+
 	public class CheckBoxListModel extends AbstractTableModel {
-		
+
 		public Vector items;
 
 		CheckBoxListModel(Vector _items) {
@@ -236,7 +235,6 @@ public class JCheckBoxList extends JTable {
 		public String getColumnName(int col) {
 			return col == 0 ? "" : "Plugin";
 		}
-		
 
 		public Object getValueAt(int row, int col) {
 			JCheckBoxList.Entry entry = (JCheckBoxList.Entry) items.elementAt(row);
@@ -277,4 +275,3 @@ public class JCheckBoxList extends JTable {
 		}
 	}
 }
-

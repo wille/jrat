@@ -29,7 +29,6 @@ import pro.jrat.Slave;
 import pro.jrat.packets.outgoing.Packet98QuickDesktop;
 import pro.jrat.threads.ThreadFPS;
 
-
 @SuppressWarnings("serial")
 public class FrameQuickRemoteScreen extends BaseFrame {
 
@@ -51,7 +50,7 @@ public class FrameQuickRemoteScreen extends BaseFrame {
 		@Override
 		public void onUpdate(int fps) {
 			lblFPS.setText("  FPS: " + fps);
-		}	
+		}
 	};
 	private JLabel lblFPS;
 	private JLabel lblSize;
@@ -105,21 +104,21 @@ public class FrameQuickRemoteScreen extends BaseFrame {
 		});
 		mntmStop.setEnabled(false);
 		mnActions.add(mntmStop);
-		
+
 		mnActions.addSeparator();
 
 		mntmSetResolution = new JMenuItem("Set resolution");
 		mntmSetResolution.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String result = JOptionPane.showInputDialog(null, "Enter resolution. Example: 320x240", "Resolution", JOptionPane.QUESTION_MESSAGE);
-				
+
 				try {
 					if (result != null && result.contains("x")) {
 						String[] args = result.split("x");
-						
+
 						int width = Integer.parseInt(args[0]);
 						int height = Integer.parseInt(args[1]);
-						
+
 						update(width, height);
 					}
 				} catch (Exception e) {
@@ -128,37 +127,37 @@ public class FrameQuickRemoteScreen extends BaseFrame {
 			}
 		});
 		mnActions.add(mntmSetResolution);
-		
+
 		mnMonitor = new JMenu("Monitor");
 		menuBar.add(mnMonitor);
-				
+
 		ButtonGroup b = new ButtonGroup();
-		
+
 		JCheckBoxMenuItem item = new JCheckBoxMenuItem("Default");
 		b.add(item);
 		mnMonitor.add(item);
 		item.setSelected(true);
 		monitors.add(item);
-		
+
 		lblFPS = new JLabel("  FPS:");
 		menuBar.add(lblFPS);
-		
+
 		lblSize = new JLabel("    Size:");
 		menuBar.add(lblSize);
-		
+
 		for (Monitor monitor : slave.getMonitors()) {
 			item = new JCheckBoxMenuItem(monitor.getName());
 			b.add(item);
 			item.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					
-				}			
+
+				}
 			});
 			mnMonitor.add(item);
 			monitors.add(item);
 		}
-		
+
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -176,7 +175,7 @@ public class FrameQuickRemoteScreen extends BaseFrame {
 		label = new JLabel(icon);
 		scrollPane.setViewportView(label);
 	}
-	
+
 	public int getMonitor() {
 		for (int i = 0; i < monitors.size(); i++) {
 			if (monitors.get(i).isSelected()) {
@@ -185,11 +184,11 @@ public class FrameQuickRemoteScreen extends BaseFrame {
 		}
 		return -1;
 	}
-	
+
 	public void setSize(int kb) {
 		lblSize.setText("  Size: " + kb + " kb");
 	}
-	
+
 	public boolean shouldContinue() {
 		return mntmStop.isEnabled();
 	}

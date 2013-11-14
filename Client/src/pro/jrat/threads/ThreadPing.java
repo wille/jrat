@@ -3,7 +3,6 @@ package pro.jrat.threads;
 import pro.jrat.Main;
 import pro.jrat.Slave;
 
-
 public class ThreadPing extends Thread {
 
 	public ThreadPing() {
@@ -15,7 +14,7 @@ public class ThreadPing extends Thread {
 			try {
 				for (int i = 0; i < Main.connections.size(); i++) {
 					Slave slave = Main.connections.get(i);
-				
+
 					if (!slave.isLocked()) {
 						slave.ping();
 					}

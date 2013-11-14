@@ -19,7 +19,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import pro.jrat.Help;
 import pro.jrat.settings.Settings;
 
-
 @SuppressWarnings("serial")
 public class PanelBuildStartup extends JPanel {
 
@@ -80,50 +79,12 @@ public class PanelBuildStartup extends JPanel {
 			}
 		});
 		button.setIcon(new ImageIcon(PanelBuildStartup.class.getResource("/icons/help.png")));
-		
+
 		chckbxHideInstalledFile = new JCheckBox("Hide installed file");
 
 		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(chckbxHideInstalledFile)
-						.addComponent(chckbxStartServerWith)
-						.addComponent(chckbxMeltDropperAfter)
-						.addComponent(button)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblDropIn)
-								.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 152, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblDroppedFileAnd)
-								.addComponent(txtName, GroupLayout.PREFERRED_SIZE, 212, GroupLayout.PREFERRED_SIZE))))
-					.addContainerGap(36, Short.MAX_VALUE))
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(chckbxStartServerWith)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblDropIn)
-						.addComponent(lblDroppedFileAnd))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(chckbxMeltDropperAfter)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(chckbxHideInstalledFile)
-					.addPreferredGap(ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-					.addComponent(button)
-					.addContainerGap())
-		);
+		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addContainerGap().addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addComponent(chckbxHideInstalledFile).addComponent(chckbxStartServerWith).addComponent(chckbxMeltDropperAfter).addComponent(button).addGroup(gl_panel.createSequentialGroup().addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addComponent(lblDropIn).addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 152, GroupLayout.PREFERRED_SIZE)).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addComponent(lblDroppedFileAnd).addComponent(txtName, GroupLayout.PREFERRED_SIZE, 212, GroupLayout.PREFERRED_SIZE)))).addContainerGap(36, Short.MAX_VALUE)));
+		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addContainerGap().addComponent(chckbxStartServerWith).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(lblDropIn).addComponent(lblDroppedFileAnd)).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(txtName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addPreferredGap(ComponentPlacement.UNRELATED).addComponent(chckbxMeltDropperAfter).addPreferredGap(ComponentPlacement.UNRELATED).addComponent(chckbxHideInstalledFile).addPreferredGap(ComponentPlacement.RELATED, 26, Short.MAX_VALUE).addComponent(button).addContainerGap()));
 		panel.setLayout(gl_panel);
 		setLayout(groupLayout);
 

@@ -5,7 +5,6 @@ import java.applet.AudioClip;
 
 import pro.jrat.settings.Settings;
 
-
 public class Sound {
 
 	private static AudioClip add;

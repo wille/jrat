@@ -28,7 +28,7 @@ public class FrameImage extends BaseDialog {
 			}
 		};
 		getContentPane().add(panel, BorderLayout.CENTER);
-		
+
 		setLocationRelativeTo(null);
 	}
 

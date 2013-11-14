@@ -4,7 +4,6 @@ import java.util.LinkedHashMap;
 
 import pro.jrat.BuildStatus;
 
-
 public abstract class BuildListener {
 
 	public abstract void done(String msg);
@@ -16,5 +15,5 @@ public abstract class BuildListener {
 	public abstract void reportProgress(int val, String msg, BuildStatus status);
 
 	public abstract LinkedHashMap<String, BuildStatus> getStatuses();
- 
+
 }

@@ -6,8 +6,6 @@ import java.util.List;
 
 import pro.jrat.utils.ClassUtils;
 
-
-
 public class PluginLoader {
 
 	public static List<Plugin> plugins = new ArrayList<Plugin>();
@@ -27,7 +25,7 @@ public class PluginLoader {
 			}
 		}
 	}
-	
+
 	public static void loadLibs() throws Exception {
 		File dir = new File("files/lib/");
 		for (File file : dir.listFiles()) {
@@ -46,7 +44,7 @@ public class PluginLoader {
 				return plugin;
 			}
 		}
-		
+
 		return null;
 	}
 

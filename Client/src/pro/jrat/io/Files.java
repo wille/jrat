@@ -19,11 +19,11 @@ public final class Files {
 		file.mkdirs();
 		return file;
 	}
-	
+
 	public static final File getInstaller() {
 		File file = new File("files/Installer.jar");
 		file.mkdirs();
 		return file;
 	}
-	
+
 }

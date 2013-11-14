@@ -88,7 +88,7 @@ public class IncomingPackets {
 		try {
 			AbstractIncomingPacket ac = null;
 			Set<Byte> set = incomingPackets.keySet();
-			
+
 			for (Byte str : set) {
 				if (str == header) {
 					ac = incomingPackets.get(str).newInstance();

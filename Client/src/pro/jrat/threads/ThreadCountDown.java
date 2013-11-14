@@ -4,8 +4,6 @@ import javax.swing.JButton;
 
 import pro.jrat.ui.frames.FrameEULA;
 
-
-
 public class ThreadCountDown extends Thread {
 
 	public FrameEULA frame;

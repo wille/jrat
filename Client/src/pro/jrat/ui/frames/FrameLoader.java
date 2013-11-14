@@ -38,20 +38,8 @@ public class FrameLoader extends BaseDialog {
 		});
 		progressBar.setIndeterminate(true);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(progressBar, GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
-					.addContainerGap())
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap(40, Short.MAX_VALUE)
-					.addComponent(progressBar, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-		);
+		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addContainerGap().addComponent(progressBar, GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE).addContainerGap()));
+		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addGroup(gl_contentPane.createSequentialGroup().addContainerGap(40, Short.MAX_VALUE).addComponent(progressBar, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE).addContainerGap()));
 		contentPane.setLayout(gl_contentPane);
 
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();

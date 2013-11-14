@@ -9,12 +9,10 @@ import java.util.List;
 import pro.jrat.Constants;
 import pro.jrat.common.utils.MathUtils;
 
-
-
 public class MemoryMeter {
 
 	public static final int LINE_SPACE = 16;
-	
+
 	public List<Integer> values = new ArrayList<Integer>();
 	public int maxram = 0;
 	public Color color;
@@ -32,20 +30,20 @@ public class MemoryMeter {
 	public BufferedImage generate(int w, int h) {
 		BufferedImage image = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
 		Graphics g = image.getGraphics();
-		
+
 		g.setColor(Color.gray.darker());
-		
+
 		if (loc-- <= 0) {
 			loc = LINE_SPACE;
 		}
-		
-		for (int p = 0; p < w; p += LINE_SPACE) {				
+
+		for (int p = 0; p < w; p += LINE_SPACE) {
 			g.drawLine(0, p, w, p);
 			g.drawLine(p + loc, 0, p + loc, h);
 		}
-		
+
 		Color transparentColor = new Color(color.getRed(), color.getGreen(), color.getBlue(), 150);
-		
+
 		int pos = 0;
 		for (int i = 0; i < values.size(); i++) {
 			int val = values.get(i);
@@ -55,7 +53,7 @@ public class MemoryMeter {
 				pos += 2;
 				g.setColor(color);
 				val = MathUtils.getPercentFromTotal(val, maxram);
-				
+
 				if (mode == Constants.MODE_LINES) {
 					g.drawRect(pos, h - (val), 1, 1);
 					g.setColor(transparentColor);

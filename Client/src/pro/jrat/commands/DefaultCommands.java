@@ -2,7 +2,6 @@ package pro.jrat.commands;
 
 import pro.jrat.api.commands.Commands;
 
-
 public class DefaultCommands {
 
 	public static void addDefault() {

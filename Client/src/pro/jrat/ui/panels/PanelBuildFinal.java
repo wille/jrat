@@ -245,7 +245,7 @@ public class PanelBuildFinal extends JPanel {
 						if (!file.toLowerCase().endsWith(".exe")) {
 							file = file + ".exe";
 						}
-						
+
 						BuildExecutable.build(temp.getAbsolutePath(), file, out.frame);
 
 						temp.delete();

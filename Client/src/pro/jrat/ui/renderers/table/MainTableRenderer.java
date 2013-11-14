@@ -19,7 +19,6 @@ import pro.jrat.ui.frames.Frame;
 import pro.jrat.utils.IconUtils;
 import pro.jrat.utils.Utils;
 
-
 @SuppressWarnings("serial")
 public class MainTableRenderer extends DefaultTableCellRenderer {
 
@@ -61,25 +60,25 @@ public class MainTableRenderer extends DefaultTableCellRenderer {
 			String path;
 
 			String color = Integer.toHexString(lbl.getForeground().getRGB() & 0xffffff) + "";
-			if (color.length() < 6) { 
+			if (color.length() < 6) {
 				color = "000000".substring(0, 6 - color.length()) + color;
 			}
 
 			path = "/flags/" + slave.getCountry().toLowerCase() + ".png";
 
 			JCheckBox b = new JCheckBox(value.toString(), slave.isSelected());
-			
+
 			b.setToolTipText(row + "");
 			b.setBackground(lbl.getBackground());
-			
+
 			URL url = Main.class.getResource(path);
-			
+
 			if (url == null) {
 				url = Main.class.getResource("/flags/unknown.png");
 			}
-			
-			b.setText("<html><table cellpadding=0><tr><td><img src=\"" + url.toString() + "\"/></td><td width=3><td><font color=\"#" + color + "\">" + value + "</font></td></tr></table></html>");	
-			
+
+			b.setText("<html><table cellpadding=0><tr><td><img src=\"" + url.toString() + "\"/></td><td width=3><td><font color=\"#" + color + "\">" + value + "</font></td></tr></table></html>");
+
 			return b;
 		} else {
 			lbl.setIcon(null);

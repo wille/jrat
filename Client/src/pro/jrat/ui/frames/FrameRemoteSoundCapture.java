@@ -22,8 +22,6 @@ import pro.jrat.Slave;
 import pro.jrat.packets.incoming.Packet58SoundCapture;
 import pro.jrat.packets.outgoing.Packet84SoundCapture;
 
-
-
 @SuppressWarnings({ "serial", "rawtypes", "unchecked" })
 public class FrameRemoteSoundCapture extends BaseDialog {
 
@@ -32,7 +30,7 @@ public class FrameRemoteSoundCapture extends BaseDialog {
 	private JButton btnStart;
 	private JButton btnStop;
 	public Packet58SoundCapture packet;
-	
+
 	public static HashMap<Slave, FrameRemoteSoundCapture> instances = new HashMap<Slave, FrameRemoteSoundCapture>();
 	private JComboBox comboBox;
 
@@ -55,7 +53,7 @@ public class FrameRemoteSoundCapture extends BaseDialog {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		
+
 		btnStart = new JButton("Start");
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -66,7 +64,7 @@ public class FrameRemoteSoundCapture extends BaseDialog {
 			}
 		});
 		btnStart.setIcon(new ImageIcon(FrameRemoteSoundCapture.class.getResource("/icons/microphone_plus.png")));
-		
+
 		btnStop = new JButton("Stop");
 		btnStop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -79,41 +77,23 @@ public class FrameRemoteSoundCapture extends BaseDialog {
 		});
 		btnStop.setEnabled(false);
 		btnStop.setIcon(new ImageIcon(FrameRemoteSoundCapture.class.getResource("/icons/microphone_minus.png")));
-		
+
 		comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"16000", "12000", "8000", "4000", "2000"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] { "16000", "12000", "8000", "4000", "2000" }));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(btnStart)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnStop)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(comboBox, 0, 132, Short.MAX_VALUE)
-					.addContainerGap())
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnStart)
-						.addComponent(btnStop)
-						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
+		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addContainerGap().addComponent(btnStart).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnStop).addPreferredGap(ComponentPlacement.RELATED).addComponent(comboBox, 0, 132, Short.MAX_VALUE).addContainerGap()));
+		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(btnStart).addComponent(btnStop).addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 		contentPane.setLayout(gl_contentPane);
 	}
-	
+
 	public boolean isRunning() {
 		return btnStop.isEnabled();
 	}
-	
+
 	public int getQuality() {
 		return Integer.parseInt(comboBox.getSelectedItem().toString());
 	}
-	
+
 	public void exit() {
 		instances.remove(slave);
 		packet.close();

@@ -6,7 +6,6 @@ import pro.jrat.Slave;
 import pro.jrat.ui.frames.Frame;
 import pro.jrat.utils.Utils;
 
-
 public class Packet16InitOperatingSystem extends AbstractIncomingPacket {
 
 	@Override

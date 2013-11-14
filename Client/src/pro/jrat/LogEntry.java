@@ -8,14 +8,14 @@ public class LogEntry {
 	private Slave slave;
 	private String info;
 	private String date;
-	
+
 	public LogEntry(String action, Slave slave, String info) {
 		this.action = action;
 		this.slave = slave;
 		this.info = info;
 		this.date = Utils.getDate();
 	}
-	
+
 	public String getDate() {
 		return date;
 	}
@@ -31,9 +31,9 @@ public class LogEntry {
 	public String getInfo() {
 		return info;
 	}
-	
+
 	public Object[] getDisplayData() {
-		return new Object[] { action, slave.getIP(), info, date};
+		return new Object[] { action, slave.getIP(), info, date };
 	}
 
 }

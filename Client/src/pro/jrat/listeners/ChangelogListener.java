@@ -4,7 +4,6 @@ import pro.jrat.Constants;
 import pro.jrat.common.Version;
 import pro.jrat.ui.frames.FrameChangelog;
 
-
 public class ChangelogListener extends Performable {
 
 	@Override

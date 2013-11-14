@@ -6,18 +6,16 @@ import javax.swing.JOptionPane;
 
 import pro.jrat.ui.frames.FrameDownload;
 
-
-
 public class ToolsDownloadListener extends DownloadListener {
-	
+
 	private File file;
 	private String url;
 	private FrameDownload frame;
-	
+
 	public FrameDownload getFrame() {
 		return frame;
 	}
-	
+
 	public File getFile() {
 		return file;
 	}
@@ -48,12 +46,12 @@ public class ToolsDownloadListener extends DownloadListener {
 		frame.setVisible(false);
 		frame.dispose();
 	}
-	
+
 	public void reportProgress(int done, int all) {
 		if (frame.getBar().getMaximum() != all) {
 			frame.getBar().setMaximum(all);
 		}
-		
+
 		frame.getBar().setValue(done);
 	}
 

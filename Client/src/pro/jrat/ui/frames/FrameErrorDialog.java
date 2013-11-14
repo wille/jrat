@@ -22,8 +22,6 @@ import javax.swing.border.EmptyBorder;
 import pro.jrat.ui.panels.PanelImage;
 import pro.jrat.utils.IconUtils;
 
-
-
 @SuppressWarnings("serial")
 public class FrameErrorDialog extends BaseDialog {
 
@@ -125,7 +123,7 @@ public class FrameErrorDialog extends BaseDialog {
 		btnCopyToClipboard.setIcon(new ImageIcon(FrameErrorDialog.class.getResource("/icons/clipboard_go.png")));
 		btnCopyToClipboard.setBounds(95, 94, 143, 24);
 		contentPane.add(btnCopyToClipboard);
-		
+
 		String message = ex.getMessage();
 		if (message == null || message.length() == 0) {
 			message = "Unknown";
@@ -137,8 +135,7 @@ public class FrameErrorDialog extends BaseDialog {
 
 		extendedSize = super.getSize();
 		originalSize = new Dimension((int) extendedSize.getWidth(), (int) extendedSize.getHeight() - 150);
-	
-	
+
 		setLocationRelativeTo(null);
 	}
 }

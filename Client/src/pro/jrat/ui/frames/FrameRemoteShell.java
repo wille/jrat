@@ -23,8 +23,6 @@ import pro.jrat.packets.outgoing.Packet23RemoteShellStart;
 import pro.jrat.packets.outgoing.Packet24RemoteShellStop;
 import pro.jrat.packets.outgoing.Packet25RemoteShellExecute;
 
-
-
 @SuppressWarnings("serial")
 public class FrameRemoteShell extends BaseFrame {
 
@@ -61,7 +59,7 @@ public class FrameRemoteShell extends BaseFrame {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER && txtCommand.getText().trim().length() > 0) {
 					String command = txtCommand.getText().trim();
 					sl.addToSendQueue(new Packet25RemoteShellExecute(command));
-					txtCommand.setText("");			
+					txtCommand.setText("");
 				}
 			}
 		});
@@ -76,20 +74,10 @@ public class FrameRemoteShell extends BaseFrame {
 		textPane.setForeground(Color.WHITE);
 		textPane.setBackground(Color.BLACK);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 485, GroupLayout.PREFERRED_SIZE)
-				.addComponent(txtCommand, GroupLayout.PREFERRED_SIZE, 485, GroupLayout.PREFERRED_SIZE)
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 245, GroupLayout.PREFERRED_SIZE)
-					.addGap(1)
-					.addComponent(txtCommand, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-		);
+		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 485, GroupLayout.PREFERRED_SIZE).addComponent(txtCommand, GroupLayout.PREFERRED_SIZE, 485, GroupLayout.PREFERRED_SIZE));
+		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 245, GroupLayout.PREFERRED_SIZE).addGap(1).addComponent(txtCommand, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)));
 		contentPane.setLayout(gl_contentPane);
-		
+
 		slave.addToSendQueue(new Packet23RemoteShellStart());
 	}
 

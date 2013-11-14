@@ -9,8 +9,6 @@ import pro.jrat.Main;
 import pro.jrat.settings.Settings;
 import pro.jrat.ui.frames.Frame;
 
-
-
 public class TrayIconUtils {
 
 	public static boolean useTray = false;

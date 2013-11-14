@@ -12,7 +12,6 @@ import javax.swing.table.DefaultTableModel;
 
 import pro.jrat.utils.IconUtils;
 
-
 public class FileSystem {
 
 	public static void addDir(String dir, DefaultTableModel model, HashMap<String, Icon> icons) {
@@ -32,13 +31,13 @@ public class FileSystem {
 						Calendar cal = Calendar.getInstance();
 						cal.setTime(new Date(childs[i].lastModified()));
 						String date = (cal.get(Calendar.MONTH) + 1) + "/" + cal.get(Calendar.DAY_OF_MONTH) + "/" + cal.get(Calendar.YEAR) + " " + (00 + cal.get(Calendar.HOUR_OF_DAY)) + ":" + cal.get(Calendar.MINUTE);
-						
+
 						icons.put(childs[i].getAbsolutePath(), IconUtils.getFileIcon(childs[i]));
-						files.add(new Object[] { childs[i].getAbsolutePath(), size, date, childs[i].isHidden() ? "Yes" : ""});
+						files.add(new Object[] { childs[i].getAbsolutePath(), size, date, childs[i].isHidden() ? "Yes" : "" });
 					}
 				}
 			}
-			
+
 			for (Object[] obj : dirs) {
 				for (Object o : obj) {
 					System.out.println(o.toString());

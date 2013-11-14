@@ -6,7 +6,6 @@ import pro.jrat.Slave;
 import pro.jrat.ui.frames.FrameControlPanel;
 import pro.jrat.ui.panels.PanelControlJVMProperties;
 
-
 public class Packet44SystemJavaProperty extends AbstractIncomingPacket {
 
 	@Override

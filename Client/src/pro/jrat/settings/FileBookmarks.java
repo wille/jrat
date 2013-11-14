@@ -12,7 +12,6 @@ import java.util.List;
 
 import pro.jrat.io.Files;
 
-
 public class FileBookmarks extends AbstractSettings {
 
 	private transient final List<File> bookmarks = new ArrayList<File>();
@@ -22,7 +21,7 @@ public class FileBookmarks extends AbstractSettings {
 	public static FileBookmarks getGlobal() {
 		return instance;
 	}
-	
+
 	public List<File> getBookmarks() {
 		return bookmarks;
 	}
@@ -72,7 +71,7 @@ public class FileBookmarks extends AbstractSettings {
 		}
 		writer.close();
 	}
-	
+
 	@Override
 	public File getFile() {
 		return new File(Files.getSettings(), ".bookmarks");

@@ -4,7 +4,20 @@ import javax.sound.sampled.SourceDataLine;
 
 public enum Piano {
 
-	REST, A4, A4$, B4, C4, C4$, D4, D4$, E4, F4, F4$, G4, G4$, A5;
+	REST,
+	A4,
+	A4$,
+	B4,
+	C4,
+	C4$,
+	D4,
+	D4$,
+	E4,
+	F4,
+	F4$,
+	G4,
+	G4$,
+	A5;
 	public static final int SAMPLE_RATE = 16 * 1024; // ~16KHz
 	public static final int SECONDS = 2;
 	private byte[] sin = new byte[SECONDS * SAMPLE_RATE];

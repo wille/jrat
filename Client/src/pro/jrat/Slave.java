@@ -34,7 +34,6 @@ import pro.jrat.utils.FlagUtils;
 import pro.jrat.utils.TrayIconUtils;
 import pro.jrat.utils.Utils;
 
-
 @SuppressWarnings("unused")
 public class Slave implements Runnable {
 
@@ -101,7 +100,7 @@ public class Slave implements Runnable {
 		this.ip = socket.getInetAddress().getHostAddress() + " / " + socket.getPort();
 		new Thread(this).start();
 	}
-	
+
 	public Slave(String ip) {
 		this.ip = ip;
 	}
@@ -649,7 +648,7 @@ public class Slave implements Runnable {
 	public void setAntiviruses(Antivirus[] antiviruses) {
 		this.antiviruses = antiviruses;
 	}
-	
+
 	public Antivirus[] getAntiviruses() {
 		return this.antiviruses;
 	}
@@ -657,7 +656,7 @@ public class Slave implements Runnable {
 	public void setFirewalls(Firewall[] firewalls) {
 		this.firewalls = firewalls;
 	}
-	
+
 	public Firewall[] getFirewalls() {
 		return firewalls;
 	}

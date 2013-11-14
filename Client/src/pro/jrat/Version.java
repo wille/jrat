@@ -8,8 +8,6 @@ import javax.swing.JOptionPane;
 import pro.jrat.net.WebRequest;
 import pro.jrat.ui.frames.FrameChangelog;
 
-
-
 public class Version {
 
 	public static boolean checkVersion() {

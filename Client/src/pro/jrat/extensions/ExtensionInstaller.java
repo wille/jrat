@@ -58,12 +58,12 @@ public class ExtensionInstaller {
 		} catch (Exception e) {
 			throw new MissingKeyException("Failed to load key", e);
 		}
-		
+
 		HttpURLConnection archiveConnection = (HttpURLConnection) WebRequest.getConnection(Constants.HOST + "/plugins/getplugin.php?plugin=" + plugin.getName() + "&key=" + key);
 		archiveConnection.connect();
-		
+
 		int response = archiveConnection.getResponseCode();
-		
+
 		if (response == 400) {
 			throw new MalformedURLException("Failed to send correct request");
 		} else if (response == 404) {
@@ -71,9 +71,9 @@ public class ExtensionInstaller {
 		} else if (response == 401) {
 			throw new InvalidKeyException("Key not found, not valid license?");
 		}
-		
+
 		InputStream archive = archiveConnection.getInputStream();
-		
+
 		long length = archiveConnection.getContentLengthLong();
 
 		FileOutputStream out = new FileOutputStream(temp);
@@ -131,7 +131,7 @@ public class ExtensionInstaller {
 		temp.delete();
 
 		new Plugin(plugin.getJar());
-		
+
 		Main.instance.reloadPlugins();
 	}
 

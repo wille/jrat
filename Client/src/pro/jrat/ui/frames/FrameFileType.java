@@ -21,7 +21,7 @@ import javax.swing.border.EmptyBorder;
 
 @SuppressWarnings("serial")
 public class FrameFileType extends JDialog {
-	
+
 	public JTextField txtExtension;
 
 	private JPanel contentPane;
@@ -38,9 +38,9 @@ public class FrameFileType extends JDialog {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		
+
 		JLabel lblPickAFile = new JLabel("Pick a file type:");
-		
+
 		comboBox = new JComboBox<String>();
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -56,10 +56,10 @@ public class FrameFileType extends JDialog {
 				}
 			}
 		});
-		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Windows Executable (.exe)", "Java Archive (.jar)", "Other"}));
-		
+		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "Windows Executable (.exe)", "Java Archive (.jar)", "Other" }));
+
 		JLabel lblExtension = new JLabel("Extension:");
-		
+
 		txtExtension = new JTextField("exe");
 		txtExtension.addKeyListener(new KeyAdapter() {
 			@Override
@@ -69,7 +69,7 @@ public class FrameFileType extends JDialog {
 		});
 		txtExtension.setEnabled(false);
 		txtExtension.setColumns(10);
-		
+
 		btnOk = new JButton("OK");
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -77,7 +77,7 @@ public class FrameFileType extends JDialog {
 				dispose();
 			}
 		});
-		
+
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -87,51 +87,17 @@ public class FrameFileType extends JDialog {
 			}
 		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-								.addComponent(lblPickAFile)
-								.addComponent(lblExtension))
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(comboBox, 0, 221, Short.MAX_VALUE)
-								.addComponent(txtExtension, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-							.addComponent(btnCancel)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnOk)))
-					.addContainerGap())
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblPickAFile)
-						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(txtExtension, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblExtension))
-					.addPreferredGap(ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnOk)
-						.addComponent(btnCancel))
-					.addContainerGap())
-		);
+		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addContainerGap().addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addComponent(lblPickAFile).addComponent(lblExtension)).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addComponent(comboBox, 0, 221, Short.MAX_VALUE).addComponent(txtExtension, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))).addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup().addComponent(btnCancel).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnOk))).addContainerGap()));
+		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addContainerGap().addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(lblPickAFile).addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(txtExtension, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(lblExtension)).addPreferredGap(ComponentPlacement.RELATED, 53, Short.MAX_VALUE).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(btnOk).addComponent(btnCancel)).addContainerGap()));
 		contentPane.setLayout(gl_contentPane);
-		
+
 		setLocationRelativeTo(null);
 	}
-	
+
 	public static String showDialog() {
 		FrameFileType frame = new FrameFileType();
 		frame.setVisible(true);
-		
+
 		if (frame.txtExtension.getText().length() > 0) {
 			return frame.txtExtension.getText();
 		} else {

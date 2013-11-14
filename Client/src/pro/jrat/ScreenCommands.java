@@ -9,7 +9,7 @@ public class ScreenCommands {
 		slave.addToSendQueue(new Packet13OneRemoteScreen(size, quality, monitor, rows, cols));
 	}
 
-	public static void send(Slave slave, double size, int quality,  int monitor, int rows, int cols) {
+	public static void send(Slave slave, double size, int quality, int monitor, int rows, int cols) {
 		slave.addToSendQueue(new Packet12RemoteScreen(size, quality, monitor, rows, cols));
 	}
 

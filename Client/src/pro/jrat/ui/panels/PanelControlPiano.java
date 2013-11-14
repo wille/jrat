@@ -26,7 +26,6 @@ import pro.jrat.Slave;
 import pro.jrat.packets.outgoing.Packet66PianoNote;
 import pro.jrat.packets.outgoing.Packet67LongPianoNote;
 
-
 @SuppressWarnings("serial")
 public class PanelControlPiano extends PanelControlParent {
 	private JCheckBox chckbxActivateBuzz;
@@ -180,7 +179,7 @@ public class PanelControlPiano extends PanelControlParent {
 		chckbxActivateBuzz.setSelected(true);
 		chckbxActivateBuzz.setBounds(20, 188, 97, 23);
 		panel.add(chckbxActivateBuzz);
-		
+
 		chckbxPlaySoundHere = new JCheckBox("Play sound here");
 		chckbxPlaySoundHere.setBounds(125, 188, 111, 23);
 		panel.add(chckbxPlaySoundHere);
@@ -203,7 +202,7 @@ public class PanelControlPiano extends PanelControlParent {
 		JButton btnSend = new JButton("Send");
 		btnSend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				slave.addToSendQueue(new Packet67LongPianoNote((Integer) spinnerSound.getValue(), (Integer) spinnerSec.getValue() ));
+				slave.addToSendQueue(new Packet67LongPianoNote((Integer) spinnerSound.getValue(), (Integer) spinnerSec.getValue()));
 			}
 		});
 		btnSend.setIcon(new ImageIcon(PanelControlPiano.class.getResource("/icons/right.png")));

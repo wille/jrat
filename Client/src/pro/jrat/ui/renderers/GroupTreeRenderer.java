@@ -10,8 +10,6 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 
 import pro.jrat.utils.IconUtils;
 
-
-
 @SuppressWarnings("serial")
 public class GroupTreeRenderer extends DefaultTreeCellRenderer {
 

