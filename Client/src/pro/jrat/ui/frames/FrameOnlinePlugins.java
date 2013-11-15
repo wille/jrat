@@ -153,7 +153,7 @@ public class FrameOnlinePlugins extends JFrame {
 		mntmHelp = new JMenuItem("Help");
 		mntmHelp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String help = "Installs plugins from web\n\nAlways deal with caution as " + Constants.HOST + " is not behind many of these plugins\n\nGreen text means that they are built for your current version or subversion\n\nPlugins shown as not available might be paid or premium by their authors";
+				String help = "Installs plugins from web\n\nAlways deal with caution as " + Constants.HOST + " is not behind many of these plugins\n\nGreen text means that they are built for your current version or subversion";
 
 				JOptionPane.showMessageDialog(null, help, "Help", JOptionPane.QUESTION_MESSAGE);
 			}

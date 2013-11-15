@@ -15,6 +15,8 @@ import java.util.zip.ZipFile;
 
 import pro.jrat.Constants;
 import pro.jrat.Main;
+import pro.jrat.UniqueId;
+import pro.jrat.common.codec.Hex;
 import pro.jrat.common.listeners.CopyStreamsListener;
 import pro.jrat.common.utils.IOUtils;
 import pro.jrat.common.utils.MathUtils;
@@ -54,7 +56,7 @@ public class ExtensionInstaller {
 
 		String key = "jrat";
 		try {
-			// TODO key = Hex.encode(UniqueId.getSystemId());
+			key = Hex.encode(UniqueId.getSystemId());
 		} catch (Exception e) {
 			throw new MissingKeyException("Failed to load key", e);
 		}
@@ -101,9 +103,9 @@ public class ExtensionInstaller {
 
 			File output;
 
-			if (entry.getName().equals("Stub.jar")) {
-				output = new File("plugins/stubs/" + plugin.getName() + ".jar");
-			} else if (entry.getName().equals("Client.jar")) {
+			if (entry.getName().startsWith("stub_")) {
+				output = new File("plugins/stubs/" + plugin.getName() + " " + entry.getName().substring(5, entry.getName().length()));
+			} else if (entry.getName().equalsIgnoreCase("client.jar")) {
 				output = new File("plugins/" + plugin.getName() + ".jar");
 			} else {
 				output = new File("plugins/" + plugin.getName() + "/" + entry.getName());
