@@ -307,7 +307,9 @@ public class Frame extends BaseFrame {
 			}
 		});
 		mntmBrowsePlugins.setIcon(new ImageIcon(Frame.class.getResource("/icons/application_icon_large.png")));
-		mnMain.add(mntmBrowsePlugins);
+		if (!Main.trial) {
+			mnMain.add(mntmBrowsePlugins);
+		}
 		mnMain.addSeparator();
 
 		JMenuItem mntmGenerateKey = new JMenuItem("Generate key");
