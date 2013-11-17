@@ -64,7 +64,9 @@ public class Connection implements Runnable {
 
 	public void run() {
 		try {
-			socket = new Socket(Main.getIP(), Main.getPort());
+			Address address = DnsRotator.getNextAddress();
+			
+			socket = new Socket(address.getAddress(), address.getPort());
 
 			socket.setSoTimeout(Main.timeout);
 			socket.setTrafficClass(24);
