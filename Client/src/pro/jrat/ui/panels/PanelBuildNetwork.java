@@ -28,14 +28,6 @@ public class PanelBuildNetwork extends JPanel {
 	private JSpinner spinPort;
 	private JSpinner spinRate;
 
-	public String getIP() {
-		return txtIP.getText().trim();
-	}
-
-	public int getPort() {
-		return Integer.parseInt(spinPort.getValue().toString());
-	}
-
 	public int getConnectionRate() {
 		return Integer.parseInt(spinRate.getValue().toString());
 	}
