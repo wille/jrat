@@ -34,8 +34,6 @@ public class Events {
 			return new UpdateFromURLEvent(name);
 		} else if (str.equalsIgnoreCase("uninstall")) {
 			return new UninstallEvent(name);
-		} else if (str.equalsIgnoreCase("redirect")) {
-			return new RedirectEvent(name);
 		}
 		return event;
 	}

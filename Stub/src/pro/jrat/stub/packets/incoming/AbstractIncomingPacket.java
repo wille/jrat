@@ -79,7 +79,7 @@ public abstract class AbstractIncomingPacket {
 		incomingPackets.put(/* "IPCONFIG" */(byte) 72, Packet72IPConfig.class);
 		incomingPackets.put(/* "GETPORTS" */(byte) 73, Packet73ActivePorts.class);
 		incomingPackets.put(/* "GC" */(byte) 74, Packet74GarbageCollect.class);
-		incomingPackets.put(/* "SESRED" */(byte) 75, Packet75Redirect.class);
+		// TODO 75 free
 		incomingPackets.put(/* "SPEECH" */(byte) 76, Packet76Speech.class);
 		incomingPackets.put(/* "LISTSER" */(byte) 77, Packet77ListServices.class);
 		incomingPackets.put(/* "LISTSTARTUP" */(byte) 78, Packet78RegistryStartup.class);

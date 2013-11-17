@@ -310,7 +310,6 @@ public class FrameControlPanel extends BaseFrame {
 				r.icons.put("net gateway", IconUtils.getIcon("gateway"));
 				r.icons.put("traffic", IconUtils.getIcon("speedometer"));
 				r.icons.put("active ports", IconUtils.getIcon("ports"));
-				r.icons.put("redirect", IconUtils.getIcon("redirect"));
 				r.icons.put("speech", IconUtils.getIcon("balloon_sound"));
 				r.icons.put("trace", IconUtils.getIcon("location"));
 				r.icons.put("windows services", IconUtils.getIcon("block"));
@@ -516,7 +515,6 @@ public class FrameControlPanel extends BaseFrame {
 
 		DefaultMutableTreeNode slave = new DefaultMutableTreeNode("Server Actions");
 		n.add(slave);
-		slave.add(new DefaultMutableTreeNode("Redirect"));
 		slave.add(new DefaultMutableTreeNode("Restart connection"));
 		slave.add(new DefaultMutableTreeNode("Reconnect"));
 		slave.add(new DefaultMutableTreeNode("Disconnect"));
@@ -709,13 +707,6 @@ public class FrameControlPanel extends BaseFrame {
 		actions.put("traffic", new Performable() {
 			public void perform() {
 				FrameTraffic frame = new FrameTraffic(slave);
-				frame.setVisible(true);
-			}
-		});
-
-		actions.put("redirect", new Performable() {
-			public void perform() {
-				FrameRedirect frame = new FrameRedirect(slave);
 				frame.setVisible(true);
 			}
 		});

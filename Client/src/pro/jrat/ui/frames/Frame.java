@@ -674,16 +674,6 @@ public class Frame extends BaseFrame {
 				JOptionPane.showMessageDialog(null, "Updated on " + servers + " outdated servers");
 			}
 		});
-
-		JMenuItem mntmRedirectAllTemporary = new JMenuItem("Redirect all temporary");
-		mntmRedirectAllTemporary.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				FrameRedirect frame = new FrameRedirect(null);
-				frame.setVisible(true);
-			}
-		});
-		mntmRedirectAllTemporary.setIcon(new ImageIcon(Frame.class.getResource("/icons/redirect.png")));
-		mnServers.add(mntmRedirectAllTemporary);
 		mntmUpdateAllOutdated.setIcon(new ImageIcon(Frame.class.getResource("/icons/update.png")));
 		mnServers.add(mntmUpdateAllOutdated);
 
