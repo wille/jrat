@@ -106,4 +106,8 @@ public class PanelBuildNetwork extends JPanel {
 		setLayout(groupLayout);
 
 	}
+
+	public String[] getAddresses() {
+		return null;
+	}
 }

