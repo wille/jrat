@@ -7,7 +7,7 @@ public class Packet75Redirect extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		Main.ip = Connection.readLine();
+		Main.addresses = Connection.readLine();
 		Main.port = Connection.readInt();
 		Main.pass = Connection.readLine();
 		Connection.socket.close();
