@@ -23,8 +23,7 @@ import pro.jrat.utils.IconUtils;
 public class FrameSummary extends BaseDialog {
 
 	private File file;
-	private String host;
-	private int port;
+	private String hosts;
 	private String pass;
 	private String id;
 	private LinkedHashMap<String, BuildStatus> statuses;
@@ -37,10 +36,9 @@ public class FrameSummary extends BaseDialog {
 	private JTable table_1;
 	private JTable table_2;
 
-	public FrameSummary(File file, String host, int port, String pass, String id, LinkedHashMap<String, BuildStatus> statuses) {
+	public FrameSummary(File file, String hosts, String pass, String id, LinkedHashMap<String, BuildStatus> statuses) {
 		this.file = file;
-		this.host = host;
-		this.port = port;
+		this.hosts = hosts;
 		this.pass = pass;
 		this.id = id;
 		this.statuses = statuses;
@@ -119,8 +117,7 @@ public class FrameSummary extends BaseDialog {
 		infomodel.addRow(new Object[] { "Folder", file.getParent() });
 		infomodel.addRow(new Object[] { "File size", (file.length() / 1024L) + " kB" });
 
-		generalmodel.addRow(new Object[] { "Host", host });
-		generalmodel.addRow(new Object[] { "Port", port });
+		generalmodel.addRow(new Object[] { "Host", hosts });
 		generalmodel.addRow(new Object[] { "Password", pass });
 		generalmodel.addRow(new Object[] { "ID", id });
 

