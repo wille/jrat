@@ -1,23 +1,28 @@
 package pro.jrat.ui.panels;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.net.InetAddress;
 
-import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SpinnerNumberModel;
 
 import pro.jrat.ErrorDialog;
-import pro.jrat.Help;
 import pro.jrat.settings.Settings;
 import pro.jrat.utils.NetUtils;
 
@@ -27,48 +32,93 @@ public class PanelBuildNetwork extends JPanel {
 	private JTextField txtIP;
 	private JSpinner spinPort;
 	private JSpinner spinRate;
+	private JList<String> list;
 
 	public int getConnectionRate() {
 		return Integer.parseInt(spinRate.getValue().toString());
 	}
 
 	public PanelBuildNetwork() {
-
-		JPanel panel = new JPanel();
-		panel.setBorder(BorderFactory.createTitledBorder("Network"));
+		
+		JScrollPane scrollPane = new JScrollPane();
+		
+				txtIP = new JTextField(Settings.getGlobal().getString("bip"));
+				txtIP.setColumns(10);
+		
+				spinPort = new JSpinner();
+				spinPort.setModel(new SpinnerNumberModel(Settings.getGlobal().getInt("bport"), 1, 65535, 1));
+		
+				spinRate = new JSpinner();
+				spinRate.setToolTipText("Seconds between server reconnect attempts");
+				spinRate.setModel(new SpinnerNumberModel(Settings.getGlobal().getInt("brecat"), 1, 120, 1));
+		
+				JLabel lblReconnectRate = new JLabel("Reconnect rate:");
+				lblReconnectRate.setToolTipText("Reconnect rate in seconds between each connection attempt");
+		
+				JLabel lblPort = new JLabel("Port:");
+		
+				JLabel lblIp = new JLabel("IP/DNS:");
+		
+		JButton btnAdd = new JButton("Add");
+		btnAdd.setIcon(new ImageIcon(PanelBuildNetwork.class.getResource("/icons/socket_add.png")));
+		
+		JButton btnMoveDown = new JButton("Move Down");
+		
+		JButton btnMoveUp = new JButton("Move Up");
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(panel, GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE).addContainerGap()));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(panel, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE).addContainerGap(158, Short.MAX_VALUE)));
-
-		JLabel lblIp = new JLabel("IP:");
-
-		txtIP = new JTextField(Settings.getGlobal().getString("bip"));
-		txtIP.setColumns(10);
-
-		JLabel lblPort = new JLabel("Port:");
-
-		spinPort = new JSpinner();
-		spinPort.setModel(new SpinnerNumberModel(Settings.getGlobal().getInt("bport"), 1, 65535, 1));
-
-		JLabel lblReconnectRate = new JLabel("Reconnect rate:");
-
-		spinRate = new JSpinner();
-		spinRate.setToolTipText("Seconds between server reconnect attempts");
-		spinRate.setModel(new SpinnerNumberModel(Settings.getGlobal().getInt("brecat"), 1, 120, 1));
-
-		JLabel lblseconds = new JLabel("(seconds)");
-
-		JButton btnHelp = new JButton("");
-		btnHelp.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Help.help("Seconds between each reconnect attempt, recommended 10");
-			}
-		});
-		btnHelp.setIcon(new ImageIcon(PanelBuildNetwork.class.getResource("/icons/help.png")));
-
-		JButton btnLocal = new JButton("");
-		btnLocal.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lblIp)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(txtIP, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblPort)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(spinPort, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnAdd, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lblReconnectRate)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(spinRate, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(btnMoveUp)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnMoveDown)))
+					.addContainerGap(13, Short.MAX_VALUE))
+				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblIp)
+						.addComponent(txtIP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblPort)
+						.addComponent(spinPort, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnAdd))
+					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblReconnectRate)
+						.addComponent(spinRate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnMoveDown)
+						.addComponent(btnMoveUp))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+		);
+		
+		JPopupMenu popupMenu = new JPopupMenu();
+		addPopup(txtIP, popupMenu);
+		
+		JMenuItem mntmGetLanAddress = new JMenuItem("Get LAN address");
+		mntmGetLanAddress.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 				try {
 					txtIP.setText(InetAddress.getLocalHost().getHostAddress());
 				} catch (Exception e1) {
@@ -77,10 +127,11 @@ public class PanelBuildNetwork extends JPanel {
 				}
 			}
 		});
-		btnLocal.setIcon(new ImageIcon(PanelBuildNetwork.class.getResource("/icons/network-ip-local.png")));
-
-		JButton btnExternal = new JButton("");
-		btnExternal.addActionListener(new ActionListener() {
+		mntmGetLanAddress.setIcon(new ImageIcon(PanelBuildNetwork.class.getResource("/icons/network-ip-local.png")));
+		popupMenu.add(mntmGetLanAddress);
+		
+		JMenuItem mntmGetWanAddress = new JMenuItem("Get WAN address");
+		mntmGetWanAddress.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					txtIP.setText(NetUtils.getIP());
@@ -90,16 +141,33 @@ public class PanelBuildNetwork extends JPanel {
 				}
 			}
 		});
-		btnExternal.setIcon(new ImageIcon(PanelBuildNetwork.class.getResource("/icons/network-ip.png")));
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addGap(40).addGroup(gl_panel.createParallelGroup(Alignment.TRAILING).addComponent(lblReconnectRate).addComponent(lblIp).addComponent(lblPort)).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addComponent(spinPort, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE).addGroup(gl_panel.createSequentialGroup().addComponent(txtIP, GroupLayout.PREFERRED_SIZE, 153, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnLocal, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnExternal, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)).addGroup(gl_panel.createSequentialGroup().addComponent(spinRate, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(lblseconds).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnHelp))).addContainerGap(53, Short.MAX_VALUE)));
-		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addContainerGap().addGroup(gl_panel.createParallelGroup(Alignment.TRAILING).addComponent(btnExternal, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE).addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(txtIP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(lblIp)).addComponent(btnLocal)).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(lblPort).addComponent(spinPort, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(lblReconnectRate).addComponent(spinRate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(lblseconds).addComponent(btnHelp)).addContainerGap(61, Short.MAX_VALUE)));
-		panel.setLayout(gl_panel);
+		mntmGetWanAddress.setIcon(new ImageIcon(PanelBuildNetwork.class.getResource("/icons/network-ip.png")));
+		popupMenu.add(mntmGetWanAddress);
+		
+		list = new JList<String>();
+		scrollPane.setViewportView(list);
 		setLayout(groupLayout);
 
 	}
 
 	public String[] getAddresses() {
 		return null;
+	}
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
 	}
 }
