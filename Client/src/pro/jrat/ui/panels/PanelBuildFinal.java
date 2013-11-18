@@ -256,7 +256,7 @@ public class PanelBuildFinal extends JPanel {
 					for (String s : addresses) {
 						rawAddresses += s + ",";
 					}
-					
+
 					Settings.getGlobal().setVal("brecat", reconSec);
 					Settings.getGlobal().setVal("jarname", name);
 					Settings.getGlobal().setVal("baddresses", rawAddresses); // TODO

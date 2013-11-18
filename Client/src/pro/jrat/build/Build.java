@@ -84,12 +84,11 @@ public class Build {
 			listener.reportProgress(30, "Writing config", BuildStatus.INFO);
 
 			String addressString = "";
-			
+
 			for (String s : addresses) {
 				addressString += s + ",";
 			}
-			
-			
+
 			try {
 				entry = new ZipEntry("config.dat");
 				outputStub.putNextEntry(entry);
