@@ -7,6 +7,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.InetAddress;
 
+import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
@@ -33,6 +34,7 @@ public class PanelBuildNetwork extends JPanel {
 	private JSpinner spinPort;
 	private JSpinner spinRate;
 	private JList<String> list;
+	private DefaultListModel<String> model;
 
 	public int getConnectionRate() {
 		return Integer.parseInt(spinRate.getValue().toString());
@@ -60,11 +62,47 @@ public class PanelBuildNetwork extends JPanel {
 		JLabel lblIp = new JLabel("IP/DNS:");
 
 		JButton btnAdd = new JButton("Add");
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String ip = txtIP.getText().trim();
+				int port = (Integer) spinPort.getValue();
+
+				String addr = ip + ":" + port;
+
+				for (int i = 0; i < model.getSize(); i++) {
+					String s = model.get(i);
+
+					if (s.equals(addr)) {
+						return;
+					}
+				}
+
+				model.addElement(addr);
+			}
+		});
 		btnAdd.setIcon(new ImageIcon(PanelBuildNetwork.class.getResource("/icons/socket_add.png")));
 
 		JButton btnMoveDown = new JButton("Move Down");
+		btnMoveDown.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int indexOfSelected = list.getSelectedIndex();
+			    swapElements(indexOfSelected, indexOfSelected + 1);
+			    indexOfSelected = indexOfSelected + 1;
+			    list.setSelectedIndex(indexOfSelected );
+			    list.updateUI();
+			}
+		});
 
 		JButton btnMoveUp = new JButton("Move Up");
+		btnMoveUp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int indexOfSelected = list.getSelectedIndex();
+			    swapElements(indexOfSelected, indexOfSelected - 1);
+			    indexOfSelected = indexOfSelected - 1;
+			    list.setSelectedIndex(indexOfSelected );
+			    list.updateUI();
+			}
+		});
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false).addGroup(groupLayout.createSequentialGroup().addComponent(lblIp).addPreferredGap(ComponentPlacement.RELATED).addComponent(txtIP, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(lblPort).addPreferredGap(ComponentPlacement.RELATED).addComponent(spinPort, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnAdd, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)).addGroup(groupLayout.createSequentialGroup().addComponent(lblReconnectRate).addPreferredGap(ComponentPlacement.RELATED).addComponent(spinRate, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(btnMoveUp).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnMoveDown))).addContainerGap(13, Short.MAX_VALUE)).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(lblIp).addComponent(txtIP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(lblPort).addComponent(spinPort, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(btnAdd)).addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(lblReconnectRate).addComponent(spinRate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(btnMoveDown).addComponent(btnMoveUp)).addPreferredGap(ComponentPlacement.UNRELATED).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE).addContainerGap()));
@@ -100,7 +138,9 @@ public class PanelBuildNetwork extends JPanel {
 		mntmGetWanAddress.setIcon(new ImageIcon(PanelBuildNetwork.class.getResource("/icons/network-ip.png")));
 		popupMenu.add(mntmGetWanAddress);
 
-		list = new JList<String>();
+		model = new DefaultListModel<String>();
+		list = new JList<String>(model);
+
 		scrollPane.setViewportView(list);
 		setLayout(groupLayout);
 
@@ -108,6 +148,12 @@ public class PanelBuildNetwork extends JPanel {
 
 	public String[] getAddresses() {
 		return null;
+	}
+
+	public void swapElements(int pos1, int pos2) {
+		String s = model.get(pos1);
+		model.set(pos1, model.get(pos2));
+		model.set(pos2, s);
 	}
 
 	private static void addPopup(Component component, final JPopupMenu popup) {
