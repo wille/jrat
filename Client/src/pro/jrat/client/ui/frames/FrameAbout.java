@@ -32,8 +32,8 @@ import javax.swing.border.EmptyBorder;
 
 import pro.jrat.client.Constants;
 import pro.jrat.client.Contributors;
-import pro.jrat.client.Main;
 import pro.jrat.client.Contributors.Contributor;
+import pro.jrat.client.Main;
 import pro.jrat.client.net.WebRequest;
 import pro.jrat.client.utils.FlagUtils;
 import pro.jrat.client.utils.NetUtils;

