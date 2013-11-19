@@ -86,10 +86,10 @@ public class PanelBuildNetwork extends JPanel {
 		btnMoveDown.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int indexOfSelected = list.getSelectedIndex();
-			    swapElements(indexOfSelected, indexOfSelected + 1);
-			    indexOfSelected = indexOfSelected + 1;
-			    list.setSelectedIndex(indexOfSelected );
-			    list.updateUI();
+				swapElements(indexOfSelected, indexOfSelected + 1);
+				indexOfSelected = indexOfSelected + 1;
+				list.setSelectedIndex(indexOfSelected);
+				list.updateUI();
 			}
 		});
 
@@ -97,15 +97,26 @@ public class PanelBuildNetwork extends JPanel {
 		btnMoveUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int indexOfSelected = list.getSelectedIndex();
-			    swapElements(indexOfSelected, indexOfSelected - 1);
-			    indexOfSelected = indexOfSelected - 1;
-			    list.setSelectedIndex(indexOfSelected );
-			    list.updateUI();
+				swapElements(indexOfSelected, indexOfSelected - 1);
+				indexOfSelected = indexOfSelected - 1;
+				list.setSelectedIndex(indexOfSelected);
+				list.updateUI();
 			}
 		});
+
+		JButton btnRemove = new JButton("Remove");
+		btnRemove.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				int i = list.getSelectedIndex();
+				
+				model.remove(i);
+			}
+		});
+		btnRemove.setIcon(null);
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false).addGroup(groupLayout.createSequentialGroup().addComponent(lblIp).addPreferredGap(ComponentPlacement.RELATED).addComponent(txtIP, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(lblPort).addPreferredGap(ComponentPlacement.RELATED).addComponent(spinPort, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnAdd, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)).addGroup(groupLayout.createSequentialGroup().addComponent(lblReconnectRate).addPreferredGap(ComponentPlacement.RELATED).addComponent(spinRate, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(btnMoveUp).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnMoveDown))).addContainerGap(13, Short.MAX_VALUE)).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(lblIp).addComponent(txtIP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(lblPort).addComponent(spinPort, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(btnAdd)).addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(lblReconnectRate).addComponent(spinRate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(btnMoveDown).addComponent(btnMoveUp)).addPreferredGap(ComponentPlacement.UNRELATED).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE).addContainerGap()));
+		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false).addGroup(groupLayout.createSequentialGroup().addComponent(lblIp).addPreferredGap(ComponentPlacement.RELATED).addComponent(txtIP, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(lblPort).addPreferredGap(ComponentPlacement.RELATED).addComponent(spinPort, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnAdd, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)).addGroup(groupLayout.createSequentialGroup().addComponent(lblReconnectRate).addPreferredGap(ComponentPlacement.RELATED).addComponent(spinRate, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(btnRemove).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnMoveUp).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnMoveDown))).addContainerGap(13, Short.MAX_VALUE)).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(lblIp).addComponent(txtIP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(lblPort).addComponent(spinPort, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(btnAdd)).addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(lblReconnectRate).addComponent(spinRate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(btnMoveDown).addComponent(btnMoveUp).addComponent(btnRemove)).addPreferredGap(ComponentPlacement.UNRELATED).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE)));
 
 		JPopupMenu popupMenu = new JPopupMenu();
 		addPopup(txtIP, popupMenu);
