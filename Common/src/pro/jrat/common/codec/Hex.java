@@ -8,7 +8,7 @@ public class Hex {
 	public static String encode(String data) throws Exception {
 		return encode(data.getBytes("UTF-8"), DIGITS_LOWER);
 	}
-	
+
 	public static String encode(byte[] data) {
 		return encode(data, DIGITS_LOWER);
 	}

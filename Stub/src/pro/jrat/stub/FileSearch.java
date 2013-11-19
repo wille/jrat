@@ -4,7 +4,6 @@ import java.io.File;
 
 import pro.jrat.stub.packets.outgoing.Packet37SearchResult;
 
-
 public class FileSearch extends Thread {
 
 	public static boolean running;
@@ -30,7 +29,7 @@ public class FileSearch extends Thread {
 
 	public void search(String parentDirectory) throws Exception {
 		File[] filesInDirectory = new File(parentDirectory).listFiles();
-		
+
 		if (filesInDirectory != null) {
 			for (File f : filesInDirectory) {
 				if (!running) {

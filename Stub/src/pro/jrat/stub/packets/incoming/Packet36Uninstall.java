@@ -10,7 +10,6 @@ import pro.jrat.stub.Main;
 import pro.jrat.stub.WinRegistry;
 import pro.jrat.stub.utils.Utils;
 
-
 public class Packet36Uninstall extends AbstractIncomingPacket {
 
 	@Override
@@ -24,24 +23,25 @@ public class Packet36Uninstall extends AbstractIncomingPacket {
 		}
 
 		try {
-			String fileName = Integer.toString( (new Random()).nextInt(10000));
+			String fileName = Integer.toString((new Random()).nextInt(10000));
 			File file = null;
 			String text = "";
 
 			if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
 				WinRegistry.deleteValue(WinRegistry.HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Run", Main.name);
-				/*file = new File(fileName + ".bat");
-
-				text += "pause\n";
-				text += "del \"" + me.getAbsolutePath() + "\"" + "\n";
-				text += "del %0";
-				text = text.replace("\n", " & ");*/
+				/*
+				 * file = new File(fileName + ".bat");
+				 * 
+				 * text += "pause\n"; text += "del \"" + me.getAbsolutePath() +
+				 * "\"" + "\n"; text += "del %0"; text = text.replace("\n",
+				 * " & ");
+				 */
 			} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
 				File startupFile = new File(System.getProperty("user.home") + "/Library/LaunchAgents/" + Main.name + ".plist");
 				startupFile.delete();
-				
+
 				file = new File(fileName + ".sh");
-				
+
 				text += "#!bin/bash\n";
 				text += "sleep 5\n";
 				text += "rm " + me.getName() + "\n";
@@ -49,9 +49,9 @@ public class Packet36Uninstall extends AbstractIncomingPacket {
 			} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.LINUX) {
 				File startupFile = new File(System.getProperty("user.home") + "/.config/autostart/" + Main.name + ".desktop");
 				startupFile.delete();
-				
+
 				file = new File(fileName + ".sh");
-				
+
 				text += "#!bin/bash\n";
 				text += "sleep 5\n";
 				text += "rm " + me.getName() + "\n";

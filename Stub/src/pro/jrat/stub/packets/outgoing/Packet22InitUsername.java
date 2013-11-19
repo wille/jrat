@@ -4,11 +4,10 @@ import java.io.DataOutputStream;
 
 import pro.jrat.common.io.StringWriter;
 
-
 public class Packet22InitUsername extends AbstractOutgoingPacket {
-	
+
 	private String username;
-	
+
 	public Packet22InitUsername(String username) {
 		this.username = username;
 	}

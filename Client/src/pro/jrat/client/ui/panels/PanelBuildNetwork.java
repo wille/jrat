@@ -106,9 +106,9 @@ public class PanelBuildNetwork extends JPanel {
 
 		JButton btnRemove = new JButton("Remove");
 		btnRemove.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {			
+			public void actionPerformed(ActionEvent arg0) {
 				int i = list.getSelectedIndex();
-				
+
 				model.remove(i);
 			}
 		});
@@ -158,11 +158,11 @@ public class PanelBuildNetwork extends JPanel {
 
 	public String[] getAddresses() {
 		String[] addr = new String[model.size()];
-		
+
 		for (int i = 0; i < model.size(); i++) {
 			addr[i] = model.get(i);
 		}
-		
+
 		return addr;
 	}
 

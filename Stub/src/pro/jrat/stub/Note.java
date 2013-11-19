@@ -1,9 +1,23 @@
 package pro.jrat.stub;
+
 import javax.sound.sampled.SourceDataLine;
 
 public enum Note {
 
-	REST, A4, A4$, B4, C4, C4$, D4, D4$, E4, F4, F4$, G4, G4$, A5;
+	REST,
+	A4,
+	A4$,
+	B4,
+	C4,
+	C4$,
+	D4,
+	D4$,
+	E4,
+	F4,
+	F4$,
+	G4,
+	G4$,
+	A5;
 	public static final int SAMPLE_RATE = 16 * 1024; // ~16KHz
 	public static final int SECONDS = 2;
 	private byte[] sin = new byte[SECONDS * SAMPLE_RATE];
@@ -24,10 +38,10 @@ public enum Note {
 	public byte[] data() {
 		return sin;
 	}
-	
+
 	public static void play(SourceDataLine line, Note note, int ms) {
-        ms = Math.min(ms, Note.SECONDS * 1000);
-        int length = Note.SAMPLE_RATE * ms / 1000;
-        line.write(note.data(), 0, length);
-    }
+		ms = Math.min(ms, Note.SECONDS * 1000);
+		int length = Note.SAMPLE_RATE * ms / 1000;
+		line.write(note.data(), 0, length);
+	}
 }

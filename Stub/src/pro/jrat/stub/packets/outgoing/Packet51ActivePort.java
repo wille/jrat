@@ -4,7 +4,6 @@ import java.io.DataOutputStream;
 
 import pro.jrat.common.io.StringWriter;
 
-
 public class Packet51ActivePort extends AbstractOutgoingPacket {
 
 	private String protocol;

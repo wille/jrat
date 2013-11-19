@@ -5,11 +5,10 @@ import java.util.Locale;
 
 import pro.jrat.common.io.StringWriter;
 
-
 public class Packet10InitDefaultLocale extends AbstractOutgoingPacket {
-	
+
 	private Locale locale;
-	
+
 	public Packet10InitDefaultLocale(Locale locale) {
 		this.locale = locale;
 	}

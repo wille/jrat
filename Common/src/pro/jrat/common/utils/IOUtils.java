@@ -18,7 +18,7 @@ public class IOUtils {
 		}
 		return count;
 	}
-	
+
 	public static long copy(long total, InputStream input, OutputStream output, CopyStreamsListener listener) throws Exception {
 		byte[] buffer = new byte[1024];
 		int n = 0;

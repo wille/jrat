@@ -1,4 +1,5 @@
 package pro.jrat.stub;
+
 import java.util.Random;
 
 import javax.swing.JFrame;

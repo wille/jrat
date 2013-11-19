@@ -9,8 +9,6 @@ import javax.swing.text.StyleContext;
 
 import pro.jrat.stub.Connection;
 
-
-
 public class Packet51ChatMessage extends AbstractIncomingPacket {
 
 	@Override

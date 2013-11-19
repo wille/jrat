@@ -4,7 +4,7 @@ import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
 public class Base64 {
-	
+
 	public static String encode(String s) throws Exception {
 		return new BASE64Encoder().encode(s.getBytes("UTF-8"));
 	}

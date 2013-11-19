@@ -19,7 +19,7 @@ public class Packet29SendFile extends AbstractOutgoingPacket {
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
 		sw.writeLine(name);
 		sw.writeLine(absolutePath);
-		
+
 		Connection.lock();
 	}
 

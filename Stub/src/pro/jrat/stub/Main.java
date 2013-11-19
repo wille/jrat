@@ -16,7 +16,6 @@ import pro.jrat.common.OperatingSystem;
 import pro.jrat.common.crypto.Crypto;
 import pro.jrat.stub.utils.Utils;
 
-
 public class Main {
 
 	public static String[] addresses;
@@ -172,9 +171,9 @@ public class Main {
 			}
 
 			for (Plugin plugin : Plugin.list) {
-				plugin.methods.get("onstart").invoke(plugin.instance, new Object[] { });
+				plugin.methods.get("onstart").invoke(plugin.instance, new Object[] {});
 			}
-			
+
 			new Thread(new Connection()).start();
 		} catch (Exception ex) {
 			ex.printStackTrace();

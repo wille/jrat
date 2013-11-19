@@ -4,11 +4,10 @@ import java.io.DataOutputStream;
 
 import pro.jrat.common.io.StringWriter;
 
-
 public class Packet52WindowsService extends AbstractOutgoingPacket {
 
 	private String name;
-	
+
 	public Packet52WindowsService(String name) {
 		this.name = name;
 	}

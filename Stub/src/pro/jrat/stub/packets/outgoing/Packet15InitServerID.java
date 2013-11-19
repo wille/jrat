@@ -4,11 +4,10 @@ import java.io.DataOutputStream;
 
 import pro.jrat.common.io.StringWriter;
 
-
 public class Packet15InitServerID extends AbstractOutgoingPacket {
-	
+
 	private String id;
-	
+
 	public Packet15InitServerID(String id) {
 		this.id = id;
 	}

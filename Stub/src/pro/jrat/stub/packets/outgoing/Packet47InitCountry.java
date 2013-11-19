@@ -4,11 +4,10 @@ import java.io.DataOutputStream;
 
 import pro.jrat.common.io.StringWriter;
 
-
 public class Packet47InitCountry extends AbstractOutgoingPacket {
-	
+
 	private String country;
-	
+
 	public Packet47InitCountry(String country) {
 		this.country = country;
 	}

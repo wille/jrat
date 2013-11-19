@@ -14,14 +14,14 @@ public enum OutgoingHeader {
 	INIT_LOCAL_IP(/* "LOCALIP" */(byte) 28),
 	INIT_COUNTRY(/* "COUNTRY" */(byte) 47),
 	INIT_LOCALE(/* "LOCALE" */(byte) 10),
-	INIT_PASSWORD(/*"PASS"*/ (byte) 1),
+	INIT_PASSWORD(/* "PASS" */(byte) 1),
 	INIT_DRIVES(/* "DRIVES" */(byte) 62),
 
 	INIT_RAM(/* "RAM" */(byte) 63),
 	INIT_AVAILABLE_PROCESSORS(/* "APS" */(byte) 64),
 	INIT_MONITORS(/* "MONITOR" */(byte) 61),
 
-	PONG(/*"PONG"*/ (byte) 0),
+	PONG(/* "PONG" */(byte) 0),
 	CLIPBOARD(/* "CBOARDC" */(byte) 41),
 	CUSTOM_DIRECTORY(/* "DIR" */(byte) 34),
 	PASSWORD_FILEZILLA(/* "FZ" */(byte) 48),
@@ -62,17 +62,17 @@ public enum OutgoingHeader {
 	QUICK_DESKTOP(/* "QUICKDESKTOP" */(byte) 68),
 	STAT((byte) 13);
 
-	private final byte /*String*/ header;
+	private final byte /* String */header;
 
-	//private Header(String header) {
-	//	this.header = header;
-	//}
-	
+	// private Header(String header) {
+	// this.header = header;
+	// }
+
 	private OutgoingHeader(byte header) {
 		this.header = header;
 	}
 
-	public byte /*String*/ getHeader() {
+	public byte /* String */getHeader() {
 		return header;
 	}
 

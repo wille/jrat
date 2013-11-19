@@ -1,4 +1,5 @@
 package pro.jrat.stub;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -9,7 +10,6 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 
 import pro.jrat.common.OperatingSystem;
-
 
 public class Script {
 

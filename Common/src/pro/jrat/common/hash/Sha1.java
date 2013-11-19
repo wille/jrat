@@ -7,23 +7,23 @@ import java.security.MessageDigest;
 import pro.jrat.common.codec.Hex;
 
 public class Sha1 {
-	
-	public static String sha1(byte[] data) throws Exception {	
+
+	public static String sha1(byte[] data) throws Exception {
 		MessageDigest digest = MessageDigest.getInstance("SHA-1");
-		
+
 		return Hex.encode(digest.digest(data));
 	}
-	
+
 	public static String sha1(String data) throws Exception {
 		return sha1(data.getBytes("UTF-8"));
 	}
-	
+
 	public static String sha1(File file) throws Exception {
 		byte[] contents = new byte[(int) file.length()];
 		FileInputStream in = new FileInputStream(file);
 		in.read(contents);
 		in.close();
-		
+
 		return sha1(contents);
 	}
 

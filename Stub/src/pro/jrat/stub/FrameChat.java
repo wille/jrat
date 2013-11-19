@@ -1,4 +1,5 @@
 package pro.jrat.stub;
+
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,7 +23,6 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 
 import pro.jrat.stub.packets.outgoing.Packet35ChatMessage;
-
 
 @SuppressWarnings("serial")
 public class FrameChat extends JFrame {
@@ -79,7 +79,7 @@ public class FrameChat extends JFrame {
 		contentPane.setLayout(gl_contentPane);
 		pack();
 	}
-	
+
 	public void send() {
 		try {
 			if (textField.getText().trim().length() > 0) {

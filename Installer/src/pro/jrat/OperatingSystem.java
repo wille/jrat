@@ -2,13 +2,19 @@ package pro.jrat;
 
 public enum OperatingSystem {
 
-	FREEBSD, OPENBSD, OSX, SOLARIS, LINUX, WINDOWS, UNKNOWN;
+	FREEBSD,
+	OPENBSD,
+	OSX,
+	SOLARIS,
+	LINUX,
+	WINDOWS,
+	UNKNOWN;
 
-	public static OperatingSystem getOperatingSystem(String str) {		
+	public static OperatingSystem getOperatingSystem(String str) {
 		str = str.toLowerCase();
-		
+
 		OperatingSystem os;
-		
+
 		if (str.equalsIgnoreCase("freebsd")) {
 			os = OperatingSystem.FREEBSD;
 		} else if (str.equalsIgnoreCase("openbsd")) {
@@ -24,10 +30,10 @@ public enum OperatingSystem {
 		} else {
 			os = OperatingSystem.UNKNOWN;
 		}
-		
+
 		return os;
 	}
-	
+
 	public static OperatingSystem getOperatingSystem() {
 		return OperatingSystem.getOperatingSystem(System.getProperty("os.name"));
 	}

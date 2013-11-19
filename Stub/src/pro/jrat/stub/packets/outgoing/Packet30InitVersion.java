@@ -4,11 +4,10 @@ import java.io.DataOutputStream;
 
 import pro.jrat.common.io.StringWriter;
 
-
 public class Packet30InitVersion extends AbstractOutgoingPacket {
 
 	private String version;
-	
+
 	public Packet30InitVersion(String version) {
 		this.version = version;
 	}
