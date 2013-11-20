@@ -95,8 +95,6 @@ public class WebRequest {
 
 					connection.setReadTimeout(2500);
 
-					connection.connect();
-
 					surl = surl.replace(Constants.HOST, domains[i]);
 					return connection;
 				} catch (Exception e) {

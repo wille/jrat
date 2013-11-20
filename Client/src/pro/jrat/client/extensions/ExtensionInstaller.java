@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.security.InvalidKeyException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -16,7 +17,6 @@ import java.util.zip.ZipFile;
 import pro.jrat.client.Constants;
 import pro.jrat.client.Main;
 import pro.jrat.client.UniqueId;
-import pro.jrat.client.exceptions.InvalidKeyException;
 import pro.jrat.client.exceptions.MissingKeyException;
 import pro.jrat.client.listeners.ExtensionInstallerListener;
 import pro.jrat.client.net.WebRequest;
@@ -60,10 +60,9 @@ public class ExtensionInstaller {
 		}
 
 		HttpURLConnection archiveConnection = (HttpURLConnection) WebRequest.getConnection(Constants.HOST + "/plugins/getplugin.php?plugin=" + plugin.getName() + "&key=" + key);
-		archiveConnection.setConnectTimeout(15000);
+		archiveConnection.setReadTimeout(15000);
 		archiveConnection.connect();
 
-		Thread.sleep(500L);
 
 		int response = archiveConnection.getResponseCode();
 

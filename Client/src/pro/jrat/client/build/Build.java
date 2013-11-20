@@ -179,6 +179,8 @@ public class Build {
 						if (entry.getName().replace("/", ".").replace(".class", "").equals(mainClass)) {
 							plugins[i] = entry.getName().replace("/", ".").replace(".class", "");
 						}
+						
+						entry = new ZipEntry(entry.getName());
 
 						try {
 							listener.reportProgress(50, "Writing plugin resource " + entry.getName(), BuildStatus.INFO);
