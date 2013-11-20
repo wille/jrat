@@ -98,13 +98,14 @@ public class FrameOnlinePlugins extends JFrame {
 				if (column == 0 && plugin != null) {
 					lbl.setIcon(plugin.getIcon());
 
-					/*if (plugin.isInstalled()) {
-						Plugin realPlugin = PluginLoader.getPlugin(plugin.getDisplayName());
-
-						if (realPlugin != null && !plugin.getVersion().equals(realPlugin.getVersion())) {
-							setText("(Outdated) " + value);
-						}
-					}*/
+					/*
+					 * if (plugin.isInstalled()) { Plugin realPlugin =
+					 * PluginLoader.getPlugin(plugin.getDisplayName());
+					 * 
+					 * if (realPlugin != null &&
+					 * !plugin.getVersion().equals(realPlugin.getVersion())) {
+					 * setText("(Outdated) " + value); } }
+					 */
 				} else if (column == 5) {
 					if (plugin == null) {
 						JButton btn = new JButton("?");

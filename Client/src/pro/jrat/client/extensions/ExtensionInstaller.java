@@ -21,7 +21,6 @@ import pro.jrat.client.exceptions.MissingKeyException;
 import pro.jrat.client.listeners.ExtensionInstallerListener;
 import pro.jrat.client.net.WebRequest;
 import pro.jrat.common.codec.Hex;
-import pro.jrat.common.hash.Md5;
 import pro.jrat.common.listeners.CopyStreamsListener;
 import pro.jrat.common.utils.IOUtils;
 
@@ -64,7 +63,7 @@ public class ExtensionInstaller {
 		HttpURLConnection archiveConnection = (HttpURLConnection) WebRequest.getConnection(Constants.HOST + "/plugins/getplugin.php?plugin=" + plugin.getName() + "&key=" + key);
 		archiveConnection.setConnectTimeout(15000);
 		archiveConnection.connect();
-		
+
 		Thread.sleep(500L);
 
 		int response = archiveConnection.getResponseCode();
@@ -81,21 +80,23 @@ public class ExtensionInstaller {
 
 		final int length = archiveConnection.getContentLength();
 
+		System.out.println(length);
+
 		FileOutputStream out = new FileOutputStream(temp);
 
 		IOUtils.copy(length, in, out, new CopyStreamsListener() {
 			@Override
 			public void chunk(long current, long total, int percent) {
 				if (length == -1) {
-					listener.status(Color.black, "Downloaded " + (current / 1024L) + " kB", (int) current, -1);
+					listener.status(Color.black, "Downloaded " + (current / 1024L) + " kB", (int) current, (int) total);
 				} else {
-					listener.status(Color.black, "Downloaded " + (current / 1024L) + "/" + (total / 1024L) + " kB", (int) current, -1);
+					listener.status(Color.black, "Downloaded " + (current / 1024L) + "/" + (total / 1024L) + " kB", (int) current, (int) total);
 				}
 			}
 		});
 
-        out.close();
-        in.close();
+		out.close();
+		in.close();
 
 		ZipFile zip = new ZipFile(temp);
 		Enumeration<? extends ZipEntry> entriesEnum = zip.entries();
@@ -104,7 +105,7 @@ public class ExtensionInstaller {
 		while (entriesEnum.hasMoreElements()) {
 			entries.add(entriesEnum.nextElement());
 		}
-		
+
 		List<File> mainJars = new ArrayList<File>();
 
 		for (int i = 0; i < entries.size(); i++) {
@@ -114,14 +115,20 @@ public class ExtensionInstaller {
 
 			if (entry.getName().startsWith("stubs/")) {
 				output = new File("plugins/stubs/" + plugin.getName() + " " + entry.getName().substring(6, entry.getName().length()));
-			} else if (entry.getName().startsWith("root/")) {		
+			} else if (entry.getName().startsWith("root/")) {
 				output = new File("plugins/" + entry.getName().substring(5, entry.getName().length()));
-				mainJars.add(output);
+				if (!entry.getName().equals("root/")) {
+					mainJars.add(output);
+				}
 			} else {
 				output = new File("plugins/" + plugin.getName() + "/" + entry.getName());
 			}
 
-			if (!output.getParentFile().exists()) {
+			if (output.isDirectory()) {
+				continue;
+			}
+
+			if (output.getParentFile() != null && !output.getParentFile().exists()) {
 				output.getParentFile().mkdirs();
 			}
 
