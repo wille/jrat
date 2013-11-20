@@ -44,7 +44,6 @@ public class ExtensionInstaller {
 
 	public void uninstall() throws Exception {
 		System.out.println(plugin.getJar().delete());
-		System.out.println(plugin.getStubJar().delete());
 		System.out.println(plugin.getDirectory().delete());
 	}
 
