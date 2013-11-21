@@ -111,7 +111,7 @@ public class ExtensionInstaller {
 
 			File output;
 
-			if (entry.getName().startsWith("stubs/")) {
+			if (entry.getName().startsWith("stubs/") && entry.getName().toLowerCase().endsWith(".jar")) {
 				output = new File("plugins/stubs/" + plugin.getName() + " " + entry.getName().substring(6, entry.getName().length()));
 			} else if (entry.getName().startsWith("root/")) {
 				output = new File("plugins/" + entry.getName().substring(5, entry.getName().length()));
