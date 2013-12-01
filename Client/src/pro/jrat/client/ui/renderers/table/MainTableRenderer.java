@@ -64,8 +64,9 @@ public class MainTableRenderer extends DefaultTableCellRenderer {
 				color = "000000".substring(0, 6 - color.length()) + color;
 			}
 
-			path = "/flags/" + slave.getCountry().toLowerCase() + ".png";
 
+			path = "/flags/" + slave.getCountry().toLowerCase() + ".png";
+			
 			JCheckBox b = new JCheckBox(value.toString(), slave.isSelected());
 
 			b.setToolTipText(row + "");

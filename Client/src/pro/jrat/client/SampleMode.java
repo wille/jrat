@@ -2,8 +2,8 @@ package pro.jrat.client;
 
 import java.util.Random;
 
+import pro.jrat.client.net.ConnectionHandler;
 import pro.jrat.client.settings.Statistics;
-import pro.jrat.client.ui.frames.Frame;
 import pro.jrat.client.utils.NetUtils;
 
 public class SampleMode {
@@ -273,7 +273,7 @@ public class SampleMode {
 				Statistics.getGlobal().add(slave);
 			}
 		} else {
-			Frame.mainModel.addRow(new Object[] { country, "Example", "Example", ip, "0", "Example", "Example", "Example" });
+			ConnectionHandler.addSlave(slave);
 		}
 	}
 
