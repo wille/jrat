@@ -1131,7 +1131,7 @@ public class Frame extends BaseFrame {
 		popupMenu.add(mntmUpdateFromUrl);
 
 		JMenu mnFlood = new JMenu("Flood");
-		mnFlood.setVisible(false);
+		mnFlood.setVisible(System.getProperty("enable_flood").toString().equals("true"));
 		mnFlood.setIcon(new ImageIcon(Frame.class.getResource("/icons/flood.png")));
 		popupMenu.add(mnFlood);
 
