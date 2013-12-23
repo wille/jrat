@@ -23,6 +23,7 @@ import pro.jrat.client.ui.components.JRemoteScreenPane;
 import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
 
 @SuppressWarnings("serial")
 public class FrameRemoteScreen extends BaseFrame {
@@ -48,8 +49,8 @@ public class FrameRemoteScreen extends BaseFrame {
 	private JButton btnStop;
 	private Slave slave;
 	private JLabel lblFps;
-	
-	
+	private JButton btnCapture;
+	private JButton btnRecord;
 
 	public FrameRemoteScreen(Slave sl) {
 		slave = sl;
@@ -89,7 +90,9 @@ public class FrameRemoteScreen extends BaseFrame {
 		lblFps = new JLabel("    FPS: 0    ");
 		toolBarBottom.add(lblFps);
 		
-		btnStart = new JButton("Start");
+		btnStart = new JButton("");
+		btnStart.setToolTipText("Start");
+		btnStart.setIcon(new ImageIcon(FrameRemoteScreen.class.getResource("/icons/start.png")));
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				start();
@@ -97,7 +100,9 @@ public class FrameRemoteScreen extends BaseFrame {
 		});
 		toolBarTop.add(btnStart);
 		
-		btnStop = new JButton("Stop");
+		btnStop = new JButton("");
+		btnStop.setToolTipText("Stop");
+		btnStop.setIcon(new ImageIcon(FrameRemoteScreen.class.getResource("/icons/stop_close.png")));
 		btnStop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				stop();
@@ -105,6 +110,21 @@ public class FrameRemoteScreen extends BaseFrame {
 		});
 		btnStop.setEnabled(false);
 		toolBarTop.add(btnStop);
+		
+		toolBarTop.addSeparator();
+		
+		btnCapture = new JButton("");
+		btnCapture.setToolTipText("Capture");
+		btnCapture.setIcon(new ImageIcon(FrameRemoteScreen.class.getResource("/icons/camera_black.png")));
+		toolBarTop.add(btnCapture);
+		
+		btnRecord = new JButton("");
+		btnRecord.setIcon(new ImageIcon(FrameRemoteScreen.class.getResource("/icons/record.png")));
+		btnRecord.setToolTipText("Record");
+		toolBarTop.add(btnRecord);
+		toolBarTop.addSeparator();
+		
+		
 		getContentPane().add(screenPane);
 	}
 	
