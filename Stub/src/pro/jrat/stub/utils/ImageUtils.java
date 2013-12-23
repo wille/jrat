@@ -3,7 +3,6 @@ package pro.jrat.stub.utils;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.util.Iterator;
 import java.util.zip.GZIPOutputStream;
 

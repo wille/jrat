@@ -3,7 +3,6 @@ package pro.jrat.client.packets.incoming;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
-import java.io.FileOutputStream;
 
 import pro.jrat.client.Cursor;
 import pro.jrat.client.Slave;
@@ -50,9 +49,10 @@ public class Packet17RemoteScreen extends AbstractIncomingPacket {
 			frame.update(image);
 			
 		} else {
-			dis.readFully(new byte[length]);
-			dis.readInt();
-			dis.readInt();
+			int chunkSize;
+			while ((chunkSize = dis.readInt()) != -1) {
+				dis.readFully(new byte[chunkSize]);			
+			}
 		}
 	}
 }
