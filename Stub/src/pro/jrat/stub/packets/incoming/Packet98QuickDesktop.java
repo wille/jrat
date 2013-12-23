@@ -38,7 +38,7 @@ public class Packet98QuickDesktop extends AbstractIncomingPacket {
 		BufferedImage resized = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		resized.getGraphics().drawImage(image, 0, 0, width, height, null);
 
-		byte[] buffer = ImageUtils.encodeImage(image); // GZip.compress(Crypto.encrypt(ImageUtils.encodeImage(image,
+		byte[] buffer = ImageUtils.encode(image); // GZip.compress(Crypto.encrypt(ImageUtils.encodeImage(image,
 														// 0.1F),
 														// Main.getKey()));
 

