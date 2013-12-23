@@ -40,10 +40,11 @@ public class Screen implements Runnable {
 			running = true;
 		}
 		
-		double scaledSize = size / 100D;
 
 		try {
 			do {
+				double scaledSize = size / 100D;
+
 				BufferedImage image;
 				Rectangle screenBounds;
 
