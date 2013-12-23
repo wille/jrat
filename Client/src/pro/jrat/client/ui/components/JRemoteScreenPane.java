@@ -18,7 +18,7 @@ public class JRemoteScreenPane extends JScrollPane {
 		super.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 	}
 
-	class ImagePanel extends JPanel {
+	public class ImagePanel extends JPanel {
 		
 		private BufferedImage image;
 		
@@ -40,10 +40,18 @@ public class JRemoteScreenPane extends JScrollPane {
 			}
 		}
 		
+		public BufferedImage getImage() {
+			return image;
+		}
+		
 	}
 
 	public void update(BufferedImage image) {
 		pane.image = image;
 		pane.update();
+	}
+	
+	public ImagePanel getPanel() {
+		return pane;
 	}
 }

