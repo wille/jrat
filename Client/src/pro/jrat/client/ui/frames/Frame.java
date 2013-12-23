@@ -306,7 +306,7 @@ public class Frame extends BaseFrame {
 				frame.setVisible(true);
 			}
 		});
-		mntmBrowsePlugins.setIcon(new ImageIcon(Frame.class.getResource("/icons/application_icon_large.png")));
+		mntmBrowsePlugins.setIcon(new ImageIcon(Frame.class.getResource("/icons/application_large.png")));
 		if (!Main.trial) {
 			mnMain.add(mntmBrowsePlugins);
 		}
@@ -360,7 +360,7 @@ public class Frame extends BaseFrame {
 
 		JMenu mnPingIcon = new JMenu("Ping icon");
 		mnLook.add(mnPingIcon);
-		mnPingIcon.setIcon(new ImageIcon(Frame.class.getResource("/icons/application_icon_large.png")));
+		mnPingIcon.setIcon(new ImageIcon(Frame.class.getResource("/icons/application_large.png")));
 
 		JMenuItem mntmMeter = new JMenuItem("Meter");
 		mntmMeter.addActionListener(new ActionListener() {

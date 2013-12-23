@@ -55,7 +55,7 @@ public class FrameOnlinePlugins extends JFrame {
 	private JMenuItem mntmPreview;
 
 	public FrameOnlinePlugins() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameOnlinePlugins.class.getResource("/icons/application_icon_large.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameOnlinePlugins.class.getResource("/icons/application_large.png")));
 		setTitle("Browse Online Plugin Gallery - " + Version.getVersion());
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 725, 418);
