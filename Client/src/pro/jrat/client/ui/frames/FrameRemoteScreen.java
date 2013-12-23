@@ -157,6 +157,12 @@ public class FrameRemoteScreen extends BaseFrame {
 		toolBarBottom.add(lblMonitors);
 		
 		cbMonitors = new JComboBox<String>();
+		cbMonitors.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				monitor = cbMonitors.getSelectedIndex() - 1;
+				sendUpdate();
+			}
+		});
 		DefaultComboBoxModel<String> model = new DefaultComboBoxModel<String>();
 		cbMonitors.setModel(model);
 		JComboBoxIconRenderer renderer = new JComboBoxIconRenderer();
