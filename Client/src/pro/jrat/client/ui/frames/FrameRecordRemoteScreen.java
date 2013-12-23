@@ -69,8 +69,8 @@ public class FrameRecordRemoteScreen extends BaseDialog {
 		JLabel lblFormat = new JLabel("Format:");
 		lblFormat.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
-		JComboBox cbFormat = new JComboBox();
-		cbFormat.setModel(new DefaultComboBoxModel(new String[] {"png"}));
+		JComboBox<String> cbFormat = new JComboBox<String>();
+		cbFormat.setModel(new DefaultComboBoxModel<String>(new String[] {"png"}));
 		cbFormat.setEnabled(false);
 		
 		btnRecord = new JButton("Start Record");

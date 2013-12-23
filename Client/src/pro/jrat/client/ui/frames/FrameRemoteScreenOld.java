@@ -150,7 +150,7 @@ public class FrameRemoteScreenOld extends BaseFrame {
 			@Override
 			public void mouseMoved(MouseEvent e) {
 				if (move()) {
-					sl.addToSendQueue(new Packet91MouseMove(e.getX(), e.getY(), monitor));
+					sl.addToSendQueue(new Packet91MouseMove(e.getX() * size, e.getY() * size, monitor));
 				}
 			}
 		});
