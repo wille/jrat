@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,6 +25,8 @@ import pro.jrat.client.packets.outgoing.Packet12RemoteScreen;
 import pro.jrat.client.packets.outgoing.Packet26StopRemoteScreen;
 import pro.jrat.client.threads.ThreadFPS;
 import pro.jrat.client.ui.components.JRemoteScreenPane;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 @SuppressWarnings("serial")
 public class FrameRemoteScreen extends BaseFrame {
@@ -55,6 +56,12 @@ public class FrameRemoteScreen extends BaseFrame {
 	private JButton btnRecord;
 
 	public FrameRemoteScreen(Slave sl) {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent arg0) {
+				exit();
+			}
+		});
 		slave = sl;
 		threadFps.start();
 		
@@ -145,6 +152,13 @@ public class FrameRemoteScreen extends BaseFrame {
 	public void stop() {
 		btnStart.setEnabled(true);
 		btnStop.setEnabled(false);
+		
+		slave.addToSendQueue(new Packet26StopRemoteScreen());
+	}
+	
+	public void exit() {
+		instances.remove(slave);
+		threadFps.stopRunning();
 		
 		slave.addToSendQueue(new Packet26StopRemoteScreen());
 	}
