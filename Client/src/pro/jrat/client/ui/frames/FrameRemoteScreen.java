@@ -1,6 +1,7 @@
 package pro.jrat.client.ui.frames;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,7 +18,11 @@ import javax.swing.JToolBar;
 import pro.jrat.client.Slave;
 import pro.jrat.client.packets.outgoing.Packet12RemoteScreen;
 import pro.jrat.client.packets.outgoing.Packet26StopRemoteScreen;
+import pro.jrat.client.threads.ThreadFPS;
 import pro.jrat.client.ui.components.JRemoteScreenPane;
+import javax.swing.JLabel;
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class FrameRemoteScreen extends BaseFrame {
@@ -28,6 +33,11 @@ public class FrameRemoteScreen extends BaseFrame {
 	private int quality;
 	private int interval;
 	private int size;
+	private ThreadFPS threadFps = new ThreadFPS() {
+		public void onUpdate(int fps) {
+			lblFps.setText("    FPS: " + fps + "    ");
+		}
+	};
 	
 	private JToolBar toolBarTop;
 	private JToolBar toolBarBottom;
@@ -37,9 +47,13 @@ public class FrameRemoteScreen extends BaseFrame {
 	private JButton btnStart;
 	private JButton btnStop;
 	private Slave slave;
+	private JLabel lblFps;
+	
+	
 
 	public FrameRemoteScreen(Slave sl) {
 		slave = sl;
+		threadFps.start();
 		
 		setTitle("Remote Screen - " + sl.getComputerName() + " - " + sl.getIP());
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRemoteScreen.class.getResource("/icons/screen.png")));
@@ -71,6 +85,9 @@ public class FrameRemoteScreen extends BaseFrame {
 		
 		progressBar = new JProgressBar();
 		toolBarBottom.add(progressBar);
+		
+		lblFps = new JLabel("    FPS: 0    ");
+		toolBarBottom.add(lblFps);
 		
 		btnStart = new JButton("Start");
 		btnStart.addActionListener(new ActionListener() {
@@ -104,8 +121,13 @@ public class FrameRemoteScreen extends BaseFrame {
 		
 		slave.addToSendQueue(new Packet26StopRemoteScreen());
 	}
+	
+	public void update(BufferedImage image) {
+		screenPane.update(image);
+		threadFps.increase();
+	}
 
-	public static final void show(Slave sl) {
+	public static void show(Slave sl) {
 		FrameRemoteScreen frame = new FrameRemoteScreen(sl);
 		frame.setVisible(true);
 		FrameMonitors dialog = new FrameMonitors(frame, sl);
@@ -143,9 +165,9 @@ public class FrameRemoteScreen extends BaseFrame {
 	public void setImageSize(int size) {
 		this.size = size;
 	}
-
-	public void update(BufferedImage image) {
-		screenPane.update(image);
+	
+	public ThreadFPS getFPSThread() {
+		return threadFps;
 	}
 
 	public JProgressBar getProgressBar() {

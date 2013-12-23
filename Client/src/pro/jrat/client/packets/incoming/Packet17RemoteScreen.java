@@ -48,6 +48,7 @@ public class Packet17RemoteScreen extends AbstractIncomingPacket {
 			
 			frame.update(image);
 			
+			frame.getProgressBar().setValue(0);
 		} else {
 			int chunkSize;
 			while ((chunkSize = dis.readInt()) != -1) {
