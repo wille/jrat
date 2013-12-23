@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.HashMap;
@@ -24,9 +26,8 @@ import pro.jrat.client.Slave;
 import pro.jrat.client.packets.outgoing.Packet12RemoteScreen;
 import pro.jrat.client.packets.outgoing.Packet26StopRemoteScreen;
 import pro.jrat.client.threads.ThreadFPS;
+import pro.jrat.client.threads.ThreadRecordButton;
 import pro.jrat.client.ui.components.JRemoteScreenPane;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
 @SuppressWarnings("serial")
 public class FrameRemoteScreen extends BaseFrame {
@@ -42,6 +43,7 @@ public class FrameRemoteScreen extends BaseFrame {
 			lblFps.setText("    FPS: " + fps + "    ");
 		}
 	};
+	private FrameRecordRemoteScreen recordFrame = new FrameRecordRemoteScreen(this);
 	
 	private JToolBar toolBarTop;
 	private JToolBar toolBarBottom;
@@ -54,6 +56,7 @@ public class FrameRemoteScreen extends BaseFrame {
 	private JLabel lblFps;
 	private JButton btnCapture;
 	private JButton btnRecord;
+	private ThreadRecordButton threadRecordButton;;
 
 	public FrameRemoteScreen(Slave sl) {
 		addWindowListener(new WindowAdapter() {
@@ -133,8 +136,15 @@ public class FrameRemoteScreen extends BaseFrame {
 		toolBarTop.add(btnCapture);
 		
 		btnRecord = new JButton("");
+		btnRecord.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				recordFrame.setVisible(true);
+			}
+		});
 		btnRecord.setIcon(new ImageIcon(FrameRemoteScreen.class.getResource("/icons/record.png")));
 		btnRecord.setToolTipText("Record");
+		threadRecordButton = new ThreadRecordButton(btnRecord);
+		
 		toolBarTop.add(btnRecord);
 		toolBarTop.addSeparator();
 		
@@ -167,6 +177,7 @@ public class FrameRemoteScreen extends BaseFrame {
 		BufferedImage image = screenPane.getPanel().getImage();
 		
 		JFileChooser c = new JFileChooser();
+		c.showOpenDialog(null);
 		File f = c.getSelectedFile();
 		
 		if (f != null) {
@@ -182,6 +193,10 @@ public class FrameRemoteScreen extends BaseFrame {
 	public void update(BufferedImage image) {
 		screenPane.update(image);
 		threadFps.increase();
+		
+		if (recordFrame.isRecording()) {
+			recordFrame.update(image);
+		}
 	}
 
 	public static void show(Slave sl) {
@@ -229,6 +244,22 @@ public class FrameRemoteScreen extends BaseFrame {
 
 	public JProgressBar getProgressBar() {
 		return progressBar;
+	}
+
+	public ThreadRecordButton getThreadRecordButton() {
+		return threadRecordButton;
+	}
+
+	public void setThreadRecordButton(ThreadRecordButton threadRecordButton) {
+		this.threadRecordButton = threadRecordButton;
+	}
+
+	public Slave getSlave() {
+		return slave;
+	}
+
+	public JButton getRecordButton() {
+		return btnRecord;
 	}
 
 }
