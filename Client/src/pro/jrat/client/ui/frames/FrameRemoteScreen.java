@@ -51,7 +51,8 @@ import java.awt.event.MouseEvent;
 public class FrameRemoteScreen extends BaseFrame {
 	
 	public static final Map<Slave, FrameRemoteScreen> instances = new HashMap<Slave, FrameRemoteScreen>();
-
+	public static final ImageIcon DEFAULT_RECORD_ICON = new ImageIcon(FrameRemoteScreen.class.getResource("/icons/camera_black.png"));
+	
 	private int monitor;
 	private int quality;
 	private int interval;
@@ -216,7 +217,7 @@ public class FrameRemoteScreen extends BaseFrame {
 			}
 		});
 		btnCapture.setToolTipText("Capture");
-		btnCapture.setIcon(new ImageIcon(FrameRemoteScreen.class.getResource("/icons/camera_black.png")));
+		btnCapture.setIcon(DEFAULT_RECORD_ICON);
 		toolBarTop.add(btnCapture);
 		
 		btnRecord = new JButton("");
