@@ -46,6 +46,8 @@ import pro.jrat.client.utils.IconUtils;
 import javax.swing.JComboBox;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 @SuppressWarnings("serial")
 public class FrameRemoteScreen extends BaseFrame {
@@ -109,6 +111,20 @@ public class FrameRemoteScreen extends BaseFrame {
 		toolBarBottom.setFloatable(false);
 		
 		screenPane = new JRemoteScreenPane();
+		screenPane.getPanel().addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				System.out.println(e.getKeyChar());
+			}
+			@Override
+			public void keyReleased(KeyEvent e) {
+				System.out.println(e.getKeyChar());
+			}
+			@Override
+			public void keyTyped(KeyEvent e) {
+				System.out.println(e.getKeyChar());
+			}
+		});
 		screenPane.getPanel().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {

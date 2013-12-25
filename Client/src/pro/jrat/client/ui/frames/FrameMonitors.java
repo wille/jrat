@@ -177,7 +177,6 @@ public class FrameMonitors extends BaseDialog {
 		sdSize.setMinimum(25);
 		sdSize.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
-
 				lblResize.setText("Size " + slInterval.getValue() + "%");
 			}
 		});
