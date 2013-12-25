@@ -80,7 +80,9 @@ public class FrameRemoteScreen extends BaseFrame {
 	private JToggleButton tglbtnToggleKeyboard;
 	private JToggleButton tglbtnToggleMovement;
 	private JComboBox<String> cbMonitors;
-	private JLabel lblMonitors;
+	private JLabel lblMonitor;
+	private JLabel lblQuality;
+	private JSlider sliderQuality;
 
 	public FrameRemoteScreen(Slave sl) {
 		addWindowListener(new WindowAdapter() {
@@ -152,9 +154,9 @@ public class FrameRemoteScreen extends BaseFrame {
 		toolBarBottom.add(progressBar);
 		toolBarBottom.addSeparator();
 		
-		lblMonitors = new JLabel("Monitors:  ");
-		lblMonitors.setIcon(new ImageIcon(FrameRemoteScreen.class.getResource("/icons/monitor.png")));
-		toolBarBottom.add(lblMonitors);
+		lblMonitor = new JLabel("Monitor:  ");
+		lblMonitor.setIcon(new ImageIcon(FrameRemoteScreen.class.getResource("/icons/monitor.png")));
+		toolBarBottom.add(lblMonitor);
 		
 		cbMonitors = new JComboBox<String>();
 		cbMonitors.addActionListener(new ActionListener() {
@@ -179,7 +181,7 @@ public class FrameRemoteScreen extends BaseFrame {
 		}
 		
 		toolBarBottom.add(cbMonitors);
-		toolBarBottom.add(Box.createHorizontalStrut(200));
+		toolBarBottom.addSeparator();
 		
 		lblFps = new JLabel("    FPS: 0    ");
 		toolBarBottom.add(lblFps);
@@ -243,9 +245,25 @@ public class FrameRemoteScreen extends BaseFrame {
 		});
 		sliderSize.setToolTipText("Size");
 		sliderSize.setSnapToTicks(true);
-		sliderSize.setMinorTickSpacing(10);
 		toolBarTop.add(sliderSize);
 		toolBarTop.addSeparator();
+		
+		lblQuality = new JLabel("Quality: " + quality);
+		toolBarTop.add(lblQuality);
+		lblQuality.setIcon(new ImageIcon(FrameRemoteScreen.class.getResource("/icons/monitor_plus.png")));
+		
+		sliderQuality = new JSlider();
+		sliderQuality.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+				setQuality(sliderQuality.getValue());
+				sendUpdate();
+			}
+		});
+		toolBarTop.add(sliderQuality);
+		sliderQuality.setValue(5);
+		sliderQuality.setSnapToTicks(true);
+		sliderQuality.setMinorTickSpacing(1);
+		sliderQuality.setMaximum(10);
 		
 		tglbtnToggleMouse = new JToggleButton("");
 		tglbtnToggleMouse.setSelected(true);
@@ -341,6 +359,7 @@ public class FrameRemoteScreen extends BaseFrame {
 
 	public void setQuality(int quality) {
 		this.quality = quality;
+		lblQuality.setText("Quality: " + quality);
 	}
 
 	public int getInterval() {
