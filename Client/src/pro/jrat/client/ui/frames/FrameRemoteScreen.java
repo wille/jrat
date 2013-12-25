@@ -276,7 +276,7 @@ public class FrameRemoteScreen extends BaseFrame {
 	public void start() {
 		btnStart.setEnabled(false);
 		btnStop.setEnabled(true);
-	
+			
 		slave.addToSendQueue(new Packet12RemoteScreen(size, quality, monitor));
 	}
 	

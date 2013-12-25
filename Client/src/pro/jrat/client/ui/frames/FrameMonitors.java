@@ -112,11 +112,15 @@ public class FrameMonitors extends BaseDialog {
 		lblQuality.setIcon(new ImageIcon(FrameMonitors.class.getResource("/icons/monitor_plus.png")));
 
 		slQuality = new JSlider();
-		slQuality.setValue(9);
-		slQuality.setMaximum(10);
+		slQuality.setMinorTickSpacing(1);
 		slQuality.setPaintTicks(true);
+		slQuality.setSnapToTicks(true);
+		slQuality.setValue(5);
+		slQuality.setMaximum(10);
 
 		slInterval = new JSlider();
+		slInterval.setSnapToTicks(true);
+		slInterval.setMinorTickSpacing(1);
 		slInterval.setValue(10);
 		slInterval.setMaximum(10);
 		slInterval.setPaintTicks(true);
@@ -168,6 +172,8 @@ public class FrameMonitors extends BaseDialog {
 		lblResize.setIcon(new ImageIcon(FrameMonitors.class.getResource("/icons/application-resize-full.png")));
 
 		sdSize = new JSlider();
+		sdSize.setMinorTickSpacing(5);
+		sdSize.setSnapToTicks(true);
 		sdSize.setMinimum(25);
 		sdSize.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
@@ -177,8 +183,32 @@ public class FrameMonitors extends BaseDialog {
 		});
 		sdSize.setPaintTicks(true);
 		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.TRAILING).addGroup(gl_panel.createSequentialGroup().addContainerGap().addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addComponent(cbMonitors, 0, 218, Short.MAX_VALUE).addComponent(btnReload, Alignment.TRAILING).addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup().addComponent(lblResize, GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.RELATED).addComponent(sdSize, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE))).addContainerGap()));
-		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addContainerGap().addComponent(cbMonitors, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnReload).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addComponent(lblResize, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE).addComponent(sdSize, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+						.addComponent(cbMonitors, 0, 218, Short.MAX_VALUE)
+						.addComponent(btnReload)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(lblResize, GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(sdSize, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap())
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(cbMonitors, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnReload)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblResize, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+						.addComponent(sdSize, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
 		panel.setLayout(gl_panel);
 		contentPane.setLayout(gl_contentPane);
 
