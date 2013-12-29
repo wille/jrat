@@ -316,11 +316,15 @@ public class Frame extends BaseFrame {
 		mntmGenerateKey.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					File keyFile = new File("jrat.key");
-
-					if (keyFile.exists() && JOptionPane.showConfirmDialog(null, "jrat.key already exists, do you want to overwrite and generate a new one?", "Generate key", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) != JOptionPane.YES_OPTION) {
-						return;
-					}
+					File keyFile;
+					
+					int i = 0;
+					
+					do {
+						i++;
+						String s = i == 0 ? "" : Integer.toString(i);
+						keyFile = new File("jrat" + s + ".key");
+					} while (keyFile.exists());
 
 					FileOutputStream out = new FileOutputStream(keyFile);
 					out.write(UniqueId.generateBinary());
