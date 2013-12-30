@@ -140,7 +140,7 @@ public class FrameRecordRemoteScreen extends BaseDialog {
 			
 			threadRecordButton.stopRunning();
 			parent.getThreadRecordButton().stopRunning();
-			parent.getRecordButton().setIcon(parent.DEFAULT_RECORD_ICON);
+			parent.getRecordButton().setIcon(FrameRemoteScreen.DEFAULT_RECORD_ICON);
 			
 			isRecording = false;
 		}
