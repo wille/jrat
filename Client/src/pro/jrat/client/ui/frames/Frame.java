@@ -973,19 +973,6 @@ public class Frame extends BaseFrame {
 			}
 		});
 
-		JMenuItem mntmQuickRemoteScreen = new JMenuItem("Quick Remote Screen");
-		mntmQuickRemoteScreen.setIcon(new ImageIcon(Frame.class.getResource("/icons/quick_remote_desktop.png")));
-		mntmQuickRemoteScreen.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				Slave slave = Utils.getSlave(mainModel.getValueAt(mainTable.getSelectedRow(), 3).toString());
-				if (slave != null) {
-					FrameQuickRemoteScreen frame = new FrameQuickRemoteScreen(slave);
-					frame.setVisible(true);
-				}
-			}
-		});
-		mnQuickOpen.add(mntmQuickRemoteScreen);
-
 		JMenuItem mntmRemoteRegistry = new JMenuItem("Remote Registry");
 		mntmRemoteRegistry.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

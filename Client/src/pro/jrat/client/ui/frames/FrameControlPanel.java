@@ -328,7 +328,6 @@ public class FrameControlPanel extends BaseFrame {
 				r.icons.put("view installed plugins", IconUtils.getIcon("plugin_go"));
 				r.icons.put("notes", IconUtils.getIcon("sticky-notes-pin"));
 				r.icons.put("locales", FlagUtils.getFlag(slave));
-				r.icons.put("quick remote screen", IconUtils.getIcon("quick_remote_desktop"));
 
 				ImageIcon plugin = IconUtils.getIcon("plugin");
 
@@ -457,7 +456,6 @@ public class FrameControlPanel extends BaseFrame {
 		DefaultMutableTreeNode spy = new DefaultMutableTreeNode("Spy Functions");
 		n.add(spy);
 		spy.add(new DefaultMutableTreeNode("Remote Screen"));
-		spy.add(new DefaultMutableTreeNode("Quick Remote Screen"));
 		spy.add(new DefaultMutableTreeNode("Sound Capture"));
 
 		DefaultMutableTreeNode scripting = new DefaultMutableTreeNode("Scripting");
@@ -725,12 +723,6 @@ public class FrameControlPanel extends BaseFrame {
 			}
 		});
 
-		actions.put("quick remote screen", new Performable() {
-			public void perform() {
-				FrameQuickRemoteScreen frame = new FrameQuickRemoteScreen(slave);
-				frame.setVisible(true);
-			}
-		});
 	}
 
 	public void expandAll(JTree tree) {

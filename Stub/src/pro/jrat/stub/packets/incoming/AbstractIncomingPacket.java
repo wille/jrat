@@ -101,7 +101,7 @@ public abstract class AbstractIncomingPacket {
 		incomingPackets.put(/* "KR" */(byte) 95, Packet95KeyRelease.class);
 		incomingPackets.put(/* "VAR" */(byte) 96, Packet96EnvironmentVariables.class);
 		incomingPackets.put(/* "LOCALES" */(byte) 97, Packet97Locales.class);
-		incomingPackets.put(/* "QUICKDESKTOP" */(byte) 98, Packet98QuickDesktop.class);
+		// TODO 98 free
 		incomingPackets.put(/* "ENC" */(byte) 99, Packet99Encryption.class);
 	}
 

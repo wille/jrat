@@ -79,7 +79,7 @@ public class IncomingPackets {
 		incomingPackets.put(/* "ERRLOG" */(byte) 65, Packet65ErrorLog.class);
 		incomingPackets.put(/* "CONFIG" */(byte) 66, Packet66Config.class);
 		incomingPackets.put(/* "PLUGIN" */(byte) 67, Packet67LoadedPlugins.class);
-		incomingPackets.put(/* "QUICKDESKTOP" */(byte) 68, Packet68QuickDesktop.class);
+		// TODO 68 free
 		incomingPackets.put((byte) 69, Packet69InitAntivirus.class);
 		incomingPackets.put((byte) 70, Packet70InitFirewall.class);
 	}
