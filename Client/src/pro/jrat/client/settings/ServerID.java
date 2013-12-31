@@ -62,6 +62,13 @@ public class ServerID extends AbstractSettings implements Serializable {
 	}
 
 	public void add(String name, String realname, String ip) {
+		for (ServerID.ServerIDEntry entry : list) {
+			if (entry.getIP().equals(ip)) {
+				list.remove(entry);
+				break;
+			}
+		}
+		
 		ServerID.ServerIDEntry entry = new ServerID.ServerIDEntry(ip, name, realname);
 		list.add(entry);
 	}

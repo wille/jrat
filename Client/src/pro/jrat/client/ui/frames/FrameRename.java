@@ -57,7 +57,7 @@ public class FrameRename extends BaseFrame {
 				ServerID.getGlobal().add(txtNewID.getText(), sl.getServerID(), sl.getRawIP());
 				for (int i = 0; i < Frame.mainModel.getRowCount(); i++) {
 					Slave sla = Utils.getSlave(Frame.mainModel.getValueAt(i, 3).toString());
-					if (sla != null) {
+					if (sla != null && sla.equals(sl)) {
 						Frame.mainModel.setValueAt(txtNewID.getText(), i, 1);
 						break;
 					}
