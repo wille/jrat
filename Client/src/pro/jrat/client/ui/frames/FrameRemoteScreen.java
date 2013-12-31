@@ -421,4 +421,15 @@ public class FrameRemoteScreen extends BaseFrame {
 		return btnRecord;
 	}
 
+	public JSlider getSliderSize() {
+		return sliderSize;
+	}
+
+	public JComboBox<String> getCbMonitors() {
+		return cbMonitors;
+	}
+
+	public JSlider getSliderQuality() {
+		return sliderQuality;
+	}
 }
