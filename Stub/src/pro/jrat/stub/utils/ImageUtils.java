@@ -15,6 +15,13 @@ import javax.imageio.stream.ImageOutputStream;
 public class ImageUtils {
 
 	public static BufferedImage resize(BufferedImage image, int w, int h) {
+		if (w == 0) {
+			h = 150;
+		}
+		
+		if (h == 0) {
+			h = 100;
+		}
 		BufferedImage img = new BufferedImage(w, h, BufferedImage.TYPE_3BYTE_BGR);
 		Graphics2D gr = img.createGraphics();
 		gr.drawImage(image.getScaledInstance(w, h, BufferedImage.SCALE_SMOOTH), 0, 0, w, h, null);
