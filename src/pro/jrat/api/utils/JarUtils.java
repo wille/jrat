@@ -20,7 +20,7 @@ public class JarUtils {
 	public static String getMainClass(JarFile jar) throws MainClassNotFoundException {
 		try {
 			String mainClass = null;
-			
+
 			Map<Object, Object> map = jar.getManifest().getMainAttributes();
 			for (Object obj : map.keySet()) {
 				if (obj.toString().equalsIgnoreCase("main-class")) {
@@ -35,28 +35,28 @@ public class JarUtils {
 			throw new MainClassNotFoundException(ex);
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param jar
 	 * @return The main class of the (plugin) from plugin.txt
 	 * @throws MainClassNotFoundException
 	 */
-	public static String getMainClassFromInfo(JarFile jar) throws MainClassNotFoundException {		
+	public static String getMainClassFromInfo(JarFile jar) throws MainClassNotFoundException {
 		try {
 			Enumeration<? extends JarEntry> entries = jar.entries();
-			
+
 			while (entries.hasMoreElements()) {
 				JarEntry entry = entries.nextElement();
 				if (entry.getName().equals("plugin.txt")) {
 					return new BufferedReader(new InputStreamReader(jar.getInputStream(entry))).readLine();
 				}
 			}
-			
+
 			throw new Exception("Main class not found");
 		} catch (Exception e) {
 			throw new MainClassNotFoundException(e);
 		}
-		
+
 	}
 }

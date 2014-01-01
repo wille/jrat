@@ -19,7 +19,7 @@ public class RATMenuItem {
 		this.listener = listener;
 		this.text = text;
 	}
-	
+
 	/**
 	 * 
 	 * @return Text of menu item
@@ -28,10 +28,11 @@ public class RATMenuItem {
 	public String getText() {
 		return this.text;
 	}
-	
+
 	/**
 	 * 
-	 * @param text Set text of menu item
+	 * @param text
+	 *            Set text of menu item
 	 */
 
 	public void setText(String text) {
@@ -42,20 +43,21 @@ public class RATMenuItem {
 	 * 
 	 * @return ImageIcon of this menu item
 	 */
-	
+
 	public ImageIcon getIcon() {
 		return this.icon;
 	}
-	
+
 	/**
 	 * 
-	 * @param icon Sets the menu item icon
+	 * @param icon
+	 *            Sets the menu item icon
 	 */
 
 	public void setIcon(ImageIcon icon) {
 		this.icon = icon;
 	}
-	
+
 	/**
 	 * 
 	 * @return A new instance of the item
@@ -67,7 +69,7 @@ public class RATMenuItem {
 		item.setText(text);
 		return item;
 	}
-	
+
 	/**
 	 * 
 	 * @return The action listener

@@ -1,6 +1,5 @@
 package pro.jrat.api.exceptions;
 
-
 @SuppressWarnings("serial")
 public class MainClassNotFoundException extends Exception {
 

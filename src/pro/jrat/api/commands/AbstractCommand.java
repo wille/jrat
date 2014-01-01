@@ -6,6 +6,7 @@ public abstract class AbstractCommand {
 
 	/**
 	 * Processes the command
+	 * 
 	 * @param args
 	 * @param printer
 	 * @throws Exception
@@ -14,18 +15,21 @@ public abstract class AbstractCommand {
 
 	/**
 	 * Returns command usage
+	 * 
 	 * @return
 	 */
 	public abstract String getUsage();
 
 	/**
 	 * Returns command example
+	 * 
 	 * @return
 	 */
 	public abstract String getExample();
 
 	/**
 	 * Returns command description
+	 * 
 	 * @return
 	 */
 	public abstract String getDescription();

@@ -15,6 +15,7 @@ public class Commands {
 
 	/**
 	 * Execute command
+	 * 
 	 * @param command
 	 * @param printer
 	 */

@@ -13,7 +13,7 @@ public class PluginClassLoader extends ClassLoader {
 	public PluginClassLoader(ClassLoader parent) {
 		super(parent);
 	}
-	
+
 	/**
 	 * Returns null (for now) as we will get from Client.jar if we call this
 	 */
@@ -21,7 +21,7 @@ public class PluginClassLoader extends ClassLoader {
 	public InputStream getResourceAsStream(String resource) {
 		return null;
 	}
-	
+
 	/**
 	 * Returns null (for now) as we will get from Client.jar if we call this
 	 */
@@ -29,7 +29,7 @@ public class PluginClassLoader extends ClassLoader {
 	public URL getResource(String resource) {
 		return null;
 	}
-	
+
 	/**
 	 * 
 	 * @param folder
@@ -41,7 +41,7 @@ public class PluginClassLoader extends ClassLoader {
 	public InputStream getPluginFile(String folder, String resource) throws FileNotFoundException, IOException {
 		return new FileInputStream(new File("plugins/" + folder, resource));
 	}
-	
+
 	/**
 	 * 
 	 * @param folder
