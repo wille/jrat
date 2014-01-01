@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.jar.JarFile;
 
+import pro.jrat.api.Logger;
 import pro.jrat.api.PluginClassLoader;
 import pro.jrat.api.RATControlMenuEntry;
 import pro.jrat.api.RATMenuItem;
@@ -56,7 +57,7 @@ public class Plugin {
 			mainClass = JarUtils.getMainClassFromInfo(new JarFile(file));
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			System.out.println("Failed loading main class from plugin.txt, trying meta-inf");
+			Logger.log("Failed loading main class from plugin.txt, trying meta-inf");
 			mainClass = JarUtils.getMainClass(new JarFile(file));
 		}
 

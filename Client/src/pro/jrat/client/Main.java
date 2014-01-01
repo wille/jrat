@@ -11,6 +11,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
+import pro.jrat.api.Logger;
 import pro.jrat.api.commands.Commands;
 import pro.jrat.api.events.OnDisableEvent;
 import pro.jrat.client.commands.DefaultCommands;
@@ -40,12 +41,12 @@ public class Main {
 
 	public static void main(String[] args) throws Exception {
 		if (argsContains(args, "-genkey")) {
-			System.out.println("Generating key");
+			Logger.log("Generating key");
 			File file = new File("jrat.key");
 			FileOutputStream out = new FileOutputStream(file);
 			out.write(UniqueId.generateBinary());
 			out.close();
-			System.out.println("Wrote key to jrat.key");
+			Logger.log("Wrote key to jrat.key");
 			System.exit(0);
 		}
 
@@ -180,7 +181,7 @@ public class Main {
 		if (s == null) {
 			s = "null";
 		}
-		System.out.println(s.toString());
+		Logger.log(s.toString());
 		return s.toString();
 	}
 

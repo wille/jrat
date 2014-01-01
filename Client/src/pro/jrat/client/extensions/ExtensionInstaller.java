@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
+import pro.jrat.api.Logger;
 import pro.jrat.client.Constants;
 import pro.jrat.client.Main;
 import pro.jrat.client.UniqueId;
@@ -43,8 +44,8 @@ public class ExtensionInstaller {
 	}
 
 	public void uninstall() throws Exception {
-		System.out.println(plugin.getJar().delete());
-		System.out.println(plugin.getDirectory().delete());
+		Logger.log(plugin.getJar().delete());
+		Logger.log(plugin.getDirectory().delete());
 	}
 
 	public void install() throws Exception {
@@ -78,7 +79,7 @@ public class ExtensionInstaller {
 
 		final int length = archiveConnection.getContentLength();
 
-		System.out.println(length);
+		Logger.log(length);
 
 		FileOutputStream out = new FileOutputStream(temp);
 

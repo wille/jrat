@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import pro.jrat.api.Logger;
 import pro.jrat.client.Slave;
 import pro.jrat.client.io.Files;
 import pro.jrat.client.ui.frames.Frame;
@@ -52,7 +53,7 @@ public class Statistics extends AbstractSettings implements Serializable {
 		stat.longcountry = longcountry;
 
 		list.add(stat);
-		System.out.println("Added: " + country);
+		Logger.log("Added: " + country);
 		return stat;
 	}
 

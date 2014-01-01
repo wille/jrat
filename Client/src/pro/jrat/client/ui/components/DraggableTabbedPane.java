@@ -213,24 +213,24 @@ public class DraggableTabbedPane extends JTabbedPane {
 
 	private void convertTab(int prev, int next) {
 		if (next < 0 || prev == next) {
-			// System.out.println("press="+prev+" next="+next);
+			// Logger.log("press="+prev+" next="+next);
 			return;
 		}
 		Component cmp = getComponentAt(prev);
 		String str = getTitleAt(prev);
 		Icon icon = getIconAt(prev);
 		if (next == getTabCount()) {
-			// System.out.println("last: press="+prev+" next="+next);
+			// Logger.log("last: press="+prev+" next="+next);
 			remove(prev);
 			addTab(str, icon, cmp);
 			setSelectedIndex(getTabCount() - 1);
 		} else if (prev > next) {
-			// System.out.println("   >: press="+prev+" next="+next);
+			// Logger.log("   >: press="+prev+" next="+next);
 			remove(prev);
 			insertTab(str, icon, cmp, null, next);
 			setSelectedIndex(next);
 		} else {
-			// System.out.println("   <: press="+prev+" next="+next);
+			// Logger.log("   <: press="+prev+" next="+next);
 			remove(prev);
 			insertTab(str, icon, cmp, null, next - 1);
 			setSelectedIndex(next - 1);
