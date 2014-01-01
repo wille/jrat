@@ -5,7 +5,7 @@ import java.util.Date;
 @SuppressWarnings("deprecation")
 public class Logger {
 
-	public static void log(String line) {
+	public static void log(Object obj) {
 		Date date = new Date(System.currentTimeMillis());
 		
 		String hours = (date.getHours() + "").length() == 1 ? "0" + date.getHours() : Integer.toString(date.getHours());
@@ -14,7 +14,7 @@ public class Logger {
 		
 		String time = hours + ":" + minutes + ":" + seconds;
 		
-		String s = "[" + time + "] [LOG]: " + line;
+		String s = "[" + time + "] [LOG]: " + obj.toString();
 		
 		System.out.println(s);
 	}
