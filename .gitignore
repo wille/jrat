@@ -3,7 +3,13 @@
 *.jar
 *.dat
 *.exe
-
+.colors
+.settings
+.theme
+.id
+.sockets
+.stats
+.bookmarks
 
 
 ## Eclipse
@@ -34,8 +40,8 @@ Reverser/
 Plugins/
 help/
 lib/
-Client/plugins/
-Client/settings/
+Controller/plugins/
+Controller/settings/
 Extractor/
 
 jrat.key
