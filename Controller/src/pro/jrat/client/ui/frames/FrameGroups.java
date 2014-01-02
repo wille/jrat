@@ -45,11 +45,11 @@ public class FrameGroups extends BaseFrame {
 
 		JButton btnReload = new JButton("Reload");
 		btnReload.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				dispose();
-				setVisible(false);
+			public void actionPerformed(ActionEvent arg0) {				
 				FrameGroups group = new FrameGroups();
 				group.setVisible(true);
+				setVisible(false);
+				dispose();
 			}
 		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
