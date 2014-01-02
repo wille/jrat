@@ -16,6 +16,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.Icon;
@@ -69,7 +70,7 @@ public class FrameRemoteFiles extends BaseFrame {
 	private JPanel contentPane;
 
 	public Slave slave;
-	public static HashMap<Slave, FrameRemoteFiles> instances = new HashMap<Slave, FrameRemoteFiles>();
+	public static final Map<Slave, FrameRemoteFiles> instances = new HashMap<Slave, FrameRemoteFiles>();
 	public JTextField txtDir;
 	public JTable table;
 	public FileViewTableRenderer renderer;

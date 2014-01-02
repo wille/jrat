@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
@@ -31,7 +32,7 @@ import pro.jrat.client.utils.IconUtils;
 @SuppressWarnings("serial")
 public class FrameMonitors extends BaseDialog {
 
-	public static final HashMap<Slave, FrameMonitors> instances = new HashMap<Slave, FrameMonitors>();
+	public static final Map<Slave, FrameMonitors> instances = new HashMap<Slave, FrameMonitors>();
 
 	private JPanel contentPane;
 	private FrameRemoteScreen parent;

