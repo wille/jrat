@@ -67,7 +67,7 @@ public class PanelSettingsMain extends JPanel {
 		JLabel label_2 = new JLabel("");
 		label_2.setIcon(new ImageIcon(PanelSettingsMain.class.getResource("/icons/icon.png")));
 
-		JButton btnClearRenamedServers = new JButton("Clear renamed servers");
+		JButton btnClearRenamedServers = new JButton("Clear renamed connections");
 		btnClearRenamedServers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (JOptionPane.showConfirmDialog(null, "Confirm clearing all saved names (Cant be undone)", "Confirm", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {

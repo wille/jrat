@@ -48,7 +48,7 @@ public class PanelBuildPlugins extends JPanel {
 		list = new PluginList();
 		JScrollPane scrollPane = new JScrollPane();
 
-		JButton btnAddServerPlugin = new JButton("Add server plugin (Not client)");
+		JButton btnAddServerPlugin = new JButton("Add stub plugin (Not client)");
 		btnAddServerPlugin.addActionListener(new ActionListener() {
 			@SuppressWarnings("unchecked")
 			public void actionPerformed(ActionEvent arg0) {

@@ -31,7 +31,7 @@ public class PanelControlConfig extends PanelControlParent {
 		super(sl);
 
 		JPanel panel = new JPanel();
-		panel.setBorder(BorderFactory.createTitledBorder("Server Configuration"));
+		panel.setBorder(BorderFactory.createTitledBorder("Connection Configuration"));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(panel, GroupLayout.PREFERRED_SIZE, 577, GroupLayout.PREFERRED_SIZE).addContainerGap(13, Short.MAX_VALUE)));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(panel, GroupLayout.PREFERRED_SIZE, 324, GroupLayout.PREFERRED_SIZE).addContainerGap(15, Short.MAX_VALUE)));

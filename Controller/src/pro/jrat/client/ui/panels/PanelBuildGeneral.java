@@ -62,14 +62,14 @@ public class PanelBuildGeneral extends JPanel {
 		txtID = new JTextField(Settings.getGlobal().getString("bid"));
 		txtID.setColumns(10);
 
-		JLabel lblServerId = new JLabel("Server ID");
+		JLabel lblServerId = new JLabel("Stub ID");
 
-		JLabel lblNameOfServer = new JLabel("Name of server on connect");
+		JLabel lblNameOfServer = new JLabel("Name of Stub on connect");
 
 		JButton btnHelp = new JButton("");
 		btnHelp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Help.help("Name of server on connect, like \"Brother\"");
+				Help.help("Name of stub on connect, like \"Brother\"");
 			}
 		});
 		btnHelp.setIcon(new ImageIcon(PanelBuildGeneral.class.getResource("/icons/help.png")));

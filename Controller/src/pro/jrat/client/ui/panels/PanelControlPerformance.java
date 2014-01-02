@@ -90,7 +90,7 @@ public class PanelControlPerformance extends PanelControlParent {
 		barRAM.setStringPainted(true);
 
 		JButton btnGc = new JButton("GC");
-		btnGc.setToolTipText("Runs the garbage collector on servers computer");
+		btnGc.setToolTipText("Runs the garbage collector on remote computer");
 		btnGc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				sl.addToSendQueue(new Packet74GarbageCollect());

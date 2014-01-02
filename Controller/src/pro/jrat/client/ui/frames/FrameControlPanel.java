@@ -294,7 +294,7 @@ public class FrameControlPanel extends BaseFrame {
 				r.icons.put("sleep mode", IconUtils.getIcon("sleepmode"));
 				r.icons.put("lock", IconUtils.getIcon("lock"));
 				r.icons.put("clipboard", IconUtils.getIcon("clipboard"));
-				r.icons.put("server actions", IconUtils.getIcon("toolbox"));
+				r.icons.put("connection actions", IconUtils.getIcon("toolbox"));
 				r.icons.put("reconnect", IconUtils.getIcon("refresh_blue"));
 				r.icons.put("disconnect", IconUtils.getIcon("delete"));
 				r.icons.put("restart connection", IconUtils.getIcon("refresh"));
@@ -511,7 +511,7 @@ public class FrameControlPanel extends BaseFrame {
 			}
 		}
 
-		DefaultMutableTreeNode slave = new DefaultMutableTreeNode("Server Actions");
+		DefaultMutableTreeNode slave = new DefaultMutableTreeNode("Connection Actions");
 		n.add(slave);
 		slave.add(new DefaultMutableTreeNode("Restart connection"));
 		slave.add(new DefaultMutableTreeNode("Reconnect"));
@@ -678,7 +678,7 @@ public class FrameControlPanel extends BaseFrame {
 
 		actions.put("uninstall", new Performable() {
 			public void perform() {
-				if (Utils.yesNo("Confirm", "Confirm uninstalling this server?")) {
+				if (Utils.yesNo("Confirm", "Confirm uninstalling this connection?")) {
 					try {
 						slave.addToSendQueue(new Packet11Disconnect());
 					} catch (Exception ex) {

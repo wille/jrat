@@ -53,7 +53,7 @@ public class PanelBuildStartup extends JPanel {
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup().addContainerGap(12, Short.MAX_VALUE).addComponent(panel, GroupLayout.PREFERRED_SIZE, 428, GroupLayout.PREFERRED_SIZE).addContainerGap()));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(panel, GroupLayout.PREFERRED_SIZE, 218, GroupLayout.PREFERRED_SIZE).addContainerGap(71, Short.MAX_VALUE)));
 
-		chckbxStartServerWith = new JCheckBox("Start server with os boot (Installer) (When updating)");
+		chckbxStartServerWith = new JCheckBox("Start stub with os boot (Installer) (When updating)");
 		chckbxStartServerWith.setToolTipText("");
 		chckbxStartServerWith.setSelected(Settings.getGlobal().getBoolean("bcrypt"));
 
@@ -75,7 +75,7 @@ public class PanelBuildStartup extends JPanel {
 		button = new JButton("");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Help.help("Required for installed server to come back on system reboot");
+				Help.help("Required for installed stub to come back on system reboot");
 			}
 		});
 		button.setIcon(new ImageIcon(PanelBuildStartup.class.getResource("/icons/help.png")));

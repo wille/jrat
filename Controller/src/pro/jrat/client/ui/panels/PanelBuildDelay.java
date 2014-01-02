@@ -44,7 +44,7 @@ public class PanelBuildDelay extends JPanel {
 
 		JLabel lblWillWaitSelected = new JLabel("Will wait selected seconds before dropping");
 
-		JLabel lblAndExecutingServer = new JLabel("and executing server");
+		JLabel lblAndExecutingServer = new JLabel("and executing stub");
 
 		JLabel lblSeconds = new JLabel("Seconds:");
 

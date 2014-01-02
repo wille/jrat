@@ -46,9 +46,9 @@ public class FrameColors extends BaseFrame {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(BorderFactory.createTitledBorder("Main"));
 
-		JLabel lblOutdatedServers = new JLabel("Outdated servers:");
+		JLabel lblOutdatedServers = new JLabel("Outdated connections:");
 
-		cbOutdatedServers = new JColorBox(Colors.getGlobal().get("outdated servers"));
+		cbOutdatedServers = new JColorBox(Colors.getGlobal().get("outdated connections"));
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(gl_panel_1.createParallelGroup(Alignment.LEADING).addGroup(gl_panel_1.createSequentialGroup().addContainerGap().addComponent(lblOutdatedServers).addPreferredGap(ComponentPlacement.RELATED, 17, Short.MAX_VALUE).addComponent(cbOutdatedServers, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addContainerGap()));
 		gl_panel_1.setVerticalGroup(gl_panel_1.createParallelGroup(Alignment.LEADING).addGroup(gl_panel_1.createSequentialGroup().addContainerGap().addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE).addComponent(lblOutdatedServers).addComponent(cbOutdatedServers, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addContainerGap(41, Short.MAX_VALUE)));
@@ -69,6 +69,6 @@ public class FrameColors extends BaseFrame {
 
 	public void exit() {
 		Colors.getGlobal().put("system monitor", cbSystemMonitor.getProfile());
-		Colors.getGlobal().put("outdated servers", cbOutdatedServers.getProfile());
+		Colors.getGlobal().put("outdated connections", cbOutdatedServers.getProfile());
 	}
 }

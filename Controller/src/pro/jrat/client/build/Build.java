@@ -210,7 +210,7 @@ public class Build {
 			outputStub.close();
 
 			if (dropper) {
-				listener.reportProgress(50, "Writing server into dropper", BuildStatus.INFO);
+				listener.reportProgress(50, "Writing stub into dropper", BuildStatus.INFO);
 				byte[] installerKey = key.getKey();
 				FileCrypter.encrypt(tempStubCleanJar, tempCryptedNotRunnableJar, installerKey);
 
@@ -295,14 +295,14 @@ public class Build {
 			listener.reportProgress(95, "MD5 of file: " + Md5.md5(file), BuildStatus.INFO);
 			listener.reportProgress(95, "SHA1 of file: " + Sha1.sha1(file), BuildStatus.INFO);
 
-			listener.done("Saved Server. Took " + (end - start) + " ms, size " + (file.length() / 1024L) + " kB");
+			listener.done("Saved stub. Took " + (end - start) + " ms, size " + (file.length() / 1024L) + " kB");
 
 			FrameSummary frame = new FrameSummary(file, addressString, pass, id, listener.getStatuses());
 			frame.setVisible(true);
 		} catch (Exception ex) {
 			String message = ex.getMessage();
 			if (message == null) {
-				message = "Failed building server";
+				message = "Failed building stub";
 			}
 			try {
 				outputStub.close();

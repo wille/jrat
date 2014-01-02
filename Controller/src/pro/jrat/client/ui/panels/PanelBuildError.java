@@ -31,9 +31,9 @@ public class PanelBuildError extends JPanel {
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(PanelBuildError.class.getResource("/icons/error.png")));
 
-		JLabel lblWhenTheServer = new JLabel("When the server crashes, it will make a error log in log.dat");
+		JLabel lblWhenTheServer = new JLabel("When the stub crashes, it will make a error log in log.dat");
 
-		JLabel lblInTheServer = new JLabel("in the server directory that you can access and read");
+		JLabel lblInTheServer = new JLabel("in the stub directory that you can access and read");
 
 		JLabel lblNextTimeIt = new JLabel("next time it connects in control panel.");
 		GroupLayout gl_panel = new GroupLayout(panel);

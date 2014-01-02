@@ -99,7 +99,7 @@ public class Frame extends BaseFrame {
 	public static JTable mainTable;
 	public static DefaultTableModel mainModel;
 	public static DefaultTableModel onConnectModel;
-	public static String[] columnNames = { "L", "Server ID", "Status", "IP/Port", "Ping", "User@Comp", "OS name" };
+	public static String[] columnNames = { "L", "ID", "Status", "IP/Port", "Ping", "User@Comp", "OS name" };
 	public static TrayIcon trayIcon;
 	public static int pingmode = Frame.PING_ICON_DOT;
 	public static boolean thumbnails = false;
@@ -235,7 +235,7 @@ public class Frame extends BaseFrame {
 
 		mnMain.addSeparator();
 
-		JMenu mnServerModule = new JMenu("Server Module");
+		JMenu mnServerModule = new JMenu("Stub Module");
 		mnServerModule.setIcon(new ImageIcon(Frame.class.getResource("/icons/bug.png")));
 		mnMain.add(mnServerModule);
 		mnMain.addSeparator();
@@ -512,7 +512,7 @@ public class Frame extends BaseFrame {
 		mntmPerformance.setIcon(new ImageIcon(Frame.class.getResource("/icons/meter.png")));
 		mnTools.add(mntmPerformance);
 
-		JMenu mnServers = new JMenu("Servers");
+		JMenu mnServers = new JMenu("Connections");
 		menuBar.add(mnServers);
 
 		JMenuItem mntmSelectAll = new JMenuItem("Select all");
@@ -530,7 +530,7 @@ public class Frame extends BaseFrame {
 				if (mainModel.getRowCount() == 0) {
 					return;
 				}
-				String howmany = Utils.showDialog("Select X", "Select how many servers you want to select\n" + mainModel.getRowCount() + " available");
+				String howmany = Utils.showDialog("Select X", "Select how many connections you want to select\n" + mainModel.getRowCount() + " available");
 				if (howmany == null || howmany != null && howmany.length() == 0) {
 					return;
 				}
@@ -542,7 +542,7 @@ public class Frame extends BaseFrame {
 					return;
 				}
 				if (many > mainModel.getRowCount()) {
-					JOptionPane.showMessageDialog(null, "You dont have " + many + " servers", "Error", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "You do not have " + many + " connections", "Error", JOptionPane.WARNING_MESSAGE);
 					return;
 				}
 				for (int i = 0; i < Main.connections.size() && i < many; i++) {
@@ -569,7 +569,7 @@ public class Frame extends BaseFrame {
 				selectAll();
 				List<Slave> list = Utils.getSlaves();
 				if (list.size() > 0) {
-					if (Utils.yesNo("Confirm", "Confirm restarting all servers")) {
+					if (Utils.yesNo("Confirm", "Confirm restarting all connections")) {
 						for (Slave sl : list) {
 							try {
 								sl.addToSendQueue(new Packet37RestartJavaProcess());
@@ -590,7 +590,7 @@ public class Frame extends BaseFrame {
 				selectAll();
 				List<Slave> list = Utils.getSlaves();
 				if (list.size() > 0) {
-					if (Utils.yesNo("Confirm", "Confirm disconnecting all servers")) {
+					if (Utils.yesNo("Confirm", "Confirm disconnecting all connections")) {
 						for (Slave sl : list) {
 							try {
 								sl.addToSendQueue(new Packet11Disconnect());
@@ -609,7 +609,7 @@ public class Frame extends BaseFrame {
 				selectAll();
 				List<Slave> list = Utils.getSlaves();
 				if (list.size() > 0) {
-					if (Utils.yesNo("Confirm", "Confirm reconnecting all servers")) {
+					if (Utils.yesNo("Confirm", "Confirm reconnecting all connections")) {
 						for (Slave sl : list) {
 							try {
 								sl.addToSendQueue(new Packet45Reconnect());
@@ -632,7 +632,7 @@ public class Frame extends BaseFrame {
 				selectAll();
 				List<Slave> list = Utils.getSlaves();
 				if (list.size() > 0) {
-					if (Utils.yesNo("Confirm", "Confirm uninstalling all servers")) {
+					if (Utils.yesNo("Confirm", "Confirm uninstalling all connections")) {
 						for (Slave sl : list) {
 							try {
 								sl.addToSendQueue(new Packet36Uninstall());
@@ -675,7 +675,7 @@ public class Frame extends BaseFrame {
 						}
 					}
 				}
-				JOptionPane.showMessageDialog(null, "Updated on " + servers + " outdated servers");
+				JOptionPane.showMessageDialog(null, "Updated on " + servers + " outdated connections");
 			}
 		});
 		mntmUpdateAllOutdated.setIcon(new ImageIcon(Frame.class.getResource("/icons/update.png")));
@@ -790,7 +790,7 @@ public class Frame extends BaseFrame {
 						Component child = popupMenu.getComponents()[i];
 						if (child instanceof JMenuItem) {
 							JMenuItem item = (JMenuItem) child;
-							if (item.getText().startsWith("Server V: ")) {
+							if (item.getText().startsWith("Stub V: ")) {
 								popupMenu.remove(child);
 								popupMenu.remove(i - 1);
 								popupMenu.remove(i - 2);
@@ -811,7 +811,7 @@ public class Frame extends BaseFrame {
 				try {
 					List<Slave> list = Utils.getSlaves();
 					if (list.size() == 1) {
-						JMenuItem item = new JMenuItem("Server V: " + list.get(0).getVersion());
+						JMenuItem item = new JMenuItem("Stub V: " + list.get(0).getVersion());
 						JMenuItem item2 = new JMenuItem("Country: " + list.get(0).getCountry().toUpperCase());
 
 						item2.addActionListener(new CountryMenuItemListener());
@@ -889,7 +889,7 @@ public class Frame extends BaseFrame {
 			}
 		});
 
-		mainTable.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "L", "Server ID", "Status", "IP/Port", "Ping", "User@Comp", "OS Name", "RAM", "Local IP", "Version" }) {
+		mainTable.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "L", "ID", "Status", "IP/Port", "Ping", "User@Comp", "OS Name", "RAM", "Local IP", "Version" }) {
 			public boolean isCellEditable(int i, int i1) {
 				return false;
 			}
@@ -1046,7 +1046,7 @@ public class Frame extends BaseFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				List<Slave> servers = Utils.getSlaves();
 				if (servers.size() > 0) {
-					String process = Utils.showDialog("Run Command", "Select command to send to servers");
+					String process = Utils.showDialog("Run Command", "Select command to send to connections");
 					if (process == null) {
 						return;
 					}
@@ -1374,7 +1374,7 @@ public class Frame extends BaseFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				List<Slave> servers = Utils.getSlaves();
 				if (servers.size() > 0) {
-					if (Utils.yesNo("Confirm", "Confirm disconnecting " + servers.size() + " servers")) {
+					if (Utils.yesNo("Confirm", "Confirm disconnecting " + servers.size() + " connections")) {
 						for (Slave sl : servers) {
 							try {
 								sl.addToSendQueue(new Packet11Disconnect());
@@ -1392,7 +1392,7 @@ public class Frame extends BaseFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				List<Slave> servers = Utils.getSlaves();
 				if (servers.size() > 0) {
-					if (Utils.yesNo("Confirm", "Confirm restarting " + servers.size() + " servers")) {
+					if (Utils.yesNo("Confirm", "Confirm restarting " + servers.size() + " connections")) {
 						for (Slave sl : servers) {
 							try {
 								sl.addToSendQueue(new Packet37RestartJavaProcess());
@@ -1426,7 +1426,7 @@ public class Frame extends BaseFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				List<Slave> servers = Utils.getSlaves();
 				if (servers.size() > 0) {
-					if (Utils.yesNo("Confirm", "Confirm reconnect " + servers.size() + " servers")) {
+					if (Utils.yesNo("Confirm", "Confirm reconnect " + servers.size() + " connections")) {
 						for (Slave sl : servers) {
 							try {
 								sl.addToSendQueue(new Packet45Reconnect());
@@ -1448,7 +1448,7 @@ public class Frame extends BaseFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				List<Slave> servers = Utils.getSlaves();
 				if (servers.size() > 0) {
-					if (Utils.yesNo("Confirm", "Confirm uninstalling " + servers.size() + " servers")) {
+					if (Utils.yesNo("Confirm", "Confirm uninstalling " + servers.size() + " connections")) {
 						for (Slave sl : servers) {
 							try {
 								sl.addToSendQueue(new Packet36Uninstall());
@@ -1506,7 +1506,7 @@ public class Frame extends BaseFrame {
 		btnDelete.setIcon(new ImageIcon(Frame.class.getResource("/icons/calendar_remove.png")));
 
 		JButton btnPerform = new JButton("Perform");
-		btnPerform.setToolTipText("Perform selected event on all servers");
+		btnPerform.setToolTipText("Perform selected event on all connections");
 		btnPerform.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String name = onConnectModel.getValueAt(onConnectTable.getSelectedRow(), 1).toString();

@@ -36,7 +36,7 @@ public class UninstallEvent extends Event {
 
 	@Override
 	public boolean add() {
-		return Utils.yesNo("Confirm", "This will uninstall all connected servers, are you sure?");
+		return Utils.yesNo("Confirm", "This will uninstall all connections, are you sure?");
 	}
 
 	@Override

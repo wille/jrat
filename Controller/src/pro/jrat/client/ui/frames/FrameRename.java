@@ -31,7 +31,7 @@ public class FrameRename extends BaseFrame {
 		super();
 		this.slave = slave;
 		final Slave sl = slave;
-		setTitle("Rename server - " + slave.getIP());
+		setTitle("Rename connection - " + slave.getIP());
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRename.class.getResource("/icons/rename.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

@@ -31,7 +31,7 @@ public class ConnectionHandler {
 		Main.instance.setTitle(title);
 
 		TrayIconUtils.setTitle(title);
-		TrayIconUtils.showMessage(title, "Server " + slave.getIP() + " connected");
+		TrayIconUtils.showMessage(title, slave.getIP() + " connected");
 
 		Sound.playAdd();
 		PluginEventHandler.onConnect(slave);

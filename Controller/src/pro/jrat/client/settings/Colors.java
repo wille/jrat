@@ -80,7 +80,7 @@ public class Colors extends AbstractSettings implements Serializable {
 		Colors.getGlobal();
 		colors.put("system monitor", Colors.generate("blue"));
 		Colors.getGlobal();
-		colors.put("outdated servers", Colors.generate("red"));
+		colors.put("outdated connections", Colors.generate("red"));
 	}
 
 	public class ColorProfile implements Serializable {

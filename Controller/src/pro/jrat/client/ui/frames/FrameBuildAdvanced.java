@@ -52,7 +52,7 @@ public class FrameBuildAdvanced extends BaseFrame {
 		super();
 
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameBuildAdvanced.class.getResource("/icons/build.png")));
-		setTitle("Build Server");
+		setTitle("Build Stub");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 630, 362);
@@ -109,7 +109,7 @@ public class FrameBuildAdvanced extends BaseFrame {
 				}
 			}
 		});
-		tree.setModel(new DefaultTreeModel(new DefaultMutableTreeNode("Build Server\t") {
+		tree.setModel(new DefaultTreeModel(new DefaultMutableTreeNode("Build Stub\t") {
 			{
 				addNodes(this);
 			}

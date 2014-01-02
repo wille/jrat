@@ -20,7 +20,7 @@ public class Packet35ChatMessage extends AbstractIncomingPacket {
 		if (frame != null) {
 			StyleContext sc = StyleContext.getDefaultStyleContext();
 			AttributeSet set = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, Color.red);
-			frame.txtChat.getDocument().insertString(frame.txtChat.getDocument().getLength(), "Server: " + message + "\n", set);
+			frame.txtChat.getDocument().insertString(frame.txtChat.getDocument().getLength(), "Remote: " + message + "\n", set);
 			frame.txtChat.setSelectionEnd(frame.txtChat.getText().length());
 			frame.txtChat.setSelectionStart(frame.txtChat.getText().length());
 		}

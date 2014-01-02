@@ -106,7 +106,7 @@ public class PanelBuildOS extends JPanel {
 		JButton button = new JButton("");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Help.help("Selects what operating systems the server is allowed to execute on");
+				Help.help("Selects what operating systems the stub is allowed to execute on");
 			}
 		});
 		button.setIcon(new ImageIcon(PanelBuildOS.class.getResource("/icons/help.png")));

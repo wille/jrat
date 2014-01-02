@@ -93,7 +93,7 @@ public class PanelBuildFinal extends JPanel {
 		this.frame = this;
 
 		JPanel panel = new JPanel();
-		panel.setBorder(BorderFactory.createTitledBorder("Finalize and build server"));
+		panel.setBorder(BorderFactory.createTitledBorder("Finalize and build stub"));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(panel, GroupLayout.PREFERRED_SIZE, 426, GroupLayout.PREFERRED_SIZE).addContainerGap(14, Short.MAX_VALUE)));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(panel, GroupLayout.PREFERRED_SIZE, 273, GroupLayout.PREFERRED_SIZE).addContainerGap(16, Short.MAX_VALUE)));

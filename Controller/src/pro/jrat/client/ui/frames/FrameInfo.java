@@ -66,7 +66,7 @@ public class FrameInfo extends BaseFrame {
 
 		JLabel lblLocation = new JLabel("...");
 
-		JLabel lblServerId = new JLabel("Server ID:");
+		JLabel lblServerId = new JLabel("Connection ID:");
 
 		txtServerID = new JTextField();
 		txtServerID.setEditable(false);

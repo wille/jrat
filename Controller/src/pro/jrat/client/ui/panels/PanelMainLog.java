@@ -64,7 +64,7 @@ public class PanelMainLog extends JPanel {
 
 		table = new JTable();
 		table.setDefaultRenderer(Object.class, new LogTableRenderer());
-		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "Action", "Server", "Info", "Time" }) {
+		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "Action", "Connection", "Info", "Time" }) {
 			public boolean isCellEditable(int i, int i1) {
 				return false;
 			}

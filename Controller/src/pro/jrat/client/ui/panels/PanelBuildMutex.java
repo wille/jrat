@@ -61,7 +61,7 @@ public class PanelBuildMutex extends JPanel {
 
 		JLabel lblWillCreateA = new JLabel("Will create a socket at selected port, and occupy it");
 
-		JLabel lblToMakeSure = new JLabel("to make sure only one instance of the server is running");
+		JLabel lblToMakeSure = new JLabel("to make sure only one instance of the stub is running");
 
 		JLabel lblSelectRareUsed = new JLabel("Select rare used ports.");
 

@@ -51,7 +51,7 @@ public class PanelBuildNetwork extends JPanel {
 		spinPort.setModel(new SpinnerNumberModel(Settings.getGlobal().getInt("bport"), 1, 65535, 1));
 
 		spinRate = new JSpinner();
-		spinRate.setToolTipText("Seconds between server reconnect attempts");
+		spinRate.setToolTipText("Seconds between stub reconnect attempts");
 		spinRate.setModel(new SpinnerNumberModel(Settings.getGlobal().getInt("brecat"), 1, 120, 1));
 
 		JLabel lblReconnectRate = new JLabel("Reconnect rate:");
