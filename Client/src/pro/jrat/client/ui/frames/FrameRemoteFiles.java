@@ -1,8 +1,10 @@
 package pro.jrat.client.ui.frames;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Desktop;
+import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,8 +18,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -35,7 +35,6 @@ import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
@@ -104,7 +103,6 @@ public class FrameRemoteFiles extends BaseFrame {
 	private JMenuItem mntmGo;
 	private JMenuItem mntmMdHash;
 	private JMenuItem mntmCorrupt;
-	private JToolBar toolBar_1;
 	private JButton btnNewFolder;
 	private JButton btnNewFolderme;
 	private JButton btnDelete;
@@ -117,6 +115,8 @@ public class FrameRemoteFiles extends BaseFrame {
 	private JMenuItem mntmSelectAllFiles;
 	private JComboBox<String> driveComboBox;
 	private JMenu mnQuickJump;
+	private JToolBar toolBarSouth;
+	private JToolBar toolBarNorth;
 
 	public FrameRemoteFiles(Slave slave) {
 		super();
@@ -133,7 +133,7 @@ public class FrameRemoteFiles extends BaseFrame {
 		});
 		setTitle("File manager - " + slave.getIP() + " - " + slave.getComputerName());
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 819, 470);
+		setBounds(100, 100, 760, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -161,149 +161,11 @@ public class FrameRemoteFiles extends BaseFrame {
 		JToolBar toolBar = new JToolBar();
 		toolBar.setFloatable(false);
 
-		toolBar_1 = new JToolBar();
-		toolBar_1.setFloatable(false);
-
-		label = new JLabel("...");
-		label.setVisible(false);
-
-		progressBar = new JProgressBar();
-		progressBar.setVisible(false);
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addGap(6).addComponent(toolBar, GroupLayout.PREFERRED_SIZE, 341, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(toolBar_1, GroupLayout.PREFERRED_SIZE, 440, GroupLayout.PREFERRED_SIZE)).addComponent(splitPane, GroupLayout.DEFAULT_SIZE, 793, Short.MAX_VALUE).addGroup(gl_contentPane.createSequentialGroup().addComponent(label).addPreferredGap(ComponentPlacement.RELATED).addComponent(progressBar, GroupLayout.DEFAULT_SIZE, 777, Short.MAX_VALUE)));
-		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false).addComponent(toolBar_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(toolBar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)).addPreferredGap(ComponentPlacement.RELATED).addComponent(splitPane, GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE).addGap(8).addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addComponent(label).addComponent(progressBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))));
-
-		JButton btnDownload = new JButton("");
-		btnDownload.setToolTipText("Download selected");
-		toolBar_1.add(btnDownload);
-		btnDownload.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				download();
-			}
-		});
-		btnDownload.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/left.png")));
-		txtDir = new JTextField();
-		txtDir.getDocument().addDocumentListener(new DocumentListener() {
-			public void changedUpdate(DocumentEvent e) {
-				txtChanged();
-			}
-
-			public void removeUpdate(DocumentEvent e) {
-				txtChanged();
-			}
-
-			public void insertUpdate(DocumentEvent e) {
-				txtChanged();
-			}
-		});
-
-		driveComboBox = new JComboBox<String>();
-		driveComboBox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				sl.addToSendQueue(new Packet15ListFiles(driveComboBox.getSelectedItem().toString()));
-			}
-		});
-		DefaultComboBoxModel<String> comboModel = (DefaultComboBoxModel<String>) driveComboBox.getModel();
-
-		for (Drive drive : slave.getDrives()) {
-			comboModel.addElement(drive.getName());
-		}
-		toolBar_1.add(driveComboBox);
-
-		JLabel label_1 = new JLabel("  ");
-		toolBar_1.add(label_1);
-		toolBar_1.add(txtDir);
-		txtDir.setEditable(false);
-		txtDir.setColumns(10);
-
-		JButton btnBack = new JButton("");
-		btnBack.setToolTipText("Back");
-		toolBar_1.add(btnBack);
-		btnBack.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String sep = sl.getFileSeparator();
-				if (!txtDir.getText().contains(sep)) {
-					txtDir.setText("");
-					while (model.getRowCount() > 0) {
-						model.removeRow(0);
-					}
-					sl.addToSendQueue(new Packet15ListFiles(""));
-				} else {
-					txtDir.setText(txtDir.getText().substring(0, txtDir.getText().lastIndexOf(sep)));
-					while (model.getRowCount() > 0) {
-						model.removeRow(0);
-					}
-					sl.addToSendQueue(new Packet15ListFiles(txtDir.getText()));
-				}
-			}
-		});
-		btnBack.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/left.png")));
-
-		JButton btnRefresh = new JButton("");
-		toolBar_1.add(btnRefresh);
-		btnRefresh.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				while (model.getRowCount() > 0) {
-					model.removeRow(0);
-				}
-				sl.addToSendQueue(new Packet15ListFiles(txtDir.getText()));
-			}
-		});
-		btnRefresh.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/refresh.png")));
-		btnRefresh.setToolTipText("Reload");
-
-		btnDelete = new JButton("");
-		btnDelete.setToolTipText("Delete");
-		btnDelete.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				String[] files = Utils.getFiles(table.getSelectedRows(), model);
-				if (files != null) {
-					for (String file : files) {
-						if (Utils.yesNo("Confirm", "Confirm deleting " + file)) {
-							sl.addToSendQueue(new Packet16DeleteFile(file));
-						}
-					}
-				}
-			}
-		});
-		btnDelete.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/delete.png")));
-		toolBar_1.add(btnDelete);
-
-		btnNewFolder = new JButton("");
-		btnNewFolder.setToolTipText("New Folder");
-		btnNewFolder.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String foldername = JOptionPane.showInputDialog(null, "Input name of folder to create", "New Folder", JOptionPane.QUESTION_MESSAGE);
-				if (foldername == null) {
-					return;
-				}
-				foldername = foldername.trim();
-				sl.addToSendQueue(new Packet43CreateDirectory(txtDir.getText(), foldername));
-			}
-		});
-		btnNewFolder.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/new_folder.png")));
-		toolBar_1.add(btnNewFolder);
-
-		JButton btnGo = new JButton("");
-		btnGo.setToolTipText("Go");
-		toolBar_1.add(btnGo);
-		btnGo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String size = model.getValueAt(table.getSelectedRow(), 1).toString();
-				String val = model.getValueAt(table.getSelectedRow(), 0).toString();
-				if (size.length() == 0) {
-					txtDir.setText(val);
-					while (model.getRowCount() > 0) {
-						model.removeRow(0);
-					}
-					sl.addToSendQueue(new Packet15ListFiles(txtDir.getText()));
-				}
-			}
-		});
-		btnGo.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/folder_go.png")));
+		toolBarNorth = new JToolBar();
+		toolBarNorth.setFloatable(false);
 
 		btnBackme = new JButton("");
-		toolBar.add(btnBackme);
+		toolBarNorth.add(btnBackme);
 		btnBackme.setToolTipText("Back");
 		btnBackme.addActionListener(new ActionListener() {
 			@Override
@@ -331,7 +193,7 @@ public class FrameRemoteFiles extends BaseFrame {
 		btnBackme.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/left.png")));
 
 		btnRefreshme = new JButton("");
-		toolBar.add(btnRefreshme);
+		toolBarNorth.add(btnRefreshme);
 		btnRefreshme.setToolTipText("Reload");
 		btnRefreshme.addActionListener(new ActionListener() {
 			@Override
@@ -367,7 +229,7 @@ public class FrameRemoteFiles extends BaseFrame {
 			}
 		});
 		btnDeleteme.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/delete.png")));
-		toolBar.add(btnDeleteme);
+		toolBarNorth.add(btnDeleteme);
 
 		btnNewFolderme = new JButton("");
 		btnNewFolderme.setToolTipText("New Folder");
@@ -382,10 +244,10 @@ public class FrameRemoteFiles extends BaseFrame {
 			}
 		});
 		btnNewFolderme.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/new_folder.png")));
-		toolBar.add(btnNewFolderme);
+		toolBarNorth.add(btnNewFolderme);
 
 		btnGome = new JButton("");
-		toolBar.add(btnGome);
+		toolBarNorth.add(btnGome);
 		btnGome.setToolTipText("Go");
 		btnGome.addActionListener(new ActionListener() {
 			@Override
@@ -404,12 +266,12 @@ public class FrameRemoteFiles extends BaseFrame {
 		btnGome.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/folder_go.png")));
 
 		txtDirme = new JTextField();
-		toolBar.add(txtDirme);
+		toolBarNorth.add(txtDirme);
 		txtDirme.setEditable(false);
 		txtDirme.setColumns(10);
 
 		btnUpload = new JButton("");
-		toolBar.add(btnUpload);
+		toolBarNorth.add(btnUpload);
 		btnUpload.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -418,6 +280,137 @@ public class FrameRemoteFiles extends BaseFrame {
 		});
 		btnUpload.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/right.png")));
 		btnUpload.setToolTipText("Upload selected file");
+
+		toolBarNorth.addSeparator(new Dimension(30, 20));
+
+		JButton btnDownload = new JButton("");
+		btnDownload.setToolTipText("Download selected");
+		toolBarNorth.add(btnDownload);
+		btnDownload.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				download();
+			}
+		});
+		btnDownload.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/left.png")));
+		txtDir = new JTextField();
+		txtDir.getDocument().addDocumentListener(new DocumentListener() {
+			public void changedUpdate(DocumentEvent e) {
+				txtChanged();
+			}
+
+			public void removeUpdate(DocumentEvent e) {
+				txtChanged();
+			}
+
+			public void insertUpdate(DocumentEvent e) {
+				txtChanged();
+			}
+		});
+
+		driveComboBox = new JComboBox<String>();
+		driveComboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				sl.addToSendQueue(new Packet15ListFiles(driveComboBox.getSelectedItem().toString()));
+			}
+		});
+		DefaultComboBoxModel<String> comboModel = (DefaultComboBoxModel<String>) driveComboBox.getModel();
+
+		for (Drive drive : slave.getDrives()) {
+			comboModel.addElement(drive.getName());
+		}
+		toolBarNorth.add(driveComboBox);
+
+		JLabel label_1 = new JLabel("  ");
+		toolBarNorth.add(label_1);
+		toolBarNorth.add(txtDir);
+		txtDir.setEditable(false);
+		txtDir.setColumns(10);
+
+		JButton btnBack = new JButton("");
+		btnBack.setToolTipText("Back");
+		toolBarNorth.add(btnBack);
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String sep = sl.getFileSeparator();
+				if (!txtDir.getText().contains(sep)) {
+					txtDir.setText("");
+					while (model.getRowCount() > 0) {
+						model.removeRow(0);
+					}
+					sl.addToSendQueue(new Packet15ListFiles(""));
+				} else {
+					txtDir.setText(txtDir.getText().substring(0, txtDir.getText().lastIndexOf(sep)));
+					while (model.getRowCount() > 0) {
+						model.removeRow(0);
+					}
+					sl.addToSendQueue(new Packet15ListFiles(txtDir.getText()));
+				}
+			}
+		});
+		btnBack.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/left.png")));
+
+		JButton btnRefresh = new JButton("");
+		toolBarNorth.add(btnRefresh);
+		btnRefresh.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				while (model.getRowCount() > 0) {
+					model.removeRow(0);
+				}
+				sl.addToSendQueue(new Packet15ListFiles(txtDir.getText()));
+			}
+		});
+		btnRefresh.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/refresh.png")));
+		btnRefresh.setToolTipText("Reload");
+
+		btnDelete = new JButton("");
+		btnDelete.setToolTipText("Delete");
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String[] files = Utils.getFiles(table.getSelectedRows(), model);
+				if (files != null) {
+					for (String file : files) {
+						if (Utils.yesNo("Confirm", "Confirm deleting " + file)) {
+							sl.addToSendQueue(new Packet16DeleteFile(file));
+						}
+					}
+				}
+			}
+		});
+		btnDelete.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/delete.png")));
+		toolBarNorth.add(btnDelete);
+
+		btnNewFolder = new JButton("");
+		btnNewFolder.setToolTipText("New Folder");
+		btnNewFolder.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String foldername = JOptionPane.showInputDialog(null, "Input name of folder to create", "New Folder", JOptionPane.QUESTION_MESSAGE);
+				if (foldername == null) {
+					return;
+				}
+				foldername = foldername.trim();
+				sl.addToSendQueue(new Packet43CreateDirectory(txtDir.getText(), foldername));
+			}
+		});
+		btnNewFolder.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/new_folder.png")));
+		toolBarNorth.add(btnNewFolder);
+
+		JButton btnGo = new JButton("");
+		btnGo.setToolTipText("Go");
+		toolBarNorth.add(btnGo);
+		btnGo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String size = model.getValueAt(table.getSelectedRow(), 1).toString();
+				String val = model.getValueAt(table.getSelectedRow(), 0).toString();
+				if (size.length() == 0) {
+					txtDir.setText(val);
+					while (model.getRowCount() > 0) {
+						model.removeRow(0);
+					}
+					sl.addToSendQueue(new Packet15ListFiles(txtDir.getText()));
+				}
+			}
+		});
+		btnGo.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/folder_go.png")));
 
 		JScrollPane scrollPane = new JScrollPane();
 		splitPane.setRightComponent(scrollPane);
@@ -797,8 +790,21 @@ public class FrameRemoteFiles extends BaseFrame {
 		tableme.getColumnModel().getColumn(0).setPreferredWidth(250);
 		tableme.getColumnModel().getColumn(1).setPreferredWidth(150);
 		tableme.getColumnModel().getColumn(2).setPreferredWidth(180);
-
-		contentPane.setLayout(gl_contentPane);
+		contentPane.setLayout(new BorderLayout(0, 0));
+		contentPane.add(toolBarNorth, BorderLayout.NORTH);
+		
+		toolBarSouth = new JToolBar();
+		toolBarSouth.setFloatable(false);
+		contentPane.add(toolBarSouth, BorderLayout.SOUTH);
+				
+						label = new JLabel("...");
+						toolBarSouth.add(label);
+						label.setVisible(false);
+		
+				progressBar = new JProgressBar();
+				toolBarSouth.add(progressBar);
+				progressBar.setVisible(false);
+		contentPane.add(splitPane);
 
 		File[] f = File.listRoots();
 		for (File fi : f) {
