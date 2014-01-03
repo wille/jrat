@@ -46,7 +46,9 @@ public class AdvancedBuildListener extends BuildListener {
 
 	@Override
 	public void reportProgress(int val, String msg, BuildStatus status) {
-		panel.setValue(val);
+		if (val != -1) {
+			panel.setValue(val);
+		}
 		panel.setStatus(msg, status);
 		panel.repaint();
 		panel.log(msg, status);
