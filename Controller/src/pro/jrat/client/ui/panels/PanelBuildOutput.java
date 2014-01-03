@@ -60,6 +60,10 @@ public class PanelBuildOutput extends JPanel {
 			return -1;
 		}
 	}
+	
+	public boolean obfuscate() {
+		return chckbxObfuscate.isSelected();
+	}
 
 	public PanelBuildOutput() {
 

