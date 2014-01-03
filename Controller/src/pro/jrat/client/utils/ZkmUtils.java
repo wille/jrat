@@ -6,7 +6,7 @@ import java.util.jar.JarFile;
 import com.redpois0n.zkmlib.JarUtils;
 import com.redpois0n.zkmlib.Obfuscator;
 
-public class ZkmLibUtils {
+public class ZkmUtils {
 	
 	public static void obfuscate(File input, File output) throws Exception {
 		Obfuscator obfuscator = new Obfuscator(input, output, JarUtils.getMainClass(new JarFile(input)));

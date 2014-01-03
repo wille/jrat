@@ -26,7 +26,7 @@ import pro.jrat.client.extensions.StubPlugin;
 import pro.jrat.client.io.Files;
 import pro.jrat.client.listeners.BuildListener;
 import pro.jrat.client.ui.frames.FrameSummary;
-import pro.jrat.client.utils.ZkmLibUtils;
+import pro.jrat.client.utils.ZkmUtils;
 import pro.jrat.common.codec.Base64;
 import pro.jrat.common.codec.Hex;
 import pro.jrat.common.crypto.Crypto;
@@ -223,9 +223,9 @@ public class Build {
 			
 			if (obfuscate) {
 				if (dropper) {
-					ZkmLibUtils.obfuscate(output, tempStubCleanJar);
+					ZkmUtils.obfuscate(output, tempStubCleanJar);
 				} else {
-					ZkmLibUtils.obfuscate(output, file);
+					ZkmUtils.obfuscate(output, file);
 				}
 			}
 
@@ -236,7 +236,7 @@ public class Build {
 
 				if (obfuscate) {
 					File temp = File.createTempFile("jrat-build-temp-obfuscated-installer", ".jar");
-					ZkmLibUtils.obfuscate(Files.getInstaller(), temp);
+					ZkmUtils.obfuscate(Files.getInstaller(), temp);
 					inputStub = new ZipFile(temp);
 				} else {
 					inputStub = new ZipFile(Files.getInstaller());
