@@ -33,6 +33,7 @@ public class PanelBuildOutput extends JPanel {
 	private JRadioButton rdbtnexenetExecutable;
 	private JButton btnAssemblyInfo;
 	private JCheckBox chckbxObfuscate;
+	private JButton btnObfuscationInfo;
 
 	public boolean useShellcode() {
 		return rdbtnShellcode.isSelected();
@@ -134,6 +135,8 @@ public class PanelBuildOutput extends JPanel {
 			}
 		});
 		
+		btnObfuscationInfo = new JButton("Obfuscation");
+		
 		chckbxObfuscate = new JCheckBox("Obfuscate");
 		
 		File zkmDir = new File("files/zkm/");
@@ -141,9 +144,11 @@ public class PanelBuildOutput extends JPanel {
 		if (!zkmDir.exists()) {
 			chckbxObfuscate.setEnabled(false);
 			chckbxObfuscate.setText("No ZKM installation found in /files/zkm/");
+			btnObfuscationInfo.setEnabled(false);
 		} else {
 			chckbxObfuscate.setSelected(true);
 		}
+		
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
@@ -156,9 +161,6 @@ public class PanelBuildOutput extends JPanel {
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(58)
 							.addComponent(rdbtnCcArray))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(58)
-							.addComponent(rdbtnPythonArray))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(58)
 							.addComponent(rdbtnJavaArray))
@@ -174,21 +176,28 @@ public class PanelBuildOutput extends JPanel {
 								.addComponent(rdbtnexenetExecutable)
 								.addComponent(rdbtnjarjavaArchive))
 							.addGap(4)
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addComponent(btnAssemblyInfo)
+								.addComponent(btnObfuscationInfo, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(btnAssemblyInfo)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(button))
-								.addComponent(chckbxObfuscate))))
-					.addGap(76))
+								.addComponent(chckbxObfuscate)
+								.addComponent(button))))
+					.addGap(90))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(58)
+					.addComponent(rdbtnPythonArray)
+					.addContainerGap(303, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(58)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(rdbtnjarjavaArchive)
-						.addComponent(chckbxObfuscate))
+					.addGap(54)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+							.addComponent(rdbtnjarjavaArchive)
+							.addComponent(chckbxObfuscate))
+						.addComponent(btnObfuscationInfo))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(rdbtnexenetExecutable)
