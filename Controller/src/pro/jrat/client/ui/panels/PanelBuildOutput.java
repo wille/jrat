@@ -145,8 +145,6 @@ public class PanelBuildOutput extends JPanel {
 			chckbxObfuscate.setEnabled(false);
 			chckbxObfuscate.setText("No ZKM installation found in /files/zkm/");
 			btnObfuscationInfo.setEnabled(false);
-		} else {
-			chckbxObfuscate.setSelected(true);
 		}
 		
 		
