@@ -136,11 +136,11 @@ public class PanelBuildOutput extends JPanel {
 		
 		chckbxObfuscate = new JCheckBox("Obfuscate");
 		
-		File zkmDir = new File("zkm/");
+		File zkmDir = new File("files/zkm/");
 		
 		if (!zkmDir.exists()) {
 			chckbxObfuscate.setEnabled(false);
-			chckbxObfuscate.setText("No ZKM installation found in /zkm/");
+			chckbxObfuscate.setText("No ZKM installation found in /files/zkm/");
 		} else {
 			chckbxObfuscate.setSelected(true);
 		}
