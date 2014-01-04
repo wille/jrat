@@ -20,7 +20,7 @@ import javax.swing.JCheckBox;
 @SuppressWarnings("serial")
 public class PanelBuildOutput extends JPanel {
 
-	public FrameExecutableInfo frame = new FrameExecutableInfo();
+	public FrameExecutableInfo frameExecutableInfo = new FrameExecutableInfo();
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
 	private JRadioButton rdbtnShellcode;
@@ -121,7 +121,7 @@ public class PanelBuildOutput extends JPanel {
 		btnAssemblyInfo = new JButton("Assembly Info");
 		btnAssemblyInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				frame.setVisible(true);
+				frameExecutableInfo.setVisible(true);
 			}
 		});
 
