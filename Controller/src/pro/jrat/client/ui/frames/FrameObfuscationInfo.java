@@ -26,11 +26,23 @@ import com.redpois0n.zkmlib.types.ObfuscateFlow;
 public class FrameObfuscationInfo extends BaseFrame {
 
 	private JPanel contentPane;
-	private JComboBox<ObfuscateFlow> cbObfuscate;
-	private JComboBox<ExceptionObfuscation> cbExceptions;
-	private JComboBox<EncryptStringLiterals> cbStrings;
+	private JComboBox<String> cbObfuscate;
+	private JComboBox<String> cbExceptions;
+	private JComboBox<String> cbStrings;
 	private JTextField txtPackageName;
 	private JCheckBox chckbxCollapsePackages;
+	
+	public String getObfuscateFlow() {
+		return cbObfuscate.getSelectedItem().toString();
+	}
+	
+	public String getExceptionObfuscation() {
+		return cbExceptions.getSelectedItem().toString();
+	}
+	
+	public String getStringLiterals() {
+		return cbStrings.getSelectedItem().toString();
+	}
 
 	public FrameObfuscationInfo() {
 		setTitle("Obfuscation Info");
@@ -45,13 +57,24 @@ public class FrameObfuscationInfo extends BaseFrame {
 		JLabel lblObfuscateFlow = new JLabel("Obfuscate Flow:");
 		lblObfuscateFlow.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
-		cbObfuscate = new JComboBox<ObfuscateFlow>(ObfuscateFlow.values());
+		cbObfuscate = new JComboBox<String>();
 		
-		cbExceptions = new JComboBox<ExceptionObfuscation>(ExceptionObfuscation.values());
+		for (ObfuscateFlow z : ObfuscateFlow.values()) {
+			cbObfuscate.addItem(z.toString());
+		}
 		
-		cbStrings = new JComboBox<EncryptStringLiterals>(EncryptStringLiterals.values());
+		cbExceptions = new JComboBox<String>();
 		
+		for (ExceptionObfuscation z : ExceptionObfuscation.values()) {
+			cbExceptions.addItem(z.toString());
+		}
 		
+		cbStrings = new JComboBox<String>();
+		
+		for (EncryptStringLiterals z : EncryptStringLiterals.values()) {
+			cbStrings.addItem(z.toString());
+		}
+				
 		JLabel lblExceptionObf = new JLabel("Exception Obf:");
 		lblExceptionObf.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
