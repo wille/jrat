@@ -7,9 +7,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -48,7 +48,6 @@ public class FrameObfuscationInfo extends BaseFrame {
 		setTitle("Obfuscation Info");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameObfuscationInfo.class.getResource("/icons/block.png")));
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 300, 350);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -92,29 +91,47 @@ public class FrameObfuscationInfo extends BaseFrame {
 		
 		txtPackageName = new JTextField();
 		txtPackageName.setColumns(10);
+		
+		JLabel lblName = new JLabel("Name");
+		
+		JButton btnOk = new JButton("OK");
+		btnOk.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				setVisible(false);
+			}
+		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(chckbxCollapsePackages)
-							.addContainerGap())
 						.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 							.addGroup(gl_contentPane.createSequentialGroup()
-								.addComponent(lblEncryptStrings, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
+								.addComponent(chckbxCollapsePackages)
 								.addContainerGap())
-							.addGroup(gl_contentPane.createSequentialGroup()
-								.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-									.addComponent(lblExceptionObf, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
-									.addComponent(lblObfuscateFlow))
-								.addGap(14)
-								.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-									.addComponent(cbObfuscate, Alignment.TRAILING, 0, 172, Short.MAX_VALUE)
-									.addComponent(cbStrings, Alignment.TRAILING, 0, 172, Short.MAX_VALUE)
-									.addComponent(cbExceptions, 0, 172, Short.MAX_VALUE)
-									.addComponent(txtPackageName, GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE))))))
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(lblEncryptStrings, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
+									.addContainerGap())
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+										.addGroup(gl_contentPane.createSequentialGroup()
+											.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+												.addComponent(lblExceptionObf, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
+												.addComponent(lblObfuscateFlow))
+											.addGap(14))
+										.addGroup(gl_contentPane.createSequentialGroup()
+											.addComponent(lblName)
+											.addPreferredGap(ComponentPlacement.RELATED)))
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+										.addComponent(cbObfuscate, Alignment.TRAILING, 0, 172, Short.MAX_VALUE)
+										.addComponent(cbStrings, Alignment.TRAILING, 0, 172, Short.MAX_VALUE)
+										.addComponent(cbExceptions, 0, 172, Short.MAX_VALUE)
+										.addComponent(txtPackageName, GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)))))
+						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+							.addComponent(btnOk, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
+							.addGap(10))))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -134,8 +151,12 @@ public class FrameObfuscationInfo extends BaseFrame {
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(chckbxCollapsePackages)
 					.addGap(7)
-					.addComponent(txtPackageName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(161, Short.MAX_VALUE))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(txtPackageName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblName))
+					.addPreferredGap(ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
+					.addComponent(btnOk)
+					.addContainerGap())
 		);
 		contentPane.setLayout(gl_contentPane);
 		
