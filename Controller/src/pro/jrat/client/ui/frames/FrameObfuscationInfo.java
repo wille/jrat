@@ -22,6 +22,7 @@ import com.redpois0n.zkmlib.Configuration;
 import com.redpois0n.zkmlib.types.EncryptStringLiterals;
 import com.redpois0n.zkmlib.types.ExceptionObfuscation;
 import com.redpois0n.zkmlib.types.ObfuscateFlow;
+import javax.swing.JFrame;
 
 @SuppressWarnings("serial")
 public class FrameObfuscationInfo extends BaseFrame {
@@ -46,6 +47,7 @@ public class FrameObfuscationInfo extends BaseFrame {
 	}
 
 	public FrameObfuscationInfo() {
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Obfuscation Info");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameObfuscationInfo.class.getResource("/icons/block.png")));
 		setResizable(false);
@@ -99,6 +101,7 @@ public class FrameObfuscationInfo extends BaseFrame {
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setVisible(false);
+				dispose();
 			}
 		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);

@@ -232,6 +232,8 @@ public class Build {
 					zkm.setOutput(tempStubCleanJar);
 					ZkmUtils.obfuscateAtBuild(zkm, listener);
 				} else {
+					zkm.setInput(output);
+					zkm.setOutput(file);
 					ZkmUtils.obfuscateAtBuild(zkm, listener);
 				}
 			}
