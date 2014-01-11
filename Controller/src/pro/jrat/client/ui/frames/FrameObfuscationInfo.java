@@ -67,6 +67,8 @@ public class FrameObfuscationInfo extends BaseFrame {
 			}
 		}
 		
+		cbObfuscate.setSelectedIndex(2);
+		
 		cbExceptions = new JComboBox<String>();
 		
 		for (ExceptionObfuscation z : ExceptionObfuscation.values()) {
@@ -75,6 +77,8 @@ public class FrameObfuscationInfo extends BaseFrame {
 			}
 		}
 		
+		cbExceptions.setSelectedIndex(1);
+		
 		cbStrings = new JComboBox<String>();
 		
 		for (EncryptStringLiterals z : EncryptStringLiterals.values()) {
@@ -82,6 +86,8 @@ public class FrameObfuscationInfo extends BaseFrame {
 				cbStrings.addItem(z.toString());
 			}
 		}
+		
+		cbStrings.setSelectedIndex(2);
 				
 		JLabel lblExceptionObf = new JLabel("Exception Obf:");
 		lblExceptionObf.setFont(new Font("Tahoma", Font.BOLD, 11));
