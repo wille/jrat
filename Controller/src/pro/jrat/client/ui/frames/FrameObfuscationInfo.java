@@ -62,19 +62,25 @@ public class FrameObfuscationInfo extends BaseFrame {
 		cbObfuscate = new JComboBox<String>();
 		
 		for (ObfuscateFlow z : ObfuscateFlow.values()) {
-			cbObfuscate.addItem(z.toString());
+			if (!z.toString().equalsIgnoreCase("none")) {
+				cbObfuscate.addItem(z.toString());
+			}
 		}
 		
 		cbExceptions = new JComboBox<String>();
 		
 		for (ExceptionObfuscation z : ExceptionObfuscation.values()) {
-			cbExceptions.addItem(z.toString());
+			if (!z.toString().equalsIgnoreCase("none")) {
+				cbExceptions.addItem(z.toString());
+			}
 		}
 		
 		cbStrings = new JComboBox<String>();
 		
 		for (EncryptStringLiterals z : EncryptStringLiterals.values()) {
-			cbStrings.addItem(z.toString());
+			if (!z.toString().equalsIgnoreCase("none")) {
+				cbStrings.addItem(z.toString());
+			}
 		}
 				
 		JLabel lblExceptionObf = new JLabel("Exception Obf:");
