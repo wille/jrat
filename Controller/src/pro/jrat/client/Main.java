@@ -11,7 +11,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
-import pro.jrat.api.Logger;
 import pro.jrat.api.commands.Commands;
 import pro.jrat.api.events.OnDisableEvent;
 import pro.jrat.client.commands.DefaultCommands;
@@ -28,6 +27,7 @@ import pro.jrat.client.ui.frames.Frame;
 import pro.jrat.client.ui.frames.FrameAd;
 import pro.jrat.client.ui.frames.FrameEULA;
 import pro.jrat.client.utils.TrayIconUtils;
+import pro.jrat.common.Logger;
 import pro.jrat.common.OperatingSystem;
 import pro.jrat.common.Version;
 

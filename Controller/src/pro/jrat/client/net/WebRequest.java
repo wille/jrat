@@ -7,11 +7,11 @@ import java.net.Proxy;
 import java.net.URL;
 import java.net.URLConnection;
 
-import pro.jrat.api.Logger;
 import pro.jrat.client.Constants;
 import pro.jrat.client.exceptions.RequestNotAllowedException;
 import pro.jrat.client.settings.Settings;
 import pro.jrat.client.utils.Utils;
+import pro.jrat.common.Logger;
 
 public class WebRequest {
 

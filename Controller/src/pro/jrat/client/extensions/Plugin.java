@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.jar.JarFile;
 
-import pro.jrat.api.Logger;
 import pro.jrat.api.PluginClassLoader;
 import pro.jrat.api.RATControlMenuEntry;
 import pro.jrat.api.RATMenuItem;
@@ -22,6 +21,7 @@ import pro.jrat.api.events.OnPacketEvent;
 import pro.jrat.api.events.OnSendPacketEvent;
 import pro.jrat.api.utils.JarUtils;
 import pro.jrat.client.Main;
+import pro.jrat.common.Logger;
 import pro.jrat.common.Version;
 
 @SuppressWarnings({ "rawtypes", "unchecked", "deprecation" })

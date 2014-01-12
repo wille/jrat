@@ -5,10 +5,10 @@ import java.io.FileInputStream;
 import java.net.HttpURLConnection;
 import java.util.Random;
 
-import pro.jrat.api.Logger;
 import pro.jrat.client.exceptions.InvalidKeyException;
 import pro.jrat.client.exceptions.MissingKeyException;
 import pro.jrat.client.net.WebRequest;
+import pro.jrat.common.Logger;
 import pro.jrat.common.codec.Hex;
 import pro.jrat.common.hash.Sha256;
 

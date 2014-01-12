@@ -10,8 +10,8 @@ import java.util.List;
 import javax.swing.Icon;
 import javax.swing.table.DefaultTableModel;
 
-import pro.jrat.api.Logger;
 import pro.jrat.client.utils.IconUtils;
+import pro.jrat.common.Logger;
 
 public class FileSystem {
 

