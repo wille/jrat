@@ -89,16 +89,17 @@ public class Build {
 			Enumeration<? extends ZipEntry> entries = inputStub.entries();
 			while (entries.hasMoreElements()) {
 				entry = entries.nextElement();
-				listener.reportProgress(25, "Writing " + entry.getName(), BuildStatus.INFO);
+				
+				InputStream inputStream = inputStub.getInputStream(entry);
+				
+				listener.reportProgress(25, "Writing " + entry.getName() + " (" + inputStream.available() + " bytes)", BuildStatus.INFO);
 				outputStub.putNextEntry(entry);
 				if (!entry.isDirectory()) {
-					copy(inputStub.getInputStream(entry), outputStub);
+					copy(inputStream, outputStub);
 				}
 				outputStub.closeEntry();
 				listener.reportProgress(50, "Wrote " + entry.getName(), BuildStatus.CHECK);
 			}
-
-			listener.reportProgress(30, "Writing config", BuildStatus.INFO);
 
 			String addressString = "";
 
@@ -134,7 +135,16 @@ public class Build {
 					config.put("timsgfail", traymsgfail);
 					config.put("tititle", traytitle);
 				}
+				
+				int configSize = 0;
+				
+				for (String str : config.keySet()) {
+					byte[] enc = Crypto.encrypt((str + "=" + config.get(str) + "SPLIT").getBytes("UTF-8"), key.getKey());
+					configSize += enc.length;
+				}
 
+				listener.reportProgress(30, "Writing config (" + configSize + " bytes)" , BuildStatus.INFO);
+				
 				for (String str : config.keySet()) {
 					byte[] enc = Crypto.encrypt((str + "=" + config.get(str) + "SPLIT").getBytes("UTF-8"), key.getKey());
 					outputStub.write(enc);
@@ -181,7 +191,7 @@ public class Build {
 
 			if (pluginlist != null) {
 				plugins = new String[pluginlist.plugins.size()];
-				listener.reportProgress(50, "Writing plugins...", BuildStatus.INFO);
+				listener.reportProgress(50, "Writing " + pluginlist.plugins.size() + " plugins...", BuildStatus.INFO);
 
 				for (int i = 0; i < pluginlist.plugins.size(); i++) {
 					StubPlugin p = pluginlist.plugins.get(i);
@@ -200,9 +210,10 @@ public class Build {
 						entry = new ZipEntry(entry.getName());
 
 						try {
-							listener.reportProgress(50, "Writing plugin resource " + entry.getName(), BuildStatus.INFO);
+							InputStream pluginInputStream = plugin.getInputStream(entry);
+							listener.reportProgress(50, "Writing plugin resource " + entry.getName() + " (" + pluginInputStream.available() + " bytes)", BuildStatus.INFO);
 							outputStub.putNextEntry(entry);
-							copy(plugin.getInputStream(entry), outputStub);
+							copy(pluginInputStream, outputStub);
 							outputStub.closeEntry();
 							listener.reportProgress(50, "Wrote plugin resource " + entry.getName(), BuildStatus.CHECK);
 						} catch (Exception ex) {
@@ -239,7 +250,7 @@ public class Build {
 			}
 
 			if (dropper) {
-				listener.reportProgress(50, "Writing stub into dropper", BuildStatus.INFO);
+				listener.reportProgress(50, "Writing stub into dropper (" + tempStubCleanJar.length() + " bytes)", BuildStatus.INFO);
 				byte[] installerKey = key.getKey();
 				FileCrypter.encrypt(tempStubCleanJar, tempCryptedNotRunnableJar, installerKey);
 
@@ -311,7 +322,7 @@ public class Build {
 
 					fis.close();
 
-					listener.reportProgress(90, "Writing file to bind", BuildStatus.INFO);
+					listener.reportProgress(90, "Writing file to bind... (" + bindFile.length() + " bytes)", BuildStatus.INFO);
 
 					entry = new ZipEntry("bind.dat");
 					outputStub.putNextEntry(entry);
