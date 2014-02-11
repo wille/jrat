@@ -173,7 +173,9 @@ public class FrameSettings extends BaseFrame {
 		root.add(new DefaultMutableTreeNode("Flags"));
 		root.add(new DefaultMutableTreeNode("Stats"));
 		root.add(new DefaultMutableTreeNode("Sound"));
-		root.add(new DefaultMutableTreeNode("Proxy"));
+		/* Hidden
+		 * root.add(new DefaultMutableTreeNode("Proxy"));
+		 */
 		root.add(new DefaultMutableTreeNode("EULA"));
 		root.add(new DefaultMutableTreeNode("Changelog"));
 		root.add(new DefaultMutableTreeNode("About"));
