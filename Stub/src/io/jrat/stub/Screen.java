@@ -61,6 +61,10 @@ public class Screen implements Runnable {
 					screenBounds.y = 0;
 					image = robot.createScreenCapture(screenBounds);
 				}
+				
+				if (scaledSize == 0D) {
+					scaledSize = 0.1D;
+				}
 
 				if (scaledSize != 1.0D) {
 					image = ImageUtils.resize(image, scaledSize);
