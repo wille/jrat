@@ -61,6 +61,7 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -94,10 +95,11 @@ public class FrameControlPanel extends BaseFrame {
 	private JPanel panel;
 	private JTree tree;
 
-	public static HashMap<Slave, FrameControlPanel> instances = new HashMap<Slave, FrameControlPanel>();
+	public static final Map<Slave, FrameControlPanel> instances = new HashMap<Slave, FrameControlPanel>();
+	public static final List<RATControlMenuEntry> entries = new ArrayList<RATControlMenuEntry>();
+
 	public HashMap<String, JPanel> panels = new HashMap<String, JPanel>();
 	public HashMap<String, Performable> actions = new HashMap<String, Performable>();
-	public static final List<RATControlMenuEntry> entries = new ArrayList<RATControlMenuEntry>();
 	private JTabbedPane tabbedPane;
 	private JMenuBar menuBar;
 	private JMenu mnActions;
@@ -131,7 +133,12 @@ public class FrameControlPanel extends BaseFrame {
 			public void windowClosing(WindowEvent arg0) {
 				for (RATControlMenuEntry entry : entries) {
 					try {
-						entry.instances.get(slave.getIP()).onClose();
+						BaseControlPanel panel = entry.instances.get(slave.getIP());
+						
+						if (panel != null) {
+							panel.onClose();
+						}
+						
 						entry.instances.remove(slave.getIP());
 					} catch (Exception e) {
 						e.printStackTrace();
