@@ -16,7 +16,7 @@ import java.net.URLConnection;
 
 public class WebRequest {
 
-	public static String[] domains = new String[] { "http://jrat.pro", "http://jrat-project.org" };
+	public static String[] domains = new String[] { "http://jrat.su" };
 
 	public static URL getUrl(String surl) throws Exception {
 		return getUrl(surl, false);
