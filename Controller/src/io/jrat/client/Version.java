@@ -13,7 +13,7 @@ public class Version {
 
 	public static boolean checkVersion() {
 		try {
-			BufferedReader dis = new BufferedReader(new InputStreamReader(WebRequest.getInputStream(Constants.HOST + "/version.txt")));
+			BufferedReader dis = new BufferedReader(new InputStreamReader(WebRequest.getInputStream(Constants.HOST + "/api/version.txt")));
 			String result = dis.readLine();
 
 			String latest = result;
