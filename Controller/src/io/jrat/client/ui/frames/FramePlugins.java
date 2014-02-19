@@ -1,6 +1,5 @@
 package io.jrat.client.ui.frames;
 
-import io.jrat.api.events.OnDisableEvent;
 import io.jrat.client.extensions.Plugin;
 import io.jrat.client.extensions.PluginLoader;
 import io.jrat.client.ui.renderers.table.PluginsTableRenderer;
@@ -22,6 +21,8 @@ import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+
+import jrat.api.events.OnDisableEvent;
 
 @SuppressWarnings("serial")
 public class FramePlugins extends BaseFrame {

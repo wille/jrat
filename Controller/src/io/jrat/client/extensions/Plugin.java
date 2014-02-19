@@ -1,15 +1,5 @@
 package io.jrat.client.extensions;
 
-import io.jrat.api.PluginClassLoader;
-import io.jrat.api.RATControlMenuEntry;
-import io.jrat.api.RATMenuItem;
-import io.jrat.api.events.OnConnectEvent;
-import io.jrat.api.events.OnDisableEvent;
-import io.jrat.api.events.OnDisconnectEvent;
-import io.jrat.api.events.OnEnableEvent;
-import io.jrat.api.events.OnPacketEvent;
-import io.jrat.api.events.OnSendPacketEvent;
-import io.jrat.api.utils.JarUtils;
 import io.jrat.client.Main;
 import io.jrat.common.Logger;
 import io.jrat.common.Version;
@@ -23,6 +13,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.jar.JarFile;
+
+import jrat.api.PluginClassLoader;
+import jrat.api.RATControlMenuEntry;
+import jrat.api.RATMenuItem;
+import jrat.api.events.OnConnectEvent;
+import jrat.api.events.OnDisableEvent;
+import jrat.api.events.OnDisconnectEvent;
+import jrat.api.events.OnEnableEvent;
+import jrat.api.events.OnPacketEvent;
+import jrat.api.events.OnSendPacketEvent;
+import jrat.api.utils.JarUtils;
 
 @SuppressWarnings({ "rawtypes", "unchecked", "deprecation" })
 public class Plugin {

@@ -1,7 +1,5 @@
 package io.jrat.client;
 
-import io.jrat.api.commands.Commands;
-import io.jrat.api.events.OnDisableEvent;
 import io.jrat.client.commands.DefaultCommands;
 import io.jrat.client.extensions.Plugin;
 import io.jrat.client.extensions.PluginLoader;
@@ -30,6 +28,9 @@ import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+
+import jrat.api.commands.Commands;
+import jrat.api.events.OnDisableEvent;
 
 public class Main {
 

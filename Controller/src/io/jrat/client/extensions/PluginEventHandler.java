@@ -1,11 +1,11 @@
 package io.jrat.client.extensions;
 
-import io.jrat.api.Packet;
-import io.jrat.api.events.OnConnectEvent;
-import io.jrat.api.events.OnDisconnectEvent;
-import io.jrat.api.events.OnPacketEvent;
-import io.jrat.api.events.OnSendPacketEvent;
 import io.jrat.client.Slave;
+import jrat.api.Packet;
+import jrat.api.events.OnConnectEvent;
+import jrat.api.events.OnDisconnectEvent;
+import jrat.api.events.OnPacketEvent;
+import jrat.api.events.OnSendPacketEvent;
 
 public class PluginEventHandler {
 

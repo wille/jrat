@@ -1,6 +1,6 @@
 package io.jrat.client.commands;
 
-import io.jrat.api.commands.Commands;
+import jrat.api.commands.Commands;
 
 public class DefaultCommands {
 
