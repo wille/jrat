@@ -14,7 +14,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import com.redpois0n.graphs.country.Country;
 
 public class Statistics extends AbstractSettings implements Serializable {

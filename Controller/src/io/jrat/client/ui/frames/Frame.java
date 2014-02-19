@@ -1,5 +1,7 @@
 package io.jrat.client.ui.frames;
 
+import io.jrat.api.RATMenuItem;
+import io.jrat.api.RATObject;
 import io.jrat.client.Constants;
 import io.jrat.client.ErrorDialog;
 import io.jrat.client.Help;
@@ -84,9 +86,6 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
 import javax.swing.table.DefaultTableModel;
-
-import pro.jrat.api.RATMenuItem;
-import pro.jrat.api.RATObject;
 
 @SuppressWarnings({ "serial" })
 public class Frame extends BaseFrame {

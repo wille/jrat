@@ -1,9 +1,9 @@
 package io.jrat.client.commands;
 
-import java.io.PrintStream;
+import io.jrat.api.commands.AbstractCommand;
+import io.jrat.api.commands.Commands;
 
-import pro.jrat.api.commands.AbstractCommand;
-import pro.jrat.api.commands.Commands;
+import java.io.PrintStream;
 
 public class CommandHelp extends AbstractCommand {
 

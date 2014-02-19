@@ -16,7 +16,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-
 import com.redpois0n.graphs.country.Country;
 import com.redpois0n.graphs.country.CountryColors;
 import com.redpois0n.graphs.country.CountryGraph;

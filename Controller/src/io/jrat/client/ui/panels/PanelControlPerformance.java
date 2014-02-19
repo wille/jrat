@@ -22,7 +22,6 @@ import javax.swing.JProgressBar;
 import javax.swing.JSlider;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-
 import com.redpois0n.graphs.taskmgr.ITaskmgrColors;
 import com.redpois0n.graphs.taskmgr.TaskmgrColors;
 import com.redpois0n.graphs.taskmgr.TaskmgrGraph;

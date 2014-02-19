@@ -1,5 +1,6 @@
 package io.jrat.client.build;
 
+import io.jrat.api.utils.JarUtils;
 import io.jrat.client.BuildStatus;
 import io.jrat.client.Constants;
 import io.jrat.client.ErrorDialog;
@@ -33,8 +34,6 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
-
-import pro.jrat.api.utils.JarUtils;
 
 import com.redpois0n.zkmlib.Configuration;
 

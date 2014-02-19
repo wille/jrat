@@ -2,8 +2,8 @@ package io.jrat.client.ui.frames;
 
 import io.jrat.client.Constants;
 import io.jrat.client.Contributors;
-import io.jrat.client.Main;
 import io.jrat.client.Contributors.Contributor;
+import io.jrat.client.Main;
 import io.jrat.client.net.WebRequest;
 import io.jrat.client.utils.FlagUtils;
 import io.jrat.client.utils.NetUtils;

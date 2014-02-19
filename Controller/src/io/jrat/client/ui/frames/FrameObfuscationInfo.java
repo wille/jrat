@@ -12,18 +12,17 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
-
 import com.redpois0n.zkmlib.Configuration;
 import com.redpois0n.zkmlib.types.EncryptStringLiterals;
 import com.redpois0n.zkmlib.types.ExceptionObfuscation;
 import com.redpois0n.zkmlib.types.ObfuscateFlow;
-import javax.swing.JFrame;
 
 @SuppressWarnings("serial")
 public class FrameObfuscationInfo extends BaseFrame {
