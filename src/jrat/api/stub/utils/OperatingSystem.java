@@ -1,4 +1,4 @@
-package io.jrat.api.stub.utils;
+package jrat.api.stub.utils;
 
 public enum OperatingSystem {
 
