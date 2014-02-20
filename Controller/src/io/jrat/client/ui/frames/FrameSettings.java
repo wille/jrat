@@ -1,7 +1,6 @@
 package io.jrat.client.ui.frames;
 
 import io.jrat.client.Sound;
-import io.jrat.client.listeners.AboutListener;
 import io.jrat.client.listeners.ChangelogListener;
 import io.jrat.client.listeners.EulaListener;
 import io.jrat.client.listeners.Performable;
@@ -126,7 +125,6 @@ public class FrameSettings extends BaseFrame {
 		actions.clear();
 		actions.put("eula", new EulaListener());
 		actions.put("changelog", new ChangelogListener());
-		actions.put("about", new AboutListener());
 	}
 
 	public void save() {

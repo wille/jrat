@@ -11,7 +11,6 @@ import io.jrat.client.settings.Theme;
 import io.jrat.client.threads.ThreadCheckVersion;
 import io.jrat.client.threads.ThreadPing;
 import io.jrat.client.ui.frames.Frame;
-import io.jrat.client.ui.frames.FrameAd;
 import io.jrat.client.ui.frames.FrameEULA;
 import io.jrat.client.utils.TrayIconUtils;
 import io.jrat.common.Logger;
@@ -112,8 +111,10 @@ public class Main {
 		}
 
 		if (!argsContains(args, "-noad") && trial) {
-			FrameAd frame = new FrameAd();
-			frame.setVisible(true);
+			//FrameAd frame = new FrameAd();
+			//frame.setVisible(true);
+			
+			// TODO Ad
 		}
 
 		Files.getSettings().mkdirs();
