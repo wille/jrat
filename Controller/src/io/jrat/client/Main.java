@@ -55,6 +55,18 @@ public class Main {
 
 			if (validated) {
 				trial = false;
+			} else {
+				new Thread(new Runnable() {
+					@Override
+					public void run() {
+						try {
+							Thread.sleep(1000L * 60L * 5L); //5 minutes
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+						System.exit(0);
+					}
+				}).start();
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
