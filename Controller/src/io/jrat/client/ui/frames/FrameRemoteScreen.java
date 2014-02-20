@@ -64,7 +64,7 @@ public class FrameRemoteScreen extends BaseFrame {
 			lblFps.setText("    FPS: " + fps + "    ");
 		}
 	};
-	private FrameRecordRemoteScreen recordFrame = new FrameRecordRemoteScreen(this);
+	private DialogRecordRemoteScreen recordFrame = new DialogRecordRemoteScreen(this);
 	
 	private JToolBar toolBarTop;
 	private JToolBar toolBarBottom;
@@ -360,7 +360,7 @@ public class FrameRemoteScreen extends BaseFrame {
 	public static void show(Slave sl) {
 		FrameRemoteScreen frame = new FrameRemoteScreen(sl);
 		frame.setVisible(true);
-		FrameMonitors dialog = new FrameMonitors(frame, sl);
+		DialogMonitors dialog = new DialogMonitors(frame, sl);
 		dialog.setVisible(true);
 	}
 

@@ -171,7 +171,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 		JButton btnCustomCommand = new JButton("Custom");
 		btnCustomCommand.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				FrameCustomReg frame = new FrameCustomReg(slave);
+				DialogCustomRegQuery frame = new DialogCustomRegQuery(slave);
 				frame.setVisible(true);
 			}
 		});

@@ -12,17 +12,17 @@ import javax.swing.JProgressBar;
 import javax.swing.border.EmptyBorder;
 
 @SuppressWarnings("serial")
-public class FrameLoader extends BaseDialog {
+public class DialogLoader extends BaseDialog {
 
 	private JPanel contentPane;
 
 	public JProgressBar progressBar;
 
-	public FrameLoader() {
+	public DialogLoader() {
 		super();
 		setUndecorated(true);
 		setResizable(false);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameLoader.class.getResource("/icons/update.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DialogLoader.class.getResource("/icons/update.png")));
 		setTitle("Loading...");
 		setBounds(100, 100, 385, 63);
 		contentPane = new JPanel();

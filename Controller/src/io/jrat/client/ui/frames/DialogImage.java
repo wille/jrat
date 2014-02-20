@@ -8,13 +8,13 @@ import java.awt.Toolkit;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class FrameImage extends BaseDialog {
+public class DialogImage extends BaseDialog {
 
 	private final Image image;
 
-	public FrameImage(Image img) {
+	public DialogImage(Image img) {
 		setModal(true);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameImage.class.getResource("/icons/images-stack.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DialogImage.class.getResource("/icons/images-stack.png")));
 		setTitle("Preview");
 		this.image = img;
 

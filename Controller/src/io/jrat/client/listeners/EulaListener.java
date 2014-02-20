@@ -1,12 +1,12 @@
 package io.jrat.client.listeners;
 
-import io.jrat.client.ui.frames.FrameEULA;
+import io.jrat.client.ui.frames.DialogEula;
 
 public class EulaListener extends Performable {
 
 	@Override
 	public void perform() {
-		FrameEULA frame = new FrameEULA(true);
+		DialogEula frame = new DialogEula(true);
 		frame.setVisible(true);
 	}
 

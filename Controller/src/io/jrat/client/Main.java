@@ -10,8 +10,8 @@ import io.jrat.client.settings.Statistics;
 import io.jrat.client.settings.Theme;
 import io.jrat.client.threads.ThreadCheckVersion;
 import io.jrat.client.threads.ThreadPing;
+import io.jrat.client.ui.frames.DialogEula;
 import io.jrat.client.ui.frames.Frame;
-import io.jrat.client.ui.frames.FrameEULA;
 import io.jrat.client.utils.TrayIconUtils;
 import io.jrat.common.Logger;
 import io.jrat.common.OperatingSystem;
@@ -118,7 +118,7 @@ public class Main {
 
 		boolean showEULA = Settings.getGlobal().getBoolean("showeula");
 		if (!showEULA) {
-			FrameEULA frame = new FrameEULA(false);
+			DialogEula frame = new DialogEula(false);
 			frame.setVisible(true);
 		}
 

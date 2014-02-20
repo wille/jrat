@@ -263,7 +263,7 @@ public class Frame extends BaseFrame {
 		JMenuItem mntmEulamustRead = new JMenuItem("EULA (Must read)");
 		mntmEulamustRead.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				FrameEULA frame = new FrameEULA(true);
+				DialogEula frame = new DialogEula(true);
 				frame.setVisible(true);
 			}
 		});
@@ -1108,7 +1108,7 @@ public class Frame extends BaseFrame {
 
 					result = result.trim().replace(" ", "%20");
 
-					String filetype = FrameFileType.showDialog();
+					String filetype = DialogFileType.showDialog();
 
 					if (filetype == null) {
 						return;

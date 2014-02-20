@@ -1,11 +1,11 @@
 package io.jrat.client;
 
-import io.jrat.client.ui.frames.FrameErrorDialog;
+import io.jrat.client.ui.frames.DialogErrorDialog;
 
 public class ErrorDialog {
 
 	public static void create(Exception ex) {
-		FrameErrorDialog frame = new FrameErrorDialog(ex);
+		DialogErrorDialog frame = new DialogErrorDialog(ex);
 		frame.setVisible(true);
 		frame.setSize(frame.originalSize);
 	}

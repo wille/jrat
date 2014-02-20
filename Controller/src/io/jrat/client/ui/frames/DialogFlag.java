@@ -22,16 +22,16 @@ import javax.swing.border.EmptyBorder;
 
 
 @SuppressWarnings("serial")
-public class FrameFlag extends BaseDialog {
+public class DialogFlag extends BaseDialog {
 
 	private JPanel contentPane;
 	public List<Slave> slaves;
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public FrameFlag(List<Slave> list) {
+	public DialogFlag(List<Slave> list) {
 		super();
 		this.slaves = list;
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameFlag.class.getResource("/icons/flag_green.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DialogFlag.class.getResource("/icons/flag_green.png")));
 		setTitle("Flag");
 		if (slaves.size() > 1) {
 			setTitle("Flag " + slaves.size() + " slaves");
@@ -61,7 +61,7 @@ public class FrameFlag extends BaseDialog {
 		JLabel lblColor = new JLabel("Color:");
 
 		JButton btnFlag = new JButton("Flag");
-		btnFlag.setIcon(new ImageIcon(FrameFlag.class.getResource("/icons/enabled.png")));
+		btnFlag.setIcon(new ImageIcon(DialogFlag.class.getResource("/icons/enabled.png")));
 		btnFlag.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				/*

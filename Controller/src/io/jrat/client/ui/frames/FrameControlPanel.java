@@ -579,7 +579,7 @@ public class FrameControlPanel extends BaseFrame {
 
 		actions.put("sound capture", new Performable() {
 			public void perform() {
-				FrameRemoteSoundCapture f = new FrameRemoteSoundCapture(slave);
+				DialogRemoteSoundCapture f = new DialogRemoteSoundCapture(slave);
 				f.setVisible(true);
 			}
 		});

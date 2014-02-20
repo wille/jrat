@@ -25,7 +25,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 
 @SuppressWarnings("serial")
-public class FrameRecordRemoteScreen extends BaseDialog {
+public class DialogRecordRemoteScreen extends BaseDialog {
 	
 	private boolean isRecording;
 	private FrameRemoteScreen parent;
@@ -33,9 +33,9 @@ public class FrameRecordRemoteScreen extends BaseDialog {
 	private JButton btnRecord;
 	private ThreadRecordButton threadRecordButton;
 
-	public FrameRecordRemoteScreen(FrameRemoteScreen parent) {
+	public DialogRecordRemoteScreen(FrameRemoteScreen parent) {
 		setTitle("Record");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRecordRemoteScreen.class.getResource("/icons/record.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DialogRecordRemoteScreen.class.getResource("/icons/record.png")));
 		setResizable(false);
 		setBounds(100, 100, 452, 115);
 		setModal(true);
@@ -80,7 +80,7 @@ public class FrameRecordRemoteScreen extends BaseDialog {
 				toggle();
 			}
 		});
-		btnRecord.setIcon(new ImageIcon(FrameRecordRemoteScreen.class.getResource("/icons/record_big.png")));
+		btnRecord.setIcon(new ImageIcon(DialogRecordRemoteScreen.class.getResource("/icons/record_big.png")));
 				
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(

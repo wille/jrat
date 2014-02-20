@@ -10,7 +10,7 @@ import io.jrat.client.extensions.PluginList;
 import io.jrat.client.extensions.StubPlugin;
 import io.jrat.client.io.Files;
 import io.jrat.client.listeners.BuildListener;
-import io.jrat.client.ui.frames.FrameSummary;
+import io.jrat.client.ui.frames.DialogSummary;
 import io.jrat.client.utils.ZkmUtils;
 import io.jrat.common.codec.Base64;
 import io.jrat.common.codec.Hex;
@@ -346,7 +346,7 @@ public class Build {
 
 			listener.done("Saved stub. Took " + (end - start) + " ms, size " + (file.length() / 1024L) + " kB");
 
-			FrameSummary frame = new FrameSummary(file, addressString, pass, id, listener.getStatuses());
+			DialogSummary frame = new DialogSummary(file, addressString, pass, id, listener.getStatuses());
 			frame.setVisible(true);
 		} catch (Exception ex) {
 			String message = ex.getMessage();

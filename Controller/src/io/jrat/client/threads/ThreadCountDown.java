@@ -1,16 +1,16 @@
 package io.jrat.client.threads;
 
-import io.jrat.client.ui.frames.FrameEULA;
+import io.jrat.client.ui.frames.DialogEula;
 
 import javax.swing.JButton;
 
 
 public class ThreadCountDown extends Thread {
 
-	public FrameEULA frame;
+	public DialogEula frame;
 	public JButton button;
 
-	public ThreadCountDown(FrameEULA f, JButton b) {
+	public ThreadCountDown(DialogEula f, JButton b) {
 		frame = f;
 		button = b;
 	}

@@ -31,9 +31,9 @@ import javax.swing.event.ChangeListener;
 
 
 @SuppressWarnings("serial")
-public class FrameMonitors extends BaseDialog {
+public class DialogMonitors extends BaseDialog {
 
-	public static final Map<Slave, FrameMonitors> instances = new HashMap<Slave, FrameMonitors>();
+	public static final Map<Slave, DialogMonitors> instances = new HashMap<Slave, DialogMonitors>();
 
 	private JPanel contentPane;
 	private FrameRemoteScreen parent;
@@ -53,7 +53,7 @@ public class FrameMonitors extends BaseDialog {
 		return renderer;
 	}
 
-	public FrameMonitors(FrameRemoteScreen p, Slave sl) {
+	public DialogMonitors(FrameRemoteScreen p, Slave sl) {
 		super();
 		setModal(true);
 		this.parent = p;
@@ -65,7 +65,7 @@ public class FrameMonitors extends BaseDialog {
 			}
 		});
 		instances.put(sl, this);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameMonitors.class.getResource("/icons/screen.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DialogMonitors.class.getResource("/icons/screen.png")));
 		this.slave = sl;
 		setTitle("Monitors");
 		setResizable(false);
@@ -96,7 +96,7 @@ public class FrameMonitors extends BaseDialog {
 				dispose();
 			}
 		});
-		btnOpen.setIcon(new ImageIcon(FrameMonitors.class.getResource("/icons/monitor--arrow.png")));
+		btnOpen.setIcon(new ImageIcon(DialogMonitors.class.getResource("/icons/monitor--arrow.png")));
 
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addActionListener(new ActionListener() {
@@ -108,13 +108,13 @@ public class FrameMonitors extends BaseDialog {
 				instances.remove(slave);
 			}
 		});
-		btnCancel.setIcon(new ImageIcon(FrameMonitors.class.getResource("/icons/monitor_minus.png")));
+		btnCancel.setIcon(new ImageIcon(DialogMonitors.class.getResource("/icons/monitor_minus.png")));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addGroup(gl_contentPane.createSequentialGroup().addContainerGap(60, Short.MAX_VALUE).addComponent(btnCancel).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnOpen).addContainerGap()).addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup().addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE).addComponent(panel_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)).addGap(5)));
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(panel, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(btnOpen).addComponent(btnCancel)).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 
 		JLabel lblQuality = new JLabel("Quality");
-		lblQuality.setIcon(new ImageIcon(FrameMonitors.class.getResource("/icons/monitor_plus.png")));
+		lblQuality.setIcon(new ImageIcon(DialogMonitors.class.getResource("/icons/monitor_plus.png")));
 
 		slQuality = new JSlider();
 		slQuality.setMinorTickSpacing(1);
@@ -153,10 +153,10 @@ public class FrameMonitors extends BaseDialog {
 				reload();
 			}
 		});
-		btnReload.setIcon(new ImageIcon(FrameMonitors.class.getResource("/icons/monitor--arrow.png")));
+		btnReload.setIcon(new ImageIcon(DialogMonitors.class.getResource("/icons/monitor--arrow.png")));
 
 		lblResize = new JLabel("Size 50%");
-		lblResize.setIcon(new ImageIcon(FrameMonitors.class.getResource("/icons/application-resize-full.png")));
+		lblResize.setIcon(new ImageIcon(DialogMonitors.class.getResource("/icons/application-resize-full.png")));
 
 		sdSize = new JSlider();
 		sdSize.setMinorTickSpacing(5);

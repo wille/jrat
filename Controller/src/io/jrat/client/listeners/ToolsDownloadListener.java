@@ -1,6 +1,6 @@
 package io.jrat.client.listeners;
 
-import io.jrat.client.ui.frames.FrameDownload;
+import io.jrat.client.ui.frames.DialogDownload;
 
 import java.io.File;
 
@@ -11,9 +11,9 @@ public class ToolsDownloadListener extends DownloadListener {
 
 	private File file;
 	private String url;
-	private FrameDownload frame;
+	private DialogDownload frame;
 
-	public FrameDownload getFrame() {
+	public DialogDownload getFrame() {
 		return frame;
 	}
 
@@ -28,7 +28,7 @@ public class ToolsDownloadListener extends DownloadListener {
 	public ToolsDownloadListener(File file, String url) {
 		this.url = url;
 		this.file = file;
-		this.frame = new FrameDownload(this);
+		this.frame = new DialogDownload(this);
 		this.frame.setVisible(true);
 	}
 

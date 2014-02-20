@@ -11,7 +11,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 
 @SuppressWarnings("serial")
-public class FrameDownload extends BaseDialog {
+public class DialogDownload extends BaseDialog {
 
 	private JLabel lblKb;
 	private JProgressBar progressBar;
@@ -20,7 +20,7 @@ public class FrameDownload extends BaseDialog {
 		return progressBar;
 	}
 
-	public FrameDownload(ToolsDownloadListener listener) {
+	public DialogDownload(ToolsDownloadListener listener) {
 		super();
 		setTitle("Downloading...");
 		setResizable(false);

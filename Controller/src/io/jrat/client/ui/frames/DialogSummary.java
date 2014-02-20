@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
 
 
 @SuppressWarnings("serial")
-public class FrameSummary extends BaseDialog {
+public class DialogSummary extends BaseDialog {
 
 	private File file;
 	private String hosts;
@@ -37,7 +37,7 @@ public class FrameSummary extends BaseDialog {
 	private JTable table_1;
 	private JTable table_2;
 
-	public FrameSummary(File file, String hosts, String pass, String id, LinkedHashMap<String, BuildStatus> statuses) {
+	public DialogSummary(File file, String hosts, String pass, String id, LinkedHashMap<String, BuildStatus> statuses) {
 		this.file = file;
 		this.hosts = hosts;
 		this.pass = pass;

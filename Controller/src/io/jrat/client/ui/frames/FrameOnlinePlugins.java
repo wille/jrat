@@ -165,7 +165,7 @@ public class FrameOnlinePlugins extends JFrame {
 				OnlinePlugin plugin = getPlugin((String) table.getValueAt(table.getSelectedRow(), 0));
 
 				try {
-					new FrameImage(ImageIO.read(WebRequest.getUrl(Constants.HOST + "/plugins/" + plugin.getName() + "/preview.png"))).setVisible(true);
+					new DialogImage(ImageIO.read(WebRequest.getUrl(Constants.HOST + "/plugins/" + plugin.getName() + "/preview.png"))).setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 					ErrorDialog.create(e);

@@ -11,7 +11,6 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,7 +19,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
 @SuppressWarnings("serial")
-public class FrameFileType extends JDialog {
+public class DialogFileType extends BaseDialog {
 
 	public JTextField txtExtension;
 
@@ -28,10 +27,10 @@ public class FrameFileType extends JDialog {
 	private JComboBox<String> comboBox;
 	private JButton btnOk;
 
-	public FrameFileType() {
+	public DialogFileType() {
 		setModal(true);
 		setTitle("File type");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameFileType.class.getResource("/icons/application-detail.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DialogFileType.class.getResource("/icons/application-detail.png")));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 340, 182);
@@ -95,7 +94,7 @@ public class FrameFileType extends JDialog {
 	}
 
 	public static String showDialog() {
-		FrameFileType frame = new FrameFileType();
+		DialogFileType frame = new DialogFileType();
 		frame.setVisible(true);
 
 		if (frame.txtExtension.getText().length() > 0) {

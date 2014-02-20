@@ -24,13 +24,13 @@ import javax.swing.border.EmptyBorder;
 
 
 @SuppressWarnings("serial")
-public class FrameErrorDialog extends BaseDialog {
+public class DialogErrorDialog extends BaseDialog {
 
 	private JPanel contentPane;
 	public Dimension originalSize;
 	public Dimension extendedSize;
 	private JTextPane txtReason;
-	private int state = FrameErrorDialog.STATE_NORMAL;
+	private int state = DialogErrorDialog.STATE_NORMAL;
 	private JButton btnDetails;
 	private JButton btnCopyToClipboard;
 	public static final int STATE_NORMAL = 0;
@@ -43,10 +43,10 @@ public class FrameErrorDialog extends BaseDialog {
 		return result.toString();
 	}
 
-	public FrameErrorDialog(Exception ex) {
+	public DialogErrorDialog(Exception ex) {
 		super();
 		setResizable(false);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameErrorDialog.class.getResource("/icons/error.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DialogErrorDialog.class.getResource("/icons/error.png")));
 		setType(Type.POPUP);
 		setTitle("Error occured");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -60,17 +60,17 @@ public class FrameErrorDialog extends BaseDialog {
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
 		btnDetails = new JButton("Details >>");
-		btnDetails.setIcon(new ImageIcon(FrameErrorDialog.class.getResource("/icons/expand.png")));
+		btnDetails.setIcon(new ImageIcon(DialogErrorDialog.class.getResource("/icons/expand.png")));
 		btnDetails.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (state == FrameErrorDialog.STATE_NORMAL) {
-					state = FrameErrorDialog.STATE_EXPANDED;
+				if (state == DialogErrorDialog.STATE_NORMAL) {
+					state = DialogErrorDialog.STATE_EXPANDED;
 					setSize(extendedSize);
 					btnDetails.setText("Details <<");
 					btnDetails.setIcon(IconUtils.getIcon("collapse"));
 					btnCopyToClipboard.setVisible(true);
 				} else {
-					state = FrameErrorDialog.STATE_NORMAL;
+					state = DialogErrorDialog.STATE_NORMAL;
 					setSize(originalSize);
 					btnDetails.setText("Details >>");
 					btnDetails.setIcon(IconUtils.getIcon("expand"));
@@ -87,7 +87,7 @@ public class FrameErrorDialog extends BaseDialog {
 				setVisible(false);
 			}
 		});
-		btnOk.setIcon(new ImageIcon(FrameErrorDialog.class.getResource("/icons/enabled.png")));
+		btnOk.setIcon(new ImageIcon(DialogErrorDialog.class.getResource("/icons/enabled.png")));
 		btnOk.setBounds(242, 94, 67, 25);
 
 		PanelImage panel = new PanelImage();
@@ -121,7 +121,7 @@ public class FrameErrorDialog extends BaseDialog {
 			}
 		});
 		btnCopyToClipboard.setVisible(false);
-		btnCopyToClipboard.setIcon(new ImageIcon(FrameErrorDialog.class.getResource("/icons/clipboard_go.png")));
+		btnCopyToClipboard.setIcon(new ImageIcon(DialogErrorDialog.class.getResource("/icons/clipboard_go.png")));
 		btnCopyToClipboard.setBounds(95, 94, 143, 24);
 		contentPane.add(btnCopyToClipboard);
 

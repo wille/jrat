@@ -27,11 +27,11 @@ import javax.swing.border.EmptyBorder;
 
 
 @SuppressWarnings("serial")
-public class FrameEULA extends BaseDialog {
+public class DialogEula extends BaseDialog {
 
 	private JPanel contentPane;
 
-	public FrameEULA(final boolean view) {
+	public DialogEula(final boolean view) {
 		super();
 		setModal(true);
 		setAlwaysOnTop(true);
@@ -46,7 +46,7 @@ public class FrameEULA extends BaseDialog {
 				}
 			}
 		});
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameEULA.class.getResource("/icons/gavel.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DialogEula.class.getResource("/icons/gavel.png")));
 		setTitle(Constants.NAME + " " + Version.getVersion() + " EULA");
 		setResizable(false);
 		setBounds(100, 100, 468, 348);
@@ -63,7 +63,7 @@ public class FrameEULA extends BaseDialog {
 				System.exit(0);
 			}
 		});
-		btnDisagree.setIcon(new ImageIcon(FrameEULA.class.getResource("/icons/disconnect.png")));
+		btnDisagree.setIcon(new ImageIcon(DialogEula.class.getResource("/icons/disconnect.png")));
 
 		JButton btnAgree = new JButton("Agree (0)");
 		btnAgree.addActionListener(new ActionListener() {
@@ -79,7 +79,7 @@ public class FrameEULA extends BaseDialog {
 				dispose();
 			}
 		});
-		btnAgree.setIcon(new ImageIcon(FrameEULA.class.getResource("/icons/gavel.png")));
+		btnAgree.setIcon(new ImageIcon(DialogEula.class.getResource("/icons/gavel.png")));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE).addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup().addContainerGap(111, Short.MAX_VALUE).addComponent(btnAgree).addGap(33).addComponent(btnDisagree).addGap(114)));
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 274, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(btnDisagree).addComponent(btnAgree)).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
