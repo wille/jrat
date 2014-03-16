@@ -6,7 +6,6 @@ import io.jrat.client.utils.IconUtils;
 import io.jrat.common.hash.Md5;
 import io.jrat.common.hash.Sha1;
 
-import java.awt.Color;
 import java.io.File;
 import java.util.LinkedHashMap;
 
@@ -81,7 +80,6 @@ public class DialogSummary extends BaseDialog {
 		table = new JTable();
 		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Property", "Value" }));
 		table.setRowHeight(25);
-		table.setGridColor(new Color(205, 205, 205));
 
 		infomodel = (DefaultTableModel) table.getModel();
 		scrollPane.setViewportView(table);
