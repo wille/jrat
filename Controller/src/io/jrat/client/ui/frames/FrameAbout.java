@@ -9,6 +9,7 @@ import java.awt.Image;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class FrameAbout extends BaseDialog {
@@ -27,6 +28,8 @@ public class FrameAbout extends BaseDialog {
 	private JPanel contentPane;
 
 	public FrameAbout() {
+		setResizable(false);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameAbout.class.getResource("/icons/info.png")));
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
