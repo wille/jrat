@@ -341,8 +341,11 @@ public class Build {
 
 			long end = System.currentTimeMillis();
 
-			listener.reportProgress(95, "MD5 of file: " + Md5.md5(file), BuildStatus.INFO);
-			listener.reportProgress(95, "SHA1 of file: " + Sha1.sha1(file), BuildStatus.INFO);
+			Md5 md5 = new Md5();
+			Sha1 sha1 = new Sha1();
+			
+			listener.reportProgress(95, "MD5 of file: " + md5.hash(file), BuildStatus.INFO);
+			listener.reportProgress(95, "SHA1 of file: " + sha1.hash(file), BuildStatus.INFO);
 
 			listener.done("Saved stub. Took " + (end - start) + " ms, size " + (file.length() / 1024L) + " kB");
 

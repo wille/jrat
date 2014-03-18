@@ -15,13 +15,16 @@ public class Packet64FileHash extends AbstractIncomingPacket {
 		String path = Connection.readLine();
 
 		File file = new File(path);
+		
+		Sha1 sha1 = new Sha1();
+		Md5 md5 = new Md5();
 
-		String md5 = Md5.md5(file);
-		String sha1 = Sha1.sha1(file);
+		String smd5 = md5.hash(file);
+		String ssha1 = sha1.hash(file);
 
 		System.gc();
 
-		Connection.addToSendQueue(new Packet46FileHash(md5, sha1));
+		Connection.addToSendQueue(new Packet46FileHash(smd5, ssha1));
 	}
 
 }

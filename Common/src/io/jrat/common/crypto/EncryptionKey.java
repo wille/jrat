@@ -22,7 +22,8 @@ public class EncryptionKey implements Serializable {
 
 	public byte[] getKey() throws Exception {
 		if (rawKey == null) {
-			rawKey = Md5.md5(getTextualKey().getBytes("UTF-8"));
+			Md5 md5 = new Md5();
+			rawKey = md5.hash(getTextualKey().getBytes("UTF-8"));
 		}
 
 		return this.rawKey;

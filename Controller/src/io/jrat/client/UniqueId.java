@@ -26,7 +26,9 @@ public final class UniqueId {
 			data += rn.nextInt();
 		}
 
-		return Sha256.sha256(data.getBytes("UTF-8"));
+		Sha256 sha256 = new Sha256();
+		
+		return sha256.hash(data.getBytes("UTF-8"));
 	}
 
 	public static byte[] getSystemId() throws Exception {

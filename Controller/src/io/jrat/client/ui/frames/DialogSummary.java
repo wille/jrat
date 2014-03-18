@@ -105,8 +105,11 @@ public class DialogSummary extends BaseDialog {
 
 	public void reload() {
 		try {
-			infomodel.addRow(new Object[] { "MD5", Md5.md5(file) });
-			infomodel.addRow(new Object[] { "SHA1", Sha1.sha1(file) });
+			Md5 md5 = new Md5();
+			Sha1 sha1 = new Sha1();
+			
+			infomodel.addRow(new Object[] { "MD5", md5.hash(file) });
+			infomodel.addRow(new Object[] { "SHA1", sha1.hash(file) });
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
