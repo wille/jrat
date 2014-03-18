@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import javax.crypto.BadPaddingException;
 import javax.swing.ImageIcon;
 
 
@@ -149,8 +150,8 @@ public class Slave implements Runnable {
 				}
 
 				if (!isVerified()) {
-					PanelMainLog.instance.addEntry("Warning", this, "Failed verify password");
-					this.closeSocket(new CloseException("Failed verify password"));
+					PanelMainLog.instance.addEntry("Warning", this, "Failed verifying password, not valid handshake");
+					this.closeSocket(new CloseException("Failed verifying password, not valid handshake"));
 				}
 
 				if (header == 0) {
@@ -164,12 +165,20 @@ public class Slave implements Runnable {
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			PanelMainLog.instance.addEntry("Disconnect", this, ex.getClass().getSimpleName() + ": " + ex.getMessage());
+			String message = ex.getClass().getSimpleName() + ": " + ex.getMessage();
+			
+			PanelMainLog.instance.addEntry("Disconnect", this, message);
+			
+			if (ex instanceof BadPaddingException) {
+				message += ", is the encryption key matching?";
+			}
+			
 			try {
 				ConnectionHandler.removeSlave(this, ex);
 			} catch (Exception e) {
 			}
-			TrayIconUtils.showMessage(Main.instance.getTitle(), "Server " + getIP() + " disconnected: " + ex.getClass().getSimpleName() + ": " + ex.getMessage(), TrayIcon.MessageType.ERROR);
+			
+			TrayIconUtils.showMessage(Main.instance.getTitle(), "Server " + getIP() + " disconnected: " + message, TrayIcon.MessageType.ERROR);
 			PluginEventHandler.onDisconnect(this);
 		}
 	}
