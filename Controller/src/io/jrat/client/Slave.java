@@ -152,13 +152,9 @@ public class Slave implements Runnable {
 					byte[] localHash = sha.hash(data);
 					byte[] remoteHash = new byte[20];
 
-					dis.readFully(remoteHash);
-					
-					System.out.println(Hex.encode(localHash));
-					System.out.println(Hex.encode(remoteHash));
+					dis.readFully(remoteHash);					
 
 					if (Arrays.equals(localHash, remoteHash)) {
-
 						setVerified(true);
 						ConnectionHandler.addSlave(this);
 						continue;
