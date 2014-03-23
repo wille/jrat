@@ -3,13 +3,11 @@ package jrat.api;
 public class Connection {
 
 	private int timeout;
-	private String key;
 	private String pass;
 	private String name;
 
-	public Connection(int timeout, String key, String pass, String name) {
+	public Connection(int timeout, String pass, String name) {
 		this.timeout = timeout;
-		this.key = key;
 		this.pass = pass;
 		this.name = name;
 	}
@@ -20,14 +18,6 @@ public class Connection {
 	 */
 	public int getTimeout() {
 		return timeout;
-	}
-
-	/**
-	 * 
-	 * @return The encryption key
-	 */
-	public String getKey() {
-		return key;
 	}
 
 	/**
