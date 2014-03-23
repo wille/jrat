@@ -1,6 +1,6 @@
 package io.jrat.client.ui.frames;
 
-import io.jrat.client.utils.Utils;
+import io.jrat.common.utils.Utils;
 
 import java.awt.Font;
 import java.awt.Toolkit;

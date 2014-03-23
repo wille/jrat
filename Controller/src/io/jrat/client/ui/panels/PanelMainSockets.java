@@ -4,7 +4,6 @@ import io.jrat.client.ErrorDialog;
 import io.jrat.client.net.PortListener;
 import io.jrat.client.ui.frames.FrameAddSocket;
 import io.jrat.client.ui.renderers.table.SocketsTableRenderer;
-import io.jrat.common.crypto.EncryptionKey;
 
 import java.awt.Component;
 import java.awt.Toolkit;
@@ -89,11 +88,10 @@ public class PanelMainSockets extends JPanel {
 						String port = model.getValueAt(row, 1).toString();
 						String timeout = model.getValueAt(row, 2).toString();
 						String pass = model.getValueAt(row, 3).toString().split(", ")[0];
-						String key = model.getValueAt(row, 4).toString();
 
 						model.removeRow(row);
 
-						PortListener con = PortListener.getListener(name, Integer.parseInt(port), Integer.parseInt(timeout), new EncryptionKey(key), pass);
+						PortListener con = PortListener.getListener(name, Integer.parseInt(port), Integer.parseInt(timeout), pass);
 						con.getServer().close();
 						PortListener.listeners.remove(con);
 					}

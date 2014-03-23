@@ -5,11 +5,11 @@ import io.jrat.client.Main;
 import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Toolkit;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class FrameAbout extends BaseDialog {

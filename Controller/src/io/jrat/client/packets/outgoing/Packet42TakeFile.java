@@ -44,7 +44,7 @@ public class Packet42TakeFile extends AbstractOutgoingPacket {
 					frame2.reportProgress(file.getAbsolutePath(), MathUtils.getPercentFromTotal((int) bytesSent, (int) totalBytes), (int) bytesSent, (int) totalBytes);
 				}
 			}
-		}, slave.getConnection().getKey().getKey());
+		}, slave.getKey());
 	}
 
 	@Override

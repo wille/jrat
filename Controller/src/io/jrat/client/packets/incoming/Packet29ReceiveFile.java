@@ -56,7 +56,7 @@ public class Packet29ReceiveFile extends AbstractIncomingPacket {
 					frame2.reportProgress(remoteFile, progress, (int) bytesSent, (int) totalBytes);
 				}
 			}
-		}, slave.getConnection().getKey().getKey());
+		}, slave.getKey());
 
 		if (frame != null) {
 			frame.done(remoteFile, output.length() + "");

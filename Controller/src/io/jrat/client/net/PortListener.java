@@ -5,7 +5,6 @@ import io.jrat.client.Slave;
 import io.jrat.client.exceptions.CloseException;
 import io.jrat.client.ui.panels.PanelMainLog;
 import io.jrat.client.ui.panels.PanelMainSockets;
-import io.jrat.common.crypto.EncryptionKey;
 
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -20,7 +19,6 @@ public class PortListener implements Runnable {
 	private ServerSocket server;
 	private int timeout = 15 * 1000;
 	private boolean listening = false;
-	private EncryptionKey key;
 	private String pass;
 	private String name;
 
@@ -36,10 +34,6 @@ public class PortListener implements Runnable {
 		return listening;
 	}
 
-	public EncryptionKey getKey() {
-		return key;
-	}
-
 	public String getPass() {
 		return pass;
 	}
@@ -48,11 +42,10 @@ public class PortListener implements Runnable {
 		return name;
 	}
 
-	public PortListener(String name, int port, int timeout, EncryptionKey key, String pass) throws Exception {
+	public PortListener(String name, int port, int timeout, String pass) throws Exception {
 		this.name = name;
 		this.timeout = timeout;
 		this.server = new ServerSocket(port);
-		this.key = key;
 		this.pass = pass;
 		listeners.add(this);
 	}
@@ -76,21 +69,15 @@ public class PortListener implements Runnable {
 	}
 
 	public void start() {
-		String keyText = "";
-		try {
-			keyText = key.getTextualKey();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		PanelMainSockets.instance.getModel().addRow(new Object[] { name, server.getLocalPort(), timeout, pass, keyText });
+		PanelMainSockets.instance.getModel().addRow(new Object[] { name, server.getLocalPort(), timeout, pass });
 
 		new Thread(this, "Port " + server.getLocalPort()).start();
 	}
 
-	public static PortListener getListener(String name, int port, int timeout, EncryptionKey key, String pass) {
+	public static PortListener getListener(String name, int port, int timeout, String pass) {
 		for (int i = 0; i < listeners.size(); i++) {
 			PortListener con = listeners.get(i);
-			if (con.name.equals(name) && con.key.equals(key) && con.pass.equals(pass) && con.getServer().getLocalPort() == port && con.getTimeout() == timeout) {
+			if (con.name.equals(name) && con.pass.equals(pass) && con.getServer().getLocalPort() == port && con.getTimeout() == timeout) {
 				return con;
 			}
 		}
