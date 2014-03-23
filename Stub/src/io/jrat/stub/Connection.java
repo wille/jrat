@@ -38,6 +38,7 @@ import java.io.OutputStream;
 import java.lang.management.ManagementFactory;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.security.PublicKey;
 import java.util.Locale;
 
 import javax.crypto.KeyGenerator;
@@ -59,6 +60,8 @@ public class Connection implements Runnable {
 	public static DataInputStream dis;
 	public static DataOutputStream dos;
 
+	public static PublicKey pubKey;
+	
 	public static final StringWriter sw = new StringWriter() {
 		@Override
 		public void writeLine(String s) throws Exception {
@@ -80,18 +83,18 @@ public class Connection implements Runnable {
 
 			Connection.dis = new DataInputStream(inputStream);
 			Connection.dos = new DataOutputStream(outputStream);
-						
-			KeyGenerator keyGen = KeyGenerator.getInstance("AES");
-	        keyGen.init(128);
-	        SecretKey secretKey = keyGen.generateKey();
 	        
-			KeyExchanger exchanger = new KeyExchanger(dis, dos);
-			exchanger.writeAESKey(secretKey);
 			
-			Main.encryptionKey = secretKey.getEncoded();
+			KeyExchanger exchanger = new KeyExchanger(dis, dos, Main.getKeyPair());
+			exchanger.readRemotePublicKey();
+			pubKey = exchanger.getRemoteKey();
+			exchanger.writePublicKey();
 			
-			System.out.println(Hex.encode(secretKey.getEncoded()));
-			
+			int len = dis.readInt();
+			byte[] encKey = new byte[len];
+			dis.readFully(encKey);
+			Main.aesKey = Crypto.decrypt(encKey, Main.getKeyPair().getPrivate(), "RSA");
+									
 			Main.encryption = inputStream.read() == 1;
 
 			addToSendQueue(new Packet1InitHandshake());
@@ -189,7 +192,7 @@ public class Connection implements Runnable {
 
 	public static void writeLine(String s) {
 		try {
-			String enc = Crypto.encrypt(s, Main.getKey());
+			String enc = Crypto.encrypt(s, Main.getKey(), "AES");
 			if (enc.contains("\n")) {
 				enc = "-h " + Hex.encode(s);
 			}
@@ -224,7 +227,7 @@ public class Connection implements Runnable {
 			} else if (s.startsWith("-c ")) {
 				s = s.substring(3, s.length());
 			} else {
-				s = Crypto.decrypt(s, Main.getKey());
+				s = Crypto.decrypt(s, Main.getKey(), "AES");
 			}
 
 			return s;

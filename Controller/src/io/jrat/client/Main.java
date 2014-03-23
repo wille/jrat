@@ -49,6 +49,8 @@ public class Main {
 			Logger.log("Wrote key to jrat.key");
 			System.exit(0);
 		}
+		
+		GlobalKeyPair.initialize();
 
 		try {
 			boolean validated = UniqueId.validate(argsContains(args, "-showhexkey"));

