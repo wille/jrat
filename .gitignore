@@ -46,7 +46,7 @@ Controller/plugins/
 Controller/settings/
 Extractor/
 
-jrat.key
+*.key
 
 # Mac crap
 .DS_Store
