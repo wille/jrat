@@ -2,10 +2,9 @@ package io.jrat.common.crypto;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.security.KeyFactory;
+import java.security.KeyPair;
 import java.security.PrivateKey;
 import java.security.PublicKey;
-import java.security.spec.X509EncodedKeySpec;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -14,29 +13,26 @@ public class KeyExchanger {
 	
 	private DataInputStream dis;
 	private DataOutputStream dos;
+	private KeyPair pair;
+	private PublicKey remoteKey;
 	
-	public KeyExchanger(DataInputStream dis, DataOutputStream dos) {
+	public KeyExchanger(DataInputStream dis, DataOutputStream dos, KeyPair pair) {
 		this.dis = dis;
 		this.dos = dos;
+		this.pair = pair;
 	}
 	
-	public byte[] getAESKey(PrivateKey privKey, PublicKey pubKey) throws Exception {
-		writeKey(pubKey);
-		
-		int len = dis.readInt();
-		byte[] key = new byte[len];
-		
-		dis.readFully(key);
-		
-		Cipher cipher = Cipher.getInstance("RSA");
+
+	/*
+	  
+	 Cipher cipher = Cipher.getInstance("RSA");
 
 		cipher.init(Cipher.DECRYPT_MODE, privKey);
 
 		return cipher.doFinal(key);
-	}
-	
+		
 	public void writeAESKey(SecretKey aesKey) throws Exception {
-		PublicKey remotePubKey = readKey();
+		PublicKey remotePubKey = getRemotePublicKey();
 		
 		Cipher cipher = Cipher.getInstance("RSA");
 		cipher.init(Cipher.ENCRYPT_MODE, remotePubKey);
@@ -45,26 +41,26 @@ public class KeyExchanger {
 		
 		dos.writeInt(encryptedKey.length);
 		dos.write(encryptedKey);
-	}
+	}	*/
 	
-	
-	
-	
-	
-	private void writeKey(PublicKey pubKey) throws Exception {
-		int pubKeyLen = pubKey.getEncoded().length;
-		
-		dos.writeInt(pubKeyLen);
-		dos.write(pubKey.getEncoded());
-	}
-	
-	private PublicKey readKey() throws Exception {
+	public void readRemotePublicKey() throws Exception {
 		int len = dis.readInt();
 		byte[] key = new byte[len];
 		
 		dis.readFully(key);
 		
-		return KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(key));
+		this.remoteKey = KeyUtils.getPublicKey(key);
+	}
+	
+	public void writePublicKey() throws Exception {
+		byte[] encoded = pair.getPublic().getEncoded();
+		
+		dos.writeInt(encoded.length);
+		dos.write(encoded);
+	}
+
+	public PublicKey getRemoteKey() {
+		return remoteKey;
 	}
 
 }
