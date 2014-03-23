@@ -3,11 +3,7 @@ package io.jrat.common.crypto;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.security.KeyPair;
-import java.security.PrivateKey;
 import java.security.PublicKey;
-
-import javax.crypto.Cipher;
-import javax.crypto.SecretKey;
 
 public class KeyExchanger {
 	

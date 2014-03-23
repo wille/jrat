@@ -41,9 +41,6 @@ import java.net.Socket;
 import java.security.PublicKey;
 import java.util.Locale;
 
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
-
 import com.sun.management.OperatingSystemMXBean;
 
 public class Connection implements Runnable {
