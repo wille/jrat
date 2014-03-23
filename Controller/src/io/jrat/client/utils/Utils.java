@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -152,24 +151,6 @@ public class Utils {
 	public static String getDate() {
 		Date now = new Date();
 		return DateFormat.getTimeInstance(DateFormat.MEDIUM).format(now);
-	}
-
-	public static String randomString() {
-		return randomString(10);
-	}
-
-	public static String randomString(int len) {
-		String a = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-
-		String str = "";
-
-		Random rand = new Random();
-
-		for (int i = 0; i < len; i++) {
-			str += a.charAt(rand.nextInt(a.length()));
-		}
-
-		return str;
 	}
 
 }
