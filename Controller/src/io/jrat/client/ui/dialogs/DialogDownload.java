@@ -1,4 +1,4 @@
-package io.jrat.client.ui.frames;
+package io.jrat.client.ui.dialogs;
 
 import io.jrat.client.listeners.ToolsDownloadListener;
 

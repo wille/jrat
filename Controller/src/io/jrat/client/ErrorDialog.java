@@ -1,6 +1,6 @@
 package io.jrat.client;
 
-import io.jrat.client.ui.frames.DialogErrorDialog;
+import io.jrat.client.ui.dialogs.DialogErrorDialog;
 
 public class ErrorDialog {
 

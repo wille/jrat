@@ -1,7 +1,7 @@
 package io.jrat.client.packets.incoming;
 
 import io.jrat.client.Slave;
-import io.jrat.client.ui.frames.DialogRemoteSoundCapture;
+import io.jrat.client.ui.dialogs.DialogRemoteSoundCapture;
 
 import java.io.DataInputStream;
 

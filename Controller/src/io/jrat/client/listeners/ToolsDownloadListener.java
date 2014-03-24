@@ -1,6 +1,6 @@
 package io.jrat.client.listeners;
 
-import io.jrat.client.ui.frames.DialogDownload;
+import io.jrat.client.ui.dialogs.DialogDownload;
 
 import java.io.File;
 

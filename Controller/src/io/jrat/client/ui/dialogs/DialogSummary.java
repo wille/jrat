@@ -1,4 +1,4 @@
-package io.jrat.client.ui.frames;
+package io.jrat.client.ui.dialogs;
 
 import io.jrat.client.BuildStatus;
 import io.jrat.client.ui.renderers.table.BuildTableRenderer;

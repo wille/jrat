@@ -1,6 +1,6 @@
 package io.jrat.client.threads;
 
-import io.jrat.client.ui.frames.DialogEula;
+import io.jrat.client.ui.dialogs.DialogEula;
 
 import javax.swing.JButton;
 

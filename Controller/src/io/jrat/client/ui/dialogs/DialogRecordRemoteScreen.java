@@ -1,7 +1,8 @@
-package io.jrat.client.ui.frames;
+package io.jrat.client.ui.dialogs;
 
 import io.jrat.client.ErrorDialog;
 import io.jrat.client.threads.ThreadRecordButton;
+import io.jrat.client.ui.frames.FrameRemoteScreen;
 
 import java.awt.Font;
 import java.awt.Toolkit;

@@ -14,6 +14,8 @@ import io.jrat.client.packets.outgoing.Packet95KeyRelease;
 import io.jrat.client.threads.ThreadFPS;
 import io.jrat.client.threads.ThreadRecordButton;
 import io.jrat.client.ui.components.JRemoteScreenPane;
+import io.jrat.client.ui.dialogs.DialogMonitors;
+import io.jrat.client.ui.dialogs.DialogRecordRemoteScreen;
 import io.jrat.client.ui.renderers.JComboBoxIconRenderer;
 import io.jrat.client.utils.IconUtils;
 

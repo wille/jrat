@@ -27,6 +27,8 @@ import io.jrat.client.packets.outgoing.Packet40Thumbnail;
 import io.jrat.client.packets.outgoing.Packet45Reconnect;
 import io.jrat.client.settings.Settings;
 import io.jrat.client.ui.components.DraggableTabbedPane;
+import io.jrat.client.ui.dialogs.DialogEula;
+import io.jrat.client.ui.dialogs.DialogFileType;
 import io.jrat.client.ui.panels.PanelMainLog;
 import io.jrat.client.ui.panels.PanelMainPlugins;
 import io.jrat.client.ui.panels.PanelMainSockets;

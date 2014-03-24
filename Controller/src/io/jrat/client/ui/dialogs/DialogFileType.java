@@ -1,4 +1,4 @@
-package io.jrat.client.ui.frames;
+package io.jrat.client.ui.dialogs;
 
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;

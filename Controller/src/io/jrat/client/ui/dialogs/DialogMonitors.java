@@ -1,7 +1,8 @@
-package io.jrat.client.ui.frames;
+package io.jrat.client.ui.dialogs;
 
 import io.jrat.client.Monitor;
 import io.jrat.client.Slave;
+import io.jrat.client.ui.frames.FrameRemoteScreen;
 import io.jrat.client.ui.renderers.JComboBoxIconRenderer;
 import io.jrat.client.utils.IconUtils;
 

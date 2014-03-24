@@ -1,6 +1,6 @@
 package io.jrat.client.listeners;
 
-import io.jrat.client.ui.frames.DialogEula;
+import io.jrat.client.ui.dialogs.DialogEula;
 
 public class EulaListener extends Performable {
 

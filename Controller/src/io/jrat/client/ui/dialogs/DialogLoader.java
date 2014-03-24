@@ -1,4 +1,4 @@
-package io.jrat.client.ui.frames;
+package io.jrat.client.ui.dialogs;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;

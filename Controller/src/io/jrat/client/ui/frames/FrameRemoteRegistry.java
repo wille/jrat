@@ -3,6 +3,7 @@ package io.jrat.client.ui.frames;
 import io.jrat.client.Slave;
 import io.jrat.client.packets.outgoing.Packet79BrowseRegistry;
 import io.jrat.client.packets.outgoing.Packet80CustomRegQuery;
+import io.jrat.client.ui.dialogs.DialogCustomRegQuery;
 import io.jrat.client.ui.renderers.JComboBoxIconRenderer;
 import io.jrat.client.ui.renderers.table.RegistryTableRenderer;
 import io.jrat.client.utils.IconUtils;

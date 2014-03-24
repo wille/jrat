@@ -10,7 +10,7 @@ import io.jrat.client.extensions.PluginList;
 import io.jrat.client.extensions.StubPlugin;
 import io.jrat.client.io.Files;
 import io.jrat.client.listeners.BuildListener;
-import io.jrat.client.ui.frames.DialogSummary;
+import io.jrat.client.ui.dialogs.DialogSummary;
 import io.jrat.client.utils.ZkmUtils;
 import io.jrat.common.codec.Base64;
 import io.jrat.common.codec.Hex;

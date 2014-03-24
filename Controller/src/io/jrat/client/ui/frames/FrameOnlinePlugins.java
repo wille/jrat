@@ -6,6 +6,7 @@ import io.jrat.client.extensions.ExtensionInstaller;
 import io.jrat.client.extensions.OnlinePlugin;
 import io.jrat.client.listeners.ExtensionInstallerListener;
 import io.jrat.client.net.WebRequest;
+import io.jrat.client.ui.dialogs.DialogImage;
 import io.jrat.common.Version;
 
 import java.awt.Color;

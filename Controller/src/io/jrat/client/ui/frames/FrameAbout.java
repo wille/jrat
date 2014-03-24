@@ -1,6 +1,7 @@
 package io.jrat.client.ui.frames;
 
 import io.jrat.client.Main;
+import io.jrat.client.ui.dialogs.BaseDialog;
 
 import java.awt.BorderLayout;
 import java.awt.Graphics;

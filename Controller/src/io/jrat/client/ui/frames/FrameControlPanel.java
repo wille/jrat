@@ -16,6 +16,7 @@ import io.jrat.client.packets.outgoing.Packet31ComputerSleep;
 import io.jrat.client.packets.outgoing.Packet32LockComputer;
 import io.jrat.client.packets.outgoing.Packet37RestartJavaProcess;
 import io.jrat.client.packets.outgoing.Packet45Reconnect;
+import io.jrat.client.ui.dialogs.DialogRemoteSoundCapture;
 import io.jrat.client.ui.panels.PanelControlActivePorts;
 import io.jrat.client.ui.panels.PanelControlAdapters;
 import io.jrat.client.ui.panels.PanelControlClipboard;
