@@ -50,8 +50,6 @@ public class Main {
 			System.exit(0);
 		}
 		
-		GlobalKeyPair.initialize();
-
 		try {
 			boolean validated = UniqueId.validate(argsContains(args, "-showhexkey"));
 

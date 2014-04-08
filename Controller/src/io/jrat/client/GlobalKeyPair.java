@@ -38,9 +38,15 @@ public class GlobalKeyPair {
 			publicKey = KeyUtils.getPublicKey(IOUtils.readFile(pubKeyFile));
 			privateKey = KeyUtils.getPrivateKey(IOUtils.readFile(privKeyFile));
 		}
+		
+		global = new KeyPair(publicKey, privateKey);
 	}
 
-	public static KeyPair getKeyPair() {
+	public static KeyPair getKeyPair() throws Exception {
+		if (global == null) {
+			initialize();
+		}
+		
 		return global;
 	}
 
