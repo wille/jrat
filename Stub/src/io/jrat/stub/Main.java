@@ -181,7 +181,7 @@ public class Main {
 			for (Plugin plugin : Plugin.list) {
 				plugin.methods.get("onstart").invoke(plugin.instance, new Object[] {});
 			}
-
+			
 			new Thread(new Connection()).start();
 		} catch (Exception ex) {
 			ex.printStackTrace();
