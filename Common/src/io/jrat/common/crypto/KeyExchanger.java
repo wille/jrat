@@ -18,27 +18,6 @@ public class KeyExchanger {
 		this.pair = pair;
 	}
 	
-
-	/*
-	  
-	 Cipher cipher = Cipher.getInstance("RSA");
-
-		cipher.init(Cipher.DECRYPT_MODE, privKey);
-
-		return cipher.doFinal(key);
-		
-	public void writeAESKey(SecretKey aesKey) throws Exception {
-		PublicKey remotePubKey = getRemotePublicKey();
-		
-		Cipher cipher = Cipher.getInstance("RSA");
-		cipher.init(Cipher.ENCRYPT_MODE, remotePubKey);
-
-		byte[] encryptedKey = cipher.doFinal(aesKey.getEncoded());
-		
-		dos.writeInt(encryptedKey.length);
-		dos.write(encryptedKey);
-	}	*/
-	
 	public void readRemotePublicKey() throws Exception {
 		int len = dis.readInt();
 		byte[] key = new byte[len];
