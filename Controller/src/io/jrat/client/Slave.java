@@ -1,5 +1,6 @@
 package io.jrat.client;
 
+import io.jrat.client.crypto.GlobalKeyPair;
 import io.jrat.client.exceptions.CloseException;
 import io.jrat.client.extensions.PluginEventHandler;
 import io.jrat.client.ip2c.Country;

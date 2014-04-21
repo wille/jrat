@@ -1,4 +1,4 @@
-package io.jrat.client;
+package io.jrat.client.crypto;
 
 import io.jrat.client.io.Files;
 import io.jrat.client.utils.IOUtils;
@@ -11,6 +11,7 @@ import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.security.spec.InvalidKeySpecException;
 
 public class GlobalKeyPair {
 		
@@ -35,8 +36,18 @@ public class GlobalKeyPair {
 			IOUtils.writeFile(pubKeyFile, publicKey.getEncoded());
 			IOUtils.writeFile(privKeyFile, privateKey.getEncoded());	
 		} else {
-			publicKey = KeyUtils.getPublicKey(IOUtils.readFile(pubKeyFile));
-			privateKey = KeyUtils.getPrivateKey(IOUtils.readFile(privKeyFile));
+			try {
+				publicKey = KeyUtils.getPublicKey(IOUtils.readFile(pubKeyFile));
+				privateKey = KeyUtils.getPrivateKey(IOUtils.readFile(privKeyFile));
+			} catch (InvalidKeySpecException ex) {
+				ex.printStackTrace();
+				Logger.log("Corrupt key files, generating new");
+				pubKeyFile.delete();
+				privKeyFile.delete();
+				initialize();
+				return;
+			}
+			
 		}
 		
 		global = new KeyPair(publicKey, privateKey);
