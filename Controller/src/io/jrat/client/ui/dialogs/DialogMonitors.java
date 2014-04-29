@@ -1,6 +1,5 @@
 package io.jrat.client.ui.dialogs;
 
-import io.jrat.client.Monitor;
 import io.jrat.client.Slave;
 import io.jrat.client.ui.frames.FrameRemoteScreen;
 import io.jrat.client.ui.renderers.JComboBoxIconRenderer;
@@ -29,6 +28,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import com.redpois0n.graphs.monitors.RemoteMonitor;
 
 
 @SuppressWarnings("serial")
@@ -211,9 +212,9 @@ public class DialogMonitors extends BaseDialog {
 
 		ImageIcon icon = IconUtils.getIcon("monitor");
 
-		for (Monitor monitor : slave.getMonitors()) {
-			getRenderer().addIcon(monitor.getName().toLowerCase(), icon);
-			getModel().addElement(monitor.getName());
+		for (RemoteMonitor monitor : slave.getMonitors()) {
+			getRenderer().addIcon(monitor.getLabel().toLowerCase(), icon);
+			getModel().addElement(monitor.getLabel());
 		}
 	}
 

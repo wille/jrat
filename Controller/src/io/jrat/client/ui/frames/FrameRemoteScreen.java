@@ -1,7 +1,6 @@
 package io.jrat.client.ui.frames;
 
 import io.jrat.client.ErrorDialog;
-import io.jrat.client.Monitor;
 import io.jrat.client.Slave;
 import io.jrat.client.packets.outgoing.Packet12RemoteScreen;
 import io.jrat.client.packets.outgoing.Packet26StopRemoteScreen;
@@ -49,6 +48,8 @@ import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import com.redpois0n.graphs.monitors.RemoteMonitor;
 
 
 @SuppressWarnings("serial")
@@ -196,9 +197,9 @@ public class FrameRemoteScreen extends BaseFrame {
 
 		ImageIcon icon = IconUtils.getIcon("monitor");
 
-		for (Monitor monitor : slave.getMonitors()) {
-			renderer.addIcon(monitor.getName().toLowerCase(), icon);
-			model.addElement(monitor.getName());
+		for (RemoteMonitor monitor : slave.getMonitors()) {
+			renderer.addIcon(monitor.getLabel().toLowerCase(), icon);
+			model.addElement(monitor.getLabel());
 		}
 		
 		toolBarBottom.add(cbMonitors);

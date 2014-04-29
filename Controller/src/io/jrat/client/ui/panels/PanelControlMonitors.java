@@ -1,25 +1,21 @@
 package io.jrat.client.ui.panels;
 
-import io.jrat.client.Monitor;
 import io.jrat.client.Slave;
-import io.jrat.client.ui.renderers.table.MonitorsTableRenderer;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.table.DefaultTableModel;
 
+import com.redpois0n.graphs.monitors.MonitorListener;
+import com.redpois0n.graphs.monitors.PanelMonitors;
+import com.redpois0n.graphs.monitors.PanelMonitors.PanelMonitor;
+import com.redpois0n.graphs.monitors.RemoteMonitor;
 
 @SuppressWarnings("serial")
 public class PanelControlMonitors extends PanelControlParent {
-
-	private JTable table;
-
-	public DefaultTableModel getModel() {
-		return (DefaultTableModel) table.getModel();
-	}
+	
+	private PanelMonitors panelMonitors;
 
 	public PanelControlMonitors(Slave sl) {
 		super(sl);
@@ -29,27 +25,23 @@ public class PanelControlMonitors extends PanelControlParent {
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE));
-
-		table = new JTable();
-		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Monitor", "Index" }) {
-			public boolean isCellEditable(int i, int i1) {
-				return false;
+		
+		panelMonitors = new PanelMonitors(sl.getMonitors(), false);
+		
+		panelMonitors.addListener(new MonitorListener() {
+			@Override
+			public void onMonitorChange(RemoteMonitor monitor) {						
+				PanelMonitor panel = null;
+				
+				for (PanelMonitor panel1 : panelMonitors.getPanels()) {
+					if (panel1.getMonitor().equals(monitor)) {
+						panel = panel1;
+						break;
+					}
+				}
 			}
 		});
-		table.getColumnModel().getColumn(0).setPreferredWidth(504);
-		table.getColumnModel().getColumn(1).setPreferredWidth(76);
-		table.getTableHeader().setReorderingAllowed(false);
-		table.setRowHeight(25);
-		table.setDefaultRenderer(Object.class, new MonitorsTableRenderer());
-		scrollPane.setViewportView(table);
+		scrollPane.setViewportView(panelMonitors);
 		setLayout(groupLayout);
-
-		reload();
-	}
-
-	public void reload() {
-		for (Monitor monitor : slave.getMonitors()) {
-			getModel().addRow(new Object[] { monitor.getName(), monitor.getIndex() });
-		}
 	}
 }

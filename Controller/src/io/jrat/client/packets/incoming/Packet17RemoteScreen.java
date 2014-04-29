@@ -16,10 +16,10 @@ public class Packet17RemoteScreen extends AbstractIncomingPacket {
 	public void read(Slave slave, DataInputStream dis) throws Exception {
 		FrameRemoteScreen frame = FrameRemoteScreen.instances.get(slave);
 		
+		int length = dis.readInt();
+		
 		int x = dis.readInt();
 		int y = dis.readInt();
-		
-		int length = dis.readInt();
 				
 		if (frame != null) {
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
