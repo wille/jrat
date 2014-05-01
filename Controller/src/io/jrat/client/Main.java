@@ -49,28 +49,6 @@ public class Main {
 			Logger.log("Wrote key to jrat.key");
 			System.exit(0);
 		}
-		
-		try {
-			boolean validated = UniqueId.validate(argsContains(args, "-showhexkey"));
-
-			if (validated) {
-				trial = false;
-			} else {
-				new Thread(new Runnable() {
-					@Override
-					public void run() {
-						try {
-							Thread.sleep(1000L * 60L * 5L); //5 minutes
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-						System.exit(0);
-					}
-				}).start();
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
 
 		debug = argsContains(args, "-debug");
 
@@ -85,6 +63,29 @@ public class Main {
 			Main.debug("Could not use look and feel, setting default");
 			ex.printStackTrace();
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		}
+		
+		try {
+			boolean validated = UniqueId.validate(argsContains(args, "-showhexkey"));
+
+			if (validated) {
+				trial = false;
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			
+			new Thread(new Runnable() {
+				@Override
+				public void run() {
+					try {
+						Thread.sleep(1000L * 60L); // 1 min
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					System.exit(0);
+				}
+			}).start();
+			JOptionPane.showMessageDialog(null, "jRAT is limited, no license detected", "jRAT", JOptionPane.ERROR_MESSAGE);
 		}
 
 		if (isRunningFromHomeDir()) {
