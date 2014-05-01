@@ -1,6 +1,7 @@
 package io.jrat.client.ui.dialogs;
 
 import io.jrat.client.Slave;
+import io.jrat.client.listeners.PickMonitorListener;
 import io.jrat.client.ui.frames.FrameRemoteScreen;
 import io.jrat.client.ui.renderers.JComboBoxIconRenderer;
 import io.jrat.client.utils.IconUtils;
@@ -170,6 +171,25 @@ public class DialogMonitors extends BaseDialog {
 			}
 		});
 		sdSize.setPaintTicks(true);
+		
+		JButton btnPick = new JButton("Pick");
+		btnPick.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				DialogPickMonitor dpm = new DialogPickMonitor(slave, new PickMonitorListener() {
+					@Override
+					public void monitorPick(RemoteMonitor monitor) {
+						for (int i = 0; i < cbMonitors.getItemCount(); i++) {
+							if (getModel().getElementAt(i).equalsIgnoreCase(monitor.getLabel())) {
+								cbMonitors.setSelectedIndex(i);
+								break;
+							}
+						}
+					}	
+				});
+				dpm.setModal(true);
+				dpm.setVisible(true);
+			}
+		});
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.TRAILING)
@@ -177,9 +197,12 @@ public class DialogMonitors extends BaseDialog {
 					.addContainerGap()
 					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
 						.addComponent(cbMonitors, 0, 218, Short.MAX_VALUE)
-						.addComponent(btnReload)
 						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(lblResize, GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+							.addComponent(btnPick)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnReload))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(lblResize, GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(sdSize, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap())
@@ -190,7 +213,9 @@ public class DialogMonitors extends BaseDialog {
 					.addContainerGap()
 					.addComponent(cbMonitors, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnReload)
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnReload)
+						.addComponent(btnPick))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblResize, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
