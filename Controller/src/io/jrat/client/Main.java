@@ -74,18 +74,20 @@ public class Main {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			
-			new Thread(new Runnable() {
-				@Override
-				public void run() {
-					try {
-						Thread.sleep(1000L * 60L); // 1 min
-					} catch (Exception e) {
-						e.printStackTrace();
+			if (!argsContains(args, "-debug")) {
+				new Thread(new Runnable() {
+					@Override
+					public void run() {
+						try {
+							Thread.sleep(1000L * 60L); // 1 min
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+						System.exit(0);
 					}
-					System.exit(0);
-				}
-			}).start();
-			JOptionPane.showMessageDialog(null, "jRAT is limited, no license detected", "jRAT", JOptionPane.ERROR_MESSAGE);
+				}).start();
+				JOptionPane.showMessageDialog(null, "jRAT is limited, no license detected", "jRAT", JOptionPane.ERROR_MESSAGE);
+			}
 		}
 
 		if (isRunningFromHomeDir()) {
