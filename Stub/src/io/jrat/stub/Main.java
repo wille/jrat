@@ -162,9 +162,13 @@ public class Main {
 
 			if (Boolean.parseBoolean(config.get("ti"))) {
 				if (SystemTray.isSupported()) {
-					SystemTray tray = SystemTray.getSystemTray();
-					icon = new TrayIcon(new ImageIcon(Main.class.getResource("/icon.png")).getImage(), config.get("tititle"), null);
-					tray.add(icon);
+					try {
+						SystemTray tray = SystemTray.getSystemTray();
+						icon = new TrayIcon(new ImageIcon(Main.class.getResource("/icon.png")).getImage(), config.get("tititle"), null);
+						tray.add(icon);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 				}
 			}
 
