@@ -12,6 +12,7 @@ public class Hex {
 	public static String encode(byte[] data) {
 		return encode(data, DIGITS_LOWER);
 	}
+	
 
 	private static String encode(byte[] data, char[] toDigits) {
 		int l = data.length;
@@ -46,6 +47,28 @@ public class Hex {
 		}
 
 		return new String(out);
+	}
+	
+	public static byte[] decodeToBytes(String s) throws Exception {
+		char[] data = s.toCharArray();
+		int len = data.length;
+
+		if ((len & 0x1) != 0) {
+			throw new Exception("Odd number of characters.");
+		}
+
+		byte[] out = new byte[len >> 1];
+
+		int i = 0;
+		for (int j = 0; j < len; i++) {
+			int f = toDigit(data[j], j) << 4;
+			j++;
+			f |= toDigit(data[j], j);
+			j++;
+			out[i] = ((byte) (f & 0xFF));
+		}
+
+		return out;
 	}
 
 	private static int toDigit(char ch, int index) throws Exception {
