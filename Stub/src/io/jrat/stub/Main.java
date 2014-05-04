@@ -54,12 +54,12 @@ public class Main {
 			InputStream keyFileInputStream = Main.class.getResourceAsStream("/key.dat");
 			byte[] keyBuffer = new byte[keyFileInputStream.available()];
 			keyFileInputStream.read(keyBuffer);
-			aesKey = keyBuffer;
+			byte[] key = keyBuffer;
 
 			InputStream configFileInputStream = Main.class.getResourceAsStream("/config.dat");
 			byte[] configBuffer = new byte[configFileInputStream.available()];
 			configFileInputStream.read(configBuffer);
-			String rawConfigFile = new String(Crypto.decrypt(configBuffer, Main.getKey()));
+			String rawConfigFile = new String(Crypto.decrypt(configBuffer, key));
 
 			File filetodelete = null;
 
