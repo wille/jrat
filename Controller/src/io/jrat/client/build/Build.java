@@ -240,7 +240,7 @@ public class Build {
 				entry = new ZipEntry("plugins.dat");
 				outputStub.putNextEntry(entry);
 				for (int i = 0; i < plugins.length; i++) {
-					outputStub.write((Crypto.encrypt(plugins[i], key) + ",").getBytes("UTF-8"));
+					outputStub.write((plugins[i] + ",").getBytes("UTF-8"));
 				}
 				outputStub.closeEntry();
 			}
