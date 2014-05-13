@@ -203,7 +203,7 @@ public class Main {
 	}
 
 	public static String formatTitle() {
-		String suffix = trial ? "Limited" : "";
+		String suffix = trial && !debug ? "Limited" : "";
 
 		return Constants.NAME + " [" + connections.size() + "] " + Version.getVersion() + " " + suffix;
 	}
