@@ -15,7 +15,7 @@ public class PluginClassLoader extends ClassLoader {
 	}
 
 	/**
-	 * Returns null (for now) as we will get from Client.jar if we call this
+	 * Returns null (for now) as we will get from Controller.jar if we call this
 	 */
 	@Override
 	public InputStream getResourceAsStream(String resource) {
@@ -23,7 +23,7 @@ public class PluginClassLoader extends ClassLoader {
 	}
 
 	/**
-	 * Returns null (for now) as we will get from Client.jar if we call this
+	 * Returns null (for now) as we will get from Controller.jar if we call this
 	 */
 	@Override
 	public URL getResource(String resource) {
@@ -31,7 +31,7 @@ public class PluginClassLoader extends ClassLoader {
 	}
 
 	/**
-	 * 
+	 * Manually changing plugin dir, make sure it's correct
 	 * @param folder
 	 * @param resource
 	 * @return FileInputStream from file in plugin folder
@@ -39,7 +39,7 @@ public class PluginClassLoader extends ClassLoader {
 	 * @throws IOException
 	 */
 	public InputStream getPluginFile(String folder, String resource) throws FileNotFoundException, IOException {
-		return new FileInputStream(new File("plugins/" + folder, resource));
+		return new FileInputStream(new File("files/plugins/" + folder, resource));
 	}
 
 	/**
