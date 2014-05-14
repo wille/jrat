@@ -255,7 +255,7 @@ public class PanelBuildFinal extends JPanel {
 
 					Settings.getGlobal().setVal("brecat", reconSec);
 					Settings.getGlobal().setVal("jarname", name);
-					Settings.getGlobal().setVal("baddresses", rawAddresses); // TODO
+					Settings.getGlobal().setVal("baddresses", rawAddresses);
 					Settings.getGlobal().setVal("bid", ID);
 					Settings.getGlobal().setVal("bpass", pass);
 					Settings.getGlobal().setVal("bcrypt", crypt);

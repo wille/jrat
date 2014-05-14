@@ -154,6 +154,14 @@ public class PanelBuildNetwork extends JPanel {
 
 		scrollPane.setViewportView(list);
 		setLayout(groupLayout);
+		
+		String addresses = Settings.getGlobal().getString("baddresses");
+		
+		if (addresses != null) {
+			for (String s : addresses.split(",")) {
+				model.addElement(s);
+			}
+		}
 
 	}
 
