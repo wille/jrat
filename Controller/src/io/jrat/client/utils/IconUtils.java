@@ -36,15 +36,15 @@ public class IconUtils {
 
 	public static ImageIcon getPingIcon(Slave slave) {
 		int ping = 0;
-		if (slave.getPing() < 150) {
+		if (slave.getPing() < 50) {
 			ping = 0;
-		} else if (slave.getPing() < 250) {
+		} else if (slave.getPing() < 100) {
 			ping = 1;
-		} else if (slave.getPing() < 400) {
+		} else if (slave.getPing() < 200) {
 			ping = 2;
-		} else if (slave.getPing() < 700) {
+		} else if (slave.getPing() < 400) {
 			ping = 3;
-		} else if (slave.getPing() < 1200) {
+		} else if (slave.getPing() < 1000) {
 			ping = 4;
 		} else {
 			ping = 5;
