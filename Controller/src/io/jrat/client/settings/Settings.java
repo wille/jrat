@@ -1,6 +1,6 @@
 package io.jrat.client.settings;
 
-import io.jrat.client.io.Files;
+import io.jrat.client.Globals;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -92,6 +92,6 @@ public class Settings extends AbstractSettings {
 
 	@Override
 	public File getFile() {
-		return new File(Files.getSettings(), ".settings");
+		return new File(Globals.getSettingsDirectory(), ".settings");
 	}
 }

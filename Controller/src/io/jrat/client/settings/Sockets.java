@@ -1,6 +1,6 @@
 package io.jrat.client.settings;
 
-import io.jrat.client.io.Files;
+import io.jrat.client.Globals;
 import io.jrat.client.net.PortListener;
 
 import java.io.File;
@@ -11,7 +11,6 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class Sockets extends AbstractSettings implements Serializable {
 
@@ -97,7 +96,7 @@ public class Sockets extends AbstractSettings implements Serializable {
 
 	@Override
 	public File getFile() {
-		return new File(Files.getSettings(), ".sockets");
+		return new File(Globals.getSettingsDirectory(), ".sockets");
 	}
 
 }

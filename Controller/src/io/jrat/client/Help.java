@@ -1,13 +1,11 @@
 package io.jrat.client;
 
-import io.jrat.client.io.Files;
 import io.jrat.client.utils.IOUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
 
 import javax.swing.JOptionPane;
-
 
 public class Help {
 
@@ -18,7 +16,7 @@ public class Help {
 	public static String getHelp(String help) {
 		try {
 			help = help.toLowerCase().trim();
-			FileInputStream in = new FileInputStream(new File(Files.getFiles(), "help/" + help));
+			FileInputStream in = new FileInputStream(new File(Globals.getHelpDocDirectory(), help));
 			return IOUtils.readString(in);
 		} catch (Exception ex) {
 			return null;

@@ -1,6 +1,7 @@
 package io.jrat.client.extensions;
 
 import io.jrat.client.Constants;
+import io.jrat.client.Globals;
 import io.jrat.client.net.WebRequest;
 import io.jrat.client.ui.renderers.table.PluginsTableRenderer;
 
@@ -12,7 +13,6 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-
 
 public class OnlinePlugin {
 
@@ -45,6 +45,18 @@ public class OnlinePlugin {
 
 		return icon;
 	}
+	
+    public boolean isInstalled() {
+        return new File(Globals.getPluginDirectory(), getName() + ".jar").exists();
+    }
+
+    public File getDirectory() {
+        return new File(Globals.getPluginDirectory(), getName());
+    }
+
+    public File getJar() {
+        return new File(Globals.getPluginDirectory(), getName() + ".jar");
+    }
 
 	public String getVersion() {
 		return version;
@@ -72,18 +84,6 @@ public class OnlinePlugin {
 
 	public boolean isDownloadable() {
 		return downloadable;
-	}
-
-	public boolean isInstalled() {
-		return new File("plugins/" + getName() + ".jar").exists();
-	}
-
-	public File getDirectory() {
-		return new File("plugins/" + getName());
-	}
-
-	public File getJar() {
-		return new File("plugins/" + getName() + ".jar");
 	}
 
 	public static List<OnlinePlugin> getAvailablePlugins() throws Exception {

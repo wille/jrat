@@ -2,6 +2,7 @@ package io.jrat.client.ui.frames;
 
 import io.jrat.client.Constants;
 import io.jrat.client.ErrorDialog;
+import io.jrat.client.Globals;
 import io.jrat.client.Help;
 import io.jrat.client.Main;
 import io.jrat.client.SampleMode;
@@ -326,7 +327,7 @@ public class Frame extends BaseFrame {
 					do {
 						i++;
 						String s = i == 0 ? "" : Integer.toString(i);
-						keyFile = new File("jrat" + s + ".key");
+						keyFile = Globals.getKeyFile(s);
 					} while (keyFile.exists());
 
 					FileOutputStream out = new FileOutputStream(keyFile);
@@ -1684,7 +1685,7 @@ public class Frame extends BaseFrame {
 				});
 			}
 
-			File iconFile = new File("plugins/" + p.getName().replace(" ", "") + "/icon.png");
+			File iconFile = new File(Globals.getPluginDirectory(), p.getName().replace(" ", "") + "/icon.png");
 
 			if (iconFile.exists()) {
 				item.setIcon(new ImageIcon(iconFile.getAbsolutePath()));

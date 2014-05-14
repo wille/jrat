@@ -1,6 +1,6 @@
 package io.jrat.client.ui.panels;
 
-import io.jrat.client.io.Files;
+import io.jrat.client.Globals;
 import io.jrat.client.ui.renderers.JTreeIconRenderer;
 import io.jrat.client.utils.IconUtils;
 
@@ -45,7 +45,7 @@ public class PanelBuildClasses extends JPanel {
 
 	public void addNodes(DefaultMutableTreeNode n) {
 		try {
-			ZipFile zip = new ZipFile(Files.getStub());
+			ZipFile zip = new ZipFile(Globals.getStub());
 
 			Enumeration<? extends ZipEntry> entries = zip.entries();
 

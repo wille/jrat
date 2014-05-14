@@ -1,5 +1,6 @@
 package io.jrat.client.ui.panels;
 
+import io.jrat.client.Globals;
 import io.jrat.client.Help;
 import io.jrat.client.ShellcodeGenerator;
 import io.jrat.client.ui.frames.FrameExecutableInfo;
@@ -148,7 +149,7 @@ public class PanelBuildOutput extends JPanel {
 		
 		chckbxObfuscate = new JCheckBox("Obfuscate");
 		
-		File zkmDir = new File("files/zkm/");
+		File zkmDir = Globals.getZKMDirectory();
 		
 		if (!zkmDir.exists()) {
 			chckbxObfuscate.setEnabled(false);

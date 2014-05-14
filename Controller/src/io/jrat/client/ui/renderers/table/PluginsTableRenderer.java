@@ -1,5 +1,6 @@
 package io.jrat.client.ui.renderers.table;
 
+import io.jrat.client.Globals;
 import io.jrat.client.utils.IconUtils;
 
 import java.awt.Component;
@@ -31,9 +32,11 @@ public class PluginsTableRenderer extends DefaultTableCellRenderer {
 
 		if (column == iconColumn) {
 			String path = value.toString();
-			String icon = "plugins/" + path.replace(" ", "") + "/icon.png";
-			if (new File(icon).exists()) {
-				lbl.setIcon(new ImageIcon(icon));
+			
+			File iconFile = new File(Globals.getPluginDirectory(), path.replace(" ", "") + "/icon.png");
+
+			if (iconFile.exists()) {
+				lbl.setIcon(new ImageIcon(iconFile.getAbsolutePath()));
 			} else {
 				lbl.setIcon(PLUGIN_ICON);
 			}

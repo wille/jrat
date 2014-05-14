@@ -1,7 +1,7 @@
 package io.jrat.client.settings;
 
+import io.jrat.client.Globals;
 import io.jrat.client.Slave;
-import io.jrat.client.io.Files;
 import io.jrat.client.ui.frames.Frame;
 import io.jrat.common.Logger;
 
@@ -182,7 +182,7 @@ public class Statistics extends AbstractSettings implements Serializable {
 
 	@Override
 	public File getFile() {
-		return new File(Files.getSettings(), ".stats");
+		return new File(Globals.getSettingsDirectory(), ".stats");
 	}
 
 }

@@ -1,5 +1,6 @@
 package io.jrat.client.ui.panels;
 
+import io.jrat.client.Globals;
 import io.jrat.client.extensions.PluginList;
 import io.jrat.client.extensions.StubPlugin;
 import io.jrat.client.ui.components.JCheckBoxList;
@@ -74,7 +75,7 @@ public class PanelBuildPlugins extends JPanel {
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addGap(10).addComponent(chckbxDoNotLoad).addPreferredGap(ComponentPlacement.RELATED, 120, Short.MAX_VALUE).addComponent(btnAddServerPlugin)).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 428, GroupLayout.PREFERRED_SIZE)).addContainerGap()));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 238, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnAddServerPlugin).addComponent(chckbxDoNotLoad)).addContainerGap(20, Short.MAX_VALUE)));
 
-		File[] files = new File("plugins/stubs/").listFiles();
+		File[] files = Globals.getPluginStubDirectory().listFiles();
 
 		Object[] obj = new Object[] {};
 

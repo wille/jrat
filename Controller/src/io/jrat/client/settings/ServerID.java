@@ -1,6 +1,6 @@
 package io.jrat.client.settings;
 
-import io.jrat.client.io.Files;
+import io.jrat.client.Globals;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -103,6 +103,6 @@ public class ServerID extends AbstractSettings implements Serializable {
 
 	@Override
 	public File getFile() {
-		return new File(Files.getSettings(), ".id");
+		return new File(Globals.getSettingsDirectory(), ".id");
 	}
 }

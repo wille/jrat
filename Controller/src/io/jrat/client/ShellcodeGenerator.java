@@ -13,7 +13,6 @@ import java.io.FileWriter;
 
 import javax.swing.JOptionPane;
 
-
 public class ShellcodeGenerator {
 
 	public static final int CCPP = 0;

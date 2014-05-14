@@ -5,16 +5,16 @@ import io.jrat.client.Slave;
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
 
 import com.redpois0n.graphs.monitors.MonitorListener;
 import com.redpois0n.graphs.monitors.PanelMonitors;
 import com.redpois0n.graphs.monitors.PanelMonitors.PanelMonitor;
 import com.redpois0n.graphs.monitors.RemoteMonitor;
-import javax.swing.JPanel;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
 public class PanelControlMonitors extends PanelControlParent {

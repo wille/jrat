@@ -3,12 +3,12 @@ package io.jrat.client.build;
 import io.jrat.client.BuildStatus;
 import io.jrat.client.Constants;
 import io.jrat.client.ErrorDialog;
+import io.jrat.client.Globals;
 import io.jrat.client.Main;
 import io.jrat.client.OSConfig;
 import io.jrat.client.crypto.FileCrypter;
 import io.jrat.client.extensions.PluginList;
 import io.jrat.client.extensions.StubPlugin;
-import io.jrat.client.io.Files;
 import io.jrat.client.listeners.BuildListener;
 import io.jrat.client.ui.dialogs.DialogSummary;
 import io.jrat.client.utils.ZkmUtils;
@@ -267,12 +267,12 @@ public class Build {
 
 				if (obfuscate) {
 					File temp = File.createTempFile("jrat-build-temp-obfuscated-installer", ".jar");
-					zkm.setInput(Files.getInstaller());
+					zkm.setInput(Globals.getStubInstaller());
 					zkm.setOutput(temp);
 					ZkmUtils.obfuscateAtBuild(zkm, listener);
 					inputStub = new ZipFile(temp);
 				} else {
-					inputStub = new ZipFile(Files.getInstaller());
+					inputStub = new ZipFile(Globals.getStubInstaller());
 				}
 				outputStub = new ZipOutputStream(new FileOutputStream(file));
 

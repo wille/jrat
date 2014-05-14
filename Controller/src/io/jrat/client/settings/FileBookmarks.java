@@ -1,6 +1,6 @@
 package io.jrat.client.settings;
 
-import io.jrat.client.io.Files;
+import io.jrat.client.Globals;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -75,7 +75,7 @@ public class FileBookmarks extends AbstractSettings {
 
 	@Override
 	public File getFile() {
-		return new File(Files.getSettings(), ".bookmarks");
+		return new File(Globals.getSettingsDirectory(), ".bookmarks");
 	}
 
 }

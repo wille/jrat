@@ -1,6 +1,6 @@
 package io.jrat.client.settings;
 
-import io.jrat.client.io.Files;
+import io.jrat.client.Globals;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -44,7 +44,7 @@ public class Theme extends AbstractSettings {
 
 	@Override
 	public File getFile() {
-		return new File(Files.getSettings(), ".theme");
+		return new File(Globals.getSettingsDirectory(), ".theme");
 	}
 
 	public String getTheme() {

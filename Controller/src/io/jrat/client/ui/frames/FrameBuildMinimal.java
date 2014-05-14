@@ -3,11 +3,11 @@ package io.jrat.client.ui.frames;
 import io.jrat.client.BuildStatus;
 import io.jrat.client.Constants;
 import io.jrat.client.ErrorDialog;
+import io.jrat.client.Globals;
 import io.jrat.client.Main;
 import io.jrat.client.OSConfig;
 import io.jrat.client.build.Build;
 import io.jrat.client.extensions.PluginList;
-import io.jrat.client.io.Files;
 import io.jrat.client.listeners.MinimalBuildListener;
 import io.jrat.client.listeners.SocketComboBoxListener;
 import io.jrat.client.net.PortListener;
@@ -321,7 +321,7 @@ public class FrameBuildMinimal extends BaseFrame {
 				osconfig.addOS(OperatingSystem.OSX);
 				osconfig.addOS(OperatingSystem.LINUX);
 
-				Build.build(l, Files.getStub(), file, address, id, pass, crypt, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, hiddenFile, bind, bindpath, bindname, droptarget, usemutex, mutexport, pluginlist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, null);
+				Build.build(l, Globals.getStub(), file, address, id, pass, crypt, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, hiddenFile, bind, bindpath, bindname, droptarget, usemutex, mutexport, pluginlist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, null);
 
 				Settings.getGlobal().setVal("baddresses", address);
 				Settings.getGlobal().setVal("bid", id);

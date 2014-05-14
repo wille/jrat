@@ -1,5 +1,6 @@
 package io.jrat.client.ui.frames;
 
+import io.jrat.client.Globals;
 import io.jrat.client.extensions.Plugin;
 import io.jrat.client.extensions.PluginLoader;
 import io.jrat.client.ui.renderers.table.PluginsTableRenderer;
@@ -8,7 +9,6 @@ import java.awt.Desktop;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -55,7 +55,7 @@ public class FramePlugins extends BaseFrame {
 		btnFolder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					Desktop.getDesktop().open(new File(System.getProperty("user.dir") + File.separator + "plugins" + File.separator));
+					Desktop.getDesktop().open(Globals.getPluginDirectory());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

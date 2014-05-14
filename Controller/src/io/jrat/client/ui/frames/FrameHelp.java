@@ -1,8 +1,8 @@
 package io.jrat.client.ui.frames;
 
 import io.jrat.client.Constants;
+import io.jrat.client.Globals;
 import io.jrat.client.Help;
-import io.jrat.client.io.Files;
 import io.jrat.client.net.WebRequest;
 import io.jrat.client.ui.renderers.table.HelpTableRenderer;
 import io.jrat.client.utils.NetUtils;
@@ -40,7 +40,6 @@ import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
-
 
 @SuppressWarnings("serial")
 public class FrameHelp extends BaseFrame {
@@ -164,7 +163,7 @@ public class FrameHelp extends BaseFrame {
 	}
 
 	public void addNodes(DefaultMutableTreeNode node) {
-		addFolder(node, new File(Files.getFiles(), "help/"));
+		addFolder(node, Globals.getHelpDocDirectory());
 	}
 
 	public void addFolder(DefaultMutableTreeNode curTop, File dir) {

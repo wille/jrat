@@ -3,7 +3,6 @@ package io.jrat.client;
 import io.jrat.client.commands.DefaultCommands;
 import io.jrat.client.extensions.Plugin;
 import io.jrat.client.extensions.PluginLoader;
-import io.jrat.client.io.Files;
 import io.jrat.client.settings.AbstractSettings;
 import io.jrat.client.settings.Settings;
 import io.jrat.client.settings.Statistics;
@@ -42,11 +41,11 @@ public class Main {
 	public static void main(String[] args) throws Exception {
 		if (argsContains(args, "-genkey")) {
 			Logger.log("Generating key");
-			File file = new File("jrat.key");
+			File file = Globals.getKeyFile();
 			FileOutputStream out = new FileOutputStream(file);
 			out.write(UniqueId.generateBinary());
 			out.close();
-			Logger.log("Wrote key to jrat.key");
+			Logger.log("Wrote key to " + file.getAbsolutePath());
 			System.exit(0);
 		}
 
@@ -55,6 +54,21 @@ public class Main {
 		if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
 			System.setProperty("apple.laf.useScreenMenuBar", "true");
 		}
+		
+		if (!Globals.getFileDirectory().exists()) {
+			JOptionPane.showMessageDialog(null, "Could not find /files/, please specify your " + Constants.NAME + " directory", Constants.NAME + "", JOptionPane.WARNING_MESSAGE);
+			JFileChooser chooser = new JFileChooser();
+			chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+			chooser.showOpenDialog(null);
+
+			File file = chooser.getSelectedFile();
+
+			if (file != null) {
+				System.setProperty("user.dir", file.getAbsolutePath());
+			}
+		}
+		
+		Globals.mkdirs();
 
 		try {
 			Theme.getGlobal().load();
@@ -86,20 +100,7 @@ public class Main {
 						System.exit(0);
 					}
 				}).start();
-				JOptionPane.showMessageDialog(null, "jRAT is limited, no license detected", "jRAT", JOptionPane.ERROR_MESSAGE);
-			}
-		}
-
-		if (isRunningFromHomeDir()) {
-			JOptionPane.showMessageDialog(null, "Could not find /settings/ or /files/, please specify your " + Constants.NAME + " directory", Constants.NAME + "", JOptionPane.WARNING_MESSAGE);
-			JFileChooser chooser = new JFileChooser();
-			chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-			chooser.showOpenDialog(null);
-
-			File file = chooser.getSelectedFile();
-
-			if (file != null) {
-				System.setProperty("user.dir", file.getAbsolutePath());
+				JOptionPane.showMessageDialog(null, Constants.NAME + " is limited, no license detected", Constants.NAME, JOptionPane.ERROR_MESSAGE);
 			}
 		}
 
@@ -131,9 +132,6 @@ public class Main {
 			
 			// TODO Ad
 		}
-
-		Files.getSettings().mkdirs();
-		Files.getFiles().mkdirs();
 
 		new ThreadCheckVersion().start();
 		new ThreadPing().start();
@@ -206,10 +204,6 @@ public class Main {
 		String suffix = trial && !debug ? "Limited" : "";
 
 		return Constants.NAME + " [" + connections.size() + "] " + Version.getVersion() + " " + suffix;
-	}
-
-	public static boolean isRunningFromHomeDir() {
-		return !new File("settings/").exists() || !new File("files/").exists();
 	}
 
 }
