@@ -5,7 +5,13 @@ import java.io.File;
 public class Globals {
 
 	public static final File getFileDirectory() {
-		return new File("files/");
+		File app = new File("jRAT.app/");
+		
+		if (app.exists()) {
+			return new File(app, "files/");
+		} else {
+			return new File("files/");
+		}
 	}
 
 	public static final File getHelpDocDirectory() {
@@ -61,6 +67,7 @@ public class Globals {
 		getHelpDocDirectory().mkdirs();
 		getZKMDirectory().mkdirs();
 		getPluginDirectory().mkdirs();
+		getPluginStubDirectory().mkdirs();
 		getNotesDirectory().mkdirs();
 		getSettingsDirectory().mkdirs();
 		getRSAKeysDirectory().mkdirs();
