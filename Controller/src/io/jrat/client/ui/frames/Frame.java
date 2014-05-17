@@ -141,7 +141,7 @@ public class Frame extends BaseFrame {
 			}
 		});
 
-		JMenuItem mntmAddSocket = new JMenuItem("Add Socket");
+		JMenuItem mntmAddSocket = new JMenuItem("Add Socket                ");
 		mntmAddSocket.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				FrameAddSocket frame = new FrameAddSocket();
@@ -201,44 +201,48 @@ public class Frame extends BaseFrame {
 		mnMain.addSeparator();
 		mntmClientSettings.setIcon(new ImageIcon(Frame.class.getResource("/icons/toolbox.png")));
 		mnMain.add(mntmClientSettings);
+		mnMain.addSeparator();
+		
+		JMenu mnShow = new JMenu("Show");
+		mnMain.add(mnShow);
+		
+				JCheckBoxMenuItem chckbxmntmShowToolbar = new JCheckBoxMenuItem("Show Toolbar");
+				mnShow.add(chckbxmntmShowToolbar);
+				chckbxmntmShowToolbar.setIcon(new ImageIcon(Frame.class.getResource("/icons/toolbar.png")));
+				
+						JCheckBoxMenuItem mntmShowThumbnails = new JCheckBoxMenuItem("Show Thumbnails");
+						mnShow.add(mntmShowThumbnails);
+						mntmShowThumbnails.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent arg0) {
+								thumbnails = !thumbnails;
 
-		JCheckBoxMenuItem chckbxmntmShowToolbar = new JCheckBoxMenuItem("Show Toolbar");
-		chckbxmntmShowToolbar.setIcon(new ImageIcon(Frame.class.getResource("/icons/toolbar.png")));
-		chckbxmntmShowToolbar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				toolBar.setVisible(((JCheckBoxMenuItem) arg0.getSource()).isSelected());
-			}
-		});
-		mnMain.add(chckbxmntmShowToolbar);
-
-		JCheckBoxMenuItem mntmShowThumbnails = new JCheckBoxMenuItem("Show Thumbnails");
-		mnMain.add(mntmShowThumbnails);
-		mntmShowThumbnails.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				thumbnails = !thumbnails;
-
-				if (thumbnails) {
-					for (int i = 0; i < Main.connections.size(); i++) {
-						Slave sl = Main.connections.get(i);
-						if (sl.getThumbnail() == null) {
-							sl.addToSendQueue(new Packet40Thumbnail());
-						} else {
-							int row = Utils.getRow(sl);
-							mainModel.setValueAt(sl.getThumbnail(), row, 0);
-						}
+								if (thumbnails) {
+									for (int i = 0; i < Main.connections.size(); i++) {
+										Slave sl = Main.connections.get(i);
+										if (sl.getThumbnail() == null) {
+											sl.addToSendQueue(new Packet40Thumbnail());
+										} else {
+											int row = Utils.getRow(sl);
+											mainModel.setValueAt(sl.getThumbnail(), row, 0);
+										}
+									}
+									mainTable.setRowHeight(100);
+								} else {
+									mainTable.setRowHeight(30);
+									for (int i = 0; i < Main.connections.size(); i++) {
+										Slave sl = Main.connections.get(i);
+										int row = Utils.getRow(sl);
+										mainModel.setValueAt(sl.getCountry(), row, 0);
+									}
+								}
+							}
+						});
+						mntmShowThumbnails.setIcon(new ImageIcon(Frame.class.getResource("/icons/image.png")));
+				chckbxmntmShowToolbar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						toolBar.setVisible(((JCheckBoxMenuItem) arg0.getSource()).isSelected());
 					}
-					mainTable.setRowHeight(100);
-				} else {
-					mainTable.setRowHeight(30);
-					for (int i = 0; i < Main.connections.size(); i++) {
-						Slave sl = Main.connections.get(i);
-						int row = Utils.getRow(sl);
-						mainModel.setValueAt(sl.getCountry(), row, 0);
-					}
-				}
-			}
-		});
-		mntmShowThumbnails.setIcon(new ImageIcon(Frame.class.getResource("/icons/image.png")));
+				});
 
 		mnMain.addSeparator();
 
@@ -265,18 +269,92 @@ public class Frame extends BaseFrame {
 		});
 		mntmAdvancedBuild.setIcon(new ImageIcon(Frame.class.getResource("/icons/information-button.png")));
 		mnServerModule.add(mntmAdvancedBuild);
+		
+		mnServerModule.addSeparator();
+		
+				JMenuItem mntmPlugins = new JMenuItem("Plugins");
+				mnServerModule.add(mntmPlugins);
+				mntmPlugins.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						FramePlugins frame = new FramePlugins();
+						frame.setVisible(true);
+					}
+				});
+				mntmPlugins.setIcon(new ImageIcon(Frame.class.getResource("/icons/plugin.png")));
+		
+		JMenu mnKeys = new JMenu("Keys");
+		mnMain.add(mnKeys);
+				
+				JMenuItem mntmImportKey = new JMenuItem("Import key");
+				mnKeys.add(mntmImportKey);
+				mntmImportKey.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						JFileChooser chooser = new JFileChooser();
+						chooser.showOpenDialog(null);
+						
+						File file = chooser.getSelectedFile();
+						
+						if (file != null) {
+							try {
+								FileInputStream fis = new FileInputStream(file);
+								FileOutputStream fos = new FileOutputStream(new File(Globals.getFileDirectory(), "jrat.key"));
+								IOUtils.copy(fis, fos);
+								fis.close();
+								fos.close();
+								
+								JOptionPane.showMessageDialog(null, "Imported key, please restart", "Import key", JOptionPane.WARNING_MESSAGE);
+							} catch (Exception ex) {
+								ex.printStackTrace();
+								ErrorDialog.create(ex);
+							}
+						}
+					}
+				});
+				mntmImportKey.setIcon(new ImageIcon(Frame.class.getResource("/icons/key_arrow.png")));
+		
+				JMenuItem mntmGenerateKey = new JMenuItem("Generate key");
+				mnKeys.add(mntmGenerateKey);
+				mntmGenerateKey.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						try {
+							File keyFile;
+							
+							int i = 0;
+							
+							do {
+								i++;
+								String s = i == 0 ? "" : Integer.toString(i);
+								keyFile = Globals.getKeyFile(s);
+							} while (keyFile.exists());
 
-		JMenuItem mntmEulamustRead = new JMenuItem("EULA (Must read)");
-		mntmEulamustRead.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				DialogEula frame = new DialogEula(true);
-				frame.setVisible(true);
-			}
-		});
+							FileOutputStream out = new FileOutputStream(keyFile);
+							out.write(UniqueId.generateBinary());
+							out.close();
+
+							JOptionPane.showMessageDialog(null, "Generated a new key to jrat.key\nBackup this file and do not loose it", "Generate key", JOptionPane.INFORMATION_MESSAGE);
+						} catch (Exception ex) {
+							ex.printStackTrace();
+							ErrorDialog.create(ex);
+						}
+					}
+				});
+				mntmGenerateKey.setIcon(new ImageIcon(Frame.class.getResource("/icons/key_plus.png")));
+		
+		JMenu mnHelp = new JMenu("Help");
+		mnMain.add(mnHelp);
+		
+				JMenuItem mntmEulamustRead = new JMenuItem("EULA (Must read)");
+				mnHelp.add(mntmEulamustRead);
+				mntmEulamustRead.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						DialogEula frame = new DialogEula(true);
+						frame.setVisible(true);
+					}
+				});
 		mntmEulamustRead.setIcon(new ImageIcon(Frame.class.getResource("/icons/gavel.png")));
-		mnMain.add(mntmEulamustRead);
 
 		JMenuItem mntmAProblemShow = new JMenuItem("A problem? Show help");
+		mnHelp.add(mntmAProblemShow);
 		mntmAProblemShow.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				FrameHelp frame = new FrameHelp();
@@ -284,8 +362,6 @@ public class Frame extends BaseFrame {
 			}
 		});
 		mntmAProblemShow.setIcon(new ImageIcon(Frame.class.getResource("/icons/information-button.png")));
-		mnMain.add(mntmAProblemShow);
-		mnMain.addSeparator();
 
 		JMenuItem mntmExit = new JMenuItem("Exit");
 		mntmExit.addActionListener(new ActionListener() {
@@ -295,16 +371,6 @@ public class Frame extends BaseFrame {
 				System.exit(0);
 			}
 		});
-
-		JMenuItem mntmPlugins = new JMenuItem("Plugins");
-		mntmPlugins.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				FramePlugins frame = new FramePlugins();
-				frame.setVisible(true);
-			}
-		});
-		mntmPlugins.setIcon(new ImageIcon(Frame.class.getResource("/icons/plugin.png")));
-		mnMain.add(mntmPlugins);
 
 		JMenuItem mntmBrowsePlugins = new JMenuItem("Browse Plugins");
 		mntmBrowsePlugins.addActionListener(new ActionListener() {
@@ -317,62 +383,6 @@ public class Frame extends BaseFrame {
 		if (!Main.trial) {
 			mnMain.add(mntmBrowsePlugins);
 		}
-		mnMain.addSeparator();
-
-		JMenuItem mntmGenerateKey = new JMenuItem("Generate key");
-		mntmGenerateKey.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try {
-					File keyFile;
-					
-					int i = 0;
-					
-					do {
-						i++;
-						String s = i == 0 ? "" : Integer.toString(i);
-						keyFile = Globals.getKeyFile(s);
-					} while (keyFile.exists());
-
-					FileOutputStream out = new FileOutputStream(keyFile);
-					out.write(UniqueId.generateBinary());
-					out.close();
-
-					JOptionPane.showMessageDialog(null, "Generated a new key to jrat.key\nBackup this file and do not loose it", "Generate key", JOptionPane.INFORMATION_MESSAGE);
-				} catch (Exception ex) {
-					ex.printStackTrace();
-					ErrorDialog.create(ex);
-				}
-			}
-		});
-		mntmGenerateKey.setIcon(new ImageIcon(Frame.class.getResource("/icons/key_plus.png")));
-		mnMain.add(mntmGenerateKey);
-		
-		JMenuItem mntmImportKey = new JMenuItem("Import key");
-		mntmImportKey.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				JFileChooser chooser = new JFileChooser();
-				chooser.showOpenDialog(null);
-				
-				File file = chooser.getSelectedFile();
-				
-				if (file != null) {
-					try {
-						FileInputStream fis = new FileInputStream(file);
-						FileOutputStream fos = new FileOutputStream(new File(Globals.getFileDirectory(), "jrat.key"));
-						IOUtils.copy(fis, fos);
-						fis.close();
-						fos.close();
-						
-						JOptionPane.showMessageDialog(null, "Imported key, please restart", "Import key", JOptionPane.WARNING_MESSAGE);
-					} catch (Exception ex) {
-						ex.printStackTrace();
-						ErrorDialog.create(ex);
-					}
-				}
-			}
-		});
-		mntmImportKey.setIcon(new ImageIcon(Frame.class.getResource("/icons/key_arrow.png")));
-		mnMain.add(mntmImportKey);
 		mntmExit.setIcon(new ImageIcon(Frame.class.getResource("/icons/exit.png")));
 		mnMain.add(mntmExit);
 
