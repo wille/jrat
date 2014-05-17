@@ -42,6 +42,7 @@ import io.jrat.client.utils.NetUtils;
 import io.jrat.client.utils.Utils;
 import io.jrat.common.Flood;
 import io.jrat.common.Version;
+import io.jrat.common.utils.IOUtils;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -52,6 +53,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.net.URI;
 import java.util.ArrayList;
@@ -65,6 +67,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -343,6 +346,33 @@ public class Frame extends BaseFrame {
 		});
 		mntmGenerateKey.setIcon(new ImageIcon(Frame.class.getResource("/icons/key_plus.png")));
 		mnMain.add(mntmGenerateKey);
+		
+		JMenuItem mntmImportKey = new JMenuItem("Import key");
+		mntmImportKey.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFileChooser chooser = new JFileChooser();
+				chooser.showOpenDialog(null);
+				
+				File file = chooser.getSelectedFile();
+				
+				if (file != null) {
+					try {
+						FileInputStream fis = new FileInputStream(file);
+						FileOutputStream fos = new FileOutputStream(new File(Globals.getFileDirectory(), "jrat.key"));
+						IOUtils.copy(fis, fos);
+						fis.close();
+						fos.close();
+						
+						JOptionPane.showMessageDialog(null, "Imported key, please restart", "Import key", JOptionPane.WARNING_MESSAGE);
+					} catch (Exception ex) {
+						ex.printStackTrace();
+						ErrorDialog.create(ex);
+					}
+				}
+			}
+		});
+		mntmImportKey.setIcon(new ImageIcon(Frame.class.getResource("/icons/key_arrow.png")));
+		mnMain.add(mntmImportKey);
 		mntmExit.setIcon(new ImageIcon(Frame.class.getResource("/icons/exit.png")));
 		mnMain.add(mntmExit);
 
