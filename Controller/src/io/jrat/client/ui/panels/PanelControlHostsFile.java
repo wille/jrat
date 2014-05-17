@@ -4,6 +4,7 @@ import io.jrat.client.ErrorDialog;
 import io.jrat.client.Slave;
 import io.jrat.client.packets.outgoing.Packet55HostsFile;
 import io.jrat.client.packets.outgoing.Packet56UpdateHostsFile;
+import io.jrat.client.utils.IconUtils;
 import io.jrat.client.utils.Utils;
 
 import java.awt.event.ActionEvent;
@@ -22,6 +23,7 @@ import javax.swing.JSeparator;
 import javax.swing.JTextPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
+import javax.swing.JLabel;
 
 
 @SuppressWarnings("serial")
@@ -90,9 +92,47 @@ public class PanelControlHostsFile extends PanelControlParent {
 
 		JSeparator separator = new JSeparator();
 		separator.setOrientation(SwingConstants.VERTICAL);
+		
+		JLabel lblWin = new JLabel("");
+		lblWin.setIcon(IconUtils.getIcon("os"));
+
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 599, GroupLayout.PREFERRED_SIZE).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(btnClear).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnGetHostsFile).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnGetLocalHosts).addPreferredGap(ComponentPlacement.RELATED).addComponent(separator, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnUpdateHostsFile))).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 301, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnClear).addComponent(btnGetHostsFile).addComponent(btnGetLocalHosts)).addComponent(separator, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE).addComponent(btnUpdateHostsFile)).addContainerGap(13, Short.MAX_VALUE)));
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 599, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(btnClear)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnGetHostsFile)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnGetLocalHosts)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(separator, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnUpdateHostsFile)
+					.addPreferredGap(ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+					.addComponent(lblWin)
+					.addGap(21))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 301, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+							.addComponent(btnClear)
+							.addComponent(btnGetHostsFile)
+							.addComponent(btnGetLocalHosts))
+						.addComponent(separator, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+							.addComponent(lblWin)
+							.addComponent(btnUpdateHostsFile)))
+					.addContainerGap(13, Short.MAX_VALUE))
+		);
 
 		txt = new JTextPane();
 		scrollPane.setViewportView(txt);
