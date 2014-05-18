@@ -2,11 +2,16 @@ package io.jrat.client.ui.dialogs;
 
 import io.jrat.client.Slave;
 import io.jrat.client.listeners.PickMonitorListener;
+import io.jrat.client.packets.outgoing.Packet75AllThumbnails;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -23,11 +28,21 @@ import com.redpois0n.graphs.monitors.RemoteMonitor;
 @SuppressWarnings("serial")
 public class DialogPickMonitor extends JDialog {
 
+	public static final Map<Slave, DialogPickMonitor> instances = new HashMap<Slave, DialogPickMonitor>();
+	
 	private final JPanel contentPanel = new JPanel();
 	private PanelMonitors panelMonitors;
 	private JLabel label;
+	private JButton btnThumbnails;
 
-	public DialogPickMonitor(Slave sl, final PickMonitorListener l) {
+	public DialogPickMonitor(final Slave sl, final PickMonitorListener l) {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent arg0) {
+				instances.remove(sl);
+			}
+		});
+		instances.put(sl, this);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setTitle("Pick Monitor");
 		setResizable(false);
@@ -75,6 +90,16 @@ public class DialogPickMonitor extends JDialog {
 					label = new JLabel("");
 					buttonPane.add(label);
 				}
+				{
+					btnThumbnails = new JButton("Thumbnails");
+					btnThumbnails.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent arg0) {
+							sl.addToSendQueue(new Packet75AllThumbnails());
+							btnThumbnails.setText("Reload");
+						}
+					});
+					buttonPane.add(btnThumbnails);
+				}
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
@@ -91,6 +116,10 @@ public class DialogPickMonitor extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+	}
+
+	public PanelMonitors getPanelMonitors() {
+		return panelMonitors;
 	}
 
 }
