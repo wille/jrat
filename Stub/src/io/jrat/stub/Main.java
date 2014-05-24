@@ -24,9 +24,7 @@ public class Main {
 		Main.args = args;
 		
 		try {
-			StartupModules.execute(Configuration.getConfig());
-			
-			new Thread(new Connection()).start();
+			StartupModules.execute(Configuration.getConfig());	
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

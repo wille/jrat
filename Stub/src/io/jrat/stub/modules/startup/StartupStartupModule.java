@@ -2,8 +2,6 @@ package io.jrat.stub.modules.startup;
 
 import io.jrat.common.OperatingSystem;
 import io.jrat.stub.Configuration;
-import io.jrat.stub.Main;
-import io.jrat.stub.Mutex;
 import io.jrat.stub.Startup;
 import io.jrat.stub.utils.Utils;
 

