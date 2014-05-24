@@ -72,7 +72,7 @@ public class Connection implements Runnable {
 
 			socket = new Socket(address.getAddress(), address.getPort());
 
-			socket.setSoTimeout(Main.timeout);
+			socket.setSoTimeout(Configuration.timeout);
 			socket.setTrafficClass(24);
 
 			Connection.inputStream = socket.getInputStream();
@@ -117,7 +117,7 @@ public class Connection implements Runnable {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			try {
-				Thread.sleep(Main.reconnectSeconds * 1000L);
+				Thread.sleep(Configuration.reconnectSeconds * 1000L);
 				new Thread(this).start();
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -126,7 +126,7 @@ public class Connection implements Runnable {
 	}
 
 	public static void initialize() throws Exception {
-		addToSendQueue(new Packet31InitInstallationDate(Main.date));
+		addToSendQueue(new Packet31InitInstallationDate(Configuration.date));
 
 		addToSendQueue(new Packet30InitVersion(Version.getVersion()));
 

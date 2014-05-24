@@ -1,23 +1,13 @@
 package io.jrat.stub;
 
-import io.jrat.common.OperatingSystem;
 import io.jrat.common.crypto.Crypto;
 import io.jrat.stub.modules.startup.StartupModules;
-import io.jrat.stub.utils.Utils;
 
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
 import java.awt.Robot;
-import java.awt.SystemTray;
-import java.awt.TrayIcon;
-import java.io.File;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.PrivateKey;
 import java.security.PublicKey;
-import java.util.Date;
-
-import javax.swing.ImageIcon;
 
 public class Main {
 
