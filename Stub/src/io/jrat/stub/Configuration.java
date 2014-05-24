@@ -2,6 +2,7 @@ package io.jrat.stub;
 
 import io.jrat.common.crypto.Crypto;
 
+import java.awt.TrayIcon;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,5 +41,17 @@ public class Configuration {
 
 		return config;
 	}
+
+	public static String[] addresses;
+	public static String id;
+	public static String pass;
+	public static long reconnectSeconds;
+	public static String name;
+	public static boolean running = true;
+	public static String date;
+	public static int timeout;
+	public static boolean errorLogging = false;
+	public static boolean debugMessages = true;
+	public static TrayIcon icon;
 
 }

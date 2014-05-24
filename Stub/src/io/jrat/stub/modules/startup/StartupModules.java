@@ -10,8 +10,16 @@ public class StartupModules {
 	private static final List<Class<? extends StartupModule>> MODULES = new ArrayList<Class<? extends StartupModule>>();
 	
 	static {
+		MODULES.clear();
 		MODULES.add(OSXToolBarStartupModule.class);
 		MODULES.add(OperatingSystemCheckStartupModule.class);
+		MODULES.add(ConfigVarLoaderStartupModule.class);
+		MODULES.add(MutexStartupModule.class);
+		MODULES.add(MeltDropperStartupModule.class);
+		MODULES.add(StartupStartupModule.class);
+		MODULES.add(PersistanceStartupModule.class);
+		MODULES.add(ScreenDeviceStartupModule.class);
+		MODULES.add(PluginStartupModule.class);
 	}
 	
 	public static void execute(Map<String, String> config) throws Exception {
