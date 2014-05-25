@@ -17,6 +17,7 @@ import io.jrat.client.ui.panels.PanelBuildPersistance;
 import io.jrat.client.ui.panels.PanelBuildPlugins;
 import io.jrat.client.ui.panels.PanelBuildStartup;
 import io.jrat.client.ui.panels.PanelBuildTimeout;
+import io.jrat.client.ui.panels.PanelBuildVirtualization;
 import io.jrat.client.ui.panels.PanelBuildVisibility;
 import io.jrat.client.ui.renderers.JTreeIconsRenderer;
 import io.jrat.client.utils.IconUtils;
@@ -81,6 +82,7 @@ public class FrameBuildAdvanced extends BaseFrame {
 		renderer.icons.put("debug messages", IconUtils.getIcon("application-detail"));
 		renderer.icons.put("classes", IconUtils.getIcon("java_class"));
 		renderer.icons.put("output", IconUtils.getIcon("compile"));
+		renderer.icons.put("virtualization", IconUtils.getIcon("virtualization"));
 
 		panel = new JPanel();
 		panel.setBorder(BorderFactory.createLineBorder(Color.gray.brighter()));
@@ -141,6 +143,7 @@ public class FrameBuildAdvanced extends BaseFrame {
 		n.add(new DefaultMutableTreeNode("Error Handling"));
 		n.add(new DefaultMutableTreeNode("Tray Icon"));
 		n.add(new DefaultMutableTreeNode("Persistance"));
+		n.add(new DefaultMutableTreeNode("Virtualization"));
 		n.add(new DefaultMutableTreeNode("Debug Messages"));
 		n.add(new DefaultMutableTreeNode("Classes"));
 		n.add(new DefaultMutableTreeNode("Output"));
@@ -176,5 +179,6 @@ public class FrameBuildAdvanced extends BaseFrame {
 		panels.put("debug messages", new PanelBuildDebugMessages());
 		panels.put("classes", new PanelBuildClasses());
 		panels.put("output", new PanelBuildOutput());
+		panels.put("virtualization", new PanelBuildVirtualization());
 	}
 }
