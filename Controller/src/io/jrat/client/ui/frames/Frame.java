@@ -362,7 +362,18 @@ public class Frame extends BaseFrame {
 			}
 		});
 		mntmAProblemShow.setIcon(new ImageIcon(Frame.class.getResource("/icons/information-button.png")));
+		
+		JMenuItem mntmTwitter = new JMenuItem("Twitter");
+		mntmTwitter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				NetUtils.openUrl("https://twitter.com/java_rat");
+			}
+		});
+		mntmTwitter.setIcon(new ImageIcon(Frame.class.getResource("/icons/twitter.png")));
+		mnMain.add(mntmTwitter);
 
+		mnMain.addSeparator();
+		
 		JMenuItem mntmExit = new JMenuItem("Exit");
 		mntmExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
