@@ -93,16 +93,24 @@ public class Main {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			
-			if (!argsContains(args, "-debug")) {
+			if (argsContains(args, "-debug")) {
 				new Thread(new Runnable() {
 					@Override
 					public void run() {
 						try {
-							Thread.sleep(1000L * 60L); // 1 min
+							int i = 60 * 5;
+							Thread.sleep(5000L);
+							while (i > 0) {
+								i--;
+								
+								Thread.sleep(1000L);
+								instance.setTitle(formatTitle() + " - " + i + " seconds left");
+							}
+							System.exit(0);
+
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
-						System.exit(0);
 					}
 				}).start();
 				JOptionPane.showMessageDialog(null, Constants.NAME + " is limited, no license detected", Constants.NAME, JOptionPane.ERROR_MESSAGE);
