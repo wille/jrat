@@ -1,0 +1,23 @@
+package su.jrat.stub.flood;
+
+import su.jrat.stub.Constants;
+
+public class ThreadFlood implements Runnable {
+
+	public int time;
+
+	public ThreadFlood(int i) {
+		time = i;
+	}
+
+	public void run() {
+		Constants.flooding = true;
+		try {
+			Thread.sleep((long) time * 1000);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		Constants.flooding = false;
+	}
+
+}
