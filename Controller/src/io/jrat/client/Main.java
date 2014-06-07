@@ -93,7 +93,7 @@ public class Main {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			
-			if (argsContains(args, "-debug")) {
+			if (!argsContains(args, "-debug")) {
 				new Thread(new Runnable() {
 					@Override
 					public void run() {
