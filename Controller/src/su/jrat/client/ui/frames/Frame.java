@@ -260,6 +260,7 @@ public class Frame extends BaseFrame {
 		mnServerModule.add(mntmBuildServer);
 
 		JMenuItem mntmAdvancedBuild = new JMenuItem("Advanced Builder");
+		mntmAdvancedBuild.setEnabled(Main.debug || !Main.trial);
 		mntmAdvancedBuild.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				FrameBuildAdvanced frame = new FrameBuildAdvanced();
