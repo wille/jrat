@@ -10,9 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.jar.JarFile;
 
-import su.jrat.client.Main;
-import su.jrat.common.Logger;
-import su.jrat.common.Version;
 import jrat.api.PluginClassLoader;
 import jrat.api.RATControlMenuEntry;
 import jrat.api.RATMenuItem;
@@ -23,6 +20,9 @@ import jrat.api.events.OnEnableEvent;
 import jrat.api.events.OnPacketEvent;
 import jrat.api.events.OnSendPacketEvent;
 import jrat.api.utils.JarUtils;
+import su.jrat.client.Main;
+import su.jrat.common.Logger;
+import su.jrat.common.Version;
 
 @SuppressWarnings({ "rawtypes", "unchecked", "deprecation" })
 public class Plugin {

