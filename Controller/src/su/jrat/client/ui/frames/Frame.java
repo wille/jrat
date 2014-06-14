@@ -47,6 +47,8 @@ import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
 import javax.swing.table.DefaultTableModel;
 
+import jrat.api.RATMenuItem;
+import jrat.api.RATObject;
 import su.jrat.client.Constants;
 import su.jrat.client.ErrorDialog;
 import su.jrat.client.Globals;
@@ -55,6 +57,7 @@ import su.jrat.client.Main;
 import su.jrat.client.SampleMode;
 import su.jrat.client.Slave;
 import su.jrat.client.UniqueId;
+import su.jrat.client.Updater;
 import su.jrat.client.events.Event;
 import su.jrat.client.events.Events;
 import su.jrat.client.extensions.Plugin;
@@ -90,8 +93,6 @@ import su.jrat.client.utils.Utils;
 import su.jrat.common.Flood;
 import su.jrat.common.Version;
 import su.jrat.common.utils.IOUtils;
-import jrat.api.RATMenuItem;
-import jrat.api.RATObject;
 
 @SuppressWarnings({ "serial" })
 public class Frame extends BaseFrame {
@@ -394,6 +395,15 @@ public class Frame extends BaseFrame {
 		if (!Main.trial) {
 			mnMain.add(mntmBrowsePlugins);
 		}
+		
+		JMenuItem mntmUpdate = new JMenuItem("Update");
+		mntmUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Updater.runUpdater();
+			}
+		});
+		mntmUpdate.setIcon(new ImageIcon(Frame.class.getResource("/icons/update.png")));
+		mnMain.add(mntmUpdate);
 		mntmExit.setIcon(new ImageIcon(Frame.class.getResource("/icons/exit.png")));
 		mnMain.add(mntmExit);
 
