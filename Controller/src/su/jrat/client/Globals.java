@@ -62,6 +62,10 @@ public class Globals {
 		return new File(getFileDirectory(), "jrat" + nr + ".key");
 	}
 	
+	public static final File getUpdater() {
+		return new File(getFileDirectory(), "Updater.jar");
+	}
+	
 	public static void mkdirs() {
 		getFileDirectory().mkdirs();
 		getHelpDocDirectory().mkdirs();
