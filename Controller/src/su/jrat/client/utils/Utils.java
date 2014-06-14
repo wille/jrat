@@ -2,6 +2,7 @@ package su.jrat.client.utils;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.File;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -151,6 +152,10 @@ public class Utils {
 	public static String getDate() {
 		Date now = new Date();
 		return DateFormat.getTimeInstance(DateFormat.MEDIUM).format(now);
+	}
+
+	public static File getWorkingDir() {
+		return new File(System.getProperty("user.dir"));
 	}
 
 }
