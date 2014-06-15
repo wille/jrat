@@ -1,10 +1,8 @@
 package su.jrat.client.ui.frames;
 
-import java.awt.Desktop;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.net.URI;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -21,8 +19,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
 
-import su.jrat.client.Constants;
 import su.jrat.client.ErrorDialog;
+import su.jrat.client.Updater;
 import su.jrat.client.net.WebRequest;
 import su.jrat.client.utils.NetUtils;
 import su.jrat.common.Version;
@@ -47,11 +45,11 @@ public class FrameChangelog extends BaseFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
-		JButton btnDownloadLatestUpdate = new JButton("Download latest update");
+		JButton btnDownloadLatestUpdate = new JButton("Update");
 		btnDownloadLatestUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					Desktop.getDesktop().browse(new URI(Constants.DOWNLOAD_URL));
+					Updater.runUpdater();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
