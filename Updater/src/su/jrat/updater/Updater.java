@@ -15,7 +15,7 @@ public class Updater {
 			if (file.isDirectory() && !file.getName().contains("plugin")) {
 				delete(file);
 				Logger.log("Deleting directory " + file.getAbsolutePath());
-			} else if (!file.getName().equals("Updater.jar")) {
+			} else if (!file.getName().equals("Updater.jar") && !file.getName().equals("jrat.key")) {
 				file.delete();
 				Logger.log("Deleting file " + file.getAbsolutePath());
 			} else {
