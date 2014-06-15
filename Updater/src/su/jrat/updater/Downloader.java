@@ -15,6 +15,7 @@ public class Downloader {
 	public static final String URL = "http://jrat.su/downloads/jrat-archive.zip";
 
 	public void update() throws Exception {
+		Logger.log("Downloading " + URL);
 		URLConnection con = new URL(URL).openConnection();
 		InputStream in = con.getInputStream();
 		
@@ -31,11 +32,10 @@ public class Downloader {
 		
 		ZipInputStream zipStream = new ZipInputStream(new ByteArrayInputStream(bais.toByteArray()));
 		ZipEntry entry = null;
-		while ((entry = zipStream.getNextEntry()) != null) {
-		    String entryName = entry.getName();
+		while ((entry = zipStream.getNextEntry()) != null) {	
+		    File file = new File(Utils.getJarFile().getParentFile().getParentFile(), entry.getName());
 		    
-		    
-		    File file = new File(Utils.getJarFile().getParentFile(), entry.getName()); //TODO
+			Logger.log("Extracting " + entry.getName() + " to " + file.getAbsolutePath());
 		    
 		    if (entry.isDirectory()) {
 		    	file.mkdir();
