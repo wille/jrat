@@ -25,8 +25,11 @@ public class Updater {
 				JOptionPane.showMessageDialog(null, "Auto updating is for JAR installation only", "Updater", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
-			Runtime.getRuntime().exec(new String[] { JAVA_HOME, "-jar", Globals.getUpdater().getAbsolutePath() }, null, Utils.getWorkingDir());
-			System.exit(0);
+			
+			if (JOptionPane.showConfirmDialog(null, "Updating will close jRAT,  delete all files, and download and extract the new update\nDo you want to proceed?", "Update", JOptionPane.YES_NO_CANCEL_OPTION) == JOptionPane.YES_OPTION) {
+				Runtime.getRuntime().exec(new String[] { JAVA_HOME, "-jar", Globals.getUpdater().getAbsolutePath() }, null, Utils.getWorkingDir());
+				System.exit(0);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			ErrorDialog.create(e);
