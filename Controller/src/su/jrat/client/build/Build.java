@@ -116,6 +116,10 @@ public class Build {
 			for (String s : addresses) {
 				addressString += s + ",";
 			}
+			
+			if (addressString.startsWith(",")) {
+				addressString = addressString.substring(1);
+			}
 
 			try {
 				entry = new ZipEntry("config.dat");
