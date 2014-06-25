@@ -11,7 +11,6 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextPane;
@@ -22,8 +21,8 @@ import su.jrat.client.ErrorDialog;
 import su.jrat.client.Slave;
 import su.jrat.client.packets.outgoing.Packet55HostsFile;
 import su.jrat.client.packets.outgoing.Packet56UpdateHostsFile;
-import su.jrat.client.utils.IconUtils;
 import su.jrat.client.utils.Utils;
+import su.jrat.common.OperatingSystem;
 
 
 @SuppressWarnings("serial")
@@ -73,15 +72,26 @@ public class PanelControlHostsFile extends PanelControlParent {
 		btnGetLocalHosts.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					File file = new File(System.getenv("SystemDrive") + "\\Windows\\System32\\drivers\\etc\\hosts");
-					BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
-					String line;
-					String text = "";
-					while ((line = reader.readLine()) != null) {
-						text += line + "\n";
+					File file = null;
+					
+					if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+						file = new File(System.getenv("SystemDrive") + "\\Windows\\System32\\drivers\\etc\\hosts");
+					} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
+						file = new File("/private/etc/hosts");
+					} else {
+						file = new File("/etc/hosts");
 					}
-					reader.close();
-					txt.setText(text);
+
+					if (file != null) {
+						BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+						String line;
+						String text = "";
+						while ((line = reader.readLine()) != null) {
+							text += line + "\n";
+						}
+						reader.close();
+						txt.setText(text);
+					}
 				} catch (Exception ex) {
 					ex.printStackTrace();
 					ErrorDialog.create(ex);
@@ -92,9 +102,6 @@ public class PanelControlHostsFile extends PanelControlParent {
 
 		JSeparator separator = new JSeparator();
 		separator.setOrientation(SwingConstants.VERTICAL);
-		
-		JLabel lblWin = new JLabel("");
-		lblWin.setIcon(IconUtils.getIcon("os"));
 
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
@@ -113,9 +120,7 @@ public class PanelControlHostsFile extends PanelControlParent {
 					.addComponent(separator, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnUpdateHostsFile)
-					.addPreferredGap(ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-					.addComponent(lblWin)
-					.addGap(21))
+					.addContainerGap(101, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -128,9 +133,7 @@ public class PanelControlHostsFile extends PanelControlParent {
 							.addComponent(btnGetHostsFile)
 							.addComponent(btnGetLocalHosts))
 						.addComponent(separator, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-							.addComponent(lblWin)
-							.addComponent(btnUpdateHostsFile)))
+						.addComponent(btnUpdateHostsFile))
 					.addContainerGap(13, Short.MAX_VALUE))
 		);
 
