@@ -16,7 +16,7 @@ import su.jrat.common.Logger;
 
 public class WebRequest {
 
-	public static String[] domains = new String[] { "http://jrat.io", "http://jrat.su", "http://jrat.me", "http://jrat.pro" };
+	public static String[] domains = new String[] { "http://jrat.su","http://jrat.io", "http://jrat.me", "http://jrat.pro" };
 
 	public static URL getUrl(String surl) throws Exception {
 		return getUrl(surl, false);
