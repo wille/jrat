@@ -22,7 +22,7 @@ public class Version {
 				frame.setVisible(true);
 				frame.setTitle("New version! - " + latest);
 				if (!Main.trial) {
-					JOptionPane.showMessageDialog(null, "When you are premium and upgrading, do not loose your jrat.key file", "Note", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "When you are premium and upgrading, do not loose your jrat.key file\r\nAll your settings will be removed", "Note", JOptionPane.WARNING_MESSAGE);
 				}
 				return true;
 			}
