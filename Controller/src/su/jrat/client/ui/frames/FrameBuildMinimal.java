@@ -85,7 +85,7 @@ public class FrameBuildMinimal extends BaseFrame {
 
 		JLabel lblPort = new JLabel("Port:");
 
-		txtHost = new JTextField(Settings.getGlobal().getString("bip"));
+		txtHost = new JTextField();
 		txtHost.setColumns(10);
 
 		spPort = new JSpinner();
