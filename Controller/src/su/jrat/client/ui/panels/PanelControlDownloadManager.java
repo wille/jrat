@@ -91,7 +91,7 @@ public class PanelControlDownloadManager extends PanelControlParent {
 				return super.getColumnClass(column);
 			}
 		};
-		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { " ", "URL", "Drop directory", "Execute", "Status" }));
+		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { " ", "URL", "Execute", "Drop directory", "Status" }));
 		table.getColumnModel().getColumn(0).setPreferredWidth(30);
 		table.getColumnModel().getColumn(1).setPreferredWidth(267);
 		table.getColumnModel().getColumn(2).setPreferredWidth(108);
