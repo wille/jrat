@@ -91,7 +91,7 @@ public class Screen implements Runnable {
 				}
 				
 				packet.send(Connection.dos, Connection.sw);
-			} while (running);
+			} while (running && Connection.socket.isConnected());
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
