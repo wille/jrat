@@ -43,7 +43,7 @@ public class Screen implements Runnable {
 		
 
 		try {
-			do {
+			//do {
 				double scaledSize = size / 100D;
 
 				BufferedImage image;
@@ -91,7 +91,7 @@ public class Screen implements Runnable {
 				}
 				
 				packet.send(Connection.dos, Connection.sw);
-			} while (running && Connection.socket.isConnected());
+			//} while (running && Connection.socket.isConnected());
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

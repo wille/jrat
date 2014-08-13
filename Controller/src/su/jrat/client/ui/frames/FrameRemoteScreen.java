@@ -436,4 +436,8 @@ public class FrameRemoteScreen extends BaseFrame {
 	public JSlider getSliderQuality() {
 		return sliderQuality;
 	}
+	
+	public boolean isRunning() {
+		return btnStop.isEnabled();
+	}
 }
