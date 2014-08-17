@@ -1,9 +1,9 @@
 package su.jrat.client.packets.incoming;
 
-import su.jrat.client.events.Event;
 import java.io.DataInputStream;
 
 import su.jrat.client.Slave;
+import su.jrat.client.events.Event;
 import su.jrat.client.events.Events;
 
 public class Packet36Initialized extends AbstractIncomingPacket {
