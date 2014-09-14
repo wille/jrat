@@ -32,6 +32,7 @@ public class ARME implements Runnable {
 				pw.println("Accept-Encoding: gzip");
 				pw.println("Connection: close");
 				pw.println();
+				pw.flush();
 				sock.close();
 			} catch (Exception ex) {
 				ex.printStackTrace();
