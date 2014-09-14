@@ -4,12 +4,9 @@ public enum Flood {
 
 	NONE(-1),
 	UDP(0),
-	RAPID(1),
-	GET(2),
-	POST(3),
-	ARME(4),
-	DRAIN(5),
-	HEAD(6);
+	ARME(1),
+	DRAIN(2),
+	SLOWLORIS(3);
 
 	private final int i;
 
