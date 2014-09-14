@@ -1134,6 +1134,7 @@ public class Frame extends BaseFrame {
 		mntmexe.setIcon(new ImageIcon(Frame.class.getResource("/icons/down_arrow.png")));
 
 		JMenuItem mntmUploadAndExecute = new JMenuItem("Upload and Execute");
+		mntmUploadAndExecute.setIcon(new ImageIcon(Frame.class.getResource("/icons/drive-upload.png")));
 		mntmUploadAndExecute.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				List<Slave> servers = Utils.getSlaves();
@@ -1162,6 +1163,7 @@ public class Frame extends BaseFrame {
 		mntmUpdateFromUrl.setIcon(new ImageIcon(Frame.class.getResource("/icons/update.png")));
 
 		JMenuItem mntmUpdateFromFile = new JMenuItem("Update from File");
+		mntmUpdateFromFile.setIcon(new ImageIcon(Frame.class.getResource("/icons/drive-upload.png")));
 		mntmUpdateFromFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				List<Slave> servers = Utils.getSlaves();
