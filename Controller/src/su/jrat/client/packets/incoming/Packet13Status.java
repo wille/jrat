@@ -20,7 +20,6 @@ public class Packet13Status extends AbstractIncomingPacket {
 			Frame.mainModel.setValueAt(Status.getStatusFromID(istatus), Utils.getRow(3, slave.getIP()), 2);
 			slave.setStatus(istatus);
 		} catch (Exception ex) {
-			ex.printStackTrace();
 			Frame.mainModel.setValueAt(status, Utils.getRow(3, slave.getIP()), 2);
 		}
 	}

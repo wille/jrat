@@ -43,5 +43,9 @@ public abstract class Downloadable {
 	public abstract String getExtension();
 
 	public abstract void execute(File file) throws Exception;
+	
+	public static String getFileExtension(String type) {
+		return type.substring(type.lastIndexOf(".") + 1, type.length());
+	}
 
 }

