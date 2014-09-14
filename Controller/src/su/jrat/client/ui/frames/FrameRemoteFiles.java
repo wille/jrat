@@ -613,7 +613,7 @@ public class FrameRemoteFiles extends BaseFrame {
 		});
 		popupMenu.add(mntmRename);
 
-		mntmMdHash = new JMenuItem("MD5 Hash");
+		mntmMdHash = new JMenuItem("File Hash");
 		mntmMdHash.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/barcode.png")));
 		mntmMdHash.addActionListener(new ActionListener() {
 			@Override
