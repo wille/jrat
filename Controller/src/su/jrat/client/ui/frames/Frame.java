@@ -1162,6 +1162,25 @@ public class Frame extends BaseFrame {
 		mntmUpdateFromUrl.setIcon(new ImageIcon(Frame.class.getResource("/icons/update.png")));
 
 		JMenuItem mntmUpdateFromFile = new JMenuItem("Update from File");
+		mntmUpdateFromFile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				List<Slave> servers = Utils.getSlaves();
+				if (servers.size() > 0) {
+					JFileChooser f = new JFileChooser();
+					f.showOpenDialog(null);
+				
+					File file = f.getSelectedFile();
+
+					if (file == null) {
+						return;
+					}
+
+					for (Slave slave : servers) {
+						slave.addToSendQueue(new Packet18Update(file));
+					}
+				}
+			}
+		});
 		mnNetworking.add(mntmUpdateFromFile);
 
 		mnNetworking.addSeparator();
