@@ -22,7 +22,7 @@ public class Drain implements Runnable {
 				byte data[] = new byte[1024];
 				int count;
 				while ((count = in.read(data, 0, 1024)) != -1) {
-					// fout.write(data, 0, count);
+
 				}
 				in.close();
 			} catch (Exception ex) {

