@@ -1395,6 +1395,26 @@ public class Frame extends BaseFrame {
 		});
 		mntmRunCommand.setIcon(new ImageIcon(Frame.class.getResource("/icons/runcmd.png")));
 		popupMenu.add(mntmRunCommand);
+		
+		JMenu mnInject = new JMenu("Inject");
+		mnInject.setIcon(new ImageIcon(Frame.class.getResource("/icons/inject.png")));
+		popupMenu.add(mnInject);
+		
+		JMenuItem mntmInjectFromUrl = new JMenuItem("Inject from URL");
+		mntmInjectFromUrl.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		mntmInjectFromUrl.setIcon(new ImageIcon(Frame.class.getResource("/icons/down_arrow.png")));
+		mnInject.add(mntmInjectFromUrl);
+		
+		JMenuItem mntmInjectFromFile = new JMenuItem("Inject from file");
+		mntmInjectFromFile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		mntmInjectFromFile.setIcon(new ImageIcon(Frame.class.getResource("/icons/drive-upload.png")));
+		mnInject.add(mntmInjectFromFile);
 		popupMenu.addSeparator();
 
 		JMenuItem mntmInfo = new JMenuItem("Info");

