@@ -35,7 +35,6 @@ public class Injector {
 
 			in.close();
 		} else {
-			int read = 0;
 			int chunkSize;
 
 			size = dis.readLong();
@@ -44,8 +43,6 @@ public class Injector {
 
 			while ((chunkSize = dis.readInt()) != -1) {
 				byte[] chunk = new byte[chunkSize];
-
-				read += chunkSize;
 
 				dis.readFully(chunk);
 
@@ -70,7 +67,7 @@ public class Injector {
 					e.printStackTrace();
 				}
 			}
-		});
+		}).start();
 	}
 	
 	public static String getClassName(String fileName) {

