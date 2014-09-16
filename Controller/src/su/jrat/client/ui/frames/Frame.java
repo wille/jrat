@@ -908,7 +908,7 @@ public class Frame extends BaseFrame {
 		});
 		addPopup(scrollPane, popupMenu);
 
-		JMenuItem mntmControlPanel = new JMenuItem("Control Panel");
+		JMenuItem mntmControlPanel = new JMenuItem("Control Panel                       ");
 		mntmControlPanel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Slave slave = Utils.getSlave(mainModel.getValueAt(mainTable.getSelectedRow(), 3).toString());
