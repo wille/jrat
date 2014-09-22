@@ -389,12 +389,12 @@ public class Frame extends BaseFrame {
 		JMenuItem mntmBrowsePlugins = new JMenuItem("Browse Plugins");
 		mntmBrowsePlugins.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				FrameOnlinePlugins frame = new FrameOnlinePlugins();
+				FrameInstallPlugins frame = new FrameInstallPlugins();
 				frame.setVisible(true);
 			}
 		});
 		mntmBrowsePlugins.setIcon(new ImageIcon(Frame.class.getResource("/icons/application_large.png")));
-		if (!Main.trial) {
+		if (!Main.trial || Main.debug) {
 			mnMain.add(mntmBrowsePlugins);
 		}
 
