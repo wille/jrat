@@ -32,7 +32,7 @@ public class FramePlugins extends BaseFrame {
 
 	public FramePlugins() {
 		super();
-		setTitle("Plugins");
+		setTitle("Installed Plugins");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FramePlugins.class.getResource("/icons/plugin.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 501, 312);
@@ -50,7 +50,7 @@ public class FramePlugins extends BaseFrame {
 		});
 		btnReload.setIcon(new ImageIcon(FramePlugins.class.getResource("/icons/plugin.png")));
 
-		JButton btnFolder = new JButton("Folder");
+		JButton btnFolder = new JButton("Open Plugin Folder");
 		btnFolder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -60,7 +60,7 @@ public class FramePlugins extends BaseFrame {
 				}
 			}
 		});
-		btnFolder.setIcon(new ImageIcon(FramePlugins.class.getResource("/icons/plugin_go.png")));
+		btnFolder.setIcon(new ImageIcon(FramePlugins.class.getResource("/icons/folder_go.png")));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addGroup(gl_contentPane.createSequentialGroup().addComponent(btnFolder).addPreferredGap(ComponentPlacement.RELATED, 211, Short.MAX_VALUE).addComponent(btnReload)).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)).addGap(2)));
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(btnReload).addComponent(btnFolder)).addGap(3)));
