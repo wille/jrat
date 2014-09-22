@@ -8,6 +8,7 @@ import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.jar.JarFile;
 
 import jrat.api.PluginClassLoader;
@@ -26,6 +27,19 @@ import su.jrat.common.Version;
 
 @SuppressWarnings({ "rawtypes", "unchecked", "deprecation" })
 public class Plugin {
+	
+	public static final int NAME = 0;
+	public static final int AUTHOR = 1;
+	public static final int DESCRIPTION = 2;
+	public static final int VERSION = 3;
+	
+	public static final int ON_LOAD = 4;
+	public static final int ON_CONNECT = 5;
+	public static final int ON_DISCONNECT = 6;
+	public static final int ON_PACKET = 7; 
+	public static final int ON_ENABLE = 8;
+	public static final int ON_DISABLE = 9;
+	public static final int ON_SEND_PACKET = 10;
 
 	private ClassLoader loader;
 	private Class classToLoad;
@@ -39,7 +53,7 @@ public class Plugin {
 
 	private String jarname;
 
-	private HashMap<String, Method> methods = new HashMap<String, Method>();
+	private Map<Integer, Method> methods = new HashMap<Integer, Method>();
 	private List<RATMenuItem> items = new ArrayList<RATMenuItem>();
 	private List<RATControlMenuEntry> controlitems = new ArrayList<RATControlMenuEntry>();
 
@@ -62,42 +76,42 @@ public class Plugin {
 		}
 
 		setClassToLoad(Class.forName(mainClass, true, getLoader()));
-		setInstance(getClassToLoad().newInstance());
+		setInstance(classToLoad.newInstance());
 
-		Method onLoad = getClassToLoad().getMethod("onEnable", new Class[] { OnEnableEvent.class });
+		Method onLoad = classToLoad.getMethod("onEnable", new Class[] { OnEnableEvent.class });
 		onLoad.invoke(getInstance(), new Object[] { new OnEnableEvent(Version.getVersion()) });
-		getMethods().put("onenable", onLoad);
+		getMethods().put(Plugin.ON_ENABLE, onLoad);
 
-		setVersion(getClassToLoad().getMethod("getVersion", new Class[] {}).invoke(getInstance(), new Object[] {}).toString());
-		setAuthor(getClassToLoad().getMethod("getAuthor", new Class[] {}).invoke(getInstance(), new Object[] {}).toString());
-		setDescription(getClassToLoad().getMethod("getDescription", new Class[] {}).invoke(getInstance(), new Object[] {}).toString());
-		setName(getClassToLoad().getMethod("getName", new Class[] {}).invoke(getInstance(), new Object[] {}).toString());
-		this.setGlobalItemListener((ActionListener) getClassToLoad().getMethod("getGlobalMenuItemListener", new Class[] {}).invoke(getInstance(), new Object[] {}));
+		setVersion(classToLoad.getMethod("getVersion", new Class[] {}).invoke(getInstance(), new Object[] {}).toString());
+		setAuthor(classToLoad.getMethod("getAuthor", new Class[] {}).invoke(getInstance(), new Object[] {}).toString());
+		setDescription(classToLoad.getMethod("getDescription", new Class[] {}).invoke(getInstance(), new Object[] {}).toString());
+		setName(classToLoad.getMethod("getName", new Class[] {}).invoke(getInstance(), new Object[] {}).toString());
+		this.setGlobalItemListener((ActionListener) classToLoad.getMethod("getGlobalMenuItemListener", new Class[] {}).invoke(getInstance(), new Object[] {}));
 
-		List<RATMenuItem> menuitems = (List<RATMenuItem>) getClassToLoad().getMethod("getMenuItems", new Class[] {}).invoke(getInstance(), new Object[] {});
+		List<RATMenuItem> menuitems = (List<RATMenuItem>) classToLoad.getMethod("getMenuItems", new Class[] {}).invoke(getInstance(), new Object[] {});
 		if (menuitems != null) {
 			setItems(menuitems);
 		}
 
-		List<RATControlMenuEntry> citems = (List<RATControlMenuEntry>) getClassToLoad().getMethod("getControlTreeItems", new Class[] {}).invoke(getInstance(), new Object[] {});
+		List<RATControlMenuEntry> citems = (List<RATControlMenuEntry>) classToLoad.getMethod("getControlTreeItems", new Class[] {}).invoke(getInstance(), new Object[] {});
 		if (citems != null) {
 			setControlitems(citems);
 		}
 
-		Method onPacket = getClassToLoad().getMethod("onPacket", new Class[] { OnPacketEvent.class });
-		getMethods().put("onpacket", onPacket);
+		Method onPacket = classToLoad.getMethod("onPacket", new Class[] { OnPacketEvent.class });
+		getMethods().put(Plugin.ON_PACKET, onPacket);
 
-		Method onConnect = getClassToLoad().getMethod("onConnect", new Class[] { OnConnectEvent.class });
-		getMethods().put("onconnect", onConnect);
+		Method onConnect = classToLoad.getMethod("onConnect", new Class[] { OnConnectEvent.class });
+		getMethods().put(Plugin.ON_CONNECT, onConnect);
 
-		Method onDisconnect = getClassToLoad().getMethod("onDisconnect", new Class[] { OnDisconnectEvent.class });
-		getMethods().put("ondisconnect", onDisconnect);
+		Method onDisconnect = classToLoad.getMethod("onDisconnect", new Class[] { OnDisconnectEvent.class });
+		getMethods().put(Plugin.ON_DISCONNECT, onDisconnect);
 
-		Method onDisable = getClassToLoad().getMethod("onDisable", new Class[] { OnDisableEvent.class });
-		getMethods().put("ondisable", onDisable);
+		Method onDisable = classToLoad.getMethod("onDisable", new Class[] { OnDisableEvent.class });
+		getMethods().put(Plugin.ON_DISABLE, onDisable);
 
-		Method onSendPacket = getClassToLoad().getMethod("onSendPacket", new Class[] { OnSendPacketEvent.class });
-		getMethods().put("onsendpacket", onSendPacket);
+		Method onSendPacket = classToLoad.getMethod("onSendPacket", new Class[] { OnSendPacketEvent.class });
+		getMethods().put(Plugin.ON_SEND_PACKET, onSendPacket);
 
 		Main.debug("Plugin " + getName() + " " + getVersion() + " enabled");
 
@@ -168,11 +182,11 @@ public class Plugin {
 		this.jarname = jarname;
 	}
 
-	public HashMap<String, Method> getMethods() {
+	public Map<Integer, Method> getMethods() {
 		return methods;
 	}
 
-	public void setMethods(HashMap<String, Method> methods) {
+	public void setMethods(Map<Integer, Method> methods) {
 		this.methods = methods;
 	}
 

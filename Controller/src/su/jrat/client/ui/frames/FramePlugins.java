@@ -86,7 +86,7 @@ public class FramePlugins extends BaseFrame {
 
 		for (Plugin p : PluginLoader.plugins) {
 			try {
-				p.getMethods().get("ondisable").invoke(p.getInstance(), new Object[] { new OnDisableEvent() });
+				p.getMethods().get(Plugin.ON_DISABLE).invoke(p.getInstance(), new Object[] { new OnDisableEvent() });
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

@@ -158,7 +158,7 @@ public class Main {
 				OnDisableEvent event = new OnDisableEvent();
 				for (Plugin p : PluginLoader.plugins) {
 					try {
-						p.getMethods().get("ondisable").invoke(p.getInstance(), new Object[] { event });
+						p.getMethods().get(Plugin.ON_DISABLE).invoke(p.getInstance(), new Object[] { event });
 					} catch (Exception ex) {
 						ex.printStackTrace();
 					}
