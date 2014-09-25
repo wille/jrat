@@ -35,7 +35,7 @@ public class FramePlugins extends BaseFrame {
 		setTitle("Installed Plugins");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FramePlugins.class.getResource("/icons/plugin.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 501, 312);
+		setBounds(100, 100, 585, 356);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -67,11 +67,13 @@ public class FramePlugins extends BaseFrame {
 
 		table = new JTable();
 		table.setDefaultRenderer(Object.class, new PluginsTableRenderer());
-		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "Name", "Author", "Description", "Version" }) {
-			public boolean isCellEditable(int i, int i1) {
-				return false;
+		table.setModel(model = new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Name", "Author", "Description", "Version", "Status"
 			}
-		});
+		));
 		table.setRowHeight(25);
 		scrollPane.setViewportView(table);
 		contentPane.setLayout(gl_contentPane);
@@ -80,31 +82,35 @@ public class FramePlugins extends BaseFrame {
 	}
 
 	public void reload() {
-		while (model.getRowCount() > 0) {
-			model.removeRow(0);
-		}
+		new Thread(new Runnable() {
+			public void run() {
+				while (model.getRowCount() > 0) {
+					model.removeRow(0);
+				}
 
-		for (Plugin p : PluginLoader.plugins) {
-			try {
-				p.getMethods().get(Plugin.ON_DISABLE).invoke(p.getInstance(), new Object[] { new OnDisableEvent() });
-				p.setStatus(Plugin.STATUS_DISABLED);
-			} catch (Exception e) {
-				e.printStackTrace();
+				for (Plugin p : PluginLoader.plugins) {
+					try {
+						p.getMethods().get(Plugin.ON_DISABLE).invoke(p.getInstance(), new Object[] { new OnDisableEvent() });
+						p.setStatus(Plugin.STATUS_DISABLED);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+
+				try {
+					PluginLoader.loadPlugins();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				addPlugins();
 			}
-		}
-
-		try {
-			PluginLoader.loadPlugins();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		addPlugins();
+		}).start();
 	}
 
 	public void addPlugins() {
 		for (int i = 0; i < PluginLoader.plugins.size(); i++) {
 			Plugin p = PluginLoader.plugins.get(i);
-			model.addRow(new Object[] {  p.getName(), p.getVersion(), p.getAuthor(), p.getDescription(), p.getStatus() });
+			model.addRow(new Object[] {  p.getName(), p.getVersion(), p.getAuthor(), p.getDescription(), Plugin.getStatusString(p.getStatus()) });
 		}
 	}
 }

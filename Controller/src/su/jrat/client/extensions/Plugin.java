@@ -240,5 +240,17 @@ public class Plugin {
 	public void setStatus(int status) {
 		this.status = status;
 	}
+	
+	public static String getStatusString(int i) {
+		if (i == STATUS_ENABLED) {
+			return "Enabled";
+		} else if (i == STATUS_DISABLED) {
+			return "Disabled";
+		} else if (i == STATUS_INITIALIZING) {
+			return "Initializing...";
+		} else {
+			return "Unknown status";
+		}
+	}
 
 }
