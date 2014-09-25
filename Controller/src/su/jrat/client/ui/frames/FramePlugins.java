@@ -87,6 +87,7 @@ public class FramePlugins extends BaseFrame {
 		for (Plugin p : PluginLoader.plugins) {
 			try {
 				p.getMethods().get(Plugin.ON_DISABLE).invoke(p.getInstance(), new Object[] { new OnDisableEvent() });
+				p.setStatus(Plugin.STATUS_DISABLED);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -103,7 +104,7 @@ public class FramePlugins extends BaseFrame {
 	public void addPlugins() {
 		for (int i = 0; i < PluginLoader.plugins.size(); i++) {
 			Plugin p = PluginLoader.plugins.get(i);
-			model.addRow(new Object[] { p.getName(), p.getVersion(), p.getAuthor(), p.getDescription() });
+			model.addRow(new Object[] {  p.getName(), p.getVersion(), p.getAuthor(), p.getDescription(), p.getStatus() });
 		}
 	}
 }

@@ -28,6 +28,10 @@ import su.jrat.common.Version;
 @SuppressWarnings({ "rawtypes", "unchecked", "deprecation" })
 public class Plugin {
 	
+	public static final int STATUS_DISABLED = 0;
+	public static final int STATUS_ENABLED = 1;
+	public static final int STATUS_INITIALIZING = 2;
+	
 	public static final int NAME = 0;
 	public static final int AUTHOR = 1;
 	public static final int DESCRIPTION = 2;
@@ -53,6 +57,8 @@ public class Plugin {
 
 	private String jarname;
 
+	private int status;
+	
 	private Map<Integer, Method> methods = new HashMap<Integer, Method>();
 	private List<RATMenuItem> items = new ArrayList<RATMenuItem>();
 	private List<RATControlMenuEntry> controlitems = new ArrayList<RATControlMenuEntry>();
@@ -62,6 +68,7 @@ public class Plugin {
 	}
 
 	public Plugin(String file) throws Exception {
+		setStatus(STATUS_INITIALIZING);
 		setJarName(file);
 		setLoader(new PluginClassLoader(new URLClassLoader(new URL[] { new File(file).toURL() }, Main.class.getClassLoader())));
 
@@ -116,6 +123,8 @@ public class Plugin {
 		Main.debug("Plugin " + getName() + " " + getVersion() + " enabled");
 
 		PluginLoader.register(this);
+		
+		setStatus(STATUS_ENABLED);
 	}
 
 	public ClassLoader getLoader() {
@@ -222,6 +231,14 @@ public class Plugin {
 		}
 
 		return false;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 }
