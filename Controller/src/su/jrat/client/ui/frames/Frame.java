@@ -251,6 +251,30 @@ public class Frame extends BaseFrame {
 		JMenu mnServerModule = new JMenu("Stub Module");
 		mnServerModule.setIcon(new ImageIcon(Frame.class.getResource("/icons/bug.png")));
 		mnMain.add(mnServerModule);
+		
+		JMenu mnPlugins_1 = new JMenu("Plugins");
+		mnPlugins_1.setIcon(new ImageIcon(Frame.class.getResource("/icons/plugin.png")));
+		mnMain.add(mnPlugins_1);
+		
+				JMenuItem mntmPlugins = new JMenuItem("View Installed Plugins");
+				mnPlugins_1.add(mntmPlugins);
+				mntmPlugins.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						FramePlugins frame = new FramePlugins();
+						frame.setVisible(true);
+					}
+				});
+				mntmPlugins.setIcon(new ImageIcon(Frame.class.getResource("/icons/plugin.png")));
+				
+				JMenuItem mntmPackPlugin = new JMenuItem("Pack Plugin");
+				mntmPackPlugin.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						new FramePackPlugin().setVisible(true);
+					}
+				});
+				mntmPackPlugin.setIcon(new ImageIcon(Frame.class.getResource("/icons/plugin_edit.png")));
+				mnPlugins_1.addSeparator();
+				mnPlugins_1.add(mntmPackPlugin);
 		mnMain.addSeparator();
 
 		JMenuItem mntmBuildServer = new JMenuItem("Normal Builder");
@@ -272,18 +296,6 @@ public class Frame extends BaseFrame {
 		});
 		mntmAdvancedBuild.setIcon(new ImageIcon(Frame.class.getResource("/icons/information-button.png")));
 		mnServerModule.add(mntmAdvancedBuild);
-
-		mnServerModule.addSeparator();
-
-		JMenuItem mntmPlugins = new JMenuItem("Plugins");
-		mnServerModule.add(mntmPlugins);
-		mntmPlugins.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				FramePlugins frame = new FramePlugins();
-				frame.setVisible(true);
-			}
-		});
-		mntmPlugins.setIcon(new ImageIcon(Frame.class.getResource("/icons/plugin.png")));
 
 		JMenu mnKeys = new JMenu("Keys");
 		mnMain.add(mnKeys);
@@ -394,8 +406,8 @@ public class Frame extends BaseFrame {
 			}
 		});
 		mntmBrowsePlugins.setIcon(new ImageIcon(Frame.class.getResource("/icons/application_large.png")));
-		if (!Main.trial || Main.debug) {
-			mnMain.add(mntmBrowsePlugins);
+		if (Main.debug || !Main.trial) {
+			mnPlugins_1.add(mntmBrowsePlugins);
 		}
 
 		JMenuItem mntmUpdate = new JMenuItem("Update");
