@@ -4,6 +4,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.jar.JarFile;
@@ -16,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -38,6 +40,8 @@ public class FramePackPlugin extends JFrame {
 	private JTextField txtClientJAR;
 	private JLabel lblAuthor;
 	private JTextPane txtDescription;
+	private JTextField txtIcon;
+	private JButton btnRemove;
 
 	public FramePackPlugin() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FramePackPlugin.class.getResource("/icons/plugin_edit.png")));
@@ -57,8 +61,8 @@ public class FramePackPlugin extends JFrame {
 		txtClientJAR = new JTextField();
 		txtClientJAR.setColumns(10);
 		
-		JButton button = new JButton("");
-		button.addActionListener(new ActionListener() {
+		JButton btnBrowseJAR = new JButton("");
+		btnBrowseJAR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser c = new JFileChooser();
 				c.showOpenDialog(null);
@@ -70,19 +74,67 @@ public class FramePackPlugin extends JFrame {
 				}
 			}
 		});
-		button.setIcon(new ImageIcon(FramePackPlugin.class.getResource("/icons/folder.png")));
+		btnBrowseJAR.setIcon(new ImageIcon(FramePackPlugin.class.getResource("/icons/folder.png")));
+		
+		JLabel lblIcon_1 = new JLabel("Icon (16x16)");
+		
+		txtIcon = new JTextField();
+		txtIcon.setColumns(10);
+		
+		JButton btnBrowseIcon = new JButton("");
+		btnBrowseIcon.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
+			public void actionPerformed(ActionEvent arg0) {
+				JFileChooser c = new JFileChooser();
+				c.showOpenDialog(null);
+				File file = c.getSelectedFile();
+				
+				if (file != null) {
+					try {
+						ImageIcon icon = new ImageIcon(file.toURL());
+						
+						txtIcon.setText(file.getAbsolutePath());
+						
+						lblIcon.setIcon(icon);
+					} catch (Exception e) {
+						e.printStackTrace();
+						JOptionPane.showMessageDialog(null, "Failed loading icon", "Pack Plugin", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+			}
+		});
+		btnBrowseIcon.setIcon(new ImageIcon(FramePackPlugin.class.getResource("/icons/folder.png")));
+		
+		btnRemove = new JButton("");
+		btnRemove.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				txtIcon.setText("");
+				setDefaultIcon();
+			}
+		});
+		btnRemove.setIcon(new ImageIcon(FramePackPlugin.class.getResource("/icons/delete.png")));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(lblClientJar)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addComponent(lblIcon_1)
+						.addComponent(lblClientJar))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(txtClientJAR, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(button)
-					.addContainerGap(227, Short.MAX_VALUE))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(txtClientJAR, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnBrowseJAR))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(txtIcon, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnBrowseIcon, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnRemove, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(188, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -90,15 +142,23 @@ public class FramePackPlugin extends JFrame {
 					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
 					.addGap(11)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-							.addComponent(lblClientJar)
-							.addComponent(txtClientJAR, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addComponent(button))
-					.addContainerGap(235, Short.MAX_VALUE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+								.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+									.addComponent(lblClientJar)
+									.addComponent(txtClientJAR, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addComponent(btnBrowseJAR))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblIcon_1)
+								.addComponent(txtIcon, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnBrowseIcon, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)))
+						.addComponent(btnRemove))
+					.addContainerGap(204, Short.MAX_VALUE))
 		);
 		
 		lblIcon = new JLabel("");
-		lblIcon.setIcon(new ImageIcon(FramePackPlugin.class.getResource("/icons/plugin.png")));
+		setDefaultIcon();
 		
 		lblName = new JLabel("Unknown name");
 		
@@ -189,5 +249,9 @@ public class FramePackPlugin extends JFrame {
 	
 	public void setName(String name) {
 		lblName.setText(name);
+	}
+	
+	private void setDefaultIcon() {
+		lblIcon.setIcon(new ImageIcon(FramePackPlugin.class.getResource("/icons/plugin.png")));
 	}
 }
