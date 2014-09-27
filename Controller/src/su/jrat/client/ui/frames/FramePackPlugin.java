@@ -17,11 +17,13 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
-import jrat.api.PluginClassLoader;
 import jrat.api.utils.JarUtils;
 import su.jrat.client.Main;
 import su.jrat.common.Logger;
@@ -34,6 +36,8 @@ public class FramePackPlugin extends JFrame {
 	private JLabel lblVersion;
 	private JLabel lblIcon;
 	private JTextField txtClientJAR;
+	private JLabel lblAuthor;
+	private JTextPane txtDescription;
 
 	public FramePackPlugin() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FramePackPlugin.class.getResource("/icons/plugin_edit.png")));
@@ -99,6 +103,11 @@ public class FramePackPlugin extends JFrame {
 		lblName = new JLabel("Unknown name");
 		
 		lblVersion = new JLabel("Unknown version");
+		
+		lblAuthor = new JLabel("Unknown author");
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -107,21 +116,34 @@ public class FramePackPlugin extends JFrame {
 					.addComponent(lblIcon)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblAuthor)
 						.addComponent(lblVersion)
 						.addComponent(lblName))
-					.addContainerGap(464, Short.MAX_VALUE))
+					.addGap(18)
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 158, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(230, Short.MAX_VALUE))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-						.addComponent(lblName)
-						.addComponent(lblIcon))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblVersion)
-					.addContainerGap(57, Short.MAX_VALUE))
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addContainerGap()
+							.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+								.addComponent(lblName)
+								.addComponent(lblIcon))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblVersion)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblAuthor))
+						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
+		
+		txtDescription = new JTextPane();
+		txtDescription.setEditable(false);
+		txtDescription.setText("No description");
+		scrollPane.setViewportView(txtDescription);
 		panel.setLayout(gl_panel);
 		contentPane.setLayout(gl_contentPane);
 	}
@@ -129,7 +151,7 @@ public class FramePackPlugin extends JFrame {
 	@SuppressWarnings("deprecation")
 	private void loadControllerPlugin(File file) {
 		try {
-			ClassLoader cl = new PluginClassLoader(new URLClassLoader(new URL[] { file.toURL() }, Main.class.getClassLoader()));
+			ClassLoader cl = new URLClassLoader(new URL[] { file.toURL() }, Main.class.getClassLoader());
 
 			String mainClass;
 
@@ -154,18 +176,18 @@ public class FramePackPlugin extends JFrame {
 	}
 	
 	public void setVersion(String version) {
-
+		lblVersion.setText(version);
 	}
 	
 	public void setAuthor(String author) {
-		
+		lblAuthor.setText(author);
 	}
 	
 	public void setDescription(String desc) {
-		
+		txtDescription.setText(desc);
 	}
 	
 	public void setName(String name) {
-
+		lblName.setText(name);
 	}
 }
