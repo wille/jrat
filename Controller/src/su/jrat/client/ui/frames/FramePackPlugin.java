@@ -4,7 +4,6 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.jar.JarFile;
@@ -20,14 +19,17 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import jrat.api.utils.JarUtils;
 import su.jrat.client.Main;
+import su.jrat.client.ui.dialogs.DialogPackPluginEditResources;
 import su.jrat.common.Logger;
 
 @SuppressWarnings("serial")
@@ -42,13 +44,17 @@ public class FramePackPlugin extends JFrame {
 	private JTextPane txtDescription;
 	private JTextField txtIcon;
 	private JButton btnRemove;
-
+	private JTable table;
+	private DefaultTableModel model;
+	private JLabel lblResources;
+	private DialogPackPluginEditResources frame = new DialogPackPluginEditResources();
+	
 	public FramePackPlugin() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FramePackPlugin.class.getResource("/icons/plugin_edit.png")));
 		setResizable(false);
 		setTitle("Pack Plugin");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 552, 437);
+		setBounds(100, 100, 387, 465);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -113,17 +119,74 @@ public class FramePackPlugin extends JFrame {
 			}
 		});
 		btnRemove.setIcon(new ImageIcon(FramePackPlugin.class.getResource("/icons/delete.png")));
+		
+		JLabel lblStubJars = new JLabel("Stub JARs");
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		
+		JButton btnAddStub = new JButton("Add Stub");
+		btnAddStub.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFileChooser c = new JFileChooser();
+				c.showOpenDialog(null);
+				File file = c.getSelectedFile();
+				
+				if (file != null) {
+					String name = JOptionPane.showInputDialog(null, "Input Stub JAR Name", "Pack Plugin", JOptionPane.QUESTION_MESSAGE);
+					
+					if (name != null) {
+						model.addRow(new Object[] { name + ".jar", file.getAbsolutePath() });
+					}
+				}
+			}
+		});
+		btnAddStub.setIcon(new ImageIcon(FramePackPlugin.class.getResource("/icons/add.png")));
+		
+		JButton btnRemove_1 = new JButton("Remove");
+		btnRemove_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				model.removeRow(table.getSelectedRow());
+			}
+		});
+		btnRemove_1.setIcon(new ImageIcon(FramePackPlugin.class.getResource("/icons/delete.png")));
+		
+		JButton btnPack = new JButton("Pack");
+		btnPack.setIcon(new ImageIcon(FramePackPlugin.class.getResource("/icons/plugin_go.png")));
+		
+		lblResources = new JLabel("Resources: 0");
+		
+		JButton btnEditResources = new JButton("Edit Resources");
+		btnEditResources.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(true);
+			}
+		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addComponent(lblIcon_1)
-						.addComponent(lblClientJar))
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(12)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+								.addComponent(lblIcon_1)
+								.addComponent(lblClientJar)))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(lblStubJars)))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+							.addComponent(lblResources)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(btnEditResources)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnPack))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(btnAddStub)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnRemove_1))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(txtClientJAR, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
@@ -133,8 +196,9 @@ public class FramePackPlugin extends JFrame {
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(btnBrowseIcon, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnRemove, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(188, Short.MAX_VALUE))
+							.addComponent(btnRemove, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
+						.addComponent(scrollPane_1, 0, 0, Short.MAX_VALUE))
+					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -154,8 +218,31 @@ public class FramePackPlugin extends JFrame {
 								.addComponent(txtIcon, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(btnBrowseIcon, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)))
 						.addComponent(btnRemove))
-					.addContainerGap(204, Short.MAX_VALUE))
+					.addGap(18)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblStubJars)
+						.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnAddStub)
+						.addComponent(btnRemove_1))
+					.addGap(18)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnPack)
+						.addComponent(btnEditResources)
+						.addComponent(lblResources))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
+		
+		table = new JTable();
+		table.setModel(model = new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Name", "File path"
+			}
+		));
+		scrollPane_1.setViewportView(table);
 		
 		lblIcon = new JLabel("");
 		setDefaultIcon();
@@ -180,8 +267,8 @@ public class FramePackPlugin extends JFrame {
 						.addComponent(lblVersion)
 						.addComponent(lblName))
 					.addGap(18)
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 158, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(230, Short.MAX_VALUE))
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+					.addContainerGap())
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -253,5 +340,9 @@ public class FramePackPlugin extends JFrame {
 	
 	private void setDefaultIcon() {
 		lblIcon.setIcon(new ImageIcon(FramePackPlugin.class.getResource("/icons/plugin.png")));
+	}
+	
+	public void updateResources(int resources) {
+		
 	}
 }
