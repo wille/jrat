@@ -3,6 +3,8 @@ package su.jrat.client.ui.dialogs;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -97,6 +99,22 @@ public class DialogPackPluginEditResources extends JDialog {
 		scrollPane.setViewportView(table);
 		getContentPane().setLayout(groupLayout);
 
+	}
+	
+	public List<File> getResources() {
+		List<File> list = new ArrayList<File>();
+		
+		for (int i = 0; i < table.getRowCount(); i++)  {
+			String value = model.getValueAt(i, 0).toString();
+			
+			File file = new File(value);
+			
+			if (file.exists()) {
+				list.add(file);
+			}
+		}
+		
+		return list;
 	}
 
 }

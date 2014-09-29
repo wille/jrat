@@ -6,6 +6,9 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.jar.JarFile;
 
 import javax.swing.BorderFactory;
@@ -28,7 +31,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import jrat.api.utils.JarUtils;
+import su.jrat.client.ErrorDialog;
 import su.jrat.client.Main;
+import su.jrat.client.build.PluginPacker;
 import su.jrat.client.ui.dialogs.DialogPackPluginEditResources;
 import su.jrat.common.Logger;
 
@@ -151,6 +156,43 @@ public class FramePackPlugin extends JFrame {
 		btnRemove_1.setIcon(new ImageIcon(FramePackPlugin.class.getResource("/icons/delete.png")));
 		
 		JButton btnPack = new JButton("Pack");
+		btnPack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					File input;
+					File icon;
+					
+					Map<String, File> stubJars = new HashMap<String, File>();
+					List<File> resources = frame.getResources();
+					
+					input = new File(txtClientJAR.getText().trim());
+					icon = new File(txtIcon.getText().trim());
+					
+					if (!input.exists()) {
+						JOptionPane.showMessageDialog(null, "Invalid client file!", "Pack Plugin", JOptionPane.ERROR_MESSAGE);
+						return;
+					}
+					
+					if (!icon.exists()) {
+						icon = null;
+					}
+					
+					for (int i = 0; i < table.getRowCount(); i++) {
+						String sfile = model.getValueAt(i, 1).toString();
+						File file = new File(sfile);
+						if (file.exists()) {
+							stubJars.put(model.getValueAt(i, 0).toString(), file);
+						}
+					}
+						
+					PluginPacker packer = new PluginPacker(input, icon, stubJars, resources);
+					packer.pack();
+				} catch (Exception ex) {
+					ex.printStackTrace();
+					ErrorDialog.create(ex);
+				}
+			}
+		});
 		btnPack.setIcon(new ImageIcon(FramePackPlugin.class.getResource("/icons/plugin_go.png")));
 		
 		lblResources = new JLabel("Resources: 0");
