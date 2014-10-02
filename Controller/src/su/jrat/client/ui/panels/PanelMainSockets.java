@@ -48,15 +48,17 @@ public class PanelMainSockets extends JPanel {
 
 		table = new JTable();
 		table.setDefaultRenderer(Object.class, new SocketsTableRenderer());
-		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "Name", "Port", "Timeout", "Pass" }) {
-			public boolean isCellEditable(int row, int column) {
-				return false;
+		table.setModel(model = new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Status", "Name", "Port", "Timeout", "Pass"
 			}
-		});
-		table.getColumnModel().getColumn(0).setPreferredWidth(211);
-		table.getColumnModel().getColumn(1).setPreferredWidth(60);
-		table.getColumnModel().getColumn(2).setPreferredWidth(101);
-		table.getColumnModel().getColumn(3).setPreferredWidth(110);
+		));
+		table.getColumnModel().getColumn(1).setPreferredWidth(211);
+		table.getColumnModel().getColumn(2).setPreferredWidth(60);
+		table.getColumnModel().getColumn(3).setPreferredWidth(101);
+		table.getColumnModel().getColumn(4).setPreferredWidth(110);
 
 		table.getTableHeader().setReorderingAllowed(false);
 

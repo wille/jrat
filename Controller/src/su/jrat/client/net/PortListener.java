@@ -43,11 +43,16 @@ public class PortListener implements Runnable {
 	}
 
 	public PortListener(String name, int port, int timeout, String pass) throws Exception {
+		listeners.add(this);
 		this.name = name;
 		this.timeout = timeout;
-		this.server = new ServerSocket(port);
 		this.pass = pass;
-		listeners.add(this);
+		try {
+			this.server = new ServerSocket(port);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			PanelMainSockets.instance.getModel().addRow(new Object[] { "Not listening", name, server.getLocalPort(), timeout, pass });
+		}
 	}
 
 	@Override
@@ -69,7 +74,7 @@ public class PortListener implements Runnable {
 	}
 
 	public void start() {
-		PanelMainSockets.instance.getModel().addRow(new Object[] { name, server.getLocalPort(), timeout, pass });
+		PanelMainSockets.instance.getModel().addRow(new Object[] { "Listening", name, server.getLocalPort(), timeout, pass });
 
 		new Thread(this, "Port " + server.getLocalPort()).start();
 	}
