@@ -30,7 +30,8 @@ public class DialogPackPluginEditResources extends JDialog {
 		this.frame = frame;
 	}
 
-	public DialogPackPluginEditResources() {
+	@SuppressWarnings("unused")
+	private DialogPackPluginEditResources() {
 		setTitle("Plugin Resources");
 		setModal(true);
 		setResizable(false);

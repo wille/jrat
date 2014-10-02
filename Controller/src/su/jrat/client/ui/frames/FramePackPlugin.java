@@ -52,7 +52,7 @@ public class FramePackPlugin extends JFrame {
 	private JTable table;
 	private DefaultTableModel model;
 	private JLabel lblResources;
-	private DialogPackPluginEditResources frame = new DialogPackPluginEditResources();
+	private DialogPackPluginEditResources frame = new DialogPackPluginEditResources(this);
 	
 	public FramePackPlugin() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FramePackPlugin.class.getResource("/icons/plugin_edit.png")));
