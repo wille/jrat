@@ -96,7 +96,11 @@ public class DialogPackPluginEditResources extends JDialog {
 			new String[] {
 				"File location", "Plugin location"
 			}
-		));
+		) {
+		      public boolean isCellEditable(int row, int column){  
+		          return false;  
+		      }
+		});
 		scrollPane.setViewportView(table);
 		getContentPane().setLayout(groupLayout);
 

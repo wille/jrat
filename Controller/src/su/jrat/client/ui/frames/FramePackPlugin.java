@@ -277,13 +277,18 @@ public class FramePackPlugin extends JFrame {
 		);
 		
 		table = new JTable();
+		table.setRowHeight(25);
 		table.setModel(model = new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
 				"Name", "File path"
 			}
-		));
+		){
+		      public boolean isCellEditable(int row, int column){  
+		          return false;  
+		      }
+		});
 		scrollPane_1.setViewportView(table);
 		
 		lblIcon = new JLabel("");
