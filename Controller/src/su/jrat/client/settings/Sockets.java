@@ -1,19 +1,20 @@
 package su.jrat.client.settings;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.io.Serializable;
 import java.net.BindException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JOptionPane;
 
 import su.jrat.client.Globals;
 import su.jrat.client.net.PortListener;
+import su.jrat.common.crypto.Crypto;
 
 public class Sockets extends AbstractSettings implements Serializable {
 
@@ -26,32 +27,42 @@ public class Sockets extends AbstractSettings implements Serializable {
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public void load() throws Exception {
-		ObjectInputStream in = new ObjectInputStream(new FileInputStream(getFile()));
-		List<SocketEntry> list = (ArrayList<SocketEntry>) in.readObject();
-
-		for (SocketEntry socket : list) {
-			socket.start();
+		BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(getFile())));
+		
+		reader.readLine();
+		int len = Integer.parseInt(reader.readLine());
+		
+		for (int i = 0; i < len; i++) {
+			String name = reader.readLine();
+			int port = Integer.parseInt(reader.readLine());
+			int timeout = Integer.parseInt(reader.readLine());
+			String pass = Crypto.decrypt(reader.readLine(), AbstractSettings.GLOBAL_KEY);
+			
+			SocketEntry se = new SocketEntry(name, port, timeout, pass);
+			se.start();
 		}
-
-		in.close();
+		
+		
+		reader.close();
 	}
 
 	@Override
 	public void save() throws Exception {
-		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(getFile()));
-		List<SocketEntry> list = new ArrayList<SocketEntry>();
-
+		PrintWriter pw = new PrintWriter(new OutputStreamWriter(new FileOutputStream(getFile())));
+		
+		pw.println("Sockets configuration");
+		pw.println(PortListener.listeners.size());
+		
 		for (int i = 0; i < PortListener.listeners.size(); i++) {
-			PortListener connection = PortListener.listeners.get(i);
-			SocketEntry save = new SocketEntry(connection.getName(), connection.getPort(), connection.getTimeout(), connection.getPass());
-			list.add(save);
+			PortListener pl = PortListener.listeners.get(i);
+			pw.println(pl.getName());
+			pw.println(pl.getPort());
+			pw.println(pl.getTimeout());
+			pw.println(Crypto.encrypt(pl.getPass(), AbstractSettings.GLOBAL_KEY));
 		}
-
-		out.writeObject(list);
-		out.close();
-
+		
+		pw.close();
 	}
 
 	public class SocketEntry implements Serializable {
