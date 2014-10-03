@@ -1,12 +1,12 @@
 package su.jrat.client.settings;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,24 +53,30 @@ public class FileBookmarks extends AbstractSettings {
 	@Override
 	public void load() throws Exception {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(getFile())));
-		String line;
-
-		while ((line = reader.readLine()) != null) {
-			bookmarks.add(new File(line));
+		
+		reader.readLine();
+		int len = Integer.parseInt(reader.readLine());
+		
+		for (int i = 0; i < len; i++) {
+			bookmarks.add(new File(reader.readLine()));
 		}
-
+		
+		
 		reader.close();
-
 	}
 
 	@Override
 	public void save() throws Exception {
-		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(getFile())));
+		PrintWriter pw = new PrintWriter(new OutputStreamWriter(new FileOutputStream(getFile())));
+		
+		pw.println("File browser bookmarks");
+		pw.println(bookmarks.size());
+		
 		for (File file : bookmarks) {
-			writer.write(file.getAbsolutePath());
-			writer.newLine();
+			pw.println(file.getAbsolutePath());
 		}
-		writer.close();
+		
+		pw.close();
 	}
 
 	@Override
