@@ -1,10 +1,12 @@
 package su.jrat.client.settings;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,20 +31,42 @@ public class ServerID extends AbstractSettings implements Serializable {
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
-	public void load() throws Exception {
+	public void load() throws Exception {	
 		list.clear();
-		ObjectInputStream in = new ObjectInputStream(new FileInputStream(getFile()));
-		list = (ArrayList<ServerIDEntry>) in.readObject();
-		in.close();
+		
+		BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(getFile())));
+		
+		reader.readLine();
+		int len = Integer.parseInt(reader.readLine());
+		
+		for (int i = 0; i < len; i++) {
+			String ip = reader.readLine();
+			String name = reader.readLine();
+			String realname = reader.readLine();	
+			
+			ServerIDEntry se = new ServerIDEntry(ip, name, realname);
+			list.add(se);
+		}
+		
+		
+		reader.close();
 
 	}
 
 	@Override
 	public void save() throws Exception {
-		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(getFile()));
-		out.writeObject(list);
-		out.close();
+		PrintWriter pw = new PrintWriter(new OutputStreamWriter(new FileOutputStream(getFile())));
+		
+		pw.println("Renamed connections list");
+		pw.println(list.size());
+		
+		for (ServerIDEntry en : list) {
+			pw.println(en.getIP());
+			pw.println(en.getName());
+			pw.println(en.getRealName());
+		}
+		
+		pw.close();
 	}
 
 	public ServerIDEntry findEntry(String ip) {
