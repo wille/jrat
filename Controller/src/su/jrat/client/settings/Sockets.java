@@ -45,7 +45,7 @@ public class Sockets extends AbstractSettings implements Serializable {
 
 		for (int i = 0; i < PortListener.listeners.size(); i++) {
 			PortListener connection = PortListener.listeners.get(i);
-			SocketEntry save = new SocketEntry(connection.getName(), connection.getServer().getLocalPort(), connection.getTimeout(), connection.getPass());
+			SocketEntry save = new SocketEntry(connection.getName(), connection.getPort(), connection.getTimeout(), connection.getPass());
 			list.add(save);
 		}
 

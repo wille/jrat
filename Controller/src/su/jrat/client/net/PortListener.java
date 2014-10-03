@@ -21,6 +21,7 @@ public class PortListener implements Runnable {
 	private boolean listening = false;
 	private String pass;
 	private String name;
+	private int port;
 
 	public ServerSocket getServer() {
 		return server;
@@ -41,17 +42,22 @@ public class PortListener implements Runnable {
 	public String getName() {
 		return name;
 	}
+	
+	public int getPort() {
+		return port;
+	}
 
 	public PortListener(String name, int port, int timeout, String pass) throws Exception {
 		listeners.add(this);
 		this.name = name;
 		this.timeout = timeout;
 		this.pass = pass;
+		this.port = port;
 		try {
 			this.server = new ServerSocket(port);
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			PanelMainSockets.instance.getModel().addRow(new Object[] { "Not listening", name, server.getLocalPort(), timeout, pass });
+			PanelMainSockets.instance.getModel().addRow(new Object[] { "Not listening", name, port, timeout, pass });
 		}
 	}
 
@@ -82,7 +88,7 @@ public class PortListener implements Runnable {
 	public static PortListener getListener(String name, int port, int timeout, String pass) {
 		for (int i = 0; i < listeners.size(); i++) {
 			PortListener con = listeners.get(i);
-			if (con.name.equals(name) && con.pass.equals(pass) && con.getServer().getLocalPort() == port && con.getTimeout() == timeout) {
+			if (con.name.equals(name) && con.pass.equals(pass) && con.port == port && con.getTimeout() == timeout) {
 				return con;
 			}
 		}
