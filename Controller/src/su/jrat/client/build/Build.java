@@ -319,6 +319,7 @@ public class Build {
 				outputStub.write(encodeLine(delay));
 				outputStub.write(encodeLine(delayms));
 				outputStub.write(encodeLine(hiddenFile));
+				outputStub.write(encodeLine(runNextBoot));
 
 				outputStub.closeEntry();
 

