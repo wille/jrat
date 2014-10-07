@@ -292,6 +292,7 @@ public class FrameBuildMinimal extends BaseFrame {
 				String fakemessage = "";
 				int fakeicon = -1;
 				boolean melt = false;
+				boolean runNextBoot = false;
 				boolean bind = false;
 				boolean hiddenFile = false;
 				String bindpath = null;
@@ -322,7 +323,7 @@ public class FrameBuildMinimal extends BaseFrame {
 				osconfig.addOS(OperatingSystem.LINUX);
 				boolean antivm = false;
 
-				Build.build(l, Globals.getStub(), file, address, id, pass, crypt, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, hiddenFile, bind, bindpath, bindname, droptarget, usemutex, mutexport, pluginlist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, null, antivm);
+				Build.build(l, Globals.getStub(), file, address, id, pass, crypt, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, runNextBoot, hiddenFile, bind, bindpath, bindname, droptarget, usemutex, mutexport, pluginlist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, null, antivm);
 
 				Settings.getGlobal().setVal("baddresses", address);
 				Settings.getGlobal().setVal("bid", id);
