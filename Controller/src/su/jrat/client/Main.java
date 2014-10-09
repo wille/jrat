@@ -31,7 +31,7 @@ import su.jrat.common.Version;
 
 public class Main {
 
-	public static boolean trial = true;
+	public static boolean liteVersion = true;
 	public static boolean debug;
 
 	public static final List<Slave> connections = new ArrayList<Slave>();
@@ -87,7 +87,7 @@ public class Main {
 			boolean validated = UniqueId.validate(argsContains(args, "-showhexkey"));
 
 			if (validated) {
-				trial = false;
+				liteVersion = false;
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -138,7 +138,7 @@ public class Main {
 			frame.setVisible(true);
 		}
 
-		if (!argsContains(args, "-noad") && trial) {
+		if (!argsContains(args, "-noad") && liteVersion) {
 			//FrameAd frame = new FrameAd();
 			//frame.setVisible(true);
 			
@@ -213,9 +213,13 @@ public class Main {
 	}
 
 	public static String formatTitle() {
-		String suffix = trial && !debug ? "Limited" : "";
+		String suffix = liteVersion && !debug ? "Limited" : "";
 
 		return Constants.NAME + " [" + connections.size() + "] " + Version.getVersion() + " " + suffix;
+	}
+	
+	public static boolean isFeatureEnabled() {
+		return Main.debug || !Main.liteVersion;
 	}
 
 }

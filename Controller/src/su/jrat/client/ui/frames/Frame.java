@@ -188,7 +188,7 @@ public class Frame extends BaseFrame {
 		menuItem_1.setIcon(new ImageIcon(Frame.class.getResource("/icons/information-button.png")));
 		mnEncryption.add(menuItem_1);
 
-		if (Main.trial) {
+		if (Main.liteVersion) {
 			mnMain.addSeparator();
 
 			JMenuItem mntmUpgrade = new JMenuItem("Upgrade");
@@ -287,7 +287,7 @@ public class Frame extends BaseFrame {
 		mnServerModule.add(mntmBuildServer);
 
 		JMenuItem mntmAdvancedBuild = new JMenuItem("Advanced Builder");
-		mntmAdvancedBuild.setEnabled(Main.debug || !Main.trial);
+		mntmAdvancedBuild.setEnabled(Main.isFeatureEnabled());
 		mntmAdvancedBuild.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				FrameBuildAdvanced frame = new FrameBuildAdvanced();
@@ -406,9 +406,8 @@ public class Frame extends BaseFrame {
 			}
 		});
 		mntmBrowsePlugins.setIcon(new ImageIcon(Frame.class.getResource("/icons/application_large.png")));
-		if (Main.debug || !Main.trial) {
-			mnPlugins_1.add(mntmBrowsePlugins);
-		}
+		mnPlugins_1.add(mntmBrowsePlugins);
+		mntmBrowsePlugins.setEnabled(Main.isFeatureEnabled());
 
 		JMenuItem mntmUpdate = new JMenuItem("Update");
 		mntmUpdate.addActionListener(new ActionListener() {

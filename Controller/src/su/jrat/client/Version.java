@@ -21,7 +21,7 @@ public class Version {
 				FrameChangelog frame = new FrameChangelog(Constants.CHANGELOG_URL, latest);
 				frame.setVisible(true);
 				frame.setTitle("New version! - " + latest);
-				if (!Main.trial) {
+				if (!Main.liteVersion) {
 					JOptionPane.showMessageDialog(null, "When you are premium and upgrading, do not loose your jrat.key file\r\nAll your settings will be removed", "Note", JOptionPane.WARNING_MESSAGE);
 				}
 				return true;

@@ -69,7 +69,7 @@ public class PortListener implements Runnable {
 
 				Slave slave = new Slave(this, socket);
 
-				if (Main.trial && Main.connections.size() >= 5) {
+				if (Main.liteVersion && Main.connections.size() >= 5) {
 					slave.closeSocket(new CloseException("Maximum of 5 connections reached"));
 					PanelMainLog.instance.addEntry("Warning", slave, "Maximum of 5 connections reached");
 				}
