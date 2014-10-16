@@ -115,7 +115,6 @@ public class SampleMode {
 		make("HR", stats);
 		make("HT", stats);
 		make("HU", stats);
-		make("ICON", stats);
 		make("ID", stats);
 		make("IE", stats);
 		make("IL", stats);
