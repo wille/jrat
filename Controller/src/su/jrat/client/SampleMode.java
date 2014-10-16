@@ -81,7 +81,6 @@ public class SampleMode {
 		make("EE", stats);
 		make("EG", stats);
 		make("EH", stats);
-		make("ENGLAND", stats);
 		make("ER", stats);
 		make("unknown", stats);
 		make("ES", stats);
@@ -204,7 +203,6 @@ public class SampleMode {
 		make("SA", stats);
 		make("SB", stats);
 		make("SC", stats);
-		make("SCOTLAND", stats);
 		make("SD", stats);
 		make("SE", stats);
 		make("SG", stats);
@@ -250,7 +248,6 @@ public class SampleMode {
 		make("VI", stats);
 		make("VN", stats);
 		make("VU", stats);
-		make("WALES", stats);
 		make("WF", stats);
 		make("WS", stats);
 		make("YE", stats);
