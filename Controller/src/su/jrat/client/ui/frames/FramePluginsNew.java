@@ -3,6 +3,7 @@ package su.jrat.client.ui.frames;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Toolkit;
+import java.util.List;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -11,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
+import su.jrat.client.addons.OnlinePlugin;
 import su.jrat.client.ui.panels.PluginPanel;
 
 @SuppressWarnings("serial")
@@ -24,7 +26,7 @@ public class FramePluginsNew extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FramePluginsNew.class.getResource("/icons/plugin.png")));
 		setTitle("Plugin");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 580, 390);
+		setBounds(100, 100, 760, 425);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -52,6 +54,29 @@ public class FramePluginsNew extends JFrame {
 		gbl_panelGrid.columnWeights = new double[] { 0.0, Double.MIN_VALUE };
 		gbl_panelGrid.rowWeights = new double[] { 0.0, Double.MIN_VALUE };
 		panelGrid.setLayout(gbl_panelGrid);
+		
+		loadPlugins();
+	}
+
+	public void loadPlugins() {
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					List<OnlinePlugin> list = OnlinePlugin.getAvailablePlugins();
+					
+					for (OnlinePlugin op : list) {
+						PluginPanel pp = new PluginPanel(op);
+						
+						addPluginPanel(pp);
+						panelGrid.repaint();
+						panelGrid.validate();
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}	
+		}).start();
 	}
 	
 	public void addPluginPanel(PluginPanel panel) {

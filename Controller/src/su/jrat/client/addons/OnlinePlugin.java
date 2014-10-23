@@ -110,7 +110,7 @@ public class OnlinePlugin {
 			
 			String dlUrl = reader.readLine();
 			
-			if (dlUrl.equals("")) {
+			if (dlUrl != null && dlUrl.equals("")) {
 				dlUrl = null;
 			}
 
