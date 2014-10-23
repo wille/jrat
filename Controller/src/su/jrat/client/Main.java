@@ -93,7 +93,6 @@ public class Main {
 			ex.printStackTrace();
 			
 			if (!argsContains(args, "-debug")) {
-				instance.setTitle(formatTitle() + " - Limited");
 				JOptionPane.showMessageDialog(null, Constants.NAME + " is limited, no license detected", Constants.NAME, JOptionPane.ERROR_MESSAGE);
 			}
 		}
