@@ -15,8 +15,8 @@ import javax.swing.JScrollPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import su.jrat.client.Globals;
-import su.jrat.client.plugins.PluginList;
-import su.jrat.client.plugins.StubPlugin;
+import su.jrat.client.addons.PluginList;
+import su.jrat.client.addons.StubPlugin;
 import su.jrat.client.ui.components.JCheckBoxList;
 import su.jrat.client.ui.components.JCheckBoxList.Entry;
 import su.jrat.client.ui.renderers.table.PluginsTableRenderer;

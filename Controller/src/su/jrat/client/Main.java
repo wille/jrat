@@ -13,9 +13,9 @@ import javax.swing.UIManager;
 
 import jrat.api.commands.Commands;
 import jrat.api.events.OnDisableEvent;
+import su.jrat.client.addons.Plugin;
+import su.jrat.client.addons.PluginLoader;
 import su.jrat.client.commands.DefaultCommands;
-import su.jrat.client.plugins.Plugin;
-import su.jrat.client.plugins.PluginLoader;
 import su.jrat.client.settings.AbstractSettings;
 import su.jrat.client.settings.Settings;
 import su.jrat.client.settings.Statistics;
@@ -24,6 +24,7 @@ import su.jrat.client.threads.ThreadCheckVersion;
 import su.jrat.client.threads.ThreadPing;
 import su.jrat.client.ui.dialogs.DialogEula;
 import su.jrat.client.ui.frames.Frame;
+import su.jrat.client.ui.frames.FramePluginsNew;
 import su.jrat.client.utils.TrayIconUtils;
 import su.jrat.common.Logger;
 import su.jrat.common.OperatingSystem;
@@ -37,7 +38,8 @@ public class Main {
 	public static final List<Slave> connections = new ArrayList<Slave>();
 	public static Frame instance;
 
-	public static void main(String[] args) throws Exception {		
+	public static void main(String[] args) throws Exception {	
+		new FramePluginsNew().setVisible(true);
 		if (argsContains(args, "-locinfo")) {
 			System.out.println(System.getProperty("user.dir"));
 			System.out.println("jRAT.app: " + new File("jRAT.app/").exists());

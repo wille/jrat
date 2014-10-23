@@ -19,8 +19,8 @@ import javax.swing.table.DefaultTableModel;
 
 import jrat.api.events.OnDisableEvent;
 import su.jrat.client.Globals;
-import su.jrat.client.plugins.Plugin;
-import su.jrat.client.plugins.PluginLoader;
+import su.jrat.client.addons.Plugin;
+import su.jrat.client.addons.PluginLoader;
 import su.jrat.client.ui.renderers.table.PluginsTableRenderer;
 
 @SuppressWarnings("serial")

