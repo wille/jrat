@@ -16,6 +16,7 @@ import jrat.api.events.OnDisableEvent;
 import su.jrat.client.addons.Plugin;
 import su.jrat.client.addons.PluginLoader;
 import su.jrat.client.commands.DefaultCommands;
+import su.jrat.client.net.WebRequest;
 import su.jrat.client.settings.AbstractSettings;
 import su.jrat.client.settings.Settings;
 import su.jrat.client.settings.Statistics;
@@ -33,6 +34,7 @@ public class Main {
 
 	public static boolean liteVersion = true;
 	public static boolean debug;
+	public static boolean noSsl;
 
 	public static final List<Slave> connections = new ArrayList<Slave>();
 	public static Frame instance;
@@ -43,6 +45,15 @@ public class Main {
 			System.out.println("jRAT.app: " + new File("jRAT.app/").exists());
 			System.out.println("/files/: " + new File("jRAT.app/files/").exists());
 		}
+		
+		if (argsContains(args, "-nossl")) {
+			String ssl = WebRequest.domains[0];
+			String nossl = WebRequest.domains[1];
+			
+			WebRequest.domains[1] = ssl;
+			WebRequest.domains[0] = nossl;
+		}
+		
 		if (argsContains(args, "-genkey")) {
 			Logger.log("Generating key");
 			File file = Globals.getKeyFile();
