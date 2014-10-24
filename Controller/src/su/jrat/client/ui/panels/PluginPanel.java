@@ -1,24 +1,19 @@
 package su.jrat.client.ui.panels;
 
+import java.awt.Color;
 import java.awt.Dimension;
-
-import javax.swing.JButton;
-import javax.swing.JPanel;
-
-import su.jrat.client.addons.OnlinePlugin;
-
-import javax.swing.JLabel;
-
 import java.awt.Font;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import java.awt.Color;
-
-import javax.swing.JSeparator;
-import javax.swing.ImageIcon;
+import su.jrat.client.addons.OnlinePlugin;
 
 import com.redpois0n.graphs.monitors.IconUtils;
 

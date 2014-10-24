@@ -24,7 +24,6 @@ import su.jrat.client.threads.ThreadCheckVersion;
 import su.jrat.client.threads.ThreadPing;
 import su.jrat.client.ui.dialogs.DialogEula;
 import su.jrat.client.ui.frames.Frame;
-import su.jrat.client.ui.frames.FramePluginsNew;
 import su.jrat.client.utils.TrayIconUtils;
 import su.jrat.common.Logger;
 import su.jrat.common.OperatingSystem;
@@ -39,7 +38,6 @@ public class Main {
 	public static Frame instance;
 
 	public static void main(String[] args) throws Exception {	
-		new FramePluginsNew().setVisible(true);
 		if (argsContains(args, "-locinfo")) {
 			System.out.println(System.getProperty("user.dir"));
 			System.out.println("jRAT.app: " + new File("jRAT.app/").exists());
