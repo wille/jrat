@@ -18,6 +18,9 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Color;
 
 import javax.swing.JSeparator;
+import javax.swing.ImageIcon;
+
+import com.redpois0n.graphs.monitors.IconUtils;
 
 @SuppressWarnings("serial")
 public class PluginPanel extends JPanel {
@@ -30,6 +33,7 @@ public class PluginPanel extends JPanel {
 	private JLabel lblDescription;
 	private JLabel lblAuthor;
 	private JButton btnAction;
+	private JLabel lblVerified;
 	
 	public PluginPanel(OnlinePlugin op) {
 		this.op = op;
@@ -51,9 +55,13 @@ public class PluginPanel extends JPanel {
 		lblAuthor = new JLabel("Author");
 		
 		btnAction = new JButton("Install");
+		
+		lblVerified = new JLabel("");
+		lblVerified.setToolTipText("Files not hosted by jRAT");
+		lblVerified.setIcon(new ImageIcon(PluginPanel.class.getResource("/icons/log_warning.png")));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addComponent(separator, GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(82)
@@ -69,7 +77,9 @@ public class PluginPanel extends JPanel {
 									.addComponent(lblPluginName)
 									.addGap(18)
 									.addComponent(lblVersion)))
-							.addPreferredGap(ComponentPlacement.RELATED, 246, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED, 196, Short.MAX_VALUE)
+							.addComponent(lblVerified)
+							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(btnAction, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap())
 		);
@@ -81,7 +91,8 @@ public class PluginPanel extends JPanel {
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblPluginName)
-								.addComponent(lblVersion))
+								.addComponent(lblVersion)
+								.addComponent(lblVerified))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblAuthorText)
@@ -102,6 +113,7 @@ public class PluginPanel extends JPanel {
 		setAuthor(op.getAuthor());
 		setVersion(op.getVersion());
 		setPluginName(op.getName());
+		setVerified(op.isUrlVerified());
 	}
 	
 	public void setIndex(int i) {
@@ -122,5 +134,11 @@ public class PluginPanel extends JPanel {
 	
 	public void setPluginName(String text) {
 		lblPluginName.setText(text);
+	}
+	
+	public void setVerified(boolean verified) {
+		if (verified) {
+			lblVerified.setIcon(IconUtils.getIcon("enabled"));
+		}
 	}
 }

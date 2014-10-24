@@ -96,6 +96,10 @@ public class OnlinePlugin {
 		
 		return url;
 	}
+	
+	public boolean isUrlVerified() {
+		return dlUrl == null;
+	}
 
 	public static List<OnlinePlugin> getAvailablePlugins() throws Exception {
 		List<OnlinePlugin> plugins = new ArrayList<OnlinePlugin>();
