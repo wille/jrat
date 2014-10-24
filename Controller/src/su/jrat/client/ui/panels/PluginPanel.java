@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -39,6 +40,7 @@ public class PluginPanel extends JPanel {
 	private JButton btnAction;
 	private JLabel lblVerified;
 	private JLabel lblUpToDate;
+	private JLabel lblIcon;
 	
 	public PluginPanel(FrameInstallPlugins parent, OnlinePlugin onlinePlugin) {
 		this.parent = parent;
@@ -72,12 +74,17 @@ public class PluginPanel extends JPanel {
 		lblVerified.setIcon(new ImageIcon(PluginPanel.class.getResource("/icons/log_warning.png")));
 		
 		lblUpToDate = new JLabel("Up to date");
+		
+		lblIcon = new JLabel("");
+		lblIcon.setIcon(new ImageIcon(PluginPanel.class.getResource("/icons/plugin.png")));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
+			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addComponent(separator, GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-					.addGap(82)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblIcon)
+					.addGap(26)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblUpToDate)
 						.addComponent(lblDescription)
@@ -106,7 +113,8 @@ public class PluginPanel extends JPanel {
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblPluginName)
 								.addComponent(lblVersion)
-								.addComponent(lblVerified))
+								.addComponent(lblVerified)
+								.addComponent(lblIcon))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblAuthorText)
@@ -132,6 +140,7 @@ public class PluginPanel extends JPanel {
 		setVerified(op.isUrlVerified());
 		setUpToDate(op.isUpToDate());
 		setInstalled(op.isInstalled());
+		setIcon(op.getIcon());
 	}
 	
 	public void setIndex(int i) {
@@ -173,6 +182,10 @@ public class PluginPanel extends JPanel {
 			lblVerified.setIcon(IconUtils.getIcon("enabled"));
 			lblVerified.setToolTipText("Files hosted by jRAT");
 		}
+	}
+	
+	public void setIcon(Icon icon) {
+		lblIcon.setIcon(icon);
 	}
 	
 	public void install() {
