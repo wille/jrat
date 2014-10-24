@@ -128,7 +128,7 @@ public class PluginPanel extends JPanel {
 		setDescription(op.getDescription());
 		setAuthor(op.getAuthor());
 		setVersion(op.getVersion());
-		setPluginName(op.getName());
+		setPluginName(op.getDisplayName());
 		setVerified(op.isUrlVerified());
 		setUpToDate(op.isUpToDate());
 		setInstalled(op.isInstalled());
@@ -171,6 +171,7 @@ public class PluginPanel extends JPanel {
 	public void setVerified(boolean verified) {
 		if (verified) {
 			lblVerified.setIcon(IconUtils.getIcon("enabled"));
+			lblVerified.setToolTipText("Files hosted by jRAT");
 		}
 	}
 	
