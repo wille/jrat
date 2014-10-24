@@ -39,15 +39,19 @@ public class PluginInstaller {
 
 	public void toggle() throws Exception {
 		if (plugin.isInstalled()) {
-			install(); // TODO
+			uninstall();
 		} else {
 			install();
 		}
 	}
 
 	public void uninstall() throws Exception {
-		Logger.log(plugin.getJar().delete());
-		Logger.log(plugin.getDirectory().delete());
+		Logger.log("Deleting " + plugin.getJar().getAbsolutePath() + ": " + (plugin.getJar().delete()));
+		Logger.log("Deleting " + plugin.getDirectory().getAbsolutePath() + ": " + (plugin.getDirectory().delete()));
+		
+		for (File file : plugin.getStubs()) {
+			Logger.log("Deleting " + file.getAbsolutePath() + ": " + (file.delete()));
+		}
 	}
 
 	public void install() throws Exception {
