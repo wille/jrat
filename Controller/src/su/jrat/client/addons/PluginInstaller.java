@@ -121,7 +121,7 @@ public class PluginInstaller {
 			if (entry.getName().startsWith("stubs/") && entry.getName().toLowerCase().endsWith(".jar")) {
 				output = new File(Globals.getPluginStubDirectory(), plugin.getName() + " " + entry.getName().substring(6, entry.getName().length()));
 			} else if (entry.getName().startsWith("root/")) {
-				output = new File(Globals.getPluginDirectory(), entry.getName().substring(5, entry.getName().length()));
+				output = new File(Globals.getPluginDirectory(), entry.getName().replace(" ", "").substring(5, entry.getName().replace(" ", "").length()));
 				if (!entry.getName().equals("root/")) {
 					mainJars.add(output);
 				}
