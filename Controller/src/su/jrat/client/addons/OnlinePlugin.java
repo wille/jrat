@@ -59,6 +59,19 @@ public class OnlinePlugin {
     public File getJar() {
         return new File(Globals.getPluginDirectory(), getName() + ".jar");
     }
+    
+    public File[] getStubs() {
+    	File stubDir = new File(Globals.getPluginDirectory(), "stubs");
+    	List<File> files = new ArrayList<File>();
+    	
+    	for (File file : stubDir.listFiles()) {
+    		if (file.getName().startsWith(getName())) {
+    			files.add(file);
+    		}
+    	}
+    	
+    	return files.toArray(new File[0]);
+    }
 
 	public String getVersion() {
 		return version;
