@@ -49,7 +49,9 @@ public class OnlinePlugin {
 	}
 	
     public boolean isInstalled() {
-        return new File(Globals.getPluginDirectory(), getName() + ".jar").exists();
+    	Plugin plugin = PluginLoader.getPlugin(name);
+    	
+    	return plugin != null;
     }
 
     public File getDirectory() {
@@ -99,6 +101,12 @@ public class OnlinePlugin {
 	
 	public boolean isUrlVerified() {
 		return dlUrl == null;
+	}
+	
+	public boolean isUpToDate() {
+		Plugin plugin = PluginLoader.getPlugin(name);
+    	
+    	return plugin != null && plugin.getVersion().equals(version);
 	}
 
 	public static List<OnlinePlugin> getAvailablePlugins() throws Exception {

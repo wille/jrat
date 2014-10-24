@@ -34,6 +34,7 @@ public class PluginPanel extends JPanel {
 	private JLabel lblAuthor;
 	private JButton btnAction;
 	private JLabel lblVerified;
+	private JLabel lblUpToDate;
 	
 	public PluginPanel(OnlinePlugin op) {
 		this.op = op;
@@ -59,13 +60,16 @@ public class PluginPanel extends JPanel {
 		lblVerified = new JLabel("");
 		lblVerified.setToolTipText("Files not hosted by jRAT");
 		lblVerified.setIcon(new ImageIcon(PluginPanel.class.getResource("/icons/log_warning.png")));
+		
+		lblUpToDate = new JLabel("Up to date");
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addComponent(separator, GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
-				.addGroup(groupLayout.createSequentialGroup()
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
 					.addGap(82)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblUpToDate)
 						.addComponent(lblDescription)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
@@ -77,7 +81,7 @@ public class PluginPanel extends JPanel {
 									.addComponent(lblPluginName)
 									.addGap(18)
 									.addComponent(lblVersion)))
-							.addPreferredGap(ComponentPlacement.RELATED, 196, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED, 226, Short.MAX_VALUE)
 							.addComponent(lblVerified)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(btnAction, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)))
@@ -100,7 +104,9 @@ public class PluginPanel extends JPanel {
 						.addComponent(btnAction, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(lblDescription)
-					.addPreferredGap(ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblUpToDate)
+					.addPreferredGap(ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
 					.addComponent(separator, GroupLayout.PREFERRED_SIZE, 2, GroupLayout.PREFERRED_SIZE))
 		);
 		setLayout(groupLayout);
@@ -114,6 +120,7 @@ public class PluginPanel extends JPanel {
 		setVersion(op.getVersion());
 		setPluginName(op.getName());
 		setVerified(op.isUrlVerified());
+		setUpToDate(op.isUpToDate());
 	}
 	
 	public void setIndex(int i) {
@@ -134,6 +141,19 @@ public class PluginPanel extends JPanel {
 	
 	public void setPluginName(String text) {
 		lblPluginName.setText(text);
+	}
+	
+	public void setUpToDate(boolean upToDate) {
+		if (op.isInstalled()) {
+			if (upToDate) {
+				lblUpToDate.setForeground(Color.green.darker());
+			} else {
+				lblUpToDate.setForeground(Color.red);
+				lblUpToDate.setText("Not up to date");
+			}
+		} else {
+			lblUpToDate.setVisible(false);
+		}
 	}
 	
 	public void setVerified(boolean verified) {
