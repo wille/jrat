@@ -2,14 +2,14 @@ package su.jrat.client.addons;
 
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileInputStream;
 import java.lang.reflect.Method;
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.jar.JarFile;
+import java.util.jar.JarInputStream;
 
 import jrat.api.PluginClassLoader;
 import jrat.api.RATControlMenuEntry;
@@ -70,8 +70,10 @@ public class Plugin {
 	public Plugin(String file) throws Exception {
 		setStatus(STATUS_INITIALIZING);
 		setJarName(file);
-		setLoader(new PluginClassLoader(new URLClassLoader(new URL[] { new File(file).toURL() }, Main.class.getClassLoader())));
-
+		JarInputStream jis = new JarInputStream(new FileInputStream(file));
+		setLoader(new PluginClassLoader(this.getClass().getClassLoader(), jis));
+		jis.close();
+		
 		String mainClass;
 
 		try {
