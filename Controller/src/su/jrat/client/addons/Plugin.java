@@ -25,7 +25,7 @@ import su.jrat.client.Main;
 import su.jrat.common.Logger;
 import su.jrat.common.Version;
 
-@SuppressWarnings({ "rawtypes", "unchecked", "deprecation" })
+@SuppressWarnings({ "rawtypes", "unchecked" })
 public class Plugin {
 	
 	public static final int STATUS_DISABLED = 0;
@@ -70,8 +70,11 @@ public class Plugin {
 	public Plugin(String file) throws Exception {
 		setStatus(STATUS_INITIALIZING);
 		setJarName(file);
-		JarInputStream jis = new JarInputStream(new FileInputStream(file));
+		
+		FileInputStream fis = new FileInputStream(file);
+		JarInputStream jis = new JarInputStream(fis);
 		setLoader(new PluginClassLoader(this.getClass().getClassLoader(), jis));
+		fis.close();
 		jis.close();
 		
 		String mainClass;

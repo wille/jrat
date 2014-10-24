@@ -175,6 +175,7 @@ public class PluginPanel extends JPanel {
 	}
 	
 	public void install() {
+		final boolean isInstalled = op.isInstalled();
 		String what = op.isInstalled() ? "reinstall" : "install";
 		if (JOptionPane.showConfirmDialog(null, "Are you sure that you want to " + what + " " + op.getDisplayName() + "?\n\n" + Constants.HOST + " is not behind many of these plugins and cannot verify their content", "Plugin", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE) != JOptionPane.YES_OPTION) {
 			return;
@@ -207,7 +208,11 @@ public class PluginPanel extends JPanel {
 					parent.progressBar.setVisible(false);
 					parent.lblStatus.setVisible(false);
 
-					JOptionPane.showMessageDialog(null, "Successfully installed and enabled " + op.getDisplayName(), "Plugin", JOptionPane.INFORMATION_MESSAGE);
+					if (isInstalled) {
+						JOptionPane.showMessageDialog(null, "Successfully uninstalled and removed " + op.getDisplayName(), "Plugin", JOptionPane.INFORMATION_MESSAGE);
+					} else {
+						JOptionPane.showMessageDialog(null, "Successfully installed and enabled " + op.getDisplayName(), "Plugin", JOptionPane.INFORMATION_MESSAGE);
+					}
 				} catch (FileNotFoundException ex) {
 					ex.printStackTrace();
 
