@@ -14,6 +14,9 @@ import javax.swing.border.EmptyBorder;
 
 import su.jrat.client.addons.OnlinePlugin;
 import su.jrat.client.ui.panels.PluginPanel;
+import javax.swing.JProgressBar;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
 public class FrameInstallPlugins extends JFrame {
@@ -21,27 +24,44 @@ public class FrameInstallPlugins extends JFrame {
 	private JPanel contentPane;
 	private JPanel panelGrid;
 	private JScrollPane panel_1;
+	public JProgressBar progressBar;
+	public JLabel lblStatus;
 
 	public FrameInstallPlugins() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameInstallPlugins.class.getResource("/icons/plugin.png")));
 		setTitle("Plugin");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 760, 425);
+		setBounds(100, 100, 640, 425);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
 		panel_1 = new JScrollPane();
+		
+		progressBar = new JProgressBar();
+		progressBar.setVisible(false);
+		
+		lblStatus = new JLabel("Status");
+		lblStatus.setVisible(false);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addComponent(progressBar, GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(lblStatus, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+				.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)
 		);
 		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(71)
-					.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE))
+					.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(lblStatus, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(progressBar, GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)))
 		);
 		
 		panelGrid = new JPanel();
@@ -66,7 +86,7 @@ public class FrameInstallPlugins extends JFrame {
 					List<OnlinePlugin> list = OnlinePlugin.getAvailablePlugins();
 					
 					for (OnlinePlugin op : list) {
-						PluginPanel pp = new PluginPanel(op);
+						PluginPanel pp = new PluginPanel(FrameInstallPlugins.this, op);
 						
 						addPluginPanel(pp);
 						panelGrid.repaint();

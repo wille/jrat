@@ -49,11 +49,9 @@ public class OnlinePlugin {
 	}
 	
     public boolean isInstalled() {
-    	Plugin plugin = PluginLoader.getPlugin(name);
-    	
-    	return plugin != null;
+        return new File(Globals.getPluginDirectory(), getName() + ".jar").exists();
     }
-
+ 
     public File getDirectory() {
         return new File(Globals.getPluginDirectory(), getName());
     }

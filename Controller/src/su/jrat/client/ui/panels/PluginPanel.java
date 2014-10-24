@@ -3,23 +3,32 @@ package su.jrat.client.ui.panels;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import su.jrat.client.Constants;
 import su.jrat.client.addons.OnlinePlugin;
+import su.jrat.client.addons.PluginInstaller;
+import su.jrat.client.listeners.ExtensionInstallerListener;
+import su.jrat.client.ui.frames.FrameInstallPlugins;
 
 import com.redpois0n.graphs.monitors.IconUtils;
 
 @SuppressWarnings("serial")
 public class PluginPanel extends JPanel {
 
+	private FrameInstallPlugins parent;
 	private int index;
 	private OnlinePlugin op;
 	private JLabel lblPluginName;
@@ -31,8 +40,9 @@ public class PluginPanel extends JPanel {
 	private JLabel lblVerified;
 	private JLabel lblUpToDate;
 	
-	public PluginPanel(OnlinePlugin op) {
-		this.op = op;
+	public PluginPanel(FrameInstallPlugins parent, OnlinePlugin onlinePlugin) {
+		this.parent = parent;
+		this.op = onlinePlugin;
 		
 		setPreferredSize(new Dimension(600, 100));
 		
@@ -50,7 +60,12 @@ public class PluginPanel extends JPanel {
 		
 		lblAuthor = new JLabel("Author");
 		
-		btnAction = new JButton("Install");
+		btnAction = new JButton("Action");
+		btnAction.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				install();
+			}
+		});
 		
 		lblVerified = new JLabel("");
 		lblVerified.setToolTipText("Files not hosted by jRAT");
@@ -116,6 +131,7 @@ public class PluginPanel extends JPanel {
 		setPluginName(op.getName());
 		setVerified(op.isUrlVerified());
 		setUpToDate(op.isUpToDate());
+		setInstalled(op.isInstalled());
 	}
 	
 	public void setIndex(int i) {
@@ -139,21 +155,75 @@ public class PluginPanel extends JPanel {
 	}
 	
 	public void setUpToDate(boolean upToDate) {
-		if (op.isInstalled()) {
-			if (upToDate) {
-				lblUpToDate.setForeground(Color.green.darker());
-			} else {
-				lblUpToDate.setForeground(Color.red);
-				lblUpToDate.setText("Not up to date");
-			}
+		if (upToDate) {
+			lblUpToDate.setForeground(Color.green.darker());
 		} else {
-			lblUpToDate.setVisible(false);
-		}
+			lblUpToDate.setForeground(Color.red);
+			lblUpToDate.setText("Not up to date");
+		}		
+	}
+	
+	public void setInstalled(boolean installed) {
+		lblUpToDate.setVisible(installed);
+		btnAction.setText(installed ? "Uninstall" : "Install");
 	}
 	
 	public void setVerified(boolean verified) {
 		if (verified) {
 			lblVerified.setIcon(IconUtils.getIcon("enabled"));
 		}
+	}
+	
+	public void install() {
+		String what = op.isInstalled() ? "reinstall" : "install";
+		if (JOptionPane.showConfirmDialog(null, "Are you sure that you want to " + what + " " + op.getDisplayName() + "?\n\n" + Constants.HOST + " is not behind many of these plugins and cannot verify their content", "Plugin", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE) != JOptionPane.YES_OPTION) {
+			return;
+		}
+
+		final PluginInstaller installer = new PluginInstaller(op, new ExtensionInstallerListener() {
+			@Override
+			public void status(Color color, String message, int current, int total) {
+				parent.lblStatus.setForeground(color);
+				parent.lblStatus.setText(message);
+				parent.progressBar.setValue(current);
+
+				if (total == -1) {
+					parent.progressBar.setIndeterminate(true);
+				} else {
+					parent.progressBar.setIndeterminate(false);
+					parent.progressBar.setMaximum(total);
+				}
+			}
+		});
+
+		parent.progressBar.setVisible(true);
+		parent.lblStatus.setVisible(true);
+
+		new Thread(new Runnable() {
+			public void run() {
+				try {
+					installer.toggle();
+
+					parent.progressBar.setVisible(false);
+					parent.lblStatus.setVisible(false);
+
+					JOptionPane.showMessageDialog(null, "Successfully installed and enabled " + op.getDisplayName(), "Plugin", JOptionPane.INFORMATION_MESSAGE);
+				} catch (FileNotFoundException ex) {
+					ex.printStackTrace();
+
+					parent.progressBar.setVisible(false);
+					parent.lblStatus.setVisible(false);
+
+					JOptionPane.showMessageDialog(null, "Could not find package, maybe this is a paid plugin", "Plugin", JOptionPane.WARNING_MESSAGE);
+				} catch (Exception ex) {
+					ex.printStackTrace();
+
+					parent.progressBar.setVisible(false);
+					parent.lblStatus.setVisible(false);
+
+					JOptionPane.showMessageDialog(null, "Failed to install " + op.getDisplayName() + ", " + ex.getClass().getSimpleName() + ": " + ex.getMessage(), "Plugin", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		}).start();
 	}
 }

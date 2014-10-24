@@ -61,6 +61,10 @@ public class PluginInstaller {
 		} catch (Exception e) {
 			throw new MissingKeyException("Failed to load key", e);
 		}
+		
+		if (Main.debug) {
+			key = "DEBUG_KEY";
+		}
 
 		HttpURLConnection archiveConnection = (HttpURLConnection) WebRequest.getConnection(Constants.HOST + "/plugins/getplugin.php?plugin=" + plugin.getName() + "&key=" + key);
 		archiveConnection.setReadTimeout(15000);
