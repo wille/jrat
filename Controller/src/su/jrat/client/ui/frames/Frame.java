@@ -398,7 +398,7 @@ public class Frame extends BaseFrame {
 			}
 		});
 
-		JMenuItem mntmBrowsePlugins = new JMenuItem("Browse Plugins");
+		JMenuItem mntmBrowsePlugins = new JMenuItem("View Available Plugins");
 		mntmBrowsePlugins.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				FrameInstallPlugins frame = new FrameInstallPlugins();

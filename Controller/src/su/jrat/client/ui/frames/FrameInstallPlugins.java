@@ -29,9 +29,9 @@ public class FrameInstallPlugins extends JFrame {
 
 	public FrameInstallPlugins() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameInstallPlugins.class.getResource("/icons/plugin.png")));
-		setTitle("Plugin");
+		setTitle("View Available Plugins");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 640, 425);
+		setBounds(100, 100, 640, 365);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -47,7 +47,7 @@ public class FrameInstallPlugins extends JFrame {
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(progressBar, GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
+					.addComponent(progressBar, GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(lblStatus, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
@@ -56,8 +56,7 @@ public class FrameInstallPlugins extends JFrame {
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(71)
-					.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+					.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
 						.addComponent(lblStatus, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

@@ -30,7 +30,6 @@ import com.redpois0n.graphs.monitors.IconUtils;
 public class PluginPanel extends JPanel {
 
 	private FrameInstallPlugins parent;
-	private int index;
 	private OnlinePlugin op;
 	private JLabel lblPluginName;
 	private JLabel lblAuthorText;
@@ -144,7 +143,6 @@ public class PluginPanel extends JPanel {
 	}
 	
 	public void setIndex(int i) {
-		this.index = i;
 	}
 	
 	public void setDescription(String text) {
