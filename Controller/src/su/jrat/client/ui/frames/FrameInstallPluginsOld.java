@@ -115,12 +115,7 @@ public class FrameInstallPluginsOld extends JFrame {
 					} else {
 						String text = plugin.isInstalled() ? "Reinstall" : "Install";
 
-						if (!plugin.isDownloadable()) {
-							text = "Not available";
-						}
-
 						JButton btn = new JButton(text);
-						btn.setEnabled(plugin.isDownloadable());
 						return btn;
 					}
 				} else {
@@ -258,7 +253,7 @@ public class FrameInstallPluginsOld extends JFrame {
 			plugins = OnlinePlugin.getAvailablePlugins();
 
 			for (OnlinePlugin plugin : plugins) {
-				model.addRow(new Object[] { plugin.getDisplayName(), plugin.getAuthor(), plugin.getDescription(), plugin.getVersion(), plugin.getBuiltFor() });
+				model.addRow(new Object[] { plugin.getDisplayName(), plugin.getAuthor(), plugin.getDescription(), plugin.getVersion(), "" });
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
