@@ -172,7 +172,8 @@ public class PluginPanel extends JPanel {
 	
 	public void setInstalled(boolean installed) {
 		lblUpToDate.setVisible(installed);
-		btnAction.setText(installed ? "Uninstall" : "Install");
+		btnAction.setText(installed ? /*"Uninstall"*/ "Installed" : "Install");
+		btnAction.setEnabled(!installed);
 	}
 	
 	public void setVerified(boolean verified) {
