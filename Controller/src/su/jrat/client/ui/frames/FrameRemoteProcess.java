@@ -1,5 +1,6 @@
 package su.jrat.client.ui.frames;
 
+import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -126,6 +127,7 @@ public class FrameRemoteProcess extends JFrame {
 
 		table = new JTable();
 		table.setRowHeight(25);
+		table.setGridColor(Color.white);
 		table.setDefaultRenderer(Object.class, new ProcessTableRenderer());
 		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Name", "Process ID", "Session name / Time", "Memory usage" }));
 		model = (DefaultTableModel) table.getModel();
