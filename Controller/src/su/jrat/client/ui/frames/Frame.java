@@ -1475,7 +1475,7 @@ public class Frame extends BaseFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				Slave slave = Utils.getSlave(mainModel.getValueAt(mainTable.getSelectedRow(), 3).toString());
 				if (slave != null) {
-					FrameInfo screen = new FrameInfo(slave);
+					FrameComputerInfo screen = new FrameComputerInfo(slave);
 					screen.setVisible(true);
 				}
 			}

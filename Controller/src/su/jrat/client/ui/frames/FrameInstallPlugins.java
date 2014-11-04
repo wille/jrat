@@ -8,15 +8,15 @@ import java.util.List;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
 import su.jrat.client.addons.OnlinePlugin;
 import su.jrat.client.ui.panels.PluginPanel;
-import javax.swing.JProgressBar;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
 public class FrameInstallPlugins extends JFrame {
