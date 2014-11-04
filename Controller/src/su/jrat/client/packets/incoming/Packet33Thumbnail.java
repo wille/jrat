@@ -8,7 +8,6 @@ import javax.swing.ImageIcon;
 
 import su.jrat.client.Slave;
 import su.jrat.client.ui.frames.Frame;
-import su.jrat.client.ui.frames.FrameInfo;
 import su.jrat.client.utils.Utils;
 
 
@@ -24,11 +23,6 @@ public class Packet33Thumbnail extends AbstractIncomingPacket {
 		slave.getDataInputStream().readFully(buffer);
 
 		slave.setThumbnail(new ImageIcon(bufferedImage));
-		FrameInfo frame1 = FrameInfo.instances.get(slave);
-		if (frame1 != null) {
-			frame1.panel.image = slave.getThumbnail().getImage();
-			frame1.panel.repaint();
-		}
 
 		int row = Utils.getRow(slave);
 
