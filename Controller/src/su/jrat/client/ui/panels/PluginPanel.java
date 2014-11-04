@@ -137,8 +137,8 @@ public class PluginPanel extends JPanel {
 		setVersion(op.getVersion());
 		setPluginName(op.getDisplayName());
 		setVerified(op.isUrlVerified());
-		setUpToDate(op.isUpToDate());
 		setInstalled(op.isInstalled());
+		setUpToDate(op.isUpToDate());
 		setIcon(op.getIcon());
 	}
 	
@@ -167,13 +167,14 @@ public class PluginPanel extends JPanel {
 		} else {
 			lblUpToDate.setForeground(Color.red);
 			lblUpToDate.setText("Not up to date");
+			btnAction.setFont(new Font("Arial", Font.BOLD, 12));
+			btnAction.setText("Update");
 		}		
 	}
 	
 	public void setInstalled(boolean installed) {
 		lblUpToDate.setVisible(installed);
-		btnAction.setText(installed ? /*"Uninstall"*/ "Installed" : "Install");
-		btnAction.setEnabled(!installed);
+		btnAction.setText(installed ? "Reinstall" : "Install");
 	}
 	
 	public void setVerified(boolean verified) {
