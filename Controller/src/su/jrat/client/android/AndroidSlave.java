@@ -1,6 +1,7 @@
 package su.jrat.client.android;
 
 import java.awt.TrayIcon;
+import java.io.DataOutputStream;
 import java.net.Socket;
 import java.util.Arrays;
 
@@ -16,6 +17,7 @@ import su.jrat.client.exceptions.CloseException;
 import su.jrat.client.net.ConnectionHandler;
 import su.jrat.client.net.PortListener;
 import su.jrat.client.packets.incoming.IncomingPackets;
+import su.jrat.client.packets.outgoing.AbstractOutgoingPacket;
 import su.jrat.client.ui.frames.Frame;
 import su.jrat.client.ui.panels.PanelMainLog;
 import su.jrat.client.utils.TrayIconUtils;
@@ -107,6 +109,16 @@ public class AndroidSlave extends AbstractSlave {
 			TrayIconUtils.showMessage(Main.instance.getTitle(), "Server " + getIP() + " disconnected: " + message, TrayIcon.MessageType.ERROR);
 			PluginEventHandler.onDisconnect(this);
 		}
+	}
+
+	@Override
+	public void sendPacket(AbstractOutgoingPacket packet, DataOutputStream dos) throws Exception {
+		packet.send(this, dos);
+	}
+
+	@Override
+	public void ping() throws Exception {
+		// TODO addToSendQueue(new AndroidPacket0Ping());
 	}
 
 }
