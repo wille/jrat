@@ -36,7 +36,7 @@ public class Main {
 	public static boolean debug;
 	public static boolean noSsl;
 
-	public static final List<Slave> connections = new ArrayList<Slave>();
+	public static final List<AbstractSlave> connections = new ArrayList<AbstractSlave>();
 	public static Frame instance;
 
 	public static void main(String[] args) throws Exception {	
