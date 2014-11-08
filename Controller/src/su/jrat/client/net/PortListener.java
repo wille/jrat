@@ -5,11 +5,14 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
+import su.jrat.client.AbstractSlave;
 import su.jrat.client.Main;
 import su.jrat.client.Slave;
+import su.jrat.client.android.AndroidSlave;
 import su.jrat.client.exceptions.CloseException;
 import su.jrat.client.ui.panels.PanelMainLog;
 import su.jrat.client.ui.panels.PanelMainSockets;
+import su.jrat.common.ConnectionCodes;
 
 
 public class PortListener implements Runnable {
@@ -68,11 +71,25 @@ public class PortListener implements Runnable {
 				Socket socket = server.accept();
 				int type = socket.getInputStream().read();
 				
-				Slave slave = new Slave(this, socket);
+				AbstractSlave slave;
+				
+				if (type == ConnectionCodes.ANDROID_SLAVE) {
+					slave = new AndroidSlave(this, socket);
+				} else if (type == ConnectionCodes.DESKTOP_SLAVE) {
+					slave = new Slave(this, socket);
+				}
+				
+				if (type < 0 || type > 1) {
+					slave = new Slave(this, socket);
+					PanelMainLog.instance.addEntry("Error", slave, "Invalid connection type");
+					continue;
+				}
 
 				if (Main.liteVersion && Main.connections.size() >= 5) {
+					slave = new Slave(this, socket);
 					slave.closeSocket(new CloseException("Maximum of 5 connections reached"));
 					PanelMainLog.instance.addEntry("Warning", slave, "Maximum of 5 connections reached");
+					continue;
 				}
 			}
 		} catch (Exception ex) {

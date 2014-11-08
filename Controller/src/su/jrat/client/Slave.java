@@ -49,16 +49,12 @@ public class Slave extends AbstractSlave {
 
 	public static boolean encryption = true;
 
-	private Socket socket;
-
 	private DataInputStream dis;
 	private DataOutputStream dos;
 	private OutputStream outputStream;
 	private InputStream inputStream;
 	private BufferedReader br;
 	private PrintWriter pw;
-
-	private PortListener connection;
 
 	private final List<String> queue = new ArrayList<String>();
 	private Drive[] drives;
@@ -108,14 +104,12 @@ public class Slave extends AbstractSlave {
 	private ImageIcon thumbnail = null;
 
 	public Slave(PortListener connection, Socket socket) {
-		this.connection = connection;
-		this.socket = socket;
-		this.ip = socket.getInetAddress().getHostAddress() + " / " + socket.getPort();
+		super(connection, socket);
 		new Thread(this).start();
 	}
 
 	public Slave(String ip) {
-		this.ip = ip;
+		super(ip);
 	}
 	
 	public byte[] getKey() {
@@ -124,35 +118,8 @@ public class Slave extends AbstractSlave {
 
 	public void run() {
 		try {
-			socket.setSoTimeout(connection.getTimeout());
-			socket.setTrafficClass(24);
-
-			this.host = socket.getInetAddress().getHostName();
-
-			if (Settings.getGlobal().getBoolean("geoip")) {
-				Country country = FlagUtils.getCountry(this);
-
-				if (country != null) {
-					this.country = country.get2cStr();
-
-					if (this.country.equalsIgnoreCase("ZZ")) {
-						this.country = "?";
-					}
-				} else {
-					this.country = "?";
-				}
-			} else {
-				this.country = "?";
-			}
-
-			PanelMainLog.instance.addEntry("Connect", this, "");
-
-			this.inputStream = socket.getInputStream();
-			this.outputStream = socket.getOutputStream();
-
-			this.dis = new DataInputStream(inputStream);
-			this.dos = new DataOutputStream(outputStream);
-			
+			initialize();
+		
 			KeyExchanger exchanger = new KeyExchanger(dis, dos, GlobalKeyPair.getKeyPair());
 			exchanger.writePublicKey();
 			exchanger.readRemotePublicKey();
@@ -355,15 +322,7 @@ public class Slave extends AbstractSlave {
 			return "/";
 		}
 	}
-
-	public String getRawIP() {
-		return getIP().split(" / ")[0];
-	}
-
-	public String getPort() {
-		return getIP().split(" / ")[1];
-	}
-
+	
 	public static boolean shouldFix(String i) {
 		return i.contains(" / ");
 	}
@@ -638,15 +597,6 @@ public class Slave extends AbstractSlave {
 
 	public void setThumbnail(ImageIcon thumbnail) {
 		this.thumbnail = thumbnail;
-	}
-
-	public void closeSocket(CloseException ex) {
-		try {
-			socket.close();
-			ex.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	public Locale[] getLocales() {
