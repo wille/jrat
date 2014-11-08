@@ -73,22 +73,11 @@ public class Slave extends AbstractSlave {
 	private String language = "";
 	private String displaylanguage = "";
 
-	private boolean responded = false;
-	private boolean verified = false;
-	private boolean checked = false;
-	private boolean selected = false;
-	private boolean lock = false;
-
-	private int ping = 0;
 	private int status = 5;
 
 	private int ram = 0;
 	private short processors;
 
-	public long pingms = 0;
-	private long sent = 0;
-	private long received = 0;
-	private final long uniqueId = (new Random()).nextLong();
 
 	private ImageIcon thumbnail = null;
 
@@ -183,22 +172,6 @@ public class Slave extends AbstractSlave {
 		}
 	}
 
-	public synchronized void addToSendQueue(AbstractOutgoingPacket packet) {
-		while (lock) {
-			try {
-				Thread.sleep(10L);
-			} catch (Exception ex) {
-				ex.printStackTrace();
-			}
-
-		}
-		try {
-			packet.send(this, dos);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 	
 
 	@Override
@@ -241,38 +214,6 @@ public class Slave extends AbstractSlave {
 
 	public boolean isUpToDate() {
 		return getVersion().equals(Version.getVersion());
-	}
-
-	public Socket getSocket() {
-		return socket;
-	}
-
-	public void setSocket(Socket socket) {
-		this.socket = socket;
-	}
-
-	public DataInputStream getDataInputStream() {
-		return dis;
-	}
-
-	public DataOutputStream getDataOutputStream() {
-		return dos;
-	}
-
-	public OutputStream getOutputStream() {
-		return outputStream;
-	}
-
-	public InputStream getInputStream() {
-		return inputStream;
-	}
-
-	public PortListener getConnection() {
-		return connection;
-	}
-
-	public void setConnection(PortListener connection) {
-		this.connection = connection;
 	}
 
 	public List<String> getQueue() {
@@ -523,31 +464,11 @@ public class Slave extends AbstractSlave {
 		this.language = language;
 	}
 
+	@Override
 	public void ping() throws Exception {
 		addToSendQueue(new Packet0Ping());
-		pingms = System.currentTimeMillis();
 	}
 
-	public void lock() {
-		lock = !lock;
-	}
-
-	public static final synchronized void toggleEncryption(boolean b) {
-		encryption = b;
-
-		for (Slave slave : Main.connections) {
-			slave.addToSendQueue(new Packet99Encryption(b));
-		}
-
-	}
-
-	public boolean isLocked() {
-		return lock;
-	}
-
-	public long getUniqueId() {
-		return uniqueId;
-	}
 
 	public void setAntiviruses(Antivirus[] antiviruses) {
 		this.antiviruses = antiviruses;
@@ -563,5 +484,10 @@ public class Slave extends AbstractSlave {
 
 	public Firewall[] getFirewalls() {
 		return firewalls;
+	}
+
+	@Override
+	public void sendPacket(AbstractOutgoingPacket packet, DataOutputStream dos) throws Exception {
+		packet.send(this, dos);
 	}
 }

