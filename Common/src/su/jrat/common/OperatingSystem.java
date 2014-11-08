@@ -8,6 +8,7 @@ public enum OperatingSystem {
 	SOLARIS,
 	FREEBSD,
 	OPENBSD,
+	ANDROID,
 	UNKNOWN;
 
 	public static OperatingSystem getOperatingSystem(String str) {
@@ -27,6 +28,8 @@ public enum OperatingSystem {
 			os = OperatingSystem.FREEBSD;
 		} else if (str.contains("openbsd")) {
 			os = OperatingSystem.OPENBSD;
+		} else if (str.contains("android")) {
+			os = OperatingSystem.ANDROID;
 		} else {
 			os = OperatingSystem.UNKNOWN;
 		}
