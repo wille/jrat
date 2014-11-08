@@ -47,14 +47,6 @@ import com.redpois0n.graphs.monitors.RemoteMonitor;
 @SuppressWarnings("unused")
 public class Slave extends AbstractSlave {
 
-	public static boolean encryption = true;
-
-	private DataInputStream dis;
-	private DataOutputStream dos;
-	private OutputStream outputStream;
-	private InputStream inputStream;
-	private BufferedReader br;
-	private PrintWriter pw;
 
 	private final List<String> queue = new ArrayList<String>();
 	private Drive[] drives;
@@ -62,9 +54,6 @@ public class Slave extends AbstractSlave {
 	private Locale[] locales;
 	private Antivirus[] antiviruses;
 	private Firewall[] firewalls;
-	
-	private PublicKey rsaKey;
-	private byte[] key;
 
 	private String computername = "";
 	private String ip = "";
@@ -210,96 +199,7 @@ public class Slave extends AbstractSlave {
 		}
 	}
 
-	public void writeShort(short i) throws Exception {
-		dos.writeShort(i);
-	}
-
-	public short readShort() throws Exception {
-		return dis.readShort();
-	}
-
-	public byte readByte() throws Exception {
-		return dis.readByte();
-	}
-
-	public void writeByte(int b) throws Exception {
-		dos.writeByte(b);
-	}
-
-	public boolean readBoolean() throws Exception {
-		return dis.readBoolean();
-	}
-
-	public void writeBoolean(boolean b) throws Exception {
-		dos.writeBoolean(b);
-	}
-
-	public int readInt() throws Exception {
-		return dis.readInt();
-	}
-
-	public void writeInt(int i) throws Exception {
-		dos.writeInt(i);
-	}
-
-	public long readLong() throws Exception {
-		return dis.readLong();
-	}
-
-	public void writeLong(long l) throws Exception {
-		dos.writeLong(l);
-	}
-
-	public void writeLine(Object obj) {
-		writeLine(obj.toString());
-	}
-
-	public void writeLine(String s) {
-		try {
-			String enc = Crypto.encrypt(s, getKey());
-
-			if (enc.contains("\n")) {
-				enc = "-h " + Hex.encode(s);
-			} else if (s.startsWith("-c ")) {
-				enc = s;
-			} else if (!encryption) {
-				enc = "-c " + s;
-			}
-
-			// dos.writeUTF(enc);
-			dos.writeShort(enc.length());
-			dos.writeChars(enc);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-	}
-
-	public String readLine() throws Exception {
-		// String s = dis.readUTF();
-		short len = dis.readShort();
-
-		StringBuilder builder = new StringBuilder();
-		for (int i = 0; i < len; i++) {
-			builder.append(dis.readChar());
-		}
-
-		String s = builder.toString();
-
-		if (s.startsWith("-h ")) {
-			s = Hex.decode(s.substring(3, s.length()));
-		} else if (s.startsWith("-c ")) {
-			s = s.substring(3, s.length());
-		} else {
-			try {
-				s = Crypto.decrypt(s, getKey());
-			} catch (Exception e) {
-				e.printStackTrace();
-				s = null;
-			}
-		}
-
-		return s;
-	}
+	
 
 	@Override
 	public boolean equals(Object o) {

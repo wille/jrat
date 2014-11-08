@@ -13,9 +13,13 @@ import su.jrat.client.net.PortListener;
 import su.jrat.client.settings.Settings;
 import su.jrat.client.ui.panels.PanelMainLog;
 import su.jrat.client.utils.FlagUtils;
+import su.jrat.common.codec.Hex;
+import su.jrat.common.crypto.Crypto;
 
 public abstract class AbstractSlave implements Runnable {
 
+	public static boolean encryption = true;
+	
 	protected PortListener connection;
 	protected Socket socket;
 
@@ -103,6 +107,95 @@ public abstract class AbstractSlave implements Runnable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void writeShort(short i) throws Exception {
+		dos.writeShort(i);
+	}
+
+	public short readShort() throws Exception {
+		return dis.readShort();
+	}
+
+	public byte readByte() throws Exception {
+		return dis.readByte();
+	}
+
+	public void writeByte(int b) throws Exception {
+		dos.writeByte(b);
+	}
+
+	public boolean readBoolean() throws Exception {
+		return dis.readBoolean();
+	}
+
+	public void writeBoolean(boolean b) throws Exception {
+		dos.writeBoolean(b);
+	}
+
+	public int readInt() throws Exception {
+		return dis.readInt();
+	}
+
+	public void writeInt(int i) throws Exception {
+		dos.writeInt(i);
+	}
+
+	public long readLong() throws Exception {
+		return dis.readLong();
+	}
+
+	public void writeLong(long l) throws Exception {
+		dos.writeLong(l);
+	}
+
+	public void writeLine(Object obj) {
+		writeLine(obj.toString());
+	}
+
+	public void writeLine(String s) {
+		try {
+			String enc = Crypto.encrypt(s, getKey());
+
+			if (enc.contains("\n")) {
+				enc = "-h " + Hex.encode(s);
+			} else if (s.startsWith("-c ")) {
+				enc = s;
+			} else if (!encryption) {
+				enc = "-c " + s;
+			}
+
+			dos.writeShort(enc.length());
+			dos.writeChars(enc);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+
+	public String readLine() throws Exception {
+		short len = dis.readShort();
+
+		StringBuilder builder = new StringBuilder();
+		for (int i = 0; i < len; i++) {
+			builder.append(dis.readChar());
+		}
+
+		String s = builder.toString();
+
+		if (s.startsWith("-h ")) {
+			s = Hex.decode(s.substring(3, s.length()));
+		} else if (s.startsWith("-c ")) {
+			s = s.substring(3, s.length());
+		} else {
+			try {
+				s = Crypto.decrypt(s, getKey());
+			} catch (Exception e) {
+				e.printStackTrace();
+				s = null;
+			}
+		}
+
+		return s;
 	}
 
 }
