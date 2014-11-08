@@ -66,7 +66,8 @@ public class PortListener implements Runnable {
 		try {
 			while (!server.isClosed()) {
 				Socket socket = server.accept();
-
+				int type = socket.getInputStream().read();
+				
 				Slave slave = new Slave(this, socket);
 
 				if (Main.liteVersion && Main.connections.size() >= 5) {

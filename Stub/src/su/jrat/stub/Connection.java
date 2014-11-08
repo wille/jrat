@@ -82,6 +82,7 @@ public class Connection implements Runnable {
 			Connection.dis = new DataInputStream(inputStream);
 			Connection.dos = new DataOutputStream(outputStream);
 	        
+			outputStream.write(1);
 			
 			KeyExchanger exchanger = new KeyExchanger(dis, dos, Main.getKeyPair());
 			exchanger.readRemotePublicKey();
