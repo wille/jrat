@@ -1,7 +1,7 @@
 package su.jrat.client.threads;
 
+import su.jrat.client.AbstractSlave;
 import su.jrat.client.Main;
-import su.jrat.client.Slave;
 
 public class ThreadPing extends Thread {
 
@@ -13,7 +13,7 @@ public class ThreadPing extends Thread {
 		while (true) {
 			try {
 				for (int i = 0; i < Main.connections.size(); i++) {
-					Slave slave = Main.connections.get(i);
+					AbstractSlave slave = Main.connections.get(i);
 
 					if (!slave.isLocked()) {
 						slave.ping();

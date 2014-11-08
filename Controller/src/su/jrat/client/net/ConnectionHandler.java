@@ -1,5 +1,6 @@
 package su.jrat.client.net;
 
+import su.jrat.client.AbstractSlave;
 import su.jrat.client.Main;
 import su.jrat.client.SampleMode;
 import su.jrat.client.Slave;
@@ -13,7 +14,7 @@ import su.jrat.client.utils.Utils;
 
 public class ConnectionHandler {
 
-	public synchronized static void addSlave(Slave slave) {
+	public synchronized static void addSlave(AbstractSlave slave) {
 		Main.connections.add(slave);
 
 		Object icon = null;

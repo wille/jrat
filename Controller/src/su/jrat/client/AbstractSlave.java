@@ -8,14 +8,20 @@ import java.net.Socket;
 import java.security.PublicKey;
 import java.util.Random;
 
+import javax.swing.ImageIcon;
+
 import su.jrat.client.exceptions.CloseException;
 import su.jrat.client.ip2c.Country;
 import su.jrat.client.net.PortListener;
 import su.jrat.client.packets.outgoing.AbstractOutgoingPacket;
 import su.jrat.client.packets.outgoing.Packet99Encryption;
 import su.jrat.client.settings.Settings;
+import su.jrat.client.ui.frames.Frame;
 import su.jrat.client.ui.panels.PanelMainLog;
 import su.jrat.client.utils.FlagUtils;
+import su.jrat.client.utils.Utils;
+import su.jrat.common.OperatingSystem;
+import su.jrat.common.Version;
 import su.jrat.common.codec.Hex;
 import su.jrat.common.crypto.Crypto;
 
@@ -44,6 +50,11 @@ public abstract class AbstractSlave implements Runnable {
 	protected long received = 0;
 	protected final long uniqueId = (new Random()).nextLong();
 	protected int ping = 0;
+	protected String serverid;
+	protected String username;
+	protected ImageIcon thumbnail;
+	protected String version;
+	protected String osname;
 
 	private String ip;
 	private String host;
@@ -237,6 +248,14 @@ public abstract class AbstractSlave implements Runnable {
 		return uniqueId;
 	}
 	
+	public DataInputStream getDataInputStream() {
+		return dis;
+	}
+	
+	public DataOutputStream getDataOutputStream() {
+		return dos;
+	}
+	
 	public synchronized void addToSendQueue(AbstractOutgoingPacket packet) {
 		while (lock) {
 			try {
@@ -261,4 +280,94 @@ public abstract class AbstractSlave implements Runnable {
 		pingms = System.currentTimeMillis();
 		ping();
 	}
+
+	public int getPing() {
+		return ping;
+	}
+
+	public void setPing(int ping) {
+		this.ping = ping;
+	}
+	
+	public void pong() {
+		long ping = System.currentTimeMillis() - pingms;
+		this.ping = (int) ping;
+		Frame.mainModel.setValueAt(ping + " ms", Utils.getRow(3, getIP()), 4);		
+	}
+	
+	public abstract String getDisplayName();
+	
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getServerID() {
+		return serverid;
+	}
+
+	public void setServerID(String serverid) {
+		this.serverid = serverid;
+	}
+
+	public boolean isSelected() {
+		return selected;
+	}
+
+	public void setSelected(boolean selected) {
+		this.selected = selected;
+	}
+
+	public ImageIcon getThumbnail() {
+		return thumbnail;
+	}
+
+	public void setThumbnail(ImageIcon thumbnail) {
+		this.thumbnail = thumbnail;
+	}
+	
+	public String getCountry() {
+		return country.toUpperCase();
+	}
+
+	public boolean isVerified() {
+		return verified;
+	}
+
+	public String getVersion() {
+		return version;
+	}
+
+	public void setVersion(String version) {
+		this.version = version;
+	}
+
+	public boolean isUpToDate() {
+		return getVersion().equals(Version.getVersion());
+	}
+
+	public void setVerified(boolean verified) {
+		this.verified = verified;
+	}
+	
+	public ImageIcon getFlag() {
+		return FlagUtils.getFlag(country);
+	}
+
+	public String getOperatingSystem() {
+		return osname;
+	}
+
+	public void setOperatingSystem(String osname) {
+		this.osname = osname;
+	}
+
+	public OperatingSystem getOS() {
+		String os = this.getOperatingSystem().toLowerCase();
+		return OperatingSystem.getOperatingSystem(os);
+	}
+
 }

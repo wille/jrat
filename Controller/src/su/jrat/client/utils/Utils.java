@@ -14,8 +14,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+import su.jrat.client.AbstractSlave;
 import su.jrat.client.Main;
-import su.jrat.client.Slave;
 import su.jrat.client.ui.frames.Frame;
 
 
@@ -34,7 +34,7 @@ public class Utils {
 		return -1;
 	}
 
-	public static Slave getSlave(String ip) {
+	public static AbstractSlave getSlave(String ip) {
 		for (int i = 0; i < Main.connections.size(); i++) {
 			if (Main.connections.get(i).getIP().equals(ip)) {
 				return Main.connections.get(i);
@@ -43,11 +43,11 @@ public class Utils {
 		return null;
 	}
 
-	public static List<Slave> getSlaves() {
+	public static List<AbstractSlave> getSlaves() {
 		try {
-			List<Slave> list = new ArrayList<Slave>();
+			List<AbstractSlave> list = new ArrayList<AbstractSlave>();
 			for (int i = 0; i < Frame.mainModel.getRowCount(); i++) {
-				Slave slave = getSlave(Frame.mainModel.getValueAt(i, 3).toString());
+				AbstractSlave slave = getSlave(Frame.mainModel.getValueAt(i, 3).toString());
 				boolean selected = false;
 				for (int row : Frame.mainTable.getSelectedRows()) {
 					if (row == i) {
@@ -70,53 +70,6 @@ public class Utils {
 		return JOptionPane.showInputDialog(null, text, title, JOptionPane.QUESTION_MESSAGE);
 	}
 
-	/*
-	 * public static ImageIcon getCountry(String ip) { if (Slave.shouldFix(ip))
-	 * { ip = Slave.fix(ip); }
-	 * 
-	 * ImageIcon icon = null; Country c = null;
-	 * 
-	 * try { if (ip2c == null) { ip2c = new
-	 * IP2Country(IP2Country.MEMORY_MAPPED); } c = ip2c.getCountry(ip); if (c ==
-	 * null) { if (flags.containsKey("unknown")) { icon = flags.get("unknown");
-	 * } else { icon = new
-	 * ImageIcon(Main.class.getResource("/icons/unknown.png")); } } else { if
-	 * (flags.containsKey(c.get2cStr().toLowerCase())) { icon =
-	 * flags.get(c.get2cStr().toLowerCase()); } else { icon = new
-	 * ImageIcon(Main.class.getResource("/flags/" + c.get2cStr().toLowerCase() +
-	 * ".png")); } } } catch (Exception e) { e.printStackTrace(); icon = new
-	 * ImageIcon(Main.class.getResource("/icons/unknown.png")); }
-	 * 
-	 * if (!flags.containsKey(icon.toString().toLowerCase())) {
-	 * flags.put(icon.toString().toLowerCase(), icon); } else if (c != null &&
-	 * !flags.containsKey(c.get2cStr().toLowerCase())) {
-	 * flags.put(c.get2cStr().toLowerCase(), icon); } return icon; }
-	 */
-
-	/*
-	 * public static ImageIcon getCountry(Slave slave) { ImageIcon icon = null;
-	 * try {
-	 * 
-	 * if (flags.containsKey(slave.getCountry())) { icon =
-	 * flags.get(slave.getCountry()); } else { icon = new
-	 * ImageIcon(Main.class.getResource("/flags/" + slave.getCountry() +
-	 * ".png")); }
-	 * 
-	 * } catch (Exception e) { e.printStackTrace(); icon = new
-	 * ImageIcon(Main.class.getResource("/icons/unknown.png")); }
-	 * 
-	 * if (!flags.containsKey(icon.toString().toLowerCase())) {
-	 * flags.put(icon.toString().toLowerCase(), icon); } return icon; }
-	 */
-
-	/*
-	 * public static Country getCountryClass(String ip) { if
-	 * (Slave.shouldFix(ip)) { ip = Slave.fix(ip); } try { if (ip2c == null) {
-	 * ip2c = new IP2Country(IP2Country.MEMORY_MAPPED); } Country c =
-	 * ip2c.getCountry(ip); return c; } catch (Exception e) {
-	 * e.printStackTrace(); } return null; }
-	 */
-
 	public static boolean yesNo(String title, String message) {
 		return JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION;
 	}
@@ -130,7 +83,7 @@ public class Utils {
 		return str;
 	}
 
-	public static int getRow(Slave slave) {
+	public static int getRow(AbstractSlave slave) {
 		for (int i = 0; i < Frame.mainModel.getRowCount(); i++) {
 			if (Frame.mainModel.getValueAt(i, 3).equals(slave.getIP())) {
 				return i;

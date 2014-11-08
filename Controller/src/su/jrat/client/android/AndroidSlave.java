@@ -83,9 +83,7 @@ public class AndroidSlave extends AbstractSlave {
 				}
 
 				if (header == 0) {
-					long ping = System.currentTimeMillis() - pingms;
-					this.ping = (int) ping;
-					Frame.mainModel.setValueAt(ping + " ms", Utils.getRow(3, getIP()), 4);
+					pong();
 					continue;
 				}
 

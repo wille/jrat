@@ -19,8 +19,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
+import su.jrat.client.AbstractSlave;
 import su.jrat.client.Main;
-import su.jrat.client.Slave;
 import su.jrat.client.ui.renderers.GroupTreeRenderer;
 
 
@@ -78,13 +78,13 @@ public class FrameGroups extends BaseFrame {
 
 		HashMap<String, DefaultMutableTreeNode> nodes = new HashMap<String, DefaultMutableTreeNode>();
 
-		List<Slave> list = Main.connections;
+		List<AbstractSlave> list = Main.connections;
 
 		renderer.icons.clear();
 
 		for (int i = 0; i < list.size(); i++) {
-			Slave slave = list.get(i);
-			String val = slave.getUsername() + "@" + slave.getComputerName() + " / " + slave.getIP();
+			AbstractSlave slave = list.get(i);
+			String val = slave.getUsername() + "@" + slave.getDisplayName();
 			renderer.icons.put(val.toLowerCase(), slave.getFlag());
 
 			if (nodes.containsKey(slave.getServerID())) {

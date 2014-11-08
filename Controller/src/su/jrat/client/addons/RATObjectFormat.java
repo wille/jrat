@@ -10,13 +10,14 @@ import jrat.api.Queue;
 import jrat.api.RATObject;
 import jrat.api.Reader;
 import jrat.api.Writer;
+import su.jrat.client.AbstractSlave;
 import su.jrat.client.Main;
 import su.jrat.client.Slave;
 import su.jrat.client.packets.outgoing.AbstractOutgoingPacket;
 
 public class RATObjectFormat {
 
-	public static RATObject format(final Slave s) {
+	public static RATObject format(final AbstractSlave s) {
 		Connection con = new Connection(s.getConnection().getTimeout(), s.getConnection().getPass(), s.getConnection().getName());
 
 		final DataOutputStream out = s.getDataOutputStream();
@@ -113,7 +114,7 @@ public class RATObjectFormat {
 		}, in, out, new Queue() {
 			@Override
 			public void addToSendQueue(final PacketBuilder arg0, final RATObject rat) throws Exception {
-				Slave slave = getFromRATObject(rat);
+				AbstractSlave slave = getFromRATObject(rat);
 
 				if (slave != null) {
 					AbstractOutgoingPacket packet = new AbstractOutgoingPacket() {
@@ -137,11 +138,11 @@ public class RATObjectFormat {
 		return j;
 	}
 
-	public static Slave getFromRATObject(RATObject obj) {
+	public static AbstractSlave getFromRATObject(RATObject obj) {
 		String ip = obj.getIP();
 
 		for (int i = 0; i < Main.connections.size(); i++) {
-			Slave slave = Main.connections.get(i);
+			AbstractSlave slave = Main.connections.get(i);
 
 			if (slave.getIP().equals(ip)) {
 				return slave;
