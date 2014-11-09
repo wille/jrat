@@ -55,7 +55,7 @@ public final class UniqueId {
 			Logger.log(Hex.encode(id));
 		}
 
-		HttpURLConnection archiveConnection = (HttpURLConnection) WebRequest.getConnection(Constants.HOST + "/api/validate.php?key=" + Hex.encode(id), true);
+		HttpURLConnection archiveConnection = (HttpURLConnection) WebRequest.getConnection(Constants.HOST + "/api/validate.php?key=" + Hex.encode(id) + "&type=jrat", true);
 		archiveConnection.connect();
 
 		int response = archiveConnection.getResponseCode();
