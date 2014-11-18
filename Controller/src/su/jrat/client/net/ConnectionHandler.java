@@ -3,7 +3,6 @@ package su.jrat.client.net;
 import su.jrat.client.AbstractSlave;
 import su.jrat.client.Main;
 import su.jrat.client.SampleMode;
-import su.jrat.client.Slave;
 import su.jrat.client.Sound;
 import su.jrat.client.addons.PluginEventHandler;
 import su.jrat.client.exceptions.CloseException;
@@ -38,7 +37,7 @@ public class ConnectionHandler {
 		PluginEventHandler.onConnect(slave);
 	}
 
-	public synchronized static void removeSlave(Slave client, Exception e) {
+	public synchronized static void removeSlave(AbstractSlave client, Exception e) {
 		if (SampleMode.isInSampleMode()) {
 			return;
 		}

