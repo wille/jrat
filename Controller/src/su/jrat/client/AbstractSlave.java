@@ -258,24 +258,6 @@ public abstract class AbstractSlave implements Runnable {
 	public DataOutputStream getDataOutputStream() {
 		return dos;
 	}
-	
-	public synchronized void addToSendQueue(AbstractOutgoingPacket packet) {
-		while (lock) {
-			try {
-				Thread.sleep(10L);
-			} catch (Exception ex) {
-				ex.printStackTrace();
-			}
-
-		}
-		try {
-			sendPacket(packet, dos);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public abstract void sendPacket(AbstractOutgoingPacket packet, DataOutputStream dos) throws Exception;
 
 	public abstract void ping() throws Exception;
 

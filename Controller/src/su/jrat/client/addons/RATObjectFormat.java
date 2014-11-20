@@ -129,7 +129,9 @@ public class RATObjectFormat {
 						}
 					};
 
-					slave.addToSendQueue(packet);
+					if (slave instanceof Slave) {
+						((Slave)slave).addToSendQueue(packet);
+					}
 				} else {
 					throw new NullPointerException("No connection found for IP " + rat.getIP());
 				}

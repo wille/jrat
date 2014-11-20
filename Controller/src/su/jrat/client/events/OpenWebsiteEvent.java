@@ -3,6 +3,7 @@ package su.jrat.client.events;
 import javax.swing.ImageIcon;
 
 import su.jrat.client.AbstractSlave;
+import su.jrat.client.Slave;
 import su.jrat.client.packets.outgoing.Packet14VisitURL;
 import su.jrat.client.utils.IconUtils;
 import su.jrat.client.utils.Utils;
@@ -24,7 +25,9 @@ public class OpenWebsiteEvent extends Event {
 
 	@Override
 	public void perform(AbstractSlave sl) {
-		sl.addToSendQueue(new Packet14VisitURL(url));
+		if (sl instanceof Slave) {
+			((Slave)sl).addToSendQueue(new Packet14VisitURL(url));
+		}
 	}
 
 	@Override

