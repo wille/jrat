@@ -1,11 +1,12 @@
 #!/bin/sh
-# 
 
 # Constants
 JAVA_MAJOR=1
-JAVA_MINOR=7
-APP_JAR="app.jar"
-APP_NAME="Application"
+JAVA_MINOR=%MINOR%
+APP_JAR="%JAR%"
+APP_NAME="%NAME%"
+DISPLAY=%DOCK%
+
 VM_ARGS=""
 
 # Set the working directory
@@ -44,4 +45,4 @@ if [[ "$_java" ]]; then
 fi
 
 # Run the application
-exec $_java $VM_ARGS -Dapple.laf.useScreenMenuBar=false -Duser.dir="$DIR" -Dcom.apple.macos.use-file-dialog-packages=false -Dapple.awt.UIElement=false -Xdock:name="$APP_NAME" -cp ".;$DIR;" -jar "$DIR/$APP_JAR"
+exec $_java $VM_ARGS -Dapple.laf.useScreenMenuBar=$DISPLAY -Duser.dir="$DIR" -Dcom.apple.macos.use-file-dialog-packages=$DISPLAY -Dapple.awt.UIElement=$DISPLAY -Xdock:name="$APP_NAME" -cp ".;$DIR;" -jar "$DIR/$APP_JAR"
