@@ -62,7 +62,6 @@ public class Slave extends AbstractSlave {
 	private String localip = "";
 	private String installdate = "";
 	private String renamedid = "";
-	private String country = "Unknown";
 	private String longcountry;
 	private String language = "";
 	private String displaylanguage = "";
@@ -260,10 +259,6 @@ public class Slave extends AbstractSlave {
 
 	public void setRenamedID(String renamedid) {
 		this.renamedid = renamedid;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
 	}
 
 	public String getLongCountry() {

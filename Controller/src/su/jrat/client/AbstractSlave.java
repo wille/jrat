@@ -77,7 +77,10 @@ public abstract class AbstractSlave implements Runnable {
 		this.socket.setSoTimeout(connection.getTimeout());
 		this.socket.setTrafficClass(24);
 		
-		if (Settings.getGlobal().getBoolean("geoip")) {
+		if (Main.debug) {
+			String randomCountry = SampleMode.randomCountry();
+			setCountry(randomCountry);
+		} else if (Settings.getGlobal().getBoolean("geoip")) {
 			Country country = FlagUtils.getCountry(this);
 
 			if (country != null) {
@@ -364,6 +367,10 @@ public abstract class AbstractSlave implements Runnable {
 
 	public void setOperatingSystem(String osname) {
 		this.osname = osname;
+	}
+	
+	public void setCountry(String country) {
+		this.country = country;
 	}
 
 	public OperatingSystem getOS() {
