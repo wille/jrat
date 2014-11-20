@@ -292,6 +292,7 @@ public abstract class AbstractSlave implements Runnable {
 	public void pong() {
 		long ping = System.currentTimeMillis() - pingms;
 		this.ping = (int) ping;
+		
 		Frame.mainModel.setValueAt(ping + " ms", Utils.getRow(3, getIP()), 4);		
 	}
 	

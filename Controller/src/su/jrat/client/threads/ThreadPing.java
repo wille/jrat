@@ -16,7 +16,7 @@ public class ThreadPing extends Thread {
 					AbstractSlave slave = Main.connections.get(i);
 
 					if (!slave.isLocked()) {
-						slave.ping();
+						slave.beginPing();
 					}
 				}
 				Thread.sleep(2500L);
