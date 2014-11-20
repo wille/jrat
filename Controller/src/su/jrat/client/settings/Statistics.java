@@ -9,8 +9,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import su.jrat.client.AbstractSlave;
 import su.jrat.client.Globals;
-import su.jrat.client.Slave;
 import su.jrat.client.ui.frames.Frame;
 import su.jrat.common.Logger;
 
@@ -80,22 +80,22 @@ public class Statistics extends AbstractSettings implements Serializable {
 		str.close();
 	}
 
-	public void add(Slave client) {
+	public void add(AbstractSlave abstractSlave) {
 		if (!isTracking()) {
 			return;
 		}
 
-		StatEntry entry = getEntry(client.getCountry(), client.getCountry());
+		StatEntry entry = getEntry(abstractSlave.getCountry(), abstractSlave.getCountry());
 
 		entry.connects++;
 		boolean exists = false;
 		for (String str : entry.list) {
-			if (str.equals(client.getRawIP())) {
+			if (str.equals(abstractSlave.getRawIP())) {
 				exists = true;
 			}
 		}
 		if (!exists) {
-			entry.list.add(0, client.getRawIP());
+			entry.list.add(0, abstractSlave.getRawIP());
 		}
 		reload();
 	}

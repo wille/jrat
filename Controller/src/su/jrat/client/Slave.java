@@ -1,43 +1,27 @@
 package su.jrat.client;
 
 import java.awt.TrayIcon;
-import java.io.BufferedReader;
-import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.net.Socket;
-import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
-import javax.swing.ImageIcon;
 
 import su.jrat.client.addons.PluginEventHandler;
 import su.jrat.client.crypto.GlobalKeyPair;
 import su.jrat.client.exceptions.CloseException;
-import su.jrat.client.ip2c.Country;
 import su.jrat.client.net.ConnectionHandler;
 import su.jrat.client.net.PortListener;
-import su.jrat.client.packets.android.outgoing.AbstractOutgoingAndroidPacket;
 import su.jrat.client.packets.incoming.IncomingPackets;
 import su.jrat.client.packets.outgoing.AbstractOutgoingPacket;
 import su.jrat.client.packets.outgoing.Packet0Ping;
-import su.jrat.client.packets.outgoing.Packet99Encryption;
-import su.jrat.client.settings.Settings;
-import su.jrat.client.ui.frames.Frame;
 import su.jrat.client.ui.panels.PanelMainLog;
-import su.jrat.client.utils.FlagUtils;
 import su.jrat.client.utils.TrayIconUtils;
-import su.jrat.client.utils.Utils;
 import su.jrat.common.OperatingSystem;
-import su.jrat.common.Version;
 import su.jrat.common.codec.Hex;
 import su.jrat.common.crypto.Crypto;
 import su.jrat.common.crypto.KeyExchanger;
@@ -56,13 +40,10 @@ public class Slave extends AbstractSlave {
 	private Antivirus[] antiviruses;
 	private Firewall[] firewalls;
 
-	private String computername = "";
 	private String serverpath = "";
 	private String javaver = "";
 	private String javapath = "";
-	private String localip = "";
 	private String installdate = "";
-	private String renamedid = "";
 	private String longcountry;
 	private String language = "";
 	private String displaylanguage = "";
@@ -226,14 +207,6 @@ public class Slave extends AbstractSlave {
 		this.monitors = monitors;
 	}
 
-	public String getComputerName() {
-		return computername;
-	}
-
-	public void setComputerName(String name) {
-		this.computername = name;
-	}
-
 	public String getServerPath() {
 		return serverpath;
 	}
@@ -258,28 +231,12 @@ public class Slave extends AbstractSlave {
 		this.javapath = javapath;
 	}
 
-	public String getLocalIP() {
-		return localip;
-	}
-
-	public void setLocalIP(String localip) {
-		this.localip = localip;
-	}
-
 	public String getInstallDate() {
 		return installdate;
 	}
 
 	public void setInstallDate(String date) {
 		this.installdate = date;
-	}
-
-	public String getRenamedID() {
-		return renamedid;
-	}
-
-	public void setRenamedID(String renamedid) {
-		this.renamedid = renamedid;
 	}
 
 	public String getLongCountry() {

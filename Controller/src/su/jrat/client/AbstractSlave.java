@@ -13,9 +13,10 @@ import javax.swing.ImageIcon;
 import su.jrat.client.exceptions.CloseException;
 import su.jrat.client.ip2c.Country;
 import su.jrat.client.net.PortListener;
-import su.jrat.client.packets.outgoing.AbstractOutgoingPacket;
 import su.jrat.client.packets.outgoing.Packet99Encryption;
+import su.jrat.client.settings.ServerID;
 import su.jrat.client.settings.Settings;
+import su.jrat.client.settings.Statistics;
 import su.jrat.client.ui.frames.Frame;
 import su.jrat.client.ui.panels.PanelMainLog;
 import su.jrat.client.utils.FlagUtils;
@@ -36,6 +37,10 @@ public abstract class AbstractSlave implements Runnable {
 	protected OutputStream outputStream;
 	protected DataOutputStream dos;
 	protected DataInputStream dis;
+	
+	protected String computername = "";
+	protected String renamedid = "";
+	protected String localip = "";
 	
 	protected String country;
 	protected PublicKey rsaKey;
@@ -289,6 +294,8 @@ public abstract class AbstractSlave implements Runnable {
 
 	public void setUsername(String username) {
 		this.username = username;
+		
+		Frame.mainModel.setValueAt(getUsername() + "@" + getComputerName(), Utils.getRow(3, getIP()), 5);
 	}
 
 	public String getServerID() {
@@ -297,6 +304,22 @@ public abstract class AbstractSlave implements Runnable {
 
 	public void setServerID(String serverid) {
 		this.serverid = serverid;
+		
+		ServerID.ServerIDEntry entry = ServerID.getGlobal().findEntry(getRawIP());
+		if (entry == null) {
+			Frame.mainModel.setValueAt(getServerID(), Utils.getRow(3, getIP()), 1);
+		} else {
+			setRenamedID(entry.getName());
+			Frame.mainModel.setValueAt(getRenamedID(), Utils.getRow(3, getIP()), 1);
+		}
+	}
+	
+	public String getRenamedID() {
+		return renamedid;
+	}
+
+	public void setRenamedID(String renamedid) {
+		this.renamedid = renamedid;
 	}
 
 	public boolean isSelected() {
@@ -329,6 +352,10 @@ public abstract class AbstractSlave implements Runnable {
 
 	public void setVersion(String version) {
 		this.version = version;
+
+		int row = Utils.getRow(this);
+
+		Frame.mainModel.setValueAt(version, row, 9);
 	}
 
 	public boolean isUpToDate() {
@@ -349,15 +376,49 @@ public abstract class AbstractSlave implements Runnable {
 
 	public void setOperatingSystem(String osname) {
 		this.osname = osname;
+		
+		Frame.mainModel.setValueAt(getOperatingSystem(), Utils.getRow(3, getIP()), 6);
 	}
 	
 	public void setCountry(String country) {
 		this.country = country;
+		
+		
+		int row = Utils.getRow(this);
+
+		if (row != -1) {
+			Frame.mainModel.setValueAt(this.getCountry().toUpperCase().trim(), row, 0);
+			Frame.mainTable.repaint();
+		}
+		
+		Statistics.getGlobal().add(this);
 	}
 
 	public OperatingSystem getOS() {
 		String os = this.getOperatingSystem().toLowerCase();
 		return OperatingSystem.getOperatingSystem(os);
+	}
+	
+	public String getComputerName() {
+		return computername;
+	}
+
+	public void setComputerName(String name) {
+		this.computername = name;
+		
+		Frame.mainModel.setValueAt("Unknown@" + getComputerName(), Utils.getRow(3, getIP()), 5);
+	}
+	
+	public String getLocalIP() {
+		return localip;
+	}
+
+	public void setLocalIP(String localip) {
+		this.localip = localip;
+
+		int row = Utils.getRow(this);
+
+		Frame.mainModel.setValueAt(localip, row, 8);
 	}
 
 }
