@@ -8,15 +8,17 @@ import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.jar.JarFile;
 
 import jrat.api.utils.IOUtils;
+import jrat.api.utils.JarUtils;
 import su.jrat.client.Main;
 import su.jrat.client.ui.frames.FrameAppInfo;
 
 public class BuildApp {
 
 	public static void build(String input, String output, FrameAppInfo frame) throws Exception {
-		
+		build(new File(input), new File(output), frame.getIconFile(), JarUtils.getMainClass(new JarFile(input)), frame.getAppTitle(), false, 6);
 	}
 
 	public static final String infoFile = "/files/Info.plist";
@@ -64,26 +66,23 @@ public class BuildApp {
 
 		br = new BufferedReader(new InputStreamReader(is));
 		pw = new PrintWriter(dest);
+		
+		StringBuilder sb = new StringBuilder();
 
-		int nline = 1;
 		String line;
+		
 		while ((line = br.readLine()) != null) {
-			if (nline == 6) {
-				pw.println("JAVA_MINOR=" + minimumVersion);
-			} else if (nline == 7) {
-				pw.println("APP_JAR=\"" + jarName + "\"");
-			} else if (nline == 8) {
-				pw.println("APP_NAME=\"" + appTitle + "\"");
-			} else if ((nline == 47) && showIcon) {
-				pw.println("exec $_java $VM_ARGS -Dapple.laf.useScreenMenuBar=true -Dcom.apple.macos.use-file-dialog-packages=true -Dapple.awt.UIElement=true -Duser.dir=\"$DIR\" -Xdock:name=\"$APP_NAME\" -cp \".;$DIR;\" -jar \"$DIR/$APP_JAR\"");
-			} else {
-				pw.println(line);
-			}
-			nline++;
+			sb.append(line + "\n");
 		}
+		
 		br.close();
+		
+		String rawFile = sb.toString();
+		rawFile = rawFile.replace("%MINOR%", minimumVersion + "").replace("%JAR%", jarName).replace("%DOCK%", showIcon + "").replace("%NAME%", appTitle);
+		
+		pw.print(rawFile); 
+		
 		pw.close();
-
 	}
 }
 

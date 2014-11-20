@@ -14,6 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import su.jrat.client.utils.Utils;
+
 @SuppressWarnings("serial")
 public class FrameExecutableInfo extends BaseFrame {
 
@@ -270,5 +272,7 @@ public class FrameExecutableInfo extends BaseFrame {
 		});
 		btnBrowse.setBounds(286, 229, 35, 21);
 		contentPane.add(btnBrowse);
+		
+		Utils.center(this);
 	}
 }

