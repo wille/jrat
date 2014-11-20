@@ -39,6 +39,7 @@ public class PanelBuildOutput extends JPanel {
 	private JButton btnAssemblyInfo;
 	private JCheckBox chckbxObfuscate;
 	private JButton btnObfuscationInfo;
+	private JRadioButton rdbtnapposX;
 
 	public boolean useShellcode() {
 		return rdbtnShellcode.isSelected();
@@ -71,6 +72,10 @@ public class PanelBuildOutput extends JPanel {
 		return chckbxObfuscate.isSelected();
 	}
 
+	public boolean useApp() {
+		return rdbtnapposX.isSelected();
+	}
+	
 	public PanelBuildOutput() {
 
 		rdbtnjarjavaArchive = new JRadioButton(".jar (Java Archive)");
@@ -157,7 +162,8 @@ public class PanelBuildOutput extends JPanel {
 			btnObfuscationInfo.setEnabled(false);
 		}
 		
-		JRadioButton rdbtnapposX = new JRadioButton(".app (OS X application)");
+		rdbtnapposX = new JRadioButton(".app (OS X application)");
+		buttonGroup.add(rdbtnapposX);
 		
 		JButton btnProperties = new JButton("Properties");
 		
@@ -192,18 +198,15 @@ public class PanelBuildOutput extends JPanel {
 										.addComponent(rdbtnjarjavaArchive)
 										.addComponent(rdbtnapposX, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE))
 									.addPreferredGap(ComponentPlacement.RELATED)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+										.addComponent(btnProperties, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(btnAssemblyInfo, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(btnObfuscationInfo, GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE))
+									.addPreferredGap(ComponentPlacement.RELATED)
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(btnProperties, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
-										.addGroup(groupLayout.createSequentialGroup()
-											.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-												.addComponent(btnAssemblyInfo)
-												.addComponent(btnObfuscationInfo, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE))
-											.addPreferredGap(ComponentPlacement.RELATED)
-											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-												.addComponent(chckbxObfuscate)
-												.addComponent(button))))))
-							.addPreferredGap(ComponentPlacement.RELATED)))
-					.addContainerGap(90, Short.MAX_VALUE))
+										.addComponent(chckbxObfuscate)
+										.addComponent(button))))))
+					.addContainerGap(88, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)

