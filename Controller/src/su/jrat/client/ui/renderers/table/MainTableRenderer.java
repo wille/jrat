@@ -38,7 +38,7 @@ public class MainTableRenderer extends DefaultTableCellRenderer {
 		JLabel lbl = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
 		AbstractSlave slave = Utils.getSlave(table.getValueAt(row, 3).toString());
-
+		
 		if (slave != null && !isSelected && !slave.getVersion().equals(Version.getVersion()) && !slave.getVersion().equals("")) {
 			setForeground(Colors.getGlobal().getColorFromIndex(Colors.getGlobal().get("outdated stubs").getIndex()));
 		} else if (isSelected) {
