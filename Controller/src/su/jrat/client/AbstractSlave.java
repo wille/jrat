@@ -243,7 +243,10 @@ public abstract class AbstractSlave implements Runnable {
 		encryption = b;
 
 		for (AbstractSlave slave : Main.connections) {
-			slave.addToSendQueue(new Packet99Encryption(b));
+			if (slave instanceof Slave) {
+				((Slave)slave).addToSendQueue(new Packet99Encryption(b));
+			}
+			
 		}
 
 	}

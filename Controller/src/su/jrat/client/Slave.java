@@ -29,7 +29,6 @@ import su.jrat.common.hash.Sha1;
 
 import com.redpois0n.graphs.monitors.RemoteMonitor;
 
-@SuppressWarnings("unused")
 public class Slave extends AbstractSlave {
 
 
