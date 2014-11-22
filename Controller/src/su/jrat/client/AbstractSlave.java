@@ -358,7 +358,9 @@ public abstract class AbstractSlave implements Runnable {
 
 		int row = Utils.getRow(this);
 
-		Frame.mainModel.setValueAt(version, row, 9);
+		if (row != -1) {
+			Frame.mainModel.setValueAt(version, row, 9);
+		}
 	}
 
 	public boolean isUpToDate() {

@@ -26,7 +26,7 @@ public class ConnectionHandler {
 			icon = slave.getCountry();
 		}
 
-		Frame.mainModel.addRow(new Object[] { icon, "Unknown", "Loading...", slave.getIP(), "?", "Unknown", "Unknown", "0 mb" });
+		Frame.mainModel.addRow(new Object[] { icon, "Unknown", "Loading...", slave.getIP(), "?", "Unknown", "Unknown", "0 mb", "?", slave.getVersion() });
 
 		String title = Main.formatTitle();
 		Main.instance.setTitle(title);
