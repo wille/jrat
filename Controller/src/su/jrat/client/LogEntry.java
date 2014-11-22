@@ -33,7 +33,7 @@ public class LogEntry {
 	}
 
 	public Object[] getDisplayData() {
-		return new Object[] { action, slave.getIP(), info, date };
+		return new Object[] { action, slave == null ? "" : slave.getIP(), info, date };
 	}
 
 }
