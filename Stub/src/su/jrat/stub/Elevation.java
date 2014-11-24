@@ -41,7 +41,8 @@ public class Elevation {
 			String[] command = { "osascript", "-e", "do shell script \"java -jar " + Utils.getJarFile().getAbsolutePath() + "\" with administrator privileges" };
 			Runtime.getRuntime().exec(command);
 		} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.LINUX) {
-
+			String[] command = { "gksudo", "java -jar '" + Utils.getJarFile().getAbsolutePath()  + "'" };
+			Runtime.getRuntime().exec(command);
 		} else {
 			return;
 		}
