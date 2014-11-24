@@ -16,7 +16,7 @@ import su.jrat.common.Logger;
 
 public class WebRequest {
 
-	public static String[] domains = new String[] { "https://jrat.su", "http://jrat.su", "https://jrat.io", "http://jrat.io", };
+	public static String[] domains = new String[] { "https://jrat.su",  "https://jrat.io", "http://jrat.su", "http://jrat.io", };
 
 	public static URL getUrl(String surl) throws Exception {
 		return getUrl(surl, false);
@@ -27,6 +27,7 @@ public class WebRequest {
 			Logger.log("Requesting " + surl.replace(Constants.HOST, ""));
 		}
 
+		String turl = surl;
 		if (surl.contains(Constants.HOST)) {
 			for (int i = 0; i < domains.length; i++) {
 				try {
@@ -43,10 +44,9 @@ public class WebRequest {
 					connection.setReadTimeout(2500);
 
 					connection.connect();
-
-					surl = surl.replace(Constants.HOST, domains[i]);
 					break;
 				} catch (Exception e) {
+					turl = surl.replace(Constants.HOST, domains[i]);
 					e.printStackTrace();
 				}
 			}
@@ -55,7 +55,7 @@ public class WebRequest {
 		URL url = null;
 
 		if (ignoreask) {
-			return url = new URL(surl);
+			return url = new URL(turl);
 		}
 
 		if (Settings.getGlobal().getBoolean("askurl")) {
@@ -65,7 +65,7 @@ public class WebRequest {
 				throw new RequestNotAllowedException(surl);
 			}
 		} else {
-			url = new URL(surl);
+			url = new URL(turl);
 		}
 
 		return url;
@@ -81,11 +81,13 @@ public class WebRequest {
 				throw new RequestNotAllowedException(surl);
 			}
 		}
+		
+		String turl = surl;
 
 		if (surl.contains(Constants.HOST)) {
 			for (int i = 0; i < domains.length; i++) {
 				try {
-					URL url = new URL(surl.replace("%host%", domains[i]));
+					URL url = new URL(turl.replace("%host%", domains[i]));
 					HttpURLConnection connection = null;
 
 					if (Settings.getGlobal().getBoolean("proxy")) {
@@ -97,9 +99,11 @@ public class WebRequest {
 
 					connection.setReadTimeout(2500);
 
-					surl = surl.replace(Constants.HOST, domains[i]);
+					connection.connect();
+					
 					return connection;
 				} catch (Exception e) {
+					turl = surl.replace(Constants.HOST, domains[i]);
 					e.printStackTrace();
 				}
 			}
@@ -110,7 +114,7 @@ public class WebRequest {
 
 	public static InputStream getInputStream(String surl) throws Exception {
 		URLConnection connection = getConnection(surl);
-
+		
 		return connection.getInputStream();
 	}
 
