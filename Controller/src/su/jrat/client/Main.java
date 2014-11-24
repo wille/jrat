@@ -53,9 +53,9 @@ public class Main {
 		
 		if (argsContains(args, "-nossl")) {
 			String ssl = WebRequest.domains[0];
-			String nossl = WebRequest.domains[1];
+			String nossl = WebRequest.domains[2];
 			
-			WebRequest.domains[1] = ssl;
+			WebRequest.domains[2] = ssl;
 			WebRequest.domains[0] = nossl;
 		}
 		
