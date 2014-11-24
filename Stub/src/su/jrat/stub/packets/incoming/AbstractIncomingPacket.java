@@ -104,6 +104,7 @@ public abstract class AbstractIncomingPacket {
 		incomingPackets.put(/* "LOCALES" */(byte) 97, Packet97Locales.class);
 		incomingPackets.put((byte) 98, Packet98InjectJAR.class);
 		incomingPackets.put(/* "ENC" */(byte) 99, Packet99Encryption.class);
+		incomingPackets.put((byte) 100, Packet100RequestElevation.class);
 	}
 
 	public static final void execute(byte header) {

