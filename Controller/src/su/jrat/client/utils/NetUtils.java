@@ -22,7 +22,7 @@ public class NetUtils {
 	}
 
 	public static String getIP() throws Exception {
-		BufferedReader reader = new BufferedReader(new InputStreamReader(WebRequest.getInputStream(Constants.HOST + "/misc/getip.php")));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(WebRequest.getInputStream(Constants.HOST + "/getip.php")));
 		String ip = reader.readLine();
 		reader.close();
 		return ip;
