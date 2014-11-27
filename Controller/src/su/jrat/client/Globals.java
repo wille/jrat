@@ -5,13 +5,7 @@ import java.io.File;
 public class Globals {
 
 	public static final File getFileDirectory() {
-		File app = new File("jRAT.app/");
-		
-		if (app.exists()) {
-			return new File(app, "files/");
-		} else {
-			return new File("files/");
-		}
+		return new File("files/");
 	}
 
 	public static final File getHelpDocDirectory() {

