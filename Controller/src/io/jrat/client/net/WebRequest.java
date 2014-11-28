@@ -1,22 +1,51 @@
 package io.jrat.client.net;
 
 import io.jrat.client.Constants;
+import io.jrat.client.Globals;
 import io.jrat.client.exceptions.RequestNotAllowedException;
 import io.jrat.client.settings.Settings;
 import io.jrat.client.utils.Utils;
 import io.jrat.common.Logger;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class WebRequest {
 
-	public static String[] domains = new String[] { "https://jrat.su",  "https://jrat.io", "http://jrat.su", "http://jrat.io", };
+	public static String[] domains;
+	
+	static {
+		loadDomains();
+	}
+	
+	public static void loadDomains() {
+		try {
+			 BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File(Globals.getFileDirectory(), ".domains"))));
+			 
+			 String line;
+			 List<String> domains = new ArrayList<String>();
+			 while ((line = reader.readLine()) != null) {
+				 domains.add(line);
+			 }
+			 
+			 reader.close();
+			 
+			 WebRequest.domains = domains.toArray(new String[0]);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
 
 	public static URL getUrl(String surl) throws Exception {
 		return getUrl(surl, false);
