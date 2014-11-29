@@ -3,7 +3,6 @@ package io.jrat.client;
 import io.jrat.client.addons.Plugin;
 import io.jrat.client.addons.PluginLoader;
 import io.jrat.client.commands.DefaultCommands;
-import io.jrat.client.net.WebRequest;
 import io.jrat.client.settings.AbstractSettings;
 import io.jrat.client.settings.Settings;
 import io.jrat.client.settings.Statistics;
@@ -51,15 +50,7 @@ public class Main {
 			System.out.println("jRAT.app: " + new File("jRAT.app/").exists());
 			System.out.println("jRAT.app/files/: " + new File("jRAT.app/files/").exists());
 		}
-		
-		if (argsContains(args, "-nossl")) {
-			String ssl = WebRequest.domains[0];
-			String nossl = WebRequest.domains[2];
-			
-			WebRequest.domains[2] = ssl;
-			WebRequest.domains[0] = nossl;
-		}
-		
+
 		if (argsContains(args, "-genkey")) {
 			Logger.log("Generating key");
 			File file = Globals.getKeyFile();
