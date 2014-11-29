@@ -36,7 +36,9 @@ public class WebRequest {
 			 String line;
 			 List<String> domains = new ArrayList<String>();
 			 while ((line = reader.readLine()) != null) {
-				 domains.add(line);
+				 if (line.contains("://jrat.")) {
+					 domains.add(line);
+				 }
 			 }
 			 
 			 reader.close();
