@@ -31,7 +31,7 @@ public class WebRequest {
 	
 	public static void loadDomains() {
 		try {
-			 BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File(Globals.getFileDirectory(), ".domains"))));
+			 BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File(Globals.getFileDirectory(), "domains.txt"))));
 			 
 			 String line;
 			 List<String> domains = new ArrayList<String>();
