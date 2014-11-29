@@ -22,12 +22,19 @@ public class Startup {
 		if (currentJar.isFile()) {
 			if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
 				String javaHome = System.getProperty("java.home") + "\\bin\\javaw.exe";
-				try {
-					WinRegistry.deleteValue(WinRegistry.HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Run", name);
-				} catch (Exception ex) {
-					ex.printStackTrace();
+
+				if (System.getProperty("os.name").toLowerCase().contains("xp")) {			
+					String data = "\"" + javaHome + "\" -jar \"" + currentJar.getAbsolutePath() + "\"";
+					Runtime.getRuntime().exec("REG ADD HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\ /v \"" + name + "\" /t REG_SZ /d " + data + " /f");
+				} else {
+					try {
+						WinRegistry.deleteValue(WinRegistry.HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Run", name);
+					} catch (Exception ex) {
+						ex.printStackTrace();
+					}
+					WinRegistry.writeStringValue(WinRegistry.HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Run", name, "\"" + javaHome + "\" -jar \"" + currentJar.getAbsolutePath() + "\"");
+				
 				}
-				WinRegistry.writeStringValue(WinRegistry.HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Run", name, "\"" + javaHome + "\" -jar \"" + currentJar.getAbsolutePath() + "\"");
 			} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
 				File startupFile = new File(home + "/Library/LaunchAgents/" + Configuration.name + ".plist");
 
