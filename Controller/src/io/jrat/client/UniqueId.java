@@ -59,7 +59,7 @@ public final class UniqueId {
 		archiveConnection.connect();
 
 		int response = archiveConnection.getResponseCode();
-
+		archiveConnection.disconnect();
 		if (response == 404) {
 			throw new InvalidKeyException("Invalid key");
 		} else if (response == 200) {

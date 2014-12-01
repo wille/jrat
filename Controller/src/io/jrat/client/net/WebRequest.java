@@ -22,6 +22,8 @@ import java.util.List;
 
 
 public class WebRequest {
+	
+	public static String workingDomain = null;
 
 	public static String[] domains;
 	
@@ -62,7 +64,8 @@ public class WebRequest {
 		if (surl.contains(Constants.HOST)) {
 			for (int i = 0; i < domains.length; i++) {
 				try {
-					URL url = new URL(domains[i]);
+					String domain = workingDomain == null ? domains[i] : workingDomain;
+					URL url = new URL(turl.replace("%host%", domain));
 					HttpURLConnection connection = null;
 
 					if (Settings.getGlobal().getBoolean("proxy")) {
@@ -75,13 +78,22 @@ public class WebRequest {
 					connection.setReadTimeout(2500);
 
 					connection.connect();
+					connection.disconnect();
+					
+					workingDomain = domain;
 					break;
 				} catch (Exception e) {
 					turl = surl.replace(Constants.HOST, domains[i]);
 					e.printStackTrace();
+					
+					if (workingDomain != null) {
+						break;
+					}
 				}
 			}
 		}
+		
+		workingDomain = turl;
 
 		URL url = null;
 
@@ -118,7 +130,8 @@ public class WebRequest {
 		if (surl.contains(Constants.HOST)) {
 			for (int i = 0; i < domains.length; i++) {
 				try {
-					URL url = new URL(turl.replace("%host%", domains[i]));
+					String domain = workingDomain == null ? domains[i] : workingDomain;
+					URL url = new URL(turl.replace("%host%", domain));
 					HttpURLConnection connection = null;
 
 					if (Settings.getGlobal().getBoolean("proxy")) {
@@ -131,11 +144,15 @@ public class WebRequest {
 					connection.setReadTimeout(2500);
 
 					connection.connect();
-					
+					workingDomain = domain;
 					return connection;
 				} catch (Exception e) {
 					turl = surl.replace(Constants.HOST, domains[i]);
 					e.printStackTrace();
+					
+					if (workingDomain != null) {
+						break;
+					}
 				}
 			}
 		}

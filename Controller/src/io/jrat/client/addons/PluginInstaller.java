@@ -76,7 +76,7 @@ public class PluginInstaller {
 
 
 		int response = archiveConnection.getResponseCode();
-
+		
 		if (response == 400) {
 			throw new MalformedURLException("Failed to send correct request");
 		} else if (response == 404) {
@@ -106,6 +106,8 @@ public class PluginInstaller {
 
 		out.close();
 		in.close();
+		
+		archiveConnection.disconnect();
 
 		ZipFile zip = new ZipFile(temp);
 		Enumeration<? extends ZipEntry> entriesEnum = zip.entries();
