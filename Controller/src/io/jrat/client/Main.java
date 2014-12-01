@@ -3,6 +3,7 @@ package io.jrat.client;
 import io.jrat.client.addons.Plugin;
 import io.jrat.client.addons.PluginLoader;
 import io.jrat.client.commands.DefaultCommands;
+import io.jrat.client.net.WebRequest;
 import io.jrat.client.settings.AbstractSettings;
 import io.jrat.client.settings.Settings;
 import io.jrat.client.settings.Statistics;
@@ -21,7 +22,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.JFileChooser;
@@ -40,7 +43,9 @@ public class Main {
 	public static final List<AbstractSlave> connections = new ArrayList<AbstractSlave>();
 	public static Frame instance;
 
-	public static void main(String[] args) throws Exception {					
+	public static void main(String[] args) throws Exception {		
+		Main.debug("jRAT " + Version.getVersion() + " " + DateFormat.getDateInstance(DateFormat.SHORT).format(new Date()));
+		WebRequest.getUrl("%host%", true);
 		if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX && System.getProperty("user.dir").contains("jRAT.app")) {
 			System.setProperty("user.dir", System.getProperty("user.dir").split("jRAT.app")[0] + "/jRAT.app");
 		}

@@ -820,8 +820,13 @@ public class Frame extends BaseFrame {
 		JMenuItem mntmWhatsNewIn = new JMenuItem("Whats new in " + Version.getVersion());
 		mntmWhatsNewIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				FrameChangelog frame = new FrameChangelog(Constants.CHANGELOG_URL, Version.getVersion());
-				frame.setVisible(true);
+				try {
+					FrameChangelog frame = new FrameChangelog(WebRequest.getUrl(Constants.HOST + "/api/changelog.php"), Version.getVersion());
+					frame.setVisible(true);
+				} catch (Exception ex) {
+					ex.printStackTrace();
+					ErrorDialog.create(ex);
+				}
 			}
 		});
 		mntmWhatsNewIn.setIcon(new ImageIcon(Frame.class.getResource("/icons/question.png")));

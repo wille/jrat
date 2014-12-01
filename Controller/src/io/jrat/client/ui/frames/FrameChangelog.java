@@ -2,13 +2,13 @@ package io.jrat.client.ui.frames;
 
 import io.jrat.client.ErrorDialog;
 import io.jrat.client.Updater;
-import io.jrat.client.net.WebRequest;
 import io.jrat.client.utils.NetUtils;
 import io.jrat.common.Version;
 
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -31,7 +31,7 @@ public class FrameChangelog extends BaseFrame {
 
 	private JPanel contentPane;
 
-	public FrameChangelog(String url, String version) {
+	public FrameChangelog(URL url, String version) {
 		super();
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameChangelog.class.getResource("/icons/question.png")));
@@ -75,7 +75,7 @@ public class FrameChangelog extends BaseFrame {
 
 		JEditorPane com;
 		try {
-			com = new JEditorPane(WebRequest.getUrl(url));
+			com = new JEditorPane(url);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			ErrorDialog.create(ex);

@@ -7,6 +7,7 @@ import io.jrat.client.net.WebRequest;
 import java.awt.Desktop;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URI;
 
 
@@ -22,9 +23,11 @@ public class NetUtils {
 	}
 
 	public static String getIP() throws Exception {
-		BufferedReader reader = new BufferedReader(new InputStreamReader(WebRequest.getInputStream(Constants.HOST + "/getip.php")));
+		HttpURLConnection uc = WebRequest.getConnection(Constants.HOST + "/getip.php");
+		BufferedReader reader = new BufferedReader(new InputStreamReader(uc.getInputStream()));
 		String ip = reader.readLine();
 		reader.close();
+		uc.disconnect();
 		return ip;
 	}
 

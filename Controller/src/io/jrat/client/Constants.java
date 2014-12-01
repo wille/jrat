@@ -1,6 +1,5 @@
 package io.jrat.client;
 
-import io.jrat.client.net.WebRequest;
 
 public class Constants {
 
@@ -11,9 +10,6 @@ public class Constants {
 	public static final int MODE_DOTS = 10;
 
 	public static String HOST = "%host%";
-
-	public static final String DOWNLOAD_URL = WebRequest.domains[0] + "/download.php";
-	public static final String CHANGELOG_URL = WebRequest.domains[0] + "/api/changelog.php";
 
 	public static final String NAME = "jRAT";
 

@@ -2,21 +2,19 @@ package io.jrat.client.net;
 
 import io.jrat.client.Constants;
 import io.jrat.client.Globals;
+import io.jrat.client.Main;
 import io.jrat.client.exceptions.RequestNotAllowedException;
 import io.jrat.client.settings.Settings;
 import io.jrat.client.utils.Utils;
-import io.jrat.common.Logger;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,18 +54,14 @@ public class WebRequest {
 	}
 
 	public static URL getUrl(String surl, boolean ignoreask) throws Exception {
-		if (!ignoreask) {
-			Logger.log("Requesting " + surl.replace(Constants.HOST, ""));
-		}
-
 		String turl = surl;
-		if (surl.contains(Constants.HOST)) {
+		if (surl.contains(Constants.HOST) && workingDomain == null) {
 			for (int i = 0; i < domains.length; i++) {
 				try {
-					String domain = workingDomain == null ? domains[i] : workingDomain;
+					String domain = domains[i];
 					URL url = new URL(turl.replace("%host%", domain));
 					HttpURLConnection connection = null;
-
+					Main.debug("Checking if " + domain + " is available...");
 					if (Settings.getGlobal().getBoolean("proxy")) {
 						Proxy proxy = new Proxy(Settings.getGlobal().getBoolean("proxysocks") ? Proxy.Type.SOCKS : Proxy.Type.HTTP, new InetSocketAddress(Settings.getGlobal().getString("proxyhost"), Settings.getGlobal().getInt("proxyport")));
 						connection = (HttpURLConnection) url.openConnection(proxy);
@@ -91,9 +85,9 @@ public class WebRequest {
 					}
 				}
 			}
-		}
+		} 
 		
-		workingDomain = turl;
+		turl = turl.replace("%host%", workingDomain);
 
 		URL url = null;
 
@@ -118,52 +112,21 @@ public class WebRequest {
 		return getConnection(surl, false);
 	}
 
-	public static HttpURLConnection getConnection(String surl, boolean ignoreask) throws Exception {
-		if (Settings.getGlobal().getBoolean("askurl") && !ignoreask) {
-			if (!Utils.yesNo("HTTP Request", Constants.NAME + " tries to connect to:\n\r\n\r" + surl + "\n\r\n\rDo you want to accept it?\n\r\n\r(You can turn off this notification in settings)")) {
-				throw new RequestNotAllowedException(surl);
-			}
-		}
-		
-		String turl = surl;
+	public static HttpURLConnection getConnection(String surl, boolean ignoreask) throws Exception {		
+		URL url = getUrl(surl);
 
-		if (surl.contains(Constants.HOST)) {
-			for (int i = 0; i < domains.length; i++) {
-				try {
-					String domain = workingDomain == null ? domains[i] : workingDomain;
-					URL url = new URL(turl.replace("%host%", domain));
-					HttpURLConnection connection = null;
+		HttpURLConnection connection = null;
 
-					if (Settings.getGlobal().getBoolean("proxy")) {
-						Proxy proxy = new Proxy(Settings.getGlobal().getBoolean("proxysocks") ? Proxy.Type.SOCKS : Proxy.Type.HTTP, new InetSocketAddress(Settings.getGlobal().getString("proxyhost"), Settings.getGlobal().getInt("proxyport")));
-						connection = (HttpURLConnection) url.openConnection(proxy);
-					} else {
-						connection = (HttpURLConnection) url.openConnection();
-					}
-
-					connection.setReadTimeout(2500);
-
-					connection.connect();
-					workingDomain = domain;
-					return connection;
-				} catch (Exception e) {
-					turl = surl.replace(Constants.HOST, domains[i]);
-					e.printStackTrace();
-					
-					if (workingDomain != null) {
-						break;
-					}
-				}
-			}
+		if (Settings.getGlobal().getBoolean("proxy")) {
+			Proxy proxy = new Proxy(Settings.getGlobal().getBoolean("proxysocks") ? Proxy.Type.SOCKS : Proxy.Type.HTTP, new InetSocketAddress(Settings.getGlobal().getString("proxyhost"), Settings.getGlobal().getInt("proxyport")));
+			connection = (HttpURLConnection) url.openConnection(proxy);
+		} else {
+			connection = (HttpURLConnection) url.openConnection();
 		}
 
-		return null;
-	}
+		connection.setReadTimeout(2500);
+		connection.connect();
 
-	public static InputStream getInputStream(String surl) throws Exception {
-		URLConnection connection = getConnection(surl);
-		
-		return connection.getInputStream();
+		return connection;
 	}
-
 }

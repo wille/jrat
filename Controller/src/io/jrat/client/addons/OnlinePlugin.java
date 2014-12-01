@@ -11,6 +11,7 @@ import io.jrat.common.codec.Hex;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,9 @@ public class OnlinePlugin {
 	public ImageIcon getIcon() {
 		if (icon == null) {
 			try {
-				icon = new ImageIcon(ImageIO.read(WebRequest.getInputStream(Constants.HOST + "/plugins/" + getName() + "/icon.png")));
+				HttpURLConnection uc = WebRequest.getConnection(Constants.HOST + "/plugins/" + getName() + "/icon.png");
+				icon = new ImageIcon(ImageIO.read(uc.getInputStream()));
+				uc.disconnect();
 			} catch (Exception e) {
 				e.printStackTrace();
 				icon = PluginsTableRenderer.PLUGIN_ICON;
@@ -123,7 +126,9 @@ public class OnlinePlugin {
 	public static List<OnlinePlugin> getAvailablePlugins() throws Exception {
 		List<OnlinePlugin> plugins = new ArrayList<OnlinePlugin>();
 
-		BufferedReader reader = new BufferedReader(new InputStreamReader(WebRequest.getInputStream(Constants.HOST + "/plugins/plugins.php")));
+		HttpURLConnection uc = WebRequest.getConnection(Constants.HOST + "/plugins/plugins.php");
+		
+		BufferedReader reader = new BufferedReader(new InputStreamReader(uc.getInputStream()));
 		String line;
 
 		while ((line = reader.readLine()) != null) {
@@ -143,6 +148,8 @@ public class OnlinePlugin {
 		}
 
 		reader.close();
+		
+		uc.disconnect();
 
 		return plugins;
 	}

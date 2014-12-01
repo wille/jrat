@@ -4,6 +4,7 @@ import io.jrat.client.net.WebRequest;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,12 +23,16 @@ public class ThreadChangelog extends Thread {
 		try {
 			lines = new ArrayList<String>();
 
-			BufferedReader reader = new BufferedReader(new InputStreamReader(WebRequest.getInputStream(url)));
+			HttpURLConnection uc = WebRequest.getConnection(url);
+			BufferedReader reader = new BufferedReader(new InputStreamReader(uc.getInputStream()));
 
+			
 			String s = null;
 			while ((s = reader.readLine()) != null) {
 				lines.add(lines.size(), s);
 			}
+			reader.close();
+			uc.disconnect();
 		} catch (Exception ex) {
 			lines.add("Error downloading list: " + ex.getMessage());
 			ex.printStackTrace();
