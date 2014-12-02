@@ -46,8 +46,13 @@ public class Main {
 	public static void main(String[] args) throws Exception {		
 		Main.debug("jRAT " + Version.getVersion() + " " + DateFormat.getDateInstance(DateFormat.SHORT).format(new Date()));
 		WebRequest.getUrl("%host%", true);
-		if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX && System.getProperty("user.dir").contains("jRAT.app")) {
-			System.setProperty("user.dir", System.getProperty("user.dir").split("jRAT.app")[0] + "/jRAT.app");
+		if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
+			Main.debug("Default user.dir: " + System.getProperty("user.dir"));
+			if (System.getProperty("user.dir").contains("jRAT.app")) {
+				System.setProperty("user.dir", System.getProperty("user.dir").split("jRAT.app")[0] + "/jRAT.app");
+			}
+			Main.debug("New user.dir: " + System.getProperty("user.dir"));
+			Main.debug("File directory absolute expected path: " + Globals.getFileDirectory().getAbsolutePath());
 		}
 		
 		if (argsContains(args, "-locinfo")) {
