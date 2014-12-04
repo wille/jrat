@@ -43,7 +43,7 @@ public class Main {
 	public static final List<AbstractSlave> connections = new ArrayList<AbstractSlave>();
 	public static Frame instance;
 
-	public static void main(String[] args) throws Exception {		
+	public static void main(String[] args) throws Exception {	
 		Main.debug("jRAT " + Version.getVersion() + " " + DateFormat.getDateInstance(DateFormat.SHORT).format(new Date()));
 		WebRequest.getUrl("%host%", true);
 		if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {

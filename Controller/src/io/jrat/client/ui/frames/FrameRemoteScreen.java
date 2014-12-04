@@ -59,7 +59,7 @@ public class FrameRemoteScreen extends BaseFrame {
 	
 	private BufferedImage buffer;
 	
-	public boolean[] updatedChunks = new boolean[getColumns() * getRows()];
+	private int transmitted;
 	
 	private int monitor;
 	private int quality;
@@ -92,6 +92,7 @@ public class FrameRemoteScreen extends BaseFrame {
 	private JLabel lblMonitor;
 	private JLabel lblQuality;
 	private JSlider sliderQuality;
+	private JLabel lblBlockSize;
 
 	public FrameRemoteScreen(Slave sl) {
 		addWindowListener(new WindowAdapter() {
@@ -211,6 +212,9 @@ public class FrameRemoteScreen extends BaseFrame {
 		lblFps = new JLabel("    FPS: 0    ");
 		toolBarBottom.add(lblFps);
 		
+		lblBlockSize = new JLabel("Block Size: 0 kB");
+		toolBarBottom.add(lblBlockSize);
+		
 		btnStart = new JButton("");
 		btnStart.setToolTipText("Start");
 		btnStart.setIcon(new ImageIcon(FrameRemoteScreen.class.getResource("/icons/start.png")));
@@ -326,6 +330,7 @@ public class FrameRemoteScreen extends BaseFrame {
 		btnStart.setEnabled(true);
 		btnStop.setEnabled(false);
 		
+		transmitted = 0;
 		slave.addToSendQueue(new Packet26StopRemoteScreen());
 	}
 	
@@ -464,8 +469,16 @@ public class FrameRemoteScreen extends BaseFrame {
 		return 6;
 	}
 
-	public boolean[] getUpdatedChunks() {
-		return updatedChunks;
+	public int getTransmitted() {
+		return transmitted;
+	}
+
+	public void setTransmitted(int transmitted) {
+		this.transmitted = transmitted;
+	}
+	
+	public void setBlockSizeLabel(int kb) {
+		lblBlockSize.setText("Block Size: " + kb + " kB");
 	}
 
 }

