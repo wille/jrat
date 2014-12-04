@@ -352,4 +352,8 @@ public class Slave extends AbstractSlave {
 	public String getDisplayName() {
 		return getComputerName() + " / " + getIP();
 	}
+
+	public double readDouble() throws Exception {
+		return dis.readDouble();
+	}
 }

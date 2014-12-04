@@ -10,11 +10,15 @@ public class Packet12RemoteScreen extends AbstractOutgoingPacket {
 	private int size;
 	private int quality;
 	private int monitor;
+	private int columns;
+	private int rows;
 
-	public Packet12RemoteScreen(int size, int quality, int monitor) {
+	public Packet12RemoteScreen(int size, int quality, int monitor, int columns, int rows) {
 		this.size = size;
 		this.quality = quality;
 		this.monitor = monitor;
+		this.columns = columns;
+		this.rows = rows;
 	}
 
 	@Override
@@ -22,6 +26,8 @@ public class Packet12RemoteScreen extends AbstractOutgoingPacket {
 		dos.writeInt(size);
 		dos.writeInt(quality);
 		dos.writeInt(monitor);
+		dos.writeInt(columns);
+		dos.writeInt(rows);
 	}
 
 	@Override

