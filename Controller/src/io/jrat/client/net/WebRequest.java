@@ -70,7 +70,7 @@ public class WebRequest {
 					}
 
 					connection.setReadTimeout(2500);
-
+					connection.setConnectTimeout(2500);
 					connection.connect();
 					connection.disconnect();
 					
