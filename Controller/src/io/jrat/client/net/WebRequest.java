@@ -87,7 +87,7 @@ public class WebRequest {
 			}
 		} 
 		
-		turl = turl.replace("%host%", workingDomain);
+		turl = turl.replace(Constants.HOST, workingDomain);
 
 		URL url = null;
 
@@ -97,7 +97,7 @@ public class WebRequest {
 
 		if (Settings.getGlobal().getBoolean("askurl")) {
 			if (Utils.yesNo("HTTP Request", Constants.NAME + " tries to connect to:\n\r\n\r" + surl + "\n\r\n\rDo you want to accept it?\n\r\n\r(You can turn off this notification in settings)")) {
-				url = new URL(surl);
+				url = new URL(turl);
 			} else {
 				throw new RequestNotAllowedException(surl);
 			}
@@ -113,7 +113,7 @@ public class WebRequest {
 	}
 
 	public static HttpURLConnection getConnection(String surl, boolean ignoreask) throws Exception {		
-		URL url = getUrl(surl);
+		URL url = getUrl(surl, ignoreask);
 
 		HttpURLConnection connection = null;
 
