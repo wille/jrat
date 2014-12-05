@@ -17,8 +17,13 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
+import java.util.Iterator;
 
+import javax.imageio.IIOImage;
 import javax.imageio.ImageIO;
+import javax.imageio.ImageWriteParam;
+import javax.imageio.ImageWriter;
+import javax.imageio.stream.ImageOutputStream;
 
 public class Screen implements Runnable {
 
@@ -104,6 +109,7 @@ public class Screen implements Runnable {
 
 			int is = 0;
 			
+			
 			for (int x = 0; x < rows; x++) {
 				for (int y = 0; y < columns; y++) {
 					BufferedImage i;
@@ -121,21 +127,19 @@ public class Screen implements Runnable {
 					}
 					
 					ByteArrayOutputStream bss = new ByteArrayOutputStream();
-					/*
-					 * ImageOutputStream baos =
-					 * ImageIO.createImageOutputStream(bss);
-					 * Iterator<ImageWriter> iter =
-					 * ImageIO.getImageWritersByFormatName("jpeg"); ImageWriter
-					 * writer = iter.next(); ImageWriteParam iwp =
-					 * writer.getDefaultWriteParam(); iwp.setCompressionMode(2);
-					 * iwp.setCompressionQuality(quality / 10F);
-					 * writer.setOutput(baos); writer.write(null, new
-					 * IIOImage(i, null, null), iwp); writer.dispose();
-					 */
-					ImageIO.write(i, "png", bss);
+					
+					  ImageOutputStream baos =
+					  ImageIO.createImageOutputStream(bss);
+					  Iterator<ImageWriter> iter =
+					  ImageIO.getImageWritersByFormatName("jpeg"); ImageWriter
+					  writer = iter.next(); ImageWriteParam iwp =
+					  writer.getDefaultWriteParam(); iwp.setCompressionMode(2);
+					  iwp.setCompressionQuality(quality / 10F);
+					  writer.setOutput(baos); writer.write(null, new
+					 IIOImage(i, null, null), iwp); writer.dispose();
+					 
+					//ImageIO.write(i, "png", bss);
 					byte[] buffer = bss.toByteArray();
-
-					System.out.println(update);
 
 					prevSums[is++] = i;
 

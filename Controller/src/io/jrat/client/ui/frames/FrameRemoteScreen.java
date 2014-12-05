@@ -60,6 +60,7 @@ public class FrameRemoteScreen extends BaseFrame {
 	private BufferedImage buffer;
 	
 	private int transmitted;
+	private int chunks;
 	
 	private int monitor;
 	private int quality;
@@ -93,6 +94,7 @@ public class FrameRemoteScreen extends BaseFrame {
 	private JLabel lblQuality;
 	private JSlider sliderQuality;
 	private JLabel lblBlockSize;
+	private JLabel lblChunks;
 
 	public FrameRemoteScreen(Slave sl) {
 		addWindowListener(new WindowAdapter() {
@@ -214,6 +216,9 @@ public class FrameRemoteScreen extends BaseFrame {
 		
 		lblBlockSize = new JLabel("Block Size: 0 kB");
 		toolBarBottom.add(lblBlockSize);
+		
+		lblChunks = new JLabel("   Chunks: ");
+		toolBarBottom.add(lblChunks);
 		
 		btnStart = new JButton("");
 		btnStart.setToolTipText("Start");
@@ -479,6 +484,18 @@ public class FrameRemoteScreen extends BaseFrame {
 	
 	public void setBlockSizeLabel(int kb) {
 		lblBlockSize.setText("Block Size: " + kb + " kB");
+	}
+
+	public int getChunks() {
+		return chunks;
+	}
+
+	public void setChunks(int chunks) {
+		this.chunks = chunks;
+	}
+	
+	public void setChunksLabel(int chunks) {
+		lblChunks.setText("   Chunks: " + chunks);
 	}
 
 }

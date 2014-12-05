@@ -18,7 +18,7 @@ public class Packet17RemoteScreen extends AbstractIncomingPacket {
 		int y = slave.readInt();
 		int width = slave.readInt();
 		int height = slave.readInt();
-
+		
 		FrameRemoteScreen frame = FrameRemoteScreen.instances.get(slave);
 
 		int blen = slave.readInt();
@@ -28,6 +28,7 @@ public class Packet17RemoteScreen extends AbstractIncomingPacket {
 
 		if (frame != null) {
 			frame.setTransmitted(frame.getTransmitted() + blen);
+			frame.setChunks(frame.getChunks() + 1);
 			BufferedImage bufferedImage = frame.getBuffer();
 
 			if (bufferedImage == null || bufferedImage != null && bufferedImage.getWidth() != width && bufferedImage.getHeight() != height) {
@@ -39,8 +40,6 @@ public class Packet17RemoteScreen extends AbstractIncomingPacket {
 				Graphics2D imageGraphics = (Graphics2D) bufferedImage.getGraphics();
 
 				BufferedImage image = ImageUtils.decodeImage(buffer);
-				// image.createGraphics().drawRect(0, 0, image.getWidth(),
-				// image.getHeight());
 				imageGraphics.drawImage(image, y * chunkWidth, x * chunkHeight, null);
 
 				frame.update(bufferedImage);
