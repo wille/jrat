@@ -38,6 +38,7 @@ public class Slave extends AbstractSlave {
 	private Locale[] locales;
 	private Antivirus[] antiviruses;
 	private Firewall[] firewalls;
+	private String[] plugins;
 
 	private String serverpath = "";
 	private String javaver = "";
@@ -355,5 +356,13 @@ public class Slave extends AbstractSlave {
 
 	public double readDouble() throws Exception {
 		return dis.readDouble();
+	}
+
+	public String[] getPlugins() {
+		return plugins;
+	}
+
+	public void setPlugins(String[] plugins) {
+		this.plugins = plugins;
 	}
 }

