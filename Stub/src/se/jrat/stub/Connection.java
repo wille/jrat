@@ -112,7 +112,7 @@ public class Connection implements Runnable {
 					Connection.writeByte(0);
 					continue;
 				}
-
+				
 				AbstractIncomingPacket.execute(line);
 			}
 		} catch (Exception ex) {
