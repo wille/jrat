@@ -41,7 +41,7 @@ public class FileIO {
 		}
 		fileInput.close();
 
-		//dos.writeInt(-1);
+		dos.writeInt(-1);
 
 		socket.setSoTimeout(timeout);
 	}
