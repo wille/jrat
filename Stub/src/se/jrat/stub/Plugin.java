@@ -18,7 +18,6 @@ public class Plugin {
 	public String name;
 	public List<Object> packets = new ArrayList<Object>();
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static void load() throws Exception {
 		if (Main.class.getResourceAsStream("/plugins.dat") == null) {
 			return;
@@ -29,28 +28,32 @@ public class Plugin {
 
 		for (String s : plugins) {
 			Plugin p = new Plugin();
-			Class classToLoad = Class.forName(s, true, Main.class.getClassLoader());
+			Class<?> classToLoad = Class.forName(s, true, Main.class.getClassLoader());
 			p.instance = classToLoad.newInstance();
 
-			Method onEnable = classToLoad.getMethod("onEnable", new Class[] {});
-			p.methods.put("onenable", onEnable);
-			onEnable.invoke(p.instance, new Object[] {});
-
-			Method onConnect = classToLoad.getMethod("onConnect", new Class[] { DataInputStream.class, DataOutputStream.class });
-			p.methods.put("onconnect", onConnect);
-
-			Method onDisconnect = classToLoad.getMethod("onDisconnect", new Class[] { Exception.class });
-			p.methods.put("ondisconnect", onDisconnect);
-
-			Method onPacket = classToLoad.getMethod("onPacket", new Class[] { byte.class });
-			p.methods.put("onpacket", onPacket);
-
-			Method onStart = classToLoad.getMethod("onStart", new Class[] {});
-			p.methods.put("onstart", onStart);
-
-			p.name = (String) classToLoad.getMethod("getName", new Class[] {}).invoke(p.instance, new Object[] {});
+			addMethods(p, classToLoad);
 
 			list.add(p);
 		}
+	}
+	
+	public static void addMethods(Plugin p, Class<?> classToLoad) throws Exception {
+		Method onEnable = classToLoad.getMethod("onEnable", new Class[] {});
+		p.methods.put("onenable", onEnable);
+		onEnable.invoke(p.instance, new Object[] {});
+
+		Method onConnect = classToLoad.getMethod("onConnect", new Class[] { DataInputStream.class, DataOutputStream.class });
+		p.methods.put("onconnect", onConnect);
+
+		Method onDisconnect = classToLoad.getMethod("onDisconnect", new Class[] { Exception.class });
+		p.methods.put("ondisconnect", onDisconnect);
+
+		Method onPacket = classToLoad.getMethod("onPacket", new Class[] { byte.class });
+		p.methods.put("onpacket", onPacket);
+
+		Method onStart = classToLoad.getMethod("onStart", new Class[] {});
+		p.methods.put("onstart", onStart);
+
+		p.name = (String) classToLoad.getMethod("getName", new Class[] {}).invoke(p.instance, new Object[] {});
 	}
 }
