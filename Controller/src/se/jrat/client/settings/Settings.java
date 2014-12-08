@@ -122,6 +122,7 @@ public class Settings extends AbstractSettings {
 		setVal("proxyhost", "127.0.0.1");
 		setVal("proxyport", 9050);
 		setVal("proxysocks", true);
+		setVal("plugintransfer", false);
 	}
 
 	@Override

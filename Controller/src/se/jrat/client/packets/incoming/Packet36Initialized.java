@@ -16,6 +16,7 @@ import se.jrat.client.addons.PluginLoader;
 import se.jrat.client.events.Event;
 import se.jrat.client.events.Events;
 import se.jrat.client.packets.outgoing.Packet101TransferPlugin;
+import se.jrat.client.settings.Settings;
 
 public class Packet36Initialized extends AbstractIncomingPacket {
 
@@ -28,7 +29,7 @@ public class Packet36Initialized extends AbstractIncomingPacket {
 		List<String> plugins = new ArrayList<String>(Arrays.asList(slave.getPlugins()));
 		List<String> notInstalled = new ArrayList<String>();
 
-		if (plugins != null) {
+		if (plugins != null && Settings.getGlobal().getBoolean("plugintransfer")) {
 			for (Plugin plugin : PluginLoader.plugins) {
 				if (!plugins.contains(plugin.getName())) {
 					notInstalled.add(plugin.getName());

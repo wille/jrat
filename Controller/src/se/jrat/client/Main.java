@@ -125,9 +125,10 @@ public class Main {
 		}
 
 		Statistics.getGlobal().load();
-
+		Settings.getGlobal().load();
+		
 		instance = new Frame();
-
+		
 		AbstractSettings.loadAllGlobals();
 
 		boolean showEULA = Settings.getGlobal().getBoolean("showeula");
@@ -167,6 +168,12 @@ public class Main {
 
 				try {
 					Theme.getGlobal().save();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+				try {
+					Settings.getGlobal().save();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

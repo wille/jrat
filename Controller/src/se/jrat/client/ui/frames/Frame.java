@@ -124,6 +124,7 @@ public class Frame extends BaseFrame {
 
 	private final ButtonGroup encryptionButtonGroup = new ButtonGroup();
 	private JMenu mnPlugins;
+	private JCheckBoxMenuItem chckbxmntmTransferPluginsIf;
 
 	public Frame() {
 		super();
@@ -761,6 +762,15 @@ public class Frame extends BaseFrame {
 		mntmPackPlugin.setIcon(new ImageIcon(Frame.class.getResource("/icons/plugin_edit.png")));
 		JMenuItem mntmBrowsePlugins = new JMenuItem("View Available Plugins");
 		mnPlugins.add(mntmBrowsePlugins);
+		
+		chckbxmntmTransferPluginsIf = new JCheckBoxMenuItem("Transfer plugins if not installed");
+		chckbxmntmTransferPluginsIf.setSelected(Settings.getGlobal().getBoolean("plugintransfer"));
+		chckbxmntmTransferPluginsIf.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Settings.getGlobal().setVal("plugintransfer", chckbxmntmTransferPluginsIf.isSelected());
+			}
+		});
+		mnPlugins.add(chckbxmntmTransferPluginsIf);
 		mnPlugins.addSeparator();
 
 		mntmBrowsePlugins.addActionListener(new ActionListener() {
