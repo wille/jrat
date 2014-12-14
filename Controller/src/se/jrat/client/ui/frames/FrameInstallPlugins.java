@@ -90,6 +90,8 @@ public class FrameInstallPlugins extends JFrame {
 						addPluginPanel(pp);
 						panelGrid.repaint();
 						panelGrid.validate();
+						repaint();
+						validate();
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
