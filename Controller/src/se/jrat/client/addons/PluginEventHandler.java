@@ -1,11 +1,11 @@
 package se.jrat.client.addons;
 
-import se.jrat.client.AbstractSlave;
 import jrat.api.Packet;
 import jrat.api.events.OnConnectEvent;
 import jrat.api.events.OnDisconnectEvent;
 import jrat.api.events.OnPacketEvent;
 import jrat.api.events.OnSendPacketEvent;
+import se.jrat.client.AbstractSlave;
 
 public class PluginEventHandler {
 

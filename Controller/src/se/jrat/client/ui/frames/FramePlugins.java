@@ -17,11 +17,11 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import jrat.api.events.OnDisableEvent;
 import se.jrat.client.Globals;
 import se.jrat.client.addons.Plugin;
 import se.jrat.client.addons.PluginLoader;
 import se.jrat.client.ui.renderers.table.PluginsTableRenderer;
-import jrat.api.events.OnDisableEvent;
 
 @SuppressWarnings("serial")
 public class FramePlugins extends BaseFrame {

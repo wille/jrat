@@ -4,16 +4,16 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import se.jrat.client.AbstractSlave;
-import se.jrat.client.Main;
-import se.jrat.client.Slave;
-import se.jrat.client.packets.outgoing.AbstractOutgoingPacket;
 import jrat.api.Connection;
 import jrat.api.PacketBuilder;
 import jrat.api.Queue;
 import jrat.api.RATObject;
 import jrat.api.Reader;
 import jrat.api.Writer;
+import se.jrat.client.AbstractSlave;
+import se.jrat.client.Main;
+import se.jrat.client.Slave;
+import se.jrat.client.packets.outgoing.AbstractOutgoingPacket;
 
 public class RATObjectFormat {
 

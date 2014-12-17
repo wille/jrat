@@ -13,6 +13,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
+import jrat.api.commands.Commands;
+import jrat.api.events.OnDisableEvent;
 import se.jrat.client.addons.Plugin;
 import se.jrat.client.addons.PluginLoader;
 import se.jrat.client.commands.DefaultCommands;
@@ -30,8 +32,6 @@ import se.jrat.client.utils.TrayIconUtils;
 import se.jrat.common.Logger;
 import se.jrat.common.OperatingSystem;
 import se.jrat.common.Version;
-import jrat.api.commands.Commands;
-import jrat.api.events.OnDisableEvent;
 
 public class Main {
 

@@ -11,9 +11,6 @@ import java.util.Map;
 import java.util.jar.JarFile;
 import java.util.jar.JarInputStream;
 
-import se.jrat.client.Main;
-import se.jrat.common.Logger;
-import se.jrat.common.Version;
 import jrat.api.PluginClassLoader;
 import jrat.api.RATControlMenuEntry;
 import jrat.api.RATMenuItem;
@@ -24,6 +21,9 @@ import jrat.api.events.OnEnableEvent;
 import jrat.api.events.OnPacketEvent;
 import jrat.api.events.OnSendPacketEvent;
 import jrat.api.utils.JarUtils;
+import se.jrat.client.Main;
+import se.jrat.common.Logger;
+import se.jrat.common.Version;
 
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class Plugin {

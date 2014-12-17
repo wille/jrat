@@ -10,10 +10,10 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.jar.JarFile;
 
-import se.jrat.client.Main;
-import se.jrat.client.ui.frames.FrameAppInfo;
 import jrat.api.utils.IOUtils;
 import jrat.api.utils.JarUtils;
+import se.jrat.client.Main;
+import se.jrat.client.ui.frames.FrameAppInfo;
 
 public class BuildApp {
 

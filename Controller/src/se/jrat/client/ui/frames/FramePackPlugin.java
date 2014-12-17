@@ -30,12 +30,12 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import jrat.api.utils.JarUtils;
 import se.jrat.client.ErrorDialog;
 import se.jrat.client.Main;
 import se.jrat.client.build.PluginPacker;
 import se.jrat.client.ui.dialogs.DialogPackPluginEditResources;
 import se.jrat.common.Logger;
-import jrat.api.utils.JarUtils;
 
 @SuppressWarnings("serial")
 public class FramePackPlugin extends JFrame {

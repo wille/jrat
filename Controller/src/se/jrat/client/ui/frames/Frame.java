@@ -47,6 +47,8 @@ import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
 import javax.swing.table.DefaultTableModel;
 
+import jrat.api.RATMenuItem;
+import jrat.api.RATObject;
 import se.jrat.client.AbstractSlave;
 import se.jrat.client.Constants;
 import se.jrat.client.ErrorDialog;
@@ -95,8 +97,6 @@ import se.jrat.common.Flood;
 import se.jrat.common.Version;
 import se.jrat.common.downloadable.Downloadable;
 import se.jrat.common.utils.IOUtils;
-import jrat.api.RATMenuItem;
-import jrat.api.RATObject;
 
 @SuppressWarnings({ "serial" })
 public class Frame extends BaseFrame {

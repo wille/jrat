@@ -7,8 +7,6 @@ import java.io.DataInputStream;
 import se.jrat.client.Slave;
 import se.jrat.client.ui.frames.FrameRemoteThumbView;
 import se.jrat.client.utils.ImageUtils;
-import se.jrat.common.compress.GZip;
-import se.jrat.common.crypto.Crypto;
 
 
 public class Packet59ThumbnailPreview extends AbstractIncomingPacket {
@@ -29,8 +27,6 @@ public class Packet59ThumbnailPreview extends AbstractIncomingPacket {
 
 		byte[] buffer = new byte[imageSize];
 		slave.getDataInputStream().readFully(buffer);
-
-		buffer = Crypto.decrypt(GZip.decompress(buffer), slave.getKey());
 
 		if (frame != null) {
 			BufferedImage img = ImageUtils.decodeImage(buffer);
