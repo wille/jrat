@@ -123,6 +123,7 @@ public class Settings extends AbstractSettings {
 		setVal("proxyport", 9050);
 		setVal("proxysocks", true);
 		setVal("plugintransfer", false);
+		setVal("rowheight", 30);
 	}
 
 	@Override

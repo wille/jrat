@@ -513,6 +513,7 @@ public class Frame extends BaseFrame {
 					return;
 				}
 				mainTable.setRowHeight(h);
+				Settings.getGlobal().setVal("rowheight", h);
 			}
 		});
 		mntmRowHeight.setIcon(new ImageIcon(Frame.class.getResource("/icons/window_dock.png")));
@@ -1015,7 +1016,14 @@ public class Frame extends BaseFrame {
 
 		mainTable.getTableHeader().setReorderingAllowed(false);
 
-		mainTable.setRowHeight(30);
+		int rowheight = 30;
+		
+		try {
+			 rowheight = Integer.parseInt(Settings.getGlobal().get("rowheight").toString());
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		mainTable.setRowHeight(rowheight);
 		mainTable.setDefaultRenderer(Object.class, new MainTableRenderer());
 
 		scrollPane.setViewportView(mainTable);
