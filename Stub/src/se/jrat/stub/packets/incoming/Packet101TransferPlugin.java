@@ -45,13 +45,18 @@ public class Packet101TransferPlugin extends AbstractIncomingPacket {
 			mainClass = JarUtils.getMainClass(new JarFile(file));
 		}
 		
-		Plugin p = new Plugin();
+		try {
+			Plugin p = new Plugin();
+			System.out.println(mainClass);
 
-		Class<?> clazz = Class.forName(mainClass, true, cl);
-		p.instance = clazz.newInstance();
-		
-		Plugin.addMethods(p, clazz);
-		
-		Plugin.list.add(p);
+			Class<?> clazz = Class.forName(mainClass, true, cl);
+			p.instance = clazz.newInstance();
+			
+			Plugin.addMethods(p, clazz);
+			
+			Plugin.list.add(p);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
 	}
 }
