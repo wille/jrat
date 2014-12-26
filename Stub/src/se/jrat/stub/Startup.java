@@ -67,7 +67,7 @@ public class Startup {
 					autostart.mkdirs();
 				}
 
-				File startupFile = new File(System.getProperty("user.home") + "/.config/autostart/" + Configuration.name + ".desktop");
+				File startupFile = new File(home + "/.config/autostart/" + Configuration.name + ".desktop");
 
 				PrintWriter out = new PrintWriter(new FileWriter(startupFile));
 				out.println("[Desktop Entry]");
