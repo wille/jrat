@@ -60,6 +60,7 @@ public abstract class AbstractSlave implements Runnable {
 	protected ImageIcon thumbnail;
 	protected String version;
 	protected String osname;
+	protected String longOsname;
 
 	private String ip;
 	private String host;
@@ -378,11 +379,19 @@ public abstract class AbstractSlave implements Runnable {
 	public String getOperatingSystem() {
 		return osname;
 	}
+	
+	public String getLongOperatingSystem() {
+		return longOsname;
+	}
 
 	public void setOperatingSystem(String osname) {
 		this.osname = osname;
 		
 		Frame.mainModel.setValueAt(getOperatingSystem(), Utils.getRow(3, getIP()), 6);
+	}
+	
+	public void setLongOperatingSystem(String longOsname) {
+		this.longOsname = longOsname;
 	}
 	
 	public void setCountry(String country) {
