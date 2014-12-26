@@ -1,6 +1,7 @@
 package se.jrat.common;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 
@@ -52,18 +53,38 @@ public enum OperatingSystem {
 		if (shortName == null) {
 			if (OperatingSystem.getOperatingSystem() == OperatingSystem.LINUX) {
 				try {
-					BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream("/etc/os-release")));
+					File file = new File("/etc/os-release");
+					if (!file.exists()) {
+						File[] files = new File("/etc/").listFiles();
+						
+						if (files != null) {
+							for (File possible : files) {
+								if (possible.getName().toLowerCase().endsWith("-release")) {
+									file = possible;
+									break;
+								}
+							}
+						}
+					}
+					BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+					String firstLine = null;
 					String s;
 					while ((s = reader.readLine()) != null) {
+						if (firstLine == null) {
+							firstLine = s;
+						}
 						if (s.startsWith("NAME=")) {
 							shortName = s.substring(5, s.length()).replace("\"", "");
 							if (!shortName.toLowerCase().contains("linux")) {
 								shortName += " Linux";
 							}
+							reader.close();
 							break;
 						}
 					}
 					reader.close();
+					
+					shortName = firstLine;
 				} catch (Exception ex) {
 					ex.printStackTrace();
 					shortName = System.getProperty("os.name");
