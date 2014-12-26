@@ -27,6 +27,7 @@ public class IconUtils {
 	public static final ImageIcon DIST_KALI = IconUtils.getIcon("dist_kali");
 	public static final ImageIcon DIST_CENTOS = IconUtils.getIcon("dist_centos");
 	public static final ImageIcon DIST_DEBIAN = IconUtils.getIcon("dist_debian");
+	public static final ImageIcon DIST_ELEMENTARY = IconUtils.getIcon("dist_elementaryos");
 
 	public static ImageIcon getIcon(String name, boolean defaultfolder) {
 		URL url;
@@ -114,6 +115,8 @@ public class IconUtils {
 				icon = DIST_CENTOS;
 			} else if (slave.getOperatingSystem().toLowerCase().contains("debian")) {
 				icon = DIST_DEBIAN;
+			} else if (slave.getOperatingSystem().toLowerCase().contains("elementary")) {
+				icon = DIST_ELEMENTARY;
 			} else {
 				icon = OS_LINUX;
 			}
