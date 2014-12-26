@@ -75,7 +75,7 @@ public class Connection implements Runnable {
 			socket = new Socket(address.getAddress(), address.getPort());
 
 			socket.setSoTimeout(Configuration.timeout);
-			socket.setTrafficClass(24);
+			//socket.setTrafficClass(24);
 
 			Connection.inputStream = socket.getInputStream();
 			Connection.outputStream = socket.getOutputStream();
