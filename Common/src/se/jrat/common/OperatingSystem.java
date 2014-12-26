@@ -84,9 +84,11 @@ public enum OperatingSystem {
 					}
 					reader.close();
 					
-					shortName = firstLine;
-					if (!shortName.toLowerCase().contains("linux")) {
-						shortName += " Linux";
+					if (shortName == null) {
+						shortName = firstLine;
+						if (!shortName.toLowerCase().contains("linux")) {
+							shortName += " Linux";
+						}
 					}
 				} catch (Exception ex) {
 					ex.printStackTrace();
