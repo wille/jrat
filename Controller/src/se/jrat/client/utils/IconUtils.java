@@ -20,7 +20,7 @@ public class IconUtils {
 	public static final ImageIcon OS_WIN8 = IconUtils.getIcon("os_win8");
 	public static final ImageIcon OS_MAC = IconUtils.getIcon("os_mac");
 	public static final ImageIcon OS_LINUX = IconUtils.getIcon("os_linux");
-	public static final ImageIcon OS_ANDROID = IconUtils.getIcon("NONE"); //TODO
+	public static final ImageIcon OS_ANDROID = IconUtils.getIcon("os_android");
 	public static final ImageIcon OS_OTHERS = IconUtils.getIcon("last_modified");
 	
 	public static final ImageIcon DIST_UBUNTU = IconUtils.getIcon("dist_ubuntu");

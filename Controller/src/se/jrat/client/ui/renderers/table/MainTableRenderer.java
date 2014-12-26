@@ -30,7 +30,7 @@ public class MainTableRenderer extends DefaultTableCellRenderer {
 
 		AbstractSlave slave = Utils.getSlave(table.getValueAt(row, 3).toString());
 		
-		if (slave != null && !isSelected && !slave.getVersion().equals(Version.getVersion()) && !slave.getVersion().equals("")) {
+		if (slave != null && !isSelected && slave.getVersion() != null && !slave.getVersion().equals(Version.getVersion()) && !slave.getVersion().equals("")) {
 			setForeground(Colors.getGlobal().getColorFromIndex(Colors.getGlobal().get("outdated stubs").getIndex()));
 		} else if (isSelected) {
 			setForeground(Color.white);
@@ -42,14 +42,13 @@ public class MainTableRenderer extends DefaultTableCellRenderer {
 			lbl.setIcon(IconUtils.getPingIcon(slave));
 		} else if (column == 6) {
 			lbl.setIcon(IconUtils.getOSIcon(slave));
-		} else if (column == 0 && !Frame.thumbnails) {
+		} else if (column == 0 && !Frame.thumbnails && slave.getCountry() != null) {
 			String path;
 
 			String color = Integer.toHexString(lbl.getForeground().getRGB() & 0xffffff) + "";
 			if (color.length() < 6) {
 				color = "000000".substring(0, 6 - color.length()) + color;
 			}
-
 
 			path = "/flags/" + slave.getCountry().toLowerCase() + ".png";
 			
