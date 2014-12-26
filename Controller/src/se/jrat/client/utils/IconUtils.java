@@ -28,6 +28,11 @@ public class IconUtils {
 	public static final ImageIcon DIST_CENTOS = IconUtils.getIcon("dist_centos");
 	public static final ImageIcon DIST_DEBIAN = IconUtils.getIcon("dist_debian");
 	public static final ImageIcon DIST_ELEMENTARY = IconUtils.getIcon("dist_elementaryos");
+	public static final ImageIcon DIST_MINT = IconUtils.getIcon("dist_mint");
+	public static final ImageIcon DIST_SLACKWARE = IconUtils.getIcon("dist_slackware");
+	public static final ImageIcon DIST_ARCH = IconUtils.getIcon("dist_arch");
+	public static final ImageIcon DIST_GENTOO = IconUtils.getIcon("dist_gentoo");
+
 
 	public static ImageIcon getIcon(String name, boolean defaultfolder) {
 		URL url;
@@ -117,6 +122,14 @@ public class IconUtils {
 				icon = DIST_DEBIAN;
 			} else if (slave.getOperatingSystem().toLowerCase().contains("elementary")) {
 				icon = DIST_ELEMENTARY;
+			} else if (slave.getOperatingSystem().toLowerCase().contains("mint")) {
+				icon = DIST_MINT;
+			} else if (slave.getOperatingSystem().toLowerCase().contains("slackware")) {
+				icon = DIST_SLACKWARE;
+			} else if (slave.getOperatingSystem().toLowerCase().contains("arch")) {
+				icon = DIST_ARCH;
+			} else if (slave.getOperatingSystem().toLowerCase().contains("gentoo")) {
+				icon = DIST_GENTOO;
 			} else {
 				icon = OS_LINUX;
 			}
