@@ -12,7 +12,6 @@ public enum OperatingSystem {
 	LINUX,
 	SOLARIS,
 	FREEBSD,
-	OPENBSD,
 	ANDROID,
 	UNKNOWN;
 
@@ -34,8 +33,6 @@ public enum OperatingSystem {
 			os = OperatingSystem.SOLARIS;
 		} else if (str.contains("freebsd")) {
 			os = OperatingSystem.FREEBSD;
-		} else if (str.contains("openbsd")) {
-			os = OperatingSystem.OPENBSD;
 		} else if (str.contains("android")) {
 			os = OperatingSystem.ANDROID;
 		} else {

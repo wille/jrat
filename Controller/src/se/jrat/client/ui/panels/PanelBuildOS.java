@@ -27,7 +27,6 @@ public class PanelBuildOS extends JPanel {
 	public JCheckBox chckbxLinux;
 	public JCheckBox chckbxFreebsd;
 	public JCheckBox chckbxSolaris;
-	public JCheckBox chckbxOpenbsd;
 
 	public boolean useWindows() {
 		return chckbxWindows.isSelected();
@@ -45,10 +44,6 @@ public class PanelBuildOS extends JPanel {
 		return chckbxFreebsd.isSelected();
 	}
 
-	public boolean useOpenBSD() {
-		return chckbxOpenbsd.isSelected();
-	}
-
 	public boolean useSolaris() {
 		return chckbxSolaris.isSelected();
 	}
@@ -64,9 +59,6 @@ public class PanelBuildOS extends JPanel {
 		}
 		if (chckbxLinux.isEnabled()) {
 			config.addOS(OperatingSystem.OSX);
-		}
-		if (chckbxOpenbsd.isEnabled()) {
-			config.addOS(OperatingSystem.OPENBSD);
 		}
 		if (chckbxSolaris.isEnabled()) {
 			config.addOS(OperatingSystem.SOLARIS);
@@ -113,16 +105,10 @@ public class PanelBuildOS extends JPanel {
 		button.setIcon(new ImageIcon(PanelBuildOS.class.getResource("/icons/help.png")));
 
 		chckbxFreebsd = new JCheckBox("FreeBSD");
-		chckbxFreebsd.setForeground(Color.RED);
+		chckbxFreebsd.setForeground(Color.BLACK);
 
 		JLabel label_3 = new JLabel("");
-		label_3.setIcon(new ImageIcon(PanelBuildOS.class.getResource("/icons/freebsd.png")));
-
-		chckbxOpenbsd = new JCheckBox("OpenBSD");
-		chckbxOpenbsd.setForeground(Color.RED);
-
-		JLabel label_4 = new JLabel("");
-		label_4.setIcon(new ImageIcon(PanelBuildOS.class.getResource("/icons/openbsd.png")));
+		label_3.setIcon(new ImageIcon(PanelBuildOS.class.getResource("/icons/os_freebsd.png")));
 
 		chckbxSolaris = new JCheckBox("Solaris");
 		chckbxSolaris.setForeground(Color.RED);
@@ -130,8 +116,58 @@ public class PanelBuildOS extends JPanel {
 		JLabel label_5 = new JLabel("");
 		label_5.setIcon(new ImageIcon(PanelBuildOS.class.getResource("/icons/solaris.png")));
 		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addGap(67).addGroup(gl_panel.createParallelGroup(Alignment.TRAILING).addComponent(label).addComponent(label_1, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE).addComponent(label_2, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE).addComponent(label_3, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE).addComponent(label_4, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE))).addComponent(label_5, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addComponent(chckbxOpenbsd).addComponent(chckbxLinux).addComponent(chckbxMacOsx).addComponent(chckbxWindows).addComponent(chckbxFreebsd).addComponent(chckbxSolaris))).addGroup(gl_panel.createSequentialGroup().addContainerGap().addComponent(button, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE))).addContainerGap(184, Short.MAX_VALUE)));
-		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addContainerGap().addGroup(gl_panel.createParallelGroup(Alignment.TRAILING, false).addComponent(label, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(chckbxWindows, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addComponent(chckbxMacOsx).addComponent(label_1, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addComponent(chckbxLinux).addComponent(label_2, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false).addGroup(gl_panel.createSequentialGroup().addComponent(chckbxFreebsd).addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(chckbxOpenbsd)).addGroup(gl_panel.createSequentialGroup().addComponent(label_3, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(label_4, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))).addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addPreferredGap(ComponentPlacement.UNRELATED).addComponent(chckbxSolaris)).addGroup(gl_panel.createSequentialGroup().addPreferredGap(ComponentPlacement.RELATED).addComponent(label_5, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))).addGap(39).addComponent(button).addContainerGap()));
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(67)
+							.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+								.addComponent(label)
+								.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
+								.addComponent(label_2, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
+								.addComponent(label_3, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
+								.addComponent(label_5, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addComponent(chckbxSolaris)
+								.addComponent(chckbxLinux)
+								.addComponent(chckbxMacOsx)
+								.addComponent(chckbxWindows)
+								.addComponent(chckbxFreebsd)))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(button, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(184, Short.MAX_VALUE))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING, false)
+						.addComponent(label, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(chckbxWindows, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(chckbxMacOsx)
+						.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(chckbxLinux)
+						.addComponent(label_2, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(chckbxFreebsd)
+						.addComponent(label_3, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(label_5, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+							.addComponent(button))
+						.addComponent(chckbxSolaris))
+					.addContainerGap())
+		);
 		panel.setLayout(gl_panel);
 		setLayout(groupLayout);
 

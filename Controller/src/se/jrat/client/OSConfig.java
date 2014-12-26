@@ -40,10 +40,7 @@ public final class OSConfig {
 		if (c.isAllowed(OperatingSystem.SOLARIS)) {
 			str += "solaris ";
 		}
-		if (c.isAllowed(OperatingSystem.OPENBSD)) {
-			str += "openbsd ";
-		}
-
+		
 		return str.trim();
 	}
 
