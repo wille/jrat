@@ -66,6 +66,7 @@ public enum OperatingSystem {
 					reader.close();
 				} catch (Exception ex) {
 					ex.printStackTrace();
+					shortName = System.getProperty("os.name");
 				}
 			} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
 				shortName = System.getProperty("os.name") + " " + System.getProperty("os.version");
