@@ -42,15 +42,21 @@ public class MainTableRenderer extends DefaultTableCellRenderer {
 			lbl.setIcon(IconUtils.getPingIcon(slave));
 		} else if (column == 6) {
 			lbl.setIcon(IconUtils.getOSIcon(slave));
-		} else if (column == 0 && !Frame.thumbnails && slave.getCountry() != null) {
+		} else if (column == 0 && !Frame.thumbnails) {
 			String path;
 
 			String color = Integer.toHexString(lbl.getForeground().getRGB() & 0xffffff) + "";
 			if (color.length() < 6) {
 				color = "000000".substring(0, 6 - color.length()) + color;
 			}
-
-			path = "/flags/" + slave.getCountry().toLowerCase() + ".png";
+			
+			String country = slave.getCountry();
+						
+			if (country != null) {
+				path = "/flags/" + country.toLowerCase() + ".png";
+			} else {
+				path = "/flags/unknown.png";
+			}
 			
 			JCheckBox b = new JCheckBox(value.toString(), slave.isSelected());
 

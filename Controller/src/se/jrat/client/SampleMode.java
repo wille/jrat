@@ -42,6 +42,8 @@ public class SampleMode {
 		} else {
 			ConnectionHandler.addSlave(slave);
 			slave.setOperatingSystem(os);
+			slave.setStatus(5);
+			slave.setServerID("jrat" + new Random().nextInt(1000));
 		}
 	}
 	
@@ -49,11 +51,11 @@ public class SampleMode {
 		return COUNTRIES[new Random().nextInt(COUNTRIES.length - 1)];
 	}
 
-	public static Slave generate(final String country, final String os, String ip) {
+	public static Slave generate(final String c, final String os, String ip) {
 		Slave slave = new Slave(ip) {
 			@Override
 			public String getCountry() {
-				return country;
+				return c;
 			}
 			
 			@Override

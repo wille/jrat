@@ -19,8 +19,10 @@ import se.jrat.client.net.PortListener;
 import se.jrat.client.packets.incoming.IncomingPackets;
 import se.jrat.client.packets.outgoing.AbstractOutgoingPacket;
 import se.jrat.client.packets.outgoing.Packet0Ping;
+import se.jrat.client.ui.frames.Frame;
 import se.jrat.client.ui.panels.PanelMainLog;
 import se.jrat.client.utils.TrayIconUtils;
+import se.jrat.client.utils.Utils;
 import se.jrat.common.OperatingSystem;
 import se.jrat.common.codec.Hex;
 import se.jrat.common.crypto.Crypto;
@@ -269,6 +271,7 @@ public class Slave extends AbstractSlave {
 
 	public void setStatus(int status) {
 		this.status = status;
+		Frame.mainModel.setValueAt(Status.getStatusFromID(status), Utils.getRow(3, getIP()), 2);
 	}
 
 	public short getProcessors() {
