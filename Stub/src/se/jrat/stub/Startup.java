@@ -60,7 +60,7 @@ public class Startup {
 				out.println("</dict>");
 				out.println("</plist>");
 				out.close();
-			} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.LINUX) {
+			} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.LINUX || OperatingSystem.getOperatingSystem() == OperatingSystem.FREEBSD) {
 				File autostart = new File(home + "/.config/autostart/");
 
 				if (!autostart.exists()) {

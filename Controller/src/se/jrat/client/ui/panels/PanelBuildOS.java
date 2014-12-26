@@ -114,7 +114,7 @@ public class PanelBuildOS extends JPanel {
 		chckbxSolaris.setForeground(Color.RED);
 
 		JLabel label_5 = new JLabel("");
-		label_5.setIcon(new ImageIcon(PanelBuildOS.class.getResource("/icons/solaris.png")));
+		label_5.setIcon(new ImageIcon(PanelBuildOS.class.getResource("/icons/os_solaris.png")));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
