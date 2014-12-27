@@ -93,6 +93,8 @@ public enum OperatingSystem {
 				}
 			} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
 				shortName = System.getProperty("os.name") + " " + System.getProperty("os.version");
+			} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.SOLARIS) {
+				shortName = "Solaris";
 			} else {
 				shortName = System.getProperty("os.name");
 			}
