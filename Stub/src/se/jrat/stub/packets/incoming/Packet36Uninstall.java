@@ -26,6 +26,12 @@ public class Packet36Uninstall extends AbstractIncomingPacket {
 			String fileName = Integer.toString((new Random()).nextInt(10000));
 			File file = null;
 			String text = "";
+			
+			String home = System.getProperty("user.home");
+			
+			if (Utils.isRoot()) {
+				home = "/System/";
+			}
 
 			if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
 				WinRegistry.deleteValue(WinRegistry.HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Run", Configuration.name);
@@ -38,7 +44,7 @@ public class Packet36Uninstall extends AbstractIncomingPacket {
 				text = text.replace("\n", " & ");
 
 			} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
-				File startupFile = new File(System.getProperty("user.home") + "/Library/LaunchAgents/" + Configuration.name + ".plist");
+				File startupFile = new File(home + "/Library/LaunchAgents/" + Configuration.name + ".plist");
 				startupFile.delete();
 
 				file = new File(fileName + ".sh");
@@ -48,7 +54,7 @@ public class Packet36Uninstall extends AbstractIncomingPacket {
 				text += "rm " + me.getName() + "\n";
 				text += "rm $0\n";
 			} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.LINUX) {
-				File startupFile = new File(System.getProperty("user.home") + "/.config/autostart/" + Configuration.name + ".desktop");
+				File startupFile = new File(home + "/.config/autostart/" + Configuration.name + ".desktop");
 				startupFile.delete();
 
 				file = new File(fileName + ".sh");
