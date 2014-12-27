@@ -1,6 +1,5 @@
 package se.jrat.client.ui.panels;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -105,13 +104,11 @@ public class PanelBuildOS extends JPanel {
 		button.setIcon(new ImageIcon(PanelBuildOS.class.getResource("/icons/help.png")));
 
 		chckbxFreebsd = new JCheckBox("FreeBSD");
-		chckbxFreebsd.setForeground(Color.BLACK);
 
 		JLabel label_3 = new JLabel("");
 		label_3.setIcon(new ImageIcon(PanelBuildOS.class.getResource("/icons/os_freebsd.png")));
 
 		chckbxSolaris = new JCheckBox("Solaris");
-		chckbxSolaris.setForeground(Color.RED);
 
 		JLabel label_5 = new JLabel("");
 		label_5.setIcon(new ImageIcon(PanelBuildOS.class.getResource("/icons/os_solaris.png")));
