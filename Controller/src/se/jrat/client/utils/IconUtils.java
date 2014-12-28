@@ -34,7 +34,7 @@ public class IconUtils {
 	public static final ImageIcon DIST_SLACKWARE = IconUtils.getIcon("dist_slackware");
 	public static final ImageIcon DIST_ARCH = IconUtils.getIcon("dist_arch");
 	public static final ImageIcon DIST_GENTOO = IconUtils.getIcon("dist_gentoo");
-
+	public static final ImageIcon DIST_RASPBIAN = IconUtils.getIcon("dist_raspbian");
 
 	public static ImageIcon getIcon(String name, boolean defaultfolder) {
 		URL url;
@@ -132,6 +132,8 @@ public class IconUtils {
 				icon = DIST_ARCH;
 			} else if (slave.getOperatingSystem().toLowerCase().contains("gentoo")) {
 				icon = DIST_GENTOO;
+			} else if (slave.getOperatingSystem().toLowerCase().contains("raspbian")) {
+				icon = DIST_RASPBIAN;
 			} else {
 				icon = OS_LINUX;
 			}

@@ -50,6 +50,14 @@ public enum OperatingSystem {
 		if (shortName == null) {
 			if (OperatingSystem.getOperatingSystem() == OperatingSystem.LINUX) {
 				try {
+					String uname = getUname();
+					
+					if (uname != null) {
+						if (uname.toLowerCase().contains("raspbian")) {
+							return shortName = "Raspbian Linux";
+						}
+					}
+					
 					boolean lsb = true;
 					
 					File file = new File("/etc/lsb-release");
@@ -122,14 +130,10 @@ public enum OperatingSystem {
 	public static String getLongOperatingSystem() {
 		if (longName == null) {
 			if (OperatingSystem.getOperatingSystem() == OperatingSystem.LINUX) {
-				try {
-					Process p = Runtime.getRuntime().exec(new String[] { "uname", "-a"});
-					BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
-					longName = reader.readLine();
-					reader.close();
-				} catch (Exception ex) {
-					ex.printStackTrace();
-					longName = System.getProperty("os.name") + " " + System.getProperty("os.version") + " " + OperatingSystem.getArch(System.getProperty("os.arch"));
+				longName = getUname();
+				
+				if (longName == null) {
+					longName = System.getProperty("os.name") + " " + System.getProperty("os.version") + " " + OperatingSystem.getArch(System.getProperty("os.arch"));		
 				}
 			} else {
 				longName = System.getProperty("os.name") + " " + System.getProperty("os.version") + " " + OperatingSystem.getArch(System.getProperty("os.arch"));
@@ -147,6 +151,21 @@ public enum OperatingSystem {
 		}
 		
 		return arch;
+	}
+	
+	public static String getUname() {
+		String uname = null;
+		
+		try {
+			Process p = Runtime.getRuntime().exec(new String[] { "uname", "-a"});
+			BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
+			longName = reader.readLine();
+			reader.close();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		return uname;
 	}
 
 }
