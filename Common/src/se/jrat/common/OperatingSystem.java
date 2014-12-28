@@ -50,7 +50,15 @@ public enum OperatingSystem {
 		if (shortName == null) {
 			if (OperatingSystem.getOperatingSystem() == OperatingSystem.LINUX) {
 				try {
-					File file = new File("/etc/os-release");
+					boolean lsb = true;
+					
+					File file = new File("/etc/lsb-release");
+					 
+					if (!file.exists()) {
+						file = new File("/etc/os-release");
+						lsb = false;
+					}
+					
 					if (!file.exists()) {
 						File[] files = new File("/etc/").listFiles();
 						
@@ -62,6 +70,7 @@ public enum OperatingSystem {
 								}
 							}
 						}
+						lsb = false;
 					}
 					BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
 					String firstLine = null;
@@ -70,7 +79,14 @@ public enum OperatingSystem {
 						if (firstLine == null) {
 							firstLine = s;
 						}
-						if (s.startsWith("NAME=")) {
+						if (lsb && s.startsWith("DISTRIB_ID=")) {
+							shortName = s.substring(11, s.length()).replace("\"", "");
+							if (!shortName.toLowerCase().contains("linux")) {
+								shortName += " Linux";
+							}
+							reader.close();
+							break;
+						} else if (s.startsWith("NAME=")) {
 							shortName = s.substring(5, s.length()).replace("\"", "");
 							if (!shortName.toLowerCase().contains("linux")) {
 								shortName += " Linux";
