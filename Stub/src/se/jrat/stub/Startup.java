@@ -15,7 +15,7 @@ public class Startup {
 
 		String home = System.getProperty("user.home");
 
-		if (Utils.isRoot()) {
+		if (Utils.isRoot() && OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
 			home = "/System/";
 		}
 
