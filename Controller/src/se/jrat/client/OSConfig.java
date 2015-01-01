@@ -37,6 +37,9 @@ public final class OSConfig {
 		if (c.isAllowed(OperatingSystem.FREEBSD)) {
 			str += "freebsd ";
 		}
+		if (c.isAllowed(OperatingSystem.OPENBSD)) {
+			str += "openbsd ";
+		}
 		if (c.isAllowed(OperatingSystem.SOLARIS)) {
 			str += "solaris ";
 		}

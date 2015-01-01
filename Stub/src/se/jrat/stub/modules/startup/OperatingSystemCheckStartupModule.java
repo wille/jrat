@@ -26,7 +26,10 @@ public class OperatingSystemCheckStartupModule extends StartupModule {
 			shutdown = false;
 		} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.SOLARIS && allowedOperatingSystems.contains("solaris")) {
 			shutdown = false;
+		} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OPENBSD && allowedOperatingSystems.contains("openbsd")) {
+			shutdown = false;
 		}
+
 
 		if (shutdown) {
 			System.exit(0);

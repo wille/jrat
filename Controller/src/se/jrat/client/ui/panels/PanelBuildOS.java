@@ -26,6 +26,7 @@ public class PanelBuildOS extends JPanel {
 	public JCheckBox chckbxLinux;
 	public JCheckBox chckbxFreebsd;
 	public JCheckBox chckbxSolaris;
+	private JCheckBox chckbxOpenBSD;
 
 	public boolean useWindows() {
 		return chckbxWindows.isSelected();
@@ -47,22 +48,29 @@ public class PanelBuildOS extends JPanel {
 		return chckbxSolaris.isSelected();
 	}
 
+	public boolean useOpenBSD() {
+		return chckbxOpenBSD.isSelected();
+	}
+	
 	public OSConfig getConfig() {
 		OSConfig config = new OSConfig();
 
-		if (chckbxWindows.isEnabled()) {
+		if (chckbxWindows.isSelected()) {
 			config.addOS(OperatingSystem.WINDOWS);
 		}
-		if (chckbxMacOsx.isEnabled()) {
+		if (chckbxMacOsx.isSelected()) {
 			config.addOS(OperatingSystem.LINUX);
 		}
-		if (chckbxLinux.isEnabled()) {
+		if (chckbxLinux.isSelected()) {
 			config.addOS(OperatingSystem.OSX);
 		}
-		if (chckbxSolaris.isEnabled()) {
+		if (chckbxSolaris.isSelected()) {
 			config.addOS(OperatingSystem.SOLARIS);
 		}
-		if (chckbxFreebsd.isEnabled()) {
+		if (chckbxFreebsd.isSelected()) {
+			config.addOS(OperatingSystem.FREEBSD);
+		}
+		if (chckbxOpenBSD.isSelected()) {
 			config.addOS(OperatingSystem.FREEBSD);
 		}
 
@@ -77,10 +85,10 @@ public class PanelBuildOS extends JPanel {
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(panel, GroupLayout.PREFERRED_SIZE, 428, GroupLayout.PREFERRED_SIZE).addContainerGap(12, Short.MAX_VALUE)));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(panel, GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE).addContainerGap()));
 
-		chckbxWindows = new JCheckBox("Windows (Recommended)");
+		chckbxWindows = new JCheckBox("Windows");
 		chckbxWindows.setSelected(true);
 
-		chckbxMacOsx = new JCheckBox("Mac OSX");
+		chckbxMacOsx = new JCheckBox("Mac OS X");
 		chckbxMacOsx.setSelected(true);
 
 		chckbxLinux = new JCheckBox("Linux");
@@ -104,37 +112,47 @@ public class PanelBuildOS extends JPanel {
 		button.setIcon(new ImageIcon(PanelBuildOS.class.getResource("/icons/help.png")));
 
 		chckbxFreebsd = new JCheckBox("FreeBSD");
+		chckbxFreebsd.setSelected(true);
 
 		JLabel label_3 = new JLabel("");
 		label_3.setIcon(new ImageIcon(PanelBuildOS.class.getResource("/icons/os_freebsd.png")));
 
 		chckbxSolaris = new JCheckBox("Solaris");
+		chckbxSolaris.setSelected(true);
 
 		JLabel label_5 = new JLabel("");
 		label_5.setIcon(new ImageIcon(PanelBuildOS.class.getResource("/icons/os_solaris.png")));
+		
+		JLabel label_4 = new JLabel("");
+		label_4.setIcon(new ImageIcon(PanelBuildOS.class.getResource("/icons/os_openbsd.png")));
+		
+		chckbxOpenBSD = new JCheckBox("OpenBSD");
+		chckbxOpenBSD.setSelected(true);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(button, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(67)
 							.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+								.addComponent(label_5, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
 								.addComponent(label)
 								.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
 								.addComponent(label_2, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
 								.addComponent(label_3, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
-								.addComponent(label_5, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE))
+								.addComponent(label_4, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 								.addComponent(chckbxSolaris)
 								.addComponent(chckbxLinux)
 								.addComponent(chckbxMacOsx)
 								.addComponent(chckbxWindows)
-								.addComponent(chckbxFreebsd)))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(button, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)))
+								.addComponent(chckbxFreebsd)
+								.addComponent(chckbxOpenBSD, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE))))
 					.addContainerGap(184, Short.MAX_VALUE))
 		);
 		gl_panel.setVerticalGroup(
@@ -158,11 +176,15 @@ public class PanelBuildOS extends JPanel {
 						.addComponent(label_3, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(label_4, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+						.addComponent(chckbxOpenBSD))
+					.addGap(4)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(label_5, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+							.addComponent(chckbxSolaris)
+							.addGap(42)
 							.addComponent(button))
-						.addComponent(chckbxSolaris))
+						.addComponent(label_5, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap())
 		);
 		panel.setLayout(gl_panel);
