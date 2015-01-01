@@ -1,6 +1,5 @@
 package se.jrat.client.ui.frames;
 
-import java.awt.BorderLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,6 +17,8 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -175,9 +176,6 @@ public class FrameRemoteScreen extends BaseFrame {
 			}
 		});
 		
-		getContentPane().add(toolBarTop, BorderLayout.NORTH);
-		getContentPane().add(toolBarBottom, BorderLayout.SOUTH);
-		
 		progressBar = new JProgressBar();
 		toolBarBottom.add(progressBar);
 		toolBarBottom.addSeparator();
@@ -314,10 +312,21 @@ public class FrameRemoteScreen extends BaseFrame {
 		toolBarTop.add(tglbtnToggleMovement);
 		
 		toolBarTop.addSeparator();
-		
-		
-		
-		getContentPane().add(screenPane);
+		GroupLayout groupLayout = new GroupLayout(getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addComponent(toolBarTop, GroupLayout.PREFERRED_SIZE, 657, GroupLayout.PREFERRED_SIZE)
+				.addComponent(screenPane, GroupLayout.PREFERRED_SIZE, 657, GroupLayout.PREFERRED_SIZE)
+				.addComponent(toolBarBottom, GroupLayout.PREFERRED_SIZE, 657, GroupLayout.PREFERRED_SIZE)
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(toolBarTop, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addComponent(screenPane, GroupLayout.PREFERRED_SIZE, 357, GroupLayout.PREFERRED_SIZE)
+					.addComponent(toolBarBottom, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+		);
+		getContentPane().setLayout(groupLayout);
 	}
 	
 	public void sendUpdate() {

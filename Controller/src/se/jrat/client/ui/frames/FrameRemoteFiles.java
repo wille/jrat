@@ -1,6 +1,5 @@
 package se.jrat.client.ui.frames;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Desktop;
@@ -19,6 +18,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -852,12 +853,9 @@ public class FrameRemoteFiles extends BaseFrame {
 		tableme.getColumnModel().getColumn(0).setPreferredWidth(250);
 		tableme.getColumnModel().getColumn(1).setPreferredWidth(150);
 		tableme.getColumnModel().getColumn(2).setPreferredWidth(180);
-		contentPane.setLayout(new BorderLayout(0, 0));
-		contentPane.add(toolBarNorth, BorderLayout.NORTH);
 		
 		toolBarSouth = new JToolBar();
 		toolBarSouth.setFloatable(false);
-		contentPane.add(toolBarSouth, BorderLayout.SOUTH);
 				
 						label = new JLabel("...");
 						toolBarSouth.add(label);
@@ -866,7 +864,21 @@ public class FrameRemoteFiles extends BaseFrame {
 				progressBar = new JProgressBar();
 				toolBarSouth.add(progressBar);
 				progressBar.setVisible(false);
-		contentPane.add(splitPane);
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addComponent(toolBarNorth, GroupLayout.PREFERRED_SIZE, 734, GroupLayout.PREFERRED_SIZE)
+				.addComponent(splitPane, GroupLayout.PREFERRED_SIZE, 734, GroupLayout.PREFERRED_SIZE)
+				.addComponent(toolBarSouth, GroupLayout.PREFERRED_SIZE, 734, GroupLayout.PREFERRED_SIZE)
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addComponent(toolBarNorth, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addComponent(splitPane, GroupLayout.PREFERRED_SIZE, 410, GroupLayout.PREFERRED_SIZE)
+					.addComponent(toolBarSouth, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+		);
+		contentPane.setLayout(gl_contentPane);
 
 		File[] f = File.listRoots();
 		for (File fi : f) {

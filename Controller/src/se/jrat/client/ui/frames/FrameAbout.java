@@ -6,6 +6,8 @@ import java.awt.Image;
 import java.awt.Toolkit;
 
 import javax.imageio.ImageIO;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -27,6 +29,7 @@ public class FrameAbout extends BaseDialog {
     }
 	
 	private JPanel contentPane;
+	private JPanel contentPane_1;
 
 	public FrameAbout() {
 		setResizable(false);
@@ -35,7 +38,7 @@ public class FrameAbout extends BaseDialog {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
-        contentPane = new JPanel() {
+        contentPane_1 = new JPanel() {
             @Override
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
@@ -46,7 +49,17 @@ public class FrameAbout extends BaseDialog {
             }
         };
 
-		setContentPane(contentPane);
+		setContentPane(contentPane_1);
+		GroupLayout gl_contentPane_1 = new GroupLayout(contentPane_1);
+		gl_contentPane_1.setHorizontalGroup(
+			gl_contentPane_1.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 444, Short.MAX_VALUE)
+		);
+		gl_contentPane_1.setVerticalGroup(
+			gl_contentPane_1.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 271, Short.MAX_VALUE)
+		);
+		contentPane_1.setLayout(gl_contentPane_1);
 	}
 
 }

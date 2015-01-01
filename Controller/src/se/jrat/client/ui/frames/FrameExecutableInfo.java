@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
@@ -107,101 +109,78 @@ public class FrameExecutableInfo extends BaseFrame {
 		setContentPane(contentPane);
 
 		txtTitle = new JTextField();
-		txtTitle.setBounds(93, 16, 228, 20);
 		txtTitle.setText("Title");
 		txtTitle.setColumns(10);
 
 		JLabel lblTitle = new JLabel("Title:");
-		lblTitle.setBounds(15, 19, 24, 14);
 
 		txtDescription = new JTextField();
-		txtDescription.setBounds(93, 42, 228, 20);
 		txtDescription.setText("Description");
 		txtDescription.setColumns(10);
 
 		txtCompany = new JTextField();
-		txtCompany.setBounds(93, 68, 228, 20);
 		txtCompany.setText("Company");
 		txtCompany.setColumns(10);
 
 		txtProduct = new JTextField();
-		txtProduct.setBounds(93, 94, 228, 20);
 		txtProduct.setText("Product");
 		txtProduct.setColumns(10);
 
 		txtCopyright = new JTextField();
-		txtCopyright.setBounds(93, 120, 228, 20);
 		txtCopyright.setText("Copyright");
 		txtCopyright.setColumns(10);
 
 		txtTrademark = new JTextField();
-		txtTrademark.setBounds(93, 146, 228, 20);
 		txtTrademark.setText("Trademark");
 		txtTrademark.setColumns(10);
 
 		JLabel lblDescription = new JLabel("Description:");
-		lblDescription.setBounds(15, 45, 57, 14);
 
 		JLabel lblCompany = new JLabel("Company:");
-		lblCompany.setBounds(15, 71, 49, 14);
 
 		JLabel lblProduct = new JLabel("Product:");
-		lblProduct.setBounds(15, 97, 41, 14);
 
 		JLabel lblCopyright = new JLabel("Copyright:");
-		lblCopyright.setBounds(15, 123, 51, 14);
 
 		JLabel lblTrademark = new JLabel("Trademark:");
-		lblTrademark.setBounds(15, 149, 55, 14);
 
 		v1 = new JTextField();
-		v1.setBounds(93, 172, 35, 20);
 		v1.setText("1");
 		v1.setColumns(10);
 
 		v2 = new JTextField();
-		v2.setBounds(134, 172, 35, 20);
 		v2.setText("0");
 		v2.setColumns(10);
 
 		v3 = new JTextField();
-		v3.setBounds(175, 172, 35, 20);
 		v3.setText("0");
 		v3.setColumns(10);
 
 		v4 = new JTextField();
-		v4.setBounds(216, 172, 35, 20);
 		v4.setText("0");
 		v4.setColumns(10);
 
 		a4 = new JTextField();
-		a4.setBounds(216, 198, 35, 20);
 		a4.setText("0");
 		a4.setColumns(10);
 
 		a1 = new JTextField();
-		a1.setBounds(93, 198, 35, 20);
 		a1.setText("1");
 		a1.setColumns(10);
 
 		a2 = new JTextField();
-		a2.setBounds(134, 198, 35, 20);
 		a2.setText("0");
 		a2.setColumns(10);
 
 		a3 = new JTextField();
-		a3.setBounds(175, 198, 35, 20);
 		a3.setText("0");
 		a3.setColumns(10);
 
 		JLabel lblVersion = new JLabel("Version:");
-		lblVersion.setBounds(15, 175, 39, 14);
 
 		JLabel lblAssemblyV = new JLabel("Assembly V:");
-		lblAssemblyV.setBounds(15, 202, 58, 14);
 
 		JButton btnCancel = new JButton("Cancel");
-		btnCancel.setBounds(256, 277, 65, 23);
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setVisible(false);
@@ -210,7 +189,6 @@ public class FrameExecutableInfo extends BaseFrame {
 		});
 
 		JButton btnOk = new JButton("OK");
-		btnOk.setBounds(203, 277, 47, 23);
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
@@ -219,43 +197,12 @@ public class FrameExecutableInfo extends BaseFrame {
 		});
 
 		JLabel lblIcon = new JLabel("Icon:");
-		lblIcon.setBounds(15, 229, 25, 14);
 
 		cbIcon = new JCheckBox("");
-		cbIcon.setBounds(93, 229, 21, 21);
 
 		txtIcon = new JTextField();
-		txtIcon.setBounds(116, 229, 161, 20);
 		txtIcon.setEditable(false);
 		txtIcon.setColumns(10);
-		contentPane.setLayout(null);
-		contentPane.add(lblTitle);
-		contentPane.add(txtTitle);
-		contentPane.add(lblDescription);
-		contentPane.add(txtDescription);
-		contentPane.add(lblCopyright);
-		contentPane.add(txtCopyright);
-		contentPane.add(lblCompany);
-		contentPane.add(txtCompany);
-		contentPane.add(lblProduct);
-		contentPane.add(txtProduct);
-		contentPane.add(btnOk);
-		contentPane.add(btnCancel);
-		contentPane.add(lblTrademark);
-		contentPane.add(lblVersion);
-		contentPane.add(lblAssemblyV);
-		contentPane.add(lblIcon);
-		contentPane.add(cbIcon);
-		contentPane.add(txtIcon);
-		contentPane.add(v1);
-		contentPane.add(v2);
-		contentPane.add(v3);
-		contentPane.add(v4);
-		contentPane.add(txtTrademark);
-		contentPane.add(a1);
-		contentPane.add(a2);
-		contentPane.add(a3);
-		contentPane.add(a4);
 
 		btnBrowse = new JButton("...");
 		btnBrowse.addActionListener(new ActionListener() {
@@ -270,8 +217,145 @@ public class FrameExecutableInfo extends BaseFrame {
 				}
 			}
 		});
-		btnBrowse.setBounds(286, 229, 35, 21);
-		contentPane.add(btnBrowse);
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(10)
+					.addComponent(lblTitle)
+					.addGap(54)
+					.addComponent(txtTitle, GroupLayout.PREFERRED_SIZE, 228, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(10)
+					.addComponent(lblDescription)
+					.addGap(21)
+					.addComponent(txtDescription, GroupLayout.PREFERRED_SIZE, 228, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(10)
+					.addComponent(lblCompany)
+					.addGap(29)
+					.addComponent(txtCompany, GroupLayout.PREFERRED_SIZE, 228, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(10)
+					.addComponent(lblProduct)
+					.addGap(37)
+					.addComponent(txtProduct, GroupLayout.PREFERRED_SIZE, 228, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(10)
+					.addComponent(lblCopyright)
+					.addGap(27)
+					.addComponent(txtCopyright, GroupLayout.PREFERRED_SIZE, 228, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(10)
+					.addComponent(lblTrademark)
+					.addGap(23)
+					.addComponent(txtTrademark, GroupLayout.PREFERRED_SIZE, 228, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(10)
+					.addComponent(lblVersion)
+					.addGap(39)
+					.addComponent(v1, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addGap(6)
+					.addComponent(v2, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addGap(6)
+					.addComponent(v3, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addGap(6)
+					.addComponent(v4, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(10)
+					.addComponent(lblAssemblyV)
+					.addGap(20)
+					.addComponent(a1, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addGap(6)
+					.addComponent(a2, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addGap(6)
+					.addComponent(a3, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addGap(6)
+					.addComponent(a4, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(10)
+					.addComponent(lblIcon)
+					.addGap(53)
+					.addComponent(cbIcon)
+					.addGap(2)
+					.addComponent(txtIcon, GroupLayout.PREFERRED_SIZE, 161, GroupLayout.PREFERRED_SIZE)
+					.addGap(9)
+					.addComponent(btnBrowse, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(198)
+					.addComponent(btnOk)
+					.addGap(6)
+					.addComponent(btnCancel))
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(11)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(3)
+							.addComponent(lblTitle))
+						.addComponent(txtTitle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(6)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(3)
+							.addComponent(lblDescription))
+						.addComponent(txtDescription, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(6)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(3)
+							.addComponent(lblCompany))
+						.addComponent(txtCompany, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(6)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(3)
+							.addComponent(lblProduct))
+						.addComponent(txtProduct, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(6)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(3)
+							.addComponent(lblCopyright))
+						.addComponent(txtCopyright, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(6)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(3)
+							.addComponent(lblTrademark))
+						.addComponent(txtTrademark, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(6)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(3)
+							.addComponent(lblVersion))
+						.addComponent(v1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(v2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(v3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(v4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(6)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(4)
+							.addComponent(lblAssemblyV))
+						.addComponent(a1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(a2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(a3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(a4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(11)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblIcon)
+						.addComponent(cbIcon)
+						.addComponent(txtIcon, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnBrowse, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
+					.addGap(27)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnOk)
+						.addComponent(btnCancel)))
+		);
+		contentPane.setLayout(gl_contentPane);
 		
 		Utils.center(this);
 	}

@@ -35,17 +35,13 @@ public class FramePerformance extends BaseFrame {
 
 		setTitle("Performance");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Frame.class.getResource("/icons/meter.png")));
-		getContentPane().setLayout(null);
 		setResizable(false);
 		setBounds(100, 100, 600, 426);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 		final JLabel lblMaximum = new JLabel("Maximum: ");
-		lblMaximum.setBounds(150, 270, 100, 10);
-		getContentPane().add(lblMaximum);
 
 		JButton button = new JButton("Garbage Collect");
-		button.setBounds(10, 260, 130, 30);
 		button.setIcon(new ImageIcon(Frame.class.getResource("/icons/garbage.png")));
 		button.addActionListener(new ActionListener() {
 			@Override
@@ -54,16 +50,10 @@ public class FramePerformance extends BaseFrame {
 			}
 		});
 
-		getContentPane().add(button);
-
 		graph = new TaskmgrGraph(new TaskmgrColors());
-		graph.setBounds(0, 0, 593, 250);
-		getContentPane().add(graph);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(BorderFactory.createTitledBorder("Runtime info"));
-		panel.setBounds(10, 301, 574, 85);
-		getContentPane().add(panel);
 		
 		JLabel lblWorkingDirectory = new JLabel("Working Directory: " + System.getProperty("user.dir"));
 		GroupLayout gl_panel = new GroupLayout(panel);
@@ -82,6 +72,33 @@ public class FramePerformance extends BaseFrame {
 					.addContainerGap(37, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
+		GroupLayout groupLayout = new GroupLayout(getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addComponent(graph, GroupLayout.PREFERRED_SIZE, 593, GroupLayout.PREFERRED_SIZE)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(10)
+					.addComponent(button, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
+					.addGap(10)
+					.addComponent(lblMaximum, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(10)
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 574, GroupLayout.PREFERRED_SIZE))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(graph, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+					.addGap(10)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(button, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(10)
+							.addComponent(lblMaximum, GroupLayout.PREFERRED_SIZE, 10, GroupLayout.PREFERRED_SIZE)))
+					.addGap(11)
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+		);
+		getContentPane().setLayout(groupLayout);
 
 		new Thread("Memory thread") {
 			@Override

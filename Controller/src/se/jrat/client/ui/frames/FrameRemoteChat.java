@@ -1,6 +1,5 @@
 package se.jrat.client.ui.frames;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -12,6 +11,8 @@ import java.awt.event.WindowEvent;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -98,9 +99,19 @@ public class FrameRemoteChat extends BaseFrame {
 
 		txtChat = new JTextPane();
 		scrollPane.setViewportView(txtChat);
-		contentPane.setLayout(new BorderLayout(0, 0));
-		contentPane.add(toolBar, BorderLayout.SOUTH);
-		contentPane.add(scrollPane);
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 434, GroupLayout.PREFERRED_SIZE)
+				.addComponent(toolBar, GroupLayout.PREFERRED_SIZE, 434, GroupLayout.PREFERRED_SIZE)
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 236, GroupLayout.PREFERRED_SIZE)
+					.addComponent(toolBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+		);
+		contentPane.setLayout(gl_contentPane);
 
 		slave.addToSendQueue(new Packet48ChatStart());
 	}
