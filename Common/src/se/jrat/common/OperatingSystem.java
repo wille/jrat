@@ -37,7 +37,7 @@ public enum OperatingSystem {
 		} else if (str.contains("android")) {
 			os = OperatingSystem.ANDROID;
 		} else if (str.contains("openbsd")) {
-			os = OperatingSystem.ANDROID;
+			os = OperatingSystem.OPENBSD;
 		} else {
 			os = OperatingSystem.UNKNOWN;
 		}

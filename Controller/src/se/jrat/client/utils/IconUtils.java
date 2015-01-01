@@ -22,6 +22,7 @@ public class IconUtils {
 	public static final ImageIcon OS_LINUX = IconUtils.getIcon("os_linux");
 	public static final ImageIcon OS_ANDROID = IconUtils.getIcon("os_android");
 	public static final ImageIcon OS_FREEBSD = IconUtils.getIcon("os_freebsd");
+	public static final ImageIcon OS_OPENBSD = IconUtils.getIcon("os_openbsd");
 	public static final ImageIcon OS_SOLARIS = IconUtils.getIcon("os_solaris");
 	public static final ImageIcon OS_OTHERS = IconUtils.getIcon("last_modified");
 	
@@ -137,6 +138,8 @@ public class IconUtils {
 			} else {
 				icon = OS_LINUX;
 			}
+		} else if (slave.getOS() == OperatingSystem.OPENBSD) {
+			icon = OS_OPENBSD;
 		} else if (slave.getOS() == OperatingSystem.ANDROID) {
 			icon = OS_ANDROID;
 		} else if (slave.getOS() == OperatingSystem.SOLARIS) {

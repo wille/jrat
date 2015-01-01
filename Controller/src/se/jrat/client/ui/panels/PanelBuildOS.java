@@ -71,7 +71,7 @@ public class PanelBuildOS extends JPanel {
 			config.addOS(OperatingSystem.FREEBSD);
 		}
 		if (chckbxOpenBSD.isSelected()) {
-			config.addOS(OperatingSystem.FREEBSD);
+			config.addOS(OperatingSystem.OPENBSD);
 		}
 
 		return config;
