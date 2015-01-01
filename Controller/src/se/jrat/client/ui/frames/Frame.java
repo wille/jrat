@@ -110,7 +110,6 @@ public class Frame extends BaseFrame {
 	public static JTable mainTable;
 	public static DefaultTableModel mainModel;
 	public static DefaultTableModel onConnectModel;
-	public static String[] columnNames = { "L", "ID", "Status", "IP/Port", "Ping", "User@Comp", "OS name" };
 	public static TrayIcon trayIcon;
 	public static int pingmode = Frame.PING_ICON_DOT;
 	public static boolean thumbnails = false;
@@ -131,7 +130,7 @@ public class Frame extends BaseFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Frame.class.getResource("/icons/icon.png")));
 		setTitle(Main.formatTitle());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 657, 409);
+		setBounds(100, 100, 730, 450);
 
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -995,20 +994,20 @@ public class Frame extends BaseFrame {
 			}
 		});
 
-		mainTable.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "L", "ID", "Status", "IP/Port", "Ping", "User@Comp", "OS Name", "RAM", "Local IP", "Version" }) {
+		mainTable.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "L", "ID", "Status", "IP/Port", "Ping", "User@Host", "Operating System", "RAM", "Local IP", "Version" }) {
 			public boolean isCellEditable(int i, int i1) {
 				return false;
 			}
 		});
 		mainTable.getColumnModel().getColumn(0).setPreferredWidth(60);
-		mainTable.getColumnModel().getColumn(1).setPreferredWidth(97);
-		mainTable.getColumnModel().getColumn(2).setPreferredWidth(89);
-		mainTable.getColumnModel().getColumn(3).setPreferredWidth(124);
+		mainTable.getColumnModel().getColumn(1).setPreferredWidth(80);
+		mainTable.getColumnModel().getColumn(2).setPreferredWidth(90);
+		mainTable.getColumnModel().getColumn(3).setPreferredWidth(125);
 		mainTable.getColumnModel().getColumn(4).setPreferredWidth(60);
 		mainTable.getColumnModel().getColumn(5).setPreferredWidth(125);
-		mainTable.getColumnModel().getColumn(6).setPreferredWidth(98);
+		mainTable.getColumnModel().getColumn(6).setPreferredWidth(150);
 		mainTable.getColumnModel().getColumn(8).setPreferredWidth(105);
-		mainTable.getColumnModel().getColumn(9).setPreferredWidth(51);
+		mainTable.getColumnModel().getColumn(9).setPreferredWidth(50);
 
 		mainModel = (DefaultTableModel) mainTable.getModel();
 
