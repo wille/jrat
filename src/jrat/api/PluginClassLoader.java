@@ -59,7 +59,7 @@ public class PluginClassLoader extends ClassLoader {
 	 * @throws MalformedURLException
 	 */
 	public URL getPluginUrl(String folder, String resource) throws MalformedURLException {
-		return new URL("plugins/" + folder + "/" + resource);
+		return new URL("files/plugins/" + folder + "/" + resource);
 	}
 	
 	
