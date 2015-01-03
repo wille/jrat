@@ -181,7 +181,7 @@ public class FrameRemoteFiles extends BaseFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				String sep = File.separator;
 				if (!txtDirme.getText().contains(sep)) {
-					txtDirme.setText("");
+					setLocalDir("");
 					while (modelme.getRowCount() > 0) {
 						modelme.removeRow(0);
 					}
@@ -191,7 +191,7 @@ public class FrameRemoteFiles extends BaseFrame {
 						modelme.addRow(new Object[] { fi.getAbsolutePath(), "" });
 					}
 				} else {
-					txtDirme.setText(txtDirme.getText().substring(0, txtDirme.getText().lastIndexOf(sep)));
+					setLocalDir(txtDirme.getText().substring(0, txtDirme.getText().substring(0, txtDirme.getText().length() - 1).lastIndexOf(sep)));
 					while (modelme.getRowCount() > 0) {
 						modelme.removeRow(0);
 					}
@@ -264,7 +264,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				String size = modelme.getValueAt(tableme.getSelectedRow(), 1).toString();
 				String val = modelme.getValueAt(tableme.getSelectedRow(), 0).toString();
 				if (size.length() == 0) {
-					txtDirme.setText(val);
+					setLocalDir(val);
 					while (modelme.getRowCount() > 0) {
 						modelme.removeRow(0);
 					}
@@ -780,7 +780,7 @@ public class FrameRemoteFiles extends BaseFrame {
 					String size = modelme.getValueAt(tableme.getSelectedRow(), 1).toString();
 					String val = modelme.getValueAt(tableme.getSelectedRow(), 0).toString();
 					if (size.length() == 0) {
-						txtDirme.setText(val);
+						setLocalDir(val);
 						while (modelme.getRowCount() > 0) {
 							modelme.removeRow(0);
 						}
@@ -817,7 +817,7 @@ public class FrameRemoteFiles extends BaseFrame {
 					ret = System.getProperty("java.io.tmpdir");
 				}
 				
-				txtDirme.setText(ret);
+				setLocalDir(ret);
 				while (modelme.getRowCount() > 0) {
 					modelme.removeRow(0);
 				}
@@ -829,7 +829,7 @@ public class FrameRemoteFiles extends BaseFrame {
 		menuItem_2 = new JMenuItem("Temp");
 		menuItem_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				txtDirme.setText(System.getProperty("java.io.tmpdir"));
+				setLocalDir(System.getProperty("java.io.tmpdir"));
 				while (modelme.getRowCount() > 0) {
 					modelme.removeRow(0);
 				}
@@ -841,7 +841,7 @@ public class FrameRemoteFiles extends BaseFrame {
 		menuItem_3 = new JMenuItem("Desktop");
 		menuItem_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				txtDirme.setText(System.getProperty("user.home") + "/Desktop/");
+				setLocalDir(System.getProperty("user.home") + "/Desktop/");
 				while (modelme.getRowCount() > 0) {
 					modelme.removeRow(0);
 				}
@@ -1036,6 +1036,16 @@ public class FrameRemoteFiles extends BaseFrame {
 		}
 		
 		txtDir.setText(dir);
+	}
+	
+	public void setLocalDir(String dir) {
+		String c = OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS ? "\\" : "/";
+
+		if (!dir.endsWith(c)) {
+			dir += c;
+		}
+		
+		txtDirme.setText(dir);
 	}
 
 	public static void addPopup(Component component, final JPopupMenu popup) {
