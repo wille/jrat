@@ -15,7 +15,7 @@ public class Packet34CustomDirectory extends AbstractIncomingPacket {
 
 		FrameRemoteFiles frame = FrameRemoteFiles.instances.get(slave);
 		if (frame != null) {
-			frame.txtDir.setText(where);
+			frame.setRemoteDir(where);
 			while (frame.model.getRowCount() > 0) {
 				frame.model.removeRow(0);
 			}

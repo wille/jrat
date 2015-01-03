@@ -342,17 +342,18 @@ public class FrameRemoteFiles extends BaseFrame {
 			public void actionPerformed(ActionEvent e) {
 				String sep = sl.getFileSeparator();
 				if (!txtDir.getText().contains(sep)) {
-					txtDir.setText("");
+					setRemoteDir("");
 					while (model.getRowCount() > 0) {
 						model.removeRow(0);
 					}
 					sl.addToSendQueue(new Packet15ListFiles(""));
 				} else {
-					txtDir.setText(txtDir.getText().substring(0, txtDir.getText().lastIndexOf(sep)));
+					String dir = txtDir.getText().substring(0, txtDir.getText().substring(0, txtDir.getText().length() - 1).lastIndexOf(sep));
+					setRemoteDir(dir);
 					while (model.getRowCount() > 0) {
 						model.removeRow(0);
 					}
-					sl.addToSendQueue(new Packet15ListFiles(txtDir.getText()));
+					sl.addToSendQueue(new Packet15ListFiles(dir));
 				}
 			}
 		});
@@ -411,7 +412,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				String size = model.getValueAt(table.getSelectedRow(), 1).toString();
 				String val = model.getValueAt(table.getSelectedRow(), 0).toString();
 				if (size.length() == 0) {
-					txtDir.setText(val);
+					setRemoteDir(val);
 					while (model.getRowCount() > 0) {
 						model.removeRow(0);
 					}
@@ -432,7 +433,7 @@ public class FrameRemoteFiles extends BaseFrame {
 					String val = model.getValueAt(table.getSelectedRow(), 0).toString();
 					String size = model.getValueAt(table.getSelectedRow(), 1).toString();
 					if (size.length() == 0) {
-						txtDir.setText(val);
+						setRemoteDir(val);
 						while (model.getRowCount() > 0) {
 							model.removeRow(0);
 						}
@@ -719,7 +720,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				String size = model.getValueAt(table.getSelectedRow(), 1).toString();
 				String val = model.getValueAt(table.getSelectedRow(), 0).toString();
 				if (size.length() == 0) {
-					txtDir.setText(val);
+					setRemoteDir(val);
 					while (model.getRowCount() > 0) {
 						model.removeRow(0);
 					}
@@ -735,13 +736,13 @@ public class FrameRemoteFiles extends BaseFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (!txtDir.getText().contains("\\")) {
-					txtDir.setText("");
+					setRemoteDir("");
 					while (model.getRowCount() > 0) {
 						model.removeRow(0);
 					}
 					sl.addToSendQueue(new Packet15ListFiles(""));
 				} else {
-					txtDir.setText(txtDir.getText().substring(0, txtDir.getText().lastIndexOf("\\")));
+					setRemoteDir(txtDir.getText().substring(0, txtDir.getText().lastIndexOf("\\")));
 					while (model.getRowCount() > 0) {
 						model.removeRow(0);
 					}
@@ -892,7 +893,7 @@ public class FrameRemoteFiles extends BaseFrame {
 			ActionListener listener = new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					JMenuItem item = (JMenuItem) arg0.getSource();
-					txtDir.setText(item.getText());
+					setRemoteDir(item.getText());
 					while (model.getRowCount() > 0) {
 						model.removeRow(0);
 					}
@@ -1025,6 +1026,16 @@ public class FrameRemoteFiles extends BaseFrame {
 	public void done() {
 		label.setVisible(false);
 		progressBar.setVisible(false);
+	}
+	
+	public void setRemoteDir(String dir) {
+		String c = slave.getOS() == OperatingSystem.WINDOWS ? "\\" : "/";
+
+		if (!dir.endsWith(c)) {
+			dir += c;
+		}
+		
+		txtDir.setText(dir);
 	}
 
 	public static void addPopup(Component component, final JPopupMenu popup) {
