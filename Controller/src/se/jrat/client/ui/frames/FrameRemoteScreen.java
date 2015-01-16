@@ -316,14 +316,14 @@ public class FrameRemoteScreen extends BaseFrame {
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addComponent(toolBarTop, GroupLayout.PREFERRED_SIZE, 657, GroupLayout.PREFERRED_SIZE)
-				.addComponent(screenPane, GroupLayout.PREFERRED_SIZE, 657, GroupLayout.PREFERRED_SIZE)
+				.addComponent(screenPane, GroupLayout.DEFAULT_SIZE, 657, Short.MAX_VALUE)
 				.addComponent(toolBarBottom, GroupLayout.PREFERRED_SIZE, 657, GroupLayout.PREFERRED_SIZE)
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addComponent(toolBarTop, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addComponent(screenPane, GroupLayout.PREFERRED_SIZE, 357, GroupLayout.PREFERRED_SIZE)
+					.addComponent(screenPane, GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
 					.addComponent(toolBarBottom, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 		);
 		getContentPane().setLayout(groupLayout);
