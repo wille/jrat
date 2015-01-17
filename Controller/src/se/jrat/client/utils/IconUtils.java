@@ -36,6 +36,7 @@ public class IconUtils {
 	public static final ImageIcon DIST_ARCH = IconUtils.getIcon("dist_arch");
 	public static final ImageIcon DIST_GENTOO = IconUtils.getIcon("dist_gentoo");
 	public static final ImageIcon DIST_RASPBIAN = IconUtils.getIcon("dist_raspbian");
+	public static final ImageIcon DIST_STEAMOS = IconUtils.getIcon("dist_steam");
 
 	public static ImageIcon getIcon(String name, boolean defaultfolder) {
 		URL url;
@@ -135,6 +136,8 @@ public class IconUtils {
 				icon = DIST_GENTOO;
 			} else if (slave.getOperatingSystem().toLowerCase().contains("raspbian")) {
 				icon = DIST_RASPBIAN;
+			} else if (slave.getOperatingSystem().toLowerCase().contains("steam")) {
+				icon = DIST_STEAMOS;
 			} else {
 				icon = OS_LINUX;
 			}
