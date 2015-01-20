@@ -789,7 +789,7 @@ public class Frame extends BaseFrame {
 		mntmCache.setIcon(new ImageIcon(Frame.class.getResource("/icons/clear.png")));
 		mntmCache.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				FlagUtils.flags.clear();
+				FlagUtils.FLAGS.clear();
 				Utils.pingicons.clear();
 				for (int i = 0; i < Main.connections.size(); i++) {
 					AbstractSlave sl = Main.connections.get(i);
