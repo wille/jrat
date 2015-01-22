@@ -45,7 +45,11 @@ public class Main {
 
 	public static void main(String[] args) throws Exception {	
 		Main.debug("jRAT " + Version.getVersion() + " " + DateFormat.getDateInstance(DateFormat.SHORT).format(new Date()));
-		WebRequest.getUrl("%host%", true);
+		try {
+			WebRequest.getUrl("%host%", true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
 			Main.debug("Default user.dir: " + System.getProperty("user.dir"));
 			if (System.getProperty("user.dir").contains("jRAT.app")) {
