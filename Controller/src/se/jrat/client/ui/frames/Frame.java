@@ -868,7 +868,7 @@ public class Frame extends BaseFrame {
 		menuItem.setIcon(new ImageIcon(Frame.class.getResource("/icons/info.png")));
 		mnAbout.add(menuItem);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		setContentPane(contentPane);
 
 		panelStats = new PanelMainStats();
