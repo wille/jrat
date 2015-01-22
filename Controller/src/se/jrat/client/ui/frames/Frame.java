@@ -84,6 +84,7 @@ import se.jrat.client.ui.components.DraggableTabbedPane;
 import se.jrat.client.ui.dialogs.DialogEula;
 import se.jrat.client.ui.dialogs.DialogFileType;
 import se.jrat.client.ui.panels.PanelMainLog;
+import se.jrat.client.ui.panels.PanelMainNetwork;
 import se.jrat.client.ui.panels.PanelMainPlugins;
 import se.jrat.client.ui.panels.PanelMainSockets;
 import se.jrat.client.ui.panels.PanelMainStats;
@@ -114,6 +115,7 @@ public class Frame extends BaseFrame {
 	public static int pingmode = Frame.PING_ICON_DOT;
 	public static boolean thumbnails = false;
 	public static PanelMainStats panelStats;
+	public static PanelMainNetwork panelNetwork;
 
 	private JPopupMenu popupMenu;
 	private JToolBar toolBar;
@@ -870,11 +872,13 @@ public class Frame extends BaseFrame {
 		setContentPane(contentPane);
 
 		panelStats = new PanelMainStats();
+		panelNetwork = new PanelMainNetwork();
 
 		tabbedPane = new DraggableTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
 				panelStats.setActive(tabbedPane.getTitleAt(tabbedPane.getSelectedIndex()).equals("Statistics"));
+				panelNetwork.setActive(tabbedPane.getTitleAt(tabbedPane.getSelectedIndex()).equals("Network Usage"));
 			}
 		});
 
@@ -1674,6 +1678,8 @@ public class Frame extends BaseFrame {
 		panel.setLayout(gl_panel);
 
 		tabbedPane.addTab("Statistics", IconUtils.getIcon("statistics", true), new JScrollPane(panelStats), null);
+		
+		tabbedPane.addTab("Network Usage", IconUtils.getIcon("network"), panelNetwork, null);
 
 		JPanel panel_onconnect = new JPanel();
 		tabbedPane.addTab("On Connect", IconUtils.getIcon("onconnect", true), panel_onconnect, null);

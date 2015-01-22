@@ -39,11 +39,11 @@ public class RunnableNetworkCounter implements Runnable {
 		}
 	}
 
-	public void addListener(NetworkMonitorListener listener) {
+	public static void addListener(NetworkMonitorListener listener) {
 		listeners.add(listener);
 	}
 	
-	public void removeListener(NetworkMonitorListener listener) {
+	public static void removeListener(NetworkMonitorListener listener) {
 		listeners.remove(listener);
 	}
 }
