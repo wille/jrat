@@ -38,7 +38,7 @@ public class PanelMainNetwork extends JPanel {
 			add(graph);
 		}
 
-		graph.setBounds(5, 5, this.getWidth(), this.getHeight());
+		graph.setBounds(5, 5, this.getWidth() - 5, this.getHeight() - 5);
 
 		addComponentListener(new ComponentListener() {
 
@@ -81,7 +81,7 @@ public class PanelMainNetwork extends JPanel {
 	class Listener implements NetworkMonitorListener {
 		@Override
 		public void onUpdate(int out, int in) {
-			graph.addValues(out, in);	
+			graph.addValues(in, out);	
 		}
 	}
 }
