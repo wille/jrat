@@ -26,7 +26,7 @@ public class RunnableCheckPlugins implements Runnable {
 					
 					if (!upToDate) {
 						Main.debug(oplugin.getDisplayName() + " is not up to date");
-						PanelMainLog.instance.addEntry("Warning", null, oplugin.getDisplayName() + " is not up to date");
+						PanelMainLog.getInstance().addEntry("Warning", null, oplugin.getDisplayName() + " is not up to date");
 					}
 				}
 			}

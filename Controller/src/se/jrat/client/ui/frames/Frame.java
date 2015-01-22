@@ -116,6 +116,7 @@ public class Frame extends BaseFrame {
 	public static boolean thumbnails = false;
 	public static PanelMainStats panelStats;
 	public static PanelMainNetwork panelNetwork;
+	public static PanelMainSockets panelSockets;
 
 	private JPopupMenu popupMenu;
 	private JToolBar toolBar;
@@ -1806,9 +1807,11 @@ public class Frame extends BaseFrame {
 			}
 		}
 
-		tabbedPane.addTab("Sockets", IconUtils.getIcon("sockets"), new PanelMainSockets(), null);
-		tabbedPane.addTab("Log", IconUtils.getIcon("log"), PanelMainLog.instance, null);
-		tabbedPane.addTab("Plugins", IconUtils.getIcon("plugin"), PanelMainPlugins.instance, null);
+		panelSockets = new PanelMainSockets();
+		
+		tabbedPane.addTab("Sockets", IconUtils.getIcon("sockets"), panelSockets, null);
+		tabbedPane.addTab("Log", IconUtils.getIcon("log"), PanelMainLog.getInstance(), null);
+		tabbedPane.addTab("Plugins", IconUtils.getIcon("plugin"), PanelMainPlugins.getInstance(), null);
 
 		toolBar = new JToolBar();
 		toolBar.setVisible(false);
@@ -1879,15 +1882,13 @@ public class Frame extends BaseFrame {
 
 			ActionListener listener = p.getGlobalItemListener();
 
-			item.setEnabled(listener != null);
-
 			if (listener != null) {
 				item.addActionListener(listener);
 			} else {
 				item.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						JOptionPane.showMessageDialog(null, "Name: " + p.getName() + "\nVersion: " + p.getVersion() + "\nAuthor: " + p.getAuthor() + "\nDescription: " + p.getDescription());
+						JOptionPane.showMessageDialog(null, "Name: " + p.getName() + "\nVersion: " + p.getVersion() + "\nAuthor: " + p.getAuthor() + "\nDescription: " + p.getDescription(), "Plugin Description", JOptionPane.INFORMATION_MESSAGE);
 					}
 				});
 			}
@@ -1903,7 +1904,7 @@ public class Frame extends BaseFrame {
 			mnPlugins.add(item);
 		}
 
-		PanelMainPlugins.instance.reload();
+		PanelMainPlugins.getInstance().reload();
 	}
 
 	public void unselectAll() {

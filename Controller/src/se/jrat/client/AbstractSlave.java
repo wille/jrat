@@ -102,7 +102,7 @@ public abstract class AbstractSlave implements Runnable {
 			this.country = "?";
 		}
 
-		PanelMainLog.instance.addEntry("Connect", this, "");
+		PanelMainLog.getInstance().addEntry("Connect", this, "");
 	}
 
 	public AbstractSlave(String ip) {

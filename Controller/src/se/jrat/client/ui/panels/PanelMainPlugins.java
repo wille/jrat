@@ -16,7 +16,7 @@ import se.jrat.client.ui.renderers.table.PluginsTableRenderer;
 @SuppressWarnings("serial")
 public class PanelMainPlugins extends JPanel {
 
-	public static PanelMainPlugins instance = new PanelMainPlugins();
+	private static PanelMainPlugins instance = new PanelMainPlugins();
 
 	private JTable table;
 
@@ -56,5 +56,9 @@ public class PanelMainPlugins extends JPanel {
 			Plugin p = PluginLoader.plugins.get(i);
 			getModel().addRow(new Object[] { p.getName(), p.getAuthor(), p.getDescription(), p.getVersion() });
 		}
+	}
+
+	public static PanelMainPlugins getInstance() {
+		return instance;
 	}
 }

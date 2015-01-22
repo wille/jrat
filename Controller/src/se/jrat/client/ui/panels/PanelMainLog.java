@@ -32,8 +32,7 @@ import se.jrat.client.utils.IconUtils;
 @SuppressWarnings("serial")
 public class PanelMainLog extends JPanel {
 
-	public static final PanelMainLog instance = new PanelMainLog();
-
+	private static final PanelMainLog instance = new PanelMainLog();
 	private static final List<LogEntry> entries = new ArrayList<LogEntry>();
 
 	public static QuickFrame frame;
@@ -166,5 +165,9 @@ public class PanelMainLog extends JPanel {
 				popup.show(e.getComponent(), e.getX(), e.getY());
 			}
 		});
+	}
+	
+	public static PanelMainLog getInstance() {
+		return instance;
 	}
 }

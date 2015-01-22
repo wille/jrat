@@ -13,7 +13,7 @@ public class Packet60Error extends AbstractIncomingPacket {
 	public void read(Slave slave, DataInputStream dis) throws Exception {
 		String reason = slave.readLine();
 
-		PanelMainLog.instance.addEntry("Error", slave, reason);
+		PanelMainLog.getInstance().addEntry("Error", slave, reason);
 
 		slave.closeSocket(new CloseException("Error packet: " + reason));
 	}

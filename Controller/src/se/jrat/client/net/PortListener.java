@@ -82,14 +82,14 @@ public class PortListener implements Runnable {
 				
 				/*if (type < 0 || type > 1) {
 					slave = new Slave(this, socket);
-					PanelMainLog.instance.addEntry("Error", slave, "Invalid connection type");
+					PanelMainLog.getInstance().addEntry("Error", slave, "Invalid connection type");
 					continue;
 				}*/
 
 				if (Main.liteVersion && Main.connections.size() >= 5) {
 					slave = new Slave(this, socket);
 					slave.closeSocket(new CloseException("Maximum of 5 connections reached"));
-					PanelMainLog.instance.addEntry("Warning", slave, "Maximum of 5 connections reached");
+					PanelMainLog.getInstance().addEntry("Warning", slave, "Maximum of 5 connections reached");
 					continue;
 				}
 			}

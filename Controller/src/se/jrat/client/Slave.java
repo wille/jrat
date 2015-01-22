@@ -113,7 +113,7 @@ public class Slave extends AbstractSlave {
 				}
 
 				if (!isVerified() && header != 30) {
-					PanelMainLog.instance.addEntry("Warning", this, "Failed verifying password, not valid handshake");
+					PanelMainLog.getInstance().addEntry("Warning", this, "Failed verifying password, not valid handshake");
 					this.closeSocket(new CloseException("Failed verifying password, not valid handshake"));
 				}
 
@@ -128,7 +128,7 @@ public class Slave extends AbstractSlave {
 			ex.printStackTrace();
 			String message = ex.getClass().getSimpleName() + ": " + ex.getMessage();
 
-			PanelMainLog.instance.addEntry("Disconnect", this, message);
+			PanelMainLog.getInstance().addEntry("Disconnect", this, message);
 
 			if (ex instanceof BadPaddingException) {
 				message += ", is the encryption key matching?";
