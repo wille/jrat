@@ -97,6 +97,7 @@ import se.jrat.client.utils.Utils;
 import se.jrat.common.Flood;
 import se.jrat.common.Version;
 import se.jrat.common.downloadable.Downloadable;
+import se.jrat.common.utils.DataUnits;
 import se.jrat.common.utils.IOUtils;
 
 @SuppressWarnings({ "serial" })
@@ -402,7 +403,8 @@ public class Frame extends BaseFrame {
 				System.gc();
 				long end = Runtime.getRuntime().freeMemory();
 				long result = end - start;
-				JOptionPane.showMessageDialog(null, "Saved " + (result / 1024L) + " kb memory", "Garbage Collector", JOptionPane.INFORMATION_MESSAGE);
+				String r = DataUnits.getAsString(result);
+				JOptionPane.showMessageDialog(null, "Saved " + r + "  memory", "Garbage Collector", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 

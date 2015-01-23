@@ -4,7 +4,6 @@ import java.io.DataOutputStream;
 import java.io.File;
 
 import se.jrat.client.Slave;
-import se.jrat.client.Traffic;
 import se.jrat.client.ui.frames.FrameFileTransfer;
 import se.jrat.client.ui.frames.FrameRemoteFiles;
 import se.jrat.common.io.FileIO;
@@ -35,8 +34,6 @@ public class Packet42TakeFile extends AbstractOutgoingPacket {
 		FileIO fileio = new FileIO();
 		fileio.writeFile(file, slave.getSocket(), slave.getDataOutputStream(), slave.getDataInputStream(), new TransferListener() {
 			public void transferred(long sent, long bytesSent, long totalBytes) {
-				Traffic.increaseSent(slave, (int) bytesSent);
-
 				if (frame != null) {
 					frame.reportProgress(file.getAbsolutePath(), MathUtils.getPercentFromTotal((int) bytesSent, (int) totalBytes), (int) bytesSent, (int) totalBytes);
 				}

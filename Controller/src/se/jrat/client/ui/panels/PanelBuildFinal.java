@@ -36,6 +36,7 @@ import se.jrat.client.listeners.AdvancedBuildListener;
 import se.jrat.client.settings.Settings;
 import se.jrat.client.ui.frames.FrameBuildAdvanced;
 import se.jrat.client.ui.renderers.table.BuildTableRenderer;
+import se.jrat.common.utils.DataUnits;
 
 import com.redpois0n.zkmlib.Configuration;
 
@@ -289,12 +290,12 @@ public class PanelBuildFinal extends JPanel {
 		PanelBuildStartup startup = (PanelBuildStartup) holder.panels.get("startup");
 		PanelBuildPlugins plugins = (PanelBuildPlugins) holder.panels.get("plugins");
 
-		int size = (int) Globals.getStub().length() / 1024;
+		int size = (int) Globals.getStub().length();
 
 		if (binder.shouldBind()) {
 			File bind = new File(binder.getFile());
 			if (bind.exists()) {
-				size += bind.length() / 1024;
+				size += bind.length();
 			}
 		}
 
@@ -305,11 +306,11 @@ public class PanelBuildFinal extends JPanel {
 		PluginList list = plugins.getList();
 		if (list != null) {
 			for (StubPlugin p : list.plugins) {
-				size += new File(p.path).length() / 1024;
+				size += new File(p.path).length();
 			}
 		}
 
-		this.lblExpectedSizeUnknown.setText("Expected size: " + size + " kb");
+		this.lblExpectedSizeUnknown.setText("Expected size: " + DataUnits.getAsString(size));
 	}
 
 	public void clearRows() {

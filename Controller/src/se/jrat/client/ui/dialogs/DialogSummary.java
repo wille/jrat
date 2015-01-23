@@ -17,6 +17,7 @@ import se.jrat.client.ui.renderers.table.BuildTableRenderer;
 import se.jrat.client.utils.IconUtils;
 import se.jrat.common.hash.Md5;
 import se.jrat.common.hash.Sha1;
+import se.jrat.common.utils.DataUnits;
 
 
 @SuppressWarnings("serial")
@@ -117,7 +118,7 @@ public class DialogSummary extends BaseDialog {
 		infomodel.addRow(new Object[] { "Type", file.getName().substring(file.getName().lastIndexOf(".") + 1, file.getName().length()).toUpperCase() + " File" });
 		infomodel.addRow(new Object[] { "File Location", file.getAbsolutePath() });
 		infomodel.addRow(new Object[] { "Folder", file.getParent() });
-		infomodel.addRow(new Object[] { "File size", (file.length() / 1024L) + " kB" });
+		infomodel.addRow(new Object[] { "File size", DataUnits.getAsString(file.length()) });
 
 		generalmodel.addRow(new Object[] { "Host", hosts });
 		generalmodel.addRow(new Object[] { "Password", pass });

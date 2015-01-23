@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 
 import se.jrat.client.utils.IconUtils;
 import se.jrat.common.Logger;
+import se.jrat.common.utils.DataUnits;
 
 
 public class FileSystem {
@@ -28,8 +29,7 @@ public class FileSystem {
 						icons.put(childs[i].getAbsolutePath(), IconUtils.getFileIcon(childs[i]));
 						dirs.add(new Object[] { childs[i].getAbsolutePath(), "", "", childs[i].isHidden() ? "Yes" : "" });
 					} else if (childs[i].isFile()) {
-						long sizei = childs[i].length() / 1024L;
-						String size = sizei + " kB";
+						String size = DataUnits.getAsString(childs[i].length());
 						Calendar cal = Calendar.getInstance();
 						cal.setTime(new Date(childs[i].lastModified()));
 						String date = (cal.get(Calendar.MONTH) + 1) + "/" + cal.get(Calendar.DAY_OF_MONTH) + "/" + cal.get(Calendar.YEAR) + " " + (00 + cal.get(Calendar.HOUR_OF_DAY)) + ":" + cal.get(Calendar.MINUTE);

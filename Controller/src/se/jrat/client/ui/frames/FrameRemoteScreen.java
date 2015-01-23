@@ -50,6 +50,7 @@ import se.jrat.client.ui.renderers.JComboBoxIconRenderer;
 import se.jrat.client.utils.IconUtils;
 
 import com.redpois0n.graphs.monitors.RemoteMonitor;
+import com.redpois0n.graphs.network.DataUnits;
 
 
 @SuppressWarnings("serial")
@@ -212,7 +213,7 @@ public class FrameRemoteScreen extends BaseFrame {
 		lblFps = new JLabel("    FPS: 0    ");
 		toolBarBottom.add(lblFps);
 		
-		lblBlockSize = new JLabel("Block Size: 0 kB");
+		lblBlockSize = new JLabel("Block Size: 0 B");
 		toolBarBottom.add(lblBlockSize);
 		
 		lblChunks = new JLabel("   Chunks: ");
@@ -491,8 +492,8 @@ public class FrameRemoteScreen extends BaseFrame {
 		this.transmitted = transmitted;
 	}
 	
-	public void setBlockSizeLabel(int kb) {
-		lblBlockSize.setText("Block Size: " + kb + " kB");
+	public void setBlockSizeLabel(int b) {
+		lblBlockSize.setText("Block Size: " + DataUnits.getAsString((long) b));
 	}
 
 	public int getChunks() {

@@ -8,6 +8,7 @@ import javax.swing.JProgressBar;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import se.jrat.client.listeners.ToolsDownloadListener;
+import se.jrat.common.utils.DataUnits;
 
 
 @SuppressWarnings("serial")
@@ -32,7 +33,7 @@ public class DialogDownload extends BaseDialog {
 
 		JLabel lblDownloading = new JLabel("Downloading... " + listener.getUrl());
 
-		lblKb = new JLabel("0/0 kb");
+		lblKb = new JLabel("0/0 B");
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(progressBar, GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE).addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup().addComponent(lblKb).addPreferredGap(ComponentPlacement.RELATED, 273, Short.MAX_VALUE).addComponent(btnHide)).addComponent(lblDownloading)).addContainerGap()));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addGap(16).addComponent(lblDownloading).addPreferredGap(ComponentPlacement.UNRELATED).addComponent(progressBar, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnHide).addComponent(lblKb)).addContainerGap(12, Short.MAX_VALUE)));
@@ -40,6 +41,8 @@ public class DialogDownload extends BaseDialog {
 	}
 
 	public void setKb(int done, int all) {
-		lblKb.setText((done / 1024) + "/" + (all / 1024) + " kb");
+		String d = DataUnits.getAsString((long) done);
+		String a = DataUnits.getAsString((long) all);
+		lblKb.setText(d + "/" + a);
 	}
 }

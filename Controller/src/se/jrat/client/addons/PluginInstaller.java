@@ -24,6 +24,7 @@ import se.jrat.client.net.WebRequest;
 import se.jrat.common.Logger;
 import se.jrat.common.codec.Hex;
 import se.jrat.common.listeners.CopyStreamsListener;
+import se.jrat.common.utils.DataUnits;
 import se.jrat.common.utils.IOUtils;
 
 
@@ -96,10 +97,12 @@ public class PluginInstaller {
 		IOUtils.copy(length, in, out, new CopyStreamsListener() {
 			@Override
 			public void chunk(long current, long total, int percent) {
+				String c = DataUnits.getAsString(current);
+				String t = DataUnits.getAsString(total);
 				if (length == -1) {
-					listener.status(Color.black, "Downloaded " + (current / 1024L) + " kB", (int) current, (int) total);
+					listener.status(Color.black, "Downloaded " + c, (int) current, (int) total);
 				} else {
-					listener.status(Color.black, "Downloaded " + (current / 1024L) + "/" + (total / 1024L) + " kB", (int) current, (int) total);
+					listener.status(Color.black, "Downloaded " + c + "/" + t, (int) current, (int) total);
 				}
 			}
 		});

