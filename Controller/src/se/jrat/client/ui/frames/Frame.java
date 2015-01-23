@@ -1023,7 +1023,10 @@ public class Frame extends BaseFrame {
 		int rowheight = 30;
 		
 		try {
-			 rowheight = Integer.parseInt(Settings.getGlobal().get("rowheight").toString());
+			Object rowHeight = Settings.getGlobal().get("rowheight");
+			if (rowHeight != null) {
+				rowheight = Integer.parseInt(rowHeight.toString());
+			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
