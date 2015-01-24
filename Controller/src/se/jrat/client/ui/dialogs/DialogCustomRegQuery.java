@@ -31,7 +31,7 @@ public class DialogCustomRegQuery extends BaseDialog {
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(DialogCustomRegQuery.class.getResource("/icons/key_arrow.png")));
 		this.slave = sl;
-		setTitle("Custom registry command - " + slave.getIP() + " - " + slave.getComputerName());
+		setTitle("Custom registry command - " + "[" + slave.formatUserString() + "] - " + slave.getIP());
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 385, 119);

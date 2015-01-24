@@ -42,7 +42,7 @@ public class FrameTraffic extends BaseFrame {
 		super();
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameTraffic.class.getResource("/icons/speedometer.png")));
 		setResizable(false);
-		setTitle("Network Traffic - " + slave.getIP() + " - " + slave.getComputerName());
+		setTitle("Network Traffic - " + "[" + slave.formatUserString() + "] - " + slave.getIP());
 		this.slave = slave;
 		instances.put(slave, this);
 		final Slave sl = slave;

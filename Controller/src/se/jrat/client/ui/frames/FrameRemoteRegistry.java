@@ -78,7 +78,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 			}
 		});
 		instances.put(slave, this);
-		setTitle("Registry - " + slave.getIP() + " - " + slave.getComputerName());
+		setTitle("Registry - " + "[" + slave.formatUserString() + "] - " + slave.getIP());
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRemoteRegistry.class.getResource("/icons/registry.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 579, 397);

@@ -307,7 +307,7 @@ public abstract class AbstractSlave implements Runnable {
 	public void setUsername(String username) {
 		this.username = username;
 		
-		Frame.mainModel.setValueAt(getUsername() + "@" + getComputerName(), Utils.getRow(3, getIP()), 5);
+		Frame.mainModel.setValueAt(formatUserString(), Utils.getRow(3, getIP()), 5);
 	}
 
 	public String getServerID() {
@@ -428,7 +428,30 @@ public abstract class AbstractSlave implements Runnable {
 	public void setComputerName(String name) {
 		this.computername = name;
 		
-		Frame.mainModel.setValueAt("Unknown@" + getComputerName(), Utils.getRow(3, getIP()), 5);
+		Frame.mainModel.setValueAt(formatUserString(), Utils.getRow(3, getIP()), 5);
+	}
+	
+	public String formatUserString() {
+		String username = this.getUsername();
+		String computerName = this.getComputerName();
+		
+		if (username == null) {
+			username = "Unknown";
+		}
+		
+		if (computerName == null) {
+			computerName = "Unknown";
+		}
+		
+		String s;
+		
+		if (this.getOS() == OperatingSystem.WINDOWS) {
+			s = computerName + "\\" + username;
+		} else {
+			s = username + "@" + computerName;
+		}
+		
+		return s;
 	}
 	
 	public String getLocalIP() {

@@ -41,7 +41,7 @@ public class FramePreviewFile extends BaseFrame {
 		super();
 		final Slave sl = slave;
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FramePreviewFile.class.getResource("/icons/file.png")));
-		setTitle("Preview file - " + slave.getIP() + " - " + slave.getComputerName() + " - " + f);
+		setTitle("Preview file - " + "[" + slave.formatUserString() + "] - " + slave.getIP() + " - " + f);
 		this.file = f;
 		addWindowListener(new WindowAdapter() {
 			@Override

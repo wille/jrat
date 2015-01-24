@@ -148,7 +148,7 @@ public class FrameControlPanel extends BaseFrame {
 			}
 		});
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameControlPanel.class.getResource("/icons/controlpanel.png")));
-		setTitle("Control Panel - " + slave.getIP() + " - " + slave.getComputerName());
+		setTitle("Control Panel - " + "[" + slave.formatUserString() + "] - " + slave.getIP());
 		this.slave = slave;
 		final Slave sl = slave;
 		instances.put(slave, this);

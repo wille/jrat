@@ -22,7 +22,7 @@ public class FrameComputerInfo extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		contentPane.add(new PanelControlComputerInfo(slave));
-		setTitle("Computer Info - " + slave.getIP() + " - " + slave.getComputerName());
+		setTitle("Computer Info - " + "[" + slave.formatUserString() + "] - " + slave.getIP());
 	}
 
 }

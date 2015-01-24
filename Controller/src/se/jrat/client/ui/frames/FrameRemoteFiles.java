@@ -141,7 +141,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				exit();
 			}
 		});
-		setTitle("File manager - " + slave.getIP() + " - " + slave.getComputerName());
+		setTitle("File manager - " + "[" + slave.formatUserString() + "] - " + slave.getIP());
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 760, 500);
 		contentPane = new JPanel();
