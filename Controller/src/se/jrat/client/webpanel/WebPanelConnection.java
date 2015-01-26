@@ -8,6 +8,7 @@ import java.net.Socket;
 
 import se.jrat.client.AbstractSlave;
 import se.jrat.client.Main;
+import se.jrat.client.exceptions.CloseException;
 
 public class WebPanelConnection implements Runnable {
 
@@ -44,6 +45,14 @@ public class WebPanelConnection implements Runnable {
                 	
                 	bw.write(sb.toString() + "\n");
                 	bw.flush();
+                } else if (packet == WebPanelPackets.PACKET_DISCONNECT) {
+                	int slaves = readNumber();
+                	
+                	for (int i = 0; i < slaves; i++) {
+                		long l = Long.parseLong(readLine());
+                		AbstractSlave slave = AbstractSlave.getFromId(l);
+                		slave.closeSocket(new CloseException("Closed by webpanel"));
+                	}
                 }
             }
 
