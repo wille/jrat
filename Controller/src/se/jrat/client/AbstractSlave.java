@@ -284,6 +284,16 @@ public abstract class AbstractSlave implements Runnable {
 		pingms = System.currentTimeMillis();
 		ping();
 	}
+	
+	public static AbstractSlave getFromId(long id) {
+		for (AbstractSlave slave : Main.connections) {
+			if (slave.getUniqueId() == id) {
+				return slave;
+			}
+		}
+		
+		return null;
+	}
 
 	public int getPing() {
 		return ping;
