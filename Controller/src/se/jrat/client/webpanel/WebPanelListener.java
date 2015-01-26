@@ -33,6 +33,8 @@ public class WebPanelListener implements Runnable {
 				WebPanelConnection wpc = new WebPanelConnection(this, socket);
 				new Thread(wpc).start();
 			}
+			
+			serverSocket.close();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
