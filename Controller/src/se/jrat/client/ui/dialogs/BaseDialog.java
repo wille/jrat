@@ -2,7 +2,7 @@ package se.jrat.client.ui.dialogs;
 
 import javax.swing.JDialog;
 
-import se.jrat.common.OperatingSystem;
+import com.redpois0n.oslib.OperatingSystem;
 
 
 @SuppressWarnings("serial")

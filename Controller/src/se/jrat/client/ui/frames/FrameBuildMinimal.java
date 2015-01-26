@@ -40,7 +40,8 @@ import se.jrat.client.net.PortListener;
 import se.jrat.client.settings.Settings;
 import se.jrat.client.ui.components.PortListenerJComboBox;
 import se.jrat.client.utils.NetUtils;
-import se.jrat.common.OperatingSystem;
+
+import com.redpois0n.oslib.OperatingSystem;
 
 
 @SuppressWarnings("serial")

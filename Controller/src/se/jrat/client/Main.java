@@ -32,8 +32,9 @@ import se.jrat.client.ui.frames.Frame;
 import se.jrat.client.utils.TrayIconUtils;
 import se.jrat.client.webpanel.WebPanelListener;
 import se.jrat.common.Logger;
-import se.jrat.common.OperatingSystem;
 import se.jrat.common.Version;
+
+import com.redpois0n.oslib.OperatingSystem;
 
 public class Main {
 

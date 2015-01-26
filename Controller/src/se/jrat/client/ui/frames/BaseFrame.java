@@ -2,7 +2,7 @@ package se.jrat.client.ui.frames;
 
 import javax.swing.JFrame;
 
-import se.jrat.common.OperatingSystem;
+import com.redpois0n.oslib.OperatingSystem;
 
 
 @SuppressWarnings("serial")

@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 
-public enum OperatingSystem {
+public enum OperatingSystemOld {
 
 	WINDOWS,
 	OSX,
@@ -19,39 +19,39 @@ public enum OperatingSystem {
 	private static String shortName;
 	private static String longName;
 
-	public static OperatingSystem getOperatingSystem(String str) {
+	public static OperatingSystemOld getOperatingSystem(String str) {
 		str = str.toLowerCase();
 
-		OperatingSystem os;
+		OperatingSystemOld os;
 
 		if (str.contains("win")) {
-			os = OperatingSystem.WINDOWS;
+			os = OperatingSystemOld.WINDOWS;
 		} else if (str.contains("mac")) {
-			os = OperatingSystem.OSX;
+			os = OperatingSystemOld.OSX;
 		} else if (str.contains("linux")) {
-			os = OperatingSystem.LINUX;
+			os = OperatingSystemOld.LINUX;
 		} else if (str.contains("solaris") || str.contains("sunos")) {
-			os = OperatingSystem.SOLARIS;
+			os = OperatingSystemOld.SOLARIS;
 		} else if (str.contains("freebsd")) {
-			os = OperatingSystem.FREEBSD;
+			os = OperatingSystemOld.FREEBSD;
 		} else if (str.contains("android")) {
-			os = OperatingSystem.ANDROID;
+			os = OperatingSystemOld.ANDROID;
 		} else if (str.contains("openbsd")) {
-			os = OperatingSystem.OPENBSD;
+			os = OperatingSystemOld.OPENBSD;
 		} else {
-			os = OperatingSystem.UNKNOWN;
+			os = OperatingSystemOld.UNKNOWN;
 		}
 
 		return os;
 	}
 
-	public static OperatingSystem getOperatingSystem() {
+	public static OperatingSystemOld getOperatingSystem() {
 		return getOperatingSystem(System.getProperty("os.name"));
 	}
 
 	public static String getShortOperatingSystem() {
 		if (shortName == null) {
-			if (OperatingSystem.getOperatingSystem() == OperatingSystem.LINUX) {
+			if (OperatingSystemOld.getOperatingSystem() == OperatingSystemOld.LINUX) {
 				try {
 					String uname = getUname();
 					
@@ -118,9 +118,9 @@ public enum OperatingSystem {
 					ex.printStackTrace();
 					shortName = System.getProperty("os.name");
 				}
-			} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
+			} else if (OperatingSystemOld.getOperatingSystem() == OperatingSystemOld.OSX) {
 				shortName = System.getProperty("os.name") + " " + System.getProperty("os.version");
-			} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.SOLARIS) {
+			} else if (OperatingSystemOld.getOperatingSystem() == OperatingSystemOld.SOLARIS) {
 				shortName = "Solaris";
 			} else {
 				shortName = System.getProperty("os.name");
@@ -132,14 +132,14 @@ public enum OperatingSystem {
 
 	public static String getLongOperatingSystem() {
 		if (longName == null) {
-			if (OperatingSystem.getOperatingSystem() == OperatingSystem.LINUX) {
+			if (OperatingSystemOld.getOperatingSystem() == OperatingSystemOld.LINUX) {
 				longName = getUname();
 				
 				if (longName == null) {
-					longName = System.getProperty("os.name") + " " + System.getProperty("os.version") + " " + OperatingSystem.getArch(System.getProperty("os.arch"));		
+					longName = System.getProperty("os.name") + " " + System.getProperty("os.version") + " " + OperatingSystemOld.getArch(System.getProperty("os.arch"));		
 				}
 			} else {
-				longName = System.getProperty("os.name") + " " + System.getProperty("os.version") + " " + OperatingSystem.getArch(System.getProperty("os.arch"));
+				longName = System.getProperty("os.name") + " " + System.getProperty("os.version") + " " + OperatingSystemOld.getArch(System.getProperty("os.arch"));
 			}
 		}
 

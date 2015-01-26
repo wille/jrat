@@ -23,13 +23,13 @@ import se.jrat.client.ui.frames.Frame;
 import se.jrat.client.ui.panels.PanelMainLog;
 import se.jrat.client.utils.TrayIconUtils;
 import se.jrat.client.utils.Utils;
-import se.jrat.common.OperatingSystem;
 import se.jrat.common.codec.Hex;
 import se.jrat.common.crypto.Crypto;
 import se.jrat.common.crypto.KeyExchanger;
 import se.jrat.common.hash.Sha1;
 
 import com.redpois0n.graphs.monitors.RemoteMonitor;
+import com.redpois0n.oslib.OperatingSystem;
 
 public class Slave extends AbstractSlave {
 

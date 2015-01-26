@@ -22,7 +22,8 @@ import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet55HostsFile;
 import se.jrat.client.packets.outgoing.Packet56UpdateHostsFile;
 import se.jrat.client.utils.Utils;
-import se.jrat.common.OperatingSystem;
+
+import com.redpois0n.oslib.OperatingSystem;
 
 
 @SuppressWarnings("serial")

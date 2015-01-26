@@ -23,7 +23,8 @@ import javax.swing.ScrollPaneConstants;
 
 import se.jrat.client.ErrorDialog;
 import se.jrat.client.Help;
-import se.jrat.common.OperatingSystem;
+
+import com.redpois0n.oslib.OperatingSystem;
 
 
 @SuppressWarnings("serial")

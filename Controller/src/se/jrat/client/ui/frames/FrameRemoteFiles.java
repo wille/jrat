@@ -64,8 +64,9 @@ import se.jrat.client.settings.FileBookmarks;
 import se.jrat.client.ui.renderers.table.FileViewTableRenderer;
 import se.jrat.client.utils.IconUtils;
 import se.jrat.client.utils.Utils;
-import se.jrat.common.OperatingSystem;
 import se.jrat.common.utils.DataUnits;
+
+import com.redpois0n.oslib.OperatingSystem;
 
 
 @SuppressWarnings("serial")

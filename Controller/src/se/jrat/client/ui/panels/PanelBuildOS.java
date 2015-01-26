@@ -15,7 +15,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import se.jrat.client.Help;
 import se.jrat.client.OSConfig;
-import se.jrat.common.OperatingSystem;
+
+import com.redpois0n.oslib.OperatingSystem;
 
 
 @SuppressWarnings("serial")

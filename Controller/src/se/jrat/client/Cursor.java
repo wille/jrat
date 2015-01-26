@@ -8,7 +8,8 @@ import java.util.Map;
 import javax.swing.ImageIcon;
 
 import se.jrat.client.utils.IconUtils;
-import se.jrat.common.OperatingSystem;
+
+import com.redpois0n.oslib.OperatingSystem;
 
 
 public class Cursor {

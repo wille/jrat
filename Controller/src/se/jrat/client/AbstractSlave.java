@@ -21,10 +21,11 @@ import se.jrat.client.ui.frames.Frame;
 import se.jrat.client.ui.panels.PanelMainLog;
 import se.jrat.client.utils.FlagUtils;
 import se.jrat.client.utils.Utils;
-import se.jrat.common.OperatingSystem;
 import se.jrat.common.Version;
 import se.jrat.common.codec.Hex;
 import se.jrat.common.crypto.Crypto;
+
+import com.redpois0n.oslib.OperatingSystem;
 
 public abstract class AbstractSlave implements Runnable {
 

