@@ -25,6 +25,7 @@ import se.jrat.common.Version;
 import se.jrat.common.codec.Hex;
 import se.jrat.common.crypto.Crypto;
 
+import com.redpois0n.oslib.Distro;
 import com.redpois0n.oslib.OperatingSystem;
 
 public abstract class AbstractSlave implements Runnable {
@@ -420,6 +421,11 @@ public abstract class AbstractSlave implements Runnable {
 	public OperatingSystem getOS() {
 		String os = this.getOperatingSystem().toLowerCase();
 		return OperatingSystem.getOperatingSystem(os);
+	}
+	
+	public Distro getDistro() {
+		String os = this.getOperatingSystem().toLowerCase();
+		return OperatingSystem.getDistro(os);
 	}
 	
 	public String getComputerName() {

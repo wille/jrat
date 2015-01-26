@@ -12,6 +12,7 @@ import se.jrat.client.AbstractSlave;
 import se.jrat.client.Main;
 import se.jrat.client.ui.frames.Frame;
 
+import com.redpois0n.oslib.Distro;
 import com.redpois0n.oslib.OperatingSystem;
 
 
@@ -117,27 +118,27 @@ public class IconUtils {
 		} else if (slave.getOS() == OperatingSystem.OSX) {
 			icon = OS_MAC;
 		} else if (slave.getOS() == OperatingSystem.LINUX) {
-			if (slave.getOperatingSystem().toLowerCase().contains("ubuntu")) {
+			if (slave.getDistro() == Distro.UBUNTU) {
 				icon = DIST_UBUNTU;
-			} else if (slave.getOperatingSystem().toLowerCase().contains("kali") || slave.getOperatingSystem().toLowerCase().contains("backtrack")) {
+			} else if (slave.getDistro() == Distro.KALI || slave.getDistro() == Distro.BACKTRACK) {
 				icon = DIST_KALI;
-			} else if (slave.getOperatingSystem().toLowerCase().contains("centos")) {
+			} else if (slave.getDistro() == Distro.CENTOS) {
 				icon = DIST_CENTOS;
-			} else if (slave.getOperatingSystem().toLowerCase().contains("debian")) {
+			} else if (slave.getDistro() == Distro.DEBIAN) {
 				icon = DIST_DEBIAN;
-			} else if (slave.getOperatingSystem().toLowerCase().contains("elementary")) {
+			} else if (slave.getDistro() == Distro.ELEMENTARYOS) {
 				icon = DIST_ELEMENTARY;
-			} else if (slave.getOperatingSystem().toLowerCase().contains("mint")) {
+			} else if (slave.getDistro() == Distro.MINT) {
 				icon = DIST_MINT;
-			} else if (slave.getOperatingSystem().toLowerCase().contains("slackware")) {
+			} else if (slave.getDistro() == Distro.SLACKWARE) {
 				icon = DIST_SLACKWARE;
-			} else if (slave.getOperatingSystem().toLowerCase().contains("arch")) {
+			} else if (slave.getDistro() == Distro.ARCH) {
 				icon = DIST_ARCH;
-			} else if (slave.getOperatingSystem().toLowerCase().contains("gentoo")) {
+			} else if (slave.getDistro() == Distro.GENTOO) {
 				icon = DIST_GENTOO;
-			} else if (slave.getOperatingSystem().toLowerCase().contains("raspbian")) {
+			} else if (slave.getDistro() == Distro.RASPBIAN) {
 				icon = DIST_RASPBIAN;
-			} else if (slave.getOperatingSystem().toLowerCase().contains("steam")) {
+			} else if (slave.getDistro() == Distro.STEAMOS) {
 				icon = DIST_STEAMOS;
 			} else {
 				icon = OS_LINUX;
