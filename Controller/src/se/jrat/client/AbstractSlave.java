@@ -55,7 +55,7 @@ public abstract class AbstractSlave implements Runnable {
 	protected long pingms = 0;
 	protected long sent = 0;
 	protected long received = 0;
-	protected final long uniqueId = (new Random()).nextLong();
+	protected final long uniqueId = (long) (new Random()).nextInt(Integer.MAX_VALUE); // TODO change to int
 	protected int ping = 0;
 	protected String serverid;
 	protected String username;
