@@ -48,6 +48,11 @@ public class Main {
 	public static void main(String[] args) throws Exception {	
 		Main.debug("jRAT " + Version.getVersion() + " " + DateFormat.getDateInstance(DateFormat.SHORT).format(new Date()));
 		try {
+			PluginLoader.loadLibs();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		try {
 			WebRequest.getUrl("%host%", true);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -125,7 +130,6 @@ public class Main {
 		System.setProperty("jrat.version", Version.getVersion());
 
 		try {
-			PluginLoader.loadLibs();
 			PluginLoader.loadPlugins();
 		} catch (Exception e) {
 			e.printStackTrace();
