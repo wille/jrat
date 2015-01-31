@@ -62,6 +62,7 @@ public abstract class AbstractSlave implements Runnable {
 	protected ImageIcon thumbnail;
 	protected String version;
 	protected String osname;
+	protected String arch;
 	protected String longOsname;
 
 	private String ip;
@@ -395,19 +396,27 @@ public abstract class AbstractSlave implements Runnable {
 	public ImageIcon getFlag() {
 		return FlagUtils.getFlag(country);
 	}
+	
+	public String getArch() {
+		return arch;
+	}
+	
+	public void setArch(String arch) {
+		this.arch = arch;
+	}
 
 	public String getOperatingSystem() {
 		return osname;
-	}
-	
-	public String getLongOperatingSystem() {
-		return longOsname;
 	}
 
 	public void setOperatingSystem(String osname) {
 		this.osname = osname;
 		
 		Frame.mainModel.setValueAt(getOperatingSystem(), Utils.getRow(3, getIP()), 6);
+	}
+	
+	public String getLongOperatingSystem() {
+		return longOsname;
 	}
 	
 	public void setLongOperatingSystem(String longOsname) {
@@ -435,7 +444,7 @@ public abstract class AbstractSlave implements Runnable {
 	
 	public Distro getDistro() {
 		String os = this.getOperatingSystem().toLowerCase();
-		return OperatingSystem.getDistro(os);
+		return Distro.getDistro(os);
 	}
 	
 	public String getComputerName() {

