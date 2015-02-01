@@ -46,6 +46,7 @@ public class WebPanelConnection implements Runnable {
                 			slave.getOperatingSystem() + " " + slave.getArch().toString(),
                 			slave.getIP(),
                 			"jRAT " + slave.getVersion(),
+                			slave.getPing() + "",
                 		};
 
                 		for (String e : data) {
