@@ -55,7 +55,7 @@ public class PanelControlRegStart extends PanelControlParent {
 		btnClear.setIcon(new ImageIcon(PanelControlRegStart.class.getResource("/icons/clear.png")));
 		
 		JLabel lblWin = new JLabel("");
-		lblWin.setIcon(IconUtils.getIcon("os"));
+		lblWin.setIcon(IconUtils.getIcon("os_win"));
 
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(

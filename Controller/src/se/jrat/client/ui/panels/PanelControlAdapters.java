@@ -53,7 +53,7 @@ public class PanelControlAdapters extends PanelControlParent {
 		});
 		
 		JLabel lblWin = new JLabel("");
-		lblWin.setIcon(IconUtils.getIcon("os"));
+		lblWin.setIcon(IconUtils.getIcon("os_win"));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
