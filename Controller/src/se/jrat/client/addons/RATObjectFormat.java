@@ -12,13 +12,22 @@ import jrat.api.Reader;
 import jrat.api.Writer;
 import se.jrat.client.AbstractSlave;
 import se.jrat.client.Main;
+import se.jrat.client.SampleMode;
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.AbstractOutgoingPacket;
 
 public class RATObjectFormat {
 
 	public static RATObject format(final AbstractSlave s) {
-		Connection con = new Connection(s.getConnection().getTimeout(), s.getConnection().getPass(), s.getConnection().getName());
+		Connection con = null;
+		
+		try {
+			con = new Connection(s.getConnection().getTimeout(), s.getConnection().getPass(), s.getConnection().getName());
+		} catch (Exception ex) {
+			if (!SampleMode.isInSampleMode()) {
+				ex.printStackTrace();
+			}
+		}
 
 		final DataOutputStream out = s.getDataOutputStream();
 		final DataInputStream in = s.getDataInputStream();
