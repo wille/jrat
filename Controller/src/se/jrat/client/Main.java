@@ -21,7 +21,7 @@ import se.jrat.client.commands.DefaultCommands;
 import se.jrat.client.net.WebRequest;
 import se.jrat.client.settings.AbstractSettings;
 import se.jrat.client.settings.Settings;
-import se.jrat.client.settings.Statistics;
+import se.jrat.client.settings.CountryStatistics;
 import se.jrat.client.settings.Theme;
 import se.jrat.client.threads.RunnableCheckPlugins;
 import se.jrat.client.threads.RunnableNetworkCounter;
@@ -135,7 +135,7 @@ public class Main {
 			e.printStackTrace();
 		}
 
-		Statistics.getGlobal().load();
+		CountryStatistics.getGlobal().load();
 		Settings.getGlobal().load();
 		
 		instance = new Frame();

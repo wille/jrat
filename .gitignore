@@ -8,7 +8,8 @@
 .theme
 .id
 .sockets
-.stats
+.countrystats
+.osstats
 .bookmarks
 ZKM.class
 ZKM*

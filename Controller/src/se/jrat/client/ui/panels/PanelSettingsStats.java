@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import se.jrat.client.settings.Settings;
-import se.jrat.client.settings.Statistics;
+import se.jrat.client.settings.CountryStatistics;
 
 
 @SuppressWarnings("serial")
@@ -45,7 +45,7 @@ public class PanelSettingsStats extends JPanel {
 		btnClearStats.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (JOptionPane.showConfirmDialog(null, "Confirm clearing all stats (Cant be undone)", "Confirm", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
-					Statistics.getGlobal().getList().clear();
+					CountryStatistics.getGlobal().getList().clear();
 				}
 			}
 		});

