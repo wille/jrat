@@ -89,9 +89,18 @@ public class IconUtils {
 		if (icon == null) {
 			icon = IconUtils.getIcon("os_unknown");
 		}
-		return icon;
-		
+		return icon;	
 	}
+	
+	public static ImageIcon getOSIconFromString(String s) {
+		String str = Icons.getIconFromStringOnly(s);
+		ImageIcon icon = IconUtils.getIcon(str);
+		if (icon == null) {
+			icon = IconUtils.getIcon("os_unknown");
+		}
+		return icon;	
+	}
+	
 
 	public static ImageIcon getFileIcon(int mode) {
 		if (mode == IconUtils.IMAGE_FILE) {

