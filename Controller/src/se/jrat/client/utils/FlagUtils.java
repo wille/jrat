@@ -191,6 +191,7 @@ public class FlagUtils {
 		COUNTRIES.put("US", "United States");
 		COUNTRIES.put("UY", "Uruguay");
 		COUNTRIES.put("UZ", "Uzbekistan");
+		COUNTRIES.put("VA", "Vatican City");
 		COUNTRIES.put("VE", "Venezuela");
 		COUNTRIES.put("VN", "Viet Nam");
 		COUNTRIES.put("VU", "Vanuatu");
@@ -202,6 +203,16 @@ public class FlagUtils {
 	
 	public static String getStringFromIso2(String iso2) {
 		return COUNTRIES.get(iso2.toUpperCase());
+	}
+	
+	public static String getIso2FromString(String str) {
+		for (String key : COUNTRIES.keySet()) {
+			if (COUNTRIES.get(key).equalsIgnoreCase(str)) {
+				return key.toLowerCase();
+			}
+		}
+		
+		return null;
 	}
 
 	public static Country getCountry(AbstractSlave abstractSlave) {
