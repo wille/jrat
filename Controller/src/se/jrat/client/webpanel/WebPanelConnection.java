@@ -75,10 +75,8 @@ public class WebPanelConnection implements Runnable {
 
                 	for (int i = 0; i < CountryStatistics.getGlobal().getList().size(); i++) {
             			CountryStatEntry entry = CountryStatistics.getGlobal().getList().get(i);
-            			try {
-            				GraphEntry total = new GraphEntry(entry.getCountry(), entry.getConnects());
-            				
-            				sb.append(total.getDisplay() + "," + total.getNumber());
+            			try {            				
+            				sb.append(entry.getCountry() + "," + entry.getConnects());
             				sb.append(";");
             			} catch (Exception ex) {
             				ex.printStackTrace();

@@ -120,6 +120,7 @@ public class FlagUtils {
 		COUNTRIES.put("KZ", "Kazakhstan");
 		COUNTRIES.put("LA", "Laos");
 		COUNTRIES.put("LB", "Lebanon");
+		COUNTRIES.put("LI", "Lichtenstein");
 		COUNTRIES.put("LK", "Sri Lanka");
 		COUNTRIES.put("LR", "Liberia");
 		COUNTRIES.put("LS", "Lesotho");
