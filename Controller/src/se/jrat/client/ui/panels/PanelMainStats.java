@@ -129,6 +129,7 @@ public class PanelMainStats extends JPanel {
 			countryModel = new DefaultTableModel(new Object[][] {}, new String[] { "Countries" });
 			countryTable = new JTable(countryModel);
 			countryTable.setDefaultRenderer(Object.class, flagRenderer);
+			countryTable.setRowHeight(20);
 			countryTableScrollPane = new JScrollPane();
 			add(countryTableScrollPane);
 			countryTableScrollPane.setViewportView(countryTable);
@@ -136,6 +137,7 @@ public class PanelMainStats extends JPanel {
 			osModel = new DefaultTableModel(new Object[][] {}, new String[] { "Operating Systems" });
 			osTable = new JTable(osModel);
 			osTable.setDefaultRenderer(Object.class, osRenderer);
+			osTable.setRowHeight(20);
 			osTableScrollPane = new JScrollPane();
 			add(osTableScrollPane);
 			osTableScrollPane.setViewportView(osTable);
