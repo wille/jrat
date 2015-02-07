@@ -23,25 +23,25 @@ import com.redpois0n.graphs.graph.GraphEntry;
 @SuppressWarnings("serial")
 public class PanelMainStats extends JPanel {
 
-	private DefaultTableModel uniqueModel;
-	private DefaultTableModel totalModel;
+	private DefaultTableModel countryModel;
+	private DefaultTableModel osModel;
 
-	private JTable uniqueTable;
-	private JTable totalTable;
+	private JTable countryTable;
+	private JTable osTable;
 
 	private int width = 630;
 	private int height = 320;
 
 	private boolean initialized;
 
-	public Graph totalGraph;
-	public Graph uniqueGraph;
+	public Graph countryGraph;
+	public Graph osGraph;
 
-	private JScrollPane totalTableScrollPane;
-	private JScrollPane uniqueTableScrollPane;
+	private JScrollPane countryTableScrollPane;
+	private JScrollPane osTableScrollPane;
 
-	private JScrollPane totalScrollPane;
-	private JScrollPane uniqueScrollPane;
+	private JScrollPane countryScrollPane;
+	private JScrollPane osScrollPane;
 
 	private DefaultTableCellRenderer flagRenderer = new DefaultTableCellRenderer() {
 		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
@@ -64,68 +64,68 @@ public class PanelMainStats extends JPanel {
 		if (!initialized) {
 			initialized = true;
 
-			uniqueTableScrollPane = new JScrollPane();
-			add(uniqueTableScrollPane);
+			osTableScrollPane = new JScrollPane();
+			add(osTableScrollPane);
 
-			uniqueGraph = new Graph(new GraphColors()) {
+			osGraph = new Graph(new GraphColors()) {
 				@Override
 				public void onUpdate(List<GraphEntry> list, int x) {
-					uniqueGraph.setPreferredSize(new Dimension(x, uniqueTableScrollPane.getHeight()));
+					osGraph.setPreferredSize(new Dimension(x, osTableScrollPane.getHeight()));
 
-					while (uniqueModel.getRowCount() > 0) {
-						uniqueModel.removeRow(0);
+					while (osModel.getRowCount() > 0) {
+						osModel.removeRow(0);
 					}
 
 					for (GraphEntry entry : list) {
-						uniqueModel.insertRow(0, new Object[] { entry.getDisplay() });
+						osModel.insertRow(0, new Object[] { entry.getDisplay() });
 					}
 				}
 			};
 
-			uniqueScrollPane = new JScrollPane(uniqueGraph);
-			add(uniqueScrollPane);
+			osScrollPane = new JScrollPane(osGraph);
+			add(osScrollPane);
 
-			totalGraph = new Graph(new GraphColors()) {
+			countryGraph = new Graph(new GraphColors()) {
 				@Override
 				public void onUpdate(List<GraphEntry> list, int x) {
-					totalGraph.setPreferredSize(new Dimension(x, totalScrollPane.getHeight()));
+					countryGraph.setPreferredSize(new Dimension(x, countryScrollPane.getHeight()));
 
-					while (totalModel.getRowCount() > 0) {
-						totalModel.removeRow(0);
+					while (countryModel.getRowCount() > 0) {
+						countryModel.removeRow(0);
 					}
 
 					for (GraphEntry entry : list) {
-						totalModel.insertRow(0, new Object[] { entry.getDisplay() });
+						countryModel.insertRow(0, new Object[] { entry.getDisplay() });
 					}
 				}
 			};
 
-			totalScrollPane = new JScrollPane(totalGraph);
-			add(totalScrollPane);
+			countryScrollPane = new JScrollPane(countryGraph);
+			add(countryScrollPane);
 
-			uniqueModel = new DefaultTableModel(new Object[][] {}, new String[] { "Unique" });
-			uniqueTable = new JTable(uniqueModel);
-			uniqueTable.setDefaultRenderer(Object.class, flagRenderer);
+			countryModel = new DefaultTableModel(new Object[][] {}, new String[] { "Countries" });
+			countryTable = new JTable(countryModel);
+			countryTable.setDefaultRenderer(Object.class, flagRenderer);
 
-			uniqueTableScrollPane.setViewportView(uniqueTable);
+			osTableScrollPane.setViewportView(osTable);
 
-			totalTableScrollPane = new JScrollPane();
-			add(totalTableScrollPane);
+			countryTableScrollPane = new JScrollPane();
+			add(countryTableScrollPane);
 
-			totalModel = new DefaultTableModel(new Object[][] {}, new String[] { "Total" });
-			totalTable = new JTable(totalModel);
-			totalTable.setDefaultRenderer(Object.class, flagRenderer);
+			osModel = new DefaultTableModel(new Object[][] {}, new String[] { "Operating Systems" });
+			osTable = new JTable(osModel);
+			osTable.setDefaultRenderer(Object.class, flagRenderer);
 
-			totalTableScrollPane.setViewportView(totalTable);
+			countryTableScrollPane.setViewportView(countryTable);
 		}
 
-		uniqueTableScrollPane.setBounds(5, 5, 110, height / 2 - 10);
+		osTableScrollPane.setBounds(5, 5, 110, height / 2 - 10);
 
-		uniqueScrollPane.setBounds(120, 5, width - 120 - 10, height / 2 - 10);
+		osScrollPane.setBounds(120, 5, width - 120 - 10, height / 2 - 10);
 
-		totalTableScrollPane.setBounds(5, height / 2, 110, height / 2 - 10);
+		countryTableScrollPane.setBounds(5, height / 2, 110, height / 2 - 10);
 
-		totalScrollPane.setBounds(120, height / 2, width - 120 - 10, height / 2 - 10);
+		countryScrollPane.setBounds(120, height / 2, width - 120 - 10, height / 2 - 10);
 
 		addComponentListener(new ComponentListener() {
 
@@ -158,12 +158,12 @@ public class PanelMainStats extends JPanel {
 	}
 
 	public void setActive(boolean b) {
-		totalGraph.setActive(b);
-		uniqueGraph.setActive(b);
+		countryGraph.setActive(b);
+		osGraph.setActive(b);
 
 		if (b) {
-			new ThreadGraph(totalGraph).start();
-			new ThreadGraph(uniqueGraph).start();
+			new ThreadGraph(countryGraph).start();
+			new ThreadGraph(osGraph).start();
 		}
 	}
 }

