@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JLabel;
@@ -47,8 +48,12 @@ public class PanelMainStats extends JPanel {
 		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 			JLabel c = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
-			c.setIcon(FlagUtils.getFlag(value.toString().toLowerCase()));
-			c.setText(value.toString());
+			if (value != null && value.toString().length() > 0) {
+				//c.setIcon(FlagUtils.getFlag(FlagUtils.getIso2FromString(value.toString().toLowerCase())));
+
+				c.setIcon(FlagUtils.getFlag(value.toString().toLowerCase()));
+				c.setText(FlagUtils.getStringFromIso2(value.toString()));
+			}
 
 			return c;
 		}
@@ -69,7 +74,7 @@ public class PanelMainStats extends JPanel {
 
 			osGraph = new Graph(new GraphColors()) {
 				@Override
-				public void onUpdate(List<GraphEntry> list, int x) {
+				public synchronized void onUpdate(List<GraphEntry> list, int x) {
 					osGraph.setPreferredSize(new Dimension(x, osTableScrollPane.getHeight()));
 
 					while (osModel.getRowCount() > 0) {
@@ -87,14 +92,21 @@ public class PanelMainStats extends JPanel {
 
 			countryGraph = new Graph(new GraphColors()) {
 				@Override
-				public void onUpdate(List<GraphEntry> list, int x) {
+				public synchronized void onUpdate(List<GraphEntry> list, int x) {
 					countryGraph.setPreferredSize(new Dimension(x, countryScrollPane.getHeight()));
 
 					while (countryModel.getRowCount() > 0) {
 						countryModel.removeRow(0);
 					}
 
+					List<GraphEntry> added = new ArrayList<GraphEntry>();
 					for (GraphEntry entry : list) {
+						if (added.contains(entry)) {
+							continue;
+						}
+						added.add(entry);
+						
+						//countryModel.insertRow(0, new Object[] { FlagUtils.getStringFromIso2(entry.getDisplay()) });
 						countryModel.insertRow(0, new Object[] { entry.getDisplay() });
 					}
 				}

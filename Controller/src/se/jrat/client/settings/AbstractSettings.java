@@ -13,6 +13,7 @@ public abstract class AbstractSettings {
 	public static void loadAllGlobals() {
 		if (globalSettings.size() == 0) {
 			globalSettings.add(CountryStatistics.getGlobal());
+			globalSettings.add(OperatingSystemStatistics.getGlobal());
 			globalSettings.add(ServerID.getGlobal());
 			globalSettings.add(Sockets.getGlobal());
 			globalSettings.add(FileBookmarks.getGlobal());
