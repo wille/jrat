@@ -16,15 +16,15 @@ import se.jrat.common.Logger;
 
 import com.redpois0n.graphs.graph.GraphEntry;
 
-public class CountryStatistics extends AbstractSettings implements Serializable {
+public class OperatingSystemStatistics extends AbstractSettings implements Serializable {
 
 	private static final long serialVersionUID = -7692558803046215384L;
 
-	private static final CountryStatistics instance = new CountryStatistics();
+	private static final OperatingSystemStatistics instance = new OperatingSystemStatistics();
 
-	private transient List<CountryStatEntry> list = new ArrayList<CountryStatEntry>();
+	private transient List<OperatingSystemStatEntry> list = new ArrayList<OperatingSystemStatEntry>();
 
-	public static CountryStatistics getGlobal() {
+	public static OperatingSystemStatistics getGlobal() {
 		return instance;
 	}
 
@@ -32,28 +32,23 @@ public class CountryStatistics extends AbstractSettings implements Serializable 
 		return Settings.getGlobal().getBoolean("stats");
 	}
 
-	public List<CountryStatEntry> getList() {
+	public List<OperatingSystemStatEntry> getList() {
 		return list;
 	}
 
-	public CountryStatEntry getEntry(String country, String longcountry) {
-		if (country.equals("?")) {
-			country = "unknown";
-		}
-
+	public OperatingSystemStatEntry getEntry(String os) {
 		for (int i = 0; i < list.size(); i++) {
-			CountryStatEntry entry = list.get(i);
-			if (entry.country.equalsIgnoreCase(country)) {
+			OperatingSystemStatEntry entry = list.get(i);
+			if (entry.getOS().equalsIgnoreCase(os)) {
 				return entry;
 			}
 		}
 
-		CountryStatEntry stat = new CountryStatEntry();
-		stat.country = country;
-		stat.longcountry = longcountry;
+		OperatingSystemStatEntry stat = new OperatingSystemStatEntry();
+		stat.setOS(os);;
 
 		list.add(stat);
-		Logger.log("Added: " + country);
+		Logger.log("Added: " + os);
 		return stat;
 	}
 
@@ -65,7 +60,7 @@ public class CountryStatistics extends AbstractSettings implements Serializable 
 		}
 
 		ObjectInputStream str = new ObjectInputStream(new FileInputStream(getFile()));
-		list = (ArrayList<CountryStatEntry>) str.readObject();
+		list = (ArrayList<OperatingSystemStatEntry>) str.readObject();
 		str.close();
 		reload();
 	}
@@ -85,7 +80,7 @@ public class CountryStatistics extends AbstractSettings implements Serializable 
 			return;
 		}
 
-		CountryStatEntry entry = getEntry(abstractSlave.getCountry(), abstractSlave.getCountry());
+		OperatingSystemStatEntry entry = getEntry(abstractSlave.getOperatingSystem());
 
 		entry.connects++;
 		boolean exists = false;
@@ -105,11 +100,11 @@ public class CountryStatistics extends AbstractSettings implements Serializable 
 		Frame.panelStats.uniqueGraph.clear();
 
 		for (int i = 0; i < list.size(); i++) {
-			CountryStatEntry entry = list.get(i);
+			OperatingSystemStatEntry entry = list.get(i);
 			try {
 
-				GraphEntry total = new GraphEntry(entry.getCountry(), entry.getConnects());
-				GraphEntry unique = new GraphEntry(entry.getCountry(), entry.getList().size());
+				GraphEntry total = new GraphEntry(entry.getOS(), entry.getConnects());
+				GraphEntry unique = new GraphEntry(entry.getOS(), entry.getList().size());
 
 				Frame.panelStats.totalGraph.add(total);
 				Frame.panelStats.uniqueGraph.add(unique);
@@ -123,7 +118,7 @@ public class CountryStatistics extends AbstractSettings implements Serializable 
 
 	public int getNoConnects() {
 		int no = 0;
-		for (CountryStatEntry e : list) {
+		for (OperatingSystemStatEntry e : list) {
 			no += e.connects;
 		}
 		return no;
@@ -131,51 +126,43 @@ public class CountryStatistics extends AbstractSettings implements Serializable 
 
 	public int getDifferentConnects() {
 		int no = 0;
-		for (CountryStatEntry e : list) {
+		for (OperatingSystemStatEntry e : list) {
 			no += e.list.size();
 		}
 		return no;
 	}
 
-	public class CountryStatEntry implements Serializable {
+	public class OperatingSystemStatEntry implements Serializable {
 
 		private static final long serialVersionUID = 8462429809223243541L;
 
-		private String country = "Unknown";
-		private String longcountry = "Unknown";
+		private String os = "Unknown";
 		private Integer connects = 0;
+		
 		private List<String> list = new ArrayList<String>();
 
-		public String getCountry() {
-			return country;
+		public String getOS() {
+			return os;
 		}
 
-		public void setCountry(String country) {
-			this.country = country;
-		}
-
-		public String getLongCountry() {
-			return longcountry;
-		}
-
-		public void setLongCountry(String longcountry) {
-			this.longcountry = longcountry;
-		}
-
-		public int getConnects() {
-			return connects;
-		}
-
-		public void setConnects(int connects) {
-			this.connects = connects;
+		public void setOS(String os) {
+			this.os = os;
 		}
 
 		public List<String> getList() {
 			return list;
 		}
-
+		
 		public void setList(List<String> list) {
 			this.list = list;
+		}
+		
+		public int getConnects() {
+			return this.connects;
+		}
+		
+		public void setConnects(int connects) {
+			this.connects = connects;
 		}
 
 	}

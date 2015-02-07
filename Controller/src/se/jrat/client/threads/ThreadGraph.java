@@ -1,12 +1,12 @@
 package se.jrat.client.threads;
 
-import com.redpois0n.graphs.country.CountryGraph;
+import com.redpois0n.graphs.graph.Graph;
 
-public class ThreadCountryGraph extends Thread {
+public class ThreadGraph extends Thread {
 
-	private CountryGraph graph;
+	private Graph graph;
 
-	public ThreadCountryGraph(CountryGraph graph) {
+	public ThreadGraph(Graph graph) {
 		this.graph = graph;
 	}
 

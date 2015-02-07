@@ -23,8 +23,7 @@ import se.jrat.client.addons.OnlinePlugin;
 import se.jrat.client.addons.PluginInstaller;
 import se.jrat.client.listeners.ExtensionInstallerListener;
 import se.jrat.client.ui.frames.FrameInstallPlugins;
-
-import com.redpois0n.graphs.monitors.IconUtils;
+import se.jrat.client.utils.IconUtils;
 
 @SuppressWarnings("serial")
 public class PluginPanel extends JPanel {

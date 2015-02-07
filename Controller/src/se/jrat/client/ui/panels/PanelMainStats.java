@@ -13,12 +13,12 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-import se.jrat.client.threads.ThreadCountryGraph;
+import se.jrat.client.threads.ThreadGraph;
 import se.jrat.client.utils.FlagUtils;
 
-import com.redpois0n.graphs.country.Country;
-import com.redpois0n.graphs.country.CountryColors;
-import com.redpois0n.graphs.country.CountryGraph;
+import com.redpois0n.graphs.graph.Graph;
+import com.redpois0n.graphs.graph.GraphColors;
+import com.redpois0n.graphs.graph.GraphEntry;
 
 @SuppressWarnings("serial")
 public class PanelMainStats extends JPanel {
@@ -34,8 +34,8 @@ public class PanelMainStats extends JPanel {
 
 	private boolean initialized;
 
-	public CountryGraph totalGraph;
-	public CountryGraph uniqueGraph;
+	public Graph totalGraph;
+	public Graph uniqueGraph;
 
 	private JScrollPane totalTableScrollPane;
 	private JScrollPane uniqueTableScrollPane;
@@ -67,17 +67,17 @@ public class PanelMainStats extends JPanel {
 			uniqueTableScrollPane = new JScrollPane();
 			add(uniqueTableScrollPane);
 
-			uniqueGraph = new CountryGraph(new CountryColors()) {
+			uniqueGraph = new Graph(new GraphColors()) {
 				@Override
-				public void onUpdate(List<Country> list, int x) {
+				public void onUpdate(List<GraphEntry> list, int x) {
 					uniqueGraph.setPreferredSize(new Dimension(x, uniqueTableScrollPane.getHeight()));
 
 					while (uniqueModel.getRowCount() > 0) {
 						uniqueModel.removeRow(0);
 					}
 
-					for (Country country : list) {
-						uniqueModel.insertRow(0, new Object[] { country.getIso() });
+					for (GraphEntry entry : list) {
+						uniqueModel.insertRow(0, new Object[] { entry.getDisplay() });
 					}
 				}
 			};
@@ -85,17 +85,17 @@ public class PanelMainStats extends JPanel {
 			uniqueScrollPane = new JScrollPane(uniqueGraph);
 			add(uniqueScrollPane);
 
-			totalGraph = new CountryGraph(new CountryColors()) {
+			totalGraph = new Graph(new GraphColors()) {
 				@Override
-				public void onUpdate(List<Country> list, int x) {
+				public void onUpdate(List<GraphEntry> list, int x) {
 					totalGraph.setPreferredSize(new Dimension(x, totalScrollPane.getHeight()));
 
 					while (totalModel.getRowCount() > 0) {
 						totalModel.removeRow(0);
 					}
 
-					for (Country country : list) {
-						totalModel.insertRow(0, new Object[] { country.getIso() });
+					for (GraphEntry entry : list) {
+						totalModel.insertRow(0, new Object[] { entry.getDisplay() });
 					}
 				}
 			};
@@ -162,8 +162,8 @@ public class PanelMainStats extends JPanel {
 		uniqueGraph.setActive(b);
 
 		if (b) {
-			new ThreadCountryGraph(totalGraph).start();
-			new ThreadCountryGraph(uniqueGraph).start();
+			new ThreadGraph(totalGraph).start();
+			new ThreadGraph(uniqueGraph).start();
 		}
 	}
 }
