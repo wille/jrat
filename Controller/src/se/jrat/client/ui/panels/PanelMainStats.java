@@ -97,6 +97,7 @@ public class PanelMainStats extends JPanel {
 					}
 				}
 			};
+			osGraph.setDrawBackgroundSquare(true);
 
 			osScrollPane = new JScrollPane(osGraph);
 			add(osScrollPane);

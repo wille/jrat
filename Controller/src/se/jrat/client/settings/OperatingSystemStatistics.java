@@ -1,5 +1,6 @@
 package se.jrat.client.settings;
 
+import java.awt.Color;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -108,7 +109,7 @@ public class OperatingSystemStatistics extends AbstractSettings implements Seria
 
 				GraphEntry total = new GraphEntry(entry.getString(), entry.getConnects(), IconUtils.getIcon(Icons.getIconString(entry.getOs(), entry.getString())));
 				//GraphEntry unique = new GraphEntry(entry.getOS(), entry.getList().size());
-
+				total.setNumberColor(Color.gray);
 				Frame.panelStats.osGraph.add(total);
 				//Frame.panelStats.osGraph.add(unique);
 				Frame.panelStats.repaint();
