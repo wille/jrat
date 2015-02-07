@@ -169,7 +169,7 @@ public class OperatingSystemStatistics extends AbstractSettings implements Seria
 
 	@Override
 	public File getFile() {
-		return new File(Globals.getSettingsDirectory(), ".countrystats");
+		return new File(Globals.getSettingsDirectory(), ".osstats");
 	}
 
 }
