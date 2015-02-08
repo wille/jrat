@@ -41,6 +41,7 @@ public class PanelMainNetwork extends JPanel {
 
 	public void setActive(boolean b) {
 		if (b) {
+			RunnableNetworkCounter.addListener(listener);
 		} else {
 			RunnableNetworkCounter.removeListener(listener);
 		}
