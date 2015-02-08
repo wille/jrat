@@ -13,6 +13,7 @@ import se.jrat.client.settings.CountryStatistics;
 import se.jrat.client.settings.CountryStatistics.CountryStatEntry;
 import se.jrat.client.settings.OperatingSystemStatistics;
 import se.jrat.client.settings.OperatingSystemStatistics.OperatingSystemStatEntry;
+import se.jrat.client.ui.frames.Frame;
 
 public class WebPanelConnection implements Runnable {
 
@@ -45,6 +46,7 @@ public class WebPanelConnection implements Runnable {
                 	for (AbstractSlave slave : Main.connections) {
                 		String[] data = new String[] {                				
                 			slave.getUniqueId() + "",
+                			slave.isSelected() + "",
                 			slave.getCountry(),
                 			slave.formatUserString(),
                 			slave.getOperatingSystem() + " " + slave.getArch().toString(),
@@ -100,6 +102,23 @@ public class WebPanelConnection implements Runnable {
                 	
                 	bw.write(sb.toString() + "\n");
                 	bw.flush();
+                } else if (packet == WebPanelPackets.PACKET_SELECT) {
+                	String id = readLine();
+                	
+                	boolean all = id.equals("all");
+                	boolean none = id.equals("none");
+                	
+                	if (!all && !none) {
+                		long l = Long.parseLong(id);
+                		AbstractSlave slave = AbstractSlave.getFromId(l);
+                		slave.setSelected(!slave.isSelected());
+                	} else {
+                		for (AbstractSlave slave : Main.connections) {
+                			slave.setSelected(all);
+                		}
+                	}
+                	
+                	Frame.mainTable.repaint();
                 }
             }
 
