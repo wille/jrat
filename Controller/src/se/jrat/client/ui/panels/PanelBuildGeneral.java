@@ -21,6 +21,7 @@ import se.jrat.client.listeners.SocketComboBoxListener;
 import se.jrat.client.net.PortListener;
 import se.jrat.client.settings.Settings;
 import se.jrat.client.ui.components.PortListenerJComboBox;
+import javax.swing.SwingConstants;
 
 
 @SuppressWarnings("serial")
@@ -53,6 +54,7 @@ public class PanelBuildGeneral extends JPanel {
 		txtID.setColumns(10);
 
 		JLabel lblServerId = new JLabel("Stub ID");
+		lblServerId.setHorizontalAlignment(SwingConstants.TRAILING);
 
 		JLabel lblNameOfServer = new JLabel("Name of Stub on connect");
 
@@ -64,12 +66,39 @@ public class PanelBuildGeneral extends JPanel {
 		});
 		btnHelp.setIcon(new ImageIcon(PanelBuildGeneral.class.getResource("/icons/help.png")));
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
-		gl_panel_1.setHorizontalGroup(gl_panel_1.createParallelGroup(Alignment.LEADING).addGroup(gl_panel_1.createSequentialGroup().addGap(92).addComponent(lblServerId).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING).addComponent(lblNameOfServer).addGroup(gl_panel_1.createSequentialGroup().addComponent(txtID, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnHelp, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))).addContainerGap(65, Short.MAX_VALUE)));
-		gl_panel_1.setVerticalGroup(gl_panel_1.createParallelGroup(Alignment.LEADING).addGroup(gl_panel_1.createSequentialGroup().addContainerGap().addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING).addComponent(btnHelp, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE).addGroup(gl_panel_1.createSequentialGroup().addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE).addComponent(txtID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(lblServerId)).addPreferredGap(ComponentPlacement.RELATED).addComponent(lblNameOfServer))).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+		gl_panel_1.setHorizontalGroup(
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblServerId, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblNameOfServer)
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addComponent(txtID, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnHelp, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(75, Short.MAX_VALUE))
+		);
+		gl_panel_1.setVerticalGroup(
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnHelp, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+								.addComponent(txtID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblServerId))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblNameOfServer)))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
 		panel_1.setLayout(gl_panel_1);
 
 		JLabel lblSecurityPassword = new JLabel("Security Password");
-		lblSecurityPassword.setBounds(55, 35, 88, 14);
+		lblSecurityPassword.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblSecurityPassword.setBounds(10, 35, 133, 14);
 
 		passPass = new JPasswordField(Settings.getGlobal().getString("bpass"));
 		passPass.setBounds(147, 32, 174, 20);
@@ -108,7 +137,8 @@ public class PanelBuildGeneral extends JPanel {
 		panel.add(comboBox);
 
 		JLabel lblLoad = new JLabel("Load");
-		lblLoad.setBounds(120, 149, 23, 14);
+		lblLoad.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblLoad.setBounds(10, 149, 133, 14);
 		panel.add(lblLoad);
 	}
 }
