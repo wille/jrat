@@ -96,7 +96,7 @@ public class PanelBuildOS extends JPanel {
 		chckbxLinux.setSelected(true);
 
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(PanelBuildOS.class.getResource("/icons/os.png")));
+		label.setIcon(new ImageIcon(PanelBuildOS.class.getResource("/icons/os_win.png")));
 
 		JLabel label_1 = new JLabel("");
 		label_1.setIcon(new ImageIcon(PanelBuildOS.class.getResource("/icons/os_mac.png")));

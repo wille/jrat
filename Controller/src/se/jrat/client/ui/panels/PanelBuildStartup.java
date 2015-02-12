@@ -103,7 +103,7 @@ public class PanelBuildStartup extends JPanel {
 		chckbxRunNextStart = new JCheckBox("Run next start");
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(PanelBuildStartup.class.getResource("/icons/os.png")));
+		label.setIcon(new ImageIcon(PanelBuildStartup.class.getResource("/icons/os_win.png")));
 
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
