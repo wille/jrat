@@ -50,7 +50,7 @@ public class PanelBuildPlugins extends JPanel {
 		list = new PluginList();
 		JScrollPane scrollPane = new JScrollPane();
 
-		JButton btnAddServerPlugin = new JButton("Add stub plugin (Not client)");
+		JButton btnAddServerPlugin = new JButton("Add from file");
 		btnAddServerPlugin.addActionListener(new ActionListener() {
 			@SuppressWarnings("unchecked")
 			public void actionPerformed(ActionEvent arg0) {
@@ -72,8 +72,29 @@ public class PanelBuildPlugins extends JPanel {
 
 		chckbxDoNotLoad = new JCheckBox("Do not load class");
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addGap(10).addComponent(chckbxDoNotLoad).addPreferredGap(ComponentPlacement.RELATED, 120, Short.MAX_VALUE).addComponent(btnAddServerPlugin)).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 428, GroupLayout.PREFERRED_SIZE)).addContainerGap()));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 238, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnAddServerPlugin).addComponent(chckbxDoNotLoad)).addContainerGap(20, Short.MAX_VALUE)));
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 428, GroupLayout.PREFERRED_SIZE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(btnAddServerPlugin)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(chckbxDoNotLoad)))
+					.addContainerGap())
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 238, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnAddServerPlugin)
+						.addComponent(chckbxDoNotLoad))
+					.addContainerGap())
+		);
 
 		File[] files = Globals.getPluginStubDirectory().listFiles();
 
