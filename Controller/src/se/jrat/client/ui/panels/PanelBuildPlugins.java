@@ -37,7 +37,7 @@ public class PanelBuildPlugins extends JPanel {
 
 		for (StubPlugin stubPlugin : list.plugins) {
 			for (Entry entry : entries) {
-				if (entry.getValue().toString().equals(stubPlugin.name) && entry.isChecked()) {
+				if (stubPlugin.name.endsWith(entry.getValue().toString()) && entry.isChecked()) {
 					plugins.plugins.add(stubPlugin);
 				}
 			}
@@ -77,19 +77,19 @@ public class PanelBuildPlugins extends JPanel {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 428, GroupLayout.PREFERRED_SIZE)
+						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(btnAddServerPlugin)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(chckbxDoNotLoad)))
-					.addContainerGap())
+					.addGap(12))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 238, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+					.addGap(15)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnAddServerPlugin)
 						.addComponent(chckbxDoNotLoad))
@@ -104,8 +104,8 @@ public class PanelBuildPlugins extends JPanel {
 			obj = new Object[files.length];
 
 			for (int i = 0; i < files.length; i++) {
-				obj[i] = files[i].getAbsolutePath();
-				StubPlugin p = new StubPlugin(files[i].getAbsolutePath(), false);
+				obj[i] = files[i].getName();
+				StubPlugin p = new StubPlugin(files[i].getName(), false);
 				list.plugins.add(p);
 			}
 		}
