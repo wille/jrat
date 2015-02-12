@@ -33,7 +33,7 @@ public class PluginsTableRenderer extends DefaultTableCellRenderer {
 		if (column == iconColumn) {
 			String path = value.toString();
 			
-			File iconFile = new File(Globals.getPluginDirectory(), path.replace(" ", "") + "/icon.png");
+			File iconFile = new File(Globals.getPluginDirectory(), path.replace(" ", "").replace(".jar", "").replace("Stub", "") + File.separator + "icon.png");
 
 			if (iconFile.exists()) {
 				lbl.setIcon(new ImageIcon(iconFile.getAbsolutePath()));
