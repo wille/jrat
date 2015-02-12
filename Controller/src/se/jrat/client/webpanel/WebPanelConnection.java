@@ -7,6 +7,7 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 
 import se.jrat.client.AbstractSlave;
+import se.jrat.client.Constants;
 import se.jrat.client.Main;
 import se.jrat.client.exceptions.CloseException;
 import se.jrat.client.settings.CountryStatistics;
@@ -51,7 +52,7 @@ public class WebPanelConnection implements Runnable {
                 			slave.formatUserString(),
                 			slave.getOperatingSystem() + " " + slave.getArch().toString(),
                 			slave.getIP(),
-                			"jRAT " + slave.getVersion(),
+                			Constants.NAME + " " + slave.getVersion(),
                 			slave.getPing() + "",
                 		};
                 		
