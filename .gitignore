@@ -1,4 +1,3 @@
-## General
 *.lnk
 *.jar
 *.dat
@@ -13,9 +12,8 @@
 .bookmarks
 ZKM.class
 ZKM*
+.DS_Store
 
-
-## Eclipse
 bin/**
 tmp/**
 *.tmp
@@ -29,12 +27,9 @@ local.properties
 .classpath
 .project
 .settings/
-
-
-# Build results
 [Bb]in/
 
-# Folders
+# Project
 API/
 Other/
 API Stub/
@@ -47,8 +42,6 @@ lib/
 Controller/plugins/
 Controller/settings/
 Extractor/
-
 *.key
-
-# Mac crap
-.DS_Store
+run.bat
+run.sh
