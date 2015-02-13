@@ -18,6 +18,7 @@ public abstract class AbstractSettings {
 			globalSettings.add(Sockets.getGlobal());
 			globalSettings.add(FileBookmarks.getGlobal());
 			globalSettings.add(Colors.getGlobal());
+			globalSettings.add(OfflineSlaves.getGlobal());
 		}
 
 		for (AbstractSettings setting : globalSettings) {
