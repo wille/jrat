@@ -40,51 +40,55 @@ public class Packet29ReceiveFile extends AbstractIncomingPacket {
 			output = new File(output, rfile);
 		}
 
-		FileIO fileio = new FileIO();
-		fileio.readFile(output, slave.getSocket(), slave.getDataInputStream(), slave.getDataOutputStream(), new TransferListener() {
-			@Override
-			public void transferred(long sent, long bytesSent, long totalBytes) {
-				int progress = (int) ((float) bytesSent / (float) totalBytes * 100.0F);
-
-				if (frame != null) {
-					frame.reportProgress(remoteFile, progress, (int) bytesSent, (int) totalBytes);
-				}
-				if (frame2 != null) {
-					frame2.reportProgress(remoteFile, progress, (int) bytesSent, (int) totalBytes);
-				}
-			}
-		}, slave.getKey());
-
-		if (frame != null) {
-			frame.done(remoteFile, output.length() + "");
-		}
-
-		if (frame2 != null) {
-			frame2.done();
-		}
-
-		new Thread("Transfer notify") {
-			@Override
-			public void run() {
-				if (localData.getRemoteFiles().size() > 0) {
-					try {
-						Thread.sleep(100L);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-					String f = localData.getRemoteFiles().get(0);
-					localData.getRemoteFiles().remove(0);
-					slave.addToSendQueue(new Packet21GetFile(f));
-				} else {
-					data.remove(localData);
-					JOptionPane.showMessageDialog(null, "All file transfers were done successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+		try {
+			FileIO fileio = new FileIO();
+			fileio.readFile(output, slave.getSocket(), slave.getDataInputStream(), slave.getDataOutputStream(), new TransferListener() {
+				@Override
+				public void transferred(long sent, long bytesSent, long totalBytes) {
+					int progress = (int) ((float) bytesSent / (float) totalBytes * 100.0F);
 
 					if (frame != null) {
-						frame.reset();
+						frame.reportProgress(remoteFile, progress, (int) bytesSent, (int) totalBytes);
+					}
+					if (frame2 != null) {
+						frame2.reportProgress(remoteFile, progress, (int) bytesSent, (int) totalBytes);
 					}
 				}
+			}, slave.getKey());
+
+			if (frame != null) {
+				frame.done(remoteFile, output.length() + "");
 			}
-		}.start();
+
+			if (frame2 != null) {
+				frame2.done();
+			}
+
+			new Thread("Transfer notify") {
+				@Override
+				public void run() {
+					if (localData.getRemoteFiles().size() > 0) {
+						try {
+							Thread.sleep(100L);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+						String f = localData.getRemoteFiles().get(0);
+						localData.getRemoteFiles().remove(0);
+						slave.addToSendQueue(new Packet21GetFile(f));
+					} else {
+						data.remove(localData);
+						JOptionPane.showMessageDialog(null, "All file transfers were done successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+						if (frame != null) {
+							frame.reset();
+						}
+					}
+				}
+			}.start();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }
