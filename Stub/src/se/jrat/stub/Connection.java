@@ -197,17 +197,20 @@ public class Connection implements Runnable {
 
 	public static void writeLine(String s) {
 		try {
+			byte mode = 0;
+			
 			String enc = Crypto.encrypt(s, Main.getKey(), "AES");
 			if (enc.contains("\n")) {
-				enc = "-h " + Hex.encode(s);
+				mode = 1;
+				enc = Hex.encode(s);
 			}
-			if (s.startsWith("-c ")) {
+			if (s.startsWith("-c ") || !Main.encryption) {
+				mode = 2;
 				enc = s;
-			} else if (!Main.encryption) {
-				enc = "-c " + s;
 			}
 
 			// dos.writeUTF(enc);
+			dos.writeByte(mode);
 			dos.writeShort(enc.length());
 			dos.writeChars(enc);
 		} catch (Exception ex) {
@@ -217,7 +220,7 @@ public class Connection implements Runnable {
 
 	public static String readLine() {
 		try {
-			// String s = dis.readUTF();
+			byte mode = dis.readByte();
 			short len = dis.readShort();
 
 			StringBuilder builder = new StringBuilder();
@@ -227,11 +230,9 @@ public class Connection implements Runnable {
 
 			String s = builder.toString();
 
-			if (s.startsWith("-h ")) {
-				s = Hex.decode(s.substring(3, s.length()));
-			} else if (s.startsWith("-c ")) {
-				s = s.substring(3, s.length());
-			} else {
+			if (mode == 1) {
+				s = Hex.decode(s);
+			} else if (mode == 0) {
 				s = Crypto.decrypt(s, Main.getKey(), "AES");
 			}
 
