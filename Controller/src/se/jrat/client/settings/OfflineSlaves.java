@@ -23,6 +23,10 @@ public class OfflineSlaves extends AbstractSettings {
 		return INSTANCE;
 	}
 
+	public List<OfflineSlave> getList() {
+		return LIST;
+	}
+	
 	@Override
 	public void save() throws Exception {
 		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(getFile())));

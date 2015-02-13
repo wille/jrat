@@ -9,9 +9,11 @@ import java.net.Socket;
 import se.jrat.client.AbstractSlave;
 import se.jrat.client.Constants;
 import se.jrat.client.Main;
+import se.jrat.client.OfflineSlave;
 import se.jrat.client.exceptions.CloseException;
 import se.jrat.client.settings.CountryStatistics;
 import se.jrat.client.settings.CountryStatistics.CountryStatEntry;
+import se.jrat.client.settings.OfflineSlaves;
 import se.jrat.client.settings.OperatingSystemStatistics;
 import se.jrat.client.settings.OperatingSystemStatistics.OperatingSystemStatEntry;
 import se.jrat.client.ui.frames.Frame;
@@ -130,6 +132,12 @@ public class WebPanelConnection implements Runnable {
                 	}
                 	
                 	Frame.mainTable.repaint();
+                } else if (packet == WebPanelPackets.PACKET_LISTOFFLINE) {
+                	bw.write(OfflineSlaves.getGlobal().getList().size() + "\n");
+                	for (OfflineSlave os : OfflineSlaves.getGlobal().getList()) {
+                		bw.write(OfflineSlave.toString(os) + "\n");
+                		bw.flush();
+                	}
                 }
             }
 
