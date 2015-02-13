@@ -132,12 +132,14 @@ public class WebPanelConnection implements Runnable {
                 	}
                 	
                 	Frame.mainTable.repaint();
-                } else if (packet == WebPanelPackets.PACKET_LISTOFFLINE) {
-                	bw.write(OfflineSlaves.getGlobal().getList().size() + "\n");
+                } else if (packet == WebPanelPackets.PACKET_LISTOFFLINE) {            	
+                	StringBuilder sb = new StringBuilder();
                 	for (OfflineSlave os : OfflineSlaves.getGlobal().getList()) {
-                		bw.write(OfflineSlave.toString(os) + "\n");
-                		bw.flush();
+                		sb.append(os.toString() + ";");
                 	}
+                	
+                	bw.write(sb.toString() + "\n");
+                	bw.flush();
                 }
             }
 
