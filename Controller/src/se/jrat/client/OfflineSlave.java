@@ -44,5 +44,16 @@ public class OfflineSlave {
 	public String toString() {
 		return OfflineSlave.toString(this);
 	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (o instanceof OfflineSlave) {
+			OfflineSlave os = (OfflineSlave)o;
+			
+			return os.userstring.equals(this.userstring) && os.os.equals(this.os) && os.serverid.equals(this.serverid) && os.version.equals(this.version) && os.ip.equals(this.ip);
+		} else {
+			return false;
+		}
+	}
 
 }
