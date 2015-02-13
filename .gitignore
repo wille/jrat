@@ -10,6 +10,7 @@
 .countrystats
 .osstats
 .bookmarks
+.offline
 ZKM.class
 ZKM*
 .DS_Store
