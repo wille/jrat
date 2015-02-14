@@ -135,7 +135,7 @@ public class WebPanelConnection implements Runnable {
                 } else if (packet == WebPanelPackets.PACKET_LISTOFFLINE) {            	
                 	StringBuilder sb = new StringBuilder();
                 	for (OfflineSlave os : OfflineSlaves.getGlobal().getList()) {
-                		sb.append(os.toString() + ";");
+                		sb.append(os.getString() + ";");
                 	}
                 	
                 	bw.write(sb.toString() + "\n");

@@ -40,8 +40,7 @@ public class OfflineSlave {
 		return sb.toString();
 	}
 	
-	@Override
-	public String toString() {
+	public String getString() {
 		return OfflineSlave.toString(this);
 	}
 	
