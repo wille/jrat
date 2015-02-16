@@ -14,8 +14,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import se.jrat.client.settings.Settings;
 import se.jrat.client.settings.CountryStatistics;
+import se.jrat.client.settings.Settings;
 
 
 @SuppressWarnings("serial")

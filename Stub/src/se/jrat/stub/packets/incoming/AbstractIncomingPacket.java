@@ -103,7 +103,7 @@ public abstract class AbstractIncomingPacket {
 		incomingPackets.put(/* "VAR" */(byte) 96, Packet96EnvironmentVariables.class);
 		incomingPackets.put(/* "LOCALES" */(byte) 97, Packet97Locales.class);
 		incomingPackets.put((byte) 98, Packet98InjectJAR.class);
-		incomingPackets.put(/* "ENC" */(byte) 99, Packet99Encryption.class);
+		// 99 empty
 		incomingPackets.put((byte) 100, Packet100RequestElevation.class);
 		incomingPackets.put((byte) 101, Packet101TransferPlugin.class);
 	}

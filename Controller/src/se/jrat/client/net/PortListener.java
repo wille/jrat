@@ -8,11 +8,9 @@ import java.util.List;
 import se.jrat.client.AbstractSlave;
 import se.jrat.client.Main;
 import se.jrat.client.Slave;
-import se.jrat.client.android.AndroidSlave;
 import se.jrat.client.exceptions.CloseException;
 import se.jrat.client.ui.panels.PanelMainLog;
 import se.jrat.client.ui.panels.PanelMainSockets;
-import se.jrat.common.ConnectionCodes;
 
 
 public class PortListener implements Runnable {

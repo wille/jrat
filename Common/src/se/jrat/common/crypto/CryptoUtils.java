@@ -1,7 +1,6 @@
 package se.jrat.common.crypto;
 
 import java.security.Key;
-import java.util.Random;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;

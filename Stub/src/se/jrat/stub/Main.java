@@ -15,8 +15,6 @@ public class Main {
 	
 	public static byte[] aesKey;
 	public static KeyPair rsaPair;
-	public static boolean encryption = true;
-
 	public static Robot robot;	
 	public static Robot[] robots;
 

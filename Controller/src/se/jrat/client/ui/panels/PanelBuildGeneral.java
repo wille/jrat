@@ -15,13 +15,13 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingConstants;
 
 import se.jrat.client.Help;
 import se.jrat.client.listeners.SocketComboBoxListener;
 import se.jrat.client.net.PortListener;
 import se.jrat.client.settings.Settings;
 import se.jrat.client.ui.components.PortListenerJComboBox;
-import javax.swing.SwingConstants;
 
 
 @SuppressWarnings("serial")

