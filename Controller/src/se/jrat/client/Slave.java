@@ -70,27 +70,7 @@ public class Slave extends AbstractSlave {
 
 	public void run() {
 		try {
-			initialize();
-		
-			KeyExchanger exchanger = new KeyExchanger(dis, dos, GlobalKeyPair.getKeyPair());
-			exchanger.writePublicKey();
-			exchanger.readRemotePublicKey();
-			rsaKey = exchanger.getRemoteKey();
-			
-            KeyGenerator keyGen = KeyGenerator.getInstance("AES");
-            keyGen.init(128);
-            SecretKey secretKey = keyGen.generateKey();
-
-            key = secretKey.getEncoded();
-            byte[] encryptedKey = Crypto.encrypt(key, rsaKey, "RSA");
-            dos.writeInt(encryptedKey.length);
-            dos.write(encryptedKey);
-			
-			if (Main.debug) {
-				Main.debug("Encryption key: " + Hex.encode(key));
-			}
-
-			this.outputStream.write(encryption ? 1 : 0);
+			initialize();	
 
 			while (true) {
 				byte header = readByte();

