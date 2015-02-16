@@ -7,6 +7,7 @@ import java.io.InputStream;
 public class CountingInputStream extends FilterInputStream {
 
 	private long count;
+	private long lastRead;
 	
 	public CountingInputStream(InputStream arg0) {
 		super(arg0);
@@ -20,6 +21,8 @@ public class CountingInputStream extends FilterInputStream {
 			count++;
 		}
 		
+		lastRead = System.currentTimeMillis();
+		
 		return i;
 	}
 
@@ -31,6 +34,8 @@ public class CountingInputStream extends FilterInputStream {
 			count += i;
 		}
 		
+		lastRead = System.currentTimeMillis();
+		
 		return l;
 	}
 	
@@ -41,6 +46,8 @@ public class CountingInputStream extends FilterInputStream {
 		if (i > 0) {
 			count += i;
 		}
+		
+		lastRead = System.currentTimeMillis();
 		
 		return i;
 	}
@@ -58,6 +65,10 @@ public class CountingInputStream extends FilterInputStream {
 	
 	public void reset() {
 		count = 0;
+	}
+	
+	public long getLastRead() {
+		return lastRead;
 	}
 	
 }
