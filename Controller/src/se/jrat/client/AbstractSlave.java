@@ -36,8 +36,6 @@ import com.redpois0n.oslib.Distro;
 import com.redpois0n.oslib.OperatingSystem;
 
 public abstract class AbstractSlave implements Runnable {
-
-	public static boolean encryption = true;
 	
 	protected PortListener connection;
 	protected Socket socket;
@@ -250,15 +248,6 @@ public abstract class AbstractSlave implements Runnable {
 	
 	public byte[] getKey() {
 		return key;
-	}
-	
-
-	public void lock() {
-		lock = !lock;
-	}
-
-	public boolean isLocked() {
-		return lock;
 	}
 
 	public long getUniqueId() {
