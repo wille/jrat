@@ -16,6 +16,8 @@ import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
 
+import com.redpois0n.oslib.Icons;
+
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet27RefreshSystemInfo;
 import se.jrat.client.packets.outgoing.Packet83WinSysInfo;
@@ -118,7 +120,7 @@ public class PanelControlComputerInfo extends PanelControlParent {
 		addRow("host", "Ping", slave.getPing() + "");
 		addRow("username", "Username", slave.getUsername());
 		addRow("computer_name", "Computer Name", slave.getComputerName());
-		addRow("os", "Operating System", slave.getLongOperatingSystem());
+		addRow(Icons.getIconString(slave.getOS(), slave.getLongOperatingSystem()), "Operating System", slave.getLongOperatingSystem());
 		addRow(FlagUtils.getFlag(slave), "Country", slave.getCountry());
 		addRow("folder", "Stub Location", slave.getServerPath());
 		addRow("key", "Stub Version", slave.getVersion());
