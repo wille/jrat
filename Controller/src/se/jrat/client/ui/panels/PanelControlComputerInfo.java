@@ -16,8 +16,6 @@ import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
 
-import com.redpois0n.oslib.Icons;
-
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet27RefreshSystemInfo;
 import se.jrat.client.packets.outgoing.Packet83WinSysInfo;
@@ -25,6 +23,8 @@ import se.jrat.client.ui.frames.FrameRawSystemInfo;
 import se.jrat.client.ui.renderers.table.ComputerInfoTableRenderer;
 import se.jrat.client.utils.FlagUtils;
 import se.jrat.client.utils.IconUtils;
+
+import com.redpois0n.oslib.Icons;
 
 
 @SuppressWarnings("serial")
@@ -111,8 +111,8 @@ public class PanelControlComputerInfo extends PanelControlParent {
 		while (model.getRowCount() > 0) {
 			model.removeRow(0);
 		}
-		addRow("connection_host", "Connection Host", slave.getIP());
-		addRow("localhost", "LAN IP", slave.getLocalIP());
+		addRow("connection_host", "Remote address", slave.getIP());
+		addRow("localhost", "Local address", slave.getLocalIP());
 		addRow("id", "Stub ID", slave.getServerID());
 		addRow("memory", "RAM", slave.getRam() + " MB");
 		addRow("adapters", "Available Processors", slave.getProcessors() + "");
