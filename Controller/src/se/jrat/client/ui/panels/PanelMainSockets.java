@@ -11,7 +11,6 @@ import java.awt.event.MouseEvent;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
-import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
@@ -24,7 +23,6 @@ import se.jrat.client.ErrorDialog;
 import se.jrat.client.net.PortListener;
 import se.jrat.client.ui.frames.FrameAddSocket;
 import se.jrat.client.ui.renderers.table.SocketsTableRenderer;
-
 
 @SuppressWarnings("serial")
 public class PanelMainSockets extends JPanel {
@@ -48,13 +46,7 @@ public class PanelMainSockets extends JPanel {
 
 		table = new JTable();
 		table.setDefaultRenderer(Object.class, new SocketsTableRenderer());
-		table.setModel(model = new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Status", "Name", "Port", "Timeout", "Pass"
-			}
-		));
+		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "Status", "Name", "Port", "Timeout", "Pass" }));
 		table.getColumnModel().getColumn(1).setPreferredWidth(211);
 		table.getColumnModel().getColumn(2).setPreferredWidth(60);
 		table.getColumnModel().getColumn(3).setPreferredWidth(101);
@@ -127,27 +119,14 @@ public class PanelMainSockets extends JPanel {
 
 		popupMenu.addSeparator();
 
-		JMenu mnCopy = new JMenu("Copy");
-		mnCopy.setIcon(new ImageIcon(PanelMainSockets.class.getResource("/icons/clipboard.png")));
-		popupMenu.add(mnCopy);
-
-		JMenuItem mntmPassword = new JMenuItem("Password");
+		JMenuItem mntmPassword = new JMenuItem("Copy Password");
+		popupMenu.add(mntmPassword);
 		mntmPassword.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				copy(table.getSelectedRow(), 3);
-			}
-		});
-		mntmPassword.setIcon(new ImageIcon(PanelMainSockets.class.getResource("/icons/information-button.png")));
-		mnCopy.add(mntmPassword);
-
-		JMenuItem mntmEncryptionKey = new JMenuItem("Encryption Key");
-		mntmEncryptionKey.setIcon(new ImageIcon(PanelMainSockets.class.getResource("/icons/information-button.png")));
-		mntmEncryptionKey.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				copy(table.getSelectedRow(), 4);
 			}
 		});
-		mnCopy.add(mntmEncryptionKey);
+		mntmPassword.setIcon(new ImageIcon(PanelMainSockets.class.getResource("/icons/clipboard.png")));
 
 		table.setRowHeight(25);
 		scrollPane.setViewportView(table);

@@ -15,7 +15,6 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
