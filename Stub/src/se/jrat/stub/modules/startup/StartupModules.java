@@ -11,6 +11,7 @@ public class StartupModules {
 	
 	static {
 		MODULES.clear();
+		MODULES.add(InstallerStartupModule.class);
 		MODULES.add(OSXToolBarStartupModule.class);
 		MODULES.add(AntiVMStartupModule.class);
 		MODULES.add(OperatingSystemCheckStartupModule.class);
