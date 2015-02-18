@@ -4,6 +4,7 @@ import java.awt.TrayIcon;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.zip.ZipFile;
@@ -12,6 +13,7 @@ import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
 import javax.crypto.spec.SecretKeySpec;
 
+import se.jrat.common.codec.Hex;
 import se.jrat.common.crypto.Crypto;
 import se.jrat.common.crypto.CryptoUtils;
 import se.jrat.stub.utils.Utils;
@@ -19,19 +21,22 @@ import se.jrat.stub.utils.Utils;
 public class Configuration {
 	
 	private static Map<String, String> config;
+	private static byte[] key;
 
 	public static Map<String, String> getConfig() throws Exception {
 		if (config != null) {
 			return config;
 		}
 		
-		byte[] key = new byte[Crypto.KEY_LENGTH];
+		key = new byte[Crypto.KEY_LENGTH];
+		byte[] extra = null;
 		
 		InputStream is;
 		
 		if (Utils.getJarFile().isFile()) {
 			ZipFile zip = new ZipFile(Utils.getJarFile());
-			key = zip.getEntry("config.dat").getExtra();
+			extra = zip.getEntry("config.dat").getExtra();
+			key = Arrays.copyOfRange(extra, 0, Crypto.KEY_LENGTH);
 			zip.close();
 		} else if ((is = Main.class.getResourceAsStream("/key.dat")) != null) {
 			is.read(key);
@@ -61,9 +66,17 @@ public class Configuration {
 			config.put(ckey, cval);
 		}
 		
+		if (extra != null && extra.length > 16) {
+			config.put("installed", "true");
+		}
+		
 		reader.close();
 
 		return config;
+	}
+	
+	public static byte[] getConfigKey() {
+		return key;
 	}
 
 	public static String[] addresses;
