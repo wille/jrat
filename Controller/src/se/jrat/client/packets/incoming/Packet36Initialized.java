@@ -10,12 +10,14 @@ import java.util.Map;
 
 import se.jrat.client.Globals;
 import se.jrat.client.Main;
+import se.jrat.client.OfflineSlave;
 import se.jrat.client.Slave;
 import se.jrat.client.addons.Plugin;
 import se.jrat.client.addons.PluginLoader;
 import se.jrat.client.events.Event;
 import se.jrat.client.events.Events;
 import se.jrat.client.packets.outgoing.Packet101TransferPlugin;
+import se.jrat.client.settings.OfflineSlaves;
 import se.jrat.client.settings.Settings;
 
 public class Packet36Initialized extends AbstractIncomingPacket {
@@ -25,6 +27,8 @@ public class Packet36Initialized extends AbstractIncomingPacket {
 		for (Event event : Events.queue.values()) {
 			event.perform(slave);
 		}
+		
+		OfflineSlaves.getGlobal().add(new OfflineSlave(slave));
 
 		List<String> plugins = new ArrayList<String>(Arrays.asList(slave.getPlugins()));
 		List<String> notInstalled = new ArrayList<String>();

