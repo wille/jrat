@@ -132,8 +132,8 @@ public abstract class AbstractSlave implements Runnable {
 			Main.debug("Encryption key: " + Hex.encode(key));
 		}
 
-		Cipher inCipher = CryptoUtils.getCipher(Cipher.DECRYPT_MODE, secretKey);
-		Cipher outCipher = CryptoUtils.getCipher(Cipher.ENCRYPT_MODE, secretKey);
+		Cipher inCipher = CryptoUtils.getStreamCipher(Cipher.DECRYPT_MODE, secretKey);
+		Cipher outCipher = CryptoUtils.getStreamCipher(Cipher.ENCRYPT_MODE, secretKey);
 		
 		this.inputStream = new CountingInputStream(new CipherInputStream(socket.getInputStream(), inCipher));
 		this.outputStream = new CountingOutputStream(new CipherOutputStream(socket.getOutputStream(), outCipher));
