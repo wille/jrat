@@ -18,7 +18,7 @@ import se.jrat.client.exceptions.CloseException;
 import se.jrat.client.io.CountingInputStream;
 import se.jrat.client.io.CountingOutputStream;
 import se.jrat.client.ip2c.Country;
-import se.jrat.client.net.PortListener;
+import se.jrat.client.net.ServerListener;
 import se.jrat.client.settings.CountryStatistics;
 import se.jrat.client.settings.CustomID;
 import se.jrat.client.settings.Settings;
@@ -37,7 +37,7 @@ import com.redpois0n.oslib.OperatingSystem;
 
 public abstract class AbstractSlave implements Runnable {
 	
-	protected PortListener connection;
+	protected ServerListener connection;
 	protected Socket socket;
 
 	protected CountingInputStream inputStream;
@@ -73,7 +73,7 @@ public abstract class AbstractSlave implements Runnable {
 	private String ip;
 	private String host;
 
-	public AbstractSlave(PortListener connection, Socket socket) {
+	public AbstractSlave(ServerListener connection, Socket socket) {
 		this.connection = connection;
 		this.socket = socket;
 
@@ -169,7 +169,7 @@ public abstract class AbstractSlave implements Runnable {
 		return s;
 	}
 
-	public PortListener getConnection() {
+	public ServerListener getConnection() {
 		return connection;
 	}
 

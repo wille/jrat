@@ -10,6 +10,7 @@ import javax.swing.JComboBox;
 
 import se.jrat.client.listeners.SocketComboBoxListener;
 import se.jrat.client.net.PortListener;
+import se.jrat.client.net.ServerListener;
 
 
 @SuppressWarnings("serial")
@@ -32,7 +33,7 @@ public class PortListenerJComboBox extends JComboBox<Object> {
 		super.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				PortListenerJComboBox.this.listener.onChange(PortListener.getListener(PortListenerJComboBox.this.getSelectedItem().toString()));
+				PortListenerJComboBox.this.listener.onChange(ServerListener.getListener(PortListenerJComboBox.this.getSelectedItem().toString()));
 			}
 		});
 	}

