@@ -14,19 +14,19 @@ import java.util.List;
 import se.jrat.client.Globals;
 
 
-public class ServerID extends AbstractSettings implements Serializable {
+public class CustomID extends AbstractSettings implements Serializable {
 
 	private static final long serialVersionUID = 720261533636222207L;
 
-	private transient List<ServerIDEntry> list = new ArrayList<ServerIDEntry>();
+	private transient List<CustomIDEntry> list = new ArrayList<CustomIDEntry>();
 
-	private static final ServerID instance = new ServerID();
+	private static final CustomID instance = new CustomID();
 
-	public static ServerID getGlobal() {
+	public static CustomID getGlobal() {
 		return instance;
 	}
 
-	public List<ServerIDEntry> getIDList() {
+	public List<CustomIDEntry> getIDList() {
 		return list;
 	}
 
@@ -44,7 +44,7 @@ public class ServerID extends AbstractSettings implements Serializable {
 			String name = reader.readLine();
 			String realname = reader.readLine();	
 			
-			ServerIDEntry se = new ServerIDEntry(ip, name, realname);
+			CustomIDEntry se = new CustomIDEntry(ip, name, realname);
 			list.add(se);
 		}
 		
@@ -60,7 +60,7 @@ public class ServerID extends AbstractSettings implements Serializable {
 		pw.println("Renamed connections list");
 		pw.println(list.size());
 		
-		for (ServerIDEntry en : list) {
+		for (CustomIDEntry en : list) {
 			pw.println(en.getIP());
 			pw.println(en.getName());
 			pw.println(en.getRealName());
@@ -69,9 +69,9 @@ public class ServerID extends AbstractSettings implements Serializable {
 		pw.close();
 	}
 
-	public ServerIDEntry findEntry(String ip) {
+	public CustomIDEntry findEntry(String ip) {
 		for (int i = 0; i < list.size(); i++) {
-			ServerIDEntry entry = list.get(i);
+			CustomIDEntry entry = list.get(i);
 			if (entry.ip.equals(ip)) {
 				return entry;
 			}
@@ -80,25 +80,25 @@ public class ServerID extends AbstractSettings implements Serializable {
 	}
 
 	public void remove(String ip) {
-		ServerIDEntry entry = findEntry(ip);
+		CustomIDEntry entry = findEntry(ip);
 		if (entry != null) {
 			list.remove(entry);
 		}
 	}
 
 	public void add(String name, String realname, String ip) {
-		for (ServerID.ServerIDEntry entry : list) {
+		for (CustomID.CustomIDEntry entry : list) {
 			if (entry.getIP().equals(ip)) {
 				list.remove(entry);
 				break;
 			}
 		}
 		
-		ServerID.ServerIDEntry entry = new ServerID.ServerIDEntry(ip, name, realname);
+		CustomID.CustomIDEntry entry = new CustomID.CustomIDEntry(ip, name, realname);
 		list.add(entry);
 	}
 
-	public class ServerIDEntry implements Serializable {
+	public class CustomIDEntry implements Serializable {
 
 		private static final long serialVersionUID = -7849684598729199956L;
 
@@ -106,7 +106,7 @@ public class ServerID extends AbstractSettings implements Serializable {
 		private final String name;
 		private final String realname;
 
-		public ServerIDEntry(String ip, String name, String realname) {
+		public CustomIDEntry(String ip, String name, String realname) {
 			this.ip = ip;
 			this.name = name;
 			this.realname = realname;

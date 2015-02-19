@@ -16,7 +16,7 @@ import javax.swing.JSpinner;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SpinnerNumberModel;
 
-import se.jrat.client.settings.ServerID;
+import se.jrat.client.settings.CustomID;
 import se.jrat.client.settings.Settings;
 
 
@@ -72,7 +72,7 @@ public class PanelSettingsMain extends JPanel {
 		btnClearRenamedServers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (JOptionPane.showConfirmDialog(null, "Confirm clearing all saved names (Cant be undone)", "Confirm", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
-					ServerID.getGlobal().getIDList().clear();
+					CustomID.getGlobal().getIDList().clear();
 				}
 			}
 		});

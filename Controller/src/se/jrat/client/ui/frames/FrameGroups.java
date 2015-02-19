@@ -87,13 +87,13 @@ public class FrameGroups extends BaseFrame {
 			String val = slave.getUsername() + "@" + slave.getDisplayName();
 			renderer.icons.put(val.toLowerCase(), slave.getFlag());
 
-			if (nodes.containsKey(slave.getServerID())) {
-				model.insertNodeInto(new DefaultMutableTreeNode(val), nodes.get(slave.getServerID()), nodes.get(slave.getServerID()).getChildCount());
+			if (nodes.containsKey(slave.getID())) {
+				model.insertNodeInto(new DefaultMutableTreeNode(val), nodes.get(slave.getID()), nodes.get(slave.getID()).getChildCount());
 			} else {
-				DefaultMutableTreeNode r = new DefaultMutableTreeNode(slave.getServerID());
-				nodes.put(slave.getServerID(), r);
-				model.insertNodeInto(nodes.get(slave.getServerID()), root, root.getChildCount());
-				model.insertNodeInto(new DefaultMutableTreeNode(val), nodes.get(slave.getServerID()), nodes.get(slave.getServerID()).getChildCount());
+				DefaultMutableTreeNode r = new DefaultMutableTreeNode(slave.getID());
+				nodes.put(slave.getID(), r);
+				model.insertNodeInto(nodes.get(slave.getID()), root, root.getChildCount());
+				model.insertNodeInto(new DefaultMutableTreeNode(val), nodes.get(slave.getID()), nodes.get(slave.getID()).getChildCount());
 			}
 		}
 
