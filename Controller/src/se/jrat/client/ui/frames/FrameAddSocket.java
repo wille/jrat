@@ -5,10 +5,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -19,8 +21,11 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
 
 import se.jrat.client.ErrorDialog;
+import se.jrat.client.net.PortListener;
 import se.jrat.client.net.ServerListener;
+import se.jrat.client.settings.Sockets;
 import se.jrat.client.utils.Utils;
+import se.jrat.client.webpanel.WebPanelListener;
 
 @SuppressWarnings("serial")
 public class FrameAddSocket extends BaseFrame {
@@ -30,6 +35,7 @@ public class FrameAddSocket extends BaseFrame {
 	private JSpinner sTimeout;
 	private JSpinner sPort;
 	private JTextField txtName;
+	private JComboBox cbType;
 
 	public FrameAddSocket() {
 		super();
@@ -71,6 +77,11 @@ public class FrameAddSocket extends BaseFrame {
 
 		txtName = new JTextField("Socket" + (new Random().nextInt(10000)));
 		txtName.setColumns(10);
+		
+		JLabel lblType = new JLabel("Type:");
+		
+		cbType = new JComboBox();
+		cbType.setModel(new DefaultComboBoxModel(new String[] {"Client Listener", "Web Panel Listener"}));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
@@ -82,7 +93,8 @@ public class FrameAddSocket extends BaseFrame {
 								.addComponent(lblName)
 								.addComponent(lblTimeout)
 								.addComponent(lblPass)
-								.addComponent(lblPort))
+								.addComponent(lblPort)
+								.addComponent(lblType))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 								.addComponent(txtName, 217, 217, Short.MAX_VALUE)
@@ -91,7 +103,8 @@ public class FrameAddSocket extends BaseFrame {
 									.addComponent(sTimeout, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addComponent(lblSeconds))
-								.addComponent(txtPass, GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)))
+								.addComponent(txtPass, GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+								.addComponent(cbType, 0, 217, Short.MAX_VALUE)))
 						.addComponent(btnListen, Alignment.TRAILING))
 					.addContainerGap())
 		);
@@ -119,7 +132,11 @@ public class FrameAddSocket extends BaseFrame {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(txtPass, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblPass))
-					.addPreferredGap(ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblType)
+						.addComponent(cbType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
 					.addComponent(btnListen)
 					.addContainerGap())
 		);
@@ -133,13 +150,20 @@ public class FrameAddSocket extends BaseFrame {
 			int timeout = Integer.parseInt(sTimeout.getValue().toString()) * 1000;
 			String pass = txtPass.getText().trim();
 			String name = txtName.getText().trim();
+			int type = cbType.getSelectedIndex();
 
 			if (pass.length() == 0) {
 				throw new Exception("Password length must be over 0");
 			} else if (name.length() == 0) {
 				name = "Socket" + (new Random()).nextInt(10000);
 			}
-			ServerListener connection = new ServerListener(name, port, timeout, pass);
+			
+			PortListener connection = null;
+			if (type == Sockets.SocketType.NORMAL_SOCKET) {
+				connection = new ServerListener(name, port, timeout, pass);
+			} else if (type == Sockets.SocketType.WEB_PANEL_SOCKET) {
+				connection = new WebPanelListener(name, port, pass);
+			}
 			connection.start();
 			setVisible(false);
 			dispose();

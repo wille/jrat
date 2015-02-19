@@ -116,7 +116,7 @@ public class Sockets extends AbstractSettings implements Serializable {
 					connection.start();
 				} else if (type == SocketType.WEB_PANEL_SOCKET) {
 					WebPanelListener wpl = new WebPanelListener(name, port, pass);
-					new Thread(wpl).start();
+					wpl.start();
 				} else {
 					throw new InvalidSocketTypeException();
 				}

