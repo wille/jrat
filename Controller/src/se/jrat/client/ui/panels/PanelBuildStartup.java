@@ -25,7 +25,6 @@ import se.jrat.common.DropLocations;
 public class PanelBuildStartup extends JPanel {
 
 	private JTextField txtName;
-	private JCheckBox chckbxStartServerWith;
 	private JComboBox<String> comboBox;
 	private JCheckBox chckbxMeltDropperAfter;
 	private JButton button;
@@ -34,10 +33,6 @@ public class PanelBuildStartup extends JPanel {
 
 	public String getJarname() {
 		return txtName.getText().trim();
-	}
-
-	public boolean dropper() {
-		return chckbxStartServerWith.isSelected();
 	}
 
 	public int droploc() {
@@ -68,21 +63,17 @@ public class PanelBuildStartup extends JPanel {
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 232, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(57, Short.MAX_VALUE))
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 206, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(83, Short.MAX_VALUE))
 		);
 
-		chckbxStartServerWith = new JCheckBox("Start stub with os boot (Installer) (When updating)");
-		chckbxStartServerWith.setToolTipText("");
-		chckbxStartServerWith.setSelected(Settings.getGlobal().getBoolean("bcrypt"));
-
-		JLabel lblDropIn = new JLabel("Drop in:");
+		JLabel lblInstallIn = new JLabel("Install in:");
 
 		comboBox = new JComboBox<String>();
 		comboBox.setToolTipText("Drop directory");
 		comboBox.setModel(new DefaultComboBoxModel<String>(DropLocations.STRINGS));
 
-		JLabel lblDroppedFileAnd = new JLabel("Dropped file and reg key name:");
+		JLabel lblDroppedFileAnd = new JLabel("File and reg key name:");
 
 		txtName = new JTextField(Settings.getGlobal().getString("jarname"));
 		txtName.setToolTipText("File name of installed file and key in registry in Windows");
@@ -117,12 +108,11 @@ public class PanelBuildStartup extends JPanel {
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(label))
 						.addComponent(chckbxHideInstalledFile)
-						.addComponent(chckbxStartServerWith)
 						.addComponent(chckbxMeltDropperAfter)
 						.addComponent(button)
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblDropIn)
+								.addComponent(lblInstallIn)
 								.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 152, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
@@ -134,10 +124,8 @@ public class PanelBuildStartup extends JPanel {
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(chckbxStartServerWith)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblDropIn)
+						.addComponent(lblInstallIn)
 						.addComponent(lblDroppedFileAnd))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
@@ -151,9 +139,9 @@ public class PanelBuildStartup extends JPanel {
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(chckbxRunNextStart)
 						.addComponent(label))
-					.addPreferredGap(ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
 					.addComponent(button)
-					.addContainerGap())
+					.addGap(37))
 		);
 		panel.setLayout(gl_panel);
 		setLayout(groupLayout);

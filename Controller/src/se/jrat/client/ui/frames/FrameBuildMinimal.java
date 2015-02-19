@@ -12,7 +12,6 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -56,7 +55,6 @@ public class FrameBuildMinimal extends BaseFrame {
 	private JTextField txtFile;
 	private JTextField txtPass;
 	private JComboBox<String> cbLocation;
-	private JCheckBox chckbxEmbed;
 	private JProgressBar progressBar;
 	private JButton btnBuild;
 	private LinkedHashMap<String, BuildStatus> statuses = new LinkedHashMap<String, BuildStatus>();
@@ -99,8 +97,6 @@ public class FrameBuildMinimal extends BaseFrame {
 		txtId.setText(Settings.getGlobal().getString("bid"));
 		txtId.setColumns(10);
 
-		chckbxEmbed = new JCheckBox("Embed using installer");
-
 		cbLocation = new JComboBox<String>();
 		cbLocation.setModel(new DefaultComboBoxModel<String>(DropLocations.STRINGS));
 
@@ -109,7 +105,7 @@ public class FrameBuildMinimal extends BaseFrame {
 		txtFile = new JTextField();
 		txtFile.setColumns(10);
 
-		JLabel lblPath = new JLabel("Path:");
+		JLabel lblPath = new JLabel("Install to:");
 
 		JLabel lbljar = new JLabel(".jar");
 
@@ -134,7 +130,6 @@ public class FrameBuildMinimal extends BaseFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(chckbxEmbed)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 								.addComponent(lblKeyfile)
@@ -199,9 +194,7 @@ public class FrameBuildMinimal extends BaseFrame {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(txtPass, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblPass))
-					.addGap(43)
-					.addComponent(chckbxEmbed)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGap(68)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(cbLocation, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblPath))

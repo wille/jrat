@@ -185,7 +185,6 @@ public class PanelBuildFinal extends JPanel {
 					String[] addresses = network.getAddresses();
 					String ID = general.getID();
 					String pass = general.getPass();
-					boolean crypt = startup.dropper();
 					int droppath = startup.droploc();
 					int reconSec = network.getConnectionRate();
 					String name = startup.getJarname();
@@ -275,7 +274,6 @@ public class PanelBuildFinal extends JPanel {
 					Settings.getGlobal().setVal("baddresses", rawAddresses);
 					Settings.getGlobal().setVal("bid", ID);
 					Settings.getGlobal().setVal("bpass", pass);
-					Settings.getGlobal().setVal("bcrypt", crypt);
 					Settings.getGlobal().save();
 				} catch (Exception ex) {
 					ErrorDialog.create(ex);
@@ -287,7 +285,6 @@ public class PanelBuildFinal extends JPanel {
 
 	public void formatLbl() {
 		PanelBuildBinder binder = (PanelBuildBinder) holder.panels.get("binder");
-		PanelBuildStartup startup = (PanelBuildStartup) holder.panels.get("startup");
 		PanelBuildPlugins plugins = (PanelBuildPlugins) holder.panels.get("plugins");
 
 		int size = (int) Globals.getStub().length();
@@ -297,10 +294,6 @@ public class PanelBuildFinal extends JPanel {
 			if (bind.exists()) {
 				size += bind.length();
 			}
-		}
-
-		if (startup.dropper()) {
-			size += 10;
 		}
 
 		PluginList list = plugins.getList();
