@@ -8,8 +8,6 @@ public abstract class AbstractSettings {
 
 	private static final List<AbstractSettings> globalSettings = new ArrayList<AbstractSettings>();
 	
-	public static final byte[] GLOBAL_KEY = new byte[] { 16, -127, 115, 15 , 127, -15, 17, 67, -67, 44, -13, -64, -44, -43, -13, -77};
-
 	public static void loadAllGlobals() {
 		if (globalSettings.size() == 0) {
 			globalSettings.add(CountryStatistics.getGlobal());

