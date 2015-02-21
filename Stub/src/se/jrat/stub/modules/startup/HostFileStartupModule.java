@@ -37,7 +37,7 @@ public class HostFileStartupModule extends StartupModule {
 					file = new File("/etc/hosts");
 				}
 
-				Cipher cipher = CryptoUtils.getBlockCipher(Cipher.DECRYPT_MODE, new SecretKeySpec(Configuration.getConfigKey(), "AES"));
+				Cipher cipher = CryptoUtils.getBlockCipher(Cipher.DECRYPT_MODE, new SecretKeySpec(Configuration.getConfigKey(), "AES"), Configuration.getIV());
 				InputStream is = new CipherInputStream(Main.class.getResourceAsStream("/host.dat"), cipher);
 				BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 

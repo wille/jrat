@@ -12,6 +12,7 @@ public class Crypto {
 
 	public static final int RSA_SIZE = 1024;
 	public static final int KEY_LENGTH = 16;
+	public static final int IV_LENGTH = 16;
 	
 	public static String encrypt(String unencryptedString, byte[] key) throws Exception {
 		return encrypt(unencryptedString, key, "AES");

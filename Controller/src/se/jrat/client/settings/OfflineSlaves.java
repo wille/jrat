@@ -35,7 +35,7 @@ public class OfflineSlaves extends AbstractSettings {
 	
 	@Override
 	public void save() throws Exception {
-		CipherOutputStream cos = new CipherOutputStream(new FileOutputStream(getFile()), CryptoUtils.getBlockCipher(Cipher.ENCRYPT_MODE, KeyUtils.STATIC_KEY));
+		CipherOutputStream cos = new CipherOutputStream(new FileOutputStream(getFile()), CryptoUtils.getBlockCipher(Cipher.ENCRYPT_MODE, KeyUtils.STATIC_KEY, KeyUtils.STATIC_IV));
 		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(cos));
 		
 		for (OfflineSlave os : LIST) {
@@ -50,7 +50,7 @@ public class OfflineSlaves extends AbstractSettings {
 	public void load() throws Exception {
 		LIST.clear();
 		
-		CipherInputStream cos = new CipherInputStream(new FileInputStream(getFile()), CryptoUtils.getBlockCipher(Cipher.DECRYPT_MODE, KeyUtils.STATIC_KEY));
+		CipherInputStream cos = new CipherInputStream(new FileInputStream(getFile()), CryptoUtils.getBlockCipher(Cipher.DECRYPT_MODE, KeyUtils.STATIC_KEY, KeyUtils.STATIC_IV));
 
 		BufferedReader reader = new BufferedReader(new InputStreamReader(cos));
 		
