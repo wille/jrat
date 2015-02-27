@@ -48,9 +48,9 @@ import se.jrat.client.ui.dialogs.DialogMonitors;
 import se.jrat.client.ui.dialogs.DialogRecordRemoteScreen;
 import se.jrat.client.ui.renderers.JComboBoxIconRenderer;
 import se.jrat.client.utils.IconUtils;
+import se.jrat.common.utils.DataUnits;
 
 import com.redpois0n.graphs.monitors.RemoteMonitor;
-import com.redpois0n.graphs.network.DataUnits;
 
 
 @SuppressWarnings("serial")
