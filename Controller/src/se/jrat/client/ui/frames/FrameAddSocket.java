@@ -35,7 +35,7 @@ public class FrameAddSocket extends BaseFrame {
 	private JSpinner sTimeout;
 	private JSpinner sPort;
 	private JTextField txtName;
-	private JComboBox cbType;
+	private JComboBox<String> cbType;
 
 	public FrameAddSocket() {
 		super();
@@ -80,8 +80,8 @@ public class FrameAddSocket extends BaseFrame {
 		
 		JLabel lblType = new JLabel("Type:");
 		
-		cbType = new JComboBox();
-		cbType.setModel(new DefaultComboBoxModel(new String[] {"Client Listener", "Web Panel Listener"}));
+		cbType = new JComboBox<String>();
+		cbType.setModel(new DefaultComboBoxModel<String>(new String[] {"Client Listener", "Web Panel Listener"}));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
