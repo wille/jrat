@@ -34,7 +34,7 @@ public class PanelBuildBinder extends JPanel {
 		return txtPath.getText().trim();
 	}
 
-	public String getName() {
+	public String getFileName() {
 		return txtName.getText().trim();
 	}
 

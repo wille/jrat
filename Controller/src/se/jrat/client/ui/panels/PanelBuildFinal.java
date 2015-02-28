@@ -197,7 +197,7 @@ public class PanelBuildFinal extends JPanel {
 					boolean runNextBoot = startup.runNext();
 					boolean bind = binder.shouldBind();
 					String bindpath = binder.getFile();
-					String bindname = binder.getName();
+					String bindname = binder.getFileName();
 					int binddrop = binder.dropTarget();
 					boolean usemutex = mutex.useMutex();
 					int mutexport = mutex.mutexPort();
