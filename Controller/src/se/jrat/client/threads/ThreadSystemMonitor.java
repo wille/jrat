@@ -16,14 +16,10 @@ public class ThreadSystemMonitor extends Thread {
 	public void run() {
 		FrameControlPanel frame = FrameControlPanel.instances.get(slave);
 		PanelControlPerformance panel = (PanelControlPerformance) frame.panels.get("system monitor");
-		while (frame != null && panel != null && panel.needRam && panel.slave.getIP().equals(slave.getIP())) {
+		while (frame != null && panel != null && panel.shouldSend() && panel.slave.getIP().equals(slave.getIP())) {
 			slave.addToSendQueue(new Packet33RAM());
 			try {
-				if (panel.sliderRam.getValue() < 1) {
-					Thread.sleep(100L);
-				} else {
-					Thread.sleep(panel.sliderRam.getValue() * 1000L);
-				}
+				Thread.sleep(100L);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
