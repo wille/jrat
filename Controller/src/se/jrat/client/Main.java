@@ -39,7 +39,7 @@ public class Main {
 
 	public static boolean liteVersion = true;
 	public static boolean debug;
-	public static boolean noSsl;
+	public static boolean hideTitle;
 
 	public static final List<AbstractSlave> connections = new ArrayList<AbstractSlave>();
 	public static Frame instance;
@@ -82,6 +82,7 @@ public class Main {
 		}
 
 		debug = argsContains(args, "-debug");
+		hideTitle = argsContains(args, "-hidetitle");
 
 		if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
 			System.setProperty("apple.laf.useScreenMenuBar", "true");
@@ -230,6 +231,10 @@ public class Main {
 	}
 
 	public static String formatTitle() {
+		if (hideTitle) {
+			return Constants.NAME;
+		}
+		
 		String suffix = liteVersion && !debug ? "Limited" : "";
 
 		return Constants.NAME + " [" + connections.size() + "] " + Version.getVersion() + " " + suffix;
