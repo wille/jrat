@@ -9,12 +9,11 @@ public class Packet24JVMMemory extends AbstractOutgoingPacket {
 
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		Runtime rt = Runtime.getRuntime();
-		long usedMB = (rt.totalMemory() - rt.freeMemory()) / 1024L / 1024L;
-		long totalMB = rt.totalMemory() / 1024L / 1024L;
+		int used = (int) (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory());
+		int total = (int) Runtime.getRuntime().totalMemory();
 
-		dos.writeLong(usedMB);
-		dos.writeLong(totalMB);
+		dos.writeInt(used);
+		dos.writeInt(total);
 	}
 
 	@Override
