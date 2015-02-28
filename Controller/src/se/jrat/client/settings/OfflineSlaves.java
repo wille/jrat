@@ -39,6 +39,7 @@ public class OfflineSlaves extends AbstractSettings {
 		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(cos));
 		
 		for (OfflineSlave os : LIST) {
+			System.out.println("Saving: " + OfflineSlave.toString(os));
 			writer.write(OfflineSlave.toString(os));
 			writer.newLine();
 		}
@@ -58,7 +59,7 @@ public class OfflineSlaves extends AbstractSettings {
 		
 		while ((line = reader.readLine()) != null) {
 			OfflineSlave os = OfflineSlave.fromString(line);
-			
+						
 			if (System.currentTimeMillis() - os.getCreation() > TTL) {
 				continue;
 			}

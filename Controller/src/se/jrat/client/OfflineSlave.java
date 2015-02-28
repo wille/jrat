@@ -39,7 +39,9 @@ public class OfflineSlave {
 	
 	public static OfflineSlave fromString(String s) {
 		String[] array = s.split(":");
-		return new OfflineSlave(array[0], array[1], array[2], array[3], array[4], array[5], Long.parseLong(array[6]));
+		OfflineSlave os = new OfflineSlave(array[0], array[1], array[2], array[3], array[4], array[5], Long.parseLong(array[6]));
+		os.setCreation(Long.parseLong(array[7]));
+		return os;
 	}
 	
 	public static String toString(OfflineSlave slave) {
@@ -51,6 +53,7 @@ public class OfflineSlave {
 		sb.append(slave.ip + ":");
 		sb.append(slave.country + ":");
 		sb.append(slave.randomId + ":");
+		sb.append(slave.creation);
 		
 		return sb.toString();
 	}
@@ -73,6 +76,10 @@ public class OfflineSlave {
 	
 	public long getCreation() {
 		return creation;
+	}
+	
+	public void setCreation(long creation) {
+		this.creation = creation;
 	}
 	
 	public long getRandomId() {
