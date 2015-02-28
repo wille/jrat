@@ -50,8 +50,7 @@ public class OfflineSlave {
 		sb.append(slave.version + ":");
 		sb.append(slave.ip + ":");
 		sb.append(slave.country + ":");
-		sb.append(slave.creation + ":");
-		sb.append(slave.randomId);
+		sb.append(slave.randomId + ":");
 		
 		return sb.toString();
 	}
