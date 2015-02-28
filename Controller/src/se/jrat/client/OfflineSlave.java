@@ -12,7 +12,7 @@ public class OfflineSlave {
 	protected String ip;
 	protected String country;
 	protected long creation = System.currentTimeMillis();
-	protected long randomId = getRandomId();
+	protected long randomId = newRandomId();
 	
 	public OfflineSlave(AbstractSlave slave) {
 		this.userstring = slave.formatUserString();
@@ -75,7 +75,11 @@ public class OfflineSlave {
 		return creation;
 	}
 	
-	public static long getRandomId() {
+	public long getRandomId() {
+		return randomId;
+	}
+	
+	public static long newRandomId() {
 		int i = -new Random().nextInt(Integer.MAX_VALUE);
 		return i;
 	}

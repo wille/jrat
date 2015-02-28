@@ -83,5 +83,22 @@ public class OfflineSlaves extends AbstractSettings {
 		
 		LIST.add(offlineSlave);
 	}
+	
+	public void remove(OfflineSlave offlineSlave) {
+		for (OfflineSlave os : getList()) {
+			if(offlineSlave.getRandomId() == os.getRandomId()) {
+				getList().remove(os);
+			}
+		}
+	}
+
+	public void remove(long id) {
+		for (int i = 0; i < getList().size(); i++) {
+			if(getList().get(i).getRandomId() == id) {
+				getList().remove(i);
+			}
+		}
+		
+	}
 
 }
