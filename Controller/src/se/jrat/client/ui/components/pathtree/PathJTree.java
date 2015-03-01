@@ -3,9 +3,11 @@ package se.jrat.client.ui.components.pathtree;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.swing.JTree;
+import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
@@ -111,7 +113,7 @@ public class PathJTree extends JTree {
 		for (int i = 0; i < super.getRowCount(); i++) {
 			TreePath treePath = super.getPathForRow(i);
 			String mpath = makePath(treePath);
-						
+
 			if (mpath.equalsIgnoreCase(path)) {
 				return (TreeNode) treePath.getLastPathComponent();
 			}
@@ -120,4 +122,16 @@ public class PathJTree extends JTree {
 		return null;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public boolean exists(String s) {
+	    Enumeration<DefaultMutableTreeNode> e = ((DefaultMutableTreeNode) getRealModel().getRootNode()).depthFirstEnumeration();
+	    while (e.hasMoreElements()) {
+	        DefaultMutableTreeNode node = e.nextElement();
+	        String path = makePath(new TreePath(node.getPath()));
+	        if (s.equalsIgnoreCase(path)) {
+	            return true;
+	        }
+	    }
+	    return false;
+	}
 }

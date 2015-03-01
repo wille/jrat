@@ -44,8 +44,13 @@ public class Packet54Registry extends AbstractIncomingPacket {
 
 				frame.getRenderer().icons.put(name, icon);
 				frame.getModel().addRow(new Object[] { name, args[2], args[1] });
-			} else {
-				frame.getTreeModel().insertNodeInto(new PathTreeNode(name, FrameRemoteRegistry.FOLDER_ICON), (DefaultMutableTreeNode) frame.getTree().getNodeFromPath(path), 0);
+			} else {				
+				if (frame.getTree().exists(path + "\\" + name)) {
+					return;
+				}
+				
+				DefaultMutableTreeNode node = (DefaultMutableTreeNode) frame.getTree().getNodeFromPath(path);
+				frame.getTreeModel().insertNodeInto(new PathTreeNode(name, FrameRemoteRegistry.FOLDER_ICON), node, node.getChildCount());
 			}
 		}
 

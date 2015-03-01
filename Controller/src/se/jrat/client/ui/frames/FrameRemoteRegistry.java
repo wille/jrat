@@ -42,7 +42,7 @@ import se.jrat.client.ui.renderers.table.RegistryTableRenderer;
 import se.jrat.client.utils.IconUtils;
 import se.jrat.client.utils.Utils;
 
-@SuppressWarnings({ "serial", "rawtypes" })
+@SuppressWarnings( "serial" )
 public class FrameRemoteRegistry extends BaseFrame {
 
 	private JPanel contentPane;
@@ -70,7 +70,6 @@ public class FrameRemoteRegistry extends BaseFrame {
 		return model;
 	}
 
-	@SuppressWarnings("unchecked")
 	public FrameRemoteRegistry(Slave sl) {
 		super();
 		this.slave = sl;
