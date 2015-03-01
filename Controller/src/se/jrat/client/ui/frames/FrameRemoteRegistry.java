@@ -43,7 +43,7 @@ import se.jrat.client.ui.renderers.JComboBoxIconRenderer;
 import se.jrat.client.ui.renderers.table.RegistryTableRenderer;
 import se.jrat.client.utils.IconUtils;
 import se.jrat.client.utils.Utils;
-
+import javax.swing.JSplitPane;
 
 @SuppressWarnings({ "serial", "rawtypes" })
 public class FrameRemoteRegistry extends BaseFrame {
@@ -88,9 +88,9 @@ public class FrameRemoteRegistry extends BaseFrame {
 		setTitle("Registry - " + "[" + slave.formatUserString() + "] - " + slave.getIP());
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRemoteRegistry.class.getResource("/icons/registry.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 579, 397);
+		setBounds(100, 100, 800, 500);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		setContentPane(contentPane);
 
 		comboBox = new JComboBox();
@@ -105,147 +105,18 @@ public class FrameRemoteRegistry extends BaseFrame {
 		comboBox.setModel(new DefaultComboBoxModel(ROOT_VALUES));
 		comboBox.setRenderer(getRenderer(comboBox));
 
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-
-		txt = new JTextField();
-		txt.setEditable(false);
-		txt.setColumns(10);
-
-		JButton btnBack = new JButton("Back");
-		btnBack.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				String str = txt.getText().trim();
-				if (str.lastIndexOf("\\") != -1) {
-					str = str.substring(0, str.lastIndexOf("\\"));
-					execute(str);
-					txt.setText(str);
-				}
-			}
-		});
-		btnBack.setIcon(new ImageIcon(FrameRemoteRegistry.class.getResource("/icons/left.png")));
-
 		JToolBar toolBar = new JToolBar();
 		toolBar.setFloatable(false);
-		
-		JScrollPane scrollPane_1 = new JScrollPane();
+
+		JSplitPane splitPane = new JSplitPane();
+		splitPane.setResizeWeight(0.7);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 164, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(toolBar, GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(txt, GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnBack))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(2)
-							.addComponent(scrollPane_1, GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 341, GroupLayout.PREFERRED_SIZE)))
-					.addGap(3))
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(toolBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(scrollPane_1, GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
-						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(txt, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnBack))
-					.addGap(7))
-		);
-		
-		tree = new PathJTree();
-		tree.setModel(new PathTreeModel(new PathTreeNode("root", null)));
-		tree.setDelimiter("\\");
-		tree.addPathListener(new PathListener() {
-			@Override
-			public void pathSelected(String path) {
-				System.out.println("Selected: " + path);
-				clear();
-				execute(path);
-				txt.setText(path);
-			}		
-		});
-		scrollPane_1.setViewportView(tree);
-		
-		for (String root : ROOT_VALUES) {
-			getTreeModel().addRoot(new PathTreeNode(root, IconUtils.getIcon("folder_network")));
-		}
-		
-		for (int i = 0; i < tree.getRowCount(); i++) {
-			tree.expandRow(i);
-		}
-		
-		tree.setRootVisible(false);
+		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addGroup(gl_contentPane.createSequentialGroup().addContainerGap().addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 164, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(toolBar, GroupLayout.PREFERRED_SIZE, 380, Short.MAX_VALUE).addGap(3)).addComponent(splitPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE));
+		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addContainerGap().addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(toolBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addPreferredGap(ComponentPlacement.RELATED).addComponent(splitPane, GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)));
 
-		JButton btnReload = new JButton("Reload");
-		toolBar.add(btnReload);
-		btnReload.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				reload();
-			}
-		});
-		btnReload.setIcon(new ImageIcon(FrameRemoteRegistry.class.getResource("/icons/update.png")));
-
-		JButton btnClear = new JButton("Clear");
-		toolBar.add(btnClear);
-		btnClear.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				clear();
-			}
-		});
-		btnClear.setIcon(new ImageIcon(FrameRemoteRegistry.class.getResource("/icons/clear.png")));
-
-		JButton btnAdd = new JButton("Add");
-		toolBar.add(btnAdd);
-		btnAdd.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				addValue();
-			}
-		});
-		btnAdd.setIcon(new ImageIcon(FrameRemoteRegistry.class.getResource("/icons/key_plus.png")));
-
-		JButton btnRemove = new JButton("Remove");
-		toolBar.add(btnRemove);
-		btnRemove.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				removeValue();
-			}
-		});
-		btnRemove.setIcon(new ImageIcon(FrameRemoteRegistry.class.getResource("/icons/key_minus.png")));
-
-		JButton btnEdit = new JButton("Edit");
-		toolBar.add(btnEdit);
-		btnEdit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				editValue();
-			}
-		});
-		btnEdit.setIcon(new ImageIcon(FrameRemoteRegistry.class.getResource("/icons/key_pencil.png")));
-
-		JButton btnCustomCommand = new JButton("Custom");
-		btnCustomCommand.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				DialogCustomRegQuery frame = new DialogCustomRegQuery(slave);
-				frame.setVisible(true);
-			}
-		});
-		btnCustomCommand.setIcon(new ImageIcon(FrameRemoteRegistry.class.getResource("/icons/key_arrow.png")));
-		toolBar.add(btnCustomCommand);
+		JScrollPane scrollPane = new JScrollPane();
+		splitPane.setRightComponent(scrollPane);
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
 		table = new JTable();
 		table.addMouseListener(new MouseAdapter() {
@@ -313,6 +184,106 @@ public class FrameRemoteRegistry extends BaseFrame {
 		mntmStartup = new JMenuItem("Startup");
 		mnBrowse.add(mntmStartup);
 		scrollPane.setViewportView(table);
+
+		JScrollPane scrollPane_1 = new JScrollPane();
+		splitPane.setLeftComponent(scrollPane_1);
+
+		tree = new PathJTree();
+		tree.setModel(new PathTreeModel(new PathTreeNode("root", null)));
+		tree.setDelimiter("\\");
+		tree.addPathListener(new PathListener() {
+			@Override
+			public void pathSelected(String path) {
+				clear();
+				execute(path);
+				txt.setText(path);
+			}
+		});
+		scrollPane_1.setViewportView(tree);
+
+		for (String root : ROOT_VALUES) {
+			getTreeModel().addRoot(new PathTreeNode(root, IconUtils.getIcon("folder_network")));
+		}
+
+		for (int i = 0; i < tree.getRowCount(); i++) {
+			tree.expandRow(i);
+		}
+		
+		tree.setRootVisible(false);
+
+		txt = new JTextField();
+		toolBar.add(txt);
+		txt.setEditable(false);
+		txt.setColumns(10);
+
+		JButton btnBack = new JButton("Back");
+		toolBar.add(btnBack);
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String str = txt.getText().trim();
+				if (str.lastIndexOf("\\") != -1) {
+					str = str.substring(0, str.lastIndexOf("\\"));
+					execute(str);
+					txt.setText(str);
+				}
+			}
+		});
+		btnBack.setIcon(new ImageIcon(FrameRemoteRegistry.class.getResource("/icons/left.png")));
+
+		JButton btnReload = new JButton("Reload");
+		toolBar.add(btnReload);
+		btnReload.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				reload();
+			}
+		});
+		btnReload.setIcon(new ImageIcon(FrameRemoteRegistry.class.getResource("/icons/update.png")));
+
+		JButton btnClear = new JButton("Clear");
+		toolBar.add(btnClear);
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				clear();
+			}
+		});
+		btnClear.setIcon(new ImageIcon(FrameRemoteRegistry.class.getResource("/icons/clear.png")));
+
+		JButton btnAdd = new JButton("Add");
+		toolBar.add(btnAdd);
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				addValue();
+			}
+		});
+		btnAdd.setIcon(new ImageIcon(FrameRemoteRegistry.class.getResource("/icons/key_plus.png")));
+
+		JButton btnRemove = new JButton("Remove");
+		toolBar.add(btnRemove);
+		btnRemove.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				removeValue();
+			}
+		});
+		btnRemove.setIcon(new ImageIcon(FrameRemoteRegistry.class.getResource("/icons/key_minus.png")));
+
+		JButton btnEdit = new JButton("Edit");
+		toolBar.add(btnEdit);
+		btnEdit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				editValue();
+			}
+		});
+		btnEdit.setIcon(new ImageIcon(FrameRemoteRegistry.class.getResource("/icons/key_pencil.png")));
+
+		JButton btnCustomCommand = new JButton("Custom");
+		btnCustomCommand.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DialogCustomRegQuery frame = new DialogCustomRegQuery(slave);
+				frame.setVisible(true);
+			}
+		});
+		btnCustomCommand.setIcon(new ImageIcon(FrameRemoteRegistry.class.getResource("/icons/key_arrow.png")));
+		toolBar.add(btnCustomCommand);
 		contentPane.setLayout(gl_contentPane);
 
 		execute("hklm");
@@ -419,7 +390,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 	public RegistryTableRenderer getRenderer() {
 		return renderer;
 	}
-	
+
 	public PathTreeModel getTreeModel() {
 		return (PathTreeModel) tree.getModel();
 	}
