@@ -11,18 +11,17 @@ import java.awt.event.WindowEvent;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
@@ -39,11 +38,9 @@ import se.jrat.client.ui.components.pathtree.PathListener;
 import se.jrat.client.ui.components.pathtree.PathTreeModel;
 import se.jrat.client.ui.components.pathtree.PathTreeNode;
 import se.jrat.client.ui.dialogs.DialogCustomRegQuery;
-import se.jrat.client.ui.renderers.JComboBoxIconRenderer;
 import se.jrat.client.ui.renderers.table.RegistryTableRenderer;
 import se.jrat.client.utils.IconUtils;
 import se.jrat.client.utils.Utils;
-import javax.swing.JSplitPane;
 
 @SuppressWarnings({ "serial", "rawtypes" })
 public class FrameRemoteRegistry extends BaseFrame {
@@ -59,7 +56,6 @@ public class FrameRemoteRegistry extends BaseFrame {
 	public static final String[] ROOT_VALUES = new String[] { "HKEY_LOCAL_MACHINE", "HKEY_CURRENT_USER", "HKEY_CLASSES_ROOT", "HKEY_USERS", "HKEY_CURRENT_CONFIG" };
 
 	private JTable table;
-	private JComboBox comboBox;
 	private JTextField txt;
 	private JPopupMenu popupMenu;
 	private JMenuItem mntmAdd;
@@ -93,26 +89,24 @@ public class FrameRemoteRegistry extends BaseFrame {
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		setContentPane(contentPane);
 
-		comboBox = new JComboBox();
-		comboBox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				String value = comboBox.getSelectedItem().toString();
-				clear();
-				execute(value);
-				txt.setText(value);
-			}
-		});
-		comboBox.setModel(new DefaultComboBoxModel(ROOT_VALUES));
-		comboBox.setRenderer(getRenderer(comboBox));
-
 		JToolBar toolBar = new JToolBar();
 		toolBar.setFloatable(false);
 
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setResizeWeight(0.7);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addGroup(gl_contentPane.createSequentialGroup().addContainerGap().addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 164, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(toolBar, GroupLayout.PREFERRED_SIZE, 380, Short.MAX_VALUE).addGap(3)).addComponent(splitPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE));
-		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addContainerGap().addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(toolBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addPreferredGap(ComponentPlacement.RELATED).addComponent(splitPane, GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)));
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addComponent(toolBar, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 784, Short.MAX_VALUE)
+				.addComponent(splitPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 784, Short.MAX_VALUE)
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addComponent(toolBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(splitPane, GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE))
+		);
 
 		JScrollPane scrollPane = new JScrollPane();
 		splitPane.setRightComponent(scrollPane);
@@ -216,20 +210,6 @@ public class FrameRemoteRegistry extends BaseFrame {
 		txt.setEditable(false);
 		txt.setColumns(10);
 
-		JButton btnBack = new JButton("Back");
-		toolBar.add(btnBack);
-		btnBack.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				String str = txt.getText().trim();
-				if (str.lastIndexOf("\\") != -1) {
-					str = str.substring(0, str.lastIndexOf("\\"));
-					execute(str);
-					txt.setText(str);
-				}
-			}
-		});
-		btnBack.setIcon(new ImageIcon(FrameRemoteRegistry.class.getResource("/icons/left.png")));
-
 		JButton btnReload = new JButton("Reload");
 		toolBar.add(btnReload);
 		btnReload.addActionListener(new ActionListener() {
@@ -285,8 +265,6 @@ public class FrameRemoteRegistry extends BaseFrame {
 		btnCustomCommand.setIcon(new ImageIcon(FrameRemoteRegistry.class.getResource("/icons/key_arrow.png")));
 		toolBar.add(btnCustomCommand);
 		contentPane.setLayout(gl_contentPane);
-
-		execute("hklm");
 	}
 
 	public void execute(String location) {
@@ -306,23 +284,8 @@ public class FrameRemoteRegistry extends BaseFrame {
 	public void reload() {
 		clear();
 		String value;
-		if (txt.getText().length() == 0) {
-			value = comboBox.getSelectedItem().toString();
-		} else {
-			value = txt.getText();
-		}
+		value = txt.getText();
 		execute(value);
-	}
-
-	public JComboBoxIconRenderer getRenderer(JComboBox box) {
-		JComboBoxIconRenderer renderer = new JComboBoxIconRenderer();
-		int num = box.getItemCount();
-		ImageIcon folder = IconUtils.getIcon("folder_network");
-		for (int i = 0; i < num; i++) {
-			String item = box.getItemAt(i).toString();
-			renderer.addIcon(item.toLowerCase(), folder);
-		}
-		return renderer;
 	}
 
 	public void addValue() {
