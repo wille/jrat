@@ -130,7 +130,7 @@ public class FrameRemoteProcess extends JFrame {
 		table.setRowHeight(25);
 		table.setGridColor(Color.white);
 		table.setDefaultRenderer(Object.class, new ProcessTableRenderer());
-		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Name", "Process ID", "Session name / Time", "Memory usage" }));
+		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Name", "Process ID", "Type/User", "Memory usage" }));
 		model = (DefaultTableModel) table.getModel();
 		table.getColumnModel().getColumn(0).setPreferredWidth(137);
 		table.getColumnModel().getColumn(2).setPreferredWidth(115);

