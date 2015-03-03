@@ -175,14 +175,17 @@ public class FrameControlPanel extends BaseFrame {
 		tree = new JTree();
 		tree.setShowsRootHandles(true);
 		tree.addTreeSelectionListener(new TreeSelectionListener() {
-			public void valueChanged(TreeSelectionEvent arg0) {
+			public void valueChanged(TreeSelectionEvent e) {
 				try {
-					checkUp(arg0.getPath().getPath()[1].toString().toLowerCase());
-					String what = arg0.getPath().getPath()[2].toString().toLowerCase();
-					if (!actions.containsKey(what)) {
+					checkUp(e.getPath().getPath()[1].toString().toLowerCase());
+					String what = e.getPath().getPath()[2].toString().toLowerCase();
+					
+					boolean disabled = e.getPath().getLastPathComponent() instanceof DisabledDefaultMutableTreeNode;
+					
+					if (!actions.containsKey(what) && !disabled) {
 						JPanel p = panels.get(what);
 						tabbedPane.setSelectedComponent(p);
-					} else {
+					} else if (!disabled) {
 						Performable listener = actions.get(what);
 						listener.perform();
 					}
