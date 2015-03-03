@@ -1,7 +1,7 @@
 package se.jrat.client.ui.renderers.table;
 
 import java.awt.Component;
-import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -15,13 +15,13 @@ import se.jrat.client.utils.IconUtils;
 @SuppressWarnings("serial")
 public class BuildTableRenderer extends DefaultTableCellRenderer {
 
-	private HashMap<String, BuildStatus> statuses;
+	private Map<String, BuildStatus> statuses;
 
 	public static final ImageIcon ICON_INFO = IconUtils.getIcon("log_info");
 	public static final ImageIcon LOG_ERROR = IconUtils.getIcon("log_error");
 	public static final ImageIcon ICON_TICK = IconUtils.getIcon("tick");
 
-	public BuildTableRenderer(HashMap<String, BuildStatus> statuses) {
+	public BuildTableRenderer(Map<String, BuildStatus> statuses) {
 		this.statuses = statuses;
 	}
 
