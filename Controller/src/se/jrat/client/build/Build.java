@@ -115,9 +115,7 @@ public class Build {
 					outputStub.closeEntry();
 					listener.reportProgress(50, "Wrote " + entry.getName(), BuildStatus.CHECK);
 				} else {
-					String s = entry.getName();
 					listener.reportProgress(50, "Skipping " + entry.getName(), BuildStatus.INFO);
-
 				}
 			}
 
