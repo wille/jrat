@@ -52,7 +52,7 @@ public class Packet81InstalledPrograms extends AbstractIncomingPacket {
 
 					if (name.contains(".app")) {
 						name = name.replace(".app", "");
-						Connection.addToSendQueue(new Packet55InstalledProgram(app.getName()));
+						Connection.addToSendQueue(new Packet55InstalledProgram(name));
 					}
 				}
 			}

@@ -15,6 +15,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
+import com.redpois0n.oslib.OperatingSystem;
+
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet81InstalledPrograms;
 import se.jrat.client.ui.renderers.JComboBoxIconRenderer;
@@ -64,6 +66,7 @@ public class PanelControlInstalledPrograms extends PanelControlParent {
 		btnClear.setIcon(new ImageIcon(PanelControlInstalledPrograms.class.getResource("/icons/clear.png")));
 
 		comboBox = new JComboBox<String>();
+		comboBox.setVisible(slave.getOS() == OperatingSystem.WINDOWS);
 		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "HKEY_CURRENT_USER", "HKEY_LOCAL_MACHINE" }));
 		comboBox.setRenderer(getRenderer());
 
