@@ -9,13 +9,16 @@ public class Packet28ShutdownComputer extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX || OperatingSystem.getOperatingSystem() == OperatingSystem.LINUX) {
-			Runtime.getRuntime().exec("poweroff");
+		try {
+			if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+				Runtime.getRuntime().exec("shutdown /p /f");
+			} else {
+				Runtime.getRuntime().exec("poweroff");
+			} 
+			
 			Connection.status(Constants.STATUS_STARTING_SHUTDOWN);
-		} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
-			Runtime.getRuntime().exec("shutdown /p /f");
-			Connection.status(Constants.STATUS_STARTING_SHUTDOWN);
-		} else {
+		} catch (Exception ex) {
+			ex.printStackTrace();
 			Connection.status(Constants.STATUS_FAILED_SHUTDOWN);
 		}
 	}
