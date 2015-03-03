@@ -7,7 +7,6 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -16,7 +15,6 @@ import javax.swing.table.DefaultTableModel;
 
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet82NetworkAdapters;
-import se.jrat.client.utils.IconUtils;
 
 
 @SuppressWarnings("serial")
@@ -51,9 +49,6 @@ public class PanelControlAdapters extends PanelControlParent {
 				clear();
 			}
 		});
-		
-		JLabel lblWin = new JLabel("");
-		lblWin.setIcon(IconUtils.getIcon("os_win"));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -62,9 +57,7 @@ public class PanelControlAdapters extends PanelControlParent {
 					.addComponent(btnReloadList)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnClear)
-					.addPreferredGap(ComponentPlacement.RELATED, 380, Short.MAX_VALUE)
-					.addComponent(lblWin)
-					.addContainerGap())
+					.addContainerGap(406, Short.MAX_VALUE))
 				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
 		);
 		groupLayout.setVerticalGroup(
@@ -72,11 +65,9 @@ public class PanelControlAdapters extends PanelControlParent {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 302, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-							.addComponent(btnClear)
-							.addComponent(btnReloadList))
-						.addComponent(lblWin))
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnClear)
+						.addComponent(btnReloadList))
 					.addContainerGap(17, Short.MAX_VALUE))
 		);
 

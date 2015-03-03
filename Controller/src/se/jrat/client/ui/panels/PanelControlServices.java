@@ -7,7 +7,6 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -16,7 +15,6 @@ import javax.swing.table.DefaultTableModel;
 
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet77ListServices;
-import se.jrat.client.utils.IconUtils;
 
 
 @SuppressWarnings("serial")
@@ -51,9 +49,6 @@ public class PanelControlServices extends PanelControlParent {
 			}
 		});
 		btnClear.setIcon(new ImageIcon(PanelControlServices.class.getResource("/icons/clear.png")));
-		
-		JLabel lblWin = new JLabel("");
-		lblWin.setIcon(IconUtils.getIcon("os_win"));
 
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
@@ -64,20 +59,16 @@ public class PanelControlServices extends PanelControlParent {
 					.addComponent(btnRefreshList)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnClear)
-					.addPreferredGap(ComponentPlacement.RELATED, 365, Short.MAX_VALUE)
-					.addComponent(lblWin)
-					.addGap(19))
+					.addContainerGap(400, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 305, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-							.addComponent(btnRefreshList)
-							.addComponent(btnClear))
-						.addComponent(lblWin))
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnRefreshList)
+						.addComponent(btnClear))
 					.addContainerGap(14, Short.MAX_VALUE))
 		);
 

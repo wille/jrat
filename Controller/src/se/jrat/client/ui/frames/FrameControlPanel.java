@@ -493,10 +493,10 @@ public class FrameControlPanel extends BaseFrame {
 		DefaultMutableTreeNode network = getTreeNode("Network functions");
 		n.add(network);
 		network.add(getTreeNode("Download Manager"));
-		network.add(getTreeNode("LAN Computers"));
+		network.add(getTreeNode("LAN Computers", slave.getOS() == OperatingSystem.WINDOWS));
 		network.add(getTreeNode("Net Gateway"));
-		network.add(getTreeNode("Active Ports"));
-		network.add(getTreeNode("Network Adapters"));
+		network.add(getTreeNode("Active Ports", slave.getOS() == OperatingSystem.WINDOWS));
+		network.add(getTreeNode("Network Adapters", slave.getOS() == OperatingSystem.WINDOWS));
 
 		DefaultMutableTreeNode power = getTreeNode("Computer power");
 		n.add(power);

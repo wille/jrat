@@ -7,7 +7,6 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -17,7 +16,6 @@ import javax.swing.table.DefaultTableModel;
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet73ActivePorts;
 import se.jrat.client.ui.renderers.table.ActivePortsTableRenderer;
-import se.jrat.client.utils.IconUtils;
 
 
 @SuppressWarnings("serial")
@@ -52,9 +50,6 @@ public class PanelControlActivePorts extends PanelControlParent {
 				clear();
 			}
 		});
-		
-		JLabel lblWin = new JLabel("");
-		lblWin.setIcon(IconUtils.getIcon("os_win"));
 
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
@@ -65,20 +60,16 @@ public class PanelControlActivePorts extends PanelControlParent {
 					.addComponent(btnReload)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnClear)
-					.addPreferredGap(ComponentPlacement.RELATED, 396, Short.MAX_VALUE)
-					.addComponent(lblWin)
-					.addContainerGap())
+					.addContainerGap(422, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-							.addComponent(btnReload)
-							.addComponent(btnClear))
-						.addComponent(lblWin))
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnReload)
+						.addComponent(btnClear))
 					.addGap(18))
 		);
 
