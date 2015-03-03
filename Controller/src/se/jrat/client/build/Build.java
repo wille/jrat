@@ -106,13 +106,19 @@ public class Build {
 				
 				InputStream inputStream = inputStub.getInputStream(entry);
 				
-				listener.reportProgress(25, "Writing " + entry.getName() + " (" + inputStream.available() + " bytes)", BuildStatus.INFO);
-				outputStub.putNextEntry(entry);
-				if (!entry.isDirectory()) {
-					copy(inputStream, outputStub);
+				if (!entry.getName().equals("config.dat")) {
+					listener.reportProgress(25, "Writing " + entry.getName() + " (" + inputStream.available() + " bytes)", BuildStatus.INFO);
+					outputStub.putNextEntry(entry);
+					if (!entry.isDirectory()) {
+						copy(inputStream, outputStub);
+					}
+					outputStub.closeEntry();
+					listener.reportProgress(50, "Wrote " + entry.getName(), BuildStatus.CHECK);
+				} else {
+					String s = entry.getName();
+					listener.reportProgress(50, "Skipping " + entry.getName(), BuildStatus.INFO);
+
 				}
-				outputStub.closeEntry();
-				listener.reportProgress(50, "Wrote " + entry.getName(), BuildStatus.CHECK);
 			}
 
 			String addressString = "";
