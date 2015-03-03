@@ -3,24 +3,27 @@ package se.jrat.client.ui.renderers;
 import java.awt.Component;
 import java.awt.Font;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
-@SuppressWarnings("serial")
-public class ControlPanelRenderer extends DefaultTreeCellRenderer {
+import se.jrat.client.ui.components.DisabledDefaultMutableTreeNode;
 
-	public HashMap<String, ImageIcon> icons = new HashMap<String, ImageIcon>();
+@SuppressWarnings("serial")
+public class ControlPanelTreeRenderer extends DefaultTreeCellRenderer {
+	
+	public final Map<String, ImageIcon> icons = new HashMap<String, ImageIcon>();
 	public boolean same;
 	public ImageIcon icon;
 
-	public ControlPanelRenderer() {
+	public ControlPanelTreeRenderer() {
 		same = false;
 		icon = null;
 	}
 
-	public ControlPanelRenderer(boolean same, ImageIcon icon) {
+	public ControlPanelTreeRenderer(boolean same, ImageIcon icon) {
 		this.same = same;
 		this.icon = icon;
 	}
@@ -35,7 +38,6 @@ public class ControlPanelRenderer extends DefaultTreeCellRenderer {
 			ImageIcon icon = icons.get(value.toString().toLowerCase());
 			if (icon != null) {
 				setIcon(icon);
-
 			}
 
 			Object root = tree.getModel().getRoot();
@@ -45,8 +47,10 @@ public class ControlPanelRenderer extends DefaultTreeCellRenderer {
 					break;
 				}
 			}
-
+			
+			setEnabled(!(value instanceof DisabledDefaultMutableTreeNode));
 		}
+		
 		return this;
 	}
 }

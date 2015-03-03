@@ -50,6 +50,7 @@ import se.jrat.client.packets.outgoing.Packet31ComputerSleep;
 import se.jrat.client.packets.outgoing.Packet32LockComputer;
 import se.jrat.client.packets.outgoing.Packet37RestartJavaProcess;
 import se.jrat.client.packets.outgoing.Packet45Reconnect;
+import se.jrat.client.ui.components.DisabledDefaultMutableTreeNode;
 import se.jrat.client.ui.dialogs.DialogRemoteSoundCapture;
 import se.jrat.client.ui.panels.PanelControlActivePorts;
 import se.jrat.client.ui.panels.PanelControlAdapters;
@@ -82,10 +83,12 @@ import se.jrat.client.ui.panels.PanelControlServices;
 import se.jrat.client.ui.panels.PanelControlSpeech;
 import se.jrat.client.ui.panels.PanelControlTrace;
 import se.jrat.client.ui.panels.PanelControluTorrentDownloads;
-import se.jrat.client.ui.renderers.ControlPanelRenderer;
+import se.jrat.client.ui.renderers.ControlPanelTreeRenderer;
 import se.jrat.client.utils.FlagUtils;
 import se.jrat.client.utils.IconUtils;
 import se.jrat.client.utils.Utils;
+
+import com.redpois0n.oslib.OperatingSystem;
 
 @SuppressWarnings({ "serial" })
 public class FrameControlPanel extends BaseFrame {
@@ -265,8 +268,8 @@ public class FrameControlPanel extends BaseFrame {
 		checkUp("system info");
 	}
 
-	public ControlPanelRenderer getRenderer() {
-		final ControlPanelRenderer r = new ControlPanelRenderer();
+	public ControlPanelTreeRenderer getRenderer() {
+		final ControlPanelTreeRenderer r = new ControlPanelTreeRenderer();
 		new Thread(new Runnable() {
 			public void run() {
 				r.icons.put("control panel", IconUtils.getIcon("controlpanel"));
@@ -356,7 +359,7 @@ public class FrameControlPanel extends BaseFrame {
 	}
 
 	public void checkUp(String str) {
-		HashMap<String, ImageIcon> i = ((ControlPanelRenderer) tree.getCellRenderer()).icons;
+		Map<String, ImageIcon> i = ((ControlPanelTreeRenderer) tree.getCellRenderer()).icons;
 
 		if (str.equals("system info")) {
 			tabbedPane.removeAll();
@@ -428,106 +431,106 @@ public class FrameControlPanel extends BaseFrame {
 	}
 
 	public void addNodes(DefaultMutableTreeNode n) {
-		DefaultMutableTreeNode systeminfo = new DefaultMutableTreeNode("System Info");
+		DefaultMutableTreeNode systeminfo = getTreeNode("System Info");
 		n.add(systeminfo);
 
-		systeminfo.add(new DefaultMutableTreeNode("Computer Info"));
-		systeminfo.add(new DefaultMutableTreeNode("System Monitor"));
-		systeminfo.add(new DefaultMutableTreeNode("Locales"));
-		systeminfo.add(new DefaultMutableTreeNode("Environment Variables"));
-		systeminfo.add(new DefaultMutableTreeNode("System Properties"));
-		systeminfo.add(new DefaultMutableTreeNode("Drives"));
-		systeminfo.add(new DefaultMutableTreeNode("Monitors"));
-		systeminfo.add(new DefaultMutableTreeNode("JVM Info"));
-		systeminfo.add(new DefaultMutableTreeNode("Config"));
-		systeminfo.add(new DefaultMutableTreeNode("Trace"));
+		systeminfo.add(getTreeNode("Computer Info"));
+		systeminfo.add(getTreeNode("System Monitor"));
+		systeminfo.add(getTreeNode("Locales"));
+		systeminfo.add(getTreeNode("Environment Variables"));
+		systeminfo.add(getTreeNode("System Properties"));
+		systeminfo.add(getTreeNode("Drives"));
+		systeminfo.add(getTreeNode("Monitors"));
+		systeminfo.add(getTreeNode("JVM Info"));
+		systeminfo.add(getTreeNode("Config"));
+		systeminfo.add(getTreeNode("Trace"));
 
-		DefaultMutableTreeNode fun = new DefaultMutableTreeNode("Fun");
+		DefaultMutableTreeNode fun = getTreeNode("Fun");
 		n.add(fun);
-		fun.add(new DefaultMutableTreeNode("Fun Manager"));
-		fun.add(new DefaultMutableTreeNode("Piano"));
-		fun.add(new DefaultMutableTreeNode("Messagebox"));
-		fun.add(new DefaultMutableTreeNode("Remote Chat"));
-		fun.add(new DefaultMutableTreeNode("Speech"));
+		fun.add(getTreeNode("Fun Manager"));
+		fun.add(getTreeNode("Piano"));
+		fun.add(getTreeNode("Messagebox"));
+		fun.add(getTreeNode("Remote Chat"));
+		fun.add(getTreeNode("Speech"));
 
-		DefaultMutableTreeNode systemfunctions = new DefaultMutableTreeNode("System Functions");
+		DefaultMutableTreeNode systemfunctions = getTreeNode("System Functions");
 		n.add(systemfunctions);
-		systemfunctions.add(new DefaultMutableTreeNode("Remote Shell"));
-		systemfunctions.add(new DefaultMutableTreeNode("Remote Process"));
-		systemfunctions.add(new DefaultMutableTreeNode("Hosts File"));
-		systemfunctions.add(new DefaultMutableTreeNode("Registry"));
-		systemfunctions.add(new DefaultMutableTreeNode("Installed Programs"));
+		systemfunctions.add(getTreeNode("Remote Shell"));
+		systemfunctions.add(getTreeNode("Remote Process"));
+		systemfunctions.add(getTreeNode("Hosts File"));
+		systemfunctions.add(getTreeNode("Registry", slave.getOS() == OperatingSystem.WINDOWS));
+		systemfunctions.add(getTreeNode("Installed Programs"));
 
-		DefaultMutableTreeNode msconfig = new DefaultMutableTreeNode("Remote MSConfig");
+		DefaultMutableTreeNode msconfig = getTreeNode("Remote MSConfig");
 		n.add(msconfig);
-		msconfig.add(new DefaultMutableTreeNode("Windows Services"));
-		msconfig.add(new DefaultMutableTreeNode("Registry Startup"));
+		msconfig.add(getTreeNode("Windows Services", slave.getOS() == OperatingSystem.WINDOWS));
+		msconfig.add(getTreeNode("Registry Startup", slave.getOS() == OperatingSystem.WINDOWS));
 
-		DefaultMutableTreeNode spy = new DefaultMutableTreeNode("Spy Functions");
+		DefaultMutableTreeNode spy = getTreeNode("Spy Functions");
 		n.add(spy);
-		spy.add(new DefaultMutableTreeNode("Remote Screen"));
-		spy.add(new DefaultMutableTreeNode("Sound Capture"));
+		spy.add(getTreeNode("Remote Screen"));
+		spy.add(getTreeNode("Sound Capture"));
 
-		DefaultMutableTreeNode scripting = new DefaultMutableTreeNode("Scripting");
+		DefaultMutableTreeNode scripting = getTreeNode("Scripting");
 		n.add(scripting);
-		scripting.add(new DefaultMutableTreeNode("HTML"));
-		scripting.add(new DefaultMutableTreeNode("Batch"));
-		scripting.add(new DefaultMutableTreeNode("JavaScript"));
-		scripting.add(new DefaultMutableTreeNode("VB Script"));
-		scripting.add(new DefaultMutableTreeNode("Shell Script"));
+		scripting.add(getTreeNode("HTML"));
+		scripting.add(getTreeNode("Batch"));
+		scripting.add(getTreeNode("JavaScript"));
+		scripting.add(getTreeNode("VB Script"));
+		scripting.add(getTreeNode("Shell Script"));
 
-		DefaultMutableTreeNode filesystem = new DefaultMutableTreeNode("File System");
+		DefaultMutableTreeNode filesystem = getTreeNode("File System");
 		n.add(filesystem);
-		filesystem.add(new DefaultMutableTreeNode("File Manager"));
-		filesystem.add(new DefaultMutableTreeNode("File Searcher"));
+		filesystem.add(getTreeNode("File Manager"));
+		filesystem.add(getTreeNode("File Searcher"));
 
-		DefaultMutableTreeNode stealersdata = new DefaultMutableTreeNode("Data");
+		DefaultMutableTreeNode stealersdata = getTreeNode("Data");
 		n.add(stealersdata);
-		stealersdata.add(new DefaultMutableTreeNode("uTorrent downloads"));
-		stealersdata.add(new DefaultMutableTreeNode("FileZilla"));
-		stealersdata.add(new DefaultMutableTreeNode("Clipboard"));
+		stealersdata.add(getTreeNode("uTorrent downloads"));
+		stealersdata.add(getTreeNode("FileZilla"));
+		stealersdata.add(getTreeNode("Clipboard"));
 
-		DefaultMutableTreeNode network = new DefaultMutableTreeNode("Network functions");
+		DefaultMutableTreeNode network = getTreeNode("Network functions");
 		n.add(network);
-		network.add(new DefaultMutableTreeNode("Download Manager"));
-		network.add(new DefaultMutableTreeNode("LAN Computers"));
-		network.add(new DefaultMutableTreeNode("Net Gateway"));
-		network.add(new DefaultMutableTreeNode("Active Ports"));
-		network.add(new DefaultMutableTreeNode("Network Adapters"));
+		network.add(getTreeNode("Download Manager"));
+		network.add(getTreeNode("LAN Computers"));
+		network.add(getTreeNode("Net Gateway"));
+		network.add(getTreeNode("Active Ports"));
+		network.add(getTreeNode("Network Adapters"));
 
-		DefaultMutableTreeNode power = new DefaultMutableTreeNode("Computer power");
+		DefaultMutableTreeNode power = getTreeNode("Computer power");
 		n.add(power);
-		power.add(new DefaultMutableTreeNode("Shutdown"));
-		power.add(new DefaultMutableTreeNode("Restart"));
-		power.add(new DefaultMutableTreeNode("Sleep Mode"));
-		power.add(new DefaultMutableTreeNode("Lock"));
-		power.add(new DefaultMutableTreeNode("Logout"));
+		power.add(getTreeNode("Shutdown"));
+		power.add(getTreeNode("Restart"));
+		power.add(getTreeNode("Sleep Mode", slave.getOS() == OperatingSystem.WINDOWS));
+		power.add(getTreeNode("Lock", slave.getOS() == OperatingSystem.WINDOWS));
+		power.add(getTreeNode("Logout", slave.getOS() == OperatingSystem.WINDOWS));
 
-		DefaultMutableTreeNode misc = new DefaultMutableTreeNode("Misc");
+		DefaultMutableTreeNode misc = getTreeNode("Misc");
 		n.add(misc);
-		misc.add(new DefaultMutableTreeNode("Printer"));
-		misc.add(new DefaultMutableTreeNode("Traffic"));
-		misc.add(new DefaultMutableTreeNode("Error Log"));
-		misc.add(new DefaultMutableTreeNode("Notes"));
-
-		DefaultMutableTreeNode plugins = new DefaultMutableTreeNode("Plugins");
+		misc.add(getTreeNode("Printer"));
+		misc.add(getTreeNode("Traffic"));
+		misc.add(getTreeNode("Error Log"));
+		misc.add(getTreeNode("Notes"));
+	
+		DefaultMutableTreeNode plugins = getTreeNode("Plugins");
 		n.add(plugins);
-		plugins.add(new DefaultMutableTreeNode("View Installed Plugins"));
+		plugins.add(getTreeNode("View Installed Plugins"));
 		if (entries.size() == 0) {
-			plugins.add(new DefaultMutableTreeNode("No plugins available"));
+			plugins.add(getTreeNode("No plugins available"));
 		} else {
 			for (RATControlMenuEntry entry : entries) {
-				plugins.add(new DefaultMutableTreeNode(entry.getName()));
+				plugins.add(getTreeNode(entry.getName()));
 			}
 		}
 
-		DefaultMutableTreeNode slave = new DefaultMutableTreeNode("Connection Actions");
+		DefaultMutableTreeNode slave = getTreeNode("Connection Actions");
 		n.add(slave);
-		slave.add(new DefaultMutableTreeNode("Request Elevation"));
-		slave.add(new DefaultMutableTreeNode("Restart connection"));
-		slave.add(new DefaultMutableTreeNode("Reconnect"));
-		slave.add(new DefaultMutableTreeNode("Disconnect"));
-		slave.add(new DefaultMutableTreeNode("Uninstall"));
+		slave.add(getTreeNode("Request Elevation"));
+		slave.add(getTreeNode("Restart connection"));
+		slave.add(getTreeNode("Reconnect"));
+		slave.add(getTreeNode("Disconnect"));
+		slave.add(getTreeNode("Uninstall"));
 	}
 
 	public void addPanels() {
@@ -750,6 +753,18 @@ public class FrameControlPanel extends BaseFrame {
 	public void collapseAll(JTree tree) {
 		for (int i = 0; i < tree.getRowCount(); i++) {
 			tree.collapseRow(i);
+		}
+	}
+	
+	public DefaultMutableTreeNode getTreeNode(String s) {
+		return getTreeNode(s, true);
+	}
+	
+	public DefaultMutableTreeNode getTreeNode(String s, boolean enabled) {
+		if (enabled) {
+			return new DefaultMutableTreeNode(s);
+		} else {
+			return new DisabledDefaultMutableTreeNode(s);
 		}
 	}
 }
