@@ -33,9 +33,8 @@ public class PanelBuildPersistance extends JPanel {
 	}
 
 	public PanelBuildPersistance() {
-
 		JPanel panel = new JPanel();
-		panel.setBorder(BorderFactory.createTitledBorder("Registry Persistance"));
+		panel.setBorder(BorderFactory.createTitledBorder("Persistance"));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(panel, GroupLayout.PREFERRED_SIZE, 426, GroupLayout.PREFERRED_SIZE).addContainerGap(14, Short.MAX_VALUE)));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(panel, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE).addContainerGap(106, Short.MAX_VALUE)));
