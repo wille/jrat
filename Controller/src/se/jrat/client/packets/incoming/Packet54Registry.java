@@ -6,7 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 import se.jrat.client.Slave;
-import se.jrat.client.ui.components.pathtree.PathTreeNode;
+import se.jrat.client.ui.components.tree.PathTreeNode;
 import se.jrat.client.ui.frames.FrameRemoteRegistry;
 
 

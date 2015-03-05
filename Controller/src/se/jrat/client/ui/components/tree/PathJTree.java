@@ -1,4 +1,4 @@
-package se.jrat.client.ui.components.pathtree;
+package se.jrat.client.ui.components.tree;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
