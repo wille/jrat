@@ -19,7 +19,6 @@ public class PanelBuildVirtualization extends JPanel {
 	}
 
 	public PanelBuildVirtualization() {
-
 		JPanel panel = new JPanel();
 		panel.setBorder(BorderFactory.createTitledBorder("Virtualization"));
 		GroupLayout groupLayout = new GroupLayout(this);

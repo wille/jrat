@@ -18,6 +18,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import se.jrat.client.Help;
 import se.jrat.client.settings.Settings;
+import se.jrat.client.ui.components.JPlaceholderTextField;
 import se.jrat.common.DropLocations;
 
 
@@ -48,7 +49,6 @@ public class PanelBuildStartup extends JPanel {
 	}
 
 	public PanelBuildStartup() {
-
 		JPanel panel = new JPanel();
 		panel.setBorder(BorderFactory.createTitledBorder("Startup (Installer)"));
 		GroupLayout groupLayout = new GroupLayout(this);
@@ -75,8 +75,9 @@ public class PanelBuildStartup extends JPanel {
 
 		JLabel lblDroppedFileAnd = new JLabel("File and reg key name:");
 
-		txtName = new JTextField(Settings.getGlobal().getString("jarname"));
-		txtName.setToolTipText("File name of installed file and key in registry in Windows");
+		txtName = new JPlaceholderTextField("jrat");
+		txtName.setText(Settings.getGlobal().getString("jarname"));
+		txtName.setToolTipText("File name of installed file and startup entry or registry key");
 		txtName.setColumns(10);
 
 		chckbxMeltDropperAfter = new JCheckBox("Melt installer after it has been run (Delete itself)");

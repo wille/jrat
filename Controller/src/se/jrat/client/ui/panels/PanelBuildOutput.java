@@ -79,7 +79,6 @@ public class PanelBuildOutput extends JPanel {
 	}
 	
 	public PanelBuildOutput() {
-
 		rdbtnjarjavaArchive = new JRadioButton(".jar (Java Archive)");
 		rdbtnjarjavaArchive.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

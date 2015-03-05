@@ -34,7 +34,6 @@ public class PanelBuildDelay extends JPanel {
 	}
 
 	public PanelBuildDelay() {
-
 		JPanel panel = new JPanel();
 		panel.setBorder(BorderFactory.createTitledBorder("Dropper delay"));
 		GroupLayout groupLayout = new GroupLayout(this);

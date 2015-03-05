@@ -19,7 +19,6 @@ public class PanelBuildDebugMessages extends JPanel {
 	}
 
 	public PanelBuildDebugMessages() {
-
 		JPanel panel = new JPanel();
 		panel.setBorder(BorderFactory.createTitledBorder("Debug Messages"));
 		GroupLayout groupLayout = new GroupLayout(this);

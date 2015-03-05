@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import se.jrat.client.Help;
+import se.jrat.client.ui.components.JPlaceholderTextField;
 
 
 @SuppressWarnings("serial")
@@ -32,11 +33,7 @@ public class PanelBuildMutex extends JPanel {
 		return Integer.parseInt(txtMutex.getText().trim());
 	}
 
-	/**
-	 * Create the panel.
-	 */
 	public PanelBuildMutex() {
-
 		JPanel panel = new JPanel();
 		panel.setBorder(BorderFactory.createTitledBorder("Mutex (Only allow one instance)"));
 		GroupLayout groupLayout = new GroupLayout(this);
@@ -47,9 +44,8 @@ public class PanelBuildMutex extends JPanel {
 
 		JLabel lblMutexPort = new JLabel("Mutex port");
 
-		txtMutex = new JTextField();
+		txtMutex = new JPlaceholderTextField("1334");
 		txtMutex.setForeground(Color.BLUE);
-		txtMutex.setText("1334");
 		txtMutex.setColumns(10);
 
 		JButton btnRandom = new JButton("");

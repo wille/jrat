@@ -34,7 +34,6 @@ public class PanelBuildTimeout extends JPanel {
 	}
 
 	public PanelBuildTimeout() {
-
 		JPanel panel = new JPanel();
 		panel.setBorder(BorderFactory.createTitledBorder("Socket timeout"));
 		GroupLayout groupLayout = new GroupLayout(this);

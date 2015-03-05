@@ -22,7 +22,6 @@ import se.jrat.client.utils.IconUtils;
 public class PanelBuildClasses extends JPanel {
 
 	public PanelBuildClasses() {
-
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		GroupLayout groupLayout = new GroupLayout(this);

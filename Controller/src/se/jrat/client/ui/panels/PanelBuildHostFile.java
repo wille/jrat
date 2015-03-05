@@ -29,6 +29,7 @@ import com.redpois0n.oslib.OperatingSystem;
 
 @SuppressWarnings("serial")
 public class PanelBuildHostFile extends JPanel {
+	
 	private JEditorPane editorPane;
 	private JToggleButton tglbtnOverwrite;
 	private JCheckBox chckbxEnable;
@@ -46,7 +47,6 @@ public class PanelBuildHostFile extends JPanel {
 	}
 
 	public PanelBuildHostFile() {
-
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);

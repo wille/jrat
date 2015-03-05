@@ -19,7 +19,6 @@ public class PanelBuildError extends JPanel {
 	}
 
 	public PanelBuildError() {
-
 		JPanel panel = new JPanel();
 		panel.setBorder(BorderFactory.createTitledBorder("Error Handling"));
 		GroupLayout groupLayout = new GroupLayout(this);

@@ -23,6 +23,7 @@ import javax.swing.ScrollPaneConstants;
 
 import se.jrat.client.Constants;
 import se.jrat.client.Help;
+import se.jrat.client.ui.components.JPlaceholderTextField;
 
 
 @SuppressWarnings("serial")
@@ -100,8 +101,7 @@ public class PanelBuildInstallMessage extends JPanel {
 
 		JLabel lblTitle = new JLabel("Title:");
 
-		txtTitle = new JTextField();
-		txtTitle.setText(Constants.NAME + "");
+		txtTitle = new JPlaceholderTextField(Constants.NAME);
 		txtTitle.setColumns(10);
 
 		JLabel lblMsg = new JLabel("Msg:");
