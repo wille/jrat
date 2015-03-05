@@ -14,6 +14,10 @@ public class JPlaceholderTextField extends JTextField {
 	public JPlaceholderTextField(String ph) {
 		this.ph = ph;
 	}
+	
+	public JPlaceholderTextField() {
+		this.ph = null;
+	}
 
 	/**
 	 * Gets text, returns placeholder if nothing specified
@@ -22,7 +26,7 @@ public class JPlaceholderTextField extends JTextField {
 	public String getText() {
 		String text = super.getText();
 
-		if (text.trim().length() == 0) {
+		if (text.trim().length() == 0 && ph != null) {
 			text = ph;
 		}
 
@@ -33,7 +37,7 @@ public class JPlaceholderTextField extends JTextField {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
-		if (super.getText().length() > 0) {
+		if (super.getText().length() > 0 || ph == null) {
 			return;
 		}
 		
