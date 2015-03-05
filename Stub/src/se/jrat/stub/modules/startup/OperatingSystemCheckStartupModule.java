@@ -23,11 +23,15 @@ public class OperatingSystemCheckStartupModule extends StartupModule {
 			shutdown = false;
 		} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.LINUX && allowedOperatingSystems.contains("linux")) {
 			shutdown = false;
-		} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.FREEBSD && allowedOperatingSystems.contains("freebsd")) {
-			shutdown = false;
 		} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.SOLARIS && allowedOperatingSystems.contains("solaris")) {
 			shutdown = false;
+		} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.FREEBSD && allowedOperatingSystems.contains("freebsd")) {
+			shutdown = false;
 		} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OPENBSD && allowedOperatingSystems.contains("openbsd")) {
+			shutdown = false;
+		} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.NETBSD && allowedOperatingSystems.contains("netbsd")) {
+			shutdown = false;
+		} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.DRAGONFLYBSD && allowedOperatingSystems.contains("dragonflybsd")) {
 			shutdown = false;
 		}
 

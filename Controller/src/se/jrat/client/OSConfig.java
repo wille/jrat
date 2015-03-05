@@ -40,6 +40,12 @@ public final class OSConfig {
 		if (c.isAllowed(OperatingSystem.OPENBSD)) {
 			str += "openbsd ";
 		}
+		if (c.isAllowed(OperatingSystem.NETBSD)) {
+			str += "netbsd ";
+		}
+		if (c.isAllowed(OperatingSystem.DRAGONFLYBSD)) {
+			str += "dragonflybsd ";
+		}
 		if (c.isAllowed(OperatingSystem.SOLARIS)) {
 			str += "solaris ";
 		}
