@@ -57,7 +57,16 @@ public class PanelBuildHostFile extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
 					try {
-						File file = new File(System.getenv("SystemDrive") + "\\Windows\\System32\\drivers\\etc\\hosts");
+						File file = null;
+						
+						if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+							file = new File(System.getenv("SystemDrive") + "\\Windows\\System32\\drivers\\etc\\hosts");
+						} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
+							file = new File("/private/etc/hosts");
+						} else {
+							file = new File("/etc/hosts");
+						}
+						
 						BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
 						String str;
 						String host = "";
