@@ -24,6 +24,7 @@ import se.jrat.client.ErrorDialog;
 import se.jrat.client.net.PortListener;
 import se.jrat.client.net.ServerListener;
 import se.jrat.client.settings.Sockets;
+import se.jrat.client.ui.components.JPlaceholderTextField;
 import se.jrat.client.utils.Utils;
 import se.jrat.client.webpanel.WebPanelListener;
 
@@ -75,7 +76,8 @@ public class FrameAddSocket extends BaseFrame {
 
 		JLabel lblName = new JLabel("Name:");
 
-		txtName = new JTextField("Socket" + (new Random().nextInt(10000)));
+		txtName = new JPlaceholderTextField("Socket");
+		txtName.setText("Socket" + (new Random().nextInt(10000)));
 		txtName.setColumns(10);
 		
 		JLabel lblType = new JLabel("Type:");
