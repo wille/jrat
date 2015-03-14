@@ -28,7 +28,6 @@ import se.jrat.client.settings.Theme;
 import se.jrat.client.ui.panels.PanelSettingsFlags;
 import se.jrat.client.ui.panels.PanelSettingsMain;
 import se.jrat.client.ui.panels.PanelSettingsProxy;
-import se.jrat.client.ui.panels.PanelSettingsSound;
 import se.jrat.client.ui.panels.PanelSettingsStats;
 import se.jrat.client.ui.panels.PanelSettingsTheme;
 import se.jrat.client.ui.renderers.JTreeIconsRenderer;
@@ -119,7 +118,6 @@ public class FrameSettings extends BaseFrame {
 		panels.put("themes", new PanelSettingsTheme(this));
 		panels.put("flags", new PanelSettingsFlags());
 		panels.put("stats", new PanelSettingsStats());
-		panels.put("sound", new PanelSettingsSound());
 		panels.put("proxy", new PanelSettingsProxy());
 
 		actions.clear();
@@ -132,12 +130,9 @@ public class FrameSettings extends BaseFrame {
 		PanelSettingsFlags flags = (PanelSettingsFlags) panels.get("flags");
 		PanelSettingsTheme themes = (PanelSettingsTheme) panels.get("themes");
 		PanelSettingsStats stats = (PanelSettingsStats) panels.get("stats");
-		PanelSettingsSound sound = (PanelSettingsSound) panels.get("sound");
 		PanelSettingsProxy proxy = (PanelSettingsProxy) panels.get("proxy");
 
 		Settings.getGlobal().setVal("traynote", main.useTrayIcon());
-		Settings.getGlobal().setVal("soundonc", sound.onConnect());
-		Settings.getGlobal().setVal("soundondc", sound.onDisconnect());
 		Settings.getGlobal().setVal("stats", stats.trackStats());
 		Settings.getGlobal().setVal("remotescreenstartup", main.useAutoScreen());
 		Settings.getGlobal().setVal("askurl", main.askOnConnect());
