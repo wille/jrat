@@ -21,7 +21,7 @@ public class FrameAbout extends BaseDialog {
 
     static {
         try {
-            BACKGROUND = ImageIO.read(Main.class.getResource("/files/bg_about_450x300.png"));
+            BACKGROUND = ImageIO.read(Main.class.getResource("/files/bg_450x300.png"));
         } catch (Exception ex) {
             ex.printStackTrace();
             BACKGROUND = null;
