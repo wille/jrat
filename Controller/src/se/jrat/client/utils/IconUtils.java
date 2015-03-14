@@ -55,7 +55,7 @@ public class IconUtils {
 		String str = null;
 
 		if (Frame.pingmode == Frame.PING_ICON_DOT) {
-			str = "/icons/ping" + ping + ".png";
+			str = "ping" + ping;
 		} else {
 			if (ping == 0 || ping == 1) {
 				str = "network_green";
