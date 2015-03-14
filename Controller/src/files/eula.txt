@@ -1,122 +1,71 @@
-jRAT Web Site and Software Agreement
-The jRAT Web Site (the "Site") is an online information service provided by jRAT
-("jRAT "), subject to your compliance with the terms and conditions set forth below. PLEASE READ 
-THIS DOCUMENT CAREFULLY BEFORE ACCESSING OR USING THE SITE. BY ACCESSING OR USING THE SITE, 
-YOU AGREE TO BE BOUND BY THE TERMS AND CONDITIONS SET FORTH BELOW. IF YOU DO NOT WISH TO 
-BE BOUND BY THESE TERMS AND CONDITIONS, YOU MAY NOT ACCESS OR USE THE SITE. jRAT 
-MAY MODIFY THIS AGREEMENT AT ANY TIME, AND SUCH MODIFICATIONS SHALL BE EFFECTIVE 
-IMMEDIATELY UPON POSTING OF THE MODIFIED AGREEMENT ON THE SITE. YOU AGREE TO REVIEW THE 
-AGREEMENT PERIODICALLY TO BE AWARE OF SUCH MODIFICATIONS AND YOUR CONTINUED ACCESS OR 
-USE OF THE SITE SHALL BE DEEMED YOUR CONCLUSIVE ACCEPTANCE OF THE MODIFIED AGREEMENT. 
+jRAT Version
+Copyright (c) 2012-2015 jRAT
 
-1. Copyright, Licenses and Idea Submissions. 
-The entire contents of the Site are protected by international copyright and trademark laws. The owner of 
-the copyrights and trademarks are jRAT, its affiliates or other third party licensors. YOU MAY NOT 
-MODIFY, COPY, REPRODUCE, REPUBLISH, UPLOAD, POST, TRANSMIT, OR DISTRIBUTE, IN ANY MANNER, 
-THE MATERIAL ON THE SITE, INCLUDING TEXT, GRAPHICS, CODE AND/OR SOFTWARE. You may print and 
-download portions of material from the different areas of the Site solely for your own non-commercial use 
-provided that you agree not to change or delete any copyright or proprietary notices from the materials. You 
-agree to grant to jRAT a non-exclusive, royalty-free, worldwide, perpetual license, with the right 
-to sub-license, to reproduce, distribute, transmit, create derivative works of, publicly display and publicly 
-perform any materials and other information (including, without limitation, ideas contained therein for new or 
-improved products and services) you submit to any public areas of the Site (such as bulletin boards, forums 
-and newsgroups) or by e-mail to jRAT by all means and in any media now known or hereafter 
-developed. You also grant to jRAT the right to use your name in connection with the submitted 
-materials and other information as well as in connection with all advertising, marketing and promotional 
-material related thereto. You agree that you shall have no recourse against jRAT for any alleged 
-or actual infringement or misappropriation of any proprietary right in your communications to DarkComet-
-RAT. 
+*** END USER LICENSE AGREEMENT ***
 
- TRADEMARKS.
+IMPORTANT: PLEASE READ THIS LICENSE CAREFULLY BEFORE USING THIS SOFTWARE.
 
-Publications, products, content or services referenced herein or on the Site are the exclusive trademarks or 
-servicemarks of jRAT. Other product and company names mentioned in the Site may be the 
-trademarks of their respective owners. 
+1. LICENSE
 
+By receiving, opening the file package, and/or using jRAT Version("Software") containing this software, you agree that this End User User License Agreement(EULA) is a legally binding and valid contract and agree to be bound by it. You agree to abide by the intellectual property laws and all of the terms and conditions of this Agreement.
 
-2. Use of the Site.
-You understand that, except for information, products or services clearly identified as being supplied by 
-jRAT, jRATdoes not operate, control or endorse any information, products or services 
-on the Internet in any way. Except for jRAT- identified information, products or services, all 
-information, products and services offered through the Site or on the Internet generally are offered by third 
-parties, that are not affiliated with jRAT a. You also understand that jRAT cannot and 
-does not guarantee or warrant that files available for downloading through the Site will be free of infection 
-or viruses, worms, Trojan horses or other code that manifest contaminating or destructive properties. You 
-are responsible for implementing sufficient procedures and checkpoints to satisfy your particular 
-requirements for accuracy of data input and output, and for maintaining a means external to the Site for the 
-reconstruction of any lost data. 
+Unless you have a different license agreement signed by jRAT your use of jRAT Version indicates your acceptance of this license agreement and warranty.
 
-YOU ASSUME TOTAL RESPONSIBILITY AND RISK FOR YOUR USE OF THE SITE AND THE INTERNET. 
-jRAT PROVIDES THE SITE AND RELATED INFORMATION "AS IS" AND DOES NOT MAKE ANY 
-EXPRESS OR IMPLIED WARRANTIES, REPRESENTATIONS OR ENDORSEMENTS WHATSOEVER (INCLUDING 
-WITHOUT LIMITATION WARRANTIES OF TITLE OR NONINFRINGEMENT, OR THE IMPLIED WARRANTIES OF 
-MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE) WITH REGARD TO THE SERVICE, ANY 
-MERCHANDISE INFORMATION OR SERVICE PROVIDED THROUGH THE SERVICE OR ON THE INTERNET 
-GENERALLY, AND jRAT SHALL NOT BE LIABLE FOR ANY COST OR DAMAGE ARISING EITHER 
-DIRECTLY OR INDIRECTLY FROM ANY SUCH TRANSACTION. IT IS SOLELY YOUR RESPONSIBILITY TO 
-EVALUATE THE ACCURACY, COMPLETENESS AND USEFULNESS OF ALL OPINIONS, ADVICE, SERVICES, 
-MERCHANDISE AND OTHER INFORMATION PROVIDED THROUGH THE SERVICE OR ON THE INTERNET 
-GENERALLY. jRAT DOES NOT WARRANT THAT THE SERVICE WILL BE UNINTERRUPTED OR 
-ERROR-FREE OR THAT DEFECTS IN THE SERVICE WILL BE CORRECTED. 
+Subject to the terms of this Agreement, jRAT grants to you a limited, non-exclusive, non-transferable license, without right to sub-license, to use jRAT Version in accordance with this Agreement and any other written agreement with jRAT. jRAT does not transfer the title of jRAT Version to you; the license granted to you is not a sale. This agreement is a binding legal agreement between jRAT and the purchasers or users of jRAT Version.
 
-YOU UNDERSTAND FURTHER THAT THE PURE NATURE OF THE INTERNET CONTAINS UNEDITED MATERIALS 
-SOME OF WHICH ARE SEXUALLY EXPLICIT OR MAY BE OFFENSIVE TO YOU. YOUR ACCESS TO SUCH 
-MATERIALS IS AT YOUR RISK. jRAT HAS NO CONTROL OVER AND ACCEPTS NO RESPONSIBILITY 
-WHATSOEVER FOR SUCH MATERIALS. 
+If you do not agree to be bound by this agreement, remove jRAT Version from your computer now and, if applicable, promptly return to jRAT by mail any copies of jRAT Version and related documentation and packaging in your possession.
 
-LIMITATION OF LIABILITY
+2. DISTRIBUTION
 
-IN NO EVENT WILL jRAT BE LIABLE FOR (I) ANY INCIDENTAL, CONSEQUENTIAL, OR INDIRECT 
-DAMAGES (INCLUDING, BUT NOT LIMITED TO, DAMAGES FOR LOSS OF PROFITS, BUSINESS 
-INTERRUPTION, LOSS OF PROGRAMS OR INFORMATION, AND THE LIKE) ARISING OUT OF THE USE OF OR 
-INABILITY TO USE THE SERVICE, OR ANY INFORMATION, OR TRANSACTIONS PROVIDED ON THE SERVICE, 
-OR DOWNLOADED FROM THE SERVICE, OR ANY DELAY OF SUCH INFORMATION OR SERVICE. EVEN IF 
-jRAT OR ITS AUTHORIZED REPRESENTATIVES HAVE BEEN ADVISED OF THE POSSIBILITY OF 
-SUCH DAMAGES, OR (II) ANY CLAIM ATTRIBUTABLE TO ERRORS, OMISSIONS, OR OTHER INACCURACIES 
-IN THE SERVICE AND/OR MATERIALS OR INFORMATION DOWNLOADED THROUGH THE SERVICE. BECAUSE 
-SOME STATES DO NOT ALLOW THE EXCLUSION OR LIMITATION OF LIABILITY FOR CONSEQUENTIAL OR 
-INCIDENTAL DAMAGES, THE ABOVE LIMITATION MAY NOT APPLY TO YOU. IN SUCH STATES, DarkComet-
-RAT LIABILITY IS LIMITED TO THE GREATEST EXTENT PERMITTED BY LAW. 
+jRAT Version and the license herein granted shall not be copied, shared, distributed, re-sold, offered for re-sale, transferred or sub-licensed in whole or in part except that you may make one copy for archive purposes only. For information about redistribution of jRAT Version contact jRAT.
 
-jRAT makes no representations whatsoever about any other web site which you may access 
-through this one or which may link to this Site. When you access a non-jRAT web site, please 
-understand that it is independent from jRAT, and that jRAT has no control over the 
-content on that web site. In addition, a link to a jRAT web site does not mean that DarkComet-
-RAT endorses or accepts any responsibility for the content, or the use, of such web site. 
+3. USER AGREEMENT
 
-3. Indemnification. 
-You agree to indemnify, defend and hold harmless jRAT, its officers, directors, employees, 
-agents, licensors, suppliers and any third party information providers to the Service from and against all 
-losses, expenses, damages and costs, including reasonable attorneys' fees, resulting from any violation of 
-this Agreement (including negligent or wrongful conduct) by you or any other person accessing the Service. 
+3.1 Use
 
-4. Third Party Rights.
-The provisions of paragraphs 2 (Use of the Service), and 3 (Indemnification) are for the benefit of 
-jRAT and its officers, directors, employees, agents, licensors, suppliers, and any third party 
-information providers to the Service. Each of these individuals or entities shall have the right to assert and 
-enforce those provisions directly against you on its own behalf. 
+Your license to use jRAT Version is limited to the number of licenses purchased by you. You shall not allow others to use, copy or evaluate copies of jRAT Version.
 
-5.Term; Termination. 
-This Agreement may be terminated by either party without notice at any time for any reason. The provisions 
-of paragraphs 1 (Copyright, Licenses and Idea Submissions), 2 (Use of the Service), 3 (Indemnification), 4 
-(Third Party Rights) and 6 (Miscellaneous) shall survive any termination of this Agreement. 
+3.2 Use Restrictions
 
-6.
-INTENTIONALLY SPREADING APPLICATIONS FOR MALICIOUS OR DAMAGING PURPOSES IS A 
-CRIME PUNISHABLE BY FINE OR IMPRISONMENT. BY USING jRAT PRODUCTS FOR MALICIOUS 
-PURPOSES YOU ARE BREAKING THE TERMS AND CONDITIONS SET IN THIS AGREEMENT AND THEREFORE 
-ACCEPT FULL RESPONSIBILITY FOR ANY CONSEQUENCES WHICH MAY RESULT FROM YOUR ACTIONS
+You shall use jRAT Version in compliance with all applicable laws and not for any unlawful purpose. Without limiting the foregoing, use, display or distribution of jRAT Version together with material that is pornographic, racist, vulgar, obscene, defamatory, libelous, abusive, promoting hatred, discriminating or displaying prejudice based on religion, ethnic heritage, race, sexual orientation or age is strictly prohibited.
 
-7.Miscellaneous. 
-This Agreement shall all be governed and construed in accordance with the laws of France applicable to 
-agreements made and to be performed in France. You agree that any legal action or proceeding between 
-jRAT and you for any purpose concerning this Agreement or the parties' obligations hereunder 
-shall be brought exclusively in a federal or state court of competent jurisdiction sitting in France . Any cause 
-of action or claim you may have with respect to the Service must be commenced within one (1) year after the 
-claim or cause of action arises or such claim or cause of action is barred. jRAT's failure to insist 
-upon or enforce strict performance of any provision of this Agreement shall not be construed as a waiver of 
-any provision or right. Neither the course of conduct between the parties nor trade practice shall act to 
-modify any provision of this Agreement. jRAT may assign its rights and duties under this 
-Agreement to any party at any time without notice to you. 
+Each licensed copy of jRAT Version may be used on one single computer location by one user. Use of jRAT Version means that you have loaded, installed, or run jRAT Version on a computer or similar device. If you install jRAT Version onto a multi-user platform, server or network, each and every individual user of jRAT Version must be licensed separately.
 
-Any rights not expressly granted herein are reserved.
+You may make one copy of jRAT Version for backup purposes, providing you only have one copy installed on one computer being used by one person. Other users may not use your copy of jRAT Version . The assignment, sublicense, networking, sale, or distribution of copies of jRAT Version are strictly forbidden without the prior written consent of jRAT. It is a violation of this agreement to assign, sell, share, loan, rent, lease, borrow, network or transfer the use of jRAT Version. If any person other than yourself uses jRAT Version registered in your name, regardless of whether it is at the same time or different times, then this agreement is being violated and you are responsible for that violation!
+
+3.3 Copyright Restriction
+
+This Software contains copyrighted material, trade secrets and other proprietary material. You shall not, and shall not attempt to, modify, reverse engineer, disassemble or decompile jRAT Version. Nor can you create any derivative works or other works that are based upon or derived from jRAT Version in whole or in part.
+
+jRAT's name, logo and graphics file that represents jRAT Version shall not be used in any way to promote products developed with jRAT Version . jRAT retains sole and exclusive ownership of all right, title and interest in and to jRAT Version and all Intellectual Property rights relating thereto.
+
+Copyright law and international copyright treaty provisions protect all parts of jRAT Version, products and services. No program, code, part, image, audio sample, or text may be copied or used in any way by the user except as intended within the bounds of the single user program. All rights not expressly granted hereunder are reserved for jRAT.
+
+3.4 Limitation of Responsibility
+
+You will indemnify, hold harmless, and defend jRAT , its employees, agents and distributors against any and all claims, proceedings, demand and costs resulting from or in any way connected with your use of jRAT's Software.
+
+In no event (including, without limitation, in the event of negligence) will jRAT , its employees, agents or distributors be liable for any consequential, incidental, indirect, special or punitive damages whatsoever (including, without limitation, damages for loss of profits, loss of use, business interruption, loss of information or data, or pecuniary loss), in connection with or arising out of or related to this Agreement, jRAT Version or the use or inability to use jRAT Version or the furnishing, performance or use of any other matters hereunder whether based upon contract, tort or any other theory including negligence.
+
+jRAT's entire liability, without exception, is limited to the customers' reimbursement of the purchase price of the Software (maximum being the lesser of the amount paid by you and the suggested retail price as listed by jRAT ) in exchange for the return of the product, all copies, registration papers and manuals, and all materials that constitute a transfer of license from the customer back to jRAT.
+
+3.5 Warranties
+
+Except as expressly stated in writing, jRAT makes no representation or warranties in respect of this Software and expressly excludes all other warranties, expressed or implied, oral or written, including, without limitation, any implied warranties of merchantable quality or fitness for a particular purpose.
+
+3.6 Governing Law
+
+This Agreement shall be governed by the law of the Sweden applicable therein. You hereby irrevocably attorn and submit to the non-exclusive jurisdiction of the courts of Sweden therefrom. If any provision shall be considered unlawful, void or otherwise unenforceable, then that provision shall be deemed severable from this License and not affect the validity and enforceability of any other provisions.
+
+3.7 Termination
+
+Any failure to comply with the terms and conditions of this Agreement will result in automatic and immediate termination of this license. Upon termination of this license granted herein for any reason, you agree to immediately cease use of jRAT Version and destroy all copies of jRAT Version supplied under this Agreement. The financial obligations incurred by you shall survive the expiration or termination of this license.
+
+4. DISCLAIMER OF WARRANTY
+
+THIS SOFTWARE AND THE ACCOMPANYING FILES ARE SOLD "AS IS" AND WITHOUT WARRANTIES AS TO PERFORMANCE OR MERCHANTABILITY OR ANY OTHER WARRANTIES WHETHER EXPRESSED OR IMPLIED. THIS DISCLAIMER CONCERNS ALL FILES GENERATED AND EDITED BY jRAT Version AS WELL.
+
+5. CONSENT OF USE OF DATA
+
+You agree that jRAT may collect and use information gathered in any manner as part of the product support services provided to you, if any, related to jRAT Version.jRAT may also use this information to provide notices to you which may be of use or interest to you.
+ 	
