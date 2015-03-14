@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
@@ -15,6 +14,7 @@ import javax.swing.ScrollPaneConstants;
 
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet72IPConfig;
+import se.jrat.client.utils.IconUtils;
 
 
 @SuppressWarnings("serial")
@@ -33,7 +33,7 @@ public class PanelControlNetGateway extends PanelControlParent {
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
 		JButton btnReload = new JButton("Reload");
-		btnReload.setIcon(new ImageIcon(PanelControlNetGateway.class.getResource("/icons/update.png")));
+		btnReload.setIcon(IconUtils.getIcon("update"));
 		btnReload.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				textPane.setText("");
@@ -47,7 +47,7 @@ public class PanelControlNetGateway extends PanelControlParent {
 				textPane.setText("");
 			}
 		});
-		btnClear.setIcon(new ImageIcon(PanelControlNetGateway.class.getResource("/icons/clear.png")));
+		btnClear.setIcon(IconUtils.getIcon("clear"));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 599, GroupLayout.PREFERRED_SIZE).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(btnReload).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnClear))).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 310, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnReload).addComponent(btnClear)).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));

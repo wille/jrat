@@ -10,7 +10,6 @@ import java.util.HashMap;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -23,6 +22,7 @@ import javax.swing.table.DefaultTableModel;
 
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet63PreviewArchive;
+import se.jrat.client.utils.IconUtils;
 
 
 @SuppressWarnings("serial")
@@ -60,7 +60,7 @@ public class FramePreviewZip extends BaseFrame {
 		setContentPane(contentPane);
 
 		JButton btnReload = new JButton("Reload");
-		btnReload.setIcon(new ImageIcon(FramePreviewZip.class.getResource("/icons/update.png")));
+		btnReload.setIcon(IconUtils.getIcon("update"));
 		btnReload.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				clear();
@@ -69,7 +69,7 @@ public class FramePreviewZip extends BaseFrame {
 		});
 
 		JButton btnClear = new JButton("Clear");
-		btnClear.setIcon(new ImageIcon(FramePreviewZip.class.getResource("/icons/clear.png")));
+		btnClear.setIcon(IconUtils.getIcon("clear"));
 		btnClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				clear();

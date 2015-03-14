@@ -37,7 +37,7 @@ public class PanelControlRegStart extends PanelControlParent {
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
 		JButton btnReloadList = new JButton("Reload list");
-		btnReloadList.setIcon(new ImageIcon(PanelControlRegStart.class.getResource("/icons/update.png")));
+		btnReloadList.setIcon(IconUtils.getIcon("update"));
 		btnReloadList.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				clear();
@@ -51,7 +51,7 @@ public class PanelControlRegStart extends PanelControlParent {
 				clear();
 			}
 		});
-		btnClear.setIcon(new ImageIcon(PanelControlRegStart.class.getResource("/icons/clear.png")));
+		btnClear.setIcon(IconUtils.getIcon("clear"));
 
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(

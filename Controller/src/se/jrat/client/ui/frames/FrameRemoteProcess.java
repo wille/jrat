@@ -11,7 +11,6 @@ import java.util.Map;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -27,6 +26,7 @@ import se.jrat.client.packets.outgoing.Packet19ListProcesses;
 import se.jrat.client.packets.outgoing.Packet20KillProcess;
 import se.jrat.client.packets.outgoing.Packet38RunCommand;
 import se.jrat.client.ui.renderers.table.ProcessTableRenderer;
+import se.jrat.client.utils.IconUtils;
 import se.jrat.client.utils.Utils;
 
 import com.redpois0n.oslib.OperatingSystem;
@@ -73,7 +73,7 @@ public class FrameRemoteProcess extends JFrame {
 				clear();
 			}
 		});
-		btnClearList.setIcon(new ImageIcon(FrameRemoteProcess.class.getResource("/icons/clear.png")));
+		btnClearList.setIcon(IconUtils.getIcon("clear"));
 
 		btnCreateProcess = new JButton("Create process");
 		btnCreateProcess.addActionListener(new ActionListener() {
@@ -91,7 +91,7 @@ public class FrameRemoteProcess extends JFrame {
 				list();
 			}
 		});
-		btnCreateProcess.setIcon(new ImageIcon(FrameRemoteProcess.class.getResource("/icons/process.png")));
+		btnCreateProcess.setIcon(IconUtils.getIcon("process"));
 
 		btnKillSelected = new JButton("Kill selected");
 		btnKillSelected.addActionListener(new ActionListener() {
@@ -112,7 +112,7 @@ public class FrameRemoteProcess extends JFrame {
 				}
 			}
 		});
-		btnKillSelected.setIcon(new ImageIcon(FrameRemoteProcess.class.getResource("/icons/delete.png")));
+		btnKillSelected.setIcon(IconUtils.getIcon("delete"));
 
 		btnRefresh = new JButton("Refresh");
 		btnRefresh.addActionListener(new ActionListener() {
@@ -121,7 +121,7 @@ public class FrameRemoteProcess extends JFrame {
 				list();
 			}
 		});
-		btnRefresh.setIcon(new ImageIcon(FrameRemoteProcess.class.getResource("/icons/update.png")));
+		btnRefresh.setIcon(IconUtils.getIcon("update"));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(btnClearList).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnCreateProcess).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnKillSelected).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnRefresh)).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 517, GroupLayout.PREFERRED_SIZE)).addContainerGap(98, Short.MAX_VALUE)));
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 258, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(btnClearList).addComponent(btnCreateProcess).addComponent(btnKillSelected).addComponent(btnRefresh)).addContainerGap(61, Short.MAX_VALUE)));

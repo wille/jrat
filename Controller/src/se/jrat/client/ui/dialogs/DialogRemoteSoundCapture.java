@@ -10,7 +10,6 @@ import java.util.HashMap;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -21,6 +20,7 @@ import javax.swing.border.EmptyBorder;
 import se.jrat.client.Slave;
 import se.jrat.client.packets.incoming.Packet58SoundCapture;
 import se.jrat.client.packets.outgoing.Packet84SoundCapture;
+import se.jrat.client.utils.IconUtils;
 
 
 @SuppressWarnings({ "serial", "rawtypes", "unchecked" })
@@ -64,7 +64,7 @@ public class DialogRemoteSoundCapture extends BaseDialog {
 				comboBox.setEnabled(false);
 			}
 		});
-		btnStart.setIcon(new ImageIcon(DialogRemoteSoundCapture.class.getResource("/icons/microphone_plus.png")));
+		btnStart.setIcon(IconUtils.getIcon("microphone_plus.png"));
 
 		btnStop = new JButton("Stop");
 		btnStop.addActionListener(new ActionListener() {
@@ -77,7 +77,7 @@ public class DialogRemoteSoundCapture extends BaseDialog {
 			}
 		});
 		btnStop.setEnabled(false);
-		btnStop.setIcon(new ImageIcon(DialogRemoteSoundCapture.class.getResource("/icons/microphone_minus.png")));
+		btnStop.setIcon(IconUtils.getIcon("microphone_minus.png"));
 
 		comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] { "16000", "12000", "8000", "4000", "2000" }));

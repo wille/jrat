@@ -57,7 +57,7 @@ import com.redpois0n.graphs.monitors.RemoteMonitor;
 public class FrameRemoteScreen extends BaseFrame {
 	
 	public static final Map<Slave, FrameRemoteScreen> instances = new HashMap<Slave, FrameRemoteScreen>();
-	public static final ImageIcon DEFAULT_RECORD_ICON = new ImageIcon(FrameRemoteScreen.class.getResource("/icons/camera_black.png"));
+	public static final ImageIcon DEFAULT_RECORD_ICON = IconUtils.getIcon("camera_black");
 	
 	private BufferedImage buffer;
 	
@@ -182,7 +182,7 @@ public class FrameRemoteScreen extends BaseFrame {
 		toolBarBottom.addSeparator();
 		
 		lblMonitor = new JLabel("Monitor:  ");
-		lblMonitor.setIcon(new ImageIcon(FrameRemoteScreen.class.getResource("/icons/monitor.png")));
+		lblMonitor.setIcon(IconUtils.getIcon("monitor"));
 		toolBarBottom.add(lblMonitor);
 		
 		cbMonitors = new JComboBox<String>();
@@ -221,7 +221,7 @@ public class FrameRemoteScreen extends BaseFrame {
 		
 		btnStart = new JButton("");
 		btnStart.setToolTipText("Start");
-		btnStart.setIcon(new ImageIcon(FrameRemoteScreen.class.getResource("/icons/start.png")));
+		btnStart.setIcon(IconUtils.getIcon("start"));
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				start();
@@ -231,7 +231,7 @@ public class FrameRemoteScreen extends BaseFrame {
 		
 		btnStop = new JButton("");
 		btnStop.setToolTipText("Stop");
-		btnStop.setIcon(new ImageIcon(FrameRemoteScreen.class.getResource("/icons/stop_close.png")));
+		btnStop.setIcon(IconUtils.getIcon("stop_close"));
 		btnStop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				stop();
@@ -258,7 +258,7 @@ public class FrameRemoteScreen extends BaseFrame {
 				recordFrame.setVisible(true);
 			}
 		});
-		btnRecord.setIcon(new ImageIcon(FrameRemoteScreen.class.getResource("/icons/record.png")));
+		btnRecord.setIcon(IconUtils.getIcon("record"));
 		btnRecord.setToolTipText("Record");
 		threadRecordButton = new ThreadRecordButton(btnRecord);
 		
@@ -266,7 +266,7 @@ public class FrameRemoteScreen extends BaseFrame {
 		toolBarTop.addSeparator();
 		
 		lblSize = new JLabel("Size: " + size + "%");
-		lblSize.setIcon(new ImageIcon(FrameRemoteScreen.class.getResource("/icons/application-resize-full.png")));
+		lblSize.setIcon(IconUtils.getIcon("application-resize-full"));
 		toolBarTop.add(lblSize);
 		
 		sliderSize = new JSlider();
@@ -283,7 +283,7 @@ public class FrameRemoteScreen extends BaseFrame {
 		
 		lblQuality = new JLabel("Quality: " + quality);
 		toolBarTop.add(lblQuality);
-		lblQuality.setIcon(new ImageIcon(FrameRemoteScreen.class.getResource("/icons/monitor_plus.png")));
+		lblQuality.setIcon(IconUtils.getIcon("monitor_plus"));
 		
 		sliderQuality = new JSlider();
 		sliderQuality.addChangeListener(new ChangeListener() {
@@ -300,16 +300,16 @@ public class FrameRemoteScreen extends BaseFrame {
 		
 		tglbtnToggleMouse = new JToggleButton("");
 		tglbtnToggleMouse.setSelected(true);
-		tglbtnToggleMouse.setIcon(new ImageIcon(FrameRemoteScreen.class.getResource("/icons/mouse.png")));
+		tglbtnToggleMouse.setIcon(IconUtils.getIcon("mouse"));
 		toolBarTop.add(tglbtnToggleMouse);
 		
 		tglbtnToggleKeyboard = new JToggleButton("");
 		tglbtnToggleKeyboard.setSelected(true);
-		tglbtnToggleKeyboard.setIcon(new ImageIcon(FrameRemoteScreen.class.getResource("/icons/keyboard.png")));
+		tglbtnToggleKeyboard.setIcon(IconUtils.getIcon("keyboard"));
 		toolBarTop.add(tglbtnToggleKeyboard);
 		
 		tglbtnToggleMovement = new JToggleButton("");
-		tglbtnToggleMovement.setIcon(new ImageIcon(FrameRemoteScreen.class.getResource("/icons/arrow_move_icon.png")));
+		tglbtnToggleMovement.setIcon(IconUtils.getIcon("arrow_move_icon"));
 		toolBarTop.add(tglbtnToggleMovement);
 		
 		toolBarTop.addSeparator();

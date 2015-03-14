@@ -213,7 +213,7 @@ public class FrameControlPanel extends BaseFrame {
 		menuBar.add(mnActions);
 
 		mntmCollapseAll = new JMenuItem("Collapse all");
-		mntmCollapseAll.setIcon(new ImageIcon(FrameControlPanel.class.getResource("/icons/collapse.png")));
+		mntmCollapseAll.setIcon(IconUtils.getIcon("collapse"));
 		mntmCollapseAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				collapseAll(tree);
@@ -222,7 +222,7 @@ public class FrameControlPanel extends BaseFrame {
 		mnActions.add(mntmCollapseAll);
 
 		mntmExpandAll = new JMenuItem("Expand all");
-		mntmExpandAll.setIcon(new ImageIcon(FrameControlPanel.class.getResource("/icons/expand.png")));
+		mntmExpandAll.setIcon(IconUtils.getIcon("expand"));
 		mntmExpandAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				expandAll(tree);
@@ -248,7 +248,7 @@ public class FrameControlPanel extends BaseFrame {
 				new FrameControlPanel(sl).setVisible(true);
 			}
 		});
-		mntmReload.setIcon(new ImageIcon(FrameControlPanel.class.getResource("/icons/refresh.png")));
+		mntmReload.setIcon(IconUtils.getIcon("refresh"));
 		mnActions.add(mntmReload);
 
 		JMenuItem mntmClose = new JMenuItem("Close");
@@ -258,7 +258,7 @@ public class FrameControlPanel extends BaseFrame {
 				dispose();
 			}
 		});
-		mntmClose.setIcon(new ImageIcon(FrameControlPanel.class.getResource("/icons/delete.png")));
+		mntmClose.setIcon(IconUtils.getIcon("delete"));
 		mnActions.add(mntmClose);
 		addPanels();
 		addActions();

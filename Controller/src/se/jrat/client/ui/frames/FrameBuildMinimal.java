@@ -10,7 +10,6 @@ import java.util.LinkedHashMap;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
@@ -38,6 +37,7 @@ import se.jrat.client.listeners.SocketComboBoxListener;
 import se.jrat.client.net.PortListener;
 import se.jrat.client.settings.Settings;
 import se.jrat.client.ui.components.PortListenerJComboBox;
+import se.jrat.client.utils.IconUtils;
 import se.jrat.client.utils.NetUtils;
 import se.jrat.common.DropLocations;
 
@@ -79,7 +79,7 @@ public class FrameBuildMinimal extends BaseFrame {
 				build();
 			}
 		});
-		btnBuild.setIcon(new ImageIcon(FrameBuildMinimal.class.getResource("/icons/final.png")));
+		btnBuild.setIcon(IconUtils.getIcon("final"));
 
 		JLabel lblHost = new JLabel("Host:");
 
@@ -225,7 +225,7 @@ public class FrameBuildMinimal extends BaseFrame {
 				}
 			}
 		});
-		btnLocal.setIcon(new ImageIcon(FrameBuildMinimal.class.getResource("/icons/network-ip-local.png")));
+		btnLocal.setIcon(IconUtils.getIcon("network-ip-local"));
 		toolBar.add(btnLocal);
 
 		JButton btnWan = new JButton("");
@@ -239,7 +239,7 @@ public class FrameBuildMinimal extends BaseFrame {
 				}
 			}
 		});
-		btnWan.setIcon(new ImageIcon(FrameBuildMinimal.class.getResource("/icons/network-ip.png")));
+		btnWan.setIcon(IconUtils.getIcon("network-ip"));
 		toolBar.add(btnWan);
 		contentPane.setLayout(gl_contentPane);
 

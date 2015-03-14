@@ -12,7 +12,6 @@ import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
@@ -23,6 +22,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import se.jrat.client.ErrorDialog;
 import se.jrat.client.threads.ThreadRecordButton;
 import se.jrat.client.ui.frames.FrameRemoteScreen;
+import se.jrat.client.utils.IconUtils;
 
 
 @SuppressWarnings("serial")
@@ -81,7 +81,7 @@ public class DialogRecordRemoteScreen extends BaseDialog {
 				toggle();
 			}
 		});
-		btnRecord.setIcon(new ImageIcon(DialogRecordRemoteScreen.class.getResource("/icons/record_big.png")));
+		btnRecord.setIcon(IconUtils.getIcon("record_big.png"));
 				
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(

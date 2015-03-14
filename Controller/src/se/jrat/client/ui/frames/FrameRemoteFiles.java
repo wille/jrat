@@ -201,7 +201,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				}
 			}
 		});
-		btnBackme.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/left.png")));
+		btnBackme.setIcon(IconUtils.getIcon("left"));
 
 		btnRefreshme = new JButton("");
 		toolBarNorth.add(btnRefreshme);
@@ -223,7 +223,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				}
 			}
 		});
-		btnRefreshme.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/refresh.png")));
+		btnRefreshme.setIcon(IconUtils.getIcon("refresh"));
 
 		JButton btnDeleteme = new JButton("");
 		btnDeleteme.setToolTipText("Delete");
@@ -239,7 +239,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				}
 			}
 		});
-		btnDeleteme.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/delete.png")));
+		btnDeleteme.setIcon(IconUtils.getIcon("delete"));
 		toolBarNorth.add(btnDeleteme);
 
 		btnNewFolderme = new JButton("");
@@ -254,7 +254,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				new File(txtDir.getText() + File.separator + foldername).mkdirs();
 			}
 		});
-		btnNewFolderme.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/new_folder.png")));
+		btnNewFolderme.setIcon(IconUtils.getIcon("new_folder"));
 		toolBarNorth.add(btnNewFolderme);
 
 		btnGome = new JButton("");
@@ -274,7 +274,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				}
 			}
 		});
-		btnGome.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/folder_go.png")));
+		btnGome.setIcon(IconUtils.getIcon("folder_go"));
 
 		txtDirme = new JTextField();
 		toolBarNorth.add(txtDirme);
@@ -289,7 +289,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				upload();
 			}
 		});
-		btnUpload.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/right.png")));
+		btnUpload.setIcon(IconUtils.getIcon("right"));
 		btnUpload.setToolTipText("Upload selected file");
 
 		toolBarNorth.addSeparator(new Dimension(30, 20));
@@ -302,7 +302,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				download();
 			}
 		});
-		btnDownload.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/left.png")));
+		btnDownload.setIcon(IconUtils.getIcon("left"));
 		txtDir = new JTextField();
 		txtDir.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
@@ -359,7 +359,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				}
 			}
 		});
-		btnBack.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/left.png")));
+		btnBack.setIcon(IconUtils.getIcon("left"));
 
 		JButton btnRefresh = new JButton("");
 		toolBarNorth.add(btnRefresh);
@@ -371,7 +371,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				sl.addToSendQueue(new Packet15ListFiles(txtDir.getText()));
 			}
 		});
-		btnRefresh.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/refresh.png")));
+		btnRefresh.setIcon(IconUtils.getIcon("refresh"));
 		btnRefresh.setToolTipText("Reload");
 
 		btnDelete = new JButton("");
@@ -388,7 +388,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				}
 			}
 		});
-		btnDelete.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/delete.png")));
+		btnDelete.setIcon(IconUtils.getIcon("delete"));
 		toolBarNorth.add(btnDelete);
 
 		btnNewFolder = new JButton("");
@@ -403,7 +403,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				sl.addToSendQueue(new Packet43CreateDirectory(txtDir.getText(), foldername));
 			}
 		});
-		btnNewFolder.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/new_folder.png")));
+		btnNewFolder.setIcon(IconUtils.getIcon("new_folder"));
 		toolBarNorth.add(btnNewFolder);
 
 		JButton btnGo = new JButton("");
@@ -422,7 +422,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				}
 			}
 		});
-		btnGo.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/folder_go.png")));
+		btnGo.setIcon(IconUtils.getIcon("folder_go"));
 
 		JScrollPane scrollPane = new JScrollPane();
 		splitPane.setRightComponent(scrollPane);
@@ -476,7 +476,7 @@ public class FrameRemoteFiles extends BaseFrame {
 		addPopup(table, popupMenuRemote);
 
 		mntmRun = new JMenuItem("Run");
-		mntmRun.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/runcmd.png")));
+		mntmRun.setIcon(IconUtils.getIcon("runcmd"));
 		mntmRun.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -490,7 +490,7 @@ public class FrameRemoteFiles extends BaseFrame {
 		});
 
 		mnQuickJump = new JMenu("Quick Jump");
-		mnQuickJump.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/recent_folder.png")));
+		mnQuickJump.setIcon(IconUtils.getIcon("recent_folder"));
 		popupMenuRemote.add(mnQuickJump);
 
 		popupMenuRemote.addSeparator();
@@ -513,7 +513,7 @@ public class FrameRemoteFiles extends BaseFrame {
 		popupMenuRemote.add(mntmRun);
 
 		mntmPreviewFiletext = new JMenuItem("Preview file (Text, ZIP, Image)");
-		mntmPreviewFiletext.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/preview.png")));
+		mntmPreviewFiletext.setIcon(IconUtils.getIcon("preview"));
 		mntmPreviewFiletext.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -537,7 +537,7 @@ public class FrameRemoteFiles extends BaseFrame {
 		popupMenuRemote.add(mntmPreviewFiletext);
 
 		mntmDownloadFile = new JMenuItem("Download File(s)");
-		mntmDownloadFile.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/left.png")));
+		mntmDownloadFile.setIcon(IconUtils.getIcon("left"));
 		mntmDownloadFile.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -547,7 +547,7 @@ public class FrameRemoteFiles extends BaseFrame {
 		popupMenuRemote.add(mntmDownloadFile);
 
 		mntmExploreImages = new JMenuItem("Explore(.png, .jpg, .gif)");
-		mntmExploreImages.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/images-stack.png")));
+		mntmExploreImages.setIcon(IconUtils.getIcon("images-stack"));
 		mntmExploreImages.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				List<String> files = new ArrayList<String>();
@@ -575,7 +575,7 @@ public class FrameRemoteFiles extends BaseFrame {
 		popupMenuRemote.addSeparator();
 
 		mntmNewFolder = new JMenuItem("New Folder");
-		mntmNewFolder.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/new_folder.png")));
+		mntmNewFolder.setIcon(IconUtils.getIcon("new_folder"));
 		mntmNewFolder.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -590,7 +590,7 @@ public class FrameRemoteFiles extends BaseFrame {
 		popupMenuRemote.add(mntmNewFolder);
 
 		mntmDelete = new JMenuItem("Delete");
-		mntmDelete.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/delete.png")));
+		mntmDelete.setIcon(IconUtils.getIcon("delete"));
 		mntmDelete.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -607,7 +607,7 @@ public class FrameRemoteFiles extends BaseFrame {
 		popupMenuRemote.add(mntmDelete);
 
 		mntmRename = new JMenuItem("Rename");
-		mntmRename.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/rename.png")));
+		mntmRename.setIcon(IconUtils.getIcon("rename"));
 		mntmRename.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -624,7 +624,7 @@ public class FrameRemoteFiles extends BaseFrame {
 		popupMenuRemote.add(mntmRename);
 
 		mntmMdHash = new JMenuItem("File Hash");
-		mntmMdHash.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/barcode.png")));
+		mntmMdHash.setIcon(IconUtils.getIcon("barcode"));
 		mntmMdHash.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -646,13 +646,13 @@ public class FrameRemoteFiles extends BaseFrame {
 				}
 			}
 		});
-		mntmCorrupt.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/broken_document.png")));
+		mntmCorrupt.setIcon(IconUtils.getIcon("broken_document"));
 		popupMenuRemote.add(mntmCorrupt);
 
 		popupMenuRemote.addSeparator();
 
 		mnBookmarks = new JMenu("Bookmarks");
-		mnBookmarks.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/bookmark_go.png")));
+		mnBookmarks.setIcon(IconUtils.getIcon("bookmark_go"));
 		popupMenuRemote.add(mnBookmarks);
 
 		mnAdd = new JMenuItem("Add");
@@ -662,7 +662,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				txtChanged();
 			}
 		});
-		mnAdd.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/bookmark_add.png")));
+		mnAdd.setIcon(IconUtils.getIcon("bookmark_add"));
 		popupMenuRemote.add(mnAdd);
 
 		mnRemove = new JMenuItem("Remove");
@@ -672,7 +672,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				txtChanged();
 			}
 		});
-		mnRemove.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/bookmark_remove.png")));
+		mnRemove.setIcon(IconUtils.getIcon("bookmark_remove"));
 		popupMenuRemote.add(mnRemove);
 
 		popupMenuRemote.addSeparator();
@@ -692,7 +692,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				table.getSelectionModel().setSelectionInterval(0, row);
 			}
 		});
-		mntmSelectAllFolders.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/folders-stack.png")));
+		mntmSelectAllFolders.setIcon(IconUtils.getIcon("folders-stack"));
 		popupMenuRemote.add(mntmSelectAllFolders);
 
 		mntmSelectAllFiles = new JMenuItem("Select all files");
@@ -710,7 +710,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				table.getSelectionModel().setSelectionInterval(row, model.getRowCount());
 			}
 		});
-		mntmSelectAllFiles.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/documents-stack.png")));
+		mntmSelectAllFiles.setIcon(IconUtils.getIcon("documents-stack"));
 		popupMenuRemote.add(mntmSelectAllFiles);
 
 		popupMenuRemote.addSeparator();
@@ -730,7 +730,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				}
 			}
 		});
-		mntmGo.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/right.png")));
+		mntmGo.setIcon(IconUtils.getIcon("right"));
 		popupMenuRemote.add(mntmGo);
 
 		mntmBack = new JMenuItem("Back");
@@ -752,7 +752,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				}
 			}
 		});
-		mntmBack.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/left.png")));
+		mntmBack.setIcon(IconUtils.getIcon("left"));
 		popupMenuRemote.add(mntmBack);
 
 		mntmRefresh = new JMenuItem("Refresh");
@@ -765,7 +765,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				sl.addToSendQueue(new Packet15ListFiles(txtDir.getText()));
 			}
 		});
-		mntmRefresh.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/refresh.png")));
+		mntmRefresh.setIcon(IconUtils.getIcon("refresh"));
 		popupMenuRemote.add(mntmRefresh);
 
 		scrollPane.setViewportView(table);
@@ -803,7 +803,7 @@ public class FrameRemoteFiles extends BaseFrame {
 		addPopup(tableme, popupMenu);
 		
 		menu = new JMenu("Quick Jump");
-		menu.setIcon(new ImageIcon(FrameRemoteFiles.class.getResource("/icons/recent_folder.png")));
+		menu.setIcon(IconUtils.getIcon("recent_folder"));
 		popupMenu.add(menu);
 		
 		menuItem_1 = new JMenuItem("Appdata");

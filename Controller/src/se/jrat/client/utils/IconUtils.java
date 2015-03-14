@@ -73,7 +73,7 @@ public class IconUtils {
 		if (Utils.pingicons.containsKey(str)) {
 			icon = Utils.pingicons.get(str);
 		} else if (Frame.pingmode == Frame.PING_ICON_DOT) {
-			icon = new ImageIcon(Main.class.getResource(str));
+			icon = IconUtils.getIcon(str);
 			Utils.pingicons.put(str, icon);
 		} else {
 			icon = getIcon(str);
@@ -104,9 +104,9 @@ public class IconUtils {
 
 	public static ImageIcon getFileIcon(int mode) {
 		if (mode == IconUtils.IMAGE_FILE) {
-			return new ImageIcon(Main.class.getResource("/icons/file.png"));
+			return IconUtils.getIcon("file");
 		} else if (mode == IconUtils.IMAGE_FOLDER) {
-			return new ImageIcon(Main.class.getResource("/icons/folder.png"));
+			return IconUtils.getIcon("folder");
 		} else {
 			return null;
 		}

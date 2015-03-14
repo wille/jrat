@@ -11,7 +11,6 @@ import java.util.HashMap;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -27,6 +26,7 @@ import se.jrat.client.Constants;
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet90SystemProperties;
 import se.jrat.client.packets.outgoing.Packet96EnvironmentVariables;
+import se.jrat.client.utils.IconUtils;
 
 
 @SuppressWarnings("serial")
@@ -76,7 +76,7 @@ public class FrameSystem extends BaseFrame {
 				}
 			}
 		});
-		btnReload.setIcon(new ImageIcon(FrameSystem.class.getResource("/icons/update.png")));
+		btnReload.setIcon(IconUtils.getIcon("update"));
 
 		JButton btnSave = new JButton("Save");
 		btnSave.addActionListener(new ActionListener() {
@@ -100,7 +100,7 @@ public class FrameSystem extends BaseFrame {
 				}
 			}
 		});
-		btnSave.setIcon(new ImageIcon(FrameSystem.class.getResource("/icons/save.png")));
+		btnSave.setIcon(IconUtils.getIcon("save"));
 
 		JButton btnClose = new JButton("Close");
 		btnClose.addActionListener(new ActionListener() {
@@ -108,7 +108,7 @@ public class FrameSystem extends BaseFrame {
 				exit();
 			}
 		});
-		btnClose.setIcon(new ImageIcon(FrameSystem.class.getResource("/icons/delete.png")));
+		btnClose.setIcon(IconUtils.getIcon("delete"));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 433, GroupLayout.PREFERRED_SIZE).addGroup(gl_contentPane.createSequentialGroup().addComponent(btnReload, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(btnClose, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE))).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 218, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(btnReload).addComponent(btnSave).addComponent(btnClose)).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));

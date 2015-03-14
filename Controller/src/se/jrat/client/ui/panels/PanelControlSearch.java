@@ -10,7 +10,6 @@ import javax.swing.ButtonGroup;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -61,17 +60,17 @@ public class PanelControlSearch extends PanelControlParent {
 
 		JButton btnSearch = new JButton("Search");
 
-		btnSearch.setIcon(new ImageIcon(PanelControlSearch.class.getResource("/icons/folder_search.png")));
+		btnSearch.setIcon(IconUtils.getIcon("folder_search"));
 
 		txt = new JTextField();
 		txt.setColumns(10);
 
 		JToggleButton tglbtnNameContains = new JToggleButton("Name contains");
-		tglbtnNameContains.setIcon(new ImageIcon(PanelControlSearch.class.getResource("/icons/file.png")));
+		tglbtnNameContains.setIcon(IconUtils.getIcon("file"));
 		buttonGroup.add(tglbtnNameContains);
 
 		final JToggleButton tglbtnPathContains = new JToggleButton("Path contains");
-		tglbtnPathContains.setIcon(new ImageIcon(PanelControlSearch.class.getResource("/icons/folder.png")));
+		tglbtnPathContains.setIcon(IconUtils.getIcon("folder"));
 		buttonGroup.add(tglbtnPathContains);
 		tglbtnPathContains.setSelected(true);
 
@@ -85,7 +84,7 @@ public class PanelControlSearch extends PanelControlParent {
 				}
 			}
 		});
-		btnClear.setIcon(new ImageIcon(PanelControlSearch.class.getResource("/icons/clear.png")));
+		btnClear.setIcon(IconUtils.getIcon("clear"));
 
 		cbDrives = new JComboBox<String>();
 		cbDrives.setRenderer(getDrivesRenderer());
@@ -105,7 +104,7 @@ public class PanelControlSearch extends PanelControlParent {
 		addPopup(table, popupMenu);
 
 		JMenuItem mntmOpenInFile = new JMenuItem("Open in file manager");
-		mntmOpenInFile.setIcon(new ImageIcon(PanelControlSearch.class.getResource("/icons/folder_go.png")));
+		mntmOpenInFile.setIcon(IconUtils.getIcon("folder_go"));
 		mntmOpenInFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int row = table.getSelectedRow();
@@ -145,7 +144,7 @@ public class PanelControlSearch extends PanelControlParent {
 				}
 			}
 		});
-		btnOpenInFile.setIcon(new ImageIcon(PanelControlSearch.class.getResource("/icons/folder_go.png")));
+		btnOpenInFile.setIcon(IconUtils.getIcon("folder_go"));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 598, GroupLayout.PREFERRED_SIZE).addGroup(groupLayout.createSequentialGroup().addGap(184).addComponent(btnOpenInFile).addGap(6).addComponent(btnClear).addGap(6).addComponent(tglbtnPathContains).addGap(6).addComponent(tglbtnNameContains)).addGroup(groupLayout.createSequentialGroup().addGap(135).addComponent(lblDrive).addGap(4).addComponent(cbDrives, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE).addGap(10).addComponent(lblSearchFor).addGap(4).addComponent(txt, GroupLayout.PREFERRED_SIZE, 184, GroupLayout.PREFERRED_SIZE).addGap(6).addComponent(btnSearch)));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 255, GroupLayout.PREFERRED_SIZE).addGap(15).addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(btnOpenInFile).addComponent(btnClear).addComponent(tglbtnPathContains).addComponent(tglbtnNameContains)).addGap(6).addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addGap(5).addComponent(lblDrive)).addGroup(groupLayout.createSequentialGroup().addGap(2).addComponent(cbDrives, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addGroup(groupLayout.createSequentialGroup().addGap(5).addComponent(lblSearchFor)).addGroup(groupLayout.createSequentialGroup().addGap(2).addComponent(txt, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addComponent(btnSearch))));

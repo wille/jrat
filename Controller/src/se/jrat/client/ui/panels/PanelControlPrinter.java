@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
@@ -14,6 +13,7 @@ import javax.swing.ScrollPaneConstants;
 
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet69Print;
+import se.jrat.client.utils.IconUtils;
 
 
 @SuppressWarnings("serial")
@@ -27,7 +27,7 @@ public class PanelControlPrinter extends PanelControlParent {
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
 		JButton btnPrint = new JButton("Print");
-		btnPrint.setIcon(new ImageIcon(PanelControlPrinter.class.getResource("/icons/printer.png")));
+		btnPrint.setIcon(IconUtils.getIcon("printer"));
 		btnPrint.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				slave.addToSendQueue(new Packet69Print(textPane.getText()));
@@ -40,7 +40,7 @@ public class PanelControlPrinter extends PanelControlParent {
 				textPane.setText("");
 			}
 		});
-		btnClear.setIcon(new ImageIcon(PanelControlPrinter.class.getResource("/icons/clear.png")));
+		btnClear.setIcon(IconUtils.getIcon("clear"));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(btnPrint).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnClear).addContainerGap(420, Short.MAX_VALUE)));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 301, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnPrint).addComponent(btnClear)).addContainerGap(20, Short.MAX_VALUE)));

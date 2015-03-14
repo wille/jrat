@@ -7,7 +7,6 @@ import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -21,6 +20,7 @@ import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
 import se.jrat.client.settings.Settings;
+import se.jrat.client.utils.IconUtils;
 
 
 @SuppressWarnings("serial")
@@ -52,7 +52,7 @@ public class PanelSettingsTheme extends JPanel {
 		JLabel lblTheme = new JLabel("Theme:");
 
 		JButton btnDefault = new JButton("Default");
-		btnDefault.setIcon(new ImageIcon(PanelSettingsTheme.class.getResource("/icons/all.png")));
+		btnDefault.setIcon(IconUtils.getIcon("all"));
 		btnDefault.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -66,7 +66,7 @@ public class PanelSettingsTheme extends JPanel {
 		});
 
 		JButton btnSelect = new JButton("Select");
-		btnSelect.setIcon(new ImageIcon(PanelSettingsTheme.class.getResource("/icons/themes.png")));
+		btnSelect.setIcon(IconUtils.getIcon("themes"));
 		btnSelect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {

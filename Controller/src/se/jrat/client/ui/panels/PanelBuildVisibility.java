@@ -72,7 +72,7 @@ public class PanelBuildVisibility extends JPanel {
 		}
 
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(PanelBuildVisibility.class.getResource("/icons/glasses.png")));
+		label.setIcon(IconUtils.getIcon("glasses"));
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(BorderFactory.createLineBorder(Color.gray.brighter()));
@@ -84,7 +84,7 @@ public class PanelBuildVisibility extends JPanel {
 		txtIcon.setColumns(10);
 
 		JButton button = new JButton("");
-		button.setIcon(new ImageIcon(PanelBuildVisibility.class.getResource("/icons/folder_go.png")));
+		button.setIcon(IconUtils.getIcon("folder_go"));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JFileChooser c = new JFileChooser();
@@ -114,7 +114,7 @@ public class PanelBuildVisibility extends JPanel {
 				repaint();
 			}
 		});
-		btnDefault.setIcon(new ImageIcon(PanelBuildVisibility.class.getResource("/icons/icon.png")));
+		btnDefault.setIcon(IconUtils.getIcon("icon"));
 
 		JLabel lblMessages = new JLabel("Messages:");
 

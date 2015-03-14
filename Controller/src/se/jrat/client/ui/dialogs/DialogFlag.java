@@ -7,7 +7,6 @@ import java.util.List;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -61,7 +60,7 @@ public class DialogFlag extends BaseDialog {
 		JLabel lblColor = new JLabel("Color:");
 
 		JButton btnFlag = new JButton("Flag");
-		btnFlag.setIcon(new ImageIcon(DialogFlag.class.getResource("/icons/enabled.png")));
+		btnFlag.setIcon(IconUtils.getIcon("enabled.png"));
 		btnFlag.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				/*

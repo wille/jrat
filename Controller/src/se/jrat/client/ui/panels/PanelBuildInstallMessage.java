@@ -8,7 +8,6 @@ import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -24,6 +23,7 @@ import javax.swing.ScrollPaneConstants;
 import se.jrat.client.Constants;
 import se.jrat.client.Help;
 import se.jrat.client.ui.components.JPlaceholderTextField;
+import se.jrat.client.utils.IconUtils;
 
 
 @SuppressWarnings("serial")
@@ -81,20 +81,20 @@ public class PanelBuildInstallMessage extends JPanel {
 
 		btnInfo = new JToggleButton("");
 		buttonGroup.add(btnInfo);
-		btnInfo.setIcon(new ImageIcon(PanelBuildInstallMessage.class.getResource("/icons/box_info.png")));
+		btnInfo.setIcon(IconUtils.getIcon("box_info.png"));
 
 		btnError = new JToggleButton("");
 		buttonGroup.add(btnError);
 		btnError.setSelected(true);
-		btnError.setIcon(new ImageIcon(PanelBuildInstallMessage.class.getResource("/icons/box_error.png")));
+		btnError.setIcon(IconUtils.getIcon("box_error.png"));
 
 		btnWarning = new JToggleButton("");
 		buttonGroup.add(btnWarning);
-		btnWarning.setIcon(new ImageIcon(PanelBuildInstallMessage.class.getResource("/icons/box_warning.png")));
+		btnWarning.setIcon(IconUtils.getIcon("box_warning.png"));
 
 		btnQuestion = new JToggleButton("");
 		buttonGroup.add(btnQuestion);
-		btnQuestion.setIcon(new ImageIcon(PanelBuildInstallMessage.class.getResource("/icons/box_question.png")));
+		btnQuestion.setIcon(IconUtils.getIcon("box_question.png"));
 
 		btnNone = new JToggleButton("None");
 		buttonGroup.add(btnNone);
@@ -116,7 +116,7 @@ public class PanelBuildInstallMessage extends JPanel {
 				JOptionPane.showMessageDialog(null, getMsg(), getTitle(), getIcon());
 			}
 		});
-		button.setIcon(new ImageIcon(PanelBuildInstallMessage.class.getResource("/icons/messagebox.png")));
+		button.setIcon(IconUtils.getIcon("messagebox.png"));
 
 		button_1 = new JButton("");
 		button_1.addActionListener(new ActionListener() {
@@ -124,7 +124,7 @@ public class PanelBuildInstallMessage extends JPanel {
 				Help.help("Messagebox to be ran on execution, only once using installer");
 			}
 		});
-		button_1.setIcon(new ImageIcon(PanelBuildInstallMessage.class.getResource("/icons/help.png")));
+		button_1.setIcon(IconUtils.getIcon("help.png"));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false).addGroup(gl_panel.createSequentialGroup().addContainerGap().addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addComponent(chckbxEnableInstallMessage).addGroup(gl_panel.createSequentialGroup().addComponent(btnInfo).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnError, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnWarning, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnQuestion, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnNone, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)).addGroup(gl_panel.createSequentialGroup().addComponent(lblTitle).addPreferredGap(ComponentPlacement.RELATED).addComponent(txtTitle, GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)))).addGroup(gl_panel.createSequentialGroup().addGap(11).addComponent(lblMsg).addGap(5).addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addComponent(button, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(button_1, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE).addGap(9)).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)))).addContainerGap(84, Short.MAX_VALUE)));
 		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addContainerGap().addComponent(chckbxEnableInstallMessage).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addComponent(btnNone, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE).addComponent(btnInfo).addComponent(btnError, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE).addComponent(btnWarning, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE).addComponent(btnQuestion, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(lblTitle).addComponent(txtTitle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addGap(4).addComponent(lblMsg)).addGroup(gl_panel.createSequentialGroup().addGap(6).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE))).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(button).addComponent(button_1)).addContainerGap(16, Short.MAX_VALUE)));

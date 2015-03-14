@@ -9,7 +9,6 @@ import java.util.LinkedHashMap;
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
@@ -36,6 +35,7 @@ import se.jrat.client.listeners.AdvancedBuildListener;
 import se.jrat.client.settings.Settings;
 import se.jrat.client.ui.frames.FrameBuildAdvanced;
 import se.jrat.client.ui.renderers.table.BuildTableRenderer;
+import se.jrat.client.utils.IconUtils;
 import se.jrat.common.utils.DataUnits;
 
 import com.redpois0n.zkmlib.Configuration;
@@ -101,7 +101,7 @@ public class PanelBuildFinal extends JPanel {
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(panel, GroupLayout.PREFERRED_SIZE, 273, GroupLayout.PREFERRED_SIZE).addContainerGap(16, Short.MAX_VALUE)));
 
 		btnBuild = new JButton("Build");
-		btnBuild.setIcon(new ImageIcon(PanelBuildFinal.class.getResource("/icons/final.png")));
+		btnBuild.setIcon(IconUtils.getIcon("final.png"));
 		btnBuild.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				perform();
@@ -125,7 +125,7 @@ public class PanelBuildFinal extends JPanel {
 				}
 			}
 		});
-		button.setIcon(new ImageIcon(PanelBuildFinal.class.getResource("/icons/folder.png")));
+		button.setIcon(IconUtils.getIcon("folder.png"));
 
 		lblExpectedSizeUnknown = new JLabel("Expected size: Unknown");
 
@@ -135,7 +135,7 @@ public class PanelBuildFinal extends JPanel {
 				formatLbl();
 			}
 		});
-		button_1.setIcon(new ImageIcon(PanelBuildFinal.class.getResource("/icons/refresh.png")));
+		button_1.setIcon(IconUtils.getIcon("refresh.png"));
 
 		progressBar = new JProgressBar();
 

@@ -7,7 +7,6 @@ import java.net.URL;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
@@ -22,6 +21,7 @@ import javax.swing.event.HyperlinkListener;
 
 import se.jrat.client.ErrorDialog;
 import se.jrat.client.Updater;
+import se.jrat.client.utils.IconUtils;
 import se.jrat.client.utils.NetUtils;
 import se.jrat.common.Version;
 
@@ -55,7 +55,7 @@ public class FrameChangelog extends BaseFrame {
 				}
 			}
 		});
-		btnDownloadLatestUpdate.setIcon(new ImageIcon(FrameChangelog.class.getResource("/icons/drive-download.png")));
+		btnDownloadLatestUpdate.setIcon(IconUtils.getIcon("drive-download"));
 
 		JLabel lblYourVersion = new JLabel("Your version: " + Version.getVersion());
 
@@ -66,7 +66,7 @@ public class FrameChangelog extends BaseFrame {
 				dispose();
 			}
 		});
-		btnClose.setIcon(new ImageIcon(FrameChangelog.class.getResource("/icons/delete.png")));
+		btnClose.setIcon(IconUtils.getIcon("delete"));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(btnDownloadLatestUpdate).addPreferredGap(ComponentPlacement.RELATED, 304, Short.MAX_VALUE).addComponent(lblYourVersion).addPreferredGap(ComponentPlacement.UNRELATED).addComponent(btnClose)).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE));
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 218, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(btnDownloadLatestUpdate).addComponent(btnClose).addComponent(lblYourVersion)).addGap(30)));

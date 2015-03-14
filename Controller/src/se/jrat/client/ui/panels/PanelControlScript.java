@@ -17,6 +17,7 @@ import javax.swing.ScrollPaneConstants;
 
 import se.jrat.client.Script;
 import se.jrat.client.Slave;
+import se.jrat.client.utils.IconUtils;
 
 
 @SuppressWarnings("serial")
@@ -62,7 +63,7 @@ public class PanelControlScript extends PanelControlParent {
 				}
 			}
 		});
-		btnSave.setIcon(new ImageIcon(PanelControlScript.class.getResource("/icons/save.png")));
+		btnSave.setIcon(IconUtils.getIcon("save"));
 
 		JButton btnClear = new JButton("Clear");
 		btnClear.addActionListener(new ActionListener() {
@@ -70,7 +71,7 @@ public class PanelControlScript extends PanelControlParent {
 				textPane.setText("");
 			}
 		});
-		btnClear.setIcon(new ImageIcon(PanelControlScript.class.getResource("/icons/clear.png")));
+		btnClear.setIcon(IconUtils.getIcon("clear"));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addGroup(groupLayout.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 599, GroupLayout.PREFERRED_SIZE).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)).addGroup(groupLayout.createSequentialGroup().addContainerGap(315, Short.MAX_VALUE).addComponent(btnClear).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnSave).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnSendScript).addGap(31)));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 301, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnSendScript).addComponent(btnSave).addComponent(btnClear)).addContainerGap(15, Short.MAX_VALUE)));

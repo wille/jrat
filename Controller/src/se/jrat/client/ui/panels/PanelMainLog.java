@@ -12,7 +12,6 @@ import java.util.List;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
@@ -90,7 +89,7 @@ public class PanelMainLog extends JPanel {
 				}
 			}
 		});
-		mntmRemove.setIcon(new ImageIcon(PanelMainLog.class.getResource("/icons/window_minus.png")));
+		mntmRemove.setIcon(IconUtils.getIcon("window_minus"));
 		popupMenu.add(mntmRemove);
 
 		JMenuItem mntmRemoveAll = new JMenuItem("Remove all");
@@ -101,7 +100,7 @@ public class PanelMainLog extends JPanel {
 				}
 			}
 		});
-		mntmRemoveAll.setIcon(new ImageIcon(PanelMainLog.class.getResource("/icons/window_minus.png")));
+		mntmRemoveAll.setIcon(IconUtils.getIcon("window_minus"));
 		popupMenu.add(mntmRemoveAll);
 
 		popupMenu.addSeparator();
@@ -134,7 +133,7 @@ public class PanelMainLog extends JPanel {
 				}
 			}
 		});
-		mntmExpand.setIcon(new ImageIcon(PanelMainLog.class.getResource("/icons/window_import.png")));
+		mntmExpand.setIcon(IconUtils.getIcon("window_import"));
 		popupMenu.add(mntmExpand);
 
 		scrollPane.setViewportView(table);

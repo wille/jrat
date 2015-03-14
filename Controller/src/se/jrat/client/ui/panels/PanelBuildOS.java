@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -15,6 +14,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import se.jrat.client.Help;
 import se.jrat.client.OSConfig;
+import se.jrat.client.utils.IconUtils;
 
 import com.redpois0n.oslib.OperatingSystem;
 
@@ -91,13 +91,13 @@ public class PanelBuildOS extends JPanel {
 		chckbxLinux.setSelected(true);
 
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(PanelBuildOS.class.getResource("/icons/os_win.png")));
+		label.setIcon(IconUtils.getIcon("os_win"));
 
 		JLabel label_1 = new JLabel("");
-		label_1.setIcon(new ImageIcon(PanelBuildOS.class.getResource("/icons/os_mac.png")));
+		label_1.setIcon(IconUtils.getIcon("os_mac"));
 
 		JLabel label_2 = new JLabel("");
-		label_2.setIcon(new ImageIcon(PanelBuildOS.class.getResource("/icons/os_linux.png")));
+		label_2.setIcon(IconUtils.getIcon("os_linux"));
 
 		JButton button = new JButton("");
 		button.addActionListener(new ActionListener() {
@@ -105,19 +105,19 @@ public class PanelBuildOS extends JPanel {
 				Help.help("Selects what operating systems the stub is allowed to execute on");
 			}
 		});
-		button.setIcon(new ImageIcon(PanelBuildOS.class.getResource("/icons/help.png")));
+		button.setIcon(IconUtils.getIcon("help"));
 
 		chckbxBSD = new JCheckBox("*BSD");
 		chckbxBSD.setSelected(true);
 
 		JLabel label_3 = new JLabel("");
-		label_3.setIcon(new ImageIcon(PanelBuildOS.class.getResource("/icons/os_freebsd.png")));
+		label_3.setIcon(IconUtils.getIcon("os_freebsd"));
 
 		chckbxSolaris = new JCheckBox("Solaris");
 		chckbxSolaris.setSelected(true);
 
 		JLabel label_5 = new JLabel("");
-		label_5.setIcon(new ImageIcon(PanelBuildOS.class.getResource("/icons/os_solaris.png")));
+		label_5.setIcon(IconUtils.getIcon("os_solaris"));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)

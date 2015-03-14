@@ -13,7 +13,6 @@ import java.util.Map;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -32,7 +31,7 @@ import se.jrat.client.packets.outgoing.Packet48ChatStart;
 import se.jrat.client.packets.outgoing.Packet49ChatEnd;
 import se.jrat.client.packets.outgoing.Packet51ChatMessage;
 import se.jrat.client.packets.outgoing.Packet58NudgeChat;
-
+import se.jrat.client.utils.IconUtils;
 
 @SuppressWarnings("serial")
 public class FrameRemoteChat extends BaseFrame {
@@ -63,54 +62,45 @@ public class FrameRemoteChat extends BaseFrame {
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		
+
 		JToolBar toolBar = new JToolBar();
 		toolBar.setFloatable(false);
-		
-				txtMsg = new JTextField();
-				toolBar.add(txtMsg);
-				txtMsg.addKeyListener(new KeyAdapter() {
-					@Override
-					public void keyPressed(KeyEvent arg0) {
-						if (arg0.getKeyCode() == KeyEvent.VK_ENTER) {
-							send();
-						}
-					}
-				});
-				txtMsg.setColumns(10);
-				
-						JButton btnSend = new JButton("Send");
-						toolBar.add(btnSend);
-						btnSend.setIcon(new ImageIcon(FrameRemoteChat.class.getResource("/icons/right.png")));
-						
-								JButton btnNudge = new JButton("Nudge");
-								toolBar.add(btnNudge);
-								btnNudge.setIcon(new ImageIcon(FrameRemoteChat.class.getResource("/icons/nudge.png")));
-								btnNudge.addActionListener(new ActionListener() {
-									public void actionPerformed(ActionEvent arg0) {
-										sl.addToSendQueue(new Packet58NudgeChat());
-									}
-								});
-						btnSend.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent e) {
-								send();
-							}
-						});
+
+		txtMsg = new JTextField();
+		toolBar.add(txtMsg);
+		txtMsg.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				if (arg0.getKeyCode() == KeyEvent.VK_ENTER) {
+					send();
+				}
+			}
+		});
+		txtMsg.setColumns(10);
+
+		JButton btnSend = new JButton("Send");
+		toolBar.add(btnSend);
+		btnSend.setIcon(IconUtils.getIcon("right"));
+
+		JButton btnNudge = new JButton("Nudge");
+		toolBar.add(btnNudge);
+		btnNudge.setIcon(IconUtils.getIcon("nudge"));
+		btnNudge.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				sl.addToSendQueue(new Packet58NudgeChat());
+			}
+		});
+		btnSend.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				send();
+			}
+		});
 
 		txtChat = new JTextPane();
 		scrollPane.setViewportView(txtChat);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 434, GroupLayout.PREFERRED_SIZE)
-				.addComponent(toolBar, GroupLayout.PREFERRED_SIZE, 434, GroupLayout.PREFERRED_SIZE)
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 236, GroupLayout.PREFERRED_SIZE)
-					.addComponent(toolBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-		);
+		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 434, GroupLayout.PREFERRED_SIZE).addComponent(toolBar, GroupLayout.PREFERRED_SIZE, 434, GroupLayout.PREFERRED_SIZE));
+		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 236, GroupLayout.PREFERRED_SIZE).addComponent(toolBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)));
 		contentPane.setLayout(gl_contentPane);
 
 		slave.addToSendQueue(new Packet48ChatStart());

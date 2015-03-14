@@ -3,11 +3,12 @@ package se.jrat.client.ui.panels;
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import se.jrat.client.utils.IconUtils;
 
 @SuppressWarnings("serial")
 public class PanelBuildDebugMessages extends JPanel {
@@ -29,7 +30,7 @@ public class PanelBuildDebugMessages extends JPanel {
 		chckbxKeepDebugMessages.setSelected(true);
 
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(PanelBuildDebugMessages.class.getResource("/icons/application-detail.png")));
+		label.setIcon(IconUtils.getIcon("application-detail"));
 
 		JLabel lblWillPrintOut = new JLabel("Will print out debug messages");
 		GroupLayout gl_panel = new GroupLayout(panel);

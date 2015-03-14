@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -15,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet82NetworkAdapters;
+import se.jrat.client.utils.IconUtils;
 
 
 @SuppressWarnings("serial")
@@ -34,7 +34,7 @@ public class PanelControlAdapters extends PanelControlParent {
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
 		JButton btnReloadList = new JButton("Reload list");
-		btnReloadList.setIcon(new ImageIcon(PanelControlAdapters.class.getResource("/icons/adapters.png")));
+		btnReloadList.setIcon(IconUtils.getIcon("adapters"));
 		btnReloadList.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				clear();
@@ -43,7 +43,7 @@ public class PanelControlAdapters extends PanelControlParent {
 		});
 
 		JButton btnClear = new JButton("Clear");
-		btnClear.setIcon(new ImageIcon(PanelControlAdapters.class.getResource("/icons/clear.png")));
+		btnClear.setIcon(IconUtils.getIcon("clear"));
 		btnClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				clear();

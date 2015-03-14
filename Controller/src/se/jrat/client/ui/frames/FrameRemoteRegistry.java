@@ -147,11 +147,11 @@ public class FrameRemoteRegistry extends BaseFrame {
 				addValue();
 			}
 		});
-		mntmAdd.setIcon(new ImageIcon(FrameRemoteRegistry.class.getResource("/icons/key_plus.png")));
+		mntmAdd.setIcon(IconUtils.getIcon("key_plus"));
 		popupMenu.add(mntmAdd);
 
 		mntmDelete = new JMenuItem("Delete Value");
-		mntmDelete.setIcon(new ImageIcon(FrameRemoteRegistry.class.getResource("/icons/key_minus.png")));
+		mntmDelete.setIcon(IconUtils.getIcon("key_minus"));
 		mntmDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				removeValue();
@@ -166,12 +166,12 @@ public class FrameRemoteRegistry extends BaseFrame {
 				editValue();
 			}
 		});
-		mntmEditValue.setIcon(new ImageIcon(FrameRemoteRegistry.class.getResource("/icons/key_pencil.png")));
+		mntmEditValue.setIcon(IconUtils.getIcon("key_pencil"));
 		popupMenu.add(mntmEditValue);
 		popupMenu.addSeparator();
 
 		mnBrowse = new JMenu("Browse");
-		mnBrowse.setIcon(new ImageIcon(FrameRemoteRegistry.class.getResource("/icons/bookmark_go.png")));
+		mnBrowse.setIcon(IconUtils.getIcon("bookmark_go"));
 		popupMenu.add(mnBrowse);
 
 		mntmStartup = new JMenuItem("Startup");
@@ -216,7 +216,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 				reload();
 			}
 		});
-		btnReload.setIcon(new ImageIcon(FrameRemoteRegistry.class.getResource("/icons/update.png")));
+		btnReload.setIcon(IconUtils.getIcon("update"));
 
 		JButton btnClear = new JButton("Clear");
 		toolBar.add(btnClear);
@@ -225,7 +225,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 				clear();
 			}
 		});
-		btnClear.setIcon(new ImageIcon(FrameRemoteRegistry.class.getResource("/icons/clear.png")));
+		btnClear.setIcon(IconUtils.getIcon("clear"));
 
 		JButton btnAdd = new JButton("Add");
 		toolBar.add(btnAdd);
@@ -234,7 +234,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 				addValue();
 			}
 		});
-		btnAdd.setIcon(new ImageIcon(FrameRemoteRegistry.class.getResource("/icons/key_plus.png")));
+		btnAdd.setIcon(IconUtils.getIcon("key_plus"));
 
 		JButton btnRemove = new JButton("Remove");
 		toolBar.add(btnRemove);
@@ -243,7 +243,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 				removeValue();
 			}
 		});
-		btnRemove.setIcon(new ImageIcon(FrameRemoteRegistry.class.getResource("/icons/key_minus.png")));
+		btnRemove.setIcon(IconUtils.getIcon("key_minus"));
 
 		JButton btnEdit = new JButton("Edit");
 		toolBar.add(btnEdit);
@@ -252,7 +252,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 				editValue();
 			}
 		});
-		btnEdit.setIcon(new ImageIcon(FrameRemoteRegistry.class.getResource("/icons/key_pencil.png")));
+		btnEdit.setIcon(IconUtils.getIcon("key_pencil"));
 
 		JButton btnCustomCommand = new JButton("Custom");
 		btnCustomCommand.addActionListener(new ActionListener() {
@@ -261,7 +261,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 				frame.setVisible(true);
 			}
 		});
-		btnCustomCommand.setIcon(new ImageIcon(FrameRemoteRegistry.class.getResource("/icons/key_arrow.png")));
+		btnCustomCommand.setIcon(IconUtils.getIcon("key_arrow"));
 		toolBar.add(btnCustomCommand);
 		contentPane.setLayout(gl_contentPane);
 	}

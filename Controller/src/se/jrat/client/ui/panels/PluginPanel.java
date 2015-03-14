@@ -10,7 +10,6 @@ import java.io.FileNotFoundException;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -69,12 +68,12 @@ public class PluginPanel extends JPanel {
 		
 		lblVerified = new JLabel("");
 		lblVerified.setToolTipText("Files not hosted by jRAT");
-		lblVerified.setIcon(new ImageIcon(PluginPanel.class.getResource("/icons/log_warning.png")));
+		lblVerified.setIcon(IconUtils.getIcon("log_warning"));
 		
 		lblUpToDate = new JLabel("Up to date");
 		
 		lblIcon = new JLabel("");
-		lblIcon.setIcon(new ImageIcon(PluginPanel.class.getResource("/icons/plugin.png")));
+		lblIcon.setIcon(IconUtils.getIcon("plugin"));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)

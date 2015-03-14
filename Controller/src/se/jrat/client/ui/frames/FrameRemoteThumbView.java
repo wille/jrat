@@ -35,6 +35,7 @@ import javax.swing.border.EmptyBorder;
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet85ThumbnailPreview;
 import se.jrat.client.ui.renderers.ThumbsListRenderer;
+import se.jrat.client.utils.IconUtils;
 
 
 @SuppressWarnings("serial")
@@ -118,7 +119,7 @@ public class FrameRemoteThumbView extends BaseFrame {
 				process();
 			}
 		});
-		mntmReloadAll.setIcon(new ImageIcon(FrameRemoteThumbView.class.getResource("/icons/update.png")));
+		mntmReloadAll.setIcon(IconUtils.getIcon("update"));
 		popupMenu.add(mntmReloadAll);
 
 		mntmClear = new JMenuItem("Clear");
@@ -132,7 +133,7 @@ public class FrameRemoteThumbView extends BaseFrame {
 				getCount().setText("0/0");
 			}
 		});
-		mntmClear.setIcon(new ImageIcon(FrameRemoteThumbView.class.getResource("/icons/clear.png")));
+		mntmClear.setIcon(IconUtils.getIcon("clear"));
 		popupMenu.add(mntmClear);
 
 		popupMenu.addSeparator();
@@ -162,7 +163,7 @@ public class FrameRemoteThumbView extends BaseFrame {
 				}
 			}
 		});
-		mntmSaveSelectedx.setIcon(new ImageIcon(FrameRemoteThumbView.class.getResource("/icons/images-stack.png")));
+		mntmSaveSelectedx.setIcon(IconUtils.getIcon("images-stack"));
 		popupMenu.add(mntmSaveSelectedx);
 		contentPane.setLayout(gl_contentPane);
 

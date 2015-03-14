@@ -9,11 +9,12 @@ import java.awt.event.WindowEvent;
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import se.jrat.client.utils.IconUtils;
 
 import com.redpois0n.graphs.taskmgr.TaskmgrColors;
 import com.redpois0n.graphs.taskmgr.TaskmgrGraph;
@@ -42,7 +43,7 @@ public class FramePerformance extends BaseFrame {
 		final JLabel lblMaximum = new JLabel("Maximum: ");
 
 		JButton button = new JButton("Garbage Collect");
-		button.setIcon(new ImageIcon(Frame.class.getResource("/icons/garbage.png")));
+		button.setIcon(IconUtils.getIcon("garbage"));
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {

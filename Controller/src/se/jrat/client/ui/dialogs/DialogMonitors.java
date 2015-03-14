@@ -99,7 +99,7 @@ public class DialogMonitors extends BaseDialog {
 				dispose();
 			}
 		});
-		btnOpen.setIcon(new ImageIcon(DialogMonitors.class.getResource("/icons/monitor--arrow.png")));
+		btnOpen.setIcon(IconUtils.getIcon("monitor--arrow.png"));
 
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addActionListener(new ActionListener() {
@@ -111,13 +111,13 @@ public class DialogMonitors extends BaseDialog {
 				instances.remove(slave);
 			}
 		});
-		btnCancel.setIcon(new ImageIcon(DialogMonitors.class.getResource("/icons/monitor_minus.png")));
+		btnCancel.setIcon(IconUtils.getIcon("monitor_minus.png"));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addGroup(gl_contentPane.createSequentialGroup().addContainerGap(60, Short.MAX_VALUE).addComponent(btnCancel).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnOpen).addContainerGap()).addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup().addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE).addComponent(panel_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)).addGap(5)));
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(panel, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(btnOpen).addComponent(btnCancel)).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 
 		JLabel lblQuality = new JLabel("Quality");
-		lblQuality.setIcon(new ImageIcon(DialogMonitors.class.getResource("/icons/monitor_plus.png")));
+		lblQuality.setIcon(IconUtils.getIcon("monitor_plus.png"));
 
 		slQuality = new JSlider();
 		slQuality.setMinorTickSpacing(1);
@@ -156,10 +156,10 @@ public class DialogMonitors extends BaseDialog {
 				reload();
 			}
 		});
-		btnReload.setIcon(new ImageIcon(DialogMonitors.class.getResource("/icons/monitor--arrow.png")));
+		btnReload.setIcon(IconUtils.getIcon("monitor--arrow.png"));
 
 		lblResize = new JLabel("Size 50%");
-		lblResize.setIcon(new ImageIcon(DialogMonitors.class.getResource("/icons/application-resize-full.png")));
+		lblResize.setIcon(IconUtils.getIcon("application-resize-full.png"));
 
 		sdSize = new JSlider();
 		sdSize.setMinorTickSpacing(5);

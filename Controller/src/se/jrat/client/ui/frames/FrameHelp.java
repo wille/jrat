@@ -15,7 +15,6 @@ import java.util.List;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JMenuItem;
@@ -39,6 +38,7 @@ import se.jrat.client.Globals;
 import se.jrat.client.Help;
 import se.jrat.client.net.WebRequest;
 import se.jrat.client.ui.renderers.table.HelpTableRenderer;
+import se.jrat.client.utils.IconUtils;
 import se.jrat.client.utils.NetUtils;
 
 @SuppressWarnings("serial")
@@ -99,7 +99,7 @@ public class FrameHelp extends BaseFrame {
 		addPopup(com, popupMenu);
 
 		mntmOpenLatestOn = new JMenuItem("Open latest on internet");
-		mntmOpenLatestOn.setIcon(new ImageIcon(FrameHelp.class.getResource("/icons/url.png")));
+		mntmOpenLatestOn.setIcon(IconUtils.getIcon("url"));
 		mntmOpenLatestOn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (currentFile == null) {

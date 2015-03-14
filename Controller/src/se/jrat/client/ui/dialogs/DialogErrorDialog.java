@@ -9,7 +9,6 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -60,7 +59,7 @@ public class DialogErrorDialog extends BaseDialog {
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
 		btnDetails = new JButton("Details >>");
-		btnDetails.setIcon(new ImageIcon(DialogErrorDialog.class.getResource("/icons/expand.png")));
+		btnDetails.setIcon(IconUtils.getIcon("expand.png"));
 		btnDetails.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (state == DialogErrorDialog.STATE_NORMAL) {
@@ -87,7 +86,7 @@ public class DialogErrorDialog extends BaseDialog {
 				setVisible(false);
 			}
 		});
-		btnOk.setIcon(new ImageIcon(DialogErrorDialog.class.getResource("/icons/enabled.png")));
+		btnOk.setIcon(IconUtils.getIcon("enabled.png"));
 		btnOk.setBounds(242, 94, 67, 25);
 
 		PanelImage panel = new PanelImage();
@@ -121,7 +120,7 @@ public class DialogErrorDialog extends BaseDialog {
 			}
 		});
 		btnCopyToClipboard.setVisible(false);
-		btnCopyToClipboard.setIcon(new ImageIcon(DialogErrorDialog.class.getResource("/icons/clipboard_go.png")));
+		btnCopyToClipboard.setIcon(IconUtils.getIcon("clipboard_go.png"));
 		btnCopyToClipboard.setBounds(95, 94, 143, 24);
 		contentPane.add(btnCopyToClipboard);
 

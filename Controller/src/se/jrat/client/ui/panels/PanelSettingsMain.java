@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -18,6 +17,7 @@ import javax.swing.SpinnerNumberModel;
 
 import se.jrat.client.settings.CustomID;
 import se.jrat.client.settings.Settings;
+import se.jrat.client.utils.IconUtils;
 
 
 @SuppressWarnings("serial")
@@ -60,13 +60,13 @@ public class PanelSettingsMain extends JPanel {
 		chckbxRequestScreenOn.setSelected(Settings.getGlobal().getBoolean("remotescreenstartup"));
 
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(PanelSettingsMain.class.getResource("/icons/screen.png")));
+		label.setIcon(IconUtils.getIcon("screen"));
 
 		chckbxTrayIcon = new JCheckBox("Tray Icon");
 		chckbxTrayIcon.setSelected(Settings.getGlobal().getBoolean("traynote"));
 
 		JLabel label_2 = new JLabel("");
-		label_2.setIcon(new ImageIcon(PanelSettingsMain.class.getResource("/icons/icon.png")));
+		label_2.setIcon(IconUtils.getIcon("icon"));
 
 		JButton btnClearRenamedServers = new JButton("Clear renamed connections");
 		btnClearRenamedServers.addActionListener(new ActionListener() {
@@ -76,15 +76,15 @@ public class PanelSettingsMain extends JPanel {
 				}
 			}
 		});
-		btnClearRenamedServers.setIcon(new ImageIcon(PanelSettingsMain.class.getResource("/icons/delete.png")));
+		btnClearRenamedServers.setIcon(IconUtils.getIcon("delete"));
 
 		JLabel label_1 = new JLabel("");
-		label_1.setIcon(new ImageIcon(PanelSettingsMain.class.getResource("/icons/question.png")));
+		label_1.setIcon(IconUtils.getIcon("question"));
 
 		chckbxAskBeforeConnect = new JCheckBox("Ask before connect", Settings.getGlobal().getBoolean("askurl"));
 
 		JLabel label_3 = new JLabel("");
-		label_3.setIcon(new ImageIcon(PanelSettingsMain.class.getResource("/icons/computer_info.png")));
+		label_3.setIcon(IconUtils.getIcon("computer_info"));
 
 		chckbxMaximum = new JCheckBox("Maximum amount of connections", Settings.getGlobal().getInt("max") != -1);
 		chckbxMaximum.addActionListener(new ActionListener() {

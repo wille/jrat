@@ -35,6 +35,7 @@ import se.jrat.client.ErrorDialog;
 import se.jrat.client.Main;
 import se.jrat.client.build.PluginPacker;
 import se.jrat.client.ui.dialogs.DialogPackPluginEditResources;
+import se.jrat.client.utils.IconUtils;
 import se.jrat.common.Logger;
 
 @SuppressWarnings("serial")
@@ -85,7 +86,7 @@ public class FramePackPlugin extends JFrame {
 				}
 			}
 		});
-		btnBrowseJAR.setIcon(new ImageIcon(FramePackPlugin.class.getResource("/icons/folder.png")));
+		btnBrowseJAR.setIcon(IconUtils.getIcon("folder"));
 		
 		JLabel lblIcon_1 = new JLabel("Icon (16x16)");
 		
@@ -114,7 +115,7 @@ public class FramePackPlugin extends JFrame {
 				}
 			}
 		});
-		btnBrowseIcon.setIcon(new ImageIcon(FramePackPlugin.class.getResource("/icons/folder.png")));
+		btnBrowseIcon.setIcon(IconUtils.getIcon("folder"));
 		
 		btnRemove = new JButton("");
 		btnRemove.addActionListener(new ActionListener() {
@@ -123,7 +124,7 @@ public class FramePackPlugin extends JFrame {
 				setDefaultIcon();
 			}
 		});
-		btnRemove.setIcon(new ImageIcon(FramePackPlugin.class.getResource("/icons/delete.png")));
+		btnRemove.setIcon(IconUtils.getIcon("delete"));
 		
 		JLabel lblStubJars = new JLabel("Stub JARs");
 		
@@ -145,7 +146,7 @@ public class FramePackPlugin extends JFrame {
 				}
 			}
 		});
-		btnAddStub.setIcon(new ImageIcon(FramePackPlugin.class.getResource("/icons/add.png")));
+		btnAddStub.setIcon(IconUtils.getIcon("add"));
 		
 		JButton btnRemove_1 = new JButton("Remove");
 		btnRemove_1.addActionListener(new ActionListener() {
@@ -153,7 +154,7 @@ public class FramePackPlugin extends JFrame {
 				model.removeRow(table.getSelectedRow());
 			}
 		});
-		btnRemove_1.setIcon(new ImageIcon(FramePackPlugin.class.getResource("/icons/delete.png")));
+		btnRemove_1.setIcon(IconUtils.getIcon("delete"));
 		
 		JButton btnPack = new JButton("Pack");
 		btnPack.addActionListener(new ActionListener() {
@@ -193,7 +194,7 @@ public class FramePackPlugin extends JFrame {
 				}
 			}
 		});
-		btnPack.setIcon(new ImageIcon(FramePackPlugin.class.getResource("/icons/plugin_go.png")));
+		btnPack.setIcon(IconUtils.getIcon("plugin_go"));
 		
 		lblResources = new JLabel("Resources: 0");
 		
@@ -386,7 +387,7 @@ public class FramePackPlugin extends JFrame {
 	}
 	
 	private void setDefaultIcon() {
-		lblIcon.setIcon(new ImageIcon(FramePackPlugin.class.getResource("/icons/plugin.png")));
+		lblIcon.setIcon(IconUtils.getIcon("plugin"));
 	}
 	
 	public void updateResources(int resources) {

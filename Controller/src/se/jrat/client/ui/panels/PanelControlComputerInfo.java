@@ -41,7 +41,7 @@ public class PanelControlComputerInfo extends PanelControlParent {
 		JScrollPane scrollPane = new JScrollPane();
 
 		JButton btnReload = new JButton("Reload");
-		btnReload.setIcon(new ImageIcon(PanelControlComputerInfo.class.getResource("/icons/update.png")));
+		btnReload.setIcon(IconUtils.getIcon("update"));
 		btnReload.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				slave.addToSendQueue(new Packet27RefreshSystemInfo());
@@ -68,7 +68,7 @@ public class PanelControlComputerInfo extends PanelControlParent {
 				}
 			}
 		});
-		btnSave.setIcon(new ImageIcon(PanelControlComputerInfo.class.getResource("/icons/save.png")));
+		btnSave.setIcon(IconUtils.getIcon("save"));
 
 		JButton btnGetSysteminfoexe = new JButton("Get systeminfo.exe");
 		btnGetSysteminfoexe.addActionListener(new ActionListener() {
@@ -78,7 +78,7 @@ public class PanelControlComputerInfo extends PanelControlParent {
 				slave.addToSendQueue(new Packet83WinSysInfo());
 			}
 		});
-		btnGetSysteminfoexe.setIcon(new ImageIcon(PanelControlComputerInfo.class.getResource("/icons/down_arrow.png")));
+		btnGetSysteminfoexe.setIcon(IconUtils.getIcon("down_arrow"));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(btnReload).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnSave).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnGetSysteminfoexe).addContainerGap(327, Short.MAX_VALUE)));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 299, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnReload).addComponent(btnSave).addComponent(btnGetSysteminfoexe)).addContainerGap(15, Short.MAX_VALUE)));

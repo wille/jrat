@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
@@ -14,6 +13,7 @@ import javax.swing.ScrollPaneConstants;
 
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet59Clipboard;
+import se.jrat.client.utils.IconUtils;
 
 
 @SuppressWarnings("serial")
@@ -38,7 +38,7 @@ public class PanelControlClipboard extends PanelControlParent {
 				txt.setText("");
 			}
 		});
-		btnClear.setIcon(new ImageIcon(PanelControlClipboard.class.getResource("/icons/clear.png")));
+		btnClear.setIcon(IconUtils.getIcon("clear"));
 
 		JButton btnReloadClipboard = new JButton("Reload clipboard");
 		btnReloadClipboard.addActionListener(new ActionListener() {
@@ -47,7 +47,7 @@ public class PanelControlClipboard extends PanelControlParent {
 				sl.addToSendQueue(new Packet59Clipboard());
 			}
 		});
-		btnReloadClipboard.setIcon(new ImageIcon(PanelControlClipboard.class.getResource("/icons/clipboard.png")));
+		btnReloadClipboard.setIcon(IconUtils.getIcon("clipboard"));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 601, GroupLayout.PREFERRED_SIZE).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(btnClear).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnReloadClipboard))).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 306, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(btnClear).addComponent(btnReloadClipboard)).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));

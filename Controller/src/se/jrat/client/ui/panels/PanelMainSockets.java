@@ -10,7 +10,6 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
@@ -23,6 +22,7 @@ import se.jrat.client.ErrorDialog;
 import se.jrat.client.net.PortListener;
 import se.jrat.client.ui.frames.FrameAddSocket;
 import se.jrat.client.ui.renderers.table.SocketsTableRenderer;
+import se.jrat.client.utils.IconUtils;
 
 @SuppressWarnings("serial")
 public class PanelMainSockets extends JPanel {
@@ -59,7 +59,7 @@ public class PanelMainSockets extends JPanel {
 		addPopup(table, popupMenu);
 
 		JMenuItem mntmAddSocket = new JMenuItem("Add Socket");
-		mntmAddSocket.setIcon(new ImageIcon(PanelMainSockets.class.getResource("/icons/socket_add.png")));
+		mntmAddSocket.setIcon(IconUtils.getIcon("socket_add"));
 		mntmAddSocket.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				FrameAddSocket frame = new FrameAddSocket();
@@ -71,7 +71,7 @@ public class PanelMainSockets extends JPanel {
 		popupMenu.addSeparator();
 
 		JMenuItem mntmCloseSocket = new JMenuItem("Close Socket");
-		mntmCloseSocket.setIcon(new ImageIcon(PanelMainSockets.class.getResource("/icons/socket_remove.png")));
+		mntmCloseSocket.setIcon(IconUtils.getIcon("socket_remove"));
 		mntmCloseSocket.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -97,7 +97,7 @@ public class PanelMainSockets extends JPanel {
 		popupMenu.add(mntmCloseSocket);
 
 		JMenuItem mntmCloseAllSockets = new JMenuItem("Close all Sockets");
-		mntmCloseAllSockets.setIcon(new ImageIcon(PanelMainSockets.class.getResource("/icons/socket_remove.png")));
+		mntmCloseAllSockets.setIcon(IconUtils.getIcon("socket_remove"));
 		mntmCloseAllSockets.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				while (model.getRowCount() > 0) {
@@ -126,7 +126,7 @@ public class PanelMainSockets extends JPanel {
 				copy(table.getSelectedRow(), 4);
 			}
 		});
-		mntmPassword.setIcon(new ImageIcon(PanelMainSockets.class.getResource("/icons/clipboard.png")));
+		mntmPassword.setIcon(IconUtils.getIcon("clipboard"));
 
 		table.setRowHeight(25);
 		scrollPane.setViewportView(table);

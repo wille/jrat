@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -17,6 +16,7 @@ import se.jrat.client.packets.outgoing.Packet19ListProcesses;
 import se.jrat.client.packets.outgoing.Packet20KillProcess;
 import se.jrat.client.packets.outgoing.Packet38RunCommand;
 import se.jrat.client.ui.renderers.table.ProcessTableRenderer;
+import se.jrat.client.utils.IconUtils;
 import se.jrat.client.utils.Utils;
 
 import com.redpois0n.oslib.OperatingSystem;
@@ -47,7 +47,7 @@ public class PanelControlRemoteProcess extends PanelControlParent {
 				sl.addToSendQueue(new Packet19ListProcesses());
 			}
 		});
-		btnRefresh.setIcon(new ImageIcon(PanelControlRemoteProcess.class.getResource("/icons/update.png")));
+		btnRefresh.setIcon(IconUtils.getIcon("update"));
 
 		JButton btnKillSelected = new JButton("Kill selected");
 		btnKillSelected.addActionListener(new ActionListener() {
@@ -70,10 +70,10 @@ public class PanelControlRemoteProcess extends PanelControlParent {
 				}
 			}
 		});
-		btnKillSelected.setIcon(new ImageIcon(PanelControlRemoteProcess.class.getResource("/icons/delete.png")));
+		btnKillSelected.setIcon(IconUtils.getIcon("delete"));
 
 		JButton btnCreateProcess = new JButton("Create process");
-		btnCreateProcess.setIcon(new ImageIcon(PanelControlRemoteProcess.class.getResource("/icons/process.png")));
+		btnCreateProcess.setIcon(IconUtils.getIcon("process"));
 		btnCreateProcess.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String proc = Utils.showDialog("Create process", "Input name of process");
@@ -97,7 +97,7 @@ public class PanelControlRemoteProcess extends PanelControlParent {
 				}
 			}
 		});
-		btnClearList.setIcon(new ImageIcon(PanelControlRemoteProcess.class.getResource("/icons/clear.png")));
+		btnClearList.setIcon(IconUtils.getIcon("clear"));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE).addGroup(groupLayout.createSequentialGroup().addContainerGap(176, Short.MAX_VALUE).addComponent(btnClearList).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnCreateProcess).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnKillSelected).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnRefresh).addContainerGap()));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addGroup(groupLayout.createSequentialGroup().addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnRefresh).addComponent(btnKillSelected).addComponent(btnCreateProcess).addComponent(btnClearList)).addGap(18)));

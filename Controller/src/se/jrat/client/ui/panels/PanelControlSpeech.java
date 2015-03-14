@@ -8,7 +8,6 @@ import java.io.FileWriter;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
@@ -22,6 +21,7 @@ import se.jrat.client.Main;
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet76Speech;
 import se.jrat.client.utils.IOUtils;
+import se.jrat.client.utils.IconUtils;
 
 import com.redpois0n.oslib.OperatingSystem;
 
@@ -64,7 +64,7 @@ public class PanelControlSpeech extends PanelControlParent {
 				}
 			}
 		});
-		btnTest.setIcon(new ImageIcon(PanelControlSpeech.class.getResource("/icons/balloon_sound.png")));
+		btnTest.setIcon(IconUtils.getIcon("balloon_sound"));
 
 		JButton btnSend = new JButton("Send");
 		btnSend.addActionListener(new ActionListener() {
@@ -72,7 +72,7 @@ public class PanelControlSpeech extends PanelControlParent {
 				slave.addToSendQueue(new Packet76Speech(txt.getText().trim()));
 			}
 		});
-		btnSend.setIcon(new ImageIcon(PanelControlSpeech.class.getResource("/icons/right.png")));
+		btnSend.setIcon(IconUtils.getIcon("right"));
 
 		JSeparator separator = new JSeparator();
 		separator.setOrientation(SwingConstants.VERTICAL);
@@ -83,7 +83,7 @@ public class PanelControlSpeech extends PanelControlParent {
 				txt.setText("");
 			}
 		});
-		btnClear.setIcon(new ImageIcon(PanelControlSpeech.class.getResource("/icons/clear.png")));
+		btnClear.setIcon(IconUtils.getIcon("clear"));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(btnTest).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnSend).addPreferredGap(ComponentPlacement.RELATED).addComponent(separator, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnClear).addContainerGap(332, Short.MAX_VALUE)));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 305, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnTest).addComponent(btnSend)).addComponent(separator, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE).addComponent(btnClear)).addContainerGap(14, Short.MAX_VALUE)));

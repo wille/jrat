@@ -6,7 +6,6 @@ import java.io.File;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
@@ -20,6 +19,7 @@ import se.jrat.client.addons.StubPlugin;
 import se.jrat.client.ui.components.JCheckBoxList;
 import se.jrat.client.ui.components.JCheckBoxList.Entry;
 import se.jrat.client.ui.renderers.table.PluginsTableRenderer;
+import se.jrat.client.utils.IconUtils;
 
 
 @SuppressWarnings("serial")
@@ -68,7 +68,7 @@ public class PanelBuildPlugins extends JPanel {
 				}
 			}
 		});
-		btnAddServerPlugin.setIcon(new ImageIcon(PanelBuildPlugins.class.getResource("/icons/plugin_add.png")));
+		btnAddServerPlugin.setIcon(IconUtils.getIcon("plugin_add"));
 
 		chckbxDoNotLoad = new JCheckBox("Do not load class");
 		GroupLayout groupLayout = new GroupLayout(this);

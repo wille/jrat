@@ -3,11 +3,12 @@ package se.jrat.client.ui.panels;
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import se.jrat.client.utils.IconUtils;
 
 @SuppressWarnings("serial")
 public class PanelBuildVirtualization extends JPanel {
@@ -40,7 +41,7 @@ public class PanelBuildVirtualization extends JPanel {
 		chckbxDisableVm = new JCheckBox("Disable running in virtual machines");
 
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(PanelBuildVirtualization.class.getResource("/icons/virtualization.png")));
+		label.setIcon(IconUtils.getIcon("virtualization"));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)

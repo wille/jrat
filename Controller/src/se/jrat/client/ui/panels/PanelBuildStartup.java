@@ -7,7 +7,6 @@ import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -19,6 +18,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import se.jrat.client.Help;
 import se.jrat.client.settings.Settings;
 import se.jrat.client.ui.components.JPlaceholderTextField;
+import se.jrat.client.utils.IconUtils;
 import se.jrat.common.DropLocations;
 
 
@@ -89,14 +89,14 @@ public class PanelBuildStartup extends JPanel {
 				Help.help("Required for installed stub to come back on system reboot");
 			}
 		});
-		button.setIcon(new ImageIcon(PanelBuildStartup.class.getResource("/icons/help.png")));
+		button.setIcon(IconUtils.getIcon("help"));
 
 		chckbxHideInstalledFile = new JCheckBox("Hide installed file");
 		
 		chckbxRunNextStart = new JCheckBox("Run next start");
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(PanelBuildStartup.class.getResource("/icons/os_win.png")));
+		label.setIcon(IconUtils.getIcon("os_win"));
 
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(

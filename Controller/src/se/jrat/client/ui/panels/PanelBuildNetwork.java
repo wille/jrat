@@ -10,7 +10,6 @@ import java.net.InetAddress;
 import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -26,6 +25,7 @@ import javax.swing.SpinnerNumberModel;
 import se.jrat.client.ErrorDialog;
 import se.jrat.client.settings.Settings;
 import se.jrat.client.ui.components.JPlaceholderTextField;
+import se.jrat.client.utils.IconUtils;
 import se.jrat.client.utils.NetUtils;
 
 
@@ -82,7 +82,7 @@ public class PanelBuildNetwork extends JPanel {
 				model.addElement(addr);
 			}
 		});
-		btnAdd.setIcon(new ImageIcon(PanelBuildNetwork.class.getResource("/icons/socket_add.png")));
+		btnAdd.setIcon(IconUtils.getIcon("socket_add"));
 
 		JButton btnMoveDown = new JButton("Move Down");
 		btnMoveDown.addActionListener(new ActionListener() {
@@ -133,7 +133,7 @@ public class PanelBuildNetwork extends JPanel {
 				}
 			}
 		});
-		mntmGetLanAddress.setIcon(new ImageIcon(PanelBuildNetwork.class.getResource("/icons/network-ip-local.png")));
+		mntmGetLanAddress.setIcon(IconUtils.getIcon("network-ip-local"));
 		popupMenu.add(mntmGetLanAddress);
 
 		JMenuItem mntmGetWanAddress = new JMenuItem("Get WAN address");
@@ -147,7 +147,7 @@ public class PanelBuildNetwork extends JPanel {
 				}
 			}
 		});
-		mntmGetWanAddress.setIcon(new ImageIcon(PanelBuildNetwork.class.getResource("/icons/network-ip.png")));
+		mntmGetWanAddress.setIcon(IconUtils.getIcon("network-ip"));
 		popupMenu.add(mntmGetWanAddress);
 
 		model = new DefaultListModel<String>();

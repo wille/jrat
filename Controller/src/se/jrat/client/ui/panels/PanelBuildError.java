@@ -3,11 +3,12 @@ package se.jrat.client.ui.panels;
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import se.jrat.client.utils.IconUtils;
 
 @SuppressWarnings("serial")
 public class PanelBuildError extends JPanel {
@@ -28,7 +29,7 @@ public class PanelBuildError extends JPanel {
 		chckbxEnableErrorLogging = new JCheckBox("Enable error logging");
 
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(PanelBuildError.class.getResource("/icons/error.png")));
+		label.setIcon(IconUtils.getIcon("error"));
 
 		JLabel lblWhenTheServer = new JLabel("When the stub crashes, it will make a error log in log.dat");
 

@@ -9,7 +9,6 @@ import java.util.HashMap;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -21,6 +20,7 @@ import javax.swing.border.EmptyBorder;
 
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet60PreviewFile;
+import se.jrat.client.utils.IconUtils;
 
 
 @SuppressWarnings("serial")
@@ -60,7 +60,7 @@ public class FramePreviewFile extends BaseFrame {
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
 		JButton btnReadMore = new JButton("Read more");
-		btnReadMore.setIcon(new ImageIcon(FramePreviewFile.class.getResource("/icons/transfer.png")));
+		btnReadMore.setIcon(IconUtils.getIcon("transfer"));
 		btnReadMore.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				sl.addToSendQueue(new Packet60PreviewFile(file, line++));
@@ -74,7 +74,7 @@ public class FramePreviewFile extends BaseFrame {
 				line = 0;
 			}
 		});
-		btnClearreset.setIcon(new ImageIcon(FramePreviewFile.class.getResource("/icons/clear.png")));
+		btnClearreset.setIcon(IconUtils.getIcon("clear"));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE).addGroup(gl_contentPane.createSequentialGroup().addComponent(btnReadMore).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnClearreset))).addGap(1)));
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(btnReadMore).addComponent(btnClearreset)).addGap(4)));

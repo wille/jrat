@@ -76,7 +76,7 @@ public class PanelControlDownloadManager extends PanelControlParent {
 				sl.addToSendQueue(new Packet34AdvancedDownload(txtURL.getText().trim(), chckbxExecute.isSelected(), comboBox.getSelectedItem().toString().toLowerCase()));
 			}
 		});
-		btnDownload.setIcon(new ImageIcon(PanelControlDownloadManager.class.getResource("/icons/down_arrow.png")));
+		btnDownload.setIcon(IconUtils.getIcon("down_arrow"));
 
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE).addGroup(groupLayout.createSequentialGroup().addGap(16).addComponent(lblUrl).addPreferredGap(ComponentPlacement.RELATED).addComponent(txtURL, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE).addGap(12).addComponent(chckbxExecute).addPreferredGap(ComponentPlacement.RELATED, 30, Short.MAX_VALUE).addComponent(lblDropDir).addPreferredGap(ComponentPlacement.UNRELATED).addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnDownload).addContainerGap()));

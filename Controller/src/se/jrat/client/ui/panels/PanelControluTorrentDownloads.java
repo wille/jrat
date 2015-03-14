@@ -44,7 +44,7 @@ public class PanelControluTorrentDownloads extends PanelControlParent {
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
 		JButton btnRefreshList = new JButton("Refresh list");
-		btnRefreshList.setIcon(new ImageIcon(PanelControluTorrentDownloads.class.getResource("/icons/update.png")));
+		btnRefreshList.setIcon(IconUtils.getIcon("update"));
 		btnRefreshList.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				while (model.getRowCount() > 0) {
@@ -62,7 +62,7 @@ public class PanelControluTorrentDownloads extends PanelControlParent {
 				}
 			}
 		});
-		btnClear.setIcon(new ImageIcon(PanelControluTorrentDownloads.class.getResource("/icons/clear.png")));
+		btnClear.setIcon(IconUtils.getIcon("clear"));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 599, GroupLayout.PREFERRED_SIZE).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(btnRefreshList).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnClear))).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnRefreshList).addComponent(btnClear)).addContainerGap(16, Short.MAX_VALUE)));

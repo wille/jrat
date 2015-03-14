@@ -9,7 +9,6 @@ import java.io.InputStreamReader;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
@@ -21,6 +20,7 @@ import se.jrat.client.ErrorDialog;
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet55HostsFile;
 import se.jrat.client.packets.outgoing.Packet56UpdateHostsFile;
+import se.jrat.client.utils.IconUtils;
 import se.jrat.client.utils.Utils;
 
 import com.redpois0n.oslib.OperatingSystem;
@@ -48,10 +48,10 @@ public class PanelControlHostsFile extends PanelControlParent {
 				txt.setText("");
 			}
 		});
-		btnClear.setIcon(new ImageIcon(PanelControlHostsFile.class.getResource("/icons/clear.png")));
+		btnClear.setIcon(IconUtils.getIcon("clear"));
 
 		JButton btnGetHostsFile = new JButton("Get hosts file");
-		btnGetHostsFile.setIcon(new ImageIcon(PanelControlHostsFile.class.getResource("/icons/get_host.png")));
+		btnGetHostsFile.setIcon(IconUtils.getIcon("get_host"));
 		btnGetHostsFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				sl.addToSendQueue(new Packet55HostsFile());
@@ -67,7 +67,7 @@ public class PanelControlHostsFile extends PanelControlParent {
 				}
 			}
 		});
-		btnUpdateHostsFile.setIcon(new ImageIcon(PanelControlHostsFile.class.getResource("/icons/host.png")));
+		btnUpdateHostsFile.setIcon(IconUtils.getIcon("host"));
 
 		JButton btnGetLocalHosts = new JButton("Get local hosts file");
 		btnGetLocalHosts.addActionListener(new ActionListener() {
@@ -99,7 +99,7 @@ public class PanelControlHostsFile extends PanelControlParent {
 				}
 			}
 		});
-		btnGetLocalHosts.setIcon(new ImageIcon(PanelControlHostsFile.class.getResource("/icons/left.png")));
+		btnGetLocalHosts.setIcon(IconUtils.getIcon("left"));
 
 		JSeparator separator = new JSeparator();
 		separator.setOrientation(SwingConstants.VERTICAL);

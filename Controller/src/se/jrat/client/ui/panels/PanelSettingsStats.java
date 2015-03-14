@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -16,6 +15,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import se.jrat.client.settings.CountryStatistics;
 import se.jrat.client.settings.Settings;
+import se.jrat.client.utils.IconUtils;
 
 
 @SuppressWarnings("serial")
@@ -39,7 +39,7 @@ public class PanelSettingsStats extends JPanel {
 		chckbxTrackStatistics.setSelected(Settings.getGlobal().getBoolean("stats"));
 
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(PanelSettingsStats.class.getResource("/icons/statistics.png")));
+		label.setIcon(IconUtils.getIcon("statistics"));
 
 		JButton btnClearStats = new JButton("Clear stats");
 		btnClearStats.addActionListener(new ActionListener() {
@@ -49,7 +49,7 @@ public class PanelSettingsStats extends JPanel {
 				}
 			}
 		});
-		btnClearStats.setIcon(new ImageIcon(PanelSettingsStats.class.getResource("/icons/delete.png")));
+		btnClearStats.setIcon(IconUtils.getIcon("delete"));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addGap(50).addComponent(label).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addComponent(btnClearStats).addComponent(chckbxTrackStatistics)).addContainerGap(247, Short.MAX_VALUE)));
 		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addContainerGap().addGroup(gl_panel.createParallelGroup(Alignment.TRAILING, false).addComponent(label, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(chckbxTrackStatistics, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnClearStats).addContainerGap(189, Short.MAX_VALUE)));

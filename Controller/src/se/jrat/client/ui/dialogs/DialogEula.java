@@ -8,7 +8,6 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -23,6 +22,7 @@ import se.jrat.client.Main;
 import se.jrat.client.settings.Settings;
 import se.jrat.client.threads.ThreadCountDown;
 import se.jrat.client.utils.IOUtils;
+import se.jrat.client.utils.IconUtils;
 import se.jrat.common.Version;
 
 
@@ -63,8 +63,8 @@ public class DialogEula extends BaseDialog {
 				System.exit(0);
 			}
 		});
-		btnDisagree.setIcon(new ImageIcon(DialogEula.class.getResource("/icons/disconnect.png")));
-
+		btnDisagree.setIcon(IconUtils.getIcon("disconnect.png"));
+		
 		JButton btnAgree = new JButton("Agree (0)");
 		btnAgree.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -79,7 +79,7 @@ public class DialogEula extends BaseDialog {
 				dispose();
 			}
 		});
-		btnAgree.setIcon(new ImageIcon(DialogEula.class.getResource("/icons/gavel.png")));
+		btnAgree.setIcon(IconUtils.getIcon("gavel.png"));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE).addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup().addContainerGap(111, Short.MAX_VALUE).addComponent(btnAgree).addGap(33).addComponent(btnDisagree).addGap(114)));
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 274, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(btnDisagree).addComponent(btnAgree)).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));

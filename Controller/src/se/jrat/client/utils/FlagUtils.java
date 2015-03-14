@@ -9,7 +9,6 @@ import java.util.Random;
 import javax.swing.ImageIcon;
 
 import se.jrat.client.AbstractSlave;
-import se.jrat.client.Main;
 import se.jrat.client.Slave;
 import se.jrat.client.ip2c.Country;
 import se.jrat.client.ip2c.IP2Country;
@@ -327,7 +326,7 @@ public class FlagUtils {
 			if (FLAGS.containsKey(name)) {
 				icon = FLAGS.get(name);
 			} else {
-				icon = new ImageIcon(Main.class.getResource("/flags/" + name + ".png"));
+				icon = IconUtils.getIcon("/flags/" + name + ".png");
 				FLAGS.put(name, icon);
 			}
 
@@ -335,7 +334,7 @@ public class FlagUtils {
 			if (FLAGS.containsKey("unknown")) {
 				icon = FLAGS.get("unknown");
 			} else {
-				icon = new ImageIcon(Main.class.getResource("/flags/unknown.png"));
+				icon = IconUtils.getIcon("/flags/unknown.png");
 				FLAGS.put("unknown", icon);
 			}
 		}
