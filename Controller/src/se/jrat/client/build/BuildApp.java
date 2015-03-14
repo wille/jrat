@@ -21,8 +21,8 @@ public class BuildApp {
 		build(new File(input), new File(output), frame.getIconFile(), JarUtils.getMainClass(new JarFile(input)), frame.getAppTitle(), false, 6);
 	}
 
-	public static final String infoFile = "/files/Info.plist";
-	public static final String launcherFile = "/files/launcher";
+	public static final String FILE_INFO = "/files/osx/app.plist";
+	public static final String FILE_LAUNCHER = "/files/osx/launcher";
 
 	public static void build(File input, File output, File icon, String mainclass, String appTitle, boolean dockIcon, int minimumVersion) throws Exception {
 		File basePath = new File(output.getAbsolutePath(), "/Contents");
@@ -44,7 +44,7 @@ public class BuildApp {
 
 		copyLauncher(launcher, input.getName(), appTitle, dockIcon, minimumVersion);
 
-		IOUtils.copy(Main.class.getResourceAsStream(infoFile), new FileOutputStream(info));
+		IOUtils.copy(Main.class.getResourceAsStream(FILE_INFO), new FileOutputStream(info));
 		copyFile(input, jar);
 	}
 
@@ -57,7 +57,7 @@ public class BuildApp {
 	}
 	
 	public static void copyLauncher(File launcherDest, String jarName, String appTitle, boolean showIcon, int minimumVersion) throws Exception {
-		InputStream is = Main.class.getResourceAsStream(launcherFile);
+		InputStream is = Main.class.getResourceAsStream(FILE_LAUNCHER);
 
 		FileWriter dest = new FileWriter(launcherDest.getAbsolutePath());
 
