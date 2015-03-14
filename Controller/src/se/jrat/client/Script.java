@@ -56,7 +56,7 @@ public class Script {
 	}
 
 	public static ImageIcon getIcon(String str) {
-		return IconUtils.getIcon("script_" + str.toLowerCase());
+		return IconUtils.getIcon("script-" + str.toLowerCase());
 	}
 
 	public static void sendScript(Slave sl, int type, String content) {

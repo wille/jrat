@@ -78,7 +78,7 @@ public class PanelControlComputerInfo extends PanelControlParent {
 				slave.addToSendQueue(new Packet83WinSysInfo());
 			}
 		});
-		btnGetSysteminfoexe.setIcon(IconUtils.getIcon("down_arrow"));
+		btnGetSysteminfoexe.setIcon(IconUtils.getIcon("arrow-down"));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(btnReload).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnSave).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnGetSysteminfoexe).addContainerGap(327, Short.MAX_VALUE)));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 299, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnReload).addComponent(btnSave).addComponent(btnGetSysteminfoexe)).addContainerGap(15, Short.MAX_VALUE)));
@@ -111,20 +111,20 @@ public class PanelControlComputerInfo extends PanelControlParent {
 		while (model.getRowCount() > 0) {
 			model.removeRow(0);
 		}
-		addRow("connection_host", "Remote address", slave.getIP());
-		addRow("localhost", "Local address", slave.getLocalIP());
+		addRow("computer", "Remote address", slave.getIP());
+		addRow("computer", "Local address", slave.getLocalIP());
 		addRow("id", "Stub ID", slave.getID());
 		addRow("memory", "RAM", slave.getRam() + " MB");
 		addRow("adapters", "Available Processors", slave.getProcessors() + "");
-		addRow("last_modified", "Install Date/Last modified", slave.getInstallDate());
+		addRow("file", "Install Date/Last modified", slave.getInstallDate());
 		addRow("username", "Username", slave.getUsername());
-		addRow("computer_name", "Computer Name", slave.getComputerName());
+		addRow("computer", "Computer Name", slave.getComputerName());
 		addRow(Icons.getIconString(slave.getOS(), slave.getLongOperatingSystem()), "Operating System", slave.getLongOperatingSystem());
 		addRow(FlagUtils.getFlag(slave), "Country", slave.getCountry());
 		addRow("folder", "Stub Location", slave.getServerPath());
 		addRow("key", "Stub Version", slave.getVersion());
-		addRow("javascript", "Java Version", slave.getJavaVersion());
-		addRow("javascript", "Java Path", slave.getJavaPath());
+		addRow("java", "Java Version", slave.getJavaVersion());
+		addRow("java", "Java Path", slave.getJavaPath());
 
 		String antiviruses = "";
 
@@ -140,7 +140,7 @@ public class PanelControlComputerInfo extends PanelControlParent {
 			}
 		}
 
-		addRow("antivirus", "Antiviruses", antiviruses);
+		addRow("flame", "Antiviruses", antiviruses);
 
 		String firewalls = "";
 
@@ -156,6 +156,6 @@ public class PanelControlComputerInfo extends PanelControlParent {
 			}
 		}
 
-		addRow("http_flood", "Firewalls", firewalls);
+		addRow("firewall", "Firewalls", firewalls);
 	}
 }

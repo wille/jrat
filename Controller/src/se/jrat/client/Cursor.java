@@ -17,8 +17,8 @@ public class Cursor {
 	public static final Map<OperatingSystem, ImageIcon> CURSORS = new HashMap<OperatingSystem, ImageIcon>();
 	
 	static {
-		CURSORS.put(OperatingSystem.WINDOWS, IconUtils.getIcon("cursor_windows"));
-		CURSORS.put(OperatingSystem.OSX, IconUtils.getIcon("cursor_osx"));
+		CURSORS.put(OperatingSystem.WINDOWS, IconUtils.getIcon("cursor-windows"));
+		CURSORS.put(OperatingSystem.OSX, IconUtils.getIcon("cursor-osx"));
 		CURSORS.put(null, IconUtils.getIcon("cursor"));
 	}
 	

@@ -51,7 +51,7 @@ public class FramePreviewZip extends BaseFrame {
 		this.slave = s;
 		this.file = f;
 		instances.put(slave, this);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FramePreviewZip.class.getResource("/icons/winrar_view.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FramePreviewZip.class.getResource("/icons/archive.png")));
 		setTitle("ZIP Preview - " + f);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 445, 315);

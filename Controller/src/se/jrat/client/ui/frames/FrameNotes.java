@@ -44,7 +44,7 @@ public class FrameNotes extends BaseFrame {
 				save();
 			}
 		});
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameNotes.class.getResource("/icons/sticky-notes-pin.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameNotes.class.getResource("/icons/notes.png")));
 		this.slave = sl;
 		setTitle("Notes - " + getDisplayName());
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -92,7 +92,7 @@ public class FrameNotes extends BaseFrame {
 				}
 			}
 		});
-		btnLoad.setIcon(IconUtils.getIcon("folder_go"));
+		btnLoad.setIcon(IconUtils.getIcon("folder-go"));
 		toolBar.add(btnLoad);
 
 		JButton btnClose = new JButton("Close");

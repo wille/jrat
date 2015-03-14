@@ -349,7 +349,7 @@ public class FlagUtils {
 		list.add("white");
 		list.add("green");
 		int index = (new Random()).nextInt(list.size() - 1);
-		return IconUtils.getIcon("flag_" + list.get(index), true);
+		return IconUtils.getIcon("flag-" + list.get(index), true);
 	}
 
 }

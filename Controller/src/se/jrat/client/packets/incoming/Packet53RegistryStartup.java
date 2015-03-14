@@ -21,7 +21,7 @@ public class Packet53RegistryStartup extends AbstractIncomingPacket {
 
 		if (frame != null && count == 3) {
 			PanelControlRegStart panel = (PanelControlRegStart) frame.panels.get("registry startup");
-			panel.getModel().addRow(new Object[] { panel.icon, args[0], args[1], args[2] });
+			panel.getModel().addRow(new Object[] { PanelControlRegStart.ICON, args[0], args[1], args[2] });
 		}
 	}
 

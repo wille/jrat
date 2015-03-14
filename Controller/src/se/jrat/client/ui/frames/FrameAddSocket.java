@@ -40,7 +40,7 @@ public class FrameAddSocket extends BaseFrame {
 
 	public FrameAddSocket() {
 		super();
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameAddSocket.class.getResource("/icons/socket_add.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameAddSocket.class.getResource("/icons/socket-add.png")));
 		setResizable(false);
 		setTitle("Add socket");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -67,7 +67,7 @@ public class FrameAddSocket extends BaseFrame {
 		txtPass.setColumns(10);
 
 		JButton btnListen = new JButton("Listen");
-		btnListen.setIcon(IconUtils.getIcon("socket_add.png"));
+		btnListen.setIcon(IconUtils.getIcon("socket-add.png"));
 		btnListen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				addSocket();

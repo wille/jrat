@@ -16,7 +16,7 @@ import com.redpois0n.oslib.OperatingSystem;
 public class ProcessTableRenderer extends DefaultTableCellRenderer {
 
 	public static final Icon EXE_ICON = IconUtils.getFileIconFromExtension(".exe", false);
-	public static final Icon PROCESS_ICON = IconUtils.getIcon("process");
+	public static final Icon PROCESS_ICON = IconUtils.getIcon("process-go");
 	
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 		super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);

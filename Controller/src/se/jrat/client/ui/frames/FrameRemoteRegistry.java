@@ -50,8 +50,8 @@ public class FrameRemoteRegistry extends BaseFrame {
 	private DefaultTableModel model;
 
 	public static final Map<Slave, FrameRemoteRegistry> instances = new HashMap<Slave, FrameRemoteRegistry>();
-	public static final ImageIcon REGSZ_ICON = IconUtils.getIcon("registry_ab");
-	public static final ImageIcon REG01_ICON = IconUtils.getIcon("registry_01");
+	public static final ImageIcon REGSZ_ICON = IconUtils.getIcon("registry-string");
+	public static final ImageIcon REG01_ICON = IconUtils.getIcon("registry-bin");
 	public static final ImageIcon FOLDER_ICON = IconUtils.getIcon("folder");
 	public static final String[] ROOT_VALUES = new String[] { "HKEY_LOCAL_MACHINE", "HKEY_CURRENT_USER", "HKEY_CLASSES_ROOT", "HKEY_USERS", "HKEY_CURRENT_CONFIG" };
 
@@ -147,11 +147,11 @@ public class FrameRemoteRegistry extends BaseFrame {
 				addValue();
 			}
 		});
-		mntmAdd.setIcon(IconUtils.getIcon("key_plus"));
+		mntmAdd.setIcon(IconUtils.getIcon("key-plus"));
 		popupMenu.add(mntmAdd);
 
 		mntmDelete = new JMenuItem("Delete Value");
-		mntmDelete.setIcon(IconUtils.getIcon("key_minus"));
+		mntmDelete.setIcon(IconUtils.getIcon("key-minus"));
 		mntmDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				removeValue();
@@ -166,7 +166,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 				editValue();
 			}
 		});
-		mntmEditValue.setIcon(IconUtils.getIcon("key_pencil"));
+		mntmEditValue.setIcon(IconUtils.getIcon("key-pencil"));
 		popupMenu.add(mntmEditValue);
 		popupMenu.addSeparator();
 
@@ -195,7 +195,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 		scrollPane_1.setViewportView(tree);
 
 		for (String root : ROOT_VALUES) {
-			getTreeModel().addRoot(new PathTreeNode(root, IconUtils.getIcon("folder_network")));
+			getTreeModel().addRoot(new PathTreeNode(root, IconUtils.getIcon("folder-network")));
 		}
 
 		for (int i = 0; i < tree.getRowCount(); i++) {
@@ -234,7 +234,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 				addValue();
 			}
 		});
-		btnAdd.setIcon(IconUtils.getIcon("key_plus"));
+		btnAdd.setIcon(IconUtils.getIcon("key-plus"));
 
 		JButton btnRemove = new JButton("Remove");
 		toolBar.add(btnRemove);
@@ -243,7 +243,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 				removeValue();
 			}
 		});
-		btnRemove.setIcon(IconUtils.getIcon("key_minus"));
+		btnRemove.setIcon(IconUtils.getIcon("key-minus"));
 
 		JButton btnEdit = new JButton("Edit");
 		toolBar.add(btnEdit);
@@ -252,7 +252,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 				editValue();
 			}
 		});
-		btnEdit.setIcon(IconUtils.getIcon("key_pencil"));
+		btnEdit.setIcon(IconUtils.getIcon("key-pencil"));
 
 		JButton btnCustomCommand = new JButton("Custom");
 		btnCustomCommand.addActionListener(new ActionListener() {
@@ -261,7 +261,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 				frame.setVisible(true);
 			}
 		});
-		btnCustomCommand.setIcon(IconUtils.getIcon("key_arrow"));
+		btnCustomCommand.setIcon(IconUtils.getIcon("key-arrow"));
 		toolBar.add(btnCustomCommand);
 		contentPane.setLayout(gl_contentPane);
 	}

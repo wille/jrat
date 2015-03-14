@@ -8,8 +8,8 @@ import se.jrat.client.utils.IconUtils;
 
 public class ThreadRecordButton extends Thread {
 	
-	public static final Icon BIG = IconUtils.getIcon("record_big");
-	public static final Icon SMALL = IconUtils.getIcon("record_small");
+	public static final Icon BIG = IconUtils.getIcon("record-big");
+	public static final Icon SMALL = IconUtils.getIcon("record-small");
 
 	private JButton button;
 	private boolean running;

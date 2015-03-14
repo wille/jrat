@@ -34,7 +34,7 @@ public class PanelControlAdapters extends PanelControlParent {
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
 		JButton btnReloadList = new JButton("Reload list");
-		btnReloadList.setIcon(IconUtils.getIcon("adapters"));
+		btnReloadList.setIcon(IconUtils.getIcon("cpu"));
 		btnReloadList.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				clear();

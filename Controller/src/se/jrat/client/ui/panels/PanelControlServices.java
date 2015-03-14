@@ -40,7 +40,7 @@ public class PanelControlServices extends PanelControlParent {
 				slave.addToSendQueue(new Packet77ListServices());
 			}
 		});
-		btnRefreshList.setIcon(IconUtils.getIcon("block_go"));
+		btnRefreshList.setIcon(IconUtils.getIcon("block"));
 
 		JButton btnClear = new JButton("Clear");
 		btnClear.addActionListener(new ActionListener() {

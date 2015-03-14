@@ -92,7 +92,7 @@ public class FrameSettings extends BaseFrame {
 
 		JTreeIconsRenderer renderer = new JTreeIconsRenderer();
 
-		renderer.icons.put("main", IconUtils.getIcon("tab_settings"));
+		renderer.icons.put("main", IconUtils.getIcon("tab-settings"));
 		renderer.icons.put("themes", IconUtils.getIcon("themes"));
 		renderer.icons.put("editor", IconUtils.getIcon("list"));
 		renderer.icons.put("flags", IconUtils.getIcon("unknown"));
@@ -101,7 +101,7 @@ public class FrameSettings extends BaseFrame {
 		renderer.icons.put("eula", IconUtils.getIcon("gavel"));
 		renderer.icons.put("changelog", IconUtils.getIcon("changelog"));
 		renderer.icons.put("about", IconUtils.getIcon("info"));
-		renderer.icons.put("proxy", IconUtils.getIcon("settings_proxy"));
+		renderer.icons.put("proxy", IconUtils.getIcon("server"));
 
 		tree.setCellRenderer(renderer);
 		reload();

@@ -84,7 +84,7 @@ public class PanelSettingsMain extends JPanel {
 		chckbxAskBeforeConnect = new JCheckBox("Ask before connect", Settings.getGlobal().getBoolean("askurl"));
 
 		JLabel label_3 = new JLabel("");
-		label_3.setIcon(IconUtils.getIcon("computer_info"));
+		label_3.setIcon(IconUtils.getIcon("computer"));
 
 		chckbxMaximum = new JCheckBox("Maximum amount of connections", Settings.getGlobal().getInt("max") != -1);
 		chckbxMaximum.addActionListener(new ActionListener() {

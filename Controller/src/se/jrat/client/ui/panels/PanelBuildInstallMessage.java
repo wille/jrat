@@ -81,20 +81,20 @@ public class PanelBuildInstallMessage extends JPanel {
 
 		btnInfo = new JToggleButton("");
 		buttonGroup.add(btnInfo);
-		btnInfo.setIcon(IconUtils.getIcon("box_info.png"));
+		btnInfo.setIcon(IconUtils.getIcon("big-info.png"));
 
 		btnError = new JToggleButton("");
 		buttonGroup.add(btnError);
 		btnError.setSelected(true);
-		btnError.setIcon(IconUtils.getIcon("box_error.png"));
+		btnError.setIcon(IconUtils.getIcon("big-error.png"));
 
 		btnWarning = new JToggleButton("");
 		buttonGroup.add(btnWarning);
-		btnWarning.setIcon(IconUtils.getIcon("box_warning.png"));
+		btnWarning.setIcon(IconUtils.getIcon("big-warning.png"));
 
 		btnQuestion = new JToggleButton("");
 		buttonGroup.add(btnQuestion);
-		btnQuestion.setIcon(IconUtils.getIcon("box_question.png"));
+		btnQuestion.setIcon(IconUtils.getIcon("big-question.png"));
 
 		btnNone = new JToggleButton("None");
 		buttonGroup.add(btnNone);

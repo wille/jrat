@@ -80,7 +80,7 @@ public class FrameRemoteChat extends BaseFrame {
 
 		JButton btnSend = new JButton("Send");
 		toolBar.add(btnSend);
-		btnSend.setIcon(IconUtils.getIcon("right"));
+		btnSend.setIcon(IconUtils.getIcon("arrow-right"));
 
 		JButton btnNudge = new JButton("Nudge");
 		toolBar.add(btnNudge);

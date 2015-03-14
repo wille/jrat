@@ -31,7 +31,7 @@ public class FrameDebugInfo extends BaseFrame {
 	private JTextPane textPane;
 
 	public FrameDebugInfo() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameDebugInfo.class.getResource("/icons/javascript.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameDebugInfo.class.getResource("/icons/java.png")));
 		setTitle("Debug Information");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 439, 370);

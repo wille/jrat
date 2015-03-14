@@ -59,7 +59,7 @@ public class PanelMainSockets extends JPanel {
 		addPopup(table, popupMenu);
 
 		JMenuItem mntmAddSocket = new JMenuItem("Add Socket");
-		mntmAddSocket.setIcon(IconUtils.getIcon("socket_add"));
+		mntmAddSocket.setIcon(IconUtils.getIcon("socket-add"));
 		mntmAddSocket.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				FrameAddSocket frame = new FrameAddSocket();
@@ -71,7 +71,7 @@ public class PanelMainSockets extends JPanel {
 		popupMenu.addSeparator();
 
 		JMenuItem mntmCloseSocket = new JMenuItem("Close Socket");
-		mntmCloseSocket.setIcon(IconUtils.getIcon("socket_remove"));
+		mntmCloseSocket.setIcon(IconUtils.getIcon("socket-remove"));
 		mntmCloseSocket.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -97,7 +97,7 @@ public class PanelMainSockets extends JPanel {
 		popupMenu.add(mntmCloseSocket);
 
 		JMenuItem mntmCloseAllSockets = new JMenuItem("Close all Sockets");
-		mntmCloseAllSockets.setIcon(IconUtils.getIcon("socket_remove"));
+		mntmCloseAllSockets.setIcon(IconUtils.getIcon("socket-remove"));
 		mntmCloseAllSockets.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				while (model.getRowCount() > 0) {

@@ -60,7 +60,7 @@ public class FramePlugins extends BaseFrame {
 				}
 			}
 		});
-		btnFolder.setIcon(IconUtils.getIcon("folder_go"));
+		btnFolder.setIcon(IconUtils.getIcon("folder-go"));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addGroup(gl_contentPane.createSequentialGroup().addComponent(btnFolder).addPreferredGap(ComponentPlacement.RELATED, 211, Short.MAX_VALUE).addComponent(btnReload)).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)).addGap(2)));
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(btnReload).addComponent(btnFolder)).addGap(3)));

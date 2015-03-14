@@ -64,7 +64,7 @@ public class PanelControlSpeech extends PanelControlParent {
 				}
 			}
 		});
-		btnTest.setIcon(IconUtils.getIcon("balloon_sound"));
+		btnTest.setIcon(IconUtils.getIcon("speech"));
 
 		JButton btnSend = new JButton("Send");
 		btnSend.addActionListener(new ActionListener() {
@@ -72,7 +72,7 @@ public class PanelControlSpeech extends PanelControlParent {
 				slave.addToSendQueue(new Packet76Speech(txt.getText().trim()));
 			}
 		});
-		btnSend.setIcon(IconUtils.getIcon("right"));
+		btnSend.setIcon(IconUtils.getIcon("arrow-right"));
 
 		JSeparator separator = new JSeparator();
 		separator.setOrientation(SwingConstants.VERTICAL);

@@ -49,7 +49,7 @@ public class DownloadAndExecEvent extends Event {
 	}
 
 	public String getIcon() {
-		return "down_arrow";
+		return "arrow-down";
 	}
 
 }

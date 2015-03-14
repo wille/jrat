@@ -89,7 +89,7 @@ public class PanelMainLog extends JPanel {
 				}
 			}
 		});
-		mntmRemove.setIcon(IconUtils.getIcon("window_minus"));
+		mntmRemove.setIcon(IconUtils.getIcon("application-minus"));
 		popupMenu.add(mntmRemove);
 
 		JMenuItem mntmRemoveAll = new JMenuItem("Remove all");
@@ -100,7 +100,7 @@ public class PanelMainLog extends JPanel {
 				}
 			}
 		});
-		mntmRemoveAll.setIcon(IconUtils.getIcon("window_minus"));
+		mntmRemoveAll.setIcon(IconUtils.getIcon("application-minus"));
 		popupMenu.add(mntmRemoveAll);
 
 		popupMenu.addSeparator();
@@ -133,7 +133,7 @@ public class PanelMainLog extends JPanel {
 				}
 			}
 		});
-		mntmExpand.setIcon(IconUtils.getIcon("window_import"));
+		mntmExpand.setIcon(IconUtils.getIcon("application-import"));
 		popupMenu.add(mntmExpand);
 
 		scrollPane.setViewportView(table);

@@ -206,7 +206,7 @@ public class PanelControlPiano extends PanelControlParent {
 				slave.addToSendQueue(new Packet67LongPianoNote((Integer) spinnerSound.getValue(), (Integer) spinnerSec.getValue()));
 			}
 		});
-		btnSend.setIcon(IconUtils.getIcon("right"));
+		btnSend.setIcon(IconUtils.getIcon("arrow-right"));
 
 		JButton btnTest = new JButton("Test");
 		btnTest.addActionListener(new ActionListener() {

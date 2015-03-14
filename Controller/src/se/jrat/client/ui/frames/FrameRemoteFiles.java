@@ -132,7 +132,7 @@ public class FrameRemoteFiles extends BaseFrame {
 	public FrameRemoteFiles(Slave slave) {
 		super();
 		this.dir = new DirListener(slave);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRemoteFiles.class.getResource("/icons/files.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRemoteFiles.class.getResource("/icons/folder-tree.png")));
 		this.slave = slave;
 		instances.put(slave, this);
 		final Slave sl = slave;
@@ -201,7 +201,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				}
 			}
 		});
-		btnBackme.setIcon(IconUtils.getIcon("left"));
+		btnBackme.setIcon(IconUtils.getIcon("arrow-left"));
 
 		btnRefreshme = new JButton("");
 		toolBarNorth.add(btnRefreshme);
@@ -254,7 +254,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				new File(txtDir.getText() + File.separator + foldername).mkdirs();
 			}
 		});
-		btnNewFolderme.setIcon(IconUtils.getIcon("new_folder"));
+		btnNewFolderme.setIcon(IconUtils.getIcon("folder-add"));
 		toolBarNorth.add(btnNewFolderme);
 
 		btnGome = new JButton("");
@@ -274,7 +274,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				}
 			}
 		});
-		btnGome.setIcon(IconUtils.getIcon("folder_go"));
+		btnGome.setIcon(IconUtils.getIcon("folder-go"));
 
 		txtDirme = new JTextField();
 		toolBarNorth.add(txtDirme);
@@ -289,7 +289,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				upload();
 			}
 		});
-		btnUpload.setIcon(IconUtils.getIcon("right"));
+		btnUpload.setIcon(IconUtils.getIcon("arrow-right"));
 		btnUpload.setToolTipText("Upload selected file");
 
 		toolBarNorth.addSeparator(new Dimension(30, 20));
@@ -302,7 +302,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				download();
 			}
 		});
-		btnDownload.setIcon(IconUtils.getIcon("left"));
+		btnDownload.setIcon(IconUtils.getIcon("arrow-left"));
 		txtDir = new JTextField();
 		txtDir.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
@@ -359,7 +359,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				}
 			}
 		});
-		btnBack.setIcon(IconUtils.getIcon("left"));
+		btnBack.setIcon(IconUtils.getIcon("arrow-left"));
 
 		JButton btnRefresh = new JButton("");
 		toolBarNorth.add(btnRefresh);
@@ -403,7 +403,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				sl.addToSendQueue(new Packet43CreateDirectory(txtDir.getText(), foldername));
 			}
 		});
-		btnNewFolder.setIcon(IconUtils.getIcon("new_folder"));
+		btnNewFolder.setIcon(IconUtils.getIcon("folder-add"));
 		toolBarNorth.add(btnNewFolder);
 
 		JButton btnGo = new JButton("");
@@ -422,7 +422,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				}
 			}
 		});
-		btnGo.setIcon(IconUtils.getIcon("folder_go"));
+		btnGo.setIcon(IconUtils.getIcon("folder-go"));
 
 		JScrollPane scrollPane = new JScrollPane();
 		splitPane.setRightComponent(scrollPane);
@@ -476,7 +476,7 @@ public class FrameRemoteFiles extends BaseFrame {
 		addPopup(table, popupMenuRemote);
 
 		mntmRun = new JMenuItem("Run");
-		mntmRun.setIcon(IconUtils.getIcon("runcmd"));
+		mntmRun.setIcon(IconUtils.getIcon("execute"));
 		mntmRun.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -490,7 +490,7 @@ public class FrameRemoteFiles extends BaseFrame {
 		});
 
 		mnQuickJump = new JMenu("Quick Jump");
-		mnQuickJump.setIcon(IconUtils.getIcon("recent_folder"));
+		mnQuickJump.setIcon(IconUtils.getIcon("folder-shortcut"));
 		popupMenuRemote.add(mnQuickJump);
 
 		popupMenuRemote.addSeparator();
@@ -537,7 +537,7 @@ public class FrameRemoteFiles extends BaseFrame {
 		popupMenuRemote.add(mntmPreviewFiletext);
 
 		mntmDownloadFile = new JMenuItem("Download File(s)");
-		mntmDownloadFile.setIcon(IconUtils.getIcon("left"));
+		mntmDownloadFile.setIcon(IconUtils.getIcon("arrow-left"));
 		mntmDownloadFile.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -575,7 +575,7 @@ public class FrameRemoteFiles extends BaseFrame {
 		popupMenuRemote.addSeparator();
 
 		mntmNewFolder = new JMenuItem("New Folder");
-		mntmNewFolder.setIcon(IconUtils.getIcon("new_folder"));
+		mntmNewFolder.setIcon(IconUtils.getIcon("folder-add"));
 		mntmNewFolder.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -652,7 +652,7 @@ public class FrameRemoteFiles extends BaseFrame {
 		popupMenuRemote.addSeparator();
 
 		mnBookmarks = new JMenu("Bookmarks");
-		mnBookmarks.setIcon(IconUtils.getIcon("bookmark_go"));
+		mnBookmarks.setIcon(IconUtils.getIcon("bookmark-go"));
 		popupMenuRemote.add(mnBookmarks);
 
 		mnAdd = new JMenuItem("Add");
@@ -662,7 +662,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				txtChanged();
 			}
 		});
-		mnAdd.setIcon(IconUtils.getIcon("bookmark_add"));
+		mnAdd.setIcon(IconUtils.getIcon("bookmark-add"));
 		popupMenuRemote.add(mnAdd);
 
 		mnRemove = new JMenuItem("Remove");
@@ -672,7 +672,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				txtChanged();
 			}
 		});
-		mnRemove.setIcon(IconUtils.getIcon("bookmark_remove"));
+		mnRemove.setIcon(IconUtils.getIcon("bookmark-remove"));
 		popupMenuRemote.add(mnRemove);
 
 		popupMenuRemote.addSeparator();
@@ -730,7 +730,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				}
 			}
 		});
-		mntmGo.setIcon(IconUtils.getIcon("right"));
+		mntmGo.setIcon(IconUtils.getIcon("arrow-right"));
 		popupMenuRemote.add(mntmGo);
 
 		mntmBack = new JMenuItem("Back");
@@ -752,7 +752,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				}
 			}
 		});
-		mntmBack.setIcon(IconUtils.getIcon("left"));
+		mntmBack.setIcon(IconUtils.getIcon("arrow-left"));
 		popupMenuRemote.add(mntmBack);
 
 		mntmRefresh = new JMenuItem("Refresh");
@@ -803,7 +803,7 @@ public class FrameRemoteFiles extends BaseFrame {
 		addPopup(tableme, popupMenu);
 		
 		menu = new JMenu("Quick Jump");
-		menu.setIcon(IconUtils.getIcon("recent_folder"));
+		menu.setIcon(IconUtils.getIcon("folder-shortcut"));
 		popupMenu.add(menu);
 		
 		menuItem_1 = new JMenuItem("Appdata");

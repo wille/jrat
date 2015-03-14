@@ -25,10 +25,10 @@ public class LogTableRenderer extends DefaultTableCellRenderer {
 		colors.put("connect", Color.blue);
 
 		icons.clear();
-		icons.put("disconnect", IconUtils.getIcon("log_error"));
-		icons.put("error", IconUtils.getIcon("log_error"));
-		icons.put("connect", IconUtils.getIcon("log_info"));
-		icons.put("warning", IconUtils.getIcon("log_warning"));
+		icons.put("disconnect", IconUtils.getIcon("log-error"));
+		icons.put("error", IconUtils.getIcon("log-error"));
+		icons.put("connect", IconUtils.getIcon("log-info"));
+		icons.put("warning", IconUtils.getIcon("log-warning"));
 	}
 
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {

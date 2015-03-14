@@ -58,13 +58,13 @@ public class IconUtils {
 			str = "ping" + ping;
 		} else {
 			if (ping == 0 || ping == 1) {
-				str = "network_green";
+				str = "network-green";
 			} else if (ping == 2 || ping == 3) {
-				str = "network_yellow";
+				str = "network-yellow";
 			} else if (ping == 4) {
-				str = "network_red";
+				str = "network-red";
 			} else {
-				str = "network_offline";
+				str = "network-offline";
 			}
 		}
 

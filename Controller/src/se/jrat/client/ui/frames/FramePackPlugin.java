@@ -56,7 +56,7 @@ public class FramePackPlugin extends JFrame {
 	private DialogPackPluginEditResources frame = new DialogPackPluginEditResources(this);
 	
 	public FramePackPlugin() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FramePackPlugin.class.getResource("/icons/plugin_edit.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FramePackPlugin.class.getResource("/icons/plugin-edit.png")));
 		setResizable(false);
 		setTitle("Pack Plugin");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -194,7 +194,7 @@ public class FramePackPlugin extends JFrame {
 				}
 			}
 		});
-		btnPack.setIcon(IconUtils.getIcon("plugin_go"));
+		btnPack.setIcon(IconUtils.getIcon("plugin-go"));
 		
 		lblResources = new JLabel("Resources: 0");
 		

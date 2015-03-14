@@ -30,7 +30,7 @@ public class DialogFlag extends BaseDialog {
 	public DialogFlag(List<Slave> list) {
 		super();
 		this.slaves = list;
-		setIconImage(Toolkit.getDefaultToolkit().getImage(DialogFlag.class.getResource("/icons/flag_green.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DialogFlag.class.getResource("/icons/flag-green.png")));
 		setTitle("Flag");
 		if (slaves.size() > 1) {
 			setTitle("Flag " + slaves.size() + " slaves");
@@ -44,7 +44,7 @@ public class DialogFlag extends BaseDialog {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
-		String p = "flag_";
+		String p = "flag-";
 
 		final JComboBox comboBox = new JComboBox(new Object[] { "red", "green", "blue", "white", "orange" });
 		JComboBoxIconRenderer renderer = new JComboBoxIconRenderer();

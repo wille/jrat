@@ -84,7 +84,7 @@ public class PanelControlMessagebox extends PanelControlParent {
 				sl.addToSendQueue(new Packet10Messagebox(chckbxSetSystemFeel.isSelected(), getIcon(), txtTitle.getText(), txtMsg.getText()));
 			}
 		});
-		btnSend.setIcon(IconUtils.getIcon("right"));
+		btnSend.setIcon(IconUtils.getIcon("arrow-right"));
 
 		JButton btnTest = new JButton("Test");
 		btnTest.setIcon(IconUtils.getIcon("messagebox"));
@@ -107,19 +107,19 @@ public class PanelControlMessagebox extends PanelControlParent {
 
 		btnInfo = new JToggleButton("");
 		buttonGroup.add(btnInfo);
-		btnInfo.setIcon(IconUtils.getIcon("box_info"));
+		btnInfo.setIcon(IconUtils.getIcon("big-info"));
 
 		btnQuestion = new JToggleButton("");
 		buttonGroup.add(btnQuestion);
-		btnQuestion.setIcon(IconUtils.getIcon("box_question"));
+		btnQuestion.setIcon(IconUtils.getIcon("big-question"));
 
 		btnWarning = new JToggleButton("");
 		buttonGroup.add(btnWarning);
-		btnWarning.setIcon(IconUtils.getIcon("box_warning"));
+		btnWarning.setIcon(IconUtils.getIcon("big-warning"));
 
 		btnError = new JToggleButton("");
 		buttonGroup.add(btnError);
-		btnError.setIcon(IconUtils.getIcon("box_error"));
+		btnError.setIcon(IconUtils.getIcon("big-error"));
 
 		btnNone = new JToggleButton("None");
 		buttonGroup.add(btnNone);

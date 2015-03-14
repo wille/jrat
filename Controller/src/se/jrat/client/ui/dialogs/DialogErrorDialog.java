@@ -91,7 +91,7 @@ public class DialogErrorDialog extends BaseDialog {
 
 		PanelImage panel = new PanelImage();
 		panel.setBounds(15, 16, 48, 47);
-		panel.image = IconUtils.getIcon("error_big").getImage();
+		panel.image = IconUtils.getIcon("xbig-error").getImage();
 
 		JLabel lblAErrorOccured = new JLabel("A error occured!");
 		lblAErrorOccured.setBounds(73, 16, 79, 14);
@@ -120,7 +120,7 @@ public class DialogErrorDialog extends BaseDialog {
 			}
 		});
 		btnCopyToClipboard.setVisible(false);
-		btnCopyToClipboard.setIcon(IconUtils.getIcon("clipboard_go.png"));
+		btnCopyToClipboard.setIcon(IconUtils.getIcon("clipboard-go"));
 		btnCopyToClipboard.setBounds(95, 94, 143, 24);
 		contentPane.add(btnCopyToClipboard);
 

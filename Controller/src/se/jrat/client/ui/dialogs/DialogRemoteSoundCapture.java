@@ -64,7 +64,7 @@ public class DialogRemoteSoundCapture extends BaseDialog {
 				comboBox.setEnabled(false);
 			}
 		});
-		btnStart.setIcon(IconUtils.getIcon("microphone_plus.png"));
+		btnStart.setIcon(IconUtils.getIcon("microphone-plus"));
 
 		btnStop = new JButton("Stop");
 		btnStop.addActionListener(new ActionListener() {
@@ -77,7 +77,7 @@ public class DialogRemoteSoundCapture extends BaseDialog {
 			}
 		});
 		btnStop.setEnabled(false);
-		btnStop.setIcon(IconUtils.getIcon("microphone_minus.png"));
+		btnStop.setIcon(IconUtils.getIcon("microphone_minus"));
 
 		comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] { "16000", "12000", "8000", "4000", "2000" }));

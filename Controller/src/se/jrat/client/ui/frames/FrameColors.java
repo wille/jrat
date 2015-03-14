@@ -26,7 +26,7 @@ public class FrameColors extends BaseFrame {
 
 	public FrameColors() {
 		super();
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameColors.class.getResource("/icons/color-swatches.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameColors.class.getResource("/icons/color-palette.png")));
 		setTitle("Colors");
 		setResizable(false);
 		addWindowListener(new WindowAdapter() {

@@ -63,7 +63,7 @@ public class DialogEula extends BaseDialog {
 				System.exit(0);
 			}
 		});
-		btnDisagree.setIcon(IconUtils.getIcon("disconnect.png"));
+		btnDisagree.setIcon(IconUtils.getIcon("forbidden"));
 		
 		JButton btnAgree = new JButton("Agree (0)");
 		btnAgree.addActionListener(new ActionListener() {

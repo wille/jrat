@@ -84,7 +84,7 @@ public class PanelBuildVisibility extends JPanel {
 		txtIcon.setColumns(10);
 
 		JButton button = new JButton("");
-		button.setIcon(IconUtils.getIcon("folder_go"));
+		button.setIcon(IconUtils.getIcon("folder-go"));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JFileChooser c = new JFileChooser();

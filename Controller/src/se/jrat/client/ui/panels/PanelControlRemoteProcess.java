@@ -73,7 +73,7 @@ public class PanelControlRemoteProcess extends PanelControlParent {
 		btnKillSelected.setIcon(IconUtils.getIcon("delete"));
 
 		JButton btnCreateProcess = new JButton("Create process");
-		btnCreateProcess.setIcon(IconUtils.getIcon("process"));
+		btnCreateProcess.setIcon(IconUtils.getIcon("process-go"));
 		btnCreateProcess.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String proc = Utils.showDialog("Create process", "Input name of process");

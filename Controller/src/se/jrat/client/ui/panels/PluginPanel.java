@@ -68,7 +68,7 @@ public class PluginPanel extends JPanel {
 		
 		lblVerified = new JLabel("");
 		lblVerified.setToolTipText("Files not hosted by jRAT");
-		lblVerified.setIcon(IconUtils.getIcon("log_warning"));
+		lblVerified.setIcon(IconUtils.getIcon("log-warning"));
 		
 		lblUpToDate = new JLabel("Up to date");
 		

@@ -53,7 +53,7 @@ public class FrameBuildAdvanced extends BaseFrame {
 	public FrameBuildAdvanced() {
 		super();
 
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameBuildAdvanced.class.getResource("/icons/build.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameBuildAdvanced.class.getResource("/icons/bug-edit.png")));
 		setTitle("Build Stub");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 680, 360);
@@ -65,10 +65,10 @@ public class FrameBuildAdvanced extends BaseFrame {
 
 		renderer.icons.put("final", IconUtils.getIcon("final", true));
 		renderer.icons.put("general", IconUtils.getIcon("id", true));
-		renderer.icons.put("network", IconUtils.getIcon("host", true));
+		renderer.icons.put("network", IconUtils.getIcon("computer", true));
 		renderer.icons.put("startup", IconUtils.getIcon("update", true));
 		renderer.icons.put("install message", IconUtils.getIcon("messagebox", true));
-		renderer.icons.put("binder", IconUtils.getIcon("binder", true));
+		renderer.icons.put("binder", IconUtils.getIcon("merge", true));
 		renderer.icons.put("mutex", IconUtils.getIcon("mutex", true));
 		renderer.icons.put("allowed os", IconUtils.getIcon("toolbox", true));
 		renderer.icons.put("plugins", IconUtils.getIcon("plugin", true));
@@ -79,7 +79,7 @@ public class FrameBuildAdvanced extends BaseFrame {
 		renderer.icons.put("error handling", IconUtils.getIcon("error"));
 		renderer.icons.put("persistance", IconUtils.getIcon("persistance"));
 		renderer.icons.put("debug messages", IconUtils.getIcon("application-detail"));
-		renderer.icons.put("classes", IconUtils.getIcon("java_class"));
+		renderer.icons.put("classes", IconUtils.getIcon("class"));
 		renderer.icons.put("output", IconUtils.getIcon("compile"));
 		renderer.icons.put("virtualization", IconUtils.getIcon("virtualization"));
 

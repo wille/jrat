@@ -17,8 +17,8 @@ public class BuildTableRenderer extends DefaultTableCellRenderer {
 
 	private Map<String, BuildStatus> statuses;
 
-	public static final ImageIcon ICON_INFO = IconUtils.getIcon("log_info");
-	public static final ImageIcon LOG_ERROR = IconUtils.getIcon("log_error");
+	public static final ImageIcon ICON_INFO = IconUtils.getIcon("log-info");
+	public static final ImageIcon LOG_ERROR = IconUtils.getIcon("log-error");
 	public static final ImageIcon ICON_TICK = IconUtils.getIcon("tick");
 
 	public BuildTableRenderer(Map<String, BuildStatus> statuses) {

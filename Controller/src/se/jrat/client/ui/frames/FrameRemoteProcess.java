@@ -48,7 +48,7 @@ public class FrameRemoteProcess extends JFrame {
 
 	public FrameRemoteProcess(Slave sl) {
 		setTitle("Remote Process - " + sl.getIP() + " - " + sl.getComputerName());
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRemoteProcess.class.getResource("/icons/process_no.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRemoteProcess.class.getResource("/icons/process.png")));
 		setResizable(false);
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -91,7 +91,7 @@ public class FrameRemoteProcess extends JFrame {
 				list();
 			}
 		});
-		btnCreateProcess.setIcon(IconUtils.getIcon("process"));
+		btnCreateProcess.setIcon(IconUtils.getIcon("process-go"));
 
 		btnKillSelected = new JButton("Kill selected");
 		btnKillSelected.addActionListener(new ActionListener() {

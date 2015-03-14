@@ -60,7 +60,7 @@ public class FrameBuildMinimal extends BaseFrame {
 	private LinkedHashMap<String, BuildStatus> statuses = new LinkedHashMap<String, BuildStatus>();
 
 	public FrameBuildMinimal() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameBuildMinimal.class.getResource("/icons/build.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameBuildMinimal.class.getResource("/icons/bug-edit.png")));
 		setTitle("Normal Builder");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

@@ -82,7 +82,7 @@ public class PanelBuildNetwork extends JPanel {
 				model.addElement(addr);
 			}
 		});
-		btnAdd.setIcon(IconUtils.getIcon("socket_add"));
+		btnAdd.setIcon(IconUtils.getIcon("socket-add"));
 
 		JButton btnMoveDown = new JButton("Move Down");
 		btnMoveDown.addActionListener(new ActionListener() {

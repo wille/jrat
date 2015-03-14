@@ -68,7 +68,7 @@ public class PanelBuildPlugins extends JPanel {
 				}
 			}
 		});
-		btnAddServerPlugin.setIcon(IconUtils.getIcon("plugin_add"));
+		btnAddServerPlugin.setIcon(IconUtils.getIcon("plugin-add"));
 
 		chckbxDoNotLoad = new JCheckBox("Do not load class");
 		GroupLayout groupLayout = new GroupLayout(this);

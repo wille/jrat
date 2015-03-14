@@ -57,7 +57,7 @@ import com.redpois0n.graphs.monitors.RemoteMonitor;
 public class FrameRemoteScreen extends BaseFrame {
 	
 	public static final Map<Slave, FrameRemoteScreen> instances = new HashMap<Slave, FrameRemoteScreen>();
-	public static final ImageIcon DEFAULT_RECORD_ICON = IconUtils.getIcon("camera_black");
+	public static final ImageIcon DEFAULT_RECORD_ICON = IconUtils.getIcon("camera-black");
 	
 	private BufferedImage buffer;
 	
@@ -198,7 +198,7 @@ public class FrameRemoteScreen extends BaseFrame {
 		cbMonitors.setRenderer(renderer);
 		model.removeAllElements();
 		model.addElement("Default");
-		renderer.addIcon("default", IconUtils.getIcon("monitor--arrow"));
+		renderer.addIcon("default", IconUtils.getIcon("monitor-arrow"));
 
 		ImageIcon icon = IconUtils.getIcon("monitor");
 
@@ -231,7 +231,7 @@ public class FrameRemoteScreen extends BaseFrame {
 		
 		btnStop = new JButton("");
 		btnStop.setToolTipText("Stop");
-		btnStop.setIcon(IconUtils.getIcon("stop_close"));
+		btnStop.setIcon(IconUtils.getIcon("stop"));
 		btnStop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				stop();
@@ -266,7 +266,7 @@ public class FrameRemoteScreen extends BaseFrame {
 		toolBarTop.addSeparator();
 		
 		lblSize = new JLabel("Size: " + size + "%");
-		lblSize.setIcon(IconUtils.getIcon("application-resize-full"));
+		lblSize.setIcon(IconUtils.getIcon("application-resize"));
 		toolBarTop.add(lblSize);
 		
 		sliderSize = new JSlider();
@@ -283,7 +283,7 @@ public class FrameRemoteScreen extends BaseFrame {
 		
 		lblQuality = new JLabel("Quality: " + quality);
 		toolBarTop.add(lblQuality);
-		lblQuality.setIcon(IconUtils.getIcon("monitor_plus"));
+		lblQuality.setIcon(IconUtils.getIcon("monitor-plus"));
 		
 		sliderQuality = new JSlider();
 		sliderQuality.addChangeListener(new ChangeListener() {
@@ -309,7 +309,7 @@ public class FrameRemoteScreen extends BaseFrame {
 		toolBarTop.add(tglbtnToggleKeyboard);
 		
 		tglbtnToggleMovement = new JToggleButton("");
-		tglbtnToggleMovement.setIcon(IconUtils.getIcon("arrow_move_icon"));
+		tglbtnToggleMovement.setIcon(IconUtils.getIcon("arrow-move"));
 		toolBarTop.add(tglbtnToggleMovement);
 		
 		toolBarTop.addSeparator();

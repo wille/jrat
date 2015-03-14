@@ -24,7 +24,7 @@ public class PanelControlRegStart extends PanelControlParent {
 	private JTable table;
 	private DefaultTableModel model;
 
-	public ImageIcon icon = IconUtils.getIcon("registry_ab");
+	public static final ImageIcon ICON = IconUtils.getIcon("registry-string");
 
 	public DefaultTableModel getModel() {
 		return model;
