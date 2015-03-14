@@ -323,7 +323,6 @@ public class FrameControlPanel extends BaseFrame {
 				r.icons.put("misc", IconUtils.getIcon("other"));
 				r.icons.put("lan computers", IconUtils.getIcon("http_flood"));
 				r.icons.put("net gateway", IconUtils.getIcon("gateway"));
-				r.icons.put("traffic", IconUtils.getIcon("speedometer"));
 				r.icons.put("active ports", IconUtils.getIcon("ports"));
 				r.icons.put("speech", IconUtils.getIcon("balloon_sound"));
 				r.icons.put("trace", IconUtils.getIcon("location"));
@@ -715,13 +714,6 @@ public class FrameControlPanel extends BaseFrame {
 		actions.put("environment variables", new Performable() {
 			public void perform() {
 				FrameSystem frame = new FrameSystem(Constants.MODE_ENV, slave);
-				frame.setVisible(true);
-			}
-		});
-
-		actions.put("traffic", new Performable() {
-			public void perform() {
-				FrameTraffic frame = new FrameTraffic(slave);
 				frame.setVisible(true);
 			}
 		});
