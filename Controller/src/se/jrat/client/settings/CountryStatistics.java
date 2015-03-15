@@ -110,10 +110,8 @@ public class CountryStatistics extends AbstractSettings implements Serializable 
 
 				if (entry != null) {
 					GraphEntry total = new GraphEntry(entry.getCountry(), entry.getConnects(), FlagUtils.getFlag(entry.getCountry()));
-					//GraphEntry unique = new GraphEntry(entry.getCountry(), entry.getList().size());
 
 					Frame.panelStats.countryGraph.add(total);
-					//Frame.panelStats.countryGraph.add(unique);
 					Frame.panelStats.repaint();
 				}
 

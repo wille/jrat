@@ -16,11 +16,11 @@ import javax.swing.table.DefaultTableModel;
 
 import se.jrat.client.threads.ThreadGraph;
 import se.jrat.client.utils.FlagUtils;
-import se.jrat.client.utils.IconUtils;
 
 import com.redpois0n.graphs.graph.Graph;
 import com.redpois0n.graphs.graph.GraphColors;
 import com.redpois0n.graphs.graph.GraphEntry;
+import com.redpois0n.oslib.Icons;
 
 @SuppressWarnings("serial")
 public class PanelMainStats extends JPanel {
@@ -65,7 +65,7 @@ public class PanelMainStats extends JPanel {
 			JLabel c = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
 			if (value != null && value.toString().length() > 0) {
-				c.setIcon(IconUtils.getOSIconFromString(value.toString()));
+				//c.setIcon(Icons.get(value.toString())); 
 			}
 
 			return c;
