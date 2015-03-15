@@ -326,7 +326,7 @@ public class FlagUtils {
 			if (FLAGS.containsKey(name)) {
 				icon = FLAGS.get(name);
 			} else {
-				icon = IconUtils.getIcon("/flags/" + name + ".png");
+				icon = IconUtils.getIcon("/flags/" + name + ".png", false);
 				FLAGS.put(name, icon);
 			}
 
@@ -334,7 +334,7 @@ public class FlagUtils {
 			if (FLAGS.containsKey("unknown")) {
 				icon = FLAGS.get("unknown");
 			} else {
-				icon = IconUtils.getIcon("/flags/unknown.png");
+				icon = IconUtils.getIcon("/flags/unknown.png", false);
 				FLAGS.put("unknown", icon);
 			}
 		}

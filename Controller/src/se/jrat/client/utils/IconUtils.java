@@ -25,14 +25,20 @@ public class IconUtils {
 		URL url;
 		if (defaultfolder) {
 			url = Main.class.getResource("/icons/" + name + ".png");
+			
+			if (name.endsWith(".png")) {
+				Main.debug("Image in default folder ends with .png: " + name);
+			}
 		} else {
-			url = Main.class.getResource(name);
+			url = Main.class.getResource(name);		
 		}
 
-		if (url != null) {
-			return new ImageIcon(url);
+		if (CACHE.containsKey(name)) {
+			return CACHE.get(name);
 		} else {
-			return null;
+			ImageIcon icon = new ImageIcon(url);
+			CACHE.put(name, icon);
+			return icon;
 		}
 	}
 

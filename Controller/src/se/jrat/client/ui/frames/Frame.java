@@ -954,7 +954,7 @@ public class Frame extends BaseFrame {
 				}
 			}
 		});
-		btnEdit.setIcon(IconUtils.getIcon("calendar-edit.png"));
+		btnEdit.setIcon(IconUtils.getIcon("calendar-edit"));
 
 		GroupLayout gl_panel_onconnect = new GroupLayout(panel_onconnect);
 		gl_panel_onconnect.setHorizontalGroup(gl_panel_onconnect.createParallelGroup(Alignment.TRAILING).addGroup(gl_panel_onconnect.createSequentialGroup().addContainerGap(56, Short.MAX_VALUE).addComponent(btnEdit).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnPerform).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnDelete).addPreferredGap(ComponentPlacement.RELATED).addComponent(boxOnConnect, GroupLayout.PREFERRED_SIZE, 158, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnAdd, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE).addContainerGap()).addComponent(scrollPane_1, GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE));
