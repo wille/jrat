@@ -163,7 +163,6 @@ public class Main {
 		instance.setVisible(true);
 
 		TrayIconUtils.initialize();
-		Sound.initialize();
 
 		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
 			public void run() {

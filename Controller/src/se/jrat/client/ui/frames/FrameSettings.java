@@ -18,7 +18,6 @@ import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
-import se.jrat.client.Sound;
 import se.jrat.client.listeners.ChangelogListener;
 import se.jrat.client.listeners.EulaListener;
 import se.jrat.client.listeners.Performable;
@@ -148,8 +147,6 @@ public class FrameSettings extends BaseFrame {
 		if (!stats.trackStats()) {
 			CountryStatistics.getGlobal().getList().clear();
 		}
-
-		Sound.initialize();
 	}
 
 	public boolean isPanel(String str) {

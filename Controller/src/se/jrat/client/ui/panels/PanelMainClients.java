@@ -128,8 +128,21 @@ public class PanelMainClients extends JScrollPane {
 		setViewportView(table);
 	}
 	
-	public void add(AbstractSlave slave) {
+	public void addSlave(AbstractSlave slave) {
 		model.addRow(new Object[] { slave });
+	}
+	
+	public void removeSlave(AbstractSlave slave) {
+		for (int column = 0; column < table.getColumnCount(); column++) {
+			for (int row = 0; row < table.getRowCount(); row++) {
+				Object obj = table.getValueAt(row, column);
+				
+				if (obj.equals(slave)) {
+					model.removeRow(row);
+					return;
+				}
+			}
+		}
 	}
 
 	public AbstractSlave getSlave(int row) {
@@ -184,7 +197,9 @@ public class PanelMainClients extends JScrollPane {
 				
 				label.setIcon(null);
 				
-				if (colname.equals(COLUMN_COUNTRY)) {
+				if (colname.equals(COLUMN_COUNTRY) && Frame.thumbnails) {
+					label.setIcon(slave.getThumbnail());
+				} else if (colname.equals(COLUMN_COUNTRY)) {
 					String path;
 
 					String color = Integer.toHexString(label.getForeground().getRGB() & 0xffffff) + "";

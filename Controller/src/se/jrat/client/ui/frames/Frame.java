@@ -181,19 +181,11 @@ public class Frame extends BaseFrame {
 							if (sl instanceof Slave) {
 								((Slave)sl).addToSendQueue(new Packet40Thumbnail());
 							}
-						} else {
-							int row = Utils.getRow(sl);
-							mainModel.setValueAt(sl.getThumbnail(), row, 0);
 						}
 					}
 					mainTable.setRowHeight(100);
 				} else {
 					mainTable.setRowHeight(30);
-					for (int i = 0; i < Main.connections.size(); i++) {
-						AbstractSlave sl = Main.connections.get(i);
-						int row = Utils.getRow(sl);
-						mainModel.setValueAt(sl.getCountry(), row, 0);
-					}
 				}
 			}
 		});
@@ -739,21 +731,6 @@ public class Frame extends BaseFrame {
 
 		JMenu mnOther = new JMenu("Other");
 		menuBar.add(mnOther);
-
-		JMenuItem mntmCache = new JMenuItem("Clear cache + thumbs");
-		mntmCache.setIcon(IconUtils.getIcon("clear"));
-		mntmCache.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				FlagUtils.FLAGS.clear();
-				Utils.pingicons.clear();
-				for (int i = 0; i < Main.connections.size(); i++) {
-					AbstractSlave sl = Main.connections.get(i);
-					sl.setThumbnail(null);
-				}
-				System.gc();
-			}
-		});
-		mnOther.add(mntmCache);
 
 		JMenuItem mntmReloadAllThumbnails = new JMenuItem("Reload all thumbnails");
 		mntmReloadAllThumbnails.setIcon(IconUtils.getIcon("image"));

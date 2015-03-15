@@ -363,6 +363,7 @@ public abstract class AbstractSlave implements Runnable {
 
 	public void setThumbnail(ImageIcon thumbnail) {
 		this.thumbnail = thumbnail;
+		update();
 	}
 	
 	public String getCountry() {

