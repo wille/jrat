@@ -64,6 +64,8 @@ public abstract class AbstractSlave implements Runnable {
 	protected long received = 0;
 	protected final long uniqueId;
 	protected int ping = 0;
+	protected int status;
+	protected int memory;
 	protected String id;
 	protected String username;
 	protected ImageIcon thumbnail;
@@ -308,8 +310,6 @@ public abstract class AbstractSlave implements Runnable {
 	public void pong() {
 		long ping = System.currentTimeMillis() - pingms;
 		this.ping = (int) ping;
-		
-		Frame.mainModel.setValueAt(ping + " ms", Utils.getRow(3, getIP()), 4);		
 	}
 	
 	public abstract String getDisplayName();
@@ -320,8 +320,6 @@ public abstract class AbstractSlave implements Runnable {
 
 	public void setUsername(String username) {
 		this.username = username;
-		
-		Frame.mainModel.setValueAt(formatUserString(), Utils.getRow(3, getIP()), 5);
 	}
 
 	public String getID() {
@@ -332,11 +330,9 @@ public abstract class AbstractSlave implements Runnable {
 		this.id = serverid;
 		
 		CustomID.CustomIDEntry entry = CustomID.getGlobal().findEntry(getRawIP());
-		if (entry == null) {
-			Frame.mainModel.setValueAt(getID(), Utils.getRow(3, getIP()), 1);
-		} else {
+		
+		if (entry != null) {
 			setRenamedID(entry.getName());
-			Frame.mainModel.setValueAt(getRenamedID(), Utils.getRow(3, getIP()), 1);
 		}
 	}
 	
@@ -378,12 +374,6 @@ public abstract class AbstractSlave implements Runnable {
 
 	public void setVersion(String version) {
 		this.version = version;
-
-		int row = Utils.getRow(this);
-
-		if (row != -1) {
-			Frame.mainModel.setValueAt(version, row, 9);
-		}
 	}
 
 	public boolean isUpToDate() {
@@ -414,8 +404,6 @@ public abstract class AbstractSlave implements Runnable {
 
 	public void setOperatingSystem(AbstractOperatingSystem os) {
 		this.os = os;
-		
-		Frame.mainModel.setValueAt(os.getDisplayString(), Utils.getRow(3, getIP()), 6);
 	}
 
 	public AbstractOperatingSystem getOperatingSystem() {
@@ -467,4 +455,20 @@ public abstract class AbstractSlave implements Runnable {
 		Frame.mainModel.setValueAt(localip, row, 8);
 	}
 
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	
+
+	public int getMemory() {
+		return memory;
+	}
+
+	public void setMemory(int ram) {
+		this.memory = memory;
+	}
 }

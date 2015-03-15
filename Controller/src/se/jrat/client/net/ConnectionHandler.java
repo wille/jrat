@@ -27,6 +27,7 @@ public class ConnectionHandler {
 		}
 
 		Frame.mainModel.addRow(new Object[] { icon, "Unknown", "Loading...", slave.getIP(), "?", "Unknown", "Unknown", "0 mb", "?", slave.getVersion() });
+		Frame.pmc.add(slave);
 
 		String title = Main.formatTitle();
 		Main.instance.setTitle(title);

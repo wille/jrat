@@ -44,9 +44,6 @@ public class Slave extends AbstractSlave {
 	private String language = "";
 	private String displaylanguage = "";
 
-	private int status = 5;
-
-	private int ram = 0;
 	private short processors;
 
 	public Slave(ServerListener connection, Socket socket) {
@@ -239,29 +236,12 @@ public class Slave extends AbstractSlave {
 		this.checked = checked;
 	}
 
-	public int getStatus() {
-		return status;
-	}
-
-	public void setStatus(int status) {
-		this.status = status;
-		Frame.mainModel.setValueAt(Status.getStatusFromID(status), Utils.getRow(3, getIP()), 2);
-	}
-
 	public short getProcessors() {
 		return processors;
 	}
 
 	public void setProcessors(short processors) {
 		this.processors = processors;
-	}
-
-	public int getRam() {
-		return ram;
-	}
-
-	public void setRam(int ram2) {
-		this.ram = ram2;
 	}
 
 	public long getSent() {

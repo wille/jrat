@@ -114,7 +114,7 @@ public class PanelControlComputerInfo extends PanelControlParent {
 		addRow("computer", "Remote address", slave.getIP());
 		addRow("computer", "Local address", slave.getLocalIP());
 		addRow("id", "Stub ID", slave.getID());
-		addRow("memory", "RAM", slave.getRam() + " MB");
+		addRow("memory", "RAM", slave.getMemory() + " MB");
 		addRow("adapters", "Available Processors", slave.getProcessors() + "");
 		addRow("file", "Install Date/Last modified", slave.getInstallDate());
 		addRow("username", "Username", slave.getUsername());

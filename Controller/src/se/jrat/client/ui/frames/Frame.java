@@ -80,6 +80,7 @@ import se.jrat.client.settings.Settings;
 import se.jrat.client.ui.components.DraggableTabbedPane;
 import se.jrat.client.ui.dialogs.DialogEula;
 import se.jrat.client.ui.dialogs.DialogFileType;
+import se.jrat.client.ui.panels.PanelMainClients;
 import se.jrat.client.ui.panels.PanelMainLog;
 import se.jrat.client.ui.panels.PanelMainNetwork;
 import se.jrat.client.ui.panels.PanelMainPlugins;
@@ -115,6 +116,8 @@ public class Frame extends BaseFrame {
 	public static PanelMainStats panelStats;
 	public static PanelMainNetwork panelNetwork;
 	public static PanelMainSockets panelSockets;
+	
+	public static PanelMainClients pmc;
 
 	private JPopupMenu popupMenu;
 	private JToolBar toolBar;
@@ -845,6 +848,9 @@ public class Frame extends BaseFrame {
 				panelNetwork.setActive(tabbedPane.getTitleAt(tabbedPane.getSelectedIndex()).equals("Network Usage"));
 			}
 		});
+
+		pmc = new PanelMainClients();
+		tabbedPane.addTab("Clients", IconUtils.getIcon("tab-main", true), pmc, null);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
