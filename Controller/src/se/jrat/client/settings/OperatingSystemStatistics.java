@@ -13,12 +13,10 @@ import java.util.List;
 import se.jrat.client.AbstractSlave;
 import se.jrat.client.Globals;
 import se.jrat.client.ui.frames.Frame;
-import se.jrat.common.Logger;
 
 import com.redpois0n.graphs.graph.GraphEntry;
 import com.redpois0n.oslib.AbstractOperatingSystem;
 import com.redpois0n.oslib.Icons;
-import com.redpois0n.oslib.OperatingSystem;
 
 public class OperatingSystemStatistics extends AbstractSettings implements Serializable {
 

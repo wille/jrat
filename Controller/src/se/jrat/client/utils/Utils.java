@@ -1,17 +1,19 @@
 package se.jrat.client.utils;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
 import javax.swing.table.DefaultTableModel;
 
 import se.jrat.client.AbstractSlave;
@@ -20,19 +22,6 @@ import se.jrat.client.ui.frames.Frame;
 
 
 public class Utils {
-
-	public static HashMap<String, ImageIcon> pingicons = new HashMap<String, ImageIcon>();
-
-	// public static IP2Country ip2c;
-
-	public static int getRow(int column, String value) {
-		for (int i = 0; i < Frame.mainModel.getRowCount(); i++) {
-			if (Frame.mainModel.getValueAt(i, column).equals(value)) {
-				return i;
-			}
-		}
-		return -1;
-	}
 
 	public static AbstractSlave getSlave(String ip) {
 		for (int i = 0; i < Main.connections.size(); i++) {
@@ -65,6 +54,28 @@ public class Utils {
 			return null;
 		}
 	}
+	
+
+	public static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
+	}
+
 
 	public static String showDialog(String title, String text) {
 		return JOptionPane.showInputDialog(null, text, title, JOptionPane.QUESTION_MESSAGE);
@@ -81,15 +92,6 @@ public class Utils {
 			str[i] = model.getValueAt(row, 0).toString();
 		}
 		return str;
-	}
-
-	public static int getRow(AbstractSlave slave) {
-		for (int i = 0; i < Frame.mainModel.getRowCount(); i++) {
-			if (Frame.mainModel.getValueAt(i, 3).equals(slave.getIP())) {
-				return i;
-			}
-		}
-		return -1;
 	}
 
 	public static void center(JFrame window) {

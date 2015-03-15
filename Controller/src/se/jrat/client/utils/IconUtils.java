@@ -2,6 +2,8 @@ package se.jrat.client.utils;
 
 import java.io.File;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import javax.swing.Icon;
@@ -16,6 +18,8 @@ import com.redpois0n.oslib.Icons;
 
 
 public class IconUtils {
+	
+	public static final Map<String, ImageIcon> CACHE = new HashMap<String, ImageIcon>();
 
 	public static ImageIcon getIcon(String name, boolean defaultfolder) {
 		URL url;
@@ -70,14 +74,14 @@ public class IconUtils {
 
 		ImageIcon icon;
 
-		if (Utils.pingicons.containsKey(str)) {
-			icon = Utils.pingicons.get(str);
+		if (CACHE.containsKey(str)) {
+			icon = CACHE.get(str);
 		} else if (Frame.pingmode == Frame.PING_ICON_DOT) {
 			icon = IconUtils.getIcon(str);
-			Utils.pingicons.put(str, icon);
+			CACHE.put(str, icon);
 		} else {
 			icon = getIcon(str);
-			Utils.pingicons.put(str, icon);
+			CACHE.put(str, icon);
 		}
 
 		return icon;

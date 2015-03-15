@@ -16,10 +16,8 @@ import se.jrat.client.net.ServerListener;
 import se.jrat.client.packets.incoming.IncomingPackets;
 import se.jrat.client.packets.outgoing.AbstractOutgoingPacket;
 import se.jrat.client.packets.outgoing.Packet0Ping;
-import se.jrat.client.ui.frames.Frame;
 import se.jrat.client.ui.panels.PanelMainLog;
 import se.jrat.client.utils.TrayIconUtils;
-import se.jrat.client.utils.Utils;
 import se.jrat.common.hash.Sha1;
 
 import com.redpois0n.graphs.monitors.RemoteMonitor;
