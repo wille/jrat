@@ -2,6 +2,7 @@ package se.jrat.client.ui.panels;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -97,6 +98,9 @@ public class PanelMainClients extends JScrollPane {
 		table = new JTable(model);
 		table.setDefaultRenderer(Object.class, new ClientsTableRenderer());
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		table.setShowGrid(false);
+		table.setIntercellSpacing(new Dimension(0, 0));
+		table.setFillsViewportHeight(true);
 		table.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				int row = table.getSelectedRow();
@@ -183,7 +187,7 @@ public class PanelMainClients extends JScrollPane {
 
 			if (isSelected) {
 				label.setBackground(TABLE_SELECTED);
-			} else if (row % 2 == 0) {
+			} else if (row % 2 == 1) {
 				label.setBackground(TABLE_GRAY);
 			} else {
 				label.setBackground(Color.white);
