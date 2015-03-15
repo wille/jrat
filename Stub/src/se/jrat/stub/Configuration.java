@@ -62,7 +62,7 @@ public class Configuration {
 		
 		while ((line = reader.readLine()) != null) {
 			String str = line;
-						
+			
 			String ckey = str.substring(0, str.indexOf("=")).trim();
 
 			String cval = str.substring(str.indexOf("=") + 1, str.length()).trim();
