@@ -29,7 +29,7 @@ public class Packet68RemoteScreenComplete extends AbstractIncomingPacket {
 				Graphics2D imageGraphics = (Graphics2D) image.getGraphics();
 				
 				imageGraphics.drawImage(buffer, 0, 0, buffer.getWidth(), buffer.getHeight(), null);
-				Cursor.drawCursor(slave.getOS().getType(), imageGraphics, mouseX, mouseY);
+				Cursor.drawCursor(slave.getOperatingSystem().getType(), imageGraphics, mouseX, mouseY);
 				
 				boolean drawGrid = false;
 				

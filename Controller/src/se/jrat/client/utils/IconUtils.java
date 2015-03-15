@@ -84,7 +84,7 @@ public class IconUtils {
 	}
 	
 	public static ImageIcon getOSIcon(AbstractSlave slave) {
-		String str = Icons.getIconString(slave.getOS(), slave.getOperatingSystem());
+		String str = Icons.getIconString(slave.getOperatingSystem());
 		ImageIcon icon = IconUtils.getIcon(str);
 		if (icon == null) {
 			icon = IconUtils.getIcon("os_unknown");
@@ -92,16 +92,6 @@ public class IconUtils {
 		return icon;	
 	}
 	
-	public static ImageIcon getOSIconFromString(String s) {
-		String str = Icons.getIconFromStringOnly(s);
-		ImageIcon icon = IconUtils.getIcon(str);
-		if (icon == null) {
-			icon = IconUtils.getIcon("os_unknown");
-		}
-		return icon;	
-	}
-	
-
 	public static ImageIcon getFileIcon(int mode) {
 		if (mode == IconUtils.IMAGE_FILE) {
 			return IconUtils.getIcon("file");

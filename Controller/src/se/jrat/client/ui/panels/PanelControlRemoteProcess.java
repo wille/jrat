@@ -54,7 +54,7 @@ public class PanelControlRemoteProcess extends PanelControlParent {
 			public void actionPerformed(ActionEvent arg0) {
 				if (model.getValueAt(table.getSelectedRow(), 0) != null) {
 					String process;
-					if (sl.getOS().getType() == OperatingSystem.WINDOWS) {
+					if (sl.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 						process = model.getValueAt(table.getSelectedRow(), 0).toString();
 					} else {
 						process = model.getValueAt(table.getSelectedRow(), 1).toString();

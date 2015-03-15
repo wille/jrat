@@ -1033,7 +1033,7 @@ public class FrameRemoteFiles extends BaseFrame {
 	}
 	
 	public void setRemoteDir(String dir) {
-		String c = slave.getOS().getType() == OperatingSystem.WINDOWS ? "\\" : "/";
+		String c = slave.getOperatingSystem().getType() == OperatingSystem.WINDOWS ? "\\" : "/";
 
 		if (!dir.endsWith(c)) {
 			dir += c;

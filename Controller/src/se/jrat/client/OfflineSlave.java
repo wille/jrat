@@ -16,7 +16,7 @@ public class OfflineSlave {
 	
 	public OfflineSlave(AbstractSlave slave) {
 		this.userstring = slave.formatUserString();
-		this.os = slave.getOperatingSystem();
+		this.os = slave.getOperatingSystem().getType().getName();
 		this.serverid = slave.getID();
 		this.version = slave.getVersion();
 		this.ip = slave.getRawIP();

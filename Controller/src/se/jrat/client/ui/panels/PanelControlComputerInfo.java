@@ -119,7 +119,7 @@ public class PanelControlComputerInfo extends PanelControlParent {
 		addRow("file", "Install Date/Last modified", slave.getInstallDate());
 		addRow("username", "Username", slave.getUsername());
 		addRow("computer", "Computer Name", slave.getComputerName());
-		addRow(Icons.getIconString(slave.getOS().getType(), slave.getLongOperatingSystem()), "Operating System", slave.getLongOperatingSystem());
+		addRow(Icons.getIconString(slave.getOperatingSystem()), "Operating System", slave.getOperatingSystem().getDetailedString());
 		addRow(FlagUtils.getFlag(slave), "Country", slave.getCountry());
 		addRow("folder", "Stub Location", slave.getServerPath());
 		addRow("key", "Stub Version", slave.getVersion());

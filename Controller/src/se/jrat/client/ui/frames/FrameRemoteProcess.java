@@ -98,7 +98,7 @@ public class FrameRemoteProcess extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (model.getValueAt(table.getSelectedRow(), 0) != null) {
 					String data;
-					if (slave.getOS().getType() == OperatingSystem.WINDOWS) {
+					if (slave.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 						data = model.getValueAt(table.getSelectedRow(), 0).toString();
 					} else {
 						data = model.getValueAt(table.getSelectedRow(), 1).toString();

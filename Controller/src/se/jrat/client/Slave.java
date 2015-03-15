@@ -148,7 +148,7 @@ public class Slave extends AbstractSlave {
 	}
 
 	public String getFileSeparator() {
-		if (getOS().getType() == OperatingSystem.WINDOWS) {
+		if (getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 			return "\\";
 		} else {
 			return "/";

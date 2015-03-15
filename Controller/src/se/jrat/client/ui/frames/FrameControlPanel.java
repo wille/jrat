@@ -460,13 +460,13 @@ public class FrameControlPanel extends BaseFrame {
 		systemfunctions.add(getTreeNode("Remote Shell"));
 		systemfunctions.add(getTreeNode("Remote Process"));
 		systemfunctions.add(getTreeNode("Hosts File"));
-		systemfunctions.add(getTreeNode("Registry", slave.getOS().getType() == OperatingSystem.WINDOWS));
-		systemfunctions.add(getTreeNode("Installed Programs", slave.getOS().getType() == OperatingSystem.WINDOWS || slave.getOS().getType() == OperatingSystem.OSX));
+		systemfunctions.add(getTreeNode("Registry", slave.getOperatingSystem().getType() == OperatingSystem.WINDOWS));
+		systemfunctions.add(getTreeNode("Installed Programs", slave.getOperatingSystem().getType() == OperatingSystem.WINDOWS || slave.getOperatingSystem().getType() == OperatingSystem.OSX));
 
 		DefaultMutableTreeNode msconfig = getTreeNode("Remote MSConfig");
 		n.add(msconfig);
-		msconfig.add(getTreeNode("Windows Services", slave.getOS().getType() == OperatingSystem.WINDOWS));
-		msconfig.add(getTreeNode("Registry Startup", slave.getOS().getType() == OperatingSystem.WINDOWS));
+		msconfig.add(getTreeNode("Windows Services", slave.getOperatingSystem().getType() == OperatingSystem.WINDOWS));
+		msconfig.add(getTreeNode("Registry Startup", slave.getOperatingSystem().getType() == OperatingSystem.WINDOWS));
 
 		DefaultMutableTreeNode spy = getTreeNode("Spy Functions");
 		n.add(spy);
@@ -495,18 +495,18 @@ public class FrameControlPanel extends BaseFrame {
 		DefaultMutableTreeNode network = getTreeNode("Network functions");
 		n.add(network);
 		network.add(getTreeNode("Download Manager"));
-		network.add(getTreeNode("LAN Computers", slave.getOS().getType() == OperatingSystem.WINDOWS));
+		network.add(getTreeNode("LAN Computers", slave.getOperatingSystem().getType() == OperatingSystem.WINDOWS));
 		network.add(getTreeNode("Net Gateway"));
-		network.add(getTreeNode("Active Ports", slave.getOS().getType() == OperatingSystem.WINDOWS));
-		network.add(getTreeNode("Network Adapters", slave.getOS().getType() == OperatingSystem.WINDOWS));
+		network.add(getTreeNode("Active Ports", slave.getOperatingSystem().getType() == OperatingSystem.WINDOWS));
+		network.add(getTreeNode("Network Adapters", slave.getOperatingSystem().getType() == OperatingSystem.WINDOWS));
 
 		DefaultMutableTreeNode power = getTreeNode("Computer power");
 		n.add(power);
 		power.add(getTreeNode("Shutdown"));
 		power.add(getTreeNode("Restart"));
-		power.add(getTreeNode("Sleep Mode", slave.getOS().getType() == OperatingSystem.WINDOWS));
-		power.add(getTreeNode("Lock", slave.getOS().getType() == OperatingSystem.WINDOWS));
-		power.add(getTreeNode("Logout", slave.getOS().getType() == OperatingSystem.WINDOWS));
+		power.add(getTreeNode("Sleep Mode", slave.getOperatingSystem().getType() == OperatingSystem.WINDOWS));
+		power.add(getTreeNode("Lock", slave.getOperatingSystem().getType() == OperatingSystem.WINDOWS));
+		power.add(getTreeNode("Logout", slave.getOperatingSystem().getType() == OperatingSystem.WINDOWS));
 
 		DefaultMutableTreeNode misc = getTreeNode("Misc");
 		n.add(misc);

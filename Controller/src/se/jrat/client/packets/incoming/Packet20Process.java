@@ -20,7 +20,7 @@ public class Packet20Process extends AbstractIncomingPacket {
 			String line = slave.readLine();
 			String[] displayData = new String[4];
 			
-			if (slave.getOS().getType() == OperatingSystem.WINDOWS) {
+			if (slave.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 				line = line.replace("\"", "");
 				String[] args = line.split(",");
 

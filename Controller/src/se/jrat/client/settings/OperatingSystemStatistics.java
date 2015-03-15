@@ -40,20 +40,18 @@ public class OperatingSystemStatistics extends AbstractSettings implements Seria
 		return list;
 	}
 
-	public OperatingSystemStatEntry getEntry(String str, AbstractOperatingSystem os) {
+	public OperatingSystemStatEntry getEntry(AbstractOperatingSystem os) {
 		for (int i = 0; i < list.size(); i++) {
 			OperatingSystemStatEntry entry = list.get(i);
-			if (entry.getString().equalsIgnoreCase(str)) {
+			if (entry.getOperatingSystem().getDisplayString().equalsIgnoreCase(os.getDisplayString())) {
 				return entry;
 			}
 		}
 
 		OperatingSystemStatEntry stat = new OperatingSystemStatEntry();
-		stat.setString(str);;
-		stat.setOs(os);
+		stat.setOperatingSystem(os);
 
 		list.add(stat);
-		Logger.log("Added: " + str);
 		return stat;
 	}
 
@@ -85,7 +83,7 @@ public class OperatingSystemStatistics extends AbstractSettings implements Seria
 			return;
 		}
 
-		OperatingSystemStatEntry entry = getEntry(abstractSlave.getOperatingSystem(), abstractSlave.getOS());
+		OperatingSystemStatEntry entry = getEntry(abstractSlave.getOperatingSystem());
 
 		entry.connects++;
 		boolean exists = false;
@@ -107,7 +105,7 @@ public class OperatingSystemStatistics extends AbstractSettings implements Seria
 			OperatingSystemStatEntry entry = list.get(i);
 			try {
 
-				GraphEntry total = new GraphEntry(entry.getString(), entry.getConnects(), Icons.getIconString(entry.os));
+				GraphEntry total = new GraphEntry(entry.getOperatingSystem().getDisplayString(), entry.getConnects(), Icons.getIconString(entry.os));
 				//GraphEntry unique = new GraphEntry(entry.getOS(), entry.getList().size());
 				total.setNumberColor(Color.gray);
 				Frame.panelStats.osGraph.add(total);
@@ -140,18 +138,9 @@ public class OperatingSystemStatistics extends AbstractSettings implements Seria
 		private static final long serialVersionUID = 7061542468278914135L;
 		
 		private AbstractOperatingSystem os;
-		private String str = "Unknown";
 		private Integer connects = 0;
 		
 		private List<String> list = new ArrayList<String>();
-
-		public String getString() {
-			return str;
-		}
-
-		public void setString(String os) {
-			this.str = os;
-		}
 
 		public List<String> getList() {
 			return list;
@@ -169,11 +158,11 @@ public class OperatingSystemStatistics extends AbstractSettings implements Seria
 			this.connects = connects;
 		}
 
-		public AbstractOperatingSystem getOs() {
+		public AbstractOperatingSystem getOperatingSystem() {
 			return os;
 		}
 
-		public void setOs(AbstractOperatingSystem os) {
+		public void setOperatingSystem(AbstractOperatingSystem os) {
 			this.os = os;
 		}
 
