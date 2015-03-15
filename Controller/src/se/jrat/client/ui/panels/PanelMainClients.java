@@ -55,6 +55,7 @@ public class PanelMainClients extends JScrollPane {
 		model = new ClientsTableModel();
 		table = new JTable(model);
 		table.setDefaultRenderer(Object.class, new ClientsTableRenderer());
+		table.setRowHeight(30);
 		
 		setViewportView(table);
 	}
@@ -76,10 +77,17 @@ public class PanelMainClients extends JScrollPane {
 				label.setBackground(Color.white);
 			}
 			
-			Object obj = table.getValueAt(row, 0);
+			AbstractSlave slave = null;
+						
+			for (int i = 0; i < table.getColumnCount(); i++) {
+				Object obj = table.getValueAt(row, i);
+				if (obj instanceof AbstractSlave) {
+					slave = (AbstractSlave) obj;
+					break;
+				}
+			}
 
-			if (obj instanceof AbstractSlave) {
-				AbstractSlave slave = (AbstractSlave) obj;
+			if (slave != null) {
 				
 				String colname = table.getColumnName(column);
 				
@@ -101,7 +109,7 @@ public class PanelMainClients extends JScrollPane {
 						path = "/flags/unknown.png";
 					}
 					
-					JCheckBox b = new JCheckBox(value.toString(), slave.isSelected());
+					JCheckBox b = new JCheckBox(country, slave.isSelected());
 
 					b.setToolTipText(row + "");
 					b.setBackground(label.getBackground());
@@ -112,7 +120,7 @@ public class PanelMainClients extends JScrollPane {
 						url = Main.class.getResource("/flags/unknown.png");
 					}
 
-					b.setText("<html><table cellpadding=0><tr><td><img src=\"" + url.toString() + "\"/></td><td width=3><td><font color=\"#" + color + "\">" + value + "</font></td></tr></table></html>");
+					b.setText("<html><table cellpadding=0><tr><td><img src=\"" + url.toString() + "\"/></td><td width=3><td><font color=\"#" + color + "\">" + country + "</font></td></tr></table></html>");
 
 					return b;
 				} else if (colname.equals(COLUMN_ID)) {
