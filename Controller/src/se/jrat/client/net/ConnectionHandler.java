@@ -19,7 +19,7 @@ public class ConnectionHandler {
 			((Slave)slave).addToSendQueue(new Packet40Thumbnail());
 		}
 
-		Frame.pmc.addSlave(slave);
+		Main.instance.getPanelClients().addSlave(slave);
 
 		String title = Main.formatTitle();
 		Main.instance.setTitle(title);
@@ -42,7 +42,7 @@ public class ConnectionHandler {
 		TrayIconUtils.setTitle(title);
 		client.closeSocket(new CloseException("Removing connection..."));
 		
-		Frame.pmc.removeSlave(client);
+		Main.instance.getPanelClients().removeSlave(client);
 	}
 
 }

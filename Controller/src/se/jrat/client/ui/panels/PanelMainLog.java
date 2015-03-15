@@ -121,7 +121,7 @@ public class PanelMainLog extends JPanel {
 							frame.setVisible(false);
 							frame.dispose();
 							frame = null;
-							Main.instance.tabbedPane.addTab("Log", IconUtils.getIcon("log"), instance, null);
+							Main.instance.getTabbedPane().addTab("Log", IconUtils.getIcon("log"), instance, null);
 						}
 					});
 				} else {
@@ -129,7 +129,7 @@ public class PanelMainLog extends JPanel {
 					frame.setVisible(false);
 					frame.dispose();
 					frame = null;
-					Main.instance.tabbedPane.addTab("Log", IconUtils.getIcon("log"), instance, null);
+					Main.instance.getTabbedPane().addTab("Log", IconUtils.getIcon("log"), instance, null);
 				}
 			}
 		});

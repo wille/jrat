@@ -20,7 +20,6 @@ import se.jrat.client.utils.FlagUtils;
 import com.redpois0n.graphs.graph.Graph;
 import com.redpois0n.graphs.graph.GraphColors;
 import com.redpois0n.graphs.graph.GraphEntry;
-import com.redpois0n.oslib.Icons;
 
 @SuppressWarnings("serial")
 public class PanelMainStats extends JPanel {

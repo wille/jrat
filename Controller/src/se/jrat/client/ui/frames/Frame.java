@@ -13,13 +13,11 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBoxMenuItem;
-import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -34,7 +32,6 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JToolBar;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -56,8 +53,6 @@ import se.jrat.client.Updater;
 import se.jrat.client.addons.Plugin;
 import se.jrat.client.addons.PluginLoader;
 import se.jrat.client.addons.RATObjectFormat;
-import se.jrat.client.events.Event;
-import se.jrat.client.events.Events;
 import se.jrat.client.listeners.CountryMenuItemListener;
 import se.jrat.client.net.WebRequest;
 import se.jrat.client.packets.outgoing.Packet11Disconnect;
@@ -72,6 +67,7 @@ import se.jrat.client.ui.dialogs.DialogEula;
 import se.jrat.client.ui.panels.PanelMainClients;
 import se.jrat.client.ui.panels.PanelMainLog;
 import se.jrat.client.ui.panels.PanelMainNetwork;
+import se.jrat.client.ui.panels.PanelMainOnConnect;
 import se.jrat.client.ui.panels.PanelMainPlugins;
 import se.jrat.client.ui.panels.PanelMainSockets;
 import se.jrat.client.ui.panels.PanelMainStats;
@@ -88,8 +84,7 @@ import se.jrat.common.utils.IOUtils;
 public class Frame extends BaseFrame {
 
 	private JPanel contentPane;
-	private JTable onConnectTable;
-	public JTabbedPane tabbedPane;
+	private JTabbedPane tabbedPane;
 
 	public DefaultTableModel log;
 
@@ -99,11 +94,13 @@ public class Frame extends BaseFrame {
 	public static TrayIcon trayIcon;
 	public static int pingmode = Frame.PING_ICON_DOT;
 	public static boolean thumbnails = false;
-	public static PanelMainStats panelStats;
-	public static PanelMainNetwork panelNetwork;
-	public static PanelMainSockets panelSockets;
 	
-	public static PanelMainClients pmc;
+	private PanelMainClients panelClients;
+	private PanelMainStats panelStats;
+	private PanelMainNetwork panelNetwork;
+	private PanelMainSockets panelSockets;
+	private PanelMainOnConnect panelOnConnect;
+	
 
 	private JPopupMenu popupMenu;
 	private JToolBar toolBar;
@@ -812,8 +809,7 @@ public class Frame extends BaseFrame {
 			}
 		});
 
-		pmc = new PanelMainClients();
-		tabbedPane.addTab("Clients", IconUtils.getIcon("tab-main", true), pmc, null);
+		panelClients = new PanelMainClients();
 
 		popupMenu = new JPopupMenu();
 		popupMenu.addPopupMenuListener(new PopupMenuListener() {
@@ -884,107 +880,6 @@ public class Frame extends BaseFrame {
 		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGap(0, 293, Short.MAX_VALUE));
 		panel.setLayout(gl_panel);
 
-		tabbedPane.addTab("Statistics", IconUtils.getIcon("statistics", true), new JScrollPane(panelStats), null);
-		
-		tabbedPane.addTab("Network Usage", IconUtils.getIcon("network"), panelNetwork, null);
-
-		JPanel panel_onconnect = new JPanel();
-		tabbedPane.addTab("On Connect", IconUtils.getIcon("calendar", true), panel_onconnect, null);
-
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-		scrollPane_1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-
-		final JComboBox<Object> boxOnConnect = new JComboBox<Object>();
-		boxOnConnect.setModel(new DefaultComboBoxModel<Object>(Events.events.toArray()));
-
-		JButton btnAdd = new JButton("Add");
-		btnAdd.setToolTipText("Add");
-		btnAdd.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				Events.add(boxOnConnect.getSelectedItem().toString());
-			}
-		});
-
-		btnAdd.setIcon(IconUtils.getIcon("calendar-add"));
-
-		final JButton btnDelete = new JButton("Delete");
-		btnDelete.setToolTipText("Delete selected event");
-		btnDelete.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				String name = onConnectModel.getValueAt(onConnectTable.getSelectedRow(), 1).toString();
-				if (name != null) {
-					Events.remove(name);
-					onConnectModel.removeRow(onConnectTable.getSelectedRow());
-				}
-			}
-		});
-		btnDelete.setIcon(IconUtils.getIcon("calendar-remove"));
-
-		JButton btnPerform = new JButton("Perform");
-		btnPerform.setToolTipText("Perform selected event on all connections");
-		btnPerform.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				String name = onConnectModel.getValueAt(onConnectTable.getSelectedRow(), 1).toString();
-				if (name != null) {
-					Event event = Events.getByName(name);
-					if (event != null) {
-						for (AbstractSlave sl : Main.connections) {
-							event.perform(sl);
-						}
-					}
-				}
-			}
-		});
-		btnPerform.setIcon(IconUtils.getIcon("calendar-perform"));
-
-		JButton btnEdit = new JButton("Edit");
-		btnEdit.setToolTipText("Edit selected event");
-		btnEdit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String name = onConnectModel.getValueAt(onConnectTable.getSelectedRow(), 1).toString();
-				if (name != null) {
-					Event event = Events.getByName(name);
-					if (event != null) {
-						if (event.add()) {
-							onConnectModel.removeRow(onConnectTable.getSelectedRow());
-							onConnectModel.addRow(event.getDisplayData());
-						}
-					}
-				}
-			}
-		});
-		btnEdit.setIcon(IconUtils.getIcon("calendar-edit"));
-
-		GroupLayout gl_panel_onconnect = new GroupLayout(panel_onconnect);
-		gl_panel_onconnect.setHorizontalGroup(gl_panel_onconnect.createParallelGroup(Alignment.TRAILING).addGroup(gl_panel_onconnect.createSequentialGroup().addContainerGap(56, Short.MAX_VALUE).addComponent(btnEdit).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnPerform).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnDelete).addPreferredGap(ComponentPlacement.RELATED).addComponent(boxOnConnect, GroupLayout.PREFERRED_SIZE, 158, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnAdd, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE).addContainerGap()).addComponent(scrollPane_1, GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE));
-		gl_panel_onconnect.setVerticalGroup(gl_panel_onconnect.createParallelGroup(Alignment.TRAILING).addGroup(gl_panel_onconnect.createSequentialGroup().addComponent(scrollPane_1, GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_panel_onconnect.createParallelGroup(Alignment.BASELINE).addComponent(btnAdd).addComponent(boxOnConnect, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(btnDelete).addComponent(btnPerform, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE).addComponent(btnEdit)).addContainerGap()));
-
-		onConnectTable = new JTable() {
-			@SuppressWarnings({ "unchecked", "rawtypes" })
-			@Override
-			public Class getColumnClass(int column) {
-				if (column == 0) {
-					return ImageIcon.class;
-				}
-				return super.getColumnClass(column);
-			}
-		};
-		onConnectTable.setModel(onConnectModel = new DefaultTableModel(new Object[][] {}, new String[] { " ", "Name", "Type", "", "" }) {
-			public boolean isCellEditable(int i, int i1) {
-				return false;
-			}
-		});
-
-		onConnectTable.getTableHeader().setReorderingAllowed(false);
-		onConnectTable.getColumnModel().getColumn(0).setPreferredWidth(27);
-		onConnectTable.getColumnModel().getColumn(1).setPreferredWidth(133);
-		onConnectTable.getColumnModel().getColumn(2).setPreferredWidth(129);
-		onConnectTable.getColumnModel().getColumn(3).setPreferredWidth(140);
-		onConnectTable.getColumnModel().getColumn(4).setPreferredWidth(175);
-		onConnectTable.setRowHeight(20);
-		scrollPane_1.setViewportView(onConnectTable);
-		panel_onconnect.setLayout(gl_panel_onconnect);
 
 		for (Plugin plugin : PluginLoader.plugins) {
 			if (plugin.getItems() != null && plugin.getItems().size() > 0) {
@@ -1014,7 +909,12 @@ public class Frame extends BaseFrame {
 		}
 
 		panelSockets = new PanelMainSockets();
+		panelOnConnect = new PanelMainOnConnect();
 		
+		tabbedPane.addTab("Clients", IconUtils.getIcon("tab-main", true), panelClients, null);
+		tabbedPane.addTab("Statistics", IconUtils.getIcon("statistics", true), new JScrollPane(panelStats), null);
+		tabbedPane.addTab("Network Usage", IconUtils.getIcon("network"), panelNetwork, null);
+		tabbedPane.addTab("On Connect", IconUtils.getIcon("calendar", true), panelOnConnect, null);
 		tabbedPane.addTab("Sockets", IconUtils.getIcon("sockets"), panelSockets, null);
 		tabbedPane.addTab("Log", IconUtils.getIcon("log"), PanelMainLog.getInstance(), null);
 		tabbedPane.addTab("Plugins", IconUtils.getIcon("plugin"), PanelMainPlugins.getInstance(), null);
@@ -1105,5 +1005,29 @@ public class Frame extends BaseFrame {
 			Main.connections.get(i).setSelected(true);
 		}
 		mainTable.repaint();
+	}
+
+	public PanelMainClients getPanelClients() {
+		return panelClients;
+	}
+
+	public PanelMainStats getPanelStats() {
+		return panelStats;
+	}
+
+	public PanelMainNetwork getPanelNetwork() {
+		return panelNetwork;
+	}
+
+	public PanelMainSockets getPanelSockets() {
+		return panelSockets;
+	}
+
+	public PanelMainOnConnect getPanelOnConnect() {
+		return panelOnConnect;
+	}
+
+	public JTabbedPane getTabbedPane() {
+		return tabbedPane;
 	}
 }
