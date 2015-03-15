@@ -13,7 +13,7 @@ public class Packet72IPConfig extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		Process p = Runtime.getRuntime().exec(OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS ? "ipconfig" : "ifconfig");
+		Process p = Runtime.getRuntime().exec(OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS ? "ipconfig" : "ifconfig");
 
 		BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
 

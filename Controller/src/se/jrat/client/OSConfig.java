@@ -34,17 +34,8 @@ public final class OSConfig {
 		if (c.isAllowed(OperatingSystem.LINUX)) {
 			str += "linux ";
 		}
-		if (c.isAllowed(OperatingSystem.FREEBSD)) {
-			str += "freebsd ";
-		}
-		if (c.isAllowed(OperatingSystem.OPENBSD)) {
-			str += "openbsd ";
-		}
-		if (c.isAllowed(OperatingSystem.NETBSD)) {
-			str += "netbsd ";
-		}
-		if (c.isAllowed(OperatingSystem.DRAGONFLYBSD)) {
-			str += "dragonflybsd ";
+		if (c.isAllowed(OperatingSystem.BSD)) {
+			str += "bsd ";
 		}
 		if (c.isAllowed(OperatingSystem.SOLARIS)) {
 			str += "solaris ";

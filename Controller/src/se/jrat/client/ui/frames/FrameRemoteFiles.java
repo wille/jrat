@@ -811,9 +811,9 @@ public class FrameRemoteFiles extends BaseFrame {
 			public void actionPerformed(ActionEvent e) {
 				String ret;
 				
-				if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+				if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 					ret = System.getenv("APPDATA");
-				} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
+				} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
 					ret = System.getProperty("user.home") + "Library/Application Support/";
 				} else {
 					ret = System.getProperty("java.io.tmpdir");
@@ -1033,7 +1033,7 @@ public class FrameRemoteFiles extends BaseFrame {
 	}
 	
 	public void setRemoteDir(String dir) {
-		String c = slave.getOS() == OperatingSystem.WINDOWS ? "\\" : "/";
+		String c = slave.getOS().getType() == OperatingSystem.WINDOWS ? "\\" : "/";
 
 		if (!dir.endsWith(c)) {
 			dir += c;
@@ -1043,7 +1043,7 @@ public class FrameRemoteFiles extends BaseFrame {
 	}
 	
 	public void setLocalDir(String dir) {
-		String c = OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS ? "\\" : "/";
+		String c = OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS ? "\\" : "/";
 
 		if (!dir.endsWith(c)) {
 			dir += c;

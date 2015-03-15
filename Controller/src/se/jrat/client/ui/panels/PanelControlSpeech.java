@@ -39,7 +39,7 @@ public class PanelControlSpeech extends PanelControlParent {
 		JButton btnTest = new JButton("Test");
 		btnTest.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+				if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 					try {
 						File f = File.createTempFile("jratspeechtest", ".vbs");
 						FileWriter writer = new FileWriter(f, false);

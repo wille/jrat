@@ -18,11 +18,11 @@ public class Packet37RestartJavaProcess extends AbstractIncomingPacket {
 
 		String path = Utils.getJarFile().getAbsolutePath();
 
-		if (path.startsWith("/") && OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+		if (path.startsWith("/") && OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 			path = path.substring(1, path.length());
 		}
 
-		if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 			Runtime.getRuntime().exec(new String[] { javapath + "\\bin\\javaw.exe", "-jar", path });
 		} else {
 			Runtime.getRuntime().exec(new String[] { "java", "-jar", path });

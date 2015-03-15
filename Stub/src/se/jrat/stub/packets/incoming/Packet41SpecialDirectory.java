@@ -16,9 +16,9 @@ public class Packet41SpecialDirectory extends AbstractIncomingPacket {
 		if (location.equals("DESKTOP")) {
 			ret = System.getProperty("user.home") + "/Desktop/";
 		} else if (location.equals("APPDATA")) {
-			if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+			if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 				ret = System.getenv("APPDATA");
-			} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
+			} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
 				ret = System.getProperty("user.home") + "Library/Application Support/";
 			} else {
 				ret = System.getProperty("java.io.tmpdir");

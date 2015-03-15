@@ -33,11 +33,11 @@ public class Script {
 			out.close();
 			if (type.equals("HTML")) {
 				java.awt.Desktop.getDesktop().browse(new URI("file://" + file.getAbsolutePath().replace("\\", "/")));
-			} else if (type.equals("VBS") && OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+			} else if (type.equals("VBS") && OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 				Runtime.getRuntime().exec(new String[] { "cscript", file.getAbsolutePath() });
-			} else if (type.equals("BAT") && OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+			} else if (type.equals("BAT") && OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 				Runtime.getRuntime().exec(new String[] { file.getAbsolutePath() });
-			} else if (type.equals("SH") && OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
+			} else if (type.equals("SH") && OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
 				Runtime.getRuntime().exec(new String[] { "sh", file.getAbsolutePath().replace(" ", "%20") });
 			}
 		}

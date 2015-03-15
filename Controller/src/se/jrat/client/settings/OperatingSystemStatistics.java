@@ -13,10 +13,10 @@ import java.util.List;
 import se.jrat.client.AbstractSlave;
 import se.jrat.client.Globals;
 import se.jrat.client.ui.frames.Frame;
-import se.jrat.client.utils.IconUtils;
 import se.jrat.common.Logger;
 
 import com.redpois0n.graphs.graph.GraphEntry;
+import com.redpois0n.oslib.AbstractOperatingSystem;
 import com.redpois0n.oslib.Icons;
 import com.redpois0n.oslib.OperatingSystem;
 
@@ -40,7 +40,7 @@ public class OperatingSystemStatistics extends AbstractSettings implements Seria
 		return list;
 	}
 
-	public OperatingSystemStatEntry getEntry(String str, OperatingSystem os) {
+	public OperatingSystemStatEntry getEntry(String str, AbstractOperatingSystem os) {
 		for (int i = 0; i < list.size(); i++) {
 			OperatingSystemStatEntry entry = list.get(i);
 			if (entry.getString().equalsIgnoreCase(str)) {
@@ -107,7 +107,7 @@ public class OperatingSystemStatistics extends AbstractSettings implements Seria
 			OperatingSystemStatEntry entry = list.get(i);
 			try {
 
-				GraphEntry total = new GraphEntry(entry.getString(), entry.getConnects(), IconUtils.getIcon(Icons.getIconString(entry.getOs(), entry.getString())));
+				GraphEntry total = new GraphEntry(entry.getString(), entry.getConnects(), Icons.getIconString(entry.os));
 				//GraphEntry unique = new GraphEntry(entry.getOS(), entry.getList().size());
 				total.setNumberColor(Color.gray);
 				Frame.panelStats.osGraph.add(total);
@@ -139,7 +139,7 @@ public class OperatingSystemStatistics extends AbstractSettings implements Seria
 
 		private static final long serialVersionUID = 7061542468278914135L;
 		
-		private OperatingSystem os;
+		private AbstractOperatingSystem os;
 		private String str = "Unknown";
 		private Integer connects = 0;
 		
@@ -169,11 +169,11 @@ public class OperatingSystemStatistics extends AbstractSettings implements Seria
 			this.connects = connects;
 		}
 
-		public OperatingSystem getOs() {
+		public AbstractOperatingSystem getOs() {
 			return os;
 		}
 
-		public void setOs(OperatingSystem os) {
+		public void setOs(AbstractOperatingSystem os) {
 			this.os = os;
 		}
 

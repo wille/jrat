@@ -12,7 +12,7 @@ public class Lan extends Thread {
 
 	public void run() {
 		try {
-			if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+			if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 				Process p = Runtime.getRuntime().exec("net view");
 				BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
 				String line;

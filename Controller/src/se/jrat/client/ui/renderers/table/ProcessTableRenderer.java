@@ -22,7 +22,7 @@ public class ProcessTableRenderer extends DefaultTableCellRenderer {
 		super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
 		if (column == 0) {
-			if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+			if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 				setIcon(EXE_ICON);
 			} else {
 				setIcon(PROCESS_ICON);

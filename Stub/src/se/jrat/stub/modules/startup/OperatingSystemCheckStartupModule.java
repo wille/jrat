@@ -17,21 +17,15 @@ public class OperatingSystemCheckStartupModule extends StartupModule {
 
 		boolean shutdown = true;
 
-		if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS && allowedOperatingSystems.contains("win")) {
+		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS && allowedOperatingSystems.contains("win")) {
 			shutdown = false;
-		} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX && allowedOperatingSystems.contains("mac")) {
+		} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX && allowedOperatingSystems.contains("mac")) {
 			shutdown = false;
-		} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.LINUX && allowedOperatingSystems.contains("linux")) {
+		} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.LINUX && allowedOperatingSystems.contains("linux")) {
 			shutdown = false;
-		} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.SOLARIS && allowedOperatingSystems.contains("solaris")) {
+		} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.SOLARIS && allowedOperatingSystems.contains("solaris")) {
 			shutdown = false;
-		} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.FREEBSD && allowedOperatingSystems.contains("freebsd")) {
-			shutdown = false;
-		} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OPENBSD && allowedOperatingSystems.contains("openbsd")) {
-			shutdown = false;
-		} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.NETBSD && allowedOperatingSystems.contains("netbsd")) {
-			shutdown = false;
-		} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.DRAGONFLYBSD && allowedOperatingSystems.contains("dragonflybsd")) {
+		} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.BSD && allowedOperatingSystems.contains("bsd")) {
 			shutdown = false;
 		}
 

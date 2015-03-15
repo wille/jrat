@@ -33,7 +33,7 @@ import se.jrat.common.crypto.Crypto;
 import se.jrat.common.crypto.CryptoUtils;
 import se.jrat.common.crypto.KeyExchanger;
 
-import com.redpois0n.oslib.Distro;
+import com.redpois0n.oslib.AbstractOperatingSystem;
 import com.redpois0n.oslib.OperatingSystem;
 
 public abstract class AbstractSlave implements Runnable {
@@ -437,17 +437,11 @@ public abstract class AbstractSlave implements Runnable {
 		CountryStatistics.getGlobal().add(this);
 	}
 
-	public OperatingSystem getOS() {
-		//
+	public AbstractOperatingSystem getOS() {
 		String os = this.getOperatingSystem().toLowerCase();
 		return OperatingSystem.getOperatingSystem(os);
 	}
-	
-	public Distro getDistro() {
-		String os = this.getOperatingSystem().toLowerCase();
-		return Distro.getDistro(os);
-	}
-	
+
 	public String getComputerName() {
 		return computername;
 	}
@@ -472,7 +466,7 @@ public abstract class AbstractSlave implements Runnable {
 		
 		String s;
 		
-		if (this.getOS() == OperatingSystem.WINDOWS) {
+		if (this.getOS().getType() == OperatingSystem.WINDOWS) {
 			s = computerName + "\\" + username;
 		} else {
 			s = username + "@" + computerName;

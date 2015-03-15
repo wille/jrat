@@ -13,7 +13,7 @@ public class Packet76Speech extends AbstractIncomingPacket {
 	@Override
 	public void read() throws Exception {
 		final String speech = Connection.readLine();
-		if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 			new Thread() {
 				public void run() {
 					try {
@@ -33,7 +33,7 @@ public class Packet76Speech extends AbstractIncomingPacket {
 					}
 				}
 			}.start();
-		} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
+		} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
 			try {
 				Runtime.getRuntime().exec("say " + speech);
 			} catch (Exception ex) {

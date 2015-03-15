@@ -15,7 +15,7 @@ public abstract class BaseDialog extends JDialog {
 	public void setVisible(boolean t) {
 		super.setVisible(t);
 
-		if (OperatingSystem.getOperatingSystem() != OperatingSystem.WINDOWS) {
+		if (OperatingSystem.getOperatingSystem().getType() != OperatingSystem.WINDOWS) {
 			super.pack();
 		}
 	}

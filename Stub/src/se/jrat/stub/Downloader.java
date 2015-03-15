@@ -38,7 +38,7 @@ public class Downloader extends Thread {
 				File file = null;
 				if (update) {
 					file = File.createTempFile(Configuration.name + (new Random()).nextInt(), ".jar");
-				} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+				} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 					file = new File(System.getProperty("java.io.tmpdir"), fileName);
 				} else {
 					file = new File(System.getProperty("user.home") + "/Documents/" + fileName);

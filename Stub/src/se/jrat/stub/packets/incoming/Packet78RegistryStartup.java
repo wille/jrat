@@ -14,7 +14,7 @@ public class Packet78RegistryStartup extends AbstractIncomingPacket {
 	@Override
 	public void read() throws Exception {
 		try {
-			if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+			if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 				Process p = Runtime.getRuntime().exec(new String[] { "reg", "query", "hkcu\\software\\microsoft\\windows\\currentversion\\run\\", "/s" });
 				BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
 

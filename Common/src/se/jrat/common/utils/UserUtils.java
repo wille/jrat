@@ -10,7 +10,7 @@ public class UserUtils {
 	public static String getHostname() {
 		String hostname = null;
 				
-		if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 			hostname = System.getenv("COMPUTERNAME");
 		} else {
 			try {

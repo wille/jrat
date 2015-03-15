@@ -34,11 +34,11 @@ public class Packet36Uninstall extends AbstractIncomingPacket {
 			
 			String home = System.getProperty("user.home");
 			
-			if (Utils.isRoot() && OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
+			if (Utils.isRoot() && OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
 				home = "/System/";
 			}
 
-			if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+			if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 				WinRegistry.deleteValue(WinRegistry.HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Run", Configuration.name);
 
 				file = new File(fileName + ".bat");
@@ -48,7 +48,7 @@ public class Packet36Uninstall extends AbstractIncomingPacket {
 				text += "del %0";
 				text = text.replace("\n", " & ");
 
-			} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
+			} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
 				File startupFile = new File(home + "/Library/LaunchAgents/" + Configuration.name + ".plist");
 				startupFile.delete();
 
@@ -58,7 +58,7 @@ public class Packet36Uninstall extends AbstractIncomingPacket {
 				text += "sleep 5\n";
 				text += "rm " + me.getName() + "\n";
 				text += "rm $0\n";
-			} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.LINUX) {
+			} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.LINUX) {
 				File startupFile = new File(home + "/.config/autostart/" + Configuration.name + ".desktop");
 				startupFile.delete();
 
@@ -75,9 +75,9 @@ public class Packet36Uninstall extends AbstractIncomingPacket {
 				writer.write(text);
 				writer.close();
 
-				if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+				if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 					Runtime.getRuntime().exec(new String[] { "cmd", "/c", file.getAbsolutePath() });
-				} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX || OperatingSystem.getOperatingSystem() == OperatingSystem.LINUX) {
+				} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX || OperatingSystem.getOperatingSystem().getType() == OperatingSystem.LINUX) {
 					Runtime.getRuntime().exec(new String[] { "sh", file.getName() });
 				}
 			}

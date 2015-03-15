@@ -28,7 +28,7 @@ public class AntiVMStartupModule extends StartupModule {
 					ex.printStackTrace();
 				}
 				
-				if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+				if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 					Process p = Runtime.getRuntime().exec(new String[] { "reg", "query", "hkey_local_machine\\HARDWARE\\DESCRIPTION\\SYSTEM" });
 
 					BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));

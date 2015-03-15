@@ -66,7 +66,7 @@ public class PanelControlInstalledPrograms extends PanelControlParent {
 		btnClear.setIcon(IconUtils.getIcon("clear"));
 
 		comboBox = new JComboBox<String>();
-		comboBox.setVisible(slave.getOS() == OperatingSystem.WINDOWS);
+		comboBox.setVisible(slave.getOS().getType() == OperatingSystem.WINDOWS);
 		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "HKEY_CURRENT_USER", "HKEY_LOCAL_MACHINE" }));
 		comboBox.setRenderer(getRenderer());
 

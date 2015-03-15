@@ -16,7 +16,7 @@ public abstract class BaseFrame extends JFrame {
 	public void setVisible(boolean t) {
 		super.setVisible(true);
 
-		if (OperatingSystem.getOperatingSystem() != OperatingSystem.WINDOWS) {
+		if (OperatingSystem.getOperatingSystem().getType() != OperatingSystem.WINDOWS) {
 			super.pack();
 		}
 	}

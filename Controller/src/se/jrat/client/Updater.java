@@ -13,7 +13,7 @@ public class Updater {
 	public static final String JAVA_HOME;
 
 	static {
-		if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 			JAVA_HOME = System.getProperty("java.home") + "\\bin\\javaw.exe";
 		} else {
 			JAVA_HOME = System.getProperty("java.home") + "/bin/java";

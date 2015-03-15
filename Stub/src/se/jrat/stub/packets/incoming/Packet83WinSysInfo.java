@@ -13,7 +13,7 @@ public class Packet83WinSysInfo extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 			Process p = Runtime.getRuntime().exec("systeminfo");
 			BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
 

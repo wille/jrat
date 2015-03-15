@@ -89,6 +89,6 @@ public class Utils {
 	}
 
 	public static boolean isRoot() throws Exception {
-		return OperatingSystem.getOperatingSystem() != OperatingSystem.WINDOWS && new BufferedReader(new InputStreamReader(Runtime.getRuntime().exec("whoami").getInputStream())).readLine().equals("root");
+		return OperatingSystem.getOperatingSystem().getType() != OperatingSystem.WINDOWS && new BufferedReader(new InputStreamReader(Runtime.getRuntime().exec("whoami").getInputStream())).readLine().equals("root");
 	}
 }

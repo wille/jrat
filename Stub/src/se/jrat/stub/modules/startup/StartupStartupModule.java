@@ -25,7 +25,7 @@ public class StartupStartupModule extends StartupModule {
 			e.printStackTrace();
 		}
 		
-		if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS && currentJar.startsWith("/")) {
+		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS && currentJar.startsWith("/")) {
 			currentJar = currentJar.substring(1, currentJar.length());
 		}
 

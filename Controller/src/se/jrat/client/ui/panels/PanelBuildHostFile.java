@@ -55,13 +55,13 @@ public class PanelBuildHostFile extends JPanel {
 		btnGetLocalHost.setIcon(IconUtils.getIcon("leaf-arrow"));
 		btnGetLocalHost.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+				if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 					try {
 						File file = null;
 						
-						if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+						if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 							file = new File(System.getenv("SystemDrive") + "\\Windows\\System32\\drivers\\etc\\hosts");
-						} else if (OperatingSystem.getOperatingSystem() == OperatingSystem.OSX) {
+						} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
 							file = new File("/private/etc/hosts");
 						} else {
 							file = new File("/etc/hosts");

