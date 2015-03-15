@@ -1,8 +1,5 @@
 package se.jrat.client.ui.panels;
 
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
@@ -14,9 +11,7 @@ import se.jrat.client.ui.renderers.table.PluginsTableRenderer;
 
 
 @SuppressWarnings("serial")
-public class PanelMainPlugins extends JPanel {
-
-	private static PanelMainPlugins instance = new PanelMainPlugins();
+public class PanelMainPlugins extends JScrollPane {
 
 	private JTable table;
 
@@ -25,14 +20,8 @@ public class PanelMainPlugins extends JPanel {
 	}
 
 	public PanelMainPlugins() {
-
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE).addGap(1)));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addComponent(scrollPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE));
-
+		setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		table = new JTable();
 		table.setRowHeight(25);
 		table.setDefaultRenderer(Object.class, new PluginsTableRenderer());
@@ -41,8 +30,7 @@ public class PanelMainPlugins extends JPanel {
 				return false;
 			}
 		});
-		scrollPane.setViewportView(table);
-		setLayout(groupLayout);
+		setViewportView(table);
 
 		reload();
 	}
@@ -56,9 +44,5 @@ public class PanelMainPlugins extends JPanel {
 			Plugin p = PluginLoader.plugins.get(i);
 			getModel().addRow(new Object[] { p.getName(), p.getAuthor(), p.getDescription(), p.getVersion() });
 		}
-	}
-
-	public static PanelMainPlugins getInstance() {
-		return instance;
 	}
 }

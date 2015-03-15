@@ -16,7 +16,6 @@ import se.jrat.client.net.ServerListener;
 import se.jrat.client.packets.incoming.IncomingPackets;
 import se.jrat.client.packets.outgoing.AbstractOutgoingPacket;
 import se.jrat.client.packets.outgoing.Packet0Ping;
-import se.jrat.client.ui.panels.PanelMainLog;
 import se.jrat.client.utils.TrayIconUtils;
 import se.jrat.common.hash.Sha1;
 
@@ -82,7 +81,7 @@ public class Slave extends AbstractSlave {
 				}
 
 				if (!isVerified() && header != 30) {
-					PanelMainLog.getInstance().addEntry("Warning", this, "Failed verifying password, not valid handshake");
+					Main.instance.getPanelLog().addEntry("Warning", this, "Failed verifying password, not valid handshake");
 					this.closeSocket(new CloseException("Failed verifying password, not valid handshake"));
 				}
 
@@ -97,7 +96,7 @@ public class Slave extends AbstractSlave {
 			ex.printStackTrace();
 			String message = ex.getClass().getSimpleName() + ": " + ex.getMessage();
 
-			PanelMainLog.getInstance().addEntry("Disconnect", this, message);
+			Main.instance.getPanelLog().addEntry("Disconnect", this, message);
 
 			if (ex instanceof BadPaddingException) {
 				message += ", is the encryption key matching?";

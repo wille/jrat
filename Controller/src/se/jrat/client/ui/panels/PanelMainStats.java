@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -22,7 +21,7 @@ import com.redpois0n.graphs.graph.GraphColors;
 import com.redpois0n.graphs.graph.GraphEntry;
 
 @SuppressWarnings("serial")
-public class PanelMainStats extends JPanel {
+public class PanelMainStats extends JScrollPane {
 
 	private DefaultTableModel countryModel;
 	private DefaultTableModel osModel;

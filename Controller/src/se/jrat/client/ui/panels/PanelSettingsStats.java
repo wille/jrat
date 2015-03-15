@@ -28,7 +28,6 @@ public class PanelSettingsStats extends JPanel {
 	}
 
 	public PanelSettingsStats() {
-
 		JPanel panel = new JPanel();
 		panel.setBorder(BorderFactory.createTitledBorder("Statistics settings"));
 		GroupLayout groupLayout = new GroupLayout(this);

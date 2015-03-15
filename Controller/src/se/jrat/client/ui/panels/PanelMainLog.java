@@ -165,8 +165,4 @@ public class PanelMainLog extends JPanel {
 			}
 		});
 	}
-	
-	public static PanelMainLog getInstance() {
-		return instance;
-	}
 }

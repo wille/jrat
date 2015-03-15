@@ -26,7 +26,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
-import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
@@ -98,9 +97,10 @@ public class Frame extends BaseFrame {
 	private PanelMainClients panelClients;
 	private PanelMainStats panelStats;
 	private PanelMainNetwork panelNetwork;
-	private PanelMainSockets panelSockets;
 	private PanelMainOnConnect panelOnConnect;
-	
+	private PanelMainSockets panelSockets;
+	private PanelMainLog panelLog;
+	private PanelMainPlugins panelPlugins;
 
 	private JPopupMenu popupMenu;
 	private JToolBar toolBar;
@@ -798,8 +798,7 @@ public class Frame extends BaseFrame {
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		setContentPane(contentPane);
 
-		panelStats = new PanelMainStats();
-		panelNetwork = new PanelMainNetwork();
+		
 
 		tabbedPane = new DraggableTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addChangeListener(new ChangeListener() {
@@ -809,7 +808,6 @@ public class Frame extends BaseFrame {
 			}
 		});
 
-		panelClients = new PanelMainClients();
 
 		popupMenu = new JPopupMenu();
 		popupMenu.addPopupMenuListener(new PopupMenuListener() {
@@ -908,16 +906,21 @@ public class Frame extends BaseFrame {
 			}
 		}
 
-		panelSockets = new PanelMainSockets();
+		panelClients = new PanelMainClients();
+		panelStats = new PanelMainStats();
+		panelNetwork = new PanelMainNetwork();
 		panelOnConnect = new PanelMainOnConnect();
-		
+		panelSockets = new PanelMainSockets();
+		panelLog = new PanelMainLog();
+		panelPlugins = new PanelMainPlugins();
+			
 		tabbedPane.addTab("Clients", IconUtils.getIcon("tab-main", true), panelClients, null);
-		tabbedPane.addTab("Statistics", IconUtils.getIcon("statistics", true), new JScrollPane(panelStats), null);
+		tabbedPane.addTab("Statistics", IconUtils.getIcon("statistics", true), panelStats, null);
 		tabbedPane.addTab("Network Usage", IconUtils.getIcon("network"), panelNetwork, null);
 		tabbedPane.addTab("On Connect", IconUtils.getIcon("calendar", true), panelOnConnect, null);
 		tabbedPane.addTab("Sockets", IconUtils.getIcon("sockets"), panelSockets, null);
-		tabbedPane.addTab("Log", IconUtils.getIcon("log"), PanelMainLog.getInstance(), null);
-		tabbedPane.addTab("Plugins", IconUtils.getIcon("plugin"), PanelMainPlugins.getInstance(), null);
+		tabbedPane.addTab("Log", IconUtils.getIcon("log"), panelLog, null);
+		tabbedPane.addTab("Plugins", IconUtils.getIcon("plugin"), panelPlugins, null);
 
 		toolBar = new JToolBar();
 		toolBar.setVisible(false);
@@ -990,7 +993,7 @@ public class Frame extends BaseFrame {
 			mnPlugins.add(item);
 		}
 
-		PanelMainPlugins.getInstance().reload();
+		panelPlugins.reload();
 	}
 
 	public void unselectAll() {
@@ -1029,5 +1032,13 @@ public class Frame extends BaseFrame {
 
 	public JTabbedPane getTabbedPane() {
 		return tabbedPane;
+	}
+
+	public PanelMainLog getPanelLog() {
+		return panelLog;
+	}
+	
+	public PanelMainPlugins getPanelPlugins() {
+		return panelPlugins;
 	}
 }

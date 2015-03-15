@@ -6,7 +6,6 @@ import se.jrat.client.Main;
 import se.jrat.client.addons.OnlinePlugin;
 import se.jrat.client.addons.Plugin;
 import se.jrat.client.addons.PluginLoader;
-import se.jrat.client.ui.panels.PanelMainLog;
 
 public class RunnableCheckPlugins implements Runnable {
 
@@ -26,7 +25,7 @@ public class RunnableCheckPlugins implements Runnable {
 					
 					if (!upToDate) {
 						Main.debug(oplugin.getDisplayName() + " is not up to date");
-						PanelMainLog.getInstance().addEntry("Warning", null, oplugin.getDisplayName() + " is not up to date");
+						Main.instance.getPanelLog().addEntry("Warning", null, oplugin.getDisplayName() + " is not up to date");
 					}
 				}
 			}
