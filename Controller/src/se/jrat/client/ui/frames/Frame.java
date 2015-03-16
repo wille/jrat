@@ -78,6 +78,7 @@ import se.jrat.client.utils.Utils;
 import se.jrat.common.Version;
 import se.jrat.common.utils.DataUnits;
 import se.jrat.common.utils.IOUtils;
+import java.awt.BorderLayout;
 
 @SuppressWarnings({ "serial" })
 public class Frame extends BaseFrame {
@@ -103,7 +104,6 @@ public class Frame extends BaseFrame {
 	private PanelMainPlugins panelPlugins;
 
 	private JPopupMenu popupMenu;
-	private JToolBar toolBar;
 
 	public static final int PING_ICON_DOT = 0;
 	public static final int PING_ICON_CIRC = 1;
@@ -184,12 +184,6 @@ public class Frame extends BaseFrame {
 				} else {
 					mainTable.setRowHeight(30);
 				}
-			}
-		});
-		mntmShowThumbnails.setIcon(IconUtils.getIcon("image"));
-		chckbxmntmShowToolbar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				toolBar.setVisible(((JCheckBoxMenuItem) arg0.getSource()).isSelected());
 			}
 		});
 
@@ -794,11 +788,6 @@ public class Frame extends BaseFrame {
 		mnAbout.addSeparator();
 		menuItem.setIcon(IconUtils.getIcon("info"));
 		mnAbout.add(menuItem);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
-		setContentPane(contentPane);
-
-		
 
 		tabbedPane = new DraggableTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addChangeListener(new ChangeListener() {
@@ -870,14 +859,6 @@ public class Frame extends BaseFrame {
 				}
 			}
 		});
-		
-
-		JPanel panel = new JPanel();
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGap(0, 602, Short.MAX_VALUE));
-		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGap(0, 293, Short.MAX_VALUE));
-		panel.setLayout(gl_panel);
-
 
 		for (Plugin plugin : PluginLoader.plugins) {
 			if (plugin.getItems() != null && plugin.getItems().size() > 0) {
@@ -922,36 +903,9 @@ public class Frame extends BaseFrame {
 		tabbedPane.addTab("Log", IconUtils.getIcon("log"), panelLog, null);
 		tabbedPane.addTab("Plugins", IconUtils.getIcon("plugin"), panelPlugins, null);
 
-		toolBar = new JToolBar();
-		toolBar.setVisible(false);
-
-		for (int i = 0; i < popupMenu.getComponents().length; i++) {
-			Component component = popupMenu.getComponents()[i];
-
-			if (component instanceof JMenuItem && !(component instanceof JMenu)) {
-				JMenuItem item = (JMenuItem) component;
-
-				JButton button = new JButton();
-				button.setIcon(item.getIcon());
-				button.setToolTipText(item.getText());
-
-				for (int i1 = 0; i1 < item.getActionListeners().length; i1++) {
-					button.addActionListener(item.getActionListeners()[i1]);
-				}
-
-				toolBar.add(button);
-			} else if (component instanceof JSeparator) {
-				toolBar.addSeparator();
-			}
-		}
-
-		toolBar.setFloatable(false);
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addComponent(toolBar, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(tabbedPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)).addGap(0)));
-		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(toolBar, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(tabbedPane, GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE).addGap(0)));
-		contentPane.setLayout(gl_contentPane);
-
 		reloadPlugins();
+		
+		add(tabbedPane);
 	}
 
 	public void reloadPlugins() {
