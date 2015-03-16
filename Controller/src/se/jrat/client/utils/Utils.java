@@ -7,9 +7,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.text.DateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -18,7 +16,6 @@ import javax.swing.table.DefaultTableModel;
 
 import se.jrat.client.AbstractSlave;
 import se.jrat.client.Main;
-import se.jrat.client.ui.frames.Frame;
 
 
 public class Utils {
@@ -31,30 +28,6 @@ public class Utils {
 		}
 		return null;
 	}
-
-	public static List<AbstractSlave> getSlaves() {
-		try {
-			List<AbstractSlave> list = new ArrayList<AbstractSlave>();
-			for (int i = 0; i < Frame.mainModel.getRowCount(); i++) {
-				AbstractSlave slave = getSlave(Frame.mainModel.getValueAt(i, 3).toString());
-				boolean selected = false;
-				for (int row : Frame.mainTable.getSelectedRows()) {
-					if (row == i) {
-						selected = true;
-						break;
-					}
-				}
-				if (slave.isSelected() || selected) {
-					list.add(slave);
-				}
-			}
-			return list;
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return null;
-		}
-	}
-	
 
 	public static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {

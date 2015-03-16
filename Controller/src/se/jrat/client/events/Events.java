@@ -3,7 +3,7 @@ package se.jrat.client.events;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import se.jrat.client.ui.frames.Frame;
+import se.jrat.client.Main;
 import se.jrat.client.utils.Utils;
 
 
@@ -56,7 +56,7 @@ public class Events {
 		Event event = getEvent(val, name);
 		if (event != null) {
 			if (event.add()) {
-				Frame.onConnectModel.addRow(event.getDisplayData());
+				Main.instance.getPanelOnConnect().addRow(event.getDisplayData());
 				queue.put(name, event);
 			}
 		}

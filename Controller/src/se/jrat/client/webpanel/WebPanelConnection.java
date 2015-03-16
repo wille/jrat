@@ -16,7 +16,6 @@ import se.jrat.client.settings.CountryStatistics.CountryStatEntry;
 import se.jrat.client.settings.OfflineSlaves;
 import se.jrat.client.settings.OperatingSystemStatistics;
 import se.jrat.client.settings.OperatingSystemStatistics.OperatingSystemStatEntry;
-import se.jrat.client.ui.frames.Frame;
 
 public class WebPanelConnection implements Runnable {
 
@@ -131,7 +130,7 @@ public class WebPanelConnection implements Runnable {
                 		}
                 	}
                 	
-                	Frame.mainTable.repaint();
+                	Main.instance.repaint();
                 } else if (packet == WebPanelPackets.PACKET_LISTOFFLINE) {            	
                 	StringBuilder sb = new StringBuilder();
                 	for (OfflineSlave os : OfflineSlaves.getGlobal().getList()) {

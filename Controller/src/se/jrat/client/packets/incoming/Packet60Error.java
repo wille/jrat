@@ -2,6 +2,7 @@ package se.jrat.client.packets.incoming;
 
 import java.io.DataInputStream;
 
+import se.jrat.client.Main;
 import se.jrat.client.Slave;
 import se.jrat.client.exceptions.CloseException;
 

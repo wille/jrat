@@ -44,7 +44,6 @@ import se.jrat.client.packets.outgoing.Packet45Reconnect;
 import se.jrat.client.packets.outgoing.Packet98InjectJAR;
 import se.jrat.client.settings.Settings;
 import se.jrat.client.ui.dialogs.DialogFileType;
-import se.jrat.client.ui.frames.Frame;
 import se.jrat.client.ui.frames.FrameComputerInfo;
 import se.jrat.client.ui.frames.FrameControlPanel;
 import se.jrat.client.ui.frames.FrameNotes;
@@ -115,17 +114,7 @@ public class PanelMainClients extends JScrollPane {
 			}
 		});
 		
-		int rowheight = 30;
-		
-		try {
-			Object rowHeight = Settings.getGlobal().get("rowheight");
-			if (rowHeight != null) {
-				rowheight = Integer.parseInt(rowHeight.toString());
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		table.setRowHeight(rowheight);
+		resetRowHeight();
 		
 		Utils.addPopup(table, getPopupMenu());
 		
@@ -180,6 +169,28 @@ public class PanelMainClients extends JScrollPane {
 		return getSlave(row);
 	}
 	
+	public void setRowHeight(int i) {
+		table.setRowHeight(i);
+	}
+	
+	public void resetRowHeight() {
+		int rowheight = 30;
+		
+		try {
+			Object rowHeight = Settings.getGlobal().get("rowheight");
+			if (rowHeight != null) {
+				rowheight = Integer.parseInt(rowHeight.toString());
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		table.setRowHeight(rowheight);
+	}
+	
+	public JTable getTable() {
+		return table;
+	}
+	
 	public class ClientsTableRenderer extends DefaultTableCellRenderer {
 		@Override
 		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
@@ -201,7 +212,7 @@ public class PanelMainClients extends JScrollPane {
 				
 				label.setIcon(null);
 				
-				if (colname.equals(COLUMN_COUNTRY) && Frame.thumbnails) {
+				if (colname.equals(COLUMN_COUNTRY) && Main.instance.showThumbnails()) {
 					label.setIcon(slave.getThumbnail());
 				} else if (colname.equals(COLUMN_COUNTRY)) {
 					String path;
@@ -287,7 +298,7 @@ public class PanelMainClients extends JScrollPane {
 		
 		@Override
 		public Class<?> getColumnClass(int column) {
-			if (table.getColumnName(column).equals(COLUMN_COUNTRY) && Frame.thumbnails) {
+			if (table.getColumnName(column).equals(COLUMN_COUNTRY) && Main.instance.showThumbnails()) {
 				return ImageIcon.class;
 			}
 			

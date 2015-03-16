@@ -114,4 +114,8 @@ public class PanelMainOnConnect extends JScrollPane {
 		table.setRowHeight(20);
 		setViewportView(table);
 	}
+
+	public void addRow(Object[] displayData) {
+		model.addRow(displayData);
+	}
 }
