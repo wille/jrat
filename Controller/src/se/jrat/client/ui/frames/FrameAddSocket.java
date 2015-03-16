@@ -67,7 +67,7 @@ public class FrameAddSocket extends BaseFrame {
 		txtPass.setColumns(10);
 
 		JButton btnListen = new JButton("Listen");
-		btnListen.setIcon(IconUtils.getIcon("socket-add.png"));
+		btnListen.setIcon(IconUtils.getIcon("socket-add"));
 		btnListen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				addSocket();

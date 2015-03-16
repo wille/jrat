@@ -101,7 +101,7 @@ public class PanelBuildFinal extends JPanel {
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(panel, GroupLayout.PREFERRED_SIZE, 273, GroupLayout.PREFERRED_SIZE).addContainerGap(16, Short.MAX_VALUE)));
 
 		btnBuild = new JButton("Build");
-		btnBuild.setIcon(IconUtils.getIcon("final.png"));
+		btnBuild.setIcon(IconUtils.getIcon("final"));
 		btnBuild.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				perform();
@@ -125,7 +125,7 @@ public class PanelBuildFinal extends JPanel {
 				}
 			}
 		});
-		button.setIcon(IconUtils.getIcon("folder.png"));
+		button.setIcon(IconUtils.getIcon("folder"));
 
 		lblExpectedSizeUnknown = new JLabel("Expected size: Unknown");
 
@@ -135,7 +135,7 @@ public class PanelBuildFinal extends JPanel {
 				formatLbl();
 			}
 		});
-		button_1.setIcon(IconUtils.getIcon("refresh.png"));
+		button_1.setIcon(IconUtils.getIcon("refresh"));
 
 		progressBar = new JProgressBar();
 

@@ -59,7 +59,7 @@ public class DialogErrorDialog extends BaseDialog {
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
 		btnDetails = new JButton("Details >>");
-		btnDetails.setIcon(IconUtils.getIcon("expand.png"));
+		btnDetails.setIcon(IconUtils.getIcon("expand"));
 		btnDetails.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (state == DialogErrorDialog.STATE_NORMAL) {
@@ -86,7 +86,7 @@ public class DialogErrorDialog extends BaseDialog {
 				setVisible(false);
 			}
 		});
-		btnOk.setIcon(IconUtils.getIcon("enabled.png"));
+		btnOk.setIcon(IconUtils.getIcon("enabled"));
 		btnOk.setBounds(242, 94, 67, 25);
 
 		PanelImage panel = new PanelImage();

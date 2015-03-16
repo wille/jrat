@@ -156,10 +156,10 @@ public class DialogMonitors extends BaseDialog {
 				reload();
 			}
 		});
-		btnReload.setIcon(IconUtils.getIcon("monitor-arrow.png"));
+		btnReload.setIcon(IconUtils.getIcon("monitor-arrow"));
 
 		lblResize = new JLabel("Size 50%");
-		lblResize.setIcon(IconUtils.getIcon("application-resize.png"));
+		lblResize.setIcon(IconUtils.getIcon("application-resize"));
 
 		sdSize = new JSlider();
 		sdSize.setMinorTickSpacing(5);

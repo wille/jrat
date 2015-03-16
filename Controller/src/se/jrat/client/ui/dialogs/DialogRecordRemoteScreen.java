@@ -81,7 +81,7 @@ public class DialogRecordRemoteScreen extends BaseDialog {
 				toggle();
 			}
 		});
-		btnRecord.setIcon(IconUtils.getIcon("record-big.png"));
+		btnRecord.setIcon(IconUtils.getIcon("record-big"));
 				
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(

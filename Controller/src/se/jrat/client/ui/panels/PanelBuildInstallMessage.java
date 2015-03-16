@@ -81,20 +81,20 @@ public class PanelBuildInstallMessage extends JPanel {
 
 		btnInfo = new JToggleButton("");
 		buttonGroup.add(btnInfo);
-		btnInfo.setIcon(IconUtils.getIcon("big-info.png"));
+		btnInfo.setIcon(IconUtils.getIcon("big-info"));
 
 		btnError = new JToggleButton("");
 		buttonGroup.add(btnError);
 		btnError.setSelected(true);
-		btnError.setIcon(IconUtils.getIcon("big-error.png"));
+		btnError.setIcon(IconUtils.getIcon("big-error"));
 
 		btnWarning = new JToggleButton("");
 		buttonGroup.add(btnWarning);
-		btnWarning.setIcon(IconUtils.getIcon("big-warning.png"));
+		btnWarning.setIcon(IconUtils.getIcon("big-warning"));
 
 		btnQuestion = new JToggleButton("");
 		buttonGroup.add(btnQuestion);
-		btnQuestion.setIcon(IconUtils.getIcon("big-question.png"));
+		btnQuestion.setIcon(IconUtils.getIcon("big-question"));
 
 		btnNone = new JToggleButton("None");
 		buttonGroup.add(btnNone);
@@ -116,7 +116,7 @@ public class PanelBuildInstallMessage extends JPanel {
 				JOptionPane.showMessageDialog(null, getMsg(), getTitle(), getIcon());
 			}
 		});
-		button.setIcon(IconUtils.getIcon("messagebox.png"));
+		button.setIcon(IconUtils.getIcon("messagebox"));
 
 		button_1 = new JButton("");
 		button_1.addActionListener(new ActionListener() {
@@ -124,7 +124,7 @@ public class PanelBuildInstallMessage extends JPanel {
 				Help.help("Messagebox to be ran on execution, only once using installer");
 			}
 		});
-		button_1.setIcon(IconUtils.getIcon("help.png"));
+		button_1.setIcon(IconUtils.getIcon("help"));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false).addGroup(gl_panel.createSequentialGroup().addContainerGap().addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addComponent(chckbxEnableInstallMessage).addGroup(gl_panel.createSequentialGroup().addComponent(btnInfo).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnError, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnWarning, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnQuestion, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnNone, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)).addGroup(gl_panel.createSequentialGroup().addComponent(lblTitle).addPreferredGap(ComponentPlacement.RELATED).addComponent(txtTitle, GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)))).addGroup(gl_panel.createSequentialGroup().addGap(11).addComponent(lblMsg).addGap(5).addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addComponent(button, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(button_1, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE).addGap(9)).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)))).addContainerGap(84, Short.MAX_VALUE)));
 		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addContainerGap().addComponent(chckbxEnableInstallMessage).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addComponent(btnNone, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE).addComponent(btnInfo).addComponent(btnError, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE).addComponent(btnWarning, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE).addComponent(btnQuestion, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(lblTitle).addComponent(txtTitle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addGap(4).addComponent(lblMsg)).addGroup(gl_panel.createSequentialGroup().addGap(6).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE))).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(button).addComponent(button_1)).addContainerGap(16, Short.MAX_VALUE)));
