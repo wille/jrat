@@ -145,11 +145,7 @@ public class Frame extends BaseFrame {
 		JMenu mnShow = new JMenu("Show");
 		mnMain.add(mnShow);
 
-		JCheckBoxMenuItem chckbxmntmShowToolbar = new JCheckBoxMenuItem("Show Toolbar");
-		mnShow.add(chckbxmntmShowToolbar);
-		chckbxmntmShowToolbar.setIcon(IconUtils.getIcon("toolbar"));
-
-		JCheckBoxMenuItem mntmShowshowThumbnails = new JCheckBoxMenuItem("Show showThumbnails");
+		JCheckBoxMenuItem mntmShowshowThumbnails = new JCheckBoxMenuItem("Show Thumbnails");
 		mnShow.add(mntmShowshowThumbnails);
 		mntmShowshowThumbnails.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

@@ -1,8 +1,6 @@
 package se.jrat.client.ui.panels;
 
-import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -12,7 +10,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
@@ -23,7 +20,6 @@ import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import se.jrat.client.AbstractSlave;
@@ -43,6 +39,8 @@ import se.jrat.client.packets.outgoing.Packet38RunCommand;
 import se.jrat.client.packets.outgoing.Packet45Reconnect;
 import se.jrat.client.packets.outgoing.Packet98InjectJAR;
 import se.jrat.client.settings.Settings;
+import se.jrat.client.ui.components.DefaultJTable;
+import se.jrat.client.ui.components.DefaultJTableCellRenderer;
 import se.jrat.client.ui.dialogs.DialogFileType;
 import se.jrat.client.ui.frames.FrameComputerInfo;
 import se.jrat.client.ui.frames.FrameControlPanel;
@@ -62,9 +60,6 @@ import se.jrat.common.downloadable.Downloadable;
 @SuppressWarnings("serial")
 public class PanelMainClients extends JScrollPane {
 
-	public static final Color TABLE_SELECTED = new Color(51, 153, 255);
-	public static final Color TABLE_GRAY = new Color(240, 240, 240);
-	
 	public static final String COLUMN_COUNTRY = "Country";
 	public static final String COLUMN_ID = "ID";
 	public static final String COLUMN_STATUS = "Status";
@@ -94,12 +89,10 @@ public class PanelMainClients extends JScrollPane {
 		columns.add(COLUMN_VERSION);
 		
 		model = new ClientsTableModel();
-		table = new JTable(model);
+		table = new DefaultJTable(model);
 		table.setDefaultRenderer(Object.class, new ClientsTableRenderer());
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		table.setShowGrid(false);
-		table.setIntercellSpacing(new Dimension(0, 0));
-		table.setFillsViewportHeight(true);
+		
 		table.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				int row = table.getSelectedRow();
@@ -191,23 +184,14 @@ public class PanelMainClients extends JScrollPane {
 		return table;
 	}
 	
-	public class ClientsTableRenderer extends DefaultTableCellRenderer {
+	public class ClientsTableRenderer extends DefaultJTableCellRenderer {
 		@Override
 		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 			JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
-			if (isSelected) {
-				label.setBackground(TABLE_SELECTED);
-			} else if (row % 2 == 1) {
-				label.setBackground(TABLE_GRAY);
-			} else {
-				label.setBackground(Color.white);
-			}
-			
 			AbstractSlave slave = getSlave(row);
 
-			if (slave != null) {
-				
+			if (slave != null) {		
 				String colname = table.getColumnName(column);
 				
 				label.setIcon(null);
@@ -294,15 +278,6 @@ public class PanelMainClients extends JScrollPane {
 		@Override
 		public boolean isCellEditable(int i, int i1) {
 			return false;
-		}
-		
-		@Override
-		public Class<?> getColumnClass(int column) {
-			if (table.getColumnName(column).equals(COLUMN_COUNTRY) && Main.instance.showThumbnails()) {
-				return ImageIcon.class;
-			}
-			
-			return super.getColumnClass(column);
 		}
 	}
 	
