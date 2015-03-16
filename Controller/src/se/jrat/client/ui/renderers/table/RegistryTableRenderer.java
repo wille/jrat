@@ -6,22 +6,23 @@ import java.util.HashMap;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
+
+import se.jrat.client.ui.components.DefaultJTableCellRenderer;
 
 @SuppressWarnings("serial")
-public class RegistryTableRenderer extends DefaultTableCellRenderer {
+public class RegistryTableRenderer extends DefaultJTableCellRenderer {
 
 	public final HashMap<String, ImageIcon> icons = new HashMap<String, ImageIcon>();
 
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-		JLabel lbl = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+		JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
 		if (value != null && column == 0) {
-			lbl.setIcon(icons.get(value.toString()));
+			label.setIcon(icons.get(value.toString()));
 		} else {
-			lbl.setIcon(null);
+			label.setIcon(null);
 		}
 
-		return lbl;
+		return label;
 	}
 }

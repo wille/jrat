@@ -22,6 +22,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import se.jrat.client.ui.components.DefaultJTable;
 import se.jrat.client.ui.renderers.table.FileTransferTableRenderer;
 import se.jrat.client.utils.IconUtils;
 import se.jrat.common.utils.DataUnits;
@@ -99,7 +100,7 @@ public class FrameFileTransfer extends BaseFrame {
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addGroup(gl_contentPane.createSequentialGroup().addComponent(label, GroupLayout.DEFAULT_SIZE, 487, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnHide)).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE).addComponent(progressBar, GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE));
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addGroup(gl_contentPane.createSequentialGroup().addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.RELATED).addComponent(progressBar, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(btnHide).addComponent(label))));
 
-		table = new JTable() {
+		table = new DefaultJTable() {
 			@SuppressWarnings({ "unchecked", "rawtypes" })
 			@Override
 			public Class getColumnClass(int column) {

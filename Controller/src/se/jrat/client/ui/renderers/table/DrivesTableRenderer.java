@@ -6,18 +6,18 @@ import java.util.HashMap;
 import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
 
+import se.jrat.client.ui.components.DefaultJTableCellRenderer;
 import se.jrat.client.utils.IconUtils;
 
 
 @SuppressWarnings("serial")
-public class DrivesTableRenderer extends DefaultTableCellRenderer {
+public class DrivesTableRenderer extends DefaultJTableCellRenderer {
 
 	public final HashMap<String, Icon> drives = new HashMap<String, Icon>();
 
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-		JLabel lbl = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+		JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
 		if (value != null && column == 0) {
 			Icon icon = null;
@@ -28,11 +28,11 @@ public class DrivesTableRenderer extends DefaultTableCellRenderer {
 				drives.put(value.toString(), icon);
 			}
 
-			setIcon(icon);
+			label.setIcon(icon);
 		} else {
-			lbl.setIcon(null);
+			label.setIcon(null);
 		}
 
-		return lbl;
+		return label;
 	}
 }

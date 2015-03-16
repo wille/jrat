@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet61SystemJavaProperties;
+import se.jrat.client.ui.components.DefaultJTable;
 import se.jrat.client.utils.IconUtils;
 
 
@@ -61,7 +62,7 @@ public class PanelControlJVMProperties extends PanelControlParent {
 		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.TRAILING).addGroup(gl_panel.createSequentialGroup().addContainerGap().addGroup(gl_panel.createParallelGroup(Alignment.TRAILING).addComponent(scrollPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE).addGroup(gl_panel.createSequentialGroup().addComponent(btnClear).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnReload))).addContainerGap()));
 		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup().addContainerGap().addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(btnReload).addComponent(btnClear)).addContainerGap()));
 
-		table = new JTable();
+		table = new DefaultJTable();
 		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "Key", "Value" }));
 		table.getColumnModel().getColumn(0).setPreferredWidth(181);
 		table.getColumnModel().getColumn(1).setPreferredWidth(352);

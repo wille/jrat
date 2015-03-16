@@ -23,6 +23,7 @@ import javax.swing.table.DefaultTableModel;
 import se.jrat.client.AbstractSlave;
 import se.jrat.client.LogEntry;
 import se.jrat.client.Main;
+import se.jrat.client.ui.components.DefaultJTable;
 import se.jrat.client.ui.frames.QuickFrame;
 import se.jrat.client.ui.renderers.table.LogTableRenderer;
 import se.jrat.client.utils.IconUtils;
@@ -61,7 +62,7 @@ public class PanelMainLog extends JPanel {
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addComponent(scrollPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE));
 
-		table = new JTable();
+		table = new DefaultJTable();
 		table.setDefaultRenderer(Object.class, new LogTableRenderer());
 		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "Action", "Connection", "Info", "Time" }) {
 			public boolean isCellEditable(int i, int i1) {

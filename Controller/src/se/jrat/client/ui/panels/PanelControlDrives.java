@@ -9,6 +9,7 @@ import javax.swing.table.DefaultTableModel;
 
 import se.jrat.client.Drive;
 import se.jrat.client.Slave;
+import se.jrat.client.ui.components.DefaultJTable;
 import se.jrat.client.ui.renderers.table.DrivesTableRenderer;
 
 
@@ -34,7 +35,7 @@ public class PanelControlDrives extends PanelControlParent {
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE));
 
-		table = new JTable();
+		table = new DefaultJTable();
 		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Drive", "Total Space", "Free Space", "Usable Space" }) {
 			public boolean isCellEditable(int i, int i1) {
 				return false;

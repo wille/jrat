@@ -7,6 +7,7 @@ import javax.swing.table.DefaultTableModel;
 
 import se.jrat.client.addons.Plugin;
 import se.jrat.client.addons.PluginLoader;
+import se.jrat.client.ui.components.DefaultJTable;
 import se.jrat.client.ui.renderers.table.PluginsTableRenderer;
 
 
@@ -22,7 +23,7 @@ public class PanelMainPlugins extends JScrollPane {
 	public PanelMainPlugins() {
 		setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		table = new JTable();
+		table = new DefaultJTable();
 		table.setRowHeight(25);
 		table.setDefaultRenderer(Object.class, new PluginsTableRenderer());
 		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Name", "Author", "Description", "Version" }) {

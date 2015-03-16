@@ -20,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
 
 import se.jrat.client.ErrorDialog;
 import se.jrat.client.net.PortListener;
+import se.jrat.client.ui.components.DefaultJTable;
 import se.jrat.client.ui.frames.FrameAddSocket;
 import se.jrat.client.ui.renderers.table.SocketsTableRenderer;
 import se.jrat.client.utils.IconUtils;
@@ -44,7 +45,7 @@ public class PanelMainSockets extends JPanel {
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE));
 
-		table = new JTable();
+		table = new DefaultJTable();
 		table.setDefaultRenderer(Object.class, new SocketsTableRenderer());
 		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "Status", "Name", "Port", "Timeout", "Pass" }));
 		table.getColumnModel().getColumn(1).setPreferredWidth(211);

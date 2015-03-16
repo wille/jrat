@@ -16,6 +16,7 @@ import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
 
+import se.jrat.client.ui.components.DefaultJTable;
 import se.jrat.client.ui.frames.FramePackPlugin;
 
 @SuppressWarnings("serial")
@@ -89,7 +90,7 @@ public class DialogPackPluginEditResources extends JDialog {
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		
-		table = new JTable();
+		table = new DefaultJTable();
 		table.setModel(model = new DefaultTableModel(
 			new Object[][] {
 			},

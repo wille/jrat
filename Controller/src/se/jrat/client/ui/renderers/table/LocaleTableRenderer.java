@@ -4,27 +4,27 @@ import java.awt.Component;
 
 import javax.swing.JLabel;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
 
+import se.jrat.client.ui.components.DefaultJTableCellRenderer;
 import se.jrat.client.utils.FlagUtils;
 
 
 @SuppressWarnings("serial")
-public class LocaleTableRenderer extends DefaultTableCellRenderer {
+public class LocaleTableRenderer extends DefaultJTableCellRenderer {
 
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-		JLabel lbl = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+		JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
 		if (column == 0) {
-			lbl.setIcon(FlagUtils.getFlag(value.toString()));
+			label.setIcon(FlagUtils.getFlag(value.toString()));
 		} else {
-			lbl.setIcon(null);
+			label.setIcon(null);
 		}
 
-		if (lbl.getText().length() == 0) {
-			lbl.setText("?");
+		if (label.getText().length() == 0) {
+			label.setText("?");
 		}
 
-		return lbl;
+		return label;
 	}
 }

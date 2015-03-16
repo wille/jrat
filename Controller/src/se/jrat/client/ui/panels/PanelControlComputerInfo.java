@@ -19,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet27RefreshSystemInfo;
 import se.jrat.client.packets.outgoing.Packet83WinSysInfo;
+import se.jrat.client.ui.components.DefaultJTable;
 import se.jrat.client.ui.frames.FrameRawSystemInfo;
 import se.jrat.client.ui.renderers.table.ComputerInfoTableRenderer;
 import se.jrat.client.utils.FlagUtils;
@@ -83,7 +84,7 @@ public class PanelControlComputerInfo extends PanelControlParent {
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(btnReload).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnSave).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnGetSysteminfoexe).addContainerGap(327, Short.MAX_VALUE)));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 299, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnReload).addComponent(btnSave).addComponent(btnGetSysteminfoexe)).addContainerGap(15, Short.MAX_VALUE)));
 
-		table = new JTable();
+		table = new DefaultJTable();
 		table.setDefaultRenderer(Object.class, new ComputerInfoTableRenderer());
 		table.getTableHeader().setReorderingAllowed(false);
 		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "Key", "Value" }));
@@ -115,7 +116,7 @@ public class PanelControlComputerInfo extends PanelControlParent {
 		addRow("computer", "Local address", slave.getLocalIP());
 		addRow("id", "Stub ID", slave.getID());
 		addRow("memory", "RAM", slave.getMemory() + " MB");
-		addRow("adapters", "Available Processors", slave.getProcessors() + "");
+		addRow("cpu", "Available Processors", slave.getProcessors() + "");
 		addRow("file", "Install Date/Last modified", slave.getInstallDate());
 		addRow("username", "Username", slave.getUsername());
 		addRow("computer", "Computer Name", slave.getComputerName());

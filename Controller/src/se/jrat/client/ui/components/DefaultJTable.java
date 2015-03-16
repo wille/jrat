@@ -8,6 +8,10 @@ import javax.swing.table.DefaultTableModel;
 @SuppressWarnings("serial")
 public class DefaultJTable extends JTable {
 	
+	public DefaultJTable() {
+		this(null);
+	}
+	
 	public DefaultJTable(DefaultTableModel model) {
 		super(model);
 		

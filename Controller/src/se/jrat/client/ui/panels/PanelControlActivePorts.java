@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet73ActivePorts;
+import se.jrat.client.ui.components.DefaultJTable;
 import se.jrat.client.ui.renderers.table.ActivePortsTableRenderer;
 import se.jrat.client.utils.IconUtils;
 
@@ -73,7 +74,7 @@ public class PanelControlActivePorts extends PanelControlParent {
 					.addGap(18))
 		);
 
-		table = new JTable();
+		table = new DefaultJTable();
 		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "Protocol", "Local address", "External address", "Status" }));
 		table.getColumnModel().getColumn(1).setPreferredWidth(168);
 		table.getColumnModel().getColumn(2).setPreferredWidth(225);

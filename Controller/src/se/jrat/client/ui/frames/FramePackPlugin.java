@@ -34,6 +34,7 @@ import jrat.api.utils.JarUtils;
 import se.jrat.client.ErrorDialog;
 import se.jrat.client.Main;
 import se.jrat.client.build.PluginPacker;
+import se.jrat.client.ui.components.DefaultJTable;
 import se.jrat.client.ui.dialogs.DialogPackPluginEditResources;
 import se.jrat.client.utils.IconUtils;
 import se.jrat.common.Logger;
@@ -277,7 +278,7 @@ public class FramePackPlugin extends JFrame {
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		
-		table = new JTable();
+		table = new DefaultJTable();
 		table.setRowHeight(25);
 		table.setModel(model = new DefaultTableModel(
 			new Object[][] {

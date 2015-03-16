@@ -13,6 +13,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import se.jrat.client.BuildStatus;
+import se.jrat.client.ui.components.DefaultJTable;
 import se.jrat.client.ui.renderers.table.BuildTableRenderer;
 import se.jrat.client.utils.IconUtils;
 import se.jrat.common.hash.Md5;
@@ -64,7 +65,7 @@ public class DialogSummary extends BaseDialog {
 		JScrollPane scrollPane_1 = new JScrollPane();
 		panel_1.add(scrollPane_1);
 
-		table_1 = new JTable();
+		table_1 = new DefaultJTable();
 		table_1.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Property", "Value" }));
 		table_1.setRowHeight(25);
 		generalmodel = (DefaultTableModel) table_1.getModel();
@@ -78,7 +79,7 @@ public class DialogSummary extends BaseDialog {
 		JScrollPane scrollPane = new JScrollPane();
 		panel.add(scrollPane);
 
-		table = new JTable();
+		table = new DefaultJTable();
 		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Property", "Value" }));
 		table.setRowHeight(25);
 
@@ -92,7 +93,7 @@ public class DialogSummary extends BaseDialog {
 		JScrollPane scrollPane_2 = new JScrollPane();
 		panel_2.add(scrollPane_2);
 
-		table_2 = new JTable();
+		table_2 = new DefaultJTable();
 		table_2.setDefaultRenderer(Object.class, new BuildTableRenderer(statuses));
 		table_2.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Action" }));
 		table_2.setRowHeight(25);

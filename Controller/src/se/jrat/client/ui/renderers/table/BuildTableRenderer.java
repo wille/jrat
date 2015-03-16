@@ -6,19 +6,19 @@ import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
 
 import se.jrat.client.BuildStatus;
+import se.jrat.client.ui.components.DefaultJTableCellRenderer;
 import se.jrat.client.utils.IconUtils;
 
 
 @SuppressWarnings("serial")
-public class BuildTableRenderer extends DefaultTableCellRenderer {
+public class BuildTableRenderer extends DefaultJTableCellRenderer {
 
 	private Map<String, BuildStatus> statuses;
 
 	public static final ImageIcon ICON_INFO = IconUtils.getIcon("log-info");
-	public static final ImageIcon LOG_ERROR = IconUtils.getIcon("log-error");
+	public static final ImageIcon ICON_ERROR = IconUtils.getIcon("log-error");
 	public static final ImageIcon ICON_TICK = IconUtils.getIcon("tick");
 
 	public BuildTableRenderer(Map<String, BuildStatus> statuses) {
@@ -26,20 +26,20 @@ public class BuildTableRenderer extends DefaultTableCellRenderer {
 	}
 
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-		JLabel lbl = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+		JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
-		BuildStatus status = statuses.get(lbl.getText());
+		BuildStatus status = statuses.get(label.getText());
 
 		if (status == BuildStatus.INFO) {
-			lbl.setIcon(ICON_INFO);
+			label.setIcon(ICON_INFO);
 		} else if (status == BuildStatus.CHECK) {
-			lbl.setIcon(ICON_TICK);
+			label.setIcon(ICON_TICK);
 		} else if (status == BuildStatus.ERROR) {
-			lbl.setIcon(LOG_ERROR);
+			label.setIcon(ICON_ERROR);
 		} else if (status == BuildStatus.FINISH) {
-			lbl.setIcon(ICON_TICK);
+			label.setIcon(ICON_TICK);
 		}
 
-		return lbl;
+		return label;
 	}
 }

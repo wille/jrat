@@ -7,45 +7,45 @@ import java.util.HashMap;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
 
+import se.jrat.client.ui.components.DefaultJTableCellRenderer;
 import se.jrat.client.utils.IconUtils;
 
 
 @SuppressWarnings("serial")
-public class LogTableRenderer extends DefaultTableCellRenderer {
+public class LogTableRenderer extends DefaultJTableCellRenderer {
 
-	public static final HashMap<String, Color> colors = new HashMap<String, Color>();
-	public static final HashMap<String, ImageIcon> icons = new HashMap<String, ImageIcon>();
+	public static final HashMap<String, Color> COLORS = new HashMap<String, Color>();
+	public static final HashMap<String, ImageIcon> ICONS = new HashMap<String, ImageIcon>();
 
 	static {
-		colors.clear();
-		colors.put("disconnect", Color.red);
-		colors.put("error", Color.red);
-		colors.put("connect", Color.blue);
+		COLORS.clear();
+		COLORS.put("disconnect", Color.red);
+		COLORS.put("error", Color.red);
+		COLORS.put("connect", Color.blue);
 
-		icons.clear();
-		icons.put("disconnect", IconUtils.getIcon("log-error"));
-		icons.put("error", IconUtils.getIcon("log-error"));
-		icons.put("connect", IconUtils.getIcon("log-info"));
-		icons.put("warning", IconUtils.getIcon("log-warning"));
+		ICONS.clear();
+		ICONS.put("disconnect", IconUtils.getIcon("log-error"));
+		ICONS.put("error", IconUtils.getIcon("log-error"));
+		ICONS.put("connect", IconUtils.getIcon("log-info"));
+		ICONS.put("warning", IconUtils.getIcon("log-warning"));
 	}
 
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-		JLabel lbl = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+		JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
 		String str = table.getValueAt(row, 0).toString();
 
 		if (!isSelected) {
-			lbl.setForeground(colors.get(str.toLowerCase()));
+			label.setForeground(COLORS.get(str.toLowerCase()));
 		}
 
 		if (column == 0) {
-			lbl.setIcon(icons.get(str.toLowerCase()));
+			label.setIcon(ICONS.get(str.toLowerCase()));
 		} else {
-			lbl.setIcon(null);
+			label.setIcon(null);
 		}
 
-		return this;
+		return label;
 	}
 }

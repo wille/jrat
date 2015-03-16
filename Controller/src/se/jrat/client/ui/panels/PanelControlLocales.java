@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import se.jrat.client.Locale;
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet97Locales;
+import se.jrat.client.ui.components.DefaultJTable;
 import se.jrat.client.ui.renderers.table.LocaleTableRenderer;
 import se.jrat.client.utils.FlagUtils;
 
@@ -49,7 +50,7 @@ public class PanelControlLocales extends PanelControlParent {
 		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addContainerGap().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 551, GroupLayout.PREFERRED_SIZE).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addContainerGap().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 
-		table = new JTable();
+		table = new DefaultJTable();
 		table.setRowHeight(25);
 		table.setDefaultRenderer(Object.class, new LocaleTableRenderer());
 		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Country", "Display Country", "Language", "Display Language" }));

@@ -573,6 +573,7 @@ public class FrameControlPanel extends BaseFrame {
 			addPanel("locales", new PanelControlLocales(slave));
 			addPanel("trace", new PanelControlTrace(slave));
 		} catch (Exception ex) {
+			ex.printStackTrace();
 			ControlPanelLoadException cple = new ControlPanelLoadException("Failed to load a panel", ex);
 			cple.printStackTrace();
 		}

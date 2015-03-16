@@ -19,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
 
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet34AdvancedDownload;
+import se.jrat.client.ui.components.DefaultJTable;
 import se.jrat.client.utils.IconUtils;
 
 
@@ -75,7 +76,7 @@ public class PanelControlDownloadManager extends PanelControlParent {
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE).addGroup(groupLayout.createSequentialGroup().addGap(16).addComponent(lblUrl).addPreferredGap(ComponentPlacement.RELATED).addComponent(txtURL, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE).addGap(12).addComponent(chckbxExecute).addPreferredGap(ComponentPlacement.RELATED, 30, Short.MAX_VALUE).addComponent(lblDropDir).addPreferredGap(ComponentPlacement.UNRELATED).addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnDownload).addContainerGap()));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 297, GroupLayout.PREFERRED_SIZE).addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addPreferredGap(ComponentPlacement.RELATED).addComponent(btnDownload)).addGroup(groupLayout.createSequentialGroup().addPreferredGap(ComponentPlacement.UNRELATED).addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(chckbxExecute).addComponent(txtURL, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(lblUrl).addComponent(lblDropDir))))).addContainerGap(20, Short.MAX_VALUE)));
 
-		table = new JTable() {
+		table = new DefaultJTable() {
 			@Override
 			public Class getColumnClass(int column) {
 				if (column == 0) {

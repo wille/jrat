@@ -16,6 +16,7 @@ import se.jrat.client.AbstractSlave;
 import se.jrat.client.Main;
 import se.jrat.client.events.Event;
 import se.jrat.client.events.Events;
+import se.jrat.client.ui.components.DefaultJTable;
 import se.jrat.client.utils.IconUtils;
 
 @SuppressWarnings("serial")
@@ -89,7 +90,7 @@ public class PanelMainOnConnect extends JScrollPane {
 		});
 		btnEdit.setIcon(IconUtils.getIcon("calendar-edit"));
 		
-		table = new JTable() {
+		table = new DefaultJTable() {
 			@SuppressWarnings({ "unchecked", "rawtypes" })
 			@Override
 			public Class getColumnClass(int column) {
