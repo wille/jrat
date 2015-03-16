@@ -1,28 +1,5 @@
 package se.jrat.client.ui.components;
 
-/*
- * JCheckBoxList.java - A list, each item can be checked or unchecked
- * :tabSize=8:indentSize=8:noTabs=false:
- * :folding=explicit:collapseFolds=1:
- *
- * Copyright (C) 2000, 2001, 2002 Slava Pestov
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
- */
-
-//{{{ Imports
 import java.awt.Component;
 import java.util.Vector;
 
@@ -36,59 +13,27 @@ import javax.swing.table.TableColumn;
 
 import se.jrat.client.ui.renderers.table.PluginsTableRenderer;
 
-
-//}}}
-
-/**
- * A list where items can be selected and checked off independently.
- * 
- * @since jEdit 3.2pre9
- */
 @SuppressWarnings({ "serial", "unchecked", "rawtypes" })
 public class JCheckBoxList extends JTable {
-	// {{{ JCheckBoxList constructor
-	/**
-	 * Creates a checkbox list with the given list of objects. The elements of
-	 * this array can either be Entry instances, or other objects (if the
-	 * latter, they will default to being unchecked).
-	 */
+	
 	public JCheckBoxList(Object[] items) {
 		setModel(items);
-	} // }}}
-
-	// {{{ JCheckBoxList constructor
-	/**
-	 * Creates a checkbox list with the given list of objects. The elements of
-	 * this vector can either be Entry instances, or other objects (if the
-	 * latter, they will default to being unchecked).
-	 */
+	} 
+	
 	public JCheckBoxList(Vector items) {
 		setModel(items);
-	} // }}}
-
-	// {{{ setModel() method
-	/**
-	 * Sets the model to the given list of objects. The elements of this array
-	 * can either be Entry instances, or other objects (if the latter, they will
-	 * default to being unchecked).
-	 */
+	} 
+	
 	public void setModel(Object[] items) {
 		setModel(new CheckBoxListModel(items));
 		init();
-	} // }}}
+	}
 
-	// {{{ setModel() method
-	/**
-	 * Sets the model to the given list of objects. The elements of this vector
-	 * can either be Entry instances, or other objects (if the latter, they will
-	 * default to being unchecked).
-	 */
 	public void setModel(Vector items) {
 		setModel(new CheckBoxListModel(items));
 		init();
-	} // }}}
+	}
 
-	// {{{ getCheckedValues() method
 	public Object[] getCheckedValues() {
 		Vector values = new Vector();
 		CheckBoxListModel model = (CheckBoxListModel) getModel();
@@ -101,9 +46,8 @@ public class JCheckBoxList extends JTable {
 		Object[] retVal = new Object[values.size()];
 		values.copyInto(retVal);
 		return retVal;
-	} // }}}
+	}
 
-	// {{{ selectAll() method
 	public void selectAll() {
 		CheckBoxListModel model = (CheckBoxListModel) getModel();
 		for (int i = 0; i < model.items.size(); i++) {
@@ -113,26 +57,23 @@ public class JCheckBoxList extends JTable {
 		}
 
 		model.fireTableRowsUpdated(0, model.getRowCount());
-	} // }}}
+	}
 
-	// {{{ getValues() method
 	public Entry[] getValues() {
 		CheckBoxListModel model = (CheckBoxListModel) getModel();
 		Entry[] retVal = new Entry[model.items.size()];
 		model.items.copyInto(retVal);
 		return retVal;
-	} // }}}
+	}
 
-	// {{{ getSelectedValue() method
 	public Object getSelectedValue() {
 		int row = getSelectedRow();
 		if (row == -1)
 			return null;
 		else
 			return getModel().getValueAt(row, 1);
-	} // }}}
+	}
 
-	// {{{ getCellRenderer() method
 	public TableCellRenderer getCellRenderer(int row, int column) {
 		if (column == 0) {
 			Entry entry = (Entry) ((CheckBoxListModel) getModel()).items.get(row);
@@ -141,12 +82,10 @@ public class JCheckBoxList extends JTable {
 		}
 
 		return super.getCellRenderer(row, column);
-	} // }}}
+	}
 
-	// {{{ Private members
 	private TableCellRenderer dummy;
 
-	// {{{ init() method
 	private void init() {
 		dummy = new DummyRenderer();
 		getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -161,14 +100,8 @@ public class JCheckBoxList extends JTable {
 
 		column = getColumnModel().getColumn(1);
 		column.setCellRenderer(new PluginsTableRenderer(1));
-	} // }}}
+	}
 
-	// }}}
-
-	// {{{ Entry class
-	/**
-	 * A check box list entry.
-	 */
 	public static class Entry {
 		boolean checked;
 		boolean caption;
@@ -191,14 +124,13 @@ public class JCheckBoxList extends JTable {
 		public Object getValue() {
 			return value;
 		}
-	} // }}}
+	}
 
-	// {{{ DummyRenderer class
 	private class DummyRenderer extends DefaultTableCellRenderer {
 		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 			return super.getTableCellRendererComponent(table, null /* value */, isSelected, false /* hasFocus */, row, column);
 		}
-	} // }}}
+	}
 
 	public class CheckBoxListModel extends AbstractTableModel {
 
