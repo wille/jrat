@@ -320,7 +320,7 @@ public class FrameControlPanel extends BaseFrame {
 				r.icons.put("piano", IconUtils.getIcon("piano"));
 				r.icons.put("filezilla", IconUtils.getIcon("filezilla"));
 				r.icons.put("printer", IconUtils.getIcon("printer"));
-				r.icons.put("misc", IconUtils.getIcon("other"));
+				r.icons.put("misc", IconUtils.getIcon("toolbox"));
 				r.icons.put("lan computers", IconUtils.getIcon("firewall"));
 				r.icons.put("net gateway", IconUtils.getIcon("router"));
 				r.icons.put("active ports", IconUtils.getIcon("ports"));
