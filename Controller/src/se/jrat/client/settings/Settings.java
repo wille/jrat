@@ -55,21 +55,25 @@ public class Settings extends AbstractSettings {
 			
 			for (int i = 0; i < len; i++) {
 				String data = reader.readLine();
+
 				String[] split = data.split("=");
-				String key = split[0];
-				String rawValue = split[1];
 				
-				Object value = null;
-				
-				try {
-					value = Integer.parseInt(rawValue);
-				} catch (Exception ex) { }
-				
-				if (value == null) {
-					value = rawValue;
+				if (split.length == 2) {
+					String key = split[0];
+					String rawValue = split[1];
+					
+					Object value = null;
+					
+					try {
+						value = Integer.parseInt(rawValue);
+					} catch (Exception ex) { }
+					
+					if (value == null) {
+						value = rawValue;
+					}
+					
+					settings.put(key, value);
 				}
-				
-				settings.put(key, value);
 			}
 	
 			reader.close();
