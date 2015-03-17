@@ -10,6 +10,13 @@ import se.jrat.client.utils.NetUtils;
 import se.jrat.common.Version;
 
 import com.redpois0n.oslib.AbstractOperatingSystem;
+import com.redpois0n.oslib.bsd.BSDOperatingSystem;
+import com.redpois0n.oslib.bsd.Flavor;
+import com.redpois0n.oslib.linux.Distro;
+import com.redpois0n.oslib.linux.LinuxOperatingSystem;
+import com.redpois0n.oslib.osx.OSXOperatingSystem;
+import com.redpois0n.oslib.osx.OSXVersion;
+import com.redpois0n.oslib.solaris.SolarisOperatingSystem;
 import com.redpois0n.oslib.windows.WindowsOperatingSystem;
 import com.redpois0n.oslib.windows.WindowsVersion;
 
@@ -23,11 +30,28 @@ public class SampleMode {
 
 	public static void start(boolean stats) {
 		sampleMode = true;
-		
+
 		for (WindowsVersion wv : WindowsVersion.values()) {
 			String country = randomCountry();
 			make(country, new WindowsOperatingSystem(wv), stats);
 		}
+
+		for (OSXVersion ov : OSXVersion.values()) {
+			String country = randomCountry();
+			make(country, new OSXOperatingSystem(ov), stats);
+		}
+
+		for (Flavor f : Flavor.values()) {
+			String country = randomCountry();
+			make(country, new BSDOperatingSystem(f), stats);
+		}
+
+		for (Distro d : Distro.values()) {
+			String country = randomCountry();
+			make(country, new LinuxOperatingSystem(d), stats);
+		}
+		
+		make(randomCountry(), new SolarisOperatingSystem(), stats);
 	}
 
 	public static void make(String country, AbstractOperatingSystem os, boolean stats) {
@@ -41,7 +65,7 @@ public class SampleMode {
 			public String getRawIP() {
 				return ip;
 			}
-			
+
 			public int getPing() {
 				return p;
 			}

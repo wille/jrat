@@ -95,6 +95,7 @@ public class IconUtils {
 	
 	public static ImageIcon getOSIcon(AbstractSlave slave) {
 		String str = Icons.getIconString(slave.getOperatingSystem());
+
 		ImageIcon icon = IconUtils.getIcon(str);
 		if (icon == null) {
 			icon = IconUtils.getIcon("os_unknown");
