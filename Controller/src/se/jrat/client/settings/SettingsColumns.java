@@ -12,7 +12,6 @@ import java.util.Map;
 
 import se.jrat.client.Globals;
 import se.jrat.client.ui.Columns;
-import se.jrat.client.ui.panels.PanelMainClients;
 
 
 public class SettingsColumns extends AbstractStoreable {

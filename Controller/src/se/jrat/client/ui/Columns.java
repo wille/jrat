@@ -11,7 +11,8 @@ public enum Columns {
 	OPERATINGSYSTEM("Operating System", true),
 	RAM("RAM", true),
 	LOCAL_ADDRESS("Local Address", true),
-	VERSION("Version", true);
+	VERSION("Version", true),
+	AVAILABLE_PROCESSORS("Available Processors", false);
 
 	private String name;
 	private boolean defaultv;

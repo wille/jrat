@@ -883,7 +883,7 @@ public class Frame extends BaseFrame {
 		tabbedPane.addTab("Plugins", IconUtils.getIcon("plugin"), panelPlugins, null);
 		
 		for (Columns s : Columns.values()) {
-			JCheckBoxMenuItem jcb = new JCheckBoxMenuItem("Display " + s);
+			JCheckBoxMenuItem jcb = new JCheckBoxMenuItem("Display " + s.getName());
 			jcb.setSelected(SettingsColumns.getGlobal().isSelected(s.getName()));
 			jcb.addActionListener(new ActionListener() {
 				@Override
