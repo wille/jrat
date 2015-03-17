@@ -25,7 +25,13 @@ public class SettingsColumns extends AbstractStoreable {
 	}
 
 	public boolean isSelected(String column) {
-		return columns.get(column);
+		Boolean v = columns.get(column);
+		
+		if (v == null) {
+			v = true;
+		}
+		
+		return v;
 	}
 
 	public void setColumn(String name, boolean show) {

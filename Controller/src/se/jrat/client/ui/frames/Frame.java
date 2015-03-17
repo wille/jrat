@@ -327,6 +327,7 @@ public class Frame extends BaseFrame {
 		mnTools.add(mnLook);
 		
 		JMenu mnColumns = new JMenu("Columns");
+		mnColumns.setIcon(IconUtils.getIcon("application-table"));
 		mnTools.add(mnColumns);
 
 		mnTools.addSeparator();
