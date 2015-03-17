@@ -55,17 +55,25 @@ public class SampleMode {
 	}
 
 	public static void make(String country, AbstractOperatingSystem os, boolean stats) {
-		int i = (new Random()).nextInt(65535);
+		final int i = (new Random()).nextInt(65535);
 
 		final String ip = NetUtils.randomizeIP();
 
 		final int p = new Random().nextInt(500);
 
 		SampleSlave slave = new SampleSlave(os) {
+			
+			@Override
 			public String getRawIP() {
 				return ip;
 			}
+			
+			@Override
+			public String getIP() {
+				return ip + " / " + i;
+			}
 
+			@Override
 			public int getPing() {
 				return p;
 			}
