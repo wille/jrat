@@ -46,7 +46,6 @@ public class PanelBuildNetwork extends JPanel {
 		JScrollPane scrollPane = new JScrollPane();
 
 		txtIP = new JPlaceholderTextField("127.0.0.1");
-		txtIP.setText(Settings.getGlobal().getString("bip"));
 		txtIP.setColumns(10);
 
 		spinPort = new JSpinner();
