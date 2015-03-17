@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -743,18 +742,6 @@ public class Frame extends BaseFrame {
 		});
 		mntmWhatsNewIn.setIcon(IconUtils.getIcon("question"));
 		mnAbout.add(mntmWhatsNewIn);
-
-		JMenuItem mntmDonate = new JMenuItem("Donate");
-		mntmDonate.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					java.awt.Desktop.getDesktop().browse(new URI("http://redpois0n.com/donate.php"));
-				} catch (Exception ex) {
-				}
-			}
-		});
-		mntmDonate.setIcon(IconUtils.getIcon("donate"));
-		mnAbout.add(mntmDonate);
 
 		JMenuItem mntmDebugerrorReportInfo = new JMenuItem("Debug/Error Report Info");
 		mntmDebugerrorReportInfo.addActionListener(new ActionListener() {
