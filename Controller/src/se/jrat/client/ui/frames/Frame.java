@@ -454,6 +454,20 @@ public class Frame extends BaseFrame {
 			}
 		});
 		mntmGroups.setIcon(IconUtils.getIcon("group"));
+		
+				JMenuItem mntmReloadAllshowThumbnails = new JMenuItem("Reload all Thumbnails");
+				mnTools.add(mntmReloadAllshowThumbnails);
+				mntmReloadAllshowThumbnails.setIcon(IconUtils.getIcon("image"));
+				mntmReloadAllshowThumbnails.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						for (int i = 0; i < Main.connections.size(); i++) {
+							AbstractSlave sl = Main.connections.get(i);
+							if (sl instanceof Slave) {
+								((Slave) sl).addToSendQueue(new Packet40Thumbnail());
+							}
+						}
+					}
+				});
 
 		JMenuItem mntmSampleMode = new JMenuItem("Sample Mode");
 		mnTools.add(mntmSampleMode);
@@ -697,23 +711,6 @@ public class Frame extends BaseFrame {
 		mntmBrowsePlugins.setIcon(IconUtils.getIcon("application-images"));
 		mntmBrowsePlugins.setEnabled(Main.isFeatureEnabled());
 
-		JMenu mnOther = new JMenu("Other");
-		menuBar.add(mnOther);
-
-		JMenuItem mntmReloadAllshowThumbnails = new JMenuItem("Reload all showThumbnails");
-		mntmReloadAllshowThumbnails.setIcon(IconUtils.getIcon("image"));
-		mntmReloadAllshowThumbnails.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				for (int i = 0; i < Main.connections.size(); i++) {
-					AbstractSlave sl = Main.connections.get(i);
-					if (sl instanceof Slave) {
-						((Slave) sl).addToSendQueue(new Packet40Thumbnail());
-					}
-				}
-			}
-		});
-		mnOther.add(mntmReloadAllshowThumbnails);
-
 		JMenu mnAbout = new JMenu("Help");
 		mnAbout.setVisible(true);
 		menuBar.add(mnAbout);
@@ -881,7 +878,7 @@ public class Frame extends BaseFrame {
 
 		reloadPlugins();
 
-		add(tabbedPane);
+		getContentPane().add(tabbedPane);
 	}
 
 	public void reloadPlugins() {
