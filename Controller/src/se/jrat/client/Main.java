@@ -136,11 +136,11 @@ public class Main {
 		}
 
 		StatisticsCountry.getGlobal().load();
-		Settings.getGlobal().load();
-		
-		instance = new Frame();
+		Settings.getGlobal().load();	
 		
 		AbstractStoreable.loadAllGlobals();
+
+		instance = new Frame();
 
 		boolean showEULA = Settings.getGlobal().getBoolean("showeula");
 		if (!showEULA) {
