@@ -12,6 +12,8 @@ public class ShutdownHook implements Runnable {
 
 	@Override
 	public void run() {
+		Main.debug("Shutting down...");
+		
 		OnDisableEvent event = new OnDisableEvent();
 		for (Plugin p : PluginLoader.plugins) {
 			try {
