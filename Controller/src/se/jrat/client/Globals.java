@@ -44,10 +44,6 @@ public class Globals {
 		return new File(getFileDirectory(), "Stub.jar");
 	}
 	
-	public static final File getStubInstaller() {
-		return new File(getFileDirectory(), "Installer.jar");
-	}
-	
 	public static final File getKeyFile() {
 		return getKeyFile("");
 	}

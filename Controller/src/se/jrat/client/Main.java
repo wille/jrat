@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
@@ -20,10 +19,10 @@ import se.jrat.client.addons.PluginLoader;
 import se.jrat.client.commands.DefaultCommands;
 import se.jrat.client.net.WebRequest;
 import se.jrat.client.settings.AbstractStoreable;
-import se.jrat.client.settings.SettingsColumns;
-import se.jrat.client.settings.StatisticsCountry;
 import se.jrat.client.settings.Settings;
+import se.jrat.client.settings.SettingsColumns;
 import se.jrat.client.settings.SettingsTheme;
+import se.jrat.client.settings.StatisticsCountry;
 import se.jrat.client.threads.RunnableCheckPlugins;
 import se.jrat.client.threads.RunnableNetworkCounter;
 import se.jrat.client.threads.ThreadCheckVersion;
@@ -57,13 +56,11 @@ public class Main {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
 			Main.debug("Default user.dir: " + System.getProperty("user.dir"));
-			if (System.getProperty("user.dir").contains("jRAT.app")) {
-				System.setProperty("user.dir", System.getProperty("user.dir").split("jRAT.app")[0] + "/jRAT.app");
-			}
-			Main.debug("New user.dir: " + System.getProperty("user.dir"));
 			Main.debug("File directory absolute expected path: " + Globals.getFileDirectory().getAbsolutePath());
+			Main.debug("Path to stub: " + Globals.getStub().getAbsolutePath());
 		}
 		
 		if (argsContains(args, "-locinfo")) {
@@ -87,19 +84,6 @@ public class Main {
 
 		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
 			System.setProperty("apple.laf.useScreenMenuBar", "true");
-		}
-		
-		if (!Globals.getFileDirectory().exists()) {
-			JOptionPane.showMessageDialog(null, "Could not find /files/, please specify your " + Constants.NAME + " directory", Constants.NAME + "", JOptionPane.WARNING_MESSAGE);
-			JFileChooser chooser = new JFileChooser();
-			chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-			chooser.showOpenDialog(null);
-
-			File file = chooser.getSelectedFile();
-
-			if (file != null) {
-				System.setProperty("user.dir", file.getAbsolutePath());
-			}
 		}
 		
 		Globals.mkdirs();
