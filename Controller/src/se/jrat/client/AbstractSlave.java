@@ -75,11 +75,13 @@ public abstract class AbstractSlave implements Runnable {
 	public AbstractSlave(ServerListener connection, Socket socket) {
 		uniqueId = (long) (new Random()).nextInt(Integer.MAX_VALUE); // TODO change to int
 		
-		this.connection = connection;
-		this.socket = socket;
+		if (connection != null && socket != null) {
+			this.connection = connection;
+			this.socket = socket;
 
-		this.ip = socket.getInetAddress().getHostAddress() + " / " + socket.getPort();
-		this.host = socket.getInetAddress().getHostName();
+			this.ip = socket.getInetAddress().getHostAddress() + " / " + socket.getPort();
+			this.host = socket.getInetAddress().getHostName();
+		}
 	}
 
 	public void initialize() throws Exception {
@@ -148,12 +150,6 @@ public abstract class AbstractSlave implements Runnable {
 
 		this.dis = new DataInputStream(inputStream);
 		this.dos = new DataOutputStream(outputStream);
-	}
-
-	public AbstractSlave(String ip) {
-		uniqueId = (long) (new Random()).nextInt(Integer.MAX_VALUE); // TODO change to int
- 
-		this.ip = ip;
 	}
 	
 	public void update() {

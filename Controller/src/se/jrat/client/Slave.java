@@ -47,10 +47,6 @@ public class Slave extends AbstractSlave {
 		super(connection, socket);
 		new Thread(this).start();
 	}
-
-	public Slave(String ip) {
-		super(ip);
-	}
 	
 	public byte[] getKey() {
 		return key;
