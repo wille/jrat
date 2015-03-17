@@ -71,6 +71,21 @@ public class PanelMainClients extends JScrollPane {
 	public static final String COLUMN_LOCAL_ADDRESS = "Local Address";
 	public static final String COLUMN_VERSION = "Version";
 
+	public static final List<String> ALL_COLUMNS = new ArrayList<String>();
+	
+	static {
+		ALL_COLUMNS.add(COLUMN_COUNTRY);
+		ALL_COLUMNS.add(COLUMN_ID);
+		ALL_COLUMNS.add(COLUMN_STATUS);
+		ALL_COLUMNS.add(COLUMN_IP);
+		ALL_COLUMNS.add(COLUMN_PING);
+		ALL_COLUMNS.add(COLUMN_USER_HOST);
+		ALL_COLUMNS.add(COLUMN_OPERATINGSYSTEM);
+		ALL_COLUMNS.add(COLUMN_RAM);
+		ALL_COLUMNS.add(COLUMN_LOCAL_ADDRESS);
+		ALL_COLUMNS.add(COLUMN_VERSION);
+	}
+	
 	private final List<String> columns = new ArrayList<String>();
 
 	private JTable table;
@@ -191,6 +206,10 @@ public class PanelMainClients extends JScrollPane {
 	
 	public JTable getTable() {
 		return table;
+	}
+	
+	public List<String> getColumns() {
+		return columns;
 	}
 	
 	public class ClientsTableRenderer extends DefaultJTableCellRenderer {

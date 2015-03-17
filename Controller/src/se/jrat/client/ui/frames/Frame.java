@@ -324,6 +324,9 @@ public class Frame extends BaseFrame {
 		JMenu mnLook = new JMenu("Look");
 		mnLook.setIcon(IconUtils.getIcon("gui"));
 		mnTools.add(mnLook);
+		
+		JMenu mnColumns = new JMenu("Columns");
+		mnTools.add(mnColumns);
 
 		mnTools.addSeparator();
 
@@ -875,6 +878,29 @@ public class Frame extends BaseFrame {
 		tabbedPane.addTab("Sockets", IconUtils.getIcon("sockets"), panelSockets, null);
 		tabbedPane.addTab("Log", IconUtils.getIcon("log"), panelLog, null);
 		tabbedPane.addTab("Plugins", IconUtils.getIcon("plugin"), panelPlugins, null);
+		
+		for (String s : PanelMainClients.ALL_COLUMNS) {
+			JCheckBoxMenuItem jcb = new JCheckBoxMenuItem("Display " + s);
+			jcb.setSelected(true);
+			jcb.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					JCheckBoxMenuItem jcb = (JCheckBoxMenuItem) e.getSource();
+					
+					String text = jcb.getText().substring(8, jcb.getText().length());
+					
+					if (jcb.isSelected()) {
+						panelClients.getColumns().add(text);
+					} else {
+						panelClients.getColumns().remove(text);
+					}
+					
+					panelClients.reloadTable();
+				}	
+			});
+			
+			mnColumns.add(jcb);
+		}
 
 		reloadPlugins();
 
