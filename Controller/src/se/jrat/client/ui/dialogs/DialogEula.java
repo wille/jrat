@@ -87,7 +87,7 @@ public class DialogEula extends BaseDialog {
 		scrollPane.setViewportView(txtEULA);
 		contentPane.setLayout(gl_contentPane);
 		try {
-			txtEULA.setText(IOUtils.readString(Main.class.getResourceAsStream("/files/eula.txt")));
+			txtEULA.setText(IOUtils.readString(Main.class.getResourceAsStream("/files/eula.txt")).replace("Version", Version.getVersion()));
 			txtEULA.setSelectionStart(0);
 			txtEULA.setSelectionEnd(0);
 		} catch (Exception e) {
