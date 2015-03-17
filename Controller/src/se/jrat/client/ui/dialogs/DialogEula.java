@@ -69,9 +69,6 @@ public class DialogEula extends BaseDialog {
 		btnAgree.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (!view) {
-					// FrameLogin frame = new FrameLogin();
-					// frame.setVisible(true);
-					// TODO
 					Main.instance.setVisible(true);
 				}
 				Settings.getGlobal().setVal("showeula", "true");
