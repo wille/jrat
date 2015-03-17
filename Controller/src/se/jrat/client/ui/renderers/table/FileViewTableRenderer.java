@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 
 import se.jrat.client.Slave;
-import se.jrat.client.settings.FileBookmarks;
+import se.jrat.client.settings.StoreageFileBookmarks;
 import se.jrat.client.ui.components.DefaultJTableCellRenderer;
 import se.jrat.client.utils.IconUtils;
 
@@ -51,7 +51,7 @@ public class FileViewTableRenderer extends DefaultJTableCellRenderer {
 
 		if (val != null && val.length() > 0) {
 			label.setForeground(Color.blue);
-		} else if (column == 1 && FileBookmarks.getGlobal().contains(value.toString())) {
+		} else if (column == 1 && StoreageFileBookmarks.getGlobal().contains(value.toString())) {
 			label.setForeground(Color.red);
 			label.setIcon(bookmark);
 		}

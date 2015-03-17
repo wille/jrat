@@ -14,15 +14,15 @@ import java.util.List;
 import se.jrat.client.Globals;
 
 
-public class CustomID extends AbstractSettings implements Serializable {
+public class SettingsCustomID extends AbstractStoreable implements Serializable {
 
 	private static final long serialVersionUID = 720261533636222207L;
 
 	private transient List<CustomIDEntry> list = new ArrayList<CustomIDEntry>();
 
-	private static final CustomID instance = new CustomID();
+	private static final SettingsCustomID instance = new SettingsCustomID();
 
-	public static CustomID getGlobal() {
+	public static SettingsCustomID getGlobal() {
 		return instance;
 	}
 
@@ -87,14 +87,14 @@ public class CustomID extends AbstractSettings implements Serializable {
 	}
 
 	public void add(String name, String realname, String ip) {
-		for (CustomID.CustomIDEntry entry : list) {
+		for (SettingsCustomID.CustomIDEntry entry : list) {
 			if (entry.getIP().equals(ip)) {
 				list.remove(entry);
 				break;
 			}
 		}
 		
-		CustomID.CustomIDEntry entry = new CustomID.CustomIDEntry(ip, name, realname);
+		SettingsCustomID.CustomIDEntry entry = new SettingsCustomID.CustomIDEntry(ip, name, realname);
 		list.add(entry);
 	}
 

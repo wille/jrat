@@ -4,14 +4,14 @@ import java.io.PrintStream;
 import java.util.List;
 
 import jrat.api.commands.AbstractCommand;
-import se.jrat.client.settings.CountryStatistics;
-import se.jrat.client.settings.CountryStatistics.CountryStatEntry;
+import se.jrat.client.settings.StatisticsCountry;
+import se.jrat.client.settings.StatisticsCountry.CountryStatEntry;
 
 public class CommandListStatistics extends AbstractCommand {
 
 	@Override
 	public void process(String[] args, PrintStream out) throws Exception {
-		List<CountryStatEntry> list = CountryStatistics.getGlobal().getList();
+		List<CountryStatEntry> list = StatisticsCountry.getGlobal().getList();
 
 		for (CountryStatEntry entry : list) {
 			out.println(entry.getLongCountry() + ", " + entry.getCountry() + ", " + entry.getConnects() + ", " + entry.getList().size());

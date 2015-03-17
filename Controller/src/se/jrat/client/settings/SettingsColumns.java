@@ -13,13 +13,13 @@ import java.util.Map;
 import se.jrat.client.Globals;
 
 
-public class Settings extends AbstractStoreable {
+public class SettingsColumns extends AbstractStoreable {
 
-	private static final Settings instance = new Settings();
+	private static final SettingsColumns instance = new SettingsColumns();
 
 	private transient Map<String, Object> settings = new HashMap<String, Object>();
 
-	public static Settings getGlobal() {
+	public static SettingsColumns getGlobal() {
 		return instance;
 	}
 

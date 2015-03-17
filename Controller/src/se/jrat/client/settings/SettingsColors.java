@@ -14,15 +14,15 @@ import se.jrat.client.Globals;
 import se.jrat.client.ui.components.JColorBox;
 
 
-public class Colors extends AbstractSettings implements Serializable {
+public class SettingsColors extends AbstractStoreable implements Serializable {
 
 	private static final long serialVersionUID = 973106735935668990L;
 
 	private transient Map<String, ColorProfile> colors = new HashMap<String, ColorProfile>();
 
-	private static final Colors instance = new Colors();
+	private static final SettingsColors instance = new SettingsColors();
 
-	public static Colors getGlobal() {
+	public static SettingsColors getGlobal() {
 		return instance;
 	}
 
@@ -78,10 +78,10 @@ public class Colors extends AbstractSettings implements Serializable {
 
 	public void putDefault() {
 		colors.clear();
-		Colors.getGlobal();
-		colors.put("system monitor", Colors.generate("blue"));
-		Colors.getGlobal();
-		colors.put("outdated connections", Colors.generate("red"));
+		SettingsColors.getGlobal();
+		colors.put("system monitor", SettingsColors.generate("blue"));
+		SettingsColors.getGlobal();
+		colors.put("outdated connections", SettingsColors.generate("red"));
 	}
 
 	public class ColorProfile implements Serializable {
@@ -100,7 +100,7 @@ public class Colors extends AbstractSettings implements Serializable {
 	}
 
 	public static ColorProfile generate(String color) {
-		ColorProfile profile = Colors.getGlobal().new ColorProfile();
+		ColorProfile profile = SettingsColors.getGlobal().new ColorProfile();
 		for (int i = 0; i < JColorBox.colors.length; i++) {
 			if (color.equalsIgnoreCase(JColorBox.colors[i])) {
 				profile.setIndex(i);

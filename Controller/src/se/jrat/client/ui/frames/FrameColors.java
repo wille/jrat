@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
-import se.jrat.client.settings.Colors;
+import se.jrat.client.settings.SettingsColors;
 import se.jrat.client.ui.components.JColorBox;
 
 
@@ -49,7 +49,7 @@ public class FrameColors extends BaseFrame {
 
 		JLabel lblOutdatedServers = new JLabel("Outdated connections:");
 
-		cbOutdatedServers = new JColorBox(Colors.getGlobal().get("outdated connections"));
+		cbOutdatedServers = new JColorBox(SettingsColors.getGlobal().get("outdated connections"));
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(gl_panel_1.createParallelGroup(Alignment.LEADING).addGroup(gl_panel_1.createSequentialGroup().addContainerGap().addComponent(lblOutdatedServers).addPreferredGap(ComponentPlacement.RELATED, 17, Short.MAX_VALUE).addComponent(cbOutdatedServers, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addContainerGap()));
 		gl_panel_1.setVerticalGroup(gl_panel_1.createParallelGroup(Alignment.LEADING).addGroup(gl_panel_1.createSequentialGroup().addContainerGap().addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE).addComponent(lblOutdatedServers).addComponent(cbOutdatedServers, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addContainerGap(41, Short.MAX_VALUE)));
@@ -60,7 +60,7 @@ public class FrameColors extends BaseFrame {
 
 		JLabel lblSystemMonitor = new JLabel("System Monitor:");
 
-		cbSystemMonitor = new JColorBox(Colors.getGlobal().get("system monitor"));
+		cbSystemMonitor = new JColorBox(SettingsColors.getGlobal().get("system monitor"));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addContainerGap().addComponent(lblSystemMonitor).addPreferredGap(ComponentPlacement.RELATED, 28, Short.MAX_VALUE).addComponent(cbSystemMonitor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addContainerGap()));
 		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addContainerGap().addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(lblSystemMonitor).addComponent(cbSystemMonitor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addContainerGap(16, Short.MAX_VALUE)));
@@ -69,7 +69,7 @@ public class FrameColors extends BaseFrame {
 	}
 
 	public void exit() {
-		Colors.getGlobal().put("system monitor", cbSystemMonitor.getProfile());
-		Colors.getGlobal().put("outdated connections", cbOutdatedServers.getProfile());
+		SettingsColors.getGlobal().put("system monitor", cbSystemMonitor.getProfile());
+		SettingsColors.getGlobal().put("outdated connections", cbOutdatedServers.getProfile());
 	}
 }

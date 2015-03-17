@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
 
-import se.jrat.client.settings.Colors;
+import se.jrat.client.settings.SettingsColors;
 import se.jrat.client.ui.renderers.JColorBoxRenderer;
 
 
@@ -25,17 +25,17 @@ public class JColorBox extends JComboBox<String> {
 		super.setRenderer(new JColorBoxRenderer());
 	}
 
-	public JColorBox(Colors.ColorProfile profile) {
+	public JColorBox(SettingsColors.ColorProfile profile) {
 		this();
 		setProfile(profile);
 	}
 
-	public void setProfile(Colors.ColorProfile profile) {
+	public void setProfile(SettingsColors.ColorProfile profile) {
 		super.setSelectedIndex(profile.getIndex());
 	}
 
-	public Colors.ColorProfile getProfile() {
-		Colors.ColorProfile profile = Colors.getGlobal().new ColorProfile();
+	public SettingsColors.ColorProfile getProfile() {
+		SettingsColors.ColorProfile profile = SettingsColors.getGlobal().new ColorProfile();
 		profile.setIndex(super.getSelectedIndex());
 		return profile;
 	}

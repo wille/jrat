@@ -21,9 +21,9 @@ import javax.swing.tree.DefaultTreeModel;
 import se.jrat.client.listeners.ChangelogListener;
 import se.jrat.client.listeners.EulaListener;
 import se.jrat.client.listeners.Performable;
-import se.jrat.client.settings.CountryStatistics;
+import se.jrat.client.settings.StatisticsCountry;
 import se.jrat.client.settings.Settings;
-import se.jrat.client.settings.Theme;
+import se.jrat.client.settings.SettingsTheme;
 import se.jrat.client.ui.panels.PanelSettingsFlags;
 import se.jrat.client.ui.panels.PanelSettingsMain;
 import se.jrat.client.ui.panels.PanelSettingsProxy;
@@ -142,10 +142,10 @@ public class FrameSettings extends BaseFrame {
 		Settings.getGlobal().setVal("proxyport", proxy.getPort());
 		Settings.getGlobal().setVal("proxysocks", proxy.useSocks());
 
-		Theme.getGlobal().setTheme(themes.getTheme());
+		SettingsTheme.getGlobal().setTheme(themes.getTheme());
 
 		if (!stats.trackStats()) {
-			CountryStatistics.getGlobal().getList().clear();
+			StatisticsCountry.getGlobal().getList().clear();
 		}
 	}
 

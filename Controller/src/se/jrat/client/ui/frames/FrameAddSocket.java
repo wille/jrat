@@ -22,7 +22,7 @@ import javax.swing.border.EmptyBorder;
 import se.jrat.client.ErrorDialog;
 import se.jrat.client.net.PortListener;
 import se.jrat.client.net.ServerListener;
-import se.jrat.client.settings.Sockets;
+import se.jrat.client.settings.SettingsSockets;
 import se.jrat.client.ui.components.JPlaceholderTextField;
 import se.jrat.client.utils.IconUtils;
 import se.jrat.client.utils.Utils;
@@ -161,9 +161,9 @@ public class FrameAddSocket extends BaseFrame {
 			}
 			
 			PortListener connection = null;
-			if (type == Sockets.SocketType.NORMAL_SOCKET) {
+			if (type == SettingsSockets.SocketType.NORMAL_SOCKET) {
 				connection = new ServerListener(name, port, timeout, pass);
-			} else if (type == Sockets.SocketType.WEB_PANEL_SOCKET) {
+			} else if (type == SettingsSockets.SocketType.WEB_PANEL_SOCKET) {
 				connection = new WebPanelListener(name, port, pass);
 			}
 			connection.start();

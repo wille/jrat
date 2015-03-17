@@ -17,15 +17,15 @@ import se.jrat.common.Logger;
 
 import com.redpois0n.graphs.graph.GraphEntry;
 
-public class CountryStatistics extends AbstractSettings implements Serializable {
+public class StatisticsCountry extends AbstractStoreable implements Serializable {
 
 	private static final long serialVersionUID = -7692558803046215384L;
 
-	private static final CountryStatistics instance = new CountryStatistics();
+	private static final StatisticsCountry instance = new StatisticsCountry();
 
 	private transient List<CountryStatEntry> list = new ArrayList<CountryStatEntry>();
 
-	public static CountryStatistics getGlobal() {
+	public static StatisticsCountry getGlobal() {
 		return instance;
 	}
 

@@ -18,15 +18,15 @@ import com.redpois0n.graphs.graph.GraphEntry;
 import com.redpois0n.oslib.AbstractOperatingSystem;
 import com.redpois0n.oslib.Icons;
 
-public class OperatingSystemStatistics extends AbstractSettings implements Serializable {
+public class StatisticsOperatingSystem extends AbstractStoreable implements Serializable {
 
 	private static final long serialVersionUID = 3444250505850670708L;
 
-	private static final OperatingSystemStatistics instance = new OperatingSystemStatistics();
+	private static final StatisticsOperatingSystem instance = new StatisticsOperatingSystem();
 
 	private transient List<OperatingSystemStatEntry> list = new ArrayList<OperatingSystemStatEntry>();
 
-	public static OperatingSystemStatistics getGlobal() {
+	public static StatisticsOperatingSystem getGlobal() {
 		return instance;
 	}
 

