@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import se.jrat.client.Globals;
+import se.jrat.client.Main;
 import se.jrat.client.utils.ClassUtils;
 
 
@@ -30,7 +31,9 @@ public class PluginLoader {
 
 	public static void loadLibs() throws Exception {
 		File dir = Globals.getLibDirectory();
+		
 		for (File file : dir.listFiles()) {
+			Main.debug("Loading library: " + file.getName());
 			ClassUtils.addToClassPath(file);
 		}
 	}

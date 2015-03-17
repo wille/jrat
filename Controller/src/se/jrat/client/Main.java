@@ -13,8 +13,6 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 import jrat.api.commands.Commands;
-import jrat.api.events.OnDisableEvent;
-import se.jrat.client.addons.Plugin;
 import se.jrat.client.addons.PluginLoader;
 import se.jrat.client.commands.DefaultCommands;
 import se.jrat.client.net.WebRequest;
@@ -45,28 +43,21 @@ public class Main {
 	public static Frame instance;
 
 	public static void main(String[] args) throws Exception {	
-		Main.debug("jRAT " + Version.getVersion() + " " + DateFormat.getDateInstance(DateFormat.SHORT).format(new Date()));
+		System.out.println("jRAT " + Version.getVersion() + " " + DateFormat.getDateInstance(DateFormat.SHORT).format(new Date()));
+		
+		debug = argsContains(args, "-debug");
+
+		Main.debug("Loading libraries...");
 		try {
 			PluginLoader.loadLibs();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		try {
 			WebRequest.getUrl("%host%", true);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		
-		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
-			Main.debug("Default user.dir: " + System.getProperty("user.dir"));
-			Main.debug("File directory absolute expected path: " + Globals.getFileDirectory().getAbsolutePath());
-			Main.debug("Path to stub: " + Globals.getStub().getAbsolutePath());
-		}
-		
-		if (argsContains(args, "-locinfo")) {
-			System.out.println(System.getProperty("user.dir"));
-			System.out.println("jRAT.app: " + new File("jRAT.app/").exists());
-			System.out.println("jRAT.app/files/: " + new File("jRAT.app/files/").exists());
 		}
 
 		if (argsContains(args, "-genkey")) {
@@ -79,10 +70,10 @@ public class Main {
 			System.exit(0);
 		}
 
-		debug = argsContains(args, "-debug");
 		hideTitle = argsContains(args, "-hidetitle");
 
 		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
+			Main.debug("Mac OS X detected, enabling menubar");
 			System.setProperty("apple.laf.useScreenMenuBar", "true");
 		}
 		
@@ -92,7 +83,7 @@ public class Main {
 			SettingsTheme.getGlobal().load();
 			UIManager.setLookAndFeel(SettingsTheme.getGlobal().getTheme());
 		} catch (Exception ex) {
-			Main.debug("Could not use look and feel, setting default");
+			Main.debug("Could not use LAF " + SettingsTheme.getGlobal().getTheme() + ", setting default system LAF");
 			ex.printStackTrace();
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		}
@@ -134,13 +125,7 @@ public class Main {
 			frame.setVisible(true);
 		}
 
-		if (!argsContains(args, "-noad") && liteVersion) {
-			//FrameAd frame = new FrameAd();
-			//frame.setVisible(true);
-			
-			// TODO Ad
-		}
-
+		Main.debug("Starting threads...");
 		new Thread(new RunnableNetworkCounter()).start();
 		new ThreadCheckVersion().start();
 		new Thread(new RunnableCheckPlugins()).start();
@@ -148,40 +133,10 @@ public class Main {
 
 		instance.setVisible(true);
 
+		Main.debug("Loading tray icon...");
 		TrayIconUtils.initialize();
 
-		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
-			public void run() {
-				OnDisableEvent event = new OnDisableEvent();
-				for (Plugin p : PluginLoader.plugins) {
-					try {
-						p.getMethods().get(Plugin.ON_DISABLE).invoke(p.getInstance(), new Object[] { event });
-					} catch (Exception ex) {
-						ex.printStackTrace();
-					}
-				}
-
-				AbstractStoreable.saveAllGlobals();
-
-				try {
-					SettingsTheme.getGlobal().save();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				
-				try {
-					Settings.getGlobal().save();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				
-				try {
-					SettingsColumns.getGlobal().save();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		}));
+		Runtime.getRuntime().addShutdownHook(new Thread(new ShutdownHook()));
 
 		DefaultCommands.addDefault();
 
@@ -217,7 +172,11 @@ public class Main {
 		if (s == null) {
 			s = "null";
 		}
-		Logger.log(s.toString());
+		
+		if (debug) {
+			Logger.log(s.toString());
+		}
+		
 		return s.toString();
 	}
 
