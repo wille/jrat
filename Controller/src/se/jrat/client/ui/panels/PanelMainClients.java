@@ -994,15 +994,7 @@ public class PanelMainClients extends JScrollPane {
 						popupMenu.add(item2);
 						popupMenu.add(item);
 					}
-					for (int i = 0; i < popupMenu.getComponents().length; i++) {
-						Component child = popupMenu.getComponents()[i];
-						if (child instanceof JMenuItem) {
-							JMenuItem item = (JMenuItem) child;
-							if (item.getText().equals("Flag/Unflag")) {
-								item.setIcon(FlagUtils.getRandomFlag());
-							}
-						}
-					}
+
 					repaint();
 				} catch (Exception ex) {
 					// ex.printStackTrace();
