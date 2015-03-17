@@ -157,22 +157,19 @@ public abstract class AbstractSlave implements Runnable {
 	}
 	
 	public void update() {
-		
+		Main.instance.getPanelClients().repaint();
 	}
 	
-	public void writeLine(String s) {
-		try {
-			dos.writeShort(s.length());
-			dos.writeChars(s);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
+	public void writeLine(String s) throws Exception {
+		dos.writeShort(s.length());
+		dos.writeChars(s);
 	}
 
 	public String readLine() throws Exception {
 		short len = dis.readShort();
 
 		StringBuilder builder = new StringBuilder();
+		
 		for (int i = 0; i < len; i++) {
 			builder.append(dis.readChar());
 		}
@@ -180,6 +177,15 @@ public abstract class AbstractSlave implements Runnable {
 		String s = builder.toString();
 
 		return s;
+	}
+		
+	public abstract String getDisplayName();
+
+	public abstract void ping() throws Exception;
+
+	public void beginPing() throws Exception {
+		pingms = System.currentTimeMillis();
+		ping();
 	}
 
 	public ServerListener getConnection() {
@@ -255,7 +261,7 @@ public abstract class AbstractSlave implements Runnable {
 		dos.writeLong(l);
 	}
 
-	public void writeLine(Object obj) {
+	public void writeLine(Object obj) throws Exception {
 		writeLine(obj.toString());
 	}
 	
@@ -283,23 +289,6 @@ public abstract class AbstractSlave implements Runnable {
 		return outputStream;
 	}
 
-	public abstract void ping() throws Exception;
-
-	public void beginPing() throws Exception {
-		pingms = System.currentTimeMillis();
-		ping();
-	}
-	
-	public static AbstractSlave getFromId(long id) {
-		for (AbstractSlave slave : Main.connections) {
-			if (slave.getUniqueId() == id) {
-				return slave;
-			}
-		}
-		
-		return null;
-	}
-
 	public int getPing() {
 		return ping;
 	}
@@ -313,9 +302,6 @@ public abstract class AbstractSlave implements Runnable {
 		this.ping = (int) ping;
 	}
 	
-	// TODO
-	public abstract String getDisplayName();
-	
 	public String getUsername() {
 		return username;
 	}
@@ -328,8 +314,8 @@ public abstract class AbstractSlave implements Runnable {
 		return id;
 	}
 
-	public void setServerID(String serverid) {
-		this.id = serverid;
+	public void setID(String id) {
+		this.id = id;
 		
 		SettingsCustomID.CustomIDEntry entry = SettingsCustomID.getGlobal().findEntry(getRawIP());
 		
@@ -461,5 +447,15 @@ public abstract class AbstractSlave implements Runnable {
 
 	public void setMemory(int ram) {
 		this.memory = ram;
+	}
+	
+	public static AbstractSlave getFromId(long id) {
+		for (AbstractSlave slave : Main.connections) {
+			if (slave.getUniqueId() == id) {
+				return slave;
+			}
+		}
+		
+		return null;
 	}
 }

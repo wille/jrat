@@ -9,6 +9,6 @@ public class Packet15InitServerID extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Slave slave, DataInputStream dis) throws Exception {
-		slave.setServerID(slave.readLine());
+		slave.setID(slave.readLine());
 	}
 }

