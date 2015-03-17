@@ -28,7 +28,7 @@ public class ActivePortsTableRenderer extends DefaultJTableCellRenderer {
 			label.setForeground(table.getSelectionForeground());
 		} else {
 			label.setForeground(Color.black);
-		} // TODO
+		}
 
 		return label;
 	}

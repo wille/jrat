@@ -114,6 +114,15 @@ public class PanelMainClients extends JScrollPane {
 		setViewportView(table);
 	}
 	
+	public void reloadTable() {
+		model = new ClientsTableModel();
+		table.setModel(model);
+		
+		for (AbstractSlave slave : Main.connections) {
+			model.addRow(new Object[] { slave });
+		}
+	}
+	
 	public void addSlave(AbstractSlave slave) {
 		model.addRow(new Object[] { slave });
 	}
@@ -266,10 +275,6 @@ public class PanelMainClients extends JScrollPane {
 	public class ClientsTableModel extends DefaultTableModel {
 
 		public ClientsTableModel() {
-			reload();
-		}
-
-		public void reload() {
 			for (String s : columns) {
 				super.addColumn(s);
 			}
