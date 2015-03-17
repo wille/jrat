@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import se.jrat.client.Globals;
+import se.jrat.client.ui.Columns;
 import se.jrat.client.ui.panels.PanelMainClients;
 
 
@@ -64,8 +65,8 @@ public class SettingsColumns extends AbstractStoreable {
 		}
 		
 		if (columns.size() == 0) {
-			for (String c : PanelMainClients.ALL_COLUMNS) {
-				setColumn(c, true);
+			for (Columns c : Columns.values()) {
+				setColumn(c.getName(), c.isDefault());
 			}
 		}
 	}

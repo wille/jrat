@@ -40,6 +40,7 @@ import se.jrat.client.packets.outgoing.Packet45Reconnect;
 import se.jrat.client.packets.outgoing.Packet98InjectJAR;
 import se.jrat.client.settings.Settings;
 import se.jrat.client.settings.SettingsColumns;
+import se.jrat.client.ui.Columns;
 import se.jrat.client.ui.components.DefaultJTable;
 import se.jrat.client.ui.components.DefaultJTableCellRenderer;
 import se.jrat.client.ui.dialogs.DialogFileType;
@@ -60,32 +61,6 @@ import se.jrat.common.downloadable.Downloadable;
 
 @SuppressWarnings("serial")
 public class PanelMainClients extends JScrollPane {
-
-	public static final String COLUMN_COUNTRY = "Country";
-	public static final String COLUMN_ID = "ID";
-	public static final String COLUMN_STATUS = "Status";
-	public static final String COLUMN_IP = "IP/Port";
-	public static final String COLUMN_PING = "Ping";
-	public static final String COLUMN_USER_HOST = "User@Host";
-	public static final String COLUMN_OPERATINGSYSTEM = "Operating System";
-	public static final String COLUMN_RAM = "RAM";
-	public static final String COLUMN_LOCAL_ADDRESS = "Local Address";
-	public static final String COLUMN_VERSION = "Version";
-
-	public static final List<String> ALL_COLUMNS = new ArrayList<String>();
-	
-	static {
-		ALL_COLUMNS.add(COLUMN_COUNTRY);
-		ALL_COLUMNS.add(COLUMN_ID);
-		ALL_COLUMNS.add(COLUMN_STATUS);
-		ALL_COLUMNS.add(COLUMN_IP);
-		ALL_COLUMNS.add(COLUMN_PING);
-		ALL_COLUMNS.add(COLUMN_USER_HOST);
-		ALL_COLUMNS.add(COLUMN_OPERATINGSYSTEM);
-		ALL_COLUMNS.add(COLUMN_RAM);
-		ALL_COLUMNS.add(COLUMN_LOCAL_ADDRESS);
-		ALL_COLUMNS.add(COLUMN_VERSION);
-	}
 	
 	private final List<String> columns = new ArrayList<String>();
 
@@ -93,9 +68,9 @@ public class PanelMainClients extends JScrollPane {
 	private DefaultTableModel model;
 	
 	public PanelMainClients() {
-		for (String s : ALL_COLUMNS) {
-			if (SettingsColumns.getGlobal().isSelected(s)) {
-				columns.add(s);
+		for (Columns s : Columns.values()) {
+			if (SettingsColumns.getGlobal().isSelected(s.getName())) {
+				columns.add(s.getName());
 			}
 		}
 		
@@ -109,7 +84,7 @@ public class PanelMainClients extends JScrollPane {
 				int row = table.getSelectedRow();
 				int column = table.getSelectedColumn();
 
-				if (row != -1 && table.getColumnName(column).equals(COLUMN_COUNTRY)) {
+				if (row != -1 && table.getColumnName(column).equals(Columns.COUNTRY.getName())) {
 					AbstractSlave sl = getSlave(row);
 					sl.setSelected(!sl.isSelected());
 					ListSelectionModel selectionModel = table.getSelectionModel();
@@ -220,9 +195,9 @@ public class PanelMainClients extends JScrollPane {
 				
 				label.setIcon(null);
 				
-				if (colname.equals(COLUMN_COUNTRY) && Main.instance.showThumbnails()) {
+				if (colname.equals(Columns.COUNTRY.getName()) && Main.instance.showThumbnails()) {
 					label.setIcon(slave.getThumbnail());
-				} else if (colname.equals(COLUMN_COUNTRY)) {
+				} else if (colname.equals(Columns.COUNTRY.getName())) {
 					String path;
 
 					String color = Integer.toHexString(label.getForeground().getRGB() & 0xffffff) + "";
@@ -252,7 +227,7 @@ public class PanelMainClients extends JScrollPane {
 					b.setText("<html><table cellpadding=0><tr><td><img src=\"" + url.toString() + "\"/></td><td width=3><td><font color=\"#" + color + "\">" + country + "</font></td></tr></table></html>");
 
 					return b;
-				} else if (colname.equals(COLUMN_ID)) {
+				} else if (colname.equals(Columns.ID.getName())) {
 					String id;
 					
 					if (slave.getRenamedID() != null) {
@@ -262,23 +237,23 @@ public class PanelMainClients extends JScrollPane {
 					}
 					
 					label.setText(id);
-				} else if (colname.equals(COLUMN_STATUS)) {
+				} else if (colname.equals(Columns.STATUS.getName())) {
 					label.setText(Status.getStatusFromID(slave.getStatus()));
-				} else if (colname.equals(COLUMN_IP)) {
+				} else if (colname.equals(Columns.IP.getName())) {
 					label.setText(slave.getIP());
-				} else if (colname.equals(COLUMN_PING)) {
+				} else if (colname.equals(Columns.PING.getName())) {
 					label.setIcon(IconUtils.getPingIcon(slave));
 					label.setText(slave.getPing() + " ms");
-				} else if (colname.equals(COLUMN_USER_HOST)) {
+				} else if (colname.equals(Columns.USER_HOST.getName())) {
 					label.setText(slave.formatUserString());
-				} else if (colname.equals(COLUMN_OPERATINGSYSTEM)) {
+				} else if (colname.equals(Columns.OPERATINGSYSTEM.getName())) {
 					label.setIcon(IconUtils.getOSIcon(slave));
 					label.setText(slave.getOperatingSystem().getDisplayString());
-				} else if (colname.equals(COLUMN_RAM)) {
+				} else if (colname.equals(Columns.RAM.getName())) {
 					label.setText(slave.getMemory() + " MB");
-				} else if (colname.equals(COLUMN_LOCAL_ADDRESS)) {
+				} else if (colname.equals(Columns.LOCAL_ADDRESS.getName())) {
 					label.setText(slave.getLocalIP());
-				} else if (colname.equals(COLUMN_VERSION)) {
+				} else if (colname.equals(Columns.VERSION.getName())) {
 					label.setText(slave.getVersion());
 				}
 			}

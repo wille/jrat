@@ -53,6 +53,7 @@ import se.jrat.client.packets.outgoing.Packet40Thumbnail;
 import se.jrat.client.packets.outgoing.Packet45Reconnect;
 import se.jrat.client.settings.Settings;
 import se.jrat.client.settings.SettingsColumns;
+import se.jrat.client.ui.Columns;
 import se.jrat.client.ui.components.DraggableTabbedPane;
 import se.jrat.client.ui.dialogs.DialogEula;
 import se.jrat.client.ui.panels.PanelMainClients;
@@ -881,9 +882,9 @@ public class Frame extends BaseFrame {
 		tabbedPane.addTab("Log", IconUtils.getIcon("log"), panelLog, null);
 		tabbedPane.addTab("Plugins", IconUtils.getIcon("plugin"), panelPlugins, null);
 		
-		for (String s : PanelMainClients.ALL_COLUMNS) {
+		for (Columns s : Columns.values()) {
 			JCheckBoxMenuItem jcb = new JCheckBoxMenuItem("Display " + s);
-			jcb.setSelected(SettingsColumns.getGlobal().isSelected(s));
+			jcb.setSelected(SettingsColumns.getGlobal().isSelected(s.getName()));
 			jcb.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
