@@ -105,7 +105,7 @@ public class PanelBuildPlugins extends JPanel {
 
 			for (int i = 0; i < files.length; i++) {
 				obj[i] = files[i].getName();
-				StubPlugin p = new StubPlugin(files[i].getName(), false);
+				StubPlugin p = new StubPlugin(files[i].getAbsolutePath(), false);
 				list.plugins.add(p);
 			}
 		}
