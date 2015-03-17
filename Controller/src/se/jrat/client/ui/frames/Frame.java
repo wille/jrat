@@ -52,6 +52,7 @@ import se.jrat.client.packets.outgoing.Packet37RestartJavaProcess;
 import se.jrat.client.packets.outgoing.Packet40Thumbnail;
 import se.jrat.client.packets.outgoing.Packet45Reconnect;
 import se.jrat.client.settings.Settings;
+import se.jrat.client.settings.SettingsColumns;
 import se.jrat.client.ui.components.DraggableTabbedPane;
 import se.jrat.client.ui.dialogs.DialogEula;
 import se.jrat.client.ui.panels.PanelMainClients;
@@ -881,7 +882,7 @@ public class Frame extends BaseFrame {
 		
 		for (String s : PanelMainClients.ALL_COLUMNS) {
 			JCheckBoxMenuItem jcb = new JCheckBoxMenuItem("Display " + s);
-			jcb.setSelected(true);
+			jcb.setSelected(SettingsColumns.getGlobal().isSelected(s));
 			jcb.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -894,6 +895,8 @@ public class Frame extends BaseFrame {
 					} else {
 						panelClients.getColumns().remove(text);
 					}
+					
+					SettingsColumns.getGlobal().setColumn(text, jcb.isSelected());
 					
 					panelClients.reloadTable();
 				}	

@@ -13,13 +13,13 @@ import java.util.List;
 import se.jrat.client.Globals;
 
 
-public class StoreageFileBookmarks extends AbstractStoreable {
+public class StoreFileBookmarks extends AbstractStoreable {
 
 	private transient final List<File> bookmarks = new ArrayList<File>();
 
-	private static final StoreageFileBookmarks instance = new StoreageFileBookmarks();
+	private static final StoreFileBookmarks instance = new StoreFileBookmarks();
 
-	public static StoreageFileBookmarks getGlobal() {
+	public static StoreFileBookmarks getGlobal() {
 		return instance;
 	}
 

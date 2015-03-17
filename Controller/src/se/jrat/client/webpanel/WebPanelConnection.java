@@ -13,7 +13,7 @@ import se.jrat.client.OfflineSlave;
 import se.jrat.client.exceptions.CloseException;
 import se.jrat.client.settings.StatisticsCountry;
 import se.jrat.client.settings.StatisticsCountry.CountryStatEntry;
-import se.jrat.client.settings.StoreageOfflineSlaves;
+import se.jrat.client.settings.StoreOfflineSlaves;
 import se.jrat.client.settings.StatisticsOperatingSystem;
 import se.jrat.client.settings.StatisticsOperatingSystem.OperatingSystemStatEntry;
 
@@ -133,7 +133,7 @@ public class WebPanelConnection implements Runnable {
                 	Main.instance.repaint();
                 } else if (packet == WebPanelPackets.PACKET_LISTOFFLINE) {            	
                 	StringBuilder sb = new StringBuilder();
-                	for (OfflineSlave os : StoreageOfflineSlaves.getGlobal().getList()) {
+                	for (OfflineSlave os : StoreOfflineSlaves.getGlobal().getList()) {
                 		if (!os.isOnline()) {
                 			sb.append(os.getString() + ";");
                 		}
@@ -144,7 +144,7 @@ public class WebPanelConnection implements Runnable {
                 } else if (packet == WebPanelPackets.PACKET_REMOVE_OFFLINE) {
                 	long id = Long.parseLong(readLine());
                 	
-                	StoreageOfflineSlaves.getGlobal().remove(id);
+                	StoreOfflineSlaves.getGlobal().remove(id);
                 }
             }
 

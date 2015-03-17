@@ -39,6 +39,7 @@ import se.jrat.client.packets.outgoing.Packet38RunCommand;
 import se.jrat.client.packets.outgoing.Packet45Reconnect;
 import se.jrat.client.packets.outgoing.Packet98InjectJAR;
 import se.jrat.client.settings.Settings;
+import se.jrat.client.settings.SettingsColumns;
 import se.jrat.client.ui.components.DefaultJTable;
 import se.jrat.client.ui.components.DefaultJTableCellRenderer;
 import se.jrat.client.ui.dialogs.DialogFileType;
@@ -92,16 +93,11 @@ public class PanelMainClients extends JScrollPane {
 	private DefaultTableModel model;
 	
 	public PanelMainClients() {
-		columns.add(COLUMN_COUNTRY);
-		columns.add(COLUMN_ID);
-		columns.add(COLUMN_STATUS);
-		columns.add(COLUMN_IP);
-		columns.add(COLUMN_PING);
-		columns.add(COLUMN_USER_HOST);
-		columns.add(COLUMN_OPERATINGSYSTEM);
-		columns.add(COLUMN_RAM);
-		columns.add(COLUMN_LOCAL_ADDRESS);
-		columns.add(COLUMN_VERSION);
+		for (String s : ALL_COLUMNS) {
+			if (SettingsColumns.getGlobal().isSelected(s)) {
+				columns.add(s);
+			}
+		}
 		
 		model = new ClientsTableModel();
 		table = new DefaultJTable(model);

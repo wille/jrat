@@ -4,6 +4,7 @@ import java.net.ServerSocket;
 import java.util.ArrayList;
 import java.util.List;
 
+import se.jrat.client.Main;
 import se.jrat.client.settings.SettingsSockets;
 import se.jrat.client.ui.panels.PanelMainSockets;
 
@@ -66,7 +67,7 @@ public abstract class PortListener implements Runnable {
 	}
 	
 	public void start() {
-		PanelMainSockets.instance.getModel().addRow(new Object[] { "Listening", name, server.getLocalPort(), timeout, pass });
+		Main.instance.getPanelSockets().getModel().addRow(new Object[] { "Listening", name, server.getLocalPort(), timeout, pass });
 
 		new Thread(this, "Port " + server.getLocalPort()).start();
 	}

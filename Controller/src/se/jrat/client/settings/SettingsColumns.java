@@ -11,39 +11,25 @@ import java.util.HashMap;
 import java.util.Map;
 
 import se.jrat.client.Globals;
+import se.jrat.client.ui.panels.PanelMainClients;
 
 
 public class SettingsColumns extends AbstractStoreable {
 
 	private static final SettingsColumns instance = new SettingsColumns();
 
-	private transient Map<String, Object> settings = new HashMap<String, Object>();
+	private final Map<String, Boolean> columns = new HashMap<String, Boolean>();
 
 	public static SettingsColumns getGlobal() {
 		return instance;
 	}
 
-	public String getString(String key) {
-		Object obj = settings.get(key);
-		return obj == null ? "" : (String) obj;
+	public boolean isSelected(String column) {
+		return columns.get(column);
 	}
 
-	public Object get(String key) {
-		return settings.get(key);
-	}
-
-	public int getInt(String key) {
-		Object obj = settings.get(key);
-		return obj == null ? -1 : (Integer) obj;
-	}
-
-	public boolean getBoolean(String key) {
-		Object obj = settings.get(key);
-		return obj == null ? false : obj.toString().equalsIgnoreCase("true");
-	}
-
-	public void setVal(String key, Object value) {
-		settings.put(key, value);
+	public void setColumn(String name, boolean show) {
+		columns.put(name, show);
 	}
 
 	public void load() throws Exception {
@@ -62,17 +48,7 @@ public class SettingsColumns extends AbstractStoreable {
 					String key = split[0];
 					String rawValue = split[1];
 					
-					Object value = null;
-					
-					try {
-						value = Integer.parseInt(rawValue);
-					} catch (Exception ex) { }
-					
-					if (value == null) {
-						value = rawValue;
-					}
-					
-					settings.put(key, value);
+					columns.put(key, rawValue.equalsIgnoreCase("true"));
 				}
 			}
 	
@@ -81,8 +57,10 @@ public class SettingsColumns extends AbstractStoreable {
 			ex.printStackTrace();
 		}
 		
-		if (settings.size() == 0) {
-			addDefault();
+		if (columns.size() == 0) {
+			for (String c : PanelMainClients.ALL_COLUMNS) {
+				setColumn(c, true);
+			}
 		}
 	}
 
@@ -90,11 +68,11 @@ public class SettingsColumns extends AbstractStoreable {
 		try {
 			PrintWriter pw = new PrintWriter(new OutputStreamWriter(new FileOutputStream(getFile())));
 			
-			pw.println("jRAT settings");
-			pw.println(settings.size());
+			pw.println("Column settings");
+			pw.println(columns.size());
 			
-			for (String s : settings.keySet()) {
-				pw.println(s + "=" + settings.get(s).toString());
+			for (String s : columns.keySet()) {
+				pw.println(s + "=" + columns.get(s).toString());
 			}
 			
 			pw.close();
@@ -103,35 +81,8 @@ public class SettingsColumns extends AbstractStoreable {
 		}
 	}
 
-	public void addDefault() {
-		setVal("bip", "127.0.0.1");
-		setVal("bport", 1336);
-		setVal("bid", "Name");
-		setVal("bkey", "enckey");
-		setVal("bpass", "pass");
-		setVal("bcrypt", true);
-		setVal("brecat", 10);
-		setVal("traynote", true);
-		setVal("soundondc", false);
-		setVal("soundonc", false);
-		setVal("stats", true);
-		setVal("jarname", "File");
-		setVal("autologin", false);
-		setVal("remotescreenstartup", false);
-		setVal("askurl", true);
-		setVal("max", -1);
-		setVal("geoip", true);
-		setVal("encryption", true);
-		setVal("proxy", false);
-		setVal("proxyhost", "127.0.0.1");
-		setVal("proxyport", 9050);
-		setVal("proxysocks", true);
-		setVal("plugintransfer", false);
-		setVal("rowheight", 30);
-	}
-
 	@Override
 	public File getFile() {
-		return new File(Globals.getSettingsDirectory(), ".settings");
+		return new File(Globals.getSettingsDirectory(), ".columns");
 	}
 }

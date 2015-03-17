@@ -14,9 +14,9 @@ public abstract class AbstractStoreable {
 			globalSettings.add(StatisticsOperatingSystem.getGlobal());
 			globalSettings.add(SettingsCustomID.getGlobal());
 			globalSettings.add(SettingsSockets.getGlobal());
-			globalSettings.add(StoreageFileBookmarks.getGlobal());
+			globalSettings.add(StoreFileBookmarks.getGlobal());
 			globalSettings.add(SettingsColors.getGlobal());
-			globalSettings.add(StoreageOfflineSlaves.getGlobal());
+			globalSettings.add(StoreOfflineSlaves.getGlobal());
 		}
 
 		for (AbstractStoreable setting : globalSettings) {
