@@ -76,7 +76,7 @@ public class IncomingPackets {
 		incomingPackets.put(/* "MONITOR" */(byte) 61, Packet61InitMonitors.class);
 		incomingPackets.put(/* "DRIVES" */(byte) 62, Packet62InitDrives.class);
 		incomingPackets.put(/* "RAM" */(byte) 63, Packet63InitRAM.class);
-		incomingPackets.put(/* "APS" */(byte) 64, Packet64InitAvailableProcessors.class);
+		incomingPackets.put(/* "APS" */(byte) 64, Packet64InitAvailableCores.class);
 		incomingPackets.put(/* "ERRLOG" */(byte) 65, Packet65ErrorLog.class);
 		incomingPackets.put(/* "CONFIG" */(byte) 66, Packet66Config.class);
 		incomingPackets.put(/* "PLUGIN" */(byte) 67, Packet67LoadedPlugins.class);

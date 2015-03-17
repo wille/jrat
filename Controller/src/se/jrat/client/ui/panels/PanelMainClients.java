@@ -255,9 +255,9 @@ public class PanelMainClients extends JScrollPane {
 					label.setText(slave.getLocalIP());
 				} else if (colname.equals(Columns.VERSION.getName())) {
 					label.setText(slave.getVersion());
-				} else if (colname.equals(Columns.AVAILABLE_PROCESSORS.getName())) {
+				} else if (colname.equals(Columns.AVAILABLE_CORES.getName())) {
 					if (slave instanceof Slave) {
-						label.setText(((Slave) slave).getProcessors() + "");
+						label.setText(((Slave) slave).getCores() + "");
 					} else {
 						label.setText("?");
 					}

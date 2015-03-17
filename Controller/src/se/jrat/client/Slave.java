@@ -41,7 +41,7 @@ public class Slave extends AbstractSlave {
 	private String language = "";
 	private String displaylanguage = "";
 
-	private short processors;
+	private short cores;
 
 	public Slave(ServerListener connection, Socket socket) {
 		super(connection, socket);
@@ -244,12 +244,12 @@ public class Slave extends AbstractSlave {
 		this.checked = checked;
 	}
 
-	public short getProcessors() {
-		return processors;
+	public short getCores() {
+		return cores;
 	}
 
-	public void setProcessors(short processors) {
-		this.processors = processors;
+	public void setCores(short cores) {
+		this.cores = cores;
 	}
 
 	public long getSent() {
