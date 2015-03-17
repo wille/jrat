@@ -288,11 +288,11 @@ public class FrameControlPanel extends BaseFrame {
 				r.icons.put("system functions", IconUtils.getIcon("system"));
 				r.icons.put("spy functions", IconUtils.getIcon("fingerprint"));
 				r.icons.put("remote screen", IconUtils.getIcon("screen"));
-				r.icons.put("html", Script.getIcon(Script.HTML));
-				r.icons.put("java", Script.getIcon(Script.JS));
-				r.icons.put("batch", Script.getIcon(Script.BAT));
-				r.icons.put("vb script", Script.getIcon(Script.VB));
-				r.icons.put("shell script", Script.getIcon(Script.SH));
+				r.icons.put("html", IconUtils.getIcon("script-html"));
+				r.icons.put("javascript", IconUtils.getIcon("java"));
+				r.icons.put("batch", IconUtils.getIcon("script-bat"));
+				r.icons.put("vb script", IconUtils.getIcon("script-vb"));
+				r.icons.put("shell script", IconUtils.getIcon("script-sh"));
 				r.icons.put("scripting", IconUtils.getIcon("scripting"));
 				r.icons.put("file system", IconUtils.getIcon("folder-tree"));
 				r.icons.put("file searcher", IconUtils.getIcon("folder-search"));
@@ -388,7 +388,7 @@ public class FrameControlPanel extends BaseFrame {
 			tabbedPane.removeAll();
 			tabbedPane.addTab("HTML", i.get("html"), panels.get("html"));
 			tabbedPane.addTab("Batch", i.get("batch"), panels.get("batch"));
-			tabbedPane.addTab("JavaScript", i.get("java"), panels.get("java"));
+			tabbedPane.addTab("JavaScript", i.get("javascript"), panels.get("javascript"));
 			tabbedPane.addTab("VB Script", i.get("vb script"), panels.get("vb script"));
 			tabbedPane.addTab("Shell Script", i.get("shell script"), panels.get("shell script"));
 		} else if (str.equals("file system")) {

@@ -21,15 +21,15 @@ public class Script {
 
 	public static String getString(int i) {
 		if (i == VB) {
-			return "VB";
+			return "script-vb";
 		} else if (i == BAT) {
-			return "BAT";
+			return "script-bat";
 		} else if (i == JS) {
-			return "JavaScript";
+			return "java";
 		} else if (i == HTML) {
-			return "HTML";
+			return "script-html";
 		} else if (i == SH) {
-			return "SH";
+			return "script-sh";
 		} else {
 			return null;
 		}
@@ -56,7 +56,7 @@ public class Script {
 	}
 
 	public static ImageIcon getIcon(String str) {
-		return IconUtils.getIcon("script-" + str.toLowerCase());
+		return IconUtils.getIcon(str);
 	}
 
 	public static void sendScript(Slave sl, int type, String content) {
