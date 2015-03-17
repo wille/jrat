@@ -46,7 +46,11 @@ public class RATObjectFormat {
 
 			@Override
 			public void writeLine(String arg0) throws IOException {
-				s.writeLine(arg0);
+				try {
+					s.writeLine(arg0);
+				} catch (Exception e) { // TODO
+					e.printStackTrace();
+				}
 			}
 
 			@Override

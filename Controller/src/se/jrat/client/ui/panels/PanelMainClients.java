@@ -1,5 +1,6 @@
 package se.jrat.client.ui.panels;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,12 +21,20 @@ import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
 import javax.swing.table.DefaultTableModel;
 
+import jrat.api.RATMenuItem;
+import jrat.api.RATObject;
 import se.jrat.client.AbstractSlave;
 import se.jrat.client.Main;
 import se.jrat.client.Slave;
 import se.jrat.client.Status;
+import se.jrat.client.addons.Plugin;
+import se.jrat.client.addons.PluginLoader;
+import se.jrat.client.addons.RATObjectFormat;
+import se.jrat.client.listeners.CountryMenuItemListener;
 import se.jrat.client.net.URLParser;
 import se.jrat.client.packets.outgoing.Packet100RequestElevation;
 import se.jrat.client.packets.outgoing.Packet11Disconnect;
@@ -54,6 +63,7 @@ import se.jrat.client.ui.frames.FrameRemoteRegistry;
 import se.jrat.client.ui.frames.FrameRemoteScreen;
 import se.jrat.client.ui.frames.FrameRemoteShell;
 import se.jrat.client.ui.frames.FrameRename;
+import se.jrat.client.utils.FlagUtils;
 import se.jrat.client.utils.IconUtils;
 import se.jrat.client.utils.Utils;
 import se.jrat.common.Flood;
@@ -283,7 +293,7 @@ public class PanelMainClients extends JScrollPane {
 	}
 	
 	public JPopupMenu getPopupMenu() {
-		JPopupMenu popupMenu = new JPopupMenu();
+		final JPopupMenu popupMenu = new JPopupMenu();
 		
 		JMenuItem mntmControlPanel = new JMenuItem("Control Panel                       ");
 		mntmControlPanel.addActionListener(new ActionListener() {
@@ -938,6 +948,95 @@ public class PanelMainClients extends JScrollPane {
 
 		mntmUninstall.setIcon(IconUtils.getIcon("exit"));
 		popupMenu.add(mntmUninstall);
+		
+		popupMenu.addPopupMenuListener(new PopupMenuListener() {
+			public void popupMenuCanceled(PopupMenuEvent arg0) {
+
+			}
+
+			public void popupMenuWillBecomeInvisible(PopupMenuEvent arg0) {
+				try {
+					for (int i = 0; i < popupMenu.getComponents().length; i++) {
+						Component child = popupMenu.getComponents()[i];
+						if (child instanceof JMenuItem) {
+							JMenuItem item = (JMenuItem) child;
+							if (item.getText().startsWith("Stub V: ")) {
+								popupMenu.remove(child);
+								popupMenu.remove(i - 1);
+								popupMenu.remove(i - 2);
+							} else if (item.getText().startsWith("Keylogger") || item.getText().equals("Offline logs")) {
+								item.setEnabled(true);
+								if (item.getText().startsWith("Keylogger")) {
+									item.setText("Keylogger");
+								}
+							}
+						}
+					}
+				} catch (Exception ex) {
+
+				}
+			}
+
+			public void popupMenuWillBecomeVisible(PopupMenuEvent arg0) {
+				try {
+					List<AbstractSlave> list = getSelectedSlaves();
+					if (list.size() == 1) {
+						JMenuItem item = new JMenuItem("Stub V: " + list.get(0).getVersion());
+						JMenuItem item2 = new JMenuItem("Country: " + list.get(0).getCountry().toUpperCase());
+
+						item2.addActionListener(new CountryMenuItemListener());
+
+						item2.setIcon(list.get(0).getFlag());
+						item.setForeground(list.get(0).isUpToDate() ? Color.black : Color.red);
+						item.setIcon(list.get(0).isUpToDate() ? IconUtils.getIcon("enabled") : IconUtils.getIcon("warning"));
+
+						popupMenu.addSeparator();
+						popupMenu.add(item2);
+						popupMenu.add(item);
+					}
+					for (int i = 0; i < popupMenu.getComponents().length; i++) {
+						Component child = popupMenu.getComponents()[i];
+						if (child instanceof JMenuItem) {
+							JMenuItem item = (JMenuItem) child;
+							if (item.getText().equals("Flag/Unflag")) {
+								item.setIcon(FlagUtils.getRandomFlag());
+							}
+						}
+					}
+					repaint();
+				} catch (Exception ex) {
+					// ex.printStackTrace();
+				}
+			}
+		});
+
+		for (Plugin plugin : PluginLoader.plugins) {
+			if (plugin.getItems() != null && plugin.getItems().size() > 0) {
+				popupMenu.addSeparator();
+				break;
+			}
+		}
+		for (Plugin plugin : PluginLoader.plugins) {
+			if (plugin.getItems() != null && plugin.getItems().size() > 0) {
+				for (final RATMenuItem en : plugin.getItems()) {
+					JMenuItem item = en.getItem();
+
+					item.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							List<AbstractSlave> list = getSelectedSlaves();
+							List<RATObject> servers = new ArrayList<RATObject>();
+							for (int i = 0; i < list.size(); i++) {
+								servers.add(RATObjectFormat.format(list.get(i)));
+							}
+
+							en.getListener().onClick(servers);
+						}
+					});
+					
+					popupMenu.add(item);
+				}
+			}
+		}
 		
 		return popupMenu;
 	}

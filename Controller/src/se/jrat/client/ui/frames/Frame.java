@@ -1,7 +1,5 @@
 package se.jrat.client.ui.frames;
 
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.Toolkit;
 import java.awt.TrayIcon;
 import java.awt.event.ActionEvent;
@@ -9,7 +7,6 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ImageIcon;
@@ -25,11 +22,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javax.swing.event.PopupMenuEvent;
-import javax.swing.event.PopupMenuListener;
 
-import jrat.api.RATMenuItem;
-import jrat.api.RATObject;
 import se.jrat.client.AbstractSlave;
 import se.jrat.client.Constants;
 import se.jrat.client.ErrorDialog;
@@ -41,8 +34,6 @@ import se.jrat.client.UniqueId;
 import se.jrat.client.Updater;
 import se.jrat.client.addons.Plugin;
 import se.jrat.client.addons.PluginLoader;
-import se.jrat.client.addons.RATObjectFormat;
-import se.jrat.client.listeners.CountryMenuItemListener;
 import se.jrat.client.net.WebRequest;
 import se.jrat.client.packets.outgoing.Packet11Disconnect;
 import se.jrat.client.packets.outgoing.Packet18Update;
@@ -63,7 +54,6 @@ import se.jrat.client.ui.panels.PanelMainPlugins;
 import se.jrat.client.ui.panels.PanelMainSockets;
 import se.jrat.client.ui.panels.PanelMainStats;
 import se.jrat.client.ui.renderers.table.PluginsTableRenderer;
-import se.jrat.client.utils.FlagUtils;
 import se.jrat.client.utils.IconUtils;
 import se.jrat.client.utils.NetUtils;
 import se.jrat.client.utils.Utils;
@@ -763,95 +753,7 @@ public class Frame extends BaseFrame {
 				panelNetwork.setActive(tabbedPane.getTitleAt(tabbedPane.getSelectedIndex()).equals("Network Usage"));
 			}
 		});
-
-		popupMenu = new JPopupMenu();
-		popupMenu.addPopupMenuListener(new PopupMenuListener() {
-			public void popupMenuCanceled(PopupMenuEvent arg0) {
-
-			}
-
-			public void popupMenuWillBecomeInvisible(PopupMenuEvent arg0) {
-				try {
-					for (int i = 0; i < popupMenu.getComponents().length; i++) {
-						Component child = popupMenu.getComponents()[i];
-						if (child instanceof JMenuItem) {
-							JMenuItem item = (JMenuItem) child;
-							if (item.getText().startsWith("Stub V: ")) {
-								popupMenu.remove(child);
-								popupMenu.remove(i - 1);
-								popupMenu.remove(i - 2);
-							} else if (item.getText().startsWith("Keylogger") || item.getText().equals("Offline logs")) {
-								item.setEnabled(true);
-								if (item.getText().startsWith("Keylogger")) {
-									item.setText("Keylogger");
-								}
-							}
-						}
-					}
-				} catch (Exception ex) {
-
-				}
-			}
-
-			public void popupMenuWillBecomeVisible(PopupMenuEvent arg0) {
-				try {
-					List<AbstractSlave> list = panelClients.getSelectedSlaves();
-					if (list.size() == 1) {
-						JMenuItem item = new JMenuItem("Stub V: " + list.get(0).getVersion());
-						JMenuItem item2 = new JMenuItem("Country: " + list.get(0).getCountry().toUpperCase());
-
-						item2.addActionListener(new CountryMenuItemListener());
-
-						item2.setIcon(list.get(0).getFlag());
-						item.setForeground(list.get(0).isUpToDate() ? Color.black : Color.red);
-						item.setIcon(list.get(0).isUpToDate() ? IconUtils.getIcon("enabled") : IconUtils.getIcon("warning"));
-
-						popupMenu.addSeparator();
-						popupMenu.add(item2);
-						popupMenu.add(item);
-					}
-					for (int i = 0; i < popupMenu.getComponents().length; i++) {
-						Component child = popupMenu.getComponents()[i];
-						if (child instanceof JMenuItem) {
-							JMenuItem item = (JMenuItem) child;
-							if (item.getText().equals("Flag/Unflag")) {
-								item.setIcon(FlagUtils.getRandomFlag());
-							}
-						}
-					}
-					repaint();
-				} catch (Exception ex) {
-					// ex.printStackTrace();
-				}
-			}
-		});
-
-		for (Plugin plugin : PluginLoader.plugins) {
-			if (plugin.getItems() != null && plugin.getItems().size() > 0) {
-				popupMenu.addSeparator();
-				break;
-			}
-		}
-		for (Plugin plugin : PluginLoader.plugins) {
-			if (plugin.getItems() != null && plugin.getItems().size() > 0) {
-				for (final RATMenuItem en : plugin.getItems()) {
-					JMenuItem item = en.getItem();
-
-					item.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							List<AbstractSlave> list = panelClients.getSelectedSlaves();
-							List<RATObject> servers = new ArrayList<RATObject>();
-							for (int i = 0; i < list.size(); i++) {
-								servers.add(RATObjectFormat.format(list.get(i)));
-							}
-
-							en.getListener().onClick(servers);
-						}
-					});
-					popupMenu.add(item);
-				}
-			}
-		}
+		
 
 		panelClients = new PanelMainClients();
 		panelStats = new PanelMainStats();
