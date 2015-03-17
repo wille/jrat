@@ -16,9 +16,7 @@ public class Packet68RemoteScreenComplete extends AbstractIncomingPacket {
 	public void read(Slave slave, DataInputStream dis) throws Exception {
 		int mouseX = slave.readInt();
 		int mouseY = slave.readInt();
-		
-		long start = System.currentTimeMillis();
-		
+				
 		FrameRemoteScreen frame = FrameRemoteScreen.instances.get(slave);
 		
 		if (frame != null) {
@@ -54,10 +52,7 @@ public class Packet68RemoteScreenComplete extends AbstractIncomingPacket {
 				frame.setTransmitted(0);
 				frame.setChunks(0);
             }
-            
-            long end = System.currentTimeMillis();
-    		System.out.println("Cycle complete took " + (end - start) + " ms");
-		}
+   		}
 	}
 
 }

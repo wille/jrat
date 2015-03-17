@@ -108,7 +108,7 @@ public class PanelBuildOS extends JPanel {
 		chckbxBSD.setSelected(true);
 
 		JLabel label_3 = new JLabel("");
-		label_3.setIcon(IconUtils.getIcon("os_freebsd"));
+		label_3.setIcon(IconUtils.getIcon("bsd_unknown"));
 
 		chckbxSolaris = new JCheckBox("Solaris");
 		chckbxSolaris.setSelected(true);
