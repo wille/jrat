@@ -258,7 +258,6 @@ public class Build {
 
 			}
 			inputStub.close();
-			outputStub.close();
 
 			if (trayicon) {
 				InputStream trayIcon = null;
