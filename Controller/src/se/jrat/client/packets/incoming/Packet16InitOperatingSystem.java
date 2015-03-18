@@ -75,7 +75,9 @@ public class Packet16InitOperatingSystem extends AbstractIncomingPacket {
 			
 			os = new OSXOperatingSystem(version, arch);
 		} else if (type == OperatingSystem.BSD) {
-			Flavor flavor = Flavor.getFlavorFromString(details);
+			String f = slave.readLine();
+			
+			Flavor flavor = Flavor.getFlavorFromString(f);
 			
 			os = new BSDOperatingSystem(flavor, arch);
 		} else if (type == OperatingSystem.SOLARIS) {
