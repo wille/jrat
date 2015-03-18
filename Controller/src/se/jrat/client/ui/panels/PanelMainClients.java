@@ -270,6 +270,8 @@ public class PanelMainClients extends JScrollPane {
 					} else {
 						label.setText("?");
 					}
+				} else if (colname.equals(Columns.DESKTOP_ENVIRONMENT.getName())) {
+					label.setText(slave.getOperatingSystem().getDesktopEnvironment().getDisplayString());
 				}
 			}
 

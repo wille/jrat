@@ -12,7 +12,8 @@ public enum Columns {
 	RAM("RAM", true),
 	LOCAL_ADDRESS("Local Address", true),
 	VERSION("Version", true),
-	AVAILABLE_CORES("Cores", false);
+	AVAILABLE_CORES("Cores", false),
+	DESKTOP_ENVIRONMENT("Desktop Environment", false);
 
 	private String name;
 	private boolean defaultv;

