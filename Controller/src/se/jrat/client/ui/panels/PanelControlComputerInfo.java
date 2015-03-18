@@ -18,9 +18,7 @@ import javax.swing.table.DefaultTableModel;
 
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet27RefreshSystemInfo;
-import se.jrat.client.packets.outgoing.Packet83WinSysInfo;
 import se.jrat.client.ui.components.DefaultJTable;
-import se.jrat.client.ui.frames.FrameRawSystemInfo;
 import se.jrat.client.ui.renderers.table.ComputerInfoTableRenderer;
 import se.jrat.client.utils.FlagUtils;
 import se.jrat.client.utils.IconUtils;
@@ -70,19 +68,27 @@ public class PanelControlComputerInfo extends PanelControlParent {
 			}
 		});
 		btnSave.setIcon(IconUtils.getIcon("save"));
-
-		JButton btnGetSysteminfoexe = new JButton("Get systeminfo.exe");
-		btnGetSysteminfoexe.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				FrameRawSystemInfo frame = new FrameRawSystemInfo(slave);
-				frame.setVisible(true);
-				slave.addToSendQueue(new Packet83WinSysInfo());
-			}
-		});
-		btnGetSysteminfoexe.setIcon(IconUtils.getIcon("arrow-down"));
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(btnReload).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnSave).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnGetSysteminfoexe).addContainerGap(327, Short.MAX_VALUE)));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 299, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnReload).addComponent(btnSave).addComponent(btnGetSysteminfoexe)).addContainerGap(15, Short.MAX_VALUE)));
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(btnReload)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnSave)
+					.addContainerGap(422, Short.MAX_VALUE))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 299, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnReload)
+						.addComponent(btnSave))
+					.addContainerGap(15, Short.MAX_VALUE))
+		);
 
 		table = new DefaultJTable();
 		table.setDefaultRenderer(Object.class, new ComputerInfoTableRenderer());
@@ -92,7 +98,7 @@ public class PanelControlComputerInfo extends PanelControlParent {
 		scrollPane.setViewportView(table);
 		setLayout(groupLayout);
 
-		refreshSystemInfo();
+		reload();
 	}
 
 	public ComputerInfoTableRenderer getRenderer() {
@@ -108,7 +114,7 @@ public class PanelControlComputerInfo extends PanelControlParent {
 		model.addRow(new Object[] { key, value });
 	}
 
-	public void refreshSystemInfo() {
+	public void reload() {
 		while (model.getRowCount() > 0) {
 			model.removeRow(0);
 		}

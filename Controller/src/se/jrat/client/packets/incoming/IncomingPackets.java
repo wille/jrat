@@ -69,7 +69,7 @@ public class IncomingPackets {
 		incomingPackets.put((byte) 54, Packet54Registry.class);
 		incomingPackets.put((byte) 55, Packet55InstalledProgram.class);
 		incomingPackets.put((byte) 56, Packet56NetworkAdapter.class);
-		incomingPackets.put((byte) 57, Packet57RawComputerInfo.class);
+		// incomingPackets.put((byte) 57, .class);
 		incomingPackets.put((byte) 58, Packet58SoundCapture.class);
 		incomingPackets.put((byte) 59, Packet59ThumbnailPreview.class);
 		incomingPackets.put((byte) 60, Packet60Error.class);

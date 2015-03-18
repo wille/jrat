@@ -87,7 +87,7 @@ public abstract class AbstractIncomingPacket {
 		incomingPackets.put((byte) 80, Packet80CustomRegQuery.class);
 		incomingPackets.put((byte) 81, Packet81InstalledPrograms.class);
 		incomingPackets.put((byte) 82, Packet82NetworkAdapters.class);
-		incomingPackets.put((byte) 83, Packet83WinSysInfo.class);
+		// 83 empty
 		incomingPackets.put((byte) 84, Packet84SoundCapture.class);
 		incomingPackets.put((byte) 85, Packet85ThumbnailPreview.class);
 		incomingPackets.put((byte) 86, Packet86ErrorLog.class);
