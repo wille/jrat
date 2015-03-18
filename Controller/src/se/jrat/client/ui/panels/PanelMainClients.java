@@ -63,7 +63,6 @@ import se.jrat.client.ui.frames.FrameRemoteRegistry;
 import se.jrat.client.ui.frames.FrameRemoteScreen;
 import se.jrat.client.ui.frames.FrameRemoteShell;
 import se.jrat.client.ui.frames.FrameRename;
-import se.jrat.client.utils.FlagUtils;
 import se.jrat.client.utils.IconUtils;
 import se.jrat.client.utils.Utils;
 import se.jrat.common.Flood;

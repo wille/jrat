@@ -15,8 +15,8 @@ import javax.swing.JSpinner;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SpinnerNumberModel;
 
-import se.jrat.client.settings.SettingsCustomID;
 import se.jrat.client.settings.Settings;
+import se.jrat.client.settings.SettingsCustomID;
 import se.jrat.client.utils.IconUtils;
 
 

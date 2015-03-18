@@ -13,9 +13,9 @@ import se.jrat.client.OfflineSlave;
 import se.jrat.client.exceptions.CloseException;
 import se.jrat.client.settings.StatisticsCountry;
 import se.jrat.client.settings.StatisticsCountry.CountryStatEntry;
-import se.jrat.client.settings.StoreOfflineSlaves;
 import se.jrat.client.settings.StatisticsOperatingSystem;
 import se.jrat.client.settings.StatisticsOperatingSystem.OperatingSystemStatEntry;
+import se.jrat.client.settings.StoreOfflineSlaves;
 
 public class WebPanelConnection implements Runnable {
 

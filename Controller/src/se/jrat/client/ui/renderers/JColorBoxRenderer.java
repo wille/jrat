@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JList;
 
-import se.jrat.client.utils.ImageUtils;
+import se.jrat.common.utils.ImageUtils;
 
 
 @SuppressWarnings("serial")

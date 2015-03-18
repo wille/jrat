@@ -1,10 +1,11 @@
-package se.jrat.client.utils;
+package io.jrat.client.utils;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.zip.GZIPInputStream;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -12,7 +13,7 @@ import javax.swing.ImageIcon;
 public class ImageUtils {
 
 	public static BufferedImage decodeImage(byte[] data) throws IOException {
-		return ImageIO.read(new ByteArrayInputStream(data));
+		return ImageIO.read(new GZIPInputStream(new ByteArrayInputStream(data)));
 	}
 
 	public static ImageIcon generateColorBoxSquare(Color c) {

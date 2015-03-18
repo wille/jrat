@@ -17,8 +17,8 @@ import se.jrat.client.addons.PluginLoader;
 import se.jrat.client.events.Event;
 import se.jrat.client.events.Events;
 import se.jrat.client.packets.outgoing.Packet101TransferPlugin;
-import se.jrat.client.settings.StoreOfflineSlaves;
 import se.jrat.client.settings.Settings;
+import se.jrat.client.settings.StoreOfflineSlaves;
 
 public class Packet36Initialized extends AbstractIncomingPacket {
 

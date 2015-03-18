@@ -17,7 +17,6 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JPopupMenu;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.event.ChangeEvent;
@@ -80,8 +79,6 @@ public class Frame extends BaseFrame {
 	private PanelMainSockets panelSockets;
 	private PanelMainLog panelLog;
 	private PanelMainPlugins panelPlugins;
-
-	private JPopupMenu popupMenu;
 
 	private JMenu mnPlugins;
 	private JCheckBoxMenuItem chckbxmntmTransferPluginsIf;
@@ -487,7 +484,7 @@ public class Frame extends BaseFrame {
 		mntmPerformance.setIcon(IconUtils.getIcon("meter"));
 		mnTools.add(mntmPerformance);
 
-		JMenu mnServers = new JMenu("Connections");
+		JMenu mnServers = new JMenu("Clients");
 		menuBar.add(mnServers);
 
 		JMenuItem mntmSelectAll = new JMenuItem("Select all");

