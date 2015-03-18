@@ -25,9 +25,9 @@ public class IncomingPackets {
 
 		incomingPackets.put((byte) 4, Packet4InitOperatingSystem.class);
 		incomingPackets.put((byte) 5, Packet5InitUserHost.class);
+		incomingPackets.put((byte) 6, Packet6InitVersion.class);
 
 		incomingPackets.put((byte) 36, Packet36Initialized.class);
-		incomingPackets.put((byte) 30, Packet30InitVersion.class);
 		incomingPackets.put((byte) 31, Packet31InitInstallationDate.class);
 		incomingPackets.put((byte) 25, Packet25InitJavaVersion.class);
 		incomingPackets.put((byte) 26, Packet26InitJavaPath.class);

