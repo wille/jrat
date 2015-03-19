@@ -40,9 +40,8 @@ public class IncomingPackets {
 		incomingPackets.put((byte) 62, Packet62InitDrives.class);
 		incomingPackets.put((byte) 63, Packet63InitRAM.class);
 		incomingPackets.put((byte) 64, Packet64InitAvailableCores.class);
-		incomingPackets.put((byte) 69, Packet69InitAntivirus.class);
-		incomingPackets.put((byte) 70, Packet70InitFirewall.class);
-		
+		// 69
+		// 70
 		incomingPackets.put((byte) 11, Packet11InstalledLocales.class);
 		incomingPackets.put((byte) 12, Packet12Disconnect.class);
 		incomingPackets.put((byte) 13, Packet13Status.class);

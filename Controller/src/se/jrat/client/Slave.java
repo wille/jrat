@@ -29,8 +29,6 @@ public class Slave extends AbstractSlave {
 	private Drive[] drives;
 	private RemoteMonitor[] monitors;
 	private Locale[] locales;
-	private Antivirus[] antiviruses;
-	private Firewall[] firewalls;
 	private String[] plugins;
 
 	private String serverpath = "";
@@ -286,22 +284,6 @@ public class Slave extends AbstractSlave {
 
 	public void setLanguage(String language) {
 		this.language = language;
-	}
-
-	public void setAntiviruses(Antivirus[] antiviruses) {
-		this.antiviruses = antiviruses;
-	}
-
-	public Antivirus[] getAntiviruses() {
-		return this.antiviruses;
-	}
-
-	public void setFirewalls(Firewall[] firewalls) {
-		this.firewalls = firewalls;
-	}
-
-	public Firewall[] getFirewalls() {
-		return firewalls;
 	}
 
 	public double readDouble() throws Exception {
