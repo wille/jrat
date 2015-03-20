@@ -55,7 +55,7 @@ import se.jrat.client.ui.dialogs.DialogRemoteSoundCapture;
 import se.jrat.client.ui.panels.PanelControlActivePorts;
 import se.jrat.client.ui.panels.PanelControlAdapters;
 import se.jrat.client.ui.panels.PanelControlClipboard;
-import se.jrat.client.ui.panels.PanelControlComputerInfo;
+import se.jrat.client.ui.panels.PanelControlSystemInfo;
 import se.jrat.client.ui.panels.PanelControlConfig;
 import se.jrat.client.ui.panels.PanelControlDownloadManager;
 import se.jrat.client.ui.panels.PanelControlDrives;
@@ -275,7 +275,7 @@ public class FrameControlPanel extends BaseFrame {
 			public void run() {
 				r.icons.put("control panel", IconUtils.getIcon("controlpanel"));
 				r.icons.put("system info", IconUtils.getIcon("info"));
-				r.icons.put("computer info", IconUtils.getIcon("computer"));
+				r.icons.put("system info", IconUtils.getIcon("computer"));
 				r.icons.put("system monitor", IconUtils.getIcon("meter"));
 				r.icons.put("fun manager", IconUtils.getIcon("smiley"));
 				r.icons.put("fun", IconUtils.getIcon("fun"));
@@ -362,7 +362,7 @@ public class FrameControlPanel extends BaseFrame {
 
 		if (str.equals("system info")) {
 			tabbedPane.removeAll();
-			tabbedPane.addTab("Computer Info", i.get("computer info"), panels.get("computer info"));
+			tabbedPane.addTab("System Info", i.get("system info"), panels.get("system info"));
 			tabbedPane.addTab("System Info", i.get("system monitor"), panels.get("system monitor"));
 			tabbedPane.addTab("Drives", i.get("drives"), panels.get("drives"));
 			tabbedPane.addTab("Monitors", i.get("monitors"), panels.get("monitors"));
@@ -432,7 +432,7 @@ public class FrameControlPanel extends BaseFrame {
 		DefaultMutableTreeNode systeminfo = getTreeNode("System Info");
 		n.add(systeminfo);
 
-		systeminfo.add(getTreeNode("Computer Info"));
+		systeminfo.add(getTreeNode("System Info"));
 		systeminfo.add(getTreeNode("System Monitor"));
 		systeminfo.add(getTreeNode("Environment Variables"));
 		systeminfo.add(getTreeNode("System Properties"));
@@ -533,7 +533,7 @@ public class FrameControlPanel extends BaseFrame {
 	public void addPanels() {
 		panels.clear();
 		try {
-			addPanel("computer info", new PanelControlComputerInfo(slave));
+			addPanel("system info", new PanelControlSystemInfo(slave));
 			addPanel("system monitor", new PanelControlPerformance(slave));
 			addPanel("fun manager", new PanelControlFunManager(slave));
 			addPanel("messagebox", new PanelControlMessagebox(slave));

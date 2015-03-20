@@ -23,7 +23,8 @@ public class IncomingPackets {
 
 	private static void reload() {
 		incomingPackets.clear();
-
+		
+		incomingPackets.put((byte) 2, Packet2Status.class);
 		incomingPackets.put((byte) 3, Packet3Initialized.class);
 		incomingPackets.put((byte) 4, Packet4InitOperatingSystem.class);
 		incomingPackets.put((byte) 5, Packet5InitUserHost.class);
@@ -41,8 +42,6 @@ public class IncomingPackets {
 		incomingPackets.put((byte) 17, Packet17InitDrives.class);
 		incomingPackets.put((byte) 18, Packet18InitMonitors.class);
 		
-		incomingPackets.put((byte) 13, Packet13Status.class);
-		incomingPackets.put((byte) 17, Packet17RemoteScreen.class);
 		
 		incomingPackets.put((byte) 19, Packet19ListFiles.class);
 		incomingPackets.put((byte) 21, Packet21RemoteShell.class);
@@ -50,7 +49,7 @@ public class IncomingPackets {
 		//23
 		incomingPackets.put((byte) 24, Packet24JVMMemory.class);
 		incomingPackets.put((byte) 25, Packet25Process.class);
-		//26
+		incomingPackets.put((byte) 26, Packet26RemoteScreen.class);
 		incomingPackets.put((byte) 27, Packet27URLStatus.class);
 		//28
 		incomingPackets.put((byte) 29, Packet29ReceiveFile.class);		

