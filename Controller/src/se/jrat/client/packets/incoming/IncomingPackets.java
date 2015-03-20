@@ -40,10 +40,9 @@ public class IncomingPackets {
 		incomingPackets.put((byte) 15, Packet15InitJavaPath.class);
 		incomingPackets.put((byte) 16, Packet16LoadedPlugins.class);
 		incomingPackets.put((byte) 17, Packet17InitDrives.class);
-		incomingPackets.put((byte) 18, Packet18InitMonitors.class);
-		
-		
+		incomingPackets.put((byte) 18, Packet18InitMonitors.class);	
 		incomingPackets.put((byte) 19, Packet19ListFiles.class);
+		//20
 		incomingPackets.put((byte) 21, Packet21RemoteShell.class);
 		//22
 		//23

@@ -266,7 +266,7 @@ public class FrameControlPanel extends BaseFrame {
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		panel.add(tabbedPane, BorderLayout.CENTER);
 
-		checkUp("system info");
+		checkUp("system");
 	}
 
 	public ControlPanelTreeRenderer getRenderer() {
@@ -274,7 +274,7 @@ public class FrameControlPanel extends BaseFrame {
 		new Thread(new Runnable() {
 			public void run() {
 				r.icons.put("control panel", IconUtils.getIcon("controlpanel"));
-				r.icons.put("system info", IconUtils.getIcon("info"));
+				r.icons.put("system", IconUtils.getIcon("info"));
 				r.icons.put("system info", IconUtils.getIcon("computer"));
 				r.icons.put("system monitor", IconUtils.getIcon("meter"));
 				r.icons.put("fun manager", IconUtils.getIcon("smiley"));
@@ -360,7 +360,7 @@ public class FrameControlPanel extends BaseFrame {
 	public void checkUp(String str) {
 		Map<String, ImageIcon> i = ((ControlPanelTreeRenderer) tree.getCellRenderer()).icons;
 
-		if (str.equals("system info")) {
+		if (str.equals("system")) {
 			tabbedPane.removeAll();
 			tabbedPane.addTab("System Info", i.get("system info"), panels.get("system info"));
 			tabbedPane.addTab("System Info", i.get("system monitor"), panels.get("system monitor"));
@@ -429,7 +429,7 @@ public class FrameControlPanel extends BaseFrame {
 	}
 
 	public void addNodes(DefaultMutableTreeNode n) {
-		DefaultMutableTreeNode systeminfo = getTreeNode("System Info");
+		DefaultMutableTreeNode systeminfo = getTreeNode("System");
 		n.add(systeminfo);
 
 		systeminfo.add(getTreeNode("System Info"));
