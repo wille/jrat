@@ -43,7 +43,6 @@ public class IncomingPackets {
 		
 		//incomingPackets.put((byte) 13, Packet13Status.class);
 		//incomingPackets.put((byte) 17, Packet17RemoteScreen.class);
-		//incomingPackets.put((byte) 18, Packet18OneRemoteScreen.class);
 		incomingPackets.put((byte) 19, Packet19ListFiles.class);
 		incomingPackets.put((byte) 20, Packet20Process.class);
 		incomingPackets.put((byte) 21, Packet21RemoteShell.class);
