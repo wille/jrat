@@ -12,6 +12,7 @@ public enum Columns {
 	RAM("RAM", true),
 	LOCAL_ADDRESS("Local Address", true),
 	VERSION("Version", true),
+	CPU("CPU", false),
 	AVAILABLE_CORES("Cores", false),
 	DESKTOP_ENVIRONMENT("Desktop Environment", false);
 

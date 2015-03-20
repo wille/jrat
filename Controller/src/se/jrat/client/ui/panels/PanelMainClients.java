@@ -274,6 +274,12 @@ public class PanelMainClients extends JScrollPane {
 					}
 				} else if (colname.equals(Columns.DESKTOP_ENVIRONMENT.getName())) {
 					label.setText(slave.getOperatingSystem().getDesktopEnvironment().getDisplayString());
+				} else if (colname.equals(Columns.CPU.getName())) {
+					if (slave instanceof Slave) {
+						label.setText(((Slave) slave).getCPU());
+					} else {
+						label.setText("?");
+					}
 				}
 			}
 

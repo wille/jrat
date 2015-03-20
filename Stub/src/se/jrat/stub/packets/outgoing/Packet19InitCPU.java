@@ -27,8 +27,8 @@ public class Packet19InitCPU extends AbstractOutgoingPacket {
 				List<String> lines = Utils.readFile(new File("/proc/cpuinfo"));
 				
 				for (String line : lines) {
-					if (line.contains("model name")) {
-						line = line.replace("\t", "").split(": ")[0].trim();
+					if (line.toLowerCase().contains("model name")) {
+						line = line.replace("\t", "").split(": ")[1].trim();
 						cpu = line;
 						break;
 					}
