@@ -25,6 +25,8 @@ import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
 import javax.swing.table.DefaultTableModel;
 
+import com.redpois0n.graphs.utils.DataUnits;
+
 import jrat.api.RATMenuItem;
 import jrat.api.RATObject;
 import se.jrat.client.AbstractSlave;
@@ -259,7 +261,7 @@ public class PanelMainClients extends JScrollPane {
 					label.setIcon(IconUtils.getOSIcon(slave));
 					label.setText(slave.getOperatingSystem().getDisplayString());
 				} else if (colname.equals(Columns.RAM.getName())) {
-					label.setText(slave.getMemory() + " MB");
+					label.setText(DataUnits.getAsString(slave.getMemory()));
 				} else if (colname.equals(Columns.LOCAL_ADDRESS.getName())) {
 					label.setText(slave.getLocalIP());
 				} else if (colname.equals(Columns.VERSION.getName())) {

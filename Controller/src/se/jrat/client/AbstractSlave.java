@@ -62,7 +62,7 @@ public abstract class AbstractSlave implements Runnable {
 	protected final long uniqueId;
 	protected int ping = 0;
 	protected int status;
-	protected int memory;
+	protected long memory;
 	protected String id;
 	protected String username;
 	protected ImageIcon thumbnail;
@@ -437,12 +437,12 @@ public abstract class AbstractSlave implements Runnable {
 		update();
 	}
 
-	public int getMemory() {
+	public long getMemory() {
 		return memory;
 	}
 
-	public void setMemory(int ram) {
-		this.memory = ram;
+	public void setMemory(long memory) {
+		this.memory = memory;
 	}
 	
 	public static AbstractSlave getFromId(long id) {

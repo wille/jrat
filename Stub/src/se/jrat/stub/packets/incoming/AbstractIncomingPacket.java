@@ -37,7 +37,7 @@ public abstract class AbstractIncomingPacket {
 		incomingPackets.put((byte) 30, Packet30LogoutComputer.class);
 		incomingPackets.put((byte) 31, Packet31ComputerSleep.class);
 		incomingPackets.put((byte) 32, Packet32LockComputer.class);
-		incomingPackets.put((byte) 33, Packet33RAM.class);
+		incomingPackets.put((byte) 33, Packet33UsedMemory.class);
 		incomingPackets.put((byte) 34, Packet34AdvancedDownload.class);
 		incomingPackets.put((byte) 35, Packet35Script.class);
 		incomingPackets.put((byte) 36, Packet36Uninstall.class);

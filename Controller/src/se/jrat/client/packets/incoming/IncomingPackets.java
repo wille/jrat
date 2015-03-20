@@ -46,7 +46,7 @@ public class IncomingPackets {
 		incomingPackets.put((byte) 21, Packet21RemoteShell.class);
 		//22
 		//23
-		incomingPackets.put((byte) 24, Packet24JVMMemory.class);
+		incomingPackets.put((byte) 24, Packet24UsedMemory.class);
 		incomingPackets.put((byte) 25, Packet25Process.class);
 		incomingPackets.put((byte) 26, Packet26RemoteScreen.class);
 		incomingPackets.put((byte) 27, Packet27URLStatus.class);
