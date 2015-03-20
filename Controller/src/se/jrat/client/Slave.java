@@ -38,6 +38,7 @@ public class Slave extends AbstractSlave {
 	private String language = "";
 	private String displaylanguage = "";
 
+	private String cpu;
 	private short cores;
 
 	public Slave(ServerListener connection, Socket socket) {
@@ -243,6 +244,14 @@ public class Slave extends AbstractSlave {
 
 	public void setCores(short cores) {
 		this.cores = cores;
+	}
+	
+	public String getCPU() {
+		return cpu;
+	}
+	
+	public void setCPU(String cpu) {
+		this.cpu = cpu;
 	}
 
 	public long getSent() {

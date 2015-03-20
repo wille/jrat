@@ -41,6 +41,7 @@ public class IncomingPackets {
 		incomingPackets.put((byte) 16, Packet16LoadedPlugins.class);
 		incomingPackets.put((byte) 17, Packet17InitDrives.class);
 		incomingPackets.put((byte) 18, Packet18InitMonitors.class);	
+		incomingPackets.put((byte) 19, Packet19InitCPU.class);
 		//20
 		incomingPackets.put((byte) 21, Packet21RemoteShell.class);
 		incomingPackets.put((byte) 22, Packet22ListFiles.class);
