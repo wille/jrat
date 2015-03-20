@@ -28,7 +28,6 @@ public class Slave extends AbstractSlave {
 	private final List<String> queue = new ArrayList<String>();
 	private Drive[] drives;
 	private RemoteMonitor[] monitors;
-	private Locale[] locales;
 	private String[] plugins;
 
 	private String serverpath = "";
@@ -260,14 +259,6 @@ public class Slave extends AbstractSlave {
 
 	public void setReceived(long received) {
 		this.received = received;
-	}
-
-	public Locale[] getLocales() {
-		return locales;
-	}
-
-	public void setLocales(Locale[] locales) {
-		this.locales = locales;
 	}
 
 	public String getDisplayLanguage() {

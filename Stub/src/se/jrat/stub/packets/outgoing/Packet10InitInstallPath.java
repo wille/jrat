@@ -1,6 +1,7 @@
 package se.jrat.stub.packets.outgoing;
 
 import java.io.DataOutputStream;
+import java.io.File;
 
 import se.jrat.common.io.StringWriter;
 import se.jrat.stub.Main;
@@ -12,7 +13,9 @@ public class Packet10InitInstallPath extends AbstractOutgoingPacket {
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
 		String path = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
 		
-		sw.writeLine(path);
+		File file = new File(path);
+		
+		sw.writeLine(file.getAbsolutePath());
 	}
 
 	@Override

@@ -11,7 +11,6 @@ public class Packet10InitInstallPath extends AbstractIncomingPacket {
 	public void read(Slave slave, DataInputStream dis) throws Exception {
 		String line = slave.readLine();
 		slave.setServerPath(line);
-
 	}
 
 }
