@@ -6,10 +6,6 @@ import java.net.URI;
 
 public class HTMLScript extends Script {
 
-	public HTMLScript(String content) {
-		super(content);
-	}
-
 	@Override
 	protected void perform(File file) throws Exception {
 		Desktop.getDesktop().browse(new URI("file://" + file.getAbsolutePath().replace("\\", "/")));

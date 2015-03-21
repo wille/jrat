@@ -37,15 +37,15 @@ public class Script {
 
 	public static String getSendString(int i) {
 		if (i == VB) {
-			return "VBS";
+			return "vbs";
 		} else if (i == BAT) {
-			return "BAT";
+			return "bat";
 		} else if (i == JS) {
-			return "JS";
+			return "js";
 		} else if (i == HTML) {
-			return "HTML";
+			return "html";
 		} else if (i == SH) {
-			return "SH";
+			return "sh";
 		} else {
 			return null;
 		}

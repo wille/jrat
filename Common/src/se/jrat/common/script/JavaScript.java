@@ -7,10 +7,6 @@ import javax.script.ScriptEngineManager;
 
 public class JavaScript extends Script {
 
-	public JavaScript(String content) {
-		super(content);
-	}
-
 	@Override
 	public void perform(File file) throws Exception {
 		ScriptEngineManager factory = new ScriptEngineManager();

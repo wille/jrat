@@ -6,10 +6,6 @@ import com.redpois0n.oslib.OperatingSystem;
 
 public class BatchScript extends Script {
 
-	public BatchScript(String content) {
-		super(content);
-	}
-
 	@Override
 	protected void perform(File file) throws Exception {
 		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {

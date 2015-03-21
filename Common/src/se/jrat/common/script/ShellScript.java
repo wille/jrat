@@ -6,11 +6,7 @@ import com.redpois0n.oslib.OperatingSystem;
 import com.redpois0n.oslib.Shell;
 
 public class ShellScript extends Script {
-
-	public ShellScript(String content) {
-		super(content);
-	}
-
+	
 	@Override
 	protected void perform(File file) throws Exception {
 		if (OperatingSystem.getOperatingSystem().getType() != OperatingSystem.WINDOWS) {
