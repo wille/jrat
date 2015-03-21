@@ -4,7 +4,7 @@ import java.io.File;
 
 import com.redpois0n.oslib.OperatingSystem;
 
-public class VisualBasicScript extends Script {
+public class VisualBasicScript extends AbstractScript {
 
 	@Override
 	protected void perform(File file) throws Exception {

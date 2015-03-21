@@ -2,7 +2,7 @@ package se.jrat.common.script;
 
 import java.io.File;
 
-public class PythonScript extends Script {
+public class PythonScript extends AbstractScript {
 
 	@Override
 	public void perform(File file) throws Exception {

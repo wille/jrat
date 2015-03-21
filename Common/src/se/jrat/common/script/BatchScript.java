@@ -4,7 +4,7 @@ import java.io.File;
 
 import com.redpois0n.oslib.OperatingSystem;
 
-public class BatchScript extends Script {
+public class BatchScript extends AbstractScript {
 
 	@Override
 	protected void perform(File file) throws Exception {

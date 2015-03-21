@@ -5,7 +5,7 @@ import java.io.File;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 
-public class JavaScript extends Script {
+public class JavaScript extends AbstractScript {
 
 	@Override
 	public void perform(File file) throws Exception {

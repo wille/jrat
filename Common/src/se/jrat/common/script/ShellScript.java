@@ -5,7 +5,7 @@ import java.io.File;
 import com.redpois0n.oslib.OperatingSystem;
 import com.redpois0n.oslib.Shell;
 
-public class ShellScript extends Script {
+public class ShellScript extends AbstractScript {
 	
 	@Override
 	protected void perform(File file) throws Exception {
