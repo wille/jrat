@@ -42,7 +42,7 @@ public abstract class AbstractScript {
 	public abstract String getExtension();
 	
 	public File getFile() throws Exception {
-		return File.createTempFile("s", "." + getExtension());
+		return File.createTempFile("script_" + getExtension(), "." + getExtension());
 	}
 	
 	public static AbstractScript getScript(String s) throws Exception {

