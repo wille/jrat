@@ -509,7 +509,6 @@ public class FrameControlPanel extends BaseFrame {
 		DefaultMutableTreeNode misc = getTreeNode("Misc");
 		n.add(misc);
 		misc.add(getTreeNode("Printer"));
-		misc.add(getTreeNode("Traffic"));
 		misc.add(getTreeNode("Error Log"));
 		misc.add(getTreeNode("Notes"));
 	
