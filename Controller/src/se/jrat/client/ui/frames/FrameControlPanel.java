@@ -473,10 +473,10 @@ public class FrameControlPanel extends BaseFrame {
 		DefaultMutableTreeNode scripting = getTreeNode("Scripting");
 		n.add(scripting);
 		scripting.add(getTreeNode("HTML"));
-		scripting.add(getTreeNode("Batch"));
+		scripting.add(getTreeNode("Batch", slave.getOperatingSystem().getType() == OperatingSystem.WINDOWS));
 		scripting.add(getTreeNode("JavaScript"));
-		scripting.add(getTreeNode("VB Script"));
-		scripting.add(getTreeNode("Shell Script"));
+		scripting.add(getTreeNode("VB Script", slave.getOperatingSystem().getType() == OperatingSystem.WINDOWS));
+		scripting.add(getTreeNode("Shell Script", slave.getOperatingSystem().getType() != OperatingSystem.WINDOWS));
 		scripting.add(getTreeNode("Python Script"));
 
 		DefaultMutableTreeNode filesystem = getTreeNode("File System");
