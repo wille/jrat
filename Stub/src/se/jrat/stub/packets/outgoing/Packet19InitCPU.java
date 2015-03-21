@@ -28,8 +28,7 @@ public class Packet19InitCPU extends AbstractOutgoingPacket {
 				
 				for (String line : lines) {
 					if (line.toLowerCase().contains("model name")) {
-						line = line.replace("\t", "").split(": ")[1].trim();
-						cpu = line;
+						cpu = line.replace("\t", "").split(": ")[1].trim();
 						break;
 					}
 				}

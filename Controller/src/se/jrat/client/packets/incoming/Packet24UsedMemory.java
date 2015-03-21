@@ -14,10 +14,6 @@ public class Packet24UsedMemory extends AbstractIncomingPacket {
 	public void read(Slave slave, DataInputStream dis) throws Exception {
 		long used = dis.readLong();
 		
-		System.out.println(used);
-		System.out.println(slave.getMemory());
-		System.out.println("____");
-		
 		FrameControlPanel frame = FrameControlPanel.instances.get(slave);
 		
 		if (frame != null) {

@@ -108,7 +108,6 @@ public class IncomingPackets {
 				}
 			}
 
-			System.out.println("Header: " + header);
 			if (header >= 0 && header <= PacketRange.incomingRange) {
 				ac.read(slave, slave.getDataInputStream());
 			} else {
