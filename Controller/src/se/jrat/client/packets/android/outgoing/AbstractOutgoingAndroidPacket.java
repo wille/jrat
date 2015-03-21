@@ -17,7 +17,7 @@ public abstract class AbstractOutgoingAndroidPacket {
 		try {
 			byte id = getPacketId();
 
-			if (id < 0 || id > PacketRange.outgoingRange) {
+			if (id < 0 || id > PacketRange.RANGE_OUTGOING) {
 				PluginEventHandler.onSendPacket(id, slave);
 			}
 

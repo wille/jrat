@@ -35,7 +35,7 @@ public class IncomingAndroidPackets {
 				}
 			}
 
-			if (header >= 0 && header <= PacketRange.incomingRange) {
+			if (header >= 0 && header <= PacketRange.RANGE_INCOMING) {
 				ac.read(slave, slave.getDataInputStream());
 			} else {
 				PluginEventHandler.onPacket(slave, header);
