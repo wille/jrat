@@ -1,7 +1,5 @@
 package se.jrat.stub.modules.startup;
 
-import java.io.File;
-import java.util.Date;
 import java.util.Map;
 
 import se.jrat.stub.Configuration;
@@ -28,13 +26,6 @@ public class StartupStartupModule extends StartupModule {
 		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS && currentJar.startsWith("/")) {
 			currentJar = currentJar.substring(1, currentJar.length());
 		}
-
-		File f = new File(currentJar);
-		if (f.exists()) {
-			Date da = new Date(f.lastModified());
-			Configuration.date = da.toString();
-		}
-
 	}
 
 }

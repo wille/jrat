@@ -4,7 +4,9 @@ import java.awt.TrayIcon;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.ByteBuffer;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.zip.ZipFile;
@@ -23,6 +25,7 @@ public class Configuration {
 	private static Map<String, String> config;
 	private static byte[] key;
 	private static byte[] iv;
+	private static long installms;
 
 	public static Map<String, String> getConfig() throws Exception {
 		if (config != null) {
@@ -41,12 +44,23 @@ public class Configuration {
 			extra = zip.getEntry("config.dat").getExtra();
 			key = Arrays.copyOfRange(extra, 0, Crypto.KEY_LENGTH);
 			iv = Arrays.copyOfRange(extra, 16, Crypto.KEY_LENGTH + Crypto.IV_LENGTH);
-			zip.close();
-		} else if ((is = Main.class.getResourceAsStream("/key.dat")) != null) {
-			is.read(key);
+			
+			if (extra.length > 32) {
+				byte[] buffer = Arrays.copyOfRange(extra, 32, Crypto.KEY_LENGTH + Crypto.IV_LENGTH + 8);
+				
+				ByteBuffer bb = ByteBuffer.allocate(8);
+			    bb.put(buffer);
+			    bb.flip();		    
+			    installms = bb.getLong();
+				zip.close();
+			}
 		} else {
 			key = null;
+			installms = System.currentTimeMillis();
 		}
+			
+        Date da = new Date(installms);
+        Configuration.date = da.toString();
 
 		
 		if (key == null) {

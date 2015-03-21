@@ -81,12 +81,25 @@ public class InstallerStartupModule extends StartupModule {
 					ZipEntry entry = entries.nextElement();
 					
 					if (entry.getName().equals("config.dat")) {
-						byte[] extra = new byte[entry.getExtra().length + 1];
+						byte[] extra = new byte[entry.getExtra().length + 8];
 
-						for (int i = 0; i < entry.getExtra().length; i++) {
-							extra[i] = entry.getExtra()[i];
-						}
+						int i = 0;
 						
+						for (; i < entry.getExtra().length; i++) {
+							extra[i] = entry.getExtra()[i];
+						}			
+						
+						long time = System.currentTimeMillis();
+						
+						extra[i++] = ((byte)(int)(time >>> 56));
+						extra[i++] = ((byte)(int)(time >>> 48));
+						extra[i++] = ((byte)(int)(time >>> 40));
+						extra[i++] = ((byte)(int)(time >>> 32));
+						extra[i++] = ((byte)(int)(time >>> 24));
+						extra[i++] = ((byte)(int)(time >>> 16));
+						extra[i++] = ((byte)(int)(time >>> 8));
+						extra[i++] = ((byte)(int)(time >>> 0));
+
 						entry.setExtra(extra);
 					}
 					
