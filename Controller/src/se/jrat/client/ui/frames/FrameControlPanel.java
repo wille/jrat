@@ -291,6 +291,7 @@ public class FrameControlPanel extends BaseFrame {
 				r.icons.put("batch", IconUtils.getIcon("script-bat"));
 				r.icons.put("vb script", IconUtils.getIcon("script-vb"));
 				r.icons.put("shell script", IconUtils.getIcon("script-sh"));
+				r.icons.put("python script", IconUtils.getIcon("script-python"));
 				r.icons.put("scripting", IconUtils.getIcon("scripting"));
 				r.icons.put("file system", IconUtils.getIcon("folder-tree"));
 				r.icons.put("file searcher", IconUtils.getIcon("folder-search"));
@@ -387,6 +388,7 @@ public class FrameControlPanel extends BaseFrame {
 			tabbedPane.addTab("JavaScript", i.get("javascript"), panels.get("javascript"));
 			tabbedPane.addTab("VB Script", i.get("vb script"), panels.get("vb script"));
 			tabbedPane.addTab("Shell Script", i.get("shell script"), panels.get("shell script"));
+			tabbedPane.addTab("Python Script", i.get("python script"), panels.get("python script"));
 		} else if (str.equals("file system")) {
 			tabbedPane.removeAll();
 			tabbedPane.addTab("File Searcher", i.get("file searcher"), panels.get("file searcher"));
@@ -475,6 +477,7 @@ public class FrameControlPanel extends BaseFrame {
 		scripting.add(getTreeNode("JavaScript"));
 		scripting.add(getTreeNode("VB Script"));
 		scripting.add(getTreeNode("Shell Script"));
+		scripting.add(getTreeNode("Python Script"));
 
 		DefaultMutableTreeNode filesystem = getTreeNode("File System");
 		n.add(filesystem);
@@ -543,6 +546,7 @@ public class FrameControlPanel extends BaseFrame {
 			addPanel("batch", new PanelControlScript(slave, Script.BATCH));
 			addPanel("javascript", new PanelControlScript(slave, Script.JAVASCRIPT));
 			addPanel("shell script", new PanelControlScript(slave, Script.SHELL));
+			addPanel("python script", new PanelControlScript(slave, Script.PYTHON));
 			addPanel("file searcher", new PanelControlSearch(slave));
 			addPanel("hosts file", new PanelControlHostsFile(slave));
 			addPanel("utorrent downloads", new PanelControluTorrentDownloads(slave));

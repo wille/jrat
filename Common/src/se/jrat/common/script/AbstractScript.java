@@ -3,8 +3,6 @@ package se.jrat.common.script;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.util.HashMap;
-import java.util.Map;
 
 public abstract class AbstractScript {
 	

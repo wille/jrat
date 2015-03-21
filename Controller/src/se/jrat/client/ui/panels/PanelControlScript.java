@@ -7,7 +7,6 @@ import java.io.FileWriter;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JScrollPane;
@@ -25,14 +24,12 @@ import se.jrat.common.script.Script;
 @SuppressWarnings("serial")
 public class PanelControlScript extends PanelControlParent {
 
-	public Script type;
-	public ImageIcon icon;
+	private Script type;
 	private JTextPane textPane;
 
 	public PanelControlScript(Slave slave, Script type) {
 		super(slave);
 		this.type = type;
-		this.icon = null; //TODO
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -43,7 +40,6 @@ public class PanelControlScript extends PanelControlParent {
 				send();
 			}
 		});
-		btnSendScript.setIcon(this.icon);
 
 		JButton btnSave = new JButton("Save");
 		btnSave.addActionListener(new ActionListener() {
