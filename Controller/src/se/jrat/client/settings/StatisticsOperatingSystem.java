@@ -15,6 +15,7 @@ import se.jrat.client.Globals;
 import se.jrat.client.Main;
 
 import com.redpois0n.graphs.graph.GraphEntry;
+import com.redpois0n.graphs.utils.IconUtils;
 import com.redpois0n.oslib.AbstractOperatingSystem;
 import com.redpois0n.oslib.Icons;
 
@@ -72,7 +73,7 @@ public class StatisticsOperatingSystem extends AbstractStoreable implements Seri
 		}
 
 		ObjectOutputStream str = new ObjectOutputStream(new FileOutputStream(getFile()));
-		str.writeObject(list);
+		//str.writeObject(list);
 		str.close();
 	}
 
@@ -102,12 +103,11 @@ public class StatisticsOperatingSystem extends AbstractStoreable implements Seri
 		for (int i = 0; i < list.size(); i++) {
 			OperatingSystemStatEntry entry = list.get(i);
 			try {
-
-				GraphEntry total = new GraphEntry(entry.getOperatingSystem().getDisplayString(), entry.getConnects(), Icons.getIconString(entry.os));
-				//GraphEntry unique = new GraphEntry(entry.getOS(), entry.getList().size());
+				String icon = Icons.getIconString(entry.os);
+				GraphEntry total = new GraphEntry(entry.getOperatingSystem().getDisplayString(), entry.getConnects(), IconUtils.getIcon(icon));
+				
 				total.setNumberColor(Color.gray);
 				Main.instance.getPanelStats().osGraph.add(total);
-				//Main.instance.getPanelStats().osGraph.add(unique);
 				Main.instance.getPanelStats().repaint();
 			} catch (Exception e) {
 				e.printStackTrace();

@@ -49,8 +49,6 @@ public class PanelMainStats extends JScrollPane {
 			JLabel c = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
 			if (value != null && value.toString().length() > 0) {
-				//c.setIcon(FlagUtils.getFlag(FlagUtils.getIso2FromString(value.toString().toLowerCase())));
-
 				c.setIcon(FlagUtils.getFlag(value.toString().toLowerCase()));
 				c.setText(FlagUtils.getStringFromIso2(value.toString()));
 			}
@@ -64,7 +62,9 @@ public class PanelMainStats extends JScrollPane {
 			JLabel c = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
 			if (value != null && value.toString().length() > 0) {
-				//c.setIcon(Icons.get(value.toString())); 
+				GraphEntry entry = (GraphEntry) value;
+				c.setIcon(entry.getIcon());
+				c.setText(entry.getDisplay());
 			}
 
 			return c;
@@ -92,7 +92,7 @@ public class PanelMainStats extends JScrollPane {
 					}
 
 					for (GraphEntry entry : list) {
-						osModel.insertRow(0, new Object[] { entry.getDisplay() });
+						osModel.insertRow(0, new Object[] { entry });
 					}
 				}
 			};
@@ -117,7 +117,6 @@ public class PanelMainStats extends JScrollPane {
 						}
 						added.add(entry);
 						
-						//countryModel.insertRow(0, new Object[] { FlagUtils.getStringFromIso2(entry.getDisplay()) });
 						countryModel.insertRow(0, new Object[] { entry.getDisplay() });
 					}
 				}

