@@ -16,6 +16,7 @@ public abstract class Script {
 		CLASSES.put("bat", BatchScript.class);
 		CLASSES.put("sh", ShellScript.class);
 		CLASSES.put("js", JavaScript.class);
+		CLASSES.put("py", PythonScript.class);
 	}
 
 	protected String content;
