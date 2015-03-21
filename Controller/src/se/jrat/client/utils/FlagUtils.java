@@ -1,10 +1,7 @@
 package se.jrat.client.utils;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 import javax.swing.ImageIcon;
 
@@ -339,17 +336,6 @@ public class FlagUtils {
 			}
 		}
 		return icon;
-	}
-
-	public static ImageIcon getRandomFlag() {
-		List<String> list = new ArrayList<String>();
-		list.add("blue");
-		list.add("red");
-		list.add("orange");
-		list.add("white");
-		list.add("green");
-		int index = (new Random()).nextInt(list.size() - 1);
-		return IconUtils.getIcon("flag-" + list.get(index), true);
 	}
 
 }

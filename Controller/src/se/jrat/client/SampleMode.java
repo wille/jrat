@@ -54,14 +54,16 @@ public class SampleMode {
 		make(randomCountry(), new SolarisOperatingSystem(), stats);
 	}
 
-	public static void make(String country, AbstractOperatingSystem os, boolean stats) {
+	public static void make(final String rcountry, AbstractOperatingSystem os, boolean stats) {
 		final int i = (new Random()).nextInt(65535);
-
 		final String ip = NetUtils.randomizeIP();
-
 		final int p = new Random().nextInt(500);
 
 		SampleSlave slave = new SampleSlave(os) {
+			@Override
+			public String getCountry() {
+				return rcountry;
+			}
 			
 			@Override
 			public String getRawIP() {
@@ -87,7 +89,6 @@ public class SampleMode {
 			}
 		} else {
 			ConnectionHandler.addSlave(slave);
-			slave.setCountry(country);
 			slave.setStatus(5);
 			slave.setID(Constants.NAME + new Random().nextInt(1000));
 			slave.setComputerName("Sample");
