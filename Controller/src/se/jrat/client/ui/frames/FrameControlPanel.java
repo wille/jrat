@@ -605,8 +605,7 @@ public class FrameControlPanel extends BaseFrame {
 		actions.put("remote screen", new Performable() {
 			@Override
 			public void perform() {
-				FrameRemoteScreen frame = new FrameRemoteScreen(slave);
-				frame.setVisible(true);
+				FrameRemoteScreen.show(slave);
 			}
 		});
 
