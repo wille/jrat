@@ -21,6 +21,7 @@ import se.jrat.client.packets.outgoing.Packet44PlaySoundFromURL;
 import se.jrat.client.packets.outgoing.Packet46CrazyMouse;
 import se.jrat.client.packets.outgoing.Packet65Beep;
 import se.jrat.client.utils.IconUtils;
+import se.jrat.client.utils.NetUtils;
 
 
 @SuppressWarnings("serial")
@@ -67,7 +68,7 @@ public class PanelControlFunManager extends PanelControlParent {
 						throw new Exception();
 					}
 					Integer.parseInt(txtURLwav.getText().trim());
-					if (!txtURLwav.getText().trim().startsWith("http://")) {
+					if (!NetUtils.isURL(txtURLwav.getText().trim())) {
 						throw new Exception();
 					}
 				} catch (Exception ex) {

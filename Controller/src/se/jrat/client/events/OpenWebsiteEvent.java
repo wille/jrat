@@ -6,6 +6,7 @@ import se.jrat.client.AbstractSlave;
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet14VisitURL;
 import se.jrat.client.utils.IconUtils;
+import se.jrat.client.utils.NetUtils;
 import se.jrat.client.utils.Utils;
 
 
@@ -39,7 +40,7 @@ public class OpenWebsiteEvent extends Event {
 	public boolean add() {
 		String result = Utils.showDialog("Visit URL", "Input URL to visit");
 
-		if (result != null && !result.startsWith("http://")) {
+		if (result != null && !NetUtils.isURL(result)) {
 			result = "http://" + result;
 		}
 

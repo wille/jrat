@@ -7,6 +7,7 @@ import se.jrat.client.AbstractSlave;
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet18Update;
 import se.jrat.client.utils.IconUtils;
+import se.jrat.client.utils.NetUtils;
 import se.jrat.client.utils.Utils;
 
 
@@ -42,7 +43,7 @@ public class UpdateFromURLEvent extends Event {
 		if (result == null) {
 			return false;
 		}
-		if (!result.startsWith("http://")) {
+		if (!NetUtils.isURL(result)) {
 			JOptionPane.showMessageDialog(null, "Input valid URL!", "Download URL", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}

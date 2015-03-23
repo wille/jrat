@@ -639,7 +639,7 @@ public class Frame extends BaseFrame {
 				if (result == null) {
 					return;
 				}
-				if (!result.startsWith("http://")) {
+				if (!NetUtils.isURL(result)) {
 					JOptionPane.showMessageDialog(null, "Input valid URL!", "Download URL", JOptionPane.ERROR_MESSAGE);
 					return;
 				}

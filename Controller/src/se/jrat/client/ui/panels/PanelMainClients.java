@@ -66,6 +66,7 @@ import se.jrat.client.ui.frames.FrameRemoteScreen;
 import se.jrat.client.ui.frames.FrameRemoteShell;
 import se.jrat.client.ui.frames.FrameRename;
 import se.jrat.client.utils.IconUtils;
+import se.jrat.client.utils.NetUtils;
 import se.jrat.client.utils.Utils;
 import se.jrat.common.Flood;
 import se.jrat.common.downloadable.Downloadable;
@@ -627,14 +628,16 @@ public class PanelMainClients extends JScrollPane {
 				List<AbstractSlave> servers = getSelectedSlaves();
 				if (servers.size() > 0) {
 					String result = Utils.showDialog("Visit URL", "Input URL to visit");
-					if (result != null && !result.startsWith("http://")) {
+					
+					if (result != null && !NetUtils.isURL(result)) {
 						result = "http://" + result;
 					}
+					
 					if (result == null) {
 						return;
 					}
 
-					if (!result.startsWith("http://")) {
+					if (!NetUtils.isURL(result)) {
 						JOptionPane.showMessageDialog(null, "Input valid URL!", "Visit URL", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
