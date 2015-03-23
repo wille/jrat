@@ -21,7 +21,7 @@ public class Packet25Process extends AbstractIncomingPacket {
 			String[] displayData = new String[4];
 			
 			if (slave.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
-				line = line.replace("\"", "");
+				line = line.replace("\"", "").replace("ÿ", "");
 				String[] args = line.split(",");
 
 				displayData[0] = args[0]; // name

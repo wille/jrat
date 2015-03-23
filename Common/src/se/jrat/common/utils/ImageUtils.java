@@ -39,8 +39,6 @@ public class ImageUtils {
 		}
 		BufferedImage img = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
 		Graphics2D gr = img.createGraphics();
-		// gr.drawImage(image.getScaledInstance(w, h,
-		// BufferedImage.SCALE_SMOOTH), 0, 0, w, h, null);
 		gr.drawImage(image, 0, 0, w, h, null);
 		gr.dispose();
 		return img;
