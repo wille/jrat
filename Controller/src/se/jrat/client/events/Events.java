@@ -22,7 +22,6 @@ public class Events {
 		events.add("open website");
 		events.add("update from url");
 		events.add("uninstall");
-		events.add("redirect");
 	}
 
 	public static Event getEvent(String str, String name) {
