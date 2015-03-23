@@ -8,6 +8,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
 import javax.imageio.IIOImage;
@@ -74,7 +75,7 @@ public class ImageUtils {
 	}
 
 	public static BufferedImage decodeImage(byte[] data) throws IOException {
-		return ImageIO.read(new ByteArrayInputStream(data));
+		return ImageIO.read(new GZIPInputStream(new ByteArrayInputStream(data)));
 	}
 
 }
