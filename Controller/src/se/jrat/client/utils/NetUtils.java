@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URI;
+import java.net.URL;
 
 import se.jrat.client.Constants;
 import se.jrat.client.ErrorDialog;
@@ -37,6 +38,17 @@ public class NetUtils {
 		int k = (short) (int) (Math.random() * 256.0D);
 		int m = (short) (int) (Math.random() * 256.0D);
 		return i + "." + j + "." + k + "." + m;
+	}
+	
+	public static boolean isURL(String s) {
+		try {
+			new URL(s);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return false;
 	}
 
 }
