@@ -29,12 +29,12 @@ public class Packet54Registry extends AbstractIncomingPacket {
 				if (args.length == 3) {
 					ImageIcon icon;
 					if (args[1].equalsIgnoreCase("REG_SZ")) {
-						icon = FrameRemoteRegistry.REGSZ_ICON;
+						icon = FrameRemoteRegistry.ICON_REGSZ;
 					} else {
-						icon = FrameRemoteRegistry.REG01_ICON;
+						icon = FrameRemoteRegistry.ICON_REG01;
 					}
 
-					frame.getRenderer().icons.put(name, icon);
+					frame.getRenderer().getIconMap().put(name, icon);
 					frame.getModel().addRow(new Object[] { name, args[2], args[1] });
 				} else if (line.length() > 0) {
 

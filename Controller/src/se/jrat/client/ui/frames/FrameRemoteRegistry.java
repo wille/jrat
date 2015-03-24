@@ -52,8 +52,8 @@ public class FrameRemoteRegistry extends BaseFrame {
 	private DefaultTableModel model;
 
 	public static final Map<Slave, FrameRemoteRegistry> instances = new HashMap<Slave, FrameRemoteRegistry>();
-	public static final ImageIcon REGSZ_ICON = IconUtils.getIcon("registry-string");
-	public static final ImageIcon REG01_ICON = IconUtils.getIcon("registry-bin");
+	public static final ImageIcon ICON_REGSZ = IconUtils.getIcon("registry-string");
+	public static final ImageIcon ICON_REG01 = IconUtils.getIcon("registry-bin");
 	public static final ImageIcon FOLDER_ICON = IconUtils.getIcon("folder");
 	public static final String[] ROOT_VALUES = new String[] { "HKEY_LOCAL_MACHINE", "HKEY_CURRENT_USER", "HKEY_CLASSES_ROOT", "HKEY_USERS", "HKEY_CURRENT_CONFIG" };
 
@@ -189,7 +189,6 @@ public class FrameRemoteRegistry extends BaseFrame {
 			@Override
 			public void itemSelected(String path) {
 				clear();
-				System.out.println(path);
 				execute(path);
 				txt.setText(path);
 			}
