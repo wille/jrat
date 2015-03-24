@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
-import se.jrat.client.ui.components.tree.DisabledDefaultMutableTreeNode;
+import se.jrat.client.ui.components.DisabledDefaultMutableTreeNode;
 
 @SuppressWarnings("serial")
 public class ControlPanelTreeRenderer extends DefaultTreeCellRenderer {

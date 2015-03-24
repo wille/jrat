@@ -1,4 +1,4 @@
-package se.jrat.client.ui.components.tree;
+package se.jrat.client.ui.components;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 

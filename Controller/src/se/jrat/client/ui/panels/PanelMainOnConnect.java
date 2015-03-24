@@ -1,5 +1,6 @@
 package se.jrat.client.ui.panels;
 
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,6 +11,7 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JToolBar;
 import javax.swing.table.DefaultTableModel;
 
 import se.jrat.client.AbstractSlave;
@@ -18,10 +20,6 @@ import se.jrat.client.events.Event;
 import se.jrat.client.events.Events;
 import se.jrat.client.ui.components.DefaultJTable;
 import se.jrat.client.utils.IconUtils;
-
-import java.awt.BorderLayout;
-
-import javax.swing.JToolBar;
 
 @SuppressWarnings("serial")
 public class PanelMainOnConnect extends JPanel {

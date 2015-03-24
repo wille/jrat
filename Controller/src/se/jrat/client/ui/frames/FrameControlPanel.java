@@ -49,7 +49,7 @@ import se.jrat.client.packets.outgoing.Packet31ComputerSleep;
 import se.jrat.client.packets.outgoing.Packet32LockComputer;
 import se.jrat.client.packets.outgoing.Packet37RestartJavaProcess;
 import se.jrat.client.packets.outgoing.Packet45Reconnect;
-import se.jrat.client.ui.components.tree.DisabledDefaultMutableTreeNode;
+import se.jrat.client.ui.components.DisabledDefaultMutableTreeNode;
 import se.jrat.client.ui.dialogs.DialogRemoteSoundCapture;
 import se.jrat.client.ui.panels.PanelControlActivePorts;
 import se.jrat.client.ui.panels.PanelControlAdapters;

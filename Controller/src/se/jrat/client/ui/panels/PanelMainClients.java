@@ -25,8 +25,6 @@ import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
 import javax.swing.table.DefaultTableModel;
 
-import com.redpois0n.graphs.utils.DataUnits;
-
 import jrat.api.RATMenuItem;
 import jrat.api.RATObject;
 import se.jrat.client.AbstractSlave;
@@ -70,6 +68,8 @@ import se.jrat.client.utils.NetUtils;
 import se.jrat.client.utils.Utils;
 import se.jrat.common.Flood;
 import se.jrat.common.downloadable.Downloadable;
+
+import com.redpois0n.graphs.utils.DataUnits;
 
 @SuppressWarnings("serial")
 public class PanelMainClients extends JScrollPane {

