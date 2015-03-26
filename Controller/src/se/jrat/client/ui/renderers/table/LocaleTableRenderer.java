@@ -5,7 +5,6 @@ import java.awt.Component;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 
-import se.jrat.client.ui.components.DefaultJTableCellRenderer;
 import se.jrat.client.utils.FlagUtils;
 
 

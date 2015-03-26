@@ -7,8 +7,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 
-import se.jrat.client.ui.components.DefaultJTableCellRenderer;
-
 @SuppressWarnings("serial")
 public class ComputerInfoTableRenderer extends DefaultJTableCellRenderer {
 

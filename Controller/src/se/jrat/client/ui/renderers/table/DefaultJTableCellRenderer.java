@@ -1,4 +1,4 @@
-package se.jrat.client.ui.components;
+package se.jrat.client.ui.renderers.table;
 
 import java.awt.Color;
 import java.awt.Component;

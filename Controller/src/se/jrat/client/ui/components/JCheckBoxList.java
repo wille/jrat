@@ -10,6 +10,7 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 
+import se.jrat.client.ui.renderers.table.DefaultJTableCellRenderer;
 import se.jrat.client.ui.renderers.table.PluginsTableRenderer;
 
 @SuppressWarnings({ "serial", "unchecked", "rawtypes" })

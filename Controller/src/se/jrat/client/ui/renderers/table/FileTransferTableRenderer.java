@@ -5,8 +5,6 @@ import java.awt.Component;
 import javax.swing.JProgressBar;
 import javax.swing.JTable;
 
-import se.jrat.client.ui.components.DefaultJTableCellRenderer;
-
 @SuppressWarnings("serial")
 public class FileTransferTableRenderer extends DefaultJTableCellRenderer {
 

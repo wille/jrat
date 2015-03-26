@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import se.jrat.client.ui.renderers.table.DefaultJTableCellRenderer;
+
 @SuppressWarnings("serial")
 public class DefaultJTable extends JTable {
 	
