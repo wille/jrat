@@ -3,8 +3,10 @@ package se.jrat.client.ui.renderers;
 import java.awt.Component;
 import java.awt.Font;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JTree;
 
 import se.jrat.client.utils.IconUtils;
@@ -13,28 +15,34 @@ import se.jrat.client.utils.IconUtils;
 @SuppressWarnings("serial")
 public class GroupTreeRenderer extends DefaultJTreeCellRenderer {
 
-	public HashMap<String, ImageIcon> icons = new HashMap<String, ImageIcon>();
-	public static final ImageIcon group = IconUtils.getIcon("group");
+	public static final ImageIcon ICON_GROUP = IconUtils.getIcon("group");
+	
+	private Map<String, ImageIcon> icons = new HashMap<String, ImageIcon>();
+	
+	public Map<String, ImageIcon> getIconMap() {
+		return icons;
+	}
 
 	public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf, int row, boolean hasFocus) {
-		super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
-		this.setFont(new Font(this.getFont().getName(), Font.PLAIN, this.getFont().getSize()));
+		JLabel label = (JLabel) super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
+		
+		label.setFont(new Font(label.getFont().getName(), Font.PLAIN, label.getFont().getSize()));
 
 		ImageIcon icon = icons.get(value.toString().toLowerCase());
 		if (icon != null && leaf) {
-			setIcon(icon);
+			label.setIcon(icon);
 		} else {
-			setIcon(group);
+			label.setIcon(ICON_GROUP);
 		}
 
 		Object root = tree.getModel().getRoot();
 		for (int i = 0; i < tree.getModel().getChildCount(root); i++) {
 			if (tree.getModel().getChild(root, i).toString().equals(value.toString())) {
-				this.setFont(new Font(this.getFont().getName(), Font.BOLD, this.getFont().getSize()));
+				label.setFont(new Font(label.getFont().getName(), Font.BOLD, label.getFont().getSize()));
 				break;
 			}
 		}
 
-		return this;
+		return label;
 	}
 }

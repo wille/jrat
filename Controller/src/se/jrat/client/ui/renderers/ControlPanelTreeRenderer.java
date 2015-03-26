@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JTree;
 
 import se.jrat.client.ui.components.DisabledDefaultMutableTreeNode;
@@ -18,8 +19,8 @@ public class ControlPanelTreeRenderer extends DefaultJTreeCellRenderer {
 	public ImageIcon icon;
 
 	public ControlPanelTreeRenderer() {
-		same = false;
-		icon = null;
+		this.same = false;
+		this.icon = null;
 	}
 
 	public ControlPanelTreeRenderer(boolean same, ImageIcon icon) {
@@ -28,28 +29,28 @@ public class ControlPanelTreeRenderer extends DefaultJTreeCellRenderer {
 	}
 
 	public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf, int row, boolean hasFocus) {
-		super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
-		this.setFont(new Font(this.getFont().getName(), Font.PLAIN, this.getFont().getSize()));
+		JLabel label = (JLabel) super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
+		label.setFont(new Font(this.getFont().getName(), Font.PLAIN, this.getFont().getSize()));
 
 		if (same && icon != null && leaf) {
-			setIcon(icon);
+			label.setIcon(icon);
 		} else {
 			ImageIcon icon = icons.get(value.toString().toLowerCase());
 			if (icon != null) {
-				setIcon(icon);
+				label.setIcon(icon);
 			}
 
 			Object root = tree.getModel().getRoot();
 			for (int i = 0; i < tree.getModel().getChildCount(root); i++) {
 				if (tree.getModel().getChild(root, i).toString().equals(value.toString())) {
-					this.setFont(new Font(this.getFont().getName(), Font.BOLD, this.getFont().getSize()));
+					label.setFont(new Font(this.getFont().getName(), Font.BOLD, this.getFont().getSize()));
 					break;
 				}
 			}
 			
-			setEnabled(!(value instanceof DisabledDefaultMutableTreeNode));
+			label.setEnabled(!(value instanceof DisabledDefaultMutableTreeNode));
 		}
 		
-		return this;
+		return label;
 	}
 }

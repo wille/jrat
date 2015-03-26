@@ -80,12 +80,12 @@ public class FrameGroups extends BaseFrame {
 
 		List<AbstractSlave> list = Main.connections;
 
-		renderer.icons.clear();
+		renderer.getIconMap().clear();
 
 		for (int i = 0; i < list.size(); i++) {
 			AbstractSlave slave = list.get(i);
 			String val = slave.getUsername() + "@" + slave.getDisplayName();
-			renderer.icons.put(val.toLowerCase(), slave.getFlag());
+			renderer.getIconMap().put(val.toLowerCase(), slave.getFlag());
 
 			if (nodes.containsKey(slave.getID())) {
 				model.insertNodeInto(new DefaultMutableTreeNode(val), nodes.get(slave.getID()), nodes.get(slave.getID()).getChildCount());

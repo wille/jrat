@@ -91,16 +91,16 @@ public class FrameSettings extends BaseFrame {
 
 		JTreeIconsRenderer renderer = new JTreeIconsRenderer();
 
-		renderer.icons.put("main", IconUtils.getIcon("tab-settings"));
-		renderer.icons.put("themes", IconUtils.getIcon("themes"));
-		renderer.icons.put("editor", IconUtils.getIcon("list"));
-		renderer.icons.put("flags", IconUtils.getIcon("/flags/unknown.png", false));
-		renderer.icons.put("stats", IconUtils.getIcon("statistics"));
-		renderer.icons.put("sound", IconUtils.getIcon("sound"));
-		renderer.icons.put("eula", IconUtils.getIcon("gavel"));
-		renderer.icons.put("changelog", IconUtils.getIcon("changelog"));
-		renderer.icons.put("about", IconUtils.getIcon("info"));
-		renderer.icons.put("proxy", IconUtils.getIcon("server"));
+		renderer.getIconMap().put("main", IconUtils.getIcon("tab-settings"));
+		renderer.getIconMap().put("themes", IconUtils.getIcon("themes"));
+		renderer.getIconMap().put("editor", IconUtils.getIcon("list"));
+		renderer.getIconMap().put("flags", IconUtils.getIcon("/flags/unknown.png", false));
+		renderer.getIconMap().put("stats", IconUtils.getIcon("statistics"));
+		renderer.getIconMap().put("sound", IconUtils.getIcon("sound"));
+		renderer.getIconMap().put("eula", IconUtils.getIcon("gavel"));
+		renderer.getIconMap().put("changelog", IconUtils.getIcon("changelog"));
+		renderer.getIconMap().put("about", IconUtils.getIcon("info"));
+		renderer.getIconMap().put("proxy", IconUtils.getIcon("server"));
 
 		tree.setCellRenderer(renderer);
 		reload();

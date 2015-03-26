@@ -63,25 +63,25 @@ public class FrameBuildAdvanced extends BaseFrame {
 
 		JTreeIconsRenderer renderer = new JTreeIconsRenderer();
 
-		renderer.icons.put("final", IconUtils.getIcon("final", true));
-		renderer.icons.put("general", IconUtils.getIcon("id", true));
-		renderer.icons.put("network", IconUtils.getIcon("computer", true));
-		renderer.icons.put("startup", IconUtils.getIcon("update", true));
-		renderer.icons.put("install message", IconUtils.getIcon("messagebox", true));
-		renderer.icons.put("binder", IconUtils.getIcon("merge", true));
-		renderer.icons.put("mutex", IconUtils.getIcon("mutex", true));
-		renderer.icons.put("allowed os", IconUtils.getIcon("toolbox", true));
-		renderer.icons.put("plugins", IconUtils.getIcon("plugin", true));
-		renderer.icons.put("timeout", IconUtils.getIcon("timeout", true));
-		renderer.icons.put("delay", IconUtils.getIcon("timer", true));
-		renderer.icons.put("host file", IconUtils.getIcon("leaf"));
-		renderer.icons.put("tray icon", IconUtils.getIcon("glasses"));
-		renderer.icons.put("error handling", IconUtils.getIcon("error"));
-		renderer.icons.put("persistance", IconUtils.getIcon("persistance"));
-		renderer.icons.put("debug messages", IconUtils.getIcon("application-detail"));
-		renderer.icons.put("classes", IconUtils.getIcon("class"));
-		renderer.icons.put("output", IconUtils.getIcon("compile"));
-		renderer.icons.put("virtualization", IconUtils.getIcon("virtualization"));
+		renderer.getIconMap().put("final", IconUtils.getIcon("final", true));
+		renderer.getIconMap().put("general", IconUtils.getIcon("id", true));
+		renderer.getIconMap().put("network", IconUtils.getIcon("computer", true));
+		renderer.getIconMap().put("startup", IconUtils.getIcon("update", true));
+		renderer.getIconMap().put("install message", IconUtils.getIcon("messagebox", true));
+		renderer.getIconMap().put("binder", IconUtils.getIcon("merge", true));
+		renderer.getIconMap().put("mutex", IconUtils.getIcon("mutex", true));
+		renderer.getIconMap().put("allowed os", IconUtils.getIcon("toolbox", true));
+		renderer.getIconMap().put("plugins", IconUtils.getIcon("plugin", true));
+		renderer.getIconMap().put("timeout", IconUtils.getIcon("timeout", true));
+		renderer.getIconMap().put("delay", IconUtils.getIcon("timer", true));
+		renderer.getIconMap().put("host file", IconUtils.getIcon("leaf"));
+		renderer.getIconMap().put("tray icon", IconUtils.getIcon("glasses"));
+		renderer.getIconMap().put("error handling", IconUtils.getIcon("error"));
+		renderer.getIconMap().put("persistance", IconUtils.getIcon("persistance"));
+		renderer.getIconMap().put("debug messages", IconUtils.getIcon("application-detail"));
+		renderer.getIconMap().put("classes", IconUtils.getIcon("class"));
+		renderer.getIconMap().put("output", IconUtils.getIcon("compile"));
+		renderer.getIconMap().put("virtualization", IconUtils.getIcon("virtualization"));
 
 		panel = new JPanel();
 		panel.setBorder(BorderFactory.createLineBorder(Color.gray.brighter()));
