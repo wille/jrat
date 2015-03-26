@@ -1,17 +1,16 @@
-package se.jrat.client.ui.renderers.table;
+package se.jrat.client.ui.renderers;
 
 import java.awt.Component;
 
 import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.JTree;
-import javax.swing.tree.DefaultTreeCellRenderer;
 
 import se.jrat.client.utils.IconUtils;
 
 
 @SuppressWarnings("serial")
-public class HelpTableRenderer extends DefaultTreeCellRenderer {
+public class HelpTreeRenderer extends DefaultJTreeCellRenderer {
 
 	public static final Icon folder = IconUtils.getFileIconFromExtension(null, true);
 	public static final Icon file = IconUtils.getFileIconFromExtension(".txt", false);

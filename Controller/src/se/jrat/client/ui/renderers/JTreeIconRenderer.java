@@ -4,10 +4,9 @@ import java.awt.Component;
 
 import javax.swing.ImageIcon;
 import javax.swing.JTree;
-import javax.swing.tree.DefaultTreeCellRenderer;
 
 @SuppressWarnings("serial")
-public class JTreeIconRenderer extends DefaultTreeCellRenderer {
+public class JTreeIconRenderer extends DefaultJTreeCellRenderer {
 
 	public ImageIcon icon;
 

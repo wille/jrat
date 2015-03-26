@@ -6,13 +6,12 @@ import java.util.HashMap;
 
 import javax.swing.ImageIcon;
 import javax.swing.JTree;
-import javax.swing.tree.DefaultTreeCellRenderer;
 
 import se.jrat.client.utils.IconUtils;
 
 
 @SuppressWarnings("serial")
-public class GroupTreeRenderer extends DefaultTreeCellRenderer {
+public class GroupTreeRenderer extends DefaultJTreeCellRenderer {
 
 	public HashMap<String, ImageIcon> icons = new HashMap<String, ImageIcon>();
 	public static final ImageIcon group = IconUtils.getIcon("group");

@@ -5,10 +5,9 @@ import java.util.HashMap;
 
 import javax.swing.Icon;
 import javax.swing.JTree;
-import javax.swing.tree.DefaultTreeCellRenderer;
 
 @SuppressWarnings("serial")
-public class JTreeIconsRenderer extends DefaultTreeCellRenderer {
+public class JTreeIconsRenderer extends DefaultJTreeCellRenderer {
 
 	public HashMap<String, Icon> icons = new HashMap<String, Icon>();
 	public boolean same;

@@ -37,7 +37,7 @@ import se.jrat.client.Constants;
 import se.jrat.client.Globals;
 import se.jrat.client.Help;
 import se.jrat.client.net.WebRequest;
-import se.jrat.client.ui.renderers.table.HelpTableRenderer;
+import se.jrat.client.ui.renderers.HelpTreeRenderer;
 import se.jrat.client.utils.IconUtils;
 import se.jrat.client.utils.NetUtils;
 
@@ -124,7 +124,7 @@ public class FrameHelp extends BaseFrame {
 		splitPane.setLeftComponent(tree);
 		tree.setShowsRootHandles(true);
 		tree.setRootVisible(false);
-		tree.setCellRenderer(new HelpTableRenderer());
+		tree.setCellRenderer(new HelpTreeRenderer());
 		tree.addTreeSelectionListener(new TreeSelectionListener() {
 			public void valueChanged(TreeSelectionEvent arg0) {
 				try {
