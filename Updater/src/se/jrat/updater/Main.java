@@ -1,4 +1,4 @@
-package su.jrat.updater;
+package se.jrat.updater;
 
 import java.io.File;
 
