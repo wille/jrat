@@ -2,11 +2,13 @@ package se.jrat.client.packets.incoming;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
+
+import javax.imageio.ImageIO;
 
 import se.jrat.client.Slave;
 import se.jrat.client.ui.frames.FrameRemoteScreen;
-import se.jrat.common.utils.ImageUtils;
 
 public class Packet26RemoteScreen extends AbstractIncomingPacket {
 
@@ -39,7 +41,7 @@ public class Packet26RemoteScreen extends AbstractIncomingPacket {
 			try {
 				Graphics2D imageGraphics = (Graphics2D) bufferedImage.getGraphics();
 
-				BufferedImage image = ImageUtils.decodeImage(buffer);
+				BufferedImage image = ImageIO.read(new ByteArrayInputStream(buffer));
 				imageGraphics.drawImage(image, y * chunkWidth, x * chunkHeight, null);
 
 				frame.update(bufferedImage);
