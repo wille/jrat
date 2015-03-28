@@ -91,7 +91,7 @@ public class PanelBuildOS extends JPanel {
 		label.setIcon(IconUtils.getIcon("os_win"));
 
 		JLabel label_1 = new JLabel("");
-		label_1.setIcon(IconUtils.getIcon("os_mac"));
+		label_1.setIcon(IconUtils.getIcon("os_macosx"));
 
 		JLabel label_2 = new JLabel("");
 		label_2.setIcon(IconUtils.getIcon("os_linux"));
