@@ -4,11 +4,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 
-import javax.swing.JOptionPane;
-
 import se.jrat.client.net.WebRequest;
 import se.jrat.client.ui.frames.FrameChangelog;
-
 
 public class Version {
 
@@ -25,9 +22,6 @@ public class Version {
 				FrameChangelog frame = new FrameChangelog(WebRequest.getUrl(Constants.HOST + "/api/changelog.php"), latest);
 				frame.setVisible(true);
 				frame.setTitle("New version! - " + latest);
-				if (!Main.liteVersion) {
-					JOptionPane.showMessageDialog(null, "When you are premium and upgrading, do not loose your jrat.key file\r\nAll your settings will be removed", "Note", JOptionPane.WARNING_MESSAGE);
-				}
 				return true;
 			}
 			return false;
