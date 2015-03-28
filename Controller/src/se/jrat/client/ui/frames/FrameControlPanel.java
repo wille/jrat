@@ -58,7 +58,6 @@ import se.jrat.client.ui.panels.PanelControlConfig;
 import se.jrat.client.ui.panels.PanelControlDownloadManager;
 import se.jrat.client.ui.panels.PanelControlDrives;
 import se.jrat.client.ui.panels.PanelControlErrorLog;
-import se.jrat.client.ui.panels.PanelControlFileZilla;
 import se.jrat.client.ui.panels.PanelControlFunManager;
 import se.jrat.client.ui.panels.PanelControlHostsFile;
 import se.jrat.client.ui.panels.PanelControlInstalledPrograms;
@@ -317,7 +316,6 @@ public class FrameControlPanel extends BaseFrame {
 				r.icons.put("environment variables", IconUtils.getIcon("categories"));
 				r.icons.put("jvm info", IconUtils.getIcon("java"));
 				r.icons.put("piano", IconUtils.getIcon("piano"));
-				r.icons.put("filezilla", IconUtils.getIcon("filezilla"));
 				r.icons.put("printer", IconUtils.getIcon("printer"));
 				r.icons.put("misc", IconUtils.getIcon("toolbox"));
 				r.icons.put("lan computers", IconUtils.getIcon("firewall"));
@@ -395,7 +393,6 @@ public class FrameControlPanel extends BaseFrame {
 		} else if (str.equals("data")) {
 			tabbedPane.removeAll();
 			tabbedPane.addTab("uTorrent Downloads", i.get("utorrent downloads"), panels.get("utorrent downloads"));
-			tabbedPane.addTab("FileZilla", i.get("filezilla"), panels.get("filezilla"));
 			tabbedPane.addTab("Clipboard", i.get("clipboard"), panels.get("clipboard"));
 		} else if (str.equals("network functions")) {
 			tabbedPane.removeAll();
@@ -487,7 +484,6 @@ public class FrameControlPanel extends BaseFrame {
 		DefaultMutableTreeNode stealersdata = getTreeNode("Data");
 		n.add(stealersdata);
 		stealersdata.add(getTreeNode("uTorrent downloads"));
-		stealersdata.add(getTreeNode("FileZilla"));
 		stealersdata.add(getTreeNode("Clipboard"));
 
 		DefaultMutableTreeNode network = getTreeNode("Network functions");
@@ -553,7 +549,6 @@ public class FrameControlPanel extends BaseFrame {
 			addPanel("clipboard", new PanelControlClipboard(slave));
 			addPanel("jvm info", new PanelControlJVMProperties(slave));
 			addPanel("piano", new PanelControlPiano(slave));
-			addPanel("filezilla", new PanelControlFileZilla(slave));
 			addPanel("printer", new PanelControlPrinter(slave));
 			addPanel("lan computers", new PanelControlLANScan(slave));
 			addPanel("net gateway", new PanelControlNetGateway(slave));
