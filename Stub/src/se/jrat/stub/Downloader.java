@@ -86,7 +86,6 @@ public class Downloader extends Thread {
 
 			}
 		} catch (Exception ex) {
-			Connection.status("Failed downloading: " + ex.getClass().getSimpleName() + ": " + ex.getMessage());
 			ex.printStackTrace();
 		}
 	}

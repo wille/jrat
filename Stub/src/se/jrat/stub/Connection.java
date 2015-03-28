@@ -245,12 +245,8 @@ public class Connection implements Runnable {
 		writeLine(obj.toString());
 	}
 
-	public static void status(String status) {
-		addToSendQueue(new Packet2Status(status));
-	}
-
 	public static void status(int status) {
-		addToSendQueue(new Packet2Status(status + ""));
+		addToSendQueue(new Packet2Status(status));
 	}
 
 	public static void lock() {
