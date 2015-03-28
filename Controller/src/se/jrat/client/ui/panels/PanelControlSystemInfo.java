@@ -1,6 +1,5 @@
 package se.jrat.client.ui.panels;
 
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -14,7 +13,7 @@ import se.jrat.client.utils.IconUtils;
 import se.jrat.common.utils.DataUnits;
 
 import com.redpois0n.oslib.Icons;
-
+import java.awt.BorderLayout;
 
 @SuppressWarnings("serial")
 public class PanelControlSystemInfo extends PanelControlParent {
@@ -24,17 +23,17 @@ public class PanelControlSystemInfo extends PanelControlParent {
 
 	public PanelControlSystemInfo(Slave sl) {
 		super(sl);
-
 		this.slave = sl;
+		setLayout(new BorderLayout(0, 0));
 
 		JScrollPane scrollPane = new JScrollPane();
 
 		table = new DefaultJTable();
 		table.setDefaultRenderer(Object.class, new ComputerInfoTableRenderer());
 		table.getTableHeader().setReorderingAllowed(false);
-		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "Key", "Value" }));
 		table.setRowHeight(25);
+
 		scrollPane.setViewportView(table);
 		add(scrollPane);
 
