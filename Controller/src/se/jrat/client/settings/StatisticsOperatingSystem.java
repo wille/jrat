@@ -73,7 +73,7 @@ public class StatisticsOperatingSystem extends AbstractStoreable implements Seri
 		}
 
 		ObjectOutputStream str = new ObjectOutputStream(new FileOutputStream(getFile()));
-		//str.writeObject(list);
+		str.writeObject(list);
 		str.close();
 	}
 
