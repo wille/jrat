@@ -9,14 +9,14 @@ import javax.swing.JOptionPane;
 
 import se.jrat.client.FileData;
 import se.jrat.client.Slave;
-import se.jrat.client.packets.outgoing.Packet21GetFile;
+import se.jrat.client.packets.outgoing.Packet21ServerDownloadFile;
 import se.jrat.client.ui.frames.FrameFileTransfer;
 import se.jrat.client.ui.frames.FrameRemoteFiles;
 import se.jrat.common.io.FileIO;
 import se.jrat.common.io.TransferListener;
 
 
-public class Packet29ReceiveFile extends AbstractIncomingPacket {
+public class Packet29ServerDownloadFile extends AbstractIncomingPacket {
 
 	public static final Map<Slave, FileData> data = new HashMap<Slave, FileData>();
 
@@ -75,7 +75,7 @@ public class Packet29ReceiveFile extends AbstractIncomingPacket {
 						}
 						String f = localData.getRemoteFiles().get(0);
 						localData.getRemoteFiles().remove(0);
-						slave.addToSendQueue(new Packet21GetFile(f));
+						slave.addToSendQueue(new Packet21ServerDownloadFile(f));
 					} else {
 						data.remove(localData);
 						JOptionPane.showMessageDialog(null, "All file transfers were done successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);

