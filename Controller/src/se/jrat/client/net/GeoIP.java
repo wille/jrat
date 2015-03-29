@@ -1,49 +1,55 @@
 package se.jrat.client.net;
 
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
+
+import com.redpois0n.graphs.utils.IconUtils;
 
 public class GeoIP {
 
 	public static final String[] ARRAY_DATA = { "IP", "Country Code", "Country Name", "Region Code", "Region Name", "City", "Zipcode", "Latitude", "Longitude", "Metro Code", "Area Code" };
 
-	public static String getValue(String val, String ip) {
-		String[] info = getInfo(ip);
-
-		for (int i = 0; i < info.length; i++) {
-			if (ARRAY_DATA[i].equals(val)) {
-				return info[i];
-			}
-		}
-
-		return null;
-	}
-
-	public static String[] getInfo(String ip) {
-		String url = "https://freegeoip.net/json/" + ip;
+	public static Map<String, String> getInfo(String ip) {
+		String url = "http://freegeoip.net/json/" + ip;
 		String rawData = readLine(url);
 		return process(rawData);
 	}
 	
-	public static BufferedImage getMap(int zoom, double lat, double lon) throws Exception {
-		return ImageIO.read(new URL("https://maps.googleapis.com/maps/api/staticmap?center=" + lat + "," + lon + "&zoom=" + zoom + "&size=600x300"));
+	public static BufferedImage getMap(int zoom, double lat, double lon, boolean drawNeedle) throws Exception {
+		BufferedImage image = ImageIO.read(new URL("https://maps.googleapis.com/maps/api/staticmap?center=" + lat + "," + lon + "&zoom=" + zoom + "&size=600x350"));
+		
+		if (drawNeedle) {
+			Graphics g = image.createGraphics();
+			Image needle = IconUtils.getIcon("trace").getImage();
+			g.drawImage(needle, image.getWidth() / 2, image.getHeight() / 2, null);
+			g.dispose();
+		}
+		
+		return image;
 	}
 
-	private static String[] process(String s) {
+	private static Map<String, String> process(String s) {
 		s = s.replace("{", "").replace("}", "");
 
 		String[] indexes = s.split(",");
-		String[] data = new String[indexes.length];
+		
+		Map<String, String> map = new HashMap<String, String>();
 
 		for (int i = 0; i < indexes.length; i++) {
-			data[i] = indexes[i].split(":")[1].replace("\"", "");
+			String[] v = indexes[i].replace("\"", "").split(":");
+
+			map.put(v[0], v.length == 1 ? "" : v[1]);
 		}
 
-		return data;
+		return map;
 	}
 
 	private static String readLine(String urlString) {

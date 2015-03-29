@@ -41,7 +41,8 @@ public class JRemoteScreenPane extends JScrollPane {
 			super.requestFocus();
 		}
 
-		public void update() {
+		public void update(BufferedImage image) {
+			this.image = image;
 			super.repaint();
 
 			if (image != null) {
@@ -66,8 +67,7 @@ public class JRemoteScreenPane extends JScrollPane {
 	}
 
 	public void update(BufferedImage image) {
-		pane.image = image;
-		pane.update();
+		pane.update(image);
 	}
 	
 	public BufferedImage getImage() {
