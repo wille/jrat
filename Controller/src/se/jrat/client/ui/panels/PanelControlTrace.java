@@ -54,8 +54,8 @@ public class PanelControlTrace extends PanelControlParent {
 	}
 
 	public void loadDefault() {
-		for (int i = 0; i < GeoIP.infoArray.length; i++) {
-			getModel().addRow(new Object[] { GeoIP.infoArray[i], "" });
+		for (int i = 0; i < GeoIP.ARRAY_DATA.length; i++) {
+			getModel().addRow(new Object[] { GeoIP.ARRAY_DATA[i], "" });
 		}
 	}
 
