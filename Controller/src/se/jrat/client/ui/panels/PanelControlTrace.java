@@ -25,15 +25,19 @@ public class PanelControlTrace extends PanelControlParent {
 		super(sl);
 		setLayout(new BorderLayout(0, 0));
 
-		JRemoteScreenPane.ImagePanel panel = new JRemoteScreenPane().new ImagePanel();
+		final JRemoteScreenPane.ImagePanel panel = new JRemoteScreenPane().new ImagePanel();
 		add(panel);
 		
-		try {
-			Map<String, String> info = GeoIP.getInfo(sl);
-			panel.update(GeoIP.getMap(4, Double.parseDouble(info.get("latitude")), Double.parseDouble(info.get("longitude")), true));
-		} catch (Exception e) {
-			e.printStackTrace();
-			ErrorDialog.create(e);
-		}
+		new Thread(new Runnable() {
+			public void run() {
+				try {
+					Map<String, String> info = GeoIP.getInfo(slave);
+					panel.update(GeoIP.getMap(4, Double.parseDouble(info.get("latitude")), Double.parseDouble(info.get("longitude")), true));
+				} catch (Exception e) {
+					e.printStackTrace();
+					ErrorDialog.create(e);
+				}
+			}
+		}).start();
 	}
 }
