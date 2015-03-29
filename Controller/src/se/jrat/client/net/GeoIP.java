@@ -11,13 +11,22 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 
+import se.jrat.client.AbstractSlave;
+import se.jrat.client.utils.NetUtils;
+
 import com.redpois0n.graphs.utils.IconUtils;
 
 public class GeoIP {
 
 	public static final String[] ARRAY_DATA = { "IP", "Country Code", "Country Name", "Region Code", "Region Name", "City", "Zipcode", "Latitude", "Longitude", "Metro Code", "Area Code" };
 
-	public static Map<String, String> getInfo(String ip) {
+	public static Map<String, String> getInfo(AbstractSlave slave) throws Exception {
+		String ip = slave.getRawIP();
+		
+		if (ip.equals("127.0.0.1")) {
+			ip = NetUtils.getIP();
+		}
+		
 		String url = "http://freegeoip.net/json/" + ip;
 		String rawData = readLine(url);
 		return process(rawData);
@@ -28,8 +37,8 @@ public class GeoIP {
 		
 		if (drawNeedle) {
 			Graphics g = image.createGraphics();
-			Image needle = IconUtils.getIcon("trace").getImage();
-			g.drawImage(needle, image.getWidth() / 2, image.getHeight() / 2, null);
+			Image needle = IconUtils.getIcon("location").getImage();
+			g.drawImage(needle, image.getWidth() / 2 - 8, image.getHeight() / 2 - 8, null);
 			g.dispose();
 		}
 		

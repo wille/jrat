@@ -29,7 +29,7 @@ public class PanelControlTrace extends PanelControlParent {
 		add(panel);
 		
 		try {
-			Map<String, String> info = GeoIP.getInfo(sl.getRawIP());
+			Map<String, String> info = GeoIP.getInfo(sl);
 			panel.update(GeoIP.getMap(4, Double.parseDouble(info.get("latitude")), Double.parseDouble(info.get("longitude")), true));
 		} catch (Exception e) {
 			e.printStackTrace();
