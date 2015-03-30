@@ -13,6 +13,8 @@ public class CountingOutputStream extends FilterOutputStream {
 		super(arg0);
 	}
 
+	public static int i = 0;
+	
 	@Override
 	public void write(int arg0) throws IOException {
 		super.write(arg0);
@@ -22,6 +24,8 @@ public class CountingOutputStream extends FilterOutputStream {
 		}
 		
 		lastWrite = System.currentTimeMillis();
+	
+		System.out.println("ss " + i++);
 	}
 	
 	@Override
@@ -29,6 +33,7 @@ public class CountingOutputStream extends FilterOutputStream {
 		super.write(array, i, i1);
 		count += i1 - i;
 		lastWrite = System.currentTimeMillis();
+		System.out.println("niggering");
 	}
 	
 	@Override
@@ -36,6 +41,7 @@ public class CountingOutputStream extends FilterOutputStream {
 		super.write(array);
 		count += array.length;
 		lastWrite = System.currentTimeMillis();
+		System.out.println("Writing lol");
 	}
 	
 	public long getCount() {

@@ -22,15 +22,7 @@ public class SendFile {
 		}
 
 		try {
-			slave.addToSendQueue(new Packet42ServerUploadFile(destdir, file.getName(), file));
-
-			if (frame != null) {
-				frame.done(file.getAbsolutePath(), file.length() + "");
-			}
-			if (frame2 != null) {
-				frame2.done();
-			}
-
+			slave.addToSendQueue(new Packet42ServerUploadFile(file, destdir + slave.getFileSeparator() + file.getName()));
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

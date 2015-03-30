@@ -8,7 +8,11 @@ public class Packet95KeyRelease extends AbstractIncomingPacket {
 	@Override
 	public void read() throws Exception {
 		int btn = Connection.readInt();
-		Main.robot.keyRelease(btn);
+		try {
+			Main.robot.keyRelease(btn);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

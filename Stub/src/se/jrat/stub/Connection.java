@@ -160,13 +160,6 @@ public class Connection implements Runnable {
 	}
 
 	public static synchronized void addToSendQueue(AbstractOutgoingPacket packet) {
-		while (lock) {
-			try {
-				Thread.sleep(10L);
-			} catch (Exception ex) {
-				ex.printStackTrace();
-			}
-		}
 		packet.send(dos, sw);
 	}
 

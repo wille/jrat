@@ -1,5 +1,6 @@
 package se.jrat.common.io;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,7 +17,12 @@ public class FileCache {
 	}
 
 	public static void remove(Object o) {
-		MAP.remove(o);
+		try {
+			MAP.remove(o).getOutputStream().close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

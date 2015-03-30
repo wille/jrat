@@ -107,14 +107,6 @@ public class Slave extends AbstractSlave {
 	}
 	
 	public synchronized void addToSendQueue(AbstractOutgoingPacket packet) {
-		while (lock) {
-			try {
-				Thread.sleep(10L);
-			} catch (Exception ex) {
-				ex.printStackTrace();
-			}
-
-		}
 		try {
 			sendPacket(packet, dos);
 		} catch (Exception e) {

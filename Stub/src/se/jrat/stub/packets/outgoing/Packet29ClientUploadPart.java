@@ -24,7 +24,7 @@ public class Packet29ClientUploadPart extends AbstractOutgoingPacket {
 		sw.writeLine(file.getAbsolutePath());
 
 		dos.writeInt(to);
-		dos.write(part);
+		dos.write(part, 0, to);
 	}
 
 	@Override

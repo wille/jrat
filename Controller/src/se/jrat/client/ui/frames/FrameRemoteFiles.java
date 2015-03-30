@@ -991,13 +991,13 @@ public class FrameRemoteFiles extends BaseFrame {
 		if (rows.length > 0 && txtDir.getText() != null) {
 			new Thread() {
 				public void run() {
-					for (File file : files) {
-						SendFile.sendFile(slave, file, txtDir.getText());
-					}
-					JOptionPane.showMessageDialog(null, "All file transfers were done successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
 					if (finalFrame != null) {
 						finalFrame.reset();
 					}
+					
+					for (File file : files) {
+						SendFile.sendFile(slave, file, txtDir.getText());
+					}			
 				}
 			}.start();
 		}

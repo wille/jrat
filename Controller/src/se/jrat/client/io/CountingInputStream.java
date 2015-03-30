@@ -33,7 +33,7 @@ public class CountingInputStream extends FilterInputStream {
 		if (i > 0) {
 			count += i;
 		}
-		
+
 		lastRead = System.currentTimeMillis();
 		
 		return l;
@@ -48,7 +48,7 @@ public class CountingInputStream extends FilterInputStream {
 		}
 		
 		lastRead = System.currentTimeMillis();
-		
+
 		return i;
 	}
 	
