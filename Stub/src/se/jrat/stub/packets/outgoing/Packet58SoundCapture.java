@@ -10,7 +10,7 @@ public class Packet58SoundCapture extends AbstractOutgoingPacket {
 
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		Connection.lock();
+
 	}
 
 	@Override

