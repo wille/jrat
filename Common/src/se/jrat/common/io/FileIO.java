@@ -5,9 +5,18 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.net.Socket;
+import java.util.HashMap;
+import java.util.Map;
 
 public class FileIO {
+	
+	public static final Map<File, OutputStream> CURRENT = new HashMap<File, OutputStream>();
+	
+	public static OutputStream getOutputStream(File file) {
+		return CURRENT.get(file);
+	}
 
 	public static final int CHUNKSIZE = 1024;
 

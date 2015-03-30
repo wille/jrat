@@ -51,7 +51,7 @@ public class IncomingPackets {
 		incomingPackets.put((byte) 26, Packet26RemoteScreen.class);
 		incomingPackets.put((byte) 27, Packet27URLStatus.class);
 		//28
-		incomingPackets.put((byte) 29, Packet29ServerDownloadFile.class);		
+		incomingPackets.put((byte) 29, Packet29ServerDownloadPart.class);		
 		//30
 		//31
 		//32

