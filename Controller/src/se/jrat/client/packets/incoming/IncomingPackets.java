@@ -52,8 +52,8 @@ public class IncomingPackets {
 		incomingPackets.put((byte) 27, Packet27URLStatus.class);
 		//28
 		incomingPackets.put((byte) 29, Packet29ServerDownloadPart.class);		
-		//30
-		//31
+		incomingPackets.put((byte) 30, Packet30BeginServerDownload.class);
+		incomingPackets.put((byte) 31, Packet31CompleteServerDownload.class);
 		//32
 		incomingPackets.put((byte) 32, Packet32SystemProperties.class);
 		incomingPackets.put((byte) 33, Packet33Thumbnail.class);

