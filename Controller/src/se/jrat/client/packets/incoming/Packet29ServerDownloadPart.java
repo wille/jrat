@@ -15,7 +15,10 @@ public class Packet29ServerDownloadPart extends AbstractIncomingPacket {
 	@Override
 	public void read(final Slave slave, DataInputStream dis) throws Exception {
 		final String remotePath = slave.readLine();
-
+		int len = dis.readInt();
+		byte[] buffer = new byte[len];
+		dis.readFully(buffer);
+		
 		final FrameFileTransfer frame = FrameFileTransfer.instance;
 		final FrameRemoteFiles frame2 = FrameRemoteFiles.instances.get(slave);
 
@@ -33,8 +36,6 @@ public class Packet29ServerDownloadPart extends AbstractIncomingPacket {
 		
 		TransferData data = FileCache.get(slave);
 		
-		byte[] buffer = new byte[dis.readInt()];
-		dis.readFully(buffer);
 		data.getOutputStream().write(buffer);
 		data.increaseRead(buffer.length);
 		int bytesSent = data.read;

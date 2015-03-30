@@ -141,7 +141,7 @@ public class Screen implements Runnable {
 					if (update) {
 						packet = new Packet26RemoteScreen(chunkWidth, chunkHeight, x, y, image.getWidth(), image.getHeight(), buffer);
 
-						packet.send(Connection.instance.getDataOutputStream(), Connection.instance.getStringWriter());
+						Connection.instance.addToSendQueue(packet);//(Connection.instance.getDataOutputStream(), Connection.instance.getStringWriter());
 					}
 				}
 			}
