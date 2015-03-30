@@ -148,8 +148,8 @@ public abstract class AbstractSlave implements Runnable {
 		this.inputStream = new CountingInputStream(new CipherInputStream(socket.getInputStream(), inCipher));
 		this.outputStream = new CountingOutputStream(new CipherOutputStream(socket.getOutputStream(), outCipher));
 
-		this.dis = new DataInputStream(inputStream);
-		this.dos = new DataOutputStream(outputStream);
+		this.dis = new DataInputStream(new CipherInputStream(socket.getInputStream(), inCipher));
+		this.dos = new DataOutputStream(new CipherOutputStream(socket.getOutputStream(), outCipher)); // TODO
 	}
 	
 	public void update() {

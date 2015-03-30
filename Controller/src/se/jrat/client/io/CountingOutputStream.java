@@ -24,8 +24,6 @@ public class CountingOutputStream extends FilterOutputStream {
 		}
 		
 		lastWrite = System.currentTimeMillis();
-	
-		System.out.println("ss " + i++);
 	}
 	
 	@Override
