@@ -31,7 +31,6 @@ public class CountingOutputStream extends FilterOutputStream {
 		super.write(array, i, i1);
 		count += i1 - i;
 		lastWrite = System.currentTimeMillis();
-		System.out.println("niggering");
 	}
 	
 	@Override
@@ -39,7 +38,6 @@ public class CountingOutputStream extends FilterOutputStream {
 		super.write(array);
 		count += array.length;
 		lastWrite = System.currentTimeMillis();
-		System.out.println("Writing lol");
 	}
 	
 	public long getCount() {

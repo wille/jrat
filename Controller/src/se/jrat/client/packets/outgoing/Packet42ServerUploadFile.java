@@ -29,9 +29,9 @@ public class Packet42ServerUploadFile extends AbstractOutgoingPacket {
 						slave.addToSendQueue(new Packet102BeginServerUpload(file, remoteFile));
 
 						FileInputStream fileInput = new FileInputStream(file);
-						byte[] chunk = new byte[1024 * 1024];
+						byte[] chunk = new byte[1024 * 8];
 
-						for (long pos = 0; pos < file.length(); pos += 1024 * 1024) {
+						for (long pos = 0; pos < file.length(); pos += 1024 * 8) {
 							int read = fileInput.read(chunk);
 							
 							slave.addToSendQueue(new Packet104ServerUploadPart(remoteFile, chunk, read));
