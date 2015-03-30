@@ -159,7 +159,7 @@ public class Connection implements Runnable {
 		addToSendQueue(new Packet19InitCPU());
 	}
 
-	public static void addToSendQueue(AbstractOutgoingPacket packet) {
+	public static synchronized void addToSendQueue(AbstractOutgoingPacket packet) {
 		while (lock) {
 			try {
 				Thread.sleep(10L);
