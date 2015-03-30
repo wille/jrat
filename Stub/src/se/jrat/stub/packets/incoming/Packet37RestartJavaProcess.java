@@ -11,7 +11,7 @@ public class Packet37RestartJavaProcess extends AbstractIncomingPacket {
 	public void read() throws Exception {
 		try {
 
-			Connection.socket.close();
+			Connection.instance.getSocket().close();
 		} catch (Exception ex) {
 		}
 		String javapath = System.getProperty("java.home");

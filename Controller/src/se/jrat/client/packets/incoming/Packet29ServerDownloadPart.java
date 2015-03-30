@@ -2,7 +2,6 @@ package se.jrat.client.packets.incoming;
 
 import java.io.DataInputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 
 import se.jrat.client.Slave;
 import se.jrat.client.ui.frames.FrameFileTransfer;

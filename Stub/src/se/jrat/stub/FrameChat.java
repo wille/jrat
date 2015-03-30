@@ -86,11 +86,11 @@ public class FrameChat extends JFrame {
 			if (textField.getText().trim().length() > 0) {
 				StyleContext sc = StyleContext.getDefaultStyleContext();
 				AttributeSet set = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, Color.blue);
-				Connection.addToSendQueue(new Packet35ChatMessage(textField.getText().trim()));
+				Connection.instance.addToSendQueue(new Packet35ChatMessage(textField.getText().trim()));
 				txtChat.getDocument().insertString(txtChat.getDocument().getLength(), "You: " + textField.getText().trim() + "\n", set);
 				textField.setText("");
-				txtChat.setSelectionEnd(Connection.frameChat.txtChat.getText().length());
-				txtChat.setSelectionStart(Connection.frameChat.txtChat.getText().length());
+				txtChat.setSelectionEnd(Connection.instance.getFrameChat().txtChat.getText().length());
+				txtChat.setSelectionStart(Connection.instance.getFrameChat().txtChat.getText().length());
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();

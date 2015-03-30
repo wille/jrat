@@ -7,7 +7,7 @@ public class Packet33UsedMemory extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		Connection.addToSendQueue(new Packet24UsedMemory());
+		Connection.instance.addToSendQueue(new Packet24UsedMemory());
 	}
 
 }

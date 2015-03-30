@@ -7,8 +7,8 @@ public class Packet48ChatStart extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		Connection.frameChat = new FrameChat();
-		Connection.frameChat.setVisible(true);
+		Connection.instance.setFrameChat(new FrameChat());
+		Connection.instance.getFrameChat().setVisible(true);
 	}
 
 }

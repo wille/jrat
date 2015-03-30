@@ -8,9 +8,9 @@ public class Packet85ThumbnailPreview extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		String file = Connection.readLine();
+		String file = Connection.instance.readLine();
 
-		Connection.addToSendQueue(new Packet59ThumbnailPreview(file));
+		Connection.instance.addToSendQueue(new Packet59ThumbnailPreview(file));
 	}
 
 }

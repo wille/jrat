@@ -11,9 +11,9 @@ public class Packet102BeginClientDownload extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		String remote = Connection.readLine();
+		String remote = Connection.instance.readLine();
 		
-		long l = Connection.readLong();
+		long l = Connection.instance.readLong();
 		
 		TransferData d = new TransferData();
 		d.local = new File(remote);

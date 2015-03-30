@@ -11,9 +11,10 @@ public class Packet96EnvironmentVariables extends AbstractIncomingPacket {
 	public void read() throws Exception {
 		Set<String> set = System.getenv().keySet();
 		for (String str : set) {
-			Connection.writeLine("VARPROP");
+			// TODO
+			/*Connection.writeLine("VARPROP");
 			Connection.writeLine(str);
-			Connection.writeLine(System.getenv(str));
+			Connection.writeLine(System.getenv(str));*/
 		}
 	}
 

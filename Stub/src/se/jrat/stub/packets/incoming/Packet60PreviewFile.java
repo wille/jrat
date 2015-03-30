@@ -12,8 +12,8 @@ public class Packet60PreviewFile extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		String file = Connection.readLine();
-		int l = Connection.readInt();
+		String file = Connection.instance.readLine();
+		int l = Connection.instance.readInt();
 		int readed = 0;
 		BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
 
@@ -21,7 +21,7 @@ public class Packet60PreviewFile extends AbstractIncomingPacket {
 
 		while ((line = reader.readLine()) != null) {
 			if (readed++ == l) {
-				Connection.addToSendQueue(new Packet42FilePreview(file, line));
+				Connection.instance.addToSendQueue(new Packet42FilePreview(file, line));
 				break;
 			}
 		}

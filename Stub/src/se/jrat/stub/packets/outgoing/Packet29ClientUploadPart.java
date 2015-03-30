@@ -4,7 +4,6 @@ import java.io.DataOutputStream;
 import java.io.File;
 
 import se.jrat.common.io.StringWriter;
-import se.jrat.stub.Connection;
 
 
 public class Packet29ClientUploadPart extends AbstractOutgoingPacket {

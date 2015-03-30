@@ -7,9 +7,9 @@ public class Packet79BrowseRegistry extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		String path = Connection.readLine();
+		String path = Connection.instance.readLine();
 
-		Connection.addToSendQueue(new Packet54Registry(path));
+		Connection.instance.addToSendQueue(new Packet54Registry(path));
 	}
 
 }

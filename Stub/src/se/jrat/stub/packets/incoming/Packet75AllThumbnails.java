@@ -7,7 +7,7 @@ public class Packet75AllThumbnails extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {		
-		Connection.addToSendQueue(new Packet71AllThumbnails());
+		Connection.instance.addToSendQueue(new Packet71AllThumbnails());
 	}
 
 }

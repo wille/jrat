@@ -18,10 +18,10 @@ public class Packet29RestartComputer extends AbstractIncomingPacket {
 				Runtime.getRuntime().exec("reboot");
 			}
 			
-			Connection.status(Constants.STATUS_STARTING_SHUTDOWN);
+			Connection.instance.status(Constants.STATUS_STARTING_SHUTDOWN);
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			Connection.status(Constants.STATUS_FAILED_SHUTDOWN);
+			Connection.instance.status(Constants.STATUS_FAILED_SHUTDOWN);
 		}
 	}
 

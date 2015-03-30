@@ -13,7 +13,7 @@ public class Packet52Log extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		String what = Connection.readLine();
+		String what = Connection.instance.readLine();
 		File file = new File(Utils.getPath().getAbsolutePath() + File.separator + what);
 		FileInputStream in = new FileInputStream(file);
 		BufferedReader reader = new BufferedReader(new InputStreamReader(in));
@@ -25,9 +25,11 @@ public class Packet52Log extends AbstractIncomingPacket {
 			log += line + "\n";
 		}
 		reader.close();
-		Connection.writeLine("LOG");
+		/*Connection.writeLine("LOG");
 		Connection.writeLine(what);
-		Connection.writeLine(log);
+		Connection.writeLine(log);*/
+		
+		// TODO
 	}
 
 }

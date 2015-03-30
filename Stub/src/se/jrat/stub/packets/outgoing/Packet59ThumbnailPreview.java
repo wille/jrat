@@ -27,8 +27,8 @@ public class Packet59ThumbnailPreview extends AbstractOutgoingPacket {
 
 		byte[] buffer = ImageUtils.encode(image);
 
-		Connection.dos.writeInt(buffer.length);
-		Connection.dos.write(buffer);
+		Connection.instance.getDataOutputStream().writeInt(buffer.length);
+		Connection.instance.getDataOutputStream().write(buffer);
 	}
 
 	@Override

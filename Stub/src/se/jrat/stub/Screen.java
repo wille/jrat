@@ -141,11 +141,11 @@ public class Screen implements Runnable {
 					if (update) {
 						packet = new Packet26RemoteScreen(chunkWidth, chunkHeight, x, y, image.getWidth(), image.getHeight(), buffer);
 
-						packet.send(Connection.dos, Connection.sw);
+						packet.send(Connection.instance.getDataOutputStream(), Connection.instance.getStringWriter());
 					}
 				}
 			}
-			new Packet68RemoteScreenComplete(scaledMouseX, scaledMouseY).send(Connection.dos, Connection.sw);
+			new Packet68RemoteScreenComplete(scaledMouseX, scaledMouseY).send(Connection.instance.getDataOutputStream(), Connection.instance.getStringWriter());
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -174,7 +174,7 @@ public class Screen implements Runnable {
 
 	public static void sendThumbnail() {
 		try {
-			Connection.addToSendQueue(new Packet33Thumbnail());
+			Connection.instance.addToSendQueue(new Packet33Thumbnail());
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

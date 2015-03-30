@@ -9,7 +9,7 @@ public class Packet41SpecialDirectory extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		String location = Connection.readLine();
+		String location = Connection.instance.readLine();
 
 		String ret = null;
 
@@ -28,7 +28,7 @@ public class Packet41SpecialDirectory extends AbstractIncomingPacket {
 		}
 
 		if (ret != null) {
-			Connection.addToSendQueue(new Packet34CustomDirectory(ret));
+			Connection.instance.addToSendQueue(new Packet34CustomDirectory(ret));
 		}
 	}
 

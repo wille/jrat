@@ -8,7 +8,7 @@ public class Packet88StubConfig extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		Connection.addToSendQueue(new Packet66Config(Configuration.getConfig()));
+		Connection.instance.addToSendQueue(new Packet66Config(Configuration.getConfig()));
 	}
 
 }

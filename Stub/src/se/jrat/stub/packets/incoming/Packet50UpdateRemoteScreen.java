@@ -7,9 +7,9 @@ public class Packet50UpdateRemoteScreen extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		int monitor = Connection.readInt();
-		int quality = Connection.readInt();
-		int size = Connection.readInt();
+		int monitor = Connection.instance.readInt();
+		int quality = Connection.instance.readInt();
+		int size = Connection.instance.readInt();
 		
 		if (Screen.instance != null) {
 			Screen.instance.setMonitor(monitor);

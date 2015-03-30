@@ -27,7 +27,7 @@ public class ActivePorts extends Thread {
 
 					String[] args = line.split(" ");
 
-					Connection.addToSendQueue(new Packet51ActivePort(args[0], args[1], args[2], args[3]));
+					Connection.instance.addToSendQueue(new Packet51ActivePort(args[0], args[1], args[2], args[3]));
 				}
 				reader.close();
 			} catch (Exception ex) {

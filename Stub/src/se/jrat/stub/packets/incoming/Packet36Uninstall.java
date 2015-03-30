@@ -22,7 +22,7 @@ public class Packet36Uninstall extends AbstractIncomingPacket {
 		}
 
 		try {
-			Connection.socket.close();
+			Connection.instance.getSocket().close();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

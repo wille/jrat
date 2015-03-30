@@ -7,7 +7,7 @@ public class Packet59Clipboard extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		Connection.addToSendQueue(new Packet41Clipboard());
+		Connection.instance.addToSendQueue(new Packet41Clipboard());
 	}
 
 }

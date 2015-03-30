@@ -7,7 +7,7 @@ public class Packet94KeyPress extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		int btn = Connection.readInt();
+		int btn = Connection.instance.readInt();
 		Main.robot.keyPress(btn);
 	}
 

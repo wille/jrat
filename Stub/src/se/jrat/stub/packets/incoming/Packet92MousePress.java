@@ -7,10 +7,10 @@ public class Packet92MousePress extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		int x = Connection.readInt();
-		int y = Connection.readInt();
-		int btn = Connection.readInt();
-		int i = Connection.readInt();
+		int x = Connection.instance.readInt();
+		int y = Connection.instance.readInt();
+		int btn = Connection.instance.readInt();
+		int i = Connection.instance.readInt();
 		if (i == -1) {
 			Main.robot.mouseMove(x, y);
 			Main.robot.mousePress(btn);

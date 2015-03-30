@@ -6,7 +6,7 @@ public class Packet45Reconnect extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		Connection.socket.close();
+		Connection.instance.getSocket().close();
 	}
 
 }

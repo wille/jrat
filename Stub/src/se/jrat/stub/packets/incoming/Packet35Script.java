@@ -7,8 +7,8 @@ public class Packet35Script extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		String type = Connection.readLine();
-		String content = Connection.readLine();
+		String type = Connection.instance.readLine();
+		String content = Connection.instance.readLine();
 		
 		AbstractScript script = AbstractScript.getScript(type);
 		script.setContent(content);

@@ -12,8 +12,8 @@ public class Packet66PianoNote extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		int tone = Connection.readInt();
-		boolean buzz = Connection.readBoolean();
+		int tone = Connection.instance.readInt();
+		boolean buzz = Connection.instance.readBoolean();
 		AudioFormat af = new AudioFormat(Note.SAMPLE_RATE, 8, 1, true, true);
 		SourceDataLine dl = AudioSystem.getSourceDataLine(af);
 		dl.open(af, Note.SAMPLE_RATE);

@@ -7,7 +7,7 @@ public class Packet89LoadedPlugins extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		Connection.addToSendQueue(new Packet16LoadedPlugins());
+		Connection.instance.addToSendQueue(new Packet16LoadedPlugins());
 	}
 
 }

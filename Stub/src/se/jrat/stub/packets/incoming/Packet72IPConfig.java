@@ -36,7 +36,7 @@ public class Packet72IPConfig extends AbstractIncomingPacket {
 		}
 		reader.close();
 
-		Connection.addToSendQueue(new Packet50IPConfig(ipconfig));
+		Connection.instance.addToSendQueue(new Packet50IPConfig(ipconfig));
 	}
 
 }

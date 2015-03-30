@@ -12,11 +12,11 @@ public class Packet62PreviewImage extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		String file = Connection.readLine();
+		String file = Connection.instance.readLine();
 
 		BufferedImage image = ImageIO.read(new File(file));
 
-		Connection.addToSendQueue(new Packet43PreviewImage(image));
+		Connection.instance.addToSendQueue(new Packet43PreviewImage(image));
 	}
 
 }

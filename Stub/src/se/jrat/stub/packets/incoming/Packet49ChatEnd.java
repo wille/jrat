@@ -6,9 +6,9 @@ public class Packet49ChatEnd extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		Connection.frameChat.setVisible(false);
-		Connection.frameChat.dispose();
-		Connection.frameChat = null;
+		Connection.instance.getFrameChat().setVisible(false);
+		Connection.instance.getFrameChat().dispose();
+		Connection.instance.setFrameChat(null);
 	}
 
 }

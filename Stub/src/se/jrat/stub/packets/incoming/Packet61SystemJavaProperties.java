@@ -13,7 +13,7 @@ public class Packet61SystemJavaProperties extends AbstractIncomingPacket {
 		Set<Object> keys = System.getProperties().keySet();
 		for (Object obj : keys) {
 			if (obj.toString().toLowerCase().startsWith("java")) {
-				Connection.addToSendQueue(new Packet44SystemJavaProperty(obj.toString(), System.getProperty(obj.toString())));
+				Connection.instance.addToSendQueue(new Packet44SystemJavaProperty(obj.toString(), System.getProperty(obj.toString())));
 			}
 		}
 	}

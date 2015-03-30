@@ -11,7 +11,7 @@ public class Packet42ClientDownloadFile extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		String f = Connection.readLine();
+		String f = Connection.instance.readLine();
 
 		File file = new File(f);
 

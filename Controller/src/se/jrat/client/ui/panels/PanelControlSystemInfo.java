@@ -1,5 +1,7 @@
 package se.jrat.client.ui.panels;
 
+import java.awt.BorderLayout;
+
 import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -13,7 +15,6 @@ import se.jrat.client.utils.IconUtils;
 import se.jrat.common.utils.DataUnits;
 
 import com.redpois0n.oslib.Icons;
-import java.awt.BorderLayout;
 
 @SuppressWarnings("serial")
 public class PanelControlSystemInfo extends PanelControlParent {

