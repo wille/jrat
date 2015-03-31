@@ -2,6 +2,7 @@ package se.jrat.client.ui.renderers;
 
 import java.awt.Component;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.Icon;
@@ -11,13 +12,13 @@ import javax.swing.JList;
 @SuppressWarnings("serial")
 public class JComboBoxIconRenderer extends DefaultListCellRenderer {
 
-	private HashMap<String, Icon> map = new HashMap<String, Icon>();
+	private Map<String, Icon> map = new HashMap<String, Icon>();
 
 	public JComboBoxIconRenderer() {
 
 	}
 
-	public JComboBoxIconRenderer(HashMap<String, Icon> map) {
+	public JComboBoxIconRenderer(Map<String, Icon> map) {
 		this.map = map;
 	}
 
