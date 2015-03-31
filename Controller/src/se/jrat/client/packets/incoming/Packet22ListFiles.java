@@ -14,7 +14,7 @@ public class Packet22ListFiles extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Slave slave, DataInputStream dis) throws Exception {
-		FrameRemoteFiles fr = FrameRemoteFiles.instances.get(slave);
+		FrameRemoteFiles fr = FrameRemoteFiles.INSTANCES.get(slave);
 		List<Object[]> dirs = new ArrayList<Object[]>();
 		List<Object[]> files = new ArrayList<Object[]>();
 
@@ -42,14 +42,12 @@ public class Packet22ListFiles extends AbstractIncomingPacket {
 		}
 
 		if (fr != null) {
-			while (fr.model.getRowCount() > 0) {
-				fr.model.removeRow(0);
-			}
+			fr.remoteTable.clear();
 
 			for (Object[] string : dirs) {
 				try {
-					fr.renderer.icons.put(string[0].toString(), IconUtils.getFileIconFromExtension(string[0].toString(), true));
-					fr.model.addRow(new Object[] { string[0], string[1], "", string[3] });
+					fr.remoteTable.tableRenderer.icons.put(string[0].toString(), IconUtils.getFileIconFromExtension(string[0].toString(), true));
+					fr.remoteTable.tableModel.addRow(new Object[] { string[0], string[1], "", string[3] });
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -57,8 +55,8 @@ public class Packet22ListFiles extends AbstractIncomingPacket {
 
 			for (Object[] string : files) {
 				try {
-					fr.renderer.icons.put(string[0].toString(), IconUtils.getFileIconFromExtension(string[0].toString(), false));
-					fr.model.addRow(new Object[] { string[0], string[1], string[2], string[3] });
+					fr.remoteTable.tableRenderer.icons.put(string[0].toString(), IconUtils.getFileIconFromExtension(string[0].toString(), false));
+					fr.remoteTable.tableModel.addRow(new Object[] { string[0], string[1], string[2], string[3] });
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

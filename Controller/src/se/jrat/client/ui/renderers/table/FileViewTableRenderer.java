@@ -2,6 +2,7 @@ package se.jrat.client.ui.renderers.table;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.io.File;
 import java.util.HashMap;
 
 import javax.swing.Icon;
@@ -54,10 +55,12 @@ public class FileViewTableRenderer extends DefaultJTableCellRenderer {
 			label.setForeground(Color.red);
 			label.setIcon(bookmark);
 		}
+	
+		String sep = slave == null ? File.separator : slave.getFileSeparator();
 
 		if (value != null) {
-			if (column == 0 && value.toString().contains(slave.getFileSeparator()) && !value.toString().endsWith(slave.getFileSeparator())) {
-				String name = value.toString().substring(value.toString().lastIndexOf(slave.getFileSeparator()) + 1, value.toString().length());
+			if (column == 0 && value.toString().contains(sep) && !value.toString().endsWith(sep)) {
+				String name = value.toString().substring(value.toString().lastIndexOf(sep) + 1, value.toString().length());
 				label.setText(name);
 			} else {
 				label.setText(value.toString());
