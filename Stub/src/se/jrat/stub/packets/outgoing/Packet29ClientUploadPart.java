@@ -17,7 +17,7 @@ public class Packet29ClientUploadPart extends AbstractOutgoingPacket {
 		this.part = part;
 		this.to = to;
 	}
-
+	
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
 		sw.writeLine(file.getAbsolutePath());
@@ -28,7 +28,7 @@ public class Packet29ClientUploadPart extends AbstractOutgoingPacket {
 
 	@Override
 	public byte getPacketId() {
-		return 29;
+		return (byte) 29;
 	}
 
 }

