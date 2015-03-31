@@ -53,6 +53,7 @@ public abstract class FileTable extends JPanel {
 		
 		JScrollPane sp = new JScrollPane();
 		table = new JTable(tableModel);
+		table.setDefaultRenderer(Object.class, tableRenderer);
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -100,6 +101,16 @@ public abstract class FileTable extends JPanel {
 			}
 		});
 		btnDelete.setIcon(IconUtils.getIcon("delete"));
+		
+		JButton btnNewFolder = new JButton("");
+		btnNewFolder.setToolTipText("New Folder");
+		btnNewFolder.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				onCreateFolder();
+			}
+		});
+		btnNewFolder.setIcon(IconUtils.getIcon("folder-add"));
+		toolBar.add(btnNewFolder);
 		
 		driveComboBox = new JComboBox<String>();
 		driveComboBox.addActionListener(new ActionListener() {
