@@ -47,12 +47,12 @@ public class PanelRemoteFiles extends JPanel {
 	
 	private Slave slave;
 	public RemoteFileTable remoteTable;
-
-	public boolean waitingForMd5;
 	
 	public PanelRemoteFiles(Slave slave) {
 		this.slave = slave;
-				
+		
+		setLayout(new BorderLayout(0, 0));
+		
 		JSplitPane sp = new JSplitPane();
 		
 		JScrollPane scrollLocal = new JScrollPane();
@@ -74,7 +74,13 @@ public class PanelRemoteFiles extends JPanel {
 			super(panel);
 		
 			driveComboBox.setRenderer(renderer);
-		
+			driveComboBox.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					clear();
+					FileSystem.addDir(driveComboBox.getSelectedItem().toString(), tableModel, tableRenderer.icons);
+				}
+			});
+			
 			listRoots();
 			
 			JButton btnUpload = new JButton("Upload");
@@ -161,9 +167,12 @@ public class PanelRemoteFiles extends JPanel {
 		public void listRoots() {
 			if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 				File[] f = File.listRoots();
+				driveComboModel.removeAllElements();
 				for (File fi : f) {
 					tableRenderer.icons.put(fi.getAbsolutePath(), IconUtils.getFileIcon(fi));
 					tableModel.addRow(new Object[] { fi.getAbsolutePath(), "" });
+					super.renderer.addIcon(fi.getAbsolutePath().toLowerCase(), IconUtils.getFileIcon(fi));
+					driveComboModel.addElement(fi.getAbsolutePath());
 				}
 			} else {
 				onItemClick("/");
@@ -173,6 +182,8 @@ public class PanelRemoteFiles extends JPanel {
 	
 	public class RemoteFileTable extends FileTable {
 		
+		public boolean waitingForMd5;
+
 		public RemoteFileTable(JScrollPane panel) {
 			super(panel);
 			for (Drive drive : slave.getDrives()) {

