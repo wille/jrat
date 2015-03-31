@@ -10,20 +10,22 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.table.DefaultTableModel;
 
-import se.jrat.client.packets.outgoing.Packet15ListFiles;
 import se.jrat.client.ui.renderers.JComboBoxIconRenderer;
 import se.jrat.client.ui.renderers.table.FileViewTableRenderer;
 import se.jrat.client.utils.IconUtils;
+import se.jrat.client.utils.Utils;
 
 @SuppressWarnings("serial")
 public abstract class FileTable extends JPanel {
 
+	private JScrollPane parent;
 	protected JToolBar toolBar;
 	protected JTable table;
 	public FileViewTableRenderer tableRenderer;
@@ -35,7 +37,8 @@ public abstract class FileTable extends JPanel {
 	
 	protected JTextField txtDir;
 	
-	public FileTable() {
+	public FileTable(JScrollPane parent) {
+		this.parent = parent;
 		setLayout(new BorderLayout(0, 0));
 		
 		toolBar = new JToolBar();
@@ -167,5 +170,10 @@ public abstract class FileTable extends JPanel {
 		while (tableModel.getRowCount() > 0) {
 			tableModel.removeRow(0);
 		}
+	}
+	
+	public void addPopup(JPopupMenu menu) {
+		Utils.addPopup(table, menu);
+		Utils.addPopup(parent, menu);
 	}
 }
