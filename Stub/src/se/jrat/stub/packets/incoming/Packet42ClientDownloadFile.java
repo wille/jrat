@@ -13,6 +13,8 @@ public class Packet42ClientDownloadFile extends AbstractIncomingPacket {
 	public void read() throws Exception {
 		String f = Connection.instance.readLine();
 
+		long l = Connection.instance.readLong();
+		
 		File file = new File(f);
 
 		if (file.exists() && file.isFile()) {
@@ -21,8 +23,8 @@ public class Packet42ClientDownloadFile extends AbstractIncomingPacket {
 
 		TransferData d = new TransferData();
 		d.setLocalFile(file);
+		d.setTotal(l);
 		FileCache.put(f, d);
-
 	}
 
 }

