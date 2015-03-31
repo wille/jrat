@@ -1,4 +1,4 @@
-package se.jrat.client.ui.frames;
+package se.jrat.client.ui.panels;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

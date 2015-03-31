@@ -12,6 +12,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.WindowConstants;
 
 import se.jrat.client.Slave;
+import se.jrat.client.ui.panels.PanelFileTransfer;
 import se.jrat.client.ui.panels.PanelRemoteFiles;
 import se.jrat.client.ui.panels.PanelRemoteFiles.RemoteFileTable;
 

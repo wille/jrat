@@ -58,6 +58,7 @@ import se.jrat.client.packets.outgoing.Packet64FileHash;
 import se.jrat.client.packets.outgoing.Packet70CorruptFile;
 import se.jrat.client.settings.StoreFileBookmarks;
 import se.jrat.client.ui.components.DefaultJTable;
+import se.jrat.client.ui.panels.PanelFileTransfer;
 import se.jrat.client.ui.renderers.table.FileViewTableRenderer;
 import se.jrat.client.utils.IconUtils;
 import se.jrat.client.utils.Utils;

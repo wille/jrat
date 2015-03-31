@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -26,6 +27,7 @@ import se.jrat.client.io.FileSystem;
 import se.jrat.client.listeners.DirListener;
 import se.jrat.client.packets.outgoing.Packet15ListFiles;
 import se.jrat.client.packets.outgoing.Packet16DeleteFile;
+import se.jrat.client.packets.outgoing.Packet21ServerDownloadFile;
 import se.jrat.client.packets.outgoing.Packet38RunCommand;
 import se.jrat.client.packets.outgoing.Packet42ServerUploadFile;
 import se.jrat.client.packets.outgoing.Packet43CreateDirectory;
@@ -40,6 +42,8 @@ import se.jrat.client.ui.frames.FramePreviewZip;
 import se.jrat.client.ui.frames.FrameRemoteThumbView;
 import se.jrat.client.utils.IconUtils;
 import se.jrat.client.utils.Utils;
+import se.jrat.common.io.FileCache;
+import se.jrat.common.io.TransferData;
 
 import com.redpois0n.oslib.OperatingSystem;
 
@@ -209,7 +213,20 @@ public class PanelRemoteFiles extends JPanel {
 			btnDownload.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
+					String file = getSelectedItem();
+					JFileChooser f = new JFileChooser();
+					f.setSelectedFile(new File(file.substring(file.lastIndexOf(slave.getFileSeparator()), file.length())));
+					f.showSaveDialog(null);
 					
+					if (f.getSelectedFile() != null && f.getSelectedFile().getParentFile().exists()) {
+						if (tableModel.getValueAt(table.getSelectedRow(), 1).toString().length() > 0) {
+							TransferData data = new TransferData();
+							data.setLocalFile(f.getSelectedFile());
+							PanelFileTransfer.instance.add(data);
+							FileCache.put(slave, data);
+							slave.addToSendQueue(new Packet21ServerDownloadFile(file));
+						}
+					}
 				}				
 			});
 			toolBar.add(btnDownload, 0);
