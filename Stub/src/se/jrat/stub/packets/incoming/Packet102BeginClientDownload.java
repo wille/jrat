@@ -17,7 +17,9 @@ public class Packet102BeginClientDownload extends AbstractIncomingPacket {
 		
 		TransferData d = new TransferData();
 		d.local = new File(remote);
+
 		FileCache.put(remote, d);
+		
 	}
 
 }

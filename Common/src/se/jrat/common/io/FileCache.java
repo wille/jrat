@@ -17,9 +17,9 @@ public class FileCache {
 
 	public static void remove(Object o) {
 		try {
-			MAP.remove(o).getOutputStream().close();
+			TransferData td = MAP.remove(o);
+			td.getOutputStream().close();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

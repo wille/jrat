@@ -922,7 +922,7 @@ public class FrameRemoteFilesOld extends JPanel {
 			f.showSaveDialog(null);
 
 			if (f.getSelectedFile() != null) {
-				FrameFileTransfer frame = new FrameFileTransfer();
+				PanelFileTransfer frame = new PanelFileTransfer();
 				frame.setVisible(true);
 
 				TransferData data = new TransferData();
@@ -945,7 +945,7 @@ public class FrameRemoteFilesOld extends JPanel {
 			f.setSelectedFile(new File(file.substring(file.lastIndexOf(slave.getFileSeparator()), file.length())));
 			f.showSaveDialog(null);
 			if (f.getSelectedFile() != null && f.getSelectedFile().getParentFile().exists()) {
-				FrameFileTransfer frame = new FrameFileTransfer();
+				PanelFileTransfer frame = new PanelFileTransfer();
 				frame.load(file);
 				frame.setVisible(true);
 
@@ -960,13 +960,13 @@ public class FrameRemoteFilesOld extends JPanel {
 	}
 
 	public void upload() {
-		FrameFileTransfer frame = FrameFileTransfer.instance;
-		if (FrameFileTransfer.instance == null) {
-			frame = new FrameFileTransfer();
+		PanelFileTransfer frame = PanelFileTransfer.instance;
+		if (PanelFileTransfer.instance == null) {
+			frame = new PanelFileTransfer();
 		}
 		frame.setVisible(true);
 
-		final FrameFileTransfer finalFrame = frame;
+		final PanelFileTransfer finalFrame = frame;
 
 		final List<File> files = new ArrayList<File>();
 
@@ -974,7 +974,7 @@ public class FrameRemoteFilesOld extends JPanel {
 		for (int row : rows) {
 			String val = modelme.getValueAt(row, 0).toString();
 			if (modelme.getValueAt(row, 1).toString().length() > 0) {
-				FrameFileTransfer.instance.load(val);
+				PanelFileTransfer.instance.load(val);
 				files.add(new File(val));
 			}
 		}

@@ -38,7 +38,7 @@ public class Packet21ClientUploadFile extends AbstractIncomingPacket {
 						ex.printStackTrace();
 					}
 				}
-			}).start();
+			}).run();
 		}
 	}
 

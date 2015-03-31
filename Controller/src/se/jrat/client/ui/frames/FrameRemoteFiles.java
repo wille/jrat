@@ -7,6 +7,7 @@ import java.awt.event.WindowEvent;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.WindowConstants;
 
@@ -43,9 +44,14 @@ public class FrameRemoteFiles extends BaseFrame {
 
 		PanelRemoteFiles remoteFiles = new PanelRemoteFiles(slave);
 		remoteTable = remoteFiles.remoteTable;
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setViewportView(PanelFileTransfer.instance);
+		
 		JTabbedPane tabbedPane = new JTabbedPane();
 		tabbedPane.addTab("Files", remoteFiles);
-	
+		tabbedPane.addTab("Transfers", scrollPane);
+		
 		add(tabbedPane, BorderLayout.CENTER);
 	}
 

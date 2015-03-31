@@ -27,6 +27,7 @@ import se.jrat.client.listeners.DirListener;
 import se.jrat.client.packets.outgoing.Packet15ListFiles;
 import se.jrat.client.packets.outgoing.Packet16DeleteFile;
 import se.jrat.client.packets.outgoing.Packet38RunCommand;
+import se.jrat.client.packets.outgoing.Packet42ServerUploadFile;
 import se.jrat.client.packets.outgoing.Packet43CreateDirectory;
 import se.jrat.client.packets.outgoing.Packet47RenameFile;
 import se.jrat.client.packets.outgoing.Packet64FileHash;
@@ -88,7 +89,14 @@ public class PanelRemoteFiles extends JPanel {
 			btnUpload.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					
+					new Thread() {
+						public void run() {
+							for (String s : getSelectedItems()) {
+								File file = new File(s);
+								slave.addToSendQueue(new Packet42ServerUploadFile(file, remoteTable.getCurrentDirectory() + file.getName()));
+							}			
+						}
+					}.run();
 				}				
 			});
 			toolBar.add(btnUpload, 0);

