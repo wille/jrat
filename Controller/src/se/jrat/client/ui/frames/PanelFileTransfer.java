@@ -1,11 +1,16 @@
 package se.jrat.client.ui.frames;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.Icon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -15,7 +20,9 @@ import javax.swing.table.DefaultTableModel;
 import se.jrat.client.ui.components.DefaultJTable;
 import se.jrat.client.ui.renderers.table.DefaultJTableCellRenderer;
 import se.jrat.client.utils.IconUtils;
+import se.jrat.client.utils.Utils;
 import se.jrat.common.io.TransferData;
+import se.jrat.common.io.TransferData.State;
 
 
 @SuppressWarnings("serial")
@@ -91,6 +98,25 @@ public class PanelFileTransfer extends JPanel {
 		add(label, BorderLayout.SOUTH);
 		add(progressBar, BorderLayout.SOUTH);
 		add(scrollPane, BorderLayout.CENTER);
+		
+		JPopupMenu menu = new JPopupMenu();
+		
+		JButton btnPause = new JButton("Pause");
+		btnPause.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				int[] rows = table.getSelectedRows();
+				
+				for (int i : rows) {
+					TransferData d = (TransferData) table.getValueAt(i, 0);
+					d.getRunnable().pause();
+				}
+			}
+		});
+		
+		menu.add(btnPause);
+		
+		Utils.addPopup(table, menu);
 	}
 
 	public void exit() {
@@ -104,7 +130,7 @@ public class PanelFileTransfer extends JPanel {
 	}
 	
 	public void add(TransferData data) {
-		model.addRow(new Object[] { data });
+		model.insertRow(0, new Object[] { data });
 	}
 
 	public void remove(TransferData data) {
@@ -146,18 +172,30 @@ public class PanelFileTransfer extends JPanel {
 
 			TransferData data = (TransferData) table.getValueAt(row, 0);
 			
+			if (data.getState() == State.ERROR) {
+				setForeground(Color.red);
+			} else if (data.getState() == State.IN_PROGRESS) {
+				setForeground(Color.black);
+			} else if (data.getState() == State.PAUSED) {
+				setForeground(Color.blue.brighter());
+			} else if (data.getState() == State.COMPLETED) {
+				setForeground(Color.green.darker());
+			} else if (isSelected) {
+				setForeground(Color.black);
+			}
+			
 			if (column == 1) {
-				setText(data.remote);
+				setText(data.getRemoteFile());
 			}
 			
 			if (column == 2) {
-				setText(data.read + "/" + data.total);
+				setText(data.getRead() + "/" + data.getTotal());
 			}
 			
 			if (column == 3) {
 				JProgressBar bar = new JProgressBar();
-				bar.setMaximum((int) data.total);
-				bar.setValue(data.read);
+				bar.setMaximum((int) data.getTotal());
+				bar.setValue(data.getRead());
 				return bar;
 			}
 

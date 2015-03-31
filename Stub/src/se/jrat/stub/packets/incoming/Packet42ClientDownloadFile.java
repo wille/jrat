@@ -20,7 +20,7 @@ public class Packet42ClientDownloadFile extends AbstractIncomingPacket {
 		}
 
 		TransferData d = new TransferData();
-		d.local = file;
+		d.setLocalFile(file);
 		FileCache.put(f, d);
 
 	}

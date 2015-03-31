@@ -16,10 +16,10 @@ public class Packet102BeginClientDownload extends AbstractIncomingPacket {
 		long l = Connection.instance.readLong();
 		
 		TransferData d = new TransferData();
-		d.local = new File(remote);
-
-		FileCache.put(remote, d);
+		d.setLocalFile(new File(remote));
+		d.setTotal(l);
 		
+		FileCache.put(remote, d);
 	}
 
 }

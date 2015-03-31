@@ -17,8 +17,8 @@ public class Packet30BeginServerDownload extends AbstractIncomingPacket {
 		TransferData data = FileCache.get(slave);
 
 		if (data != null) {
-			data.remote = file;
-			data.total = length;
+			data.setRemoteFile(file);
+			data.setTotal(length);
 		}
 	}
 

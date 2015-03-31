@@ -26,7 +26,7 @@ public class Packet29ServerDownloadPart extends AbstractIncomingPacket {
 
 		TransferData localData = FileCache.get(slave);
 
-		File output = localData.local;
+		File output = localData.getLocalFile();
 
 		if (output.isDirectory()) {
 			output = new File(output, remotePath.substring(remotePath.lastIndexOf(slave.getFileSeparator()) + 1, remotePath.length()));
@@ -36,8 +36,8 @@ public class Packet29ServerDownloadPart extends AbstractIncomingPacket {
 		
 		data.getOutputStream().write(buffer);
 		data.increaseRead(buffer.length);
-		int bytesSent = data.read;
-		int totalBytes = (int) data.total;
+		int bytesSent = data.getRead();
+		int totalBytes = (int) data.getTotal();
 		//frame.reportProgress(remotePath, (int) ((float) bytesSent / (float) totalBytes * 100.0F), (int) bytesSent, (int) totalBytes);
 
 		/*try {
