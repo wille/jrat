@@ -56,24 +56,18 @@ public class PanelRemoteFiles extends JPanel {
 		
 		JSplitPane sp = new JSplitPane();
 		
-		JScrollPane scrollLocal = new JScrollPane();
-		LocalFileTable localTable = new LocalFileTable(scrollLocal);
-		scrollLocal.setViewportView(localTable);
-		sp.setLeftComponent(scrollLocal);
+		LocalFileTable localTable = new LocalFileTable();
+		sp.setLeftComponent(localTable);
 		
-		JScrollPane scrollRemote = new JScrollPane();
-		remoteTable = new RemoteFileTable(scrollRemote);
-		scrollRemote.setViewportView(remoteTable);
-		sp.setRightComponent(scrollRemote);
+		remoteTable = new RemoteFileTable();
+		sp.setRightComponent(remoteTable);
 		
 		add(sp, BorderLayout.CENTER);
 	}
 	
 	public class LocalFileTable extends FileTable {
 		
-		public LocalFileTable(JScrollPane panel) {
-			super(panel);
-		
+		public LocalFileTable() {		
 			driveComboBox.setRenderer(renderer);
 			driveComboBox.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
@@ -192,8 +186,7 @@ public class PanelRemoteFiles extends JPanel {
 		
 		public boolean waitingForMd5;
 
-		public RemoteFileTable(JScrollPane panel) {
-			super(panel);
+		public RemoteFileTable() {
 			for (Drive drive : slave.getDrives()) {
 				driveComboModel.addElement(drive.getName());
 			}
@@ -210,9 +203,7 @@ public class PanelRemoteFiles extends JPanel {
 			} else {
 				setDirectory("");
 			}
-			
-			onReload();
-			
+						
 			JButton btnDownload = new JButton("Download");
 			btnDownload.setIcon(IconUtils.getIcon("arrow-down"));
 			btnDownload.addActionListener(new ActionListener() {

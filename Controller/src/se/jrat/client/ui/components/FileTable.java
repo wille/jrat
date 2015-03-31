@@ -25,7 +25,6 @@ import se.jrat.client.utils.Utils;
 @SuppressWarnings("serial")
 public abstract class FileTable extends JPanel {
 
-	private JScrollPane parent;
 	protected JToolBar toolBar;
 	protected JTable table;
 	public FileViewTableRenderer tableRenderer;
@@ -37,8 +36,7 @@ public abstract class FileTable extends JPanel {
 	
 	protected JTextField txtDir;
 	
-	public FileTable(JScrollPane parent) {
-		this.parent = parent;
+	public FileTable() {
 		setLayout(new BorderLayout(0, 0));
 		
 		toolBar = new JToolBar();
@@ -174,6 +172,5 @@ public abstract class FileTable extends JPanel {
 	
 	public void addPopup(JPopupMenu menu) {
 		Utils.addPopup(table, menu);
-		Utils.addPopup(parent, menu);
 	}
 }
