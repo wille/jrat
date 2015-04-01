@@ -59,7 +59,8 @@ public abstract class FileTable extends JPanel {
 		};
 		
 		JScrollPane sp = new JScrollPane();
-		table = new JTable(getTableModel());
+		table = new DefaultJTable(getTableModel());
+		table.setRowHeight(22);
 		table.setDefaultRenderer(Object.class, tableRenderer);
 		table.addMouseListener(new MouseAdapter() {
 			@Override
@@ -74,6 +75,7 @@ public abstract class FileTable extends JPanel {
 			}
 		});
 		sp.setViewportView(table);
+		sp.setBorder(null);
 		add(sp, BorderLayout.CENTER);
 		
 		JButton btnBack = new JButton("");
