@@ -19,6 +19,7 @@ public class TransferData {
 	private int read;
 	private long total;
 	private TransferRunnable runnable;
+	private Object object;
 	
 	public TransferData() {
 		this.state = State.IN_PROGRESS;
@@ -82,6 +83,18 @@ public class TransferData {
 	
 	public void start() {
 		runnable.start();
+	}
+	
+	public boolean isUpload() {
+		return runnable != null;
+	}
+
+	public Object getObject() {
+		return object;
+	}
+
+	public void setObject(Object object) {
+		this.object = object;
 	}
 	
 }

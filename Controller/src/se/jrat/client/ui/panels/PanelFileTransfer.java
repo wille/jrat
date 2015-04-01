@@ -17,6 +17,8 @@ import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
+import se.jrat.client.Slave;
+import se.jrat.client.packets.outgoing.Packet102PauseServerUpload;
 import se.jrat.client.ui.components.DefaultJTable;
 import se.jrat.client.ui.renderers.table.DefaultJTableCellRenderer;
 import se.jrat.client.utils.IconUtils;
@@ -109,7 +111,17 @@ public class PanelFileTransfer extends JPanel {
 				
 				for (int i : rows) {
 					TransferData d = (TransferData) table.getValueAt(i, 0);
-					d.getRunnable().pause();
+					
+					if (d.isUpload()) {
+						d.getRunnable().pause(); 
+					} else {
+						if (d.getState() == State.PAUSED) {
+							d.setState(State.IN_PROGRESS);
+						} else {
+							d.setState(State.PAUSED);
+						}
+						((Slave)d.getObject()).addToSendQueue(new Packet102PauseServerUpload(d.getRemoteFile()));
+					}
 				}
 			}
 		});

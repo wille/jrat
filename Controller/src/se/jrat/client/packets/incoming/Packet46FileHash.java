@@ -6,7 +6,6 @@ import javax.swing.JOptionPane;
 
 import se.jrat.client.Slave;
 import se.jrat.client.ui.frames.FrameRemoteFiles;
-import se.jrat.client.ui.frames.FrameRemoteFilesOld;
 
 
 public class Packet46FileHash extends AbstractIncomingPacket {

@@ -44,7 +44,6 @@ import javax.swing.table.DefaultTableModel;
 
 import se.jrat.client.Drive;
 import se.jrat.client.Main;
-import se.jrat.client.SendFile;
 import se.jrat.client.Slave;
 import se.jrat.client.io.FileSystem;
 import se.jrat.client.listeners.DirListener;

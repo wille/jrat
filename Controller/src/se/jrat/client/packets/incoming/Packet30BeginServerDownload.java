@@ -19,6 +19,7 @@ public class Packet30BeginServerDownload extends AbstractIncomingPacket {
 		if (data != null) {
 			data.setRemoteFile(file);
 			data.setTotal(length);
+			data.setObject(slave);
 		}
 	}
 

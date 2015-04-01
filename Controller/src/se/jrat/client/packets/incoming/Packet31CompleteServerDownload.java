@@ -3,7 +3,6 @@ package se.jrat.client.packets.incoming;
 import java.io.DataInputStream;
 
 import se.jrat.client.Slave;
-import se.jrat.client.ui.panels.PanelFileTransfer;
 import se.jrat.common.io.FileCache;
 import se.jrat.common.io.TransferData;
 

