@@ -88,14 +88,7 @@ public class PanelRemoteFiles extends JPanel {
 			btnUpload.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					new Thread() {
-						public void run() {
-							for (String s : getSelectedItems()) {
-								File file = new File(s);
-								slave.addToSendQueue(new Packet42ServerUploadFile(file, remoteTable.getCurrentDirectory() + file.getName()));
-							}			
-						}
-					}.run();
+					upload();
 				}				
 			});
 			toolBar.add(btnUpload, 0);
@@ -183,9 +176,23 @@ public class PanelRemoteFiles extends JPanel {
 				onItemClick("/");
 			}
 		}
+		
+		public void upload() {
+			new Thread() {
+				public void run() {
+					for (String s : getSelectedItems()) {
+						File file = new File(s);
+						slave.addToSendQueue(new Packet42ServerUploadFile(file, remoteTable.getCurrentDirectory() + file.getName()));
+					}			
+				}
+			}.start();
+		}
 	}
 	
 	public class RemoteFileTable extends FileTable {
+		
+		private JMenuItem mnAdd;
+		private JMenuItem mnRemove;
 		
 		public boolean waitingForMd5;
 
@@ -213,21 +220,7 @@ public class PanelRemoteFiles extends JPanel {
 			btnDownload.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					String file = getSelectedItem();
-					JFileChooser f = new JFileChooser();
-					f.setSelectedFile(new File(file.substring(file.lastIndexOf(slave.getFileSeparator()), file.length())));
-					f.showSaveDialog(null);
-					
-					if (f.getSelectedFile() != null && f.getSelectedFile().getParentFile().exists()) {
-						FileObject fo = getSelectedFileObject();
-						if (fo != null && !fo.isDirectory()) {
-							TransferData data = new TransferData();
-							data.setLocalFile(f.getSelectedFile());
-							PanelFileTransfer.instance.add(data);
-							FileCache.put(slave, data);
-							slave.addToSendQueue(new Packet21ServerDownloadFile(file));
-						}
-					}
+					download();
 				}				
 			});
 			toolBar.add(btnDownload, 0);
@@ -235,45 +228,7 @@ public class PanelRemoteFiles extends JPanel {
 			JPopupMenu popupMenuRemote = new JPopupMenu();
 			addPopup(popupMenuRemote);
 			
-			DirListener dir = new DirListener(slave);
-			
-			final JMenuItem mnAdd = new JMenuItem("Add");
-			mnAdd.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					StoreFileBookmarks.getGlobal().getBookmarks().add(new File(txtDir.getText()));
-				}
-			});
-			mnAdd.setIcon(IconUtils.getIcon("bookmark-add"));
-			popupMenuRemote.add(mnAdd);
-
-			final JMenuItem mnRemove = new JMenuItem("Remove");
-			mnRemove.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					StoreFileBookmarks.getGlobal().remove(new File(txtDir.getText()));
-				}
-			});
-			
-			popupMenuRemote.addPopupMenuListener(new PopupMenuListener() {
-				public void popupMenuCanceled(PopupMenuEvent arg0) {
-
-				}
-
-				public void popupMenuWillBecomeInvisible(PopupMenuEvent arg0) {
-
-				}
-
-				public void popupMenuWillBecomeVisible(PopupMenuEvent arg0) {
-					File bm = new File(txtDir.getText());
-
-					if (StoreFileBookmarks.getGlobal().contains(bm)) {
-						mnAdd.setEnabled(false);
-						mnRemove.setEnabled(true);
-					} else {
-						mnAdd.setEnabled(true);
-						mnRemove.setEnabled(false);
-					}
-				}
-			});
+			DirListener dir = new DirListener(slave);			
 					
 			JMenuItem mntmRun = new JMenuItem("Run");
 			mntmRun.setIcon(IconUtils.getIcon("execute"));
@@ -342,7 +297,7 @@ public class PanelRemoteFiles extends JPanel {
 			mntmDownloadFile.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					// TODO
+					download();
 				}
 			});
 			popupMenuRemote.add(mntmDownloadFile);
@@ -449,6 +404,44 @@ public class PanelRemoteFiles extends JPanel {
 			mnBookmarks.setIcon(IconUtils.getIcon("bookmark-go"));
 			popupMenuRemote.add(mnBookmarks);
 			
+			mnAdd = new JMenuItem("Add");
+			mnAdd.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					StoreFileBookmarks.getGlobal().getBookmarks().add(new File(txtDir.getText()));
+				}
+			});
+			mnAdd.setIcon(IconUtils.getIcon("bookmark-add"));
+			popupMenuRemote.add(mnAdd);
+			
+			mnRemove = new JMenuItem("Remove");
+			mnRemove.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					StoreFileBookmarks.getGlobal().remove(new File(txtDir.getText()));
+				}
+			});
+			
+			popupMenuRemote.addPopupMenuListener(new PopupMenuListener() {
+				public void popupMenuCanceled(PopupMenuEvent arg0) {
+
+				}
+
+				public void popupMenuWillBecomeInvisible(PopupMenuEvent arg0) {
+
+				}
+
+				public void popupMenuWillBecomeVisible(PopupMenuEvent arg0) {
+					File bm = new File(txtDir.getText());
+
+					if (StoreFileBookmarks.getGlobal().contains(bm)) {
+						mnAdd.setEnabled(false);
+						mnRemove.setEnabled(true);
+					} else {
+						mnAdd.setEnabled(true);
+						mnRemove.setEnabled(false);
+					}
+				}
+			});
+			
 			mnRemove.setIcon(IconUtils.getIcon("bookmark-remove"));
 			popupMenuRemote.add(mnRemove);
 
@@ -491,26 +484,6 @@ public class PanelRemoteFiles extends JPanel {
 			popupMenuRemote.add(mntmSelectAllFiles);
 
 			popupMenuRemote.addSeparator();
-
-			JMenuItem mntmGo = new JMenuItem("Go");
-			mntmGo.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					// TODO
-				}
-			});
-			mntmGo.setIcon(IconUtils.getIcon("arrow-right"));
-			popupMenuRemote.add(mntmGo);
-
-			JMenuItem mntmBack = new JMenuItem("Back");
-			mntmBack.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					// TODO
-				}
-			});
-			mntmBack.setIcon(IconUtils.getIcon("arrow-left"));
-			popupMenuRemote.add(mntmBack);
 
 			JMenuItem mntmRefresh = new JMenuItem("Refresh");
 			mntmRefresh.addActionListener(new ActionListener() {
@@ -585,6 +558,24 @@ public class PanelRemoteFiles extends JPanel {
 			
 			slave.addToSendQueue(new Packet15ListFiles(directory));
 			super.setDirectory(directory);
+		}
+		
+		public void download() {
+			String file = getSelectedItem();
+			JFileChooser f = new JFileChooser();
+			f.setSelectedFile(new File(file.substring(file.lastIndexOf(slave.getFileSeparator()), file.length())));
+			f.showSaveDialog(null);
+			
+			if (f.getSelectedFile() != null && f.getSelectedFile().getParentFile().exists()) {
+				FileObject fo = getSelectedFileObject();
+				if (fo != null && !fo.isDirectory()) {
+					TransferData data = new TransferData();
+					data.setLocalFile(f.getSelectedFile());
+					PanelFileTransfer.instance.add(data);
+					FileCache.put(slave, data);
+					slave.addToSendQueue(new Packet21ServerDownloadFile(file));
+				}
+			}
 		}
 	}
 

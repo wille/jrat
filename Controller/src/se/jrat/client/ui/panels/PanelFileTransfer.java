@@ -7,18 +7,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.Icon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
 import javax.swing.table.DefaultTableModel;
 
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet102PauseServerUpload;
+import se.jrat.client.packets.outgoing.Packet103CompleteServerUpload;
+import se.jrat.client.packets.outgoing.Packet105CancelServerDownload;
 import se.jrat.client.ui.components.DefaultJTable;
 import se.jrat.client.ui.renderers.table.DefaultJTableCellRenderer;
 import se.jrat.client.utils.IconUtils;
@@ -43,18 +47,9 @@ public class PanelFileTransfer extends JPanel {
 	private JScrollPane scrollPane;
 	private DefaultTableModel model;
 
-	public String file;
 	private JLabel label;
-
-	public int getRow(String path) {
-		for (int i = 0; i < model.getRowCount(); i++) {
-			if (model.getValueAt(i, 1).toString().equalsIgnoreCase(path)) {
-				return i;
-			}
-		}
-
-		return -1;
-	}
+	private JMenuItem btnPause;
+	private JMenuItem btnCancel;
 
 	public void load(String name) {
 		Icon icon = IconUtils.getFileIconFromExtension(name, false);
@@ -74,25 +69,14 @@ public class PanelFileTransfer extends JPanel {
 
 		label = new JLabel("...");
 
-		table = new DefaultJTable() {
-			@SuppressWarnings({ "unchecked", "rawtypes" })
-			@Override
-			public Class getColumnClass(int column) {
-				if (column == 0) {
-					return Icon.class;
-				}
-				return super.getColumnClass(column);
-			}
-		};
+		table = new DefaultJTable();
 		
-		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { " ", "File Path", "Info", "Progress" }) {
+		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "File Path", "Info", "Progress" }) {
 			public boolean isCellEditable(int row, int column) {
 				return false;
 			}
 		});
-		table.getColumnModel().getColumn(0).setPreferredWidth(25);
-		table.getColumnModel().getColumn(2).setPreferredWidth(388);
-		table.getColumnModel().getColumn(3).setPreferredWidth(133);
+
 		table.setDefaultRenderer(Object.class, new FileTransferTableRenderer());
 
 		table.getTableHeader().setReorderingAllowed(false);
@@ -105,7 +89,8 @@ public class PanelFileTransfer extends JPanel {
 		
 		JPopupMenu menu = new JPopupMenu();
 		
-		JButton btnPause = new JButton("Pause");
+		btnPause = new JMenuItem("Pause");
+		btnPause.setIcon(IconUtils.getIcon("pause"));
 		btnPause.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -114,14 +99,15 @@ public class PanelFileTransfer extends JPanel {
 				for (int i : rows) {
 					TransferData d = (TransferData) table.getValueAt(i, 0);
 					
+					if (d.getState() == State.PAUSED) {
+						d.setState(State.IN_PROGRESS);
+					} else {
+						d.setState(State.PAUSED);
+					}
+					
 					if (d.isUpload()) {
 						d.getRunnable().pause(); 
-					} else {
-						if (d.getState() == State.PAUSED) {
-							d.setState(State.IN_PROGRESS);
-						} else {
-							d.setState(State.PAUSED);
-						}
+					} else {					
 						((Slave)d.getObject()).addToSendQueue(new Packet102PauseServerUpload(d.getRemoteFile()));
 					}
 				}
@@ -130,11 +116,77 @@ public class PanelFileTransfer extends JPanel {
 		
 		menu.add(btnPause);
 		
+		btnCancel = new JMenuItem("Cancel");
+		btnCancel.setIcon(IconUtils.getIcon("delete"));
+		btnCancel.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				int[] rows = table.getSelectedRows();
+				
+				for (int i : rows) {
+					TransferData d = (TransferData) table.getValueAt(i, 0);
+					
+					d.setState(State.ERROR);
+					
+					if (d.isUpload()) {
+						d.getRunnable().interrupt();
+						((Slave)d.getObject()).addToSendQueue(new Packet103CompleteServerUpload(d.getRemoteFile()));
+					} else {
+						((Slave)d.getObject()).addToSendQueue(new Packet105CancelServerDownload(d.getRemoteFile()));
+					}
+				}
+			}
+		});
+		
+		menu.add(btnCancel);
+		
+		menu.addPopupMenuListener(new PopupMenuListener() {
+			@Override
+			public void popupMenuCanceled(PopupMenuEvent e) {
+				
+			}
+
+			@Override
+			public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
+				
+			}
+
+			@Override
+			public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
+				TransferData[] selected = getSelectedItems();
+				
+				if (selected.length == 1) {
+					if (selected[0].getState() == State.PAUSED) {
+						btnPause.setIcon(IconUtils.getIcon("stop"));
+						btnPause.setText("Stop");
+					} else {
+						btnPause.setIcon(IconUtils.getIcon("pause"));
+						btnPause.setText("Pause");
+					}
+					
+					btnPause.setEnabled(selected[0].getState() != State.COMPLETED && selected[0].getState() != State.ERROR);
+				} else {
+					btnPause.setEnabled(false);
+					btnPause.setIcon(IconUtils.getIcon("pause"));
+					btnPause.setText("Pause");
+				}
+			}
+		});
+		
 		Utils.addPopup(table, menu);
 	}
-
-	public void exit() {
-
+	
+	public TransferData[] getSelectedItems() {
+		int[] rows = table.getSelectedRows();
+		
+		TransferData[] td = new TransferData[rows.length];
+		
+		for (int i = 0; i < rows.length; i++) {
+			int row = rows[i];
+			td[i] = (TransferData) table.getValueAt(row, 0);
+		}
+		
+		return td;
 	}
 
 	public void reset() {
@@ -155,29 +207,6 @@ public class PanelFileTransfer extends JPanel {
 			}
 		}
 	}
-	
-	/*public void reportProgress(String path, int i, int bytes, int all) {
-		try {
-			progressBar.setMaximum(100);
-			progressBar.setValue(i);
-			model.setValueAt(i, getRow(path), 2);
-		} catch (Exception ex) {
-		
-		}
-		
-		String b = DataUnits.getAsString((long) bytes);
-		String a = DataUnits.getAsString((long) all);
-		label.setText("Transferring " + new File(path).getName() + " " + b + "/" + a);
-	}
-
-	public void done(String path, String bytes) {
-		try {
-			model.setValueAt("100", getRow(path), 2);
-		} catch (Exception ex) {
-		}
-		label.setText("Finished " + new File(path).getName());
-		progressBar.setValue(progressBar.getMaximum());
-	}*/
 
 	public class FileTransferTableRenderer extends DefaultJTableCellRenderer {
 
@@ -198,15 +227,18 @@ public class PanelFileTransfer extends JPanel {
 				setForeground(Color.black);
 			}
 			
-			if (column == 1) {
+			if (column == 0) {
 				setText(data.getRemoteFile());
+				setIcon(IconUtils.getFileIconFromExtension(data.getRemoteFile(), false));
+			} else {
+				setIcon(null);
 			}
 			
-			if (column == 2) {
+			if (column == 1) {
 				setText(DataUnits.getAsString(data.getRead()) + "/" + DataUnits.getAsString(data.getTotal()));
 			}
 			
-			if (column == 3) {
+			if (column == 2) {
 				JProgressBar bar = new JProgressBar();
 				bar.setMaximum((int) data.getTotal());
 				bar.setValue(data.getRead());

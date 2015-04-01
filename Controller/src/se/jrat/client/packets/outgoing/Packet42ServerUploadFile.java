@@ -45,11 +45,13 @@ public class Packet42ServerUploadFile extends AbstractOutgoingPacket {
 									Thread.sleep(Long.MAX_VALUE);
 								} catch (InterruptedException e) {
 
-								} catch (Exception e) {
-									e.printStackTrace();
 								}
 							}
-							System.out.println("writing " + pos);
+							
+							if (Thread.interrupted()) {
+								return;
+							}
+
 							int read = fileInput.read(chunk);
 							
 							slave.addToSendQueue(new Packet104ServerUploadPart(remoteFile, chunk, read));

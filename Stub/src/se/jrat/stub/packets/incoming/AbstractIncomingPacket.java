@@ -110,6 +110,7 @@ public abstract class AbstractIncomingPacket {
 		incomingPackets.put((byte) 102, Packet102PauseClientDownload.class);
 		incomingPackets.put((byte) 103, Packet103CompleteClientDownload.class);
 		incomingPackets.put((byte) 104, Packet104ClientDownloadPart.class);
+		incomingPackets.put((byte) 105, Packet105CancelClientUpload.class);
 	}
 
 	public static final void execute(byte header) {

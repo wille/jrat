@@ -16,6 +16,10 @@ public abstract class TransferRunnable extends Thread {
 	}
 	
 	public void pause() {
+		if (data.getState() == TransferData.State.COMPLETED || data.getState() == TransferData.State.ERROR) {
+			return;
+		}
+		
 		pause = !pause;
 		
 		if (pause) {

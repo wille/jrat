@@ -38,13 +38,16 @@ public class Packet21ClientUploadFile extends AbstractIncomingPacket {
 									Thread.sleep(Long.MAX_VALUE);
 								} catch (InterruptedException e) {
 
-								} catch (Exception e) {
-									e.printStackTrace();
 								}
 							}
+							
+							if (Thread.interrupted()) {
+								fileInput.close();
+								return;
+							}
+							
 							AbstractOutgoingPacket packet = new Packet29ClientUploadPart(file, chunk, read);
 							Connection.instance.addToSendQueue(packet);
-							Thread.sleep(10L);
 						}
 						fileInput.close();
 						
