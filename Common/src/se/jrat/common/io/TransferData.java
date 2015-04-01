@@ -26,7 +26,7 @@ public class TransferData {
 	}
 
 	public OutputStream getOutputStream() throws Exception {
-		if (out == null) {
+		if (out == null && local != null) {
 			out = new FileOutputStream(local);
 		}
 		

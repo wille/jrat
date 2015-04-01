@@ -18,15 +18,13 @@ public class Packet29ServerDownloadPart extends AbstractIncomingPacket {
 		byte[] buffer = new byte[len];
 		dis.readFully(buffer);
 
-		TransferData localData = FileCache.get(slave);
+		TransferData data = FileCache.get(remotePath);
 
-		File output = localData.getLocalFile();
+		File output = data.getLocalFile();
 
 		if (output.isDirectory()) {
 			output = new File(output, remotePath.substring(remotePath.lastIndexOf(slave.getFileSeparator()) + 1, remotePath.length()));
 		}
-
-		TransferData data = FileCache.get(slave);
 
 		data.getOutputStream().write(buffer);
 		data.increaseRead(buffer.length);

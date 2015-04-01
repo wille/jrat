@@ -27,6 +27,7 @@ import se.jrat.client.ui.components.DefaultJTable;
 import se.jrat.client.ui.renderers.table.DefaultJTableCellRenderer;
 import se.jrat.client.utils.IconUtils;
 import se.jrat.client.utils.Utils;
+import se.jrat.common.io.FileCache;
 import se.jrat.common.io.TransferData;
 import se.jrat.common.io.TransferData.State;
 
@@ -135,6 +136,7 @@ public class PanelFileTransfer extends JPanel {
 							d.getRunnable().interrupt();
 							((Slave)d.getObject()).addToSendQueue(new Packet103CompleteServerUpload(d.getRemoteFile()));
 						} else {
+							FileCache.clear(null);
 							((Slave)d.getObject()).addToSendQueue(new Packet105CancelServerDownload(d.getRemoteFile()));
 						}
 					}

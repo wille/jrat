@@ -572,7 +572,7 @@ public class PanelRemoteFiles extends JPanel {
 					TransferData data = new TransferData();
 					data.setLocalFile(f.getSelectedFile());
 					PanelFileTransfer.instance.add(data);
-					FileCache.put(slave, data);
+					FileCache.put(file, data);
 					slave.addToSendQueue(new Packet21ServerDownloadFile(file));
 				}
 			}

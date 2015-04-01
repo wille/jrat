@@ -12,14 +12,8 @@ public class Packet31CompleteServerDownload extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Slave slave, DataInputStream dis) throws Exception {
-		TransferData data = FileCache.get(slave);
-
-		if (data != null) {
-			data.getOutputStream().close();
-			TransferData dt = FileCache.get(slave);
-			dt.setState(State.COMPLETED);
-			FileCache.remove(slave);
-		}
+		String file = slave.readLine();
+		FileCache.clear(file);
 	}
 
 }
