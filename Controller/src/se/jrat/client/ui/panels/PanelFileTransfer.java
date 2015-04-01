@@ -99,16 +99,18 @@ public class PanelFileTransfer extends JPanel {
 				for (int i : rows) {
 					TransferData d = (TransferData) table.getValueAt(i, 0);
 					
-					if (d.getState() == State.PAUSED) {
-						d.setState(State.IN_PROGRESS);
-					} else {
-						d.setState(State.PAUSED);
-					}
-					
-					if (d.isUpload()) {
-						d.getRunnable().pause(); 
-					} else {					
-						((Slave)d.getObject()).addToSendQueue(new Packet102PauseServerUpload(d.getRemoteFile()));
+					if (d.getState() == State.PAUSED || d.getState() == State.IN_PROGRESS) {
+						if (d.getState() == State.PAUSED) {
+							d.setState(State.IN_PROGRESS);
+						} else {
+							d.setState(State.PAUSED);
+						}
+						
+						if (d.isUpload()) {
+							d.getRunnable().pause(); 
+						} else {					
+							((Slave)d.getObject()).addToSendQueue(new Packet102PauseServerUpload(d.getRemoteFile()));
+						}
 					}
 				}
 			}
