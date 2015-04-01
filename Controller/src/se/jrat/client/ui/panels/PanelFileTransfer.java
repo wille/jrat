@@ -17,6 +17,8 @@ import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
+import com.redpois0n.graphs.utils.DataUnits;
+
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet102PauseServerUpload;
 import se.jrat.client.ui.components.DefaultJTable;
@@ -201,7 +203,7 @@ public class PanelFileTransfer extends JPanel {
 			}
 			
 			if (column == 2) {
-				setText(data.getRead() + "/" + data.getTotal());
+				setText(DataUnits.getAsString(data.getRead()) + "/" + DataUnits.getAsString(data.getTotal()));
 			}
 			
 			if (column == 3) {

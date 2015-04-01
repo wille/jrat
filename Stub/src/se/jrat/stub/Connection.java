@@ -108,6 +108,8 @@ public class Connection implements Runnable {
 			for (Plugin plugin : Plugin.list) {
 				plugin.methods.get("onconnect").invoke(plugin.instance, new Object[] { dis, dos });
 			}
+			
+			new PacketThread().start();
 
 			while (true) {
 				byte line = readByte();
@@ -156,7 +158,8 @@ public class Connection implements Runnable {
 	}
 
 	public synchronized void addToSendQueue(AbstractOutgoingPacket packet) {
-		packet.send(dos, getStringWriter());
+		PacketThread.c.processAbstractOutgoingPacket(packet);
+		//packet.send(dos, getStringWriter());
 	}
 
 	public void writeLine(String s) {

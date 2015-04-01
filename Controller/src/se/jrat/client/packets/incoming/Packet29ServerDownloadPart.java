@@ -14,6 +14,7 @@ public class Packet29ServerDownloadPart extends AbstractIncomingPacket {
 	public void read(Slave slave, DataInputStream dis) throws Exception {
 		String remotePath = slave.readLine();
 		int len = dis.readInt();
+		System.out.println(remotePath + ", " + len);
 		byte[] buffer = new byte[len];
 		dis.readFully(buffer);
 

