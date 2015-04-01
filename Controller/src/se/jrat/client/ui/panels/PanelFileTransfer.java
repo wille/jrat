@@ -163,7 +163,7 @@ public class PanelFileTransfer extends JPanel {
 				
 				if (selected.length == 1) {
 					if (selected[0].getState() == State.PAUSED) {
-						btnPause.setIcon(IconUtils.getIcon("play"));
+						btnPause.setIcon(IconUtils.getIcon("start"));
 						btnPause.setText("Continue");
 					} else {
 						btnPause.setIcon(IconUtils.getIcon("pause"));
