@@ -20,15 +20,17 @@ public class Packet29ServerDownloadPart extends AbstractIncomingPacket {
 
 		TransferData data = FileCache.get(remotePath);
 
-		File output = data.getLocalFile();
+		if (data != null) {
+			File output = data.getLocalFile();
 
-		if (output.isDirectory()) {
-			output = new File(output, remotePath.substring(remotePath.lastIndexOf(slave.getFileSeparator()) + 1, remotePath.length()));
+			if (output.isDirectory()) {
+				output = new File(output, remotePath.substring(remotePath.lastIndexOf(slave.getFileSeparator()) + 1, remotePath.length()));
+			}
+
+			data.getOutputStream().write(buffer);
+			data.increaseRead(buffer.length);
+			PanelFileTransfer.instance.repaint();
 		}
-
-		data.getOutputStream().write(buffer);
-		data.increaseRead(buffer.length);
-		PanelFileTransfer.instance.repaint();
 	}
 
 }

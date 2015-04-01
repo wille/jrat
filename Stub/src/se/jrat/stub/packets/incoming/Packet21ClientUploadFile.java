@@ -42,7 +42,7 @@ public class Packet21ClientUploadFile extends AbstractIncomingPacket {
 								}
 							}
 							
-							if (Thread.interrupted()) {
+							if (Thread.interrupted() || !Connection.instance.isConnected()) {
 								fileInput.close();
 								return;
 							}

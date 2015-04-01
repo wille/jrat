@@ -174,6 +174,10 @@ public abstract class AbstractSlave implements Runnable {
 
 		return s;
 	}
+	
+	public boolean isConnected() {
+		return socket.isConnected() && !socket.isClosed();
+	}
 		
 	public abstract String getDisplayName();
 

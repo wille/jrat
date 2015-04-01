@@ -48,7 +48,8 @@ public class Packet42ServerUploadFile extends AbstractOutgoingPacket {
 								}
 							}
 							
-							if (Thread.interrupted()) {
+							if (Thread.interrupted() || !slave.isConnected()) {
+								fileInput.close();
 								return;
 							}
 

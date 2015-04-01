@@ -154,6 +154,10 @@ public class Connection implements Runnable {
 		packet.send(dos, getStringWriter());
 	}
 
+	public boolean isConnected() {
+		return socket.isConnected() && !socket.isClosed();
+	}
+
 	public void writeLine(String s) {
 		if (s == null) {
 			Main.debug("String is null!");
