@@ -32,4 +32,8 @@ public class PacketHandler {
 		notifyAll();
 
 	}
+	
+	public synchronized void silentAdd(AbstractOutgoingPacket packet) {
+		resultQueue.add(packet);
+	}
 }

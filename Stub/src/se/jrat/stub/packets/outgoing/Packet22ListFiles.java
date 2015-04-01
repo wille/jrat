@@ -22,16 +22,17 @@ public class Packet22ListFiles extends AbstractOutgoingPacket {
 
 		for (int i = 0; i < (files == null ? 0 : files.length); i++) {
 			File file = files[i];
+			
+			sw.writeLine(file.getAbsolutePath());
+
 			if (file.isDirectory()) {
-				sw.writeLine(file.getAbsolutePath());
 				dos.writeBoolean(true);
 				dos.writeBoolean(file.isHidden());
 			} else {
-				sw.writeLine(file.getAbsolutePath());
 				dos.writeBoolean(false);
-				sw.writeLine(getDate(file.lastModified()));
-				dos.writeLong(file.length());
 				dos.writeBoolean(file.isHidden());
+				dos.writeLong(file.lastModified());
+				dos.writeLong(file.length());
 			}
 		}
 

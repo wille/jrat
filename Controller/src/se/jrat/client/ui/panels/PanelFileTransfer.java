@@ -17,8 +17,6 @@ import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
-import com.redpois0n.graphs.utils.DataUnits;
-
 import se.jrat.client.Slave;
 import se.jrat.client.packets.outgoing.Packet102PauseServerUpload;
 import se.jrat.client.ui.components.DefaultJTable;
@@ -27,6 +25,8 @@ import se.jrat.client.utils.IconUtils;
 import se.jrat.client.utils.Utils;
 import se.jrat.common.io.TransferData;
 import se.jrat.common.io.TransferData.State;
+
+import com.redpois0n.graphs.utils.DataUnits;
 
 
 @SuppressWarnings("serial")

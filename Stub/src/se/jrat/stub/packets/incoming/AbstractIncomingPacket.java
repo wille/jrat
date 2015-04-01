@@ -6,7 +6,6 @@ import java.util.Set;
 import se.jrat.common.PacketRange;
 import se.jrat.common.exceptions.PacketException;
 import se.jrat.stub.Plugin;
-import se.jrat.stub.packets.outgoing.Packet0PingReply;
 
 
 public abstract class AbstractIncomingPacket {

@@ -20,7 +20,6 @@ import se.jrat.common.crypto.KeyExchanger;
 import se.jrat.common.io.StringWriter;
 import se.jrat.stub.packets.incoming.AbstractIncomingPacket;
 import se.jrat.stub.packets.outgoing.AbstractOutgoingPacket;
-import se.jrat.stub.packets.outgoing.Packet0PingReply;
 import se.jrat.stub.packets.outgoing.Packet10InitInstallPath;
 import se.jrat.stub.packets.outgoing.Packet11InitInstallationDate;
 import se.jrat.stub.packets.outgoing.Packet12InitLocalAddress;

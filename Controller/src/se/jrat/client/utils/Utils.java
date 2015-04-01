@@ -6,7 +6,6 @@ import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
-import java.text.DateFormat;
 import java.util.Date;
 
 import javax.swing.JFrame;
@@ -16,7 +15,6 @@ import javax.swing.table.DefaultTableModel;
 
 import se.jrat.client.AbstractSlave;
 import se.jrat.client.Main;
-
 
 public class Utils {
 
@@ -49,7 +47,6 @@ public class Utils {
 		});
 	}
 
-
 	public static String showDialog(String title, String text) {
 		return JOptionPane.showInputDialog(null, text, title, JOptionPane.QUESTION_MESSAGE);
 	}
@@ -79,11 +76,20 @@ public class Utils {
 
 	public static String getDate() {
 		Date now = new Date();
-		return DateFormat.getTimeInstance(DateFormat.MEDIUM).format(now);
+		return now.toString();
 	}
 
 	public static File getWorkingDir() {
 		return new File(System.getProperty("user.dir"));
+	}
+
+	public static String getDate(File file) {
+		return getDate(file.lastModified());
+	}
+	
+	public static String getDate(long l) {
+		Date now = new Date(l);
+		return now.toString();
 	}
 
 }

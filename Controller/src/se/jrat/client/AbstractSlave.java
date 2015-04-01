@@ -178,11 +178,14 @@ public abstract class AbstractSlave implements Runnable {
 	public abstract String getDisplayName();
 
 	public abstract void ping() throws Exception;
+	
+	public abstract String getFileSeparator();
 
 	public void beginPing() throws Exception {
 		pingms = System.currentTimeMillis();
 		ping();
 	}
+	
 
 	public ServerListener getConnection() {
 		return connection;
