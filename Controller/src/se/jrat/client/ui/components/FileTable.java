@@ -30,7 +30,7 @@ public abstract class FileTable extends JPanel {
 	protected JToolBar toolBar;
 	protected JTable table;
 	public FileViewTableRenderer tableRenderer;
-	protected DefaultTableModel tableModel;
+	private DefaultTableModel tableModel;
 	
 	protected JComboBox<String> driveComboBox;
 	protected DefaultComboBoxModel<String> driveComboModel;
@@ -51,7 +51,7 @@ public abstract class FileTable extends JPanel {
 		
 		tableRenderer = new FileViewTableRenderer(slave);
 		
-		tableModel = new DefaultTableModel(null, new Object[] { "File name", "File size", "Last modified", "Hidden" }) {
+		this.tableModel = new DefaultTableModel(null, new Object[] { "File name", "File size", "Last modified", "Hidden" }) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				return false;
@@ -59,7 +59,7 @@ public abstract class FileTable extends JPanel {
 		};
 		
 		JScrollPane sp = new JScrollPane();
-		table = new JTable(tableModel);
+		table = new JTable(getTableModel());
 		table.setDefaultRenderer(Object.class, tableRenderer);
 		table.addMouseListener(new MouseAdapter() {
 			@Override
@@ -170,8 +170,8 @@ public abstract class FileTable extends JPanel {
 	}
 	
 	public void clear() {
-		while (tableModel.getRowCount() > 0) {
-			tableModel.removeRow(0);
+		while (getTableModel().getRowCount() > 0) {
+			getTableModel().removeRow(0);
 		}
 	}
 	
@@ -180,12 +180,16 @@ public abstract class FileTable extends JPanel {
 	}
 	
 	public void addFileObject(FileObject fo) {
-		tableModel.addRow(new Object[] { fo });
+		getTableModel().addRow(new Object[] { fo });
 	}
 	
 	public FileObject getSelectedFileObject() {
 		int i = table.getSelectedRow();
 		
 		return (FileObject) table.getValueAt(i, 0);
+	}
+
+	public DefaultTableModel getTableModel() {
+		return tableModel;
 	}
 }

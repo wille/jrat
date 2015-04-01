@@ -11,12 +11,8 @@ public abstract class AbstractOutgoingPacket {
 	public abstract void write(DataOutputStream dos, StringWriter sw) throws Exception;
 
 	public abstract byte getPacketId();
-	
-	public static synchronized final void send(AbstractOutgoingPacket packet) {
-		packet.send(Connection.instance.getDataOutputStream(), Connection.instance.getStringWriter());
-	}
 
-	private synchronized final void send(DataOutputStream dos, StringWriter sw) {
+	public synchronized final void send(DataOutputStream dos, StringWriter sw) {
 		try {
 			dos.writeByte(getPacketId());
 			this.write(dos, sw);

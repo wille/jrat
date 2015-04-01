@@ -138,4 +138,9 @@ public class AndroidSlave extends AbstractSlave {
 		packet.send(this, dos);
 	}
 
+	@Override
+	public String getFileSeparator() {
+		return "/";
+	}
+
 }

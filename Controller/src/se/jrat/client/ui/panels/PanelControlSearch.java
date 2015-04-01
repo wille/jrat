@@ -117,8 +117,7 @@ public class PanelControlSearch extends PanelControlParent {
 					}
 					String val = model.getValueAt(row, 0).toString();
 					String path = val.substring(0, val.lastIndexOf(sl.getFileSeparator()));
-					sl.addToSendQueue(new Packet15ListFiles(path));
-					frame.txtDir.setText(path);
+					frame.remoteTable.setDirectory(path);
 				}
 			}
 		});
@@ -140,8 +139,8 @@ public class PanelControlSearch extends PanelControlParent {
 					}
 					String val = model.getValueAt(row, 0).toString();
 					String path = val.substring(0, val.lastIndexOf(sl.getFileSeparator()));
-					sl.addToSendQueue(new Packet15ListFiles(path));
-					frame.txtDir.setText(path);
+					frame.remoteTable.setDirectory(path);
+
 				}
 			}
 		});

