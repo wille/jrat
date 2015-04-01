@@ -3,19 +3,19 @@ package se.jrat.client.io;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import javax.swing.Icon;
-import javax.swing.table.DefaultTableModel;
-
+import se.jrat.client.ui.components.FileTable;
 import se.jrat.client.utils.IconUtils;
 
 public class FileSystem {
-
-	public static void addDir(String dir, DefaultTableModel model, Map<String, Icon> icons) {
-		File f = new File(dir);
-		if (f.exists()) {
-			File[] childs = f.listFiles();
+	
+	public static void addDir(String folder, FileTable table) {
+		addDir(new File(folder), table);
+	}
+	
+	public static void addDir(File folder, FileTable table) {
+		if (folder.exists()) {
+			File[] childs = folder.listFiles();
 			List<File> files = new ArrayList<File>();
 			List<File> dirs = new ArrayList<File>();
 
@@ -34,7 +34,7 @@ public class FileSystem {
 				fo.setHidden(file.isHidden());
 				fo.setIcon(IconUtils.getFileIcon(file));
 				
-				model.addRow(new Object[] { fo });
+				table.addFileObject(fo);
 			}
 
 			for (File file : files) {
@@ -44,7 +44,7 @@ public class FileSystem {
 				fo.setDate(file.lastModified());
 				fo.setSize(file.length());
 				
-				model.addRow(new Object[] { fo });
+				table.addFileObject(fo);
 			}
 		}
 	}

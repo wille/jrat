@@ -76,7 +76,7 @@ public class PanelRemoteFiles extends JPanel {
 			driveComboBox.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					clear();
-					FileSystem.addDir(driveComboBox.getSelectedItem().toString(), tableModel, tableRenderer.icons);
+					FileSystem.addDir(driveComboBox.getSelectedItem().toString(), LocalFileTable.this);
 				}
 			});
 			
@@ -109,7 +109,7 @@ public class PanelRemoteFiles extends JPanel {
 			} else {
 				clear();
 				setDirectory(getCurrentDirectory().substring(0, getCurrentDirectory().substring(0, getCurrentDirectory().length() - 1).lastIndexOf(File.separator)));
-				FileSystem.addDir(getCurrentDirectory(), tableModel, tableRenderer.icons);
+				FileSystem.addDir(getCurrentDirectory(), this);
 			}
 		}
 
@@ -120,7 +120,7 @@ public class PanelRemoteFiles extends JPanel {
 			if (getCurrentDirectory().length() == 0) {	
 				listRoots();
 			} else {
-				FileSystem.addDir(getCurrentDirectory(), tableModel, tableRenderer.icons);
+				FileSystem.addDir(getCurrentDirectory(), this);
 			}
 		}
 
@@ -151,7 +151,7 @@ public class PanelRemoteFiles extends JPanel {
 			if (true) { // TODO
 				setDirectory(item);
 				clear();
-				FileSystem.addDir(item, tableModel, tableRenderer.icons);
+				FileSystem.addDir(item, this);
 			} else {
 				try {
 					Desktop.getDesktop().open(new File(item));
