@@ -10,6 +10,8 @@ public class Packet95KeyRelease extends AbstractIncomingPacket {
 		int btn = Connection.instance.readInt();
 		try {
 			Main.robot.keyRelease(btn);
+		} catch (IllegalArgumentException e) {
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
