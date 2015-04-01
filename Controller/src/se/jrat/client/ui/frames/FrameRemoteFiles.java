@@ -39,7 +39,7 @@ public class FrameRemoteFiles extends BaseFrame {
 
 		setBounds(100, 100, 760, 500);
 		setLayout(new BorderLayout(0, 0));
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRemoteFilesOld.class.getResource("/icons/folder-tree.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRemoteFiles.class.getResource("/icons/folder-tree.png")));
 
 		setTitle("File manager - " + "[" + slave.formatUserString() + "] - " + slave.getIP());
 
