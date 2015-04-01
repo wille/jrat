@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JSplitPane;
+import javax.swing.SwingUtilities;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
 
@@ -58,7 +59,7 @@ public class PanelRemoteFiles extends JPanel {
 		
 		setLayout(new BorderLayout(0, 0));
 		
-		JSplitPane sp = new JSplitPane();
+		final JSplitPane sp = new JSplitPane();
 		
 		LocalFileTable localTable = new LocalFileTable();
 		sp.setLeftComponent(localTable);
@@ -67,6 +68,13 @@ public class PanelRemoteFiles extends JPanel {
 		sp.setRightComponent(remoteTable);
 		
 		add(sp, BorderLayout.CENTER);
+		
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				sp.setDividerLocation(0.5D);
+			}
+		});
 	}
 	
 	public class LocalFileTable extends FileTable {
