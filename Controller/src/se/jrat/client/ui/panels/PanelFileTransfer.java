@@ -126,13 +126,15 @@ public class PanelFileTransfer extends JPanel {
 				for (int i : rows) {
 					TransferData d = (TransferData) table.getValueAt(i, 0);
 					
-					d.setState(State.ERROR);
-					
-					if (d.isUpload()) {
-						d.getRunnable().interrupt();
-						((Slave)d.getObject()).addToSendQueue(new Packet103CompleteServerUpload(d.getRemoteFile()));
-					} else {
-						((Slave)d.getObject()).addToSendQueue(new Packet105CancelServerDownload(d.getRemoteFile()));
+					if (d.getState() != State.ERROR && d.getState() != State.COMPLETED) {
+						d.setState(State.ERROR);
+						
+						if (d.isUpload()) {
+							d.getRunnable().interrupt();
+							((Slave)d.getObject()).addToSendQueue(new Packet103CompleteServerUpload(d.getRemoteFile()));
+						} else {
+							((Slave)d.getObject()).addToSendQueue(new Packet105CancelServerDownload(d.getRemoteFile()));
+						}
 					}
 				}
 			}
@@ -157,8 +159,8 @@ public class PanelFileTransfer extends JPanel {
 				
 				if (selected.length == 1) {
 					if (selected[0].getState() == State.PAUSED) {
-						btnPause.setIcon(IconUtils.getIcon("stop"));
-						btnPause.setText("Stop");
+						btnPause.setIcon(IconUtils.getIcon("play"));
+						btnPause.setText("Continue");
 					} else {
 						btnPause.setIcon(IconUtils.getIcon("pause"));
 						btnPause.setText("Pause");
