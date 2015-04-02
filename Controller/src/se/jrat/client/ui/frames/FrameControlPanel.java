@@ -145,6 +145,8 @@ public class FrameControlPanel extends BaseFrame {
 						e.printStackTrace();
 					}
 				}
+				
+				instances.remove(slave);
 			}
 		});
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameControlPanel.class.getResource("/icons/controlpanel.png")));
