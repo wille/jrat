@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.crypto.BadPaddingException;
-
 import se.jrat.client.addons.PluginEventHandler;
 import se.jrat.client.exceptions.CloseException;
 import se.jrat.client.net.ConnectionHandler;

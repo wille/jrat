@@ -24,7 +24,6 @@ import javax.swing.table.DefaultTableModel;
 
 import se.jrat.client.Drive;
 import se.jrat.client.Slave;
-import se.jrat.client.packets.outgoing.Packet15ListFiles;
 import se.jrat.client.packets.outgoing.Packet53StartSearch;
 import se.jrat.client.packets.outgoing.Packet54StopSearch;
 import se.jrat.client.ui.components.DefaultJTable;
