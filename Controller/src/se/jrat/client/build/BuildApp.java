@@ -22,7 +22,7 @@ public class BuildApp {
 	}
 
 	public static final String FILE_INFO = "/files/osx/app.plist";
-	public static final String FILE_LAUNCHER = "/files/osx/launcher";
+	public static final String FILE_LAUNCHER = "/files/osx/launcher.sh";
 
 	public static void build(File input, File output, File icon, String mainclass, String appTitle, boolean dockIcon, int minimumVersion) throws Exception {
 		File basePath = new File(output.getAbsolutePath(), "/Contents");
@@ -78,7 +78,7 @@ public class BuildApp {
 		br.close();
 		
 		String rawFile = sb.toString();
-		rawFile = rawFile.replace("%MINOR%", minimumVersion + "").replace("%JAR%", jarName).replace("%DOCK%", showIcon + "").replace("%NAME%", appTitle);
+		rawFile = rawFile.replace("%NAME%", "Java Application").replace("%MINOR%", minimumVersion + "").replace("%JAR%", jarName).replace("%DOCK%", showIcon + "").replace("%NAME%", appTitle);
 		
 		pw.print(rawFile); 
 		
