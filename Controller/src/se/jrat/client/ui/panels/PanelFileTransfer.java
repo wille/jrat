@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.Icon;
 import javax.swing.JLabel;
@@ -72,7 +74,7 @@ public class PanelFileTransfer extends JPanel {
 
 		table = new DefaultJTable();
 		
-		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "File Path", "Info", "Progress" }) {
+		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "File Path", "Info", "Speed", "Progress" }) {
 			public boolean isCellEditable(int row, int column) {
 				return false;
 			}
@@ -214,6 +216,16 @@ public class PanelFileTransfer extends JPanel {
 		}
 	}
 
+	public List<TransferData> getTransfers() {
+		List<TransferData> list = new ArrayList<TransferData>();
+		
+		for (int i = 0; i < model.getRowCount(); i++) {
+			list.add((TransferData) table.getValueAt(i, 0));
+		}
+		
+		return list;
+	}
+	
 	public class FileTransferTableRenderer extends DefaultJTableCellRenderer {
 
 		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
@@ -245,6 +257,10 @@ public class PanelFileTransfer extends JPanel {
 			}
 			
 			if (column == 2) {
+				setText(DataUnits.getAsString(data.getSpeed()) + "/s");
+			}
+			
+			if (column == 3) {
 				JProgressBar bar = new JProgressBar();
 				bar.setMaximum((int) data.getTotal());
 				bar.setValue(data.getRead());

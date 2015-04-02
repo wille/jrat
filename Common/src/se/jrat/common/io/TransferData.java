@@ -21,6 +21,9 @@ public class TransferData {
 	private TransferRunnable runnable;
 	private Object object;
 	
+	private long lastRead;
+	private long speed;
+	
 	public TransferData() {
 		this.state = State.IN_PROGRESS;
 	}
@@ -95,6 +98,26 @@ public class TransferData {
 
 	public void setObject(Object object) {
 		this.object = object;
+	}
+
+	public long getLastRead() {
+		return lastRead;
+	}
+
+	public void setLastRead(long lastRead) {
+		this.lastRead = lastRead;
+	}
+	
+	public long getDiff() {
+		return read - lastRead;
+	}
+	
+	public long getSpeed() {
+		return this.speed;
+	}
+
+	public void setSpeed(long speed) {
+		this.speed = speed;
 	}
 	
 }

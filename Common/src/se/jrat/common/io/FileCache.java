@@ -7,7 +7,7 @@ import se.jrat.common.io.TransferData.State;
 
 public class FileCache {
 	
-	private static final Map<Object, TransferData> MAP = new HashMap<Object, TransferData>();
+	public static final Map<Object, TransferData> MAP = new HashMap<Object, TransferData>();
 
 	public static TransferData get(Object o) {
 		return MAP.get(o);
