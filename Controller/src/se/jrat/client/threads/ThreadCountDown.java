@@ -11,6 +11,7 @@ public class ThreadCountDown extends Thread {
 	public JButton button;
 
 	public ThreadCountDown(DialogEula f, JButton b) {
+		super("EULA frame countdown thread");
 		frame = f;
 		button = b;
 	}

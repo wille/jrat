@@ -15,6 +15,7 @@ public class ThreadRecordButton extends Thread {
 	private boolean running;
 	
 	public ThreadRecordButton(JButton button) {
+		super("Record button renderer");
 		this.button = button;
 	}
 	

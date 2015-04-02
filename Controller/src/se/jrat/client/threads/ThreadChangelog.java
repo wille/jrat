@@ -16,6 +16,7 @@ public class ThreadChangelog extends Thread {
 	public List<String> lines;
 
 	public ThreadChangelog(String url) {
+		super("Changelog downloader");
 		this.url = url;
 	}
 

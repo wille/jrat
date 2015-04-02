@@ -10,6 +10,7 @@ public class ThreadMemoryUsage extends Thread {
 	public Slave slave;
 
 	public ThreadMemoryUsage(Slave slave) {
+		super("Memory usage update thread");
 		this.slave = slave;
 	}
 

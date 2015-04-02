@@ -4,6 +4,10 @@ public abstract class ThreadFPS extends Thread {
 
 	private boolean running = true;
 	private volatile int fps;
+	
+	public ThreadFPS() {
+		super("FPS counter thread");
+	}
 
 	public void increase() {
 		fps++;

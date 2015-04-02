@@ -7,6 +7,7 @@ public class ThreadGraph extends Thread {
 	private Graph graph;
 
 	public ThreadGraph(Graph graph) {
+		super("Graph thread");
 		this.graph = graph;
 	}
 

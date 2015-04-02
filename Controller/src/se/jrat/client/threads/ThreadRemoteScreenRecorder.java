@@ -13,6 +13,7 @@ public class ThreadRemoteScreenRecorder extends Thread {
 	private String extension;
 
 	public ThreadRemoteScreenRecorder(String path, BufferedImage image, int count, String extension) {
+		super("Image writer");
 		this.path = path;
 		this.image = image;
 		this.count = count;
