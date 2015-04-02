@@ -70,12 +70,11 @@ public class Slave extends AbstractSlave {
 
 					if (Arrays.equals(localHash, remoteHash)) {
 						setVerified(true);
-						ConnectionHandler.addSlave(this);
 						continue;
 					}
 				}
 
-				if (!isVerified() && header != 30) {
+				if (!isVerified()) {
 					Main.instance.getPanelLog().addEntry("Warning", this, "Failed verifying password, not valid handshake");
 					this.closeSocket(new CloseException("Failed verifying password, not valid handshake"));
 				}

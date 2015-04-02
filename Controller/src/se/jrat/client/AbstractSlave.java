@@ -418,7 +418,7 @@ public abstract class AbstractSlave implements Runnable {
 		
 		String s;
 		
-		if (this.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
+		if (getOperatingSystem() != null && getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 			s = computerName + "\\" + username;
 		} else {
 			s = username + "@" + computerName;
