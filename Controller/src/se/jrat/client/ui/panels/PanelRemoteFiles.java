@@ -149,14 +149,12 @@ public class PanelRemoteFiles extends JPanel {
 		}
 
 		@Override
-		public void onItemClick(String item) {
-			if (true) { // TODO
-				setDirectory(item);
-				clear();
-				FileSystem.addDir(item, this);
+		public void onItemClick(FileObject fo) {
+			if (fo.isDirectory()) {
+				browse(fo.getPath());
 			} else {
 				try {
-					Desktop.getDesktop().open(new File(item));
+					Desktop.getDesktop().open(new File(fo.getPath()));
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
@@ -181,8 +179,14 @@ public class PanelRemoteFiles extends JPanel {
 					driveComboModel.addElement(fi.getAbsolutePath());
 				}
 			} else {
-				onItemClick("/");
+				browse("/");
 			}
+		}
+		
+		public void browse(String dir) {
+			setDirectory(dir);
+			clear();
+			FileSystem.addDir(dir, this);
 		}
 		
 		public void upload() {
@@ -547,9 +551,11 @@ public class PanelRemoteFiles extends JPanel {
 		}
 
 		@Override
-		public void onItemClick(String item) {
-			clear();
-			setDirectory(item);
+		public void onItemClick(FileObject fo) {
+			if (fo.isDirectory()) {
+				clear();
+				setDirectory(fo.getPath());
+			}
 		}
 		
 		@Override

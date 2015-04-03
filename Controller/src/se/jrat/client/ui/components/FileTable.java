@@ -67,10 +67,7 @@ public abstract class FileTable extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2 && table.getSelectedRow() != -1) {
 					FileObject fo = getSelectedFileObject();
-					if (fo.isDirectory()) {
-						clear();
-						onItemClick(fo.getPath());
-					}
+					onItemClick(fo);
 				}
 			}
 		});
@@ -161,7 +158,7 @@ public abstract class FileTable extends JPanel {
 	
 	public abstract void onCreateFolder();
 	
-	public abstract void onItemClick(String item);
+	public abstract void onItemClick(FileObject fo);
 	
 	public void setDirectory(String directory) {
 		txtDir.setText(directory);
