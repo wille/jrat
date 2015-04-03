@@ -21,7 +21,7 @@ public class FileCache {
 		try {
 			TransferData data = MAP.remove(o);
 			
-			if (data.getOutputStream() != null) {
+			if (data != null && data.getOutputStream() != null) {
 				data.getOutputStream().close();
 			}
 		} catch (Exception e) {

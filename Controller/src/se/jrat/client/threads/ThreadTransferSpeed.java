@@ -2,7 +2,7 @@ package se.jrat.client.threads;
 
 import java.util.List;
 
-import se.jrat.client.ui.panels.PanelFileTransfer;
+import se.jrat.client.ui.panels.PanelFileTransfers;
 import se.jrat.common.io.TransferData;
 
 public class ThreadTransferSpeed extends Thread {
@@ -13,7 +13,7 @@ public class ThreadTransferSpeed extends Thread {
 
 	public void run() {
 		while (true) {
-			List<TransferData> transfers = PanelFileTransfer.instance.getTransfers();
+			List<TransferData> transfers = PanelFileTransfers.instance.getTransfers();
 			
 			for (TransferData transfer : transfers) {
 				transfer.setLastRead(transfer.getRead());
@@ -27,7 +27,7 @@ public class ThreadTransferSpeed extends Thread {
 			
 			for (TransferData transfer : transfers) {
 				transfer.setSpeed(transfer.getDiff());
-				PanelFileTransfer.instance.repaint();
+				PanelFileTransfers.instance.repaint();
 			}
 		}
 	}

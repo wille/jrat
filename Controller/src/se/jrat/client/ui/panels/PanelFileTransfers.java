@@ -37,12 +37,12 @@ import com.redpois0n.graphs.utils.DataUnits;
 
 
 @SuppressWarnings("serial")
-public class PanelFileTransfer extends JPanel {
+public class PanelFileTransfers extends JPanel {
 
-	public static PanelFileTransfer instance;
+	public static PanelFileTransfers instance;
 	
 	static {
-		instance = new PanelFileTransfer();
+		instance = new PanelFileTransfers();
 	}
 
 	private JTable table;
@@ -62,7 +62,7 @@ public class PanelFileTransfer extends JPanel {
 		progressBar.setMaximum(model.getRowCount() * 100);
 	}
 
-	public PanelFileTransfer() {
+	public PanelFileTransfers() {
 		setLayout(new BorderLayout(0, 0));
 
 		scrollPane = new JScrollPane();
@@ -138,7 +138,7 @@ public class PanelFileTransfer extends JPanel {
 							d.getRunnable().interrupt();
 							((Slave)d.getObject()).addToSendQueue(new Packet103CompleteServerUpload(d.getRemoteFile()));
 						} else {
-							FileCache.clear(null);
+                            FileCache.remove(d.getLocalFile().getAbsolutePath());
 							((Slave)d.getObject()).addToSendQueue(new Packet105CancelServerDownload(d.getRemoteFile()));
 						}
 					}

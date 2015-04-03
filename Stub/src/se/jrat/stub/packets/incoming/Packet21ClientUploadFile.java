@@ -60,7 +60,7 @@ public class Packet21ClientUploadFile extends AbstractIncomingPacket {
 			});
 			data.start();
 			
-			FileCache.put(file, data);
+			FileCache.put(rawFile, data);
 		}
 	}
 

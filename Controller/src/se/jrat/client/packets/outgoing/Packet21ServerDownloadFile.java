@@ -15,6 +15,7 @@ public class Packet21ServerDownloadFile extends AbstractOutgoingPacket {
 
 	@Override
 	public void write(Slave slave, DataOutputStream dos) throws Exception {
+		System.out.println(file);
 		slave.writeLine(file);
 	}
 

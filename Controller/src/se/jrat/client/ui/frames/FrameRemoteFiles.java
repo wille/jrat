@@ -12,7 +12,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.WindowConstants;
 
 import se.jrat.client.Slave;
-import se.jrat.client.ui.panels.PanelFileTransfer;
+import se.jrat.client.ui.panels.PanelFileTransfers;
 import se.jrat.client.ui.panels.PanelRemoteFiles;
 import se.jrat.client.ui.panels.PanelRemoteFiles.RemoteFileTable;
 
@@ -47,7 +47,7 @@ public class FrameRemoteFiles extends BaseFrame {
 		remoteTable = remoteFiles.remoteTable;
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setViewportView(PanelFileTransfer.instance);
+		scrollPane.setViewportView(PanelFileTransfers.instance);
 		
 		JTabbedPane tabbedPane = new JTabbedPane();
 		tabbedPane.addTab("Files", remoteFiles);
