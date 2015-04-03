@@ -57,7 +57,7 @@ public class FrameRemoteFiles extends BaseFrame {
 	}
 
 	public void exit() {
-		INSTANCES.remove(this);
+		INSTANCES.remove(slave);
 	}
 
 }

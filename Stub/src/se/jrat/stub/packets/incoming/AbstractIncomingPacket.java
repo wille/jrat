@@ -57,7 +57,7 @@ public abstract class AbstractIncomingPacket {
 		incomingPackets.put((byte) 49, Packet49ChatEnd.class);
 		incomingPackets.put((byte) 50, Packet50UpdateRemoteScreen.class);
 		incomingPackets.put((byte) 51, Packet51ChatMessage.class);
-		incomingPackets.put((byte) 52, Packet52Log.class);
+		// 52
 		incomingPackets.put((byte) 53, Packet53StartSearch.class);
 		incomingPackets.put((byte) 54, Packet54StopSearch.class);
 		incomingPackets.put((byte) 55, Packet55HostsFile.class);

