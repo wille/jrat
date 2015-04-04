@@ -71,6 +71,7 @@ public class Packet3Initialized extends AbstractIncomingPacket {
 				slave.addToSendQueue(new Packet42ServerUploadFile(file, key, true, new UploadThread(null, key, file) {
 					@Override
 					public void onComplete() {
+						super.onComplete();
 						slave.addToSendQueue(new Packet101UploadPlugin(key));
 					}
 				}));

