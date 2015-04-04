@@ -2,7 +2,7 @@ package se.jrat.controller.listeners;
 
 import java.util.LinkedHashMap;
 
-import se.jrat.controller.BuildStatus;
+import se.jrat.controller.build.BuildStatus;
 import se.jrat.controller.ui.frames.FrameBuildMinimal;
 
 

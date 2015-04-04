@@ -1,4 +1,4 @@
-package se.jrat.controller;
+package se.jrat.controller.build;
 
 public enum BuildStatus {
 

@@ -25,7 +25,6 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
 
 import se.jrat.common.DropLocations;
-import se.jrat.controller.BuildStatus;
 import se.jrat.controller.Constants;
 import se.jrat.controller.ErrorDialog;
 import se.jrat.controller.Globals;
@@ -33,6 +32,7 @@ import se.jrat.controller.Main;
 import se.jrat.controller.OSConfig;
 import se.jrat.controller.addons.PluginList;
 import se.jrat.controller.build.Build;
+import se.jrat.controller.build.BuildStatus;
 import se.jrat.controller.listeners.MinimalBuildListener;
 import se.jrat.controller.listeners.SocketComboBoxListener;
 import se.jrat.controller.net.PortListener;

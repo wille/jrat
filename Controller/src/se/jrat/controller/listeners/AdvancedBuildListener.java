@@ -3,7 +3,7 @@ package se.jrat.controller.listeners;
 import java.awt.Color;
 import java.util.LinkedHashMap;
 
-import se.jrat.controller.BuildStatus;
+import se.jrat.controller.build.BuildStatus;
 import se.jrat.controller.ui.panels.PanelBuildFinal;
 
 

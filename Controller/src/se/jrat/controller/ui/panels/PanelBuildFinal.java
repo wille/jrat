@@ -22,7 +22,6 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
 import se.jrat.common.utils.DataUnits;
-import se.jrat.controller.BuildStatus;
 import se.jrat.controller.ErrorDialog;
 import se.jrat.controller.Globals;
 import se.jrat.controller.OSConfig;
@@ -32,6 +31,7 @@ import se.jrat.controller.addons.StubPlugin;
 import se.jrat.controller.build.Build;
 import se.jrat.controller.build.BuildApp;
 import se.jrat.controller.build.BuildExecutable;
+import se.jrat.controller.build.BuildStatus;
 import se.jrat.controller.listeners.AdvancedBuildListener;
 import se.jrat.controller.settings.Settings;
 import se.jrat.controller.ui.components.DefaultJTable;

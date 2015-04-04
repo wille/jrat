@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 
-import se.jrat.controller.BuildStatus;
+import se.jrat.controller.build.BuildStatus;
 import se.jrat.controller.utils.IconUtils;
 
 

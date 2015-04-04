@@ -31,7 +31,6 @@ import se.jrat.common.crypto.CryptoUtils;
 import se.jrat.common.hash.Md5;
 import se.jrat.common.hash.Sha1;
 import se.jrat.common.utils.DataUnits;
-import se.jrat.controller.BuildStatus;
 import se.jrat.controller.Constants;
 import se.jrat.controller.ErrorDialog;
 import se.jrat.controller.Main;

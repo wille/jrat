@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 import se.jrat.common.hash.Md5;
 import se.jrat.common.hash.Sha1;
 import se.jrat.common.utils.DataUnits;
-import se.jrat.controller.BuildStatus;
+import se.jrat.controller.build.BuildStatus;
 import se.jrat.controller.ui.components.DefaultJTable;
 import se.jrat.controller.ui.renderers.table.BuildTableRenderer;
 import se.jrat.controller.utils.IconUtils;
