@@ -11,6 +11,7 @@ public class Packet42ServerUploadFile extends AbstractOutgoingPacket {
 	private File file;
 	private String remoteFile;
 	private boolean temp;
+	private UploadThread thread;
 
 	public Packet42ServerUploadFile(File file, String remoteFile) {
 		this(file, remoteFile, false);
@@ -20,6 +21,14 @@ public class Packet42ServerUploadFile extends AbstractOutgoingPacket {
 		this.file = file;
 		this.remoteFile = remoteFile;
 		this.temp = temp;
+		this.thread = new UploadThread(null, remoteFile, file);
+	}
+	
+	public Packet42ServerUploadFile(File file, String remoteFile, boolean temp, UploadThread thread) {
+		this.file = file;
+		this.remoteFile = remoteFile;
+		this.temp = temp;
+		this.thread = thread;
 	}
 	
 	@Override
@@ -29,7 +38,9 @@ public class Packet42ServerUploadFile extends AbstractOutgoingPacket {
 		dos.writeLong(file.length());
 
 		if (file.exists() && file.isFile()) {
-			new UploadThread(slave, remoteFile, file);
+			thread.setSlave(slave);
+			thread.getData().setObject(slave);
+			thread.getData().start();
 		}
 	}
 

@@ -33,5 +33,9 @@ public abstract class TransferRunnable extends Thread {
 			interrupt();
 		}
 	}
+	
+	public TransferData getData() {
+		return this.data;
+	}
 
 }

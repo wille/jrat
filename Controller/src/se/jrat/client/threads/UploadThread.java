@@ -25,8 +25,6 @@ public class UploadThread extends TransferRunnable {
 		data.setObject(slave);
 		
 		data.setRunnable(this);
-		
-		data.start();
 	}
 	
 	public UploadThread(TransferData data) {
@@ -75,6 +73,10 @@ public class UploadThread extends TransferRunnable {
 	
 	public void onComplete() {
 		slave.addToSendQueue(new Packet103CompleteServerUpload(data.getRemoteFile()));
+	}
+
+	public void setSlave(Slave slave) {
+		this.slave = slave;
 	}
 
 }
