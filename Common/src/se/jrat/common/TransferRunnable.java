@@ -7,6 +7,10 @@ public abstract class TransferRunnable extends Thread {
 	protected boolean pause;
 	protected TransferData data;
 	
+	public TransferRunnable() {
+		
+	}
+	
 	public TransferRunnable(TransferData data) {
 		this.data = data;
 	}

