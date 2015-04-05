@@ -25,7 +25,7 @@ import se.jrat.controller.Constants;
 
 
 @SuppressWarnings("serial")
-public class FrameDebugInfo extends BaseFrame {
+public class FrameDebugInfo extends JFrame {
 
 	private JPanel contentPane;
 	private JTextPane textPane;

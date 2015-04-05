@@ -10,6 +10,7 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -32,11 +33,11 @@ import se.jrat.controller.utils.IconUtils;
 @SuppressWarnings("serial")
 public class FramePreviewImage extends BaseFrame {
 
+	public static final Map<Slave, FramePreviewImage> INSTANCES = new HashMap<Slave, FramePreviewImage>();
+
 	private JPanel contentPane;
 	private String file;
-	private Slave slave;
 
-	public static HashMap<Slave, FramePreviewImage> instances = new HashMap<Slave, FramePreviewImage>();
 	private PanelImage panel_img;
 	private JButton btnReloadImage;
 
@@ -49,7 +50,7 @@ public class FramePreviewImage extends BaseFrame {
 	}
 
 	public FramePreviewImage(Slave slave, String f) {
-		super();
+		super(slave);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FramePreviewImage.class.getResource("/icons/image.png")));
 		setTitle("Image Preview - " + f);
 		addWindowListener(new WindowAdapter() {
@@ -60,7 +61,7 @@ public class FramePreviewImage extends BaseFrame {
 		});
 		this.file = f;
 		this.slave = slave;
-		instances.put(slave, this);
+		INSTANCES.put(slave, this);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 562, 385);
 		contentPane = new JPanel();
@@ -114,6 +115,6 @@ public class FramePreviewImage extends BaseFrame {
 	}
 
 	public void exit() {
-		instances.remove(slave);
+		INSTANCES.remove(slave);
 	}
 }

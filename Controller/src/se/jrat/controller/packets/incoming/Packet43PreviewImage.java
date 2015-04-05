@@ -11,7 +11,7 @@ public class Packet43PreviewImage extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Slave slave, DataInputStream dis) throws Exception {
-		FramePreviewImage frame = FramePreviewImage.instances.get(slave);
+		FramePreviewImage frame = FramePreviewImage.INSTANCES.get(slave);
 		
 		int imageSize = slave.readInt();
 

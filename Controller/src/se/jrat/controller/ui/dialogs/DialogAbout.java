@@ -1,4 +1,4 @@
-package se.jrat.controller.ui.frames;
+package se.jrat.controller.ui.dialogs;
 
 import java.awt.BorderLayout;
 import java.awt.Graphics;
@@ -12,10 +12,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import se.jrat.controller.Main;
-import se.jrat.controller.ui.dialogs.BaseDialog;
 
 @SuppressWarnings("serial")
-public class FrameAbout extends BaseDialog {
+public class DialogAbout extends BaseDialog {
 
     public static Image BACKGROUND;
 
@@ -31,9 +30,9 @@ public class FrameAbout extends BaseDialog {
 	private JPanel contentPane;
 	private JPanel contentPane_1;
 
-	public FrameAbout() {
+	public DialogAbout() {
 		setResizable(false);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameAbout.class.getResource("/icons/info.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DialogAbout.class.getResource("/icons/info.png")));
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

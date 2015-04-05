@@ -15,9 +15,9 @@ public class Packet34CustomDirectory extends AbstractIncomingPacket {
 
 		FrameRemoteFiles frame = FrameRemoteFiles.INSTANCES.get(slave);
 		if (frame != null) {
-			frame.remoteTable.setDirectory(where);
-			while (frame.remoteTable.getTableModel().getRowCount() > 0) {
-				frame.remoteTable.getTableModel().removeRow(0);
+			frame.getRemoteTable().setDirectory(where);
+			while (frame.getRemoteTable().getTableModel().getRowCount() > 0) {
+				frame.getRemoteTable().getTableModel().removeRow(0);
 			}
 			slave.addToSendQueue(new Packet15ListFiles(where));
 		}

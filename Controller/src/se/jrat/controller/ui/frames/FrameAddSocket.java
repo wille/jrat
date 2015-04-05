@@ -29,7 +29,7 @@ import se.jrat.controller.utils.Utils;
 import se.jrat.controller.webpanel.WebPanelListener;
 
 @SuppressWarnings("serial")
-public class FrameAddSocket extends BaseFrame {
+public class FrameAddSocket extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtPass;
@@ -39,7 +39,6 @@ public class FrameAddSocket extends BaseFrame {
 	private JComboBox<String> cbType;
 
 	public FrameAddSocket() {
-		super();
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameAddSocket.class.getResource("/icons/socket-add.png")));
 		setResizable(false);
 		setTitle("Add socket");

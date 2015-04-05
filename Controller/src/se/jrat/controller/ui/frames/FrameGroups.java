@@ -25,14 +25,13 @@ import se.jrat.controller.ui.renderers.GroupTreeRenderer;
 
 
 @SuppressWarnings("serial")
-public class FrameGroups extends BaseFrame {
+public class FrameGroups extends JFrame {
 
 	private JPanel contentPane;
 	private DefaultMutableTreeNode root;
 	private JTree tree;
 
 	public FrameGroups() {
-		super();
 		setTitle("Groups");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameGroups.class.getResource("/icons/group.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

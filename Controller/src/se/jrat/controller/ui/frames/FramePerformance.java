@@ -20,12 +20,11 @@ import com.redpois0n.graphs.taskmgr.TaskmgrColors;
 import com.redpois0n.graphs.taskmgr.TaskmgrGraph;
 
 @SuppressWarnings("serial")
-public class FramePerformance extends BaseFrame {
+public class FramePerformance extends JFrame {
 
 	private TaskmgrGraph graph;
 
 	public FramePerformance() {
-		super();
 		super.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosed(WindowEvent arg0) {

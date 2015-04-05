@@ -33,11 +33,10 @@ import se.jrat.controller.utils.IconUtils;
 public class FrameNotes extends BaseFrame {
 
 	private JPanel contentPane;
-	private Slave slave;
 	private JTextPane txt;
 
 	public FrameNotes(Slave sl) {
-		super();
+		super(sl);
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
@@ -45,8 +44,7 @@ public class FrameNotes extends BaseFrame {
 			}
 		});
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameNotes.class.getResource("/icons/notes.png")));
-		this.slave = sl;
-		setTitle("Notes - " + getDisplayName());
+		setTitle("Notes");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 367, 285);
 		contentPane = new JPanel();

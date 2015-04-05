@@ -35,7 +35,7 @@ import se.jrat.controller.utils.IconUtils;
 
 
 @SuppressWarnings("serial")
-public class FrameSettings extends BaseFrame {
+public class FrameSettings extends JFrame {
 
 	private JPanel contentPane;
 	public HashMap<String, JPanel> panels = new HashMap<String, JPanel>();
@@ -43,7 +43,6 @@ public class FrameSettings extends BaseFrame {
 	private JPanel panel;
 
 	public FrameSettings() {
-		super();
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent arg0) {

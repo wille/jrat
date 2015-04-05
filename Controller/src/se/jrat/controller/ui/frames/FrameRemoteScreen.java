@@ -56,7 +56,7 @@ import com.redpois0n.graphs.monitors.RemoteMonitor;
 @SuppressWarnings("serial")
 public class FrameRemoteScreen extends BaseFrame {
 	
-	public static final Map<Slave, FrameRemoteScreen> instances = new HashMap<Slave, FrameRemoteScreen>();
+	public static final Map<Slave, FrameRemoteScreen> INSTANCES = new HashMap<Slave, FrameRemoteScreen>();
 	public static final ImageIcon DEFAULT_RECORD_ICON = IconUtils.getIcon("camera-black");
 	
 	private BufferedImage buffer;
@@ -81,7 +81,6 @@ public class FrameRemoteScreen extends BaseFrame {
 	private JProgressBar progressBar;
 	private JButton btnStart;
 	private JButton btnStop;
-	private Slave slave;
 	private JLabel lblFps;
 	private JButton btnCapture;
 	private JButton btnRecord;
@@ -99,6 +98,7 @@ public class FrameRemoteScreen extends BaseFrame {
 	private JLabel lblChunks;
 
 	public FrameRemoteScreen(Slave sl) {
+		super(sl);
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
@@ -108,12 +108,12 @@ public class FrameRemoteScreen extends BaseFrame {
 		slave = sl;
 		threadFps.start();
 		
-		setTitle("Remote Screen - " + sl.getComputerName() + " - " + sl.getIP());
+		setTitle("Remote Screen");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRemoteScreen.class.getResource("/icons/screen.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 673, 446);
 		
-		instances.put(sl, this);
+		INSTANCES.put(sl, this);
 		
 		toolBarTop = new JToolBar();
 		toolBarTop.setFloatable(false);
@@ -350,7 +350,7 @@ public class FrameRemoteScreen extends BaseFrame {
 	}
 	
 	public void exit() {
-		instances.remove(slave);
+		INSTANCES.remove(slave);
 		threadFps.stopRunning();
 		
 		slave.addToSendQueue(new Packet26StopRemoteScreen());

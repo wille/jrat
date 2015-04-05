@@ -44,14 +44,14 @@ public class Packet22ListFiles extends AbstractIncomingPacket {
 		}
 
 		if (fr != null) {
-			fr.remoteTable.clear();
+			fr.getRemoteTable().clear();
 
 			for (FileObject fo : dirs) {
-				fr.remoteTable.addFileObject(fo);
+				fr.getRemoteTable().addFileObject(fo);
 			}
 			
 			for (FileObject fo : files) {
-				fr.remoteTable.addFileObject(fo);
+				fr.getRemoteTable().addFileObject(fo);
 			}
 		}
 

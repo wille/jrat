@@ -43,7 +43,7 @@ import se.jrat.controller.utils.IconUtils;
 
 
 @SuppressWarnings("serial")
-public class FrameBuildAdvanced extends BaseFrame {
+public class FrameBuildAdvanced extends JFrame {
 
 	public JTree tree;
 	public HashMap<String, JPanel> panels = new HashMap<String, JPanel>();
@@ -51,8 +51,6 @@ public class FrameBuildAdvanced extends BaseFrame {
 	private JPanel panel;
 
 	public FrameBuildAdvanced() {
-		super();
-
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameBuildAdvanced.class.getResource("/icons/bug-edit.png")));
 		setTitle("Build Stub");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

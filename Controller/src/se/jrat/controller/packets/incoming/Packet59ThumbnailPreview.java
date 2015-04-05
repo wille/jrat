@@ -13,7 +13,7 @@ public class Packet59ThumbnailPreview extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Slave slave, DataInputStream dis) throws Exception {
-		FrameRemoteThumbView frame = FrameRemoteThumbView.instances.get(slave);
+		FrameRemoteThumbView frame = FrameRemoteThumbView.INSTANCES.get(slave);
 
 		String path = slave.readLine();
 		int imageSize = dis.readInt();

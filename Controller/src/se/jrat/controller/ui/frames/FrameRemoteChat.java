@@ -43,7 +43,7 @@ public class FrameRemoteChat extends BaseFrame {
 	public JTextPane txtChat;
 
 	public FrameRemoteChat(Slave slave) {
-		super();
+		super(slave);
 		setTitle("Chat - " + "[" + slave.formatUserString() + "] - " + slave.getIP());
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRemoteChat.class.getResource("/icons/chat.png")));
 		this.slave = slave;

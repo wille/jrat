@@ -18,14 +18,13 @@ import se.jrat.controller.ui.components.JColorBox;
 
 
 @SuppressWarnings("serial")
-public class FrameColors extends BaseFrame {
+public class FrameColors extends JFrame {
 
 	private JPanel contentPane;
 	private JColorBox cbSystemMonitor;
 	private JColorBox cbOutdatedServers;
 
 	public FrameColors() {
-		super();
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameColors.class.getResource("/icons/color-palette.png")));
 		setTitle("Colors");
 		setResizable(false);

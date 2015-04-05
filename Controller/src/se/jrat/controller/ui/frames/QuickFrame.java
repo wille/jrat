@@ -7,10 +7,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 @SuppressWarnings("serial")
-public class QuickFrame extends BaseFrame {
+public class QuickFrame extends JFrame {
 
 	public QuickFrame(Component component) {
-		super();
 		super.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		super.setSize(component.getWidth(), component.getHeight());
 		super.add(component);

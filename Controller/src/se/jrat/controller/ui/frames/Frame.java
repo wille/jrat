@@ -47,6 +47,7 @@ import se.jrat.controller.settings.Settings;
 import se.jrat.controller.settings.SettingsColumns;
 import se.jrat.controller.ui.Columns;
 import se.jrat.controller.ui.components.DraggableTabbedPane;
+import se.jrat.controller.ui.dialogs.DialogAbout;
 import se.jrat.controller.ui.dialogs.DialogEula;
 import se.jrat.controller.ui.panels.PanelMainClients;
 import se.jrat.controller.ui.panels.PanelMainLog;
@@ -61,7 +62,7 @@ import se.jrat.controller.utils.NetUtils;
 import se.jrat.controller.utils.Utils;
 
 @SuppressWarnings("serial")
-public class Frame extends BaseFrame {
+public class Frame extends JFrame {
 
 	public static final int PING_ICON_DOT = 0;
 	public static final int PING_ICON_CIRCLE = 1;
@@ -84,7 +85,6 @@ public class Frame extends BaseFrame {
 	private JCheckBoxMenuItem chckbxmntmTransferPluginsIf;
 
 	public Frame() {
-		super();
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Frame.class.getResource("/icons/icon.png")));
 		setTitle(Main.formatTitle());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -710,7 +710,7 @@ public class Frame extends BaseFrame {
 		JMenuItem menuItem = new JMenuItem("About " + Constants.NAME + " " + Version.getVersion());
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				FrameAbout frame = new FrameAbout();
+				DialogAbout frame = new DialogAbout();
 				frame.setVisible(true);
 			}
 		});

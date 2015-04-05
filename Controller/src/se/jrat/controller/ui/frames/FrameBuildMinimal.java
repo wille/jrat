@@ -45,7 +45,7 @@ import com.redpois0n.oslib.OperatingSystem;
 
 
 @SuppressWarnings("serial")
-public class FrameBuildMinimal extends BaseFrame {
+public class FrameBuildMinimal extends JFrame {
 
 	private JPanel contentPane;
 	private JLabel lblStatus;

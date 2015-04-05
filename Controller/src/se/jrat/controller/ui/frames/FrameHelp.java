@@ -42,7 +42,7 @@ import se.jrat.controller.utils.IconUtils;
 import se.jrat.controller.utils.NetUtils;
 
 @SuppressWarnings("serial")
-public class FrameHelp extends BaseFrame {
+public class FrameHelp extends JFrame {
 
 	private JPanel contentPane;
 	private JTree tree;
@@ -56,7 +56,6 @@ public class FrameHelp extends BaseFrame {
 	}
 
 	public FrameHelp() {
-		super();
 		setTitle(Constants.NAME + " help");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameHelp.class.getResource("/icons/help.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

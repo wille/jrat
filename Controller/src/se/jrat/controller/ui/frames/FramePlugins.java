@@ -25,14 +25,13 @@ import se.jrat.controller.ui.renderers.table.PluginsTableRenderer;
 import se.jrat.controller.utils.IconUtils;
 
 @SuppressWarnings("serial")
-public class FramePlugins extends BaseFrame {
+public class FramePlugins extends JFrame {
 
 	private JPanel contentPane;
 	public JTable table;
 	public DefaultTableModel model;
 
 	public FramePlugins() {
-		super();
 		setTitle("Installed Plugins");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FramePlugins.class.getResource("/icons/plugin.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

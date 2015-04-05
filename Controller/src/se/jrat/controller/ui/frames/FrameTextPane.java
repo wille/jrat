@@ -24,7 +24,7 @@ import se.jrat.controller.utils.IconUtils;
 
 
 @SuppressWarnings("serial")
-public abstract class FrameTextPane extends BaseFrame {
+public abstract class FrameTextPane extends JFrame {
 
 	private JPanel contentPane;
 	private JTextPane txt;
@@ -43,7 +43,6 @@ public abstract class FrameTextPane extends BaseFrame {
 	}
 
 	public FrameTextPane() {
-		super();
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent arg0) {

@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -29,29 +30,27 @@ import se.jrat.controller.utils.IconUtils;
 @SuppressWarnings("serial")
 public class FramePreviewZip extends BaseFrame {
 
+	public static Map<Slave, FramePreviewZip> INSTANCES = new HashMap<Slave, FramePreviewZip>();
+
 	private JPanel contentPane;
 	private JTable table;
 	private DefaultTableModel model;
-	private Slave slave;
 	private String file;
-
-	public static HashMap<Slave, FramePreviewZip> instances = new HashMap<Slave, FramePreviewZip>();
 
 	public DefaultTableModel getModel() {
 		return model;
 	}
 
 	public FramePreviewZip(Slave s, String f) {
-		super();
+		super(s);
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
 				exit();
 			}
 		});
-		this.slave = s;
 		this.file = f;
-		instances.put(slave, this);
+		INSTANCES.put(slave, this);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FramePreviewZip.class.getResource("/icons/archive.png")));
 		setTitle("ZIP Preview - " + f);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -118,6 +117,6 @@ public class FramePreviewZip extends BaseFrame {
 	}
 
 	public void exit() {
-		instances.remove(slave);
+		INSTANCES.remove(slave);
 	}
 }

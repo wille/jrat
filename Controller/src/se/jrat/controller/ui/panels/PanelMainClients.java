@@ -916,8 +916,8 @@ public class PanelMainClients extends JScrollPane {
 		mntmRename.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				AbstractSlave slave = getSelectedSlave();
-				if (slave != null) {
-					FrameRename screen = new FrameRename(slave);
+				if (slave != null && slave instanceof Slave) {
+					FrameRename screen = new FrameRename((Slave) slave);
 					screen.setVisible(true);
 				}
 			}

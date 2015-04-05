@@ -13,6 +13,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
@@ -41,23 +42,18 @@ import se.jrat.controller.utils.IconUtils;
 @SuppressWarnings("serial")
 public class FrameRemoteThumbView extends BaseFrame {
 
-	public static HashMap<Slave, FrameRemoteThumbView> instances = new HashMap<Slave, FrameRemoteThumbView>();
-	public HashMap<String, ImageIcon> thumbs = new HashMap<String, ImageIcon>();
+	public static final Map<Slave, FrameRemoteThumbView> INSTANCES = new HashMap<Slave, FrameRemoteThumbView>();
+	private Map<String, ImageIcon> thumbs = new HashMap<String, ImageIcon>();
 
 	private JPanel contentPane;
 	private String[] paths;
 	private JList<String> list;
-	private Slave slave;
 	private JLabel lblCount;
 	private JProgressBar progressBar;
 	private JPopupMenu popupMenu;
 	private JMenuItem mntmReloadAll;
 	private JMenuItem mntmSaveSelectedx;
 	private JMenuItem mntmClear;
-
-	public Slave getSlave() {
-		return slave;
-	}
 
 	public JProgressBar getBar() {
 		return progressBar;
@@ -71,9 +67,9 @@ public class FrameRemoteThumbView extends BaseFrame {
 		return (DefaultListModel<String>) list.getModel();
 	}
 
-	public FrameRemoteThumbView(Slave sl, String[] p) {
-		super();
-		setTitle("Thumbnail view - " + sl.getIP() + " - " + sl.getComputerName());
+	public FrameRemoteThumbView(Slave s, String[] p) {
+		super(s);
+		setTitle("Thumbnail View");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRemoteThumbView.class.getResource("/icons/images-stack.png")));
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -82,8 +78,7 @@ public class FrameRemoteThumbView extends BaseFrame {
 			}
 		});
 		this.paths = p;
-		this.slave = sl;
-		instances.put(sl, this);
+		INSTANCES.put(slave, this);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 731, 465);
 		contentPane = new JPanel();
@@ -191,7 +186,7 @@ public class FrameRemoteThumbView extends BaseFrame {
 	}
 
 	public void exit() {
-		instances.remove(slave);
+		INSTANCES.remove(slave);
 	}
 
 	private static void addPopup(Component component, final JPopupMenu popup) {
@@ -216,5 +211,9 @@ public class FrameRemoteThumbView extends BaseFrame {
 
 	public int getProgress() {
 		return getBar().getValue();
+	}
+
+	public Map<String, ImageIcon> getThumbMap() {
+		return thumbs;
 	}
 }

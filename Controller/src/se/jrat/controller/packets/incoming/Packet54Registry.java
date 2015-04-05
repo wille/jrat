@@ -23,7 +23,7 @@ public class Packet54Registry extends AbstractIncomingPacket {
 			String name = args[0];
 			name = name.substring(name.lastIndexOf("\\") + 1, name.length());
 
-			FrameRemoteRegistry frame = FrameRemoteRegistry.instances.get(slave);
+			FrameRemoteRegistry frame = FrameRemoteRegistry.INSTANCES.get(slave);
 
 			if (frame != null) {
 				if (args.length == 3) {
@@ -44,8 +44,12 @@ public class Packet54Registry extends AbstractIncomingPacket {
 					
 					PathTreeNode parent = (PathTreeNode) frame.getTree().getNodeFromPath(path);
 
-					PathTreeNode node = new FolderTreeNode(name, FrameRemoteRegistry.FOLDER_ICON);
-					frame.getTree().getPathModel().insertNodeInto(node, parent, parent.getChildCount());
+					PathTreeNode node = new FolderTreeNode(name, FrameRemoteRegistry.ICON_FOLDER);
+					try {
+						frame.getTree().getPathModel().insertNodeInto(node, parent, parent.getChildCount());
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		}

@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -26,11 +27,12 @@ import se.jrat.controller.utils.IconUtils;
 @SuppressWarnings("serial")
 public class FramePreviewFile extends BaseFrame {
 
+	public static final Map<String, FramePreviewFile> INSTANCES = new HashMap<String, FramePreviewFile>();
+
 	private JPanel contentPane;
 	private String file;
 	private int line = 0;
 	private JTextPane textPane;
-	public static final HashMap<String, FramePreviewFile> instances = new HashMap<String, FramePreviewFile>();
 	private JButton btnClearreset;
 
 	public JTextPane getPane() {
@@ -38,10 +40,10 @@ public class FramePreviewFile extends BaseFrame {
 	}
 
 	public FramePreviewFile(Slave slave, String f) {
-		super();
+		super(slave);
 		final Slave sl = slave;
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FramePreviewFile.class.getResource("/icons/file.png")));
-		setTitle("Preview file - " + "[" + slave.formatUserString() + "] - " + slave.getIP() + " - " + f);
+		setTitle("Preview file - " + f);
 		this.file = f;
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -49,7 +51,7 @@ public class FramePreviewFile extends BaseFrame {
 				exit();
 			}
 		});
-		instances.put(file, this);
+		INSTANCES.put(file, this);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 543, 417);
 		contentPane = new JPanel();
@@ -85,7 +87,7 @@ public class FramePreviewFile extends BaseFrame {
 	}
 
 	public void exit() {
-		instances.remove(file);
+		INSTANCES.remove(file);
 	}
 
 }

@@ -18,7 +18,7 @@ public class Packet45ArchivePreview extends AbstractIncomingPacket {
 		String name = slave.readLine();
 		String filesize = DataUnits.getAsString(slave.readLong());
 
-		FramePreviewZip frame = FramePreviewZip.instances.get(slave);
+		FramePreviewZip frame = FramePreviewZip.INSTANCES.get(slave);
 
 		if (frame != null) {
 			Icon icon = IconUtils.getFileIconFromExtension(name, dir);

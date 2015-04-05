@@ -24,8 +24,8 @@ public class ThumbsListRenderer extends DefaultListCellRenderer {
 
 		String val = value.toString();
 
-		if (frame.thumbs.containsKey(val)) {
-			setIcon(frame.thumbs.get(val));
+		if (frame.getThumbMap().containsKey(val)) {
+			setIcon(frame.getThumbMap().get(val));
 		} else {
 			setIcon(null);
 		}

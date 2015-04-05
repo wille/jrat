@@ -27,12 +27,11 @@ import se.jrat.controller.utils.NetUtils;
 
 
 @SuppressWarnings("serial")
-public class FrameChangelog extends BaseFrame {
+public class FrameChangelog extends JFrame {
 
 	private JPanel contentPane;
 
 	public FrameChangelog(URL url, String version) {
-		super();
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameChangelog.class.getResource("/icons/question.png")));
 		setTitle("Whats new? " + Version.getVersion());

@@ -16,6 +16,7 @@ import javax.swing.border.EmptyBorder;
 
 import se.jrat.controller.AbstractSlave;
 import se.jrat.controller.Main;
+import se.jrat.controller.Slave;
 import se.jrat.controller.settings.SettingsCustomID;
 
 
@@ -25,14 +26,12 @@ public class FrameRename extends BaseFrame {
 	private JPanel contentPane;
 	private JTextField txtOldID;
 	private JTextField txtNewID;
-	public AbstractSlave slave;
 	private JButton btnRename;
 
-	public FrameRename(AbstractSlave slave) {
-		super();
-		this.slave = slave;
+	public FrameRename(Slave slave) {
+		super(slave);
 		final AbstractSlave sl = slave;
-		setTitle("Rename connection - " + slave.getIP());
+		setTitle("Rename");
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRename.class.getResource("/icons/rename.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

@@ -19,14 +19,12 @@ import se.jrat.controller.ui.panels.PanelRemoteFiles.RemoteFileTable;
 @SuppressWarnings("serial")
 public class FrameRemoteFiles extends BaseFrame {
 	
-	public RemoteFileTable remoteTable;
+	private RemoteFileTable remoteTable;
 	
 	public static final Map<Slave, FrameRemoteFiles> INSTANCES = new HashMap<Slave, FrameRemoteFiles>();
 
-	private Slave slave;
-
 	public FrameRemoteFiles(Slave slave) {
-		this.slave = slave;
+		super(slave);
 		INSTANCES.put(slave, this);
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -54,6 +52,10 @@ public class FrameRemoteFiles extends BaseFrame {
 		tabbedPane.addTab("Transfers", scrollPane);
 		
 		add(tabbedPane, BorderLayout.CENTER);	
+	}
+	
+	public RemoteFileTable getRemoteTable() {
+		return remoteTable;
 	}
 
 	public void exit() {

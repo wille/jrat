@@ -38,10 +38,9 @@ public class FrameSystemVariables extends BaseFrame {
 	public JTable table;
 	public static final Map<Slave, FrameSystemVariables> INSTANCES = new HashMap<Slave, FrameSystemVariables>();
 	public DefaultTableModel model;
-	public Slave slave;
 
-	public FrameSystemVariables(final int mode, Slave slave) {
-		super();
+	public FrameSystemVariables(final int mode, Slave s) {
+		super(s);
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
@@ -49,8 +48,7 @@ public class FrameSystemVariables extends BaseFrame {
 			}
 		});
 		INSTANCES.put(slave, this);
-		final Slave sl = slave;
-		this.slave = slave;
+		
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameSystemVariables.class.getResource("/icons/properties.png")));
 		setTitle("System Properties - " + "[" + slave.formatUserString() + "] - " + slave.getIP());
@@ -71,10 +69,10 @@ public class FrameSystemVariables extends BaseFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				if (mode == Constants.MODE_PROP) {
 					clear();
-					sl.addToSendQueue(new Packet90SystemProperties());
+					slave.addToSendQueue(new Packet90SystemProperties());
 				} else if (mode == Constants.MODE_ENV) {
 					clear();
-					sl.addToSendQueue(new Packet96EnvironmentVariables());
+					slave.addToSendQueue(new Packet96EnvironmentVariables());
 				}
 			}
 		});
@@ -122,9 +120,9 @@ public class FrameSystemVariables extends BaseFrame {
 		scrollPane.setViewportView(table);
 		contentPane.setLayout(gl_contentPane);
 		if (mode == Constants.MODE_PROP) {
-			sl.addToSendQueue(new Packet90SystemProperties());
+			slave.addToSendQueue(new Packet90SystemProperties());
 		} else if (mode == Constants.MODE_ENV) {
-			sl.addToSendQueue(new Packet96EnvironmentVariables());
+			slave.addToSendQueue(new Packet96EnvironmentVariables());
 		}
 	}
 

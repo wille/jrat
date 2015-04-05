@@ -206,7 +206,7 @@ public class PanelRemoteFiles extends JPanel {
 		private JMenuItem mnAdd;
 		private JMenuItem mnRemove;
 		
-		public boolean waitingForMd5;
+		public boolean waitingForHash;
 
 		public RemoteFileTable() {
 			super(slave);
@@ -392,7 +392,7 @@ public class PanelRemoteFiles extends JPanel {
 					String file = getTableModel().getValueAt(table.getSelectedRow(), 0).toString();
 					if (file != null) {
 						slave.addToSendQueue(new Packet64FileHash(file));
-						waitingForMd5 = true;
+						waitingForHash = true;
 					}
 				}
 			});
