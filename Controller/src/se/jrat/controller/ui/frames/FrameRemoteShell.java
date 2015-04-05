@@ -23,18 +23,15 @@ import com.redpois0n.terminal.JTerminal;
 import com.redpois0n.terminal.SizeChangeListener;
 
 @SuppressWarnings("serial")
-public class FrameRemoteShell extends JFrame {
+public class FrameRemoteShell extends BaseFrame {
 
 	public static final Map<Slave, FrameRemoteShell> INSTANCES = new HashMap<Slave, FrameRemoteShell>();
 	
-	private Slave slave;
 	private JTerminal terminal;
 	private JScrollPane scrollPane;
 
-	public FrameRemoteShell(Slave slave) {
-		super();
-		setResizable(false);
-		this.slave = slave;
+	public FrameRemoteShell(Slave s) {
+		super(s);
 		INSTANCES.put(slave, this);
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -72,7 +69,8 @@ public class FrameRemoteShell extends JFrame {
 			
 			@Override
 			public void onTerminate(JTerminal terminal) {
-			
+				slave.addToSendQueue(new Packet24RemoteShellStop());
+				slave.addToSendQueue(new Packet23RemoteShellStart());
 			}
 		});
 		
