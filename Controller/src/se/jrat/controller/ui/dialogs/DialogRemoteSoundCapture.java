@@ -18,7 +18,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
 import se.jrat.controller.Slave;
-import se.jrat.controller.packets.incoming.Packet58SoundCapture;
+import se.jrat.controller.packets.incoming.Packet58SoundDownload;
 import se.jrat.controller.packets.outgoing.Packet84SoundCapture;
 import se.jrat.controller.utils.IconUtils;
 
@@ -30,13 +30,12 @@ public class DialogRemoteSoundCapture extends BaseDialog {
 	private Slave slave;
 	private JButton btnStart;
 	private JButton btnStop;
-	public Packet58SoundCapture packet;
+	public Packet58SoundDownload packet;
 
 	public static HashMap<Slave, DialogRemoteSoundCapture> instances = new HashMap<Slave, DialogRemoteSoundCapture>();
 	private JComboBox comboBox;
 
 	public DialogRemoteSoundCapture(Slave sl) {
-		super();
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
@@ -46,7 +45,7 @@ public class DialogRemoteSoundCapture extends BaseDialog {
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(DialogRemoteSoundCapture.class.getResource("/icons/microphone.png")));
 		this.slave = sl;
-		packet = new Packet58SoundCapture();
+		packet = new Packet58SoundDownload();
 		instances.put(slave, this);
 		setTitle("Sound capture - " + sl.getIP() + " - " + sl.getComputerName());
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -77,7 +76,7 @@ public class DialogRemoteSoundCapture extends BaseDialog {
 			}
 		});
 		btnStop.setEnabled(false);
-		btnStop.setIcon(IconUtils.getIcon("microphone_minus"));
+		btnStop.setIcon(IconUtils.getIcon("microphone-minus"));
 
 		comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] { "16000", "12000", "8000", "4000", "2000" }));
