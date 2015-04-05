@@ -42,7 +42,7 @@ public class FrameRemoteShell extends JFrame {
 				exit();
 			}
 		});
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRemoteShell.class.getResource("/icons/cmd.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRemoteShell.class.getResource("/icons/terminal.png")));
 		setTitle("Remote Shell");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 499, 302);
@@ -56,20 +56,18 @@ public class FrameRemoteShell extends JFrame {
 		    	if (terminal.scrollToBottom()) {
 		    		boolean scrollUp = terminal.scrollUp();
 		    		e.getAdjustable().setValue(scrollUp ? 0 : e.getAdjustable().getMaximum());  
-		    	} 
+		    	}
 		    }
 		});
 		
 		terminal.addInputListener(new InputListener() {
 			@Override
 			public void processCommand(JTerminal terminal, String command) {
-				if (command.equalsIgnoreCase("clear") || command.equalsIgnoreCase("cls")) {
-					terminal.clear();
-					return;
-				}
-				System.out.println(command);
-				send(command + "\n");
-				terminal.setBlockAtCurrentPos();
+                if (command.equalsIgnoreCase("clear") || command.equalsIgnoreCase("cls")) {
+                    return;
+                }
+                send(command + "\n");
+                terminal.setBlockAtCurrentPos();
 			}
 			
 			@Override
@@ -80,11 +78,11 @@ public class FrameRemoteShell extends JFrame {
 		
 		terminal.addSizeChangeListener(new SizeChangeListener() {
 			@Override
-			public void sizeChange(JTerminal terminal, int width, int height) {
+			public void sizeChange(JTerminal terminal, boolean reset, int width, int height) {
 				JScrollBar vertical = scrollPane.getVerticalScrollBar();
 				scrollPane.revalidate();
 				vertical.revalidate();
-				vertical.setValue(vertical.getMaximum());
+				vertical.setValue(reset ? 0 : vertical.getMaximum());
 				terminal.revalidate();
 			}
 		});
