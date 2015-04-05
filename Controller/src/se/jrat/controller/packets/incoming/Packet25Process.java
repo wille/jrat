@@ -7,6 +7,7 @@ import se.jrat.controller.ui.frames.FrameControlPanel;
 import se.jrat.controller.ui.frames.FrameRemoteProcess;
 import se.jrat.controller.ui.panels.PanelControlRemoteProcess;
 
+import com.redpois0n.graphs.utils.DataUnits;
 import com.redpois0n.oslib.OperatingSystem;
 
 
@@ -28,6 +29,8 @@ public class Packet25Process extends AbstractIncomingPacket {
 				displayData[1] = args[1]; // pid
 				displayData[2] = args[2]; // type / user
 				displayData[3] = args[4]; // memory usage
+				
+				displayData[3] = DataUnits.getAsString(Long.parseLong(displayData[3].split(" ")[0]) * 1000);
 			} else {
 				line = line.trim().replaceAll("( )+", " ");
 				String[] args = line.split(" ");
@@ -43,8 +46,9 @@ public class Packet25Process extends AbstractIncomingPacket {
 					displayData[i] = "";
 				}
 			}
+						
 			if (frame != null) {
-				frame.model.addRow(new Object[] { displayData[0], displayData[1], displayData[2], displayData[3] });
+				frame.getPanel().getModel().addRow(new Object[] { displayData[0], displayData[1], displayData[2], displayData[3] });
 			}
 			if (framec != null) {
 				PanelControlRemoteProcess panel = (PanelControlRemoteProcess) framec.panels.get("remote process");
