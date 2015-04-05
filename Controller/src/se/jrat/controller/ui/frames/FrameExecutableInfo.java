@@ -98,7 +98,7 @@ public class FrameExecutableInfo extends JFrame {
 	}
 
 	public FrameExecutableInfo() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameExecutableInfo.class.getResource("/icons/exe.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameExecutableInfo.class.getResource("/icons/application-detail.png")));
 		setTitle("Assembly Information");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
