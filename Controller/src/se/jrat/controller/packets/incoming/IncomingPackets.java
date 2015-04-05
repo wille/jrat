@@ -80,7 +80,7 @@ public class IncomingPackets {
 		incomingPackets.put((byte) 55, Packet55InstalledProgram.class);
 		incomingPackets.put((byte) 56, Packet56NetworkAdapter.class);
 		//57
-		incomingPackets.put((byte) 58, Packet58SoundDownload.class);
+		incomingPackets.put((byte) 58, Packet58ServerDownloadSoundCapture.class);
 		incomingPackets.put((byte) 59, Packet59ThumbnailPreview.class);
 		incomingPackets.put((byte) 60, Packet60Error.class);		
 		//61

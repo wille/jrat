@@ -1,17 +1,13 @@
-package se.jrat.controller.packets.incoming;
-
-import java.io.DataInputStream;
+package se.jrat.stub.packets.incoming;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.SourceDataLine;
 
-import se.jrat.controller.Slave;
-import se.jrat.controller.ui.dialogs.DialogRemoteSoundCapture;
+import se.jrat.stub.Connection;
 
-
-public class Packet58SoundDownload extends AbstractIncomingPacket {
+public class Packet83ClientDownloadSound extends AbstractIncomingPacket {
 
 	public static final AudioFormat format = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 44100, 16, 2, 4, 44100, false);
 	private static DataLine.Info info;
@@ -20,8 +16,7 @@ public class Packet58SoundDownload extends AbstractIncomingPacket {
 	private static boolean initialized;
 
 	@Override
-	public void read(Slave slave, DataInputStream dis) throws Exception {
-		DialogRemoteSoundCapture frame = DialogRemoteSoundCapture.instances.get(slave);
+	public void read() throws Exception {
 		if (!initialized) {
 			info = new DataLine.Info(SourceDataLine.class, format);
 			if (!AudioSystem.isLineSupported(info)) {
@@ -33,15 +28,14 @@ public class Packet58SoundDownload extends AbstractIncomingPacket {
 			initialized = true;
 		}
 
-		int size = slave.readInt();
+		int size = Connection.instance.readInt();
 
 		byte[] data = new byte[size];
 
-		slave.getDataInputStream().readFully(data);
+		Connection.instance.getDataInputStream().readFully(data);
 
-		if (frame != null && frame.isRunning()) {
-			line.write(data, 0, data.length);
-		}
+		line.write(data, 0, data.length);
+		
 	}
 
 	public void close() {

