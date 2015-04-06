@@ -31,9 +31,10 @@ import se.jrat.controller.ui.frames.FrameRemoteFiles;
 import se.jrat.controller.ui.renderers.JComboBoxIconRenderer;
 import se.jrat.controller.ui.renderers.table.FileSearchTableRenderer;
 import se.jrat.controller.utils.IconUtils;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 @SuppressWarnings("serial")
-public class PanelControlSearch extends PanelControlParent {
+public class PanelSearchFiles extends PanelControlParent {
 
 	private JTable table;
 
@@ -51,7 +52,7 @@ public class PanelControlSearch extends PanelControlParent {
 		return renderer;
 	}
 
-	public PanelControlSearch(Slave slave) {
+	public PanelSearchFiles(Slave slave) {
 		super(slave);
 		final Slave sl = slave;
 
@@ -145,8 +146,53 @@ public class PanelControlSearch extends PanelControlParent {
 		});
 		btnOpenInFile.setIcon(IconUtils.getIcon("folder-go"));
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 598, GroupLayout.PREFERRED_SIZE).addGroup(groupLayout.createSequentialGroup().addGap(184).addComponent(btnOpenInFile).addGap(6).addComponent(btnClear).addGap(6).addComponent(tglbtnPathContains).addGap(6).addComponent(tglbtnNameContains)).addGroup(groupLayout.createSequentialGroup().addGap(135).addComponent(lblDrive).addGap(4).addComponent(cbDrives, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE).addGap(10).addComponent(lblSearchFor).addGap(4).addComponent(txt, GroupLayout.PREFERRED_SIZE, 184, GroupLayout.PREFERRED_SIZE).addGap(6).addComponent(btnSearch)));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 255, GroupLayout.PREFERRED_SIZE).addGap(15).addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(btnOpenInFile).addComponent(btnClear).addComponent(tglbtnPathContains).addComponent(tglbtnNameContains)).addGap(6).addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addGap(5).addComponent(lblDrive)).addGroup(groupLayout.createSequentialGroup().addGap(2).addComponent(cbDrives, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addGroup(groupLayout.createSequentialGroup().addGap(5).addComponent(lblSearchFor)).addGroup(groupLayout.createSequentialGroup().addGap(2).addComponent(txt, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addComponent(btnSearch))));
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE)
+					.addGap(2))
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addGap(184)
+					.addComponent(btnOpenInFile)
+					.addGap(6)
+					.addComponent(btnClear)
+					.addGap(6)
+					.addComponent(tglbtnPathContains)
+					.addGap(6)
+					.addComponent(tglbtnNameContains)
+					.addGap(2))
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addGap(135)
+					.addComponent(lblDrive)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(cbDrives, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
+					.addGap(10)
+					.addComponent(lblSearchFor)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(txt, GroupLayout.PREFERRED_SIZE, 184, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnSearch)
+					.addContainerGap())
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+					.addGap(15)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnOpenInFile)
+						.addComponent(btnClear)
+						.addComponent(tglbtnPathContains)
+						.addComponent(tglbtnNameContains))
+					.addGap(8)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnSearch)
+						.addComponent(txt, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblSearchFor)
+						.addComponent(cbDrives, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblDrive))
+					.addContainerGap())
+		);
 		setLayout(groupLayout);
 
 		btnSearch.addActionListener(new ActionListener() {

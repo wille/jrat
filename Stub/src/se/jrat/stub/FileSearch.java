@@ -40,7 +40,7 @@ public class FileSearch extends Thread {
 					search(f.getAbsolutePath());
 				}
 				if (dir && f.getAbsolutePath().replace(f.getName(), "").toLowerCase().contains(name.toLowerCase()) || f.getName().toLowerCase().contains(name.toLowerCase())) {
-					Connection.instance.addToSendQueue(new Packet37SearchResult(f.getAbsolutePath(), f.getName(), f.isDirectory()));
+					Connection.instance.addToSendQueue(new Packet37SearchResult(f.getParent(), f.getName(), f.isDirectory()));
 				}
 			}
 		}

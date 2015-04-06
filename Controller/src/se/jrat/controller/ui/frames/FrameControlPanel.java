@@ -74,7 +74,6 @@ import se.jrat.controller.ui.panels.PanelControlPrinter;
 import se.jrat.controller.ui.panels.PanelControlRegStart;
 import se.jrat.controller.ui.panels.PanelControlRemoteProcess;
 import se.jrat.controller.ui.panels.PanelControlScript;
-import se.jrat.controller.ui.panels.PanelControlSearch;
 import se.jrat.controller.ui.panels.PanelControlServices;
 import se.jrat.controller.ui.panels.PanelControlSpeech;
 import se.jrat.controller.ui.panels.PanelControlSystemInfo;
@@ -292,7 +291,6 @@ public class FrameControlPanel extends BaseFrame {
 				r.icons.put("python script", IconUtils.getIcon("script-python"));
 				r.icons.put("scripting", IconUtils.getIcon("scripting"));
 				r.icons.put("file system", IconUtils.getIcon("folder-tree"));
-				r.icons.put("file searcher", IconUtils.getIcon("folder-search"));
 				r.icons.put("file manager", IconUtils.getIcon("folder-go"));
 				r.icons.put("hosts file", IconUtils.getIcon("computer"));
 				r.icons.put("utorrent downloads", IconUtils.getIcon("utorrent"));
@@ -388,7 +386,6 @@ public class FrameControlPanel extends BaseFrame {
 			tabbedPane.addTab("Python Script", i.get("python script"), panels.get("python script"));
 		} else if (str.equals("file system")) {
 			tabbedPane.removeAll();
-			tabbedPane.addTab("File Searcher", i.get("file searcher"), panels.get("file searcher"));
 		} else if (str.equals("data")) {
 			tabbedPane.removeAll();
 			tabbedPane.addTab("uTorrent Downloads", i.get("utorrent downloads"), panels.get("utorrent downloads"));
@@ -478,7 +475,6 @@ public class FrameControlPanel extends BaseFrame {
 		DefaultMutableTreeNode filesystem = getTreeNode("File System");
 		n.add(filesystem);
 		filesystem.add(getTreeNode("File Manager"));
-		filesystem.add(getTreeNode("File Searcher"));
 
 		DefaultMutableTreeNode stealersdata = getTreeNode("Data");
 		n.add(stealersdata);
@@ -541,7 +537,6 @@ public class FrameControlPanel extends BaseFrame {
 			addPanel("javascript", new PanelControlScript(slave, Script.JAVASCRIPT));
 			addPanel("shell script", new PanelControlScript(slave, Script.SHELL));
 			addPanel("python script", new PanelControlScript(slave, Script.PYTHON));
-			addPanel("file searcher", new PanelControlSearch(slave));
 			addPanel("hosts file", new PanelControlHostsFile(slave));
 			addPanel("utorrent downloads", new PanelControluTorrentDownloads(slave));
 			addPanel("download manager", new PanelControlDownloadManager(slave));

