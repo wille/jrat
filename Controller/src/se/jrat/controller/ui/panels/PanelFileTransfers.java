@@ -264,6 +264,8 @@ public class PanelFileTransfers extends JPanel {
 				JProgressBar bar = new JProgressBar();
 				bar.setMaximum((int) data.getTotal());
 				bar.setValue(data.getRead());
+				bar.setStringPainted(true);
+				bar.setForeground(getForeground());
 				return bar;
 			}
 
