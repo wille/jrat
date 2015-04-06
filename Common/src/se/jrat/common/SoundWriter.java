@@ -9,20 +9,25 @@ public abstract class SoundWriter implements Runnable {
 
 	public static SoundWriter instance;
 
-	private AudioFormat format;
+	protected int quality;
+	
 	private DataLine.Info info;
 	private TargetDataLine line;
-	public boolean running;
+	private AudioFormat format;
+	private boolean running;
 
-	public SoundWriter() {
-		instance = this;
+	public SoundWriter(int quality) {
+		SoundWriter.instance = this;
+		this.quality = quality;
+		this.format = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, quality, 16, 2, 4, quality, false);
 	}
 
 	public void enable() throws Exception {
-		if (line != null) {
-			line.close();
+		if (running) {
+			disable();
 		}
-		format = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 44100, 16, 2, 4, 44100, false);
+		
+		running = true;
 		info = new DataLine.Info(TargetDataLine.class, format);
 		line = (TargetDataLine) AudioSystem.getLine(info);
 		line.open();
@@ -30,6 +35,7 @@ public abstract class SoundWriter implements Runnable {
 	}
 
 	public void disable() throws Exception {
+		running = false;
 		if (line != null) {
 			line.close();
 		}
@@ -39,7 +45,6 @@ public abstract class SoundWriter implements Runnable {
 	public void run() {
 		try {
 			enable();
-			running = true;
 			while (running) {
 				byte[] data = new byte[line.getBufferSize() / 5];
 
@@ -54,5 +59,9 @@ public abstract class SoundWriter implements Runnable {
 	}
 
 	public abstract void onRead(byte[] data, int read) throws Exception;
+
+	public void stop() {
+		running = false;
+	}
 
 }

