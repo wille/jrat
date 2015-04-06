@@ -3,8 +3,6 @@ package se.jrat.common.io;
 import java.util.HashMap;
 import java.util.Map;
 
-import se.jrat.common.io.TransferData.State;
-
 public class FileCache {
 	
 	public static final Map<Object, TransferData> MAP = new HashMap<Object, TransferData>();
@@ -37,7 +35,6 @@ public class FileCache {
 				if (data.getOutputStream() != null) {
 					data.getOutputStream().close();
 				}				
-				data.setState(State.COMPLETED);
 				FileCache.remove(data);
 			}
 		} catch (Exception ex) {
