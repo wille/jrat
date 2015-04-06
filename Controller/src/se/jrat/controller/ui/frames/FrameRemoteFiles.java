@@ -12,10 +12,11 @@ import javax.swing.JTabbedPane;
 import javax.swing.WindowConstants;
 
 import se.jrat.controller.Slave;
-import se.jrat.controller.ui.panels.PanelSearchFiles;
 import se.jrat.controller.ui.panels.PanelFileTransfers;
 import se.jrat.controller.ui.panels.PanelRemoteFiles;
 import se.jrat.controller.ui.panels.PanelRemoteFiles.RemoteFileTable;
+import se.jrat.controller.ui.panels.PanelSearchFiles;
+import se.jrat.controller.utils.IconUtils;
 
 @SuppressWarnings("serial")
 public class FrameRemoteFiles extends BaseFrame {
@@ -49,12 +50,12 @@ public class FrameRemoteFiles extends BaseFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportView(PanelFileTransfers.instance);
 		
-		searchPanel = new PanelSearchFiles(slave);
+		searchPanel = new PanelSearchFiles(slave, this);
 		
 		JTabbedPane tabbedPane = new JTabbedPane();
-		tabbedPane.addTab("Files", remoteFiles);
-		tabbedPane.addTab("Transfers", scrollPane);
-		tabbedPane.addTab("Search", searchPanel);
+		tabbedPane.addTab("Files", IconUtils.getIcon("folder-tree"), remoteFiles);
+		tabbedPane.addTab("Transfers", IconUtils.getIcon("arrow-down"), scrollPane);
+		tabbedPane.addTab("Search", IconUtils.getIcon("folder-search"), searchPanel);
 		
 		add(tabbedPane, BorderLayout.CENTER);	
 	}
