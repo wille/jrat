@@ -119,5 +119,9 @@ public class TransferData {
 	public void setSpeed(long speed) {
 		this.speed = speed;
 	}
+
+	public long getWhatsLeft() {
+		return total - read;
+	}
 	
 }

@@ -24,6 +24,7 @@ import javax.swing.table.DefaultTableModel;
 import se.jrat.common.io.FileCache;
 import se.jrat.common.io.TransferData;
 import se.jrat.common.io.TransferData.State;
+import se.jrat.common.utils.MathUtils;
 import se.jrat.controller.Slave;
 import se.jrat.controller.packets.outgoing.Packet102PauseServerUpload;
 import se.jrat.controller.packets.outgoing.Packet103CompleteServerUpload;
@@ -74,7 +75,7 @@ public class PanelFileTransfers extends JPanel {
 
 		table = new DefaultJTable();
 		
-		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "File Path", "Status", "Progress", "%" }) {
+		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "File Path", "Status", "Progress", "%", "Time Left" }) {
 			public boolean isCellEditable(int row, int column) {
 				return false;
 			}
@@ -272,7 +273,7 @@ public class PanelFileTransfers extends JPanel {
 			}
 			
 			if (column == 2) {
-				setText(DataUnits.getAsString(data.getRead()) + "/" + DataUnits.getAsString(data.getTotal()) + " @ " + DataUnits.getAsString(data.getSpeed()) + "/s");
+				setText(DataUnits.getAsString(data.getRead()) + "/" + DataUnits.getAsString(data.getTotal()) + " @ " + DataUnits.getAsString(data.getSpeed()) + "/s ");
 			}
 			
 			if (column == 3) {
@@ -292,6 +293,14 @@ public class PanelFileTransfers extends JPanel {
 				bar.setStringPainted(true);
 				bar.setForeground(color);
 				return bar;
+			}
+			
+			if (column == 4) {
+				 if (data.getSpeed() > 0) {
+					 setText(MathUtils.getRemainingTime(data.getSpeed(), data.getWhatsLeft()));
+				 } else {
+					 setText("");
+				 }
 			}
 
 			return this;
