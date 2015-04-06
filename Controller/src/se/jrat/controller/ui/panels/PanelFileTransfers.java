@@ -74,7 +74,7 @@ public class PanelFileTransfers extends JPanel {
 
 		table = new DefaultJTable();
 		
-		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "File Path", "Info", "Speed", "Progress" }) {
+		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "File Path", "Status", "Progress", "%" }) {
 			public boolean isCellEditable(int row, int column) {
 				return false;
 			}
@@ -231,19 +231,7 @@ public class PanelFileTransfers extends JPanel {
 		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 			super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
-			TransferData data = (TransferData) table.getValueAt(row, 0);
-			
-			if (data.getState() == State.ERROR) {
-				setForeground(Color.red);
-			} else if (data.getState() == State.IN_PROGRESS) {
-				setForeground(Color.black);
-			} else if (data.getState() == State.PAUSED) {
-				setForeground(Color.blue.brighter());
-			} else if (data.getState() == State.COMPLETED) {
-				setForeground(Color.green.darker());
-			} else if (isSelected) {
-				setForeground(Color.black);
-			}
+			TransferData data = (TransferData) table.getValueAt(row, 0);		
 			
 			if (column == 0) {
 				setText(data.getRemoteFile());
@@ -253,19 +241,56 @@ public class PanelFileTransfers extends JPanel {
 			}
 			
 			if (column == 1) {
-				setText(DataUnits.getAsString(data.getRead()) + "/" + DataUnits.getAsString(data.getTotal()));
+				if (data.getState() == State.ERROR) {
+					setIcon(IconUtils.getIcon("error"));
+					setForeground(Color.red);
+					setText("Terminated");
+				} else if (data.getState() == State.IN_PROGRESS) {
+					if (data.isUpload()) {
+						setIcon(IconUtils.getIcon("arrow-up"));
+					} else {
+						setIcon(IconUtils.getIcon("arrow-down"));
+					}
+					setForeground(Color.black);
+					if (data.isUpload()) {
+						setText("Uploading");
+					} else {
+						setText("Downloading");
+					}
+				} else if (data.getState() == State.PAUSED) {
+					setIcon(IconUtils.getIcon("pause"));
+					setText("Paused");
+				} else if (data.getState() == State.COMPLETED) {
+					setIcon(IconUtils.getIcon("tick"));
+					setForeground(Color.green.darker());
+					setText("Completed");
+				} else if (isSelected) {
+					setIcon(null);
+					setText("");
+					setForeground(Color.black);
+				}
 			}
 			
 			if (column == 2) {
-				setText(DataUnits.getAsString(data.getSpeed()) + "/s");
+				setText(DataUnits.getAsString(data.getRead()) + "/" + DataUnits.getAsString(data.getTotal()) + " @ " + DataUnits.getAsString(data.getSpeed()) + "/s");
 			}
 			
 			if (column == 3) {
+				Color color;
+				
+				if (data.getState() == State.ERROR) {
+					color = Color.red;
+				} else if (data.getState() == State.PAUSED) {
+					color = Color.yellow;
+				} else {
+					color = Color.green.darker();
+				}
+				
 				JProgressBar bar = new JProgressBar();
 				bar.setMaximum((int) data.getTotal());
 				bar.setValue(data.getRead());
 				bar.setStringPainted(true);
-				bar.setForeground(getForeground());
+				bar.setForeground(color);
 				return bar;
 			}
 
