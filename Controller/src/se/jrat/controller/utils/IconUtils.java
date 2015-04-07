@@ -1,8 +1,11 @@
 package se.jrat.controller.utils;
 
+import java.awt.Image;
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -20,7 +23,9 @@ import com.redpois0n.oslib.Icons;
 public class IconUtils {
 	
 	public static final Map<String, ImageIcon> CACHE = new HashMap<String, ImageIcon>();
-
+	public static final int IMAGE_FOLDER = 0;
+	public static final int IMAGE_FILE = 1;
+	
 	public static ImageIcon getIcon(String name, boolean defaultfolder) {
 		URL url;
 		if (defaultfolder) {
@@ -31,6 +36,10 @@ public class IconUtils {
 			}
 		} else {
 			url = Main.class.getResource(name);		
+		}
+		
+		if (url == null) {
+			return null;
 		}
 
 		if (CACHE.containsKey(name)) {
@@ -93,6 +102,24 @@ public class IconUtils {
 		return icon;
 	}
 	
+	public static List<? extends Image> getFrameIconList(String name) {
+		List<Image> list = new ArrayList<Image>();
+		
+		String[] order = new String[] { "16x16", "32x32", "64x64", "128x128" };
+		
+		for (String s : order) {
+			ImageIcon icon = IconUtils.getIcon(name + "-" + s);
+			
+			if (icon == null) {
+				break;
+			} else {
+				list.add(icon.getImage());
+			}
+		}
+		
+		return list;
+	}
+	
 	public static ImageIcon getOSIcon(AbstractSlave slave) {
 		String str = Icons.getIconString(slave.getOperatingSystem());
 
@@ -148,8 +175,5 @@ public class IconUtils {
 	public static Icon getFileIcon(String f) {
 		return getFileIcon(new File(f));
 	}
-
-	public static final int IMAGE_FOLDER = 0;
-	public static final int IMAGE_FILE = 1;
 
 }
