@@ -1,6 +1,5 @@
 package se.jrat.controller.ui.frames;
 
-import java.awt.Toolkit;
 import java.awt.TrayIcon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -85,7 +84,7 @@ public class Frame extends JFrame {
 	private JCheckBoxMenuItem chckbxmntmTransferPluginsIf;
 
 	public Frame() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Frame.class.getResource("/icons/icon.png")));
+		setIconImages(IconUtils.getFrameIconList("icon"));
 		setTitle(Main.formatTitle());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 730, 450);

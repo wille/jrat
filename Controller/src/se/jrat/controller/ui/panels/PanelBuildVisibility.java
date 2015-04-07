@@ -108,13 +108,13 @@ public class PanelBuildVisibility extends JPanel {
 		JButton btnDefault = new JButton("Default");
 		btnDefault.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ImageIcon icon = IconUtils.getIcon("icon");
+				ImageIcon icon = IconUtils.getIcon("icon-16x16");
 				panelImage.image = icon.getImage();
 				txtIcon.setText("default");
 				repaint();
 			}
 		});
-		btnDefault.setIcon(IconUtils.getIcon("icon"));
+		btnDefault.setIcon(IconUtils.getIcon("icon-16x16"));
 
 		JLabel lblMessages = new JLabel("Messages:");
 
@@ -123,7 +123,7 @@ public class PanelBuildVisibility extends JPanel {
 		panel_1.setLayout(new BorderLayout(0, 0));
 
 		panelImage = new PanelImage();
-		panelImage.image = IconUtils.getIcon("icon").getImage();
+		panelImage.image = IconUtils.getIcon("icon-16x16").getImage();
 		panel_1.add(panelImage, BorderLayout.CENTER);
 
 		txtDisconnect = new JPlaceholderTextField("You are now disconnected!");

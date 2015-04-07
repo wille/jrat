@@ -66,7 +66,7 @@ public class PanelSettingsMain extends JPanel {
 		chckbxTrayIcon.setSelected(Settings.getGlobal().getBoolean("traynote"));
 
 		JLabel label_2 = new JLabel("");
-		label_2.setIcon(IconUtils.getIcon("icon"));
+		label_2.setIcon(IconUtils.getIcon("icon-16x16"));
 
 		JButton btnClearRenamedServers = new JButton("Clear renamed connections");
 		btnClearRenamedServers.addActionListener(new ActionListener() {
