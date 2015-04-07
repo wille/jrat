@@ -1,14 +1,9 @@
-package se.jrat.controller.ui.frames;
+package se.jrat.controller.ui.panels;
 
-import java.awt.Component;
+import java.awt.BorderLayout;
 import java.awt.Graphics;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.HashMap;
@@ -17,11 +12,8 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JMenuItem;
@@ -29,24 +21,24 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
-import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JToolBar;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.border.EmptyBorder;
 
 import se.jrat.controller.Slave;
 import se.jrat.controller.packets.outgoing.Packet85ThumbnailPreview;
 import se.jrat.controller.ui.renderers.ThumbsListRenderer;
 import se.jrat.controller.utils.IconUtils;
+import se.jrat.controller.utils.Utils;
 
 
 @SuppressWarnings("serial")
-public class FrameRemoteThumbView extends BaseFrame {
+public class PanelThumbView extends JPanel {
 
-	public static final Map<Slave, FrameRemoteThumbView> INSTANCES = new HashMap<Slave, FrameRemoteThumbView>();
+	public static final Map<Slave, PanelThumbView> INSTANCES = new HashMap<Slave, PanelThumbView>();
 	private Map<String, ImageIcon> thumbs = new HashMap<String, ImageIcon>();
 
-	private JPanel contentPane;
-	private String[] paths;
+	private String[] files;
+	private Slave slave;
 	private JList<String> list;
 	private JLabel lblCount;
 	private JProgressBar progressBar;
@@ -67,51 +59,36 @@ public class FrameRemoteThumbView extends BaseFrame {
 		return (DefaultListModel<String>) list.getModel();
 	}
 
-	public FrameRemoteThumbView(Slave s, String[] p) {
-		super(s);
-		setTitle("Thumbnail View");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRemoteThumbView.class.getResource("/icons/images-stack.png")));
-		addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent arg0) {
-				exit();
-			}
-		});
-		this.paths = p;
-		INSTANCES.put(slave, this);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 731, 465);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-
+	public PanelThumbView(Slave s) {
+		this.slave = s;
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-
+		setLayout(new BorderLayout(0, 0));
+		
 		progressBar = new JProgressBar();
-
 		lblCount = new JLabel("0/0");
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE).addGroup(gl_contentPane.createSequentialGroup().addComponent(progressBar, GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.UNRELATED).addComponent(lblCount).addGap(36))).addGap(0)));
-		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addComponent(progressBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(lblCount)).addGap(8)));
 
 		list = new JList<String>();
 		list.setCellRenderer(new ThumbsListRenderer(this));
 		list.setModel(new DefaultListModel<String>());
 		list.setLayoutOrientation(JList.VERTICAL_WRAP);
 		scrollPane.setViewportView(list);
+		
+		add(scrollPane, BorderLayout.CENTER);
+		
+		JToolBar bar = new JToolBar();
+		bar.setFloatable(false);
+		add(bar, BorderLayout.SOUTH);
+		bar.add(lblCount);
+		bar.add(progressBar);
 
 		popupMenu = new JPopupMenu();
-		addPopup(list, popupMenu);
+		Utils.addPopup(list, popupMenu);
 
 		mntmReloadAll = new JMenuItem("Reload all");
 		mntmReloadAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				thumbs.clear();
-				getBar().setVisible(true);
-				getCount().setVisible(true);
-				getModel().clear();
-				process();
+				reload(files);
 			}
 		});
 		mntmReloadAll.setIcon(IconUtils.getIcon("update"));
@@ -160,16 +137,27 @@ public class FrameRemoteThumbView extends BaseFrame {
 		});
 		mntmSaveSelectedx.setIcon(IconUtils.getIcon("images-stack"));
 		popupMenu.add(mntmSaveSelectedx);
-		contentPane.setLayout(gl_contentPane);
-
-		lblCount.setText("0/" + paths.length);
-		progressBar.setMaximum(paths.length);
-
-		process();
+	}
+	
+	public void reload(String[] files) {
+		thumbs.clear();
+		getBar().setVisible(true);
+		getCount().setVisible(true);
+		getModel().clear();
+		
+		this.files = files;
+		
+		lblCount.setText("0/" + files.length);
+		progressBar.setMaximum(files.length);
+		
+		setProgress(0);
+		for (String str : files) {
+			slave.addToSendQueue(new Packet85ThumbnailPreview(str));
+		}	
 	}
 
 	public void setProgress(int i) {
-		getCount().setText(i + "/" + paths.length);
+		getCount().setText(i + "/" + files.length);
 		getBar().setValue(i);
 	}
 
@@ -178,35 +166,8 @@ public class FrameRemoteThumbView extends BaseFrame {
 		getModel().addElement(path);
 	}
 
-	public void process() {
-		setProgress(0);
-		for (String str : paths) {
-			slave.addToSendQueue(new Packet85ThumbnailPreview(str));
-		}
-	}
-
 	public void exit() {
 		INSTANCES.remove(slave);
-	}
-
-	private static void addPopup(Component component, final JPopupMenu popup) {
-		component.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
-			}
-
-			public void mouseReleased(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
-			}
-
-			private void showMenu(MouseEvent e) {
-				popup.show(e.getComponent(), e.getX(), e.getY());
-			}
-		});
 	}
 
 	public int getProgress() {
@@ -215,5 +176,9 @@ public class FrameRemoteThumbView extends BaseFrame {
 
 	public Map<String, ImageIcon> getThumbMap() {
 		return thumbs;
+	}
+
+	public Slave getSlave() {
+		return slave;
 	}
 }
