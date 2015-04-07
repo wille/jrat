@@ -52,7 +52,7 @@ public class Startup {
                 out.println("   <string>" + currentJar.getAbsolutePath().replace("file:", "").replace(".jar", "") + "</string>");
                 out.println("   <key>ProgramArguments</key>");
                 out.println("   <array>");
-                out.println("      <string>" + System.getProperty("java.home").replace(" ", "%20") + System.getProperty("file.separator") + "bin" + System.getProperty("file.separator") + "java</string>");
+                out.println("      <string>java</string>");
                 out.println("      <string>-jar</string>");
                 out.println("      <string>" + currentJar.getAbsolutePath().replace("file:", "") + "</string>");
                 out.println("   </array>");
