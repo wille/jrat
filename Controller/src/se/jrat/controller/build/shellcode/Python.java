@@ -1,12 +1,14 @@
 package se.jrat.controller.build.shellcode;
 
+import se.jrat.controller.utils.ShellcodeUtils;
+
 public class Python implements Shellcode {
 
 	@Override
 	public String generate(String arrayName, byte[] array) throws Exception {
 		StringBuilder builder = new StringBuilder();
 
-		builder.append(arrayName + " = \\" + Util.lineSeparator);
+		builder.append(arrayName + " = \\" + ShellcodeUtils.LINE_SEPARATOR);
 
 		int count = 0;
 		for (int i = 0; i < array.length; i++) {
@@ -19,17 +21,17 @@ public class Python implements Shellcode {
 			}
 
 			if (i == array.length - 1) {
-				builder.append(Util.getPythonByte(b));
+				builder.append(ShellcodeUtils.getPythonByte(b));
 			} else {
-				builder.append(Util.getPythonByte(b));
+				builder.append(ShellcodeUtils.getPythonByte(b));
 				if (count >= 16) {
 					count = 0;
-					builder.append("' + \\" + Util.lineSeparator);
+					builder.append("' + \\" + ShellcodeUtils.LINE_SEPARATOR);
 				}
 			}
 		}
 
-		builder.append(Util.lineSeparator + "\\");
+		builder.append(ShellcodeUtils.LINE_SEPARATOR + "\\");
 
 		return builder.toString();
 	}
