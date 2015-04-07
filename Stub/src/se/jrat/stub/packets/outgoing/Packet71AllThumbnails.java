@@ -23,8 +23,6 @@ public class Packet71AllThumbnails extends AbstractOutgoingPacket {
 				GraphicsDevice screen = devices[i];
 				Robot robot = new Robot(screen);
 				Rectangle screenBounds = screen.getDefaultConfiguration().getBounds();
-				screenBounds.x = 0;
-				screenBounds.y = 0;
 				
 				BufferedImage image = robot.createScreenCapture(screenBounds);
 				image = ImageUtils.resize(image, 150, 100);
