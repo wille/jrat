@@ -25,9 +25,8 @@ public class Startup {
                 String javaHome = System.getProperty("java.home") + "\\bin\\javaw.exe";
 
                 if (((WindowsOperatingSystem) OperatingSystem.getOperatingSystem()).getVersion() == WindowsVersion.WINXP) {            
-                    String data = javaHome + " -jar \"" + currentJar.getAbsolutePath().replace("%20", " ") + "\"";
-                    String cmd = "REG ADD HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\ /v \"" + name + "\" /t REG_SZ /d \"" + data + "\" /f";
-                    Runtime.getRuntime().exec(cmd);
+                    String data = javaHome + " -jar \"" + currentJar.getAbsolutePath() + "\"";
+                    Runtime.getRuntime().exec(new String[] { "reg", "add", "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\", "/v", name, "/t", "REG_SZ", "/d", data, "/f"});
                 } else {
                     try {
                         WinRegistry.deleteValue(WinRegistry.HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Run", name);
