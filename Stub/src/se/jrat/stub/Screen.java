@@ -70,8 +70,6 @@ public class Screen implements Runnable {
 				GraphicsDevice screen = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[monitor];
 				Robot robot = new Robot(screen);
 				screenBounds = screen.getDefaultConfiguration().getBounds();
-				screenBounds.x = 0;
-				screenBounds.y = 0;
 				image = robot.createScreenCapture(screenBounds);
 			}
 
