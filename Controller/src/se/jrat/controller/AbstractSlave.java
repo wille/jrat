@@ -1,5 +1,6 @@
 package se.jrat.controller;
 
+import java.awt.TrayIcon;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.Socket;
@@ -19,21 +20,26 @@ import se.jrat.common.codec.Hex;
 import se.jrat.common.crypto.Crypto;
 import se.jrat.common.crypto.CryptoUtils;
 import se.jrat.common.crypto.KeyExchanger;
+import se.jrat.controller.addons.PluginEventHandler;
 import se.jrat.controller.crypto.GlobalKeyPair;
 import se.jrat.controller.exceptions.CloseException;
 import se.jrat.controller.io.CountingInputStream;
 import se.jrat.controller.io.CountingOutputStream;
 import se.jrat.controller.ip2c.Country;
+import se.jrat.controller.net.ConnectionHandler;
 import se.jrat.controller.net.ServerListener;
 import se.jrat.controller.settings.Settings;
 import se.jrat.controller.settings.SettingsCustomID;
 import se.jrat.controller.settings.StatisticsCountry;
 import se.jrat.controller.utils.FlagUtils;
+import se.jrat.controller.utils.TrayIconUtils;
 
 import com.redpois0n.oslib.AbstractOperatingSystem;
 import com.redpois0n.oslib.OperatingSystem;
 
 public abstract class AbstractSlave implements Runnable {
+	
+	protected boolean added;
 	
 	protected ServerListener connection;
 	protected Socket socket;
@@ -174,6 +180,21 @@ public abstract class AbstractSlave implements Runnable {
 	
 	public boolean isConnected() {
 		return socket.isConnected() && !socket.isClosed();
+	}
+	
+	public void disconnect(Exception ex) {
+		String message = ex.getClass().getSimpleName() + ": " + ex.getMessage();
+
+		Main.instance.getPanelLog().addEntry("Disconnect", this, message);
+
+		try {
+			ConnectionHandler.removeSlave(this, ex);
+		} catch (Exception e) {
+			
+		}
+
+		TrayIconUtils.showMessage(Main.instance.getTitle(), "Server " + getIP() + " disconnected: " + message, TrayIcon.MessageType.ERROR);
+		PluginEventHandler.onDisconnect(this);
 	}
 		
 	public abstract String getDisplayName();
@@ -447,6 +468,14 @@ public abstract class AbstractSlave implements Runnable {
 
 	public void setMemory(long memory) {
 		this.memory = memory;
+	}
+	
+	public boolean isAdded() {
+		return added;
+	}
+	
+	public void setAdded(boolean added) {
+		this.added = added;
 	}
 	
 	public static AbstractSlave getFromId(long id) {

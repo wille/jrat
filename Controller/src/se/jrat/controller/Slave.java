@@ -1,6 +1,5 @@
 package se.jrat.controller;
 
-import java.awt.TrayIcon;
 import java.io.DataOutputStream;
 import java.net.Socket;
 import java.net.SocketException;
@@ -9,14 +8,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import se.jrat.common.hash.Sha1;
-import se.jrat.controller.addons.PluginEventHandler;
 import se.jrat.controller.exceptions.CloseException;
-import se.jrat.controller.net.ConnectionHandler;
 import se.jrat.controller.net.ServerListener;
 import se.jrat.controller.packets.incoming.IncomingPackets;
 import se.jrat.controller.packets.outgoing.AbstractOutgoingPacket;
 import se.jrat.controller.packets.outgoing.Packet0Ping;
-import se.jrat.controller.utils.TrayIconUtils;
 
 import com.redpois0n.graphs.monitors.RemoteMonitor;
 import com.redpois0n.oslib.OperatingSystem;
@@ -103,21 +99,6 @@ public class Slave extends AbstractSlave {
 
 	public void sendPacket(AbstractOutgoingPacket packet, DataOutputStream dos) throws Exception {
 		packet.send(this, dos);
-	}
-	
-	public void disconnect(Exception ex) {
-		String message = ex.getClass().getSimpleName() + ": " + ex.getMessage();
-
-		Main.instance.getPanelLog().addEntry("Disconnect", this, message);
-
-		try {
-			ConnectionHandler.removeSlave(this, ex);
-		} catch (Exception e) {
-			
-		}
-
-		TrayIconUtils.showMessage(Main.instance.getTitle(), "Server " + getIP() + " disconnected: " + message, TrayIcon.MessageType.ERROR);
-		PluginEventHandler.onDisconnect(this);
 	}
 
 	@Override
