@@ -43,6 +43,7 @@ public class PanelSearchFiles extends PanelControlParent {
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JComboBox<String> cbDrives;
 	private FileSearchTableRenderer renderer;
+	private FrameRemoteFiles parent;
 
 	public DefaultTableModel getModel() {
 		return model;
@@ -52,8 +53,9 @@ public class PanelSearchFiles extends PanelControlParent {
 		return renderer;
 	}
 
-	public PanelSearchFiles(Slave slave) {
+	public PanelSearchFiles(Slave slave, FrameRemoteFiles parentFrame) {
 		super(slave);
+		this.parent = parentFrame;
 		final Slave sl = slave;
 
 		JScrollPane scrollPane = new JScrollPane();
@@ -110,14 +112,9 @@ public class PanelSearchFiles extends PanelControlParent {
 			public void actionPerformed(ActionEvent arg0) {
 				int row = table.getSelectedRow();
 				if (row != -1) {
-					FrameRemoteFiles frame = FrameRemoteFiles.INSTANCES.get(sl);
-					if (frame == null) {
-						frame = new FrameRemoteFiles(sl);
-						frame.setVisible(true);
-					}
 					String val = model.getValueAt(row, 0).toString();
 					String path = val.substring(0, val.lastIndexOf(sl.getFileSeparator()));
-					frame.getRemoteTable().setDirectory(path);
+					parent.getRemoteTable().setDirectory(path);
 				}
 			}
 		});
