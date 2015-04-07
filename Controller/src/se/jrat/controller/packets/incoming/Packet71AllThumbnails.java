@@ -7,6 +7,8 @@ import java.util.List;
 import se.jrat.common.utils.ImageUtils;
 import se.jrat.controller.Slave;
 import se.jrat.controller.ui.dialogs.DialogPickMonitor;
+import se.jrat.controller.ui.frames.FrameControlPanel;
+import se.jrat.controller.ui.panels.PanelControlMonitors;
 
 import com.redpois0n.graphs.monitors.PanelMonitors.PanelMonitor;
 
@@ -25,12 +27,16 @@ public class Packet71AllThumbnails extends AbstractIncomingPacket {
 			
 			BufferedImage image = ImageUtils.decodeImage(buffer);
 			
-			DialogPickMonitor dialog = DialogPickMonitor.instances.get(slave);
-			
+			DialogPickMonitor dialog = DialogPickMonitor.instances.get(slave);			
 			if (dialog != null) {
 				List<PanelMonitor> panels = dialog.getPanelMonitors().getPanels();
-
 				panels.get(i).setThumbnail(image);
+			}
+			
+			FrameControlPanel frame = FrameControlPanel.instances.get(slave);
+			if (frame != null) {
+				PanelControlMonitors panel = (PanelControlMonitors) frame.panels.get("monitors");
+				panel.getPanelMonitors().getPanels().get(i).setThumbnail(image);
 			}
 		}
 	}
