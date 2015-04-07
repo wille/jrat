@@ -9,6 +9,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -27,7 +28,7 @@ import se.jrat.controller.utils.IconUtils;
 
 
 @SuppressWarnings("serial")
-public class DialogEula extends BaseDialog {
+public class DialogEula extends JDialog {
 
 	private JPanel contentPane;
 

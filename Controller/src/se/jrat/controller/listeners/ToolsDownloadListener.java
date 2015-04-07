@@ -1,10 +1,10 @@
-package se.jrat.controller.listeners;
+package io.jrat.client.listeners;
+
+import io.jrat.client.ui.dialogs.DialogDownload;
 
 import java.io.File;
 
 import javax.swing.JOptionPane;
-
-import se.jrat.controller.ui.dialogs.DialogDownload;
 
 
 public class ToolsDownloadListener extends DownloadListener {

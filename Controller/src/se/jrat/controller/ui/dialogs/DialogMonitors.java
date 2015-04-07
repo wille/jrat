@@ -40,7 +40,6 @@ public class DialogMonitors extends BaseDialog {
 
 	private JPanel contentPane;
 	private FrameRemoteScreen parent;
-	private Slave slave;
 	private JComboBox<String> cbMonitors;
 	private JComboBoxIconRenderer renderer;
 	private JPanel panel_1;
@@ -57,7 +56,7 @@ public class DialogMonitors extends BaseDialog {
 	}
 
 	public DialogMonitors(FrameRemoteScreen p, Slave sl) {
-		super();
+		super(sl);
 		setModal(true);
 		this.parent = p;
 
@@ -69,7 +68,6 @@ public class DialogMonitors extends BaseDialog {
 		});
 		instances.put(sl, this);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(DialogMonitors.class.getResource("/icons/screen.png")));
-		this.slave = sl;
 		setTitle("Monitors");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.LinkedHashMap;
 
 import javax.swing.BoxLayout;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -22,7 +23,7 @@ import se.jrat.controller.utils.IconUtils;
 
 
 @SuppressWarnings("serial")
-public class DialogSummary extends BaseDialog {
+public class DialogSummary extends JDialog {
 
 	private File file;
 	private String hosts;

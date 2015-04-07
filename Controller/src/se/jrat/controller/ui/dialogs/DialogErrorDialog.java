@@ -10,6 +10,7 @@ import java.io.StringWriter;
 import java.io.Writer;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -23,7 +24,7 @@ import se.jrat.controller.utils.IconUtils;
 
 
 @SuppressWarnings("serial")
-public class DialogErrorDialog extends BaseDialog {
+public class DialogErrorDialog extends JDialog {
 
 	private JPanel contentPane;
 	public Dimension originalSize;
@@ -43,7 +44,6 @@ public class DialogErrorDialog extends BaseDialog {
 	}
 
 	public DialogErrorDialog(Exception ex) {
-		super();
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(DialogErrorDialog.class.getResource("/icons/error.png")));
 		setType(Type.POPUP);

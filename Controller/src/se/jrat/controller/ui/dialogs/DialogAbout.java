@@ -9,6 +9,7 @@ import java.awt.Toolkit;
 import javax.imageio.ImageIO;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -19,7 +20,7 @@ import se.jrat.controller.Main;
 import se.jrat.controller.utils.IconUtils;
 
 @SuppressWarnings("serial")
-public class DialogAbout extends BaseDialog {
+public class DialogAbout extends JDialog {
 
     public static Image BACKGROUND;
 

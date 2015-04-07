@@ -5,10 +5,11 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class DialogImage extends BaseDialog {
+public class DialogImage extends JDialog {
 
 	private final Image image;
 
