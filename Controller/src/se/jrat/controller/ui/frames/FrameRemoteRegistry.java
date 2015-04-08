@@ -34,10 +34,11 @@ import se.jrat.controller.ui.renderers.table.RegistryTableRenderer;
 import se.jrat.controller.utils.IconUtils;
 import se.jrat.controller.utils.Utils;
 
-import com.redpois0n.pathtree.FolderClickListener;
 import com.redpois0n.pathtree.FolderTreeNode;
+import com.redpois0n.pathtree.NodeClickListener;
 import com.redpois0n.pathtree.PathJTree;
 import com.redpois0n.pathtree.PathTreeModel;
+import com.redpois0n.pathtree.PathTreeNode;
 
 @SuppressWarnings( "serial" )
 public class FrameRemoteRegistry extends BaseFrame {
@@ -163,9 +164,9 @@ public class FrameRemoteRegistry extends BaseFrame {
 
 		tree = new PathJTree();
 		tree.setDelimiter("\\");
-		tree.addFolderClickListener(new FolderClickListener() {
+		tree.addFolderClickListener(new NodeClickListener() {
 			@Override
-			public void itemSelected(String path) {
+			public void itemSelected(PathTreeNode node, String path) {
 				clear();
 				execute(path);
 				txt.setText(path);
