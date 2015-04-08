@@ -473,16 +473,6 @@ public class Frame extends JFrame {
 		mntmGarbageCollector.setIcon(IconUtils.getIcon("garbage"));
 		mnTools.add(mntmGarbageCollector);
 
-		JMenuItem mntmPerformance = new JMenuItem("Performance");
-		mntmPerformance.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				FramePerformance frame = new FramePerformance();
-				frame.setVisible(true);
-			}
-		});
-		mntmPerformance.setIcon(IconUtils.getIcon("meter"));
-		mnTools.add(mntmPerformance);
-
 		JMenu mnServers = new JMenu("Clients");
 		menuBar.add(mnServers);
 
@@ -759,13 +749,13 @@ public class Frame extends JFrame {
 		panelLog = new PanelMainLog();
 		panelPlugins = new PanelMainPlugins();
 
-		tabbedPane.addTab("Clients", IconUtils.getIcon("tab-main", true), panelClients, null);
-		tabbedPane.addTab("Statistics", IconUtils.getIcon("statistics", true), panelStats, null);
-		tabbedPane.addTab("Network Usage", IconUtils.getIcon("network"), panelNetwork, null);
-		tabbedPane.addTab("On Connect", IconUtils.getIcon("calendar", true), panelOnConnect, null);
-		tabbedPane.addTab("Sockets", IconUtils.getIcon("sockets"), panelSockets, null);
-		tabbedPane.addTab("Log", IconUtils.getIcon("log"), panelLog, null);
-		tabbedPane.addTab("Plugins", IconUtils.getIcon("plugin"), panelPlugins, null);
+		tabbedPane.addTab("Clients", IconUtils.getIcon("tab-main"), panelClients);
+		tabbedPane.addTab("Statistics", IconUtils.getIcon("statistics"), panelStats);
+		tabbedPane.addTab("Network Usage", IconUtils.getIcon("network"), panelNetwork);
+		tabbedPane.addTab("On Connect", IconUtils.getIcon("calendar"), panelOnConnect);
+		tabbedPane.addTab("Sockets", IconUtils.getIcon("sockets"), panelSockets);
+		tabbedPane.addTab("Log", IconUtils.getIcon("log"), panelLog);
+		tabbedPane.addTab("Plugins", IconUtils.getIcon("plugin"), panelPlugins);
 		
 		for (Columns s : Columns.values()) {
 			JCheckBoxMenuItem jcb = new JCheckBoxMenuItem("Display " + s.getName());
