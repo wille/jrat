@@ -237,7 +237,7 @@ public class DialogMonitors extends BaseDialog {
 		ImageIcon icon = IconUtils.getIcon("monitor");
 
 		for (RemoteMonitor monitor : slave.getMonitors()) {
-			getRenderer().addIcon(monitor.getLabel().toLowerCase(), icon);
+			getRenderer().addIcon(monitor.getLabel(), icon);
 			getModel().addElement(monitor.getLabel());
 		}
 	}

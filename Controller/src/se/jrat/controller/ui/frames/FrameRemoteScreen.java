@@ -204,7 +204,7 @@ public class FrameRemoteScreen extends BaseFrame {
 		ImageIcon icon = IconUtils.getIcon("monitor");
 
 		for (RemoteMonitor monitor : slave.getMonitors()) {
-			renderer.addIcon(monitor.getLabel().toLowerCase(), icon);
+			renderer.addIcon(monitor.getLabel(), icon);
 			model.addElement(monitor.getLabel());
 		}
 		

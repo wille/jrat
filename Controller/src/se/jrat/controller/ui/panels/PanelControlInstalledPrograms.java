@@ -117,8 +117,8 @@ public class PanelControlInstalledPrograms extends PanelControlParent {
 		JComboBoxIconRenderer renderer = new JComboBoxIconRenderer();
 
 		ImageIcon icon = IconUtils.getIcon("folder-network");
-		renderer.addIcon("hkey_current_user", icon);
-		renderer.addIcon("hkey_local_machine", icon);
+		renderer.addIcon("HKEY_CURRENT_USER", icon);
+		renderer.addIcon("HKEY_LOCAL_MACHINE", icon);
 
 		return renderer;
 	}

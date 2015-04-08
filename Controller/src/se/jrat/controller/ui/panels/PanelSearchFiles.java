@@ -212,7 +212,7 @@ public class PanelSearchFiles extends PanelControlParent {
 		JComboBoxIconRenderer renderer = new JComboBoxIconRenderer();
 
 		for (Drive drive : slave.getDrives()) {
-			renderer.addIcon(drive.getName().toLowerCase(), null);
+			renderer.addIcon(drive.getName(), IconUtils.getIcon("drive"));
 		}
 
 		return renderer;

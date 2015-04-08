@@ -33,9 +33,10 @@ public class JComboBoxIconRenderer extends DefaultListCellRenderer {
 	@SuppressWarnings("rawtypes")
 	public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
 		super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-		if (value != null && map.containsKey(value.toString().toLowerCase())) {
+		
+		if (value != null && map.containsKey(value.toString())) {
 			JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-			Icon icon = map.get(value.toString().toLowerCase());
+			Icon icon = map.get(value.toString());
 			label.setIcon(icon);
 			return label;
 		}

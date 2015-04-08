@@ -179,7 +179,7 @@ public class PanelRemoteFiles extends JPanel {
 				File[] f = File.listRoots();
 				driveComboModel.removeAllElements();
 				for (File fi : f) {		
-					super.renderer.addIcon(fi.getAbsolutePath().toLowerCase(), FileIconUtils.getIconFromFile(fi));
+					super.renderer.addIcon(fi.getAbsolutePath(), FileIconUtils.getIconFromFile(fi));
 					driveComboModel.addElement(fi.getAbsolutePath());
 				}
 			} else {
@@ -216,7 +216,9 @@ public class PanelRemoteFiles extends JPanel {
 			super(slave);
 			for (Drive drive : slave.getDrives()) {
 				driveComboModel.addElement(drive.getName());
+				renderer.addIcon(drive.getName(), IconUtils.getIcon("drive"));
 			}
+			driveComboBox.setRenderer(renderer);
 			
 			driveComboBox.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
