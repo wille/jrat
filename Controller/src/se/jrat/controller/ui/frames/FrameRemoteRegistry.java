@@ -1,7 +1,6 @@
 package se.jrat.controller.ui.frames;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -120,7 +119,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 
 		popupMenu = new JPopupMenu();
 
-		addPopup(table, popupMenu);
+		Utils.addPopup(table, popupMenu);
 
 		mntmAdd = new JMenuItem("Add Value");
 		mntmAdd.addActionListener(new ActionListener() {
@@ -238,6 +237,9 @@ public class FrameRemoteRegistry extends BaseFrame {
 		btnCustomCommand.setIcon(IconUtils.getIcon("key-arrow"));
 		toolBar.add(btnCustomCommand);
 		add(toolBar, BorderLayout.NORTH);
+		
+		tree.expandRow(0);
+		tree.setRootVisible(false);
 	}
 
 	public void execute(String location) {
@@ -301,26 +303,6 @@ public class FrameRemoteRegistry extends BaseFrame {
 
 			reload();
 		}
-	}
-
-	private static void addPopup(Component component, final JPopupMenu popup) {
-		component.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
-			}
-
-			public void mouseReleased(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
-			}
-
-			private void showMenu(MouseEvent e) {
-				popup.show(e.getComponent(), e.getX(), e.getY());
-			}
-		});
 	}
 
 	public RegistryTableRenderer getRenderer() {
