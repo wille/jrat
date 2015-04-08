@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.panels;
 
+import iconlib.IconUtils;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
@@ -21,7 +23,6 @@ import se.jrat.controller.Main;
 import se.jrat.controller.Slave;
 import se.jrat.controller.packets.outgoing.Packet76Speech;
 import se.jrat.controller.utils.IOUtils;
-import se.jrat.controller.utils.IconUtils;
 
 import com.redpois0n.oslib.OperatingSystem;
 

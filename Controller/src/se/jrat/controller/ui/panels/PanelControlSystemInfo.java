@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.panels;
 
+import iconlib.IconUtils;
+
 import java.awt.BorderLayout;
 
 import javax.swing.ImageIcon;
@@ -12,7 +14,6 @@ import se.jrat.controller.Slave;
 import se.jrat.controller.ui.components.DefaultJTable;
 import se.jrat.controller.ui.renderers.table.ComputerInfoTableRenderer;
 import se.jrat.controller.utils.FlagUtils;
-import se.jrat.controller.utils.IconUtils;
 
 import com.redpois0n.oslib.Icons;
 

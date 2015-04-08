@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.dialogs;
 
+import iconlib.IconUtils;
+
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,7 +26,6 @@ import se.jrat.controller.Main;
 import se.jrat.controller.settings.Settings;
 import se.jrat.controller.threads.ThreadCountDown;
 import se.jrat.controller.utils.IOUtils;
-import se.jrat.controller.utils.IconUtils;
 
 
 @SuppressWarnings("serial")

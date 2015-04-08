@@ -1,5 +1,8 @@
 package se.jrat.controller.ui.panels;
 
+import iconlib.FileIconUtils;
+import iconlib.IconUtils;
+
 import java.awt.BorderLayout;
 import java.awt.Desktop;
 import java.awt.event.ActionEvent;
@@ -43,7 +46,6 @@ import se.jrat.controller.ui.frames.FramePreviewFile;
 import se.jrat.controller.ui.frames.FramePreviewImage;
 import se.jrat.controller.ui.frames.FramePreviewZip;
 import se.jrat.controller.ui.frames.FrameRemoteFiles;
-import se.jrat.controller.utils.IconUtils;
 import se.jrat.controller.utils.Utils;
 
 import com.redpois0n.oslib.OperatingSystem;
@@ -177,7 +179,7 @@ public class PanelRemoteFiles extends JPanel {
 				File[] f = File.listRoots();
 				driveComboModel.removeAllElements();
 				for (File fi : f) {		
-					super.renderer.addIcon(fi.getAbsolutePath().toLowerCase(), IconUtils.getFileIcon(fi));
+					super.renderer.addIcon(fi.getAbsolutePath().toLowerCase(), FileIconUtils.getIconFromFile(fi));
 					driveComboModel.addElement(fi.getAbsolutePath());
 				}
 			} else {

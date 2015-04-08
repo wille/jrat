@@ -1,9 +1,9 @@
 package se.jrat.controller;
 
+import iconlib.IconUtils;
+
 import java.awt.Graphics2D;
 import java.awt.Image;
-
-import se.jrat.controller.utils.IconUtils;
 
 import com.redpois0n.oslib.OperatingSystem;
 

@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.renderers.table;
 
+import iconlib.IconUtils;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.io.File;
@@ -10,13 +12,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 
+import se.jrat.common.utils.DataUnits;
 import se.jrat.controller.AbstractSlave;
 import se.jrat.controller.io.FileObject;
 import se.jrat.controller.settings.StoreFileBookmarks;
-import se.jrat.controller.utils.IconUtils;
 import se.jrat.controller.utils.Utils;
-
-import com.redpois0n.graphs.utils.DataUnits;
 
 
 @SuppressWarnings("serial")

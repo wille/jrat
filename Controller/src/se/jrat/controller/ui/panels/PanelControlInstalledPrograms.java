@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.panels;
 
+import iconlib.IconUtils;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,7 +21,6 @@ import se.jrat.controller.Slave;
 import se.jrat.controller.packets.outgoing.Packet81InstalledPrograms;
 import se.jrat.controller.ui.components.DefaultJTable;
 import se.jrat.controller.ui.renderers.JComboBoxIconRenderer;
-import se.jrat.controller.utils.IconUtils;
 
 import com.redpois0n.oslib.OperatingSystem;
 

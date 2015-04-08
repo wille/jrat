@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.panels;
 
+import iconlib.IconUtils;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -22,7 +24,6 @@ import se.jrat.controller.net.PortListener;
 import se.jrat.controller.settings.Settings;
 import se.jrat.controller.ui.components.JPlaceholderTextField;
 import se.jrat.controller.ui.components.PortListenerJComboBox;
-import se.jrat.controller.utils.IconUtils;
 
 
 @SuppressWarnings("serial")

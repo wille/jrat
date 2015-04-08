@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.components;
 
+import iconlib.IconUtils;
+
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,7 +23,6 @@ import se.jrat.controller.AbstractSlave;
 import se.jrat.controller.io.FileObject;
 import se.jrat.controller.ui.renderers.JComboBoxIconRenderer;
 import se.jrat.controller.ui.renderers.table.FileViewTableRenderer;
-import se.jrat.controller.utils.IconUtils;
 import se.jrat.controller.utils.Utils;
 
 @SuppressWarnings("serial")

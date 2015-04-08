@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.frames;
 
+import iconlib.IconUtils;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -20,7 +22,6 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
 import se.jrat.controller.ErrorDialog;
-import se.jrat.controller.utils.IconUtils;
 
 
 @SuppressWarnings("serial")

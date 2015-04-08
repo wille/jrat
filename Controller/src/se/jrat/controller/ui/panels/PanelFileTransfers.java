@@ -1,5 +1,8 @@
 package se.jrat.controller.ui.panels;
 
+import iconlib.FileIconUtils;
+import iconlib.IconUtils;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -24,6 +27,7 @@ import javax.swing.table.DefaultTableModel;
 import se.jrat.common.io.FileCache;
 import se.jrat.common.io.TransferData;
 import se.jrat.common.io.TransferData.State;
+import se.jrat.common.utils.DataUnits;
 import se.jrat.common.utils.MathUtils;
 import se.jrat.controller.Slave;
 import se.jrat.controller.packets.outgoing.Packet102PauseServerUpload;
@@ -31,10 +35,7 @@ import se.jrat.controller.packets.outgoing.Packet103CompleteServerUpload;
 import se.jrat.controller.packets.outgoing.Packet105CancelServerDownload;
 import se.jrat.controller.ui.components.DefaultJTable;
 import se.jrat.controller.ui.renderers.table.DefaultJTableCellRenderer;
-import se.jrat.controller.utils.IconUtils;
 import se.jrat.controller.utils.Utils;
-
-import com.redpois0n.graphs.utils.DataUnits;
 
 
 @SuppressWarnings("serial")
@@ -56,7 +57,7 @@ public class PanelFileTransfers extends JPanel {
 	private JMenuItem btnCancel;
 
 	public void load(String name) {
-		Icon icon = IconUtils.getFileIconFromExtension(name, false);
+		Icon icon = FileIconUtils.getIconFromExtension(name);
 		String status = "0";
 
 		model.addRow(new Object[] { icon, name, status });
@@ -236,7 +237,7 @@ public class PanelFileTransfers extends JPanel {
 			
 			if (column == 0) {
 				setText(data.getRemoteFile());
-				setIcon(IconUtils.getFileIconFromExtension(data.getRemoteFile(), false));
+				setIcon(FileIconUtils.getIconFromExtension(data.getRemoteFile()));
 			} else {
 				setIcon(null);
 			}

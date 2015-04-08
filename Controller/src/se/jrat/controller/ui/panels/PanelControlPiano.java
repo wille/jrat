@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.panels;
 
+import iconlib.IconUtils;
+
 import java.awt.Button;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -24,7 +26,6 @@ import se.jrat.controller.Piano;
 import se.jrat.controller.Slave;
 import se.jrat.controller.packets.outgoing.Packet66PianoNote;
 import se.jrat.controller.packets.outgoing.Packet67LongPianoNote;
-import se.jrat.controller.utils.IconUtils;
 
 
 @SuppressWarnings("serial")

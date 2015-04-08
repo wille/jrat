@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.frames;
 
+import iconlib.IconUtils;
+
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -31,7 +33,6 @@ import se.jrat.controller.packets.outgoing.Packet48ChatStart;
 import se.jrat.controller.packets.outgoing.Packet49ChatEnd;
 import se.jrat.controller.packets.outgoing.Packet51ChatMessage;
 import se.jrat.controller.packets.outgoing.Packet58NudgeChat;
-import se.jrat.controller.utils.IconUtils;
 
 @SuppressWarnings("serial")
 public class FrameRemoteChat extends BaseFrame {

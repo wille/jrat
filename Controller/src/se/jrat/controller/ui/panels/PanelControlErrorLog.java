@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.panels;
 
+import iconlib.IconUtils;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,7 +16,6 @@ import javax.swing.ScrollPaneConstants;
 import se.jrat.controller.Slave;
 import se.jrat.controller.packets.outgoing.Packet86ErrorLog;
 import se.jrat.controller.packets.outgoing.Packet87DeleteErrorLog;
-import se.jrat.controller.utils.IconUtils;
 
 
 @SuppressWarnings("serial")

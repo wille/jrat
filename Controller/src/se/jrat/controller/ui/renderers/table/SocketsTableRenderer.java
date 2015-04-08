@@ -1,12 +1,12 @@
 package se.jrat.controller.ui.renderers.table;
 
+import iconlib.IconUtils;
+
 import java.awt.Component;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTable;
-
-import se.jrat.controller.utils.IconUtils;
 
 
 @SuppressWarnings("serial")

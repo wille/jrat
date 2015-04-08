@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.frames;
 
+import iconlib.IconUtils;
+
 import java.awt.BorderLayout;
 import java.awt.Desktop;
 import java.awt.Toolkit;
@@ -19,7 +21,6 @@ import se.jrat.controller.addons.Plugin;
 import se.jrat.controller.addons.PluginLoader;
 import se.jrat.controller.ui.components.DefaultJTable;
 import se.jrat.controller.ui.renderers.table.PluginsTableRenderer;
-import se.jrat.controller.utils.IconUtils;
 
 @SuppressWarnings("serial")
 public class FramePlugins extends JFrame {

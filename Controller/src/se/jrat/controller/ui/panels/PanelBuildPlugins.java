@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.panels;
 
+import iconlib.IconUtils;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -19,7 +21,6 @@ import se.jrat.controller.addons.StubPlugin;
 import se.jrat.controller.ui.components.JCheckBoxList;
 import se.jrat.controller.ui.components.JCheckBoxList.Entry;
 import se.jrat.controller.ui.renderers.table.PluginsTableRenderer;
-import se.jrat.controller.utils.IconUtils;
 
 
 @SuppressWarnings("serial")

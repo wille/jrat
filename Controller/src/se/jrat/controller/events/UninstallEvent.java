@@ -1,11 +1,12 @@
 package se.jrat.controller.events;
 
+import iconlib.IconUtils;
+
 import javax.swing.ImageIcon;
 
 import se.jrat.controller.AbstractSlave;
 import se.jrat.controller.Slave;
 import se.jrat.controller.packets.outgoing.Packet36Uninstall;
-import se.jrat.controller.utils.IconUtils;
 import se.jrat.controller.utils.Utils;
 
 

@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.frames;
 
+import iconlib.IconUtils;
+
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,7 +26,6 @@ import se.jrat.controller.net.PortListener;
 import se.jrat.controller.net.ServerListener;
 import se.jrat.controller.settings.SettingsSockets;
 import se.jrat.controller.ui.components.JPlaceholderTextField;
-import se.jrat.controller.utils.IconUtils;
 import se.jrat.controller.utils.Utils;
 import se.jrat.controller.webpanel.WebPanelListener;
 

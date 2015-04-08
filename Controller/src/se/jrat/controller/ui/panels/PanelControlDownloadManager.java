@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.panels;
 
+import iconlib.IconUtils;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -20,7 +22,6 @@ import javax.swing.table.DefaultTableModel;
 import se.jrat.controller.Slave;
 import se.jrat.controller.packets.outgoing.Packet34AdvancedDownload;
 import se.jrat.controller.ui.components.DefaultJTable;
-import se.jrat.controller.utils.IconUtils;
 
 
 @SuppressWarnings("serial")

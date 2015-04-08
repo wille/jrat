@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.panels;
 
+import iconlib.IconUtils;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -22,7 +24,6 @@ import javax.swing.ScrollPaneConstants;
 
 import se.jrat.controller.ErrorDialog;
 import se.jrat.controller.Help;
-import se.jrat.controller.utils.IconUtils;
 
 import com.redpois0n.oslib.OperatingSystem;
 

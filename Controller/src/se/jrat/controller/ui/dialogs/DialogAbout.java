@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.dialogs;
 
+import iconlib.IconUtils;
+
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -17,7 +19,6 @@ import javax.swing.border.EmptyBorder;
 
 import se.jrat.common.Version;
 import se.jrat.controller.Main;
-import se.jrat.controller.utils.IconUtils;
 
 @SuppressWarnings("serial")
 public class DialogAbout extends JDialog {

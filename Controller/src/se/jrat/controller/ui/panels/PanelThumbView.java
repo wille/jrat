@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.panels;
 
+import iconlib.IconUtils;
+
 import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -27,7 +29,6 @@ import javax.swing.ScrollPaneConstants;
 import se.jrat.controller.Slave;
 import se.jrat.controller.packets.outgoing.Packet85ThumbnailPreview;
 import se.jrat.controller.ui.renderers.ThumbsListRenderer;
-import se.jrat.controller.utils.IconUtils;
 import se.jrat.controller.utils.Utils;
 
 

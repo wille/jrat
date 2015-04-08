@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.frames;
 
+import iconlib.IconUtils;
+
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
@@ -8,7 +10,6 @@ import javax.swing.border.EmptyBorder;
 
 import se.jrat.controller.Slave;
 import se.jrat.controller.ui.panels.PanelControlSystemInfo;
-import se.jrat.controller.utils.IconUtils;
 
 @SuppressWarnings("serial")
 public class FrameSystemInfo extends JFrame {

@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.frames;
 
+import iconlib.IconUtils;
+
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,7 +24,6 @@ import javax.swing.event.HyperlinkListener;
 import se.jrat.common.Version;
 import se.jrat.controller.ErrorDialog;
 import se.jrat.controller.Updater;
-import se.jrat.controller.utils.IconUtils;
 import se.jrat.controller.utils.NetUtils;
 
 

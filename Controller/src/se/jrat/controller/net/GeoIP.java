@@ -1,5 +1,7 @@
 package se.jrat.controller.net;
 
+import iconlib.IconUtils;
+
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -13,8 +15,6 @@ import javax.imageio.ImageIO;
 
 import se.jrat.controller.AbstractSlave;
 import se.jrat.controller.utils.NetUtils;
-
-import com.redpois0n.graphs.utils.IconUtils;
 
 public class GeoIP {
 

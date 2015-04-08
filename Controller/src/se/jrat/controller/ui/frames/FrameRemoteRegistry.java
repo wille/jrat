@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.frames;
 
+import iconlib.IconUtils;
+
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -31,7 +33,6 @@ import se.jrat.controller.packets.outgoing.Packet80CustomRegQuery;
 import se.jrat.controller.ui.components.DefaultJTable;
 import se.jrat.controller.ui.dialogs.DialogCustomRegQuery;
 import se.jrat.controller.ui.renderers.table.RegistryTableRenderer;
-import se.jrat.controller.utils.IconUtils;
 import se.jrat.controller.utils.Utils;
 
 import com.redpois0n.pathtree.FolderTreeNode;

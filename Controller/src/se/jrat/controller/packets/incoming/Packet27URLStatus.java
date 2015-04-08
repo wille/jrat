@@ -1,5 +1,7 @@
 package se.jrat.controller.packets.incoming;
 
+import iconlib.IconUtils;
+
 import java.io.DataInputStream;
 
 import javax.swing.ImageIcon;
@@ -7,7 +9,6 @@ import javax.swing.ImageIcon;
 import se.jrat.controller.Slave;
 import se.jrat.controller.ui.frames.FrameControlPanel;
 import se.jrat.controller.ui.panels.PanelControlDownloadManager;
-import se.jrat.controller.utils.IconUtils;
 
 
 public class Packet27URLStatus extends AbstractIncomingPacket {

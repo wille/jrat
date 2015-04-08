@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.dialogs;
 
+import iconlib.IconUtils;
+
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,7 +30,6 @@ import se.jrat.controller.Slave;
 import se.jrat.controller.listeners.PickMonitorListener;
 import se.jrat.controller.ui.frames.FrameRemoteScreen;
 import se.jrat.controller.ui.renderers.JComboBoxIconRenderer;
-import se.jrat.controller.utils.IconUtils;
 
 import com.redpois0n.graphs.monitors.RemoteMonitor;
 

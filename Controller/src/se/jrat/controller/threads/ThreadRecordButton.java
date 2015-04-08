@@ -1,9 +1,9 @@
 package se.jrat.controller.threads;
 
+import iconlib.IconUtils;
+
 import javax.swing.Icon;
 import javax.swing.JButton;
-
-import se.jrat.controller.utils.IconUtils;
 
 
 public class ThreadRecordButton extends Thread {

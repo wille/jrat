@@ -20,10 +20,10 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
-import com.redpois0n.oslib.OperatingSystem;
-
 import se.jrat.common.Version;
 import se.jrat.controller.Constants;
+
+import com.redpois0n.oslib.OperatingSystem;
 
 
 @SuppressWarnings("serial")

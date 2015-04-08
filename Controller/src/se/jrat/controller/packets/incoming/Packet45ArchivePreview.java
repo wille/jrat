@@ -1,5 +1,7 @@
 package se.jrat.controller.packets.incoming;
 
+import iconlib.FileIconUtils;
+
 import java.io.DataInputStream;
 
 import javax.swing.Icon;
@@ -7,8 +9,6 @@ import javax.swing.Icon;
 import se.jrat.common.utils.DataUnits;
 import se.jrat.controller.Slave;
 import se.jrat.controller.ui.frames.FramePreviewZip;
-import se.jrat.controller.utils.IconUtils;
-
 
 public class Packet45ArchivePreview extends AbstractIncomingPacket {
 
@@ -21,7 +21,7 @@ public class Packet45ArchivePreview extends AbstractIncomingPacket {
 		FramePreviewZip frame = FramePreviewZip.INSTANCES.get(slave);
 
 		if (frame != null) {
-			Icon icon = IconUtils.getFileIconFromExtension(name, dir);
+			Icon icon = FileIconUtils.getIconFromExtension(name, dir);
 
 			frame.getModel().addRow(new Object[] { icon, name, dir ? "" : filesize });
 		}

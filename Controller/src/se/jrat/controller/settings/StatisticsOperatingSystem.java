@@ -1,5 +1,7 @@
 package se.jrat.controller.settings;
 
+import iconlib.IconUtils;
+
 import java.awt.Color;
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,7 +17,6 @@ import se.jrat.controller.Globals;
 import se.jrat.controller.Main;
 
 import com.redpois0n.graphs.graph.GraphEntry;
-import com.redpois0n.graphs.utils.IconUtils;
 import com.redpois0n.oslib.AbstractOperatingSystem;
 import com.redpois0n.oslib.Icons;
 

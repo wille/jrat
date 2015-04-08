@@ -2,12 +2,12 @@ package se.jrat.controller.packets.incoming;
 
 import java.io.DataInputStream;
 
+import se.jrat.common.utils.DataUnits;
 import se.jrat.controller.Slave;
 import se.jrat.controller.ui.frames.FrameControlPanel;
 import se.jrat.controller.ui.frames.FrameRemoteProcess;
 import se.jrat.controller.ui.panels.PanelControlRemoteProcess;
 
-import com.redpois0n.graphs.utils.DataUnits;
 import com.redpois0n.oslib.OperatingSystem;
 
 

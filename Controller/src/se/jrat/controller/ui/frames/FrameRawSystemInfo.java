@@ -1,9 +1,10 @@
 package se.jrat.controller.ui.frames;
 
+import iconlib.IconUtils;
+
 import java.util.HashMap;
 
 import se.jrat.controller.Slave;
-import se.jrat.controller.utils.IconUtils;
 
 
 @SuppressWarnings("serial")

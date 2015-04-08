@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.frames;
 
+import iconlib.IconUtils;
+
 import java.awt.Component;
 import java.awt.Desktop;
 import java.awt.Toolkit;
@@ -38,7 +40,6 @@ import se.jrat.controller.Globals;
 import se.jrat.controller.Help;
 import se.jrat.controller.net.WebRequest;
 import se.jrat.controller.ui.renderers.HelpTreeRenderer;
-import se.jrat.controller.utils.IconUtils;
 import se.jrat.controller.utils.NetUtils;
 
 @SuppressWarnings("serial")

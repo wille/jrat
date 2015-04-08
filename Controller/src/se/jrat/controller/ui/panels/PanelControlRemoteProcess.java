@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.panels;
 
+import iconlib.IconUtils;
+
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,7 +18,6 @@ import se.jrat.controller.packets.outgoing.Packet20KillProcess;
 import se.jrat.controller.packets.outgoing.Packet38RunCommand;
 import se.jrat.controller.ui.components.DefaultJTable;
 import se.jrat.controller.ui.renderers.table.ProcessTableRenderer;
-import se.jrat.controller.utils.IconUtils;
 import se.jrat.controller.utils.Utils;
 
 import com.redpois0n.oslib.OperatingSystem;

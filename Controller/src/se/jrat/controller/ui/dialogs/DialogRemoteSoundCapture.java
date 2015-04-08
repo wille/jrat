@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.dialogs;
 
+import iconlib.IconUtils;
+
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,7 +24,6 @@ import se.jrat.common.SoundWriter;
 import se.jrat.controller.Slave;
 import se.jrat.controller.packets.outgoing.Packet83ServerUploadSound;
 import se.jrat.controller.packets.outgoing.Packet84ToggleSoundCapture;
-import se.jrat.controller.utils.IconUtils;
 
 
 @SuppressWarnings({ "serial", "rawtypes", "unchecked" })

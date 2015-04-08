@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.frames;
 
+import iconlib.IconUtils;
+
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
@@ -17,7 +19,6 @@ import se.jrat.controller.ui.panels.PanelRemoteFiles;
 import se.jrat.controller.ui.panels.PanelRemoteFiles.RemoteFileTable;
 import se.jrat.controller.ui.panels.PanelSearchFiles;
 import se.jrat.controller.ui.panels.PanelThumbView;
-import se.jrat.controller.utils.IconUtils;
 
 @SuppressWarnings("serial")
 public class FrameRemoteFiles extends BaseFrame {

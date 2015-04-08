@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.dialogs;
 
+import iconlib.IconUtils;
+
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -23,7 +25,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import se.jrat.controller.ErrorDialog;
 import se.jrat.controller.threads.ThreadRecordButton;
 import se.jrat.controller.ui.frames.FrameRemoteScreen;
-import se.jrat.controller.utils.IconUtils;
 
 
 @SuppressWarnings("serial")

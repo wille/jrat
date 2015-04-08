@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.frames;
 
+import iconlib.IconUtils;
+
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -38,7 +40,6 @@ import se.jrat.controller.listeners.SocketComboBoxListener;
 import se.jrat.controller.net.PortListener;
 import se.jrat.controller.settings.Settings;
 import se.jrat.controller.ui.components.PortListenerJComboBox;
-import se.jrat.controller.utils.IconUtils;
 import se.jrat.controller.utils.NetUtils;
 
 import com.redpois0n.oslib.OperatingSystem;

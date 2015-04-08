@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.frames;
 
+import iconlib.IconUtils;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Toolkit;
@@ -27,7 +29,6 @@ import javax.swing.border.EmptyBorder;
 import se.jrat.controller.Slave;
 import se.jrat.controller.packets.outgoing.Packet62PreviewImage;
 import se.jrat.controller.ui.panels.PanelImage;
-import se.jrat.controller.utils.IconUtils;
 
 
 @SuppressWarnings("serial")

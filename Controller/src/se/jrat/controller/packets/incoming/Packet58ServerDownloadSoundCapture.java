@@ -8,10 +8,9 @@ import javax.sound.sampled.DataLine;
 import javax.sound.sampled.SourceDataLine;
 
 import se.jrat.common.Sound;
+import se.jrat.common.utils.DataUnits;
 import se.jrat.controller.Slave;
 import se.jrat.controller.ui.dialogs.DialogRemoteSoundCapture;
-
-import com.redpois0n.graphs.utils.DataUnits;
 
 
 public class Packet58ServerDownloadSoundCapture extends AbstractIncomingPacket {

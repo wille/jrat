@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.renderers;
 
+import iconlib.IconUtils;
+
 import java.awt.Component;
 import java.awt.Font;
 import java.util.HashMap;
@@ -8,8 +10,6 @@ import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTree;
-
-import se.jrat.controller.utils.IconUtils;
 
 
 @SuppressWarnings("serial")

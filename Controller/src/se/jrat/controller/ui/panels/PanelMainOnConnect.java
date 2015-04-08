@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.panels;
 
+import iconlib.IconUtils;
+
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,7 +21,6 @@ import se.jrat.controller.Main;
 import se.jrat.controller.events.Event;
 import se.jrat.controller.events.Events;
 import se.jrat.controller.ui.components.DefaultJTable;
-import se.jrat.controller.utils.IconUtils;
 
 @SuppressWarnings("serial")
 public class PanelMainOnConnect extends JPanel {

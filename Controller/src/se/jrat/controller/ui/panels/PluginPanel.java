@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.panels;
 
+import iconlib.IconUtils;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -22,7 +24,6 @@ import se.jrat.controller.addons.OnlinePlugin;
 import se.jrat.controller.addons.PluginInstaller;
 import se.jrat.controller.listeners.ExtensionInstallerListener;
 import se.jrat.controller.ui.frames.FrameInstallPlugins;
-import se.jrat.controller.utils.IconUtils;
 
 @SuppressWarnings("serial")
 public class PluginPanel extends JPanel {

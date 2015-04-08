@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.panels;
 
+import iconlib.IconUtils;
+
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,7 +19,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import se.jrat.controller.Help;
 import se.jrat.controller.ui.components.JPlaceholderTextField;
-import se.jrat.controller.utils.IconUtils;
 
 
 @SuppressWarnings("serial")

@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.panels;
 
+import iconlib.IconUtils;
+
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,7 +27,6 @@ import javax.swing.SpinnerNumberModel;
 import se.jrat.controller.ErrorDialog;
 import se.jrat.controller.settings.Settings;
 import se.jrat.controller.ui.components.JPlaceholderTextField;
-import se.jrat.controller.utils.IconUtils;
 import se.jrat.controller.utils.NetUtils;
 
 

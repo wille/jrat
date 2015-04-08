@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.dialogs;
 
+import iconlib.IconUtils;
+
 import java.io.File;
 import java.util.LinkedHashMap;
 
@@ -19,7 +21,6 @@ import se.jrat.common.utils.DataUnits;
 import se.jrat.controller.build.BuildStatus;
 import se.jrat.controller.ui.components.DefaultJTable;
 import se.jrat.controller.ui.renderers.table.BuildTableRenderer;
-import se.jrat.controller.utils.IconUtils;
 
 
 @SuppressWarnings("serial")

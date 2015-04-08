@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.renderers.table;
 
+import iconlib.IconUtils;
+
 import java.awt.Component;
 import java.util.Map;
 
@@ -8,7 +10,6 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 
 import se.jrat.controller.build.BuildStatus;
-import se.jrat.controller.utils.IconUtils;
 
 
 @SuppressWarnings("serial")

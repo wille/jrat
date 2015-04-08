@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.frames;
 
+import iconlib.IconUtils;
+
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
@@ -31,7 +33,6 @@ import se.jrat.controller.ui.panels.PanelSettingsProxy;
 import se.jrat.controller.ui.panels.PanelSettingsStats;
 import se.jrat.controller.ui.panels.PanelSettingsTheme;
 import se.jrat.controller.ui.renderers.JTreeIconsRenderer;
-import se.jrat.controller.utils.IconUtils;
 
 
 @SuppressWarnings("serial")

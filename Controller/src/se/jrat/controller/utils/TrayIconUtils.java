@@ -1,5 +1,7 @@
 package se.jrat.controller.utils;
 
+import iconlib.IconUtils;
+
 import java.awt.SystemTray;
 import java.awt.TrayIcon;
 import java.awt.event.MouseEvent;

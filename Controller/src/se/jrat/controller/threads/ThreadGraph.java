@@ -2,13 +2,14 @@ package se.jrat.controller.threads;
 
 import com.redpois0n.graphs.graph.Graph;
 
+
 public class ThreadGraph extends Thread {
 
 	private Graph graph;
 
-	public ThreadGraph(Graph graph) {
+	public ThreadGraph(Graph countryGraph) {
 		super("Graph thread");
-		this.graph = graph;
+		this.graph = countryGraph;
 	}
 
 	@Override

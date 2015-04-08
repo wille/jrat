@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.frames;
 
+import iconlib.IconUtils;
+
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -26,7 +28,6 @@ import javax.swing.border.EmptyBorder;
 import se.jrat.controller.ErrorDialog;
 import se.jrat.controller.Notes;
 import se.jrat.controller.Slave;
-import se.jrat.controller.utils.IconUtils;
 
 
 @SuppressWarnings("serial")

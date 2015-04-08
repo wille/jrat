@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.frames;
 
+import iconlib.IconUtils;
+
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -37,7 +39,6 @@ import se.jrat.controller.Main;
 import se.jrat.controller.build.PluginPacker;
 import se.jrat.controller.ui.components.DefaultJTable;
 import se.jrat.controller.ui.dialogs.DialogPackPluginEditResources;
-import se.jrat.controller.utils.IconUtils;
 
 @SuppressWarnings("serial")
 public class FramePackPlugin extends JFrame {

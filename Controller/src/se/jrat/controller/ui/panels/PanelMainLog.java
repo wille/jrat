@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.panels;
 
+import iconlib.IconUtils;
+
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,7 +28,6 @@ import se.jrat.controller.Main;
 import se.jrat.controller.ui.components.DefaultJTable;
 import se.jrat.controller.ui.frames.QuickFrame;
 import se.jrat.controller.ui.renderers.table.LogTableRenderer;
-import se.jrat.controller.utils.IconUtils;
 
 
 @SuppressWarnings("serial")

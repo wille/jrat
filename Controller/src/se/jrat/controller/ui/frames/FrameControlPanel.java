@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.frames;
 
+import iconlib.IconUtils;
+
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -81,7 +83,6 @@ import se.jrat.controller.ui.panels.PanelControlTrace;
 import se.jrat.controller.ui.panels.PanelControluTorrentDownloads;
 import se.jrat.controller.ui.panels.PanelMemoryUsage;
 import se.jrat.controller.ui.renderers.ControlPanelTreeRenderer;
-import se.jrat.controller.utils.IconUtils;
 import se.jrat.controller.utils.Utils;
 
 import com.redpois0n.oslib.OperatingSystem;

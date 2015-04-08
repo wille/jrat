@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.panels;
 
+import iconlib.IconUtils;
+
 import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -15,7 +17,6 @@ import javax.swing.tree.DefaultTreeModel;
 
 import se.jrat.controller.Globals;
 import se.jrat.controller.ui.renderers.JTreeIconRenderer;
-import se.jrat.controller.utils.IconUtils;
 
 
 @SuppressWarnings("serial")

@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.dialogs;
 
+import iconlib.IconUtils;
+
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
@@ -20,7 +22,6 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
 import se.jrat.controller.ui.panels.PanelImage;
-import se.jrat.controller.utils.IconUtils;
 
 
 @SuppressWarnings("serial")

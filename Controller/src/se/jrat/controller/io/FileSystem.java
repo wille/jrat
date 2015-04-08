@@ -1,11 +1,12 @@
 package se.jrat.controller.io;
 
+import iconlib.FileIconUtils;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import se.jrat.controller.ui.components.FileTable;
-import se.jrat.controller.utils.IconUtils;
 
 public class FileSystem {
 	
@@ -32,7 +33,7 @@ public class FileSystem {
 			for (File file : dirs) {
 				FileObject fo = new FileObject(file.getAbsolutePath());
 				fo.setHidden(file.isHidden());
-				fo.setIcon(IconUtils.getFileIcon(file));
+				fo.setIcon(FileIconUtils.getIconFromFile(file));
 				
 				table.addFileObject(fo);
 			}
@@ -40,7 +41,7 @@ public class FileSystem {
 			for (File file : files) {
 				FileObject fo = new FileObject(file.getAbsolutePath());
 				fo.setHidden(file.isHidden());
-				fo.setIcon(IconUtils.getFileIcon(file));
+				fo.setIcon(FileIconUtils.getIconFromFile(file));
 				fo.setDate(file.lastModified());
 				fo.setSize(file.length());
 				

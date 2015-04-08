@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.panels;
 
+import iconlib.IconUtils;
+
 import java.awt.Component;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
@@ -23,7 +25,6 @@ import se.jrat.controller.net.PortListener;
 import se.jrat.controller.ui.components.DefaultJTable;
 import se.jrat.controller.ui.frames.FrameAddSocket;
 import se.jrat.controller.ui.renderers.table.SocketsTableRenderer;
-import se.jrat.controller.utils.IconUtils;
 
 @SuppressWarnings("serial")
 public class PanelMainSockets extends JPanel {
