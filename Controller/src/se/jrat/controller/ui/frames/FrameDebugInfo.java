@@ -20,6 +20,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
+import com.redpois0n.oslib.OperatingSystem;
+
 import se.jrat.common.Version;
 import se.jrat.controller.Constants;
 
@@ -31,7 +33,6 @@ public class FrameDebugInfo extends JFrame {
 	private JTextPane textPane;
 
 	public FrameDebugInfo() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameDebugInfo.class.getResource("/icons/java.png")));
 		setTitle("Debug Information");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 439, 370);
@@ -70,14 +71,16 @@ public class FrameDebugInfo extends JFrame {
 	public void loadData() {
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(Constants.NAME + " Version: " + Version.getVersion() + "\n\r");
-		sb.append("JVM Version: " + System.getProperty("java.vm.version") + "\n\r");
-		sb.append("Java Runtime Version: " + System.getProperty("java.runtime.version") + "\n\r");
-		sb.append("Java Version: " + System.getProperty("java.version") + "\n\r");
-		sb.append("Java Class Version: " + System.getProperty("java.class.version") + "\n\r");
-		sb.append("Java Spec Version: " + System.getProperty("java.specification.version") + "\n\r");
+		sb.append(Constants.NAME + " Version: " + Version.getVersion() + "\n");
+		sb.append("JVM Version: " + System.getProperty("java.vm.version") + "\n");
+		sb.append("Java Runtime Version: " + System.getProperty("java.runtime.version") + "\n");
+		sb.append("Java Version: " + System.getProperty("java.version") + "\n");
+		sb.append("Java Class Version: " + System.getProperty("java.class.version") + "\n");
+		sb.append("Java Spec Version: " + System.getProperty("java.specification.version") + "\n");
 
-		sb.append("Operating System: " + System.getProperty("os.name") + " " + System.getProperty("os.version") + " " + System.getProperty("os.arch") + "\n\r");
+		sb.append("Operating System: " + OperatingSystem.getOperatingSystem().getDetailedString() + "\n");
+		sb.append("Arch: " + OperatingSystem.getOperatingSystem().getArch().getName() + "\n");
+		sb.append("DE: " + OperatingSystem.getOperatingSystem().getDesktopEnvironment().getDisplayString() + "\n");
 
 		String date = DateFormat.getDateInstance(DateFormat.SHORT).format(new Date());
 		sb.append("Date: " + date);
