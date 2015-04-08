@@ -23,19 +23,21 @@ public class MeltDropperStartupModule extends StartupModule {
 		
 		final File finalFile = file;
 		
-		new Thread(new Runnable() {
-			public void run() {
-				if (finalFile != null) {
-					while (!finalFile.delete()) {
-						try {
-							Thread.sleep(100L);
-						} catch (Exception ex) {
-							ex.printStackTrace();
+		if (file != null) {
+			new Thread(new Runnable() {
+				public void run() {
+					if (finalFile != null) {
+						while (!finalFile.delete()) {
+							try {
+								Thread.sleep(100L);
+							} catch (Exception ex) {
+								ex.printStackTrace();
+							}
 						}
 					}
 				}
-			}
-		});
+			}).start();
+		}
 	}
 
 }
