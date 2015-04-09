@@ -112,8 +112,7 @@ public class PanelSearchFiles extends PanelControlParent {
 				int row = table.getSelectedRow();
 				if (row != -1) {
 					String val = model.getValueAt(row, 0).toString();
-					String path = val.substring(0, val.lastIndexOf(sl.getFileSeparator()));
-					parent.getFilesPanel().getRemoteTable().setDirectory(path);
+					parent.getFilesPanel().getRemoteTable().setDirectory(val);
 				}
 			}
 		});
