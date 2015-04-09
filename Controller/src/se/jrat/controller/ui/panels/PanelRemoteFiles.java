@@ -197,12 +197,18 @@ public class PanelRemoteFiles extends JPanel {
 		public void upload() {
 			new Thread() {
 				public void run() {
-					for (String s : getSelectedItems()) {
-						File file = new File(s);
-						slave.addToSendQueue(new Packet42ServerUploadFile(file, remoteTable.getCurrentDirectory() + file.getName()));
-					}			
+							
 				}
 			}.start();
+			
+			for (String s : getSelectedItems()) {
+				File file = new File(s);
+				slave.addToSendQueue(new Packet42ServerUploadFile(file, remoteTable.getCurrentDirectory() + file.getName()));
+			}
+			
+			if (getSelectedItems().length > 0) {
+				parent.setTab(PanelFileTransfers.instance);
+			}
 		}
 	}
 	
@@ -596,6 +602,7 @@ public class PanelRemoteFiles extends JPanel {
 					PanelFileTransfers.instance.add(data);
 					FileCache.put(file, data);
 					slave.addToSendQueue(new Packet21ServerDownloadFile(file));
+					parent.setTab(PanelFileTransfers.instance);
 				}
 			}
 		}

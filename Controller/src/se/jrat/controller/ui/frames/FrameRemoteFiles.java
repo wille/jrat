@@ -3,6 +3,7 @@ package se.jrat.controller.ui.frames;
 import iconlib.IconUtils;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -22,6 +23,7 @@ import se.jrat.controller.ui.panels.PanelThumbView;
 @SuppressWarnings("serial")
 public class FrameRemoteFiles extends BaseFrame {
 	
+	private JTabbedPane tabbedPane;
 	private PanelRemoteFiles remoteFiles;
 	private PanelSearchFiles searchPanel;
 	private PanelThumbView thumbPanel;
@@ -48,15 +50,12 @@ public class FrameRemoteFiles extends BaseFrame {
 
 		remoteFiles = new PanelRemoteFiles(slave, this);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setViewportView(PanelFileTransfers.instance);
-		
 		searchPanel = new PanelSearchFiles(slave, this);
 		thumbPanel = new PanelThumbView(slave);
 		
-		JTabbedPane tabbedPane = new JTabbedPane();
+		tabbedPane = new JTabbedPane();
 		tabbedPane.addTab("Files", IconUtils.getIcon("folder-tree"), remoteFiles);
-		tabbedPane.addTab("Transfers", IconUtils.getIcon("arrow-down"), scrollPane);
+		tabbedPane.addTab("Transfers", IconUtils.getIcon("arrow-down"), PanelFileTransfers.instance);
 		tabbedPane.addTab("Thumbnails", IconUtils.getIcon("images-stack"), thumbPanel);
 		tabbedPane.addTab("Search", IconUtils.getIcon("folder-search"), searchPanel);
 		
@@ -77,6 +76,10 @@ public class FrameRemoteFiles extends BaseFrame {
 	
 	public PanelThumbView getThumbPanel() {
 		return thumbPanel;
+	}
+	
+	public void setTab(Component tab) {
+		tabbedPane.setSelectedComponent(tab);
 	}
 
 }
