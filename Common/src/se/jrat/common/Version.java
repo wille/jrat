@@ -1,8 +1,8 @@
 package se.jrat.common;
 
-public class Version {
+public final class Version {
 
 	public static final String getVersion() {
-		return "5.1b2";
+		return "5.1rc1";
 	}
 }
