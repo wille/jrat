@@ -320,30 +320,6 @@ public class Frame extends JFrame {
 
 		mnTools.addSeparator();
 
-		JMenu mnPingIcon = new JMenu("Ping icon");
-		mnLook.add(mnPingIcon);
-		mnPingIcon.setIcon(IconUtils.getIcon("application-images"));
-
-		JMenuItem mntmMeter = new JMenuItem("Meter");
-		mntmMeter.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				setPingMode(Frame.PING_ICON_DOT);
-				repaint();
-			}
-		});
-		mntmMeter.setIcon(IconUtils.getIcon("ping0"));
-		mnPingIcon.add(mntmMeter);
-
-		JMenuItem mntmCircle = new JMenuItem("Circle");
-		mntmCircle.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setPingMode(Frame.PING_ICON_CIRCLE);
-				repaint();
-			}
-		});
-		mntmCircle.setIcon(IconUtils.getIcon("network-green"));
-		mnPingIcon.add(mntmCircle);
-
 		JMenu mnTabPlacement = new JMenu("Tab placement");
 		mnLook.add(mnTabPlacement);
 		mnTabPlacement.setIcon(IconUtils.getIcon("application-tabs"));
