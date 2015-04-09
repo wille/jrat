@@ -17,14 +17,14 @@ public class Packet46FileHash extends AbstractIncomingPacket {
 
 		FrameRemoteFiles frame = FrameRemoteFiles.INSTANCES.get(slave);
 		if (frame != null) {
-			if (frame.getRemoteTable().waitingForHash) {
+			if (frame.getFilesPanel().getRemoteTable().waitingForHash) {
 				new Thread() {
 					@Override
 					public void run() {
 						JOptionPane.showMessageDialog(null, "File MD5:\n\n" + md5 + "\n\n\nFile SHA1:\n\n" + sha1, "Hash", JOptionPane.INFORMATION_MESSAGE);
 					}
 				}.start();
-				frame.getRemoteTable().waitingForHash = false;
+				frame.getFilesPanel().getRemoteTable().waitingForHash = false;
 			}
 		}
 	}

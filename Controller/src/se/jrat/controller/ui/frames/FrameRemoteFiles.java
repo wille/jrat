@@ -16,14 +16,12 @@ import javax.swing.WindowConstants;
 import se.jrat.controller.Slave;
 import se.jrat.controller.ui.panels.PanelFileTransfers;
 import se.jrat.controller.ui.panels.PanelRemoteFiles;
-import se.jrat.controller.ui.panels.PanelRemoteFiles.RemoteFileTable;
 import se.jrat.controller.ui.panels.PanelSearchFiles;
 import se.jrat.controller.ui.panels.PanelThumbView;
 
 @SuppressWarnings("serial")
 public class FrameRemoteFiles extends BaseFrame {
 	
-	private RemoteFileTable remoteTable;
 	private PanelRemoteFiles remoteFiles;
 	private PanelSearchFiles searchPanel;
 	private PanelThumbView thumbPanel;
@@ -49,7 +47,6 @@ public class FrameRemoteFiles extends BaseFrame {
 		setTitle("File Manager");
 
 		remoteFiles = new PanelRemoteFiles(slave, this);
-		remoteTable = remoteFiles.remoteTable;
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportView(PanelFileTransfers.instance);
@@ -65,13 +62,13 @@ public class FrameRemoteFiles extends BaseFrame {
 		
 		add(tabbedPane, BorderLayout.CENTER);	
 	}
-	
-	public RemoteFileTable getRemoteTable() {
-		return remoteTable;
-	}
 
 	public void exit() {
 		INSTANCES.remove(slave);
+	}
+	
+	public PanelRemoteFiles getFilesPanel() {
+		return remoteFiles;
 	}
 
 	public PanelSearchFiles getSearchPanel() {

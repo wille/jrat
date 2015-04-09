@@ -54,7 +54,7 @@ import com.redpois0n.oslib.OperatingSystem;
 public class PanelRemoteFiles extends JPanel {
 	
 	private Slave slave;
-	public RemoteFileTable remoteTable;
+	private RemoteFileTable remoteTable;
 	private FrameRemoteFiles parent;
 	
 	public PanelRemoteFiles(Slave slave, FrameRemoteFiles parent) {
@@ -69,6 +69,7 @@ public class PanelRemoteFiles extends JPanel {
 		sp.setLeftComponent(localTable);
 		
 		remoteTable = new RemoteFileTable();
+		remoteTable.initialize();
 		sp.setRightComponent(remoteTable);
 		
 		add(sp, BorderLayout.CENTER);
@@ -226,12 +227,6 @@ public class PanelRemoteFiles extends JPanel {
 					slave.addToSendQueue(new Packet15ListFiles(driveComboBox.getSelectedItem().toString()));
 				}
 			});
-			
-			if (slave.getOperatingSystem().getType() != OperatingSystem.WINDOWS) {
-				setDirectory("/");
-			} else {
-				setDirectory("");
-			}
 						
 			JButton btnDownload = new JButton("Download");
 			btnDownload.setIcon(IconUtils.getIcon("arrow-down"));
@@ -515,6 +510,14 @@ public class PanelRemoteFiles extends JPanel {
 			mntmRefresh.setIcon(IconUtils.getIcon("refresh"));
 			popupMenuRemote.add(mntmRefresh);
 		}
+		
+		public void initialize() {
+			if (slave.getOperatingSystem().getType() != OperatingSystem.WINDOWS) {
+				setDirectory("/");
+			} else {
+				setDirectory("");
+			}
+		}
 
 		@Override
 		public void onBack() {
@@ -596,6 +599,10 @@ public class PanelRemoteFiles extends JPanel {
 				}
 			}
 		}
+	}
+
+	public RemoteFileTable getRemoteTable() {
+		return remoteTable;
 	}
 
 }

