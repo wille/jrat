@@ -113,6 +113,7 @@ public class PanelSearchFiles extends PanelControlParent {
 				if (row != -1) {
 					String val = model.getValueAt(row, 0).toString();
 					parent.getFilesPanel().getRemoteTable().setDirectory(val);
+					parent.setTab(parent.getFilesPanel());
 				}
 			}
 		});
