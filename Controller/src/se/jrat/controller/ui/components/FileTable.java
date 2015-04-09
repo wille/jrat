@@ -67,7 +67,7 @@ public abstract class FileTable extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2 && table.getSelectedRow() != -1) {
-					FileObject fo = getSelectedFileObject();
+					FileObject fo = getSelectedItem();
 					onItemClick(fo);
 				}
 			}
@@ -134,21 +134,21 @@ public abstract class FileTable extends JPanel {
 		toolBar.add(txtDir);
 	}
 	
-	public String getSelectedItem() {
-		int i = table.getSelectedRow();
-		
-		return table.getValueAt(i, 0).toString();
-	}
-	
-	public String[] getSelectedItems() {
-		String[] rows = new String[table.getSelectedRowCount()];
+	public FileObject[] getSelectedItems() {
+		FileObject[] rows = new FileObject[table.getSelectedRowCount()];
 		
 		int pos = 0;
 		for (int i : table.getSelectedRows()) {
-			rows[pos++] = table.getValueAt(i, 0).toString();
+			rows[pos++] = (FileObject) table.getValueAt(i, 0);
 		}
 
 		return rows;
+	}
+	
+	public FileObject getSelectedItem() {
+		int i = table.getSelectedRow();
+		
+		return (FileObject) table.getValueAt(i, 0);
 	}
 	
 	public abstract void onBack();
@@ -181,12 +181,6 @@ public abstract class FileTable extends JPanel {
 	
 	public void addFileObject(FileObject fo) {
 		getTableModel().addRow(new Object[] { fo });
-	}
-	
-	public FileObject getSelectedFileObject() {
-		int i = table.getSelectedRow();
-		
-		return (FileObject) table.getValueAt(i, 0);
 	}
 
 	public DefaultTableModel getTableModel() {

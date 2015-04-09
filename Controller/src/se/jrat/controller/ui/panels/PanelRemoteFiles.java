@@ -133,11 +133,11 @@ public class PanelRemoteFiles extends JPanel {
 
 		@Override
 		public void onDelete() {
-			String[] files = getSelectedItems();
+			FileObject[] files = getSelectedItems();
 			if (files != null) {
-				for (String file : files) {
+				for (FileObject file : files) {
 					if (Utils.yesNo("Confirm", "Confirm deleting " + file)) {
-						new File(file).delete();
+						new File(file.getPath()).delete();
 					}
 				}
 			}
@@ -195,14 +195,8 @@ public class PanelRemoteFiles extends JPanel {
 		}
 		
 		public void upload() {
-			new Thread() {
-				public void run() {
-							
-				}
-			}.start();
-			
-			for (String s : getSelectedItems()) {
-				File file = new File(s);
+			for (FileObject s : getSelectedItems()) {
+				File file = new File(s.getPath());
 				slave.addToSendQueue(new Packet42ServerUploadFile(file, remoteTable.getCurrentDirectory() + file.getName()));
 			}
 			
@@ -254,10 +248,10 @@ public class PanelRemoteFiles extends JPanel {
 			mntmRun.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					String[] files = getSelectedItems();
+					FileObject[] files = getSelectedItems();
 					if (files != null) {
-						for (String file : files) {
-							slave.addToSendQueue(new Packet38RunCommand(file));
+						for (FileObject file : files) {
+							slave.addToSendQueue(new Packet38RunCommand(file.getPath()));
 						}
 					}
 				}
@@ -292,9 +286,10 @@ public class PanelRemoteFiles extends JPanel {
 			mntmPreviewFiletext.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					String[] files = getSelectedItems();
+					FileObject[] files = getSelectedItems();
 					if (files != null) {
-						for (String file : files) {
+						for (FileObject fo : files) {
+							String file = fo.getPath();
 							if (file.toLowerCase().endsWith(".png") || file.toLowerCase().endsWith(".jpg") || file.toLowerCase().endsWith(".jpeg") || file.toLowerCase().endsWith(".gif")) {
 								FramePreviewImage frame = new FramePreviewImage(slave, file);
 								frame.setVisible(true);
@@ -326,12 +321,11 @@ public class PanelRemoteFiles extends JPanel {
 			mntmExploreImages.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					List<String> files = new ArrayList<String>();
-					
-					String[] selectedItems = getSelectedItems();
-					
-					for (String str : selectedItems) {
-						if (str.endsWith(".png") || str.endsWith(".gif") || str.endsWith(".jpg") || str.endsWith(".jpeg")) {
-							files.add(str);
+										
+					for (FileObject fo : getSelectedItems()) {
+						String path = fo.getPath();
+						if (path.endsWith(".png") || path.endsWith(".gif") || path.endsWith(".jpg") || path.endsWith(".jpeg")) {
+							files.add(path);
 						}
 					}
 
@@ -378,13 +372,13 @@ public class PanelRemoteFiles extends JPanel {
 			mntmRename.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					String file = getSelectedItem();
+					FileObject file = getSelectedItem();
 					if (file != null) {
-						String result = JOptionPane.showInputDialog(null, "Input file name to rename to", "Rename", JOptionPane.QUESTION_MESSAGE);
+						String result = JOptionPane.showInputDialog(null, "Input new file name", "Rename", JOptionPane.QUESTION_MESSAGE);
 						if (result == null) {
 							return;
 						}
-						slave.addToSendQueue(new Packet47RenameFile(file, result.trim()));
+						slave.addToSendQueue(new Packet47RenameFile(file.getPath(), result.trim()));
 					}
 				}
 			});
@@ -544,12 +538,10 @@ public class PanelRemoteFiles extends JPanel {
 
 		@Override
 		public void onDelete() {
-			String[] files = getSelectedItems();
-			if (files != null) {
-				for (String file : files) {
-					if (Utils.yesNo("Confirm", "Confirm deleting " + file)) {
-						slave.addToSendQueue(new Packet16DeleteFile(file));
-					}
+			FileObject[] files = getSelectedItems();
+			for (FileObject file : files) {
+				if (Utils.yesNo("Confirm", "Confirm deleting " + file.getPath())) {
+					slave.addToSendQueue(new Packet16DeleteFile(file.getPath()));
 				}
 			}
 		}
@@ -589,19 +581,30 @@ public class PanelRemoteFiles extends JPanel {
 		}
 		
 		public void download() {
-			String file = getSelectedItem();
+			FileObject[] files = getSelectedItems();
+			
 			JFileChooser f = new JFileChooser();
-			f.setSelectedFile(new File(file.substring(file.lastIndexOf(slave.getFileSeparator()), file.length())));
+
+			if (files.length > 1) {
+				f.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+			}
+			
 			f.showSaveDialog(null);
 			
-			if (f.getSelectedFile() != null && f.getSelectedFile().getParentFile().exists()) {
-				FileObject fo = getSelectedFileObject();
-				if (fo != null && !fo.isDirectory()) {
+			if (f.getSelectedFile() != null) {
+				for (FileObject fo : files) {
 					TransferData data = new TransferData();
-					data.setLocalFile(f.getSelectedFile());
+					if (f.getSelectedFile().isDirectory()) {
+						String name = fo.getPath().substring(fo.getPath().lastIndexOf(slave.getFileSeparator()) + 1, fo.getPath().length());
+							
+						File newFile = new File(f.getSelectedFile(), name);
+						data.setLocalFile(newFile);
+					} else {
+						data.setLocalFile(f.getSelectedFile());
+					}
 					PanelFileTransfers.instance.add(data);
-					FileCache.put(file, data);
-					slave.addToSendQueue(new Packet21ServerDownloadFile(file));
+					FileCache.put(fo.getPath(), data);
+					slave.addToSendQueue(new Packet21ServerDownloadFile(fo.getPath()));
 					parent.setTab(PanelFileTransfers.instance);
 				}
 			}
