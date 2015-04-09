@@ -5,17 +5,21 @@ import java.net.InetAddress;
 
 import se.jrat.common.io.StringWriter;
 
+import com.redpois0n.oslib.OperatingSystem;
+
 
 public class Packet12InitLocalAddress extends AbstractOutgoingPacket {
 
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		String address; 
+		String address = "Unknown"; 
 		
-		try {
-			address = InetAddress.getLocalHost().getHostAddress();
-		} catch (Exception e) {
-			address = "Unknown";
+		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS || OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
+			try {
+				address = InetAddress.getLocalHost().getHostAddress();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		sw.writeLine(address);

@@ -4,7 +4,6 @@ import java.io.DataInputStream;
 
 import se.jrat.controller.Slave;
 
-
 public class Packet12InitLocalAddress extends AbstractIncomingPacket {
 
 	@Override
