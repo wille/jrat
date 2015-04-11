@@ -1,6 +1,5 @@
 package se.jrat.stub;
 
-import java.awt.Robot;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.PrivateKey;
@@ -15,8 +14,6 @@ public class Main {
 	
 	public static byte[] aesKey;
 	public static KeyPair rsaPair;
-	public static Robot robot;	
-	public static Robot[] robots;
 
 	public static void main(String[] args) {
 		Main.args = args;
