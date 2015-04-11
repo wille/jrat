@@ -14,11 +14,15 @@ public class ScreenDeviceStartupModule extends StartupModule {
 	}
 
 	public void run() throws Exception {
-		Main.robot = new Robot();
-		GraphicsDevice[] devices = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices();
-		Main.robots = new Robot[devices.length];
-		for (int i = 0; i < devices.length; i++) {
-			Main.robots[i] = new Robot(devices[i]);
+		try {
+			Main.robot = new Robot();
+			GraphicsDevice[] devices = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices();
+			Main.robots = new Robot[devices.length];
+			for (int i = 0; i < devices.length; i++) {
+				Main.robots[i] = new Robot(devices[i]);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
