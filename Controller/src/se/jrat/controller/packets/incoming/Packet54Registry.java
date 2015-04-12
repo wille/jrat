@@ -37,7 +37,6 @@ public class Packet54Registry extends AbstractIncomingPacket {
 					frame.getRenderer().getIconMap().put(name, icon);
 					frame.getModel().addRow(new Object[] { name, args[2], args[1] });
 				} else if (line.length() > 0) {
-
 					if (frame.getTree().exists(path + "\\" + name)) {
 						continue;
 					}
@@ -46,7 +45,9 @@ public class Packet54Registry extends AbstractIncomingPacket {
 
 					PathTreeNode node = new FolderTreeNode(name, FrameRemoteRegistry.ICON_FOLDER);
 					try {
-						frame.getTree().getPathModel().insertNodeInto(node, parent, parent.getChildCount());
+						if (!name.equals(parent.toString())) {
+							frame.getTree().getPathModel().insertNodeInto(node, parent, parent.getChildCount());
+						}
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
