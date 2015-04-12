@@ -280,7 +280,13 @@ public class FlagUtils {
 	}
 	
 	public static String getStringFromIso2(String iso2) {
-		return COUNTRIES.get(iso2.toUpperCase());
+		String country = COUNTRIES.get(iso2.toUpperCase());
+		
+		if (country == null) {
+			country = iso2;
+		}
+		
+		return country;
 	}
 	
 	public static String getIso2FromString(String str) {
@@ -290,7 +296,7 @@ public class FlagUtils {
 			}
 		}
 		
-		return null;
+		return str;
 	}
 
 	public static Country getCountry(AbstractSlave abstractSlave) {
