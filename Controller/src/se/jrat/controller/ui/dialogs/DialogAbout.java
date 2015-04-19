@@ -1,8 +1,6 @@
 package se.jrat.controller.ui.dialogs;
 
-import iconlib.IconUtils;
-
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -11,14 +9,15 @@ import java.awt.Toolkit;
 import javax.imageio.ImageIO;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.border.EmptyBorder;
 
 import se.jrat.common.Version;
 import se.jrat.controller.Main;
+import se.jrat.controller.VersionChecker;
 
 @SuppressWarnings("serial")
 public class DialogAbout extends JDialog {
@@ -27,7 +26,7 @@ public class DialogAbout extends JDialog {
 
     static {
         try {
-            BACKGROUND = ImageIO.read(Main.class.getResource("/files/bg_450x300.png"));
+            BACKGROUND = ImageIO.read(Main.class.getResource("/files/logo.png"));
         } catch (Exception ex) {
             ex.printStackTrace();
             BACKGROUND = null;
@@ -35,77 +34,83 @@ public class DialogAbout extends JDialog {
     }
 	
 	private JPanel contentPane;
-	private JPanel contentPane_1;
+	private JLabel lblVersion;
+	private JLabel lblUpToDate;
 
 	public DialogAbout() {
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(DialogAbout.class.getResource("/icons/info.png")));
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-        contentPane_1 = new JPanel() {
+		setBounds(100, 100, 700, 400);
+        contentPane = new JPanel() {
             @Override
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
 
                 if (BACKGROUND != null) {
-                    g.drawImage(BACKGROUND, 0, 0, null);
+                    g.drawImage(BACKGROUND, 0, getHeight() - BACKGROUND.getHeight(null), null);
                 }
             }
         };
+        contentPane.setBackground(Color.WHITE);
 
-		setContentPane(contentPane_1);
-		
-		JLabel lblCopyrightJrat = new JLabel("Copyright jRAT 2012-2015");
-		lblCopyrightJrat.setFont(new Font("Tahoma", Font.BOLD, 12));
-		
-		JLabel lblWwwjratse = new JLabel("www.jrat.se");
-		
-		JLabel lblWwwjratio = new JLabel("www.jrat.io");
-		
-		JLabel lblJrat = new JLabel("jRAT " + Version.getVersion());
-		lblJrat.setFont(new Font("Tahoma", Font.BOLD, 15));
+		setContentPane(contentPane);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(IconUtils.getIcon("icon-128x128"));
-		GroupLayout gl_contentPane_1 = new GroupLayout(contentPane_1);
+		label.setIcon(new ImageIcon(DialogAbout.class.getResource("/icons/icon-128x128.png")));
+		
+		JLabel lblJrat = new JLabel("jRAT");
+		lblJrat.setForeground(Color.GRAY);
+		lblJrat.setFont(new Font("Tahoma", Font.BOLD, 35));
+		
+		lblVersion = new JLabel("Version " + Version.getVersion());
+		
+		lblUpToDate = new JLabel("Loading...");
+		lblUpToDate.setForeground(Color.LIGHT_GRAY);
+		lblUpToDate.setFont(new Font("Tahoma", Font.ITALIC, 11));
+		GroupLayout gl_contentPane_1 = new GroupLayout(contentPane);
 		gl_contentPane_1.setHorizontalGroup(
 			gl_contentPane_1.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane_1.createSequentialGroup()
-					.addContainerGap(267, Short.MAX_VALUE)
-					.addComponent(lblCopyrightJrat)
-					.addContainerGap())
-				.addGroup(gl_contentPane_1.createSequentialGroup()
-					.addContainerGap(98, Short.MAX_VALUE)
+					.addGap(231)
 					.addGroup(gl_contentPane_1.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane_1.createSequentialGroup()
-							.addGap(134)
-							.addGroup(gl_contentPane_1.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblWwwjratse)
-								.addComponent(lblWwwjratio))
-							.addContainerGap(152, Short.MAX_VALUE))
-						.addGroup(Alignment.TRAILING, gl_contentPane_1.createSequentialGroup()
-							.addGroup(gl_contentPane_1.createParallelGroup(Alignment.LEADING)
-								.addComponent(label)
-								.addComponent(lblJrat))
-							.addGap(101))))
+						.addComponent(lblJrat)
+						.addComponent(lblVersion)
+						.addComponent(lblUpToDate))
+					.addPreferredGap(ComponentPlacement.RELATED, 242, Short.MAX_VALUE)
+					.addComponent(label)
+					.addContainerGap())
 		);
 		gl_contentPane_1.setVerticalGroup(
 			gl_contentPane_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane_1.createSequentialGroup()
-					.addGap(21)
-					.addComponent(lblJrat)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(label)
-					.addGap(18)
-					.addComponent(lblWwwjratio)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblWwwjratse)
-					.addPreferredGap(ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-					.addComponent(lblCopyrightJrat)
-					.addContainerGap())
+					.addGroup(gl_contentPane_1.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane_1.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(label))
+						.addGroup(gl_contentPane_1.createSequentialGroup()
+							.addGap(24)
+							.addComponent(lblJrat)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(lblVersion)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblUpToDate)))
+					.addContainerGap(232, Short.MAX_VALUE))
 		);
-		contentPane_1.setLayout(gl_contentPane_1);
+		contentPane.setLayout(gl_contentPane_1);
+		
+		new Thread() {
+			@Override
+			public void run() {
+				VersionChecker checker = new VersionChecker();
+				
+				if (!checker.isUpToDate()) {
+					lblUpToDate.setText("jRAT is not up to date - Latest version: " + checker.getLatest());
+					lblUpToDate.setFont(new Font("Tahoma", Font.BOLD, 11));
+					lblUpToDate.setForeground(Color.red);
+				} else {
+					lblUpToDate.setText("jRAT is up to date");
+				}
+			}
+		}.start();
 	}
 }
