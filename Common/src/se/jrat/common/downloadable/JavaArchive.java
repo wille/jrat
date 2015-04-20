@@ -14,8 +14,14 @@ public class JavaArchive extends Downloadable {
 
 	@Override
 	public void execute(File file) throws Exception {
+		executeJAR(file);
+	}
+	
+	public static void executeJAR(File file) throws Exception {
+		String javaHome = System.getProperty("java.home");
+		
 		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
-			Runtime.getRuntime().exec(new String[] { System.getProperty("java.home") + "\\bin\\javaw.exe", "-jar", file.getAbsolutePath() });
+			Runtime.getRuntime().exec(new String[] { javaHome + "\\bin\\javaw.exe", "-jar", file.getAbsolutePath() });
 		} else {
 			Runtime.getRuntime().exec(new String[] { "java", "-jar", file.getAbsolutePath() });
 		}

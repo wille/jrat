@@ -4,21 +4,9 @@ import java.io.File;
 
 import javax.swing.JOptionPane;
 
-import se.jrat.controller.utils.Utils;
-
-import com.redpois0n.oslib.OperatingSystem;
+import se.jrat.common.downloadable.JavaArchive;
 
 public class Updater {
-
-	public static final String JAVA_HOME;
-
-	static {
-		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
-			JAVA_HOME = System.getProperty("java.home") + "\\bin\\javaw.exe";
-		} else {
-			JAVA_HOME = System.getProperty("java.home") + "/bin/java";
-		}
-	}
 
 	public static void runUpdater() {
 		try {
@@ -28,7 +16,8 @@ public class Updater {
 			}
 			
 			if (JOptionPane.showConfirmDialog(null, "Updating will close jRAT,  delete all files, and download and extract the new update\nDo you want to proceed?", "Update", JOptionPane.YES_NO_CANCEL_OPTION) == JOptionPane.YES_OPTION) {
-				Runtime.getRuntime().exec(new String[] { JAVA_HOME, "-jar", Globals.getUpdater().getAbsolutePath() }, null, Utils.getWorkingDir());
+				JavaArchive.executeJAR(Globals.getUpdater());
+				
 				System.exit(0);
 			}
 		} catch (Exception e) {
