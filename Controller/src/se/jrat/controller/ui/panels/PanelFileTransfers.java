@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.Icon;
-import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
@@ -48,11 +47,9 @@ public class PanelFileTransfers extends JPanel {
 	}
 
 	private JTable table;
-	private JProgressBar progressBar;
 	private JScrollPane scrollPane;
 	private DefaultTableModel model;
 
-	private JLabel label;
 	private JMenuItem btnPause;
 	private JMenuItem btnCancel;
 
@@ -61,7 +58,6 @@ public class PanelFileTransfers extends JPanel {
 		String status = "0";
 
 		model.addRow(new Object[] { icon, name, status });
-		progressBar.setMaximum(model.getRowCount() * 100);
 	}
 
 	public PanelFileTransfers() {
@@ -70,9 +66,6 @@ public class PanelFileTransfers extends JPanel {
 		scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
-		progressBar = new JProgressBar();
-
-		label = new JLabel("...");
 
 		table = new DefaultJTable();
 		
@@ -88,8 +81,6 @@ public class PanelFileTransfers extends JPanel {
 		table.setRowHeight(25);
 		scrollPane.setViewportView(table);
 		
-		add(label, BorderLayout.SOUTH);
-		add(progressBar, BorderLayout.SOUTH);
 		add(scrollPane, BorderLayout.CENTER);
 		
 		JPopupMenu menu = new JPopupMenu();
