@@ -61,6 +61,7 @@ public abstract class AbstractSlave implements Runnable {
 	protected boolean verified;
 	protected boolean checked;
 	protected boolean selected;
+	protected boolean headless;
 	protected boolean lock;
 	protected long pingms = 0;
 	protected long sent = 0;
@@ -476,6 +477,14 @@ public abstract class AbstractSlave implements Runnable {
 	
 	public void setAdded(boolean added) {
 		this.added = added;
+	}
+	
+	public boolean isHeadless() {
+		return this.headless;
+	}
+	
+	public void setHeadless(boolean headless) {
+		this.headless = headless;
 	}
 	
 	public static AbstractSlave getFromId(long id) {
