@@ -72,6 +72,8 @@ import se.jrat.controller.utils.BasicIconUtils;
 import se.jrat.controller.utils.NetUtils;
 import se.jrat.controller.utils.Utils;
 
+import com.redpois0n.oslib.OperatingSystem;
+
 @SuppressWarnings("serial")
 public class PanelMainClients extends JScrollPane {
 	
@@ -533,7 +535,7 @@ public class PanelMainClients extends JScrollPane {
 			}
 		});
 
-		JMenuItem mntmRemoteRegistry = new JMenuItem("Remote Registry");
+		final JMenuItem mntmRemoteRegistry = new JMenuItem("Remote Registry");
 		mntmRemoteRegistry.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				AbstractSlave slave = getSelectedSlave();
@@ -872,6 +874,8 @@ public class PanelMainClients extends JScrollPane {
 						popupMenu.addSeparator();
 						popupMenu.add(mntmCountry);
 						popupMenu.add(mntmVersion);
+						
+						mntmRemoteRegistry.setEnabled(slave.getOperatingSystem().getType() == OperatingSystem.WINDOWS);
 					}
 
 					repaint();
