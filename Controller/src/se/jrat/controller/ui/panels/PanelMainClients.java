@@ -850,7 +850,7 @@ public class PanelMainClients extends JScrollPane {
 						}
 					}
 				} catch (Exception ex) {
-
+					ex.printStackTrace();
 				}
 			}
 
@@ -858,23 +858,25 @@ public class PanelMainClients extends JScrollPane {
 				try {
 					List<AbstractSlave> list = getSelectedSlaves();
 					if (list.size() == 1) {
-						JMenuItem item = new JMenuItem("Stub V: " + list.get(0).getVersion());
-						JMenuItem item2 = new JMenuItem("Country: " + list.get(0).getCountry().toUpperCase());
+						AbstractSlave slave = (AbstractSlave) list.get(0);
+								
+						JMenuItem mntmVersion = new JMenuItem("Version: " + slave.getVersion());
+						JMenuItem mntmCountry = new JMenuItem("Country: " + slave.getCountry().toUpperCase());
 
-						item2.addActionListener(new CountryMenuItemListener());
+						mntmCountry.addActionListener(new CountryMenuItemListener());
 
-						item2.setIcon(list.get(0).getFlag());
-						item.setForeground(list.get(0).isUpToDate() ? Color.black : Color.red);
-						item.setIcon(list.get(0).isUpToDate() ? IconUtils.getIcon("enabled") : IconUtils.getIcon("warning"));
+						mntmCountry.setIcon(slave.getFlag());
+						mntmVersion.setForeground(slave.isUpToDate() ? Color.black : Color.red);
+						mntmVersion.setIcon(slave.isUpToDate() ? IconUtils.getIcon("enabled") : IconUtils.getIcon("warning"));
 
 						popupMenu.addSeparator();
-						popupMenu.add(item2);
-						popupMenu.add(item);
+						popupMenu.add(mntmCountry);
+						popupMenu.add(mntmVersion);
 					}
 
 					repaint();
 				} catch (Exception ex) {
-					// ex.printStackTrace();
+					ex.printStackTrace();
 				}
 			}
 		});
