@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
-import jrat.api.exceptions.MainClassNotFoundException;
+import pluginlib.MainClassNotFoundException;
 
 
 public class JarUtils {
