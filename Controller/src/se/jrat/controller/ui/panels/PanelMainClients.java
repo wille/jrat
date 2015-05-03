@@ -876,6 +876,8 @@ public class PanelMainClients extends JScrollPane {
 						popupMenu.add(mntmVersion);
 						
 						mntmRemoteRegistry.setEnabled(slave.getOperatingSystem().getType() == OperatingSystem.WINDOWS);
+					} else {
+						mntmRemoteRegistry.setEnabled(true);
 					}
 
 					repaint();
