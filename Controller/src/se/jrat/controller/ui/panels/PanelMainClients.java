@@ -29,13 +29,13 @@ import javax.swing.table.DefaultTableModel;
 
 import jrat.api.RATMenuItem;
 import jrat.api.RATObject;
+import jrat.api.RATPlugin;
 import se.jrat.common.downloadable.Downloadable;
 import se.jrat.common.utils.DataUnits;
 import se.jrat.controller.AbstractSlave;
 import se.jrat.controller.Main;
 import se.jrat.controller.Slave;
 import se.jrat.controller.Status;
-import se.jrat.controller.addons.Plugin;
 import se.jrat.controller.addons.PluginLoader;
 import se.jrat.controller.addons.RATObjectFormat;
 import se.jrat.controller.listeners.CountryMenuItemListener;
@@ -887,15 +887,15 @@ public class PanelMainClients extends JScrollPane {
 			}
 		});
 
-		for (Plugin plugin : PluginLoader.plugins) {
-			if (plugin.getItems() != null && plugin.getItems().size() > 0) {
+		for (RATPlugin plugin : PluginLoader.getPlugins()) {
+			if (plugin.getMenuItems() != null && plugin.getMenuItems().size() > 0) {
 				popupMenu.addSeparator();
 				break;
 			}
 		}
-		for (Plugin plugin : PluginLoader.plugins) {
-			if (plugin.getItems() != null && plugin.getItems().size() > 0) {
-				for (final RATMenuItem en : plugin.getItems()) {
+		for (RATPlugin plugin : PluginLoader.getPlugins()) {
+			if (plugin.getMenuItems() != null && plugin.getMenuItems().size() > 0) {
+				for (final RATMenuItem en : plugin.getMenuItems()) {
 					JMenuItem item = en.getItem();
 
 					item.addActionListener(new ActionListener() {

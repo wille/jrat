@@ -164,7 +164,7 @@ public class PluginInstaller {
 		temp.delete();
 
 		for (File file : mainJars) {
-			new Plugin(file);
+			PluginLoader.load(file);
 		}
 
 		Main.instance.reloadPlugins();

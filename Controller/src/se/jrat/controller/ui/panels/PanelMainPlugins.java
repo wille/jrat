@@ -5,7 +5,7 @@ import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
-import se.jrat.controller.addons.Plugin;
+import jrat.api.RATPlugin;
 import se.jrat.controller.addons.PluginLoader;
 import se.jrat.controller.ui.components.DefaultJTable;
 import se.jrat.controller.ui.renderers.table.PluginsTableRenderer;
@@ -41,8 +41,8 @@ public class PanelMainPlugins extends JScrollPane {
 			getModel().removeRow(0);
 		}
 
-		for (int i = 0; i < PluginLoader.plugins.size(); i++) {
-			Plugin p = PluginLoader.plugins.get(i);
+		for (int i = 0; i < PluginLoader.getPlugins().size(); i++) {
+			RATPlugin p = PluginLoader.getPlugins().get(i);
 			getModel().addRow(new Object[] { p.getName(), p.getAuthor(), p.getDescription(), p.getVersion() });
 		}
 	}
