@@ -36,7 +36,7 @@ import se.jrat.controller.SampleMode;
 import se.jrat.controller.Slave;
 import se.jrat.controller.UniqueId;
 import se.jrat.controller.Updater;
-import se.jrat.controller.addons.PluginLoader;
+import se.jrat.controller.addons.Plugins;
 import se.jrat.controller.net.WebRequest;
 import se.jrat.controller.packets.outgoing.Packet11Disconnect;
 import se.jrat.controller.packets.outgoing.Packet18Update;
@@ -769,14 +769,14 @@ public class Frame extends JFrame {
 		while (mnPlugins.getComponentCount() >= 4) {
 			mnPlugins.remove(4);
 		}
-		if (PluginLoader.getPlugins().size() == 0) {
+		if (Plugins.getPlugins().size() == 0) {
 			JMenuItem item = new JMenuItem("No plugins loaded");
 			item.setEnabled(false);
 			mnPlugins.add(item);
 		}
 
-		for (int i = 0; i < PluginLoader.getPlugins().size(); i++) {
-			final RATPlugin p = PluginLoader.getPlugins().get(i);
+		for (int i = 0; i < Plugins.getPlugins().size(); i++) {
+			final RATPlugin p = Plugins.getPlugins().get(i);
 
 			JMenuItem item = new JMenuItem(p.getName());
 

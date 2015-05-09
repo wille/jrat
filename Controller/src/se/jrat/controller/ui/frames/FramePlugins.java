@@ -17,9 +17,10 @@ import javax.swing.table.DefaultTableModel;
 
 import jrat.api.RATPlugin;
 import jrat.api.events.OnDisableEvent;
+import jrat.api.events.OnEnableEvent;
+import se.jrat.common.Version;
 import se.jrat.controller.Globals;
-import se.jrat.controller.addons.PluginLoader;
-import se.jrat.controller.addons.PluginStatus;
+import se.jrat.controller.addons.Plugins;
 import se.jrat.controller.ui.components.DefaultJTable;
 import se.jrat.controller.ui.renderers.table.PluginsTableRenderer;
 
@@ -81,7 +82,7 @@ public class FramePlugins extends JFrame {
 					model.removeRow(0);
 				}
 
-				for (RATPlugin p : PluginLoader.getPlugins()) {
+				for (RATPlugin p : Plugins.getPlugins()) {
 					try {
 						p.onDisable(new OnDisableEvent());
 					} catch (Exception e) {
@@ -90,18 +91,27 @@ public class FramePlugins extends JFrame {
 				}
 
 				try {
-					PluginLoader.loadPlugins();
+					Plugins.getLoader().loadPlugins();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				
+				for (RATPlugin p : Plugins.getPlugins()) {
+					try {
+						p.onEnable(new OnEnableEvent(Version.getVersion()));
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+				
 				addPlugins();
 			}
 		}).start();
 	}
 
 	public void addPlugins() {
-		for (int i = 0; i < PluginLoader.getPlugins().size(); i++) {
-			RATPlugin p = PluginLoader.getPlugins().get(i);
+		for (int i = 0; i < Plugins.getPlugins().size(); i++) {
+			RATPlugin p = Plugins.getPlugins().get(i);
 			model.addRow(new Object[] { p.getName(), p.getAuthor(), p.getDescription(), p.getVersion(), /* TODO */ });
 		}
 	}

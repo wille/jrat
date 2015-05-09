@@ -2,7 +2,7 @@ package se.jrat.controller;
 
 import jrat.api.RATPlugin;
 import jrat.api.events.OnDisableEvent;
-import se.jrat.controller.addons.PluginLoader;
+import se.jrat.controller.addons.Plugins;
 import se.jrat.controller.settings.AbstractStoreable;
 import se.jrat.controller.settings.Settings;
 import se.jrat.controller.settings.SettingsColumns;
@@ -15,7 +15,7 @@ public class ShutdownHook implements Runnable {
 		Main.debug("Shutting down...");
 		
 		OnDisableEvent event = new OnDisableEvent();
-		for (RATPlugin p : PluginLoader.getPlugins()) {
+		for (RATPlugin p : Plugins.getPlugins()) {
 			try {
 				p.onDisable(event);
 			} catch (Exception ex) {

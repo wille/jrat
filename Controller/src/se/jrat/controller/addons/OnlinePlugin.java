@@ -119,7 +119,7 @@ public class OnlinePlugin {
 	}
 	
 	public boolean isUpToDate() {
-		RATPlugin plugin = PluginLoader.getPlugin(name);
+		RATPlugin plugin = Plugins.getPlugin(name);
     	
     	return plugin != null && plugin.getVersion().equals(version);
 	}

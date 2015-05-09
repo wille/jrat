@@ -15,7 +15,7 @@ import javax.swing.UIManager;
 import jrat.api.commands.Commands;
 import se.jrat.common.Logger;
 import se.jrat.common.Version;
-import se.jrat.controller.addons.PluginLoader;
+import se.jrat.controller.addons.Plugins;
 import se.jrat.controller.commands.DefaultCommands;
 import se.jrat.controller.net.WebRequest;
 import se.jrat.controller.settings.AbstractStoreable;
@@ -50,7 +50,7 @@ public class Main {
 
 		Main.debug("Loading libraries...");
 		try {
-			PluginLoader.loadLibs();
+			Plugins.loadLibs();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -107,7 +107,7 @@ public class Main {
 		System.setProperty("jrat.version", Version.getVersion());
 
 		try {
-			PluginLoader.loadPlugins();
+			Plugins.init();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -39,7 +39,7 @@ import jrat.api.RATPlugin;
 import se.jrat.common.script.Script;
 import se.jrat.controller.Constants;
 import se.jrat.controller.Slave;
-import se.jrat.controller.addons.PluginLoader;
+import se.jrat.controller.addons.Plugins;
 import se.jrat.controller.addons.RATObjectFormat;
 import se.jrat.controller.exceptions.ControlPanelLoadException;
 import se.jrat.controller.listeners.Performable;
@@ -116,7 +116,7 @@ public class FrameControlPanel extends BaseFrame {
 
 	public void loadItems() {
 		if (entries.size() == 0) {
-			for (RATPlugin p : PluginLoader.getPlugins()) {
+			for (RATPlugin p : Plugins.getPlugins()) {
 				for (RATControlMenuEntry entry : p.getControlTreeItems()) {
 					entries.add(entry);
 				}

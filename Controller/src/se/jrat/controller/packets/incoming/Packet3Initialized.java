@@ -13,7 +13,7 @@ import se.jrat.controller.Globals;
 import se.jrat.controller.Main;
 import se.jrat.controller.OfflineSlave;
 import se.jrat.controller.Slave;
-import se.jrat.controller.addons.PluginLoader;
+import se.jrat.controller.addons.Plugins;
 import se.jrat.controller.events.Event;
 import se.jrat.controller.events.Events;
 import se.jrat.controller.net.ConnectionHandler;
@@ -41,7 +41,7 @@ public class Packet3Initialized extends AbstractIncomingPacket {
 		List<String> notInstalled = new ArrayList<String>();
 
 		if (plugins != null && Settings.getGlobal().getBoolean("plugintransfer")) {
-			for (RATPlugin plugin : PluginLoader.getPlugins()) {
+			for (RATPlugin plugin : Plugins.getPlugins()) {
 				if (!plugins.contains(plugin.getName())) {
 					notInstalled.add(plugin.getName());
 					Main.debug("Plugin " + plugin.getName() + " is not installed, adding to list");
@@ -51,7 +51,7 @@ public class Packet3Initialized extends AbstractIncomingPacket {
 			Map<String, File> filesToTransfer = new HashMap<String, File>();
 
 			for (String sp : notInstalled) {
-				RATPlugin plugin = PluginLoader.getPlugin(sp);
+				RATPlugin plugin = Plugins.getPlugin(sp);
 				File[] files = Globals.getPluginStubDirectory().listFiles();
 
 				for (File stubFile : files) {

