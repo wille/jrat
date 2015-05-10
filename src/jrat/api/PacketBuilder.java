@@ -6,9 +6,9 @@ import java.io.DataOutputStream;
 public abstract class PacketBuilder {
 
 	private byte header;
-	private RATObject rat;
+	private Client rat;
 
-	public PacketBuilder(byte header, RATObject rat) {
+	public PacketBuilder(byte header, Client rat) {
 		this.header = header;
 		this.rat = rat;
 	}
@@ -20,7 +20,7 @@ public abstract class PacketBuilder {
 	 * @param dis
 	 * @throws Exception
 	 */
-	public abstract void write(RATObject rat, DataOutputStream dos, DataInputStream dis) throws Exception;
+	public abstract void write(Client rat, DataOutputStream dos, DataInputStream dis) throws Exception;
 
 	/**
 	 * 
@@ -34,7 +34,7 @@ public abstract class PacketBuilder {
 	 * 
 	 * @return The rat object to write this packet to
 	 */
-	public RATObject getRATObject() {
+	public Client getClient() {
 		return rat;
 	}
 

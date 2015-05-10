@@ -8,14 +8,14 @@ public class BaseControlPanel extends JPanel {
 	/**
 	 * The server that holds this panel
 	 */
-	private RATObject server;
+	private Client server;
 
 	/**
 	 * 
 	 * @param server
 	 *            The server to make this panel hold
 	 */
-	public void setServer(RATObject server) {
+	public void setServer(Client server) {
 		this.server = server;
 	}
 
@@ -23,7 +23,7 @@ public class BaseControlPanel extends JPanel {
 	 * 
 	 * @return The server this panel holds
 	 */
-	public RATObject getServer() {
+	public Client getServer() {
 		return server;
 	}
 

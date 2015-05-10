@@ -1,10 +1,10 @@
 package jrat.api.events;
 
-import jrat.api.RATObject;
+import jrat.api.Client;
 
 public class OnDisconnectEvent extends RATObjectEvent {
 
-	public OnDisconnectEvent(RATObject server) {
+	public OnDisconnectEvent(Client server) {
 		super(server);
 	}
 

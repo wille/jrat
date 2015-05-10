@@ -1,20 +1,20 @@
 package jrat.api.events;
 
-import jrat.api.RATObject;
+import jrat.api.Client;
 
 public abstract class RATObjectEvent implements AbstractEvent {
 
-	private RATObject server;
+	private Client server;
 
-	public RATObjectEvent(RATObject server) {
+	public RATObjectEvent(Client server) {
 		this.server = server;
 	}
 
-	public RATObject getServer() {
+	public Client getServer() {
 		return server;
 	}
 
-	public void setSlave(RATObject server) {
+	public void setSlave(Client server) {
 		this.server = server;
 	}
 

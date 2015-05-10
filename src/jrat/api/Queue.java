@@ -9,6 +9,6 @@ public abstract interface Queue {
 	 * @param rat
 	 * @throws Exception
 	 */
-	public abstract void addToSendQueue(PacketBuilder packet, RATObject rat) throws Exception;
+	public abstract void addToSendQueue(PacketBuilder packet, Client rat) throws Exception;
 
 }

