@@ -1,11 +1,6 @@
 package jrat.api.events;
 
-public enum Event {
-	
-	EVENT_PLUGIN_DISABLE,
-	EVENT_CLIENT_PACKET_RECEIVED,
-	EVENT_CLIENT_CONNECT,
-	EVENT_CLIENT_DISCONNECT,
-	EVENT_SERVER_PACKET_SEND;
+public abstract class Event {
 
+	public abstract void perform(AbstractEvent event);
 }
