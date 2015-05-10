@@ -1,11 +1,11 @@
 package se.jrat.controller.addons;
 
 import jrat.api.Client;
-import jrat.api.Packet;
 import jrat.api.events.Event;
 import jrat.api.events.EventType;
 import jrat.api.events.OnConnectEvent;
 import jrat.api.events.OnDisconnectEvent;
+import jrat.api.net.Packet;
 import jrat.api.net.PacketListener;
 import se.jrat.controller.AbstractSlave;
 
