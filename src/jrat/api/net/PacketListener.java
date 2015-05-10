@@ -4,7 +4,11 @@ import jrat.api.Client;
 
 public abstract class PacketListener {
 	
-	private final byte header;
+	private byte header;
+	
+	public PacketListener() {
+
+	}
 	
 	public PacketListener(byte header) {
 		this.header = header;
