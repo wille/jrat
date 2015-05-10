@@ -780,7 +780,7 @@ public class Frame extends JFrame {
 
 			JMenuItem item = new JMenuItem(p.getName());
 
-			ActionListener listener = p.getGlobalMenuItemListener();
+			ActionListener listener = p.getGlobalActionListener();
 
 			if (listener != null) {
 				item.addActionListener(listener);
