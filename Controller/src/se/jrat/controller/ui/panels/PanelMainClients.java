@@ -837,7 +837,7 @@ public class PanelMainClients extends JScrollPane {
 						Component child = popupMenu.getComponents()[i];
 						if (child instanceof JMenuItem) {
 							JMenuItem item = (JMenuItem) child;
-							if (item.getText().startsWith("Stub V: ")) {
+							if (item.getText().startsWith("Version: ")) {
 								popupMenu.remove(child);
 								popupMenu.remove(i - 1);
 								popupMenu.remove(i - 2);
