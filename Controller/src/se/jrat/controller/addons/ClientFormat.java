@@ -7,7 +7,7 @@ import java.io.IOException;
 import jrat.api.Connection;
 import jrat.api.PacketBuilder;
 import jrat.api.Queue;
-import jrat.api.RATObject;
+import jrat.api.Client;
 import jrat.api.Reader;
 import jrat.api.Writer;
 import se.jrat.controller.AbstractSlave;
@@ -16,9 +16,9 @@ import se.jrat.controller.SampleMode;
 import se.jrat.controller.Slave;
 import se.jrat.controller.packets.outgoing.AbstractOutgoingPacket;
 
-public class RATObjectFormat {
+public class ClientFormat {
 
-	public static RATObject format(final AbstractSlave s) {
+	public static Client format(final AbstractSlave s) {
 		Connection con = null;
 		
 		try {
@@ -32,7 +32,7 @@ public class RATObjectFormat {
 		final DataOutputStream out = s.getDataOutputStream();
 		final DataInputStream in = s.getDataInputStream();
 
-		RATObject j = new RATObject(s.getIP(), s.getUniqueId(), con, new Writer() {
+		Client j = new Client(s.getIP(), s.getUniqueId(), con, new Writer() {
 
 			@Override
 			public void write(byte arg0) throws IOException {
@@ -126,8 +126,8 @@ public class RATObjectFormat {
 
 		}, in, out, new Queue() {
 			@Override
-			public void addToSendQueue(final PacketBuilder arg0, final RATObject rat) throws Exception {
-				AbstractSlave slave = getFromRATObject(rat);
+			public void addToSendQueue(final PacketBuilder arg0, final Client rat) throws Exception {
+				AbstractSlave slave = getFromClient(rat);
 
 				if (slave != null) {
 					AbstractOutgoingPacket packet = new AbstractOutgoingPacket() {
@@ -153,7 +153,7 @@ public class RATObjectFormat {
 		return j;
 	}
 
-	public static AbstractSlave getFromRATObject(RATObject obj) {
+	public static AbstractSlave getFromClient(Client obj) {
 		String ip = obj.getIP();
 
 		for (int i = 0; i < Main.connections.size(); i++) {
