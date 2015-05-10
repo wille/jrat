@@ -1,4 +1,4 @@
-package jrat.api;
+package jrat.api.net;
 
 public class Connection {
 

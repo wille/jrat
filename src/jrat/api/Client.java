@@ -3,6 +3,12 @@ package jrat.api;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 
+import jrat.api.net.Connection;
+import jrat.api.net.PacketBuilder;
+import jrat.api.net.Queue;
+import jrat.api.net.Reader;
+import jrat.api.net.Writer;
+
 public final class Client {
 
 	private final String ip;

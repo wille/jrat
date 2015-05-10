@@ -1,11 +1,9 @@
-package jrat.api;
+package jrat.api.net;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import jrat.api.net.PacketListener;
 
 public class Packet {
 	

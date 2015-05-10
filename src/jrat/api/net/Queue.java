@@ -1,4 +1,6 @@
-package jrat.api;
+package jrat.api.net;
+
+import jrat.api.Client;
 
 public abstract interface Queue {
 

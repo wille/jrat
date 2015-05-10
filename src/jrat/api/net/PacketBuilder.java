@@ -1,7 +1,9 @@
-package jrat.api;
+package jrat.api.net;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+
+import jrat.api.Client;
 
 public abstract class PacketBuilder {
 
