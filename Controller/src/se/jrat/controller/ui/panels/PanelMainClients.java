@@ -28,7 +28,6 @@ import javax.swing.event.PopupMenuListener;
 import javax.swing.table.DefaultTableModel;
 
 import jrat.api.Client;
-import jrat.api.Client;
 import jrat.api.ui.RATMenuItem;
 import se.jrat.common.downloadable.Downloadable;
 import se.jrat.common.utils.DataUnits;

