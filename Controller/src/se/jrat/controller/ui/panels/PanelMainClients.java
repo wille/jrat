@@ -841,11 +841,6 @@ public class PanelMainClients extends JScrollPane {
 								popupMenu.remove(child);
 								popupMenu.remove(i - 1);
 								popupMenu.remove(i - 2);
-							} else if (item.getText().startsWith("Keylogger") || item.getText().equals("Offline logs")) {
-								item.setEnabled(true);
-								if (item.getText().startsWith("Keylogger")) {
-									item.setText("Keylogger");
-								}
 							}
 						}
 					}
