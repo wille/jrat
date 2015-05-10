@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.List;
 
 import jrat.api.RATPlugin;
+import jrat.api.events.Event;
+import pluginlib.EventHandler;
 import pluginlib.Plugin;
 import pluginlib.PluginLoader;
 import se.jrat.controller.Globals;
@@ -12,7 +14,12 @@ import se.jrat.controller.utils.ClassUtils;
 
 public class Plugins {
 
+	private static EventHandler<Event> handler = new EventHandler<Event>();
 	private static PluginLoader<RATPlugin> loader;
+	
+	public static EventHandler<Event> getHandler() {
+		return handler;
+	}
 	
 	public static void init() throws Exception {
 		loader = new PluginLoader<RATPlugin>(Globals.getPluginDirectory());
