@@ -16,9 +16,9 @@ import javax.swing.JToolBar;
 import javax.swing.table.DefaultTableModel;
 
 import jrat.api.RATPlugin;
+import jrat.api.events.Event;
+import jrat.api.events.EventType;
 import jrat.api.events.OnDisableEvent;
-import jrat.api.events.OnEnableEvent;
-import se.jrat.common.Version;
 import se.jrat.controller.Globals;
 import se.jrat.controller.addons.Plugins;
 import se.jrat.controller.ui.components.DefaultJTable;
@@ -82,26 +82,14 @@ public class FramePlugins extends JFrame {
 					model.removeRow(0);
 				}
 
-				for (RATPlugin p : Plugins.getPlugins()) {
-					try {
-						p.onDisable(new OnDisableEvent());
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
+				for (Event e : Plugins.getHandler().getEvents(EventType.EVENT_PLUGIN_DISABLE)) {
+					e.perform(new OnDisableEvent());
 				}
 
 				try {
 					Plugins.getLoader().loadPlugins();
 				} catch (Exception e) {
 					e.printStackTrace();
-				}
-				
-				for (RATPlugin p : Plugins.getPlugins()) {
-					try {
-						p.onEnable(new OnEnableEvent(Version.getVersion()));
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
 				}
 				
 				addPlugins();
