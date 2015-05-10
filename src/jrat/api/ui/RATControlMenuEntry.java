@@ -1,4 +1,4 @@
-package jrat.api;
+package jrat.api.ui;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import javax.swing.ImageIcon;
+
+import jrat.api.BaseControlPanel;
+import jrat.api.RATObject;
 
 public final class RATControlMenuEntry {
 	

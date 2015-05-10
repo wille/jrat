@@ -1,4 +1,4 @@
-package jrat.api;
+package jrat.api.ui;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,8 @@
-package jrat.api;
+package jrat.api.ui;
 
 import java.util.List;
+
+import jrat.api.RATObject;
 
 public abstract interface RATMenuItemActionListener {
 
