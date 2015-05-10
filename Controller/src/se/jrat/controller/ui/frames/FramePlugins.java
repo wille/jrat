@@ -82,7 +82,7 @@ public class FramePlugins extends JFrame {
 					model.removeRow(0);
 				}
 
-				for (Event e : Plugins.getHandler().getEvents(EventType.EVENT_PLUGIN_DISABLE)) {
+				for (Event e : Event.getHandler().getEvents(EventType.EVENT_PLUGIN_DISABLE)) {
 					e.perform(new OnDisableEvent());
 				}
 
