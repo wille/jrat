@@ -50,6 +50,12 @@ public abstract class RATPlugin {
 		return this.author;
 	}
 	
+	/**
+	 * Called when the global menu item for this plugin is clicked
+	 * 
+	 * If returning null, will display information about the plugin instead
+	 * @return
+	 */
 	public ActionListener getGlobalActionListener() {
 		return null;
 	}
