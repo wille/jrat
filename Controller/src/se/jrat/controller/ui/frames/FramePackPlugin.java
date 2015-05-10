@@ -32,8 +32,8 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import jrat.api.utils.JarUtils;
 import se.jrat.common.Logger;
+import se.jrat.common.utils.JarUtils;
 import se.jrat.controller.ErrorDialog;
 import se.jrat.controller.Main;
 import se.jrat.controller.build.PluginPacker;

@@ -24,13 +24,13 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 
-import jrat.api.utils.JarUtils;
 import se.jrat.common.codec.Base64;
 import se.jrat.common.codec.Hex;
 import se.jrat.common.crypto.CryptoUtils;
 import se.jrat.common.hash.Md5;
 import se.jrat.common.hash.Sha1;
 import se.jrat.common.utils.DataUnits;
+import se.jrat.common.utils.JarUtils;
 import se.jrat.controller.Constants;
 import se.jrat.controller.ErrorDialog;
 import se.jrat.controller.Main;

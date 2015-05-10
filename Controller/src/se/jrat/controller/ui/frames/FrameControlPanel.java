@@ -34,7 +34,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
 import jrat.api.BaseControlPanel;
-import jrat.api.RATControlMenuEntry;
+import jrat.api.ui.RATControlMenuEntry;
 import se.jrat.common.script.Script;
 import se.jrat.controller.Constants;
 import se.jrat.controller.Slave;
@@ -85,7 +85,7 @@ import se.jrat.controller.utils.Utils;
 
 import com.redpois0n.oslib.OperatingSystem;
 
-@SuppressWarnings({ "serial" })
+@SuppressWarnings("serial")
 public class FrameControlPanel extends BaseFrame {
 
 	private JPanel contentPane;
