@@ -1,5 +1,5 @@
 package jrat.api.events;
 
-public class OnDisableEvent implements Event {
+public class OnDisableEvent implements AbstractEvent {
 
 }

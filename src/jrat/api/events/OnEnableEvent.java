@@ -1,6 +1,6 @@
 package jrat.api.events;
 
-public class OnEnableEvent implements Event {
+public class OnEnableEvent implements AbstractEvent {
 
 	private String version;
 
