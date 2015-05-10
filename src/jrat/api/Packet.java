@@ -9,30 +9,55 @@ import jrat.api.net.PacketListener;
 
 public class Packet {
 	
-	private static final Map<Byte, List<PacketListener>> map = new HashMap<Byte, List<PacketListener>>();
+	private static final Map<Byte, List<PacketListener>> PACKETS_INCOMING = new HashMap<Byte, List<PacketListener>>();
+	private static final Map<Byte, List<PacketListener>> PACKETS_OUTGOING = new HashMap<Byte, List<PacketListener>>();
 	
-	public static void register(byte type, PacketListener listener) {
-		if (!map.containsKey(type)) {
-			map.put(type, new ArrayList<PacketListener>());
+	public static void registerIncoming(byte type, PacketListener listener) {
+		if (!PACKETS_INCOMING.containsKey(type)) {
+			PACKETS_INCOMING.put(type, new ArrayList<PacketListener>());
 		}
 		
-		List<PacketListener> list = map.get(type);
+		List<PacketListener> list = PACKETS_INCOMING.get(type);
 		
 		list.add(listener);
 	}
 	
-	public static void unregister(byte header, PacketListener listener) {
-		if (map.containsKey(header)) {
-			map.get(header).remove(listener);
+	public static void unregisterIncoming(byte header, PacketListener listener) {
+		if (PACKETS_INCOMING.containsKey(header)) {
+			PACKETS_INCOMING.get(header).remove(listener);
 		}
 	}
 	
-	public static List<PacketListener> getEvents(byte header) {
-		if (!map.containsKey(header)) {
-			map.put(header, new ArrayList<PacketListener>());
+	public static List<PacketListener> getIncoming(byte header) {
+		if (!PACKETS_INCOMING.containsKey(header)) {
+			PACKETS_INCOMING.put(header, new ArrayList<PacketListener>());
 		}
 		
-		return map.get(header);
+		return PACKETS_INCOMING.get(header);
+	}
+	
+	public static void registerOutgoing(byte type, PacketListener listener) {
+		if (!PACKETS_OUTGOING.containsKey(type)) {
+			PACKETS_OUTGOING.put(type, new ArrayList<PacketListener>());
+		}
+		
+		List<PacketListener> list = PACKETS_OUTGOING.get(type);
+		
+		list.add(listener);
+	}
+	
+	public static void unregisterOutgoing(byte header, PacketListener listener) {
+		if (PACKETS_OUTGOING.containsKey(header)) {
+			PACKETS_OUTGOING.get(header).remove(listener);
+		}
+	}
+	
+	public static List<PacketListener> getOutgoing(byte header) {
+		if (!PACKETS_OUTGOING.containsKey(header)) {
+			PACKETS_OUTGOING.put(header, new ArrayList<PacketListener>());
+		}
+		
+		return PACKETS_OUTGOING.get(header);
 	}
 	
 	private final byte header;
