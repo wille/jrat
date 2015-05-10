@@ -10,6 +10,10 @@ public abstract class PacketListener {
 		this.header = header;
 	}
 	
+	public byte getHeader() {
+		return this.header;
+	}
+	
 	public abstract void perform(Client client);
 
 }
