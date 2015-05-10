@@ -13,6 +13,18 @@ import jrat.api.events.OnSendPacketEvent;
 
 
 public abstract class RATPlugin {
+	
+	private String name;
+	private String version;
+	private String description;
+	private String author;
+	
+	public RATPlugin(String name, String version, String description, String author) {
+		this.name = name;
+		this.version = version;
+		this.description = description;
+		this.author = author;
+	}
 
 	/**
 	 * 
@@ -65,33 +77,37 @@ public abstract class RATPlugin {
 
 	/**
 	 * Note that this is the display name, like "Test Plugin", but the working
-	 * name in etc gallery is "TestPlugin"
+	 * name is "TestPlugin"
 	 * 
 	 * @return Name of the plugin
 	 */
-
-	public abstract String getName();
+	public String getName() {
+		return this.name;
+	}
 
 	/**
 	 * 
 	 * @return Plugin version
 	 */
-
-	public abstract String getVersion();
+	public String getVersion() {
+		return this.version;
+	}
 
 	/**
 	 * 
 	 * @return Plugin description
 	 */
-
-	public abstract String getDescription();
+	public String getDescription() {
+		return this.description;
+	}
 
 	/**
 	 * 
 	 * @return Author of plugin
 	 */
-
-	public abstract String getAuthor();
+	public String getAuthor() {
+		return this.author;
+	}
 
 	/**
 	 * 
