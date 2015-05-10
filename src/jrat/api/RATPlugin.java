@@ -99,7 +99,7 @@ public abstract class RATPlugin {
 	 *         Main tab
 	 */
 
-	public abstract List<RATMenuItem> getMenuItems() throws Exception;
+	public abstract List<RATMenuItem> getMenuItems();
 
 	/**
 	 * 
@@ -108,7 +108,7 @@ public abstract class RATPlugin {
 	 * @throws Exception
 	 */
 
-	public abstract List<RATControlMenuEntry> getControlTreeItems() throws Exception;
+	public abstract List<RATControlMenuEntry> getControlTreeItems();
 
 	/**
 	 * Display about dialog maybe?
