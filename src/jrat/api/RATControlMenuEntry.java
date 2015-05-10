@@ -1,11 +1,15 @@
 package jrat.api;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.swing.ImageIcon;
 
 public final class RATControlMenuEntry {
+	
+	private static final List<RATControlMenuEntry> ENTRIES = new ArrayList<RATControlMenuEntry>();
 
 	private String name;
 	private Class<? extends BaseControlPanel> panel;
@@ -14,8 +18,20 @@ public final class RATControlMenuEntry {
 	/**
 	 * Instances of this panel with a RATObject
 	 */
-	private final Map<String, BaseControlPanel> instances = new HashMap<String, BaseControlPanel>();
+	private final Map<Object, BaseControlPanel> instances = new HashMap<Object, BaseControlPanel>();
 
+	public static void addEntry(RATControlMenuEntry e) {
+		ENTRIES.add(e);
+	}
+	
+	public static void removeEntry(RATControlMenuEntry e) {
+		ENTRIES.remove(e);
+	}
+	
+	public static List<RATControlMenuEntry> getEntries() {
+		return ENTRIES;
+	}
+	
 	public RATControlMenuEntry(String name, Class<? extends BaseControlPanel> panel) {
 		this(name, null, panel);
 	}
@@ -26,7 +42,7 @@ public final class RATControlMenuEntry {
 		this.icon = icon;
 	}
 	
-	public Map<String, BaseControlPanel> getInstances() {
+	public Map<Object, BaseControlPanel> getInstances() {
 		return instances;
 	}
 
