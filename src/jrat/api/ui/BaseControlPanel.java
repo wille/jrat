@@ -1,6 +1,8 @@
-package jrat.api;
+package jrat.api.ui;
 
 import javax.swing.JPanel;
+
+import jrat.api.Client;
 
 @SuppressWarnings("serial")
 public class BaseControlPanel extends JPanel {

@@ -7,7 +7,6 @@ import java.util.Map;
 
 import javax.swing.ImageIcon;
 
-import jrat.api.BaseControlPanel;
 import jrat.api.Client;
 
 public final class RATControlMenuEntry {
