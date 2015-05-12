@@ -5,28 +5,31 @@ import javax.swing.JPanel;
 import jrat.api.Client;
 
 @SuppressWarnings("serial")
-public class BaseControlPanel extends JPanel {
+public abstract class BaseControlPanel extends JPanel {
 
 	/**
 	 * The server that holds this panel
 	 */
-	private Client server;
+	private Client client;
 
+	public BaseControlPanel(Client client) {
+		this.client = client;
+	}
+	
 	/**
 	 * 
-	 * @param server
-	 *            The server to make this panel hold
+	 * @param client
 	 */
-	public void setServer(Client server) {
-		this.server = server;
+	public void setClient(Client client) {
+		this.client = client;
 	}
 
 	/**
 	 * 
 	 * @return The server this panel holds
 	 */
-	public Client getServer() {
-		return server;
+	public Client getClient() {
+		return client;
 	}
 
 	/**

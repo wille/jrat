@@ -52,7 +52,6 @@ public final class RATControlMenuEntry {
 	 * 
 	 * @return Returns the icon
 	 */
-
 	public ImageIcon getIcon() {
 		return icon;
 	}
@@ -61,7 +60,6 @@ public final class RATControlMenuEntry {
 	 * 
 	 * @return Returns the name
 	 */
-
 	public String getName() {
 		return name;
 	}
@@ -70,7 +68,6 @@ public final class RATControlMenuEntry {
 	 * 
 	 * @return Returns the class of the panel
 	 */
-
 	public Class<? extends BaseControlPanel> getPanel() {
 		return panel;
 	}
@@ -82,10 +79,9 @@ public final class RATControlMenuEntry {
 	 *         server
 	 * @throws Exception
 	 */
-
 	public BaseControlPanel newPanelInstance(Client server) throws Exception {
 		BaseControlPanel p = panel.newInstance();
-		p.setServer(server);
+		p.setClient(server);
 		return p;
 	}
 
