@@ -33,7 +33,7 @@ import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
-import jrat.api.BaseControlPanel;
+import jrat.api.ui.BaseControlPanel;
 import jrat.api.ui.RATControlMenuEntry;
 import se.jrat.common.script.Script;
 import se.jrat.controller.Constants;
