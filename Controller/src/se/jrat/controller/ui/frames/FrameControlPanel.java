@@ -412,7 +412,7 @@ public class FrameControlPanel extends BaseFrame {
 					BaseControlPanel panel = entry.newPanelInstance(ClientFormat.format(slave));
 					panel.onLoad();
 					tabbedPane.addTab(entry.getName(), entry.getIcon() == null ? defaultIcon : entry.getIcon(), panel);
-					entry.getInstances().put(slave, panel);
+					entry.getInstances().put(ClientFormat.format(slave), panel);
 				} catch (Exception ex) {
 					ex.printStackTrace();
 				}
