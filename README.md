@@ -6,7 +6,7 @@ API for developing controller-side plugins for jRAT
 
 You need to add it to your classpath. You do not need to include the API in the plugin, jRAT will already have it loaded.
 
-## Requirements
+## Dependencies
 
 - [pluginlib](https://github.com/redpois0n/pluginlib)
 
