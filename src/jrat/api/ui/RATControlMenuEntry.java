@@ -21,7 +21,7 @@ public final class RATControlMenuEntry {
 	/**
 	 * Instances of this panel with a Client
 	 */
-	private final Map<Object, BaseControlPanel> instances = new HashMap<Object, BaseControlPanel>();
+	private final Map<Client, BaseControlPanel> instances = new HashMap<Client, BaseControlPanel>();
 
 	public static void addEntry(RATControlMenuEntry e) {
 		ENTRIES.add(e);
@@ -44,9 +44,17 @@ public final class RATControlMenuEntry {
 		this.panel = panel;
 		this.icon = icon;
 	}
+
+	public BaseControlPanel get(Client client) {
+		return instances.get(client);
+	}
 	
-	public Map<Object, BaseControlPanel> getInstances() {
-		return instances;
+	public void put(Client client, BaseControlPanel bcp) {
+		instances.put(client, bcp);
+	}
+	
+	public void remove(Client client) {
+		instances.remove(client);
 	}
 
 	/**

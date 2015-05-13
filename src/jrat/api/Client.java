@@ -74,15 +74,20 @@ public final class Client {
 	}
 
 	/**
-	 * Only equals if IP is
+	 * Only equals if IP, id, or instance is
 	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Client) {
-			return this == obj || ((Client) obj).uniqueId == uniqueId;
+			return this == obj || ((Client) obj).uniqueId == uniqueId || ((Client) obj).ip.equals(ip);
 		}
 
 		return false;
+	}
+	
+	@Override
+	public int hashCode() {
+		return (int) uniqueId;
 	}
 
 	/**
