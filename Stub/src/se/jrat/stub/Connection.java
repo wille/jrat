@@ -230,6 +230,14 @@ public class Connection implements Runnable {
 	public void writeLong(long l) throws Exception {
 		dos.writeLong(l);
 	}
+	
+	public double readDouble() throws Exception {
+		return dis.readDouble();
+	}
+	
+	public void writeDouble(double d) throws Exception {
+		dos.writeDouble(d);
+	}
 
 	public void writeLine(Object obj) throws Exception {
 		writeLine(obj.toString());
