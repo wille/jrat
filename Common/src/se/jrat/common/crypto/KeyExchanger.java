@@ -1,41 +1,27 @@
 package se.jrat.common.crypto;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.security.KeyPair;
 import java.security.PublicKey;
 
-public class KeyExchanger {
+public abstract class KeyExchanger {
 	
-	private DataInputStream dis;
-	private DataOutputStream dos;
-	private KeyPair pair;
-	private PublicKey remoteKey;
+	protected KeyPair pair;
+	protected PublicKey remoteKey;
 	
-	public KeyExchanger(DataInputStream dis, DataOutputStream dos, KeyPair pair) {
-		this.dis = dis;
-		this.dos = dos;
+	public KeyExchanger(KeyPair pair) {
 		this.pair = pair;
 	}
-	
-	public void readRemotePublicKey() throws Exception {
-		int len = dis.readInt();
-		byte[] key = new byte[len];
-		
-		dis.readFully(key);
-		
-		this.remoteKey = KeyUtils.getPublicKey(key);
-	}
-	
-	public void writePublicKey() throws Exception {
-		byte[] encoded = pair.getPublic().getEncoded();
-		
-		dos.writeInt(encoded.length);
-		dos.write(encoded);
-	}
 
-	public PublicKey getRemoteKey() {
-		return remoteKey;
-	}
-
+	/**
+	 * Read remote public key
+	 * @return
+	 * @throws Exception
+	 */
+	public abstract PublicKey readRemoteKey() throws Exception;
+	
+	/**
+	 * write public key from keypair
+	 * @throws Exception
+	 */
+	public abstract void writePublicKey() throws Exception;
 }
