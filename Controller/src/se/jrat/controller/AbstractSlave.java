@@ -53,6 +53,7 @@ public abstract class AbstractSlave implements Runnable {
 	protected String renamedid;
 	protected String localip;
 	
+	protected final int uniqueId;
 	protected String country;
 	protected PublicKey rsaKey;
 	protected byte[] key;
@@ -66,7 +67,6 @@ public abstract class AbstractSlave implements Runnable {
 	protected long pingms = 0;
 	protected long sent = 0;
 	protected long received = 0;
-	protected final long uniqueId;
 	protected int ping = 0;
 	protected int status;
 	protected long memory;
@@ -80,7 +80,7 @@ public abstract class AbstractSlave implements Runnable {
 	private String host;
 
 	public AbstractSlave(ServerListener connection, Socket socket) {
-		uniqueId = (long) (new Random()).nextInt(Integer.MAX_VALUE); // TODO change to int
+		uniqueId = new Random().nextInt(Integer.MAX_VALUE);
 		
 		if (connection != null && socket != null) {
 			this.connection = connection;
@@ -291,7 +291,7 @@ public abstract class AbstractSlave implements Runnable {
 		return key;
 	}
 
-	public long getUniqueId() {
+	public int getUniqueId() {
 		return uniqueId;
 	}
 	
