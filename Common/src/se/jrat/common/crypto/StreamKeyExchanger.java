@@ -7,8 +7,8 @@ import java.security.PublicKey;
 
 public class StreamKeyExchanger extends KeyExchanger {
 	
-	private DataInputStream dis;
-	private DataOutputStream dos;
+	protected DataInputStream dis;
+	protected DataOutputStream dos;
 	
 	public StreamKeyExchanger(KeyPair pair, DataInputStream dis, DataOutputStream dos) {
 		super(pair);
