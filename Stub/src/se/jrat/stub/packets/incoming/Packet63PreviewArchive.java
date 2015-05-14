@@ -14,7 +14,7 @@ public class Packet63PreviewArchive extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {
-		String file = Connection.instance.readLine();
+		String file = con.readLine();
 		ZipFile zip = new ZipFile(file);
 		Enumeration<? extends ZipEntry> entries = zip.entries();
 		List<ZipEntry> folders = new ArrayList<ZipEntry>();
@@ -29,11 +29,11 @@ public class Packet63PreviewArchive extends AbstractIncomingPacket {
 		}
 
 		for (ZipEntry entry : folders) {
-			Connection.instance.addToSendQueue(new Packet45ArchivePreview(true, entry.getName(), 0L));
+			con.addToSendQueue(new Packet45ArchivePreview(true, entry.getName(), 0L));
 		}
 
 		for (ZipEntry entry : files) {
-			Connection.instance.addToSendQueue(new Packet45ArchivePreview(false, entry.getName(), entry.getSize() / 1024L));
+			con.addToSendQueue(new Packet45ArchivePreview(false, entry.getName(), entry.getSize() / 1024L));
 
 		}
 

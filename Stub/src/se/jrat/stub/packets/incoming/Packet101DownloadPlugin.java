@@ -21,7 +21,7 @@ public class Packet101DownloadPlugin extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {
-		String name = Connection.instance.readLine();		
+		String name = con.readLine();		
 		
 		File file = Temp.MAP.get(name);
 		

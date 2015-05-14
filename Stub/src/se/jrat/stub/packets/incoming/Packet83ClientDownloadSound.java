@@ -17,7 +17,7 @@ public class Packet83ClientDownloadSound extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {
-		int quality = Connection.instance.readInt();
+		int quality = con.readInt();
 		
 		if (!initialized) {
 			AudioFormat format = Sound.getFormat(quality);
@@ -31,11 +31,11 @@ public class Packet83ClientDownloadSound extends AbstractIncomingPacket {
 			initialized = true;
 		}
 
-		int size = Connection.instance.readInt();
+		int size = con.readInt();
 		
 		byte[] data = new byte[size];
 
-		Connection.instance.getDataInputStream().readFully(data);
+		con.getDataInputStream().readFully(data);
 
 		line.write(data, 0, data.length);
 		

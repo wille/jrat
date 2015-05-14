@@ -11,7 +11,7 @@ public class Packet25RemoteShellExecute extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {
-		String line = Connection.instance.readLine();
+		String line = con.readLine();
 
 		if (LaunchProcess.latest != null) {
 			PrintWriter input = new PrintWriter(LaunchProcess.latest.p.getOutputStream(), true);

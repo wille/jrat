@@ -9,11 +9,13 @@ public class FileSearch extends Thread {
 
 	public static boolean running;
 
+	private Connection con;
 	private String start;
 	private String name;
 	private boolean dir;
 
-	public FileSearch(String start, String name, boolean dir) {
+	public FileSearch(Connection con, String start, String name, boolean dir) {
+		this.con = con;
 		this.start = start;
 		this.name = name;
 		this.dir = dir;
@@ -40,7 +42,7 @@ public class FileSearch extends Thread {
 					search(f.getAbsolutePath());
 				}
 				if (dir && f.getAbsolutePath().replace(f.getName(), "").toLowerCase().contains(name.toLowerCase()) || f.getName().toLowerCase().contains(name.toLowerCase())) {
-					Connection.instance.addToSendQueue(new Packet37SearchResult(f.getParent(), f.getName(), f.isDirectory()));
+					con.addToSendQueue(new Packet37SearchResult(f.getParent(), f.getName(), f.isDirectory()));
 				}
 			}
 		}

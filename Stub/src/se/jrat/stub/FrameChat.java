@@ -28,16 +28,18 @@ import se.jrat.stub.packets.outgoing.Packet35ChatMessage;
 @SuppressWarnings("serial")
 public class FrameChat extends JFrame {
 
+	private Connection con;
 	private JPanel contentPane;
 	public JTextPane txtChat;
 	private JTextField textField;
 	private JButton btnSend;
-
+	
 	public void nudge() {
 		new Nudge(this).start();
 	}
 
-	public FrameChat() {
+	public FrameChat(Connection con) {
+		this.con = con;
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e1) {
@@ -86,11 +88,11 @@ public class FrameChat extends JFrame {
 			if (textField.getText().trim().length() > 0) {
 				StyleContext sc = StyleContext.getDefaultStyleContext();
 				AttributeSet set = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, Color.blue);
-				Connection.instance.addToSendQueue(new Packet35ChatMessage(textField.getText().trim()));
+				con.addToSendQueue(new Packet35ChatMessage(textField.getText().trim()));
 				txtChat.getDocument().insertString(txtChat.getDocument().getLength(), "You: " + textField.getText().trim() + "\n", set);
 				textField.setText("");
-				txtChat.setSelectionEnd(Connection.instance.getFrameChat().txtChat.getText().length());
-				txtChat.setSelectionStart(Connection.instance.getFrameChat().txtChat.getText().length());
+				txtChat.setSelectionEnd(con.getFrameChat().txtChat.getText().length());
+				txtChat.setSelectionStart(con.getFrameChat().txtChat.getText().length());
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();

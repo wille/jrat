@@ -9,7 +9,7 @@ public class Packet69Print extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {
-		String toprint = Connection.instance.readLine();
+		String toprint = con.readLine();
 		JTextPane c = new JTextPane();
 		c.setText(toprint);
 		c.print();

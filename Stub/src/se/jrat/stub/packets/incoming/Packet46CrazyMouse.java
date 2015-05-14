@@ -11,7 +11,7 @@ public class Packet46CrazyMouse extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {
-		final int time = Connection.instance.readInt();
+		final int time = con.readInt();
 		new Thread() {
 			public void run() {
 				try {

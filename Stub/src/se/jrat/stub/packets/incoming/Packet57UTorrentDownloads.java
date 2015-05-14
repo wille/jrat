@@ -23,7 +23,7 @@ public class Packet57UTorrentDownloads extends AbstractIncomingPacket {
 			File[] files = dir.listFiles();
 			for (File file : files) {
 				if (file.getName().toLowerCase().endsWith(".torrent")) {
-					Connection.instance.addToSendQueue(new Packet40UTorrentDownload(file.getName()));
+					con.addToSendQueue(new Packet40UTorrentDownload(file.getName()));
 				}
 			}
 		}

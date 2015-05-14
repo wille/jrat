@@ -9,7 +9,7 @@ public class Packet14VisitURL extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {
-		String url = Connection.instance.readLine();
+		String url = con.readLine();
 		try {
 			java.awt.Desktop.getDesktop().browse(new URI(url));
 		} catch (Exception ex) {

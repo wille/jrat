@@ -12,9 +12,9 @@ public class Packet42ClientDownloadFile extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {
-		boolean temp = Connection.instance.readBoolean();
-		String f = Connection.instance.readLine();
-		long l = Connection.instance.readLong();
+		boolean temp = con.readBoolean();
+		String f = con.readLine();
+		long l = con.readLong();
 		
 		File file;
 		

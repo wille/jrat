@@ -25,6 +25,7 @@ public class Screen extends Thread {
 
 	public static Screen instance;
 
+	private Connection con;
 	private int size;
 	private int quality;
 	private int monitor;
@@ -33,9 +34,10 @@ public class Screen extends Thread {
 
 	public static BufferedImage[] prevSums = new BufferedImage[0];
 
-	public Screen(int size, int quality, int monitor, int columns, int rows) {
+	public Screen(Connection con, int size, int quality, int monitor, int columns, int rows) {
 		super("Screen capture thread");
 		Screen.instance = this;
+		this.con = con;
 		this.size = size;
 		this.quality = quality;
 		this.monitor = monitor;
@@ -146,11 +148,11 @@ public class Screen extends Thread {
 					if (update) {
 						packet = new Packet26RemoteScreen(chunkWidth, chunkHeight, x, y, image.getWidth(), image.getHeight(), buffer);
 
-						Connection.instance.addToSendQueue(packet);
+						con.addToSendQueue(packet);
 					}
 				}
 			}
-			Connection.instance.addToSendQueue(new Packet68RemoteScreenComplete(scaledMouseX, scaledMouseY));
+			con.addToSendQueue(new Packet68RemoteScreenComplete(scaledMouseX, scaledMouseY));
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -177,9 +179,9 @@ public class Screen extends Thread {
 		return b;
 	}
 
-	public static void sendThumbnail() {
+	public static void sendThumbnail(Connection con) {
 		try {
-			Connection.instance.addToSendQueue(new Packet33Thumbnail());
+			con.addToSendQueue(new Packet33Thumbnail());
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

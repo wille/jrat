@@ -8,7 +8,7 @@ public class Packet105CancelClientUpload extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {
-		String remotePath = Connection.instance.readLine();
+		String remotePath = con.readLine();
 
 		TransferData localData = FileCache.get(remotePath);
 		

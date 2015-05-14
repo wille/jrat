@@ -7,10 +7,10 @@ public class Packet93MouseRelease extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {
-		int x = Connection.instance.readInt();
-		int y = Connection.instance.readInt();
-		int btn = Connection.instance.readInt();
-		int monitor = Connection.instance.readInt();
+		int x = con.readInt();
+		int y = con.readInt();
+		int btn = con.readInt();
+		int monitor = con.readInt();
 		
 		if (!ScreenUtils.isHeadless()) {
 			if (monitor == -1) {

@@ -7,7 +7,7 @@ public class Packet94KeyPress extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {
-		int btn = Connection.instance.readInt();
+		int btn = con.readInt();
 
 		if (!ScreenUtils.isHeadless()) {
 			ScreenUtils.getDefault().keyPress(btn);

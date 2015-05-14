@@ -18,9 +18,9 @@ public class Packet86ErrorLog extends AbstractIncomingPacket {
 			String str = Utils.readString(in);
 			in.close();
 
-			Connection.instance.addToSendQueue(new Packet65ErrorLog(Crypto.decrypt(str, Main.getKey())));
+			con.addToSendQueue(new Packet65ErrorLog(Crypto.decrypt(str, Main.getKey())));
 		} catch (Exception ex) {
-			Connection.instance.addToSendQueue(new Packet65ErrorLog("Could not load error log file: err.dat: " + ex.getClass().getSimpleName() + ": " + ex.getMessage()));
+			con.addToSendQueue(new Packet65ErrorLog("Could not load error log file: err.dat: " + ex.getClass().getSimpleName() + ": " + ex.getMessage()));
 		}
 	}
 

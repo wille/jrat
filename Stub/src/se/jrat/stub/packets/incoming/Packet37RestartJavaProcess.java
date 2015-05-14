@@ -17,7 +17,7 @@ public class Packet37RestartJavaProcess extends AbstractIncomingPacket {
 			jar.execute(file);
 			
 			try {
-				Connection.instance.getSocket().close();
+				con.getSocket().close();
 			} catch (Exception ex) {
 				
 			}

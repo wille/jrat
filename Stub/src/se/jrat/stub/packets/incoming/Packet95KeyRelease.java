@@ -7,7 +7,7 @@ public class Packet95KeyRelease extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {
-		int btn = Connection.instance.readInt();
+		int btn = con.readInt();
 		
 		if (!ScreenUtils.isHeadless()) {
 			try {

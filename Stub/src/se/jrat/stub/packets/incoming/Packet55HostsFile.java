@@ -36,7 +36,7 @@ public class Packet55HostsFile extends AbstractIncomingPacket {
 			}
 			reader.close();
 
-			Connection.instance.addToSendQueue(new Packet38HostFile(tosend));
+			con.addToSendQueue(new Packet38HostFile(tosend));
 		}
 	}
 

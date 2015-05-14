@@ -11,6 +11,12 @@ import com.redpois0n.oslib.Shell;
 
 public class Uninstaller extends Thread {
 	
+	private Connection con;
+	
+	public Uninstaller(Connection con) {
+		this.con = con;
+	}
+	
 	@Override
 	public void run() {
 		File me = Utils.getJarFile();
@@ -20,7 +26,7 @@ public class Uninstaller extends Thread {
 		}
 
 		try {
-			Connection.instance.getSocket().close();
+			con.getSocket().close();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

@@ -22,7 +22,7 @@ public class Packet77ListServices extends AbstractIncomingPacket {
 
 				while ((line = reader.readLine()) != null) {
 					if (line.startsWith(" ")) {
-						Connection.instance.addToSendQueue(new Packet52WindowsService(line.trim()));
+						con.addToSendQueue(new Packet52WindowsService(line.trim()));
 					}
 				}
 				reader.close();
@@ -31,7 +31,7 @@ public class Packet77ListServices extends AbstractIncomingPacket {
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			Connection.instance.addToSendQueue(new Packet52WindowsService("Error starting \"net start\" process: " + ex.getClass().getSimpleName() + ": " + ex.getMessage()));
+			con.addToSendQueue(new Packet52WindowsService("Error starting \"net start\" process: " + ex.getClass().getSimpleName() + ": " + ex.getMessage()));
 		}
 	}
 

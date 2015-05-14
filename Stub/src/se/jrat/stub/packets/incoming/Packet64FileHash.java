@@ -12,7 +12,7 @@ public class Packet64FileHash extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {
-		String path = Connection.instance.readLine();
+		String path = con.readLine();
 
 		File file = new File(path);
 		
@@ -24,7 +24,7 @@ public class Packet64FileHash extends AbstractIncomingPacket {
 
 		System.gc();
 
-		Connection.instance.addToSendQueue(new Packet46FileHash(smd5, ssha1));
+		con.addToSendQueue(new Packet46FileHash(smd5, ssha1));
 	}
 
 }

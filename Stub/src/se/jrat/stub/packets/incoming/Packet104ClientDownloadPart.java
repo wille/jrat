@@ -8,12 +8,12 @@ public class Packet104ClientDownloadPart extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {
-		final String remotePath = Connection.instance.readLine();
+		final String remotePath = con.readLine();
 
 		TransferData localData = FileCache.get(remotePath);
 		
-		byte[] buffer = new byte[Connection.instance.readInt()];
-		Connection.instance.getDataInputStream().readFully(buffer);
+		byte[] buffer = new byte[con.readInt()];
+		con.getDataInputStream().readFully(buffer);
 
 		localData.getOutputStream().write(buffer);
 		localData.increaseRead(buffer.length);

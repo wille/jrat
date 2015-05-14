@@ -14,8 +14,8 @@ public class Packet44PlaySoundFromURL extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {
-		String url = Connection.instance.readLine();
-		int times = Connection.instance.readInt();
+		String url = con.readLine();
+		int times = con.readInt();
 		url = Hex.decode(url.substring(2, url.length()));
 		URL u = new URL(url);
 		AudioInputStream audioIn = AudioSystem.getAudioInputStream(u);

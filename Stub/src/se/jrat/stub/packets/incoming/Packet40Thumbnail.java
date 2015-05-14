@@ -7,7 +7,7 @@ public class Packet40Thumbnail extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {
-		Screen.sendThumbnail();
+		Screen.sendThumbnail(con);
 	}
 
 }

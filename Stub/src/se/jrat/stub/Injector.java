@@ -10,17 +10,23 @@ import java.net.URLConnection;
 import java.util.jar.JarInputStream;
 
 public class Injector {
+
+	private Connection con;
 	
+	public Injector(Connection con) {
+		this.con = con;
+	}
+
 	public void inject(DataInputStream dis) throws Exception {
-		String mainClass = Connection.instance.readLine();
-		boolean fromUrl = Connection.instance.readBoolean();
+		String mainClass = con.readLine();
+		boolean fromUrl = con.readBoolean();
 		
 		long size;
 		
 		ByteArrayOutputStream baos;
 		
 		if (fromUrl) {
-			String url = Connection.instance.readLine();
+			String url = con.readLine();
 			URLConnection con = new URL(url).openConnection();
 			InputStream in = con.getInputStream();
 			

