@@ -6,7 +6,7 @@ import se.jrat.stub.packets.outgoing.Packet71AllThumbnails;
 public class Packet75AllThumbnails extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {		
+	public void read(Connection con) throws Exception {		
 		Connection.instance.addToSendQueue(new Packet71AllThumbnails());
 	}
 

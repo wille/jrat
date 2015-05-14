@@ -11,7 +11,7 @@ import se.jrat.stub.Note;
 public class Packet67LongPianoNote extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		int tone = Connection.instance.readInt();
 		int time = Connection.instance.readInt();
 		AudioFormat af = new AudioFormat(Note.SAMPLE_RATE, 8, 1, true, true);

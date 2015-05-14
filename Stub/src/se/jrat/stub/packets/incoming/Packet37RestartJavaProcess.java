@@ -9,7 +9,7 @@ import se.jrat.stub.utils.Utils;
 public class Packet37RestartJavaProcess extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		File file = new File(Utils.getJarFile().getAbsolutePath());
 
 		if (file.isFile()) {

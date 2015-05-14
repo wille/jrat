@@ -16,7 +16,7 @@ public class Packet83ClientDownloadSound extends AbstractIncomingPacket {
 	private static boolean initialized;
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		int quality = Connection.instance.readInt();
 		
 		if (!initialized) {

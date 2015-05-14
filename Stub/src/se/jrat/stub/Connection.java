@@ -113,7 +113,7 @@ public class Connection implements Runnable {
 			while (true) {
 				byte line = readByte();
 				
-				AbstractIncomingPacket.execute(line);
+				AbstractIncomingPacket.execute(this, line);
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
