@@ -19,6 +19,7 @@ public class ObfuscatedStreamKeyExchanger extends StreamKeyExchanger {
 		byte[] key = new byte[len];
 		
 		for (int i = 0; i < len; i++) {
+			dis.readByte();
 			key[i] = dis.readByte();
 		}	
 		
@@ -34,8 +35,11 @@ public class ObfuscatedStreamKeyExchanger extends StreamKeyExchanger {
 		byte[] encoded = pair.getPublic().getEncoded();
 		
 		dos.writeInt(encoded.length);
+		
+		byte b = (byte) (Byte.MAX_VALUE / encoded.length);
 
 		for (int i = 0; i < encoded.length; i++) {
+			dos.writeByte(b * i);
 			dos.writeByte(encoded[i]);
 		}
 	}
