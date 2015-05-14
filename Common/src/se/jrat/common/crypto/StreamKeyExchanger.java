@@ -19,6 +19,7 @@ public class StreamKeyExchanger extends KeyExchanger {
 	/**
 	 * Read public key from DataInputStream
 	 */
+	@Override
 	public PublicKey readRemoteKey() throws Exception {
 		int len = dis.readInt();
 		byte[] key = new byte[len];
@@ -33,6 +34,7 @@ public class StreamKeyExchanger extends KeyExchanger {
 	/**
 	 * Write public key to DataOutputStream
 	 */
+	@Override
 	public void writePublicKey() throws Exception {
 		byte[] encoded = pair.getPublic().getEncoded();
 		
