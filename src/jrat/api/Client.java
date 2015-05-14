@@ -18,9 +18,8 @@ public final class Client {
 	private final Queue queue;
 	private final DataInputStream in;
 	private final DataOutputStream out;
-	private final long uniqueId;
 
-	public Client(String ip, long uniqueId, Connection con, Writer writer, Reader reader, DataInputStream in, DataOutputStream out, Queue queue) {
+	public Client(String ip, Connection con, Writer writer, Reader reader, DataInputStream in, DataOutputStream out, Queue queue) {
 		this.ip = ip;
 		this.con = con;
 		this.writer = writer;
@@ -28,7 +27,6 @@ public final class Client {
 		this.queue = queue;
 		this.in = in;
 		this.out = out;
-		this.uniqueId = uniqueId;
 	}
 
 	/**
@@ -79,7 +77,7 @@ public final class Client {
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Client) {
-			return this == obj || ((Client) obj).uniqueId == uniqueId || ((Client) obj).ip.equals(ip);
+			return this == obj || ((Client) obj).ip.equals(ip);
 		}
 
 		return false;
@@ -87,7 +85,7 @@ public final class Client {
 	
 	@Override
 	public int hashCode() {
-		return (int) uniqueId;
+		return ip.hashCode();
 	}
 
 	/**
@@ -107,14 +105,4 @@ public final class Client {
 	public DataOutputStream getDataOutputStream() {
 		return out;
 	}
-
-	/**
-	 * Returns the unique ID for this Server/Slave/Object
-	 * 
-	 * @return
-	 */
-	public long getUniqueId() {
-		return uniqueId;
-	}
-
 }
