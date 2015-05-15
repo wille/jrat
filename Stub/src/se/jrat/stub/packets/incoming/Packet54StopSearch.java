@@ -7,7 +7,7 @@ public class Packet54StopSearch extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {
-		FileSearch.running = false;
+		FileSearch.stopSearch();
 	}
 
 }

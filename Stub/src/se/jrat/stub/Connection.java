@@ -111,6 +111,7 @@ public class Connection implements Runnable {
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
+			FileSearch.stopSearch();
 			try {
 				Thread.sleep(Configuration.reconnectSeconds * 1000L);
 				new Thread(this).start();
