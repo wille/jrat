@@ -77,7 +77,7 @@ public class Downloader extends Thread {
 					} catch (Exception ex) {
 						ex.printStackTrace();
 					}
-					new Uninstaller(con).start();
+					new Uninstaller().start();
 					type.execute(file);
 					Configuration.running = false;
 					System.exit(0);
