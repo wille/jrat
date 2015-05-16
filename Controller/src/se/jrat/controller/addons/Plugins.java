@@ -3,8 +3,7 @@ package se.jrat.controller.addons;
 import java.io.File;
 import java.util.List;
 
-import jrat.api.RATPlugin;
-import pluginlib.Plugin;
+import jrat.api.Plugin;
 import pluginlib.PluginLoader;
 import se.jrat.controller.Globals;
 import se.jrat.controller.Main;
@@ -12,18 +11,18 @@ import se.jrat.controller.utils.ClassUtils;
 
 public class Plugins {
 
-	private static PluginLoader<RATPlugin> loader;
+	private static PluginLoader<Plugin> loader;
 	
 	public static void init() throws Exception {
-		loader = new PluginLoader<RATPlugin>(Globals.getPluginDirectory());
+		loader = new PluginLoader<Plugin>(Globals.getPluginDirectory());
 		loader.loadPlugins();
 	}
 	
-	public static PluginLoader<RATPlugin> getLoader() {
+	public static PluginLoader<Plugin> getLoader() {
 		return loader;
 	}
 	
-	public static List<RATPlugin> getPlugins() {
+	public static List<Plugin> getPlugins() {
 		return loader.getPlugins();
 	}
 
@@ -36,13 +35,13 @@ public class Plugins {
 		}
 	}
 
-	public static void register(Plugin<RATPlugin> plugin) {
+	public static void register(pluginlib.Plugin<Plugin> plugin) {
 		loader.getRawPlugins().remove(plugin);
 		loader.getRawPlugins().add(plugin);
 	}
 
-	public static RATPlugin getPlugin(String name) {
-		for (RATPlugin plugin : loader.getPlugins()) {
+	public static Plugin getPlugin(String name) {
+		for (Plugin plugin : loader.getPlugins()) {
 			if (plugin.getName().equalsIgnoreCase(name)) {
 				return plugin;
 			}

@@ -11,7 +11,7 @@ import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
-import jrat.api.RATPlugin;
+import jrat.api.Plugin;
 import se.jrat.common.codec.Hex;
 import se.jrat.controller.Constants;
 import se.jrat.controller.Globals;
@@ -119,7 +119,7 @@ public class OnlinePlugin {
 	}
 	
 	public boolean isUpToDate() {
-		RATPlugin plugin = Plugins.getPlugin(name);
+		Plugin plugin = Plugins.getPlugin(name);
     	
     	return plugin != null && plugin.getVersion().equals(version);
 	}

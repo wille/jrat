@@ -32,7 +32,7 @@ public class ClientFormat {
 		final DataOutputStream out = s.getDataOutputStream();
 		final DataInputStream in = s.getDataInputStream();
 
-		Client j = new Client(s.getIP(), s.getUniqueId(), con, new Writer() {
+		Client j = new Client(s.getIP(), con, new Writer() {
 
 			@Override
 			public void write(byte arg0) throws IOException {

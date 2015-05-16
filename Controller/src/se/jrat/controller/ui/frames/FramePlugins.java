@@ -15,7 +15,7 @@ import javax.swing.JTable;
 import javax.swing.JToolBar;
 import javax.swing.table.DefaultTableModel;
 
-import jrat.api.RATPlugin;
+import jrat.api.Plugin;
 import jrat.api.events.Event;
 import jrat.api.events.EventType;
 import jrat.api.events.OnDisableEvent;
@@ -99,7 +99,7 @@ public class FramePlugins extends JFrame {
 
 	public void addPlugins() {
 		for (int i = 0; i < Plugins.getPlugins().size(); i++) {
-			RATPlugin p = Plugins.getPlugins().get(i);
+			Plugin p = Plugins.getPlugins().get(i);
 			model.addRow(new Object[] { p.getName(), p.getAuthor(), p.getDescription(), p.getVersion(), /* TODO */ });
 		}
 	}

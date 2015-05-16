@@ -23,7 +23,7 @@ import javax.swing.JTable;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import jrat.api.RATPlugin;
+import jrat.api.Plugin;
 import se.jrat.common.Version;
 import se.jrat.common.utils.DataUnits;
 import se.jrat.common.utils.IOUtils;
@@ -776,7 +776,7 @@ public class Frame extends JFrame {
 		}
 
 		for (int i = 0; i < Plugins.getPlugins().size(); i++) {
-			final RATPlugin p = Plugins.getPlugins().get(i);
+			final Plugin p = Plugins.getPlugins().get(i);
 
 			JMenuItem item = new JMenuItem(p.getName());
 
