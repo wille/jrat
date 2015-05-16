@@ -2,14 +2,14 @@ package jrat.api;
 
 import java.awt.event.ActionListener;
 
-public abstract class RATPlugin {
+public abstract class Plugin {
 
 	private String name;
 	private String version;
 	private String description;
 	private String author;
 
-	public RATPlugin(String name, String version, String description, String author) {
+	public Plugin(String name, String version, String description, String author) {
 		this.name = name;
 		this.version = version;
 		this.description = description;
