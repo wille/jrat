@@ -11,7 +11,6 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 
 import se.jrat.controller.ui.renderers.table.DefaultJTableCellRenderer;
-import se.jrat.controller.ui.renderers.table.PluginsTableRenderer;
 
 @SuppressWarnings({ "serial", "unchecked", "rawtypes" })
 public class JCheckBoxList extends JTable {
@@ -99,7 +98,6 @@ public class JCheckBoxList extends JTable {
 		column.setResizable(false);
 
 		column = getColumnModel().getColumn(1);
-		column.setCellRenderer(new PluginsTableRenderer(1));
 	}
 
 	public static class Entry {

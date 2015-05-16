@@ -11,9 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JToolBar;
-import javax.swing.table.DefaultTableModel;
 
 import jrat.api.Plugin;
 import jrat.api.events.Event;
@@ -21,14 +19,12 @@ import jrat.api.events.EventType;
 import jrat.api.events.OnDisableEvent;
 import se.jrat.controller.Globals;
 import se.jrat.controller.addons.Plugins;
-import se.jrat.controller.ui.components.DefaultJTable;
-import se.jrat.controller.ui.renderers.table.PluginsTableRenderer;
+import se.jrat.controller.ui.components.PluginTable;
 
 @SuppressWarnings("serial")
 public class FramePlugins extends JFrame {
 
-	private JTable table;
-	private DefaultTableModel model;
+	private PluginTable table;
 
 	public FramePlugins() {
 		setTitle("Installed Plugins");
@@ -63,10 +59,8 @@ public class FramePlugins extends JFrame {
 		});
 		btnReload.setIcon(IconUtils.getIcon("plugin"));
 
-		table = new DefaultJTable();
-		table.setDefaultRenderer(Object.class, new PluginsTableRenderer());
-		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "Name", "Author", "Description", "Version", "Status" }));
-		table.setRowHeight(25);
+		table = new PluginTable();
+		
 		scrollPane.setViewportView(table);
 		setLayout(new BorderLayout(0, 0));
 		add(toolBar, BorderLayout.SOUTH);
@@ -78,8 +72,8 @@ public class FramePlugins extends JFrame {
 	public void reload() {
 		new Thread(new Runnable() {
 			public void run() {
-				while (model.getRowCount() > 0) {
-					model.removeRow(0);
+				while (table.getPluginModel().getRowCount() > 0) {
+					table.getPluginModel().removeRow(0);
 				}
 
 				for (Event e : Event.getHandler().getEvents(EventType.EVENT_PLUGIN_DISABLE)) {
@@ -100,7 +94,7 @@ public class FramePlugins extends JFrame {
 	public void addPlugins() {
 		for (int i = 0; i < Plugins.getPlugins().size(); i++) {
 			Plugin p = Plugins.getPlugins().get(i);
-			model.addRow(new Object[] { p.getName(), p.getAuthor(), p.getDescription(), p.getVersion(), /* TODO */ });
+			table.getPluginModel().addRow(new Object[] { p });
 		}
 	}
 }

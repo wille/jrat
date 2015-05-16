@@ -20,7 +20,6 @@ import se.jrat.controller.addons.PluginList;
 import se.jrat.controller.addons.StubPlugin;
 import se.jrat.controller.ui.components.JCheckBoxList;
 import se.jrat.controller.ui.components.JCheckBoxList.Entry;
-import se.jrat.controller.ui.renderers.table.PluginsTableRenderer;
 
 
 @SuppressWarnings("serial")
@@ -114,7 +113,6 @@ public class PanelBuildPlugins extends JPanel {
 		table = new JCheckBoxList(obj);
 		model = ((JCheckBoxList.CheckBoxListModel) table.getModel());
 		table.setRowHeight(25);
-		table.setDefaultRenderer(Object.class, new PluginsTableRenderer());
 		table.getTableHeader().setReorderingAllowed(false);
 		scrollPane.setViewportView(table);
 		setLayout(groupLayout);

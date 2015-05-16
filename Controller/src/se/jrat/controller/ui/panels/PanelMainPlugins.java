@@ -1,20 +1,17 @@
 package se.jrat.controller.ui.panels;
 
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
 import jrat.api.Plugin;
 import se.jrat.controller.addons.Plugins;
-import se.jrat.controller.ui.components.DefaultJTable;
-import se.jrat.controller.ui.renderers.table.PluginsTableRenderer;
-
+import se.jrat.controller.ui.components.PluginTable;
 
 @SuppressWarnings("serial")
 public class PanelMainPlugins extends JScrollPane {
 
-	private JTable table;
+	private PluginTable table;
 
 	public DefaultTableModel getModel() {
 		return (DefaultTableModel) table.getModel();
@@ -23,14 +20,7 @@ public class PanelMainPlugins extends JScrollPane {
 	public PanelMainPlugins() {
 		setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		table = new DefaultJTable();
-		table.setRowHeight(25);
-		table.setDefaultRenderer(Object.class, new PluginsTableRenderer());
-		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Name", "Author", "Description", "Version" }) {
-			public boolean isCellEditable(int i, int i1) {
-				return false;
-			}
-		});
+		table = new PluginTable();
 		setViewportView(table);
 
 		reload();
@@ -43,7 +33,7 @@ public class PanelMainPlugins extends JScrollPane {
 
 		for (int i = 0; i < Plugins.getPlugins().size(); i++) {
 			Plugin p = Plugins.getPlugins().get(i);
-			getModel().addRow(new Object[] { p.getName(), p.getAuthor(), p.getDescription(), p.getVersion() });
+			getModel().addRow(new Object[] { p });
 		}
 	}
 }

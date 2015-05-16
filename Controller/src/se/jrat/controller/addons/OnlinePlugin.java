@@ -1,5 +1,7 @@
 package se.jrat.controller.addons;
 
+import iconlib.IconUtils;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
@@ -18,7 +20,6 @@ import se.jrat.controller.Globals;
 import se.jrat.controller.UniqueId;
 import se.jrat.controller.exceptions.MissingKeyException;
 import se.jrat.controller.net.WebRequest;
-import se.jrat.controller.ui.renderers.table.PluginsTableRenderer;
 
 public class OnlinePlugin {
 
@@ -45,7 +46,7 @@ public class OnlinePlugin {
 				uc.disconnect();
 			} catch (Exception e) {
 				e.printStackTrace();
-				icon = PluginsTableRenderer.PLUGIN_ICON;
+				icon = IconUtils.getIcon("plugin");
 			}
 		}
 

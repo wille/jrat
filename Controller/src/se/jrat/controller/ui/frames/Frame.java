@@ -57,7 +57,6 @@ import se.jrat.controller.ui.panels.PanelMainOnConnect;
 import se.jrat.controller.ui.panels.PanelMainPlugins;
 import se.jrat.controller.ui.panels.PanelMainSockets;
 import se.jrat.controller.ui.panels.PanelMainStats;
-import se.jrat.controller.ui.renderers.table.PluginsTableRenderer;
 import se.jrat.controller.utils.BasicIconUtils;
 import se.jrat.controller.utils.NetUtils;
 import se.jrat.controller.utils.Utils;
@@ -798,7 +797,7 @@ public class Frame extends JFrame {
 			if (iconFile.exists()) {
 				item.setIcon(new ImageIcon(iconFile.getAbsolutePath()));
 			} else {
-				item.setIcon(PluginsTableRenderer.PLUGIN_ICON);
+				item.setIcon(IconUtils.getIcon("plugin"));
 			}
 
 			mnPlugins.add(item);
