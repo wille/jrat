@@ -105,4 +105,21 @@ public final class Client {
 	public DataOutputStream getDataOutputStream() {
 		return out;
 	}
+	
+	public String readString() throws Exception {
+		String s = "";
+		
+		short len = in.readShort();
+		
+		for (int i = 0; i < len; i++) {
+			s += in.readChar();
+		}
+		
+		return s;
+	}
+	
+	public void writeString(String s) throws Exception {
+		out.writeShort(s.length());
+		out.writeChars(s);
+	}
 }
