@@ -2,18 +2,26 @@ package jrat.api;
 
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
+
 public abstract class Plugin {
 
 	private String name;
 	private String version;
 	private String description;
 	private String author;
-
+	private ImageIcon icon;
+	
 	public Plugin(String name, String version, String description, String author) {
+		this(name, version, description, author, null);
+	}
+	
+	public Plugin(String name, String version, String description, String author, ImageIcon icon) {
 		this.name = name;
 		this.version = version;
 		this.description = description;
 		this.author = author;
+		this.icon = icon;
 	}
 
 	/**
@@ -48,6 +56,14 @@ public abstract class Plugin {
 	 */
 	public String getAuthor() {
 		return this.author;
+	}
+	
+	/**
+	 * Returns the icon for this plugin (Can be null if no icon is specified)
+	 * @return
+	 */
+	public ImageIcon getIcon() {
+		return icon;
 	}
 	
 	/**
