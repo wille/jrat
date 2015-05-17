@@ -21,6 +21,7 @@ import se.jrat.common.DropLocations;
 import se.jrat.controller.Help;
 import se.jrat.controller.settings.Settings;
 import se.jrat.controller.ui.components.JPlaceholderTextField;
+import java.awt.Color;
 
 
 @SuppressWarnings("serial")
@@ -32,21 +33,30 @@ public class PanelBuildStartup extends JPanel {
 	private JButton button;
 	private JCheckBox chckbxHideInstalledFile;
 	private JCheckBox chckbxRunNextStart;
+	private JCheckBox chckbxDisableInstalling;
 
-	public String getJarname() {
+	public String getJarName() {
 		return txtName.getText().trim();
 	}
 
-	public int droploc() {
+	public int getDropLocation() {
 		return comboBox.getSelectedIndex();
 	}
 	
-	public boolean runNext() {
+	public boolean shouldRunNextBoot() {
 		return chckbxRunNextStart.isSelected();
 	}
 
-	public boolean melt() {
+	public boolean shouldMelt() {
 		return chckbxMeltDropperAfter.isSelected();
+	}
+	
+	public boolean shouldHideFile() {
+		return chckbxHideInstalledFile.isSelected();
+	}
+
+	public boolean dontInstall() {
+		return chckbxDisableInstalling.isSelected();
 	}
 
 	public PanelBuildStartup() {
@@ -64,8 +74,8 @@ public class PanelBuildStartup extends JPanel {
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 206, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(83, Short.MAX_VALUE))
+					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+					.addContainerGap())
 		);
 
 		JLabel lblInstallIn = new JLabel("Install in:");
@@ -98,6 +108,9 @@ public class PanelBuildStartup extends JPanel {
 		
 		JLabel label = new JLabel("");
 		label.setIcon(IconUtils.getIcon("os_win"));
+		
+		chckbxDisableInstalling = new JCheckBox("Disable installing");
+		chckbxDisableInstalling.setForeground(Color.RED);
 
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
@@ -105,13 +118,13 @@ public class PanelBuildStartup extends JPanel {
 				.addGroup(gl_panel.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(chckbxDisableInstalling)
 						.addGroup(gl_panel.createSequentialGroup()
 							.addComponent(chckbxRunNextStart)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(label))
 						.addComponent(chckbxHideInstalledFile)
 						.addComponent(chckbxMeltDropperAfter)
-						.addComponent(button)
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblInstallIn)
@@ -119,7 +132,8 @@ public class PanelBuildStartup extends JPanel {
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblDroppedFileAnd)
-								.addComponent(txtName, GroupLayout.PREFERRED_SIZE, 212, GroupLayout.PREFERRED_SIZE))))
+								.addComponent(txtName, GroupLayout.PREFERRED_SIZE, 212, GroupLayout.PREFERRED_SIZE)))
+						.addComponent(button))
 					.addContainerGap(36, Short.MAX_VALUE))
 		);
 		gl_panel.setVerticalGroup(
@@ -141,16 +155,14 @@ public class PanelBuildStartup extends JPanel {
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(chckbxRunNextStart)
 						.addComponent(label))
-					.addPreferredGap(ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(chckbxDisableInstalling)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(button)
-					.addGap(37))
+					.addContainerGap(60, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
 		setLayout(groupLayout);
 
-	}
-
-	public boolean hideFile() {
-		return chckbxHideInstalledFile.isSelected();
 	}
 }

