@@ -93,10 +93,8 @@ public class FrameSettings extends JFrame {
 
 		renderer.getIconMap().put("main", IconUtils.getIcon("tab-settings"));
 		renderer.getIconMap().put("themes", IconUtils.getIcon("themes"));
-		renderer.getIconMap().put("editor", IconUtils.getIcon("list"));
 		renderer.getIconMap().put("flags", IconUtils.getIcon("/flags/unknown.png", false));
 		renderer.getIconMap().put("stats", IconUtils.getIcon("statistics"));
-		renderer.getIconMap().put("sound", IconUtils.getIcon("sound"));
 		renderer.getIconMap().put("eula", IconUtils.getIcon("gavel"));
 		renderer.getIconMap().put("changelog", IconUtils.getIcon("changelog"));
 		renderer.getIconMap().put("about", IconUtils.getIcon("info"));
@@ -160,10 +158,8 @@ public class FrameSettings extends JFrame {
 	public void addNodes(DefaultMutableTreeNode root) {
 		root.add(new DefaultMutableTreeNode("Main"));
 		root.add(new DefaultMutableTreeNode("Themes"));
-		root.add(new DefaultMutableTreeNode("Editor"));
 		root.add(new DefaultMutableTreeNode("Flags"));
 		root.add(new DefaultMutableTreeNode("Stats"));
-		root.add(new DefaultMutableTreeNode("Sound"));
 		/* Hidden
 		 * root.add(new DefaultMutableTreeNode("Proxy"));
 		 */
