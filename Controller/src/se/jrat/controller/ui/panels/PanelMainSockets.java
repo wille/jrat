@@ -84,11 +84,11 @@ public class PanelMainSockets extends JPanel {
 						String timeout = model.getValueAt(row, 3).toString();
 						String pass = model.getValueAt(row, 4).toString().split(", ")[0];
 
-						model.removeRow(row);
-
 						PortListener con = PortListener.getListener(name, Integer.parseInt(port), Integer.parseInt(timeout), pass);
 						con.getServer().close();
 						PortListener.listeners.remove(con);
+						
+						model.removeRow(row);
 					}
 				} catch (Exception ex) {
 					ex.printStackTrace();
