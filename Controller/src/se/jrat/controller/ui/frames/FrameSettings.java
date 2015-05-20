@@ -21,13 +21,15 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
 import se.jrat.common.Version;
-import se.jrat.controller.listeners.ChangelogListener;
-import se.jrat.controller.listeners.EulaListener;
+import se.jrat.controller.Constants;
+import se.jrat.controller.ErrorDialog;
 import se.jrat.controller.listeners.Performable;
+import se.jrat.controller.net.WebRequest;
 import se.jrat.controller.settings.Settings;
 import se.jrat.controller.settings.SettingsTheme;
 import se.jrat.controller.settings.StatisticsCountry;
 import se.jrat.controller.ui.dialogs.DialogAbout;
+import se.jrat.controller.ui.dialogs.DialogEula;
 import se.jrat.controller.ui.panels.PanelSettingsFlags;
 import se.jrat.controller.ui.panels.PanelSettingsMain;
 import se.jrat.controller.ui.panels.PanelSettingsProxy;
@@ -119,8 +121,26 @@ public class FrameSettings extends JFrame {
 		panels.put("proxy", new PanelSettingsProxy());
 
 		actions.clear();
-		actions.put("eula", new EulaListener());
-		actions.put("changelog", new ChangelogListener());
+		actions.put("eula", new Performable() {
+			@Override
+			public void perform() {
+				DialogEula frame = new DialogEula(true);
+				frame.setVisible(true);
+			}
+		});
+		actions.put("changelog", new Performable() {
+			@Override
+			public void perform() {
+				try {
+					FrameChangelog frame = new FrameChangelog(WebRequest.getUrl(Constants.HOST + "/api/changelog.php"), Version.getVersion());
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+					ErrorDialog.create(e);
+				}				
+			}
+			
+		});
 		actions.put("about", new Performable() {
 			@Override
 			public void perform() {
