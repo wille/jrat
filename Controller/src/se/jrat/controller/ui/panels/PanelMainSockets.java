@@ -79,10 +79,10 @@ public class PanelMainSockets extends JPanel {
 				try {
 					int row = table.getSelectedRow();
 					if (row != -1) {
-						String name = model.getValueAt(row, 0).toString();
-						String port = model.getValueAt(row, 1).toString();
-						String timeout = model.getValueAt(row, 2).toString();
-						String pass = model.getValueAt(row, 3).toString().split(", ")[0];
+						String name = model.getValueAt(row, 1).toString();
+						String port = model.getValueAt(row, 2).toString();
+						String timeout = model.getValueAt(row, 3).toString();
+						String pass = model.getValueAt(row, 4).toString().split(", ")[0];
 
 						model.removeRow(row);
 
