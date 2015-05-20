@@ -4,11 +4,11 @@ import java.awt.BorderLayout;
 import java.util.Map;
 
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 import se.jrat.controller.ErrorDialog;
 import se.jrat.controller.Slave;
 import se.jrat.controller.net.GeoIP;
+import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.components.JRemoteScreenPane;
 
 
@@ -17,8 +17,8 @@ public class PanelControlTrace extends PanelControlParent {
 
 	private JTable table;
 
-	public DefaultTableModel getModel() {
-		return (DefaultTableModel) table.getModel();
+	public TableModel getModel() {
+		return (TableModel) table.getModel();
 	}
 
 	public PanelControlTrace(Slave sl) {

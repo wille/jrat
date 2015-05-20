@@ -15,10 +15,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.table.DefaultTableModel;
 
 import se.jrat.controller.Slave;
 import se.jrat.controller.packets.outgoing.Packet71LocalNetworkDevices;
+import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.components.DefaultJTable;
 
 
@@ -26,11 +26,11 @@ import se.jrat.controller.ui.components.DefaultJTable;
 public class PanelControlLANScan extends PanelControlParent {
 
 	private JTable table;
-	private DefaultTableModel model;
+	private TableModel model;
 	private JProgressBar progressBar;
 	private JLabel label;
 
-	public DefaultTableModel getModel() {
+	public TableModel getModel() {
 		return model;
 	}
 
@@ -117,7 +117,7 @@ public class PanelControlLANScan extends PanelControlParent {
 		);
 
 		table = new DefaultJTable();
-		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "Local IP", "Computer/Device name" }));
+		table.setModel(model = new TableModel(new Object[][] {}, new String[] { "Local IP", "Computer/Device name" }));
 		table.setRowHeight(25);
 		table.getColumnModel().getColumn(0).setPreferredWidth(175);
 		table.getColumnModel().getColumn(1).setPreferredWidth(422);

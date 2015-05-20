@@ -12,10 +12,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.table.DefaultTableModel;
 
 import se.jrat.controller.Slave;
 import se.jrat.controller.packets.outgoing.Packet77ListServices;
+import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.components.DefaultJTable;
 
 
@@ -23,9 +23,9 @@ import se.jrat.controller.ui.components.DefaultJTable;
 public class PanelControlServices extends PanelControlParent {
 
 	private JTable table;
-	private DefaultTableModel model;
+	private TableModel model;
 
-	public DefaultTableModel getModel() {
+	public TableModel getModel() {
 		return model;
 	}
 
@@ -76,7 +76,7 @@ public class PanelControlServices extends PanelControlParent {
 
 		table = new DefaultJTable();
 		table.setRowHeight(25);
-		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "Service name" }));
+		table.setModel(model = new TableModel(new Object[][] {}, new String[] { "Service name" }));
 		table.getColumnModel().getColumn(0).setPreferredWidth(586);
 		scrollPane.setViewportView(table);
 		setLayout(groupLayout);

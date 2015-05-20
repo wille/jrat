@@ -20,11 +20,11 @@ import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.table.DefaultTableModel;
 
 import se.jrat.controller.AbstractSlave;
 import se.jrat.controller.LogEntry;
 import se.jrat.controller.Main;
+import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.components.DefaultJTable;
 import se.jrat.controller.ui.frames.QuickFrame;
 import se.jrat.controller.ui.renderers.table.LogTableRenderer;
@@ -39,10 +39,10 @@ public class PanelMainLog extends JPanel {
 	public static QuickFrame frame;
 
 	private JTable table;
-	private DefaultTableModel model;
+	private TableModel model;
 	private JMenuItem mntmExpand;
 
-	public DefaultTableModel getModel() {
+	public TableModel getModel() {
 		return model;
 	}
 
@@ -65,7 +65,7 @@ public class PanelMainLog extends JPanel {
 
 		table = new DefaultJTable();
 		table.setDefaultRenderer(Object.class, new LogTableRenderer());
-		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "Action", "Connection", "Info", "Time" }) {
+		table.setModel(model = new TableModel(new Object[][] {}, new String[] { "Action", "Connection", "Info", "Time" }) {
 			public boolean isCellEditable(int i, int i1) {
 				return false;
 			}

@@ -11,9 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
 
 import se.jrat.controller.threads.ThreadGraph;
+import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.components.DefaultJTable;
 import se.jrat.controller.utils.FlagUtils;
 
@@ -24,8 +24,8 @@ import com.redpois0n.graphs.graph.GraphEntry;
 @SuppressWarnings("serial")
 public class PanelMainStats extends JScrollPane {
 
-	private DefaultTableModel countryModel;
-	private DefaultTableModel osModel;
+	private TableModel countryModel;
+	private TableModel osModel;
 
 	private JTable countryTable;
 	private JTable osTable;
@@ -124,7 +124,7 @@ public class PanelMainStats extends JScrollPane {
 
 			countryScrollPane = new JScrollPane(countryGraph);
 			add(countryScrollPane);
-			countryModel = new DefaultTableModel(new Object[][] {}, new String[] { "Countries" });
+			countryModel = new TableModel(new Object[][] {}, new String[] { "Countries" });
 			countryTable = new DefaultJTable(countryModel);
 			countryTable.setDefaultRenderer(Object.class, flagRenderer);
 			countryTable.setRowHeight(20);
@@ -132,7 +132,7 @@ public class PanelMainStats extends JScrollPane {
 			add(countryTableScrollPane);
 			countryTableScrollPane.setViewportView(countryTable);
 
-			osModel = new DefaultTableModel(new Object[][] {}, new String[] { "Operating Systems" });
+			osModel = new TableModel(new Object[][] {}, new String[] { "Operating Systems" });
 			osTable = new DefaultJTable(osModel);
 			osTable.setDefaultRenderer(Object.class, osRenderer);
 			osTable.setRowHeight(20);

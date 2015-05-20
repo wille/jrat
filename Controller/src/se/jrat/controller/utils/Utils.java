@@ -11,10 +11,10 @@ import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
-import javax.swing.table.DefaultTableModel;
 
 import se.jrat.controller.AbstractSlave;
 import se.jrat.controller.Main;
+import se.jrat.controller.ui.components.TableModel;
 
 public class Utils {
 
@@ -55,7 +55,7 @@ public class Utils {
 		return JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION;
 	}
 
-	public static String[] getFiles(int[] rows, DefaultTableModel model) {
+	public static String[] getFiles(int[] rows, TableModel model) {
 		String[] str = new String[rows.length];
 		for (int i = 0; i < rows.length; i++) {
 			int row = rows[i];

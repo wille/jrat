@@ -18,10 +18,10 @@ import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.table.DefaultTableModel;
 
 import se.jrat.controller.ErrorDialog;
 import se.jrat.controller.net.PortListener;
+import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.components.DefaultJTable;
 import se.jrat.controller.ui.frames.FrameAddSocket;
 import se.jrat.controller.ui.renderers.table.SocketsTableRenderer;
@@ -30,10 +30,10 @@ import se.jrat.controller.ui.renderers.table.SocketsTableRenderer;
 public class PanelMainSockets extends JPanel {
 
 	private JTable table;
-	private DefaultTableModel model;
+	private TableModel model;
 	public static PanelMainSockets instance;
 
-	public DefaultTableModel getModel() {
+	public TableModel getModel() {
 		return model;
 	}
 
@@ -48,7 +48,7 @@ public class PanelMainSockets extends JPanel {
 
 		table = new DefaultJTable();
 		table.setDefaultRenderer(Object.class, new SocketsTableRenderer());
-		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "Status", "Name", "Port", "Timeout", "Pass" }));
+		table.setModel(model = new TableModel(new Object[][] {}, new String[] { "Status", "Name", "Port", "Timeout", "Pass" }));
 		table.getColumnModel().getColumn(1).setPreferredWidth(211);
 		table.getColumnModel().getColumn(2).setPreferredWidth(60);
 		table.getColumnModel().getColumn(3).setPreferredWidth(101);

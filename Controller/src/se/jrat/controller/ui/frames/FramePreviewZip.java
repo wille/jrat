@@ -21,10 +21,10 @@ import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
 
 import se.jrat.controller.Slave;
 import se.jrat.controller.packets.outgoing.Packet63PreviewArchive;
+import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.components.DefaultJTable;
 
 
@@ -35,10 +35,10 @@ public class FramePreviewZip extends BaseFrame {
 
 	private JPanel contentPane;
 	private JTable table;
-	private DefaultTableModel model;
+	private TableModel model;
 	private String file;
 
-	public DefaultTableModel getModel() {
+	public TableModel getModel() {
 		return model;
 	}
 
@@ -90,7 +90,7 @@ public class FramePreviewZip extends BaseFrame {
 				return super.getColumnClass(column);
 			}
 		};
-		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { " ", "File name", "Size" }) {
+		table.setModel(model = new TableModel(new Object[][] {}, new String[] { " ", "File name", "Size" }) {
 			public boolean isCellEditable(int row, int column) {
 				return false;
 			}

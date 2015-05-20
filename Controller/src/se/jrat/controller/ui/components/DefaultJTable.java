@@ -3,7 +3,6 @@ package se.jrat.controller.ui.components;
 import java.awt.Dimension;
 
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 import se.jrat.controller.ui.renderers.table.DefaultJTableCellRenderer;
 
@@ -14,7 +13,7 @@ public class DefaultJTable extends JTable {
 		this(null);
 	}
 	
-	public DefaultJTable(DefaultTableModel model) {
+	public DefaultJTable(TableModel model) {
 		super(model);
 		
 		setShowGrid(false);

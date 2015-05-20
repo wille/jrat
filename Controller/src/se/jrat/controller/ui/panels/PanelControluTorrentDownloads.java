@@ -13,10 +13,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.table.DefaultTableModel;
 
 import se.jrat.controller.Slave;
 import se.jrat.controller.packets.outgoing.Packet57UTorrentDownloads;
+import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.components.DefaultJTable;
 
 
@@ -24,10 +24,10 @@ import se.jrat.controller.ui.components.DefaultJTable;
 public class PanelControluTorrentDownloads extends PanelControlParent {
 
 	private JTable table;
-	private DefaultTableModel model;
+	private TableModel model;
 	private ImageIcon icon = null;
 
-	public DefaultTableModel getModel() {
+	public TableModel getModel() {
 		return model;
 	}
 
@@ -79,7 +79,7 @@ public class PanelControluTorrentDownloads extends PanelControlParent {
 				return super.getColumnClass(column);
 			}
 		};
-		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { " ", "Torrent Name" }));
+		table.setModel(model = new TableModel(new Object[][] {}, new String[] { " ", "Torrent Name" }));
 		table.getColumnModel().getColumn(0).setPreferredWidth(20);
 		table.getColumnModel().getColumn(1).setPreferredWidth(545);
 		table.setRowHeight(20);

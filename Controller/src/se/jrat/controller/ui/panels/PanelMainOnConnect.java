@@ -14,19 +14,19 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JToolBar;
-import javax.swing.table.DefaultTableModel;
 
 import se.jrat.controller.AbstractSlave;
 import se.jrat.controller.Main;
 import se.jrat.controller.events.Event;
 import se.jrat.controller.events.Events;
+import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.components.DefaultJTable;
 
 @SuppressWarnings("serial")
 public class PanelMainOnConnect extends JPanel {
 	
 	private JTable table;
-	private DefaultTableModel model;
+	private TableModel model;
 
 	public PanelMainOnConnect() {		
 		final JComboBox<Object> boxOnConnect = new JComboBox<Object>();
@@ -100,7 +100,7 @@ public class PanelMainOnConnect extends JPanel {
 				return super.getColumnClass(column);
 			}
 		};
-		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { " ", "Name", "Type", "", "" }) {
+		table.setModel(model = new TableModel(new Object[][] {}, new String[] { " ", "Name", "Type", "", "" }) {
 			public boolean isCellEditable(int i, int i1) {
 				return false;
 			}

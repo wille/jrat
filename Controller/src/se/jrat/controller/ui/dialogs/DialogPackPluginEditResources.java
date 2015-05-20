@@ -14,8 +14,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.table.DefaultTableModel;
 
+import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.components.DefaultJTable;
 import se.jrat.controller.ui.frames.FramePackPlugin;
 
@@ -24,7 +24,7 @@ public class DialogPackPluginEditResources extends JDialog {
 
 	private FramePackPlugin frame;
 	private JTable table;
-	private DefaultTableModel model;
+	private TableModel model;
 
 	public DialogPackPluginEditResources(FramePackPlugin frame) {
 		super();
@@ -91,7 +91,7 @@ public class DialogPackPluginEditResources extends JDialog {
 		);
 		
 		table = new DefaultJTable();
-		table.setModel(model = new DefaultTableModel(
+		table.setModel(model = new TableModel(
 			new Object[][] {
 			},
 			new String[] {

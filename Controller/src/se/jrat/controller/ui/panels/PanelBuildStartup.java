@@ -2,6 +2,7 @@ package se.jrat.controller.ui.panels;
 
 import iconlib.IconUtils;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -21,7 +22,6 @@ import se.jrat.common.DropLocations;
 import se.jrat.controller.Help;
 import se.jrat.controller.settings.Settings;
 import se.jrat.controller.ui.components.JPlaceholderTextField;
-import java.awt.Color;
 
 
 @SuppressWarnings("serial")

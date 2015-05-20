@@ -17,7 +17,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
-import javax.swing.table.DefaultTableModel;
 
 import se.jrat.controller.AbstractSlave;
 import se.jrat.controller.io.FileObject;
@@ -31,7 +30,7 @@ public abstract class FileTable extends JPanel {
 	protected JToolBar toolBar;
 	protected JTable table;
 	public FileViewTableRenderer tableRenderer;
-	private DefaultTableModel tableModel;
+	private TableModel tableModel;
 	
 	protected JComboBox<String> driveComboBox;
 	protected DefaultComboBoxModel<String> driveComboModel;
@@ -52,12 +51,7 @@ public abstract class FileTable extends JPanel {
 		
 		tableRenderer = new FileViewTableRenderer(slave);
 		
-		this.tableModel = new DefaultTableModel(null, new Object[] { "File name", "File size", "Last modified", "Hidden" }) {
-			@Override
-			public boolean isCellEditable(int row, int column) {
-				return false;
-			}
-		};
+		this.tableModel = new TableModel(new Object[] { "File name", "File size", "Last modified", "Hidden" });
 		
 		JScrollPane sp = new JScrollPane();
 		table = new DefaultJTable(getTableModel());
@@ -183,7 +177,7 @@ public abstract class FileTable extends JPanel {
 		getTableModel().addRow(new Object[] { fo });
 	}
 
-	public DefaultTableModel getTableModel() {
+	public TableModel getTableModel() {
 		return tableModel;
 	}
 }

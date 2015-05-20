@@ -12,12 +12,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.table.DefaultTableModel;
 
 import se.jrat.controller.Slave;
 import se.jrat.controller.packets.outgoing.Packet89LoadedPlugins;
+import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.components.DefaultJTable;
-import se.jrat.controller.ui.renderers.table.PluginsTableRenderer;
 
 
 @SuppressWarnings("serial")
@@ -29,8 +28,8 @@ public class PanelControlLoadedPlugins extends PanelControlParent {
 		return table;
 	}
 
-	public DefaultTableModel getModel() {
-		return (DefaultTableModel) table.getModel();
+	public TableModel getModel() {
+		return (TableModel) table.getModel();
 	}
 
 	public PanelControlLoadedPlugins(Slave sl) {
@@ -60,9 +59,9 @@ public class PanelControlLoadedPlugins extends PanelControlParent {
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 303, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnReload).addComponent(btnClear)).addContainerGap(18, Short.MAX_VALUE)));
 
 		table = new DefaultJTable();
-		table.setDefaultRenderer(Object.class, new PluginsTableRenderer());
+		//table.setDefaultRenderer(Object.class, new PluginsTableRenderer());
 		table.setRowHeight(25);
-		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Name" }) {
+		table.setModel(new TableModel(new Object[][] {}, new String[] { "Name" }) {
 			public boolean isCellEditable(int i, int i1) {
 				return false;
 			}

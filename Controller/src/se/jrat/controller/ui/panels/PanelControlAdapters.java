@@ -12,10 +12,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.table.DefaultTableModel;
 
 import se.jrat.controller.Slave;
 import se.jrat.controller.packets.outgoing.Packet82NetworkAdapters;
+import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.components.DefaultJTable;
 
 
@@ -23,9 +23,9 @@ import se.jrat.controller.ui.components.DefaultJTable;
 public class PanelControlAdapters extends PanelControlParent {
 
 	private JTable table;
-	private DefaultTableModel model;
+	private TableModel model;
 
-	public DefaultTableModel getModel() {
+	public TableModel getModel() {
 		return model;
 	}
 
@@ -74,7 +74,7 @@ public class PanelControlAdapters extends PanelControlParent {
 		);
 
 		table = new DefaultJTable();
-		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "Display name", "Name", "InetAddresses" }));
+		table.setModel(model = new TableModel(new Object[][] {}, new String[] { "Display name", "Name", "InetAddresses" }));
 		table.setRowHeight(25);
 		table.getColumnModel().getColumn(0).setPreferredWidth(176);
 		table.getColumnModel().getColumn(1).setPreferredWidth(150);

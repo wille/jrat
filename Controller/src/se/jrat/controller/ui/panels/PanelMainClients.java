@@ -25,7 +25,6 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
-import javax.swing.table.DefaultTableModel;
 
 import jrat.api.Client;
 import jrat.api.ui.RATMenuItem;
@@ -53,6 +52,7 @@ import se.jrat.controller.settings.Settings;
 import se.jrat.controller.settings.SettingsColumns;
 import se.jrat.controller.threads.UploadThread;
 import se.jrat.controller.ui.Columns;
+import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.components.DefaultJTable;
 import se.jrat.controller.ui.dialogs.DialogFileType;
 import se.jrat.controller.ui.frames.FrameControlPanel;
@@ -78,7 +78,7 @@ public class PanelMainClients extends JScrollPane {
 	private final List<String> columns = new ArrayList<String>();
 
 	private JTable table;
-	private DefaultTableModel model;
+	private TableModel model;
 	
 	public PanelMainClients() {
 		for (Columns s : Columns.values()) {
@@ -292,7 +292,7 @@ public class PanelMainClients extends JScrollPane {
 		}
 	}
 
-	public class ClientsTableModel extends DefaultTableModel {
+	public class ClientsTableModel extends TableModel {
 
 		public ClientsTableModel() {
 			for (String s : columns) {

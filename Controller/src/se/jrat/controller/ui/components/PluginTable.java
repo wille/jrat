@@ -22,34 +22,19 @@ public class PluginTable extends DefaultJTable {
 	public static final String COLUMN_DESCRIPTION = "Description";
 	public static final String COLUMN_VERSION = "Version";
 
-	private PluginTableModel model;
+	private DefaultTableModel model;
 
 	public PluginTable() {
 		setDefaultRenderer(Object.class, new PluginsTableRenderer());
 		
-		model = new PluginTableModel();
+		model = new TableModel(new String[] { COLUMN_NAME, COLUMN_AUTHOR, COLUMN_DESCRIPTION, COLUMN_VERSION });
 		setModel(model);
 		
 		setRowHeight(25);
 	}
 	
-	public PluginTableModel getPluginModel() {
+	public DefaultTableModel getPluginModel() {
 		return model;
-	}
-	
-	public class PluginTableModel extends DefaultTableModel {
-		
-		public PluginTableModel() {
-			addColumn(COLUMN_NAME);
-			addColumn(COLUMN_AUTHOR);
-			addColumn(COLUMN_DESCRIPTION);
-			addColumn(COLUMN_VERSION);
-		}
-		
-		@Override
-		public boolean isCellEditable(int i, int i1) {
-			return false;
-		}
 	}
 	
 	private class PluginsTableRenderer extends DefaultTableCellRenderer {

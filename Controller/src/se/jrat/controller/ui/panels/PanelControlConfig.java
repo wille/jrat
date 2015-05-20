@@ -14,10 +14,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.table.DefaultTableModel;
 
 import se.jrat.controller.Slave;
 import se.jrat.controller.packets.outgoing.Packet88StubConfig;
+import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.components.DefaultJTable;
 
 
@@ -26,8 +26,8 @@ public class PanelControlConfig extends PanelControlParent {
 
 	private JTable table;
 
-	public DefaultTableModel getModel() {
-		return (DefaultTableModel) table.getModel();
+	public TableModel getModel() {
+		return (TableModel) table.getModel();
 	}
 
 	public PanelControlConfig(Slave sl) {
@@ -63,7 +63,7 @@ public class PanelControlConfig extends PanelControlParent {
 		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addContainerGap().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 241, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED, 13, Short.MAX_VALUE).addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(btnReload).addComponent(btnClear)).addContainerGap()));
 
 		table = new DefaultJTable();
-		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Key", "Value" }));
+		table.setModel(new TableModel(new Object[][] {}, new String[] { "Key", "Value" }));
 		table.setRowHeight(25);
 		table.getColumnModel().getColumn(0).setPreferredWidth(199);
 		table.getColumnModel().getColumn(1).setPreferredWidth(335);

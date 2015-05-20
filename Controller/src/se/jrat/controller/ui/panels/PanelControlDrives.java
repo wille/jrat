@@ -5,10 +5,10 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.table.DefaultTableModel;
 
 import se.jrat.controller.Drive;
 import se.jrat.controller.Slave;
+import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.components.DefaultJTable;
 import se.jrat.controller.ui.renderers.table.DrivesTableRenderer;
 
@@ -22,8 +22,8 @@ public class PanelControlDrives extends PanelControlParent {
 		return table;
 	}
 
-	public DefaultTableModel getModel() {
-		return (DefaultTableModel) table.getModel();
+	public TableModel getModel() {
+		return (TableModel) table.getModel();
 	}
 
 	public PanelControlDrives(Slave sl) {
@@ -36,7 +36,7 @@ public class PanelControlDrives extends PanelControlParent {
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE));
 
 		table = new DefaultJTable();
-		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Drive", "Total Space", "Free Space", "Usable Space" }) {
+		table.setModel(new TableModel(new Object[][] {}, new String[] { "Drive", "Total Space", "Free Space", "Usable Space" }) {
 			public boolean isCellEditable(int i, int i1) {
 				return false;
 			}

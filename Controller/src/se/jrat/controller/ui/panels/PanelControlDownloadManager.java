@@ -17,10 +17,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.table.DefaultTableModel;
 
 import se.jrat.controller.Slave;
 import se.jrat.controller.packets.outgoing.Packet34AdvancedDownload;
+import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.components.DefaultJTable;
 
 
@@ -28,13 +28,13 @@ import se.jrat.controller.ui.components.DefaultJTable;
 public class PanelControlDownloadManager extends PanelControlParent {
 
 	private JTable table;
-	private DefaultTableModel model;
+	private TableModel model;
 	private JTextField txtURL;
 	private JCheckBox chckbxExecute;
 	@SuppressWarnings("rawtypes")
 	private JComboBox comboBox;
 
-	public DefaultTableModel getModel() {
+	public TableModel getModel() {
 		return model;
 	}
 
@@ -86,7 +86,7 @@ public class PanelControlDownloadManager extends PanelControlParent {
 				return super.getColumnClass(column);
 			}
 		};
-		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { " ", "URL", "Execute", "Drop directory", "Status" }));
+		table.setModel(model = new TableModel(new Object[][] {}, new String[] { " ", "URL", "Execute", "Drop directory", "Status" }));
 		table.getColumnModel().getColumn(0).setPreferredWidth(30);
 		table.getColumnModel().getColumn(1).setPreferredWidth(267);
 		table.getColumnModel().getColumn(2).setPreferredWidth(108);

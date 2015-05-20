@@ -13,12 +13,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
 
 import se.jrat.common.hash.Md5;
 import se.jrat.common.hash.Sha1;
 import se.jrat.common.utils.DataUnits;
 import se.jrat.controller.build.BuildStatus;
+import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.components.DefaultJTable;
 import se.jrat.controller.ui.renderers.table.BuildTableRenderer;
 
@@ -34,9 +34,9 @@ public class DialogSummary extends JDialog {
 
 	private JPanel contentPane;
 	private JTable table;
-	private DefaultTableModel infomodel;
-	private DefaultTableModel generalmodel;
-	private DefaultTableModel logmodel;
+	private TableModel infomodel;
+	private TableModel generalmodel;
+	private TableModel logmodel;
 	private JTable table_1;
 	private JTable table_2;
 
@@ -68,9 +68,9 @@ public class DialogSummary extends JDialog {
 		panel_1.add(scrollPane_1);
 
 		table_1 = new DefaultJTable();
-		table_1.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Property", "Value" }));
+		table_1.setModel(new TableModel(new Object[][] {}, new String[] { "Property", "Value" }));
 		table_1.setRowHeight(25);
-		generalmodel = (DefaultTableModel) table_1.getModel();
+		generalmodel = (TableModel) table_1.getModel();
 		scrollPane_1.setViewportView(table_1);
 
 		JPanel panel = new JPanel();
@@ -82,10 +82,10 @@ public class DialogSummary extends JDialog {
 		panel.add(scrollPane);
 
 		table = new DefaultJTable();
-		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Property", "Value" }));
+		table.setModel(new TableModel(new Object[][] {}, new String[] { "Property", "Value" }));
 		table.setRowHeight(25);
 
-		infomodel = (DefaultTableModel) table.getModel();
+		infomodel = (TableModel) table.getModel();
 		scrollPane.setViewportView(table);
 
 		JPanel panel_2 = new JPanel();
@@ -97,9 +97,9 @@ public class DialogSummary extends JDialog {
 
 		table_2 = new DefaultJTable();
 		table_2.setDefaultRenderer(Object.class, new BuildTableRenderer(statuses));
-		table_2.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Action" }));
+		table_2.setModel(new TableModel(new Object[][] {}, new String[] { "Action" }));
 		table_2.setRowHeight(25);
-		logmodel = (DefaultTableModel) table_2.getModel();
+		logmodel = (TableModel) table_2.getModel();
 		scrollPane_2.setViewportView(table_2);
 
 		setLocationRelativeTo(null);

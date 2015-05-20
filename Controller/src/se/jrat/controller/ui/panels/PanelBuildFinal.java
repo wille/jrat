@@ -21,7 +21,6 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.table.DefaultTableModel;
 
 import se.jrat.common.utils.DataUnits;
 import se.jrat.controller.ErrorDialog;
@@ -36,6 +35,7 @@ import se.jrat.controller.build.BuildExecutable;
 import se.jrat.controller.build.BuildStatus;
 import se.jrat.controller.listeners.AdvancedBuildListener;
 import se.jrat.controller.settings.Settings;
+import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.components.DefaultJTable;
 import se.jrat.controller.ui.frames.FrameBuildAdvanced;
 import se.jrat.controller.ui.renderers.table.BuildTableRenderer;
@@ -56,8 +56,8 @@ public class PanelBuildFinal extends JPanel {
 	private LinkedHashMap<String, BuildStatus> statuses = new LinkedHashMap<String, BuildStatus>();
 	private JTable table;
 
-	public DefaultTableModel getModel() {
-		return (DefaultTableModel) table.getModel();
+	public TableModel getModel() {
+		return (TableModel) table.getModel();
 	}
 
 	public LinkedHashMap<String, BuildStatus> getStatuses() {
@@ -84,7 +84,7 @@ public class PanelBuildFinal extends JPanel {
 	public void log(String message, BuildStatus status) {
 		try {
 			statuses.put(message, status);
-			((DefaultTableModel) table.getModel()).addRow(new Object[] { message });
+			((TableModel) table.getModel()).addRow(new Object[] { message });
 			table.scrollRectToVisible(table.getCellRect(table.getRowCount(), 0, false));
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -150,7 +150,7 @@ public class PanelBuildFinal extends JPanel {
 		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addGap(16).addGroup(gl_panel.createParallelGroup(Alignment.TRAILING).addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(lblOutput).addComponent(txtOutput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addComponent(button)).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_panel.createParallelGroup(Alignment.TRAILING).addComponent(lblExpectedSizeUnknown, GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE).addComponent(button_1)).addPreferredGap(ComponentPlacement.RELATED).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(lblStatus).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false).addComponent(progressBar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(btnBuild, GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)).addContainerGap()));
 
 		table = new DefaultJTable();
-		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "New column" }));
+		table.setModel(new TableModel(new Object[][] {}, new String[] { "New column" }));
 		table.setTableHeader(null);
 		table.setRowHeight(25);
 		table.setDefaultRenderer(Object.class, new BuildTableRenderer(getStatuses()));

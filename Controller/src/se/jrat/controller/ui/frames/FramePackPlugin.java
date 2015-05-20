@@ -30,13 +30,13 @@ import javax.swing.JTextPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
 
 import se.jrat.common.Logger;
 import se.jrat.common.utils.JarUtils;
 import se.jrat.controller.ErrorDialog;
 import se.jrat.controller.Main;
 import se.jrat.controller.build.PluginPacker;
+import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.components.DefaultJTable;
 import se.jrat.controller.ui.dialogs.DialogPackPluginEditResources;
 
@@ -53,7 +53,7 @@ public class FramePackPlugin extends JFrame {
 	private JTextField txtIcon;
 	private JButton btnRemove;
 	private JTable table;
-	private DefaultTableModel model;
+	private TableModel model;
 	private JLabel lblResources;
 	private DialogPackPluginEditResources frame = new DialogPackPluginEditResources(this);
 	
@@ -281,7 +281,7 @@ public class FramePackPlugin extends JFrame {
 		
 		table = new DefaultJTable();
 		table.setRowHeight(25);
-		table.setModel(model = new DefaultTableModel(
+		table.setModel(model = new TableModel(
 			new Object[][] {
 			},
 			new String[] {
