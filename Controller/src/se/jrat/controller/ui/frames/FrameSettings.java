@@ -27,6 +27,7 @@ import se.jrat.controller.listeners.Performable;
 import se.jrat.controller.settings.Settings;
 import se.jrat.controller.settings.SettingsTheme;
 import se.jrat.controller.settings.StatisticsCountry;
+import se.jrat.controller.ui.dialogs.DialogAbout;
 import se.jrat.controller.ui.panels.PanelSettingsFlags;
 import se.jrat.controller.ui.panels.PanelSettingsMain;
 import se.jrat.controller.ui.panels.PanelSettingsProxy;
@@ -120,6 +121,12 @@ public class FrameSettings extends JFrame {
 		actions.clear();
 		actions.put("eula", new EulaListener());
 		actions.put("changelog", new ChangelogListener());
+		actions.put("about", new Performable() {
+			@Override
+			public void perform() {
+				new DialogAbout().setVisible(true);
+			}		
+		});
 	}
 
 	public void save() {
