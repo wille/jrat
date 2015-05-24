@@ -7,10 +7,10 @@ import jrat.api.Client;
 
 public abstract class PacketBuilder {
 
-	private byte header;
+	private short header;
 	private Client rat;
 
-	public PacketBuilder(byte header, Client rat) {
+	public PacketBuilder(short header, Client rat) {
 		this.header = header;
 		this.rat = rat;
 	}
@@ -28,7 +28,7 @@ public abstract class PacketBuilder {
 	 * 
 	 * @return The header of this packet
 	 */
-	public byte getHeader() {
+	public short getHeader() {
 		return header;
 	}
 

@@ -7,10 +7,10 @@ import java.util.Map;
 
 public class Packet {
 	
-	private static final Map<Byte, List<PacketListener>> PACKETS_INCOMING = new HashMap<Byte, List<PacketListener>>();
-	private static final Map<Byte, List<PacketListener>> PACKETS_OUTGOING = new HashMap<Byte, List<PacketListener>>();
+	private static final Map<Short, List<PacketListener>> PACKETS_INCOMING = new HashMap<Short, List<PacketListener>>();
+	private static final Map<Short, List<PacketListener>> PACKETS_OUTGOING = new HashMap<Short, List<PacketListener>>();
 	
-	public static void registerIncoming(byte type, PacketListener listener) {
+	public static void registerIncoming(short type, PacketListener listener) {
 		if (!PACKETS_INCOMING.containsKey(type)) {
 			PACKETS_INCOMING.put(type, new ArrayList<PacketListener>());
 		}
@@ -20,13 +20,13 @@ public class Packet {
 		list.add(listener);
 	}
 	
-	public static void unregisterIncoming(byte header, PacketListener listener) {
+	public static void unregisterIncoming(short header, PacketListener listener) {
 		if (PACKETS_INCOMING.containsKey(header)) {
 			PACKETS_INCOMING.get(header).remove(listener);
 		}
 	}
 	
-	public static List<PacketListener> getIncoming(byte header) {
+	public static List<PacketListener> getIncoming(short header) {
 		if (!PACKETS_INCOMING.containsKey(header)) {
 			PACKETS_INCOMING.put(header, new ArrayList<PacketListener>());
 		}
@@ -34,7 +34,7 @@ public class Packet {
 		return PACKETS_INCOMING.get(header);
 	}
 	
-	public static void registerOutgoing(byte type, PacketListener listener) {
+	public static void registerOutgoing(short type, PacketListener listener) {
 		if (!PACKETS_OUTGOING.containsKey(type)) {
 			PACKETS_OUTGOING.put(type, new ArrayList<PacketListener>());
 		}
@@ -44,13 +44,13 @@ public class Packet {
 		list.add(listener);
 	}
 	
-	public static void unregisterOutgoing(byte header, PacketListener listener) {
+	public static void unregisterOutgoing(short header, PacketListener listener) {
 		if (PACKETS_OUTGOING.containsKey(header)) {
 			PACKETS_OUTGOING.get(header).remove(listener);
 		}
 	}
 	
-	public static List<PacketListener> getOutgoing(byte header) {
+	public static List<PacketListener> getOutgoing(short header) {
 		if (!PACKETS_OUTGOING.containsKey(header)) {
 			PACKETS_OUTGOING.put(header, new ArrayList<PacketListener>());
 		}
@@ -58,9 +58,9 @@ public class Packet {
 		return PACKETS_OUTGOING.get(header);
 	}
 	
-	private final byte header;
+	private final short header;
 
-	public Packet(byte header) {
+	public Packet(short header) {
 		this.header = header;
 	}
 
@@ -68,7 +68,7 @@ public class Packet {
 	 * 
 	 * @return The header
 	 */
-	public byte getHeader() {
+	public short getHeader() {
 		return header;
 	}
 
