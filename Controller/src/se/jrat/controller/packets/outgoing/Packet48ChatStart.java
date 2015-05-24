@@ -13,7 +13,7 @@ public class Packet48ChatStart extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 48;
 	}
 

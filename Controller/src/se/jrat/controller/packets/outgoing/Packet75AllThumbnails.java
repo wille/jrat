@@ -13,7 +13,7 @@ public class Packet75AllThumbnails extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 75;
 	}
 

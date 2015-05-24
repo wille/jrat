@@ -50,7 +50,7 @@ public class Slave extends AbstractSlave {
 			initialize();	
 
 			while (true) {
-				byte header = readByte();
+				short header = readShort();
 
 				if (header == 1) {
 					Sha1 sha = new Sha1();

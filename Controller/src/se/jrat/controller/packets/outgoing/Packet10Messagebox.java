@@ -28,7 +28,7 @@ public class Packet10Messagebox extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 10;
 	}
 

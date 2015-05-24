@@ -19,7 +19,7 @@ public class Packet41SpecialDirectory extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 41;
 	}
 

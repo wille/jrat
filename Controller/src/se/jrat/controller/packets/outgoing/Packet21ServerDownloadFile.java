@@ -20,7 +20,7 @@ public class Packet21ServerDownloadFile extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 21;
 	}
 

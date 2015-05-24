@@ -137,7 +137,7 @@ public class ClientFormat {
 						}
 
 						@Override
-						public byte getPacketId() {
+						public short getPacketId() {
 							return arg0.getHeader();
 						}
 					};

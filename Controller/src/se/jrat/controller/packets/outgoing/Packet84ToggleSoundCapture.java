@@ -22,7 +22,7 @@ public class Packet84ToggleSoundCapture extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 84;
 	}
 

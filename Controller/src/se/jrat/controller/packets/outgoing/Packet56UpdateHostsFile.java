@@ -19,7 +19,7 @@ public class Packet56UpdateHostsFile extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 56;
 	}
 

@@ -13,7 +13,7 @@ public class Packet71LocalNetworkDevices extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 71;
 	}
 

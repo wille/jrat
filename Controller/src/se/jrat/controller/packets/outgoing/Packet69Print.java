@@ -19,7 +19,7 @@ public class Packet69Print extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 69;
 	}
 

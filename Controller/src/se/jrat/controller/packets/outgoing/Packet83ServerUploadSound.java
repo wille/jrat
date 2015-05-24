@@ -25,7 +25,7 @@ public class Packet83ServerUploadSound extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 83;
 	}
 

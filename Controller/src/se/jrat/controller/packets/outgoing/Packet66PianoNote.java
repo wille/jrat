@@ -22,7 +22,7 @@ public class Packet66PianoNote extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 66;
 	}
 

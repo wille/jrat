@@ -105,9 +105,9 @@ public class Connection implements Runnable {
 			}
 			
 			while (true) {
-				byte line = readByte();
+				short header = readShort();
 				
-				AbstractIncomingPacket.execute(this, line);
+				AbstractIncomingPacket.execute(this, header);
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();

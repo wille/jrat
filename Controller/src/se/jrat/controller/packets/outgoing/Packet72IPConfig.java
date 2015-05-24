@@ -13,7 +13,7 @@ public class Packet72IPConfig extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 72;
 	}
 

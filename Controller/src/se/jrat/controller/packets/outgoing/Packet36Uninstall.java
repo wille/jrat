@@ -14,7 +14,7 @@ public class Packet36Uninstall extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 36;
 	}
 

@@ -28,7 +28,7 @@ public class Packet93MouseRelease extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 93;
 	}
 

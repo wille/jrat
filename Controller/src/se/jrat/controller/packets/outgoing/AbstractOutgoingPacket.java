@@ -11,17 +11,17 @@ public abstract class AbstractOutgoingPacket {
 
 	public abstract void write(Slave slave, DataOutputStream dos) throws Exception;
 
-	public abstract byte getPacketId();
+	public abstract short getPacketId();
 
 	public synchronized final void send(Slave slave, DataOutputStream dos) {
 		try {
-			byte id = getPacketId();
+			short id = getPacketId();
 
 			if (id < 0 || id > PacketRange.RANGE_OUTGOING) {
 				PluginEventHandler.onSendPacket(id, slave);
 			}
 
-			dos.writeByte(getPacketId());
+			dos.writeShort(getPacketId());
 			this.write(slave, dos);
 		} catch (Exception e) {
 			e.printStackTrace();

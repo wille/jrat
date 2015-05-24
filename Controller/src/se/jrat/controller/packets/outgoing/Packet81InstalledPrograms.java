@@ -19,7 +19,7 @@ public class Packet81InstalledPrograms extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 81;
 	}
 

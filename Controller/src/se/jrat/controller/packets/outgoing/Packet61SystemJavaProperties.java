@@ -13,7 +13,7 @@ public class Packet61SystemJavaProperties extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 61;
 	}
 

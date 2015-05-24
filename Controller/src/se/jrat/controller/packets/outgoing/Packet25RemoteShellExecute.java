@@ -19,7 +19,7 @@ public class Packet25RemoteShellExecute extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 25;
 	}
 

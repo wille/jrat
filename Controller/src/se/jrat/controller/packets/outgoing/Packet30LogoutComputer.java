@@ -13,7 +13,7 @@ public class Packet30LogoutComputer extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 30;
 	}
 

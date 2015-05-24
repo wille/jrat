@@ -13,7 +13,7 @@ public class Packet77ListServices extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 77;
 	}
 

@@ -19,7 +19,7 @@ public class Packet14VisitURL extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 14;
 	}
 

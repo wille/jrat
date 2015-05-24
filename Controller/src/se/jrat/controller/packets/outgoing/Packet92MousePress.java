@@ -28,7 +28,7 @@ public class Packet92MousePress extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 92;
 	}
 

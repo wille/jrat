@@ -19,7 +19,7 @@ public class Packet64FileHash extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 64;
 	}
 

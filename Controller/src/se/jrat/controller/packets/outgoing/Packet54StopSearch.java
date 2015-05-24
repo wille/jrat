@@ -13,7 +13,7 @@ public class Packet54StopSearch extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 54;
 	}
 

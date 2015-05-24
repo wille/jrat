@@ -22,7 +22,7 @@ public class Packet44PlaySoundFromURL extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 44;
 	}
 

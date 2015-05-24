@@ -22,7 +22,7 @@ public class Packet43CreateDirectory extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 43;
 	}
 

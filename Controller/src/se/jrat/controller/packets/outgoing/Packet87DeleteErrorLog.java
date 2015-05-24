@@ -13,7 +13,7 @@ public class Packet87DeleteErrorLog extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 87;
 	}
 

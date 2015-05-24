@@ -22,7 +22,7 @@ public class Packet39VisitManyURLs extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 39;
 	}
 

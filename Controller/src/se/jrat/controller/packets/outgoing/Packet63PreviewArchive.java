@@ -19,7 +19,7 @@ public class Packet63PreviewArchive extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 63;
 	}
 

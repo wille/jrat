@@ -25,7 +25,7 @@ public class Packet50UpdateRemoteScreen extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 50;
 	}
 

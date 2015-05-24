@@ -14,7 +14,7 @@ public class Packet37RestartJavaProcess extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 37;
 	}
 

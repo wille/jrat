@@ -13,7 +13,7 @@ public class Packet90SystemProperties extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 90;
 	}
 

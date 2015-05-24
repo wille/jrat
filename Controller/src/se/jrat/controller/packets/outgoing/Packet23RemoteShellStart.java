@@ -13,7 +13,7 @@ public class Packet23RemoteShellStart extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 23;
 	}
 

@@ -19,7 +19,7 @@ public class Packet46CrazyMouse extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 46;
 	}
 

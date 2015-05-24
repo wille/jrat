@@ -13,7 +13,7 @@ public class Packet19ListProcesses extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 19;
 	}
 

@@ -18,7 +18,7 @@ public class Packet102PauseServerUpload extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 102;
 	}
 

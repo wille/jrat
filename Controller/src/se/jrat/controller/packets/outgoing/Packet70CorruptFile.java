@@ -19,7 +19,7 @@ public class Packet70CorruptFile extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 70;
 	}
 

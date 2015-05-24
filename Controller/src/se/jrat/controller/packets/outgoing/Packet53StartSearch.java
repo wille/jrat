@@ -25,7 +25,7 @@ public class Packet53StartSearch extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 53;
 	}
 

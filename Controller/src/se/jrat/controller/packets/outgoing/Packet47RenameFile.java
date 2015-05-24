@@ -22,7 +22,7 @@ public class Packet47RenameFile extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 47;
 	}
 

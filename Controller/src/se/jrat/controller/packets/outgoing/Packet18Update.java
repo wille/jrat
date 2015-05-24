@@ -27,7 +27,7 @@ public class Packet18Update extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 18;
 	}
 

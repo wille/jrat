@@ -13,7 +13,7 @@ public class Packet88StubConfig extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 88;
 	}
 

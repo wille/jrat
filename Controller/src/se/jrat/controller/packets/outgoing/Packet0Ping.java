@@ -13,7 +13,7 @@ public class Packet0Ping extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 0;
 	}
 
