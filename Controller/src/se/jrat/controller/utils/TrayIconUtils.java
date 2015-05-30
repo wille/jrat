@@ -28,7 +28,7 @@ public class TrayIconUtils {
 			}
 
 			SystemTray tray = SystemTray.getSystemTray();
-			icon = new TrayIcon(IconUtils.getIcon("icon", true).getImage(), Main.instance.getTitle(), null);
+			icon = new TrayIcon(IconUtils.getIcon("icon-16x16").getImage(), Main.instance.getTitle(), null);
 			icon.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
