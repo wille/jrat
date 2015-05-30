@@ -5,8 +5,10 @@ import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import se.jrat.common.utils.DataUnits;
 import se.jrat.controller.listeners.GlobalNetworkMonitorListener;
 import se.jrat.controller.threads.RunnableNetworkCounter;
+import se.jrat.controller.utils.TrayIconUtils;
 
 import com.redpois0n.graphs.network.NetworkColors;
 import com.redpois0n.graphs.network.NetworkGraph;
@@ -46,7 +48,8 @@ public class PanelMainNetwork extends JPanel {
 	private class GraphListener implements GlobalNetworkMonitorListener {
 		@Override
 		public void onUpdate(int out, int in) {
-			graph.addValues(out, in);	
+			graph.addValues(out, in);
+			TrayIconUtils.setTitle(DataUnits.getAsString(in) + "/s down, " + DataUnits.getAsString(out) + "/s up");
 		}
 	}
 }

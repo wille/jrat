@@ -15,7 +15,7 @@ import se.jrat.controller.ui.frames.Frame;
 
 public class TrayIconUtils {
 
-	public static boolean useTray = false;
+	public static boolean usingTray = false;
 	private static TrayIcon icon;
 
 	public static void initialize() {
@@ -44,7 +44,7 @@ public class TrayIconUtils {
 				}
 			});
 			tray.add(icon);
-			useTray = true;
+			usingTray = true;
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -55,13 +55,13 @@ public class TrayIconUtils {
 	}
 
 	public static void showMessage(String title, String message, TrayIcon.MessageType type) {
-		if (useTray) {
+		if (usingTray) {
 			icon.displayMessage(title, message, type);
 		}
 	}
 
 	public static void setTitle(String s) {
-		if (useTray) {
+		if (usingTray) {
 			icon.setToolTip(s);
 		}
 	}
