@@ -43,7 +43,7 @@ public class PanelMainNetwork extends JPanel {
 		
 	}
 	
-	class Listener implements GlobalNetworkMonitorListener {
+	private class Listener implements GlobalNetworkMonitorListener {
 		@Override
 		public void onUpdate(int out, int in) {
 			graph.addValues(out, in);	
