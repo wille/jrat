@@ -24,9 +24,4 @@ public class ThreadGraph extends Thread {
 			}
 		}
 	}
-
-	public static enum GraphMethod {
-		TOTAL,
-		UNIQUE;
-	}
 }
