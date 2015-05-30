@@ -18,7 +18,7 @@ public class PanelMainNetwork extends JPanel {
 	
 	private boolean initialized;
 	
-	private Listener listener = new Listener();
+	private GraphListener listener = new GraphListener();
 
 	public PanelMainNetwork() {
 		init();
@@ -43,7 +43,7 @@ public class PanelMainNetwork extends JPanel {
 		
 	}
 	
-	private class Listener implements GlobalNetworkMonitorListener {
+	private class GraphListener implements GlobalNetworkMonitorListener {
 		@Override
 		public void onUpdate(int out, int in) {
 			graph.addValues(out, in);	

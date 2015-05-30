@@ -4,6 +4,7 @@ import iconlib.IconUtils;
 
 import java.awt.SystemTray;
 import java.awt.TrayIcon;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -26,9 +27,11 @@ public class TrayIconUtils {
 				return;
 			}
 
-			MouseListener mouseListener = new MouseListener() {
+			SystemTray tray = SystemTray.getSystemTray();
+			icon = new TrayIcon(IconUtils.getIcon("icon", true).getImage(), Main.instance.getTitle(), null);
+			icon.addMouseListener(new MouseAdapter() {
+				@Override
 				public void mouseClicked(MouseEvent e) {
-
 					if (e.getClickCount() == 2 && !e.isConsumed()) {
 						e.consume();
 						Frame frame = Main.instance;
@@ -39,24 +42,7 @@ public class TrayIconUtils {
 						}
 					}
 				}
-
-				public void mouseEntered(MouseEvent arg0) {
-				}
-
-				public void mouseExited(MouseEvent arg0) {
-				}
-
-				public void mousePressed(MouseEvent arg0) {
-				}
-
-				public void mouseReleased(MouseEvent arg0) {
-				}
-
-			};
-
-			SystemTray tray = SystemTray.getSystemTray();
-			icon = new TrayIcon(IconUtils.getIcon("icon", true).getImage(), Main.instance.getTitle(), null);
-			icon.addMouseListener(mouseListener);
+			});
 			tray.add(icon);
 			useTray = true;
 		} catch (Exception ex) {
