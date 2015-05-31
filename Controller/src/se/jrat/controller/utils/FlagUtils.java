@@ -35,7 +35,6 @@ public class FlagUtils {
         COUNTRIES.put("AD", "Andorra");
         COUNTRIES.put("AO", "Angola");
         COUNTRIES.put("AI", "Anguilla ");
-        COUNTRIES.put("AQ", "Antarctica");
         COUNTRIES.put("AG", "Antigua and Barbuda");
         COUNTRIES.put("AR", "Argentina");
         COUNTRIES.put("AM", "Armenia");

@@ -116,7 +116,7 @@ public class StatisticsOperatingSystem extends AbstractStoreable implements Seri
 		}
 	}
 
-	public int getNoConnects() {
+	public int getConnectCount() {
 		int no = 0;
 		for (OperatingSystemStatEntry e : list) {
 			no += e.connects;
