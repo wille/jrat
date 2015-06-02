@@ -17,9 +17,13 @@ public class MathUtils {
 	public static String getRemainingTime(long speed, long total) {
 		int secondsLeft = getRemainingSeconds(speed, total);
 		
-		int h = secondsLeft / 3600;
-		int m = (secondsLeft % 3600) / 60;
-		int s = secondsLeft % 60;
+		return getTimeFromSeconds(secondsLeft);
+	}
+	
+	public static String getTimeFromSeconds(int sec) {
+		int h = sec / 3600;
+		int m = (sec % 3600) / 60;
+		int s = sec % 60;
 		
 		String hours = h < 10 ? "0" + h : Integer.toString(h);
 		String minutes = m < 10 ? "0" + m : Integer.toString(m);
@@ -27,5 +31,4 @@ public class MathUtils {
 
 		return hours + ":" + minutes + ":" + seconds + " remaining";
 	}
-
 }
