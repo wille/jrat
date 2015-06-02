@@ -142,7 +142,7 @@ public class WebPanelConnection implements Runnable {
                 	bw.write(sb.toString() + "\n");
                 	bw.flush();
                 } else if (packet == WebPanelPackets.PACKET_REMOVE_OFFLINE) {
-                	long id = Long.parseLong(readLine());
+                	int id = readNumber();
                 	
                 	StoreOfflineSlaves.getGlobal().remove(id);
                 } else if (packet == WebPanelPackets.PACKET_SERVER_INFO) {

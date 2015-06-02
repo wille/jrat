@@ -92,7 +92,7 @@ public class StoreOfflineSlaves extends AbstractStoreable {
 		}
 	}
 
-	public void remove(long id) {
+	public void remove(int id) {
 		for (int i = 0; i < getList().size(); i++) {
 			if(getList().get(i).getRandomId() == id) {
 				getList().remove(i);
