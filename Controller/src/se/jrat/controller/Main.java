@@ -35,6 +35,8 @@ import se.jrat.controller.utils.TrayIconUtils;
 import com.redpois0n.oslib.OperatingSystem;
 
 public class Main {
+	
+	public static final long START_TIME = System.currentTimeMillis();
 
 	public static boolean liteVersion = true;
 	public static boolean debug;
