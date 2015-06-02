@@ -145,6 +145,12 @@ public class WebPanelConnection implements Runnable {
                 	long id = Long.parseLong(readLine());
                 	
                 	StoreOfflineSlaves.getGlobal().remove(id);
+                } else if (packet == WebPanelPackets.PACKET_SERVER_INFO) {
+                	StringBuilder sb = new StringBuilder();
+                	sb.append(System.currentTimeMillis());
+                	
+                	bw.write(sb.toString() + "\n");
+                	bw.flush();
                 }
             }
 
