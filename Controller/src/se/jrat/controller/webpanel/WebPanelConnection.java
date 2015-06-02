@@ -147,7 +147,8 @@ public class WebPanelConnection implements Runnable {
                 	StoreOfflineSlaves.getGlobal().remove(id);
                 } else if (packet == WebPanelPackets.PACKET_SERVER_INFO) {
                 	StringBuilder sb = new StringBuilder();
-                	sb.append(System.currentTimeMillis());
+                	
+                	sb.append(System.currentTimeMillis() - Main.START_TIME);
                 	
                 	bw.write(sb.toString() + "\n");
                 	bw.flush();
