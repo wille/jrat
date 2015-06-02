@@ -24,7 +24,7 @@ import se.jrat.controller.settings.SettingsColumns;
 import se.jrat.controller.settings.SettingsTheme;
 import se.jrat.controller.settings.StatisticsCountry;
 import se.jrat.controller.threads.RunnableCheckPlugins;
-import se.jrat.controller.threads.RunnableNetworkCounter;
+import se.jrat.controller.threads.NetworkCounter;
 import se.jrat.controller.threads.ThreadCheckVersion;
 import se.jrat.controller.threads.ThreadPing;
 import se.jrat.controller.threads.ThreadTransferSpeed;
@@ -129,7 +129,7 @@ public class Main {
 		}
 
 		Main.debug("Starting threads...");
-		new Thread(new RunnableNetworkCounter()).start();
+		new Thread(new NetworkCounter()).start();
 		new ThreadCheckVersion().start();
 		new Thread(new RunnableCheckPlugins()).start();
 		new ThreadPing().start();

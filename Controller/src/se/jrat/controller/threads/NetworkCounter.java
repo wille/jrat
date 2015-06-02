@@ -8,10 +8,22 @@ import se.jrat.controller.Main;
 import se.jrat.controller.listeners.GlobalNetworkMonitorListener;
 import se.jrat.controller.listeners.NetworkMonitorListener;
 
-public class RunnableNetworkCounter implements Runnable {
+public class NetworkCounter implements Runnable {
 	
 	private static final List<NetworkMonitorListener> INVIDUAL_LISTENERS = new ArrayList<NetworkMonitorListener>();
 	private static final List<GlobalNetworkMonitorListener> GLOBAL_LISTENERS = new ArrayList<GlobalNetworkMonitorListener>();
+	
+	/**
+	 * Total bandwidth this session
+	 */
+	public static long totalIn;
+	public static long totalOut;
+	
+	/**
+	 * Current bandwidth each second
+	 */
+	public static int currentIn;
+	public static int currentOut;
 	
 	@Override
 	public void run() {
@@ -41,6 +53,11 @@ public class RunnableNetworkCounter implements Runnable {
 					slave.getCountingInputStream().reset();
 					slave.getCountingOutputStream().reset();
 				}
+				
+				currentIn = in;
+				currentOut = out;
+				totalIn += in;
+				totalOut += out;
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();

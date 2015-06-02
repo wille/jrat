@@ -7,7 +7,7 @@ import javax.swing.border.EmptyBorder;
 
 import se.jrat.common.utils.DataUnits;
 import se.jrat.controller.listeners.GlobalNetworkMonitorListener;
-import se.jrat.controller.threads.RunnableNetworkCounter;
+import se.jrat.controller.threads.NetworkCounter;
 import se.jrat.controller.utils.TrayIconUtils;
 
 import com.redpois0n.graphs.network.NetworkColors;
@@ -27,7 +27,7 @@ public class PanelMainNetwork extends JPanel {
 	}
 
 	public void init() {
-		RunnableNetworkCounter.addGlobalListener(listener);
+		NetworkCounter.addGlobalListener(listener);
 
 		if (!initialized) {
 			initialized = true;
