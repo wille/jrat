@@ -29,6 +29,6 @@ public class MathUtils {
 		String minutes = m < 10 ? "0" + m : Integer.toString(m);
 		String seconds = s < 10 ? "0" + s : Integer.toString(s);
 
-		return hours + ":" + minutes + ":" + seconds + " remaining";
+		return hours + ":" + minutes + ":" + seconds;
 	}
 }

@@ -289,7 +289,7 @@ public class PanelFileTransfers extends JPanel {
 			
 			if (column == 4) {
 				 if (data.getSpeed() > 0) {
-					 setText(MathUtils.getRemainingTime(data.getSpeed(), data.getWhatsLeft()));
+					 setText(MathUtils.getRemainingTime(data.getSpeed(), data.getWhatsLeft()) + " remaining");
 				 } else {
 					 setText("");
 				 }
