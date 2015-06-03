@@ -170,7 +170,7 @@ public class DialogRecordRemoteScreen extends JDialog {
 		File file;
 		
 		do {
-			file = new File(location, tryNo++ + " " + parent.getSlave().getComputerName() + " " + time + ".png");
+			file = new File(location, tryNo++ + " " + parent.getSlave().getHostname() + " " + time + ".png");
 		} while (file.exists());
 		
 		if (!location.exists()) {

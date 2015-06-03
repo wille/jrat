@@ -66,7 +66,7 @@ public class PanelControlSystemInfo extends PanelControlParent {
 		addRow("cpu", "Available Cores", slave.getCores() + "");
 		addRow("file", "Install Date/Last modified", slave.getInstallDate());
 		addRow("username", "Username", slave.getUsername());
-		addRow("computer", "Computer Name", slave.getComputerName());
+		addRow("computer", "Hostname", slave.getHostname());
 		addRow(Icons.getIconString(slave.getOperatingSystem()), "Operating System", slave.getOperatingSystem().getDetailedString());
 		addRow(FlagUtils.getFlag(slave), "Country", FlagUtils.getStringFromIso2(slave.getCountry()));
 		addRow("folder", "Stub Location", slave.getServerPath());

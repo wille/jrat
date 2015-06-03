@@ -50,7 +50,7 @@ public abstract class AbstractSlave implements Runnable {
 	protected DataOutputStream dos;
 	protected DataInputStream dis;
 	
-	protected String computername;
+	protected String hostname;
 	protected String renamedid;
 	protected String localip;
 	
@@ -415,12 +415,12 @@ public abstract class AbstractSlave implements Runnable {
 		return os;
 	}
 
-	public String getComputerName() {
-		return computername;
+	public String getHostname() {
+		return hostname;
 	}
 
-	public void setComputerName(String name) {
-		this.computername = name;
+	public void setHostname(String name) {
+		this.hostname = name;
 	}
 	
 	/**
@@ -429,7 +429,7 @@ public abstract class AbstractSlave implements Runnable {
 	 */
 	public String formatUserString() {
 		String username = this.getUsername();
-		String computerName = this.getComputerName();
+		String computerName = this.getHostname();
 		
 		if (username == null) {
 			username = "Unknown";

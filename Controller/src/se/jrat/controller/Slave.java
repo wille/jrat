@@ -103,7 +103,7 @@ public class Slave extends AbstractSlave {
 
 	@Override
 	public String getDisplayName() {
-		return getComputerName() + " / " + getIP();
+		return getHostname() + " / " + getIP();
 	}
 	
 

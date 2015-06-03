@@ -22,7 +22,7 @@ public class FrameRemoteProcess extends BaseFrame {
 
 	public FrameRemoteProcess(Slave sl) {
 		super(sl);
-		setTitle("Remote Process - " + sl.getIP() + " - " + sl.getComputerName());
+		setTitle("Remote Process - " + sl.getIP() + " - " + sl.getHostname());
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRemoteProcess.class.getResource("/icons/process.png")));
 		setResizable(false);
 		addWindowListener(new WindowAdapter() {

@@ -128,7 +128,7 @@ public class FrameNotes extends BaseFrame {
 	}
 
 	public String getDisplayName() {
-		return slave.getUsername() + "@" + slave.getComputerName();
+		return slave.getUsername() + "@" + slave.getHostname();
 	}
 
 	public void load() {

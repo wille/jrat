@@ -91,7 +91,7 @@ public class SampleMode {
 			ConnectionHandler.addSlave(slave);
 			slave.setStatus(5);
 			slave.setID(Constants.NAME + new Random().nextInt(1000));
-			slave.setComputerName("Sample");
+			slave.setHostname("Sample");
 			slave.setUsername("Sample");
 			slave.setVersion(Version.getVersion());
 		}
