@@ -49,7 +49,7 @@ public class PanelMainNetwork extends JPanel {
 		@Override
 		public void onUpdate(int out, int in) {
 			graph.addValues(out, in);
-			TrayIconUtils.setTitle(DataUnits.getAsString(in) + "/s down, " + DataUnits.getAsString(out) + "/s up");
+			TrayIconUtils.setToolTip(DataUnits.getAsString(in) + "/s down, " + DataUnits.getAsString(out) + "/s up");
 		}
 	}
 }

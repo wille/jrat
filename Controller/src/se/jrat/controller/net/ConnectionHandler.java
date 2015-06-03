@@ -28,7 +28,7 @@ public class ConnectionHandler {
 			String title = Main.formatTitle();
 			Main.instance.setTitle(title);
 
-			TrayIconUtils.setTitle(title);
+			TrayIconUtils.setToolTip(title);
 			TrayIconUtils.showMessage(title, slave.getIP() + " connected");
 
 			PluginEventHandler.onConnect(slave);
@@ -44,7 +44,7 @@ public class ConnectionHandler {
 
 		String title = Main.formatTitle();
 		Main.instance.setTitle(title);
-		TrayIconUtils.setTitle(title);
+		TrayIconUtils.setToolTip(title);
 		client.closeSocket(new CloseException("Removing connection..."));
 		
 		Main.instance.getPanelClients().removeSlave(client);

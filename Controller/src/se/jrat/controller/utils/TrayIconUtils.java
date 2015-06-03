@@ -74,7 +74,7 @@ public class TrayIconUtils {
 	 * Sets tray icon tooltip
 	 * @param tooltip
 	 */
-	public static void setTitle(String tooltip) {
+	public static void setToolTip(String tooltip) {
 		if (usingTray) {
 			icon.setToolTip(tooltip);
 		}
