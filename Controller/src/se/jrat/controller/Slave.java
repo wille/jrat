@@ -40,10 +40,6 @@ public class Slave extends AbstractSlave {
 		super(connection, socket);
 		new Thread(this).start();
 	}
-	
-	public byte[] getKey() {
-		return key;
-	}
 
 	public void run() {
 		try {
