@@ -68,13 +68,13 @@ public class AndroidSlave extends AbstractSlave {
 					dis.readFully(remoteHash);					
 
 					if (Arrays.equals(localHash, remoteHash)) {
-						setVerified(true);
+						setAuthenticated(true);
 						ConnectionHandler.addSlave(this);
 						continue;
 					}
 				}
 
-				if (!isVerified()) {
+				if (!isAuthenticated()) {
 					Main.instance.getPanelLog().addEntry("Warning", this, "Failed verifying password, not valid handshake");
 					this.closeSocket(new CloseException("Failed verifying password, not valid handshake"));
 				}
@@ -118,14 +118,6 @@ public class AndroidSlave extends AbstractSlave {
 	}
 	
 	public synchronized void addToSendQueue(AbstractOutgoingAndroidPacket packet) {
-		while (lock) {
-			try {
-				Thread.sleep(10L);
-			} catch (Exception ex) {
-				ex.printStackTrace();
-			}
-
-		}
 		try {
 			sendPacket(packet, dos);
 		} catch (Exception e) {

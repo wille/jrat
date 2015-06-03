@@ -15,7 +15,7 @@ public class OfflineSlave {
 	protected long randomId = newRandomId();
 	
 	public OfflineSlave(AbstractSlave slave) {
-		this.userstring = slave.formatUserString();
+		this.userstring = slave.getDisplayName();
 		this.os = slave.getOperatingSystem().getType().getName();
 		this.serverid = slave.getID();
 		this.version = slave.getVersion();

@@ -18,7 +18,7 @@ public class FrameSystemInfo extends JFrame {
 
 	public FrameSystemInfo(Slave slave) {
 		setIconImage(IconUtils.getIcon("computer").getImage());
-		setTitle("System Info - " + "[" + slave.formatUserString() + "] - " + slave.getIP());
+		setTitle("System Info - " + "[" + slave.getDisplayName() + "] - " + slave.getIP());
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		setBounds(100, 100, 450, 300);

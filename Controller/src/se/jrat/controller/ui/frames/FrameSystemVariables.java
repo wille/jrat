@@ -52,10 +52,10 @@ public class FrameSystemVariables extends BaseFrame {
 		
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameSystemVariables.class.getResource("/icons/properties.png")));
-		setTitle("System Properties - " + "[" + slave.formatUserString() + "] - " + slave.getIP());
+		setTitle("System Properties - " + "[" + slave.getDisplayName() + "] - " + slave.getIP());
 		if (mode == Constants.MODE_ENV) {
 			setIconImage(Toolkit.getDefaultToolkit().getImage(FrameSystemVariables.class.getResource("/icons/categories.png")));
-			setTitle("Environment Variables - " + "[" + slave.formatUserString() + "] - " + slave.getIP());
+			setTitle("Environment Variables - " + "[" + slave.getDisplayName() + "] - " + slave.getIP());
 		}
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 302);

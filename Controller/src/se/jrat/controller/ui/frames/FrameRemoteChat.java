@@ -45,7 +45,7 @@ public class FrameRemoteChat extends BaseFrame {
 
 	public FrameRemoteChat(Slave slave) {
 		super(slave);
-		setTitle("Chat - " + "[" + slave.formatUserString() + "] - " + slave.getIP());
+		setTitle("Chat - " + "[" + slave.getDisplayName() + "] - " + slave.getIP());
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRemoteChat.class.getResource("/icons/chat.png")));
 		this.slave = slave;
 		final Slave sl = slave;

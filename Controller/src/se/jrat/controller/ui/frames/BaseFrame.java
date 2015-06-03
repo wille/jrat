@@ -26,7 +26,7 @@ public abstract class BaseFrame extends JFrame {
 	}
 	
 	public void setTitle(String s) {
-		super.setTitle(s + " - [" + slave.formatUserString() + "] - " + slave.getIP());
+		super.setTitle(s + " - [" + slave.getDisplayName() + "] - " + slave.getIP());
 	}
 	
 	public Slave getSlave() {

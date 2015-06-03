@@ -258,7 +258,7 @@ public class PanelMainClients extends JScrollPane {
 					label.setIcon(BasicIconUtils.getPingIcon(slave));
 					label.setText(slave.getPing() + " ms");
 				} else if (colname.equals(Columns.USER_HOST.getName())) {
-					label.setText(slave.formatUserString());
+					label.setText(slave.getDisplayName());
 				} else if (colname.equals(Columns.OPERATINGSYSTEM.getName())) {
 					label.setIcon(BasicIconUtils.getOSIcon(slave));
 					label.setText(slave.getOperatingSystem().getDisplayString());

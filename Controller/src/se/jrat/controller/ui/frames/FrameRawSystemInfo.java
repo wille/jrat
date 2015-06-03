@@ -17,7 +17,7 @@ public class FrameRawSystemInfo extends FrameTextPane {
 		super();
 		instances.put(slave, this);
 		this.slave = slave;
-		super.setTitle("Raw system info - " + "[" + slave.formatUserString() + "] - " + slave.getIP());
+		super.setTitle("Raw system info - " + "[" + slave.getDisplayName() + "] - " + slave.getIP());
 		super.setIconImage(IconUtils.getIcon("computer").getImage());
 	}
 

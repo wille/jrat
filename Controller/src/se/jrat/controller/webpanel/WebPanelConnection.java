@@ -63,7 +63,7 @@ public class WebPanelConnection implements Runnable {
                 			slave.getUniqueId() + "",
                 			slave.isSelected() + "",
                 			slave.getCountry(),
-                			slave.formatUserString(),
+                			slave.getDisplayName(),
                 			slave.getOperatingSystem().getDisplayString() + " " + slave.getOperatingSystem().getArch().getName(),
                 			slave.getIP(),
                 			Constants.NAME + " " + slave.getVersion(),

