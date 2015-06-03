@@ -49,19 +49,34 @@ public class TrayIconUtils {
 		}
 	}
 
+	/**
+	 * Shows information message in tray icon
+	 * @param title
+	 * @param message
+	 */
 	public static void showMessage(String title, String message) {
 		showMessage(title, message, TrayIcon.MessageType.INFO);
 	}
 
+	/**
+	 * Shows message in tray icon
+	 * @param title Title of message
+	 * @param message 
+	 * @param type Message type
+	 */
 	public static void showMessage(String title, String message, TrayIcon.MessageType type) {
 		if (usingTray) {
 			icon.displayMessage(title, message, type);
 		}
 	}
 
-	public static void setTitle(String s) {
+	/**
+	 * Sets tray icon tooltip
+	 * @param tooltip
+	 */
+	public static void setTitle(String tooltip) {
 		if (usingTray) {
-			icon.setToolTip(s);
+			icon.setToolTip(tooltip);
 		}
 	}
 
