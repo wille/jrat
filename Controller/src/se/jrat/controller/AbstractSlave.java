@@ -423,6 +423,10 @@ public abstract class AbstractSlave implements Runnable {
 		this.computername = name;
 	}
 	
+	/**
+	 * Formats a display string for this client from username and hostname
+	 * @return If operating system is Windows, returns "Host\User", if *nix, user@host
+	 */
 	public String formatUserString() {
 		String username = this.getUsername();
 		String computerName = this.getComputerName();

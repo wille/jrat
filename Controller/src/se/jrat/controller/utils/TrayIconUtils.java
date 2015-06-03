@@ -17,6 +17,9 @@ public class TrayIconUtils {
 	public static boolean usingTray = false;
 	private static TrayIcon icon;
 
+	/**
+	 * Initialize global tray icon
+	 */
 	public static void initialize() {
 		try {
 			if (!SystemTray.isSupported()) {
