@@ -692,14 +692,14 @@ public class FrameControlPanel extends BaseFrame {
 
 		actions.put("system properties", new Performable() {
 			public void perform() {
-				FrameSystemVariables frame = new FrameSystemVariables(Constants.MODE_PROP, slave);
+				FrameSystemVariables frame = new FrameSystemVariables(Constants.VariableMode.SYSTEM_PROPERTIES, slave);
 				frame.setVisible(true);
 			}
 		});
 
 		actions.put("environment variables", new Performable() {
 			public void perform() {
-				FrameSystemVariables frame = new FrameSystemVariables(Constants.MODE_ENV, slave);
+				FrameSystemVariables frame = new FrameSystemVariables(Constants.VariableMode.ENVIRONMENT_VARIABLES, slave);
 				frame.setVisible(true);
 			}
 		});

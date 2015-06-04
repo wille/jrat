@@ -2,9 +2,15 @@ package se.jrat.controller;
 
 
 public class Constants {
-
-	public static final int MODE_ENV = 0;
-	public static final int MODE_PROP = 1;
+	
+	/**
+	 * What variable mode to use in {@link se.jrat.controller.ui.frames#FrameSystemVariables}
+	 *
+	 */
+	public static enum VariableMode {
+		ENVIRONMENT_VARIABLES,
+		SYSTEM_PROPERTIES;
+	}
 
 	public static String HOST = "%host%";
 

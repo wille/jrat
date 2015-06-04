@@ -12,8 +12,9 @@ public class Packet32SystemProperties extends AbstractIncomingPacket {
 		FrameSystemVariables frame = FrameSystemVariables.INSTANCES.get(slave);
 		String key = slave.readLine();
 		String value = slave.readLine();
+		
 		if (frame != null) {
-			frame.model.addRow(new Object[] { key, value });
+			frame.add(key, value);
 		}
 	}
 
