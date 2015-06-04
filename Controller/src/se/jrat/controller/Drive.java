@@ -2,9 +2,24 @@ package se.jrat.controller;
 
 public class Drive {
 
+	/**
+	 * Name of drive (just / on *nix)
+	 */
 	private String name;
+	
+	/**
+	 * Total space in gigabytes
+	 */
 	private short totalspace;
+	
+	/**
+	 * Free space in gigabytes
+	 */
 	private short freespace;
+	
+	/**
+	 * Usable space in gigabytes
+	 */
 	private short usablespace;
 
 	public String getName() {
