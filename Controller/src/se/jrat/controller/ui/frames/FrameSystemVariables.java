@@ -126,6 +126,9 @@ public class FrameSystemVariables extends BaseFrame {
 		reload();
 	}
 	
+	/**
+	 * Clears the table and sends packet for retrieving the data
+	 */
 	public void reload() {
 		if (mode == Constants.VariableMode.SYSTEM_PROPERTIES) {
 			clear();
@@ -148,6 +151,11 @@ public class FrameSystemVariables extends BaseFrame {
 		}
 	}
 
+	/**
+	 * Add this values to the table
+	 * @param k first
+	 * @param v second
+	 */
 	public void add(String k, String v) {
 		model.addRow(new Object[] { k, v });
 	}
