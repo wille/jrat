@@ -3,26 +3,27 @@ package se.jrat.controller;
 import iconlib.IconUtils;
 
 import java.awt.Graphics2D;
-import java.awt.Image;
 
 import com.redpois0n.oslib.OperatingSystem;
 
 public class Cursor {
 
-	public static void drawCursor(OperatingSystem operatingsystem, Graphics2D g, int x, int y) {
+	/**
+	 * Draw cursor
+	 * @param os gets matching icon for operating system
+	 * @param g Graphics to paint the cursor on
+	 * @param x coordinate
+	 * @param y coordinate
+	 */
+	public static void drawCursor(OperatingSystem os, Graphics2D g, int x, int y) {
 		String icon;
 
-		if (operatingsystem == OperatingSystem.OSX) {
+		if (os == OperatingSystem.OSX) {
 			icon = "cursor-osx";
 		} else {
 			icon = "cursor-default";
 		}
 
-		drawCursor(IconUtils.getIcon(icon).getImage(), g, x, y);
+		g.drawImage(IconUtils.getIcon(icon).getImage(), x, y, null);
 	}
-
-	public static void drawCursor(Image cursor, Graphics2D g, int x, int y) {
-		g.drawImage(cursor, x, y, null);
-	}
-
 }
