@@ -1,4 +1,4 @@
-package se.jrat.controller;
+package se.jrat.controller.utils;
 
 import iconlib.IconUtils;
 
@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
 
 import com.redpois0n.oslib.OperatingSystem;
 
-public class Cursor {
+public class CursorUtils {
 
 	/**
 	 * Draw cursor

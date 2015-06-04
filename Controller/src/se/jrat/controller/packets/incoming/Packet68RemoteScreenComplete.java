@@ -5,10 +5,10 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.DataInputStream;
 
-import se.jrat.controller.Cursor;
 import se.jrat.controller.Slave;
 import se.jrat.controller.packets.outgoing.Packet12RemoteScreen;
 import se.jrat.controller.ui.frames.FrameRemoteScreen;
+import se.jrat.controller.utils.CursorUtils;
 
 public class Packet68RemoteScreenComplete extends AbstractIncomingPacket {
 
@@ -27,7 +27,7 @@ public class Packet68RemoteScreenComplete extends AbstractIncomingPacket {
 				Graphics2D imageGraphics = (Graphics2D) image.getGraphics();
 				
 				imageGraphics.drawImage(buffer, 0, 0, buffer.getWidth(), buffer.getHeight(), null);
-				Cursor.drawCursor(slave.getOperatingSystem().getType(), imageGraphics, mouseX, mouseY);
+				CursorUtils.drawCursor(slave.getOperatingSystem().getType(), imageGraphics, mouseX, mouseY);
 				
 				boolean drawGrid = false;
 				
