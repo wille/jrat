@@ -3,6 +3,7 @@ package se.jrat.controller.threads;
 import java.util.List;
 
 import jrat.api.Plugin;
+import se.jrat.controller.LogAction;
 import se.jrat.controller.Main;
 import se.jrat.controller.addons.OnlinePlugin;
 import se.jrat.controller.addons.Plugins;
@@ -25,7 +26,7 @@ public class RunnableCheckPlugins implements Runnable {
 					
 					if (!upToDate) {
 						Main.debug(oplugin.getDisplayName() + " is not up to date");
-						Main.instance.getPanelLog().addEntry("Warning", null, oplugin.getDisplayName() + " is not up to date");
+						Main.instance.getPanelLog().addEntry(LogAction.WARNING, null, oplugin.getDisplayName() + " is not up to date");
 					}
 				}
 			}

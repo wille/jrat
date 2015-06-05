@@ -64,7 +64,7 @@ public class Slave extends AbstractSlave {
 				}
 
 				if (!isAuthenticated()) {
-					Main.instance.getPanelLog().addEntry("Warning", this, "Failed verifying password, not valid handshake");
+					Main.instance.getPanelLog().addEntry(LogAction.WARNING, this, "Failed verifying password, not valid handshake");
 					this.closeSocket(new CloseException("Failed verifying password, not valid handshake"));
 				}
 

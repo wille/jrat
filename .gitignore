@@ -30,6 +30,7 @@ local.properties
 .project
 .settings/
 [Bb]in/
+.recommenders/
 
 # Project
 API/

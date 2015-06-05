@@ -226,7 +226,7 @@ public abstract class AbstractSlave implements Runnable {
 			this.country = "?";
 		}
 
-		Main.instance.getPanelLog().addEntry("Connect", this, "");
+		Main.instance.getPanelLog().addEntry(LogAction.CONNECT, this, "");
 		
 		StreamKeyExchanger exchanger = new ObfuscatedStreamKeyExchanger(GlobalKeyPair.getKeyPair(), dis, dos);
 		exchanger.writePublicKey();
@@ -303,7 +303,7 @@ public abstract class AbstractSlave implements Runnable {
 	public void disconnect(Exception ex) {
 		String message = ex.getClass().getSimpleName() + ": " + ex.getMessage();
 
-		Main.instance.getPanelLog().addEntry("Disconnect", this, message);
+		Main.instance.getPanelLog().addEntry(LogAction.DISCONNECT, this, message);
 
 		try {
 			ConnectionHandler.removeSlave(this, ex);

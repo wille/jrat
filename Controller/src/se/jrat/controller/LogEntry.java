@@ -2,14 +2,17 @@ package se.jrat.controller;
 
 import se.jrat.controller.utils.Utils;
 
+/**
+ * Entry in {@link se.jrat.controller.ui.panels#PanelMainLog}
+ */
 public class LogEntry {
 
-	private String action;
+	private LogAction action;
 	private AbstractSlave slave;
 	private String info;
 	private String date;
 
-	public LogEntry(String action, AbstractSlave abstractSlave, String info) {
+	public LogEntry(LogAction action, AbstractSlave abstractSlave, String info) {
 		this.action = action;
 		this.slave = abstractSlave;
 		this.info = info;
@@ -20,7 +23,7 @@ public class LogEntry {
 		return date;
 	}
 
-	public String getAction() {
+	public LogAction getAction() {
 		return action;
 	}
 

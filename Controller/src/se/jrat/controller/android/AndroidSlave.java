@@ -14,6 +14,7 @@ import se.jrat.common.crypto.Crypto;
 import se.jrat.common.crypto.StreamKeyExchanger;
 import se.jrat.common.hash.Sha1;
 import se.jrat.controller.AbstractSlave;
+import se.jrat.controller.LogAction;
 import se.jrat.controller.Main;
 import se.jrat.controller.addons.PluginEventHandler;
 import se.jrat.controller.crypto.GlobalKeyPair;
@@ -75,7 +76,7 @@ public class AndroidSlave extends AbstractSlave {
 				}
 
 				if (!isAuthenticated()) {
-					Main.instance.getPanelLog().addEntry("Warning", this, "Failed verifying password, not valid handshake");
+					Main.instance.getPanelLog().addEntry(LogAction.WARNING, this, "Failed verifying password, not valid handshake");
 					this.closeSocket(new CloseException("Failed verifying password, not valid handshake"));
 				}
 
@@ -90,7 +91,7 @@ public class AndroidSlave extends AbstractSlave {
 			ex.printStackTrace();
 			String message = ex.getClass().getSimpleName() + ": " + ex.getMessage();
 
-			Main.instance.getPanelLog().addEntry("Disconnect", this, message);
+			Main.instance.getPanelLog().addEntry(LogAction.DISCONNECT, this, message);
 
 			if (ex instanceof BadPaddingException) {
 				message += ", is the encryption key matching?";
