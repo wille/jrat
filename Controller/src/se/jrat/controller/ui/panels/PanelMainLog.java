@@ -7,8 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,24 +22,18 @@ import javax.swing.ScrollPaneConstants;
 import se.jrat.controller.AbstractSlave;
 import se.jrat.controller.LogAction;
 import se.jrat.controller.LogEntry;
-import se.jrat.controller.Main;
 import se.jrat.controller.ui.components.DefaultJTable;
 import se.jrat.controller.ui.components.TableModel;
-import se.jrat.controller.ui.frames.QuickFrame;
 import se.jrat.controller.ui.renderers.table.LogTableRenderer;
 
 
 @SuppressWarnings("serial")
 public class PanelMainLog extends JPanel {
 
-	private static final PanelMainLog instance = new PanelMainLog();
 	private static final List<LogEntry> entries = new ArrayList<LogEntry>();
-
-	public static QuickFrame frame;
 
 	private JTable table;
 	private TableModel model;
-	private JMenuItem mntmExpand;
 
 	public TableModel getModel() {
 		return model;
@@ -105,39 +97,6 @@ public class PanelMainLog extends JPanel {
 		});
 		mntmRemoveAll.setIcon(IconUtils.getIcon("application-minus"));
 		popupMenu.add(mntmRemoveAll);
-
-		popupMenu.addSeparator();
-
-		mntmExpand = new JMenuItem("Expand");
-		mntmExpand.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (mntmExpand.getText().equals("Expand")) {
-					mntmExpand.setText("Collapse");
-					frame = new QuickFrame(instance);
-					frame.setVisible(true);
-					frame.setIcon(IconUtils.getIcon("log"));
-					frame.setTitle("Log");
-					frame.addClosingListener(new WindowAdapter() {
-						@Override
-						public void windowClosing(WindowEvent arg0) {
-							mntmExpand.setText("Expand");
-							frame.setVisible(false);
-							frame.dispose();
-							frame = null;
-							Main.instance.getTabbedPane().addTab("Log", IconUtils.getIcon("log"), instance, null);
-						}
-					});
-				} else {
-					mntmExpand.setText("Expand");
-					frame.setVisible(false);
-					frame.dispose();
-					frame = null;
-					Main.instance.getTabbedPane().addTab("Log", IconUtils.getIcon("log"), instance, null);
-				}
-			}
-		});
-		mntmExpand.setIcon(IconUtils.getIcon("application-import"));
-		popupMenu.add(mntmExpand);
 
 		scrollPane.setViewportView(table);
 		setLayout(groupLayout);
