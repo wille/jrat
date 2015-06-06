@@ -48,7 +48,7 @@ public class Main {
 	public static void main(String[] args) throws Exception {	
 		System.out.println("jRAT " + Version.getVersion() + " " + DateFormat.getDateInstance(DateFormat.SHORT).format(new Date()));
 		
-		debug = argsContains(args, "-debug");
+		debug = argsContains(args, "--debug");
 
 		Main.debug("Loading libraries...");
 		try {
@@ -63,7 +63,7 @@ public class Main {
 			e.printStackTrace();
 		}
 
-		if (argsContains(args, "-genkey")) {
+		if (argsContains(args, "--genkey")) {
 			Logger.log("Generating key");
 			File file = Globals.getKeyFile();
 			FileOutputStream out = new FileOutputStream(file);
@@ -73,7 +73,7 @@ public class Main {
 			System.exit(0);
 		}
 
-		hideTitle = argsContains(args, "-hidetitle");
+		hideTitle = argsContains(args, "--hidetitle");
 
 		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
 			Main.debug("Mac OS X detected, enabling menubar");
@@ -100,7 +100,7 @@ public class Main {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			
-			if (!argsContains(args, "-debug")) {
+			if (!debug) {
 				JOptionPane.showMessageDialog(null, Constants.NAME + " is limited, no license detected", Constants.NAME, JOptionPane.ERROR_MESSAGE);
 			}
 		}
