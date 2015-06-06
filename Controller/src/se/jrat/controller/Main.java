@@ -92,7 +92,7 @@ public class Main {
 		}
 		
 		try {
-			boolean validated = UniqueId.validate(argsContains(args, "-showhexkey"));
+			boolean validated = UniqueId.validate(argsContains(args, "--showhexkey"));
 
 			if (validated) {
 				liteVersion = false;
