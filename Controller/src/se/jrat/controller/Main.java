@@ -105,7 +105,6 @@ public class Main {
 			}
 		}
 
-		System.setProperty("jrat.dir", System.getProperty("user.dir"));
 		System.setProperty("jrat.version", Version.getVersion());
 
 		try {
