@@ -152,20 +152,24 @@ public class Main {
 		}
 	}
 
-	public static boolean argsContains(String[] args, String s) {
+	public static boolean argsContains(String[] args, String... keys) {
 		for (String str : args) {
-			if (str.equalsIgnoreCase(s)) {
-				return true;
+			for (String key : keys) {
+				if (str.equalsIgnoreCase(key)) {
+					return true;
+				}
 			}
 		}
 
 		return false;
 	}
 
-	public static String getArg(String[] args, String arg) {
+	public static String getArg(String[] args, String... keys) {
 		for (int i = 0; i < args.length; i++) {
-			if (args[i].equalsIgnoreCase(arg)) {
-				return args[i + 1];
+			for (String key : keys) {
+				if (args[i].equalsIgnoreCase(key)) {
+					return args[i + 1];
+				}
 			}
 		}
 
