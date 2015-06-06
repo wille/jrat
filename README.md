@@ -16,4 +16,6 @@ Both your Controller and Stub plugin need a plugin.txt file in the root that wil
 
 ## System Properties
 
-You can get current jRAT version by accessing property jrat.version and current directory jrat.dir (same as user.dir)
+| Property	  | Description
+| ---         |:---
+| jrat.version			  | Current jRAT version (example 5.1rc2)
