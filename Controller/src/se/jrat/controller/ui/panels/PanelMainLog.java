@@ -7,8 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -30,8 +28,6 @@ import se.jrat.controller.ui.renderers.table.LogTableRenderer;
 @SuppressWarnings("serial")
 public class PanelMainLog extends JPanel {
 
-	private static final List<LogEntry> entries = new ArrayList<LogEntry>();
-
 	private JTable table;
 	private TableModel model;
 
@@ -42,11 +38,7 @@ public class PanelMainLog extends JPanel {
 	public JTable getTable() {
 		return table;
 	}
-
-	public List<LogEntry> getList() {
-		return entries;
-	}
-
+	
 	public PanelMainLog() {
 
 		JScrollPane scrollPane = new JScrollPane();
