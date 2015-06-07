@@ -15,6 +15,7 @@ import javax.swing.UIManager;
 import jrat.api.commands.Commands;
 import se.jrat.common.Logger;
 import se.jrat.common.Version;
+import se.jrat.common.utils.Utils;
 import se.jrat.controller.addons.Plugins;
 import se.jrat.controller.commands.DefaultCommands;
 import se.jrat.controller.net.WebRequest;
@@ -23,8 +24,8 @@ import se.jrat.controller.settings.Settings;
 import se.jrat.controller.settings.SettingsColumns;
 import se.jrat.controller.settings.SettingsTheme;
 import se.jrat.controller.settings.StatisticsCountry;
-import se.jrat.controller.threads.RunnableCheckPlugins;
 import se.jrat.controller.threads.NetworkCounter;
+import se.jrat.controller.threads.RunnableCheckPlugins;
 import se.jrat.controller.threads.ThreadCheckVersion;
 import se.jrat.controller.threads.ThreadPing;
 import se.jrat.controller.threads.ThreadTransferSpeed;
@@ -117,7 +118,7 @@ public class Main {
 		Settings.getGlobal().load();	
 		SettingsColumns.getGlobal().load();
 		
-		boolean headless = argsContains(args, "-h", "--headless");
+		boolean headless = argsContains(args, "-h", "--headless") || Utils.isHeadless();
 		
 		if (!headless) {
 			instance = new Frame();
