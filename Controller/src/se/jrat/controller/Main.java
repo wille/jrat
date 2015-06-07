@@ -117,7 +117,12 @@ public class Main {
 		Settings.getGlobal().load();	
 		SettingsColumns.getGlobal().load();
 		
-		instance = new Frame();
+		boolean headless = argsContains(args, "-h", "--headless");
+		
+		if (!headless) {
+			instance = new Frame();
+			instance.setVisible(true);
+		}
 
 		AbstractStoreable.loadAllGlobals();
 
@@ -134,7 +139,6 @@ public class Main {
 		new ThreadPing().start();
 		new ThreadTransferSpeed().start();
 
-		instance.setVisible(true);
 
 		Main.debug("Loading tray icon...");
 		TrayIconUtils.initialize();

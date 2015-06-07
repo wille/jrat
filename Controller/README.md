@@ -4,12 +4,13 @@ Remote Administration Tool written in Java supporting all major operating system
 
 ## Arguments
 
-| Argument	  	| Description
-| ---         	| :---
-| --debug		| Debugging mode
-| --genkey		| Create new key file to default location (files/jrat.key)
-| --hidetitle	| Main frame title is only "jRAT"
-| --showhexkey	| Prints current key file to console
+| Argument	  		| Description
+| ---         		| :---
+| --debug			| Debugging mode
+| --genkey			| Create new key file to default location (files/jrat.key)
+| --hidetitle		| Main frame title is only "jRAT"
+| --showhexkey		| Prints current key file to console
+| -h, --headless	| Headless mode
 
 ## Tested systems
 
