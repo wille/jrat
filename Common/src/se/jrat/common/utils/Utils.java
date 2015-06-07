@@ -1,5 +1,6 @@
 package se.jrat.common.utils;
 
+import java.awt.GraphicsEnvironment;
 import java.util.Random;
 
 public class Utils {
@@ -20,6 +21,10 @@ public class Utils {
 		}
 
 		return str;
+	}
+
+	public static boolean isHeadless() {
+		return GraphicsEnvironment.getLocalGraphicsEnvironment().isHeadlessInstance();
 	}
 
 }

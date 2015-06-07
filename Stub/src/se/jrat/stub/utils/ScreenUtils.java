@@ -30,9 +30,5 @@ public class ScreenUtils {
 		
 		return allRobots;
 	}
-	
-	public static boolean isHeadless() {
-		return GraphicsEnvironment.getLocalGraphicsEnvironment().isHeadlessInstance();
-	}
 
 }

