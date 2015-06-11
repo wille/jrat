@@ -2,11 +2,8 @@ package se.jrat.controller.ui.panels;
 
 import iconlib.IconUtils;
 
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -23,6 +20,7 @@ import se.jrat.controller.LogEntry;
 import se.jrat.controller.ui.components.DefaultJTable;
 import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.renderers.table.LogTableRenderer;
+import se.jrat.controller.utils.Utils;
 
 
 @SuppressWarnings("serial")
@@ -63,8 +61,8 @@ public class PanelMainLog extends JPanel {
 		table.getTableHeader().setReorderingAllowed(false);
 
 		JPopupMenu popupMenu = new JPopupMenu();
-		addPopup(scrollPane, popupMenu);
-		addPopup(table, popupMenu);
+		Utils.addPopup(scrollPane, popupMenu);
+		Utils.addPopup(table, popupMenu);
 
 		JMenuItem mntmRemove = new JMenuItem("Remove");
 		mntmRemove.addActionListener(new ActionListener() {
@@ -98,25 +96,5 @@ public class PanelMainLog extends JPanel {
 	public void addEntry(LogAction action, AbstractSlave abstractSlave, String info) {
 		LogEntry logEntry = new LogEntry(action, abstractSlave, info);
 		getModel().insertRow(0, logEntry.getDisplayData());
-	}
-
-	private static void addPopup(Component component, final JPopupMenu popup) {
-		component.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
-			}
-
-			public void mouseReleased(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
-			}
-
-			private void showMenu(MouseEvent e) {
-				popup.show(e.getComponent(), e.getX(), e.getY());
-			}
-		});
 	}
 }
