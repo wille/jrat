@@ -38,3 +38,11 @@ Remote Administration Tool written in Java supporting all major operating system
 | FreeBSD (PCBSD)					| PCBSD10.1.1-RELEASE-01-31-2015-x64-DVD-USB.iso
 | Solaris 11						| sol-11_2-live-x86.iso
 | OpenIndiana						| oi-dev-151a-x86.iso
+
+## Credits
+
+- [redpois0n](https://redpois0n.com) - [red@cmail.nu](red@cmail.nu)
+
+## About
+
+jRAT was started approximately 14th July 2012 and was released approximately 22th August 2012 for the first time
