@@ -25,6 +25,7 @@ public class LogTableRenderer extends DefaultJTableCellRenderer {
 
 		if (column == 0) {
 			label.setIcon(action.getIcon());
+			label.setText(action.getText());
 		} else {
 			label.setIcon(null);
 		}

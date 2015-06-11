@@ -93,8 +93,8 @@ public class PanelMainLog extends JPanel {
 
 	}
 
-	public void addEntry(LogAction action, AbstractSlave abstractSlave, String info) {
-		LogEntry logEntry = new LogEntry(action, abstractSlave, info);
+	public void addEntry(LogAction action, AbstractSlave slave, String info) {
+		LogEntry logEntry = new LogEntry(action, slave, info);
 		getModel().insertRow(0, logEntry.getDisplayData());
 	}
 }
