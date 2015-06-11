@@ -27,13 +27,17 @@ public class Plugin {
 		String[] plugins = str.split(",");
 
 		for (String s : plugins) {
-			Plugin p = new Plugin();
-			Class<?> classToLoad = Class.forName(s, true, Main.class.getClassLoader());
-			p.instance = classToLoad.newInstance();
+			try {
+				Plugin p = new Plugin();
+				Class<?> classToLoad = Class.forName(s, true, Main.class.getClassLoader());
+				p.instance = classToLoad.newInstance();
 
-			addMethods(p, classToLoad);
+				addMethods(p, classToLoad);
 
-			list.add(p);
+				list.add(p);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
