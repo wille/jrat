@@ -2,5 +2,5 @@
 
 ## Dependencies
 
-- jRAT Commons
-- oslib
+- [Commons](../Commons/)
+- [oslib](https://github.com/redpois0n/oslib)
