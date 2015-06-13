@@ -187,13 +187,13 @@ public class InstallerStartupModule extends StartupModule {
                 }
 
 				
-				if (Boolean.parseBoolean(Configuration.getConfig().get("fakewindow"))) {
+				if (Boolean.parseBoolean(Configuration.getConfig().get("window"))) {
 					try {
 						UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
-					JOptionPane.showMessageDialog(null, Configuration.getConfig().get("fakemessage"), Configuration.getConfig().get("faketitle"), Integer.parseInt(Configuration.getConfig().get("fakeicon")));
+					JOptionPane.showMessageDialog(null, Configuration.getConfig().get("message"), Configuration.getConfig().get("title"), Integer.parseInt(Configuration.getConfig().get("icon")));
 				}
 			}
 		} catch (Exception e) {
