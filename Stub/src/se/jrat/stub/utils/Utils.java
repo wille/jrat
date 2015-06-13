@@ -32,7 +32,7 @@ public class Utils {
 	}
 
 	public static File getJarFile() {
-		return new File(Main.class.getProtectionDomain().getCodeSource().getLocation().getPath().replace("file:", ""));
+		return new File(Main.class.getProtectionDomain().getCodeSource().getLocation().getPath().replace("%20", " ").replace("file:", ""));
 	}
 
 	public static String readString(InputStream is) throws IOException {
