@@ -94,13 +94,7 @@ public class Slave extends AbstractSlave {
 
 	public void sendPacket(AbstractOutgoingPacket packet, DataOutputStream dos) throws Exception {
 		packet.send(this, dos);
-	}
-
-	@Override
-	public String getDisplayName() {
-		return getHostname() + " / " + getIP();
-	}
-	
+	}	
 
 	@Override
 	public void ping() throws Exception {
