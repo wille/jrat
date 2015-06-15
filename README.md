@@ -37,6 +37,7 @@ Remote Administration Tool written in Java supporting all major operating system
 | Manjaro 0.8.12 Ascella			| manjaro-xfce-0.8.12-x86_64.iso
 | Peppermint 6						| Peppermint-6-20150518-amd64.iso
 | FreeBSD (PCBSD)					| PCBSD10.1.1-RELEASE-01-31-2015-x64-DVD-USB.iso
+| OpenBSD							| install56.iso
 | Solaris 11						| sol-11_2-live-x86.iso
 | OpenIndiana						| oi-dev-151a-x86.iso
 
