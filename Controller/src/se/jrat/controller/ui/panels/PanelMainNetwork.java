@@ -47,8 +47,8 @@ public class PanelMainNetwork extends JPanel {
 	
 	private class GraphListener implements GlobalNetworkMonitorListener {
 		@Override
-		public void onUpdate(int out, int in) {
-			graph.addValues(out, in);
+		public void onUpdate(int in, int out) {
+			graph.addValues(in, out);
 			TrayIconUtils.setToolTip(DataUnits.getAsString(in) + "/s down, " + DataUnits.getAsString(out) + "/s up");
 		}
 	}

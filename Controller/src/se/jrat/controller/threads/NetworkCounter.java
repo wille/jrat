@@ -54,10 +54,10 @@ public class NetworkCounter implements Runnable {
 					slave.getCountingOutputStream().reset();
 				}
 				
-				currentIn = out;
-				currentOut = in;
-				totalIn += out;
-				totalOut += in;
+				currentIn = in;
+				currentOut = out;
+				totalIn += in;
+				totalOut += out;
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
