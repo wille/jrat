@@ -9,8 +9,8 @@ public class CountingInputStream extends FilterInputStream {
 	private long count;
 	private long lastRead;
 	
-	public CountingInputStream(InputStream arg0) {
-		super(arg0);
+	public CountingInputStream(InputStream is) {
+		super(is);
 	}
 
 	@Override
@@ -30,8 +30,8 @@ public class CountingInputStream extends FilterInputStream {
 	public int read(byte[] array, int i, int i1) throws IOException {
 		int l = super.read(array, i, i1);
 		
-		if (i > 0) {
-			count += i;
+		if (l > 0) {
+			count += l;
 		}
 
 		lastRead = System.currentTimeMillis();
