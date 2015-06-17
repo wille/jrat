@@ -15,7 +15,8 @@ public enum Columns {
 	CPU("CPU", false),
 	AVAILABLE_CORES("Cores", false),
 	DESKTOP_ENVIRONMENT("Desktop Environment", false),
-	HEADLESS("Headless", false);
+	HEADLESS("Headless", false),
+	NETWORK_USAGE("Network Usage", false);
 
 	private String name;
 	private boolean defaultv;

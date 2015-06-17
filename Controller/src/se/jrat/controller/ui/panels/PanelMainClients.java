@@ -285,6 +285,8 @@ public class PanelMainClients extends JScrollPane {
 				} else if (colname.equals(Columns.HEADLESS.getName())) {
 					label.setText(slave.isHeadless() ? "Yes" : "No");
 					label.setForeground(slave.isHeadless() ? Color.red : Color.black);
+				} else if (colname.equals(Columns.NETWORK_USAGE.getName())) {
+					
 				}
 			}
 
