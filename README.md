@@ -32,6 +32,7 @@ Remote Administration Tool written in Java supporting all major operating system
 | elementary OS	Luna				| elementaryos-stable-amd64.20130810.iso
 | CentOS 6.5						| CentOS-6.5-x86_64-bin-DVD1.iso
 | CentOS 7							| CentOS-7.0-1406-x86_64-DVD.iso
+| openSUSE							| openSUSE-13.2-DVD-x86_64.iso
 | Kali Linux						| kali-linux-1.0.5-amd64.iso
 | Debian 7							| debian-7.8.0-amd64-netinst.iso
 | Manjaro 0.8.12 Ascella			| manjaro-xfce-0.8.12-x86_64.iso
