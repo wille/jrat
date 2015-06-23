@@ -185,12 +185,24 @@ public abstract class AbstractSlave implements Runnable {
 	 */
 	private String host;
 	
+	/**
+	 * Current downloaded bytes (updated each second by {@link se.jrat.controller.threads.NetworkCounter})
+	 */
 	protected int currentIn;
 	
+	/**
+	 * Current uploaded bytes (updated each second by {@link se.jrat.controller.threads.NetworkCounter})
+	 */
 	protected int currentOut;
 	
+	/**
+	 * Total downloaded bytes (updated each second by {@link se.jrat.controller.threads.NetworkCounter})
+	 */
 	protected long totalIn;
 	
+	/**
+	 * Total uploaded bytes (updated each second by {@link se.jrat.controller.threads.NetworkCounter})
+	 */
 	protected long totalOut;
 
 	public AbstractSlave(ServerListener connection, Socket socket) {		
@@ -651,16 +663,24 @@ public abstract class AbstractSlave implements Runnable {
 		return totalIn;
 	}
 
-	public void increaseTotalIn(long totalIn) {
-		this.totalIn += totalIn;
+	/**
+	 * Increases the total download counter
+	 * @param in
+	 */
+	public void increaseTotalIn(long in) {
+		this.totalIn += in;
 	}
 
 	public long getTotalOut() {
 		return totalOut;
 	}
 
-	public void increaseTotalOut(long totalOut) {
-		this.totalOut += totalOut;
+	/**
+	 * Increases the total upload counter
+	 * @param out
+	 */
+	public void increaseTotalOut(long out) {
+		this.totalOut += out;
 	}
 
 	/**
