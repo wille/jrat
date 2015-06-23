@@ -41,7 +41,7 @@ public abstract class StubPlugin {
 	 * @param header
 	 * @throws Exception
 	 */
-	public abstract void onPacket(byte header) throws Exception;
+	public abstract void onPacket(short header) throws Exception;
 
 	/**
 	 * When the Stub starts
