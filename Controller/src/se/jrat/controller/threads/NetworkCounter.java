@@ -7,6 +7,7 @@ import se.jrat.controller.AbstractSlave;
 import se.jrat.controller.Main;
 import se.jrat.controller.listeners.GlobalNetworkMonitorListener;
 import se.jrat.controller.listeners.NetworkMonitorListener;
+import se.jrat.controller.ui.Columns;
 
 public class NetworkCounter implements Runnable {
 	
@@ -63,6 +64,10 @@ public class NetworkCounter implements Runnable {
 				currentOut = out;
 				totalIn += in;
 				totalOut += out;
+				
+				if (Main.instance.getPanelClients().getColumns().contains(Columns.NETWORK_USAGE.getName())) {
+					Main.instance.repaint();
+				}
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
