@@ -1,21 +1,22 @@
 package se.jrat.controller.io;
 
-import java.io.FilterInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class CountingInputStream extends FilterInputStream {
+public class CountingInputStream extends InputStream {
+	
+	private InputStream is;
 
 	private long count;
 	private long lastRead;
 	
 	public CountingInputStream(InputStream is) {
-		super(is);
+		this.is = is;
 	}
 
 	@Override
 	public int read() throws IOException {
-		int i = super.read();
+		int i = is.read();
 		
 		if (i > 0) {
 			count++;
@@ -28,7 +29,7 @@ public class CountingInputStream extends FilterInputStream {
 
 	@Override
 	public int read(byte[] array, int i, int i1) throws IOException {
-		int l = super.read(array, i, i1);
+		int l = is.read(array, i, i1);
 		
 		if (l > 0) {
 			count += l;
@@ -41,7 +42,7 @@ public class CountingInputStream extends FilterInputStream {
 	
 	@Override
 	public int read(byte[] array) throws IOException {
-		int i = super.read(array);
+		int i = is.read(array);
 	
 		if (i > 0) {
 			count += i;
