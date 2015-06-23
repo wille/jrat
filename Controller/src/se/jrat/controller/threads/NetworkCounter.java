@@ -43,6 +43,11 @@ public class NetworkCounter implements Runnable {
 					for (NetworkMonitorListener listener : INVIDUAL_LISTENERS) {
 						listener.onUpdate(slave, sin, sout);
 					}
+					
+					slave.increaseTotalIn(sin);
+					slave.increaseTotalOut(sout);
+					slave.setCurrentIn(sin);
+					slave.setCurrentOut(sout);
 				}
 				
 				for (GlobalNetworkMonitorListener listener : GLOBAL_LISTENERS) {

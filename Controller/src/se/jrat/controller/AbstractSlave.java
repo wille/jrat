@@ -184,6 +184,14 @@ public abstract class AbstractSlave implements Runnable {
 	 * Hostname of client
 	 */
 	private String host;
+	
+	protected int currentIn;
+	
+	protected int currentOut;
+	
+	protected long totalIn;
+	
+	protected long totalOut;
 
 	public AbstractSlave(ServerListener connection, Socket socket) {		
 		if (connection != null && socket != null) {
@@ -623,6 +631,38 @@ public abstract class AbstractSlave implements Runnable {
 		this.headless = headless;
 	}
 	
+	public int getCurrentIn() {
+		return currentIn;
+	}
+
+	public void setCurrentIn(int currentIn) {
+		this.currentIn = currentIn;
+	}
+
+	public int getCurrentOut() {
+		return currentOut;
+	}
+
+	public void setCurrentOut(int currentOut) {
+		this.currentOut = currentOut;
+	}
+
+	public long getTotalIn() {
+		return totalIn;
+	}
+
+	public void increaseTotalIn(long totalIn) {
+		this.totalIn += totalIn;
+	}
+
+	public long getTotalOut() {
+		return totalOut;
+	}
+
+	public void increaseTotalOut(long totalOut) {
+		this.totalOut += totalOut;
+	}
+
 	/**
 	 * Searches connected clients from {@link #uniqueId}
 	 * @param id
