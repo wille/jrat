@@ -52,7 +52,7 @@ public class Plugin {
 		Method onDisconnect = classToLoad.getMethod("onDisconnect", new Class[] { Exception.class });
 		p.methods.put("ondisconnect", onDisconnect);
 
-		Method onPacket = classToLoad.getMethod("onPacket", new Class[] { byte.class });
+		Method onPacket = classToLoad.getMethod("onPacket", new Class[] { short.class });
 		p.methods.put("onpacket", onPacket);
 
 		Method onStart = classToLoad.getMethod("onStart", new Class[] {});
