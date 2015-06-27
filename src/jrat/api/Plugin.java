@@ -1,16 +1,19 @@
 package jrat.api;
 
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.ImageIcon;
 
 public abstract class Plugin {
+	
+	public static final File DEFAULT_PLUGIN_DIRECTORY = new File("files/plugins");
 
-	private String name;
-	private String version;
-	private String description;
-	private String author;
-	private ImageIcon icon;
+	protected String name;
+	protected String version;
+	protected String description;
+	protected String author;
+	protected ImageIcon icon;
 	
 	public Plugin(String name, String version, String description, String author) {
 		this(name, version, description, author, null);
