@@ -44,14 +44,11 @@ import se.jrat.controller.packets.outgoing.Packet37RestartJavaProcess;
 import se.jrat.controller.packets.outgoing.Packet40Thumbnail;
 import se.jrat.controller.packets.outgoing.Packet45Reconnect;
 import se.jrat.controller.settings.Settings;
-import se.jrat.controller.settings.SettingsColumns;
-import se.jrat.controller.ui.Columns;
 import se.jrat.controller.ui.MainView;
 import se.jrat.controller.ui.components.DraggableTabbedPane;
 import se.jrat.controller.ui.dialogs.DialogAbout;
 import se.jrat.controller.ui.dialogs.DialogEula;
 import se.jrat.controller.ui.panels.PanelMainClients;
-import se.jrat.controller.ui.panels.PanelMainClientsTable;
 import se.jrat.controller.ui.panels.PanelMainLog;
 import se.jrat.controller.ui.panels.PanelMainNetwork;
 import se.jrat.controller.ui.panels.PanelMainOnConnect;
@@ -297,12 +294,12 @@ public class Frame extends JFrame {
 		
 		JMenu mnView = new JMenu("View");
 		
-		for (PanelMainClients view : MainView.VIEWS) {
+		for (final PanelMainClients view : MainView.VIEWS) {
 			JMenuItem item = new JMenuItem(view.getViewName());
 			
 			item.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					
+					updateClientsView(view);
 				}
 			});
 			
@@ -709,10 +706,17 @@ public class Frame extends JFrame {
 	}
 	
 	public void updateClientsView(PanelMainClients view) {
-		tabbedPane.remove(view);
+		tabbedPane.remove(panelClients);
+		panelClients.clear();
+		
 		panelClients = view;
 		
+		for (int i = 0; i < Main.connections.size(); i++) {
+			view.addSlave(Main.connections.get(i));
+		}
+		
 		tabbedPane.insertTab("Clients", IconUtils.getIcon("tab-main"), view, null, 0);
+		tabbedPane.setSelectedIndex(0);
 	}
 
 	public void reloadPlugins() {

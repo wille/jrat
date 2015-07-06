@@ -77,6 +77,8 @@ public abstract class PanelMainClients extends JScrollPane {
 	public abstract List<AbstractSlave> getSelectedSlaves();
 	
 	public abstract AbstractSlave getSelectedSlave();
+	
+	public abstract void clear();
 
 	/**
 	 * Returns the configuration menu for this view
