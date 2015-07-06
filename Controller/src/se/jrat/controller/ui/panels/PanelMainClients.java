@@ -62,6 +62,12 @@ public abstract class PanelMainClients extends JScrollPane {
 		
 	}
 	
+	/**
+	 * Return name to describe this view
+	 * @return
+	 */
+	public abstract String getViewName();
+	
 	public abstract void addSlave(AbstractSlave slave);
 	
 	public abstract void removeSlave(AbstractSlave slave);

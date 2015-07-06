@@ -112,6 +112,11 @@ public class PanelMainClientsTable extends PanelMainClients {
 		setViewportView(table);
 	}
 	
+	@Override
+	public String getViewName() {
+		return "Table";
+	}
+	
 	public void reloadTable() {
 		model = new ClientsTableModel();
 		table.setModel(model);
