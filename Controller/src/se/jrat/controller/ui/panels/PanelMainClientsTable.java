@@ -288,9 +288,8 @@ public class PanelMainClientsTable extends PanelMainClients {
 	}
 
 	@Override
-	public JMenu getConfigPopupMenu() {
-		JMenu menu = new JMenu();
-
+	public JMenu getConfigMenu() {
+		JMenu menu = new JMenu("Customize Table");
 		
 		JMenu mnColumns = new JMenu("Columns");
 		mnColumns.setIcon(IconUtils.getIcon("application-table"));
