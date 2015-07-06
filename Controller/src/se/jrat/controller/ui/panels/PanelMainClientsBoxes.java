@@ -1,7 +1,11 @@
 package se.jrat.controller.ui.panels;
 
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.beans.PropertyVetoException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,10 +17,7 @@ import se.jrat.controller.AbstractSlave;
 
 @SuppressWarnings("serial")
 public class PanelMainClientsBoxes extends PanelMainClients {
-	
-	private int rows = 1;
-	private int columns = 1;
-	
+
 	private JDesktopPane pane;
 	
 	public PanelMainClientsBoxes() {
@@ -109,44 +110,43 @@ public class PanelMainClientsBoxes extends PanelMainClients {
 		
 		return menu;
 	}
-	
-	public void align() {			
-		JInternalFrame[] frames = pane.getAllFrames();
+
+	public void align() {
+		JInternalFrame[] allframes = pane.getAllFrames();
+		int count = allframes.length;
 		
-		while (rows * columns < frames.length - 1) {
-			rows++;
-			columns++;
+		if (count == 0) {
+			return;
 		}
-		
+
+		int sqrt = (int) Math.sqrt(count);
+		int rows = sqrt;
+		int columns = sqrt;
+		if (rows * columns < count) {
+			columns++;
+			if (rows * columns < count) {
+				rows++;
+			}
+		}
+
+		Dimension size = pane.getSize();
+
+		int w = size.width / columns;
+		int h = size.height / rows;
 		int x = 0;
 		int y = 0;
-		int pos = 0;
 
-		for (int i = 0; i < frames.length; i++) {
-			JInternalFrame frame = frames[i];
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < columns && ((i * columns) + j < count); j++) {
+				JInternalFrame f = allframes[(i * columns) + j];
 
-			int width = pane.getWidth() / columns;
-			int height = pane.getHeight() / rows;
-
-			x = width * pos++;
-			if (x >= pane.getWidth() - 10) {
-				x = 0;
-				y += height;
-				pos = 0;
+				pane.getDesktopManager().resizeFrame(f, x, y, w, h);
+				x += w;
 			}
-
-			frame.setLocation(x, y);
-
-			frame.setSize(width, height);
+			
+			y += h;
+			x = 0;
 		}
-	}
-	
-	public int getPreferredWidth() {
-		return pane.getWidth() / columns;
-	}
-	
-	public int getPreferredHeight() {
-		return pane.getHeight() / rows;
 	}
 	
 	private class SlaveBox extends JInternalFrame {
