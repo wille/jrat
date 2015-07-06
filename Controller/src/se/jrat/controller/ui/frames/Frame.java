@@ -293,6 +293,16 @@ public class Frame extends JFrame {
 		mnMain.add(mntmUpdate);
 		mntmExit.setIcon(IconUtils.getIcon("exit"));
 		mnMain.add(mntmExit);
+		
+		JMenu mnView = new JMenu("View");
+		
+		for (PanelMainClients view : MainView.VIEWS) {
+			JMenuItem item = new JMenuItem(view.getViewName());
+			
+			mnView.add(item);
+		}
+		
+		menuBar.add(mnView);
 
 		JMenu mnTools = new JMenu("Tools");
 		menuBar.add(mnTools);
