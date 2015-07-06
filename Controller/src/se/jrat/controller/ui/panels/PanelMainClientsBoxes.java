@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.panels;
 
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,11 +14,21 @@ import se.jrat.controller.AbstractSlave;
 @SuppressWarnings("serial")
 public class PanelMainClientsBoxes extends PanelMainClients {
 	
+	private int rows = 1;
+	private int columns = 1;
+	
 	private JDesktopPane pane;
 	
 	public PanelMainClientsBoxes() {
 		pane = new JDesktopPane();
-		
+
+		pane.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentResized(ComponentEvent e) {
+				align();
+			}
+		});
+
 		setViewportView(pane);
 	}
 	
@@ -27,7 +39,12 @@ public class PanelMainClientsBoxes extends PanelMainClients {
 	
 	@Override
 	public void addSlave(AbstractSlave slave) {
-		pane.add(new SlaveBox(slave));
+		SlaveBox box = new SlaveBox(slave);
+		box.setVisible(true);
+		
+		pane.add(box);
+		
+		align();
 	}
 	
 	@Override
@@ -93,11 +110,51 @@ public class PanelMainClientsBoxes extends PanelMainClients {
 		return menu;
 	}
 	
+	public void align() {			
+		JInternalFrame[] frames = pane.getAllFrames();
+		
+		while (rows * columns < frames.length - 1) {
+			rows++;
+			columns++;
+		}
+		
+		int x = 0;
+		int y = 0;
+		int pos = 0;
+
+		for (int i = 0; i < frames.length; i++) {
+			JInternalFrame frame = frames[i];
+
+			int width = pane.getWidth() / columns;
+			int height = pane.getHeight() / rows;
+
+			x = width * pos++;
+			if (x >= pane.getWidth() - 10) {
+				x = 0;
+				y += height;
+				pos = 0;
+			}
+
+			frame.setLocation(x, y);
+
+			frame.setSize(width, height);
+		}
+	}
+	
+	public int getPreferredWidth() {
+		return pane.getWidth() / columns;
+	}
+	
+	public int getPreferredHeight() {
+		return pane.getHeight() / rows;
+	}
+	
 	private class SlaveBox extends JInternalFrame {
 		
 		private AbstractSlave slave;
 		
 		public SlaveBox(AbstractSlave slave) {
+			super(slave.getDisplayName(), true, true, true, true);
 			this.slave = slave;
 		}
 		
