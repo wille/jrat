@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JCheckBox;
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -321,6 +322,36 @@ public class PanelMainClientsTable extends PanelMainClients {
 	public JMenu getConfigPopupMenu() {
 		JMenu menu = new JMenu();
 
+		
+		JMenu mnColumns = new JMenu("Columns");
+		mnColumns.setIcon(IconUtils.getIcon("application-table"));
+		menu.add(mnColumns);
+		
+		for (Columns s : Columns.values()) {
+			JCheckBoxMenuItem jcb = new JCheckBoxMenuItem("Display " + s.getName());
+			jcb.setSelected(SettingsColumns.getGlobal().isSelected(s.getName()));
+			jcb.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					JCheckBoxMenuItem jcb = (JCheckBoxMenuItem) e.getSource();
+					
+					String text = jcb.getText().substring(8, jcb.getText().length());
+					
+					if (jcb.isSelected()) {
+						getColumns().add(text);
+					} else {
+						getColumns().remove(text);
+					}
+					
+					SettingsColumns.getGlobal().setColumn(text, jcb.isSelected());
+					
+					reloadTable();
+				}	
+			});
+			
+			mnColumns.add(jcb);
+		}
+		
 		JMenu mnTableResizeBehaviour = new JMenu("Table resize behaviour");
 		menu.add(mnTableResizeBehaviour);
 		mnTableResizeBehaviour.setIcon(IconUtils.getIcon("application-table"));
