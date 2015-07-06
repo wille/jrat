@@ -14,7 +14,7 @@ public class Packet33Thumbnail extends AbstractOutgoingPacket {
 
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		if (Utils.isHeadless()) {
+		if (!Utils.isHeadless()) {
 			Rectangle screenRect = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
 			BufferedImage screenShot = new Robot().createScreenCapture(screenRect);
 			screenShot = ImageUtils.resize(screenShot, 150, 100);
