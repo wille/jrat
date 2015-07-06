@@ -82,6 +82,7 @@ public class Frame extends JFrame {
 	private JMenu mnPlugins;
 	private JCheckBoxMenuItem chckbxmntmTransferPluginsIf;
 	private JMenu mnView;
+	private JMenu configMenu;
 
 	public Frame() {
 		setIconImages(BasicIconUtils.getFrameIconList("icon"));
@@ -719,7 +720,10 @@ public class Frame extends JFrame {
 		tabbedPane.insertTab("Clients", IconUtils.getIcon("tab-main"), view, null, 0);
 		tabbedPane.setSelectedIndex(0);
 		
-		mnView.add(view.getConfigMenu());
+		mnView.remove(configMenu);
+		
+		configMenu = view.getConfigMenu();
+		mnView.add(configMenu);
 	}
 
 	public void reloadPlugins() {
