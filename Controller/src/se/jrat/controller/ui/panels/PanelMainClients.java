@@ -72,7 +72,17 @@ public abstract class PanelMainClients extends JScrollPane {
 	
 	public abstract AbstractSlave getSelectedSlave();
 
-	public JPopupMenu getPopupMenu() {
+	/**
+	 * Returns the configuration menu for this view
+	 * @return
+	 */
+	public abstract JMenu getConfigPopupMenu();
+	
+	/**
+	 * Returns the default popup menu for each {@link AbstractSlave}
+	 * @return
+	 */
+	public final JPopupMenu getPopupMenu() {
 		final JPopupMenu popupMenu = new JPopupMenu();
 		
 		JMenuItem mntmControlPanel = new JMenuItem("Control Panel                       ");
