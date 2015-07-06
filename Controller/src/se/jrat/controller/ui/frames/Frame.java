@@ -720,7 +720,9 @@ public class Frame extends JFrame {
 		tabbedPane.insertTab("Clients", IconUtils.getIcon("tab-main"), view, null, 0);
 		tabbedPane.setSelectedIndex(0);
 		
-		mnView.remove(configMenu);
+		if (configMenu != null) {
+			mnView.remove(configMenu);
+		}
 		
 		configMenu = view.getConfigMenu();
 		mnView.add(configMenu);

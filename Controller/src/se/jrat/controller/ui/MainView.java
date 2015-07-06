@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import se.jrat.controller.ui.panels.PanelMainClients;
+import se.jrat.controller.ui.panels.PanelMainClientsBoxes;
 import se.jrat.controller.ui.panels.PanelMainClientsTable;
 
 public class MainView {
@@ -12,6 +13,7 @@ public class MainView {
 	
 	static {
 		VIEWS.add(new PanelMainClientsTable());
+		VIEWS.add(new PanelMainClientsBoxes());
 	}
 	
 	public static PanelMainClients get(String s) {
