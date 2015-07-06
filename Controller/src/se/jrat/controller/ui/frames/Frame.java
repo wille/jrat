@@ -19,7 +19,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
-import javax.swing.JTable;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -47,10 +46,12 @@ import se.jrat.controller.packets.outgoing.Packet45Reconnect;
 import se.jrat.controller.settings.Settings;
 import se.jrat.controller.settings.SettingsColumns;
 import se.jrat.controller.ui.Columns;
+import se.jrat.controller.ui.MainView;
 import se.jrat.controller.ui.components.DraggableTabbedPane;
 import se.jrat.controller.ui.dialogs.DialogAbout;
 import se.jrat.controller.ui.dialogs.DialogEula;
 import se.jrat.controller.ui.panels.PanelMainClients;
+import se.jrat.controller.ui.panels.PanelMainClientsTable;
 import se.jrat.controller.ui.panels.PanelMainLog;
 import se.jrat.controller.ui.panels.PanelMainNetwork;
 import se.jrat.controller.ui.panels.PanelMainOnConnect;
@@ -299,6 +300,12 @@ public class Frame extends JFrame {
 		for (PanelMainClients view : MainView.VIEWS) {
 			JMenuItem item = new JMenuItem(view.getViewName());
 			
+			item.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					
+				}
+			});
+			
 			mnView.add(item);
 		}
 		
@@ -368,50 +375,6 @@ public class Frame extends JFrame {
 		});
 		mntmRight.setIcon(IconUtils.getIcon("ui-tab-side-right"));
 		mnTabPlacement.add(mntmRight);
-
-		JMenu mnTableResizeBehaviour = new JMenu("Table resize behaviour");
-		mnLook.add(mnTableResizeBehaviour);
-		mnTableResizeBehaviour.setIcon(IconUtils.getIcon("application-table"));
-
-		JMenuItem mntmResizeOff = new JMenuItem("Resize off");
-		mntmResizeOff.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				panelClients.getTable().setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-			}
-		});
-		mntmResizeOff.setIcon(IconUtils.getIcon("application-resize"));
-		mnTableResizeBehaviour.add(mntmResizeOff);
-
-		JMenuItem mntmFit = new JMenuItem("Fit");
-		mntmFit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				panelClients.getTable().setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-			}
-		});
-		mntmFit.setIcon(IconUtils.getIcon("application-resize"));
-		mnTableResizeBehaviour.add(mntmFit);
-
-		JMenuItem mntmRowHeight = new JMenuItem("Row height");
-		mnLook.add(mntmRowHeight);
-		mntmRowHeight.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				String str = Utils.showDialog("Input", "Input new row height. Default: 30");
-				if (str == null) {
-					return;
-				}
-
-				int h;
-
-				try {
-					h = Integer.parseInt(str.trim());
-				} catch (Exception ex) {
-					return;
-				}
-				panelClients.setRowHeight(h);
-				Settings.getGlobal().setVal("rowheight", h);
-			}
-		});
-		mntmRowHeight.setIcon(IconUtils.getIcon("application-dock"));
 
 		JMenuItem mntmColors = new JMenuItem("Colors");
 		mnLook.add(mntmColors);
@@ -728,7 +691,7 @@ public class Frame extends JFrame {
 		});
 		
 
-		panelClients = new PanelMainClients();
+		panelClients = MainView.get("Table"); // TODO
 		panelStats = new PanelMainStats();
 		panelNetwork = new PanelMainNetwork();
 		panelOnConnect = new PanelMainOnConnect();
@@ -736,7 +699,7 @@ public class Frame extends JFrame {
 		panelLog = new PanelMainLog();
 		panelPlugins = new PanelMainPlugins();
 
-		tabbedPane.addTab("Clients", IconUtils.getIcon("tab-main"), panelClients);
+		updateClientsView(panelClients);
 		tabbedPane.addTab("Statistics", IconUtils.getIcon("statistics"), panelStats);
 		tabbedPane.addTab("Network Usage", IconUtils.getIcon("network"), panelNetwork);
 		tabbedPane.addTab("On Connect", IconUtils.getIcon("calendar"), panelOnConnect);
@@ -772,6 +735,13 @@ public class Frame extends JFrame {
 		reloadPlugins();
 
 		getContentPane().add(tabbedPane);
+	}
+	
+	public void updateClientsView(PanelMainClients view) {
+		tabbedPane.remove(view);
+		panelClients = view;
+		
+		tabbedPane.insertTab("Clients", IconUtils.getIcon("tab-main"), view, null, 0);
 	}
 
 	public void reloadPlugins() {

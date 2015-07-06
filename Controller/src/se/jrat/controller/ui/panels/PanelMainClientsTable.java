@@ -320,7 +320,50 @@ public class PanelMainClientsTable extends PanelMainClients {
 	@Override
 	public JMenu getConfigPopupMenu() {
 		JMenu menu = new JMenu();
-		
+
+		JMenu mnTableResizeBehaviour = new JMenu("Table resize behaviour");
+		menu.add(mnTableResizeBehaviour);
+		mnTableResizeBehaviour.setIcon(IconUtils.getIcon("application-table"));
+
+		JMenuItem mntmResizeOff = new JMenuItem("Resize off");
+		mntmResizeOff.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				getTable().setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+			}
+		});
+		mntmResizeOff.setIcon(IconUtils.getIcon("application-resize"));
+		mnTableResizeBehaviour.add(mntmResizeOff);
+
+		JMenuItem mntmFit = new JMenuItem("Fit");
+		mntmFit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				getTable().setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+			}
+		});
+		mntmFit.setIcon(IconUtils.getIcon("application-resize"));
+		mnTableResizeBehaviour.add(mntmFit);
+
+		JMenuItem mntmRowHeight = new JMenuItem("Row height");
+		menu.add(mntmRowHeight);
+		mntmRowHeight.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String str = Utils.showDialog("Input", "Input new row height. Default: 30");
+				if (str == null) {
+					return;
+				}
+
+				int h;
+
+				try {
+					h = Integer.parseInt(str.trim());
+				} catch (Exception ex) {
+					return;
+				}
+				setRowHeight(h);
+				Settings.getGlobal().setVal("rowheight", h);
+			}
+		});
+		mntmRowHeight.setIcon(IconUtils.getIcon("application-dock"));
 		
 		return menu;
 	}

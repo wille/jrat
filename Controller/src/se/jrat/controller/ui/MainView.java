@@ -13,5 +13,15 @@ public class MainView {
 	static {
 		VIEWS.add(new PanelMainClientsTable());
 	}
+	
+	public static PanelMainClients get(String s) {
+		for (PanelMainClients view : VIEWS) {
+			if (s.equalsIgnoreCase(view.getViewName())) {
+				return view;
+			}
+		}
+		
+		return null;
+	}
 
 }
