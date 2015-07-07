@@ -62,9 +62,6 @@ import se.jrat.controller.utils.Utils;
 @SuppressWarnings("serial")
 public class Frame extends JFrame {
 
-	public static final int PING_ICON_DOT = 0;
-	public static final int PING_ICON_CIRCLE = 1;
-
 	private JTabbedPane tabbedPane;
 
 	private int pingMode;
