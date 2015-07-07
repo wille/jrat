@@ -79,6 +79,8 @@ public class PanelMainClientsBoxes extends PanelMainClients {
 				pane.remove(c);
 			}
 		}
+		
+		repaint();
 	}
 
 	@Override
