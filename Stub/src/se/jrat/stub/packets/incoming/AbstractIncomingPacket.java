@@ -28,7 +28,7 @@ public abstract class AbstractIncomingPacket {
 		PACKETS_INCOMING.put((short) 19, Packet19ListProcesses.class);
 		PACKETS_INCOMING.put((short) 20, Packet20KillProcess.class);
 		PACKETS_INCOMING.put((short) 21, Packet21ClientUploadFile.class);
-		PACKETS_INCOMING.put((short) 22, Packet22Flood.class);
+		// 22
 		PACKETS_INCOMING.put((short) 23, Packet23RemoteShellStart.class);
 		PACKETS_INCOMING.put((short) 24, Packet24RemoteShellStop.class);
 		PACKETS_INCOMING.put((short) 25, Packet25RemoteShellExecute.class);
