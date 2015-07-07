@@ -11,7 +11,7 @@ import java.util.List;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
-import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 import se.jrat.controller.AbstractSlave;
@@ -112,8 +112,8 @@ public class PanelMainClientsBoxes extends PanelMainClients {
 	}
 
 	@Override
-	public JMenu getConfigMenu() {
-		JMenu menu = new JMenu("Customize");
+	public List<JMenuItem> getConfigMenu() {
+		List<JMenuItem> menu = new ArrayList<JMenuItem>();
 		
 		return menu;
 	}
