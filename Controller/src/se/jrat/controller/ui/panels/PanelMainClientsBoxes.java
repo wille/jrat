@@ -1,5 +1,7 @@
 package se.jrat.controller.ui.panels;
 
+import iconlib.IconUtils;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -9,6 +11,7 @@ import java.awt.event.ComponentEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.Icon;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JMenuItem;
@@ -39,6 +42,11 @@ public class PanelMainClientsBoxes extends PanelMainClients {
 	@Override
 	public String getViewName() {
 		return "Boxes";
+	}
+	
+	@Override
+	public Icon getIcon() {
+		return IconUtils.getIcon("application-tile");
 	}
 	
 	@Override

@@ -10,6 +10,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.Icon;
 import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -67,6 +68,8 @@ public abstract class PanelMainClients extends JScrollPane {
 	 * @return
 	 */
 	public abstract String getViewName();
+	
+	public abstract Icon getIcon();
 	
 	public abstract void addSlave(AbstractSlave slave);
 	

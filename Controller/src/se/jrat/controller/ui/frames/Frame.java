@@ -275,6 +275,7 @@ public class Frame extends JFrame {
 		
 		for (final PanelMainClients view : MainView.VIEWS) {
 			JMenuItem item = new JMenuItem(view.getViewName());
+			item.setIcon(view.getIcon());
 			
 			item.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
@@ -696,7 +697,7 @@ public class Frame extends JFrame {
 			view.addSlave(Main.connections.get(i));
 		}
 		
-		tabbedPane.insertTab("Clients", IconUtils.getIcon("tab-main"), view, null, 0);
+		tabbedPane.insertTab("Clients", view.getIcon(), view, null, 0);
 		tabbedPane.setSelectedIndex(0);
 		
 		if (configMenu != null) {

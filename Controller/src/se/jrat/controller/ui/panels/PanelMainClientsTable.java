@@ -12,6 +12,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.Icon;
 import javax.swing.JCheckBox;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JLabel;
@@ -81,6 +82,11 @@ public class PanelMainClientsTable extends PanelMainClients {
 	@Override
 	public String getViewName() {
 		return "Table";
+	}
+	
+	@Override
+	public Icon getIcon() {
+		return IconUtils.getIcon("tab-main");
 	}
 	
 	public void reloadTable() {
