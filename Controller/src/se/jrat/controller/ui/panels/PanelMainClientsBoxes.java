@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import se.jrat.controller.AbstractSlave;
 import se.jrat.controller.Slave;
 import se.jrat.controller.packets.outgoing.Packet40Thumbnail;
+import se.jrat.controller.utils.Utils;
 
 @SuppressWarnings("serial")
 public class PanelMainClientsBoxes extends PanelMainClients {
@@ -55,11 +56,15 @@ public class PanelMainClientsBoxes extends PanelMainClients {
 		box.setVisible(true);
 		
 		pane.add(box);
+		
+		Utils.addPopup(box, getPopupMenu());
+		
 		if (slave.getThumbnail() == null) {
 			if (slave instanceof Slave) {
 				((Slave) slave).addToSendQueue(new Packet40Thumbnail());
 			}
 		}
+		
 		align();
 	}
 	
