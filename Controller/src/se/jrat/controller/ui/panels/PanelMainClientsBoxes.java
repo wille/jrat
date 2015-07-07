@@ -1,17 +1,18 @@
 package se.jrat.controller.ui.panels;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-import java.beans.PropertyVetoException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JMenu;
+import javax.swing.JPanel;
 
 import se.jrat.controller.AbstractSlave;
 import se.jrat.controller.Slave;
@@ -159,23 +160,25 @@ public class PanelMainClientsBoxes extends PanelMainClients {
 		
 		private AbstractSlave slave;
 		
-		public SlaveBox(AbstractSlave slave) {
-			super(slave.getDisplayName(), true, true, true, true);
-			this.slave = slave;
+		public SlaveBox(AbstractSlave s) {
+			super(s.getDisplayName(), true, true, true, true);
+			this.slave = s;
 			
+			JPanel panel = new JPanel() {
+				@Override
+				public void paintComponent(Graphics g) {
+					super.paintComponent(g);
+					
+					if (slave.getThumbnail() != null) {
+						Image image = slave.getThumbnail().getImage();
+						
+						g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+					}
+				}
+			};
 			
-		}
-		
-		@Override
-		public void paint(Graphics g) {
-			super.paint(g);
-			
-			if (slave.getThumbnail() != null) {
-				Image image = slave.getThumbnail().getImage();
-				
-				g.drawImage(image, 0, 0, getWidth(), getWidth(), null);
-			}
-		}
+			add(panel, BorderLayout.CENTER);
+		}	
 		
 		public AbstractSlave getSlave() {
 			return this.slave;
