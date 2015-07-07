@@ -68,7 +68,6 @@ public class Frame extends JFrame {
 	private JTabbedPane tabbedPane;
 
 	private int pingMode;
-	private boolean showThumbnails;
 	private TrayIcon trayIcon;
 
 	private PanelMainClients panelClients;
@@ -132,28 +131,6 @@ public class Frame extends JFrame {
 
 		JMenu mnShow = new JMenu("Show");
 		mnMain.add(mnShow);
-
-		JCheckBoxMenuItem mntmShowshowThumbnails = new JCheckBoxMenuItem("Show Thumbnails");
-		mnShow.add(mntmShowshowThumbnails);
-		mntmShowshowThumbnails.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				showThumbnails = !showThumbnails;
-
-				if (showThumbnails) {
-					for (int i = 0; i < Main.connections.size(); i++) {
-						AbstractSlave sl = Main.connections.get(i);
-						if (sl.getThumbnail() == null) {
-							if (sl instanceof Slave) {
-								((Slave) sl).addToSendQueue(new Packet40Thumbnail());
-							}
-						}
-					}
-					panelClients.setRowHeight(100);
-				} else {
-					panelClients.resetRowHeight();
-				}
-			}
-		});
 
 		mnMain.addSeparator();
 
@@ -814,10 +791,6 @@ public class Frame extends JFrame {
 
 	public PanelMainPlugins getPanelPlugins() {
 		return panelPlugins;
-	}
-
-	public boolean showThumbnails() {
-		return showThumbnails;
 	}
 
 	public TrayIcon getTrayIcon() {
