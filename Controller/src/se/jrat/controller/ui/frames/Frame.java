@@ -285,6 +285,8 @@ public class Frame extends JFrame {
 			mnView.add(item);
 		}
 		
+		mnView.addSeparator();
+		
 		menuBar.add(mnView);
 
 		JMenu mnTools = new JMenu("Tools");
