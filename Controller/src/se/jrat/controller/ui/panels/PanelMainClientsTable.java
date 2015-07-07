@@ -188,7 +188,11 @@ public class PanelMainClientsTable extends PanelMainClients {
 				label.setIcon(null);
 				
 				if (colname.equals(Columns.COUNTRY.getName()) && Main.instance.showThumbnails()) {
-					label.setIcon(slave.getThumbnail());
+					if (slave.getThumbnail() == null) {
+						label.setText("Loading...");
+					} else {
+						label.setIcon(slave.getThumbnail());
+					}
 				} else if (colname.equals(Columns.COUNTRY.getName())) {
 					String path;
 
