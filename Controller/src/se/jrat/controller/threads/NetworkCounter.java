@@ -8,6 +8,7 @@ import se.jrat.controller.Main;
 import se.jrat.controller.listeners.GlobalNetworkMonitorListener;
 import se.jrat.controller.listeners.NetworkMonitorListener;
 import se.jrat.controller.ui.Columns;
+import se.jrat.controller.ui.panels.PanelMainClientsTable;
 
 public class NetworkCounter implements Runnable {
 	
@@ -65,9 +66,13 @@ public class NetworkCounter implements Runnable {
 				totalIn += in;
 				totalOut += out;
 				
-				//if (Main.instance.getPanelClients().getColumns().contains(Columns.NETWORK_USAGE.getName())) {
-				//	Main.instance.repaint();
-				//}
+				if (Main.instance.getPanelClients() instanceof PanelMainClientsTable) {
+					PanelMainClientsTable panel = (PanelMainClientsTable) Main.instance.getPanelClients();
+					
+					if (panel.getColumns().contains(Columns.NETWORK_USAGE.getName())) {
+						Main.instance.repaint();
+					}
+				}
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
