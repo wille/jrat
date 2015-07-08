@@ -61,13 +61,13 @@ public class PanelMainClientsBoxes extends PanelMainClients {
 		
 		Utils.addPopup(box, getPopupMenu());
 		
+		align();
+		
 		if (slave.getThumbnail() == null) {
 			if (slave instanceof Slave) {
-				((Slave) slave).addToSendQueue(new Packet40Thumbnail());
+				((Slave) slave).addToSendQueue(new Packet40Thumbnail(box.getWidth(), box.getHeight()));
 			}
 		}
-		
-		align();
 	}
 	
 	@Override
@@ -194,6 +194,36 @@ public class PanelMainClientsBoxes extends PanelMainClients {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	/**
+	 * Returns the current internal frame size (if not moved around by user)
+	 * @return
+	 */
+	public Dimension getCurrentDimension() {
+		JInternalFrame[] allframes = pane.getAllFrames();
+		int count = allframes.length;
+		
+		if (count == 0) {
+			return pane.getSize();
+		}
+
+		int sqrt = (int) Math.sqrt(count);
+		int rows = sqrt;
+		int columns = sqrt;
+		if (rows * columns < count) {
+			columns++;
+			if (rows * columns < count) {
+				rows++;
+			}
+		}
+
+		Dimension size = pane.getSize();
+
+		int w = size.width / columns;
+		int h = size.height / rows;
+		
+		return new Dimension(w, h);
 	}
 	
 	private class SlaveBox extends JInternalFrame {
