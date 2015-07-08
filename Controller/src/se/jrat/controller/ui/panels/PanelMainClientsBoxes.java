@@ -6,6 +6,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.util.ArrayList;
@@ -129,6 +131,16 @@ public class PanelMainClientsBoxes extends PanelMainClients {
 	@Override
 	public List<JMenuItem> getConfigMenu() {
 		List<JMenuItem> menu = new ArrayList<JMenuItem>();
+		
+		JMenuItem mntmAlign = new JMenuItem("Align");
+		mntmAlign.setIcon(IconUtils.getIcon("application-tiles"));
+		
+		mntmAlign.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				align();
+			}
+		});
 		
 		return menu;
 	}
