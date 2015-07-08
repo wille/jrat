@@ -247,6 +247,8 @@ public class PanelMainClientsBoxes extends PanelMainClients {
 				}
 			};
 			
+			super.setFrameIcon(s.getFlag());
+			
 			add(panel, BorderLayout.CENTER);
 		}	
 		
