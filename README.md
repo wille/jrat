@@ -1,6 +1,13 @@
-# jRAT
+<p align="center">
+<img src="Controller/src/files/logo.png">
+</p>
 
-Remote Administration Tool written in Java supporting all major operating systems (Windows, OS X, Linux & BSD), desktop computers and servers
+***
+
+jRAT is a Remote Administration Tool written in Java supporting all major operating systems (Windows, Mac OS X, Linux, Solaris, BSD, ...)
+
+[**Website**](https://jrat.io) **|** [**Docs**](https://github.com/java-rat/docs) **|** [**Twitter**](https://twitter.com/java_rat) **|** [**Binaries/Downloads**](https://jrat.io/downloads.php) **|** [**Changelog**](/CHANGELOG.md) **|** 
+[**API**](https://github.com/java-rat/api)  **|** [**Support, Help and Suggestions**](https://jrat.io/support.php)
 
 ## Components
 
