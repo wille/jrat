@@ -18,6 +18,14 @@ public class Packet40Thumbnail extends AbstractOutgoingPacket {
 	}
 	
 	public Packet40Thumbnail(int width, int height) {
+		if (width <= 0) {
+			width = DEFAULT_WIDTH;
+		}
+		
+		if (height <= 0) {
+			height = DEFAULT_HEIGHT;
+		}
+		
 		this.width = width;
 		this.height = height;
 	}
