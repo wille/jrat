@@ -26,7 +26,7 @@ public class DialogAbout extends JDialog {
 
     static {
         try {
-            BACKGROUND = ImageIO.read(Main.class.getResource("/files/logo.png"));
+            BACKGROUND = ImageIO.read(Main.class.getResource("/files/java-background.png"));
         } catch (Exception ex) {
             ex.printStackTrace();
             BACKGROUND = null;
