@@ -28,8 +28,8 @@ import se.jrat.controller.Constants;
 import se.jrat.controller.Slave;
 import se.jrat.controller.packets.outgoing.Packet90SystemProperties;
 import se.jrat.controller.packets.outgoing.Packet96EnvironmentVariables;
-import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.components.DefaultJTable;
+import se.jrat.controller.ui.components.TableModel;
 
 
 @SuppressWarnings("serial")

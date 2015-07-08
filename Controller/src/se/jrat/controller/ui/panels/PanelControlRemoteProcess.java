@@ -15,8 +15,8 @@ import se.jrat.controller.Slave;
 import se.jrat.controller.packets.outgoing.Packet19ListProcesses;
 import se.jrat.controller.packets.outgoing.Packet20KillProcess;
 import se.jrat.controller.packets.outgoing.Packet38RunCommand;
-import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.components.DefaultJTable;
+import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.renderers.table.ProcessTableRenderer;
 import se.jrat.controller.utils.Utils;
 

@@ -5,8 +5,8 @@ import javax.swing.ScrollPaneConstants;
 
 import jrat.api.Plugin;
 import se.jrat.controller.addons.Plugins;
-import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.components.PluginTable;
+import se.jrat.controller.ui.components.TableModel;
 
 @SuppressWarnings("serial")
 public class PanelMainPlugins extends JScrollPane {

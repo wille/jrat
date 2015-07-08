@@ -19,8 +19,8 @@ import se.jrat.controller.AbstractSlave;
 import se.jrat.controller.Main;
 import se.jrat.controller.events.Event;
 import se.jrat.controller.events.Events;
-import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.components.DefaultJTable;
+import se.jrat.controller.ui.components.TableModel;
 
 @SuppressWarnings("serial")
 public class PanelMainOnConnect extends JPanel {

@@ -18,8 +18,8 @@ import javax.swing.ScrollPaneConstants;
 
 import se.jrat.controller.Slave;
 import se.jrat.controller.packets.outgoing.Packet71LocalNetworkDevices;
-import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.components.DefaultJTable;
+import se.jrat.controller.ui.components.TableModel;
 
 
 @SuppressWarnings("serial")

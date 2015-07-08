@@ -7,8 +7,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 
-import com.redpois0n.graphs.utils.DataUnits;
-
 import se.jrat.common.exceptions.AuthenticationException;
 import se.jrat.common.utils.MathUtils;
 import se.jrat.controller.AbstractSlave;
@@ -22,6 +20,8 @@ import se.jrat.controller.settings.StatisticsOperatingSystem;
 import se.jrat.controller.settings.StatisticsOperatingSystem.OperatingSystemStatEntry;
 import se.jrat.controller.settings.StoreOfflineSlaves;
 import se.jrat.controller.threads.NetworkCounter;
+
+import com.redpois0n.graphs.utils.DataUnits;
 
 public class WebPanelConnection implements Runnable {
 

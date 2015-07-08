@@ -36,8 +36,8 @@ import se.jrat.common.utils.JarUtils;
 import se.jrat.controller.ErrorDialog;
 import se.jrat.controller.Main;
 import se.jrat.controller.build.PluginPacker;
-import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.components.DefaultJTable;
+import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.dialogs.DialogPackPluginEditResources;
 
 @SuppressWarnings("serial")

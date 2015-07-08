@@ -8,8 +8,8 @@ import javax.swing.JTable;
 import se.jrat.controller.ErrorDialog;
 import se.jrat.controller.Slave;
 import se.jrat.controller.net.GeoIP;
-import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.components.JRemoteScreenPane;
+import se.jrat.controller.ui.components.TableModel;
 
 
 @SuppressWarnings("serial")

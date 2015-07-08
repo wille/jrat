@@ -31,8 +31,8 @@ import se.jrat.controller.Slave;
 import se.jrat.controller.packets.outgoing.Packet102PauseServerUpload;
 import se.jrat.controller.packets.outgoing.Packet103CompleteServerUpload;
 import se.jrat.controller.packets.outgoing.Packet105CancelServerDownload;
-import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.components.DefaultJTable;
+import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.renderers.table.DefaultJTableCellRenderer;
 import se.jrat.controller.utils.Utils;
 

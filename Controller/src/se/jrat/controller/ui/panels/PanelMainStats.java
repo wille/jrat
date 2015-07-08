@@ -13,8 +13,8 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
 import se.jrat.controller.threads.ThreadGraph;
-import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.components.DefaultJTable;
+import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.utils.FlagUtils;
 
 import com.redpois0n.graphs.graph.Graph;

@@ -10,8 +10,8 @@ import javax.swing.JTable;
 
 import se.jrat.common.utils.DataUnits;
 import se.jrat.controller.Slave;
-import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.components.DefaultJTable;
+import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.renderers.table.ComputerInfoTableRenderer;
 import se.jrat.controller.utils.FlagUtils;
 
