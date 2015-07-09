@@ -11,9 +11,9 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 
 import se.jrat.controller.Slave;
+import se.jrat.controller.packets.outgoing.Packet22RemoteShellTyped;
 import se.jrat.controller.packets.outgoing.Packet23RemoteShellStart;
 import se.jrat.controller.packets.outgoing.Packet24RemoteShellStop;
-import se.jrat.controller.packets.outgoing.Packet25RemoteShellExecute;
 
 import com.redpois0n.terminal.InputListener;
 import com.redpois0n.terminal.JTerminal;
@@ -66,7 +66,7 @@ public class FrameRemoteShell extends BaseFrame {
 	}
 	
 	private void send(char c) {
-        slave.addToSendQueue(new Packet25RemoteShellExecute(Character.toString(c)));
+        slave.addToSendQueue(new Packet22RemoteShellTyped(c));
 	}
 	
 	public JTerminal getTerminal() {
