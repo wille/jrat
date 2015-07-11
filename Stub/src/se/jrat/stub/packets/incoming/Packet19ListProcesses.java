@@ -89,14 +89,22 @@ public class Packet19ListProcesses extends AbstractIncomingPacket {
 			if (version.ordinal() >= WindowsVersion.WINVISTA.ordinal()) {
 				line = line.replaceAll("( )+", " ");
 				String[] sline = line.split(" ");
-				
+
 				data[0] = sline[0];
 				data[1] = sline[1];
+				
+				if (sline.length >= 3) {
+					String path = "";
+					
+					for (int i = 2; i < sline.length; i++) {
+						path += sline[i] + " ";
+					}
 
-				try {
-					image = (BufferedImage) ((ImageIcon) FileSystemView.getFileSystemView().getSystemIcon(new File(sline[2]))).getImage();
-				} catch (Exception e) {
-					e.printStackTrace();
+					try {
+						image = (BufferedImage) ((ImageIcon) FileSystemView.getFileSystemView().getSystemIcon(new File(path))).getImage();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 				}
 			} else {
 				line = line.replace("\"", "").replace("ÿ", "");
