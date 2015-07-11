@@ -1,8 +1,14 @@
 package se.jrat.stub.packets.incoming;
 
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStreamReader;
 
+import javax.swing.ImageIcon;
+import javax.swing.filechooser.FileSystemView;
+
+import se.jrat.common.ProcessData;
 import se.jrat.common.utils.DataUnits;
 import se.jrat.stub.Connection;
 import se.jrat.stub.packets.outgoing.Packet25Process;
@@ -72,25 +78,36 @@ public class Packet19ListProcesses extends AbstractIncomingPacket {
 	 * @param line
 	 * @return array to be sent back to controller
 	 */
-	public static final String[] parse(String line) {
+	public static final ProcessData parse(String line) {
 		String[] data = new String[4];
+		BufferedImage image = null;
 		
 		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 			WindowsOperatingSystem wos = (WindowsOperatingSystem) OperatingSystem.getOperatingSystem();
 			WindowsVersion version = wos.getVersion();
 			
 			if (version.ordinal() >= WindowsVersion.WINVISTA.ordinal()) {
+				line = line.replaceAll("( )+", " ");
+				String[] sline = line.split(" ");
 				
+				data[0] = sline[0];
+				data[1] = sline[1];
+
+				try {
+					image = (BufferedImage) ((ImageIcon) FileSystemView.getFileSystemView().getSystemIcon(new File(sline[2]))).getImage();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			} else {
 				line = line.replace("\"", "").replace("ÿ", "");
-				String[] args = line.split(",");
+				String[] sline = line.split(",");
 
-				data[0] = args[0]; // name
-				data[1] = args[1]; // pid
-				data[2] = args[2]; // type / user
-				data[3] = args[4]; // memory usage
+				data[0] = sline[0]; // name
+				data[1] = sline[1]; // pid
+				data[2] = sline[2]; // type / user
+				data[3] = sline[4]; // memory usage
 				
-				data[3] = DataUnits.getAsString(Long.parseLong(data[3].split(" ")[0]) * 1000);
+				data[3] = DataUnits.getAsString(Long.parseLong(sline[3].split(" ")[0]) * 1000);
 			}
 		} else {
 			line = line.trim().replaceAll("( )+", " ");
@@ -108,7 +125,7 @@ public class Packet19ListProcesses extends AbstractIncomingPacket {
 			}
 		}
 		
-		return data;
+		return new ProcessData(data, image);
 	}
 
 }
