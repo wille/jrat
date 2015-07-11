@@ -31,7 +31,7 @@ public class ProcessTableRenderer extends DefaultJTableCellRenderer {
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 		JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
-		ProcessData data = (ProcessData) table.getValueAt(row, column);
+		ProcessData data = (ProcessData) table.getValueAt(row, 0);
 		
 		if (column == 0 && data.getImage() != null) {
 			label.setIcon(data.getIcon());
@@ -41,7 +41,7 @@ public class ProcessTableRenderer extends DefaultJTableCellRenderer {
 			label.setIcon(null);
 		}
 		
-		if (data != null && data.getData() != null && column < data.getData().length) {
+		if (data != null && data.getData() != null) {
 			label.setText(data.getData()[column]);
 		}
 		
@@ -50,6 +50,6 @@ public class ProcessTableRenderer extends DefaultJTableCellRenderer {
 			label.setForeground(Color.black);
 		}
 
-		return this;
+		return label;
 	}
 }
