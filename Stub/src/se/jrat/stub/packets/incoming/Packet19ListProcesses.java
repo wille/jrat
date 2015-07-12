@@ -58,12 +58,7 @@ public class Packet19ListProcesses extends AbstractIncomingPacket {
 		if (OperatingSystem.getOperatingSystem().isUnix()) {
 			p = Runtime.getRuntime().exec("ps aux");
 		} else {
-			assert OperatingSystem.getOperatingSystem() instanceof WindowsOperatingSystem;
-			
-			WindowsOperatingSystem wos = (WindowsOperatingSystem) OperatingSystem.getOperatingSystem();
-			WindowsVersion version = wos.getVersion();
-
-			if (version == WindowsVersion.WINVISTA || version.isNewer(WindowsVersion.WINVISTA)) {
+			if (usePowerShell()) {
 				p = Runtime.getRuntime().exec(new String[] { "powershell", "Get-Process * | Format-Table -Property name,id,privatememorysize64,path -AutoSize" });
 			} else {
 				p = Runtime.getRuntime().exec("tasklist.exe /fo csv /nh");
@@ -86,7 +81,7 @@ public class Packet19ListProcesses extends AbstractIncomingPacket {
 			WindowsOperatingSystem wos = (WindowsOperatingSystem) OperatingSystem.getOperatingSystem();
 			WindowsVersion version = wos.getVersion();
 			
-			if (version == WindowsVersion.WINVISTA || version.isNewer(WindowsVersion.WINVISTA)) {
+			if (usePowerShell()) {
 				line = line.replaceAll("( )+", " ");
 				String[] sline = line.split(" ");
 
@@ -140,6 +135,21 @@ public class Packet19ListProcesses extends AbstractIncomingPacket {
 		}
 		
 		return new ProcessData(data, image);
+	}
+	
+	/**
+	 * If we should use PowerShell to retrieve the process data
+	 * @return true if current machine is running Windows Vista or higher
+	 */
+	public static final boolean usePowerShell() {
+		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
+			WindowsOperatingSystem wos = (WindowsOperatingSystem) OperatingSystem.getOperatingSystem();
+			WindowsVersion version = wos.getVersion();
+			
+			return version == WindowsVersion.WINVISTA || version.isNewer(WindowsVersion.WINVISTA);
+		}
+		
+		return false;
 	}
 
 }
