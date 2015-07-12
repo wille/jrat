@@ -31,7 +31,13 @@ public class Packet19ListProcesses extends AbstractIncomingPacket {
 				BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
 				if (OperatingSystem.getOperatingSystem().getType() != OperatingSystem.WINDOWS) {
+					reader.readLine();					
+				}
+				
+				if (usePowerShell()) {
 					reader.readLine();
+					reader.readLine();	
+					reader.readLine();			
 				}
 				
 				String line;
