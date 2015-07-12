@@ -94,7 +94,7 @@ public class Packet19ListProcesses extends AbstractIncomingPacket {
 				data[1] = sline[1];
 				
 				try {
-					data[2] = DataUnits.getAsString(Long.parseLong(sline[2]));
+					data[3] = DataUnits.getAsString(Long.parseLong(sline[2]));
 				} catch (NumberFormatException e1) {
 					e1.printStackTrace();
 				}
