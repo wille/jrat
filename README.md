@@ -56,3 +56,6 @@ jRAT is a Remote Administration Tool written in Java supporting all major operat
 ## About
 
 jRAT was started approximately 14th July 2012 and was released approximately 22th August 2012 for the first time
+
+
+First commit using git was made first June 2013
