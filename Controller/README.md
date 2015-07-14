@@ -23,7 +23,9 @@
 
 Typed when running from terminal
 
-```java -jar Controller.jar --debug --genkey --hidetitle --showhexkey ... ...```
+```
+$ java -jar Controller.jar --genkey --hidetitle --showhexkey ... ...
+```
 
 | Argument	  		| Description
 | ---         		| :---
