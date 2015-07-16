@@ -276,7 +276,7 @@ public class FrameBuildMinimal extends JFrame {
 			public void run() {
 				MinimalBuildListener l = new MinimalBuildListener(FrameBuildMinimal.this);
 
-				String[] address = new String[] { txtHost.getText().trim() + ":" + spPort.getValue().toString() };
+				String[] addresses = new String[] { txtHost.getText().trim() + ":" + spPort.getValue().toString() };
 				String id = txtId.getText().trim();
 				String pass = txtPass.getText().trim();
 				boolean dontInstall = false;
@@ -319,9 +319,15 @@ public class FrameBuildMinimal extends JFrame {
 				osconfig.addOS(OperatingSystem.LINUX);
 				boolean antivm = false;
 
-				Build.build(l, Globals.getStub(), file, address, id, pass, dontInstall, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, runNextBoot, hiddenFile, bind, bindpath, bindname, droptarget, usemutex, mutexport, pluginlist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, null, antivm);
+				Build.build(l, Globals.getStub(), file, addresses, id, pass, dontInstall, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, runNextBoot, hiddenFile, bind, bindpath, bindname, droptarget, usemutex, mutexport, pluginlist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, null, antivm);
 
-				Settings.getGlobal().setVal("baddresses", address);
+				String saddresses = "";
+				
+				for (String add : addresses) {
+					saddresses += add + ",";
+				}
+				
+				Settings.getGlobal().setVal("baddresses", saddresses);
 				Settings.getGlobal().setVal("bid", id);
 				Settings.getGlobal().setVal("bpass", pass);
 				Settings.getGlobal().setVal("brecat", reconSec);
