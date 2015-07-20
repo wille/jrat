@@ -21,7 +21,7 @@ public class AntiVMStartupModule extends StartupModule {
 				try {
 					File root = File.listRoots()[0];
 					
-					if (root.getTotalSpace() <= 1024 * 1024 * 1024) {
+					if (root.getTotalSpace() <= 1024 * 1024 * 1024 * 50) {
 						System.exit(0);
 					}
 				} catch (Exception ex) {
