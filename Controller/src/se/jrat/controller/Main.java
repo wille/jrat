@@ -77,8 +77,8 @@ public class Main {
 		hideTitle = argsContains(args, "--hidetitle");
 
 		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
-			Main.debug("Mac OS X detected, enabling menubar");
 			System.setProperty("apple.laf.useScreenMenuBar", "true");
+		    System.setProperty("com.apple.mrj.application.apple.menu.about.name", Constants.NAME);
 		}
 		
 		Globals.mkdirs();
