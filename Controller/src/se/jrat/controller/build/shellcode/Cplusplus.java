@@ -8,7 +8,7 @@ public class Cplusplus implements Shellcode {
 	public String generate(String arrayName, byte[] array) throws Exception {
 		StringBuilder builder = new StringBuilder();
 
-		builder.append("unsigned char " + arrayName + "[] =" + ShellcodeUtils.LINE_SEPARATOR);
+		builder.append("const char " + arrayName + "[] =" + ShellcodeUtils.LINE_SEPARATOR);
 		builder.append("{" + ShellcodeUtils.LINE_SEPARATOR + "     ");
 
 		int count = 0;
