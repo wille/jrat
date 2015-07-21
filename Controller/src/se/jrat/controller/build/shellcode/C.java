@@ -2,7 +2,7 @@ package se.jrat.controller.build.shellcode;
 
 import se.jrat.controller.utils.ShellcodeUtils;
 
-public class Cplusplus implements Shellcode {
+public class C implements Shellcode {
 
 	@Override
 	public String generate(String arrayName, byte[] array) throws Exception {

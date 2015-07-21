@@ -7,7 +7,7 @@ import java.io.FileWriter;
 import javax.swing.JOptionPane;
 
 import se.jrat.controller.build.shellcode.CSharp;
-import se.jrat.controller.build.shellcode.Cplusplus;
+import se.jrat.controller.build.shellcode.C;
 import se.jrat.controller.build.shellcode.Delphi;
 import se.jrat.controller.build.shellcode.Java;
 import se.jrat.controller.build.shellcode.Python;
@@ -33,7 +33,7 @@ public class ShellcodeGenerator {
 			Shellcode code = null;
 
 			if (language == CCPP) {
-				code = new Cplusplus();
+				code = new C();
 			} else if (language == CSHARP) {
 				code = new CSharp();
 			} else if (language == DELPHI) {
