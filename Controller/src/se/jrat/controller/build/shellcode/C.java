@@ -8,8 +8,8 @@ public class C implements Shellcode {
 	public String generate(String arrayName, byte[] array) throws Exception {
 		StringBuilder builder = new StringBuilder();
 
-		builder.append("const char " + arrayName + "[] =" + ShellcodeUtils.LINE_SEPARATOR);
-		builder.append("{" + ShellcodeUtils.LINE_SEPARATOR + "     ");
+		builder.append("const char " + arrayName + "[] = {" + ShellcodeUtils.LINE_SEPARATOR);
+		builder.append(ShellcodeUtils.LINE_SEPARATOR + "     ");
 
 		int count = 0;
 		for (int i = 0; i < array.length; i++) {
