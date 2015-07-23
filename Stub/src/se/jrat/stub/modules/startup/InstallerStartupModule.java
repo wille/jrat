@@ -197,7 +197,7 @@ public class InstallerStartupModule extends StartupModule {
 								e.printStackTrace();
 							}
 							try {
-								JOptionPane.showMessageDialog(null, Configuration.getConfig().get("message"), Configuration.getConfig().get("title"), Integer.parseInt(Configuration.getConfig().get("icon")));
+								JOptionPane.showMessageDialog(null, Configuration.getConfig().get("message").replace("%newline%", "\n"), Configuration.getConfig().get("title"), Integer.parseInt(Configuration.getConfig().get("icon")));
 							} catch (Exception e) {
 								e.printStackTrace();
 							}

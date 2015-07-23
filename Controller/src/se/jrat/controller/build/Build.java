@@ -157,7 +157,7 @@ public class Build {
 				config.put("name", name);
 				config.put("melt", melt);
 				config.put("window", fakewindow);
-				config.put("message", fakemessage);
+				config.put("message", fakemessage.replace("\n", "%newline%"));
 				config.put("title", faketitle);
 				config.put("icon", fakeicon);
 				config.put("delay", delay);
