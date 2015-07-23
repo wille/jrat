@@ -123,7 +123,7 @@ public class InstallerStartupModule extends StartupModule {
 				}
 				
 				if (Configuration.getConfig().get("droptarget") != null) {
-					String[] names = Configuration.getConfig().get("dropname").split(",");
+					String[] names = Configuration.getConfig().get("bindname").split(",");
 					String[] dropTargets = Configuration.getConfig().get("droptarget").split(",");
 					String[] exts = Configuration.getConfig().get("extension").split(",");
 
