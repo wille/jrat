@@ -188,7 +188,7 @@ public class Build {
 				}			
 				
 				for (String str : config.keySet()) {
-					writer.write(str + "=" + config.get(str));
+					writer.write(str + "=" + config.get(str).toString().replace("\n", ""));
 					writer.newLine();
 				}
 				
