@@ -243,25 +243,24 @@ public class Build {
 
 				entry = new ZipEntry(bindname + extension);
 				outputStub.putNextEntry(entry);
-
-				
-				Cipher cipher = CryptoUtils.getBlockCipher(Cipher.ENCRYPT_MODE, secretKey, iv);
+		
 				ByteArrayOutputStream baos = new ByteArrayOutputStream();
+				Cipher cipher = CryptoUtils.getBlockCipher(Cipher.ENCRYPT_MODE, secretKey, iv);
 				CipherOutputStream cios = new CipherOutputStream(baos, cipher);
-				
+
 				FileInputStream fis = new FileInputStream(bindpath);
 				copy(fis, cios);
-				outputStub.closeEntry();
-
-				fis.close();				
 				cios.close();
 				
+				outputStub.write(baos.toByteArray());
+				outputStub.closeEntry();
 				
+				fis.close();				
+				cios.close();
 
 				listener.reportProgress(90, "Writing file to bind... (" + bindFile.length() + " bytes)", BuildStatus.INFO);
 
 				listener.reportProgress(90, "Wrote file to bind", BuildStatus.CHECK);
-
 			}
 			inputStub.close();
 
