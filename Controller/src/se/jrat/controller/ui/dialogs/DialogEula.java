@@ -24,7 +24,6 @@ import se.jrat.common.Version;
 import se.jrat.controller.Constants;
 import se.jrat.controller.Main;
 import se.jrat.controller.settings.Settings;
-import se.jrat.controller.threads.ThreadCountDown;
 import se.jrat.controller.utils.IOUtils;
 
 
@@ -67,7 +66,7 @@ public class DialogEula extends JDialog {
 		});
 		btnDisagree.setIcon(IconUtils.getIcon("forbidden"));
 		
-		JButton btnAgree = new JButton("Agree (0)");
+		JButton btnAgree = new JButton("Agree");
 		btnAgree.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (!view) {
@@ -96,9 +95,6 @@ public class DialogEula extends JDialog {
 			txtEULA.setText("Failed to load EULA: " + e.getMessage());
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, "Error loading EULA: " + e.getClass().getSimpleName() + ": " + e.getMessage() + ", you now automatically agreed to it", "Error", JOptionPane.ERROR_MESSAGE);
-		}
-		if (!view) {
-			new ThreadCountDown(this, btnAgree).start();
 		}
 
 		setLocationRelativeTo(null);
