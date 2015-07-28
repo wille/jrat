@@ -29,7 +29,7 @@ public class FrameAppInfo extends JFrame {
 
 	public FrameAppInfo() {
 		setAlwaysOnTop(true);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameAppInfo.class.getResource("/icons/exe.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameAppInfo.class.getResource("/icons/application-detail.png")));
 		setTitle("App Information");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
