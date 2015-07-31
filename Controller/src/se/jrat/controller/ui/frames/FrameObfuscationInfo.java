@@ -25,7 +25,7 @@ import com.redpois0n.zkmlib.types.ExceptionObfuscation;
 import com.redpois0n.zkmlib.types.ObfuscateFlow;
 
 @SuppressWarnings("serial")
-public class FrameObfuscationInfo extends JFrame {
+public class FrameObfuscationInfo extends BaseFrame {
 
 	private JPanel contentPane;
 	private JComboBox<String> cbObfuscate;

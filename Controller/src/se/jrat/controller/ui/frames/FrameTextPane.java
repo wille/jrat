@@ -25,7 +25,7 @@ import se.jrat.controller.ErrorDialog;
 
 
 @SuppressWarnings("serial")
-public abstract class FrameTextPane extends JFrame {
+public abstract class FrameTextPane extends BaseFrame {
 
 	private JPanel contentPane;
 	private JTextPane txt;

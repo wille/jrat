@@ -30,7 +30,7 @@ import se.jrat.controller.utils.Utils;
 import se.jrat.controller.webpanel.WebPanelListener;
 
 @SuppressWarnings("serial")
-public class FrameAddSocket extends JFrame {
+public class FrameAddSocket extends BaseFrame {
 
 	private JPanel contentPane;
 	private JTextField txtPass;

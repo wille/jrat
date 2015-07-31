@@ -60,7 +60,7 @@ import se.jrat.controller.utils.NetUtils;
 import se.jrat.controller.utils.Utils;
 
 @SuppressWarnings("serial")
-public class Frame extends JFrame {
+public class Frame extends BaseFrame {
 
 	private JTabbedPane tabbedPane;
 

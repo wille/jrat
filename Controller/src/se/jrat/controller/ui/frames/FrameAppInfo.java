@@ -19,7 +19,7 @@ import javax.swing.border.EmptyBorder;
 import se.jrat.controller.utils.Utils;
 
 @SuppressWarnings("serial")
-public class FrameAppInfo extends JFrame {
+public class FrameAppInfo extends BaseFrame {
 
 	private JPanel contentPane;
 	private JTextField txtTitle;

@@ -43,7 +43,7 @@ import se.jrat.controller.ui.renderers.HelpTreeRenderer;
 import se.jrat.controller.utils.NetUtils;
 
 @SuppressWarnings("serial")
-public class FrameHelp extends JFrame {
+public class FrameHelp extends BaseFrame {
 
 	private JPanel contentPane;
 	private JTree tree;

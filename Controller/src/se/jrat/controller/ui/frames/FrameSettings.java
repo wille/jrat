@@ -39,7 +39,7 @@ import se.jrat.controller.ui.renderers.JTreeIconsRenderer;
 
 
 @SuppressWarnings("serial")
-public class FrameSettings extends JFrame {
+public class FrameSettings extends BaseFrame {
 
 	private JPanel contentPane;
 	public HashMap<String, JPanel> panels = new HashMap<String, JPanel>();

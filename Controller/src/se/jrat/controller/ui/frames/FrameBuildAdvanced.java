@@ -44,7 +44,7 @@ import se.jrat.controller.ui.renderers.JTreeIconsRenderer;
 
 
 @SuppressWarnings("serial")
-public class FrameBuildAdvanced extends JFrame {
+public class FrameBuildAdvanced extends BaseFrame {
 
 	public JTree tree;
 	public HashMap<String, JPanel> panels = new HashMap<String, JPanel>();

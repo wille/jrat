@@ -19,7 +19,7 @@ import se.jrat.controller.addons.OnlinePlugin;
 import se.jrat.controller.ui.panels.PluginPanel;
 
 @SuppressWarnings("serial")
-public class FrameInstallPlugins extends JFrame {
+public class FrameInstallPlugins extends BaseFrame {
 
 	private JPanel contentPane;
 	private JPanel panelGrid;

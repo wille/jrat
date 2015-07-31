@@ -28,7 +28,7 @@ import se.jrat.controller.utils.NetUtils;
 
 
 @SuppressWarnings("serial")
-public class FrameChangelog extends JFrame {
+public class FrameChangelog extends BaseFrame {
 
 	private JPanel contentPane;
 

@@ -18,7 +18,7 @@ import se.jrat.controller.ui.components.JColorBox;
 
 
 @SuppressWarnings("serial")
-public class FrameColors extends JFrame {
+public class FrameColors extends BaseFrame {
 
 	private JPanel contentPane;
 	private JColorBox cbSystemMonitor;

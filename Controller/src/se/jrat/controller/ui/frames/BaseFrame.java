@@ -12,6 +12,10 @@ public abstract class BaseFrame extends JFrame {
 
 	protected Slave slave;
 	
+	public BaseFrame() {
+		this(null);
+	}
+	
 	public BaseFrame(Slave slave) {
 		this.slave = slave;
 	}
@@ -26,7 +30,11 @@ public abstract class BaseFrame extends JFrame {
 	}
 	
 	public void setTitle(String s) {
-		super.setTitle(s + " - [" + slave.getDisplayName() + "] - " + slave.getIP());
+		if (slave != null) {
+			super.setTitle(s + " - [" + slave.getDisplayName() + "] - " + slave.getIP());
+		} else {
+			super.setTitle(s);
+		}
 	}
 	
 	public Slave getSlave() {

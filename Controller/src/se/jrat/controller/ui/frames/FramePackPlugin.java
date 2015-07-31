@@ -41,7 +41,7 @@ import se.jrat.controller.ui.components.TableModel;
 import se.jrat.controller.ui.dialogs.DialogPackPluginEditResources;
 
 @SuppressWarnings("serial")
-public class FramePackPlugin extends JFrame {
+public class FramePackPlugin extends BaseFrame {
 
 	private JPanel contentPane;
 	private JLabel lblName;

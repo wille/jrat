@@ -27,7 +27,7 @@ import com.redpois0n.oslib.OperatingSystem;
 
 
 @SuppressWarnings("serial")
-public class FrameDebugInfo extends JFrame {
+public class FrameDebugInfo extends BaseFrame {
 
 	private JPanel contentPane;
 	private JTextPane textPane;

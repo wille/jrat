@@ -12,7 +12,7 @@ import se.jrat.controller.Slave;
 import se.jrat.controller.ui.panels.PanelControlSystemInfo;
 
 @SuppressWarnings("serial")
-public class FrameSystemInfo extends JFrame {
+public class FrameSystemInfo extends BaseFrame {
 
 	private JPanel contentPane;
 

@@ -22,7 +22,7 @@ import se.jrat.controller.addons.Plugins;
 import se.jrat.controller.ui.components.PluginTable;
 
 @SuppressWarnings("serial")
-public class FramePlugins extends JFrame {
+public class FramePlugins extends BaseFrame {
 
 	private PluginTable table;
 

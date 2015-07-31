@@ -25,7 +25,7 @@ import se.jrat.controller.ui.renderers.GroupTreeRenderer;
 
 
 @SuppressWarnings("serial")
-public class FrameGroups extends JFrame {
+public class FrameGroups extends BaseFrame {
 
 	private JPanel contentPane;
 	private DefaultMutableTreeNode root;
