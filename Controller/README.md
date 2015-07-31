@@ -34,6 +34,7 @@ $ java -jar Controller.jar --genkey --hidetitle --showhexkey ... ...
 | --hidetitle		| Main frame title is only "jRAT"
 | --showhexkey		| Prints current key file to console
 | -h, --headless	| Headless mode
+| --nomenubar		| Doesn't use OS X native menu bar
 
 ## Commands
 

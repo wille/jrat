@@ -77,8 +77,11 @@ public class Main {
 		hideTitle = argsContains(args, "--hidetitle");
 
 		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
-			System.setProperty("apple.laf.useScreenMenuBar", "true");
-		    System.setProperty("com.apple.mrj.application.apple.menu.about.name", Constants.NAME);
+			if (!argsContains(args, "--nomenubar")) {
+				System.setProperty("apple.laf.useScreenMenuBar", "true");
+			}
+			
+			System.setProperty("com.apple.mrj.application.apple.menu.about.name", Constants.NAME);
 		}
 		
 		Globals.mkdirs();
