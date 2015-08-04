@@ -1,3 +1,29 @@
+# jRAT 5.1.1
+
+
+### Released on 2015-07-31
+
+Views
+	
+	- Can have more than one view (default is Table)
+	- New view introduced, Boxes
+
+
+- New version of swing-terminal, supports colors
+- Listing processes now shows icons (Windows Vista and above only)
+- Fix minimal builder making advanced builder not open
+- Anti virtualization now detects disk with space less than 50 GB
+- C/C++ shellcode exporting fixed
+- Binding fixed
+- Install message will not block execution of client
+- Multiline install message
+- Client will not break if any property contains a newline character
+- .app properties dialog fixed
+- EULA countdown removed
+- --nomenubar argument, can be used to run jRAT if it can't use the OS X native menu bar
+- Fix frames not showing all components on OS X***
+
+
 # jRAT 5.1
 
 
