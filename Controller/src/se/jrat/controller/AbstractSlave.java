@@ -550,7 +550,7 @@ public abstract class AbstractSlave implements Runnable {
 	}
 	
 	public ImageIcon getFlag() {
-		return FlagUtils.getFlag(country);
+		return FlagUtils.getFlag(getCountry());
 	}
 
 	public void setCountry(String country) {
