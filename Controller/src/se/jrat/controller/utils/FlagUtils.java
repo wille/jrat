@@ -317,13 +317,13 @@ public class FlagUtils {
 	}
 
 	public static ImageIcon getFlag(String name) {
+		if (name == null || name.equalsIgnoreCase("?")) {
+			name = "unknown";
+		}
+		
 		name = name.trim().toLowerCase();
 
 		ImageIcon icon = null;
-
-		if (name.equalsIgnoreCase("?")) {
-			name = "unknown";
-		}
 		
 		icon = IconUtils.getIcon("/flags/" + name + ".png", false);
 
