@@ -52,6 +52,8 @@ jRAT is a Remote Administration Tool written in Java supporting all major operat
 ## Credits
 
 - [redpois0n](https://redpois0n.com) - [red@cmail.nu](red@cmail.nu)
+- [IP2Country](http://firestats.cc/wiki/ip2c)
+- [DraggableTabbedPane](http://java-swing-tips.blogspot.se/2008/04/drag-and-drop-tabs-in-jtabbedpane.html)
 
 ## About
 
