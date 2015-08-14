@@ -50,8 +50,8 @@ public class FlagUtils {
 		COUNTRIES.put("BJ", "Benin");
 		COUNTRIES.put("BM", "Bermuda");
 		COUNTRIES.put("BT", "Bhutan");
-		COUNTRIES.put("BO", "'Bolivia, Plurinational State Of'  ");
-		COUNTRIES.put("BQ", "'Bonaire, Saint Eustatius and Saba'");
+		COUNTRIES.put("BO", "Bolivia");
+		COUNTRIES.put("BQ", "Bonaire");
 		COUNTRIES.put("BA", "Bosnia and Herzegovina");
 		COUNTRIES.put("BW", "Botswana");
 		COUNTRIES.put("BV", "Bouvet Island");
@@ -80,10 +80,8 @@ public class FlagUtils {
 		COUNTRIES.put("CR", "Costa Rica");
 		COUNTRIES.put("HR", "Croatia");
 		COUNTRIES.put("CU", "Cuba");
-		COUNTRIES.put("CW", "Curaï¿½ao");
 		COUNTRIES.put("CY", "Cyprus");
 		COUNTRIES.put("CZ", "Czech Republic");
-		COUNTRIES.put("CI", "Cï¿½te D\'Ivoire");
 		COUNTRIES.put("DK", "Denmark");
 		COUNTRIES.put("DJ", "Djibouti");
 		COUNTRIES.put("DM", "Dominica");
@@ -194,7 +192,7 @@ public class FlagUtils {
 		COUNTRIES.put("OM", "Oman");
 		COUNTRIES.put("PK", "Pakistan");
 		COUNTRIES.put("PW", "Palau");
-		COUNTRIES.put("PS", "Palestinian Territory, Occupied");
+		COUNTRIES.put("PS", "Palestine");
 		COUNTRIES.put("PA", "Panama");
 		COUNTRIES.put("PG", "Papua New Guinea");
 		COUNTRIES.put("PY", "Paraguay");
@@ -208,8 +206,8 @@ public class FlagUtils {
 		COUNTRIES.put("RO", "Romania");
 		COUNTRIES.put("RU", "Russian Federation");
 		COUNTRIES.put("RW", "Rwanda");
-		COUNTRIES.put("RE", "Rï¿½union");
-		COUNTRIES.put("BL", "Saint Barthï¿½lemy");
+		COUNTRIES.put("RE", "Réunion");
+		COUNTRIES.put("BL", "Saint Barthélemy");
 		COUNTRIES.put("SH", "Saint Helena, Ascension and Tristan Da Cunha");
 		COUNTRIES.put("KN", "Saint Kitts And Nevis");
 		COUNTRIES.put("LC", "Saint Lucia");
@@ -273,7 +271,7 @@ public class FlagUtils {
 		COUNTRIES.put("YE", "Yemen");
 		COUNTRIES.put("ZM", "Zambia");
 		COUNTRIES.put("ZW", "Zimbabwe");
-		COUNTRIES.put("AX", "ï¿½land Islands");
+		COUNTRIES.put("AX", "Åland Islands");
 	}
 
 	public static String getStringFromIso2(String iso2) {
