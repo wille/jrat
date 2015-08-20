@@ -390,8 +390,11 @@ public class FrameRemoteScreen extends BaseFrame {
 	public static void show(Slave sl) {
 		FrameRemoteScreen frame = new FrameRemoteScreen(sl);
 		frame.setVisible(true);
-		DialogMonitors dialog = new DialogMonitors(frame, sl);
-		dialog.setVisible(true);
+		
+		if (sl.getMonitors().length == 1) {
+			DialogMonitors dialog = new DialogMonitors(frame, sl);
+			dialog.setVisible(true);
+		}
 	}
 
 	public int getMonitor() {
