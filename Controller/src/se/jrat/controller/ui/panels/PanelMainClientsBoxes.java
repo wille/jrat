@@ -143,6 +143,8 @@ public class PanelMainClientsBoxes extends PanelMainClients {
 			}
 		});
 		
+		menu.add(mntmAlign);
+		
 		return menu;
 	}
 
