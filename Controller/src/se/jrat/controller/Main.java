@@ -18,7 +18,6 @@ import se.jrat.common.Version;
 import se.jrat.common.utils.Utils;
 import se.jrat.controller.addons.Plugins;
 import se.jrat.controller.commands.DefaultCommands;
-import se.jrat.controller.net.WebRequest;
 import se.jrat.controller.settings.AbstractStoreable;
 import se.jrat.controller.settings.Settings;
 import se.jrat.controller.settings.SettingsColumns;
@@ -54,12 +53,6 @@ public class Main {
 		Main.debug("Loading libraries...");
 		try {
 			Plugins.loadLibs();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		try {
-			WebRequest.getUrl("%host%", true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

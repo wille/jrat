@@ -38,7 +38,6 @@ import javax.swing.tree.DefaultTreeModel;
 import se.jrat.controller.Constants;
 import se.jrat.controller.Globals;
 import se.jrat.controller.Help;
-import se.jrat.controller.net.WebRequest;
 import se.jrat.controller.ui.renderers.HelpTreeRenderer;
 import se.jrat.controller.utils.NetUtils;
 
@@ -107,9 +106,9 @@ public class FrameHelp extends BaseFrame {
 				}
 				String site;
 				if (currentFile.startsWith("/") || currentFile.startsWith("\\")) {
-					site = WebRequest.domains[0] + "/help" + currentFile.trim().replace("\\", "/").replaceAll("/+", "/").replace(" ", "%20");
+					site = Constants.HOST + "/help" + currentFile.trim().replace("\\", "/").replaceAll("/+", "/").replace(" ", "%20");
 				} else {
-					site = WebRequest.domains[0] + "/misc/help/" + currentFile.trim().replace("\\", "/").replaceAll("/+", "/").replace(" ", "%20");
+					site = Constants.HOST + "/misc/help/" + currentFile.trim().replace("\\", "/").replaceAll("/+", "/").replace(" ", "%20");
 				}
 				try {
 					Desktop.getDesktop().browse(new URI(site));

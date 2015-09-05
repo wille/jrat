@@ -14,7 +14,7 @@ public class Constants {
 	/**
 	 * Current used domain
 	 */
-	public static String HOST = "%host%";
+	public static String HOST = "https://jrat.io";
 
 	/**
 	 * Global software name

@@ -115,7 +115,7 @@ public class Frame extends BaseFrame {
 			JMenuItem mntmUpgrade = new JMenuItem("Upgrade");
 			mntmUpgrade.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					NetUtils.openUrl(WebRequest.domains[0] + "/purchase.php");
+					NetUtils.openUrl(Constants.HOST + "/purchase.php");
 				}
 			});
 			mntmUpgrade.setIcon(IconUtils.getIcon("donate"));
