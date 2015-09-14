@@ -41,3 +41,4 @@ No automatic startup method yet
 
 - [Commons](../Commons/)
 - [oslib](https://github.com/redpois0n/oslib)
+- [startuplib](https://github.com/redpois0n/startuplib)
