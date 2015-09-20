@@ -44,7 +44,9 @@ Typed in the terminal
 | ---         		| :---
 | liststats			| Lists statistics for debugging purposes
 | addstats			| Generates and adds random statistics for debugging purposes
-| help		| Prints help for all available commands
+| help				| Prints help for all available commands
+| socket			| Adds, removes or modifies already existing socket
+| save				| Force save all settings
 
 ## Dependencies
 
