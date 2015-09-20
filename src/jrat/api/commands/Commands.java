@@ -27,13 +27,13 @@ public class Commands {
 			String[] argsNoCmd = new String[args.length - 1];
 
 			for (int i = 1; i < args.length; i++) {
-				argsNoCmd[i] = args[i - 1];
+				argsNoCmd[i - 1] = args[i];
 			}
 
 			if (commands.containsKey(args[0].toLowerCase())) {
 				AbstractCommand acommand = commands.get(args[0].toLowerCase()).newInstance();
 
-				acommand.process(args, printer);
+				acommand.process(argsNoCmd, printer);
 			} else {
 				throw new CommandNotFoundException("Command not found");
 			}
