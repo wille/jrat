@@ -9,7 +9,7 @@ public class Commands {
 	/**
 	 * Global list of commands
 	 */
-	public static final Map<String, Class<? extends AbstractCommand>> commands = new HashMap<String, Class<? extends AbstractCommand>>();
+	public static final Map<String, Class<? extends AbstractCommand>> COMMANDS = new HashMap<String, Class<? extends AbstractCommand>>();
 
 	/**
 	 * Execute command
@@ -26,8 +26,8 @@ public class Commands {
 				argsNoCmd[i - 1] = args[i];
 			}
 
-			if (commands.containsKey(args[0].toLowerCase())) {
-				AbstractCommand acommand = commands.get(args[0].toLowerCase()).newInstance();
+			if (COMMANDS.containsKey(args[0].toLowerCase())) {
+				AbstractCommand acommand = COMMANDS.get(args[0].toLowerCase()).newInstance();
 
 				acommand.process(argsNoCmd, printer);
 			} else {
