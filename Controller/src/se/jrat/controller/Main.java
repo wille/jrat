@@ -189,6 +189,9 @@ public class Main {
 		return s.toString();
 	}
 
+	/**
+	 * @return the window title to show
+	 */
 	public static String formatTitle() {
 		if (hideTitle) {
 			return Constants.NAME;
@@ -199,6 +202,9 @@ public class Main {
 		return Constants.NAME + " [" + connections.size() + "] " + Version.getVersion() + " " + suffix;
 	}
 	
+	/**
+	 * Check this before enabling features that should not be available in the lite version
+	 */
 	public static boolean isFeatureEnabled() {
 		return Main.debug || !Main.liteVersion;
 	}
