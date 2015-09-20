@@ -67,8 +67,10 @@ public abstract class PortListener implements Runnable {
 	}
 	
 	public void start() {
-		Main.instance.getPanelSockets().getModel().addRow(new Object[] { "Listening", name, server.getLocalPort(), timeout, pass });
-
+		if (Main.instance != null) {
+			Main.instance.getPanelSockets().getModel().addRow(new Object[] { "Listening", name, server.getLocalPort(), timeout, pass });
+		}
+		
 		new Thread(this, "Port " + server.getLocalPort()).start();
 	}
 
