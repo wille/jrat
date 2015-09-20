@@ -21,34 +21,36 @@ public class TrayIconUtils {
 	 * Initialize global tray icon
 	 */
 	public static void initialize() {
-		try {
-			if (!SystemTray.isSupported()) {
-				throw new Exception("Tray icon not supported");
-			}
-			if (!Settings.getGlobal().getBoolean("traynote")) {
-				return;
-			}
+		if (!Main.headless) {
+			try {
+				if (!SystemTray.isSupported()) {
+					throw new Exception("Tray icon not supported");
+				}
+				if (!Settings.getGlobal().getBoolean("traynote")) {
+					return;
+				}
 
-			SystemTray tray = SystemTray.getSystemTray();
-			icon = new TrayIcon(IconUtils.getIcon("icon-16x16").getImage(), Main.instance.getTitle(), null);
-			icon.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					if (e.getClickCount() == 2 && !e.isConsumed()) {
-						e.consume();
-						Frame frame = Main.instance;
-						if (frame.getState() == Frame.ICONIFIED) {
-							frame.setState(Frame.NORMAL);
-						} else {
-							frame.setState(Frame.ICONIFIED);
+				SystemTray tray = SystemTray.getSystemTray();
+				icon = new TrayIcon(IconUtils.getIcon("icon-16x16").getImage(), Main.instance.getTitle(), null);
+				icon.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						if (e.getClickCount() == 2 && !e.isConsumed()) {
+							e.consume();
+							Frame frame = Main.instance;
+							if (frame.getState() == Frame.ICONIFIED) {
+								frame.setState(Frame.NORMAL);
+							} else {
+								frame.setState(Frame.ICONIFIED);
+							}
 						}
 					}
-				}
-			});
-			tray.add(icon);
-			usingTray = true;
-		} catch (Exception ex) {
-			ex.printStackTrace();
+				});
+				tray.add(icon);
+				usingTray = true;
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
 		}
 	}
 

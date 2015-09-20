@@ -41,6 +41,7 @@ public class Main {
 	public static boolean liteVersion = true;
 	public static boolean debug;
 	public static boolean hideTitle;
+	public static boolean headless;
 
 	public static final List<AbstractSlave> connections = new ArrayList<AbstractSlave>();
 	public static Frame instance;
@@ -114,7 +115,7 @@ public class Main {
 		Settings.getGlobal().load();	
 		SettingsColumns.getGlobal().load();
 		
-		boolean headless = argsContains(args, "-h", "--headless") || Utils.isHeadless();
+		headless = argsContains(args, "-h", "--headless") || Utils.isHeadless();
 		
 		if (!headless) {
 			instance = new Frame();
