@@ -29,7 +29,7 @@ public class CommandHelp extends AbstractCommand {
 			Class<? extends AbstractCommand> acommand = Commands.commands.get(command);
 			AbstractCommand cmd = acommand.newInstance();
 
-			out.println("--------------------------");
+			out.println();
 			out.println(command);
 			out.println("\tDescription: " + cmd.getDescription());
 			out.println("\tExample: " + cmd.getExample());
