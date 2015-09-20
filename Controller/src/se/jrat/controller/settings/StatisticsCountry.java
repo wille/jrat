@@ -102,21 +102,23 @@ public class StatisticsCountry extends AbstractStoreable implements Serializable
 	}
 
 	public void reload() {
-		Main.instance.getPanelStats().countryGraph.clear();
+		if (Main.instance != null) {
+			Main.instance.getPanelStats().countryGraph.clear();
 
-		for (int i = 0; i < list.size(); i++) {
-			CountryStatEntry entry = list.get(i);
-			try {
+			for (int i = 0; i < list.size(); i++) {
+				CountryStatEntry entry = list.get(i);
+				try {
 
-				if (entry != null) {
-					GraphEntry total = new GraphEntry(entry.getCountry(), entry.getConnects(), FlagUtils.getFlag(entry.getCountry()));
+					if (entry != null) {
+						GraphEntry total = new GraphEntry(entry.getCountry(), entry.getConnects(), FlagUtils.getFlag(entry.getCountry()));
 
-					Main.instance.getPanelStats().countryGraph.add(total);
-					Main.instance.getPanelStats().repaint();
+						Main.instance.getPanelStats().countryGraph.add(total);
+						Main.instance.getPanelStats().repaint();
+					}
+
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
-
-			} catch (Exception e) {
-				e.printStackTrace();
 			}
 		}
 	}

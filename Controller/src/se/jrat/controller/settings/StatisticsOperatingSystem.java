@@ -99,19 +99,21 @@ public class StatisticsOperatingSystem extends AbstractStoreable implements Seri
 	}
 
 	public void reload() {
-		Main.instance.getPanelStats().osGraph.clear();
+		if (Main.instance != null) {
+			Main.instance.getPanelStats().osGraph.clear();
 
-		for (int i = 0; i < list.size(); i++) {
-			OperatingSystemStatEntry entry = list.get(i);
-			try {
-				String icon = Icons.getIconString(entry.os);
-				GraphEntry total = new GraphEntry(entry.getOperatingSystem().getDisplayString(), entry.getConnects(), IconUtils.getIcon(icon));
-				
-				total.setNumberColor(Color.gray);
-				Main.instance.getPanelStats().osGraph.add(total);
-				Main.instance.getPanelStats().repaint();
-			} catch (Exception e) {
-				e.printStackTrace();
+			for (int i = 0; i < list.size(); i++) {
+				OperatingSystemStatEntry entry = list.get(i);
+				try {
+					String icon = Icons.getIconString(entry.os);
+					GraphEntry total = new GraphEntry(entry.getOperatingSystem().getDisplayString(), entry.getConnects(), IconUtils.getIcon(icon));
+					
+					total.setNumberColor(Color.gray);
+					Main.instance.getPanelStats().osGraph.add(total);
+					Main.instance.getPanelStats().repaint();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}
