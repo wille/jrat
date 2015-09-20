@@ -66,7 +66,7 @@ public class NetworkCounter implements Runnable {
 				totalIn += in;
 				totalOut += out;
 				
-				if (Main.instance.getPanelClients() instanceof PanelMainClientsTable) {
+				if (!Main.headless && Main.instance.getPanelClients() instanceof PanelMainClientsTable) {
 					PanelMainClientsTable panel = (PanelMainClientsTable) Main.instance.getPanelClients();
 					
 					if (panel.getColumns().contains(Columns.NETWORK_USAGE.getName())) {
