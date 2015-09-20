@@ -145,11 +145,14 @@ public class Main {
 
 		DefaultCommands.addDefault();
 
+		System.out.print("> ");
+
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		String s;
 
 		while ((s = reader.readLine()) != null) {
 			Commands.execute(s, System.out);
+			System.out.print("> ");
 		}
 	}
 
