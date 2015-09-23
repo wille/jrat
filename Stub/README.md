@@ -21,21 +21,7 @@
 
 ## Installation
 
-### Windows
-
-Creates registry value in ```HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run``` pointing to the current Java installation ```javaw.exe``` followed by a ```-jar``` argument and finally the path to the JAR on disk
-
-### Mac OS X
-
-Creates launch agent in ```~/Library/LaunchAgents/``` (assumes Java is in $PATH)
-
-### Linux, Solaris and *BSD (other systems too)
-
-Creates [desktop entry](https://wiki.archlinux.org/index.php/Desktop_entries) in ```~/.config/autostart/```
-
-### Headless Systems
-
-No automatic startup method yet
+Refer to [startuplib](https://github.com/redpois0n/startuplib)
 
 ## Dependencies
 
