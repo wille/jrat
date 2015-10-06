@@ -319,7 +319,7 @@ public class FrameBuildMinimal extends BaseFrame {
 				osconfig.addOS(OperatingSystem.LINUX);
 				boolean antivm = false;
 
-				Build.build(l, Globals.getStub(), file, addresses, id, pass, dontInstall, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, runNextBoot, hiddenFile, bind, bindpath, bindname, droptarget, usemutex, mutexport, pluginlist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, null, antivm);
+				Build.build(l, Globals.getStub(), file, addresses, id, pass, dontInstall, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, runNextBoot, hiddenFile, bind, bindpath, bindname, droptarget, usemutex, mutexport, pluginlist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, antivm);
 
 				String saddresses = "";
 				

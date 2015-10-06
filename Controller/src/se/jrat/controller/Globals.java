@@ -19,13 +19,6 @@ public class Globals {
 	}
 
 	/**
-	 * @return ZKM JARs directory in {@link #getFileDirectory()}
-	 */
-	public static final File getZKMDirectory() {
-		return new File(getFileDirectory(), "zkm/");
-	}
-
-	/**
 	 * @return plugin directory in {@link #getFileDirectory()}
 	 */
 	public static final File getPluginDirectory() {
@@ -102,7 +95,7 @@ public class Globals {
 	public static void mkdirs() {
 		getFileDirectory().mkdirs();
 		getHelpDocDirectory().mkdirs();
-		getZKMDirectory().mkdirs();
+
 		getPluginDirectory().mkdirs();
 		getPluginStubDirectory().mkdirs();
 		getNotesDirectory().mkdirs();

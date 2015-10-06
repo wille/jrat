@@ -2,7 +2,6 @@ package se.jrat.controller.ui.panels;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 
 import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
@@ -13,19 +12,15 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import se.jrat.controller.Globals;
 import se.jrat.controller.Help;
 import se.jrat.controller.ShellcodeGenerator;
 import se.jrat.controller.ui.frames.FrameAppInfo;
 import se.jrat.controller.ui.frames.FrameExecutableInfo;
-import se.jrat.controller.ui.frames.FrameObfuscationInfo;
-
 
 @SuppressWarnings("serial")
 public class PanelBuildOutput extends JPanel {
 
 	public FrameExecutableInfo frameExecutableInfo = new FrameExecutableInfo();
-	public FrameObfuscationInfo frameObfuscationInfo = new FrameObfuscationInfo();
 	public FrameAppInfo frameAppInfo = new FrameAppInfo();
 	
 	private final ButtonGroup buttonGroup = new ButtonGroup();
@@ -70,10 +65,6 @@ public class PanelBuildOutput extends JPanel {
 		}
 	}
 	
-	public boolean obfuscate() {
-		return chckbxObfuscate.isSelected();
-	}
-
 	public boolean useApp() {
 		return rdbtnapposX.isSelected();
 	}
@@ -145,23 +136,6 @@ public class PanelBuildOutput extends JPanel {
 				Help.help("Not recommended. Use third party tool instead.");
 			}
 		});
-		
-		btnObfuscationInfo = new JButton("Obfuscation");
-		btnObfuscationInfo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				frameObfuscationInfo.setVisible(true);
-			}
-		});
-		
-		chckbxObfuscate = new JCheckBox("Obfuscate");
-		
-		File zkmDir = Globals.getZKMDirectory();
-		
-		if (!zkmDir.exists()) {
-			chckbxObfuscate.setEnabled(false);
-			chckbxObfuscate.setText("No ZKM installation found in /files/zkm/");
-			btnObfuscationInfo.setEnabled(false);
-		}
 		
 		rdbtnapposX = new JRadioButton(".app (OS X application)");
 		buttonGroup.add(rdbtnapposX);

