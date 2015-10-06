@@ -7,7 +7,6 @@ import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -34,8 +33,6 @@ public class PanelBuildOutput extends JPanel {
 	private JRadioButton rdbtnCArray;
 	private JRadioButton rdbtnexenetExecutable;
 	private JButton btnAssemblyInfo;
-	private JCheckBox chckbxObfuscate;
-	private JButton btnObfuscationInfo;
 	private JRadioButton rdbtnapposX;
 
 	public boolean useShellcode() {
@@ -180,23 +177,16 @@ public class PanelBuildOutput extends JPanel {
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 										.addComponent(btnProperties, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(btnAssemblyInfo, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(btnObfuscationInfo, GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE))
+										.addComponent(btnAssemblyInfo, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(chckbxObfuscate)
-										.addComponent(button))))))
-					.addContainerGap(88, Short.MAX_VALUE))
+									.addComponent(button)))))
+					.addContainerGap(126, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(34)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-							.addComponent(rdbtnjarjavaArchive)
-							.addComponent(chckbxObfuscate))
-						.addComponent(btnObfuscationInfo))
+					.addComponent(rdbtnjarjavaArchive)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(rdbtnexenetExecutable)
