@@ -33,8 +33,12 @@ public class Configuration {
 	/**
 	 * Installation date in Unix time (process launch time if no date available)
 	 */
-	private static long installms;
+	private static long installTime;
 	
+	/**
+	 * Textual installation date
+	 */
+	private static String installationDate;
 
 	/**
 	 * Hosts to connect to in format ip:port
@@ -60,26 +64,12 @@ public class Configuration {
 	 * File working name
 	 */
 	private static String name;
-	
+
 	public static Map<String, String> getConfig() throws Exception {
 		if (config != null) {
 			return config;
 		}
-		
-		addresses = getConfig().get("addresses").split(",");
-		id = getConfig().get("id");
-		pass = getConfig().get("pass");
-		connectionDelay = Long.parseLong(getConfig().get("reconsec"));
-		name = getConfig().get("name");
-		errorLogging = Boolean.parseBoolean(getConfig().get("error"));
-		debugMessages = Boolean.parseBoolean(getConfig().get("debugmsg"));
 
-		if (Boolean.parseBoolean(getConfig().get("timeout"))) {
-			timeout = Integer.parseInt(getConfig().get("toms"));
-		} else {
-			timeout = 1000 * 15;
-		}
-		
 		key = new byte[Crypto.KEY_LENGTH];
 		iv = new byte[Crypto.IV_LENGTH];
 		
@@ -99,16 +89,16 @@ public class Configuration {
 				ByteBuffer bb = ByteBuffer.allocate(8);
 			    bb.put(buffer);
 			    bb.flip();		    
-			    installms = bb.getLong();
+			    installTime = bb.getLong();
 				zip.close();
 			}
 		} else {
 			key = null;
-			installms = System.currentTimeMillis();
+			installTime = System.currentTimeMillis();
 		}
 			
-        Date da = new Date(installms);
-        Configuration.date = da.toString();
+        Date da = new Date(installTime);
+        installationDate = da.toString();
 
 		
 		if (key == null) {
@@ -117,6 +107,7 @@ public class Configuration {
 			Cipher cipher = CryptoUtils.getBlockCipher(Cipher.DECRYPT_MODE, new SecretKeySpec(key, "AES"), new IvParameterSpec(iv));
 			is = new CipherInputStream(Main.class.getResourceAsStream("/config.dat"), cipher);
 		}
+		
 		BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 		config = new HashMap<String, String>();
 
@@ -137,6 +128,20 @@ public class Configuration {
 		}
 		
 		reader.close();
+		
+		addresses = config.get("addresses").split(",");
+		id = config.get("id");
+		pass = config.get("pass");
+		connectionDelay = Long.parseLong(config.get("reconsec"));
+		name = config.get("name");
+		errorLogging = Boolean.parseBoolean(config.get("error"));
+		debugMessages = Boolean.parseBoolean(config.get("debugmsg"));
+
+		if (Boolean.parseBoolean(config.get("timeout"))) {
+			timeout = Integer.parseInt(config.get("toms"));
+		} else {
+			timeout = 1000 * 15;
+		}
 
 		return config;
 	}
@@ -162,7 +167,6 @@ public class Configuration {
 		}
 	}
 
-	public static String date;
 	public static int timeout;
 	public static boolean errorLogging = false;
 	public static boolean debugMessages = true;
@@ -186,6 +190,10 @@ public class Configuration {
 	
 	public static long getConnectionDelay() {
 		return connectionDelay;
+	}
+	
+	public static String getInstallationDate() {
+		return installationDate;
 	}
 
 }

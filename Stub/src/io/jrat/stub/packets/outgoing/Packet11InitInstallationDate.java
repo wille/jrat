@@ -10,7 +10,7 @@ public class Packet11InitInstallationDate extends AbstractOutgoingPacket {
 
 	@Override
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		String date = Configuration.date;
+		String date = Configuration.getInstallationDate();
 		
 		if (date == null) {
 			date = "Unknown";
