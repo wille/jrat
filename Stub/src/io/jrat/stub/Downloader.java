@@ -40,7 +40,7 @@ public class Downloader extends Thread {
 				if (readFromSocket) {
 					file = Temp.MAP.get(url);
 				} else if (update) {
-					file = File.createTempFile(Configuration.name + (new Random()).nextInt(), ".jar");
+					file = File.createTempFile(Configuration.getName() + (new Random()).nextInt(), ".jar");
 				} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 					file = new File(System.getProperty("java.io.tmpdir"), fileName);
 				} else {

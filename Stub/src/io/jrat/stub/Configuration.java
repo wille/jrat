@@ -56,7 +56,11 @@ public class Configuration {
 	 */
 	private static long connectionDelay;
 
-
+	/**
+	 * File working name
+	 */
+	private static String name;
+	
 	public static Map<String, String> getConfig() throws Exception {
 		if (config != null) {
 			return config;
@@ -158,7 +162,6 @@ public class Configuration {
 		}
 	}
 
-	public static String name;
 	public static boolean running = true;
 	public static String date;
 	public static int timeout;
@@ -172,6 +175,10 @@ public class Configuration {
 
 	public static String getID() {
 		return id;
+	}
+	
+	public static String getName() {
+		return name;
 	}
 
 	public static String getPass() {

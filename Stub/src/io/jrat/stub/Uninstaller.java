@@ -31,7 +31,7 @@ public class Uninstaller extends Thread {
 			}
 
 			if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
-				WinRegistry.deleteValue(WinRegistry.HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Run", Configuration.name);
+				WinRegistry.deleteValue(WinRegistry.HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Run", Configuration.getName());
 
 				file = new File(fileName + ".bat");
 
@@ -41,7 +41,7 @@ public class Uninstaller extends Thread {
 				text = text.replace("\n", " & ");
 
 			} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
-				File startupFile = new File(home + "/Library/LaunchAgents/" + Configuration.name + ".plist");
+				File startupFile = new File(home + "/Library/LaunchAgents/" + Configuration.getName() + ".plist");
 				startupFile.delete();
 
 				file = new File(fileName + ".sh");
@@ -51,7 +51,7 @@ public class Uninstaller extends Thread {
 				text += "rm " + me.getName() + "\n";
 				text += "rm $0\n";
 			} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.LINUX) {
-				File startupFile = new File(home + "/.config/autostart/" + Configuration.name + ".desktop");
+				File startupFile = new File(home + "/.config/autostart/" + Configuration.getName() + ".desktop");
 				startupFile.delete();
 
 				file = new File(fileName + ".sh");
