@@ -79,7 +79,6 @@ public class Downloader extends Thread {
 					}
 					new Uninstaller().start();
 					type.execute(file);
-					Configuration.running = false;
 					System.exit(0);
 				} else {
 					type.execute(file);

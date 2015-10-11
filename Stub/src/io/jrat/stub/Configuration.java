@@ -162,7 +162,6 @@ public class Configuration {
 		}
 	}
 
-	public static boolean running = true;
 	public static String date;
 	public static int timeout;
 	public static boolean errorLogging = false;
