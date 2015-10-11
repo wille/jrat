@@ -25,18 +25,6 @@ public class Main {
 		}
 	}
 
-	public static String getPass() {
-		return Configuration.pass;
-	}
-
-	public static String[] getAddresses() {
-		return Configuration.addresses;
-	}
-
-	public static String getID() {
-		return Configuration.id;
-	}
-
 	public static byte[] getKey() {
 		return aesKey;
 	}

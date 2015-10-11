@@ -113,7 +113,7 @@ public class Connection implements Runnable {
 			ex.printStackTrace();
 			FileSearch.stopSearch();
 			try {
-				Thread.sleep(Configuration.reconnectSeconds * 1000L);
+				Thread.sleep(Configuration.getConnectionDelay() * 1000L);
 				new Thread(this).start();
 			} catch (Exception e) {
 				e.printStackTrace();

@@ -16,7 +16,6 @@ public class StartupModules {
 		MODULES.add(InstallerStartupModule.class);
 		MODULES.add(OSXToolBarStartupModule.class);
 		MODULES.add(OperatingSystemCheckStartupModule.class);
-		MODULES.add(ConfigVarLoaderStartupModule.class);
 		MODULES.add(MutexStartupModule.class);
 		MODULES.add(MeltDropperStartupModule.class);
 		MODULES.add(StartupStartupModule.class);

