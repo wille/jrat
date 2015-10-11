@@ -4,7 +4,6 @@ import io.jrat.common.crypto.Crypto;
 import io.jrat.common.crypto.CryptoUtils;
 import io.jrat.stub.utils.Utils;
 
-import java.awt.TrayIcon;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -68,7 +67,7 @@ public class Configuration {
 	/**
 	 * Socket timeout
 	 */
-	private static int timeout;
+	private static int timeout = 15000;
 	
 	/**
 	 * Prevent all possible debug messages from reaching stdout
@@ -148,8 +147,6 @@ public class Configuration {
 
 		if (Boolean.parseBoolean(config.get("timeout"))) {
 			timeout = Integer.parseInt(config.get("toms"));
-		} else {
-			timeout = 1000 * 15;
 		}
 
 		return config;
