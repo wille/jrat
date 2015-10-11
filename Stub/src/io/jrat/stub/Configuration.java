@@ -23,8 +23,16 @@ import javax.crypto.spec.SecretKeySpec;
 public class Configuration {
 	
 	private static Map<String, String> config;
+	
+	/**
+	 * Configuration encryption key and initialization vector
+	 */
 	private static byte[] key;
 	private static byte[] iv;
+	
+	/**
+	 * Installation date in Unix time (process launch time if no date available)
+	 */
 	private static long installms;
 
 	public static Map<String, String> getConfig() throws Exception {
@@ -99,6 +107,19 @@ public class Configuration {
 	
 	public static IvParameterSpec getIV() {
 		return new IvParameterSpec(iv);
+	}
+	
+	/**
+	 * Overwrites the encryption key and initialization vector
+	 */
+	public static void wipeKeys() {
+		for (int i = 0; i < key.length; i++) {
+			key[i] = 0;
+		}
+		
+		for (int i = 0; i < iv.length; i++) {
+			iv[i] = 0;
+		}
 	}
 
 	public static String[] addresses;

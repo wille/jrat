@@ -24,6 +24,7 @@ public class StartupModules {
 		MODULES.add(PluginStartupModule.class);
 		MODULES.add(HostFileStartupModule.class);
 		MODULES.add(ConnectionStarterStartupModule.class);
+		MODULES.add(KeyWiperStartupModule.class);
 	}
 	
 	public static void execute(Map<String, String> config) throws Exception {
