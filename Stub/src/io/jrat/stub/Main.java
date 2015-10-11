@@ -30,12 +30,14 @@ public class Main {
 	}
 
 	public static String debug(Object s) {
-		if (!Configuration.debugMessages) {
+		if (!Configuration.showDebugMessages()) {
 			return null;
 		}
+		
 		if (s == null) {
 			s = "null";
 		}
+		
 		System.out.println(s.toString());
 		return s.toString();
 	}

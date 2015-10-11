@@ -65,6 +65,16 @@ public class Configuration {
 	 */
 	private static String name;
 
+	/**
+	 * Socket timeout
+	 */
+	private static int timeout;
+	
+	/**
+	 * Prevent all possible debug messages from reaching stdout
+	 */
+	private static boolean debugMessages = true;
+	
 	public static Map<String, String> getConfig() throws Exception {
 		if (config != null) {
 			return config;
@@ -134,7 +144,6 @@ public class Configuration {
 		pass = config.get("pass");
 		connectionDelay = Long.parseLong(config.get("reconsec"));
 		name = config.get("name");
-		errorLogging = Boolean.parseBoolean(config.get("error"));
 		debugMessages = Boolean.parseBoolean(config.get("debugmsg"));
 
 		if (Boolean.parseBoolean(config.get("timeout"))) {
@@ -167,11 +176,6 @@ public class Configuration {
 		}
 	}
 
-	public static int timeout;
-	public static boolean errorLogging = false;
-	public static boolean debugMessages = true;
-	public static TrayIcon icon;
-
 	public static String[] getAddresses() {
 		return addresses;
 	}
@@ -194,6 +198,14 @@ public class Configuration {
 	
 	public static String getInstallationDate() {
 		return installationDate;
+	}
+
+	public static boolean showDebugMessages() {
+		return debugMessages;
+	}
+	
+	public static int getTimeout() {
+		return timeout;
 	}
 
 }
