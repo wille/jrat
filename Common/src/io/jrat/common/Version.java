@@ -3,6 +3,6 @@ package io.jrat.common;
 public final class Version {
 
 	public static final String getVersion() {
-		return "5.1.1";
+		return "5.1.2";
 	}
 }
