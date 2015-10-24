@@ -1,3 +1,28 @@
+# jRAT 5.1.2
+
+
+### Released on 2015-10-19
+
+- Fixed flag issue that would cause the client to crash if no flag was found
+- Return correct flag in sample mode
+- Some country character fixes
+- Only show monitor dialog if there is more than one monitor on the remote system
+- Safer client detection in API
+- Constant authentication domain
+- Stub uses startuplib
+- Do not update graphs if running headless
+- Do not update sockets view if running headless
+- Prevent loading of tray icon if running headless
+- Do not update network graph if running headless
+- Update 'help' command
+- 'save' command added
+- 'socket' command added
+- ZKM automation removed
+- Lite version tray messages changed
+- Wipes encryption keys on start
+***
+
+
 # jRAT 5.1.1
 
 
