@@ -1,5 +1,6 @@
 package io.jrat.controller.packets.incoming;
 
+import graphslib.monitors.PanelMonitors.PanelMonitor;
 import io.jrat.common.utils.ImageUtils;
 import io.jrat.controller.Slave;
 import io.jrat.controller.ui.dialogs.DialogPickMonitor;
@@ -9,8 +10,6 @@ import io.jrat.controller.ui.panels.PanelControlMonitors;
 import java.awt.image.BufferedImage;
 import java.io.DataInputStream;
 import java.util.List;
-
-import com.redpois0n.graphs.monitors.PanelMonitors.PanelMonitor;
 
 public class Packet71AllThumbnails extends AbstractIncomingPacket {
 

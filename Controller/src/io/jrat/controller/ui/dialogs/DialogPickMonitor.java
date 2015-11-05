@@ -1,5 +1,9 @@
 package io.jrat.controller.ui.dialogs;
 
+import graphslib.monitors.MonitorListener;
+import graphslib.monitors.PanelMonitors;
+import graphslib.monitors.PanelMonitors.PanelMonitor;
+import graphslib.monitors.RemoteMonitor;
 import io.jrat.controller.Slave;
 import io.jrat.controller.listeners.PickMonitorListener;
 import io.jrat.controller.packets.outgoing.Packet75AllThumbnails;
@@ -18,11 +22,6 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import com.redpois0n.graphs.monitors.MonitorListener;
-import com.redpois0n.graphs.monitors.PanelMonitors;
-import com.redpois0n.graphs.monitors.PanelMonitors.PanelMonitor;
-import com.redpois0n.graphs.monitors.RemoteMonitor;
 
 @SuppressWarnings("serial")
 public class DialogPickMonitor extends JDialog {

@@ -1,5 +1,6 @@
 package io.jrat.controller.ui.panels;
 
+import graphslib.smooth.SmoothGraph;
 import io.jrat.controller.Slave;
 import io.jrat.controller.threads.ThreadMemoryUsage;
 
@@ -13,8 +14,6 @@ import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.LayoutStyle.ComponentPlacement;
-
-import com.redpois0n.graphs.smooth.SmoothGraph;
 
 @SuppressWarnings("serial")
 public class PanelMemoryUsage extends PanelControlParent {

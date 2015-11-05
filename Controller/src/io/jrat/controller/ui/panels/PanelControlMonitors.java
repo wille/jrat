@@ -1,5 +1,9 @@
 package io.jrat.controller.ui.panels;
 
+import graphslib.monitors.MonitorListener;
+import graphslib.monitors.PanelMonitors;
+import graphslib.monitors.PanelMonitors.PanelMonitor;
+import graphslib.monitors.RemoteMonitor;
 import io.jrat.controller.Slave;
 import io.jrat.controller.packets.outgoing.Packet75AllThumbnails;
 
@@ -12,11 +16,6 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
 import javax.swing.ScrollPaneConstants;
-
-import com.redpois0n.graphs.monitors.MonitorListener;
-import com.redpois0n.graphs.monitors.PanelMonitors;
-import com.redpois0n.graphs.monitors.PanelMonitors.PanelMonitor;
-import com.redpois0n.graphs.monitors.RemoteMonitor;
 
 @SuppressWarnings("serial")
 public class PanelControlMonitors extends PanelControlParent {

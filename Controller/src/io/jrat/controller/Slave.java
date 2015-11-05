@@ -1,5 +1,6 @@
 package io.jrat.controller;
 
+import graphslib.monitors.RemoteMonitor;
 import io.jrat.common.hash.Sha1;
 import io.jrat.controller.exceptions.CloseException;
 import io.jrat.controller.net.ServerListener;
@@ -13,8 +14,6 @@ import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import com.redpois0n.graphs.monitors.RemoteMonitor;
 
 public class Slave extends AbstractSlave {
 

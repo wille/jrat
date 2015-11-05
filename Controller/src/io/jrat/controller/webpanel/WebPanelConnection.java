@@ -1,5 +1,6 @@
 package io.jrat.controller.webpanel;
 
+import graphslib.utils.DataUnits;
 import io.jrat.common.exceptions.AuthenticationException;
 import io.jrat.common.utils.MathUtils;
 import io.jrat.controller.AbstractSlave;
@@ -8,10 +9,10 @@ import io.jrat.controller.Main;
 import io.jrat.controller.OfflineSlave;
 import io.jrat.controller.exceptions.CloseException;
 import io.jrat.controller.settings.StatisticsCountry;
-import io.jrat.controller.settings.StatisticsOperatingSystem;
-import io.jrat.controller.settings.StoreOfflineSlaves;
 import io.jrat.controller.settings.StatisticsCountry.CountryStatEntry;
+import io.jrat.controller.settings.StatisticsOperatingSystem;
 import io.jrat.controller.settings.StatisticsOperatingSystem.OperatingSystemStatEntry;
+import io.jrat.controller.settings.StoreOfflineSlaves;
 import io.jrat.controller.threads.NetworkCounter;
 
 import java.io.BufferedReader;
@@ -20,8 +21,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
-
-import com.redpois0n.graphs.utils.DataUnits;
 
 public class WebPanelConnection implements Runnable {
 

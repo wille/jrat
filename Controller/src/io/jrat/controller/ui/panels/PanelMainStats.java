@@ -1,5 +1,8 @@
 package io.jrat.controller.ui.panels;
 
+import graphslib.graph.Graph;
+import graphslib.graph.GraphColors;
+import graphslib.graph.GraphEntry;
 import io.jrat.controller.threads.ThreadGraph;
 import io.jrat.controller.ui.components.DefaultJTable;
 import io.jrat.controller.ui.components.TableModel;
@@ -16,10 +19,6 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
-
-import com.redpois0n.graphs.graph.Graph;
-import com.redpois0n.graphs.graph.GraphColors;
-import com.redpois0n.graphs.graph.GraphEntry;
 
 @SuppressWarnings("serial")
 public class PanelMainStats extends JScrollPane {

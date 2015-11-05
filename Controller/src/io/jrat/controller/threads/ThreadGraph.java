@@ -1,6 +1,6 @@
 package io.jrat.controller.threads;
 
-import com.redpois0n.graphs.graph.Graph;
+import graphslib.graph.Graph;
 
 
 public class ThreadGraph extends Thread {

@@ -1,5 +1,6 @@
 package io.jrat.controller.settings;
 
+import graphslib.graph.GraphEntry;
 import iconlib.IconUtils;
 import io.jrat.controller.AbstractSlave;
 import io.jrat.controller.Globals;
@@ -15,7 +16,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.redpois0n.graphs.graph.GraphEntry;
 import com.redpois0n.oslib.AbstractOperatingSystem;
 import com.redpois0n.oslib.Icons;
 

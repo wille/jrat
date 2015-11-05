@@ -1,5 +1,6 @@
 package io.jrat.controller.settings;
 
+import graphslib.graph.GraphEntry;
 import io.jrat.common.Logger;
 import io.jrat.controller.AbstractSlave;
 import io.jrat.controller.Globals;
@@ -14,8 +15,6 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.redpois0n.graphs.graph.GraphEntry;
 
 public class StatisticsCountry extends AbstractStoreable implements Serializable {
 

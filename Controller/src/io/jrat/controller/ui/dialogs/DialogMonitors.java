@@ -1,5 +1,6 @@
 package io.jrat.controller.ui.dialogs;
 
+import graphslib.monitors.RemoteMonitor;
 import iconlib.IconUtils;
 import io.jrat.controller.Slave;
 import io.jrat.controller.listeners.PickMonitorListener;
@@ -29,8 +30,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-
-import com.redpois0n.graphs.monitors.RemoteMonitor;
 
 
 @SuppressWarnings("serial")

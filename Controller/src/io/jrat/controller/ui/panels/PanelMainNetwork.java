@@ -1,5 +1,7 @@
 package io.jrat.controller.ui.panels;
 
+import graphslib.network.NetworkColors;
+import graphslib.network.NetworkGraph;
 import io.jrat.common.utils.DataUnits;
 import io.jrat.controller.listeners.GlobalNetworkMonitorListener;
 import io.jrat.controller.threads.NetworkCounter;
@@ -9,9 +11,6 @@ import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import com.redpois0n.graphs.network.NetworkColors;
-import com.redpois0n.graphs.network.NetworkGraph;
 
 @SuppressWarnings("serial")
 public class PanelMainNetwork extends JPanel {

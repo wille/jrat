@@ -1,6 +1,6 @@
 package io.jrat.controller.listeners;
 
-import com.redpois0n.graphs.monitors.RemoteMonitor;
+import graphslib.monitors.RemoteMonitor;
 
 
 

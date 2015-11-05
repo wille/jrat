@@ -1,5 +1,6 @@
 package io.jrat.controller.ui.frames;
 
+import graphslib.monitors.RemoteMonitor;
 import iconlib.IconUtils;
 import io.jrat.common.utils.DataUnits;
 import io.jrat.controller.ErrorDialog;
@@ -49,8 +50,6 @@ import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-
-import com.redpois0n.graphs.monitors.RemoteMonitor;
 
 
 @SuppressWarnings("serial")
