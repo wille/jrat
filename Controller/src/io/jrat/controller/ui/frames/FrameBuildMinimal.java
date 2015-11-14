@@ -241,26 +241,9 @@ public class FrameBuildMinimal extends BaseFrame {
 		btnWan.setIcon(IconUtils.getIcon("network-ip"));
 		toolBar.add(btnWan);
 		contentPane.setLayout(gl_contentPane);
-
-		// update();
 	}
 
-	/*public void update() {
-
-		if (text.length() == Crypto.KEY_LENGTH) {
-			txtKey.setBackground(Color.green);
-			lblLength.setForeground(Color.green);
-		} else {
-			txtKey.setBackground(Color.red);
-			lblLength.setForeground(Color.red);
-		}
-	}*/
-
 	public void build() {
-		/*if (txtKey.getText().trim().length() != Crypto.KEY_LENGTH) {
-			return;
-		}*/
-
 		JFileChooser c = new JFileChooser();
 		c.showSaveDialog(null);
 
