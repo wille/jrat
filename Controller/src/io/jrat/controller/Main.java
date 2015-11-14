@@ -39,7 +39,6 @@ public class Main {
 	
 	public static final long START_TIME = System.currentTimeMillis();
 
-	public static boolean liteVersion = true;
 	public static boolean debug;
 	public static boolean hideTitle;
 	public static boolean headless;
@@ -93,15 +92,15 @@ public class Main {
 		try {
 			boolean validated = UniqueId.validate(argsContains(args, "--showhexkey"));
 
-			if (validated) {
-				liteVersion = false;
+			if (!validated) {
+				throw new Exception();
 			}
 		} catch (Exception ex) {
-			ex.printStackTrace();
-			
-			if (!debug) {
-				JOptionPane.showMessageDialog(null, Constants.NAME + " is limited, no license detected", Constants.NAME, JOptionPane.ERROR_MESSAGE);
+			if (debug) {
+				ex.printStackTrace();
 			}
+			
+			JOptionPane.showMessageDialog(null, Constants.NAME + " is limited, no license detected", Constants.NAME, JOptionPane.ERROR_MESSAGE);
 		}
 
 		System.setProperty("jrat.version", Version.getVersion());
@@ -201,16 +200,6 @@ public class Main {
 			return Constants.NAME;
 		}
 		
-		String suffix = liteVersion && !debug ? "Limited" : "";
-
-		return Constants.NAME + " [" + connections.size() + "] " + Version.getVersion() + " " + suffix;
+		return Constants.NAME + " [" + connections.size() + "] " + Version.getVersion();
 	}
-	
-	/**
-	 * Check this before enabling features that should not be available in the lite version
-	 */
-	public static boolean isFeatureEnabled() {
-		return Main.debug || !Main.liteVersion;
-	}
-
 }

@@ -3,7 +3,6 @@ package io.jrat.controller.ui.panels;
 import iconlib.IconUtils;
 import io.jrat.controller.Constants;
 import io.jrat.controller.ErrorDialog;
-import io.jrat.controller.Main;
 import io.jrat.controller.ui.components.JPlaceholderTextField;
 
 import java.awt.BorderLayout;
@@ -65,11 +64,7 @@ public class PanelBuildVisibility extends JPanel {
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(panel, GroupLayout.PREFERRED_SIZE, 273, GroupLayout.PREFERRED_SIZE).addContainerGap(16, Short.MAX_VALUE)));
 
 		chckbxUseTrayIcon = new JCheckBox("Use tray icon");
-
-		if (Main.liteVersion) {
-			chckbxUseTrayIcon.setEnabled(false);
-			chckbxUseTrayIcon.setSelected(true);
-		}
+		chckbxUseTrayIcon.setSelected(true);
 
 		JLabel label = new JLabel("");
 		label.setIcon(IconUtils.getIcon("glasses"));

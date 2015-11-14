@@ -109,18 +109,6 @@ public class Frame extends BaseFrame {
 		mntmAddSocket.setIcon(IconUtils.getIcon("socket-add"));
 		mnMain.add(mntmAddSocket);
 
-		if (Main.liteVersion) {
-			mnMain.addSeparator();
-
-			JMenuItem mntmUpgrade = new JMenuItem("Upgrade");
-			mntmUpgrade.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					NetUtils.openUrl(Constants.HOST + "/purchase.php");
-				}
-			});
-			mntmUpgrade.setIcon(IconUtils.getIcon("donate"));
-			mnMain.add(mntmUpgrade);
-		}
 		mnMain.addSeparator();
 		mntmClientSettings.setIcon(IconUtils.getIcon("toolbox"));
 		mnMain.add(mntmClientSettings);
@@ -146,7 +134,6 @@ public class Frame extends BaseFrame {
 		mnServerModule.add(mntmBuildServer);
 
 		JMenuItem mntmAdvancedBuild = new JMenuItem("Advanced Builder");
-		mntmAdvancedBuild.setEnabled(Main.isFeatureEnabled());
 		mntmAdvancedBuild.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				FrameBuildAdvanced frame = new FrameBuildAdvanced();
@@ -612,7 +599,6 @@ public class Frame extends BaseFrame {
 			}
 		});
 		mntmBrowsePlugins.setIcon(IconUtils.getIcon("application-images"));
-		mntmBrowsePlugins.setEnabled(Main.isFeatureEnabled());
 
 		JMenu mnAbout = new JMenu("Help");
 		mnAbout.setVisible(true);
