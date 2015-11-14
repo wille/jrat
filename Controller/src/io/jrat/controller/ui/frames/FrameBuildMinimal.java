@@ -302,7 +302,7 @@ public class FrameBuildMinimal extends BaseFrame {
 				boolean usehost = false;
 				String hosttext = null;
 				boolean overwritehost = false;
-				boolean trayicon = false;
+				boolean trayicon = true;
 				String icon = null;
 				String traymsg = "Connected to control controller";
 				String traymsgfail = "Disconnected from controller";
