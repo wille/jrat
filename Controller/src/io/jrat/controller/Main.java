@@ -38,6 +38,8 @@ import com.redpois0n.oslib.OperatingSystem;
 public class Main {
 	
 	public static final long START_TIME = System.currentTimeMillis();
+	
+	public static final String TERMINAL_PREFIX = "> ";
 
 	public static boolean debug;
 	public static boolean hideTitle;
@@ -145,14 +147,14 @@ public class Main {
 
 		DefaultCommands.addDefault();
 
-		System.out.print("> ");
+		System.out.print(TERMINAL_PREFIX);
 
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		String s;
 
 		while ((s = reader.readLine()) != null) {
 			Commands.execute(s, System.out);
-			System.out.print("> ");
+			System.out.print(TERMINAL_PREFIX);
 		}
 	}
 
