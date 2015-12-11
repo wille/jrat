@@ -1,6 +1,6 @@
 package io.jrat.controller;
 
-import io.jrat.controller.settings.AbstractStoreable;
+import io.jrat.controller.settings.AbstractStorable;
 import io.jrat.controller.settings.Settings;
 import io.jrat.controller.settings.SettingsColumns;
 import io.jrat.controller.settings.SettingsTheme;
@@ -19,7 +19,7 @@ public class ShutdownHook implements Runnable {
 			e.perform(event);
 		}
 
-		AbstractStoreable.saveAllGlobals();
+		AbstractStorable.saveAllGlobals();
 
 		try {
 			SettingsTheme.getGlobal().save();

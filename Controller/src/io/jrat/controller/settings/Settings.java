@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class Settings extends AbstractStoreable {
+public class Settings extends AbstractStorable {
 
 	private static final Settings instance = new Settings();
 

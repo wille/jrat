@@ -20,7 +20,7 @@ import java.net.BindException;
 
 import javax.swing.JOptionPane;
 
-public class SettingsSockets extends AbstractStoreable implements Serializable {
+public class SettingsSockets extends AbstractStorable implements Serializable {
 
 	private static final long serialVersionUID = -4638162646507652405L;
 

@@ -16,7 +16,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StatisticsCountry extends AbstractStoreable implements Serializable {
+public class StatisticsCountry extends AbstractStorable implements Serializable {
 
 	private static final long serialVersionUID = -7692558803046215384L;
 

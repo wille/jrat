@@ -19,7 +19,7 @@ import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
 import javax.crypto.CipherOutputStream;
 
-public class StoreOfflineSlaves extends AbstractStoreable {
+public class StoreOfflineSlaves extends AbstractStorable {
 	
 	private static final List<OfflineSlave> LIST = new ArrayList<OfflineSlave>();
 	private static final StoreOfflineSlaves INSTANCE = new StoreOfflineSlaves();

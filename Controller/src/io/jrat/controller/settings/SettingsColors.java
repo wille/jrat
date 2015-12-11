@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class SettingsColors extends AbstractStoreable implements Serializable {
+public class SettingsColors extends AbstractStorable implements Serializable {
 
 	private static final long serialVersionUID = 973106735935668990L;
 

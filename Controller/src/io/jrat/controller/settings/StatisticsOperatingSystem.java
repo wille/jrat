@@ -19,7 +19,7 @@ import java.util.List;
 import com.redpois0n.oslib.AbstractOperatingSystem;
 import com.redpois0n.oslib.Icons;
 
-public class StatisticsOperatingSystem extends AbstractStoreable implements Serializable {
+public class StatisticsOperatingSystem extends AbstractStorable implements Serializable {
 
 	private static final long serialVersionUID = 3444250505850670708L;
 

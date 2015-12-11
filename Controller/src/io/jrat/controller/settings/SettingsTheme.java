@@ -13,7 +13,7 @@ import java.io.OutputStreamWriter;
 import javax.swing.UIManager;
 
 
-public class SettingsTheme extends AbstractStoreable {
+public class SettingsTheme extends AbstractStorable {
 
 	private static final SettingsTheme instance = new SettingsTheme();
 

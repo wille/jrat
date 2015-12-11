@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class StoreFileBookmarks extends AbstractStoreable {
+public class StoreFileBookmarks extends AbstractStorable {
 
 	private transient final List<File> bookmarks = new ArrayList<File>();
 

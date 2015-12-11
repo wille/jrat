@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class SettingsCustomID extends AbstractStoreable implements Serializable {
+public class SettingsCustomID extends AbstractStorable implements Serializable {
 
 	private static final long serialVersionUID = 720261533636222207L;
 

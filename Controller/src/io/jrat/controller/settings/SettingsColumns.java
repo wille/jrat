@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class SettingsColumns extends AbstractStoreable {
+public class SettingsColumns extends AbstractStorable {
 
 	private static final SettingsColumns instance = new SettingsColumns();
 

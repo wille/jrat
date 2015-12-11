@@ -4,9 +4,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractStoreable {
+public abstract class AbstractStorable {
 
-	private static final List<AbstractStoreable> globalSettings = new ArrayList<AbstractStoreable>();
+	private static final List<AbstractStorable> globalSettings = new ArrayList<AbstractStorable>();
 	
 	public static void loadAllGlobals() {
 		if (globalSettings.size() == 0) {
@@ -19,7 +19,7 @@ public abstract class AbstractStoreable {
 			globalSettings.add(StoreOfflineSlaves.getGlobal());
 		}
 
-		for (AbstractStoreable setting : globalSettings) {
+		for (AbstractStorable setting : globalSettings) {
 			try {
 				setting.load();
 			} catch (Exception ex) {
@@ -29,7 +29,7 @@ public abstract class AbstractStoreable {
 	}
 
 	public static void saveAllGlobals() {
-		for (AbstractStoreable setting : globalSettings) {
+		for (AbstractStorable setting : globalSettings) {
 			try {
 				setting.save();
 			} catch (Exception ex) {

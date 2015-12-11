@@ -5,7 +5,7 @@ import io.jrat.common.Version;
 import io.jrat.common.utils.Utils;
 import io.jrat.controller.addons.Plugins;
 import io.jrat.controller.commands.DefaultCommands;
-import io.jrat.controller.settings.AbstractStoreable;
+import io.jrat.controller.settings.AbstractStorable;
 import io.jrat.controller.settings.Settings;
 import io.jrat.controller.settings.SettingsColumns;
 import io.jrat.controller.settings.SettingsTheme;
@@ -124,7 +124,7 @@ public class Main {
 			instance.setVisible(true);
 		}
 
-		AbstractStoreable.loadAllGlobals();
+		AbstractStorable.loadAllGlobals();
 
 		boolean showEULA = Settings.getGlobal().getBoolean("showeula");
 		if (!showEULA) {
