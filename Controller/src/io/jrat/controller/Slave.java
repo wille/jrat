@@ -17,6 +17,7 @@ import java.util.List;
 
 public class Slave extends AbstractSlave {
 
+	public static final short HEADER_HANDSHAKE = 1;
 
 	private final List<String> queue = new ArrayList<String>();
 	private Drive[] drives;
@@ -46,7 +47,7 @@ public class Slave extends AbstractSlave {
 			while (true) {
 				short header = readShort();
 
-				if (header == 1) {
+				if (header == HEADER_HANDSHAKE) {
 					Sha1 sha = new Sha1();
 					
 					String data = connection.getPass();
