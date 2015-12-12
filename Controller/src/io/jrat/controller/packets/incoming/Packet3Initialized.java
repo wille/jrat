@@ -75,12 +75,8 @@ public class Packet3Initialized extends AbstractIncomingPacket {
 									mainClass = JarUtils.getMainClassFromInfo(new JarFile(stubFile));
 								} catch (Exception ex) {
 									ex.printStackTrace();
-									Logger.log("Failed loading main class from plugin.txt, trying meta-inf");
-									try {
-										mainClass = JarUtils.getMainClass(new JarFile(stubFile));
-									} catch (Exception e) {
-										e.printStackTrace();
-									}
+									Logger.log("Failed loading main class from plugin.txt");
+									return;
 								}
 								
 								slave.addToSendQueue(new Packet101UploadPlugin(mainClass, plugin.getName()));
