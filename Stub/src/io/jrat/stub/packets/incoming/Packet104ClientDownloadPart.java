@@ -8,7 +8,7 @@ public class Packet104ClientDownloadPart extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {
-		final String remotePath = con.readLine();
+		String remotePath = con.readLine();
 
 		TransferData localData = FileCache.get(remotePath);
 		

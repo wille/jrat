@@ -2,6 +2,7 @@ package io.jrat.common.io;
 
 import io.jrat.common.TransferRunnable;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
@@ -13,6 +14,7 @@ public class TransferData {
 	}
 	
 	private State state;
+	private boolean memory;
 	private String remote;
 	private File local;
 	private OutputStream out;
@@ -25,12 +27,20 @@ public class TransferData {
 	private long speed;
 	
 	public TransferData() {
-		this.state = State.IN_PROGRESS;
+		this(false);
+	}
+	
+	public TransferData(boolean memory) {
+		this.memory = memory;
 	}
 
 	public OutputStream getOutputStream() throws Exception {
-		if (out == null && local != null) {
-			out = new FileOutputStream(local);
+		if (out == null) {
+			if (memory) {
+				out = new ByteArrayOutputStream();
+			} else {
+				out = new FileOutputStream(local);
+			}
 		}
 		
 		return out;

@@ -8,10 +8,10 @@ import java.io.File;
 
 public class Packet42ServerUploadFile extends AbstractOutgoingPacket {
 
-	private File file;
-	private String remoteFile;
-	private boolean temp;
-	private UploadThread thread;
+	protected File file;
+	protected String remoteFile;
+	protected boolean temp;
+	protected UploadThread thread;
 
 	public Packet42ServerUploadFile(File file, String remoteFile) {
 		this(file, remoteFile, false);

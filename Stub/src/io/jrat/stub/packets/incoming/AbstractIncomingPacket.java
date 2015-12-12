@@ -112,6 +112,7 @@ public abstract class AbstractIncomingPacket {
 		PACKETS_INCOMING.put((short) 103, Packet103CompleteClientDownload.class);
 		PACKETS_INCOMING.put((short) 104, Packet104ClientDownloadPart.class);
 		PACKETS_INCOMING.put((short) 105, Packet105CancelClientUpload.class);
+		PACKETS_INCOMING.put((short) 106, Packet106ClientDownloadPlugin.class);
 	}
 
 	public static final void execute(Connection con, short header) {
