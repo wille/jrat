@@ -86,8 +86,6 @@ public class Packet3Initialized extends AbstractIncomingPacket {
 								slave.addToSendQueue(new Packet101UploadPlugin(mainClass, plugin.getName()));
 							}
 						}));
-						
-						continue;
 					}
 				}
 			}

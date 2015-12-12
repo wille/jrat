@@ -1,7 +1,6 @@
 package io.jrat.stub.packets.incoming;
 
 import io.jrat.common.PacketRange;
-import io.jrat.common.exceptions.PacketException;
 import io.jrat.stub.Connection;
 import io.jrat.stub.Plugin;
 
@@ -134,8 +133,7 @@ public abstract class AbstractIncomingPacket {
 				}
 			}
 		} catch (Exception ex) {
-			PacketException ex1 = new PacketException("Failed to handle packet " + header, ex);
-			ex1.printStackTrace();
+			ex.printStackTrace();
 		}
 	}
 
