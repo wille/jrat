@@ -127,7 +127,7 @@ public class Main {
 		AbstractStorable.loadAllGlobals();
 
 		boolean showEULA = Settings.getGlobal().getBoolean("showeula");
-		if (!showEULA) {
+		if (!showEULA && !headless) {
 			DialogEula frame = new DialogEula(false);
 			frame.setVisible(true);
 		}
