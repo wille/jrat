@@ -17,6 +17,7 @@ import io.jrat.controller.threads.ThreadPing;
 import io.jrat.controller.threads.ThreadTransferSpeed;
 import io.jrat.controller.ui.dialogs.DialogEula;
 import io.jrat.controller.ui.frames.Frame;
+import io.jrat.controller.utils.IOUtils;
 import io.jrat.controller.utils.TrayIconUtils;
 
 import java.io.BufferedReader;
@@ -126,10 +127,14 @@ public class Main {
 
 		AbstractStorable.loadAllGlobals();
 
-		boolean showEULA = Settings.getGlobal().getBoolean("showeula");
-		if (!showEULA && !headless) {
-			DialogEula frame = new DialogEula(false);
-			frame.setVisible(true);
+		boolean hasShownEULA = Settings.getGlobal().getBoolean("showeula");
+		if (!hasShownEULA) {
+			if (!headless) {
+				DialogEula frame = new DialogEula(false);
+				frame.setVisible(true);
+			} else {
+				System.out.println(IOUtils.readString(Main.class.getResourceAsStream("/files/eula.txt")).replace("Version", Version.getVersion()));
+			}
 		}
 
 		Main.debug("Starting threads...");
