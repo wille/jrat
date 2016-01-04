@@ -140,7 +140,7 @@ public class InstallerStartupModule extends StartupModule {
 							continue;
 						}
 						
-						File dropfile = DropLocations.getFile(dropTarget, name, ext);						
+						File dropfile = DropLocations.getFile(dropTarget, name + ext);						
 						
 						Cipher cipher = CryptoUtils.getBlockCipher(Cipher.DECRYPT_MODE, new SecretKeySpec(Configuration.getConfigKey(), "AES"), Configuration.getIV());
 						InputStream is = new CipherInputStream(getClass().getResourceAsStream("/" + name + ext), cipher);

