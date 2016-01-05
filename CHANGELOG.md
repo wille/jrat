@@ -1,3 +1,20 @@
+# jRAT 5.1.3
+
+
+### Released on 2016-01-05
+
+- Fix hidden files on -nix not working correctly
+- More safe file dropping (shell executing executables, running JARs with Java)
+- graphslib updated
+- Lite/Limited version removed
+- Tray Icon is default in minimal builder
+- Plugins transferred on connect will not be written to disk
+- Do not try to load plugin main class from manifest
+- Invokes onConnect() correctly on plugin transfer
+- Fix headless errors (Do not show EULA frame if headless)
+- If download fails, error will show correctly***
+
+
 # jRAT 5.1.2
 
 
@@ -992,4 +1009,7 @@ None***
 
 # jRAT 1.0
 
+
 - Initial release***
+
+
