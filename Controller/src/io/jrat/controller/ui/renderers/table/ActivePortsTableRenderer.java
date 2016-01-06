@@ -10,6 +10,8 @@ import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 
+import jrat.api.ui.DefaultJTableCellRenderer;
+
 
 @SuppressWarnings("serial")
 public class ActivePortsTableRenderer extends DefaultJTableCellRenderer {

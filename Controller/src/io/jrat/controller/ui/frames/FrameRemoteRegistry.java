@@ -5,7 +5,6 @@ import io.jrat.controller.Slave;
 import io.jrat.controller.packets.outgoing.Packet79BrowseRegistry;
 import io.jrat.controller.packets.outgoing.Packet97RegistryAdd;
 import io.jrat.controller.packets.outgoing.Packet99RegistryDelete;
-import io.jrat.controller.ui.components.DefaultJTable;
 import io.jrat.controller.ui.components.TableModel;
 import io.jrat.controller.ui.dialogs.DialogCustomRegQuery;
 import io.jrat.controller.ui.renderers.table.RegistryTableRenderer;
@@ -34,6 +33,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.ScrollPaneConstants;
+
+import jrat.api.ui.DefaultJTable;
 
 import com.redpois0n.pathtree.FolderTreeNode;
 import com.redpois0n.pathtree.NodeClickListener;

@@ -11,9 +11,7 @@ import io.jrat.controller.Slave;
 import io.jrat.controller.packets.outgoing.Packet102PauseServerUpload;
 import io.jrat.controller.packets.outgoing.Packet103CompleteServerUpload;
 import io.jrat.controller.packets.outgoing.Packet105CancelServerDownload;
-import io.jrat.controller.ui.components.DefaultJTable;
 import io.jrat.controller.ui.components.TableModel;
-import io.jrat.controller.ui.renderers.table.DefaultJTableCellRenderer;
 import io.jrat.controller.utils.Utils;
 
 import java.awt.BorderLayout;
@@ -34,6 +32,9 @@ import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
+
+import jrat.api.ui.DefaultJTable;
+import jrat.api.ui.DefaultJTableCellRenderer;
 
 
 @SuppressWarnings("serial")

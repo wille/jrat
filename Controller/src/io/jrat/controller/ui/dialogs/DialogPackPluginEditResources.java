@@ -1,6 +1,5 @@
 package io.jrat.controller.ui.dialogs;
 
-import io.jrat.controller.ui.components.DefaultJTable;
 import io.jrat.controller.ui.components.TableModel;
 import io.jrat.controller.ui.frames.FramePackPlugin;
 
@@ -18,6 +17,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import jrat.api.ui.DefaultJTable;
 
 @SuppressWarnings("serial")
 public class DialogPackPluginEditResources extends JDialog {

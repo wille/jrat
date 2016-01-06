@@ -6,7 +6,6 @@ import io.jrat.common.utils.JarUtils;
 import io.jrat.controller.ErrorDialog;
 import io.jrat.controller.Main;
 import io.jrat.controller.build.PluginPacker;
-import io.jrat.controller.ui.components.DefaultJTable;
 import io.jrat.controller.ui.components.TableModel;
 import io.jrat.controller.ui.dialogs.DialogPackPluginEditResources;
 
@@ -38,6 +37,8 @@ import javax.swing.JTextPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
+
+import jrat.api.ui.DefaultJTable;
 
 @SuppressWarnings("serial")
 public class FramePackPlugin extends BaseFrame {

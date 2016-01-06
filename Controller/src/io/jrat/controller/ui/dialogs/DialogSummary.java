@@ -5,7 +5,6 @@ import io.jrat.common.hash.Md5;
 import io.jrat.common.hash.Sha1;
 import io.jrat.common.utils.DataUnits;
 import io.jrat.controller.build.BuildStatus;
-import io.jrat.controller.ui.components.DefaultJTable;
 import io.jrat.controller.ui.components.TableModel;
 import io.jrat.controller.ui.renderers.table.BuildTableRenderer;
 
@@ -20,6 +19,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+
+import jrat.api.ui.DefaultJTable;
 
 
 @SuppressWarnings("serial")

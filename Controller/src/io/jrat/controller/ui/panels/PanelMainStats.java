@@ -4,7 +4,6 @@ import graphslib.graph.Graph;
 import graphslib.graph.GraphColors;
 import graphslib.graph.GraphEntry;
 import io.jrat.controller.threads.ThreadGraph;
-import io.jrat.controller.ui.components.DefaultJTable;
 import io.jrat.controller.ui.components.TableModel;
 import io.jrat.controller.utils.FlagUtils;
 
@@ -19,6 +18,8 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
+
+import jrat.api.ui.DefaultJTable;
 
 @SuppressWarnings("serial")
 public class PanelMainStats extends JScrollPane {

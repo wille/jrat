@@ -1,7 +1,5 @@
 package io.jrat.controller.ui.components;
 
-import io.jrat.controller.ui.renderers.table.DefaultJTableCellRenderer;
-
 import java.awt.Component;
 import java.util.Vector;
 
@@ -11,6 +9,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
+
+import jrat.api.ui.DefaultJTableCellRenderer;
 
 @SuppressWarnings({ "serial", "unchecked", "rawtypes" })
 public class JCheckBoxList extends JTable {

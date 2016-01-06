@@ -11,6 +11,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import jrat.api.Plugin;
+import jrat.api.ui.DefaultJTable;
 
 @SuppressWarnings("serial")
 public class PluginTable extends DefaultJTable {

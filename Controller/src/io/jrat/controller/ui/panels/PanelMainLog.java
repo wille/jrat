@@ -4,7 +4,6 @@ import iconlib.IconUtils;
 import io.jrat.controller.AbstractSlave;
 import io.jrat.controller.LogAction;
 import io.jrat.controller.LogEntry;
-import io.jrat.controller.ui.components.DefaultJTable;
 import io.jrat.controller.ui.components.TableModel;
 import io.jrat.controller.ui.renderers.table.LogTableRenderer;
 import io.jrat.controller.utils.Utils;
@@ -20,6 +19,8 @@ import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
+
+import jrat.api.ui.DefaultJTable;
 
 
 @SuppressWarnings("serial")

@@ -5,7 +5,6 @@ import io.jrat.controller.Drive;
 import io.jrat.controller.Slave;
 import io.jrat.controller.packets.outgoing.Packet53StartSearch;
 import io.jrat.controller.packets.outgoing.Packet54StopSearch;
-import io.jrat.controller.ui.components.DefaultJTable;
 import io.jrat.controller.ui.components.TableModel;
 import io.jrat.controller.ui.frames.FrameRemoteFiles;
 import io.jrat.controller.ui.renderers.JComboBoxIconRenderer;
@@ -30,6 +29,8 @@ import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
+
+import jrat.api.ui.DefaultJTable;
 
 @SuppressWarnings("serial")
 public class PanelSearchFiles extends PanelControlParent {

@@ -7,6 +7,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 
+import jrat.api.ui.DefaultJTableCellRenderer;
+
 @SuppressWarnings("serial")
 public class FileSearchTableRenderer extends DefaultJTableCellRenderer {
 

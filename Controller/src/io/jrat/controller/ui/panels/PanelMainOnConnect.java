@@ -5,7 +5,6 @@ import io.jrat.controller.AbstractSlave;
 import io.jrat.controller.Main;
 import io.jrat.controller.events.Event;
 import io.jrat.controller.events.Events;
-import io.jrat.controller.ui.components.DefaultJTable;
 import io.jrat.controller.ui.components.TableModel;
 
 import java.awt.BorderLayout;
@@ -20,6 +19,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JToolBar;
+
+import jrat.api.ui.DefaultJTable;
 
 @SuppressWarnings("serial")
 public class PanelMainOnConnect extends JPanel {

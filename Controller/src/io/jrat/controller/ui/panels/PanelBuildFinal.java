@@ -14,7 +14,6 @@ import io.jrat.controller.build.BuildExecutable;
 import io.jrat.controller.build.BuildStatus;
 import io.jrat.controller.listeners.AdvancedBuildListener;
 import io.jrat.controller.settings.Settings;
-import io.jrat.controller.ui.components.DefaultJTable;
 import io.jrat.controller.ui.components.TableModel;
 import io.jrat.controller.ui.frames.FrameBuildAdvanced;
 import io.jrat.controller.ui.renderers.table.BuildTableRenderer;
@@ -38,6 +37,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
+
+import jrat.api.ui.DefaultJTable;
 
 
 @SuppressWarnings("serial")

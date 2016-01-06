@@ -3,7 +3,6 @@ package io.jrat.controller.ui.panels;
 import iconlib.IconUtils;
 import io.jrat.controller.ErrorDialog;
 import io.jrat.controller.net.PortListener;
-import io.jrat.controller.ui.components.DefaultJTable;
 import io.jrat.controller.ui.components.TableModel;
 import io.jrat.controller.ui.frames.FrameAddSocket;
 import io.jrat.controller.ui.renderers.table.SocketsTableRenderer;
@@ -24,6 +23,8 @@ import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
+
+import jrat.api.ui.DefaultJTable;
 
 @SuppressWarnings("serial")
 public class PanelMainSockets extends JPanel {

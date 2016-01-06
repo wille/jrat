@@ -3,7 +3,6 @@ package io.jrat.controller.ui.panels;
 import iconlib.IconUtils;
 import io.jrat.common.utils.DataUnits;
 import io.jrat.controller.Slave;
-import io.jrat.controller.ui.components.DefaultJTable;
 import io.jrat.controller.ui.components.TableModel;
 import io.jrat.controller.ui.renderers.table.ComputerInfoTableRenderer;
 import io.jrat.controller.utils.FlagUtils;
@@ -13,6 +12,8 @@ import java.awt.BorderLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+
+import jrat.api.ui.DefaultJTable;
 
 import com.redpois0n.oslib.Icons;
 

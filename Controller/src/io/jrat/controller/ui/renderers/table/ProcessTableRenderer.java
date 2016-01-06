@@ -11,6 +11,8 @@ import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 
+import jrat.api.ui.DefaultJTableCellRenderer;
+
 import com.redpois0n.oslib.OperatingSystem;
 
 

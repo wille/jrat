@@ -3,7 +3,6 @@ package io.jrat.controller.ui.frames;
 import iconlib.IconUtils;
 import io.jrat.controller.Slave;
 import io.jrat.controller.packets.outgoing.Packet63PreviewArchive;
-import io.jrat.controller.ui.components.DefaultJTable;
 import io.jrat.controller.ui.components.TableModel;
 
 import java.awt.Toolkit;
@@ -25,6 +24,8 @@ import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
+
+import jrat.api.ui.DefaultJTable;
 
 
 @SuppressWarnings("serial")

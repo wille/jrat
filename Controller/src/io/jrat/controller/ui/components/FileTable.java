@@ -23,6 +23,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 
+import jrat.api.ui.DefaultJTable;
+
 @SuppressWarnings("serial")
 public abstract class FileTable extends JPanel {
 

@@ -5,7 +5,6 @@ import io.jrat.controller.Constants;
 import io.jrat.controller.Slave;
 import io.jrat.controller.packets.outgoing.Packet90SystemProperties;
 import io.jrat.controller.packets.outgoing.Packet96EnvironmentVariables;
-import io.jrat.controller.ui.components.DefaultJTable;
 import io.jrat.controller.ui.components.TableModel;
 
 import java.awt.Toolkit;
@@ -29,6 +28,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
+
+import jrat.api.ui.DefaultJTable;
 
 
 @SuppressWarnings("serial")

@@ -10,9 +10,7 @@ import io.jrat.controller.packets.outgoing.Packet40Thumbnail;
 import io.jrat.controller.settings.Settings;
 import io.jrat.controller.settings.SettingsColumns;
 import io.jrat.controller.ui.Columns;
-import io.jrat.controller.ui.components.DefaultJTable;
 import io.jrat.controller.ui.components.TableModel;
-import io.jrat.controller.ui.renderers.table.DefaultJTableCellRenderer;
 import io.jrat.controller.utils.BasicIconUtils;
 import io.jrat.controller.utils.Utils;
 
@@ -34,6 +32,9 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+
+import jrat.api.ui.DefaultJTable;
+import jrat.api.ui.DefaultJTableCellRenderer;
 
 @SuppressWarnings("serial")
 public class PanelMainClientsTable extends PanelMainClients {

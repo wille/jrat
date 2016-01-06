@@ -5,7 +5,6 @@ import io.jrat.controller.Slave;
 import io.jrat.controller.packets.outgoing.Packet19ListProcesses;
 import io.jrat.controller.packets.outgoing.Packet20KillProcess;
 import io.jrat.controller.packets.outgoing.Packet38RunCommand;
-import io.jrat.controller.ui.components.DefaultJTable;
 import io.jrat.controller.ui.components.TableModel;
 import io.jrat.controller.ui.renderers.table.ProcessTableRenderer;
 import io.jrat.controller.utils.Utils;
@@ -18,6 +17,8 @@ import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JToolBar;
+
+import jrat.api.ui.DefaultJTable;
 
 import com.redpois0n.oslib.OperatingSystem;
 
