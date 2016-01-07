@@ -16,7 +16,7 @@ public abstract class StubPlugin {
 	/**
 	 * Called when jRAT is launched
 	 */
-	public abstract void onStart() throws Exception;
+	public abstract void onEnable() throws Exception;
 
 	/**
 	 * When we loose connection to controller and the reason
@@ -43,10 +43,4 @@ public abstract class StubPlugin {
 	 */
 	public abstract void onPacket(short header) throws Exception;
 
-	/**
-	 * When the Stub starts
-	 * 
-	 * @throws Exception
-	 */
-	public abstract void onEnable() throws Exception;
 }
