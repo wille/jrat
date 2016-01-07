@@ -16,10 +16,6 @@ public class PluginStartupModule extends StartupModule {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-
-		for (Plugin plugin : Plugin.list) {
-			plugin.methods.get("onstart").invoke(plugin.instance, new Object[] {});
-		}
 	}
 
 }
