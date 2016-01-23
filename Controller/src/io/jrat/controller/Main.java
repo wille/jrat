@@ -104,6 +104,8 @@ public class Main {
 			}
 			
 			JOptionPane.showMessageDialog(null, Constants.NAME + " is limited, no license detected", Constants.NAME, JOptionPane.ERROR_MESSAGE);
+			System.exit(0);
+			return;
 		}
 
 		System.setProperty("jrat.version", Version.getVersion());
