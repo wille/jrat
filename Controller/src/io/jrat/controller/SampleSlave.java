@@ -17,13 +17,18 @@ public class SampleSlave extends AbstractSlave {
 	}
 
 	@Override
-	public String getDisplayName() {
-		return null;
+	public void ping() throws Exception {
+		
 	}
 
 	@Override
-	public void ping() throws Exception {
-		
+	public String getHostname() {
+		return "Sample";
+	}
+
+	@Override
+	public String getUsername() {
+		return "Sample";
 	}
 
 	@Override
