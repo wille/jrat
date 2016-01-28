@@ -1,3 +1,3 @@
 #!/bin/bash
 
-java -cp "bin;../Common/bin" se.jrat.controller.Main --headless
+java -cp "bin;../Common/bin" io.jrat.controller.Main --headless
