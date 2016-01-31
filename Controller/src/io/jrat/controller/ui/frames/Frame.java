@@ -723,14 +723,8 @@ public class Frame extends BaseFrame {
 					}
 				});
 			}
-
-			File iconFile = new File(Globals.getPluginDirectory(), p.getName().replace(" ", "") + "/icon.png");
-
-			if (iconFile.exists()) {
-				item.setIcon(new ImageIcon(iconFile.getAbsolutePath()));
-			} else {
-				item.setIcon(IconUtils.getIcon("plugin"));
-			}
+			
+			item.setIcon(p.getIcon());
 
 			mnPlugins.add(item);
 		}
