@@ -88,7 +88,14 @@ public class Globals {
 	public static final File getUpdater() {
 		return new File(getFileDirectory(), "Updater.jar");
 	}
-	
+
+	/**
+	 * @return Lockfile in .
+     */
+	public static final File getLockFile() {
+		return new File(".lock");
+	}
+
 	/**
 	 * Create all directories
 	 */

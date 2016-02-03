@@ -38,6 +38,8 @@ public class ShutdownHook implements Runnable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
+		Globals.getLockFile().delete();
 	}
 
 }

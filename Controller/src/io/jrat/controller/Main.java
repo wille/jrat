@@ -150,6 +150,9 @@ public class Main {
 		Main.debug("Loading tray icon...");
 		TrayIconUtils.initialize();
 
+		Main.debug("Writing lockfile...");
+		Globals.getLockFile().createNewFile();
+
 		Runtime.getRuntime().addShutdownHook(new Thread(new ShutdownHook()));
 
 		DefaultCommands.addDefault();
