@@ -150,8 +150,12 @@ public class Main {
 		Main.debug("Loading tray icon...");
 		TrayIconUtils.initialize();
 
-		Main.debug("Writing lockfile...");
-		Globals.getLockFile().createNewFile();
+		if (Globals.getLockFile().exists()) {
+			Main.debug("Lockfile already exists, we did not exit correctly");
+		} else {
+			Main.debug("Writing lockfile...");
+			Globals.getLockFile().createNewFile();
+		}
 
 		Runtime.getRuntime().addShutdownHook(new Thread(new ShutdownHook()));
 
