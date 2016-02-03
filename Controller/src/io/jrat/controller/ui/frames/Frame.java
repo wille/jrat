@@ -36,7 +36,6 @@ import io.jrat.controller.ui.panels.PanelMainStats;
 import io.jrat.controller.utils.BasicIconUtils;
 import io.jrat.controller.utils.NetUtils;
 import io.jrat.controller.utils.Utils;
-
 import java.awt.TrayIcon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -44,8 +43,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.List;
-
-import javax.swing.ImageIcon;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -56,7 +53,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-
 import jrat.api.Plugin;
 
 @SuppressWarnings("serial")
@@ -723,7 +719,7 @@ public class Frame extends BaseFrame {
 					}
 				});
 			}
-			
+
 			item.setIcon(p.getIcon());
 
 			mnPlugins.add(item);
