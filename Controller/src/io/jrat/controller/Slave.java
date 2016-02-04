@@ -48,6 +48,8 @@ public class Slave extends AbstractSlave {
 				short header = readShort();
 
 				if (header == HEADER_HANDSHAKE) {
+					protocolVersion = dis.readFloat();
+
 					Sha1 sha = new Sha1();
 					
 					String data = connection.getPass();

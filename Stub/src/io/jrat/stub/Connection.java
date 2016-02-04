@@ -43,7 +43,7 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 public class Connection implements Runnable {
-		
+
 	private Socket socket;
 	private FrameChat frameChat;
 
@@ -52,6 +52,8 @@ public class Connection implements Runnable {
 
 	private DataInputStream dis;
 	private DataOutputStream dos;
+
+	private float protocolVersion;
 
 	public PublicKey pubKey;
 	

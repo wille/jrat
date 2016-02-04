@@ -44,6 +44,11 @@ public abstract class AbstractSlave implements Runnable {
 	 * Unique random assigned ID for this client, between 0 and {@link Integer#MAX_VALUE}
 	 */
 	protected final int uniqueId = new Random().nextInt(Integer.MAX_VALUE);
+
+	/**
+	 * The protocol version
+	 */
+	protected float protocolVersion;
 	
 	/**
 	 * If this client has been added to the main table, prevents repeatedly sending authentication packet and duplicating over and over
