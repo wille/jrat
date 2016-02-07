@@ -178,6 +178,16 @@ public class Configuration {
 		return name;
 	}
 
+	public static String getFileName() {
+		String file = name;
+
+		if (!file.endsWith(".jar")) {
+			file += ".jar";
+		}
+
+		return file;
+	}
+
 	public static String getPass() {
 		return pass;
 	}

