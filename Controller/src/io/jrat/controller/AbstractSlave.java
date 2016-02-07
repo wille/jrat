@@ -252,6 +252,8 @@ public abstract class AbstractSlave implements Runnable {
 		}
 
 		Main.instance.getPanelLog().addEntry(LogAction.CONNECT, this, "");
+
+		this.protocolVersion = dis.readFloat();
 		
 		StreamKeyExchanger exchanger = new ObfuscatedStreamKeyExchanger(GlobalKeyPair.getKeyPair(), dis, dos);
 		exchanger.writePublicKey();

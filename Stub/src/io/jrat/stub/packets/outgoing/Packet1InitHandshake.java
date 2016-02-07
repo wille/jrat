@@ -13,7 +13,6 @@ public class Packet1InitHandshake extends AbstractOutgoingPacket {
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {		
 		String data = Configuration.getPass();
 
-		dos.writeFloat(Version.getProtocolVersion());
 		dos.write(Hex.decodeToBytes(data));
 	}
 
