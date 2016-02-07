@@ -16,13 +16,15 @@ public class DefaultJTableCellRenderer extends DefaultTableCellRenderer {
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 		JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
-		if (isSelected) {
-			label.setBackground(SELECT_GRAY);
-		} else {
-			label.setBackground(Color.white);
+		if (System.getProperty("jrat.theme").equals("true")) {
+			if (isSelected) {
+				label.setBackground(SELECT_GRAY);
+			} else {
+				label.setBackground(Color.white);
+			}
+
+			label.setForeground(Color.black);
 		}
-		
-		label.setForeground(Color.black);
 
 		return label;
 	}
