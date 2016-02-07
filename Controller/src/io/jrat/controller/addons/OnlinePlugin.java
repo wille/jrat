@@ -41,7 +41,7 @@ public class OnlinePlugin {
 	public ImageIcon getIcon() {
 		if (icon == null) {
 			try {
-				HttpURLConnection uc = WebRequest.getConnection(Constants.HOST + "/plugins/" + getName() + "/icon.png");
+				HttpURLConnection uc = WebRequest.getConnection(Constants.HOST + "/plugins/" + getName().replace(" ", "") + "/icon.png");
 				icon = new ImageIcon(ImageIO.read(uc.getInputStream()));
 				uc.disconnect();
 			} catch (Exception e) {
@@ -83,7 +83,7 @@ public class OnlinePlugin {
 	}
 
 	public String getName() {
-		return name.replace(" ", "");
+		return name;
 	}
 
 	public String getDisplayName() {
