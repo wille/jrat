@@ -143,9 +143,7 @@ public class Build {
 				config.put("debugmsg", debugmsg);
 				config.put("vm", antivm);
 				config.put("ti", trayicon);
-				
 				config.put("droppath", droppath);
-				config.put("name", name);
 				config.put("melt", melt);
 				config.put("window", fakewindow);
 				config.put("message", fakemessage.replace("\n", "%newline%"));
