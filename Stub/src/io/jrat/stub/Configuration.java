@@ -123,11 +123,9 @@ public class Configuration {
 		String line;
 		
 		while ((line = reader.readLine()) != null) {
-			String str = line;
-			
-			String ckey = str.substring(0, str.indexOf("=")).trim();
+			String ckey = line.substring(0, line.indexOf("=")).trim();
 
-			String cval = str.substring(str.indexOf("=") + 1, str.length()).trim();
+			String cval = line.substring(line.indexOf("=") + 1, line.length()).trim();
 
 			config.put(ckey, cval);
 		}
