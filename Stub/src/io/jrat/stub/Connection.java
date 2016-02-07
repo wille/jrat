@@ -74,7 +74,7 @@ public class Connection implements Runnable {
 
 			outputStream.write(ConnectionCodes.DESKTOP_SLAVE);
 
-			this.dos.writeFloat(Version.getProtocolVersion());
+			this.dos.writeByte(Version.getProtocolVersion());
 
 			StreamKeyExchanger exchanger = new ObfuscatedStreamKeyExchanger(Main.getKeyPair(), dis, dos);
 			pubKey = exchanger.readRemoteKey();

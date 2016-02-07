@@ -48,7 +48,7 @@ public abstract class AbstractSlave implements Runnable {
 	/**
 	 * The protocol version
 	 */
-	protected float protocolVersion;
+	protected int protocolVersion;
 	
 	/**
 	 * If this client has been added to the main table, prevents repeatedly sending authentication packet and duplicating over and over
@@ -253,7 +253,7 @@ public abstract class AbstractSlave implements Runnable {
 
 		Main.instance.getPanelLog().addEntry(LogAction.CONNECT, this, "");
 
-		this.protocolVersion = dis.readFloat();
+		this.protocolVersion = dis.readByte();
 		
 		StreamKeyExchanger exchanger = new ObfuscatedStreamKeyExchanger(GlobalKeyPair.getKeyPair(), dis, dos);
 		exchanger.writePublicKey();

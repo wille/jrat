@@ -6,7 +6,7 @@ public final class Version {
 		return "5.1.3";
 	}
 
-	public static final float getProtocolVersion() {
-		return 5.0F;
+	public static final int getProtocolVersion() {
+		return 5;
 	}
 }
