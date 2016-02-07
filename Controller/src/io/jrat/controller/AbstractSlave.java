@@ -274,10 +274,8 @@ public abstract class AbstractSlave implements Runnable {
         dos.write(encryptedKey);
         dos.write(encryptedIv);
         
-		if (Main.debug) {
-			Main.debug("Encryption key: " + Hex.encode(key));
-			Main.debug("Encryption IV: " + Hex.encode(iv));
-		}
+		Main.debug("Encryption key: " + Hex.encode(key));
+		Main.debug("Encryption IV: " + Hex.encode(iv));
 
 		Cipher inCipher = CryptoUtils.getStreamCipher(Cipher.DECRYPT_MODE, secretKey, ivspec);
 		Cipher outCipher = CryptoUtils.getStreamCipher(Cipher.ENCRYPT_MODE, secretKey, ivspec);
