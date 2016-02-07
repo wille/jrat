@@ -108,6 +108,7 @@ public class Main {
 			return;
 		}
 
+		System.setProperty("jrat.theme", "true");
 		System.setProperty("jrat.version", Version.getVersion());
 
 		try {
