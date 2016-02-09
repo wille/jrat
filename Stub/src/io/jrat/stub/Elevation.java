@@ -46,8 +46,6 @@ public class Elevation {
 		} else {
 			return;
 		}
-		
-		System.exit(0);
 	}
 
 }
