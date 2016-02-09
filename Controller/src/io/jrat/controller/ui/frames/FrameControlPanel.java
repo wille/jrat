@@ -1,5 +1,6 @@
 package io.jrat.controller.ui.frames;
 
+import com.redpois0n.oslib.OperatingSystem;
 import iconlib.IconUtils;
 import io.jrat.common.script.Script;
 import io.jrat.controller.Constants;
@@ -21,7 +22,6 @@ import io.jrat.controller.ui.dialogs.DialogRemoteSoundCapture;
 import io.jrat.controller.ui.panels.PanelControlActivePorts;
 import io.jrat.controller.ui.panels.PanelControlAdapters;
 import io.jrat.controller.ui.panels.PanelControlClipboard;
-import io.jrat.controller.ui.panels.PanelControlConfig;
 import io.jrat.controller.ui.panels.PanelControlDownloadManager;
 import io.jrat.controller.ui.panels.PanelControlDrives;
 import io.jrat.controller.ui.panels.PanelControlErrorLog;
@@ -48,17 +48,9 @@ import io.jrat.controller.ui.panels.PanelControluTorrentDownloads;
 import io.jrat.controller.ui.panels.PanelMemoryUsage;
 import io.jrat.controller.ui.renderers.ControlPanelTreeRenderer;
 import io.jrat.controller.utils.Utils;
-
-import java.awt.BorderLayout;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import jrat.api.Client;
+import jrat.api.ui.BaseControlPanel;
+import jrat.api.ui.RATControlMenuEntry;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -79,12 +71,16 @@ import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
-
-import jrat.api.Client;
-import jrat.api.ui.BaseControlPanel;
-import jrat.api.ui.RATControlMenuEntry;
-
-import com.redpois0n.oslib.OperatingSystem;
+import java.awt.BorderLayout;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @SuppressWarnings("serial")
 public class FrameControlPanel extends BaseFrame {
@@ -332,7 +328,6 @@ public class FrameControlPanel extends BaseFrame {
 				r.icons.put("drives", IconUtils.getIcon("drives"));
 				r.icons.put("monitors", IconUtils.getIcon("monitor-network"));
 				r.icons.put("error log", IconUtils.getIcon("error"));
-				r.icons.put("config", IconUtils.getIcon("tab-settings"));
 				r.icons.put("view installed plugins", IconUtils.getIcon("plugin-go"));
 				r.icons.put("notes", IconUtils.getIcon("notes"));
 				r.icons.put("request elevation", IconUtils.getIcon("shield"));
@@ -363,7 +358,6 @@ public class FrameControlPanel extends BaseFrame {
 			tabbedPane.addTab("Drives", i.get("drives"), panels.get("drives"));
 			tabbedPane.addTab("Monitors", i.get("monitors"), panels.get("monitors"));
 			tabbedPane.addTab("JVM Info", i.get("jvm info"), panels.get("jvm info"));
-			tabbedPane.addTab("Config", i.get("config"), panels.get("config"));
 			tabbedPane.addTab("Trace", i.get("trace"), panels.get("trace"));
 		} else if (str.equals("fun")) {
 			tabbedPane.removeAll();
@@ -434,7 +428,6 @@ public class FrameControlPanel extends BaseFrame {
 		systeminfo.add(getTreeNode("Drives"));
 		systeminfo.add(getTreeNode("Monitors"));
 		systeminfo.add(getTreeNode("JVM Info"));
-		systeminfo.add(getTreeNode("Config"));
 		systeminfo.add(getTreeNode("Trace"));
 
 		DefaultMutableTreeNode fun = getTreeNode("Fun");
@@ -555,7 +548,6 @@ public class FrameControlPanel extends BaseFrame {
 			addPanel("drives", new PanelControlDrives(slave));
 			addPanel("monitors", new PanelControlMonitors(slave));
 			addPanel("error log", new PanelControlErrorLog(slave));
-			addPanel("config", new PanelControlConfig(slave));
 			addPanel("view installed plugins", new PanelControlLoadedPlugins(slave));
 			addPanel("trace", new PanelControlTrace(slave));
 		} catch (Exception ex) {

@@ -88,7 +88,7 @@ public class IncomingPackets {
 		//63
 		//64
 		PACKETS_INCOMING.put((short) 65, Packet65ErrorLog.class);
-		PACKETS_INCOMING.put((short) 66, Packet66Config.class);
+		//66
 		//67
 		PACKETS_INCOMING.put((short) 68, Packet68RemoteScreenComplete.class);	
 		//69
