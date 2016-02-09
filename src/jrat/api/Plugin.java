@@ -1,9 +1,11 @@
 package jrat.api;
 
+import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.io.File;
-
-import javax.swing.ImageIcon;
+import java.io.FileInputStream;
+import java.util.jar.JarEntry;
+import java.util.jar.JarInputStream;
 
 public abstract class Plugin {
 	
@@ -76,6 +78,31 @@ public abstract class Plugin {
 	 * @return
 	 */
 	public ActionListener getGlobalActionListener() {
+		return null;
+	}
+
+	/**
+	 * Returns a resource as a byte array from the current plugin archive
+	 * @param resource path to the resource in the archive
+	 * @return
+	 */
+	public final byte[] getResource(String resource) throws Exception {
+		JarInputStream jis = new JarInputStream(new FileInputStream(new File(DEFAULT_PLUGIN_DIRECTORY, getName() + ".jar")));
+
+		JarEntry entry;
+		while ((entry = jis.getNextJarEntry()) != null) {
+			if (entry.getName().equals(resource)) {
+				byte[] b = new byte[(int) entry.getSize()];
+				jis.read(b);
+				jis.closeEntry();
+
+				jis.close();
+				return b;
+			}
+		}
+
+		jis.close();
+
 		return null;
 	}
 
