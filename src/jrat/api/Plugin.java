@@ -2,6 +2,8 @@ package jrat.api;
 
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.jar.JarEntry;
@@ -92,12 +94,21 @@ public abstract class Plugin {
 		JarEntry entry;
 		while ((entry = jis.getNextJarEntry()) != null) {
 			if (entry.getName().equals(resource)) {
-				byte[] b = new byte[(int) entry.getSize()];
-				jis.read(b);
+				ByteArrayOutputStream bais = new ByteArrayOutputStream(entry.getSize() == -1 ? 1024 : (int) entry.getSize());
+
+				int read;
+				byte[] b = new byte[1024];
+
+				while ((read = jis.read(b)) != -1) {
+					bais.write(b, 0, read);
+				}
+
 				jis.closeEntry();
 
 				jis.close();
-				return b;
+				bais.close();
+
+				return bais.toByteArray();
 			}
 		}
 
