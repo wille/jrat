@@ -162,8 +162,13 @@ public class Configuration {
 	 * Overwrites the encryption key and initialization vector
 	 */
 	public static void wipeKeys() {
-		Arrays.fill(key, (byte) 0);
-		Arrays.fill(iv, (byte) 0);
+		if (key != null) {
+			Arrays.fill(key, (byte) 0);
+		}
+
+		if (iv != null) {
+			Arrays.fill(iv, (byte) 0);
+		}
 	}
 
 	public static String[] getAddresses() {
