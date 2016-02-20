@@ -71,10 +71,9 @@ public class PluginInstaller {
 			key = "DEBUG_KEY";
 		}
 
-		HttpURLConnection archiveConnection = (HttpURLConnection) WebRequest.getConnection(Constants.HOST + "/plugins/getplugin.php?plugin=" + plugin.getName() + "&key=" + key);
+		HttpURLConnection archiveConnection = (HttpURLConnection) WebRequest.getConnection(Constants.HOST + "/plugins/getplugin.php?plugin=" + plugin.getName().replace(" ", "") + "&key=" + key);
 		archiveConnection.setReadTimeout(15000);
 		archiveConnection.connect();
-
 
 		int response = archiveConnection.getResponseCode();
 		
