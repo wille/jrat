@@ -34,12 +34,13 @@ public final class UniqueId {
 	public static byte[] getSystemId() throws Exception {
 		if (systemId == null) {
 			File file = Globals.getKeyFile();
+			File file1 = new File(Globals.getFileDirectory(), "jrat.key");
 
-			if (!file.exists()) {
-				throw new MissingKeyException("Key file not found (" + Globals.getKeyFile().getAbsolutePath() + ")");
+			if (!file.exists() && !file1.exists()) {
+				throw new MissingKeyException("Key file not found in ./files/jrat.key or ./jrat.key");
 			}
 
-			FileInputStream input = new FileInputStream(file);
+			FileInputStream input = new FileInputStream(file.exists() ? file : file1);
 			systemId = new byte[32];
 			input.read(systemId);
 			input.close();

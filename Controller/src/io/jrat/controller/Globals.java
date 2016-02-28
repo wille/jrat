@@ -79,7 +79,7 @@ public class Globals {
 	 * @return key file in {@link #getFileDirectory()}
 	 */
 	public static final File getKeyFile(String s) {
-		return new File(getFileDirectory(), "jrat" + s + ".key");
+		return new File("jrat" + s + ".key");
 	}
 	
 	/**
