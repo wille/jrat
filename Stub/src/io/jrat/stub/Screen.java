@@ -128,16 +128,6 @@ public class Screen extends Thread {
 					}
 					
 					ByteArrayOutputStream bss = new ByteArrayOutputStream();
-					
-					 /* ImageOutputStream baos =
-					  ImageIO.createImageOutputStream(bss);
-					  Iterator<ImageWriter> iter =
-					  ImageIO.getImageWritersByFormatName("jpeg"); ImageWriter
-					  writer = iter.next(); ImageWriteParam iwp =
-					  writer.getDefaultWriteParam(); iwp.setCompressionMode(2);
-					  iwp.setCompressionQuality(quality / 10F);
-					  writer.setOutput(baos); writer.write(null, new
-					 IIOImage(i, null, null), iwp); writer.dispose();*/
 					 
 					ImageIO.write(i, "jpg", bss);
 					byte[] buffer = bss.toByteArray();
