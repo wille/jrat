@@ -1,5 +1,6 @@
 package io.jrat.controller.threads;
 
+import io.jrat.common.utils.DataUnits;
 import io.jrat.controller.AbstractSlave;
 import io.jrat.controller.Main;
 import io.jrat.controller.listeners.GlobalNetworkMonitorListener;
@@ -7,6 +8,7 @@ import io.jrat.controller.listeners.NetworkMonitorListener;
 import io.jrat.controller.ui.Columns;
 import io.jrat.controller.ui.panels.PanelMainClientsTable;
 
+import io.jrat.controller.utils.TrayIconUtils;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,6 +75,8 @@ public class NetworkCounter implements Runnable {
 						Main.instance.repaint();
 					}
 				}
+
+				TrayIconUtils.setToolTip(DataUnits.getAsString(in) + "/s down, " + DataUnits.getAsString(out) + "/s up");
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
