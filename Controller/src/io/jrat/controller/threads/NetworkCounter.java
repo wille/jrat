@@ -12,7 +12,7 @@ import java.util.List;
 
 public class NetworkCounter implements Runnable {
 	
-	private static final List<NetworkMonitorListener> INVIDUAL_LISTENERS = new ArrayList<NetworkMonitorListener>();
+	private static final List<NetworkMonitorListener> INDIVIDUAL_LISTENERS = new ArrayList<NetworkMonitorListener>();
 	private static final List<GlobalNetworkMonitorListener> GLOBAL_LISTENERS = new ArrayList<GlobalNetworkMonitorListener>();
 	
 	/**
@@ -42,7 +42,7 @@ public class NetworkCounter implements Runnable {
 					in += sin;
 					out += sout;
 					
-					for (NetworkMonitorListener listener : INVIDUAL_LISTENERS) {
+					for (NetworkMonitorListener listener : INDIVIDUAL_LISTENERS) {
 						listener.onUpdate(slave, sin, sout);
 					}
 					
@@ -88,11 +88,11 @@ public class NetworkCounter implements Runnable {
 	}
 
 	public static void addListener(NetworkMonitorListener listener) {
-		INVIDUAL_LISTENERS.add(listener);
+		INDIVIDUAL_LISTENERS.add(listener);
 	}
 	
 	public static void removeListener(NetworkMonitorListener listener) {
-		INVIDUAL_LISTENERS.remove(listener);
+		INDIVIDUAL_LISTENERS.remove(listener);
 	}
 }
 
