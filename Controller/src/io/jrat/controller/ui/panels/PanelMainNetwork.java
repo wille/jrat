@@ -2,13 +2,9 @@ package io.jrat.controller.ui.panels;
 
 import graphslib.network.NetworkColors;
 import graphslib.network.NetworkGraph;
-import io.jrat.common.utils.DataUnits;
 import io.jrat.controller.listeners.GlobalNetworkMonitorListener;
 import io.jrat.controller.threads.NetworkCounter;
-import io.jrat.controller.utils.TrayIconUtils;
-
 import java.awt.BorderLayout;
-
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 

@@ -1,12 +1,11 @@
 package io.jrat.controller.ui.panels;
 
+import com.redpois0n.oslib.OperatingSystem;
 import iconlib.IconUtils;
 import io.jrat.controller.Help;
 import io.jrat.controller.OSConfig;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -15,8 +14,6 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
-
-import com.redpois0n.oslib.OperatingSystem;
 
 
 @SuppressWarnings("serial")

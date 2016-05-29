@@ -1,7 +1,6 @@
 package io.jrat.controller.packets.android.incoming;
 
 import io.jrat.controller.android.AndroidSlave;
-
 import java.io.DataInputStream;
 
 

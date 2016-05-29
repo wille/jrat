@@ -3,13 +3,11 @@ package io.jrat.controller.ui.dialogs;
 import io.jrat.common.Version;
 import io.jrat.controller.Main;
 import io.jrat.controller.VersionChecker;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
-
 import javax.imageio.ImageIO;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;

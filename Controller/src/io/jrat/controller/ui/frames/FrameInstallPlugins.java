@@ -2,12 +2,10 @@ package io.jrat.controller.ui.frames;
 
 import io.jrat.controller.addons.OnlinePlugin;
 import io.jrat.controller.ui.panels.PluginPanel;
-
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Toolkit;
 import java.util.List;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JFrame;

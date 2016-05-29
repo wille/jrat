@@ -6,14 +6,12 @@ import io.jrat.controller.addons.OnlinePlugin;
 import io.jrat.controller.addons.PluginInstaller;
 import io.jrat.controller.listeners.ExtensionInstallerListener;
 import io.jrat.controller.ui.frames.FrameInstallPlugins;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.Icon;

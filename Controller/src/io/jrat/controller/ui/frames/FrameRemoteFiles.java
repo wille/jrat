@@ -6,7 +6,6 @@ import io.jrat.controller.ui.panels.PanelFileTransfers;
 import io.jrat.controller.ui.panels.PanelRemoteFiles;
 import io.jrat.controller.ui.panels.PanelSearchFiles;
 import io.jrat.controller.ui.panels.PanelThumbView;
-
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Toolkit;
@@ -14,7 +13,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.swing.JTabbedPane;
 import javax.swing.WindowConstants;
 

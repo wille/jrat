@@ -6,7 +6,6 @@ import io.jrat.controller.packets.outgoing.Packet48ChatStart;
 import io.jrat.controller.packets.outgoing.Packet49ChatEnd;
 import io.jrat.controller.packets.outgoing.Packet51ChatMessage;
 import io.jrat.controller.packets.outgoing.Packet58NudgeChat;
-
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -17,7 +16,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;

@@ -6,7 +6,6 @@ import io.jrat.controller.AbstractSlave;
 import io.jrat.controller.Globals;
 import io.jrat.controller.Main;
 import io.jrat.controller.OfflineSlave;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -16,7 +15,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
 import javax.crypto.CipherOutputStream;

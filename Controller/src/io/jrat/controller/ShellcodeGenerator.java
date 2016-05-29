@@ -6,11 +6,9 @@ import io.jrat.controller.build.shellcode.Delphi;
 import io.jrat.controller.build.shellcode.Java;
 import io.jrat.controller.build.shellcode.Python;
 import io.jrat.controller.build.shellcode.Shellcode;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
-
 import javax.swing.JOptionPane;
 
 public class ShellcodeGenerator {

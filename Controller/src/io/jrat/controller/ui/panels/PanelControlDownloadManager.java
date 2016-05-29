@@ -4,10 +4,8 @@ import iconlib.IconUtils;
 import io.jrat.controller.Slave;
 import io.jrat.controller.packets.outgoing.Packet34AdvancedDownload;
 import io.jrat.controller.ui.components.TableModel;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -20,7 +18,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
-
 import jrat.api.ui.DefaultJTable;
 
 

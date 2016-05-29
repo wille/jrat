@@ -21,11 +21,9 @@ import io.jrat.controller.ui.panels.PanelBuildTimeout;
 import io.jrat.controller.ui.panels.PanelBuildVirtualization;
 import io.jrat.controller.ui.panels.PanelBuildVisibility;
 import io.jrat.controller.ui.renderers.JTreeIconsRenderer;
-
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.util.HashMap;
-
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;

@@ -4,9 +4,7 @@ import io.jrat.controller.Main;
 import io.jrat.controller.net.PortListener;
 import io.jrat.controller.net.ServerListener;
 import io.jrat.controller.webpanel.WebPanelListener;
-
 import java.io.PrintStream;
-
 import jrat.api.commands.AbstractCommand;
 
 public class CommandSocket extends AbstractCommand {

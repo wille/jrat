@@ -4,7 +4,6 @@ import io.jrat.common.io.FileCache;
 import io.jrat.common.io.TransferData;
 import io.jrat.common.io.TransferData.State;
 import io.jrat.controller.Slave;
-
 import java.io.DataInputStream;
 
 

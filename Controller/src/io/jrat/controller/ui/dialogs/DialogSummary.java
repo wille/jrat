@@ -7,10 +7,8 @@ import io.jrat.common.utils.DataUnits;
 import io.jrat.controller.build.BuildStatus;
 import io.jrat.controller.ui.components.TableModel;
 import io.jrat.controller.ui.renderers.table.BuildTableRenderer;
-
 import java.io.File;
 import java.util.LinkedHashMap;
-
 import javax.swing.BoxLayout;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -19,7 +17,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
-
 import jrat.api.ui.DefaultJTable;
 
 

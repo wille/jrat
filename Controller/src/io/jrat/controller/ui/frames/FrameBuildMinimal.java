@@ -1,5 +1,6 @@
 package io.jrat.controller.ui.frames;
 
+import com.redpois0n.oslib.OperatingSystem;
 import iconlib.IconUtils;
 import io.jrat.common.DropLocations;
 import io.jrat.controller.Constants;
@@ -15,14 +16,12 @@ import io.jrat.controller.net.PortListener;
 import io.jrat.controller.settings.Settings;
 import io.jrat.controller.ui.components.PortListenerJComboBox;
 import io.jrat.controller.utils.NetUtils;
-
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.net.InetAddress;
 import java.util.LinkedHashMap;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -39,8 +38,6 @@ import javax.swing.JToolBar;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
-
-import com.redpois0n.oslib.OperatingSystem;
 
 
 @SuppressWarnings("serial")

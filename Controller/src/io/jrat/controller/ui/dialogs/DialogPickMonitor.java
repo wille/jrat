@@ -7,7 +7,6 @@ import graphslib.monitors.RemoteMonitor;
 import io.jrat.controller.Slave;
 import io.jrat.controller.listeners.PickMonitorListener;
 import io.jrat.controller.packets.outgoing.Packet75AllThumbnails;
-
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
@@ -17,7 +16,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;

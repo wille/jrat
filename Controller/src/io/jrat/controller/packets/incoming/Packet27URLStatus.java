@@ -4,9 +4,7 @@ import iconlib.IconUtils;
 import io.jrat.controller.Slave;
 import io.jrat.controller.ui.frames.FrameControlPanel;
 import io.jrat.controller.ui.panels.PanelControlDownloadManager;
-
 import java.io.DataInputStream;
-
 import javax.swing.ImageIcon;
 
 

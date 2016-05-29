@@ -7,7 +7,6 @@ import io.jrat.controller.net.ServerListener;
 import io.jrat.controller.packets.incoming.IncomingPackets;
 import io.jrat.controller.packets.outgoing.AbstractOutgoingPacket;
 import io.jrat.controller.packets.outgoing.Packet0Ping;
-
 import java.io.DataOutputStream;
 import java.net.Socket;
 import java.net.SocketException;

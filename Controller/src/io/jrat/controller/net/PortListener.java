@@ -3,7 +3,6 @@ package io.jrat.controller.net;
 import io.jrat.controller.Main;
 import io.jrat.controller.settings.SettingsSockets;
 import io.jrat.controller.ui.panels.PanelMainSockets;
-
 import java.net.ServerSocket;
 import java.util.ArrayList;
 import java.util.List;

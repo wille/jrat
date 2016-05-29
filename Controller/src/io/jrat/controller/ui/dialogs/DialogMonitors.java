@@ -6,7 +6,6 @@ import io.jrat.controller.Slave;
 import io.jrat.controller.listeners.PickMonitorListener;
 import io.jrat.controller.ui.frames.FrameRemoteScreen;
 import io.jrat.controller.ui.renderers.JComboBoxIconRenderer;
-
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,7 +13,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;

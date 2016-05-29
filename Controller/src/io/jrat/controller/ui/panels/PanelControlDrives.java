@@ -4,13 +4,11 @@ import io.jrat.controller.Drive;
 import io.jrat.controller.Slave;
 import io.jrat.controller.ui.components.TableModel;
 import io.jrat.controller.ui.renderers.table.DrivesTableRenderer;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
-
 import jrat.api.ui.DefaultJTable;
 
 

@@ -5,11 +5,9 @@ import io.jrat.common.DropLocations;
 import io.jrat.controller.Help;
 import io.jrat.controller.settings.Settings;
 import io.jrat.controller.ui.components.JPlaceholderTextField;
-
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;

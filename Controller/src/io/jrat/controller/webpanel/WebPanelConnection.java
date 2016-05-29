@@ -14,7 +14,6 @@ import io.jrat.controller.settings.StatisticsOperatingSystem;
 import io.jrat.controller.settings.StatisticsOperatingSystem.OperatingSystemStatEntry;
 import io.jrat.controller.settings.StoreOfflineSlaves;
 import io.jrat.controller.threads.NetworkCounter;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;

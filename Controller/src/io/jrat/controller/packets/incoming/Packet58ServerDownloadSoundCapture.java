@@ -4,9 +4,7 @@ import io.jrat.common.Sound;
 import io.jrat.common.utils.DataUnits;
 import io.jrat.controller.Slave;
 import io.jrat.controller.ui.dialogs.DialogRemoteSoundCapture;
-
 import java.io.DataInputStream;
-
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.DataLine;

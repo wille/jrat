@@ -3,7 +3,6 @@ package io.jrat.controller.ui.components;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-
 import javax.swing.JTextField;
 
 @SuppressWarnings("serial")

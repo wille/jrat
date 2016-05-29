@@ -3,11 +3,9 @@ package io.jrat.controller.ui.dialogs;
 import iconlib.IconUtils;
 import io.jrat.controller.Slave;
 import io.jrat.controller.packets.outgoing.Packet80CustomRegQuery;
-
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;

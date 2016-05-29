@@ -4,7 +4,6 @@ import io.jrat.common.utils.MathUtils;
 import io.jrat.controller.Slave;
 import io.jrat.controller.ui.frames.FrameControlPanel;
 import io.jrat.controller.ui.panels.PanelMemoryUsage;
-
 import java.io.DataInputStream;
 
 

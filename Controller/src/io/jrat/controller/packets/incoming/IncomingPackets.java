@@ -3,7 +3,6 @@ package io.jrat.controller.packets.incoming;
 import io.jrat.common.PacketRange;
 import io.jrat.controller.Slave;
 import io.jrat.controller.addons.PluginEventHandler;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;

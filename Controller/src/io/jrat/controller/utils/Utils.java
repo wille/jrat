@@ -3,7 +3,6 @@ package io.jrat.controller.utils;
 import io.jrat.controller.AbstractSlave;
 import io.jrat.controller.Main;
 import io.jrat.controller.ui.components.TableModel;
-
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -11,7 +10,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.Date;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;

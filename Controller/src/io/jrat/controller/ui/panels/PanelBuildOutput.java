@@ -4,10 +4,8 @@ import io.jrat.controller.Help;
 import io.jrat.controller.ShellcodeGenerator;
 import io.jrat.controller.ui.frames.FrameAppInfo;
 import io.jrat.controller.ui.frames.FrameExecutableInfo;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;

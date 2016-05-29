@@ -1,9 +1,7 @@
 package io.jrat.controller.commands;
 
 import io.jrat.controller.SampleMode;
-
 import java.io.PrintStream;
-
 import jrat.api.commands.AbstractCommand;
 
 public class CommandAddStatistics extends AbstractCommand {

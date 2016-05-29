@@ -2,14 +2,12 @@ package io.jrat.controller.ui.frames;
 
 import iconlib.IconUtils;
 import io.jrat.controller.ErrorDialog;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileWriter;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;

@@ -3,7 +3,6 @@ package io.jrat.controller.utils;
 import io.jrat.controller.Constants;
 import io.jrat.controller.ErrorDialog;
 import io.jrat.controller.net.WebRequest;
-
 import java.awt.Desktop;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

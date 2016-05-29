@@ -4,7 +4,6 @@ import iconlib.IconUtils;
 import io.jrat.controller.Slave;
 import io.jrat.controller.packets.outgoing.Packet62PreviewImage;
 import io.jrat.controller.ui.panels.PanelImage;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Toolkit;
@@ -16,7 +15,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;

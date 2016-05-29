@@ -2,10 +2,8 @@ package io.jrat.controller.packets.incoming;
 
 import io.jrat.controller.Slave;
 import io.jrat.controller.ui.frames.FrameRemoteChat;
-
 import java.awt.Color;
 import java.io.DataInputStream;
-
 import javax.swing.text.AttributeSet;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;

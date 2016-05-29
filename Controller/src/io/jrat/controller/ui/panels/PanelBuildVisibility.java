@@ -4,13 +4,11 @@ import iconlib.IconUtils;
 import io.jrat.controller.Constants;
 import io.jrat.controller.ErrorDialog;
 import io.jrat.controller.ui.components.JPlaceholderTextField;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;

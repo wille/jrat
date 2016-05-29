@@ -14,7 +14,6 @@ import io.jrat.controller.ui.Columns;
 import io.jrat.controller.ui.components.TableModel;
 import io.jrat.controller.utils.BasicIconUtils;
 import io.jrat.controller.utils.Utils;
-
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -24,7 +23,6 @@ import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.Icon;
 import javax.swing.JCheckBox;
 import javax.swing.JCheckBoxMenuItem;
@@ -33,7 +31,6 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
-
 import jrat.api.ui.DefaultJTable;
 import jrat.api.ui.DefaultJTableCellRenderer;
 

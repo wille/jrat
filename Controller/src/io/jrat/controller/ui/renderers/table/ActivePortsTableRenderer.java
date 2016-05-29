@@ -2,14 +2,11 @@ package io.jrat.controller.ui.renderers.table;
 
 import iconlib.FileIconUtils;
 import iconlib.IconUtils;
-
 import java.awt.Color;
 import java.awt.Component;
-
 import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.JTable;
-
 import jrat.api.ui.DefaultJTableCellRenderer;
 
 

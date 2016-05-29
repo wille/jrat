@@ -3,12 +3,10 @@ package io.jrat.controller.ui.panels;
 import iconlib.IconUtils;
 import io.jrat.controller.Help;
 import io.jrat.controller.ui.components.JPlaceholderTextField;
-
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
-
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;

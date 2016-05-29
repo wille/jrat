@@ -5,7 +5,6 @@ import io.jrat.common.crypto.Crypto;
 import io.jrat.common.crypto.KeyUtils;
 import io.jrat.controller.Globals;
 import io.jrat.controller.utils.IOUtils;
-
 import java.io.File;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;

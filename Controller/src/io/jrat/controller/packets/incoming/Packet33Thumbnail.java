@@ -2,10 +2,8 @@ package io.jrat.controller.packets.incoming;
 
 import io.jrat.common.utils.ImageUtils;
 import io.jrat.controller.Slave;
-
 import java.awt.image.BufferedImage;
 import java.io.DataInputStream;
-
 import javax.swing.ImageIcon;
 
 public class Packet33Thumbnail extends AbstractIncomingPacket {

@@ -6,7 +6,6 @@ import io.jrat.common.hash.Sha256;
 import io.jrat.controller.exceptions.InvalidKeyException;
 import io.jrat.controller.exceptions.MissingKeyException;
 import io.jrat.controller.net.WebRequest;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.net.HttpURLConnection;

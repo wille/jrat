@@ -7,7 +7,6 @@ import io.jrat.controller.Globals;
 import io.jrat.controller.UniqueId;
 import io.jrat.controller.exceptions.MissingKeyException;
 import io.jrat.controller.net.WebRequest;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
@@ -15,10 +14,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-
 import jrat.api.Plugin;
 
 public class OnlinePlugin {

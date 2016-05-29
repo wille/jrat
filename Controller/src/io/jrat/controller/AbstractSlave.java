@@ -1,5 +1,7 @@
 package io.jrat.controller;
 
+import com.redpois0n.oslib.AbstractOperatingSystem;
+import com.redpois0n.oslib.OperatingSystem;
 import io.jrat.common.Version;
 import io.jrat.common.codec.Hex;
 import io.jrat.common.crypto.Crypto;
@@ -19,14 +21,12 @@ import io.jrat.controller.settings.SettingsCustomID;
 import io.jrat.controller.settings.StatisticsCountry;
 import io.jrat.controller.utils.FlagUtils;
 import io.jrat.controller.utils.TrayIconUtils;
-
 import java.awt.TrayIcon;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.Socket;
 import java.security.PublicKey;
 import java.util.Random;
-
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
 import javax.crypto.CipherOutputStream;
@@ -34,9 +34,6 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 import javax.swing.ImageIcon;
-
-import com.redpois0n.oslib.AbstractOperatingSystem;
-import com.redpois0n.oslib.OperatingSystem;
 
 public abstract class AbstractSlave implements Runnable {
 	

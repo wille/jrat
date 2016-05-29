@@ -6,7 +6,6 @@ import io.jrat.controller.Slave;
 import io.jrat.controller.packets.outgoing.Packet18Update;
 import io.jrat.controller.utils.NetUtils;
 import io.jrat.controller.utils.Utils;
-
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 

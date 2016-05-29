@@ -6,7 +6,6 @@ import io.jrat.controller.Globals;
 import io.jrat.controller.Help;
 import io.jrat.controller.ui.renderers.HelpTreeRenderer;
 import io.jrat.controller.utils.NetUtils;
-
 import java.awt.Component;
 import java.awt.Desktop;
 import java.awt.Toolkit;
@@ -19,7 +18,6 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JEditorPane;

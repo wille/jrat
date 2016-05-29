@@ -8,7 +8,6 @@ import io.jrat.controller.Main;
 import io.jrat.controller.build.PluginPacker;
 import io.jrat.controller.ui.components.TableModel;
 import io.jrat.controller.ui.dialogs.DialogPackPluginEditResources;
-
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,7 +18,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.jar.JarFile;
-
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -37,7 +35,6 @@ import javax.swing.JTextPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
-
 import jrat.api.ui.DefaultJTable;
 
 @SuppressWarnings("serial")

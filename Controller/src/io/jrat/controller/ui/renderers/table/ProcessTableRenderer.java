@@ -1,19 +1,15 @@
 package io.jrat.controller.ui.renderers.table;
 
+import com.redpois0n.oslib.OperatingSystem;
 import iconlib.FileIconUtils;
 import iconlib.IconUtils;
 import io.jrat.common.ProcessData;
-
 import java.awt.Color;
 import java.awt.Component;
-
 import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.JTable;
-
 import jrat.api.ui.DefaultJTableCellRenderer;
-
-import com.redpois0n.oslib.OperatingSystem;
 
 
 @SuppressWarnings("serial")

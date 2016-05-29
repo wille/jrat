@@ -2,10 +2,8 @@ package io.jrat.controller.commands;
 
 import io.jrat.controller.settings.StatisticsCountry;
 import io.jrat.controller.settings.StatisticsCountry.CountryStatEntry;
-
 import java.io.PrintStream;
 import java.util.List;
-
 import jrat.api.commands.AbstractCommand;
 
 public class CommandListStatistics extends AbstractCommand {

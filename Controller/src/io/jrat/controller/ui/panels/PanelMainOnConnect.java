@@ -6,11 +6,9 @@ import io.jrat.controller.Main;
 import io.jrat.controller.events.Event;
 import io.jrat.controller.events.Events;
 import io.jrat.controller.ui.components.TableModel;
-
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -19,7 +17,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JToolBar;
-
 import jrat.api.ui.DefaultJTable;
 
 @SuppressWarnings("serial")

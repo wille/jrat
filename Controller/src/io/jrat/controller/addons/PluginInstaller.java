@@ -12,7 +12,6 @@ import io.jrat.controller.UniqueId;
 import io.jrat.controller.exceptions.MissingKeyException;
 import io.jrat.controller.listeners.ExtensionInstallerListener;
 import io.jrat.controller.net.WebRequest;
-
 import java.awt.Color;
 import java.io.File;
 import java.io.FileNotFoundException;

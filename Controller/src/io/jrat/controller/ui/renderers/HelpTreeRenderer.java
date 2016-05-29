@@ -1,9 +1,7 @@
 package io.jrat.controller.ui.renderers;
 
 import iconlib.FileIconUtils;
-
 import java.awt.Component;
-
 import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.JTree;

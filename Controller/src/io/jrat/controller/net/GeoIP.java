@@ -3,7 +3,6 @@ package io.jrat.controller.net;
 import iconlib.IconUtils;
 import io.jrat.controller.AbstractSlave;
 import io.jrat.controller.utils.NetUtils;
-
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -12,7 +11,6 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.imageio.ImageIO;
 
 public class GeoIP {

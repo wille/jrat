@@ -6,7 +6,6 @@ import io.jrat.controller.AbstractSlave;
 import io.jrat.controller.Globals;
 import io.jrat.controller.Main;
 import io.jrat.controller.utils.FlagUtils;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

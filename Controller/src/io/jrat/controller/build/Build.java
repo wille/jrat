@@ -15,7 +15,6 @@ import io.jrat.controller.addons.PluginList;
 import io.jrat.controller.addons.StubPlugin;
 import io.jrat.controller.listeners.BuildListener;
 import io.jrat.controller.ui.dialogs.DialogSummary;
-
 import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -33,7 +32,6 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
-
 import javax.crypto.Cipher;
 import javax.crypto.CipherOutputStream;
 import javax.crypto.KeyGenerator;

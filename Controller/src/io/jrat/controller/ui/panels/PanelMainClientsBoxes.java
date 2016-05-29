@@ -5,7 +5,6 @@ import io.jrat.controller.AbstractSlave;
 import io.jrat.controller.Slave;
 import io.jrat.controller.packets.outgoing.Packet40Thumbnail;
 import io.jrat.controller.utils.Utils;
-
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -16,7 +15,6 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.Icon;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;

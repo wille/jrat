@@ -1,18 +1,17 @@
 package io.jrat.controller.ui.panels;
 
+import com.redpois0n.oslib.OperatingSystem;
 import iconlib.IconUtils;
 import io.jrat.controller.ErrorDialog;
 import io.jrat.controller.Main;
 import io.jrat.controller.Slave;
 import io.jrat.controller.packets.outgoing.Packet76Speech;
 import io.jrat.controller.utils.IOUtils;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -22,8 +21,6 @@ import javax.swing.JTextPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
-
-import com.redpois0n.oslib.OperatingSystem;
 
 
 @SuppressWarnings("serial")

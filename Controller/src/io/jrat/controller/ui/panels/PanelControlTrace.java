@@ -5,10 +5,8 @@ import io.jrat.controller.Slave;
 import io.jrat.controller.net.GeoIP;
 import io.jrat.controller.ui.components.JRemoteScreenPane;
 import io.jrat.controller.ui.components.TableModel;
-
 import java.awt.BorderLayout;
 import java.util.Map;
-
 import javax.swing.JTable;
 
 

@@ -2,7 +2,6 @@ package io.jrat.controller.events;
 
 import io.jrat.controller.Main;
 import io.jrat.controller.utils.Utils;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 

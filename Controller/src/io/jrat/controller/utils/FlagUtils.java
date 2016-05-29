@@ -5,10 +5,8 @@ import io.jrat.controller.AbstractSlave;
 import io.jrat.controller.Slave;
 import io.jrat.controller.ip2c.Country;
 import io.jrat.controller.ip2c.IP2Country;
-
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.swing.ImageIcon;
 
 public class FlagUtils {
@@ -205,8 +203,8 @@ public class FlagUtils {
 		COUNTRIES.put("RO", "Romania");
 		COUNTRIES.put("RU", "Russian Federation");
 		COUNTRIES.put("RW", "Rwanda");
-		COUNTRIES.put("RE", "Réunion");
-		COUNTRIES.put("BL", "Saint Barthélemy");
+		COUNTRIES.put("RE", "Rï¿½union");
+		COUNTRIES.put("BL", "Saint Barthï¿½lemy");
 		COUNTRIES.put("SH", "Saint Helena, Ascension and Tristan Da Cunha");
 		COUNTRIES.put("KN", "Saint Kitts And Nevis");
 		COUNTRIES.put("LC", "Saint Lucia");
@@ -270,7 +268,7 @@ public class FlagUtils {
 		COUNTRIES.put("YE", "Yemen");
 		COUNTRIES.put("ZM", "Zambia");
 		COUNTRIES.put("ZW", "Zimbabwe");
-		COUNTRIES.put("AX", "Åland Islands");
+		COUNTRIES.put("AX", "ï¿½land Islands");
 	}
 
 	public static String getStringFromIso2(String iso2) {

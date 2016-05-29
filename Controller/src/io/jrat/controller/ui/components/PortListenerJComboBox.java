@@ -3,12 +3,10 @@ package io.jrat.controller.ui.components;
 import io.jrat.controller.listeners.SocketComboBoxListener;
 import io.jrat.controller.net.PortListener;
 import io.jrat.controller.net.ServerListener;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 

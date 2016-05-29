@@ -1,7 +1,6 @@
 package io.jrat.controller.threads;
 
 import iconlib.IconUtils;
-
 import javax.swing.Icon;
 import javax.swing.JButton;
 

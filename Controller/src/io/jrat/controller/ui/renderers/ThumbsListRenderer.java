@@ -1,10 +1,8 @@
 package io.jrat.controller.ui.renderers;
 
 import io.jrat.controller.ui.panels.PanelThumbView;
-
 import java.awt.Component;
 import java.io.File;
-
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JList;
 

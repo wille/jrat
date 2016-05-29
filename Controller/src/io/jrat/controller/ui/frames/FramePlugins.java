@@ -4,18 +4,15 @@ import iconlib.IconUtils;
 import io.jrat.controller.Globals;
 import io.jrat.controller.addons.Plugins;
 import io.jrat.controller.ui.components.PluginTable;
-
 import java.awt.BorderLayout;
 import java.awt.Desktop;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
-
 import jrat.api.Plugin;
 import jrat.api.events.Event;
 import jrat.api.events.EventType;

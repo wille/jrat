@@ -7,10 +7,8 @@ import io.jrat.controller.net.PortListener;
 import io.jrat.controller.settings.Settings;
 import io.jrat.controller.ui.components.JPlaceholderTextField;
 import io.jrat.controller.ui.components.PortListenerJComboBox;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;

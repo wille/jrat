@@ -1,10 +1,8 @@
 package io.jrat.controller.ui.dialogs;
 
-import io.jrat.controller.Slave;
-
-import javax.swing.JDialog;
-
 import com.redpois0n.oslib.OperatingSystem;
+import io.jrat.controller.Slave;
+import javax.swing.JDialog;
 
 
 @SuppressWarnings("serial")

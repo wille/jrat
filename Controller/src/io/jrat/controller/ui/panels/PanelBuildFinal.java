@@ -17,13 +17,11 @@ import io.jrat.controller.settings.Settings;
 import io.jrat.controller.ui.components.TableModel;
 import io.jrat.controller.ui.frames.FrameBuildAdvanced;
 import io.jrat.controller.ui.renderers.table.BuildTableRenderer;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedHashMap;
-
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -37,7 +35,6 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
-
 import jrat.api.ui.DefaultJTable;
 
 

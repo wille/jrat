@@ -1,10 +1,8 @@
 package io.jrat.controller.ui.frames;
 
-import io.jrat.controller.Slave;
-
-import javax.swing.JFrame;
-
 import com.redpois0n.oslib.OperatingSystem;
+import io.jrat.controller.Slave;
+import javax.swing.JFrame;
 
 
 @SuppressWarnings("serial")

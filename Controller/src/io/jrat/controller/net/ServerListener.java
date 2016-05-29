@@ -7,7 +7,6 @@ import io.jrat.controller.Main;
 import io.jrat.controller.Slave;
 import io.jrat.controller.android.AndroidSlave;
 import io.jrat.controller.settings.SettingsSockets;
-
 import java.net.Socket;
 
 public class ServerListener extends PortListener implements Runnable {

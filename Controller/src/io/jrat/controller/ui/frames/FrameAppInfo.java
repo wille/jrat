@@ -1,12 +1,10 @@
 package io.jrat.controller.ui.frames;
 
 import io.jrat.controller.utils.Utils;
-
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;

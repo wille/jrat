@@ -1,7 +1,6 @@
 package io.jrat.controller.ui.panels;
 
 import io.jrat.controller.settings.Settings;
-
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;

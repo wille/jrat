@@ -2,7 +2,6 @@ package io.jrat.controller.io;
 
 import iconlib.FileIconUtils;
 import io.jrat.controller.ui.components.FileTable;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;

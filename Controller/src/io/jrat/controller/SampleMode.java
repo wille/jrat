@@ -1,14 +1,5 @@
 package io.jrat.controller;
 
-import io.jrat.common.Version;
-import io.jrat.controller.net.ConnectionHandler;
-import io.jrat.controller.settings.StatisticsCountry;
-import io.jrat.controller.settings.StatisticsOperatingSystem;
-import io.jrat.controller.utils.FlagUtils;
-import io.jrat.controller.utils.NetUtils;
-
-import java.util.Random;
-
 import com.redpois0n.oslib.AbstractOperatingSystem;
 import com.redpois0n.oslib.bsd.BSDOperatingSystem;
 import com.redpois0n.oslib.bsd.Flavor;
@@ -19,6 +10,13 @@ import com.redpois0n.oslib.osx.OSXVersion;
 import com.redpois0n.oslib.solaris.SolarisOperatingSystem;
 import com.redpois0n.oslib.windows.WindowsOperatingSystem;
 import com.redpois0n.oslib.windows.WindowsVersion;
+import io.jrat.common.Version;
+import io.jrat.controller.net.ConnectionHandler;
+import io.jrat.controller.settings.StatisticsCountry;
+import io.jrat.controller.settings.StatisticsOperatingSystem;
+import io.jrat.controller.utils.FlagUtils;
+import io.jrat.controller.utils.NetUtils;
+import java.util.Random;
 
 public class SampleMode {
 

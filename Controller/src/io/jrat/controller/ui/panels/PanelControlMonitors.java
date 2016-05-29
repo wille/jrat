@@ -6,11 +6,9 @@ import graphslib.monitors.PanelMonitors.PanelMonitor;
 import graphslib.monitors.RemoteMonitor;
 import io.jrat.controller.Slave;
 import io.jrat.controller.packets.outgoing.Packet75AllThumbnails;
-
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;

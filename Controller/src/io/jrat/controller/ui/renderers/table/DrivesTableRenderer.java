@@ -1,15 +1,12 @@
 package io.jrat.controller.ui.renderers.table;
 
 import iconlib.IconUtils;
-
 import java.awt.Component;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.JTable;
-
 import jrat.api.ui.DefaultJTableCellRenderer;
 
 @SuppressWarnings("serial")

@@ -3,7 +3,6 @@ package io.jrat.controller.ui.renderers;
 import java.awt.Component;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.JTree;

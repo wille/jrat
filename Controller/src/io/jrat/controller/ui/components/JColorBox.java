@@ -2,10 +2,8 @@ package io.jrat.controller.ui.components;
 
 import io.jrat.controller.settings.SettingsColors;
 import io.jrat.controller.ui.renderers.JColorBoxRenderer;
-
 import java.awt.Color;
 import java.awt.event.ActionListener;
-
 import javax.swing.JComboBox;
 
 

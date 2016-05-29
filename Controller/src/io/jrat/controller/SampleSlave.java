@@ -1,8 +1,7 @@
 package io.jrat.controller;
 
-import java.io.File;
-
 import com.redpois0n.oslib.AbstractOperatingSystem;
+import java.io.File;
 
 public class SampleSlave extends AbstractSlave {
 

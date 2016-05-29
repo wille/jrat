@@ -1,7 +1,6 @@
 package io.jrat.controller.ui.panels;
 
 import io.jrat.controller.Slave;
-
 import javax.swing.JPanel;
 
 

@@ -4,7 +4,6 @@ import io.jrat.common.io.FileCache;
 import io.jrat.common.io.TransferData;
 import io.jrat.controller.Slave;
 import io.jrat.controller.ui.panels.PanelFileTransfers;
-
 import java.io.DataInputStream;
 import java.io.File;
 

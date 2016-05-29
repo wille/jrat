@@ -4,9 +4,7 @@ import iconlib.FileIconUtils;
 import io.jrat.controller.Slave;
 import io.jrat.controller.ui.frames.FrameRemoteFiles;
 import io.jrat.controller.ui.panels.PanelSearchFiles;
-
 import java.io.DataInputStream;
-
 import javax.swing.ImageIcon;
 
 public class Packet37SearchResult extends AbstractIncomingPacket {

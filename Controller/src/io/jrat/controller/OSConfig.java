@@ -1,9 +1,8 @@
 package io.jrat.controller;
 
+import com.redpois0n.oslib.OperatingSystem;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.redpois0n.oslib.OperatingSystem;
 
 
 public final class OSConfig {

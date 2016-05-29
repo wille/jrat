@@ -7,7 +7,6 @@ import io.jrat.controller.listeners.GlobalNetworkMonitorListener;
 import io.jrat.controller.listeners.NetworkMonitorListener;
 import io.jrat.controller.ui.Columns;
 import io.jrat.controller.ui.panels.PanelMainClientsTable;
-
 import io.jrat.controller.utils.TrayIconUtils;
 import java.util.ArrayList;
 import java.util.List;

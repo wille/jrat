@@ -2,10 +2,8 @@ package io.jrat.controller.ui.panels;
 
 import iconlib.IconUtils;
 import io.jrat.controller.settings.Settings;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;

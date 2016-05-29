@@ -4,7 +4,6 @@ import io.jrat.common.utils.IOUtils;
 import io.jrat.common.utils.JarUtils;
 import io.jrat.controller.Main;
 import io.jrat.controller.ui.frames.FrameAppInfo;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;

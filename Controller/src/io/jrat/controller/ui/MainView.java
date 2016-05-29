@@ -3,7 +3,6 @@ package io.jrat.controller.ui;
 import io.jrat.controller.ui.panels.PanelMainClients;
 import io.jrat.controller.ui.panels.PanelMainClientsBoxes;
 import io.jrat.controller.ui.panels.PanelMainClientsTable;
-
 import java.util.ArrayList;
 import java.util.List;
 

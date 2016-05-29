@@ -5,12 +5,10 @@ import io.jrat.common.script.Script;
 import io.jrat.controller.Slave;
 import io.jrat.controller.packets.outgoing.AbstractOutgoingPacket;
 import io.jrat.controller.packets.outgoing.Packet35Script;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileWriter;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;

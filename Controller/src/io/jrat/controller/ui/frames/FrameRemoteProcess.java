@@ -3,13 +3,11 @@ package io.jrat.controller.ui.frames;
 import io.jrat.controller.Slave;
 import io.jrat.controller.packets.outgoing.Packet19ListProcesses;
 import io.jrat.controller.ui.panels.PanelControlRemoteProcess;
-
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.swing.JFrame;
 
 

@@ -1,7 +1,6 @@
 package io.jrat.controller.packets.android.outgoing;
 
 import io.jrat.controller.android.AndroidSlave;
-
 import java.io.DataOutputStream;
 
 public class AndroidPacket0Ping extends AbstractOutgoingAndroidPacket {

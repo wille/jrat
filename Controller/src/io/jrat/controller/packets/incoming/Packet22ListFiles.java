@@ -4,7 +4,6 @@ import iconlib.FileIconUtils;
 import io.jrat.controller.Slave;
 import io.jrat.controller.io.FileObject;
 import io.jrat.controller.ui.frames.FrameRemoteFiles;
-
 import java.io.DataInputStream;
 import java.util.ArrayList;
 import java.util.List;

@@ -5,12 +5,10 @@ import io.jrat.common.Version;
 import io.jrat.controller.ErrorDialog;
 import io.jrat.controller.Updater;
 import io.jrat.controller.utils.NetUtils;
-
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;

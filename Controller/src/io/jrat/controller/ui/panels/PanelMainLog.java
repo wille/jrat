@@ -7,10 +7,8 @@ import io.jrat.controller.LogEntry;
 import io.jrat.controller.ui.components.TableModel;
 import io.jrat.controller.ui.renderers.table.LogTableRenderer;
 import io.jrat.controller.utils.Utils;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JMenuItem;
@@ -19,7 +17,6 @@ import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
-
 import jrat.api.ui.DefaultJTable;
 
 

@@ -2,7 +2,6 @@ package io.jrat.controller.settings;
 
 import io.jrat.controller.Globals;
 import io.jrat.controller.ui.components.JColorBox;
-
 import java.awt.Color;
 import java.io.File;
 import java.io.FileInputStream;

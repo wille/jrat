@@ -6,11 +6,9 @@ import io.jrat.controller.addons.PluginList;
 import io.jrat.controller.addons.StubPlugin;
 import io.jrat.controller.ui.components.JCheckBoxList;
 import io.jrat.controller.ui.components.JCheckBoxList.Entry;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;

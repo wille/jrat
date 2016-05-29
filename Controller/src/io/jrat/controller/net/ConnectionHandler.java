@@ -2,7 +2,6 @@ package io.jrat.controller.net;
 
 import io.jrat.controller.AbstractSlave;
 import io.jrat.controller.Main;
-import io.jrat.controller.OfflineSlave;
 import io.jrat.controller.SampleMode;
 import io.jrat.controller.addons.PluginEventHandler;
 import io.jrat.controller.exceptions.CloseException;

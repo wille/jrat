@@ -4,11 +4,9 @@ import iconlib.IconUtils;
 import io.jrat.controller.Constants;
 import io.jrat.controller.Help;
 import io.jrat.controller.ui.components.JPlaceholderTextField;
-
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;

@@ -2,13 +2,11 @@ package io.jrat.controller.ui.dialogs;
 
 import io.jrat.controller.ui.components.TableModel;
 import io.jrat.controller.ui.frames.FramePackPlugin;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -17,7 +15,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
-
 import jrat.api.ui.DefaultJTable;
 
 @SuppressWarnings("serial")

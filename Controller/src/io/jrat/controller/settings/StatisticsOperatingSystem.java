@@ -1,11 +1,12 @@
 package io.jrat.controller.settings;
 
+import com.redpois0n.oslib.AbstractOperatingSystem;
+import com.redpois0n.oslib.Icons;
 import graphslib.graph.GraphEntry;
 import iconlib.IconUtils;
 import io.jrat.controller.AbstractSlave;
 import io.jrat.controller.Globals;
 import io.jrat.controller.Main;
-
 import java.awt.Color;
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,9 +16,6 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.redpois0n.oslib.AbstractOperatingSystem;
-import com.redpois0n.oslib.Icons;
 
 public class StatisticsOperatingSystem extends AbstractStorable implements Serializable {
 

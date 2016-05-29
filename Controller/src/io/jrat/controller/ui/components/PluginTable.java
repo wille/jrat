@@ -1,15 +1,12 @@
 package io.jrat.controller.ui.components;
 
 import iconlib.IconUtils;
-
 import java.awt.Component;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-
 import jrat.api.Plugin;
 import jrat.api.ui.DefaultJTable;
 

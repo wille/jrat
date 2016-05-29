@@ -5,7 +5,6 @@ import io.jrat.common.SoundWriter;
 import io.jrat.controller.Slave;
 import io.jrat.controller.packets.outgoing.Packet83ServerUploadSound;
 import io.jrat.controller.packets.outgoing.Packet84ToggleSoundCapture;
-
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +12,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;

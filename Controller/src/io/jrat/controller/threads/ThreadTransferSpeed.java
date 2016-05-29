@@ -2,7 +2,6 @@ package io.jrat.controller.threads;
 
 import io.jrat.common.io.TransferData;
 import io.jrat.controller.ui.panels.PanelFileTransfers;
-
 import java.util.List;
 
 public class ThreadTransferSpeed extends Thread {

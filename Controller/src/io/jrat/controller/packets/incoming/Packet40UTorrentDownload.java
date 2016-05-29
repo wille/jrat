@@ -3,7 +3,6 @@ package io.jrat.controller.packets.incoming;
 import io.jrat.controller.Slave;
 import io.jrat.controller.ui.frames.FrameControlPanel;
 import io.jrat.controller.ui.panels.PanelControluTorrentDownloads;
-
 import java.io.DataInputStream;
 
 

@@ -3,13 +3,11 @@ package io.jrat.controller.ui.frames;
 import io.jrat.controller.AbstractSlave;
 import io.jrat.controller.Main;
 import io.jrat.controller.ui.renderers.GroupTreeRenderer;
-
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.List;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;

@@ -2,7 +2,6 @@ package io.jrat.controller.packets.incoming;
 
 import io.jrat.controller.Slave;
 import io.jrat.controller.ui.frames.FramePreviewFile;
-
 import java.io.DataInputStream;
 
 

@@ -4,7 +4,6 @@ import iconlib.IconUtils;
 import io.jrat.controller.Main;
 import io.jrat.controller.settings.Settings;
 import io.jrat.controller.ui.frames.Frame;
-
 import java.awt.SystemTray;
 import java.awt.TrayIcon;
 import java.awt.event.MouseAdapter;

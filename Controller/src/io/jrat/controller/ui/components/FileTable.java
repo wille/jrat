@@ -6,13 +6,11 @@ import io.jrat.controller.io.FileObject;
 import io.jrat.controller.ui.renderers.JComboBoxIconRenderer;
 import io.jrat.controller.ui.renderers.table.FileViewTableRenderer;
 import io.jrat.controller.utils.Utils;
-
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -22,7 +20,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
-
 import jrat.api.ui.DefaultJTable;
 
 @SuppressWarnings("serial")

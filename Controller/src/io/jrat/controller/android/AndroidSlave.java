@@ -16,12 +16,10 @@ import io.jrat.controller.packets.android.incoming.IncomingAndroidPackets;
 import io.jrat.controller.packets.android.outgoing.AbstractOutgoingAndroidPacket;
 import io.jrat.controller.packets.android.outgoing.AndroidPacket0Ping;
 import io.jrat.controller.utils.TrayIconUtils;
-
 import java.awt.TrayIcon;
 import java.io.DataOutputStream;
 import java.net.Socket;
 import java.util.Arrays;
-
 import javax.crypto.BadPaddingException;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;

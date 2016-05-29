@@ -2,7 +2,6 @@ package io.jrat.controller.settings;
 
 import io.jrat.controller.Globals;
 import io.jrat.controller.ui.Columns;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;

@@ -8,12 +8,10 @@ import io.jrat.controller.settings.SettingsSockets;
 import io.jrat.controller.ui.components.JPlaceholderTextField;
 import io.jrat.controller.utils.Utils;
 import io.jrat.controller.webpanel.WebPanelListener;
-
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;

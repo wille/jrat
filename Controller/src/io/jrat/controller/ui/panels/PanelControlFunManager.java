@@ -7,10 +7,8 @@ import io.jrat.controller.packets.outgoing.Packet44PlaySoundFromURL;
 import io.jrat.controller.packets.outgoing.Packet46CrazyMouse;
 import io.jrat.controller.packets.outgoing.Packet65Beep;
 import io.jrat.controller.utils.NetUtils;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;

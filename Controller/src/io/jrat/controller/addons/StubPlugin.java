@@ -2,7 +2,6 @@ package io.jrat.controller.addons;
 
 import io.jrat.controller.Main;
 import io.jrat.controller.utils.IOUtils;
-
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.Enumeration;

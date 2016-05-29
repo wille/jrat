@@ -4,9 +4,7 @@ import iconlib.FileIconUtils;
 import io.jrat.common.utils.DataUnits;
 import io.jrat.controller.Slave;
 import io.jrat.controller.ui.frames.FramePreviewZip;
-
 import java.io.DataInputStream;
-
 import javax.swing.Icon;
 
 public class Packet45ArchivePreview extends AbstractIncomingPacket {

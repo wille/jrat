@@ -1,12 +1,9 @@
 package io.jrat.controller.ui.renderers.table;
 
 import io.jrat.controller.utils.FlagUtils;
-
 import java.awt.Component;
-
 import javax.swing.JLabel;
 import javax.swing.JTable;
-
 import jrat.api.ui.DefaultJTableCellRenderer;
 
 

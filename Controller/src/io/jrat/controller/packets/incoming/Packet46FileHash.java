@@ -2,9 +2,7 @@ package io.jrat.controller.packets.incoming;
 
 import io.jrat.controller.Slave;
 import io.jrat.controller.ui.frames.FrameRemoteFiles;
-
 import java.io.DataInputStream;
-
 import javax.swing.JOptionPane;
 
 

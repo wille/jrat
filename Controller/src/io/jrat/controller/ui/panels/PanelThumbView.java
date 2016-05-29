@@ -5,7 +5,6 @@ import io.jrat.controller.Slave;
 import io.jrat.controller.packets.outgoing.Packet85ThumbnailPreview;
 import io.jrat.controller.ui.renderers.ThumbsListRenderer;
 import io.jrat.controller.utils.Utils;
-
 import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -15,7 +14,6 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;

@@ -3,7 +3,6 @@ package io.jrat.controller.packets.android.incoming;
 import io.jrat.common.PacketRange;
 import io.jrat.controller.addons.PluginEventHandler;
 import io.jrat.controller.android.AndroidSlave;
-
 import java.util.HashMap;
 import java.util.Set;
 

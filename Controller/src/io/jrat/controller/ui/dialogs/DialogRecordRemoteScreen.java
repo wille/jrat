@@ -4,7 +4,6 @@ import iconlib.IconUtils;
 import io.jrat.controller.ErrorDialog;
 import io.jrat.controller.threads.ThreadRecordButton;
 import io.jrat.controller.ui.frames.FrameRemoteScreen;
-
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -12,7 +11,6 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.Date;
-
 import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;

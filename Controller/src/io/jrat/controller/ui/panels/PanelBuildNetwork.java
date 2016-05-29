@@ -5,14 +5,12 @@ import io.jrat.controller.ErrorDialog;
 import io.jrat.controller.settings.Settings;
 import io.jrat.controller.ui.components.JPlaceholderTextField;
 import io.jrat.controller.utils.NetUtils;
-
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.InetAddress;
-
 import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;

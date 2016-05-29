@@ -1,7 +1,6 @@
 package io.jrat.controller.commands;
 
 import java.io.PrintStream;
-
 import jrat.api.commands.AbstractCommand;
 import jrat.api.commands.Commands;
 

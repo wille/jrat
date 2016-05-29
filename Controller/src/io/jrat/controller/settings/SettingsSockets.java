@@ -7,7 +7,6 @@ import io.jrat.controller.exceptions.InvalidSocketTypeException;
 import io.jrat.controller.net.PortListener;
 import io.jrat.controller.net.ServerListener;
 import io.jrat.controller.webpanel.WebPanelListener;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -17,7 +16,6 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.Serializable;
 import java.net.BindException;
-
 import javax.swing.JOptionPane;
 
 public class SettingsSockets extends AbstractStorable implements Serializable {

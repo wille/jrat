@@ -3,11 +3,9 @@ package io.jrat.controller.ui.panels;
 import iconlib.IconUtils;
 import io.jrat.common.DropLocations;
 import io.jrat.controller.Help;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;

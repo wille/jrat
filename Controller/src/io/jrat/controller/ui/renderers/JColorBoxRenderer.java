@@ -1,11 +1,9 @@
 package io.jrat.controller.ui.renderers;
 
 import io.jrat.common.utils.ImageUtils;
-
 import java.awt.Color;
 import java.awt.Component;
 import java.util.HashMap;
-
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;

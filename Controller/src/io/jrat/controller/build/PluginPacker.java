@@ -1,7 +1,6 @@
 package io.jrat.controller.build;
 
 import io.jrat.controller.Main;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -11,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
-
 import javax.swing.JFileChooser;
 
 public class PluginPacker {

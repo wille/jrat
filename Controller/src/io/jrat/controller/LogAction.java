@@ -1,9 +1,7 @@
 package io.jrat.controller;
 
 import iconlib.IconUtils;
-
 import java.awt.Color;
-
 import javax.swing.Icon;
 
 public enum LogAction {

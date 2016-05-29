@@ -1,9 +1,5 @@
 package io.jrat.controller.packets.incoming;
 
-import io.jrat.controller.Slave;
-
-import java.io.DataInputStream;
-
 import com.redpois0n.oslib.AbstractOperatingSystem;
 import com.redpois0n.oslib.Arch;
 import com.redpois0n.oslib.DesktopEnvironment;
@@ -19,6 +15,8 @@ import com.redpois0n.oslib.osx.OSXOperatingSystem;
 import com.redpois0n.oslib.osx.OSXVersion;
 import com.redpois0n.oslib.solaris.SolarisOperatingSystem;
 import com.redpois0n.oslib.windows.WindowsOperatingSystem;
+import io.jrat.controller.Slave;
+import java.io.DataInputStream;
 
 public class Packet4InitOperatingSystem extends AbstractIncomingPacket {
 

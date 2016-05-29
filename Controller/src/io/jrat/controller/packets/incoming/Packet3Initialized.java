@@ -16,7 +16,6 @@ import io.jrat.controller.settings.Settings;
 import io.jrat.controller.settings.StatisticsOperatingSystem;
 import io.jrat.controller.settings.StoreOfflineSlaves;
 import io.jrat.controller.threads.UploadThread;
-
 import java.io.DataInputStream;
 import java.io.File;
 import java.util.ArrayList;
@@ -25,7 +24,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.jar.JarFile;
-
 import jrat.api.Plugin;
 
 public class Packet3Initialized extends AbstractIncomingPacket {

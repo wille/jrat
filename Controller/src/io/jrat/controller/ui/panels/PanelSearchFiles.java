@@ -10,10 +10,8 @@ import io.jrat.controller.ui.frames.FrameRemoteFiles;
 import io.jrat.controller.ui.renderers.JComboBoxIconRenderer;
 import io.jrat.controller.ui.renderers.table.FileSearchTableRenderer;
 import io.jrat.controller.utils.Utils;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.GroupLayout;
@@ -29,7 +27,6 @@ import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
-
 import jrat.api.ui.DefaultJTable;
 
 @SuppressWarnings("serial")

@@ -3,7 +3,6 @@ package io.jrat.controller.packets.incoming;
 import io.jrat.common.io.FileCache;
 import io.jrat.common.io.TransferData;
 import io.jrat.controller.Slave;
-
 import java.io.DataInputStream;
 
 

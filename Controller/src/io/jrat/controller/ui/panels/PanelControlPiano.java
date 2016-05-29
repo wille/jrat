@@ -6,12 +6,10 @@ import io.jrat.controller.Piano;
 import io.jrat.controller.Slave;
 import io.jrat.controller.packets.outgoing.Packet66PianoNote;
 import io.jrat.controller.packets.outgoing.Packet67LongPianoNote;
-
 import java.awt.Button;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.SourceDataLine;

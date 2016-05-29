@@ -4,7 +4,6 @@ import iconlib.IconUtils;
 import io.jrat.controller.ErrorDialog;
 import io.jrat.controller.Notes;
 import io.jrat.controller.Slave;
-
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -15,7 +14,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;

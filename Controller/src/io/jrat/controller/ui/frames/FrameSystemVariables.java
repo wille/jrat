@@ -6,7 +6,6 @@ import io.jrat.controller.Slave;
 import io.jrat.controller.packets.outgoing.Packet90SystemProperties;
 import io.jrat.controller.packets.outgoing.Packet96EnvironmentVariables;
 import io.jrat.controller.ui.components.TableModel;
-
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,7 +15,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -28,7 +26,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
-
 import jrat.api.ui.DefaultJTable;
 
 

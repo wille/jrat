@@ -1,5 +1,6 @@
 package io.jrat.controller;
 
+import com.redpois0n.oslib.OperatingSystem;
 import io.jrat.common.Logger;
 import io.jrat.common.Version;
 import io.jrat.common.utils.Utils;
@@ -19,7 +20,6 @@ import io.jrat.controller.ui.dialogs.DialogEula;
 import io.jrat.controller.ui.frames.Frame;
 import io.jrat.controller.utils.IOUtils;
 import io.jrat.controller.utils.TrayIconUtils;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -28,13 +28,9 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
-
 import jrat.api.commands.Commands;
-
-import com.redpois0n.oslib.OperatingSystem;
 
 public class Main {
 	

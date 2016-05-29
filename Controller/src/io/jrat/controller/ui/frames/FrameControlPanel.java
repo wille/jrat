@@ -48,10 +48,16 @@ import io.jrat.controller.ui.panels.PanelControluTorrentDownloads;
 import io.jrat.controller.ui.panels.PanelMemoryUsage;
 import io.jrat.controller.ui.renderers.ControlPanelTreeRenderer;
 import io.jrat.controller.utils.Utils;
-import jrat.api.Client;
-import jrat.api.ui.BaseControlPanel;
-import jrat.api.ui.RATControlMenuEntry;
-
+import java.awt.BorderLayout;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
@@ -71,16 +77,9 @@ import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
-import java.awt.BorderLayout;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import jrat.api.Client;
+import jrat.api.ui.BaseControlPanel;
+import jrat.api.ui.RATControlMenuEntry;
 
 @SuppressWarnings("serial")
 public class FrameControlPanel extends BaseFrame {

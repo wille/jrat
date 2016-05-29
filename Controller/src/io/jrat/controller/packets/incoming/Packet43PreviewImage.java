@@ -3,7 +3,6 @@ package io.jrat.controller.packets.incoming;
 import io.jrat.common.utils.ImageUtils;
 import io.jrat.controller.Slave;
 import io.jrat.controller.ui.frames.FramePreviewImage;
-
 import java.awt.image.BufferedImage;
 import java.io.DataInputStream;
 

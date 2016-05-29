@@ -3,9 +3,7 @@ package io.jrat.controller.packets.incoming;
 import io.jrat.controller.Slave;
 import io.jrat.controller.ui.frames.FrameControlPanel;
 import io.jrat.controller.ui.panels.PanelControlHostsFile;
-
 import java.io.DataInputStream;
-
 import javax.swing.JOptionPane;
 
 

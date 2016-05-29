@@ -19,7 +19,6 @@ import io.jrat.controller.ui.components.JRemoteScreenPane;
 import io.jrat.controller.ui.dialogs.DialogMonitors;
 import io.jrat.controller.ui.dialogs.DialogRecordRemoteScreen;
 import io.jrat.controller.ui.renderers.JComboBoxIconRenderer;
-
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,9 +33,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.imageio.ImageIO;
-import javax.swing.Action;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;

@@ -6,7 +6,6 @@ import io.jrat.controller.net.PortListener;
 import io.jrat.controller.ui.components.TableModel;
 import io.jrat.controller.ui.frames.FrameAddSocket;
 import io.jrat.controller.ui.renderers.table.SocketsTableRenderer;
-
 import java.awt.Component;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
@@ -14,7 +13,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JMenuItem;
@@ -23,7 +21,6 @@ import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
-
 import jrat.api.ui.DefaultJTable;
 
 @SuppressWarnings("serial")

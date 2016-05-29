@@ -17,13 +17,11 @@ import io.jrat.controller.ui.panels.PanelSettingsProxy;
 import io.jrat.controller.ui.panels.PanelSettingsStats;
 import io.jrat.controller.ui.panels.PanelSettingsTheme;
 import io.jrat.controller.ui.renderers.JTreeIconsRenderer;
-
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.HashMap;
-
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;

@@ -6,19 +6,16 @@ import graphslib.graph.GraphEntry;
 import io.jrat.controller.threads.ThreadGraph;
 import io.jrat.controller.ui.components.TableModel;
 import io.jrat.controller.utils.FlagUtils;
-
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
-
 import jrat.api.ui.DefaultJTable;
 
 @SuppressWarnings("serial")

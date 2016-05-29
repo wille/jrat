@@ -13,7 +13,6 @@ import io.jrat.controller.packets.outgoing.Packet103CompleteServerUpload;
 import io.jrat.controller.packets.outgoing.Packet105CancelServerDownload;
 import io.jrat.controller.ui.components.TableModel;
 import io.jrat.controller.utils.Utils;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -21,7 +20,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.Icon;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
@@ -32,7 +30,6 @@ import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
-
 import jrat.api.ui.DefaultJTable;
 import jrat.api.ui.DefaultJTableCellRenderer;
 

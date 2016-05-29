@@ -4,9 +4,7 @@ import io.jrat.controller.LogAction;
 import io.jrat.controller.Main;
 import io.jrat.controller.addons.OnlinePlugin;
 import io.jrat.controller.addons.Plugins;
-
 import java.util.List;
-
 import jrat.api.Plugin;
 
 public class RunnableCheckPlugins implements Runnable {

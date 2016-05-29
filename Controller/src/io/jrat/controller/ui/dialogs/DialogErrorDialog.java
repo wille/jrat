@@ -2,7 +2,6 @@ package io.jrat.controller.ui.dialogs;
 
 import iconlib.IconUtils;
 import io.jrat.controller.ui.panels.PanelImage;
-
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
@@ -11,7 +10,6 @@ import java.awt.event.ActionListener;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;

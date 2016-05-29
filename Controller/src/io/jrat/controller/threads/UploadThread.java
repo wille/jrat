@@ -6,7 +6,6 @@ import io.jrat.controller.Slave;
 import io.jrat.controller.packets.outgoing.Packet103CompleteServerUpload;
 import io.jrat.controller.packets.outgoing.Packet104ServerUploadPart;
 import io.jrat.controller.ui.panels.PanelFileTransfers;
-
 import java.io.File;
 import java.io.FileInputStream;
 

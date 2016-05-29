@@ -2,7 +2,6 @@ package io.jrat.controller.threads;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
-
 import javax.imageio.ImageIO;
 
 public class ThreadRemoteScreenRecorder extends Thread {

@@ -1,7 +1,6 @@
 package io.jrat.controller.listeners;
 
 import io.jrat.controller.build.BuildStatus;
-
 import java.util.LinkedHashMap;
 
 

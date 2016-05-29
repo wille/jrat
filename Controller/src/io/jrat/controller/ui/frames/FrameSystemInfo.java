@@ -3,9 +3,7 @@ package io.jrat.controller.ui.frames;
 import iconlib.IconUtils;
 import io.jrat.controller.Slave;
 import io.jrat.controller.ui.panels.PanelControlSystemInfo;
-
 import java.awt.BorderLayout;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
