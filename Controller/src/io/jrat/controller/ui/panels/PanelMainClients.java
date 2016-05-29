@@ -1,8 +1,10 @@
 package io.jrat.controller.ui.panels;
 
+import com.redpois0n.oslib.OperatingSystem;
 import iconlib.IconUtils;
 import io.jrat.common.downloadable.Downloadable;
 import io.jrat.controller.AbstractSlave;
+import io.jrat.controller.OfflineSlave;
 import io.jrat.controller.Slave;
 import io.jrat.controller.addons.ClientFormat;
 import io.jrat.controller.listeners.CountryMenuItemListener;
@@ -18,6 +20,7 @@ import io.jrat.controller.packets.outgoing.Packet38RunCommand;
 import io.jrat.controller.packets.outgoing.Packet42ServerUploadFile;
 import io.jrat.controller.packets.outgoing.Packet45Reconnect;
 import io.jrat.controller.packets.outgoing.Packet98InjectJAR;
+import io.jrat.controller.settings.StoreOfflineSlaves;
 import io.jrat.controller.threads.UploadThread;
 import io.jrat.controller.ui.dialogs.DialogFileType;
 import io.jrat.controller.ui.frames.FrameControlPanel;
@@ -32,7 +35,6 @@ import io.jrat.controller.ui.frames.FrameRename;
 import io.jrat.controller.ui.frames.FrameSystemInfo;
 import io.jrat.controller.utils.NetUtils;
 import io.jrat.controller.utils.Utils;
-
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -40,7 +42,6 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.Icon;
 import javax.swing.JFileChooser;
 import javax.swing.JMenu;
@@ -50,11 +51,8 @@ import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
-
 import jrat.api.Client;
 import jrat.api.ui.RATMenuItem;
-
-import com.redpois0n.oslib.OperatingSystem;
 
 @SuppressWarnings("serial")
 public abstract class PanelMainClients extends JScrollPane {
@@ -348,7 +346,7 @@ public abstract class PanelMainClients extends JScrollPane {
 		mntmRemoteCmd.setIcon(IconUtils.getIcon("terminal"));
 		mnQuickOpen.add(mntmRemoteCmd);
 
-		JMenuItem mntmRemoteChat = new JMenuItem("Remote Chat");
+		final JMenuItem mntmRemoteChat = new JMenuItem("Remote Chat");
 		mntmRemoteChat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				AbstractSlave slave = getSelectedSlave();
@@ -638,9 +636,9 @@ public abstract class PanelMainClients extends JScrollPane {
 
 			public void popupMenuWillBecomeVisible(PopupMenuEvent arg0) {
 				try {
-					List<AbstractSlave> list = getSelectedSlaves();
+					final List<AbstractSlave> list = getSelectedSlaves();
 					if (list.size() == 1) {
-						AbstractSlave slave = (AbstractSlave) list.get(0);
+						AbstractSlave slave = list.get(0);
 								
 						JMenuItem mntmVersion = new JMenuItem("Version: " + slave.getVersion());
 						JMenuItem mntmCountry = new JMenuItem("Country: " + slave.getCountry().toUpperCase());
@@ -655,9 +653,45 @@ public abstract class PanelMainClients extends JScrollPane {
 						popupMenu.add(mntmCountry);
 						popupMenu.add(mntmVersion);
 						
-						mntmRemoteRegistry.setEnabled(slave.getOperatingSystem().getType() == OperatingSystem.WINDOWS);
+						mntmRemoteRegistry.setEnabled(slave.getOperatingSystem() != null && slave.getOperatingSystem().getType() == OperatingSystem.WINDOWS); // TODO - OfflineSlave OS is always null
 					} else {
 						mntmRemoteRegistry.setEnabled(true);
+					}
+
+					if (list.size() > 0) {
+						boolean offlineExists = false;
+
+						for (AbstractSlave slave : list) {
+							if (slave instanceof OfflineSlave) {
+								offlineExists = true;
+							}
+						}
+
+						if (offlineExists) {
+							if (list.size() == 1) {
+								popupMenu.addSeparator();
+							}
+
+							JMenuItem mntmRemove = new JMenuItem("Remove");
+							mntmRemove.setIcon(IconUtils.getIcon("delete"));
+
+							mntmRemove.addActionListener(new ActionListener() {
+								@Override
+								public void actionPerformed(ActionEvent e) {
+									for (int i = 0; i < list.size(); i++) {
+										AbstractSlave slave = list.get(i);
+
+										if (slave instanceof OfflineSlave) {
+											OfflineSlave offline = (OfflineSlave) slave;
+											StoreOfflineSlaves.getGlobal().remove(offline);
+											removeSlave(slave);
+										}
+									}
+								}
+							});
+
+							popupMenu.add(mntmRemove);
+						}
 					}
 
 					repaint();
