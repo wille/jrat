@@ -4,6 +4,7 @@ import iconlib.IconUtils;
 import io.jrat.common.utils.DataUnits;
 import io.jrat.controller.AbstractSlave;
 import io.jrat.controller.Main;
+import io.jrat.controller.OfflineSlave;
 import io.jrat.controller.Slave;
 import io.jrat.controller.Status;
 import io.jrat.controller.packets.outgoing.Packet40Thumbnail;
@@ -100,6 +101,15 @@ public class PanelMainClientsTable extends PanelMainClients {
 	
 	@Override
 	public void addSlave(AbstractSlave slave) {
+		for (int i = 0; i < model.getRowCount(); i++) {
+			AbstractSlave as = getSlave(i);
+
+			if (as instanceof OfflineSlave && as.equals(slave)) {
+				model.removeRow(i);
+				break;
+			}
+		}
+
 		model.addRow(new Object[] { slave });
 	}
 	

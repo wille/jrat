@@ -85,10 +85,10 @@ public class OfflineSlave extends AbstractSlave {
 	
 	@Override
 	public boolean equals(Object o) {
-		if (o instanceof OfflineSlave) {
-			OfflineSlave os = (OfflineSlave)o;
+		if (o instanceof AbstractSlave) {
+			AbstractSlave os = (AbstractSlave) o;
 			
-			return os.username.equals(this.username) && os.hostname.equals(this.hostname) && os.id.equals(this.id) && os.version.equals(this.version) && os.ip.equals(this.ip);
+			return os.username.equals(this.username) && os.hostname.equals(this.hostname) && os.id.equals(this.id) && os.version.equals(this.version);
 		} else {
 			return false;
 		}
