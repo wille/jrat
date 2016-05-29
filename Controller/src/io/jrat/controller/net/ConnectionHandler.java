@@ -2,10 +2,12 @@ package io.jrat.controller.net;
 
 import io.jrat.controller.AbstractSlave;
 import io.jrat.controller.Main;
+import io.jrat.controller.OfflineSlave;
 import io.jrat.controller.SampleMode;
 import io.jrat.controller.addons.PluginEventHandler;
 import io.jrat.controller.exceptions.CloseException;
 import io.jrat.controller.exceptions.DuplicateSlaveException;
+import io.jrat.controller.settings.StoreOfflineSlaves;
 import io.jrat.controller.utils.TrayIconUtils;
 
 public class ConnectionHandler {
@@ -40,7 +42,13 @@ public class ConnectionHandler {
 		Main.instance.setTitle(title);
 		TrayIconUtils.setToolTip(title);
 		client.closeSocket(new CloseException("Removing connection..."));
-		
+
+		for (AbstractSlave as : StoreOfflineSlaves.getGlobal().getList()) {
+			if (as.equals(client)) {
+				Main.instance.getPanelClients().addSlave(as);
+			}
+		}
+
 		Main.instance.getPanelClients().removeSlave(client);
 	}
 

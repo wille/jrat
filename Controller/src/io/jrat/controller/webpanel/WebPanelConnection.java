@@ -148,7 +148,8 @@ public class WebPanelConnection implements Runnable {
                 	Main.instance.repaint();
                 } else if (packet == WebPanelPackets.PACKET_LISTOFFLINE) {            	
                 	StringBuilder sb = new StringBuilder();
-                	for (OfflineSlave os : StoreOfflineSlaves.getGlobal().getList()) {
+                	for (AbstractSlave as : StoreOfflineSlaves.getGlobal().getList()) {
+						OfflineSlave os = (OfflineSlave) as;
                 		if (!os.isOnline()) {
                 			sb.append(os.getString() + ";");
                 		}

