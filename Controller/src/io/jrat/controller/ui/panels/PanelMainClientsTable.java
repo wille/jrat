@@ -201,12 +201,14 @@ public class PanelMainClientsTable extends PanelMainClients {
 
 			AbstractSlave slave = getSlave(row);
 
+			boolean offline = slave instanceof OfflineSlave;
+
 			if (slave != null) {		
 				String colname = table.getColumnName(column);
 				
 				label.setIcon(null);
 				
-				if (colname.equals(Columns.COUNTRY.getName()) && showThumbnails) {
+				if (!offline && colname.equals(Columns.COUNTRY.getName()) && showThumbnails) {
 					if (slave.getThumbnail() == null) {
 						label.setText("Loading...");
 					} else {
