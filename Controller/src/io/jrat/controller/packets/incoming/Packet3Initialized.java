@@ -37,7 +37,7 @@ public class Packet3Initialized extends AbstractIncomingPacket {
 		for (Event event : Events.queue.values()) {
 			event.perform(slave);
 		}
-		
+
 		StoreOfflineSlaves.getGlobal().add(new OfflineSlave(slave));
 		StatisticsOperatingSystem.getGlobal().add(slave);
 

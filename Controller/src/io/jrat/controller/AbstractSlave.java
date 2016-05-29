@@ -183,7 +183,7 @@ public abstract class AbstractSlave implements Runnable {
 	/**
 	 * IP address + port used by client in format "IP / PORT"
 	 */
-	private String ip;
+	protected String ip;
 	
 	/**
 	 * Hostname of client

