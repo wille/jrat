@@ -98,16 +98,32 @@ public class PanelMainClientsTable extends PanelMainClients {
 	
 	@Override
 	public void addSlave(AbstractSlave slave) {
+		int endRow = 0;
 		for (int i = 0; i < model.getRowCount(); i++) {
 			AbstractSlave as = getSlave(i);
 
-			if (as instanceof OfflineSlave && as.equals(slave)) {
-				model.removeRow(i);
-				break;
+			if (as instanceof OfflineSlave) {
+				if (endRow == 0) {
+					endRow = i;
+				}
+
+				if (as.equals(slave)) {
+					model.removeRow(i);
+					break;
+				}
 			}
+
 		}
 
-		model.addRow(new Object[] { slave });
+		if (endRow == 0) {
+			endRow = table.getRowCount();
+		}
+
+		if (slave instanceof Slave) {
+			model.insertRow(endRow, new Object[] { slave });
+		} else {
+			model.addRow(new Object[] { slave });
+		}
 	}
 	
 	@Override
