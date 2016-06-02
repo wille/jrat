@@ -79,7 +79,8 @@ public class StoreOfflineSlaves extends AbstractStorable {
 	public void add(OfflineSlave offlineSlave) {
 		for (AbstractSlave os : getList()) {
 			if (os.equals(offlineSlave)) {
-				return;
+				LIST.remove(os);
+				break;
 			}
 		}
 
