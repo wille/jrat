@@ -18,7 +18,6 @@ public class Packet101DownloadPlugin extends AbstractIncomingPacket {
 		String mainClass = con.readLine();
 		String name = con.readLine();
 
-		System.out.println(name);
 		TransferData data = FileCache.get(name);
 
 		InputStream is = new ByteArrayInputStream(((ByteArrayOutputStream) data.getOutputStream()).toByteArray());
@@ -31,7 +30,6 @@ public class Packet101DownloadPlugin extends AbstractIncomingPacket {
 
 		try {
 			Plugin p = new Plugin();
-			System.out.println(mainClass);
 
 			Class<?> clazz = Class.forName(mainClass, true, cl);
 			p.instance = clazz.newInstance();

@@ -1,5 +1,6 @@
 package io.jrat.controller.packets.incoming;
 
+import io.jrat.common.Logger;
 import io.jrat.common.Sound;
 import io.jrat.common.utils.DataUnits;
 import io.jrat.controller.Slave;
@@ -37,7 +38,7 @@ public class Packet58ServerDownloadSoundCapture extends AbstractIncomingPacket {
 		}
 
 		int size = slave.readInt();
-		System.out.println("Reading sound: " + DataUnits.getAsString(size));
+		Logger.log("Reading sound: " + DataUnits.getAsString(size));
 
 		byte[] data = new byte[size];
 
