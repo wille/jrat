@@ -117,7 +117,7 @@ public class PanelMainClientsTable extends PanelMainClients {
 		}
 
 		if (slave instanceof Slave) {
-			model.insertRow(endRow - 1, new Object[] { slave });
+			model.insertRow(endRow, new Object[] { slave });
 		} else {
 			model.addRow(new Object[] { slave });
 		}
