@@ -626,6 +626,8 @@ public abstract class PanelMainClients extends JScrollPane {
 								popupMenu.remove(child);
 								popupMenu.remove(i - 1);
 								popupMenu.remove(i - 2);
+							} else if (item.getText().equals("Remove")) {
+								popupMenu.remove(child);
 							}
 						}
 					}

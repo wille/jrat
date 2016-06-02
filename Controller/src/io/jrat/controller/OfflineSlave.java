@@ -77,7 +77,11 @@ public class OfflineSlave extends AbstractSlave {
 	public long getRandomId() {
 		return randomId;
 	}
-	
+
+	public String getOperatingSystemString() {
+		return this.os;
+	}
+
 	public static long newRandomId() {
 		int i = -new Random().nextInt(Integer.MAX_VALUE);
 		return i;
@@ -87,8 +91,10 @@ public class OfflineSlave extends AbstractSlave {
 	public boolean equals(Object o) {
 		if (o instanceof AbstractSlave) {
 			AbstractSlave os = (AbstractSlave) o;
+
+			boolean correctOs = os instanceof OfflineSlave && ((OfflineSlave) os).getOperatingSystemString().equals(this.os) || !(os instanceof OfflineSlave);
 			
-			return os.username.equals(this.username) && os.hostname.equals(this.hostname) && os.getOperatingSystem().getType().getName().equals(this.os) && os.id.equals(this.id) && os.version.equals(this.version);
+			return os.username.equals(this.username) && os.hostname.equals(this.hostname) && correctOs && os.id.equals(this.id) && os.version.equals(this.version);
 		} else {
 			return false;
 		}

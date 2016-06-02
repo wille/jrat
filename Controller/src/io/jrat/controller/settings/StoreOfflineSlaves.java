@@ -88,9 +88,9 @@ public class StoreOfflineSlaves extends AbstractStorable {
 	}
 	
 	public void remove(OfflineSlave offlineSlave) {
-		for (AbstractSlave os : getList()) {
-			if(offlineSlave.getRandomId() == ((OfflineSlave) os).getRandomId()) {
-				getList().remove(os);
+		for (int i = 0; i < getList().size(); i++) {
+			if(((OfflineSlave) getList().get(i)).getRandomId() == offlineSlave.getRandomId()) {
+				getList().remove(i);
 			}
 		}
 	}
