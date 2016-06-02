@@ -275,7 +275,12 @@ public class PanelMainClientsTable extends PanelMainClients {
 					label.setText(slave.getDisplayName());
 				} else if (colname.equals(Columns.OPERATINGSYSTEM.getName())) {
 					label.setIcon(BasicIconUtils.getOSIcon(slave));
-					label.setText(slave.getOperatingSystem().getDisplayString());
+
+					if (offline) {
+						label.setText(((OfflineSlave) slave).getOperatingSystemString());
+					} else {
+						label.setText(slave.getOperatingSystem().getDisplayString());
+					}
 				} else if (colname.equals(Columns.RAM.getName())) {
 					label.setText(DataUnits.getAsString(slave.getMemory()));
 				} else if (colname.equals(Columns.LOCAL_ADDRESS.getName())) {
