@@ -7,7 +7,6 @@ import io.jrat.controller.AbstractSlave;
 import io.jrat.controller.OfflineSlave;
 import io.jrat.controller.Slave;
 import io.jrat.controller.addons.ClientFormat;
-import io.jrat.controller.listeners.CountryMenuItemListener;
 import io.jrat.controller.net.URLParser;
 import io.jrat.controller.packets.outgoing.Packet100RequestElevation;
 import io.jrat.controller.packets.outgoing.Packet11Disconnect;
@@ -35,7 +34,6 @@ import io.jrat.controller.ui.frames.FrameRename;
 import io.jrat.controller.ui.frames.FrameSystemInfo;
 import io.jrat.controller.utils.NetUtils;
 import io.jrat.controller.utils.Utils;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -622,11 +620,10 @@ public abstract class PanelMainClients extends JScrollPane {
 						Component child = popupMenu.getComponents()[i];
 						if (child instanceof JMenuItem) {
 							JMenuItem item = (JMenuItem) child;
-							if (item.getText().startsWith("Version: ")) {
-								popupMenu.remove(child);
+
+							if (item.getText().equals("Remove")) {
+								System.out.println("Removing remove");
 								popupMenu.remove(i - 1);
-								popupMenu.remove(i - 2);
-							} else if (item.getText().equals("Remove")) {
 								popupMenu.remove(child);
 							}
 						}
@@ -641,20 +638,7 @@ public abstract class PanelMainClients extends JScrollPane {
 					final List<AbstractSlave> list = getSelectedSlaves();
 					if (list.size() == 1) {
 						AbstractSlave slave = list.get(0);
-								
-						JMenuItem mntmVersion = new JMenuItem("Version: " + slave.getVersion());
-						JMenuItem mntmCountry = new JMenuItem("Country: " + slave.getCountry().toUpperCase());
 
-						mntmCountry.addActionListener(new CountryMenuItemListener());
-
-						mntmCountry.setIcon(slave.getFlag());
-						mntmVersion.setForeground(slave.isUpToDate() ? Color.black : Color.red);
-						mntmVersion.setIcon(slave.isUpToDate() ? IconUtils.getIcon("enabled") : IconUtils.getIcon("warning"));
-
-						popupMenu.addSeparator();
-						popupMenu.add(mntmCountry);
-						popupMenu.add(mntmVersion);
-						
 						mntmRemoteRegistry.setEnabled(slave.getOperatingSystem() != null && slave.getOperatingSystem().getType() == OperatingSystem.WINDOWS); // TODO - OfflineSlave OS is always null
 					} else {
 						mntmRemoteRegistry.setEnabled(true);
@@ -670,9 +654,7 @@ public abstract class PanelMainClients extends JScrollPane {
 						}
 
 						if (offlineExists) {
-							if (list.size() == 1) {
-								popupMenu.addSeparator();
-							}
+							popupMenu.addSeparator();
 
 							JMenuItem mntmRemove = new JMenuItem("Remove");
 							mntmRemove.setIcon(IconUtils.getIcon("delete"));
