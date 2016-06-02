@@ -291,7 +291,7 @@ public class PanelMainClientsTable extends PanelMainClients {
 					} else {
 						label.setText("?");
 					}
-				} else if (colname.equals(Columns.DESKTOP_ENVIRONMENT.getName())) {
+				} else if (colname.equals(Columns.DESKTOP_ENVIRONMENT.getName()) && slave.getOperatingSystem() != null) {
 					label.setText(slave.getOperatingSystem().getDesktopEnvironment().getDisplayString());
 				} else if (colname.equals(Columns.CPU.getName())) {
 					if (slave instanceof Slave) {
