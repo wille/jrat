@@ -268,7 +268,7 @@ public class PanelMainClientsTable extends PanelMainClients {
 					label.setText(Status.getStatusFromID(slave.getStatus()));
 				} else if (colname.equals(Columns.IP.getName())) {
 					label.setText(slave.getIP());
-				} else if (colname.equals(Columns.PING.getName())) {
+				} else if (colname.equals(Columns.PING.getName()) && !offline) {
 					label.setIcon(BasicIconUtils.getPingIcon(slave));
 					label.setText(slave.getPing() + " ms");
 				} else if (colname.equals(Columns.USER_HOST.getName())) {
