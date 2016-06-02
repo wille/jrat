@@ -1,6 +1,7 @@
 package io.jrat.controller.ui.panels;
 
 import iconlib.IconUtils;
+import io.jrat.common.Version;
 import io.jrat.common.utils.DataUnits;
 import io.jrat.controller.AbstractSlave;
 import io.jrat.controller.Main;
@@ -301,9 +302,16 @@ public class PanelMainClientsTable extends PanelMainClients {
 					}
 				} else if (colname.equals(Columns.HEADLESS.getName())) {
 					label.setText(slave.isHeadless() ? "Yes" : "No");
-					label.setForeground(slave.isHeadless() ? Color.red : Color.black);
 				} else if (colname.equals(Columns.NETWORK_USAGE.getName())) {
 					label.setText(DataUnits.getAsString(slave.getCurrentIn()) + "/s down, " + DataUnits.getAsString(slave.getCurrentOut()) + "/s up");
+				}
+
+				if (offline) {
+					label.setForeground(Color.gray);
+				} else if (colname.equals(Columns.VERSION.getName()) && !slave.getVersion().equals(Version.getVersion()) || colname.equals(Columns.HEADLESS.getName()) && slave.isHeadless()) {
+					label.setForeground(Color.red);
+				} else {
+					label.setForeground(Color.black);
 				}
 			}
 
