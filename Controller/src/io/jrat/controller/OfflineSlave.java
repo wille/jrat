@@ -88,7 +88,7 @@ public class OfflineSlave extends AbstractSlave {
 		if (o instanceof AbstractSlave) {
 			AbstractSlave os = (AbstractSlave) o;
 			
-			return os.username.equals(this.username) && os.hostname.equals(this.hostname) && os.id.equals(this.id) && os.version.equals(this.version);
+			return os.username.equals(this.username) && os.hostname.equals(this.hostname) && os.getOperatingSystem().getType().getName().equals(this.os) && os.id.equals(this.id) && os.version.equals(this.version);
 		} else {
 			return false;
 		}
