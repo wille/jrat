@@ -116,12 +116,8 @@ public class PanelMainClientsTable extends PanelMainClients {
 
 		}
 
-		if (endRow == 0) {
-			endRow = table.getRowCount();
-		}
-
 		if (slave instanceof Slave) {
-			model.insertRow(endRow, new Object[] { slave });
+			model.insertRow(endRow - 1, new Object[] { slave });
 		} else {
 			model.addRow(new Object[] { slave });
 		}
