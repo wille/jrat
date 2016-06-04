@@ -1,5 +1,6 @@
 package io.jrat.controller;
 
+import java.util.Date;
 import java.util.Random;
 
 
@@ -86,7 +87,12 @@ public class OfflineSlave extends AbstractSlave {
 		int i = -new Random().nextInt(Integer.MAX_VALUE);
 		return i;
 	}
-	
+
+	public String getLastSeenDate() {
+		Date date = new Date(this.creation);
+		return (date.getYear() + 1900) + "/" + (date.getMonth() + 1) + "/" + (date.getDate()) + " " + date.getHours() + ":" + date.getMinutes(); // TODO
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (o instanceof AbstractSlave) {
