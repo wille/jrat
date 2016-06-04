@@ -22,6 +22,7 @@ import io.jrat.controller.packets.outgoing.Packet37RestartJavaProcess;
 import io.jrat.controller.packets.outgoing.Packet40Thumbnail;
 import io.jrat.controller.packets.outgoing.Packet45Reconnect;
 import io.jrat.controller.settings.Settings;
+import io.jrat.controller.settings.StoreOfflineSlaves;
 import io.jrat.controller.ui.MainView;
 import io.jrat.controller.ui.components.DraggableTabbedPane;
 import io.jrat.controller.ui.dialogs.DialogAbout;
@@ -674,6 +675,10 @@ public class Frame extends BaseFrame {
 		
 		for (int i = 0; i < Main.connections.size(); i++) {
 			view.addSlave(Main.connections.get(i));
+		}
+
+		for (int i = 0; i < StoreOfflineSlaves.getGlobal().getList().size(); i++) {
+			view.addSlave(StoreOfflineSlaves.getGlobal().getList().get(i));
 		}
 		
 		tabbedPane.insertTab("Clients", view.getIcon(), view, null, 0);
