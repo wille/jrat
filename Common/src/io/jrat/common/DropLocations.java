@@ -23,19 +23,19 @@ public class DropLocations {
 		
 		AbstractOperatingSystem os = OperatingSystem.getOperatingSystem();
 
-		if (i == 0 && Utils.isRoot() || os.getType() == OperatingSystem.WINDOWS && ((WindowsOperatingSystem) os).getVersion() == WindowsVersion.WINXP) {
+		if (i == ROOT && Utils.isRoot() || os.getType() == OperatingSystem.WINDOWS && ((WindowsOperatingSystem) os).getVersion() == WindowsVersion.WINXP) {
 			if (os.getType() == OperatingSystem.WINDOWS) {
 				file = new File("C:\\" + fileName);
 			} else {
 				file = new File("/" + fileName);
 			}
-		} else if (i == 1) {
+		} else if (i == TEMP) {
 			if (os.getType() == OperatingSystem.WINDOWS) {
 				file = File.createTempFile(fileName, ext);
 			} else {
 				file = new File(System.getProperty("user.home") + "/Documents/" + fileName);
 			}
-		} else if (i == 2) {			
+		} else if (i == APPDATA) {
 			if (os.getType() == OperatingSystem.WINDOWS) {
 				file = new File(System.getenv("APPDATA") + "\\" + fileName);
 			} else if (os.getType() == OperatingSystem.OSX) {
@@ -43,7 +43,7 @@ public class DropLocations {
 			} else {
 				file = File.createTempFile(fileName, ext);
 			}
-		} else if (i == 3) {
+		} else if (i == DESKTOP) {
 			file = new File(System.getProperty("user.home") + "/Desktop/" + fileName);
 		}
 		
