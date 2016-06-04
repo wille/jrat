@@ -29,8 +29,4 @@ public class Utils {
 		}
 		return s.toString();
 	}
-
-	public static boolean isRoot() throws Exception {
-		return OperatingSystem.getOperatingSystem().getType() != OperatingSystem.WINDOWS && new BufferedReader(new InputStreamReader(Runtime.getRuntime().exec("whoami").getInputStream())).readLine().equals("root");
-	}
 }
