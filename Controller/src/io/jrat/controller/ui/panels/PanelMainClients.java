@@ -622,7 +622,6 @@ public abstract class PanelMainClients extends JScrollPane {
 							JMenuItem item = (JMenuItem) child;
 
 							if (item.getText().equals("Remove")) {
-								System.out.println("Removing remove");
 								popupMenu.remove(i - 1);
 								popupMenu.remove(child);
 							}
