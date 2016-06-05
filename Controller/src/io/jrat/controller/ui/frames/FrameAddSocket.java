@@ -4,7 +4,7 @@ import iconlib.IconUtils;
 import io.jrat.controller.ErrorDialog;
 import io.jrat.controller.net.PortListener;
 import io.jrat.controller.net.ServerListener;
-import io.jrat.controller.settings.SettingsSockets;
+import io.jrat.controller.settings.Settings;
 import io.jrat.controller.ui.components.JPlaceholderTextField;
 import io.jrat.controller.utils.Utils;
 import io.jrat.controller.webpanel.WebPanelListener;
@@ -158,9 +158,9 @@ public class FrameAddSocket extends BaseFrame {
 			}
 			
 			PortListener connection = null;
-			if (type == SettingsSockets.SocketType.NORMAL_SOCKET) {
+			if (type == Settings.SocketType.NORMAL_SOCKET) {
 				connection = new ServerListener(name, port, timeout, pass);
-			} else if (type == SettingsSockets.SocketType.WEB_PANEL_SOCKET) {
+			} else if (type == Settings.SocketType.WEB_PANEL_SOCKET) {
 				connection = new WebPanelListener(name, port, pass);
 			}
 			connection.start();

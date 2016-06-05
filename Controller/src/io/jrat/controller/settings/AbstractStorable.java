@@ -13,7 +13,6 @@ public abstract class AbstractStorable {
 			globalSettings.add(StatisticsCountry.getGlobal());
 			globalSettings.add(StatisticsOperatingSystem.getGlobal());
 			globalSettings.add(SettingsCustomID.getGlobal());
-			globalSettings.add(SettingsSockets.getGlobal());
 			globalSettings.add(StoreFileBookmarks.getGlobal());
 			globalSettings.add(StoreOfflineSlaves.getGlobal());
 		}

