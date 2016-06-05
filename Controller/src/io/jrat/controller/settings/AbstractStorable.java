@@ -15,7 +15,6 @@ public abstract class AbstractStorable {
 			globalSettings.add(SettingsCustomID.getGlobal());
 			globalSettings.add(SettingsSockets.getGlobal());
 			globalSettings.add(StoreFileBookmarks.getGlobal());
-			globalSettings.add(SettingsColors.getGlobal());
 			globalSettings.add(StoreOfflineSlaves.getGlobal());
 		}
 

@@ -332,16 +332,6 @@ public class Frame extends BaseFrame {
 		mntmRight.setIcon(IconUtils.getIcon("ui-tab-side-right"));
 		mnTabPlacement.add(mntmRight);
 
-		JMenuItem mntmColors = new JMenuItem("Colors");
-		mnLook.add(mntmColors);
-		mntmColors.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				FrameColors frame = new FrameColors();
-				frame.setVisible(true);
-			}
-		});
-		mntmColors.setIcon(IconUtils.getIcon("color-palette"));
-
 		JMenuItem mntmGroups = new JMenuItem("Groups");
 		mnTools.add(mntmGroups);
 		mntmGroups.addActionListener(new ActionListener() {
