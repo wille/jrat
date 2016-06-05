@@ -57,3 +57,4 @@ Typed in the terminal
 - [oslib](https://github.com/redpois0n/oslib)
 - [swing-terminal](https://github.com/redpois0n/swing-terminal)
 - [pathtree](https://github.com/redpois0n/pathtree)
+- [json-io](https://github.com/jdereg/json-io)
