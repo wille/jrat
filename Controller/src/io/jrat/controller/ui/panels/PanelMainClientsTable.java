@@ -428,7 +428,7 @@ public class PanelMainClientsTable extends PanelMainClients {
 					return;
 				}
 				setRowHeight(h);
-				Settings.getGlobal().setVal("rowheight", h);
+				Settings.getGlobal().set("rowheight", h);
 			}
 		});
 		mntmRowHeight.setIcon(IconUtils.getIcon("application-dock"));

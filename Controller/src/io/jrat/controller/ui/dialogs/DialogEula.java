@@ -69,7 +69,7 @@ public class DialogEula extends JDialog {
 				if (!view) {
 					Main.instance.setVisible(true);
 				}
-				Settings.getGlobal().setVal("showeula", "true");
+				Settings.getGlobal().set("showeula", "true");
 				setVisible(false);
 				dispose();
 			}

@@ -583,7 +583,7 @@ public class Frame extends BaseFrame {
 		chckbxmntmTransferPluginsIf.setSelected(Settings.getGlobal().getBoolean("plugintransfer"));
 		chckbxmntmTransferPluginsIf.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Settings.getGlobal().setVal("plugintransfer", chckbxmntmTransferPluginsIf.isSelected());
+				Settings.getGlobal().set("plugintransfer", chckbxmntmTransferPluginsIf.isSelected());
 			}
 		});
 		mnPlugins.add(chckbxmntmTransferPluginsIf);

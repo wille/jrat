@@ -305,10 +305,10 @@ public class FrameBuildMinimal extends BaseFrame {
 					saddresses += add + ",";
 				}
 				
-				Settings.getGlobal().setVal("baddresses", saddresses);
-				Settings.getGlobal().setVal("bid", id);
-				Settings.getGlobal().setVal("bpass", pass);
-				Settings.getGlobal().setVal("brecat", reconSec);
+				Settings.getGlobal().set("baddresses", saddresses);
+				Settings.getGlobal().set("bid", id);
+				Settings.getGlobal().set("bpass", pass);
+				Settings.getGlobal().set("brecat", reconSec);
 			}
 		}.start();
 	}

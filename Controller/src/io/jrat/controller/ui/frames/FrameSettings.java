@@ -153,16 +153,16 @@ public class FrameSettings extends BaseFrame {
 		PanelSettingsStats stats = (PanelSettingsStats) panels.get("stats");
 		PanelSettingsProxy proxy = (PanelSettingsProxy) panels.get("proxy");
 
-		Settings.getGlobal().setVal("traynote", main.useTrayIcon());
-		Settings.getGlobal().setVal("stats", stats.trackStats());
-		Settings.getGlobal().setVal("remotescreenstartup", main.useAutoScreen());
-		Settings.getGlobal().setVal("askurl", main.askOnConnect());
-		Settings.getGlobal().setVal("max", main.getMaximum());
-		Settings.getGlobal().setVal("geoip", flags.useWeb());
-		Settings.getGlobal().setVal("proxy", proxy.useProxy());
-		Settings.getGlobal().setVal("proxyhost", proxy.getHost());
-		Settings.getGlobal().setVal("proxyport", proxy.getPort());
-		Settings.getGlobal().setVal("proxysocks", proxy.useSocks());
+		Settings.getGlobal().set("traynote", main.useTrayIcon());
+		Settings.getGlobal().set("stats", stats.trackStats());
+		Settings.getGlobal().set("remotescreenstartup", main.useAutoScreen());
+		Settings.getGlobal().set("askurl", main.askOnConnect());
+		Settings.getGlobal().set("max", main.getMaximum());
+		Settings.getGlobal().set("geoip", flags.useWeb());
+		Settings.getGlobal().set("proxy", proxy.useProxy());
+		Settings.getGlobal().set("proxyhost", proxy.getHost());
+		Settings.getGlobal().set("proxyport", proxy.getPort());
+		Settings.getGlobal().set("proxysocks", proxy.useSocks());
 
 		SettingsTheme.getGlobal().setTheme(themes.getTheme());
 

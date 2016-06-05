@@ -4,11 +4,9 @@ import com.cedarsoftware.util.io.JsonObject;
 import com.cedarsoftware.util.io.JsonReader;
 import com.cedarsoftware.util.io.JsonWriter;
 import io.jrat.controller.Globals;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -44,7 +42,7 @@ public class Settings extends AbstractStorable {
 		return obj == null ? false : obj.toString().equalsIgnoreCase("true");
 	}
 
-	public void setVal(String key, Object value) {
+	public void set(String key, Object value) {
 		settings.put(key, value);
 	}
 
@@ -78,28 +76,28 @@ public class Settings extends AbstractStorable {
 	}
 
 	public void addDefault() {
-		setVal("bip", "127.0.0.1");
-		setVal("bport", 1336);
-		setVal("bid", "Name");
-		setVal("bpass", "pass");
-		setVal("brecat", 10);
-		setVal("traynote", true);
-		setVal("stats", true);
-		setVal("jarname", "File");
-		setVal("remotescreenstartup", false);
-		setVal("askurl", true);
-		setVal("max", -1);
-		setVal("geoip", true);
-		setVal("proxy", false);
-		setVal("proxyhost", "127.0.0.1");
-		setVal("proxyport", 9050);
-		setVal("proxysocks", true);
-		setVal("plugintransfer", false);
-		setVal("rowheight", 30);
+		set("bip", "127.0.0.1");
+		set("bport", 1336);
+		set("bid", "Name");
+		set("bpass", "pass");
+		set("brecat", 10);
+		set("traynote", true);
+		set("stats", true);
+		set("jarname", "File");
+		set("remotescreenstartup", false);
+		set("askurl", true);
+		set("max", -1);
+		set("geoip", true);
+		set("proxy", false);
+		set("proxyhost", "127.0.0.1");
+		set("proxyport", 9050);
+		set("proxysocks", true);
+		set("plugintransfer", false);
+		set("rowheight", 30);
 	}
 
 	@Override
 	public File getFile() {
-		return new File(Globals.getSettingsDirectory(), ".settings");
+		return new File(Globals.getSettingsDirectory(), "settings.json");
 	}
 }
