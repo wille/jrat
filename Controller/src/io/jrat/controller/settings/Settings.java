@@ -35,7 +35,7 @@ public class Settings extends AbstractStorable {
 
 	public int getInt(String key) {
 		Object obj = settings.get(key);
-		return obj == null ? -1 : (Integer) obj;
+		return obj == null ? -1 : ((Long) obj).intValue();
 	}
 
 	public boolean getBoolean(String key) {
