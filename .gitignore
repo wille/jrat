@@ -3,7 +3,7 @@
 *.dat
 *.exe
 .colors
-.settings
+settings.json
 .theme
 .id
 .sockets

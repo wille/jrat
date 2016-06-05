@@ -4,6 +4,7 @@ import com.cedarsoftware.util.io.JsonObject;
 import com.cedarsoftware.util.io.JsonReader;
 import com.cedarsoftware.util.io.JsonWriter;
 import io.jrat.controller.Globals;
+import io.jrat.controller.ui.Columns;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -44,6 +45,19 @@ public class Settings extends AbstractStorable {
 
 	public void set(String key, Object value) {
 		settings.put(key, value);
+	}
+
+	public void setColumn(String name, boolean show) {
+		Map<String, Boolean> columns = (HashMap<String, Boolean>) settings.get("columns");
+		columns.put(name, show);
+	}
+
+	public boolean isColumnSelected(String column) {
+		Map<String, Boolean> columns = (HashMap<String, Boolean>) settings.get("columns");
+
+		Boolean v = columns.get(column);
+
+		return v;
 	}
 
 	public void load() throws Exception {
@@ -94,6 +108,13 @@ public class Settings extends AbstractStorable {
 		set("proxysocks", true);
 		set("plugintransfer", false);
 		set("rowheight", 30);
+
+		Map<String, Boolean> columns = new HashMap<String, Boolean>();
+		set("columns", columns);
+
+		for (Columns c : Columns.values()) {
+			columns.put(c.getName(), c.isDefault());
+		}
 	}
 
 	@Override

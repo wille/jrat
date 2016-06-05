@@ -10,7 +10,6 @@ import io.jrat.controller.Slave;
 import io.jrat.controller.Status;
 import io.jrat.controller.packets.outgoing.Packet40Thumbnail;
 import io.jrat.controller.settings.Settings;
-import io.jrat.controller.settings.SettingsColumns;
 import io.jrat.controller.ui.Columns;
 import io.jrat.controller.ui.components.TableModel;
 import io.jrat.controller.utils.BasicIconUtils;
@@ -47,7 +46,7 @@ public class PanelMainClientsTable extends PanelMainClients {
 	
 	public PanelMainClientsTable() {
 		for (Columns s : Columns.values()) {
-			if (SettingsColumns.getGlobal().isSelected(s.getName())) {
+			if (Settings.getGlobal().isColumnSelected(s.getName())) {
 				columns.add(s.getName());
 			}
 		}
@@ -344,7 +343,7 @@ public class PanelMainClientsTable extends PanelMainClients {
 		
 		for (Columns s : Columns.values()) {
 			JCheckBoxMenuItem jcb = new JCheckBoxMenuItem("Display " + s.getName());
-			jcb.setSelected(SettingsColumns.getGlobal().isSelected(s.getName()));
+			jcb.setSelected(Settings.getGlobal().isColumnSelected(s.getName()));
 			jcb.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -358,7 +357,7 @@ public class PanelMainClientsTable extends PanelMainClients {
 						getColumns().remove(text);
 					}
 					
-					SettingsColumns.getGlobal().setColumn(text, jcb.isSelected());
+					Settings.getGlobal().setColumn(text, jcb.isSelected());
 					
 					reloadTable();
 				}	

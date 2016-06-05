@@ -2,7 +2,6 @@ package io.jrat.controller;
 
 import io.jrat.controller.settings.AbstractStorable;
 import io.jrat.controller.settings.Settings;
-import io.jrat.controller.settings.SettingsColumns;
 import io.jrat.controller.settings.SettingsTheme;
 import jrat.api.events.Event;
 import jrat.api.events.EventType;
@@ -29,12 +28,6 @@ public class ShutdownHook implements Runnable {
 
 		try {
 			Settings.getGlobal().save();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		try {
-			SettingsColumns.getGlobal().save();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -8,7 +8,6 @@ import io.jrat.controller.addons.Plugins;
 import io.jrat.controller.commands.DefaultCommands;
 import io.jrat.controller.settings.AbstractStorable;
 import io.jrat.controller.settings.Settings;
-import io.jrat.controller.settings.SettingsColumns;
 import io.jrat.controller.settings.SettingsTheme;
 import io.jrat.controller.settings.StatisticsCountry;
 import io.jrat.controller.threads.NetworkCounter;
@@ -115,8 +114,7 @@ public class Main {
 
 		StatisticsCountry.getGlobal().load();
 		Settings.getGlobal().load();	
-		SettingsColumns.getGlobal().load();
-		
+
 		headless = argsContains(args, "-h", "--headless") || Utils.isHeadless();
 		
 		if (!headless) {
