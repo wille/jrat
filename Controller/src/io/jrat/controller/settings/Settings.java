@@ -55,7 +55,7 @@ public class Settings extends AbstractStorable {
 	public boolean isColumnSelected(String column) {
 		Map<String, Boolean> columns = (HashMap<String, Boolean>) settings.get("columns");
 
-		Boolean v = columns.get(column);
+		Boolean v = columns.get(column) == null || columns.get(column);
 
 		return v;
 	}
