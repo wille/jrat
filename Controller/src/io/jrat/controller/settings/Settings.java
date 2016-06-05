@@ -1,5 +1,8 @@
 package io.jrat.controller.settings;
 
+import com.cedarsoftware.util.io.JsonObject;
+import com.cedarsoftware.util.io.JsonReader;
+import com.cedarsoftware.util.io.JsonWriter;
 import io.jrat.controller.Globals;
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,7 +19,7 @@ public class Settings extends AbstractStorable {
 
 	private static final Settings instance = new Settings();
 
-	private transient Map<String, Object> settings = new HashMap<String, Object>();
+	private transient JsonObject settings = new JsonObject();
 
 	public static Settings getGlobal() {
 		return instance;
@@ -47,35 +50,10 @@ public class Settings extends AbstractStorable {
 
 	public void load() throws Exception {
 		try {
-			BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(getFile())));
-			
-			reader.readLine();
-			int len = Integer.parseInt(reader.readLine());
-			
-			for (int i = 0; i < len; i++) {
-				String data = reader.readLine();
+			Map args = new HashMap();
+			args.put(JsonReader.USE_MAPS, true);
 
-				String[] split = data.split("=");
-				
-				if (split.length == 2) {
-					String key = split[0];
-					String rawValue = split[1];
-					
-					Object value = null;
-					
-					try {
-						value = Integer.parseInt(rawValue);
-					} catch (Exception ex) { }
-					
-					if (value == null) {
-						value = rawValue;
-					}
-					
-					settings.put(key, value);
-				}
-			}
-	
-			reader.close();
+			settings = (JsonObject) JsonReader.jsonToJava(new FileInputStream(getFile()), args);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -88,14 +66,11 @@ public class Settings extends AbstractStorable {
 	public void save() throws Exception {
 		try {
 			PrintWriter pw = new PrintWriter(new OutputStreamWriter(new FileOutputStream(getFile())));
-			
-			pw.println("jRAT settings");
-			pw.println(settings.size());
-			
-			for (String s : settings.keySet()) {
-				pw.println(s + "=" + settings.get(s).toString());
-			}
-			
+
+			Map args = new HashMap();
+			args.put(JsonWriter.TYPE, false);
+			pw.print(JsonWriter.formatJson(JsonWriter.objectToJson(settings, args)));
+
 			pw.close();
 		} catch (Exception ex) {
 			ex.printStackTrace();
