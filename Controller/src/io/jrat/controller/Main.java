@@ -66,6 +66,23 @@ public class Main {
 			System.exit(0);
 		}
 
+		final String sampleConfigPath = getArg(args, "--dump-default-config");
+
+		if (argsContains(args, "--dump-default-config") || sampleConfigPath != null) {
+			Settings settings = new Settings() {
+				@Override
+				public File getFile() {
+					if (sampleConfigPath == null) {
+						return super.getFile();
+					} else {
+						return new File(sampleConfigPath);
+					}
+				}
+			};
+			settings.addDefault();
+			settings.save();
+		}
+
 		hideTitle = argsContains(args, "--hidetitle");
 
 		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {

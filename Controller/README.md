@@ -27,14 +27,15 @@ Typed when running from terminal
 $ java -jar Controller.jar --genkey --hidetitle --showhexkey ... ...
 ```
 
-| Argument	  		| Description
-| ---         		| :---
-| --debug			| Debugging mode
-| --genkey			| Create new key file to default location (files/jrat.key)
-| --hidetitle		| Main frame title is only "jRAT"
-| --showhexkey		| Prints current key file to console
-| -h, --headless	| Headless mode
-| --nomenubar		| Doesn't use OS X native menu bar
+| Argument	  		            | Description
+| ---         		            | :---
+| --debug			            | Debugging mode
+| --genkey			            | Create new key file to default location (files/jrat.key)
+| --hidetitle		            | Main frame title is only "jRAT"
+| --showhexkey		            | Prints current key file to console
+| -h, --headless	            | Headless mode
+| --nomenubar		            | Doesn't use OS X native menu bar
+| --dump-default-config <path>   | Creates sample configuration
 
 ## Commands
 
