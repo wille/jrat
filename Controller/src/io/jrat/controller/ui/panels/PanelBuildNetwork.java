@@ -47,11 +47,11 @@ public class PanelBuildNetwork extends JPanel {
 		txtIP.setColumns(10);
 
 		spinPort = new JSpinner();
-		spinPort.setModel(new SpinnerNumberModel(Settings.getGlobal().getInt("bport"), 1, 65535, 1));
+		spinPort.setModel(new SpinnerNumberModel(1336, 1, 65535, 1));
 
 		spinRate = new JSpinner();
 		spinRate.setToolTipText("Seconds between stub reconnect attempts");
-		spinRate.setModel(new SpinnerNumberModel(Settings.getGlobal().getInt("brecat"), 1, 120, 1));
+		spinRate.setModel(new SpinnerNumberModel(15, 1, 3600, 1));
 
 		JLabel lblReconnectRate = new JLabel("Reconnect rate:");
 		lblReconnectRate.setToolTipText("Reconnect rate in seconds between each connection attempt");
