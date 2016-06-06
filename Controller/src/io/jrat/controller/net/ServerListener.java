@@ -1,6 +1,7 @@
 package io.jrat.controller.net;
 
 import io.jrat.common.ConnectionCodes;
+import io.jrat.common.Logger;
 import io.jrat.controller.AbstractSlave;
 import io.jrat.controller.LogAction;
 import io.jrat.controller.Main;
@@ -19,8 +20,19 @@ public class ServerListener extends PortListener implements Runnable {
 	public void run() {
 		while (!server.isClosed()) {
 			try {
-
 				Socket socket = server.accept();
+
+				try {
+					int max = Settings.getGlobal().getInt(Settings.KEY_MAXIMUM_CONNECTIONS);
+
+					if (max != -1 && Main.connections.size() > max) {
+						Logger.log("Maximum connections reached (" + max + "), closing..."); // TODO warning
+						socket.close();
+						continue;
+					}
+				} catch (Exception ex) {
+					ex.printStackTrace(); // TODO error message
+				}
 
 				int type = socket.getInputStream().read();
 
