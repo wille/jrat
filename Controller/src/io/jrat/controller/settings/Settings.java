@@ -124,6 +124,7 @@ public class Settings extends AbstractStorable {
 		}
 	}
 
+	public static final String KEY_RECONNECT_RATE = "reconnect_rate";
 	public static final String KEY_BUILD_ID = "build_id";
 	public void addDefault() {
 		set("bip", "127.0.0.1");
@@ -131,7 +132,7 @@ public class Settings extends AbstractStorable {
 		set("bid", "Name");
 		set(KEY_BUILD_ID, "Client");
 		set("bpass", "pass");
-		set("brecat", 10);
+		set(KEY_RECONNECT_RATE, 15);
 		set("traynote", true);
 		set("stats", true);
 		set("jarname", "File");
