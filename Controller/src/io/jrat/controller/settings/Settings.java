@@ -151,6 +151,7 @@ public class Settings extends AbstractStorable {
 	public static final String KEY_BUILD_PASSWORD = "build_password";
 	public static final String KEY_TRACK_STATISTICS = "track_statistics";
 	public static final String KEY_USE_TRAY_ICON = "use_tray_icon";
+	public static final String KEY_START_REMOTE_SCREEN_DIRECTLY = "start_remote_screen_directly";
 
 	public void addDefault() {
 		set(KEY_HOSTS, new String[0]);
@@ -160,7 +161,7 @@ public class Settings extends AbstractStorable {
 		set(KEY_USE_TRAY_ICON, true);
 		set(KEY_TRACK_STATISTICS, true);
 		set("jarname", "File");
-		set("remotescreenstartup", false);
+		set(KEY_START_REMOTE_SCREEN_DIRECTLY, false); // TODO implement again
 		set("askurl", true);
 		set("max", -1);
 		set("geoip", true);

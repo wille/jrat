@@ -55,7 +55,7 @@ public class PanelSettingsMain extends JPanel {
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(panel, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE).addContainerGap(13, Short.MAX_VALUE)));
 
 		chckbxRequestScreenOn = new JCheckBox("Request screen on remote screen open");
-		chckbxRequestScreenOn.setSelected(Settings.getGlobal().getBoolean("remotescreenstartup"));
+		chckbxRequestScreenOn.setSelected(Settings.getGlobal().getBoolean(Settings.KEY_START_REMOTE_SCREEN_DIRECTLY));
 
 		JLabel label = new JLabel("");
 		label.setIcon(IconUtils.getIcon("screen"));

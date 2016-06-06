@@ -154,7 +154,7 @@ public class FrameSettings extends BaseFrame {
 
 		Settings.getGlobal().set(Settings.KEY_USE_TRAY_ICON, main.useTrayIcon());
 		Settings.getGlobal().set("stats", stats.trackStats());
-		Settings.getGlobal().set("remotescreenstartup", main.useAutoScreen());
+		Settings.getGlobal().set(Settings.KEY_START_REMOTE_SCREEN_DIRECTLY, main.useAutoScreen());
 		Settings.getGlobal().set("askurl", main.askOnConnect());
 		Settings.getGlobal().set("max", main.getMaximum());
 		Settings.getGlobal().set("geoip", flags.useWeb());
