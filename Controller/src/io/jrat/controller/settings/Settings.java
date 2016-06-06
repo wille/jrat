@@ -124,10 +124,12 @@ public class Settings extends AbstractStorable {
 		}
 	}
 
+	public static final String KEY_BUILD_ID = "build_id";
 	public void addDefault() {
 		set("bip", "127.0.0.1");
 		set("bport", 1336);
 		set("bid", "Name");
+		set(KEY_BUILD_ID, "Client");
 		set("bpass", "pass");
 		set("brecat", 10);
 		set("traynote", true);
