@@ -152,7 +152,7 @@ public class FrameSettings extends BaseFrame {
 		PanelSettingsStats stats = (PanelSettingsStats) panels.get("stats");
 		PanelSettingsProxy proxy = (PanelSettingsProxy) panels.get("proxy");
 
-		Settings.getGlobal().set("traynote", main.useTrayIcon());
+		Settings.getGlobal().set(Settings.KEY_USE_TRAY_ICON, main.useTrayIcon());
 		Settings.getGlobal().set("stats", stats.trackStats());
 		Settings.getGlobal().set("remotescreenstartup", main.useAutoScreen());
 		Settings.getGlobal().set("askurl", main.askOnConnect());

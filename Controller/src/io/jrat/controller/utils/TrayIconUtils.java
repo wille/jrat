@@ -24,7 +24,7 @@ public class TrayIconUtils {
 				if (!SystemTray.isSupported()) {
 					throw new Exception("Tray icon not supported");
 				}
-				if (!Settings.getGlobal().getBoolean("traynote")) {
+				if (!Settings.getGlobal().getBoolean(Settings.KEY_USE_TRAY_ICON)) {
 					return;
 				}
 

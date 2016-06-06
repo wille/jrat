@@ -33,7 +33,7 @@ public class PanelSettingsStats extends JPanel {
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(panel, GroupLayout.PREFERRED_SIZE, 275, GroupLayout.PREFERRED_SIZE).addContainerGap(14, Short.MAX_VALUE)));
 
 		chckbxTrackStatistics = new JCheckBox("Track statistics");
-		chckbxTrackStatistics.setSelected(Settings.getGlobal().getBoolean("stats"));
+		chckbxTrackStatistics.setSelected(Settings.getGlobal().getBoolean(Settings.KEY_TRACK_STATISTICS));
 
 		JLabel label = new JLabel("");
 		label.setIcon(IconUtils.getIcon("statistics"));

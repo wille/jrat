@@ -150,13 +150,14 @@ public class Settings extends AbstractStorable {
 	public static final String KEY_BUILD_ID = "build_id";
 	public static final String KEY_BUILD_PASSWORD = "build_password";
 	public static final String KEY_TRACK_STATISTICS = "track_statistics";
+	public static final String KEY_USE_TRAY_ICON = "use_tray_icon";
 
 	public void addDefault() {
 		set(KEY_HOSTS, new String[0]);
 		set(KEY_BUILD_ID, "Client");
 		setBuildPassword("pass");
 		set(KEY_RECONNECT_RATE, 15);
-		set("traynote", true);
+		set(KEY_USE_TRAY_ICON, true);
 		set(KEY_TRACK_STATISTICS, true);
 		set("jarname", "File");
 		set("remotescreenstartup", false);

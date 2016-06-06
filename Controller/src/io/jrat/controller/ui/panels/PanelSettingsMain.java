@@ -61,7 +61,7 @@ public class PanelSettingsMain extends JPanel {
 		label.setIcon(IconUtils.getIcon("screen"));
 
 		chckbxTrayIcon = new JCheckBox("Tray Icon");
-		chckbxTrayIcon.setSelected(Settings.getGlobal().getBoolean("traynote"));
+		chckbxTrayIcon.setSelected(Settings.getGlobal().getBoolean(Settings.KEY_USE_TRAY_ICON));
 
 		JLabel label_2 = new JLabel("");
 		label_2.setIcon(IconUtils.getIcon("icon-16x16"));

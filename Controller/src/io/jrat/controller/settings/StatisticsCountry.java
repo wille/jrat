@@ -28,7 +28,7 @@ public class StatisticsCountry extends AbstractStorable implements Serializable 
 	}
 
 	public static boolean isTracking() {
-		return Settings.getGlobal().getBoolean("stats");
+		return Settings.getGlobal().getBoolean(Settings.KEY_TRACK_STATISTICS);
 	}
 
 	public List<CountryStatEntry> getList() {
