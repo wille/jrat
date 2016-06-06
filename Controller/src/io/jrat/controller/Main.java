@@ -95,6 +95,8 @@ public class Main {
 		
 		Globals.mkdirs();
 
+		Settings.getGlobal().load();
+
 		try {
 			SettingsTheme.getGlobal().load();
 			UIManager.setLookAndFeel(SettingsTheme.getGlobal().getTheme());
@@ -130,7 +132,6 @@ public class Main {
 		}
 
 		StatisticsCountry.getGlobal().load();
-		Settings.getGlobal().load();	
 
 		headless = argsContains(args, "-h", "--headless") || Utils.isHeadless();
 		
