@@ -70,13 +70,25 @@ public class Settings extends AbstractStorable {
 		return v;
 	}
 
-	public void setBuildPassword(String password) throws Exception {
-		String encrypted = Crypto.encrypt(password, KeyUtils.STATIC_KEY.getEncoded());
-		settings.put(KEY_BUILD_PASSWORD, encrypted);
+	public void setBuildPassword(String password) {
+		try {
+			String encrypted = Crypto.encrypt(password, KeyUtils.STATIC_KEY.getEncoded());
+			settings.put(KEY_BUILD_PASSWORD, encrypted);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			// TODO error message
+		}
 	}
 
-	public String getBuildPassword() throws Exception {
-		return Crypto.decrypt((String) settings.get(KEY_BUILD_PASSWORD), KeyUtils.STATIC_KEY.getEncoded());
+	public String getBuildPassword() {
+		try {
+			return Crypto.decrypt((String) settings.get(KEY_BUILD_PASSWORD), KeyUtils.STATIC_KEY.getEncoded());
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			// TODO error message
+		}
+
+		return null;
 	}
 
 	public void load() throws Exception {
@@ -142,13 +154,7 @@ public class Settings extends AbstractStorable {
 	public void addDefault() {
 		set(KEY_HOSTS, new String[0]);
 		set(KEY_BUILD_ID, "Client");
-
-		try {
-			setBuildPassword("pass");
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-
+		setBuildPassword("pass");
 		set(KEY_RECONNECT_RATE, 15);
 		set("traynote", true);
 		set(KEY_TRACK_STATISTICS, true);
