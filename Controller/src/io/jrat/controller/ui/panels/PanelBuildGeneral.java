@@ -98,7 +98,7 @@ public class PanelBuildGeneral extends JPanel {
 		JLabel lblSecurityPassword = new JLabel("Security Password");
 		lblSecurityPassword.setHorizontalAlignment(SwingConstants.TRAILING);
 
-		passPass = new JPasswordField(Settings.getGlobal().getString("bpass"));
+		passPass = new JPasswordField(Settings.getGlobal().getBuildPassword());
 
 		JButton btnShowPassword = new JButton("Show password");
 		btnShowPassword.addActionListener(new ActionListener() {

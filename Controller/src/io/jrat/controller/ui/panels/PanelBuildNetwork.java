@@ -153,14 +153,13 @@ public class PanelBuildNetwork extends JPanel {
 		scrollPane.setViewportView(list);
 		setLayout(groupLayout);
 		
-		String addresses = Settings.getGlobal().getString("baddresses");
+		String[] addresses = (String[]) Settings.getGlobal().get(Settings.KEY_HOSTS);
 		
 		if (addresses != null) {
-			for (String s : addresses.split(",")) {
+			for (String s : addresses) {
 				model.addElement(s);
 			}
 		}
-
 	}
 
 	public String[] getAddresses() {

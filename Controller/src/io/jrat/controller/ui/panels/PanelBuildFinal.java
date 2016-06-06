@@ -261,16 +261,12 @@ public class PanelBuildFinal extends JPanel {
 						Build.build(new AdvancedBuildListener(frame), Globals.getStub(), new File(file), addresses, ID, pass, dontInstall, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, runNextBoot, hiddenFile, bind, bindpath, bindname, binddrop, usemutex, mutexport, plist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, antivm);		
 					}
 
-					String rawAddresses = "";
-					for (String s : addresses) {
-						rawAddresses += s + ",";
-					}
+					Settings.getGlobal().set(Settings.KEY_HOSTS, network.getAddresses());
 
-					Settings.getGlobal().set("brecat", reconSec);
+					Settings.getGlobal().set(Settings.KEY_RECONNECT_RATE, reconSec);
 					Settings.getGlobal().set("jarname", name);
-					Settings.getGlobal().set("baddresses", rawAddresses);
 					Settings.getGlobal().set("bid", ID);
-					Settings.getGlobal().set("bpass", pass);
+					Settings.getGlobal().setBuildPassword(pass);
 					Settings.getGlobal().save();
 				} catch (Exception ex) {
 					ErrorDialog.create(ex);

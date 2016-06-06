@@ -70,6 +70,15 @@ public class Settings extends AbstractStorable {
 		return v;
 	}
 
+	public void setBuildPassword(String password) throws Exception {
+		String encrypted = Crypto.encrypt(password, KeyUtils.STATIC_KEY.getEncoded());
+		settings.put(KEY_BUILD_PASSWORD, encrypted);
+	}
+
+	public String getBuildPassword() throws Exception {
+		return Crypto.decrypt((String) settings.get(KEY_BUILD_PASSWORD), KeyUtils.STATIC_KEY.getEncoded());
+	}
+
 	public void load() throws Exception {
 		try {
 			Map args = new HashMap();
@@ -124,17 +133,25 @@ public class Settings extends AbstractStorable {
 		}
 	}
 
+	public static final String KEY_HOSTS = "hosts";
 	public static final String KEY_RECONNECT_RATE = "reconnect_rate";
 	public static final String KEY_BUILD_ID = "build_id";
+	public static final String KEY_BUILD_PASSWORD = "build_password";
+	public static final String KEY_TRACK_STATISTICS = "track_statistics";
+
 	public void addDefault() {
-		set("bip", "127.0.0.1");
-		set("bport", 1336);
-		set("bid", "Name");
+		set(KEY_HOSTS, new String[0]);
 		set(KEY_BUILD_ID, "Client");
-		set("bpass", "pass");
+
+		try {
+			setBuildPassword("pass");
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+
 		set(KEY_RECONNECT_RATE, 15);
 		set("traynote", true);
-		set("stats", true);
+		set(KEY_TRACK_STATISTICS, true);
 		set("jarname", "File");
 		set("remotescreenstartup", false);
 		set("askurl", true);

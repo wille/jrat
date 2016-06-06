@@ -107,7 +107,7 @@ public class FrameBuildMinimal extends BaseFrame {
 
 		JLabel lblPass = new JLabel("Pass:");
 
-		txtPass = new JTextField(Settings.getGlobal().getString("bpass"));
+		txtPass = new JTextField(Settings.getGlobal().getBuildPassword());
 		txtPass.setColumns(10);
 
 		JToolBar toolBar = new JToolBar();
@@ -299,15 +299,8 @@ public class FrameBuildMinimal extends BaseFrame {
 
 				Build.build(l, Globals.getStub(), file, addresses, id, pass, dontInstall, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, runNextBoot, hiddenFile, bind, bindpath, bindname, droptarget, usemutex, mutexport, pluginlist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, antivm);
 
-				String saddresses = "";
-				
-				for (String add : addresses) {
-					saddresses += add + ",";
-				}
-				
-				Settings.getGlobal().set("baddresses", saddresses);
 				Settings.getGlobal().set("bid", id);
-				Settings.getGlobal().set("bpass", pass);
+				Settings.getGlobal().setBuildPassword(pass);
 				Settings.getGlobal().set("brecat", reconSec);
 			}
 		}.start();
