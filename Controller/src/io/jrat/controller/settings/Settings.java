@@ -75,20 +75,6 @@ public class Settings extends AbstractStorable {
 			args.put(JsonReader.USE_MAPS, true);
 
 			settings = (JsonObject) JsonReader.jsonToJava(new FileInputStream(getFile()), args);
-
-			Map<String, Map<String, Object>> sockets = (HashMap<String, Map<String, Object>>) settings.get("sockets");
-
-			for (String key : sockets.keySet()) {
-				Map<String, Object> socket = sockets.get(key);
-
-				int port = ((Long) socket.get("port")).intValue();
-				int timeout = ((Long) socket.get("timeout")).intValue();
-				int type = ((Long) socket.get("type")).intValue();
-				String pass = Crypto.decrypt((String) socket.get("pass"), KeyUtils.STATIC_KEY.getEncoded());
-
-				SocketEntry se = new SocketEntry(key, port, timeout, pass, type);
-				se.start(); // TODO - Settings are loaded before main frame, cannot add sockets to table
-			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -160,6 +146,26 @@ public class Settings extends AbstractStorable {
 	@Override
 	public File getFile() {
 		return new File(Globals.getSettingsDirectory(), "settings.json");
+	}
+
+	public void loadSockets() {
+		Map<String, Map<String, Object>> sockets = (HashMap<String, Map<String, Object>>) Settings.getGlobal().get("sockets");
+
+		for (String key : sockets.keySet()) {
+			try {
+				Map<String, Object> socket = sockets.get(key);
+
+				int port = ((Long) socket.get("port")).intValue();
+				int timeout = ((Long) socket.get("timeout")).intValue();
+				int type = ((Long) socket.get("type")).intValue();
+				String pass = Crypto.decrypt((String) socket.get("pass"), KeyUtils.STATIC_KEY.getEncoded());
+
+				Settings.SocketEntry se = new Settings.SocketEntry(key, port, timeout, pass, type);
+				se.start();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		}
 	}
 
 	public class SocketEntry implements Serializable {

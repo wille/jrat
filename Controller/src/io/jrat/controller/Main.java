@@ -139,6 +139,8 @@ public class Main {
 			instance.setVisible(true);
 		}
 
+		Settings.getGlobal().loadSockets();
+
 		AbstractStorable.loadAllGlobals();
 
 		boolean hasShownEULA = Settings.getGlobal().getBoolean("showeula");
