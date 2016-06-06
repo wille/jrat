@@ -21,6 +21,7 @@ import java.net.BindException;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 
 public class Settings extends AbstractStorable {
@@ -103,6 +104,16 @@ public class Settings extends AbstractStorable {
 				socketData.put("pass", Crypto.encrypt(pl.getPass(), KeyUtils.STATIC_KEY.getEncoded()));
 			}
 
+			String[] themeargs = UIManager.getLookAndFeel().toString().split(" - ");
+			String className = themeargs[1].substring(0, themeargs[1].length() - 1);
+
+			// If theme is system default, set null
+			if (className.equals(UIManager.getSystemLookAndFeelClassName())) {
+				className = null;
+			}
+
+			settings.put("theme", className);
+
 			Map args = new HashMap();
 			args.put(JsonWriter.TYPE, false);
 			pw.print(JsonWriter.formatJson(JsonWriter.objectToJson(settings, args)));
@@ -141,6 +152,8 @@ public class Settings extends AbstractStorable {
 		}
 
 		settings.put("sockets", new HashMap());
+
+		settings.put("theme", null);
 	}
 
 	@Override

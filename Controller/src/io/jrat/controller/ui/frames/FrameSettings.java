@@ -7,7 +7,6 @@ import io.jrat.controller.ErrorDialog;
 import io.jrat.controller.listeners.Performable;
 import io.jrat.controller.net.WebRequest;
 import io.jrat.controller.settings.Settings;
-import io.jrat.controller.settings.SettingsTheme;
 import io.jrat.controller.settings.StatisticsCountry;
 import io.jrat.controller.ui.dialogs.DialogAbout;
 import io.jrat.controller.ui.dialogs.DialogEula;
@@ -164,7 +163,7 @@ public class FrameSettings extends BaseFrame {
 		Settings.getGlobal().set("proxyport", proxy.getPort());
 		Settings.getGlobal().set("proxysocks", proxy.useSocks());
 
-		SettingsTheme.getGlobal().setTheme(themes.getTheme());
+		Settings.getGlobal().set("theme", themes.getTheme());
 
 		if (!stats.trackStats()) {
 			StatisticsCountry.getGlobal().getList().clear();

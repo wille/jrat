@@ -2,7 +2,6 @@ package io.jrat.controller.commands;
 
 import io.jrat.controller.settings.AbstractStorable;
 import io.jrat.controller.settings.Settings;
-import io.jrat.controller.settings.SettingsTheme;
 import java.io.PrintStream;
 import jrat.api.commands.AbstractCommand;
 
@@ -13,12 +12,6 @@ public class CommandSave extends AbstractCommand {
 		System.out.println("Saving settings...");
 		
 		AbstractStorable.saveAllGlobals();
-
-		try {
-			SettingsTheme.getGlobal().save();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 
 		try {
 			Settings.getGlobal().save();

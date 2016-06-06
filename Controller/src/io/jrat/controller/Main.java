@@ -8,7 +8,6 @@ import io.jrat.controller.addons.Plugins;
 import io.jrat.controller.commands.DefaultCommands;
 import io.jrat.controller.settings.AbstractStorable;
 import io.jrat.controller.settings.Settings;
-import io.jrat.controller.settings.SettingsTheme;
 import io.jrat.controller.settings.StatisticsCountry;
 import io.jrat.controller.threads.NetworkCounter;
 import io.jrat.controller.threads.RunnableCheckPlugins;
@@ -98,10 +97,15 @@ public class Main {
 		Settings.getGlobal().load();
 
 		try {
-			SettingsTheme.getGlobal().load();
-			UIManager.setLookAndFeel(SettingsTheme.getGlobal().getTheme());
+			String theme = (String) Settings.getGlobal().get("theme");
+
+			if (theme == null) {
+				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			} else {
+				UIManager.setLookAndFeel(theme);
+			}
 		} catch (Exception ex) {
-			Main.debug("Could not use LAF " + SettingsTheme.getGlobal().getTheme() + ", setting default system LAF");
+			Main.debug("Could not use LAF " + Settings.getGlobal().get("theme") + ", setting default system LAF");
 			ex.printStackTrace();
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		}
