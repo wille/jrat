@@ -10,7 +10,7 @@ public class WebPanelListener extends PortListener implements Runnable {
 	private boolean running;
 	
 	public WebPanelListener(String name, int port, String pass) throws Exception {
-		super(name, port, -1, pass, Settings.SocketType.WEB_PANEL_SOCKET);
+		super(name, port, -1, pass, Settings.SocketType.SOCKET_WEB_PANEL);
 	}
 	
 	@Override

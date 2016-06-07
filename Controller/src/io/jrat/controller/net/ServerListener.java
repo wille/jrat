@@ -13,7 +13,7 @@ import java.net.Socket;
 public class ServerListener extends PortListener implements Runnable {
 
 	public ServerListener(String name, int port, int timeout, String pass) throws Exception {
-		super(name, port, timeout, pass, Settings.SocketType.NORMAL_SOCKET);
+		super(name, port, timeout, pass, Settings.SocketType.SOCKET_NORMAL);
 	}
 
 	@Override

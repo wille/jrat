@@ -5,7 +5,6 @@ import com.cedarsoftware.util.io.JsonReader;
 import com.cedarsoftware.util.io.JsonWriter;
 import io.jrat.common.crypto.Crypto;
 import io.jrat.common.crypto.KeyUtils;
-import io.jrat.controller.Globals;
 import io.jrat.controller.exceptions.InvalidSocketTypeException;
 import io.jrat.controller.net.PortListener;
 import io.jrat.controller.net.ServerListener;
@@ -16,7 +15,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.io.Serializable;
 import java.net.BindException;
 import java.util.HashMap;
 import java.util.Map;
@@ -233,7 +231,7 @@ public class Settings extends AbstractStorable {
 	}
 
 	public class SocketEntry {
-		
+
 		private int type;
 		private String pass;
 		private int timeout;
@@ -270,10 +268,10 @@ public class Settings extends AbstractStorable {
 
 		public void start() {
 			try {
-				if (type == SocketType.NORMAL_SOCKET) {
+				if (type == SocketType.SOCKET_NORMAL) {
 					ServerListener connection = new ServerListener(name, port, timeout, pass);
 					connection.start();
-				} else if (type == SocketType.WEB_PANEL_SOCKET) {
+				} else if (type == SocketType.SOCKET_WEB_PANEL) {
 					WebPanelListener wpl = new WebPanelListener(name, port, pass);
 					wpl.start();
 				} else {
@@ -290,7 +288,7 @@ public class Settings extends AbstractStorable {
 	}
 
 	public class SocketType {
-		public static final int NORMAL_SOCKET = 0;
-		public static final int WEB_PANEL_SOCKET = 1;
+		public static final int SOCKET_NORMAL = 0;
+		public static final int SOCKET_WEB_PANEL = 1;
 	}
 }

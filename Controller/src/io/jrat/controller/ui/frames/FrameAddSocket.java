@@ -158,9 +158,9 @@ public class FrameAddSocket extends BaseFrame {
 			}
 			
 			PortListener connection = null;
-			if (type == Settings.SocketType.NORMAL_SOCKET) {
+			if (type == Settings.SocketType.SOCKET_NORMAL) {
 				connection = new ServerListener(name, port, timeout, pass);
-			} else if (type == Settings.SocketType.WEB_PANEL_SOCKET) {
+			} else if (type == Settings.SocketType.SOCKET_WEB_PANEL) {
 				connection = new WebPanelListener(name, port, pass);
 			}
 			connection.start();
