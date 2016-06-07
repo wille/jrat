@@ -47,6 +47,7 @@ public class Settings extends AbstractStorable {
 	public static final String KEY_ROW_HEIGHT = "row_height";
 	public static final String KEY_COLUMNS = "columns";
 	public static final String KEY_SOCKETS = "sockets";
+	public static final String KEY_HAS_SHOWN_EULA = "eula_shown";
 
 	private static final Settings instance = new Settings();
 
