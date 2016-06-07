@@ -232,7 +232,7 @@ public abstract class AbstractSlave implements Runnable {
 			if (randomCountry != null) {
 				setCountry(randomCountry);
 			}
-		} else if (Settings.getGlobal().getBoolean("geoip")) {
+		} else if (Settings.getGlobal().getBoolean(Settings.KEY_USE_COUNTRY_DB)) {
 			Country country = FlagUtils.getCountry(this);
 
 			if (country != null) {

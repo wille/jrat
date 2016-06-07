@@ -31,10 +31,10 @@ public class PanelSettingsFlags extends JPanel {
 
 		rdbtnUseLocationTo = new JRadioButton("Use IP to Country library to get flag");
 		buttonGroup.add(rdbtnUseLocationTo);
-		rdbtnUseLocationTo.setSelected(Settings.getGlobal().getBoolean("geoip"));
+		rdbtnUseLocationTo.setSelected(Settings.getGlobal().getBoolean(Settings.KEY_USE_COUNTRY_DB));
 
 		rdbtnUseSystemLanguage = new JRadioButton("Use system locale to get flag");
-		rdbtnUseSystemLanguage.setSelected(!Settings.getGlobal().getBoolean("geoip"));
+		rdbtnUseSystemLanguage.setSelected(!Settings.getGlobal().getBoolean(Settings.KEY_USE_COUNTRY_DB));
 		buttonGroup.add(rdbtnUseSystemLanguage);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addGap(53).addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addComponent(rdbtnUseLocationTo).addComponent(rdbtnUseSystemLanguage)).addContainerGap(182, Short.MAX_VALUE)));

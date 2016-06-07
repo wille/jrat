@@ -79,12 +79,12 @@ public class PanelSettingsMain extends JPanel {
 		JLabel label_1 = new JLabel("");
 		label_1.setIcon(IconUtils.getIcon("question"));
 
-		chckbxAskBeforeConnect = new JCheckBox("Ask before connect", Settings.getGlobal().getBoolean("askurl"));
+		chckbxAskBeforeConnect = new JCheckBox("Ask before connect", Settings.getGlobal().getBoolean(Settings.KEY_REQUEST_DIALOG));
 
 		JLabel label_3 = new JLabel("");
 		label_3.setIcon(IconUtils.getIcon("computer"));
 
-		chckbxMaximum = new JCheckBox("Maximum amount of connections", Settings.getGlobal().getInt("max") != -1);
+		chckbxMaximum = new JCheckBox("Maximum amount of connections", Settings.getGlobal().getInt(Settings.KEY_MAXIMUM_CONNECTIONS) != -1);
 		chckbxMaximum.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				spinner.setEnabled(((JCheckBox) arg0.getSource()).isSelected());
@@ -93,7 +93,7 @@ public class PanelSettingsMain extends JPanel {
 
 		spinner = new JSpinner();
 		spinner.setEnabled(chckbxMaximum.isSelected());
-		int max = Settings.getGlobal().getInt("max");
+		int max = Settings.getGlobal().getInt(Settings.KEY_MAXIMUM_CONNECTIONS);
 		spinner.setModel(new SpinnerNumberModel(max == -1 ? 10 : max, 1, 999999999, 1));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addGap(41).addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addPreferredGap(ComponentPlacement.RELATED).addComponent(label_3).addPreferredGap(ComponentPlacement.RELATED).addComponent(chckbxMaximum).addPreferredGap(ComponentPlacement.RELATED).addComponent(spinner, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)).addGroup(gl_panel.createSequentialGroup().addGroup(gl_panel.createParallelGroup(Alignment.TRAILING).addComponent(label_2).addComponent(label).addComponent(label_1)).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addComponent(chckbxTrayIcon).addComponent(chckbxRequestScreenOn).addComponent(chckbxAskBeforeConnect)))).addContainerGap(102, Short.MAX_VALUE)).addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup().addContainerGap(246, Short.MAX_VALUE).addComponent(btnClearRenamedServers).addContainerGap()));

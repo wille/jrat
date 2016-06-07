@@ -45,7 +45,7 @@ public class Settings extends AbstractStorable {
 
 	public int getInt(String key) {
 		Object obj = settings.get(key);
-		return obj == null ? -1 : ((Long) obj).intValue();
+		return obj == null ? -1 : ((Number) obj).intValue();
 	}
 
 	public boolean getBoolean(String key) {
@@ -91,6 +91,10 @@ public class Settings extends AbstractStorable {
 		return null;
 	}
 
+	public Map<String, Object> getProxySettings() {
+		return (HashMap<String, Object>) settings.get(KEY_PROXY);
+	}
+
 	public void load() throws Exception {
 		try {
 			Map args = new HashMap();
@@ -133,7 +137,7 @@ public class Settings extends AbstractStorable {
 				className = null;
 			}
 
-			settings.put("theme", className);
+			settings.put(KEY_LAF, className);
 
 			Map args = new HashMap();
 			args.put(JsonWriter.TYPE, false);
@@ -152,6 +156,16 @@ public class Settings extends AbstractStorable {
 	public static final String KEY_TRACK_STATISTICS = "track_statistics";
 	public static final String KEY_USE_TRAY_ICON = "use_tray_icon";
 	public static final String KEY_START_REMOTE_SCREEN_DIRECTLY = "start_remote_screen_directly";
+	public static final String KEY_INSTALLATION_NAME = "installation_name";
+	public static final String KEY_REQUEST_DIALOG = "request_dialog";
+	public static final String KEY_MAXIMUM_CONNECTIONS = "maximum_connections";
+	public static final String KEY_USE_COUNTRY_DB = "use_country_db";
+	public static final String KEY_PROXY = "proxy";
+	public static final String KEY_ENABLE_PROXY = "enabled";
+	public static final String KEY_PROXY_HOST = "host";
+	public static final String KEY_PROXY_PORT = "port";
+	public static final String KEY_PROXY_SOCKS = "socks";
+	public static final String KEY_LAF = "theme";
 
 	public void addDefault() {
 		set(KEY_HOSTS, new String[0]);
@@ -160,17 +174,21 @@ public class Settings extends AbstractStorable {
 		set(KEY_RECONNECT_RATE, 15);
 		set(KEY_USE_TRAY_ICON, true);
 		set(KEY_TRACK_STATISTICS, true);
-		set("jarname", "File");
+		set(KEY_INSTALLATION_NAME, "File");
 		set(KEY_START_REMOTE_SCREEN_DIRECTLY, false); // TODO implement again
-		set("askurl", true);
-		set("max", -1);
-		set("geoip", true);
-		set("proxy", false);
-		set("proxyhost", "127.0.0.1");
-		set("proxyport", 9050);
-		set("proxysocks", true);
+		set(KEY_REQUEST_DIALOG, true);
+		set(KEY_MAXIMUM_CONNECTIONS, -1); // TODO make sure it's implemented
+		set(KEY_USE_COUNTRY_DB, true);
+
+		Map<String, Object> proxy = new HashMap<String, Object>();
+		proxy.put(KEY_ENABLE_PROXY, false);
+		proxy.put(KEY_PROXY_HOST, "127.0.0.1");
+		proxy.put(KEY_PROXY_PORT, 9050);
+		proxy.put(KEY_PROXY_SOCKS, true);
 		set("plugintransfer", false);
 		set("rowheight", 30);
+
+		settings.put(KEY_PROXY, proxy);
 
 		Map<String, Boolean> columns = new HashMap<String, Boolean>();
 		set("columns", columns);
@@ -181,7 +199,7 @@ public class Settings extends AbstractStorable {
 
 		settings.put("sockets", new HashMap());
 
-		settings.put("theme", null);
+		settings.put(KEY_LAF, null);
 	}
 
 	@Override

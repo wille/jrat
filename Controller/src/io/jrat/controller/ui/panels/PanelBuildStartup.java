@@ -84,7 +84,7 @@ public class PanelBuildStartup extends JPanel {
 		JLabel lblDroppedFileAnd = new JLabel("File and reg key name:");
 
 		txtName = new JPlaceholderTextField("jrat");
-		txtName.setText(Settings.getGlobal().getString("jarname"));
+		txtName.setText(Settings.getGlobal().getString(Settings.KEY_INSTALLATION_NAME));
 		txtName.setToolTipText("File name of installed file and startup entry or registry key");
 		txtName.setColumns(10);
 

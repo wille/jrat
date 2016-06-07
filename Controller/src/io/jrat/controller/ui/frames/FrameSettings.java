@@ -16,11 +16,7 @@ import io.jrat.controller.ui.panels.PanelSettingsProxy;
 import io.jrat.controller.ui.panels.PanelSettingsStats;
 import io.jrat.controller.ui.panels.PanelSettingsTheme;
 import io.jrat.controller.ui.renderers.JTreeIconsRenderer;
-import java.awt.Color;
-import java.awt.Toolkit;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.util.HashMap;
+
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -32,7 +28,12 @@ import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
-
+import java.awt.Color;
+import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.HashMap;
+import java.util.Map;
 
 @SuppressWarnings("serial")
 public class FrameSettings extends BaseFrame {
@@ -153,17 +154,19 @@ public class FrameSettings extends BaseFrame {
 		PanelSettingsProxy proxy = (PanelSettingsProxy) panels.get("proxy");
 
 		Settings.getGlobal().set(Settings.KEY_USE_TRAY_ICON, main.useTrayIcon());
-		Settings.getGlobal().set("stats", stats.trackStats());
+		Settings.getGlobal().set(Settings.KEY_TRACK_STATISTICS, stats.trackStats());
 		Settings.getGlobal().set(Settings.KEY_START_REMOTE_SCREEN_DIRECTLY, main.useAutoScreen());
-		Settings.getGlobal().set("askurl", main.askOnConnect());
-		Settings.getGlobal().set("max", main.getMaximum());
-		Settings.getGlobal().set("geoip", flags.useWeb());
-		Settings.getGlobal().set("proxy", proxy.useProxy());
-		Settings.getGlobal().set("proxyhost", proxy.getHost());
-		Settings.getGlobal().set("proxyport", proxy.getPort());
-		Settings.getGlobal().set("proxysocks", proxy.useSocks());
+		Settings.getGlobal().set(Settings.KEY_REQUEST_DIALOG, main.askOnConnect());
+		Settings.getGlobal().set(Settings.KEY_MAXIMUM_CONNECTIONS, main.getMaximum());
+		Settings.getGlobal().set(Settings.KEY_USE_COUNTRY_DB, flags.useWeb());
 
-		Settings.getGlobal().set("theme", themes.getTheme());
+		Map<String, Object> proxySettings = Settings.getGlobal().getProxySettings();
+		proxySettings.put(Settings.KEY_ENABLE_PROXY, proxy.useProxy());
+		proxySettings.put(Settings.KEY_PROXY_HOST, proxy.getHost());
+		proxySettings.put(Settings.KEY_PROXY_PORT, proxy.getPort());
+		proxySettings.put(Settings.KEY_PROXY_SOCKS, proxy.useSocks());
+
+		Settings.getGlobal().set(Settings.KEY_LAF, themes.getTheme());
 
 		if (!stats.trackStats()) {
 			StatisticsCountry.getGlobal().getList().clear();

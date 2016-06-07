@@ -4,14 +4,14 @@ import io.jrat.controller.Constants;
 import io.jrat.controller.exceptions.RequestNotAllowedException;
 import io.jrat.controller.settings.Settings;
 import io.jrat.controller.utils.Utils;
+
 import java.net.HttpURLConnection;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.URL;
+import java.util.Map;
 
 public class WebRequest {
-
-	public static String workingDomain = null;
 
 	public static URL getUrl(String surl) throws Exception {
 		return getUrl(surl, false);
@@ -24,7 +24,7 @@ public class WebRequest {
 			return url = new URL(turl);
 		}
 
-		if (Settings.getGlobal().getBoolean("askurl")) {
+		if (Settings.getGlobal().getBoolean(Settings.KEY_REQUEST_DIALOG)) {
 			if (Utils.yesNo("HTTP Request", Constants.NAME + " tries to connect to:\n\r\n\r" + turl
 					+ "\n\r\n\rDo you want to accept it?\n\r\n\r(You can turn off this notification in settings)")) {
 				url = new URL(turl);
@@ -47,9 +47,15 @@ public class WebRequest {
 
 		HttpURLConnection connection = null;
 
-		if (Settings.getGlobal().getBoolean("proxy")) {
-			Proxy proxy = new Proxy(Settings.getGlobal().getBoolean("proxysocks") ? Proxy.Type.SOCKS : Proxy.Type.HTTP, new InetSocketAddress(
-					Settings.getGlobal().getString("proxyhost"), Settings.getGlobal().getInt("proxyport")));
+		Map<String, Object> proxySettings = Settings.getGlobal().getProxySettings();
+		boolean enabled = (Boolean) proxySettings.get(Settings.KEY_ENABLE_PROXY);
+
+		if (enabled) {
+			boolean socks = (Boolean) proxySettings.get(Settings.KEY_PROXY_SOCKS);
+			String host = (String) proxySettings.get(Settings.KEY_PROXY_HOST);
+			int port = ((Number) proxySettings.get(Settings.KEY_PROXY_PORT)).intValue();
+
+			Proxy proxy = new Proxy(socks ? Proxy.Type.SOCKS : Proxy.Type.HTTP, new InetSocketAddress(host, port));
 			connection = (HttpURLConnection) url.openConnection(proxy);
 		} else {
 			connection = (HttpURLConnection) url.openConnection();

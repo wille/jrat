@@ -264,7 +264,7 @@ public class PanelBuildFinal extends JPanel {
 					Settings.getGlobal().set(Settings.KEY_HOSTS, network.getAddresses());
 
 					Settings.getGlobal().set(Settings.KEY_RECONNECT_RATE, reconSec);
-					Settings.getGlobal().set("jarname", name);
+					Settings.getGlobal().set(Settings.KEY_INSTALLATION_NAME, name);
 					Settings.getGlobal().set("bid", ID);
 					Settings.getGlobal().setBuildPassword(pass);
 					Settings.getGlobal().save();
