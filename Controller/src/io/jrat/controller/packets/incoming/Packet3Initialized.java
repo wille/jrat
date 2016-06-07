@@ -42,7 +42,7 @@ public class Packet3Initialized extends AbstractIncomingPacket {
 		List<String> plugins = new ArrayList<String>(Arrays.asList(slave.getPlugins()));
 		List<String> notInstalled = new ArrayList<String>();
 
-		if (plugins != null && Settings.getGlobal().getBoolean("plugintransfer")) {
+		if (plugins != null && Settings.getGlobal().getBoolean(Settings.KEY_TRANSFER_PLUGINS)) {
 			for (Plugin plugin : Plugins.getPlugins()) {
 				if (!plugins.contains(plugin.getName())) {
 					notInstalled.add(plugin.getName());

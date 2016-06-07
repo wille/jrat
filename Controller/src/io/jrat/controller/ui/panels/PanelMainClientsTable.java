@@ -185,7 +185,7 @@ public class PanelMainClientsTable extends PanelMainClients {
 		int rowheight = 30;
 		
 		try {
-			Object rowHeight = Settings.getGlobal().get("rowheight");
+			Object rowHeight = Settings.getGlobal().get(Settings.KEY_ROW_HEIGHT);
 			if (rowHeight != null) {
 				rowheight = Integer.parseInt(rowHeight.toString());
 			}
@@ -427,7 +427,7 @@ public class PanelMainClientsTable extends PanelMainClients {
 					return;
 				}
 				setRowHeight(h);
-				Settings.getGlobal().set("rowheight", h);
+				Settings.getGlobal().set(Settings.KEY_ROW_HEIGHT, h);
 			}
 		});
 		mntmRowHeight.setIcon(IconUtils.getIcon("application-dock"));

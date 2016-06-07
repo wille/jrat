@@ -26,6 +26,28 @@ import javax.swing.UIManager;
 
 public class Settings extends AbstractStorable {
 
+	public static final String KEY_HOSTS = "hosts";
+	public static final String KEY_RECONNECT_RATE = "reconnect_rate";
+	public static final String KEY_BUILD_ID = "build_id";
+	public static final String KEY_BUILD_PASSWORD = "build_password";
+	public static final String KEY_TRACK_STATISTICS = "track_statistics";
+	public static final String KEY_USE_TRAY_ICON = "use_tray_icon";
+	public static final String KEY_START_REMOTE_SCREEN_DIRECTLY = "start_remote_screen_directly";
+	public static final String KEY_INSTALLATION_NAME = "installation_name";
+	public static final String KEY_REQUEST_DIALOG = "request_dialog";
+	public static final String KEY_MAXIMUM_CONNECTIONS = "maximum_connections";
+	public static final String KEY_USE_COUNTRY_DB = "use_country_db";
+	public static final String KEY_PROXY = "proxy";
+	public static final String KEY_ENABLE_PROXY = "enabled";
+	public static final String KEY_PROXY_HOST = "host";
+	public static final String KEY_PROXY_PORT = "port";
+	public static final String KEY_PROXY_SOCKS = "socks";
+	public static final String KEY_LAF = "theme";
+	public static final String KEY_TRANSFER_PLUGINS = "transfer_plugins_on_connect";
+	public static final String KEY_ROW_HEIGHT = "row_height";
+	public static final String KEY_COLUMNS = "columns";
+	public static final String KEY_SOCKETS = "sockets";
+
 	private static final Settings instance = new Settings();
 
 	private transient JsonObject settings = new JsonObject();
@@ -149,24 +171,6 @@ public class Settings extends AbstractStorable {
 		}
 	}
 
-	public static final String KEY_HOSTS = "hosts";
-	public static final String KEY_RECONNECT_RATE = "reconnect_rate";
-	public static final String KEY_BUILD_ID = "build_id";
-	public static final String KEY_BUILD_PASSWORD = "build_password";
-	public static final String KEY_TRACK_STATISTICS = "track_statistics";
-	public static final String KEY_USE_TRAY_ICON = "use_tray_icon";
-	public static final String KEY_START_REMOTE_SCREEN_DIRECTLY = "start_remote_screen_directly";
-	public static final String KEY_INSTALLATION_NAME = "installation_name";
-	public static final String KEY_REQUEST_DIALOG = "request_dialog";
-	public static final String KEY_MAXIMUM_CONNECTIONS = "maximum_connections";
-	public static final String KEY_USE_COUNTRY_DB = "use_country_db";
-	public static final String KEY_PROXY = "proxy";
-	public static final String KEY_ENABLE_PROXY = "enabled";
-	public static final String KEY_PROXY_HOST = "host";
-	public static final String KEY_PROXY_PORT = "port";
-	public static final String KEY_PROXY_SOCKS = "socks";
-	public static final String KEY_LAF = "theme";
-
 	public void addDefault() {
 		set(KEY_HOSTS, new String[0]);
 		set(KEY_BUILD_ID, "Client");
@@ -185,19 +189,19 @@ public class Settings extends AbstractStorable {
 		proxy.put(KEY_PROXY_HOST, "127.0.0.1");
 		proxy.put(KEY_PROXY_PORT, 9050);
 		proxy.put(KEY_PROXY_SOCKS, true);
-		set("plugintransfer", false);
-		set("rowheight", 30);
+		set(KEY_TRANSFER_PLUGINS, false);
+		set(KEY_ROW_HEIGHT, 30);
 
 		settings.put(KEY_PROXY, proxy);
 
 		Map<String, Boolean> columns = new HashMap<String, Boolean>();
-		set("columns", columns);
+		set(KEY_COLUMNS, columns);
 
 		for (Columns c : Columns.values()) {
 			columns.put(c.getName(), c.isDefault());
 		}
 
-		settings.put("sockets", new HashMap());
+		settings.put(KEY_SOCKETS, new HashMap());
 
 		settings.put(KEY_LAF, null);
 	}

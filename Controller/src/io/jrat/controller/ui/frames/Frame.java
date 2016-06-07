@@ -570,10 +570,10 @@ public class Frame extends BaseFrame {
 		mnPlugins.add(mntmBrowsePlugins);
 
 		chckbxmntmTransferPluginsIf = new JCheckBoxMenuItem("Transfer plugins if not installed");
-		chckbxmntmTransferPluginsIf.setSelected(Settings.getGlobal().getBoolean("plugintransfer"));
+		chckbxmntmTransferPluginsIf.setSelected(Settings.getGlobal().getBoolean(Settings.KEY_TRANSFER_PLUGINS));
 		chckbxmntmTransferPluginsIf.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Settings.getGlobal().set("plugintransfer", chckbxmntmTransferPluginsIf.isSelected());
+				Settings.getGlobal().set(Settings.KEY_TRANSFER_PLUGINS, chckbxmntmTransferPluginsIf.isSelected());
 			}
 		});
 		mnPlugins.add(chckbxmntmTransferPluginsIf);
