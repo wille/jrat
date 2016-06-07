@@ -209,7 +209,7 @@ public class Settings extends AbstractStorable {
 
 	@Override
 	public File getFile() {
-		return new File(Globals.getSettingsDirectory(), "settings.json");
+		return new File("settings.json");
 	}
 
 	public void loadSockets() {
