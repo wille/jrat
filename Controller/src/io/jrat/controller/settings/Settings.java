@@ -232,10 +232,8 @@ public class Settings extends AbstractStorable {
 		}
 	}
 
-	public class SocketEntry implements Serializable {
-
-		private static final long serialVersionUID = -2000514812654090252L;
-
+	public class SocketEntry {
+		
 		private int type;
 		private String pass;
 		private int timeout;
