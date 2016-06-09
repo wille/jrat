@@ -48,7 +48,7 @@ public class Main {
 		
 		debug = argsContains(args, "--debug");
 
-		Main.debug("Loading libraries...");
+		Logger.log("Loading libraries...");
 		try {
 			Plugins.loadLibs();
 		} catch (Exception e) {
@@ -105,7 +105,7 @@ public class Main {
 				UIManager.setLookAndFeel(theme);
 			}
 		} catch (Exception ex) {
-			Main.debug("Could not use LAF " + Settings.getGlobal().get("theme") + ", setting default system LAF");
+			Logger.warn("Could not use LAF " + Settings.getGlobal().get(Settings.KEY_LAF) + ", setting default system LAF");
 			ex.printStackTrace();
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		}
@@ -158,7 +158,7 @@ public class Main {
 			}
 		}
 
-		Main.debug("Starting threads...");
+		Logger.log("Starting threads...");
 		new Thread(new NetworkCounter()).start();
 		new ThreadCheckVersion().start();
 		new Thread(new RunnableCheckPlugins()).start();
@@ -166,13 +166,13 @@ public class Main {
 		new ThreadTransferSpeed().start();
 
 
-		Main.debug("Loading tray icon...");
+		Logger.log("Loading tray icon...");
 		TrayIconUtils.initialize();
 
 		if (Globals.getLockFile().exists()) {
-			Main.debug("Lockfile already exists, we did not exit correctly");
+			Logger.log("Lockfile already exists, we did not exit correctly");
 		} else {
-			Main.debug("Writing lockfile...");
+			Logger.log("Writing lockfile...");
 			Globals.getLockFile().createNewFile();
 		}
 
@@ -214,19 +214,7 @@ public class Main {
 
 		return null;
 	}
-
-	public static String debug(Object s) {
-		if (s == null) {
-			s = "null";
-		}
-		
-		if (debug) {
-			Logger.log(s.toString());
-		}
-		
-		return s.toString();
-	}
-
+	
 	/**
 	 * @return the window title to show
 	 */

@@ -1,5 +1,6 @@
 package io.jrat.controller.android;
 
+import io.jrat.common.Logger;
 import io.jrat.common.codec.Hex;
 import io.jrat.common.crypto.Crypto;
 import io.jrat.common.crypto.StreamKeyExchanger;
@@ -50,7 +51,7 @@ public class AndroidSlave extends AbstractSlave {
             dos.write(encryptedKey);
 			
 			if (Main.debug) {
-				Main.debug("Encryption key: " + Hex.encode(key));
+				Logger.log("Encryption key: " + Hex.encode(key));
 			}
 
 			while (true) {

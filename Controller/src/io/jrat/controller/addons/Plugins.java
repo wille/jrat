@@ -1,5 +1,6 @@
 package io.jrat.controller.addons;
 
+import io.jrat.common.Logger;
 import io.jrat.controller.Globals;
 import io.jrat.controller.Main;
 import io.jrat.controller.utils.ClassUtils;
@@ -29,7 +30,7 @@ public class Plugins {
 		File dir = Globals.getLibDirectory();
 
 		for (File file : dir.listFiles()) {
-			Main.debug("Loading library: " + file.getName());
+			Logger.log("Loading library: " + file.getName());
 			ClassUtils.addToClassPath(file);
 		}
 	}

@@ -46,7 +46,7 @@ public class Packet3Initialized extends AbstractIncomingPacket {
 			for (Plugin plugin : Plugins.getPlugins()) {
 				if (!plugins.contains(plugin.getName())) {
 					notInstalled.add(plugin.getName());
-					Main.debug("Plugin " + plugin.getName() + " is not installed, adding to list");
+					Logger.log("Plugin " + plugin.getName() + " is not installed, adding to list");
 				}
 			}
 
@@ -58,11 +58,11 @@ public class Packet3Initialized extends AbstractIncomingPacket {
 
 				for (final File stubFile : files) {
 					if (stubFile.getName().startsWith(plugin.getName())) {
-						Main.debug("Found stub plugin " + stubFile.getName() + " for plugin " + plugin.getName());
+						Logger.log("Found stub plugin " + stubFile.getName() + " for plugin " + plugin.getName());
 						
 						filesToTransfer.put(plugin.getName(), stubFile);
 						
-						Main.debug("Transferring " + plugin.getName());
+						Logger.log("Transferring " + plugin.getName());
 
 						slave.addToSendQueue(new Packet106ServerUploadPlugin(stubFile, plugin.getName(), new UploadThread(null, plugin.getName(), stubFile) {
 							@Override
@@ -73,7 +73,7 @@ public class Packet3Initialized extends AbstractIncomingPacket {
 									mainClass = JarUtils.getMainClassFromInfo(new JarFile(stubFile));
 								} catch (Exception ex) {
 									ex.printStackTrace();
-									Logger.log("Failed loading main class from plugin.txt");
+									Logger.warn("Failed loading main class from plugin.txt");
 									return;
 								}
 								

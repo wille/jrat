@@ -461,7 +461,6 @@ public class PanelRemoteFiles extends JPanel {
 					int row = 0;
 					for (int i = 0; i < getTableModel().getRowCount(); i++) {
 						String val = getTableModel().getValueAt(i, 0).toString();
-						Main.debug(val);
 						if (val.substring(val.lastIndexOf(slave.getFileSeparator()), val.length()).contains(".")) {
 							row = i - 1;
 							break;
@@ -479,7 +478,6 @@ public class PanelRemoteFiles extends JPanel {
 					int row = 0;
 					for (int i = 0; i < getTableModel().getRowCount(); i++) {
 						String val = getTableModel().getValueAt(i, 0).toString();
-						Main.debug(val);
 						if (val.substring(val.lastIndexOf(slave.getFileSeparator()), val.length()).contains(".")) {
 							row = i - 1;
 							break;

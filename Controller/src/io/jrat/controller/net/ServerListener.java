@@ -26,12 +26,13 @@ public class ServerListener extends PortListener implements Runnable {
 					int max = Settings.getGlobal().getInt(Settings.KEY_MAXIMUM_CONNECTIONS);
 
 					if (max != -1 && Main.connections.size() > max) {
-						Logger.log("Maximum connections reached (" + max + "), closing..."); // TODO warning
+						Logger.warn("Maximum connections reached (" + max + "), closing...");
 						socket.close();
 						continue;
 					}
 				} catch (Exception ex) {
-					ex.printStackTrace(); // TODO error message
+					ex.printStackTrace();
+					Logger.err("Failed to check maximum connections: " + ex.getClass().getSimpleName() + ": " + ex.getMessage());
 				}
 
 				int type = socket.getInputStream().read();
@@ -46,7 +47,7 @@ public class ServerListener extends PortListener implements Runnable {
 
 				if (type < 0 || type > 1) {
 					slave = new Slave(this, socket);
-					Main.instance.getPanelLog().addEntry(LogAction.ERROR, slave, "Invalid connection type");
+					Main.instance.getPanelLog().addEntry(LogAction.ERROR, slave, "Invalid connection type, accepting anyways");
 					continue;
 				}
 			} catch (Exception ex) {

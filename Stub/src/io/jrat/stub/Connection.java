@@ -1,6 +1,7 @@
 package io.jrat.stub;
 
 import io.jrat.common.ConnectionCodes;
+import io.jrat.common.Logger;
 import io.jrat.common.Version;
 import io.jrat.common.crypto.Crypto;
 import io.jrat.common.crypto.CryptoUtils;
@@ -162,7 +163,7 @@ public class Connection implements Runnable {
 
 	public void writeLine(String s) {
 		if (s == null) {
-			Main.debug("String is null!");
+			Logger.warn("String is null!");
 			s = "";
 		}
 		try {

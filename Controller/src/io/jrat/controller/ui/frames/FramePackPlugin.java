@@ -353,7 +353,7 @@ public class FramePackPlugin extends BaseFrame {
 				mainClass = JarUtils.getMainClassFromInfo(new JarFile(file));
 			} catch (Exception ex) {
 				ex.printStackTrace();
-				Logger.log("Failed loading main class from plugin.txt, trying meta-inf");
+				Logger.warn("Failed loading main class from plugin.txt, trying meta-inf");
 				mainClass = JarUtils.getMainClass(new JarFile(file));
 			}
 

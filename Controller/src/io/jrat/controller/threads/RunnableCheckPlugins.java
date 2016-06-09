@@ -1,5 +1,6 @@
 package io.jrat.controller.threads;
 
+import io.jrat.common.Logger;
 import io.jrat.controller.LogAction;
 import io.jrat.controller.Main;
 import io.jrat.controller.addons.OnlinePlugin;
@@ -24,7 +25,7 @@ public class RunnableCheckPlugins implements Runnable {
 					boolean upToDate = onlineVersion.equals(localVersion);
 					
 					if (!upToDate) {
-						Main.debug(oplugin.getDisplayName() + " is not up to date");
+						Logger.warn(oplugin.getDisplayName() + " is not up to date");
 						Main.instance.getPanelLog().addEntry(LogAction.WARNING, null, oplugin.getDisplayName() + " is not up to date");
 					}
 				}

@@ -2,6 +2,7 @@ package io.jrat.controller;
 
 import com.redpois0n.oslib.AbstractOperatingSystem;
 import com.redpois0n.oslib.OperatingSystem;
+import io.jrat.common.Logger;
 import io.jrat.common.Version;
 import io.jrat.common.codec.Hex;
 import io.jrat.common.crypto.Crypto;
@@ -271,8 +272,8 @@ public abstract class AbstractSlave implements Runnable {
         dos.write(encryptedKey);
         dos.write(encryptedIv);
         
-		Main.debug("Encryption key: " + Hex.encode(key));
-		Main.debug("Encryption IV: " + Hex.encode(iv));
+		Logger.log("Encryption key: " + Hex.encode(key));
+		Logger.log("Encryption IV: " + Hex.encode(iv));
 
 		Cipher inCipher = CryptoUtils.getStreamCipher(Cipher.DECRYPT_MODE, secretKey, ivspec);
 		Cipher outCipher = CryptoUtils.getStreamCipher(Cipher.ENCRYPT_MODE, secretKey, ivspec);

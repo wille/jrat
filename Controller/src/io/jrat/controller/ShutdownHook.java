@@ -1,5 +1,6 @@
 package io.jrat.controller;
 
+import io.jrat.common.Logger;
 import io.jrat.controller.settings.AbstractStorable;
 import io.jrat.controller.settings.Settings;
 import jrat.api.events.Event;
@@ -10,7 +11,7 @@ public class ShutdownHook implements Runnable {
 
 	@Override
 	public void run() {
-		Main.debug("Shutting down...");
+		Logger.log("Shutting down...");
 		
 		OnDisableEvent event = new OnDisableEvent();
 		for (Event e : Event.getHandler().getEvents(EventType.EVENT_PLUGIN_DISABLE)) {

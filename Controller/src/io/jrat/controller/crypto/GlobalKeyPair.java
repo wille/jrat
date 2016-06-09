@@ -40,7 +40,7 @@ public class GlobalKeyPair {
 				privateKey = KeyUtils.getPrivateKey(IOUtils.readFile(privKeyFile));
 			} catch (InvalidKeySpecException ex) {
 				ex.printStackTrace();
-				Logger.log("Corrupt key files, generating new");
+				Logger.warn("Corrupt key files, generating new");
 				pubKeyFile.delete();
 				privKeyFile.delete();
 				initialize();

@@ -1,5 +1,6 @@
 package io.jrat.controller.build;
 
+import io.jrat.common.Logger;
 import io.jrat.controller.Main;
 import java.io.File;
 import java.io.FileInputStream;
@@ -36,18 +37,18 @@ public class PluginPacker {
 		}
 		
 		long start = System.currentTimeMillis();
-		Main.debug("Begin pack plugin...");
+		Logger.log("Begin pack plugin...");
 		
 		ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(output));
 		
-		Main.debug("Writing root plugin file " + input.getName());
+		Logger.log("Writing root plugin file " + input.getName());
 		FileInputStream fis = new FileInputStream(input);
 		zos.putNextEntry(new ZipEntry("root/" + input.getName()));
 		copy(fis, zos);
 		fis.close();
 		
 		for (String s : stubJars.keySet()) {
-			Main.debug("Writing stub JAR " + s + ".jar from " + stubJars.get(s).getAbsolutePath());
+			Logger.log("Writing stub JAR " + s + ".jar from " + stubJars.get(s).getAbsolutePath());
 			fis = new FileInputStream(stubJars.get(s));
 			zos.putNextEntry(new ZipEntry("stubs/" + s + ".jar"));
 			copy(fis, zos);
@@ -55,14 +56,14 @@ public class PluginPacker {
 		}
 		
 		for (File file : resources) {
-			Main.debug("Writing resource " + file.getName() + " from " + file.getAbsolutePath());
+			Logger.log("Writing resource " + file.getName() + " from " + file.getAbsolutePath());
 			fis = new FileInputStream(file);
 			zos.putNextEntry(new ZipEntry(file.getName()));
 			copy(fis, zos);
 			fis.close();
 		}
 		
-		Main.debug("Writing plugin icon file icon.png...");
+		Logger.log("Writing plugin icon file icon.png...");
 		fis = new FileInputStream(icon);
 		zos.putNextEntry(new ZipEntry("icon.png"));
 		copy(fis, zos);
@@ -72,7 +73,7 @@ public class PluginPacker {
 		
 		long end = System.currentTimeMillis();
 		
-		Main.debug("Done packing plugin... Took " + (end - start) + " ms");
+		Logger.log("Done packing plugin... Took " + (end - start) + " ms");
 	}
 	
 	private void copy(InputStream input, OutputStream output) throws Exception {
