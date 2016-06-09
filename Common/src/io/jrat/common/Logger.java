@@ -1,11 +1,24 @@
 package io.jrat.common;
 
+import java.io.PrintStream;
 import java.util.Date;
 
 @SuppressWarnings("deprecation")
 public class Logger {
 
 	public static void log(Object obj) {
+		print("LOG", obj, System.out);
+	}
+
+	public static void warn(Object obj) {
+		print("WARNING", obj, System.out);
+	}
+
+	public static void err(Object obj) {
+		print("ERROR", obj, System.err);
+	}
+
+	public static void print(String type, Object obj, PrintStream stream) {
 		Date date = new Date(System.currentTimeMillis());
 		
 		String hours = (date.getHours() + "").length() == 1 ? "0" + date.getHours() : Integer.toString(date.getHours());
@@ -14,8 +27,8 @@ public class Logger {
 		
 		String time = hours + ":" + minutes + ":" + seconds;
 		
-		String s = "[" + time + "] [LOG]: " + obj.toString();
+		String s = "[" + time + "] [" + type + "]: " + obj.toString();
 		
-		System.out.println(s);
+		stream.println(s);
 	}
 }
