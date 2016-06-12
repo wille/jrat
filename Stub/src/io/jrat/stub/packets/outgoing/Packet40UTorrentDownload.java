@@ -19,7 +19,7 @@ public class Packet40UTorrentDownload extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 40;
 	}
 

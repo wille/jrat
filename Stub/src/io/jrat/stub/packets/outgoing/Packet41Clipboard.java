@@ -15,7 +15,7 @@ public class Packet41Clipboard extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 41;
 	}
 

@@ -19,7 +19,7 @@ public class Packet60Error extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 60;
 	}
 

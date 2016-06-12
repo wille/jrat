@@ -214,7 +214,7 @@ public class Main {
 
 		return null;
 	}
-	
+
 	/**
 	 * @return the window title to show
 	 */

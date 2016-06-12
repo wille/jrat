@@ -19,7 +19,7 @@ public class Packet65ErrorLog extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 65;
 	}
 

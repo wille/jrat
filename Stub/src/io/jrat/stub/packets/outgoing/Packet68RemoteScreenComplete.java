@@ -22,7 +22,7 @@ public class Packet68RemoteScreenComplete extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return (byte) 68;
 	}
 }

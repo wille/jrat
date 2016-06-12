@@ -22,7 +22,7 @@ public class Packet27URLStatus extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 27;
 	}
 

@@ -14,7 +14,7 @@ public class Packet6InitVersion extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return (byte) 6;
 	}
 

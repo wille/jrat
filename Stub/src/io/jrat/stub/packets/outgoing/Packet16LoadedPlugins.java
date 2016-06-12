@@ -18,7 +18,7 @@ public class Packet16LoadedPlugins extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 16;
 	}
 

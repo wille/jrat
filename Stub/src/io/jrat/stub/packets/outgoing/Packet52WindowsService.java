@@ -19,7 +19,7 @@ public class Packet52WindowsService extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 52;
 	}
 

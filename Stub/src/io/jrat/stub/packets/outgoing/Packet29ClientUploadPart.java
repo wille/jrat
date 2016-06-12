@@ -26,7 +26,7 @@ public class Packet29ClientUploadPart extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return (byte) 29;
 	}
 

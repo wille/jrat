@@ -39,7 +39,7 @@ public class Packet22ListFiles extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 22;
 	}
 

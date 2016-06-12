@@ -38,7 +38,7 @@ public class Packet26RemoteScreen extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 26;
 	}
 

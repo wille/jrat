@@ -30,7 +30,7 @@ public class Packet56NetworkAdapter extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 56;
 	}
 

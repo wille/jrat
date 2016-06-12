@@ -20,7 +20,7 @@ public class Packet30BeginClientUpload extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return (byte) 30;
 	}
 

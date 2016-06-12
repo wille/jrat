@@ -19,7 +19,7 @@ public class Packet50IPConfig extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 50;
 	}
 

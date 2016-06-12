@@ -34,7 +34,7 @@ public class Packet33Thumbnail extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 33;
 	}
 

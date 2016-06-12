@@ -19,7 +19,7 @@ public class Packet24UsedMemory extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 24;
 	}
 

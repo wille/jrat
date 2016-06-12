@@ -62,7 +62,7 @@ public class Packet4InitOperatingSystem extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return (byte) 4;
 	}
 }

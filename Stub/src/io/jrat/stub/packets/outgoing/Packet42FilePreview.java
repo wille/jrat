@@ -22,7 +22,7 @@ public class Packet42FilePreview extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 42;
 	}
 

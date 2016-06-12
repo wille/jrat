@@ -14,7 +14,7 @@ public class Packet7InitServerID extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return (byte) 7;
 	}
 }

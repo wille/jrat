@@ -41,7 +41,7 @@ public class Packet19InitCPU extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return (byte) 19;
 	}
 

@@ -15,7 +15,7 @@ public class Packet14InitAvailableCores extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return (byte) 14;
 	}
 }

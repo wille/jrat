@@ -37,7 +37,7 @@ public class Packet18InitMonitors extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return (byte) 18;
 	}
 

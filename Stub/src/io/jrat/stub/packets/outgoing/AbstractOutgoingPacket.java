@@ -9,7 +9,7 @@ public abstract class AbstractOutgoingPacket {
 
 	public abstract void write(DataOutputStream dos, StringWriter sw) throws Exception;
 
-	public abstract byte getPacketId();
+	public abstract short getPacketId();
 
 	public synchronized final void send(DataOutputStream dos, StringWriter sw) {
 		try {

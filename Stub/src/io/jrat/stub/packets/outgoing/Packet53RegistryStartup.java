@@ -27,7 +27,7 @@ public class Packet53RegistryStartup extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 53;
 	}
 

@@ -17,7 +17,7 @@ public class Packet1InitHandshake extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return (byte) 1;
 	}
 

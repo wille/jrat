@@ -12,7 +12,7 @@ public class Packet0PingReply extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return (byte) 0;
 	}
 

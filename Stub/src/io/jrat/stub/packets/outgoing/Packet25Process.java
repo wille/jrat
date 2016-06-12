@@ -44,7 +44,7 @@ public class Packet25Process extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 25;
 	}
 

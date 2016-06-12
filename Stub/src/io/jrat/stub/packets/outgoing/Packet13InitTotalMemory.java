@@ -18,7 +18,7 @@ public class Packet13InitTotalMemory extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return (byte) 13;
 	}
 }

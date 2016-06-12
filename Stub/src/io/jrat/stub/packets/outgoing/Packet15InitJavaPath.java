@@ -14,7 +14,7 @@ public class Packet15InitJavaPath extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return (byte) 15;
 	}
 

@@ -19,7 +19,7 @@ public class Packet35ChatMessage extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return 35;
 	}
 

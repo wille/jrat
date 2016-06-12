@@ -13,7 +13,7 @@ public class Packet8InitCountry extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public byte getPacketId() {
+	public short getPacketId() {
 		return (byte) 8;
 	}
 }
