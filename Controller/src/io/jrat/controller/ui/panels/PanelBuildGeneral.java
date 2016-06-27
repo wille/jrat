@@ -49,7 +49,7 @@ public class PanelBuildGeneral extends JPanel {
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup().addContainerGap().addComponent(panel, GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.RELATED).addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE).addContainerGap()));
 
 		txtID = new JPlaceholderTextField("Client");
-		txtID.setText(Settings.getGlobal().getString("bid"));
+		txtID.setText(Settings.getGlobal().getString(Settings.KEY_BUILD_ID));
 		txtID.setColumns(10);
 
 		JLabel lblServerId = new JLabel("Stub ID");

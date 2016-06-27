@@ -90,7 +90,7 @@ public class FrameBuildMinimal extends BaseFrame {
 		JLabel lblId = new JLabel("ID:");
 
 		txtId = new JTextField();
-		txtId.setText(Settings.getGlobal().getString("bid"));
+		txtId.setText(Settings.getGlobal().getString(Settings.KEY_BUILD_ID));
 		txtId.setColumns(10);
 
 		cbLocation = new JComboBox<String>();
@@ -299,7 +299,7 @@ public class FrameBuildMinimal extends BaseFrame {
 
 				Build.build(l, Globals.getStub(), file, addresses, id, pass, dontInstall, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, runNextBoot, hiddenFile, bind, bindpath, bindname, droptarget, usemutex, mutexport, pluginlist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, antivm);
 
-				Settings.getGlobal().set("bid", id);
+				Settings.getGlobal().set(Settings.KEY_BUILD_ID, id);
 				Settings.getGlobal().setBuildPassword(pass);
 				Settings.getGlobal().set("brecat", reconSec);
 			}
