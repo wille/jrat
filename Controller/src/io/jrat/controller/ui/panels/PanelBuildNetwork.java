@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.InetAddress;
+import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -152,12 +153,12 @@ public class PanelBuildNetwork extends JPanel {
 
 		scrollPane.setViewportView(list);
 		setLayout(groupLayout);
-		
-		String[] addresses = (String[]) Settings.getGlobal().get(Settings.KEY_HOSTS);
+
+		Object[] addresses = (Object[]) Settings.getGlobal().get(Settings.KEY_HOSTS);
 		
 		if (addresses != null) {
-			for (String s : addresses) {
-				model.addElement(s);
+			for (Object s : addresses) {
+				model.addElement(s.toString());
 			}
 		}
 	}
