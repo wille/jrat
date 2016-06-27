@@ -2,7 +2,7 @@ package io.jrat.common.downloadable;
 
 import java.io.File;
 
-import com.redpois0n.oslib.OperatingSystem;
+import oslib.OperatingSystem;
 
 
 public class JavaArchive extends Downloadable {

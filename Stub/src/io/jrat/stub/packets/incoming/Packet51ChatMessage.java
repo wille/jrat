@@ -1,9 +1,7 @@
 package io.jrat.stub.packets.incoming;
 
 import io.jrat.stub.Connection;
-
 import java.awt.Color;
-
 import javax.swing.text.AttributeSet;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;

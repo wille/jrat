@@ -5,7 +5,6 @@ import io.jrat.common.io.TransferData;
 import io.jrat.stub.Connection;
 import io.jrat.stub.Plugin;
 import io.jrat.stub.PluginClassLoader;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;

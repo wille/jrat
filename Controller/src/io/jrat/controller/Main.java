@@ -1,6 +1,5 @@
 package io.jrat.controller;
 
-import com.redpois0n.oslib.OperatingSystem;
 import io.jrat.common.Logger;
 import io.jrat.common.Version;
 import io.jrat.common.utils.Utils;
@@ -29,6 +28,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import jrat.api.commands.Commands;
+import oslib.OperatingSystem;
 
 public class Main {
 	

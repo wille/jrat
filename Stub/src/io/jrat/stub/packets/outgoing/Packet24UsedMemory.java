@@ -1,11 +1,9 @@
 package io.jrat.stub.packets.outgoing;
 
+import com.sun.management.OperatingSystemMXBean;
 import io.jrat.common.io.StringWriter;
-
 import java.io.DataOutputStream;
 import java.lang.management.ManagementFactory;
-
-import com.sun.management.OperatingSystemMXBean;
 
 
 public class Packet24UsedMemory extends AbstractOutgoingPacket {

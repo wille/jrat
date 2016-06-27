@@ -16,7 +16,12 @@ import io.jrat.controller.ui.panels.PanelSettingsProxy;
 import io.jrat.controller.ui.panels.PanelSettingsStats;
 import io.jrat.controller.ui.panels.PanelSettingsTheme;
 import io.jrat.controller.ui.renderers.JTreeIconsRenderer;
-
+import java.awt.Color;
+import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -28,12 +33,6 @@ import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
-import java.awt.Color;
-import java.awt.Toolkit;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.util.HashMap;
-import java.util.Map;
 
 @SuppressWarnings("serial")
 public class FrameSettings extends BaseFrame {

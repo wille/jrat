@@ -2,7 +2,6 @@ package io.jrat.stub.packets.incoming;
 
 import io.jrat.stub.Connection;
 import io.jrat.stub.packets.outgoing.Packet45ArchivePreview;
-
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;

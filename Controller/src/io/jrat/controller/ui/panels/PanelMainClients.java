@@ -1,6 +1,5 @@
 package io.jrat.controller.ui.panels;
 
-import com.redpois0n.oslib.OperatingSystem;
 import iconlib.IconUtils;
 import io.jrat.common.downloadable.Downloadable;
 import io.jrat.controller.AbstractSlave;
@@ -51,6 +50,7 @@ import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
 import jrat.api.Client;
 import jrat.api.ui.RATMenuItem;
+import oslib.OperatingSystem;
 
 @SuppressWarnings("serial")
 public abstract class PanelMainClients extends JScrollPane {

@@ -1,7 +1,6 @@
 package io.jrat.stub.modules.startup;
 
 import io.jrat.stub.Connection;
-
 import java.util.Map;
 
 public class ConnectionStarterStartupModule extends StartupModule {

@@ -1,7 +1,6 @@
 package io.jrat.stub.modules.startup;
 
 import io.jrat.stub.Main;
-
 import java.io.File;
 import java.util.Map;
 

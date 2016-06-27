@@ -1,7 +1,6 @@
 package io.jrat.stub;
 
 import io.jrat.stub.packets.outgoing.Packet37SearchResult;
-
 import java.io.File;
 
 

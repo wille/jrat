@@ -2,15 +2,13 @@ package io.jrat.stub;
 
 import io.jrat.common.downloadable.Downloadable;
 import io.jrat.stub.packets.Temp;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Random;
-
-import com.redpois0n.oslib.OperatingSystem;
+import oslib.OperatingSystem;
 
 
 public class Downloader extends Thread {

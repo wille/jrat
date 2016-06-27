@@ -5,7 +5,6 @@ import io.jrat.stub.Connection;
 import io.jrat.stub.Main;
 import io.jrat.stub.packets.outgoing.Packet65ErrorLog;
 import io.jrat.stub.utils.Utils;
-
 import java.io.FileInputStream;
 
 

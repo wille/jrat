@@ -2,11 +2,9 @@ package io.jrat.stub.packets.outgoing;
 
 import io.jrat.common.io.StringWriter;
 import io.jrat.common.utils.ImageUtils;
-
 import java.awt.image.BufferedImage;
 import java.io.DataOutputStream;
 import java.io.File;
-
 import javax.imageio.ImageIO;
 
 public class Packet59ThumbnailPreview extends AbstractOutgoingPacket {

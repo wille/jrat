@@ -2,8 +2,8 @@ package io.jrat.common.script;
 
 import java.io.File;
 
-import com.redpois0n.oslib.OperatingSystem;
-import com.redpois0n.oslib.Shell;
+import oslib.OperatingSystem;
+import oslib.Shell;
 
 public class ShellScript extends AbstractScript {
 	

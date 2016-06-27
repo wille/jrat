@@ -2,11 +2,9 @@ package io.jrat.stub.utils;
 
 import io.jrat.stub.Configuration;
 import io.jrat.stub.Main;
-
 import java.awt.Image;
 import java.awt.SystemTray;
 import java.awt.TrayIcon;
-
 import javax.swing.ImageIcon;
 
 public class TrayIconUtils {

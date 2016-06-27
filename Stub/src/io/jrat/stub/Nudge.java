@@ -1,7 +1,6 @@
 package io.jrat.stub;
 
 import java.util.Random;
-
 import javax.swing.JFrame;
 
 public class Nudge extends Thread {

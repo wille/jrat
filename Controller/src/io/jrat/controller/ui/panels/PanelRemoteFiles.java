@@ -1,12 +1,10 @@
 package io.jrat.controller.ui.panels;
 
-import com.redpois0n.oslib.OperatingSystem;
 import iconlib.FileIconUtils;
 import iconlib.IconUtils;
 import io.jrat.common.io.FileCache;
 import io.jrat.common.io.TransferData;
 import io.jrat.controller.Drive;
-import io.jrat.controller.Main;
 import io.jrat.controller.Slave;
 import io.jrat.controller.io.FileObject;
 import io.jrat.controller.io.FileSystem;
@@ -45,6 +43,7 @@ import javax.swing.JSplitPane;
 import javax.swing.SwingUtilities;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
+import oslib.OperatingSystem;
 
 @SuppressWarnings("serial")
 public class PanelRemoteFiles extends JPanel {

@@ -3,7 +3,6 @@ package io.jrat.stub.packets.incoming;
 import io.jrat.common.PacketRange;
 import io.jrat.stub.Connection;
 import io.jrat.stub.Plugin;
-
 import java.util.HashMap;
 import java.util.Set;
 

@@ -3,7 +3,7 @@ package io.jrat.common.utils;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-import com.redpois0n.oslib.OperatingSystem;
+import oslib.OperatingSystem;
 
 public class UserUtils {
 	

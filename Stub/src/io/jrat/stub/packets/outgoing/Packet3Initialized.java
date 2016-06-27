@@ -1,7 +1,6 @@
 package io.jrat.stub.packets.outgoing;
 
 import io.jrat.common.io.StringWriter;
-
 import java.io.DataOutputStream;
 
 public class Packet3Initialized extends AbstractOutgoingPacket {

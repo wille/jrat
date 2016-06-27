@@ -1,7 +1,6 @@
 package io.jrat.stub.packets.outgoing;
 
 import io.jrat.common.io.StringWriter;
-
 import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;
 import java.io.DataOutputStream;

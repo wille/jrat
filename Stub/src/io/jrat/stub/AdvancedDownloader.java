@@ -2,7 +2,6 @@ package io.jrat.stub;
 
 import io.jrat.common.DropLocations;
 import io.jrat.stub.packets.outgoing.Packet27URLStatus;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;

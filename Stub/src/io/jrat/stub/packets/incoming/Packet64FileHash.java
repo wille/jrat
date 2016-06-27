@@ -4,7 +4,6 @@ import io.jrat.common.hash.Md5;
 import io.jrat.common.hash.Sha1;
 import io.jrat.stub.Connection;
 import io.jrat.stub.packets.outgoing.Packet46FileHash;
-
 import java.io.File;
 
 

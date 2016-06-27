@@ -1,7 +1,6 @@
 package io.jrat.stub;
 
 import io.jrat.stub.utils.Utils;
-
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.lang.reflect.Method;

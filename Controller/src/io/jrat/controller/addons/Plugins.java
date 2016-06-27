@@ -2,7 +2,6 @@ package io.jrat.controller.addons;
 
 import io.jrat.common.Logger;
 import io.jrat.controller.Globals;
-import io.jrat.controller.Main;
 import io.jrat.controller.utils.ClassUtils;
 import java.io.File;
 import java.util.List;

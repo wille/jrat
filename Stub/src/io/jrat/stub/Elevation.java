@@ -1,12 +1,10 @@
 package io.jrat.stub;
 
 import io.jrat.stub.utils.Utils;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
-
-import com.redpois0n.oslib.OperatingSystem;
+import oslib.OperatingSystem;
 
 public class Elevation {
 

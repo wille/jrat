@@ -3,7 +3,6 @@ package io.jrat.stub;
 import io.jrat.common.crypto.Crypto;
 import io.jrat.common.crypto.CryptoUtils;
 import io.jrat.stub.utils.Utils;
-
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -13,7 +12,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.zip.ZipFile;
-
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
 import javax.crypto.spec.IvParameterSpec;

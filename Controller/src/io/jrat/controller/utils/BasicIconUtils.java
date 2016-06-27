@@ -1,12 +1,12 @@
 package io.jrat.controller.utils;
 
-import com.redpois0n.oslib.Icons;
 import iconlib.IconUtils;
 import io.jrat.controller.AbstractSlave;
 import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
+import oslib.Icons;
 
 public class BasicIconUtils {
 

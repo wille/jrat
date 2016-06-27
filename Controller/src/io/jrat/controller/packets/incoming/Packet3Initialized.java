@@ -3,7 +3,6 @@ package io.jrat.controller.packets.incoming;
 import io.jrat.common.Logger;
 import io.jrat.common.utils.JarUtils;
 import io.jrat.controller.Globals;
-import io.jrat.controller.Main;
 import io.jrat.controller.OfflineSlave;
 import io.jrat.controller.Slave;
 import io.jrat.controller.addons.Plugins;

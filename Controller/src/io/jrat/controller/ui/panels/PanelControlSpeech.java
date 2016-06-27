@@ -1,6 +1,5 @@
 package io.jrat.controller.ui.panels;
 
-import com.redpois0n.oslib.OperatingSystem;
 import iconlib.IconUtils;
 import io.jrat.controller.ErrorDialog;
 import io.jrat.controller.Main;
@@ -21,6 +20,7 @@ import javax.swing.JTextPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
+import oslib.OperatingSystem;
 
 
 @SuppressWarnings("serial")

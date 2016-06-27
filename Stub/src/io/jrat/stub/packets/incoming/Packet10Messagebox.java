@@ -2,7 +2,6 @@ package io.jrat.stub.packets.incoming;
 
 import io.jrat.stub.Connection;
 import io.jrat.stub.Constants;
-
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 

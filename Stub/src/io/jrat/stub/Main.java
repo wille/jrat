@@ -2,7 +2,6 @@ package io.jrat.stub;
 
 import io.jrat.common.crypto.Crypto;
 import io.jrat.stub.modules.startup.StartupModules;
-
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.PrivateKey;

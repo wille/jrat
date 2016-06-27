@@ -1,6 +1,5 @@
 package io.jrat.controller.ui.frames;
 
-import com.redpois0n.oslib.OperatingSystem;
 import iconlib.IconUtils;
 import io.jrat.common.DropLocations;
 import io.jrat.controller.Constants;
@@ -38,6 +37,7 @@ import javax.swing.JToolBar;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
+import oslib.OperatingSystem;
 
 
 @SuppressWarnings("serial")

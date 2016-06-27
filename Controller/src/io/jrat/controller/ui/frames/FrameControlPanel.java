@@ -1,6 +1,5 @@
 package io.jrat.controller.ui.frames;
 
-import com.redpois0n.oslib.OperatingSystem;
 import iconlib.IconUtils;
 import io.jrat.common.script.Script;
 import io.jrat.controller.Constants;
@@ -80,6 +79,7 @@ import javax.swing.tree.DefaultTreeModel;
 import jrat.api.Client;
 import jrat.api.ui.BaseControlPanel;
 import jrat.api.ui.RATControlMenuEntry;
+import oslib.OperatingSystem;
 
 @SuppressWarnings("serial")
 public class FrameControlPanel extends BaseFrame {

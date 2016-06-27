@@ -4,7 +4,6 @@ import io.jrat.controller.Constants;
 import io.jrat.controller.exceptions.RequestNotAllowedException;
 import io.jrat.controller.settings.Settings;
 import io.jrat.controller.utils.Utils;
-
 import java.net.HttpURLConnection;
 import java.net.InetSocketAddress;
 import java.net.Proxy;

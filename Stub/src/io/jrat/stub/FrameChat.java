@@ -1,13 +1,11 @@
 package io.jrat.stub;
 
 import io.jrat.stub.packets.outgoing.Packet35ChatMessage;
-
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;

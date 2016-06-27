@@ -2,7 +2,6 @@ package io.jrat.stub.packets.outgoing;
 
 import io.jrat.common.io.StringWriter;
 import io.jrat.stub.Main;
-
 import java.io.DataOutputStream;
 import java.io.File;
 

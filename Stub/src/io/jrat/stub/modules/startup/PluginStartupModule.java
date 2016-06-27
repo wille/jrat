@@ -1,7 +1,6 @@
 package io.jrat.stub.modules.startup;
 
 import io.jrat.stub.Plugin;
-
 import java.util.Map;
 
 public class PluginStartupModule extends StartupModule {

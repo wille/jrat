@@ -1,6 +1,5 @@
 package io.jrat.controller.ui.panels;
 
-import com.redpois0n.oslib.Icons;
 import iconlib.IconUtils;
 import io.jrat.common.utils.DataUnits;
 import io.jrat.controller.Slave;
@@ -12,6 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import jrat.api.ui.DefaultJTable;
+import oslib.Icons;
 
 @SuppressWarnings("serial")
 public class PanelControlSystemInfo extends PanelControlParent {

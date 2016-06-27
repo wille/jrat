@@ -1,7 +1,5 @@
 package io.jrat.controller.settings;
 
-import com.redpois0n.oslib.AbstractOperatingSystem;
-import com.redpois0n.oslib.Icons;
 import graphslib.graph.GraphEntry;
 import iconlib.IconUtils;
 import io.jrat.controller.AbstractSlave;
@@ -16,6 +14,8 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import oslib.AbstractOperatingSystem;
+import oslib.Icons;
 
 public class StatisticsOperatingSystem extends AbstractStorable implements Serializable {
 

