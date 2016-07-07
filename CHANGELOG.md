@@ -1,3 +1,29 @@
+# jRAT 5.3
+
+
+Date:
+
+- Fix OS X El Capitan bug (oslib)
+- Improved logging
+- Settings now saved as JSON in ./settings.json
+- Implement maximum connection limit again (see settings)
+- Passwords are encrypted in settings file
+- Maximum connection attempt delay  is 1 hour instead of 2 minutes
+- Socket storage (.sockets) is now in settings.json
+- LAF classname (.theme) is now in settings.json
+- Column settings (.columns) is now loaded from settings.json
+- --dump-sample-config argument
+- Only install in "/" on -nix if running as root
+- Removed country and version context menu items
+- Shows disconnected clients
+- Boxes client view now shows last seen date
+- Context menu item to remove offline slave
+- Detects KDE Neon, Oracle Linux, Qubes OS
+- Mouse Lock in Remote Desktop (client cannot move cursor)
+
+***
+
+
 # jRAT 5.2.1
 
 
