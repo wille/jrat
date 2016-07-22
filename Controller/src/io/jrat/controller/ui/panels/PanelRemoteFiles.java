@@ -330,6 +330,7 @@ public class PanelRemoteFiles extends JPanel {
 							paths[i] = files.get(i);
 						}
 						parent.getThumbPanel().reload(paths);
+						parent.setTab(parent.getThumbPanel());
 					}
 				}
 			});
