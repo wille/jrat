@@ -135,8 +135,12 @@ public class Main {
 			e.printStackTrace();
 		}
 
-		StatisticsCountry.getGlobal().load();
-
+		try {
+			StatisticsCountry.getGlobal().load();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		headless = argsContains(args, "-h", "--headless") || Utils.isHeadless();
 		
 		if (!headless) {
