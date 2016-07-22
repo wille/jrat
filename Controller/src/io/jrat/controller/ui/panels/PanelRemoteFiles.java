@@ -32,6 +32,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JMenu;
@@ -232,7 +233,19 @@ public class PanelRemoteFiles extends JPanel {
 				}				
 			});
 			toolBar.add(btnDownload, 0);
-			
+
+			JButton btnSearch = new JButton();
+			btnSearch.setIcon(IconUtils.getIcon("search"));
+			btnSearch.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent actionEvent) {
+					parent.getSearchPanel().setSearchRoot(getCurrentDirectory());
+					parent.setTab(parent.getSearchPanel());
+				}
+			});
+
+			toolBar.add(btnSearch, 1);
+
 			JPopupMenu popupMenuRemote = new JPopupMenu();
 			addPopup(popupMenuRemote);
 			

