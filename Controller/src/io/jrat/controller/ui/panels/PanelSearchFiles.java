@@ -187,11 +187,11 @@ public class PanelSearchFiles extends PanelControlParent {
 			public void actionPerformed(ActionEvent arg0) {
 				JButton src = (JButton) arg0.getSource();
 				if (src.getText().equals("Search")) {
-					src.setText("Stop...");
+					src.setText("Stop");
 					sl.addToSendQueue(new Packet53StartSearch(cbDrives.getText(), txt.getText(), tglbtnPathContains.isSelected()));
-				} else if (src.getText().equals("Stop...")) {
+				} else if (src.getText().equals("Stop")) {
 					src.setText("Search");
-					sl.addToSendQueue(new Packet54StopSearch());
+					stop();
 				}
 
 			}
@@ -203,5 +203,9 @@ public class PanelSearchFiles extends PanelControlParent {
 	 */
 	public void setSearchRoot(String searchRoot) {
 		cbDrives.setText(searchRoot);
+	}
+
+	public void stop() {
+		slave.addToSendQueue(new Packet54StopSearch());
 	}
 }
