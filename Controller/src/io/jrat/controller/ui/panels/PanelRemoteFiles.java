@@ -271,8 +271,8 @@ public class PanelRemoteFiles extends JPanel {
 
 			popupMenuRemote.addSeparator();
 
-			JMenuItem mnRoots = new JMenuItem("Roots");
-			mnQuickJump.add(mnRoots);
+			JMenuItem mnDrives = new JMenuItem("Drives");
+			mnQuickJump.add(mnDrives);
 
 			JMenuItem mnAppdata = new JMenuItem("Appdata");
 			mnQuickJump.add(mnAppdata);
@@ -286,7 +286,7 @@ public class PanelRemoteFiles extends JPanel {
 			mnQuickJump.add(mnDesktop);
 			mnDesktop.addActionListener(dir);
 			mnTemp.addActionListener(dir);
-			mnRoots.addActionListener(dir);
+			mnDrives.addActionListener(dir);
 			popupMenuRemote.add(mntmRun);
 
 			JMenuItem mntmPreviewFiletext = new JMenuItem("Preview file (Text, ZIP, Image)");
