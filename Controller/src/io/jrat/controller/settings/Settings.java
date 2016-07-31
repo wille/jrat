@@ -49,7 +49,7 @@ public class Settings extends AbstractStorable {
 
 	private static final Settings instance = new Settings();
 
-	private transient JsonObject settings = new JsonObject();
+	private JsonObject settings = new JsonObject();
 
 	public static Settings getGlobal() {
 		return instance;

@@ -57,7 +57,7 @@ public class FrameBuildMinimal extends BaseFrame {
 
 	public FrameBuildMinimal() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameBuildMinimal.class.getResource("/icons/bug-edit.png")));
-		setTitle("Normal Builder");
+		setTitle("Minimal Builder");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 376, 329);
@@ -85,7 +85,7 @@ public class FrameBuildMinimal extends BaseFrame {
 		txtHost.setColumns(10);
 
 		spPort = new JSpinner();
-		spPort.setModel(new SpinnerNumberModel(Settings.getGlobal().getInt("bport"), 1, 65535, 1));
+		spPort.setModel(new SpinnerNumberModel(1336, 1, 65535, 1));
 
 		JLabel lblId = new JLabel("ID:");
 
