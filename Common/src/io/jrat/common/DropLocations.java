@@ -13,7 +13,8 @@ public class DropLocations {
 	public static final int TEMP = 1; // Documents folder on Nix
 	public static final int APPDATA = 2; // Appdata, Library on OS X and temp on Linux
 	public static final int DESKTOP = 3; // Desktop
-	public static final String[] STRINGS = new String[] { "root/C drive", "temp/documents (UNIX)", "appdata", "desktop" };
+	public static final int HOME = 4;
+	public static final String[] STRINGS = new String[] { "root/C drive", "temp/documents (UNIX)", "appdata", "desktop", "user home" };
 	
 	public static File getFile(int i, String fileName) throws Exception {
 		File file = null;

@@ -6,15 +6,15 @@ import java.io.DataOutputStream;
 
 public class Packet41SpecialDirectory extends AbstractOutgoingPacket {
 
-	private String directory;
+	private int location;
 
-	public Packet41SpecialDirectory(String directory) {
-		this.directory = directory;
+	public Packet41SpecialDirectory(int location) {
+		this.location = location;
 	}
 
 	@Override
 	public void write(Slave slave, DataOutputStream dos) throws Exception {
-		slave.writeLine(directory);
+		slave.writeByte(location);
 	}
 
 	@Override

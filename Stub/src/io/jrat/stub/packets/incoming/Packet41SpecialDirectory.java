@@ -1,5 +1,6 @@
 package io.jrat.stub.packets.incoming;
 
+import io.jrat.common.DropLocations;
 import io.jrat.stub.Connection;
 import io.jrat.stub.packets.outgoing.Packet34CustomDirectory;
 import oslib.OperatingSystem;
@@ -8,22 +9,31 @@ public class Packet41SpecialDirectory extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {
-		String location = con.readLine();
+		int location = con.readByte();
 
 		String ret = null;
 
-		if (location.equals("DESKTOP")) {
-			ret = System.getProperty("user.home") + "/Desktop/";
-		} else if (location.equals("APPDATA")) {
-			if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
-				ret = System.getenv("APPDATA");
-			} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
-				ret = System.getProperty("user.home") + "Library/Application Support/";
-			} else {
+		switch (location) {
+			case DropLocations.DESKTOP:
+				ret = System.getProperty("user.home") + "/Desktop/";
+				break;
+			case DropLocations.APPDATA:
+				if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
+					ret = System.getenv("APPDATA");
+				} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
+					ret = System.getProperty("user.home") + "Library/Application Support/";
+				} else {
+					ret = System.getProperty("java.io.tmpdir");
+				}
+				break;
+			case DropLocations.TEMP:
 				ret = System.getProperty("java.io.tmpdir");
-			}
-		} else if (location.equals("TEMP")) {
-			ret = System.getProperty("java.io.tmpdir");
+				break;
+			case DropLocations.HOME:
+				ret = System.getProperty("user.home");
+				break;
+			default:
+				return;
 		}
 
 		if (ret != null) {

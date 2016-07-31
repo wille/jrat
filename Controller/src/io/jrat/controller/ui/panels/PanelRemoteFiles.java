@@ -2,6 +2,7 @@ package io.jrat.controller.ui.panels;
 
 import iconlib.FileIconUtils;
 import iconlib.IconUtils;
+import io.jrat.common.DropLocations;
 import io.jrat.common.io.FileCache;
 import io.jrat.common.io.TransferData;
 import io.jrat.controller.Drive;
@@ -248,9 +249,7 @@ public class PanelRemoteFiles extends JPanel {
 
 			JPopupMenu popupMenuRemote = new JPopupMenu();
 			addPopup(popupMenuRemote);
-			
-			DirListener dir = new DirListener(slave);			
-					
+
 			JMenuItem mntmRun = new JMenuItem("Run");
 			mntmRun.setIcon(IconUtils.getIcon("execute"));
 			mntmRun.addActionListener(new ActionListener() {
@@ -271,22 +270,26 @@ public class PanelRemoteFiles extends JPanel {
 
 			popupMenuRemote.addSeparator();
 
+			JMenuItem mnUserHome = new JMenuItem("User home");
+			mnQuickJump.add(mnUserHome);
+			mnUserHome.addActionListener(new DirListener(slave, DropLocations.HOME));
+
 			JMenuItem mnDrives = new JMenuItem("Drives");
 			mnQuickJump.add(mnDrives);
+			mnDrives.addActionListener(new DirListener(slave, DropLocations.ROOT));
 
 			JMenuItem mnAppdata = new JMenuItem("Appdata");
 			mnQuickJump.add(mnAppdata);
-			mnAppdata.addActionListener(dir);
+			mnAppdata.addActionListener(new DirListener(slave, DropLocations.APPDATA));
 
 			JMenuItem mnTemp = new JMenuItem("Temp");
 			mnQuickJump.add(mnTemp);
-
+			mnTemp.addActionListener(new DirListener(slave, DropLocations.TEMP));
 
 			JMenuItem mnDesktop = new JMenuItem("Desktop");
 			mnQuickJump.add(mnDesktop);
-			mnDesktop.addActionListener(dir);
-			mnTemp.addActionListener(dir);
-			mnDrives.addActionListener(dir);
+			mnDesktop.addActionListener(new DirListener(slave, DropLocations.DESKTOP));
+
 			popupMenuRemote.add(mntmRun);
 
 			JMenuItem mntmPreviewFiletext = new JMenuItem("Preview file (Text, ZIP, Image)");

