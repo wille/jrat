@@ -62,7 +62,7 @@ public class IncomingPackets {
 		PACKETS_INCOMING.put((short) 37, Packet37SearchResult.class);
 		PACKETS_INCOMING.put((short) 38, Packet38HostFile.class);
 		PACKETS_INCOMING.put((short) 39, Packet39HostEditResult.class);
-		PACKETS_INCOMING.put((short) 40, Packet40UTorrentDownload.class);
+		// 40
 		PACKETS_INCOMING.put((short) 41, Packet41Clipboard.class);
 		PACKETS_INCOMING.put((short) 42, Packet42PreviewFile.class);
 		PACKETS_INCOMING.put((short) 43, Packet43PreviewImage.class);

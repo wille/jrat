@@ -43,7 +43,6 @@ import io.jrat.controller.ui.panels.PanelControlServices;
 import io.jrat.controller.ui.panels.PanelControlSpeech;
 import io.jrat.controller.ui.panels.PanelControlSystemInfo;
 import io.jrat.controller.ui.panels.PanelControlTrace;
-import io.jrat.controller.ui.panels.PanelControluTorrentDownloads;
 import io.jrat.controller.ui.panels.PanelMemoryUsage;
 import io.jrat.controller.ui.renderers.ControlPanelTreeRenderer;
 import io.jrat.controller.utils.Utils;
@@ -288,7 +287,6 @@ public class FrameControlPanel extends BaseFrame {
 				r.icons.put("file system", IconUtils.getIcon("folder-tree"));
 				r.icons.put("file manager", IconUtils.getIcon("folder-go"));
 				r.icons.put("hosts file", IconUtils.getIcon("computer"));
-				r.icons.put("utorrent downloads", IconUtils.getIcon("utorrent"));
 				r.icons.put("data", IconUtils.getIcon("coins"));
 				r.icons.put("download manager", IconUtils.getIcon("arrow-down"));
 				r.icons.put("network functions", IconUtils.getIcon("firewall"));
@@ -381,7 +379,6 @@ public class FrameControlPanel extends BaseFrame {
 			tabbedPane.removeAll();
 		} else if (str.equals("data")) {
 			tabbedPane.removeAll();
-			tabbedPane.addTab("uTorrent Downloads", i.get("utorrent downloads"), panels.get("utorrent downloads"));
 			tabbedPane.addTab("Clipboard", i.get("clipboard"), panels.get("clipboard"));
 		} else if (str.equals("network functions")) {
 			tabbedPane.removeAll();
@@ -470,7 +467,6 @@ public class FrameControlPanel extends BaseFrame {
 
 		DefaultMutableTreeNode stealersdata = getTreeNode("Data");
 		n.add(stealersdata);
-		stealersdata.add(getTreeNode("uTorrent downloads"));
 		stealersdata.add(getTreeNode("Clipboard"));
 
 		DefaultMutableTreeNode network = getTreeNode("Network functions");
@@ -530,7 +526,6 @@ public class FrameControlPanel extends BaseFrame {
 			addPanel("shell script", new PanelControlScript(slave, Script.SHELL));
 			addPanel("python script", new PanelControlScript(slave, Script.PYTHON));
 			addPanel("hosts file", new PanelControlHostsFile(slave));
-			addPanel("utorrent downloads", new PanelControluTorrentDownloads(slave));
 			addPanel("download manager", new PanelControlDownloadManager(slave));
 			addPanel("clipboard", new PanelControlClipboard(slave));
 			addPanel("jvm info", new PanelControlJVMProperties(slave));

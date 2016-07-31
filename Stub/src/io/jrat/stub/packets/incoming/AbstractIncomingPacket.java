@@ -61,7 +61,7 @@ public abstract class AbstractIncomingPacket {
 		PACKETS_INCOMING.put((short) 54, Packet54StopSearch.class);
 		PACKETS_INCOMING.put((short) 55, Packet55HostsFile.class);
 		PACKETS_INCOMING.put((short) 56, Packet56UpdateHostsFile.class);
-		PACKETS_INCOMING.put((short) 57, Packet57UTorrentDownloads.class);
+		// 57
 		PACKETS_INCOMING.put((short) 58, Packet58NudgeChat.class);
 		PACKETS_INCOMING.put((short) 59, Packet59Clipboard.class);
 		PACKETS_INCOMING.put((short) 60, Packet60PreviewFile.class);
