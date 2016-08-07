@@ -66,7 +66,7 @@ public class PanelSettingsProxy extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					Proxy proxy = new Proxy(useSocks() ? Proxy.Type.SOCKS : Proxy.Type.HTTP, new InetSocketAddress(getHost(), getPort()));
-					URLConnection connection = new URL(Constants.HOST + "/misc/getip.php").openConnection(proxy);
+					URLConnection connection = new URL(Constants.HOST + "/getip.php").openConnection(proxy);
 
 					String ip = new BufferedReader(new InputStreamReader(connection.getInputStream())).readLine();
 
