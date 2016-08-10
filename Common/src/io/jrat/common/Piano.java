@@ -1,4 +1,4 @@
-package io.jrat.controller;
+package io.jrat.common;
 
 import javax.sound.sampled.SourceDataLine;
 
