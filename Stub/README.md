@@ -28,3 +28,9 @@ Refer to [startuplib](https://github.com/redpois0n/startuplib)
 - [Commons](../Commons/)
 - [oslib](https://github.com/redpois0n/oslib)
 - [startuplib](https://github.com/redpois0n/startuplib)
+
+## Tests
+
+### injectiontest
+
+Simple module that will create a file named `injected` in the working directory once executed
