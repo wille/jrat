@@ -79,19 +79,4 @@ public class Injector {
 	public static String getClassName(String fileName) {
 		return fileName.substring(0, fileName.length() - 6).replace('/', '.');
 	}
-
-	public static byte[] fromInputStream(InputStream stream, int size) throws Exception {
-		byte[] buffer = new byte[1024];
-		int count = 0;
-		
-		ByteArrayOutputStream out = new ByteArrayOutputStream(size == -1 ? 1024 : size);
-
-		while ((count = stream.read(buffer)) != -1) {
-			out.write(buffer, 0, count);
-		}
-
-		out.close();
-		
-		return out.toByteArray();
-	}
 }
