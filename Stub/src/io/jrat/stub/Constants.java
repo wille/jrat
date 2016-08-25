@@ -14,16 +14,4 @@ public class Constants {
 	public static final int STATUS_STARTING_SHUTDOWN = 8;
 	public static final int STATUS_RAN_CMD = 9;
 	public static final int STATUS_MKDIR = 10;
-
-	public static final int OS_WIN = 0;
-	public static final int OS_MAC = 1;
-	public static final int OS_LIN = 2;
-
-	public static final int HTTP_GET = 0;
-	public static final int HTTP_POST = 1;
-	public static final int HTTP_HEAD = 2;
-
-	public static boolean flooding = false;
-
-	public static final List<String> keys = new ArrayList<String>();
 }
