@@ -211,7 +211,7 @@ public class Settings extends AbstractStorable {
 	}
 
 	public void loadSockets() {
-		Map<String, Map<String, Object>> sockets = (HashMap<String, Map<String, Object>>) Settings.getGlobal().get("sockets");
+		Map<String, Map<String, Object>> sockets = (HashMap<String, Map<String, Object>>) Settings.getGlobal().get(KEY_SOCKETS);
 
 		for (String key : sockets.keySet()) {
 			try {
