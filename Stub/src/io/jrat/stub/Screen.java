@@ -42,19 +42,6 @@ public class Screen extends Thread {
 		this.rows = rows;
 	}
 
-	public static int calculateSum(BufferedImage image) {
-		int[] pixels = image.getRaster().getPixels(0, 0, image.getWidth(), image.getHeight(), new int[image.getWidth() * image.getHeight() * 3]);
-		int sum = 0;
-		for (int x = 0; x < image.getWidth(); x += 16) {
-			for (int y = 0; y < image.getHeight(); y += 16) {
-				sum += pixels[(y * image.getWidth() + x) * 3 + 0];
-				sum += pixels[(y * image.getWidth() + x) * 3 + 1];
-				sum += pixels[(y * image.getWidth() + x) * 3 + 2];
-			}
-		}
-		return sum;
-	}
-
 	@Override
 	public void run() {
 		try {
