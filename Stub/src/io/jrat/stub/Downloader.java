@@ -1,5 +1,6 @@
 package io.jrat.stub;
 
+import io.jrat.common.Constants;
 import io.jrat.common.downloadable.Downloadable;
 import io.jrat.stub.packets.Temp;
 import java.io.File;

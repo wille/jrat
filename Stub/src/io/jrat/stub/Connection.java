@@ -1,6 +1,7 @@
 package io.jrat.stub;
 
 import io.jrat.common.ConnectionCodes;
+import io.jrat.common.Constants;
 import io.jrat.common.Logger;
 import io.jrat.common.Version;
 import io.jrat.common.crypto.Crypto;

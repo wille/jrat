@@ -1,7 +1,7 @@
 package io.jrat.stub.packets.incoming;
 
 import io.jrat.stub.Connection;
-import io.jrat.stub.Constants;
+import io.jrat.common.Constants;
 import java.io.File;
 
 
