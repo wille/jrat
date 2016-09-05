@@ -1,8 +1,5 @@
 package io.jrat.stub;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Constants {
 
 	public static final int STATUS_EXECUTED_FILE = 2;
