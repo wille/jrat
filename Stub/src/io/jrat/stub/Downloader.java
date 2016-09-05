@@ -87,6 +87,7 @@ public class Downloader extends Thread {
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
+			con.status(Constants.STATUS_FAILED_FILE);
 		}
 	}
 
