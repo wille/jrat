@@ -55,7 +55,7 @@ public class InstallerStartupModule extends StartupModule {
 				
 				File file = DropLocations.getFile(dropLocation, fileName);
 
-				if (file.getParentFile() != null && !file.getParentFile().exists()) {
+				if (file != null && file.getParentFile() != null && !file.getParentFile().exists()) {
 					file.getParentFile().mkdirs();
 				}
 				

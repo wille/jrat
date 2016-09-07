@@ -45,6 +45,8 @@ public class DropLocations {
 			}
 		} else if (i == DESKTOP) {
 			file = new File(System.getProperty("user.home") + "/Desktop/" + fileName);
+		} else if (i == HOME) {
+			file = new File(System.getProperty("user.home") + File.separator + fileName);
 		}
 		
 		return file;
