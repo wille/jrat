@@ -80,6 +80,10 @@ public class PanelControlMessagebox extends PanelControlParent {
 		btnSend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				sl.addToSendQueue(new Packet10Messagebox(chckbxSetSystemFeel.isSelected(), getIcon(), txtTitle.getText(), txtMsg.getText()));
+				
+				if (chckbxSetSystemFeel.isSelected()) {
+					chckbxSetSystemFeel.setEnabled(false);
+				}
 			}
 		});
 		btnSend.setIcon(IconUtils.getIcon("arrow-right"));
@@ -92,7 +96,7 @@ public class PanelControlMessagebox extends PanelControlParent {
 			}
 		});
 
-		chckbxSetSystemFeel = new JCheckBox("Set system feel");
+		chckbxSetSystemFeel = new JCheckBox("Set system theme");
 		chckbxSetSystemFeel.setToolTipText("Sets the default system look and feel and not the default java");
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(gl_panel_1.createParallelGroup(Alignment.LEADING).addGroup(gl_panel_1.createSequentialGroup().addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING).addGroup(gl_panel_1.createSequentialGroup().addContainerGap().addComponent(lblTitle).addPreferredGap(ComponentPlacement.RELATED).addComponent(txtTitle, GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)).addGroup(gl_panel_1.createSequentialGroup().addGap(11).addComponent(lblMsg).addPreferredGap(ComponentPlacement.RELATED).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 277, GroupLayout.PREFERRED_SIZE)).addGroup(gl_panel_1.createSequentialGroup().addContainerGap().addComponent(chckbxSetSystemFeel).addGap(18).addComponent(btnTest).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnSend))).addContainerGap()));
