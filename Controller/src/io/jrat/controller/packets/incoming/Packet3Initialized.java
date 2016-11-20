@@ -14,7 +14,7 @@ import io.jrat.controller.packets.outgoing.Packet106ServerUploadPlugin;
 import io.jrat.controller.settings.Settings;
 import io.jrat.controller.settings.StatisticsOperatingSystem;
 import io.jrat.controller.settings.StoreOfflineSlaves;
-import io.jrat.controller.threads.UploadThread;
+import io.jrat.controller.threads.ThreadUploadFile;
 import java.io.DataInputStream;
 import java.io.File;
 import java.util.ArrayList;
@@ -63,7 +63,7 @@ public class Packet3Initialized extends AbstractIncomingPacket {
 						
 						Logger.log("Transferring " + plugin.getName());
 
-						slave.addToSendQueue(new Packet106ServerUploadPlugin(stubFile, plugin.getName(), new UploadThread(null, plugin.getName(), stubFile) {
+						slave.addToSendQueue(new Packet106ServerUploadPlugin(stubFile, plugin.getName(), new ThreadUploadFile(null, plugin.getName(), stubFile) {
 							@Override
 							public void onComplete() {
 								String mainClass = null;

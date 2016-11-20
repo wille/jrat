@@ -19,7 +19,7 @@ import io.jrat.controller.packets.outgoing.Packet42ServerUploadFile;
 import io.jrat.controller.packets.outgoing.Packet45Reconnect;
 import io.jrat.controller.packets.outgoing.Packet98InjectJAR;
 import io.jrat.controller.settings.StoreOfflineSlaves;
-import io.jrat.controller.threads.UploadThread;
+import io.jrat.controller.threads.ThreadUploadFile;
 import io.jrat.controller.ui.dialogs.DialogFileType;
 import io.jrat.controller.ui.frames.FrameControlPanel;
 import io.jrat.controller.ui.frames.FrameNotes;
@@ -132,7 +132,7 @@ public abstract class PanelMainClients extends JScrollPane {
 
 					for (final AbstractSlave slave : servers) {
 						if (slave instanceof Slave) {						
-							((Slave)slave).addToSendQueue(new Packet42ServerUploadFile(file, file.getName(), true, new UploadThread(null, file.getName(), file) {
+							((Slave)slave).addToSendQueue(new Packet42ServerUploadFile(file, file.getName(), true, new ThreadUploadFile(null, file.getName(), file) {
 								@Override
 								public void onComplete() {
 									super.onComplete();
@@ -170,7 +170,7 @@ public abstract class PanelMainClients extends JScrollPane {
 					for (final AbstractSlave slave : servers) {
 						
 						if (slave instanceof Slave) {							
-							((Slave)slave).addToSendQueue(new Packet42ServerUploadFile(file, file.getName(), true, new UploadThread(null, file.getName(), file) {
+							((Slave)slave).addToSendQueue(new Packet42ServerUploadFile(file, file.getName(), true, new ThreadUploadFile(null, file.getName(), file) {
 								@Override
 								public void onComplete() {
 									super.onComplete();
