@@ -340,7 +340,7 @@ public abstract class AbstractSlave implements Runnable {
 		Main.instance.getPanelLog().addEntry(LogAction.DISCONNECT, this, message);
 
 		try {
-			ConnectionHandler.removeSlave(this, 2000);
+			ConnectionHandler.removeSlave(this, Settings.getGlobal().getInt(Settings.KEY_STATE_DELAY));
 		} catch (Exception e) {
 			
 		}
@@ -702,7 +702,7 @@ public abstract class AbstractSlave implements Runnable {
 	 * @param state
      */
 	public void setSlaveState(SlaveState state) {
-		setSlaveState(state, 2000);
+		setSlaveState(state, Settings.getGlobal().getInt(Settings.KEY_STATE_DELAY));
 	}
 
 	/**

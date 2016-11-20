@@ -46,6 +46,7 @@ public class Settings extends AbstractStorable {
 	public static final String KEY_COLUMNS = "columns";
 	public static final String KEY_SOCKETS = "sockets";
 	public static final String KEY_HAS_SHOWN_EULA = "eula_shown";
+	public static final String KEY_STATE_DELAY = "state_delay";
 
 	private static final Settings instance = new Settings();
 
@@ -203,6 +204,7 @@ public class Settings extends AbstractStorable {
 		settings.put(KEY_SOCKETS, new HashMap());
 
 		settings.put(KEY_LAF, null);
+		settings.put(KEY_STATE_DELAY, 2000);
 	}
 
 	@Override

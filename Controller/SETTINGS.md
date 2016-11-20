@@ -54,7 +54,8 @@ Do not modify these if you don't know what you're doing.
     }
   },
   "theme":null,
-  "eula_shown":false
+  "eula_shown":false,
+  "state_delay":2000
 }
 ```
 
