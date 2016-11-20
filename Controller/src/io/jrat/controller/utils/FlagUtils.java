@@ -116,7 +116,7 @@ public class FlagUtils {
 		COUNTRIES.put("GY", "Guyana");
 		COUNTRIES.put("HT", "Haiti");
 		COUNTRIES.put("HM", "Heard and McDonald Islands");
-		COUNTRIES.put("VA", "Holy See (Vatican City State)");
+		COUNTRIES.put("VA", "Holy See (Vatican City)");
 		COUNTRIES.put("HN", "Honduras");
 		COUNTRIES.put("HK", "Hong Kong");
 		COUNTRIES.put("HU", "Hungary");
