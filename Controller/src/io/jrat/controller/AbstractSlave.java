@@ -26,6 +26,8 @@ import java.io.DataOutputStream;
 import java.net.Socket;
 import java.security.PublicKey;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
 import javax.crypto.CipherOutputStream;
@@ -208,6 +210,11 @@ public abstract class AbstractSlave implements Runnable {
 	 */
 	protected long totalOut;
 
+	/**
+	 * Connection slaveState
+	*/
+	protected SlaveState slaveState = SlaveState.DEFAULT;
+
 	public AbstractSlave(ServerListener connection, Socket socket) {		
 		if (connection != null && socket != null) {
 			this.connection = connection;
@@ -219,6 +226,8 @@ public abstract class AbstractSlave implements Runnable {
 	}
 
 	public void initialize() throws Exception {
+		setSlaveState(SlaveState.CONNECTED);
+
 		this.inputStream = new CountingInputStream(socket.getInputStream());
 		this.outputStream = new CountingOutputStream(socket.getOutputStream());
 
@@ -324,12 +333,14 @@ public abstract class AbstractSlave implements Runnable {
 	 * @param ex Reason for disconnection
 	 */
 	public void disconnect(Exception ex) {
+		setSlaveState(SlaveState.DISCONNECTED);
+
 		String message = ex.getClass().getSimpleName() + ": " + ex.getMessage();
 
 		Main.instance.getPanelLog().addEntry(LogAction.DISCONNECT, this, message);
 
 		try {
-			ConnectionHandler.removeSlave(this, ex);
+			ConnectionHandler.removeSlave(this, 2000);
 		} catch (Exception e) {
 			
 		}
@@ -684,6 +695,45 @@ public abstract class AbstractSlave implements Runnable {
 	 */
 	public void increaseTotalOut(long out) {
 		this.totalOut += out;
+	}
+
+	/**
+	 * Set slave state with default delay
+	 * @param state
+     */
+	public void setSlaveState(SlaveState state) {
+		setSlaveState(state, 2000);
+	}
+
+	/**
+	 * Set slave state
+	 * @param slaveState
+	 * @param delay time to be active in milliseconds
+     */
+	public void setSlaveState(SlaveState slaveState, int delay) {
+		this.slaveState = slaveState;
+		this.update();
+		new Timer().schedule(new TimerTask() {
+			@Override
+			public void run() {
+				AbstractSlave.this.clearState();
+			}
+		}, delay);
+	}
+
+	/**
+	 * @return current slave state
+     */
+	public SlaveState getSlaveState() {
+		return this.slaveState;
+	}
+
+	/**
+	 * Sets state to DEFAULT
+	 */
+	public void clearState() {
+		this.slaveState = SlaveState.DEFAULT;
+		this.update();
 	}
 
 	/**

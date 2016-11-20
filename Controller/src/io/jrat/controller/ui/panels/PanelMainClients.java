@@ -33,6 +33,7 @@ import io.jrat.controller.ui.frames.FrameRename;
 import io.jrat.controller.ui.frames.FrameSystemInfo;
 import io.jrat.controller.utils.NetUtils;
 import io.jrat.controller.utils.Utils;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

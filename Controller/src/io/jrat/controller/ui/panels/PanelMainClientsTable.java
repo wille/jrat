@@ -3,11 +3,7 @@ package io.jrat.controller.ui.panels;
 import iconlib.IconUtils;
 import io.jrat.common.Version;
 import io.jrat.common.utils.DataUnits;
-import io.jrat.controller.AbstractSlave;
-import io.jrat.controller.Main;
-import io.jrat.controller.OfflineSlave;
-import io.jrat.controller.Slave;
-import io.jrat.controller.Status;
+import io.jrat.controller.*;
 import io.jrat.controller.packets.outgoing.Packet40Thumbnail;
 import io.jrat.controller.settings.Settings;
 import io.jrat.controller.ui.Columns;
@@ -216,6 +212,13 @@ public class PanelMainClientsTable extends PanelMainClients {
 				String colname = table.getColumnName(column);
 				
 				label.setIcon(null);
+
+				switch (slave.getSlaveState()) {
+					case DEFAULT:
+						break;
+					default:
+						label.setBackground(slave.getSlaveState().getColor());
+				}
 				
 				if (!offline && colname.equals(Columns.COUNTRY.getName()) && showThumbnails) {
 					if (slave.getThumbnail() == null) {

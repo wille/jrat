@@ -97,7 +97,7 @@ public class AndroidSlave extends AbstractSlave {
 			}
 
 			try {
-				ConnectionHandler.removeSlave(this, ex);
+				ConnectionHandler.removeSlave(this, 0);
 			} catch (Exception e) {
 			}
 
