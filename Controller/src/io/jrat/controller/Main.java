@@ -8,11 +8,7 @@ import io.jrat.controller.commands.DefaultCommands;
 import io.jrat.controller.settings.AbstractStorable;
 import io.jrat.controller.settings.Settings;
 import io.jrat.controller.settings.StatisticsCountry;
-import io.jrat.controller.threads.NetworkCounter;
-import io.jrat.controller.threads.RunnableCheckPlugins;
-import io.jrat.controller.threads.ThreadCheckVersion;
-import io.jrat.controller.threads.ThreadPing;
-import io.jrat.controller.threads.ThreadTransferSpeed;
+import io.jrat.controller.threads.*;
 import io.jrat.controller.ui.dialogs.DialogEula;
 import io.jrat.controller.ui.frames.Frame;
 import io.jrat.controller.utils.IOUtils;
@@ -168,7 +164,7 @@ public class Main {
 		new Thread(new RunnableCheckPlugins()).start();
 		new ThreadPing().start();
 		new ThreadTransferSpeed().start();
-
+		new ThreadSaveCycle().start();
 
 		Logger.log("Loading tray icon...");
 		TrayIconUtils.initialize();
