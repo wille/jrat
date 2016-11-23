@@ -15,7 +15,11 @@ public class ShutdownHook implements Runnable {
 		
 		OnDisableEvent event = new OnDisableEvent();
 		for (Event e : Event.getHandler().getEvents(EventType.EVENT_PLUGIN_DISABLE)) {
-			e.perform(event);
+			try {
+				e.perform(event);
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
 		}
 
 		AbstractStorable.saveAllGlobals();
