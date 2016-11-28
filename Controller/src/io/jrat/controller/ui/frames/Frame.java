@@ -198,28 +198,15 @@ public class Frame extends BaseFrame {
 		});
 		mntmGenerateKey.setIcon(IconUtils.getIcon("key-plus"));
 
-		JMenu mnHelp = new JMenu("Help");
-		mnMain.add(mnHelp);
-
-		JMenuItem mntmEulamustRead = new JMenuItem("EULA (Must read)");
-		mnHelp.add(mntmEulamustRead);
-		mntmEulamustRead.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				DialogEula frame = new DialogEula(true);
-				frame.setVisible(true);
+		JMenuItem mntmHelp = new JMenuItem("Help");
+		mntmHelp.setIcon(IconUtils.getIcon("info-button"));
+		mntmHelp.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				NetUtils.openUrl(Constants.HOST + "/docs.php");
 			}
 		});
-		mntmEulamustRead.setIcon(IconUtils.getIcon("gavel"));
-
-		JMenuItem mntmAProblemShow = new JMenuItem("A problem? Show help");
-		mnHelp.add(mntmAProblemShow);
-		mntmAProblemShow.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				FrameHelp frame = new FrameHelp();
-				frame.setVisible(true);
-			}
-		});
-		mntmAProblemShow.setIcon(IconUtils.getIcon("info-button"));
+		mnMain.add(mntmHelp);
 
 		JMenuItem mntmTwitter = new JMenuItem("Twitter");
 		mntmTwitter.addActionListener(new ActionListener() {
