@@ -269,23 +269,30 @@ public abstract class AbstractSlave implements Runnable {
         KeyGenerator keyGen = KeyGenerator.getInstance("AES");
         keyGen.init(128);
         SecretKey secretKey = keyGen.generateKey();
+		key = secretKey.getEncoded();
 
-        IvParameterSpec ivspec = CryptoUtils.getRandomIv();
-        
-        key = secretKey.getEncoded();
-        iv = ivspec.getIV();
+        IvParameterSpec ivSpecIn = CryptoUtils.getRandomIv();
+        IvParameterSpec ivSpecOut = CryptoUtils.getRandomIv();
+
+        byte[] ivIn = ivSpecIn.getIV();
+        byte[] ivOut = ivSpecOut.getIV();
+
         byte[] encryptedKey = Crypto.encrypt(key, rsaKey, "RSA");
-        byte[] encryptedIv = Crypto.encrypt(iv, rsaKey, "RSA");
+        byte[] encryptedIvIn = Crypto.encrypt(ivIn, rsaKey, "RSA");
+        byte[] encryptedIvOut = Crypto.encrypt(ivOut, rsaKey, "RSA");
         dos.writeInt(encryptedKey.length);
-        dos.writeInt(encryptedIv.length);
+        dos.writeInt(encryptedIvIn.length);
+        dos.writeInt(encryptedIvOut.length);
         dos.write(encryptedKey);
-        dos.write(encryptedIv);
-        
-		Logger.log("Encryption key: " + Hex.encode(key));
-		Logger.log("Encryption IV: " + Hex.encode(iv));
+        dos.write(encryptedIvIn);
+        dos.write(encryptedIvOut);
 
-		Cipher inCipher = CryptoUtils.getStreamCipher(Cipher.DECRYPT_MODE, secretKey, ivspec);
-		Cipher outCipher = CryptoUtils.getStreamCipher(Cipher.ENCRYPT_MODE, secretKey, ivspec);
+		Logger.log("Encryption key: " + Hex.encode(key));
+		Logger.log("Encryption IV in: " + Hex.encode(ivIn));
+		Logger.log("Encryption IV out: " + Hex.encode(ivOut));
+
+		Cipher inCipher = CryptoUtils.getStreamCipher(Cipher.DECRYPT_MODE, secretKey, ivSpecIn);
+		Cipher outCipher = CryptoUtils.getStreamCipher(Cipher.ENCRYPT_MODE, secretKey, ivSpecOut);
 		
 		this.dis = new DataInputStream(new CipherInputStream(new CountingInputStream(inputStream), inCipher));
 		this.dos = new DataOutputStream(new CipherOutputStream(new CountingOutputStream(outputStream), outCipher));

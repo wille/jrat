@@ -81,19 +81,28 @@ public class Connection implements Runnable {
 			exchanger.writePublicKey();
 			
 			int keylen = dis.readInt();
-			int ivlen = dis.readInt();
+			int ivlenOut = dis.readInt();
+			int ivlenIn = dis.readInt();
+
 			byte[] encKey = new byte[keylen];
-			byte[] biv = new byte[ivlen];
+			byte[] bivOut = new byte[ivlenOut];
+			byte[] bivIn = new byte[ivlenIn];
 			dis.readFully(encKey);
-			dis.readFully(biv);
+			dis.readFully(bivOut);
+			dis.readFully(bivIn);
+
 			Main.aesKey = Crypto.decrypt(encKey, Main.getKeyPair().getPrivate(), "RSA");
-			biv = Crypto.decrypt(biv, Main.getKeyPair().getPrivate(), "RSA");
-					
+
+			bivOut = Crypto.decrypt(bivOut, Main.getKeyPair().getPrivate(), "RSA");
+			bivIn = Crypto.decrypt(bivIn, Main.getKeyPair().getPrivate(), "RSA");
+
 			SecretKeySpec secretKey = new SecretKeySpec(Main.aesKey, "AES");
-			IvParameterSpec iv = new IvParameterSpec(biv);
-						
-			Cipher inCipher = CryptoUtils.getStreamCipher(Cipher.DECRYPT_MODE, secretKey, iv);
-			Cipher outCipher = CryptoUtils.getStreamCipher(Cipher.ENCRYPT_MODE, secretKey, iv);
+
+			IvParameterSpec ivOut = new IvParameterSpec(bivOut);
+			IvParameterSpec ivIn = new IvParameterSpec(bivIn);
+
+			Cipher inCipher = CryptoUtils.getStreamCipher(Cipher.DECRYPT_MODE, secretKey, ivIn);
+			Cipher outCipher = CryptoUtils.getStreamCipher(Cipher.ENCRYPT_MODE, secretKey, ivOut);
 			
 			this.inputStream = new CipherInputStream(socket.getInputStream(), inCipher);
 			this.outputStream = new CipherOutputStream(socket.getOutputStream(), outCipher);
