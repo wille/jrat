@@ -7,6 +7,6 @@ public final class Version {
 	}
 
 	public static final int getProtocolVersion() {
-		return 5;
+		return 6;
 	}
 }

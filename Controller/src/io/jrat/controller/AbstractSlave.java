@@ -271,6 +271,8 @@ public abstract class AbstractSlave implements Runnable {
         SecretKey secretKey = keyGen.generateKey();
 		key = secretKey.getEncoded();
 
+		boolean multipleIvs = Version.getProtocolVersion() >= 6;
+
         IvParameterSpec ivSpecIn = CryptoUtils.getRandomIv();
         IvParameterSpec ivSpecOut = CryptoUtils.getRandomIv();
 
@@ -280,19 +282,29 @@ public abstract class AbstractSlave implements Runnable {
         byte[] encryptedKey = Crypto.encrypt(key, rsaKey, "RSA");
         byte[] encryptedIvIn = Crypto.encrypt(ivIn, rsaKey, "RSA");
         byte[] encryptedIvOut = Crypto.encrypt(ivOut, rsaKey, "RSA");
+
         dos.writeInt(encryptedKey.length);
         dos.writeInt(encryptedIvIn.length);
-        dos.writeInt(encryptedIvOut.length);
+        if (multipleIvs) {
+            dos.writeInt(encryptedIvOut.length);
+        }
+
         dos.write(encryptedKey);
         dos.write(encryptedIvIn);
-        dos.write(encryptedIvOut);
+
+        if (multipleIvs) {
+            dos.write(encryptedIvOut);
+        }
 
 		Logger.log("Encryption key: " + Hex.encode(key));
 		Logger.log("Encryption IV in: " + Hex.encode(ivIn));
-		Logger.log("Encryption IV out: " + Hex.encode(ivOut));
+
+		if (multipleIvs) {
+            Logger.log("Encryption IV out: " + Hex.encode(ivOut));
+        }
 
 		Cipher inCipher = CryptoUtils.getStreamCipher(Cipher.DECRYPT_MODE, secretKey, ivSpecIn);
-		Cipher outCipher = CryptoUtils.getStreamCipher(Cipher.ENCRYPT_MODE, secretKey, ivSpecOut);
+		Cipher outCipher = CryptoUtils.getStreamCipher(Cipher.ENCRYPT_MODE, secretKey, multipleIvs ? ivSpecOut : ivSpecIn);
 		
 		this.dis = new DataInputStream(new CipherInputStream(new CountingInputStream(inputStream), inCipher));
 		this.dos = new DataOutputStream(new CipherOutputStream(new CountingOutputStream(outputStream), outCipher));
