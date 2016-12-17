@@ -11,7 +11,7 @@ public class Packet29RestartComputer extends AbstractIncomingPacket {
 		try {
 			if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 				Runtime.getRuntime().exec("shutdown.exe -t 0 -r -f");
-			} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
+			} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.MACOS) {
 				Runtime.getRuntime().exec("shutdown -r now");
 			} else {
 				Runtime.getRuntime().exec("reboot");

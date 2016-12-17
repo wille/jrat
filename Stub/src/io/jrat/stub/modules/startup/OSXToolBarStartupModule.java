@@ -10,7 +10,7 @@ public class OSXToolBarStartupModule extends StartupModule {
 	}
 	
 	public void run() throws Exception {
-		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
+		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.MACOS) {
 			System.setProperty("apple.awt.UIElement", "true");
 		}
 	}

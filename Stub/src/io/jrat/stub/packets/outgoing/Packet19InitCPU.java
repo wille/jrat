@@ -17,7 +17,7 @@ public class Packet19InitCPU extends AbstractOutgoingPacket {
 		try {
 			OperatingSystem os = OperatingSystem.getOperatingSystem().getType();
 			
-			if (os == OperatingSystem.OSX) {
+			if (os == OperatingSystem.MACOS) {
 				cpu = Utils.readProcess(new String[] { "sysctl", "-n", "machdep.cpu.brand_string" }).get(0);
 			} else if (os == OperatingSystem.BSD) {
 				cpu = Utils.readProcess(new String[] { "sysctl", "-n", "hw.model" }).get(0);

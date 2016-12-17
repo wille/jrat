@@ -8,7 +8,7 @@ import oslib.DesktopEnvironment;
 import oslib.OperatingSystem;
 import oslib.bsd.BSDOperatingSystem;
 import oslib.linux.LinuxOperatingSystem;
-import oslib.osx.OSXOperatingSystem;
+import oslib.macos.MacOSOperatingSystem;
 
 public class Packet4InitOperatingSystem extends AbstractOutgoingPacket {
 
@@ -44,8 +44,8 @@ public class Packet4InitOperatingSystem extends AbstractOutgoingPacket {
 			if (release != null) {
 				sw.writeLine(release);
 			}
-		} else if (os.getType() == OperatingSystem.OSX) {
-			OSXOperatingSystem oos = (OSXOperatingSystem) os;
+		} else if (os.getType() == OperatingSystem.MACOS) {
+			MacOSOperatingSystem oos = (MacOSOperatingSystem) os;
 			
 			dos.writeBoolean(oos.getVersion() != null);
 			

@@ -38,7 +38,7 @@ public class DropLocations {
 		} else if (i == APPDATA) {
 			if (os.getType() == OperatingSystem.WINDOWS) {
 				file = new File(System.getenv("APPDATA") + "\\" + fileName);
-			} else if (os.getType() == OperatingSystem.OSX) {
+			} else if (os.getType() == OperatingSystem.MACOS) {
 				file = new File(System.getProperty("user.home") + "/Library/" + fileName);
 			} else {
 				file = File.createTempFile(fileName, ext);

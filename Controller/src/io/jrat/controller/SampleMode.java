@@ -12,8 +12,8 @@ import oslib.bsd.BSDOperatingSystem;
 import oslib.bsd.Flavor;
 import oslib.linux.Distro;
 import oslib.linux.LinuxOperatingSystem;
-import oslib.osx.OSXOperatingSystem;
-import oslib.osx.OSXVersion;
+import oslib.macos.MacOSOperatingSystem;
+import oslib.macos.MacOSVersion;
 import oslib.solaris.SolarisOperatingSystem;
 import oslib.windows.WindowsOperatingSystem;
 import oslib.windows.WindowsVersion;
@@ -34,9 +34,9 @@ public class SampleMode {
 			make(country, new WindowsOperatingSystem(wv), stats);
 		}
 
-		for (OSXVersion ov : OSXVersion.values()) {
+		for (MacOSVersion ov : MacOSVersion.values()) {
 			String country = randomCountry();
-			make(country, new OSXOperatingSystem(ov), stats);
+			make(country, new MacOSOperatingSystem(ov), stats);
 		}
 
 		for (Flavor f : Flavor.values()) {

@@ -27,7 +27,7 @@ public final class OSConfig {
 		if (c.isAllowed(OperatingSystem.WINDOWS)) {
 			str += "win ";
 		}
-		if (c.isAllowed(OperatingSystem.OSX)) {
+		if (c.isAllowed(OperatingSystem.MACOS)) {
 			str += "mac ";
 		}
 		if (c.isAllowed(OperatingSystem.LINUX)) {

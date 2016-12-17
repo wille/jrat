@@ -293,7 +293,7 @@ public class FrameBuildMinimal extends BaseFrame {
 				boolean debugmsg = true;
 				OSConfig osconfig = new OSConfig();
 				osconfig.addOS(OperatingSystem.WINDOWS);
-				osconfig.addOS(OperatingSystem.OSX);
+				osconfig.addOS(OperatingSystem.MACOS);
 				osconfig.addOS(OperatingSystem.LINUX);
 				boolean antivm = false;
 

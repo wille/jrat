@@ -42,7 +42,7 @@ public class Packet81InstalledPrograms extends AbstractIncomingPacket {
 					}
 				}
 				reader.close();
-			} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
+			} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.MACOS) {
 				File[] apps = new File("/Applications/").listFiles();
 
 				for (File app : apps) {

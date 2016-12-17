@@ -12,7 +12,7 @@ public class Packet12InitLocalAddress extends AbstractOutgoingPacket {
 	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
 		String address = "Unknown"; 
 		
-		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS || OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
+		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS || OperatingSystem.getOperatingSystem().getType() == OperatingSystem.MACOS) {
 			try {
 				address = InetAddress.getLocalHost().getHostAddress();
 			} catch (Exception e) {

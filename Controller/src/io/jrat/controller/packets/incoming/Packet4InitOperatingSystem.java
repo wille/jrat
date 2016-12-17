@@ -13,8 +13,8 @@ import oslib.bsd.Flavor;
 import oslib.linux.Distro;
 import oslib.linux.DistroSpec;
 import oslib.linux.LinuxOperatingSystem;
-import oslib.osx.OSXOperatingSystem;
-import oslib.osx.OSXVersion;
+import oslib.macos.MacOSOperatingSystem;
+import oslib.macos.MacOSVersion;
 import oslib.solaris.SolarisOperatingSystem;
 import oslib.windows.WindowsOperatingSystem;
 
@@ -61,17 +61,17 @@ public class Packet4InitOperatingSystem extends AbstractIncomingPacket {
 			ds.setRelease(release);
 
 			os = new LinuxOperatingSystem(ds, arch);
-		} else if (type == OperatingSystem.OSX) {
-			OSXVersion version = null;
+		} else if (type == OperatingSystem.MACOS) {
+			MacOSVersion version = null;
 
 			if (dis.readBoolean()) {
 				String display = slave.readLine();
 				String ver = slave.readLine();
 
-				version = OSXVersion.getExact(display, ver);
+				version = MacOSVersion.getExact(display, ver);
 			}
 
-			os = new OSXOperatingSystem(version, arch);
+			os = new MacOSOperatingSystem(version, arch);
 		} else if (type == OperatingSystem.BSD) {
 			String f = slave.readLine();
 

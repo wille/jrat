@@ -440,7 +440,7 @@ public class FrameControlPanel extends BaseFrame {
 		systemfunctions.add(getTreeNode("Remote Process"));
 		systemfunctions.add(getTreeNode("Hosts File"));
 		systemfunctions.add(getTreeNode("Registry", slave.getOperatingSystem().getType() == OperatingSystem.WINDOWS));
-		systemfunctions.add(getTreeNode("Installed Programs", slave.getOperatingSystem().getType() == OperatingSystem.WINDOWS || slave.getOperatingSystem().getType() == OperatingSystem.OSX));
+		systemfunctions.add(getTreeNode("Installed Programs", slave.getOperatingSystem().getType() == OperatingSystem.WINDOWS || slave.getOperatingSystem().getType() == OperatingSystem.MACOS));
 
 		DefaultMutableTreeNode msconfig = getTreeNode("Remote MSConfig");
 		n.add(msconfig);

@@ -31,7 +31,7 @@ public class Packet76Speech extends AbstractIncomingPacket {
 					}
 				}
 			}.start();
-		} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
+		} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.MACOS) {
 			try {
 				Runtime.getRuntime().exec("say " + speech);
 			} catch (Exception ex) {

@@ -17,7 +17,7 @@ public class OperatingSystemCheckStartupModule extends StartupModule {
 
 		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS && allowedOperatingSystems.contains("win")) {
 			shutdown = false;
-		} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX && allowedOperatingSystems.contains("mac")) {
+		} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.MACOS && allowedOperatingSystems.contains("mac")) {
 			shutdown = false;
 		} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.LINUX && allowedOperatingSystems.contains("linux")) {
 			shutdown = false;

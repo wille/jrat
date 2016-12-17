@@ -80,7 +80,7 @@ public class Main {
 
 		hideTitle = argsContains(args, "--hidetitle");
 
-		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.OSX) {
+		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.MACOS) {
 			if (!argsContains(args, "--nomenubar")) {
 				System.setProperty("apple.laf.useScreenMenuBar", "true");
 			}
