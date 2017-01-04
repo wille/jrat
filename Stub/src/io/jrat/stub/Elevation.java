@@ -34,15 +34,15 @@ public class Elevation {
 
 			writer.close();
 		
-			Runtime.getRuntime().exec("\"" + file.getAbsolutePath() + "\"");	 	
+			Runtime.getRuntime().exec(file.getAbsolutePath());
+
+			file.deleteOnExit();
 		} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.MACOS) {
 			String[] command = { "osascript", "-e", "do shell script \"java -jar " + Utils.getJarFile().getAbsolutePath() + "\" with administrator privileges" };
 			Runtime.getRuntime().exec(command);
 		} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.LINUX) {
 			String[] command = { "gksudo", "java -jar '" + Utils.getJarFile().getAbsolutePath()  + "'" };
 			Runtime.getRuntime().exec(command);
-		} else {
-			return;
 		}
 	}
 
