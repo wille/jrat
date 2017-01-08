@@ -1,7 +1,35 @@
+# jRAT 5.4
+
+
+### Released on 2016-10-07
+
+- If you want system theme when sending messagebox, you cannot revert it
+- Auto expand registry tree on click
+- Fix crash when install location was set to home directory
+- Sends failed status on download error
+- uTorrent download checker removed
+- Quick jump to "roots" renamed to "drives"
+- Fix minimal builder crash
+- Search files on remote computer with wildcards
+- Can specify starting point when searching
+- Search button in remote files panel
+- Automatically change to thumbnails tab when clicking "explore files"
+***
+
+
+# jRAT 5.3.1
+
+
+### Released on 2016-07-10
+
+- Fix crash caused when no country statistics file exists
+***
+
+
 # jRAT 5.3
 
 
-Date:
+### Released on 2016-07-09
 
 - Fix OS X El Capitan bug (oslib)
 - Improved logging
