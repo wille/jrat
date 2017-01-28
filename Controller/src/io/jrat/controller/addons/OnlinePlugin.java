@@ -14,6 +14,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import jrat.api.Plugin;
@@ -93,25 +94,7 @@ public class OnlinePlugin {
 	public String getAuthor() {
 		return author;
 	}
-	
-	public URL getDownloadURL() throws Exception {
-		URL url;
-		
-		if (dlUrl == null) {
-			String key = "jrat";
-			try {
-				key = Hex.encode(UniqueId.getSystemId());
-			} catch (Exception e) {
-				throw new MissingKeyException("Failed to load key", e);
-			}
-			url = new URL(Constants.HOST + "/plugins/getplugin.php?plugin=" + getName() + "&key=" + key);
-		} else {
-			url = new URL(dlUrl);
-		}
-		
-		return url;
-	}
-	
+
 	public boolean isUrlVerified() {
 		return dlUrl == null;
 	}

@@ -23,6 +23,7 @@ import java.security.InvalidKeyException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
@@ -59,18 +60,11 @@ public class PluginInstaller {
 
 		File temp = File.createTempFile(plugin.getName() + "_temp_download", ".zip");
 
-		String key = "jrat";
-		try {
-			key = Hex.encode(UniqueId.getSystemId());
-		} catch (Exception e) {
-			throw new MissingKeyException("Failed to load key", e);
-		}
-		
-		if (Main.debug) {
-			key = "DEBUG_KEY";
-		}
+		Map<String, String> license = UniqueId.getLicense();
+		String key = license.get("key");
+		String mail = license.get("mail");
 
-		HttpURLConnection archiveConnection = (HttpURLConnection) WebRequest.getConnection(Constants.HOST + "/plugins/getplugin.php?plugin=" + plugin.getName().replace(" ", "") + "&key=" + key);
+		HttpURLConnection archiveConnection = (HttpURLConnection) WebRequest.getConnection(Constants.HOST + "/plugins/getplugin.php?plugin=" + plugin.getName().replace(" ", "") + "&k=" + key + "&m=" + mail);
 		archiveConnection.setReadTimeout(15000);
 		archiveConnection.connect();
 

@@ -1,5 +1,7 @@
 package io.jrat.controller;
 
+import com.cedarsoftware.util.io.JsonObject;
+import com.cedarsoftware.util.io.JsonReader;
 import io.jrat.common.Logger;
 import io.jrat.common.codec.Hex;
 import io.jrat.common.hash.Sha256;
@@ -9,6 +11,8 @@ import io.jrat.controller.net.WebRequest;
 import java.io.File;
 import java.io.FileInputStream;
 import java.net.HttpURLConnection;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 
@@ -30,38 +34,31 @@ public final class UniqueId {
 		return sha256.hash(data.getBytes("UTF-8"));
 	}
 
-	public static byte[] getSystemId() throws Exception {
-		if (systemId == null) {
-			File file = Globals.getKeyFile();
-			File file1 = new File(Globals.getFileDirectory(), "jrat.key");
+	public static Map<String, String> getLicense() throws Exception {
+		Map args = new HashMap();
+		args.put(JsonReader.USE_MAPS, true);
 
-			if (!file.exists() && !file1.exists()) {
-				throw new MissingKeyException("Key file not found in ./files/jrat.key or ./jrat.key");
-			}
+		Map<String, String> license = (JsonObject) JsonReader.jsonToJava(new FileInputStream(Globals.getKeyFile()), args);
 
-			FileInputStream input = new FileInputStream(file.exists() ? file : file1);
-			systemId = new byte[32];
-			input.read(systemId);
-			input.close();
-		}
-
-		return systemId;
+		return license;
 	}
 
 	public static boolean validate(boolean b) throws MissingKeyException, InvalidKeyException, Exception {
-		byte[] id = getSystemId();
+		Map<String, String> license = getLicense();
+		String key = license.get("key");
+		String mail = license.get("mail");
 
-		if (b) {
-			Logger.log(Hex.encode(id));
-		}
-
-		HttpURLConnection archiveConnection = (HttpURLConnection) WebRequest.getConnection(Constants.HOST + "/api/validate.php?key=" + Hex.encode(id) + "&type=jrat", true);
+		HttpURLConnection archiveConnection = WebRequest.getConnection(Constants.HOST + "/api/validate.php?k=" + key + "&m=" + mail, true);
 		archiveConnection.connect();
 
 		int response = archiveConnection.getResponseCode();
 		archiveConnection.disconnect();
 		if (response == 404) {
 			throw new InvalidKeyException("Invalid key");
+		} else if (response == 410) {
+			throw new InvalidKeyException("Key expired");
+		} else if (response == 403) {
+			throw new InvalidKeyException("Not paid");
 		} else if (response == 200) {
 			return true;
 		}
