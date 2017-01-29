@@ -1,3 +1,21 @@
+# jRAT 5.5
+
+
+### Released on 2017-01-29
+
+- Display colors on a client
+    - When freshly connected (green)
+    - When disconnected (red)
+- Does not crash when disabling plugins on exit
+- Saves settings each 30 seconds
+- Fix some menu items in main window
+- Different initialization vector for input/output (backwards compatible)
+- Mac OS X > macOS (if 10.12 Sierra or above)
+- New type of license
+
+***
+
+
 # jRAT 5.4
 
 
