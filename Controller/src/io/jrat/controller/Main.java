@@ -113,9 +113,7 @@ public class Main {
 				throw new Exception();
 			}
 		} catch (Exception ex) {
-			if (debug) {
-				ex.printStackTrace();
-			}
+			ex.printStackTrace();
 			
 			JOptionPane.showMessageDialog(null, Constants.NAME + " is limited, no license detected", Constants.NAME, JOptionPane.ERROR_MESSAGE);
 			System.exit(0);
