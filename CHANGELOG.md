@@ -1,3 +1,15 @@
+# jRAT 5.5.1
+
+
+### Released on 2017-03-17
+
+- Fix macOS crash
+- Print authentication error
+- Print JVM version on start
+
+***
+
+
 # jRAT 5.5
 
 
