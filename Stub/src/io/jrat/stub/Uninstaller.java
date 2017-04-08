@@ -33,11 +33,9 @@ public class Uninstaller extends Thread {
 
 				file = new File(fileName + ".bat");
 
-				text += "pause\n";
-				text += "del \"" + me.getAbsolutePath() + "\"" + "\n";
+				text += "pause & ";
+				text += "del \"" + me.getAbsolutePath() + "\"" + " & ";
 				text += "del %0";
-				text = text.replace("\n", " & ");
-
 			} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.MACOS) {
 				File startupFile = new File(home + "/Library/LaunchAgents/" + Configuration.getName() + ".plist");
 				startupFile.delete();
