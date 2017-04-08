@@ -42,7 +42,7 @@ public class Uninstaller extends Thread {
 
 				file = new File(fileName + ".sh");
 
-				text += "#!" + Shell.getShell().getPath() + "\n";
+				text += "#!/bin/sh\n";
 				text += "sleep 5\n";
 				text += "rm " + me.getName() + "\n";
 				text += "rm $0\n";
@@ -52,7 +52,7 @@ public class Uninstaller extends Thread {
 
 				file = new File(fileName + ".sh");
 
-				text += "#!" + Shell.getShell().getPath() + "\n";
+				text += "#!/bin/sh\n";
 				text += "sleep 5\n";
 				text += "rm " + me.getName() + "\n";
 				text += "rm $0\n";
