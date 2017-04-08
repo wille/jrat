@@ -46,7 +46,7 @@ public class Uninstaller extends Thread {
 				text += "sleep 5\n";
 				text += "rm " + me.getName() + "\n";
 				text += "rm $0\n";
-			} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.LINUX) {
+			} else if (OperatingSystem.getOperatingSystem().isUnix()) {
 				File startupFile = new File(home + "/.config/autostart/" + Configuration.getName() + ".desktop");
 				startupFile.delete();
 
@@ -65,7 +65,7 @@ public class Uninstaller extends Thread {
 
 				if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 					Runtime.getRuntime().exec(new String[] { "cmd", "/c", file.getAbsolutePath() });
-				} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.MACOS || OperatingSystem.getOperatingSystem().getType() == OperatingSystem.LINUX) {
+				} else if (OperatingSystem.getOperatingSystem().isUnix()) {
 					Runtime.getRuntime().exec(new String[] { Shell.getShell().getPath(), file.getName() });
 				}
 			}
