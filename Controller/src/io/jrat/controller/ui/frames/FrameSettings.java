@@ -128,7 +128,7 @@ public class FrameSettings extends BaseFrame {
 			@Override
 			public void perform() {
 				try {
-					FrameChangelog frame = new FrameChangelog(WebRequest.getUrl(Constants.HOST + "/api/changelog.php"), Version.getVersion());
+					FrameChangelog frame = new FrameChangelog();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

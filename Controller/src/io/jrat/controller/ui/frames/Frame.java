@@ -538,11 +538,11 @@ public class Frame extends BaseFrame {
 			}
 		});
 
-		JMenuItem mntmWhatsNewIn = new JMenuItem("Whats new in " + Version.getVersion());
+		JMenuItem mntmWhatsNewIn = new JMenuItem("Changelog");
 		mntmWhatsNewIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					FrameChangelog frame = new FrameChangelog(WebRequest.getUrl(Constants.HOST + "/api/changelog.php"), Version.getVersion());
+					FrameChangelog frame = new FrameChangelog();
 					frame.setVisible(true);
 				} catch (Exception ex) {
 					ex.printStackTrace();

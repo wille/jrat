@@ -16,7 +16,7 @@ public class ThreadCheckVersion extends Thread {
     	   VersionChecker checker = new VersionChecker();
            
            if (!checker.isUpToDate()) {
-        	   FrameChangelog frame = new FrameChangelog(WebRequest.getUrl(Constants.HOST + "/api/changelog.php"), checker.getLatest());
+        	   FrameChangelog frame = new FrameChangelog();
     			frame.setVisible(true);
     			frame.setTitle("New version! - " + checker.getLatest());
            }

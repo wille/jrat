@@ -8,13 +8,18 @@ public class Constants {
 	 */
 	public static enum VariableMode {
 		ENVIRONMENT_VARIABLES,
-		SYSTEM_PROPERTIES;
+		SYSTEM_PROPERTIES
 	}
 	
 	/**
 	 * Current used domain
 	 */
 	public static String HOST = "https://jrat.io";
+
+    /**
+     *
+     */
+    public static String CHANGELOG_URL = HOST + "/api/changelog.php";
 
 	/**
 	 * Global software name
