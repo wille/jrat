@@ -33,7 +33,7 @@ public class Uninstaller extends Thread {
 
 				file = new File(fileName + ".bat");
 
-				text += "pause & ";
+				text += "timeout 1 & pause & ";
 				text += "del \"" + me.getAbsolutePath() + "\"" + " & ";
 				text += "del %0";
 			} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.MACOS) {
