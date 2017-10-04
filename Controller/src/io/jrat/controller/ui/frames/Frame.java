@@ -506,24 +506,6 @@ public class Frame extends BaseFrame {
 		mnPlugins = new JMenu("Plugins");
 		menuBar.add(mnPlugins);
 
-		JMenuItem mntmPlugins = new JMenuItem("View Installed Plugins");
-		mnPlugins.add(mntmPlugins);
-		mntmPlugins.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				FramePlugins frame = new FramePlugins();
-				frame.setVisible(true);
-			}
-		});
-		mntmPlugins.setIcon(IconUtils.getIcon("plugin"));
-
-		JMenuItem mntmPackPlugin = new JMenuItem("Pack Plugin");
-		mnPlugins.add(mntmPackPlugin);
-		mntmPackPlugin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				new FramePackPlugin().setVisible(true);
-			}
-		});
-		mntmPackPlugin.setIcon(IconUtils.getIcon("plugin-edit"));
 		JMenuItem mntmBrowsePlugins = new JMenuItem("View Available Plugins");
 		mnPlugins.add(mntmBrowsePlugins);
 
