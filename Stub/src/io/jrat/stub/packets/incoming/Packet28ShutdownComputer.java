@@ -12,9 +12,9 @@ public class Packet28ShutdownComputer extends AbstractIncomingPacket {
 			if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 				Runtime.getRuntime().exec("shutdown /p /f");
 			} else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.MACOS) {
-				Runtime.getRuntime().exec("shutdown -s now");
+				Runtime.getRuntime().exec("shutdown -h now");
 			} else {
-				Runtime.getRuntime().exec("poweroff");
+				Runtime.getRuntime().exec("shutdown now");
 			} 
 			
 			con.status(Constants.STATUS_STARTING_SHUTDOWN);
