@@ -1,15 +1,13 @@
 package io.jrat.controller.addons;
 
 import io.jrat.common.Logger;
-import io.jrat.common.codec.Hex;
 import io.jrat.common.listeners.CopyStreamsListener;
 import io.jrat.common.utils.DataUnits;
 import io.jrat.common.utils.IOUtils;
 import io.jrat.controller.Constants;
 import io.jrat.controller.Globals;
 import io.jrat.controller.Main;
-import io.jrat.controller.UniqueId;
-import io.jrat.controller.exceptions.MissingKeyException;
+import io.jrat.controller.License;
 import io.jrat.controller.listeners.ExtensionInstallerListener;
 import io.jrat.controller.net.WebRequest;
 import java.awt.Color;
@@ -60,7 +58,7 @@ public class PluginInstaller {
 
 		File temp = File.createTempFile(plugin.getName() + "_temp_download", ".zip");
 
-		Map<String, String> license = UniqueId.getLicense();
+		Map<String, String> license = License.getLicense();
 		String key = license.get("key");
 		String mail = license.get("mail");
 

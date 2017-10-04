@@ -55,7 +55,7 @@ public class Main {
 			Logger.log("Generating key");
 			File file = Globals.getKeyFile();
 			FileOutputStream out = new FileOutputStream(file);
-			out.write(UniqueId.generateBinary());
+			out.write(License.generateBinary());
 			out.close();
 			Logger.log("Wrote key to " + file.getAbsolutePath());
 			System.exit(0);
@@ -107,7 +107,7 @@ public class Main {
 		}
 		
 		try {
-			boolean validated = UniqueId.validate(argsContains(args, "--showhexkey"));
+			boolean validated = License.validate(argsContains(args, "--showhexkey"));
 
 			if (!validated) {
 				throw new Exception();

@@ -11,7 +11,7 @@ import io.jrat.controller.Globals;
 import io.jrat.controller.Main;
 import io.jrat.controller.SampleMode;
 import io.jrat.controller.Slave;
-import io.jrat.controller.UniqueId;
+import io.jrat.controller.License;
 import io.jrat.controller.Updater;
 import io.jrat.controller.addons.Plugins;
 import io.jrat.controller.net.WebRequest;
@@ -26,7 +26,6 @@ import io.jrat.controller.settings.StoreOfflineSlaves;
 import io.jrat.controller.ui.MainView;
 import io.jrat.controller.ui.components.DraggableTabbedPane;
 import io.jrat.controller.ui.dialogs.DialogAbout;
-import io.jrat.controller.ui.dialogs.DialogEula;
 import io.jrat.controller.ui.panels.PanelMainClients;
 import io.jrat.controller.ui.panels.PanelMainLog;
 import io.jrat.controller.ui.panels.PanelMainNetwork;
@@ -186,7 +185,7 @@ public class Frame extends BaseFrame {
 					} while (keyFile.exists());
 
 					FileOutputStream out = new FileOutputStream(keyFile);
-					out.write(UniqueId.generateBinary());
+					out.write(License.generateBinary());
 					out.close();
 
 					JOptionPane.showMessageDialog(null, "Generated a new key to jrat.key\nBackup this file and do not loose it", "Generate key", JOptionPane.INFORMATION_MESSAGE);
