@@ -552,14 +552,13 @@ public class Frame extends BaseFrame {
 		});
 		mnAbout.add(mntmWhatsNewIn);
 
-		JMenuItem mntmDebugerrorReportInfo = new JMenuItem("Debug/Error Report Info");
+		JMenuItem mntmDebugerrorReportInfo = new JMenuItem("Debug Info");
 		mntmDebugerrorReportInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				FrameDebugInfo debug = new FrameDebugInfo();
 				debug.setVisible(true);
 			}
 		});
-		mntmDebugerrorReportInfo.setIcon(IconUtils.getIcon("java"));
 		mnAbout.add(mntmDebugerrorReportInfo);
 		mnAbout.addSeparator();
 		menuItem.setIcon(IconUtils.getIcon("info"));
