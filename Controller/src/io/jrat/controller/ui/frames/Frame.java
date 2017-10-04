@@ -169,34 +169,6 @@ public class Frame extends BaseFrame {
 		});
 		mntmImportKey.setIcon(IconUtils.getIcon("key-arrow"));
 
-		JMenuItem mntmGenerateKey = new JMenuItem("Generate key");
-		mnKeys.add(mntmGenerateKey);
-		mntmGenerateKey.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try {
-					File keyFile;
-
-					int i = 0;
-
-					do {
-						i++;
-						String s = i == 0 ? "" : Integer.toString(i);
-						keyFile = Globals.getKeyFile(s);
-					} while (keyFile.exists());
-
-					FileOutputStream out = new FileOutputStream(keyFile);
-					out.write(License.generateBinary());
-					out.close();
-
-					JOptionPane.showMessageDialog(null, "Generated a new key to jrat.key\nBackup this file and do not loose it", "Generate key", JOptionPane.INFORMATION_MESSAGE);
-				} catch (Exception ex) {
-					ex.printStackTrace();
-					ErrorDialog.create(ex);
-				}
-			}
-		});
-		mntmGenerateKey.setIcon(IconUtils.getIcon("key-plus"));
-
 		JMenuItem mntmHelp = new JMenuItem("Help");
 		mntmHelp.setIcon(IconUtils.getIcon("info-button"));
 		mntmHelp.addActionListener(new ActionListener() {
