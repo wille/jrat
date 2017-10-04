@@ -517,7 +517,6 @@ public class Frame extends BaseFrame {
 			}
 		});
 		mnPlugins.add(chckbxmntmTransferPluginsIf);
-		mnPlugins.addSeparator();
 
 		mntmBrowsePlugins.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -628,36 +627,30 @@ public class Frame extends BaseFrame {
 	}
 
 	public void reloadPlugins() {
-		while (mnPlugins.getComponentCount() >= 4) {
-			mnPlugins.remove(4);
+		while (mnPlugins.getComponentCount() >= 3) {
+			mnPlugins.remove(3);
 		}
-		if (Plugins.getPlugins().size() == 0) {
-			JMenuItem item = new JMenuItem("No plugins loaded");
-			item.setEnabled(false);
-			mnPlugins.add(item);
-		}
+
+		boolean separator = false;
 
 		for (int i = 0; i < Plugins.getPlugins().size(); i++) {
-			final Plugin p = Plugins.getPlugins().get(i);
-
-			JMenuItem item = new JMenuItem(p.getName());
-
+			Plugin p = Plugins.getPlugins().get(i);
 			ActionListener listener = p.getGlobalActionListener();
 
 			if (listener != null) {
+				JMenuItem item = new JMenuItem(p.getName());
+
 				item.addActionListener(listener);
-			} else {
-				item.addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						JOptionPane.showMessageDialog(null, "Name: " + p.getName() + "\nVersion: " + p.getVersion() + "\nAuthor: " + p.getAuthor() + "\nDescription: " + p.getDescription(), "Plugin Description", JOptionPane.INFORMATION_MESSAGE);
-					}
-				});
+
+				item.setIcon(p.getIcon());
+
+				if (!separator) {
+				    mnPlugins.addSeparator();
+				    separator = true;
+                }
+
+				mnPlugins.add(item);
 			}
-
-			item.setIcon(p.getIcon());
-
-			mnPlugins.add(item);
 		}
 
 		panelPlugins.reload();
