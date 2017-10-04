@@ -80,7 +80,7 @@ public class PanelMainClientsTable extends PanelMainClients {
 	
 	@Override
 	public Icon getIcon() {
-		return IconUtils.getIcon("tab-main");
+		return IconUtils.getIcon("list");
 	}
 	
 	public void reloadTable() {

@@ -586,9 +586,9 @@ public class Frame extends BaseFrame {
 		updateClientsView(panelClients);
 		tabbedPane.addTab("Statistics", IconUtils.getIcon("statistics"), panelStats);
 		tabbedPane.addTab("Network Usage", IconUtils.getIcon("network"), panelNetwork);
-		tabbedPane.addTab("On Connect", IconUtils.getIcon("calendar"), panelOnConnect);
+		tabbedPane.addTab("On Connect", IconUtils.getIcon("schedule"), panelOnConnect);
 		tabbedPane.addTab("Sockets", IconUtils.getIcon("sockets"), panelSockets);
-		tabbedPane.addTab("Log", IconUtils.getIcon("log"), panelLog);
+		tabbedPane.addTab("Log", IconUtils.getIcon("list"), panelLog);
 		tabbedPane.addTab("Plugins", IconUtils.getIcon("plugin"), panelPlugins);
 		
 		reloadPlugins();
