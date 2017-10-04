@@ -550,7 +550,6 @@ public class Frame extends BaseFrame {
 				}
 			}
 		});
-		mntmWhatsNewIn.setIcon(IconUtils.getIcon("question"));
 		mnAbout.add(mntmWhatsNewIn);
 
 		JMenuItem mntmDebugerrorReportInfo = new JMenuItem("Debug/Error Report Info");

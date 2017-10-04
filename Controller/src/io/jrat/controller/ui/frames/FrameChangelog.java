@@ -36,7 +36,7 @@ public class FrameChangelog extends BaseFrame {
 
     public FrameChangelog() {
         setResizable(false);
-        setIconImage(Toolkit.getDefaultToolkit().getImage(FrameChangelog.class.getResource("/icons/question.png")));
+        setIconImage(IconUtils.getIcon("changelog").getImage());
         setTitle("Changelog");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 527, 295);
