@@ -62,7 +62,7 @@ public class Injector {
 		InjectorClassloader classLoader = new InjectorClassloader(Injector.class.getClassLoader(), new JarInputStream(bais));
 	
 		final Class<?> classToLoad = classLoader.loadClass(mainClass);
-		final Method method = classToLoad.getMethod("main", new Class[] { String[].class });
+		final Method method = classToLoad.getMethod("main", String[].class);
 		
 		new Thread(new Runnable() {
 			@Override

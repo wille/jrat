@@ -12,12 +12,12 @@ import java.util.jar.JarInputStream;
 
 public class InjectorClassloader extends ClassLoader {
 
-	private final HashMap<String, byte[]> classes = new HashMap<String, byte[]>();
-	private final HashMap<String, byte[]> others = new HashMap<String, byte[]>();
+	public final HashMap<String, byte[]> classes = new HashMap<String, byte[]>();
+    public final HashMap<String, byte[]> others = new HashMap<String, byte[]>();
 
 	public InjectorClassloader(ClassLoader parent, JarInputStream stream) {
 		super(parent);
-		this.loadResources(stream);
+		//this.loadResources(stream);
 	}
 
 	@Override

