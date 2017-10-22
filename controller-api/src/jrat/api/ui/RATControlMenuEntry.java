@@ -88,7 +88,7 @@ public final class RATControlMenuEntry {
 	 * @throws Exception
 	 */
 	public BaseControlPanel newPanelInstance(Client client) throws Exception {
-		Constructor<?> ctor = panel.getDeclaredConstructor(new Class[] { Client.class });
+		Constructor<?> ctor = panel.getDeclaredConstructor(Client.class);
 		ctor.setAccessible(true);
 
 		return (BaseControlPanel) ctor.newInstance(client);

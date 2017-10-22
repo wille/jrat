@@ -2,7 +2,7 @@ package jrat.api.net;
 
 import java.io.IOException;
 
-public abstract interface Reader {
+public interface Reader {
 
 	/**
 	 * Reads byte from stream
@@ -10,7 +10,7 @@ public abstract interface Reader {
 	 * @return byte
 	 * @throws IOException
 	 */
-	public abstract byte read() throws IOException;
+    byte read() throws IOException;
 
 	/**
 	 * Reads short from stream, 2 bytes
@@ -18,7 +18,7 @@ public abstract interface Reader {
 	 * @return short
 	 * @throws IOException
 	 */
-	public abstract short readShort() throws IOException;
+    short readShort() throws IOException;
 
 	/**
 	 * Reads string, (With args)
@@ -26,7 +26,7 @@ public abstract interface Reader {
 	 * @return String
 	 * @throws IOException
 	 */
-	public abstract String readLine() throws IOException;
+    String readLine() throws IOException;
 
 	/**
 	 * Reads bytes into array, until it is full
@@ -38,7 +38,7 @@ public abstract interface Reader {
 	 *            len
 	 * @throws IOException
 	 */
-	public abstract void readFully(byte[] buffer, int i, int i1) throws IOException;
+    void readFully(byte[] buffer, int i, int i1) throws IOException;
 
 	/**
 	 * Reads int from stream, 4 bytes
@@ -46,7 +46,7 @@ public abstract interface Reader {
 	 * @return int
 	 * @throws IOException
 	 */
-	public abstract int readInt() throws IOException;
+    int readInt() throws IOException;
 
 	/**
 	 * Reads long from stream, 8 bytes
@@ -54,7 +54,7 @@ public abstract interface Reader {
 	 * @return long
 	 * @throws IOException
 	 */
-	public abstract long readLong() throws IOException;
+    long readLong() throws IOException;
 
 	/**
 	 * Reads boolean from stream, b != 0 = true
@@ -62,7 +62,7 @@ public abstract interface Reader {
 	 * @return boolean
 	 * @throws IOException
 	 */
-	public abstract boolean readBoolean() throws IOException;
+    boolean readBoolean() throws IOException;
 
 	/**
 	 * Reads char from stream, 2 bytes
@@ -70,5 +70,5 @@ public abstract interface Reader {
 	 * @return char
 	 * @throws IOException
 	 */
-	public abstract char readChar() throws IOException;
+    char readChar() throws IOException;
 }

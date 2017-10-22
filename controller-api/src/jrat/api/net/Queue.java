@@ -2,7 +2,7 @@ package jrat.api.net;
 
 import jrat.api.Client;
 
-public abstract interface Queue {
+public interface Queue {
 
 	/**
 	 * Add packet to queue, callback into client to add to *real* queue
@@ -11,6 +11,6 @@ public abstract interface Queue {
 	 * @param rat
 	 * @throws Exception
 	 */
-	public abstract void addToSendQueue(PacketBuilder packet, Client rat) throws Exception;
+    void addToSendQueue(PacketBuilder packet, Client rat) throws Exception;
 
 }

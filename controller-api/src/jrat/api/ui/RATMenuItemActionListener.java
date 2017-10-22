@@ -4,7 +4,7 @@ import java.util.List;
 
 import jrat.api.Client;
 
-public abstract interface RATMenuItemActionListener {
+public interface RATMenuItemActionListener {
 
 	/**
 	 * 
@@ -12,5 +12,5 @@ public abstract interface RATMenuItemActionListener {
 	 *            Event fired when servers are selected and custom menu item
 	 *            clicked on
 	 */
-	public abstract void onClick(List<Client> servers);
+    void onClick(List<Client> servers);
 }

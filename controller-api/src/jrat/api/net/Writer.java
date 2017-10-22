@@ -2,7 +2,7 @@ package jrat.api.net;
 
 import java.io.IOException;
 
-public abstract interface Writer {
+public interface Writer {
 
 	/**
 	 * Writes byte to stream
@@ -10,7 +10,7 @@ public abstract interface Writer {
 	 * @param b
 	 * @throws IOException
 	 */
-	public abstract void write(byte b) throws IOException;
+    void write(byte b) throws IOException;
 
 	/**
 	 * Writes byte array to stream
@@ -18,7 +18,7 @@ public abstract interface Writer {
 	 * @param b
 	 * @throws IOException
 	 */
-	public abstract void write(byte[] b) throws IOException;
+    void write(byte[] b) throws IOException;
 
 	/**
 	 * Writes string to stream (-c arg no encryption)
@@ -26,7 +26,7 @@ public abstract interface Writer {
 	 * @param str
 	 * @throws IOException
 	 */
-	public abstract void writeLine(String str) throws IOException;
+    void writeLine(String str) throws IOException;
 
 	/**
 	 * Writes short to stream, 2 bytes
@@ -34,7 +34,7 @@ public abstract interface Writer {
 	 * @param s
 	 * @throws IOException
 	 */
-	public abstract void writeShort(short s) throws IOException;
+    void writeShort(short s) throws IOException;
 
 	/**
 	 * Writes int to stream, 4 bytes
@@ -42,7 +42,7 @@ public abstract interface Writer {
 	 * @param i
 	 * @throws IOException
 	 */
-	public abstract void writeInt(int i) throws IOException;
+    void writeInt(int i) throws IOException;
 
 	/**
 	 * Writes long to stream, 8 bytes
@@ -50,7 +50,7 @@ public abstract interface Writer {
 	 * @param l
 	 * @throws IOException
 	 */
-	public abstract void writeLong(long l) throws IOException;
+    void writeLong(long l) throws IOException;
 
 	/**
 	 * Writes boolean, true = 1, false = 0
@@ -58,7 +58,7 @@ public abstract interface Writer {
 	 * @param b
 	 * @throws IOException
 	 */
-	public abstract void writeBoolean(boolean b) throws IOException;
+    void writeBoolean(boolean b) throws IOException;
 
 	/**
 	 * Writes char to stream, 2 bytes
@@ -66,5 +66,5 @@ public abstract interface Writer {
 	 * @param c
 	 * @throws IOException
 	 */
-	public abstract void writeChar(char c) throws IOException;
+    void writeChar(char c) throws IOException;
 }
