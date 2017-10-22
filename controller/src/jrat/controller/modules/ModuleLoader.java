@@ -51,7 +51,7 @@ public class ModuleLoader {
             // add module JAR to classpath
             Method method = URLClassLoader.class.getDeclaredMethod("addURL", URL.class);
             method.setAccessible(true);
-            method.invoke(ClassLoader.getSystemClassLoader(), new File(mod.path).toURI().toURL());
+            method.invoke(ClassLoader.getSystemClassLoader(), new File("modules", mod.path).toURI().toURL());
 
             // invoke init() on module
             Class<ControllerModule> clazz = (Class<ControllerModule>) ModuleLoader.class.getClassLoader().loadClass(mod.mainClass);
@@ -76,7 +76,7 @@ public class ModuleLoader {
 
             int total = 0;
 
-            JarInputStream jis = new JarInputStream(new FileInputStream(mod.path));
+            JarInputStream jis = new JarInputStream(new FileInputStream(new File("modules", mod.path)));
             JarEntry entry;
             while ((entry = jis.getNextJarEntry()) != null) {
                 int size = (int) entry.getSize();
