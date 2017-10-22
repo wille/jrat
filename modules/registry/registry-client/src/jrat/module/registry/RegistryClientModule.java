@@ -1,8 +1,7 @@
 package jrat.module.registry;
 
 import apiv2.StubModule;
-import io.jrat.stub.packets.incoming.AbstractIncomingPacket;
-import io.jrat.stub.packets.incoming.Packet98InjectJAR;
+import jrat.client.packets.incoming.AbstractIncomingPacket;
 
 public class RegistryClientModule extends StubModule {
 

