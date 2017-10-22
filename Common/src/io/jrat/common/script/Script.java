@@ -13,7 +13,7 @@ public enum Script {
 	private String identifier;
 	private Class<? extends AbstractScript> clazz;
 
-	private Script(String identifier, Class<? extends AbstractScript> clazz) {
+	Script(String identifier, Class<? extends AbstractScript> clazz) {
 		this.identifier = identifier;
 		this.clazz = clazz;
 	}

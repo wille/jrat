@@ -32,7 +32,7 @@ public class StartupModules {
 			Constructor<? extends StartupModule> c = childClass.getDeclaredConstructor(Map.class);
 			c.setAccessible(true);
 			
-			StartupModule instance = c.newInstance(new Object[] { config });
+			StartupModule instance = c.newInstance(config);
 			instance.run();
 		}
 	}

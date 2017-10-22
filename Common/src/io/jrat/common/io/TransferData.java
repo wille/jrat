@@ -9,9 +9,9 @@ import java.io.OutputStream;
 
 public class TransferData {
 	
-	public static enum State {
-		IN_PROGRESS, PAUSED, COMPLETED, ERROR;
-	}
+	public enum State {
+		IN_PROGRESS, PAUSED, COMPLETED, ERROR
+    }
 	
 	private State state;
 	private boolean memory;

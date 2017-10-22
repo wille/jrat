@@ -98,7 +98,7 @@ public class OfflineSlave extends AbstractSlave {
 		if (o instanceof AbstractSlave) {
 			AbstractSlave os = (AbstractSlave) o;
 
-			boolean correctOs = os instanceof OfflineSlave && ((OfflineSlave) os).getOperatingSystemString().equals(this.os) || !(os instanceof OfflineSlave);
+			boolean correctOs = !(os instanceof OfflineSlave) || ((OfflineSlave) os).getOperatingSystemString().equals(this.os);
 			
 			return os.username.equals(this.username) && os.hostname.equals(this.hostname) && correctOs && os.id.equals(this.id) && os.version.equals(this.version);
 		} else {

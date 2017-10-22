@@ -21,7 +21,7 @@ public enum Columns {
 	private String name;
 	private boolean defaultv;
 
-	private Columns(String name, boolean defaultv) {
+	Columns(String name, boolean defaultv) {
 		this.name = name;
 		this.defaultv = defaultv;
 	}

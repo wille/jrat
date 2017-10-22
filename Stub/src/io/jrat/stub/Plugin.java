@@ -41,19 +41,19 @@ public class Plugin {
 	}
 	
 	public static void addMethods(Plugin p, Class<?> classToLoad) throws Exception {
-		Method onEnable = classToLoad.getMethod("onEnable", new Class[] {});
+		Method onEnable = classToLoad.getMethod("onEnable");
 		p.methods.put("onenable", onEnable);
-		onEnable.invoke(p.instance, new Object[] {});
+		onEnable.invoke(p.instance);
 
-		Method onConnect = classToLoad.getMethod("onConnect", new Class[] { DataInputStream.class, DataOutputStream.class });
+		Method onConnect = classToLoad.getMethod("onConnect", DataInputStream.class, DataOutputStream.class);
 		p.methods.put("onconnect", onConnect);
 
-		Method onDisconnect = classToLoad.getMethod("onDisconnect", new Class[] { Exception.class });
+		Method onDisconnect = classToLoad.getMethod("onDisconnect", Exception.class);
 		p.methods.put("ondisconnect", onDisconnect);
 
-		Method onPacket = classToLoad.getMethod("onPacket", new Class[] { short.class });
+		Method onPacket = classToLoad.getMethod("onPacket", short.class);
 		p.methods.put("onpacket", onPacket);
 
-		p.name = (String) classToLoad.getMethod("getName", new Class[] {}).invoke(p.instance, new Object[] {});
+		p.name = (String) classToLoad.getMethod("getName", new Class[] {}).invoke(p.instance);
 	}
 }

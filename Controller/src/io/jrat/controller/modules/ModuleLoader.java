@@ -51,7 +51,7 @@ public class ModuleLoader {
             // add module JAR to classpath
             Method method = URLClassLoader.class.getDeclaredMethod("addURL", URL.class);
             method.setAccessible(true);
-            method.invoke(ClassLoader.getSystemClassLoader(), new Object[] { new File(mod.path).toURI().toURL() });
+            method.invoke(ClassLoader.getSystemClassLoader(), new File(mod.path).toURI().toURL());
 
             // invoke init() on module
             Class<ControllerModule> clazz = (Class<ControllerModule>) ModuleLoader.class.getClassLoader().loadClass(mod.mainClass);

@@ -4,8 +4,8 @@ import graphslib.monitors.RemoteMonitor;
 
 
 
-public abstract interface PickMonitorListener {
+public interface PickMonitorListener {
 
-	public abstract void monitorPick(RemoteMonitor monitor);
+	void monitorPick(RemoteMonitor monitor);
 	
 }

@@ -35,7 +35,7 @@ public class StubPlugin {
 				Class<?> classToLoad = Class.forName(clazz, true, loader);
 				Object instance = classToLoad.newInstance();
 
-				name = (String) classToLoad.getMethod("getName", new Class[] {}).invoke(instance, new Object[] {});
+				name = (String) classToLoad.getMethod("getName", new Class[] {}).invoke(instance);
 
 			} catch (Exception ex) {
 				ex.printStackTrace();

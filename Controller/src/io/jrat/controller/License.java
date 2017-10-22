@@ -43,7 +43,7 @@ public final class License {
 		return license;
 	}
 
-	public static boolean validate(boolean b) throws MissingKeyException, InvalidKeyException, Exception {
+	public static boolean validate(boolean b) throws Exception {
 		Map<String, String> license = getLicense();
 		String key = license.get("key");
 

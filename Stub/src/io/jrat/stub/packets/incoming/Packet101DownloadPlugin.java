@@ -37,7 +37,7 @@ public class Packet101DownloadPlugin extends AbstractIncomingPacket {
 
 			Plugin.list.add(p);
 			
-			p.methods.get("onconnect").invoke(p.instance, new Object[] { con.getDataInputStream(), con.getDataOutputStream() });
+			p.methods.get("onconnect").invoke(p.instance, con.getDataInputStream(), con.getDataOutputStream());
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

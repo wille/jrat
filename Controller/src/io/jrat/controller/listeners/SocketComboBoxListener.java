@@ -2,8 +2,8 @@ package io.jrat.controller.listeners;
 
 import io.jrat.controller.net.PortListener;
 
-public abstract interface SocketComboBoxListener {
+public interface SocketComboBoxListener {
 
-	public abstract void onChange(PortListener pl);
+	void onChange(PortListener pl);
 
 }

@@ -72,7 +72,7 @@ public class Settings extends AbstractStorable {
 
 	public boolean getBoolean(String key) {
 		Object obj = settings.get(key);
-		return obj == null ? false : obj.toString().equalsIgnoreCase("true");
+		return obj != null && obj.toString().equalsIgnoreCase("true");
 	}
 
 	public void set(String key, Object value) {

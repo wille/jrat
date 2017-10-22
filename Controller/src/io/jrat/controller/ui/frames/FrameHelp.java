@@ -185,7 +185,7 @@ public class FrameHelp extends BaseFrame {
 		List<String> files = new ArrayList<String>();
 
 		for (int i = 0; i < ol.size(); i++) {
-			String thisObject = (String) ol.get(i);
+			String thisObject = ol.get(i);
 			String newPath;
 			if (curPath.equals(".")) {
 				newPath = thisObject;

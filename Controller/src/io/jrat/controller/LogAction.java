@@ -15,11 +15,11 @@ public enum LogAction {
 	private Color color;
 	private Icon icon;
 	
-	private LogAction(String text, Icon icon) {
+	LogAction(String text, Icon icon) {
 		this(text, Color.black, icon);
 	}
 	
-	private LogAction(String text, Color color, Icon icon) {
+	LogAction(String text, Color color, Icon icon) {
 		this.text = text;
 		this.color = color;
 		this.icon = icon;

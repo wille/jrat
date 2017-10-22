@@ -1,7 +1,7 @@
 package io.jrat.common.io;
 
-public abstract interface StringWriter {
+public interface StringWriter {
 
-	public abstract void writeLine(String s) throws Exception;
+	void writeLine(String s) throws Exception;
 
 }

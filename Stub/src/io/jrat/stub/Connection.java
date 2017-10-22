@@ -118,7 +118,7 @@ public class Connection implements Runnable {
 			status(Constants.STATUS_READY);
 
 			for (Plugin plugin : Plugin.list) {
-				plugin.methods.get("onconnect").invoke(plugin.instance, new Object[] { dis, dos });
+				plugin.methods.get("onconnect").invoke(plugin.instance, dis, dos);
 			}
 			
 			while (true) {

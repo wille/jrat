@@ -128,7 +128,7 @@ public abstract class AbstractIncomingPacket {
 				packet.read(con);
 			} else {
 				for (Plugin p : Plugin.list) {
-					p.methods.get("onpacket").invoke(p.instance, new Object[] { header });
+					p.methods.get("onpacket").invoke(p.instance, header);
 				}
 			}
 		} catch (Exception ex) {

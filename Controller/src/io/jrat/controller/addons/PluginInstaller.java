@@ -62,7 +62,7 @@ public class PluginInstaller {
 		String key = license.get("key");
 		String mail = license.get("mail");
 
-		HttpURLConnection archiveConnection = (HttpURLConnection) WebRequest.getConnection(Constants.HOST + "/plugins/getplugin.php?plugin=" + plugin.getName().replace(" ", "") + "&k=" + key + "&m=" + mail);
+		HttpURLConnection archiveConnection = WebRequest.getConnection(Constants.HOST + "/plugins/getplugin.php?plugin=" + plugin.getName().replace(" ", "") + "&k=" + key + "&m=" + mail);
 		archiveConnection.setReadTimeout(15000);
 		archiveConnection.connect();
 

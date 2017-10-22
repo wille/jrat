@@ -162,22 +162,16 @@ public class DraggableTabbedPane extends JTabbedPane {
 			if (t == null)
 				return false;
 			DataFlavor[] f = e.getCurrentDataFlavors();
-			if (t.isDataFlavorSupported(f[0]) && dragTabIndex >= 0) {
-				return true;
-			}
-			return false;
-		}
+            return t.isDataFlavorSupported(f[0]) && dragTabIndex >= 0;
+        }
 
 		public boolean isDropAcceptable(DropTargetDropEvent e) {
 			Transferable t = e.getTransferable();
 			if (t == null)
 				return false;
 			DataFlavor[] f = t.getTransferDataFlavors();
-			if (t.isDataFlavorSupported(f[0]) && dragTabIndex >= 0) {
-				return true;
-			}
-			return false;
-		}
+            return t.isDataFlavorSupported(f[0]) && dragTabIndex >= 0;
+        }
 	}
 
 	private boolean hasGhost = true;

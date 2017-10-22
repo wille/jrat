@@ -1,6 +1,6 @@
 package io.jrat.common.io;
 
-public abstract interface TransferListener {
+public interface TransferListener {
 
-	public abstract void transferred(long now, long bytesTotal, long totalBytes);
+	void transferred(long now, long bytesTotal, long totalBytes);
 }

@@ -5,5 +5,5 @@ public enum BuildStatus {
 	INFO,
 	CHECK,
 	FINISH,
-	ERROR;
+	ERROR
 }

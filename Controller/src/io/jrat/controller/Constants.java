@@ -6,7 +6,7 @@ public class Constants {
 	/**
 	 * What data to retrieve to use in {@link io.jrat.controller.ui.frames#FrameSystemVariables}
 	 */
-	public static enum VariableMode {
+	public enum VariableMode {
 		ENVIRONMENT_VARIABLES,
 		SYSTEM_PROPERTIES
 	}
