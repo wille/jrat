@@ -55,7 +55,6 @@ run.sh
 Readmes/
 Scripts/
 out/
-*.iml
 .idea/
 META-INF/
 Manuals/
