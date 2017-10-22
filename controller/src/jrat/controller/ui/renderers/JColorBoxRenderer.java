@@ -1,6 +1,6 @@
 package jrat.controller.ui.renderers;
 
-import io.jrat.common.utils.ImageUtils;
+import jrat.common.utils.ImageUtils;
 import java.awt.Color;
 import java.awt.Component;
 import java.util.HashMap;

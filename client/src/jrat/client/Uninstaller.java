@@ -1,6 +1,6 @@
 package jrat.client;
 
-import io.jrat.common.utils.Utils;
+import jrat.common.utils.Utils;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.Random;

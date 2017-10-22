@@ -1,6 +1,6 @@
 package jrat.client.packets.incoming;
 
-import io.jrat.common.io.FileCache;
+import jrat.common.io.FileCache;
 import jrat.client.Connection;
 
 

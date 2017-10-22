@@ -1,7 +1,7 @@
 package jrat.controller;
 
 import graphslib.monitors.RemoteMonitor;
-import io.jrat.common.hash.Sha1;
+import jrat.common.hash.Sha1;
 import jrat.controller.exceptions.CloseException;
 import jrat.controller.net.ServerListener;
 import jrat.controller.packets.incoming.IncomingPackets;

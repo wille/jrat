@@ -1,6 +1,6 @@
 package jrat.controller.addons;
 
-import io.jrat.common.Logger;
+import jrat.common.Logger;
 import jrat.controller.Globals;
 import jrat.controller.utils.ClassUtils;
 import java.io.File;

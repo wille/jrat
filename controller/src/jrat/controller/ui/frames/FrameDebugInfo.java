@@ -1,6 +1,6 @@
 package jrat.controller.ui.frames;
 
-import io.jrat.common.Version;
+import jrat.common.Version;
 import jrat.controller.Constants;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;

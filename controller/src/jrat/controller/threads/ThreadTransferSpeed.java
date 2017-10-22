@@ -1,6 +1,6 @@
 package jrat.controller.threads;
 
-import io.jrat.common.io.TransferData;
+import jrat.common.io.TransferData;
 import jrat.controller.ui.panels.PanelFileTransfers;
 import java.util.List;
 

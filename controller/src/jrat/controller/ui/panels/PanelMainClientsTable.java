@@ -1,9 +1,8 @@
 package jrat.controller.ui.panels;
 
 import iconlib.IconUtils;
-import io.jrat.common.Version;
-import io.jrat.common.utils.DataUnits;
-import io.jrat.controller.*;
+import jrat.common.Version;
+import jrat.common.utils.DataUnits;
 import jrat.controller.*;
 import jrat.controller.packets.outgoing.Packet40Thumbnail;
 import jrat.controller.settings.Settings;

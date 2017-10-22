@@ -1,9 +1,9 @@
 package jrat.controller.ui.dialogs;
 
 import iconlib.IconUtils;
-import io.jrat.common.hash.Md5;
-import io.jrat.common.hash.Sha1;
-import io.jrat.common.utils.DataUnits;
+import jrat.common.hash.Md5;
+import jrat.common.hash.Sha1;
+import jrat.common.utils.DataUnits;
 import jrat.controller.build.BuildStatus;
 import jrat.controller.ui.components.TableModel;
 import jrat.controller.ui.renderers.table.BuildTableRenderer;

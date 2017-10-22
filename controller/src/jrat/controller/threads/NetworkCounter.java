@@ -1,6 +1,6 @@
 package jrat.controller.threads;
 
-import io.jrat.common.utils.DataUnits;
+import jrat.common.utils.DataUnits;
 import jrat.controller.AbstractSlave;
 import jrat.controller.Main;
 import jrat.controller.listeners.GlobalNetworkMonitorListener;

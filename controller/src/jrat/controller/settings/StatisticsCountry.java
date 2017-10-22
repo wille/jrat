@@ -1,7 +1,7 @@
 package jrat.controller.settings;
 
 import graphslib.graph.GraphEntry;
-import io.jrat.common.Logger;
+import jrat.common.Logger;
 import jrat.controller.AbstractSlave;
 import jrat.controller.Globals;
 import jrat.controller.Main;

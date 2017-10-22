@@ -1,7 +1,7 @@
 package jrat.client.modules.startup;
 
-import io.jrat.common.DropLocations;
-import io.jrat.common.crypto.CryptoUtils;
+import jrat.common.DropLocations;
+import jrat.common.crypto.CryptoUtils;
 import jrat.client.Configuration;
 import jrat.client.utils.Utils;
 import java.awt.Desktop;
@@ -196,7 +196,7 @@ public class InstallerStartupModule extends StartupModule {
                 }
 
 				
-				if (!io.jrat.common.utils.Utils.isHeadless() && Boolean.parseBoolean(Configuration.getConfig().get("window"))) {
+				if (!jrat.common.utils.Utils.isHeadless() && Boolean.parseBoolean(Configuration.getConfig().get("window"))) {
 					new Thread(new Runnable() {
 						@Override
 						public void run() {

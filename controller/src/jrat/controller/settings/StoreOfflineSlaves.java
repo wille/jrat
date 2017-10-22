@@ -1,7 +1,7 @@
 package jrat.controller.settings;
 
-import io.jrat.common.crypto.CryptoUtils;
-import io.jrat.common.crypto.KeyUtils;
+import jrat.common.crypto.CryptoUtils;
+import jrat.common.crypto.KeyUtils;
 import jrat.controller.AbstractSlave;
 import jrat.controller.Globals;
 import jrat.controller.Main;

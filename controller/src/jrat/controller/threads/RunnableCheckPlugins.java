@@ -1,6 +1,6 @@
 package jrat.controller.threads;
 
-import io.jrat.common.Logger;
+import jrat.common.Logger;
 import jrat.controller.LogAction;
 import jrat.controller.Main;
 import jrat.controller.addons.OnlinePlugin;

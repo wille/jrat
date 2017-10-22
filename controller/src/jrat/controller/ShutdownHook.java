@@ -1,6 +1,6 @@
 package jrat.controller;
 
-import io.jrat.common.Logger;
+import jrat.common.Logger;
 import jrat.controller.settings.AbstractStorable;
 import jrat.controller.settings.Settings;
 import jrat.api.events.Event;

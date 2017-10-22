@@ -2,7 +2,7 @@ package jrat.controller.ui.frames;
 
 import graphslib.monitors.RemoteMonitor;
 import iconlib.IconUtils;
-import io.jrat.common.utils.DataUnits;
+import jrat.common.utils.DataUnits;
 import jrat.controller.ErrorDialog;
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet12RemoteScreen;

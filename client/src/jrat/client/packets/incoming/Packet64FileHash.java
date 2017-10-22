@@ -1,7 +1,7 @@
 package jrat.client.packets.incoming;
 
-import io.jrat.common.hash.Md5;
-import io.jrat.common.hash.Sha1;
+import jrat.common.hash.Md5;
+import jrat.common.hash.Sha1;
 import jrat.client.Connection;
 import jrat.client.packets.outgoing.Packet46FileHash;
 

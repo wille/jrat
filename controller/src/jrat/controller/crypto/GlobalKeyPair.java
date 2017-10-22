@@ -1,8 +1,8 @@
 package jrat.controller.crypto;
 
-import io.jrat.common.Logger;
-import io.jrat.common.crypto.Crypto;
-import io.jrat.common.crypto.KeyUtils;
+import jrat.common.Logger;
+import jrat.common.crypto.Crypto;
+import jrat.common.crypto.KeyUtils;
 import jrat.controller.Globals;
 import jrat.controller.utils.IOUtils;
 

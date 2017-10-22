@@ -1,7 +1,7 @@
 package jrat.controller.ui.panels;
 
 import iconlib.IconUtils;
-import io.jrat.common.DropLocations;
+import jrat.common.DropLocations;
 import jrat.controller.Help;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

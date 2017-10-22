@@ -1,6 +1,6 @@
 package jrat.client.packets.incoming;
 
-import io.jrat.common.PacketRange;
+import jrat.common.PacketRange;
 import jrat.client.Connection;
 import jrat.client.Plugin;
 

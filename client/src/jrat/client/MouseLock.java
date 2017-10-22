@@ -1,6 +1,6 @@
 package jrat.client;
 
-import io.jrat.common.utils.Utils;
+import jrat.common.utils.Utils;
 import jrat.client.utils.ScreenUtils;
 
 public class MouseLock extends Thread {

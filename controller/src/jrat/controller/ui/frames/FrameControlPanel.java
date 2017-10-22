@@ -1,7 +1,7 @@
 package jrat.controller.ui.frames;
 
 import iconlib.IconUtils;
-import io.jrat.common.script.Script;
+import jrat.common.script.Script;
 import jrat.controller.Constants;
 import jrat.controller.Slave;
 import jrat.controller.addons.ClientFormat;

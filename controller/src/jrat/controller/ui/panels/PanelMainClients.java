@@ -1,7 +1,7 @@
 package jrat.controller.ui.panels;
 
 import iconlib.IconUtils;
-import io.jrat.common.downloadable.Downloadable;
+import jrat.common.downloadable.Downloadable;
 import jrat.controller.AbstractSlave;
 import jrat.controller.OfflineSlave;
 import jrat.controller.Slave;

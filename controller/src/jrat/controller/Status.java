@@ -1,6 +1,6 @@
 package jrat.controller;
 
-import io.jrat.common.Constants;
+import jrat.common.Constants;
 
 import java.util.HashMap;
 import java.util.Map;

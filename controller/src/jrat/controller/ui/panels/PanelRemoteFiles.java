@@ -2,9 +2,9 @@ package jrat.controller.ui.panels;
 
 import iconlib.FileIconUtils;
 import iconlib.IconUtils;
-import io.jrat.common.DropLocations;
-import io.jrat.common.io.FileCache;
-import io.jrat.common.io.TransferData;
+import jrat.common.DropLocations;
+import jrat.common.io.FileCache;
+import jrat.common.io.TransferData;
 import jrat.controller.Drive;
 import jrat.controller.Slave;
 import jrat.controller.io.FileObject;

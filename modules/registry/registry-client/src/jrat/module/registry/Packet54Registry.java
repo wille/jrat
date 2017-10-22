@@ -1,6 +1,6 @@
 package jrat.module.registry;
 
-import io.jrat.common.io.StringWriter;
+import jrat.common.io.StringWriter;
 import jrat.client.packets.outgoing.AbstractOutgoingPacket;
 
 import java.io.BufferedReader;

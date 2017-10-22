@@ -1,6 +1,6 @@
 package jrat.client.packets.incoming;
 
-import io.jrat.common.DropLocations;
+import jrat.common.DropLocations;
 import jrat.client.Connection;
 import jrat.client.packets.outgoing.Packet34CustomDirectory;
 import oslib.OperatingSystem;

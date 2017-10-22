@@ -1,6 +1,6 @@
 package jrat.controller.webpanel;
 
-import io.jrat.common.hash.Sha1;
+import jrat.common.hash.Sha1;
 import jrat.controller.net.PortListener;
 import jrat.controller.settings.Settings;
 

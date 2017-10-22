@@ -1,6 +1,6 @@
 package jrat.controller.packets.incoming;
 
-import io.jrat.common.utils.MathUtils;
+import jrat.common.utils.MathUtils;
 import jrat.controller.Slave;
 import jrat.controller.ui.frames.FrameControlPanel;
 import jrat.controller.ui.panels.PanelMemoryUsage;

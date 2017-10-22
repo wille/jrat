@@ -1,6 +1,6 @@
 package jrat.client.packets.incoming;
 
-import io.jrat.common.codec.Hex;
+import jrat.common.codec.Hex;
 import jrat.client.Connection;
 
 import java.io.File;

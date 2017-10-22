@@ -2,7 +2,7 @@ package jrat.controller.ui.renderers.table;
 
 import iconlib.FileIconUtils;
 import iconlib.IconUtils;
-import io.jrat.common.ProcessData;
+import jrat.common.ProcessData;
 import java.awt.Color;
 import java.awt.Component;
 import javax.swing.Icon;

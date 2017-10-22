@@ -1,7 +1,7 @@
 package jrat.controller.ui.panels;
 
 import iconlib.IconUtils;
-import io.jrat.common.script.Script;
+import jrat.common.script.Script;
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.AbstractOutgoingPacket;
 import jrat.controller.packets.outgoing.Packet35Script;

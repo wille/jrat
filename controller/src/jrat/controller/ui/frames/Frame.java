@@ -1,9 +1,9 @@
 package jrat.controller.ui.frames;
 
 import iconlib.IconUtils;
-import io.jrat.common.Version;
-import io.jrat.common.utils.DataUnits;
-import io.jrat.common.utils.IOUtils;
+import jrat.common.Version;
+import jrat.common.utils.DataUnits;
+import jrat.common.utils.IOUtils;
 import jrat.controller.AbstractSlave;
 import jrat.controller.Constants;
 import jrat.controller.ErrorDialog;

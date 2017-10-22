@@ -1,6 +1,6 @@
 package jrat.controller.ui.dialogs;
 
-import io.jrat.common.Version;
+import jrat.common.Version;
 import jrat.controller.Main;
 import jrat.controller.VersionChecker;
 

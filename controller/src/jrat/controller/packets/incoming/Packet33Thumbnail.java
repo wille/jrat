@@ -1,6 +1,6 @@
 package jrat.controller.packets.incoming;
 
-import io.jrat.common.utils.ImageUtils;
+import jrat.common.utils.ImageUtils;
 import jrat.controller.Slave;
 import java.awt.image.BufferedImage;
 import java.io.DataInputStream;

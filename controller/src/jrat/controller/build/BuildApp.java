@@ -1,7 +1,7 @@
 package jrat.controller.build;
 
-import io.jrat.common.utils.IOUtils;
-import io.jrat.common.utils.JarUtils;
+import jrat.common.utils.IOUtils;
+import jrat.common.utils.JarUtils;
 import jrat.controller.Main;
 import jrat.controller.ui.frames.FrameAppInfo;
 import java.io.BufferedReader;

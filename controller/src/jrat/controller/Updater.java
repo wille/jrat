@@ -1,6 +1,6 @@
 package jrat.controller;
 
-import io.jrat.common.downloadable.JavaArchive;
+import jrat.common.downloadable.JavaArchive;
 import java.io.File;
 import javax.swing.JOptionPane;
 

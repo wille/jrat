@@ -1,8 +1,8 @@
 package jrat.controller.packets.incoming;
 
-import io.jrat.common.Logger;
-import io.jrat.common.Sound;
-import io.jrat.common.utils.DataUnits;
+import jrat.common.Logger;
+import jrat.common.Sound;
+import jrat.common.utils.DataUnits;
 import jrat.controller.Slave;
 import jrat.controller.ui.dialogs.DialogRemoteSoundCapture;
 

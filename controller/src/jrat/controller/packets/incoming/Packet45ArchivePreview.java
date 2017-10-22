@@ -1,7 +1,7 @@
 package jrat.controller.packets.incoming;
 
 import iconlib.FileIconUtils;
-import io.jrat.common.utils.DataUnits;
+import jrat.common.utils.DataUnits;
 import jrat.controller.Slave;
 import jrat.controller.ui.frames.FramePreviewZip;
 

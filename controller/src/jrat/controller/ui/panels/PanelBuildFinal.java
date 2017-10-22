@@ -1,7 +1,7 @@
 package jrat.controller.ui.panels;
 
 import iconlib.IconUtils;
-import io.jrat.common.utils.DataUnits;
+import jrat.common.utils.DataUnits;
 import jrat.controller.ErrorDialog;
 import jrat.controller.Globals;
 import jrat.controller.OSConfig;

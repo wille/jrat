@@ -1,6 +1,6 @@
 package jrat.controller.packets.android.incoming;
 
-import io.jrat.common.PacketRange;
+import jrat.common.PacketRange;
 import jrat.controller.addons.PluginEventHandler;
 import jrat.controller.android.AndroidSlave;
 

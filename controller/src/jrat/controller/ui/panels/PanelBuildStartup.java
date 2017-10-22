@@ -1,7 +1,7 @@
 package jrat.controller.ui.panels;
 
 import iconlib.IconUtils;
-import io.jrat.common.DropLocations;
+import jrat.common.DropLocations;
 import jrat.controller.Help;
 import jrat.controller.settings.Settings;
 import jrat.controller.ui.components.JPlaceholderTextField;

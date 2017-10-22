@@ -1,7 +1,7 @@
 package jrat.controller.net;
 
-import io.jrat.common.ConnectionCodes;
-import io.jrat.common.Logger;
+import jrat.common.ConnectionCodes;
+import jrat.common.Logger;
 import jrat.controller.AbstractSlave;
 import jrat.controller.LogAction;
 import jrat.controller.Main;

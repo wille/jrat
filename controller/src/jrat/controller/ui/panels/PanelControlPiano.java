@@ -2,7 +2,7 @@ package jrat.controller.ui.panels;
 
 import iconlib.IconUtils;
 import jrat.controller.ErrorDialog;
-import io.jrat.common.Piano;
+import jrat.common.Piano;
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet66PianoNote;
 import jrat.controller.packets.outgoing.Packet67LongPianoNote;

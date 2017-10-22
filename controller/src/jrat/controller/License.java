@@ -2,7 +2,7 @@ package jrat.controller;
 
 import com.cedarsoftware.util.io.JsonObject;
 import com.cedarsoftware.util.io.JsonReader;
-import io.jrat.common.hash.Sha256;
+import jrat.common.hash.Sha256;
 import jrat.controller.exceptions.InvalidKeyException;
 import jrat.controller.net.WebRequest;
 

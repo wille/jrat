@@ -1,10 +1,10 @@
 package jrat.controller.android;
 
-import io.jrat.common.Logger;
-import io.jrat.common.codec.Hex;
-import io.jrat.common.crypto.Crypto;
-import io.jrat.common.crypto.StreamKeyExchanger;
-import io.jrat.common.hash.Sha1;
+import jrat.common.Logger;
+import jrat.common.codec.Hex;
+import jrat.common.crypto.Crypto;
+import jrat.common.crypto.StreamKeyExchanger;
+import jrat.common.hash.Sha1;
 import jrat.controller.AbstractSlave;
 import jrat.controller.LogAction;
 import jrat.controller.Main;

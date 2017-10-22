@@ -1,14 +1,14 @@
 package jrat.client;
 
-import io.jrat.common.ConnectionCodes;
-import io.jrat.common.Constants;
-import io.jrat.common.Logger;
-import io.jrat.common.Version;
-import io.jrat.common.crypto.Crypto;
-import io.jrat.common.crypto.CryptoUtils;
-import io.jrat.common.crypto.ObfuscatedStreamKeyExchanger;
-import io.jrat.common.crypto.StreamKeyExchanger;
-import io.jrat.common.io.StringWriter;
+import jrat.common.ConnectionCodes;
+import jrat.common.Constants;
+import jrat.common.Logger;
+import jrat.common.Version;
+import jrat.common.crypto.Crypto;
+import jrat.common.crypto.CryptoUtils;
+import jrat.common.crypto.ObfuscatedStreamKeyExchanger;
+import jrat.common.crypto.StreamKeyExchanger;
+import jrat.common.io.StringWriter;
 import jrat.client.modules.ModuleLoader;
 import jrat.client.packets.incoming.AbstractIncomingPacket;
 import jrat.client.packets.outgoing.AbstractOutgoingPacket;

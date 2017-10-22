@@ -1,9 +1,9 @@
 package jrat.controller.addons;
 
-import io.jrat.common.Logger;
-import io.jrat.common.listeners.CopyStreamsListener;
-import io.jrat.common.utils.DataUnits;
-import io.jrat.common.utils.IOUtils;
+import jrat.common.Logger;
+import jrat.common.listeners.CopyStreamsListener;
+import jrat.common.utils.DataUnits;
+import jrat.common.utils.IOUtils;
 import jrat.controller.Constants;
 import jrat.controller.Globals;
 import jrat.controller.Main;

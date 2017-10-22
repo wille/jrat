@@ -1,6 +1,6 @@
 package jrat.controller.commands;
 
-import io.jrat.common.Logger;
+import jrat.common.Logger;
 import jrat.controller.Main;
 import jrat.controller.net.PortListener;
 import jrat.controller.net.ServerListener;

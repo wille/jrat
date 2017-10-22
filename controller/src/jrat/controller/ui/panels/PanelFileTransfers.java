@@ -2,11 +2,11 @@ package jrat.controller.ui.panels;
 
 import iconlib.FileIconUtils;
 import iconlib.IconUtils;
-import io.jrat.common.io.FileCache;
-import io.jrat.common.io.TransferData;
-import io.jrat.common.io.TransferData.State;
-import io.jrat.common.utils.DataUnits;
-import io.jrat.common.utils.MathUtils;
+import jrat.common.io.FileCache;
+import jrat.common.io.TransferData;
+import jrat.common.io.TransferData.State;
+import jrat.common.utils.DataUnits;
+import jrat.common.utils.MathUtils;
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet102PauseServerUpload;
 import jrat.controller.packets.outgoing.Packet103CompleteServerUpload;

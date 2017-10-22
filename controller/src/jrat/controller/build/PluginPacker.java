@@ -1,6 +1,6 @@
 package jrat.controller.build;
 
-import io.jrat.common.Logger;
+import jrat.common.Logger;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

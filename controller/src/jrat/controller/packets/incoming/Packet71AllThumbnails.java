@@ -1,7 +1,7 @@
 package jrat.controller.packets.incoming;
 
 import graphslib.monitors.PanelMonitors.PanelMonitor;
-import io.jrat.common.utils.ImageUtils;
+import jrat.common.utils.ImageUtils;
 import jrat.controller.Slave;
 import jrat.controller.ui.dialogs.DialogPickMonitor;
 import jrat.controller.ui.frames.FrameControlPanel;

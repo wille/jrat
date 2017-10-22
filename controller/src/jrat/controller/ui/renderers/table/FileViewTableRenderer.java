@@ -1,7 +1,7 @@
 package jrat.controller.ui.renderers.table;
 
 import iconlib.IconUtils;
-import io.jrat.common.utils.DataUnits;
+import jrat.common.utils.DataUnits;
 import jrat.controller.AbstractSlave;
 import jrat.controller.io.FileObject;
 import jrat.controller.settings.StoreFileBookmarks;

