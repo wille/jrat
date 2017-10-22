@@ -1,6 +1,6 @@
 package jrat.controller;
 
-import java.awt.Color;
+import java.awt.*;
 
 public enum SlaveState {
 

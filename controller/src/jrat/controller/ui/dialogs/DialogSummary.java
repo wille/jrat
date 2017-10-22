@@ -5,19 +5,14 @@ import jrat.common.hash.Md5;
 import jrat.common.hash.Sha1;
 import jrat.common.utils.DataUnits;
 import jrat.controller.build.BuildStatus;
+import jrat.controller.ui.DefaultJTable;
 import jrat.controller.ui.components.TableModel;
 import jrat.controller.ui.renderers.table.BuildTableRenderer;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.io.File;
 import java.util.LinkedHashMap;
-import javax.swing.BoxLayout;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
-import javax.swing.JTable;
-import javax.swing.border.EmptyBorder;
-import jrat.api.ui.DefaultJTable;
 
 
 @SuppressWarnings("serial")

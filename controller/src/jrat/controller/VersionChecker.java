@@ -2,6 +2,7 @@ package jrat.controller;
 
 import jrat.common.Version;
 import jrat.controller.net.WebRequest;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;

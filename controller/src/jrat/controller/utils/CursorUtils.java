@@ -1,8 +1,9 @@
 package jrat.controller.utils;
 
 import iconlib.IconUtils;
-import java.awt.Graphics2D;
 import oslib.OperatingSystem;
+
+import java.awt.*;
 
 public class CursorUtils {
 

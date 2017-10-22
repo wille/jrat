@@ -5,9 +5,9 @@ import graphslib.network.NetworkGraph;
 import jrat.controller.listeners.GlobalNetworkMonitorListener;
 import jrat.controller.threads.NetworkCounter;
 
-import java.awt.BorderLayout;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import java.awt.*;
 
 @SuppressWarnings("serial")
 public class PanelMainNetwork extends JPanel {

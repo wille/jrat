@@ -1,11 +1,10 @@
 package jrat.controller.ui.renderers.table;
 
 import iconlib.IconUtils;
-import java.awt.Component;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JTable;
-import jrat.api.ui.DefaultJTableCellRenderer;
+import jrat.controller.ui.DefaultJTableCellRenderer;
+
+import javax.swing.*;
+import java.awt.*;
 
 
 @SuppressWarnings("serial")

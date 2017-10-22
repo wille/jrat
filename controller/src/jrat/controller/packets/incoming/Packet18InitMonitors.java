@@ -2,6 +2,7 @@ package jrat.controller.packets.incoming;
 
 import graphslib.monitors.RemoteMonitor;
 import jrat.controller.Slave;
+
 import java.io.DataInputStream;
 
 

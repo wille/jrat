@@ -1,13 +1,10 @@
 package jrat.controller.ui.renderers;
 
 import jrat.common.utils.ImageUtils;
-import java.awt.Color;
-import java.awt.Component;
+
+import javax.swing.*;
+import java.awt.*;
 import java.util.HashMap;
-import javax.swing.DefaultListCellRenderer;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JList;
 
 
 @SuppressWarnings("serial")

@@ -5,9 +5,10 @@ import jrat.controller.Slave;
 import jrat.controller.net.GeoIP;
 import jrat.controller.ui.components.JRemoteScreenPane;
 import jrat.controller.ui.components.TableModel;
-import java.awt.BorderLayout;
+
+import javax.swing.*;
+import java.awt.*;
 import java.util.Map;
-import javax.swing.JTable;
 
 
 @SuppressWarnings("serial")

@@ -1,7 +1,6 @@
 package jrat.controller.ui.components;
 
-import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
+import javax.swing.*;
 
 @SuppressWarnings("serial")
 public class JPortSpinner extends JSpinner {

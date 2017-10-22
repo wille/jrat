@@ -3,16 +3,13 @@ package jrat.controller.ui.panels;
 import iconlib.IconUtils;
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet72IPConfig;
-import java.awt.Color;
+
+import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JButton;
-import javax.swing.JScrollPane;
-import javax.swing.JTextPane;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.ScrollPaneConstants;
 
 
 @SuppressWarnings("serial")

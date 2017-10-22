@@ -2,7 +2,7 @@ package jrat.controller.ui.panels;
 
 import jrat.controller.Slave;
 
-import javax.swing.JPanel;
+import javax.swing.*;
 
 
 @SuppressWarnings("serial")

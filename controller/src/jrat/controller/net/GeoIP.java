@@ -4,15 +4,14 @@ import iconlib.IconUtils;
 import jrat.controller.AbstractSlave;
 import jrat.controller.utils.NetUtils;
 
-import java.awt.Graphics;
-import java.awt.Image;
+import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
-import javax.imageio.ImageIO;
 
 public class GeoIP {
 

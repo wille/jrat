@@ -1,10 +1,10 @@
 package jrat.controller.ui.renderers.table;
 
+import jrat.controller.ui.DefaultJTableCellRenderer;
 import jrat.controller.utils.FlagUtils;
-import java.awt.Component;
-import javax.swing.JLabel;
-import javax.swing.JTable;
-import jrat.api.ui.DefaultJTableCellRenderer;
+
+import javax.swing.*;
+import java.awt.*;
 
 
 @SuppressWarnings("serial")

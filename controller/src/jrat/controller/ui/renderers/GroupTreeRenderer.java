@@ -1,13 +1,11 @@
 package jrat.controller.ui.renderers;
 
 import iconlib.IconUtils;
-import java.awt.Component;
-import java.awt.Font;
+
+import javax.swing.*;
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JTree;
 
 
 @SuppressWarnings("serial")

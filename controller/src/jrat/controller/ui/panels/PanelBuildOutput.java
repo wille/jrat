@@ -4,15 +4,12 @@ import jrat.controller.Help;
 import jrat.controller.ShellcodeGenerator;
 import jrat.controller.ui.frames.FrameAppInfo;
 import jrat.controller.ui.frames.FrameExecutableInfo;
+
+import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.ButtonGroup;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
 @SuppressWarnings("serial")
 public class PanelBuildOutput extends JPanel {

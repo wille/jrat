@@ -7,18 +7,12 @@ import jrat.controller.Globals;
 import jrat.controller.Main;
 import jrat.controller.OfflineSlave;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-import java.util.List;
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
 import javax.crypto.CipherOutputStream;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StoreOfflineSlaves extends AbstractStorable {
 	

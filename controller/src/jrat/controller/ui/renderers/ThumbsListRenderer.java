@@ -2,10 +2,9 @@ package jrat.controller.ui.renderers;
 
 import jrat.controller.ui.panels.PanelThumbView;
 
-import java.awt.Component;
+import javax.swing.*;
+import java.awt.*;
 import java.io.File;
-import javax.swing.DefaultListCellRenderer;
-import javax.swing.JList;
 
 
 @SuppressWarnings("serial")

@@ -1,6 +1,7 @@
 package jrat.controller.packets.outgoing;
 
 import jrat.controller.Slave;
+
 import java.io.DataOutputStream;
 
 public class Packet101UploadPlugin extends AbstractOutgoingPacket {

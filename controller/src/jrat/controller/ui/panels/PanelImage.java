@@ -1,9 +1,8 @@
 package jrat.controller.ui.panels;
 
-import java.awt.Graphics;
-import java.awt.Image;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.image.BufferedImage;
-import javax.swing.JScrollPane;
 
 @SuppressWarnings("serial")
 public class PanelImage extends JScrollPane {

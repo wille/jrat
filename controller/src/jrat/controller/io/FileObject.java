@@ -1,6 +1,6 @@
 package jrat.controller.io;
 
-import javax.swing.Icon;
+import javax.swing.*;
 
 public class FileObject {
 

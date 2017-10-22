@@ -3,22 +3,16 @@ package jrat.controller.ui.panels;
 import iconlib.IconUtils;
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet81InstalledPrograms;
+import jrat.controller.ui.DefaultJTable;
 import jrat.controller.ui.components.TableModel;
 import jrat.controller.ui.renderers.JComboBoxIconRenderer;
+import oslib.OperatingSystem;
+
+import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.ScrollPaneConstants;
-import jrat.api.ui.DefaultJTable;
-import oslib.OperatingSystem;
 
 
 @SuppressWarnings("serial")

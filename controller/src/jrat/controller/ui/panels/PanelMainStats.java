@@ -4,19 +4,17 @@ import graphslib.graph.Graph;
 import graphslib.graph.GraphColors;
 import graphslib.graph.GraphEntry;
 import jrat.controller.threads.ThreadGraph;
+import jrat.controller.ui.DefaultJTable;
 import jrat.controller.ui.components.TableModel;
 import jrat.controller.utils.FlagUtils;
-import java.awt.Component;
-import java.awt.Dimension;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
+import java.awt.*;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
-import jrat.api.ui.DefaultJTable;
 
 @SuppressWarnings("serial")
 public class PanelMainStats extends JScrollPane {

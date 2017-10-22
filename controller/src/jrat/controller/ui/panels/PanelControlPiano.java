@@ -1,29 +1,21 @@
 package jrat.controller.ui.panels;
 
 import iconlib.IconUtils;
-import jrat.controller.ErrorDialog;
 import jrat.common.Piano;
+import jrat.controller.ErrorDialog;
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet66PianoNote;
 import jrat.controller.packets.outgoing.Packet67LongPianoNote;
 
-import java.awt.Button;
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.SourceDataLine;
-import javax.swing.BorderFactory;
-import javax.swing.GroupLayout;
+import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JSpinner;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.SpinnerNumberModel;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 @SuppressWarnings("serial")

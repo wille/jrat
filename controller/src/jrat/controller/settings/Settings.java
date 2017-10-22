@@ -11,16 +11,11 @@ import jrat.controller.net.ServerListener;
 import jrat.controller.ui.Columns;
 import jrat.controller.webpanel.WebPanelListener;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
+import javax.swing.*;
+import java.io.*;
 import java.net.BindException;
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.JOptionPane;
-import javax.swing.UIManager;
 
 
 public class Settings extends AbstractStorable {

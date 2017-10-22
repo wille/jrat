@@ -8,7 +8,6 @@ import jrat.common.hash.Sha1;
 import jrat.controller.AbstractSlave;
 import jrat.controller.LogAction;
 import jrat.controller.Main;
-import jrat.controller.addons.PluginEventHandler;
 import jrat.controller.crypto.GlobalKeyPair;
 import jrat.controller.exceptions.CloseException;
 import jrat.controller.net.ConnectionHandler;
@@ -18,13 +17,13 @@ import jrat.controller.packets.android.outgoing.AbstractOutgoingAndroidPacket;
 import jrat.controller.packets.android.outgoing.AndroidPacket0Ping;
 import jrat.controller.utils.TrayIconUtils;
 
-import java.awt.TrayIcon;
-import java.io.DataOutputStream;
-import java.net.Socket;
-import java.util.Arrays;
 import javax.crypto.BadPaddingException;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
+import java.awt.*;
+import java.io.DataOutputStream;
+import java.net.Socket;
+import java.util.Arrays;
 
 public class AndroidSlave extends AbstractSlave {
 	
@@ -103,7 +102,6 @@ public class AndroidSlave extends AbstractSlave {
 			}
 
 			TrayIconUtils.showMessage(Main.instance.getTitle(), "Server " + getIP() + " disconnected: " + message, TrayIcon.MessageType.ERROR);
-			PluginEventHandler.onDisconnect(this);
 		}
 	}
 

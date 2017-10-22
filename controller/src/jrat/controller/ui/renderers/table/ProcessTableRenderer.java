@@ -3,13 +3,11 @@ package jrat.controller.ui.renderers.table;
 import iconlib.FileIconUtils;
 import iconlib.IconUtils;
 import jrat.common.ProcessData;
-import java.awt.Color;
-import java.awt.Component;
-import javax.swing.Icon;
-import javax.swing.JLabel;
-import javax.swing.JTable;
-import jrat.api.ui.DefaultJTableCellRenderer;
+import jrat.controller.ui.DefaultJTableCellRenderer;
 import oslib.OperatingSystem;
+
+import javax.swing.*;
+import java.awt.*;
 
 
 @SuppressWarnings("serial")

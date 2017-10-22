@@ -1,12 +1,10 @@
 package jrat.controller.ui.components;
 
-import java.awt.Dimension;
-import java.awt.Graphics;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 
 @SuppressWarnings("serial")
 public class JRemoteScreenPane extends JScrollPane {

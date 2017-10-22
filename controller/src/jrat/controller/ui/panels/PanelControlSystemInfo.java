@@ -3,15 +3,14 @@ package jrat.controller.ui.panels;
 import iconlib.IconUtils;
 import jrat.common.utils.DataUnits;
 import jrat.controller.Slave;
+import jrat.controller.ui.DefaultJTable;
 import jrat.controller.ui.components.TableModel;
 import jrat.controller.ui.renderers.table.ComputerInfoTableRenderer;
 import jrat.controller.utils.FlagUtils;
-import java.awt.BorderLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import jrat.api.ui.DefaultJTable;
 import oslib.Icons;
+
+import javax.swing.*;
+import java.awt.*;
 
 @SuppressWarnings("serial")
 public class PanelControlSystemInfo extends PanelControlParent {

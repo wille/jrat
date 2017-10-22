@@ -6,29 +6,17 @@ import jrat.controller.packets.outgoing.Packet48ChatStart;
 import jrat.controller.packets.outgoing.Packet49ChatEnd;
 import jrat.controller.packets.outgoing.Packet51ChatMessage;
 import jrat.controller.packets.outgoing.Packet58NudgeChat;
-import java.awt.Color;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.util.HashMap;
-import java.util.Map;
-import javax.swing.GroupLayout;
+
+import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.JTextPane;
-import javax.swing.JToolBar;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.HashMap;
+import java.util.Map;
 
 @SuppressWarnings("serial")
 public class FrameRemoteChat extends BaseFrame {

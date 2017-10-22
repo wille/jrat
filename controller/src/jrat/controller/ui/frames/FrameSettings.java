@@ -8,30 +8,21 @@ import jrat.controller.settings.Settings;
 import jrat.controller.settings.StatisticsCountry;
 import jrat.controller.ui.dialogs.DialogAbout;
 import jrat.controller.ui.dialogs.DialogEula;
-import jrat.controller.ui.panels.PanelSettingsFlags;
-import jrat.controller.ui.panels.PanelSettingsMain;
-import jrat.controller.ui.panels.PanelSettingsProxy;
-import jrat.controller.ui.panels.PanelSettingsStats;
-import jrat.controller.ui.panels.PanelSettingsTheme;
+import jrat.controller.ui.panels.*;
 import jrat.controller.ui.renderers.JTreeIconsRenderer;
 
-import java.awt.Color;
-import java.awt.Toolkit;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.util.HashMap;
-import java.util.Map;
-import javax.swing.BorderFactory;
-import javax.swing.GroupLayout;
+import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTree;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.HashMap;
+import java.util.Map;
 
 @SuppressWarnings("serial")
 public class FrameSettings extends BaseFrame {

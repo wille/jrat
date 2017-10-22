@@ -4,54 +4,27 @@ import iconlib.IconUtils;
 import jrat.common.Version;
 import jrat.common.utils.DataUnits;
 import jrat.common.utils.IOUtils;
-import jrat.controller.AbstractSlave;
-import jrat.controller.Constants;
-import jrat.controller.ErrorDialog;
-import jrat.controller.Globals;
-import jrat.controller.Main;
-import jrat.controller.SampleMode;
-import jrat.controller.Slave;
-import jrat.controller.Updater;
-import jrat.controller.addons.Plugins;
-import jrat.controller.packets.outgoing.Packet11Disconnect;
-import jrat.controller.packets.outgoing.Packet18Update;
-import jrat.controller.packets.outgoing.Packet36Uninstall;
-import jrat.controller.packets.outgoing.Packet37RestartJavaProcess;
-import jrat.controller.packets.outgoing.Packet40Thumbnail;
-import jrat.controller.packets.outgoing.Packet45Reconnect;
-import jrat.controller.settings.Settings;
+import jrat.controller.*;
+import jrat.controller.packets.outgoing.*;
 import jrat.controller.settings.StoreOfflineSlaves;
 import jrat.controller.ui.MainView;
 import jrat.controller.ui.components.DraggableTabbedPane;
 import jrat.controller.ui.dialogs.DialogAbout;
-import jrat.controller.ui.panels.PanelMainClients;
-import jrat.controller.ui.panels.PanelMainLog;
-import jrat.controller.ui.panels.PanelMainNetwork;
-import jrat.controller.ui.panels.PanelMainOnConnect;
-import jrat.controller.ui.panels.PanelMainPlugins;
-import jrat.controller.ui.panels.PanelMainSockets;
-import jrat.controller.ui.panels.PanelMainStats;
+import jrat.controller.ui.panels.*;
 import jrat.controller.utils.BasicIconUtils;
 import jrat.controller.utils.NetUtils;
 import jrat.controller.utils.Utils;
-import java.awt.TrayIcon;
+
+import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.List;
-import javax.swing.JCheckBoxMenuItem;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JTabbedPane;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-import jrat.api.Plugin;
 
 @SuppressWarnings("serial")
 public class Frame extends BaseFrame {
@@ -67,7 +40,6 @@ public class Frame extends BaseFrame {
 	private PanelMainOnConnect panelOnConnect;
 	private PanelMainSockets panelSockets;
 	private PanelMainLog panelLog;
-	private PanelMainPlugins panelPlugins;
 
 	private JMenu mnPlugins;
 	private JCheckBoxMenuItem chckbxmntmTransferPluginsIf;
@@ -501,29 +473,6 @@ public class Frame extends BaseFrame {
 		mntmUpdateAllOutdated.setIcon(IconUtils.getIcon("update"));
 		mnServers.add(mntmUpdateAllOutdated);
 
-		mnPlugins = new JMenu("Plugins");
-		menuBar.add(mnPlugins);
-
-		JMenuItem mntmBrowsePlugins = new JMenuItem("View Available Plugins");
-		mnPlugins.add(mntmBrowsePlugins);
-
-		chckbxmntmTransferPluginsIf = new JCheckBoxMenuItem("Transfer plugins if not installed");
-		chckbxmntmTransferPluginsIf.setSelected(Settings.getGlobal().getBoolean(Settings.KEY_TRANSFER_PLUGINS));
-		chckbxmntmTransferPluginsIf.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				Settings.getGlobal().set(Settings.KEY_TRANSFER_PLUGINS, chckbxmntmTransferPluginsIf.isSelected());
-			}
-		});
-		mnPlugins.add(chckbxmntmTransferPluginsIf);
-
-		mntmBrowsePlugins.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				FrameInstallPlugins frame = new FrameInstallPlugins();
-				frame.setVisible(true);
-			}
-		});
-		mntmBrowsePlugins.setIcon(IconUtils.getIcon("application-images"));
-
 		JMenu mnAbout = new JMenu("Help");
 		mnAbout.setVisible(true);
 		menuBar.add(mnAbout);
@@ -577,7 +526,6 @@ public class Frame extends BaseFrame {
 		panelOnConnect = new PanelMainOnConnect();
 		panelSockets = new PanelMainSockets();
 		panelLog = new PanelMainLog();
-		panelPlugins = new PanelMainPlugins();
 
 		updateClientsView(panelClients);
 		tabbedPane.addTab("Statistics", IconUtils.getIcon("statistics"), panelStats);
@@ -585,9 +533,6 @@ public class Frame extends BaseFrame {
 		tabbedPane.addTab("On Connect", IconUtils.getIcon("schedule"), panelOnConnect);
 		tabbedPane.addTab("Sockets", IconUtils.getIcon("sockets"), panelSockets);
 		tabbedPane.addTab("Log", IconUtils.getIcon("list"), panelLog);
-		tabbedPane.addTab("Plugins", IconUtils.getIcon("plugin"), panelPlugins);
-		
-		reloadPlugins();
 
 		getContentPane().add(tabbedPane);
 	}
@@ -620,36 +565,6 @@ public class Frame extends BaseFrame {
 		for (JMenuItem item : configMenu) {
 			mnView.add(item);
 		}
-	}
-
-	public void reloadPlugins() {
-		while (mnPlugins.getComponentCount() >= 3) {
-			mnPlugins.remove(3);
-		}
-
-		boolean separator = false;
-
-		for (int i = 0; i < Plugins.getPlugins().size(); i++) {
-			Plugin p = Plugins.getPlugins().get(i);
-			ActionListener listener = p.getGlobalActionListener();
-
-			if (listener != null) {
-				JMenuItem item = new JMenuItem(p.getName());
-
-				item.addActionListener(listener);
-
-				item.setIcon(p.getIcon());
-
-				if (!separator) {
-				    mnPlugins.addSeparator();
-				    separator = true;
-                }
-
-				mnPlugins.add(item);
-			}
-		}
-
-		panelPlugins.reload();
 	}
 
 	public void unselectAll() {
@@ -692,10 +607,6 @@ public class Frame extends BaseFrame {
 
 	public PanelMainLog getPanelLog() {
 		return panelLog;
-	}
-
-	public PanelMainPlugins getPanelPlugins() {
-		return panelPlugins;
 	}
 
 	public TrayIcon getTrayIcon() {

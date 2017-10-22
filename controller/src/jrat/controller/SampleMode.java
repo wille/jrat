@@ -6,8 +6,6 @@ import jrat.controller.settings.StatisticsCountry;
 import jrat.controller.settings.StatisticsOperatingSystem;
 import jrat.controller.utils.FlagUtils;
 import jrat.controller.utils.NetUtils;
-import java.util.Random;
-
 import oslib.AbstractOperatingSystem;
 import oslib.bsd.BSDOperatingSystem;
 import oslib.bsd.Flavor;
@@ -18,6 +16,8 @@ import oslib.macos.MacOSVersion;
 import oslib.solaris.SolarisOperatingSystem;
 import oslib.windows.WindowsOperatingSystem;
 import oslib.windows.WindowsVersion;
+
+import java.util.Random;
 
 public class SampleMode {
 

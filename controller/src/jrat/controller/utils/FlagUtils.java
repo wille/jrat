@@ -6,9 +6,9 @@ import jrat.controller.Slave;
 import jrat.controller.ip2c.Country;
 import jrat.controller.ip2c.IP2Country;
 
+import javax.swing.*;
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.ImageIcon;
 
 public class FlagUtils {
 

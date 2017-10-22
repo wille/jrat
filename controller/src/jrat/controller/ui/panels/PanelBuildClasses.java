@@ -3,17 +3,14 @@ package jrat.controller.ui.panels;
 import iconlib.IconUtils;
 import jrat.controller.Globals;
 import jrat.controller.ui.renderers.JTreeIconRenderer;
+
+import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTree;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
 
 
 @SuppressWarnings("serial")

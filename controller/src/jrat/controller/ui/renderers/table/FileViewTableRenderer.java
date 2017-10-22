@@ -5,16 +5,13 @@ import jrat.common.utils.DataUnits;
 import jrat.controller.AbstractSlave;
 import jrat.controller.io.FileObject;
 import jrat.controller.settings.StoreFileBookmarks;
+import jrat.controller.ui.DefaultJTableCellRenderer;
 import jrat.controller.utils.Utils;
-import java.awt.Color;
-import java.awt.Component;
+
+import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.util.HashMap;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JTable;
-import jrat.api.ui.DefaultJTableCellRenderer;
 
 
 @SuppressWarnings("serial")

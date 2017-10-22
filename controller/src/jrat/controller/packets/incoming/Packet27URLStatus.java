@@ -5,8 +5,8 @@ import jrat.controller.Slave;
 import jrat.controller.ui.frames.FrameControlPanel;
 import jrat.controller.ui.panels.PanelControlDownloadManager;
 
+import javax.swing.*;
 import java.io.DataInputStream;
-import javax.swing.ImageIcon;
 
 
 public class Packet27URLStatus extends AbstractIncomingPacket {

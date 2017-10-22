@@ -6,6 +6,7 @@ import jrat.controller.Slave;
 import jrat.controller.ui.dialogs.DialogPickMonitor;
 import jrat.controller.ui.frames.FrameControlPanel;
 import jrat.controller.ui.panels.PanelControlMonitors;
+
 import java.awt.image.BufferedImage;
 import java.io.DataInputStream;
 import java.util.List;

@@ -6,7 +6,7 @@ import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet36Uninstall;
 import jrat.controller.utils.Utils;
 
-import javax.swing.ImageIcon;
+import javax.swing.*;
 
 
 public class UninstallEvent extends Event {

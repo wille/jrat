@@ -3,8 +3,6 @@ package jrat.controller;
 import jrat.common.Logger;
 import jrat.common.Version;
 import jrat.common.utils.Utils;
-import jrat.controller.addons.Plugins;
-import jrat.controller.commands.DefaultCommands;
 import jrat.controller.modules.ModuleLoader;
 import jrat.controller.settings.AbstractStorable;
 import jrat.controller.settings.Settings;
@@ -14,18 +12,15 @@ import jrat.controller.ui.dialogs.DialogEula;
 import jrat.controller.ui.frames.Frame;
 import jrat.controller.utils.IOUtils;
 import jrat.controller.utils.TrayIconUtils;
-import java.io.BufferedReader;
+import oslib.OperatingSystem;
+
+import javax.swing.*;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.swing.JOptionPane;
-import javax.swing.UIManager;
-import jrat.api.commands.Commands;
-import oslib.OperatingSystem;
 
 public class Main {
 	
@@ -44,13 +39,6 @@ public class Main {
 		System.out.println("jRAT " + Version.getVersion() + " " + DateFormat.getDateInstance(DateFormat.SHORT).format(new Date()) + " " + System.getProperty("java.version"));
 		
 		debug = argsContains(args, "--debug");
-
-		Logger.log("Loading libraries...");
-		try {
-			Plugins.loadLibs();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 
 		if (argsContains(args, "--genkey")) {
 			Logger.log("Generating key");
@@ -125,12 +113,6 @@ public class Main {
 		System.setProperty("jrat.version", Version.getVersion());
 
 		try {
-			Plugins.init();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		try {
 			StatisticsCountry.getGlobal().load();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -160,7 +142,6 @@ public class Main {
 		Logger.log("Starting threads...");
 		new Thread(new NetworkCounter()).start();
 		new ThreadCheckVersion().start();
-		new Thread(new RunnableCheckPlugins()).start();
 		new ThreadPing().start();
 		new ThreadTransferSpeed().start();
 		new ThreadSaveCycle().start();
@@ -178,18 +159,6 @@ public class Main {
 		}
 
 		Runtime.getRuntime().addShutdownHook(new Thread(new ShutdownHook()));
-
-		DefaultCommands.addDefault();
-
-		System.out.print(TERMINAL_PREFIX);
-
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		String s;
-
-		while ((s = reader.readLine()) != null) {
-			Commands.execute(s, System.out);
-			System.out.print(TERMINAL_PREFIX);
-		}
 	}
 
 	public static boolean argsContains(String[] args, String... keys) {

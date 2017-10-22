@@ -5,19 +5,13 @@ import jrat.controller.AbstractSlave;
 import jrat.controller.Main;
 import jrat.controller.events.Event;
 import jrat.controller.events.Events;
+import jrat.controller.ui.DefaultJTable;
 import jrat.controller.ui.components.TableModel;
-import java.awt.BorderLayout;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JToolBar;
-import jrat.api.ui.DefaultJTable;
 
 @SuppressWarnings("serial")
 public class PanelMainOnConnect extends JPanel {

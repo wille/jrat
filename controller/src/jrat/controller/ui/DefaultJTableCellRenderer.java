@@ -1,11 +1,8 @@
-package jrat.api.ui;
+package jrat.controller.ui;
 
-import java.awt.Color;
-import java.awt.Component;
-
-import javax.swing.JLabel;
-import javax.swing.JTable;
+import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
+import java.awt.*;
 
 @SuppressWarnings("serial")
 public class DefaultJTableCellRenderer extends DefaultTableCellRenderer {

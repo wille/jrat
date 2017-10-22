@@ -2,6 +2,7 @@ package jrat.controller.ui.frames;
 
 import iconlib.IconUtils;
 import jrat.controller.Slave;
+
 import java.util.HashMap;
 
 

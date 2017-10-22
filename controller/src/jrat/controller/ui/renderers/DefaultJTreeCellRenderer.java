@@ -1,10 +1,8 @@
 package jrat.controller.ui.renderers;
 
-import java.awt.Color;
-import java.awt.Component;
-import javax.swing.JLabel;
-import javax.swing.JTree;
+import javax.swing.*;
 import javax.swing.tree.DefaultTreeCellRenderer;
+import java.awt.*;
 
 @SuppressWarnings("serial")
 public class DefaultJTreeCellRenderer extends DefaultTreeCellRenderer {

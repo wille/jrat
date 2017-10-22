@@ -3,25 +3,19 @@ package jrat.controller.ui.panels;
 import iconlib.IconUtils;
 import jrat.controller.ErrorDialog;
 import jrat.controller.net.PortListener;
+import jrat.controller.ui.DefaultJTable;
 import jrat.controller.ui.components.TableModel;
 import jrat.controller.ui.frames.FrameAddSocket;
 import jrat.controller.ui.renderers.table.SocketsTableRenderer;
-import java.awt.Component;
-import java.awt.Toolkit;
+
+import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
+import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.ScrollPaneConstants;
-import jrat.api.ui.DefaultJTable;
 
 @SuppressWarnings("serial")
 public class PanelMainSockets extends JPanel {

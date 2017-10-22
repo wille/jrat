@@ -4,7 +4,7 @@ import jrat.common.utils.ImageUtils;
 import jrat.controller.Slave;
 import jrat.controller.ui.frames.FrameRemoteFiles;
 
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.DataInputStream;
 

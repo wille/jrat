@@ -5,51 +5,23 @@ import jrat.common.downloadable.Downloadable;
 import jrat.controller.AbstractSlave;
 import jrat.controller.OfflineSlave;
 import jrat.controller.Slave;
-import jrat.controller.addons.ClientFormat;
 import jrat.controller.net.URLParser;
-import jrat.controller.packets.outgoing.Packet100RequestElevation;
-import jrat.controller.packets.outgoing.Packet11Disconnect;
-import jrat.controller.packets.outgoing.Packet14VisitURL;
-import jrat.controller.packets.outgoing.Packet17DownloadExecute;
-import jrat.controller.packets.outgoing.Packet18Update;
-import jrat.controller.packets.outgoing.Packet36Uninstall;
-import jrat.controller.packets.outgoing.Packet37RestartJavaProcess;
-import jrat.controller.packets.outgoing.Packet38RunCommand;
-import jrat.controller.packets.outgoing.Packet42ServerUploadFile;
-import jrat.controller.packets.outgoing.Packet45Reconnect;
-import jrat.controller.packets.outgoing.Packet98InjectJAR;
+import jrat.controller.packets.outgoing.*;
 import jrat.controller.settings.StoreOfflineSlaves;
 import jrat.controller.threads.ThreadUploadFile;
 import jrat.controller.ui.dialogs.DialogFileType;
-import jrat.controller.ui.frames.FrameControlPanel;
-import jrat.controller.ui.frames.FrameNotes;
-import jrat.controller.ui.frames.FrameRemoteChat;
-import jrat.controller.ui.frames.FrameRemoteFiles;
-import jrat.controller.ui.frames.FrameRemoteProcess;
-import jrat.controller.ui.frames.FrameRemoteScreen;
-import jrat.controller.ui.frames.FrameRemoteShell;
-import jrat.controller.ui.frames.FrameRename;
-import jrat.controller.ui.frames.FrameSystemInfo;
+import jrat.controller.ui.frames.*;
 import jrat.controller.utils.NetUtils;
 import jrat.controller.utils.Utils;
 
-import java.awt.Component;
+import javax.swing.*;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
-import javax.swing.Icon;
-import javax.swing.JFileChooser;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPopupMenu;
-import javax.swing.JScrollPane;
-import javax.swing.event.PopupMenuEvent;
-import javax.swing.event.PopupMenuListener;
-import jrat.api.Client;
-import jrat.api.ui.RATMenuItem;
 
 @SuppressWarnings("serial")
 public abstract class PanelMainClients extends JScrollPane {
@@ -666,28 +638,6 @@ public abstract class PanelMainClients extends JScrollPane {
 				}
 			}
 		});
-
-		if (RATMenuItem.getEntries().size() > 0) {
-			popupMenu.addSeparator();
-		}
-
-		for (final RATMenuItem ritem : RATMenuItem.getEntries()) {
-			JMenuItem item = ritem.getItem();
-
-			item.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					List<AbstractSlave> list = getSelectedSlaves();
-					List<Client> servers = new ArrayList<Client>();
-					for (int i = 0; i < list.size(); i++) {
-						servers.add(ClientFormat.format(list.get(i)));
-					}
-
-					ritem.getListener().onClick(servers);
-				}
-			});
-
-			popupMenu.add(item);
-		}
 
 		return popupMenu;
 	}

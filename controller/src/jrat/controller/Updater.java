@@ -1,8 +1,9 @@
 package jrat.controller;
 
 import jrat.common.downloadable.JavaArchive;
+
+import javax.swing.*;
 import java.io.File;
-import javax.swing.JOptionPane;
 
 public class Updater {
 

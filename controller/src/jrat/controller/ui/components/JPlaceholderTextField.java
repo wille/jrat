@@ -1,9 +1,7 @@
 package jrat.controller.ui.components;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import javax.swing.JTextField;
+import javax.swing.*;
+import java.awt.*;
 
 @SuppressWarnings("serial")
 public class JPlaceholderTextField extends JTextField {

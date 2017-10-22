@@ -3,24 +3,17 @@ package jrat.controller.ui.components;
 import iconlib.IconUtils;
 import jrat.controller.AbstractSlave;
 import jrat.controller.io.FileObject;
+import jrat.controller.ui.DefaultJTable;
 import jrat.controller.ui.renderers.JComboBoxIconRenderer;
 import jrat.controller.ui.renderers.table.FileViewTableRenderer;
 import jrat.controller.utils.Utils;
-import java.awt.BorderLayout;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.JToolBar;
-import jrat.api.ui.DefaultJTable;
 
 @SuppressWarnings("serial")
 public abstract class FileTable extends JPanel {
@@ -30,8 +23,8 @@ public abstract class FileTable extends JPanel {
 	public FileViewTableRenderer tableRenderer;
 	private TableModel tableModel;
 	
-	protected JComboBox<String> driveComboBox;
-	protected DefaultComboBoxModel<String> driveComboModel;
+	protected JComboBox driveComboBox;
+	protected DefaultComboBoxModel driveComboModel;
 	protected JComboBoxIconRenderer renderer;
 	
 	protected JTextField txtDir;

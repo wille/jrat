@@ -1,9 +1,8 @@
-package jrat.api.ui;
+package jrat.controller.ui;
 
-import java.awt.Dimension;
-
-import javax.swing.JTable;
+import javax.swing.*;
 import javax.swing.table.TableModel;
+import java.awt.*;
 
 @SuppressWarnings("serial")
 public class DefaultJTable extends JTable {

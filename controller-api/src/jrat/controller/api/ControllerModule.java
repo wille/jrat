@@ -1,4 +1,4 @@
-package apiv2;
+package jrat.controller.api;
 
 public abstract class ControllerModule {
 

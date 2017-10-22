@@ -2,23 +2,16 @@ package jrat.controller.ui.dialogs;
 
 import iconlib.IconUtils;
 import jrat.controller.ui.panels.PanelImage;
-import java.awt.Dimension;
-import java.awt.Toolkit;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextPane;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.border.EmptyBorder;
 
 
 @SuppressWarnings("serial")

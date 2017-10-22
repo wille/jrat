@@ -6,8 +6,9 @@ import jrat.controller.packets.outgoing.Packet85ThumbnailPreview;
 import jrat.controller.ui.renderers.ThumbsListRenderer;
 import jrat.controller.utils.Utils;
 
-import java.awt.BorderLayout;
-import java.awt.Graphics;
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -15,19 +16,6 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.imageio.ImageIO;
-import javax.swing.DefaultListModel;
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
-import javax.swing.JProgressBar;
-import javax.swing.JScrollPane;
-import javax.swing.JToolBar;
-import javax.swing.ScrollPaneConstants;
 
 
 @SuppressWarnings("serial")

@@ -2,7 +2,8 @@ package jrat.controller.listeners;
 
 import jrat.controller.build.BuildStatus;
 import jrat.controller.ui.panels.PanelBuildFinal;
-import java.awt.Color;
+
+import java.awt.*;
 import java.util.LinkedHashMap;
 
 

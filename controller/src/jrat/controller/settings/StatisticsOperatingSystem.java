@@ -5,18 +5,13 @@ import iconlib.IconUtils;
 import jrat.controller.AbstractSlave;
 import jrat.controller.Globals;
 import jrat.controller.Main;
-import java.awt.Color;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
 import oslib.AbstractOperatingSystem;
 import oslib.Icons;
+
+import java.awt.*;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StatisticsOperatingSystem extends AbstractStorable implements Serializable {
 

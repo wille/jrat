@@ -3,16 +3,13 @@ package jrat.controller.utils;
 import jrat.controller.AbstractSlave;
 import jrat.controller.Main;
 import jrat.controller.ui.components.TableModel;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Toolkit;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.Date;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPopupMenu;
 
 public class Utils {
 

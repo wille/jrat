@@ -1,16 +1,13 @@
 package jrat.controller.build;
 
 import jrat.common.Logger;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
+
+import javax.swing.*;
+import java.io.*;
 import java.util.List;
 import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
-import javax.swing.JFileChooser;
 
 public class PluginPacker {
 	

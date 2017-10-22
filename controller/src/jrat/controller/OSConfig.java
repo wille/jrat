@@ -1,8 +1,9 @@
 package jrat.controller;
 
+import oslib.OperatingSystem;
+
 import java.util.ArrayList;
 import java.util.List;
-import oslib.OperatingSystem;
 
 
 public final class OSConfig {

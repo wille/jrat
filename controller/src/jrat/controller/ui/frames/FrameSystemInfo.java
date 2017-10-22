@@ -4,10 +4,9 @@ import iconlib.IconUtils;
 import jrat.controller.Slave;
 import jrat.controller.ui.panels.PanelControlSystemInfo;
 
-import java.awt.BorderLayout;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import java.awt.*;
 
 @SuppressWarnings("serial")
 public class FrameSystemInfo extends BaseFrame {

@@ -7,14 +7,10 @@ import graphslib.monitors.RemoteMonitor;
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet75AllThumbnails;
 
-import java.awt.BorderLayout;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-import javax.swing.JToolBar;
-import javax.swing.ScrollPaneConstants;
 
 @SuppressWarnings("serial")
 public class PanelControlMonitors extends PanelControlParent {

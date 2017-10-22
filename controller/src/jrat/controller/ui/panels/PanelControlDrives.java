@@ -2,14 +2,12 @@ package jrat.controller.ui.panels;
 
 import jrat.controller.Drive;
 import jrat.controller.Slave;
+import jrat.controller.ui.DefaultJTable;
 import jrat.controller.ui.components.TableModel;
 import jrat.controller.ui.renderers.table.DrivesTableRenderer;
-import javax.swing.GroupLayout;
+
+import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.ScrollPaneConstants;
-import jrat.api.ui.DefaultJTable;
 
 
 @SuppressWarnings("serial")

@@ -1,8 +1,9 @@
 package jrat.controller;
 
 import iconlib.IconUtils;
-import java.awt.Color;
-import javax.swing.Icon;
+
+import javax.swing.*;
+import java.awt.*;
 
 public enum LogAction {
 		

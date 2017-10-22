@@ -1,13 +1,7 @@
 package jrat.controller.packets.incoming;
 
 import jrat.controller.Slave;
-import java.io.DataInputStream;
-import oslib.AbstractOperatingSystem;
-import oslib.Arch;
-import oslib.DesktopEnvironment;
-import oslib.OperatingSystem;
-import oslib.UnixOperatingSystem;
-import oslib.UnknownOperatingSystem;
+import oslib.*;
 import oslib.bsd.BSDOperatingSystem;
 import oslib.bsd.Flavor;
 import oslib.linux.Distro;
@@ -17,6 +11,8 @@ import oslib.macos.MacOSOperatingSystem;
 import oslib.macos.MacOSVersion;
 import oslib.solaris.SolarisOperatingSystem;
 import oslib.windows.WindowsOperatingSystem;
+
+import java.io.DataInputStream;
 
 public class Packet4InitOperatingSystem extends AbstractIncomingPacket {
 

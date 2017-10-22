@@ -2,12 +2,12 @@ package jrat.controller.utils;
 
 import iconlib.IconUtils;
 import jrat.controller.AbstractSlave;
-import java.awt.Image;
+import oslib.Icons;
+
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.ImageIcon;
-
-import oslib.Icons;
 
 public class BasicIconUtils {
 

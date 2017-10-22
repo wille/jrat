@@ -1,6 +1,6 @@
 package jrat.controller.listeners;
 
-import java.awt.Color;
+import java.awt.*;
 
 public interface ExtensionInstallerListener {
 

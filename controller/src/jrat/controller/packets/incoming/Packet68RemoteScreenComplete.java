@@ -4,8 +4,8 @@ import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet12RemoteScreen;
 import jrat.controller.ui.frames.FrameRemoteScreen;
 import jrat.controller.utils.CursorUtils;
-import java.awt.Color;
-import java.awt.Graphics2D;
+
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.DataInputStream;
 

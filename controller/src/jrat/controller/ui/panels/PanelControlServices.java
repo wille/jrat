@@ -3,17 +3,14 @@ package jrat.controller.ui.panels;
 import iconlib.IconUtils;
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet77ListServices;
+import jrat.controller.ui.DefaultJTable;
 import jrat.controller.ui.components.TableModel;
+
+import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JButton;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.ScrollPaneConstants;
-import jrat.api.ui.DefaultJTable;
 
 
 @SuppressWarnings("serial")

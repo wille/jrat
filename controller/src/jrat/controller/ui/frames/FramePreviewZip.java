@@ -3,25 +3,20 @@ package jrat.controller.ui.frames;
 import iconlib.IconUtils;
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet63PreviewArchive;
+import jrat.controller.ui.DefaultJTable;
 import jrat.controller.ui.components.TableModel;
-import java.awt.Toolkit;
+
+import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.Icon;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.border.EmptyBorder;
-import jrat.api.ui.DefaultJTable;
 
 
 @SuppressWarnings("serial")

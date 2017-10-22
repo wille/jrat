@@ -1,8 +1,9 @@
 package jrat.controller.ui.frames;
 
 import jrat.controller.Slave;
-import javax.swing.JFrame;
 import oslib.OperatingSystem;
+
+import javax.swing.*;
 
 
 @SuppressWarnings("serial")

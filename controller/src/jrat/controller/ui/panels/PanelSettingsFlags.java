@@ -2,12 +2,8 @@ package jrat.controller.ui.panels;
 
 import jrat.controller.settings.Settings;
 
-import javax.swing.BorderFactory;
-import javax.swing.ButtonGroup;
-import javax.swing.GroupLayout;
+import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 
 
 @SuppressWarnings("serial")

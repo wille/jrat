@@ -1,10 +1,9 @@
 package jrat.controller.ui.renderers;
 
 import iconlib.FileIconUtils;
-import java.awt.Component;
-import javax.swing.Icon;
-import javax.swing.JLabel;
-import javax.swing.JTree;
+
+import javax.swing.*;
+import java.awt.*;
 
 @SuppressWarnings("serial")
 public class HelpTreeRenderer extends DefaultJTreeCellRenderer {

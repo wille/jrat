@@ -4,80 +4,29 @@ import iconlib.IconUtils;
 import jrat.common.script.Script;
 import jrat.controller.Constants;
 import jrat.controller.Slave;
-import jrat.controller.addons.ClientFormat;
 import jrat.controller.exceptions.ControlPanelLoadException;
 import jrat.controller.listeners.Performable;
-import jrat.controller.packets.outgoing.Packet100RequestElevation;
-import jrat.controller.packets.outgoing.Packet11Disconnect;
-import jrat.controller.packets.outgoing.Packet28ShutdownComputer;
-import jrat.controller.packets.outgoing.Packet29RestartComputer;
-import jrat.controller.packets.outgoing.Packet30LogoutComputer;
-import jrat.controller.packets.outgoing.Packet31ComputerSleep;
-import jrat.controller.packets.outgoing.Packet32LockComputer;
-import jrat.controller.packets.outgoing.Packet37RestartJavaProcess;
-import jrat.controller.packets.outgoing.Packet45Reconnect;
+import jrat.controller.packets.outgoing.*;
 import jrat.controller.ui.components.DisabledDefaultMutableTreeNode;
 import jrat.controller.ui.dialogs.DialogRemoteSoundCapture;
-import jrat.controller.ui.panels.PanelControlActivePorts;
-import jrat.controller.ui.panels.PanelControlAdapters;
-import jrat.controller.ui.panels.PanelControlClipboard;
-import jrat.controller.ui.panels.PanelControlDownloadManager;
-import jrat.controller.ui.panels.PanelControlDrives;
-import jrat.controller.ui.panels.PanelControlErrorLog;
-import jrat.controller.ui.panels.PanelControlFunManager;
-import jrat.controller.ui.panels.PanelControlHostsFile;
-import jrat.controller.ui.panels.PanelControlInstalledPrograms;
-import jrat.controller.ui.panels.PanelControlJVMProperties;
-import jrat.controller.ui.panels.PanelControlLANScan;
-import jrat.controller.ui.panels.PanelControlLoadedPlugins;
-import jrat.controller.ui.panels.PanelControlMessagebox;
-import jrat.controller.ui.panels.PanelControlMonitors;
-import jrat.controller.ui.panels.PanelControlNetGateway;
-import jrat.controller.ui.panels.PanelControlParent;
-import jrat.controller.ui.panels.PanelControlPiano;
-import jrat.controller.ui.panels.PanelControlPrinter;
-import jrat.controller.ui.panels.PanelControlRegStart;
-import jrat.controller.ui.panels.PanelControlRemoteProcess;
-import jrat.controller.ui.panels.PanelControlScript;
-import jrat.controller.ui.panels.PanelControlServices;
-import jrat.controller.ui.panels.PanelControlSpeech;
-import jrat.controller.ui.panels.PanelControlSystemInfo;
-import jrat.controller.ui.panels.PanelControlTrace;
-import jrat.controller.ui.panels.PanelMemoryUsage;
+import jrat.controller.ui.panels.*;
 import jrat.controller.ui.renderers.ControlPanelTreeRenderer;
 import jrat.controller.utils.Utils;
-import java.awt.BorderLayout;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import javax.swing.GroupLayout;
+import oslib.OperatingSystem;
+
+import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
-import javax.swing.JCheckBoxMenuItem;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
-import javax.swing.JTree;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
-import jrat.api.Client;
-import jrat.api.ui.BaseControlPanel;
-import jrat.api.ui.RATControlMenuEntry;
-import oslib.OperatingSystem;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.Map;
 
 @SuppressWarnings("serial")
 public class FrameControlPanel extends BaseFrame {
@@ -87,7 +36,6 @@ public class FrameControlPanel extends BaseFrame {
 	private JTree tree;
 
 	public static final Map<Slave, FrameControlPanel> instances = new HashMap<Slave, FrameControlPanel>();
-	public static final List<RATControlMenuEntry> entries = new ArrayList<RATControlMenuEntry>();
 
 	public HashMap<String, JPanel> panels = new HashMap<String, JPanel>();
 	public HashMap<String, Performable> actions = new HashMap<String, Performable>();
@@ -106,39 +54,9 @@ public class FrameControlPanel extends BaseFrame {
 		return tree;
 	}
 
-	public void loadItems() {
-		if (entries.size() == 0) {
-			for (RATControlMenuEntry entry : RATControlMenuEntry.getEntries()) {
-				entries.add(entry);
-			}
-		}
-	}
-
 	public FrameControlPanel(Slave s) {
 		super(s);
-		loadItems();
-		super.addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent arg0) {
-				for (RATControlMenuEntry entry : entries) {
-					try {
-						Client client = ClientFormat.format(slave);
-						
-						BaseControlPanel panel = entry.get(client);
-						
-						if (panel != null) {
-							panel.onClose();
-						}
-						
-						entry.remove(client);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-				
-				instances.remove(slave);
-			}
-		});
+
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameControlPanel.class.getResource("/icons/controlpanel.png")));
 		setTitle("Control Panel");
 		final Slave sl = slave;
@@ -328,15 +246,6 @@ public class FrameControlPanel extends BaseFrame {
 				r.icons.put("notes", IconUtils.getIcon("notes"));
 				r.icons.put("request elevation", IconUtils.getIcon("shield"));
 
-				ImageIcon plugin = IconUtils.getIcon("plugin");
-
-				for (RATControlMenuEntry entry : entries) {
-					if (entry.getIcon() != null) {
-						r.icons.put(entry.getName().toLowerCase(), entry.getIcon());
-					} else {
-						r.icons.put(entry.getName().toLowerCase(), plugin);
-					}
-				}
 				getTree().repaint();
 			}
 		}).start();
@@ -394,21 +303,6 @@ public class FrameControlPanel extends BaseFrame {
 			tabbedPane.removeAll();
 			tabbedPane.addTab("Windows Services", i.get("windows services"), panels.get("windows services"));
 			tabbedPane.addTab("Registry Startup", i.get("registry startup"), panels.get("registry startup"));
-		} else if (str.equals("plugins")) {
-			tabbedPane.removeAll();
-			tabbedPane.addTab("View Installed Plugins", i.get("view installed plugins"), panels.get("view installed plugins"));
-
-			ImageIcon defaultIcon = i.get("plugins");
-			for (RATControlMenuEntry entry : entries) {
-				try {
-					BaseControlPanel panel = entry.newPanelInstance(ClientFormat.format(slave));
-					panel.onLoad();
-					tabbedPane.addTab(entry.getName(), entry.getIcon() == null ? defaultIcon : entry.getIcon(), panel);
-					entry.put(ClientFormat.format(slave), panel);
-				} catch (Exception ex) {
-					ex.printStackTrace();
-				}
-			}
 		}
 	}
 
@@ -489,17 +383,6 @@ public class FrameControlPanel extends BaseFrame {
 		misc.add(getTreeNode("Printer"));
 		misc.add(getTreeNode("Error Log"));
 		misc.add(getTreeNode("Notes"));
-	
-		DefaultMutableTreeNode plugins = getTreeNode("Plugins");
-		n.add(plugins);
-		plugins.add(getTreeNode("View Installed Plugins"));
-		if (entries.size() == 0) {
-			plugins.add(getTreeNode("No plugins available"));
-		} else {
-			for (RATControlMenuEntry entry : entries) {
-				plugins.add(getTreeNode(entry.getName()));
-			}
-		}
 
 		DefaultMutableTreeNode slave = getTreeNode("Connection Actions");
 		n.add(slave);

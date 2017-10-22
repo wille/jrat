@@ -1,8 +1,9 @@
 package jrat.controller.ui.dialogs;
 
 import jrat.controller.Slave;
-import javax.swing.JDialog;
 import oslib.OperatingSystem;
+
+import javax.swing.*;
 
 
 @SuppressWarnings("serial")

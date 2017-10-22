@@ -4,7 +4,7 @@ import jrat.controller.Constants;
 import jrat.controller.ErrorDialog;
 import jrat.controller.net.WebRequest;
 
-import java.awt.Desktop;
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;

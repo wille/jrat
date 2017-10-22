@@ -2,9 +2,9 @@ package jrat.controller;
 
 import jrat.controller.utils.IOUtils;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.FileInputStream;
-import javax.swing.JOptionPane;
 
 public class Help {
 

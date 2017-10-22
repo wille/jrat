@@ -3,7 +3,6 @@ package jrat.controller.net;
 import jrat.controller.AbstractSlave;
 import jrat.controller.Main;
 import jrat.controller.SampleMode;
-import jrat.controller.addons.PluginEventHandler;
 import jrat.controller.exceptions.CloseException;
 import jrat.controller.exceptions.DuplicateSlaveException;
 import jrat.controller.settings.StoreOfflineSlaves;
@@ -28,9 +27,7 @@ public class ConnectionHandler {
 
 			TrayIconUtils.setToolTip(title);
 			TrayIconUtils.showMessage(title, slave.getIP() + " connected");
-
-			PluginEventHandler.onConnect(slave);
-		}	
+        }
 	}
 
 	public synchronized static void removeSlave(final AbstractSlave client, int delay) {

@@ -3,12 +3,12 @@ package jrat.controller.ui.components;
 import jrat.controller.listeners.SocketComboBoxListener;
 import jrat.controller.net.PortListener;
 import jrat.controller.net.ServerListener;
+
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 
 
 @SuppressWarnings("serial")

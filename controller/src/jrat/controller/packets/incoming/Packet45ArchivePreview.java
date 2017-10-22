@@ -5,8 +5,8 @@ import jrat.common.utils.DataUnits;
 import jrat.controller.Slave;
 import jrat.controller.ui.frames.FramePreviewZip;
 
+import javax.swing.*;
 import java.io.DataInputStream;
-import javax.swing.Icon;
 
 public class Packet45ArchivePreview extends AbstractIncomingPacket {
 

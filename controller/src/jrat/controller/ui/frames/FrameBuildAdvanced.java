@@ -1,43 +1,19 @@
 package jrat.controller.ui.frames;
 
 import iconlib.IconUtils;
-import jrat.controller.ui.panels.PanelBuildBinder;
-import jrat.controller.ui.panels.PanelBuildClasses;
-import jrat.controller.ui.panels.PanelBuildDebugMessages;
-import jrat.controller.ui.panels.PanelBuildDelay;
-import jrat.controller.ui.panels.PanelBuildError;
-import jrat.controller.ui.panels.PanelBuildFinal;
-import jrat.controller.ui.panels.PanelBuildGeneral;
-import jrat.controller.ui.panels.PanelBuildHostFile;
-import jrat.controller.ui.panels.PanelBuildInstallMessage;
-import jrat.controller.ui.panels.PanelBuildMutex;
-import jrat.controller.ui.panels.PanelBuildNetwork;
-import jrat.controller.ui.panels.PanelBuildOS;
-import jrat.controller.ui.panels.PanelBuildOutput;
-import jrat.controller.ui.panels.PanelBuildPersistance;
-import jrat.controller.ui.panels.PanelBuildPlugins;
-import jrat.controller.ui.panels.PanelBuildStartup;
-import jrat.controller.ui.panels.PanelBuildTimeout;
-import jrat.controller.ui.panels.PanelBuildVirtualization;
-import jrat.controller.ui.panels.PanelBuildVisibility;
+import jrat.controller.ui.panels.*;
 import jrat.controller.ui.renderers.JTreeIconsRenderer;
 
-import java.awt.Color;
-import java.awt.Toolkit;
-import java.util.HashMap;
-import javax.swing.BorderFactory;
-import javax.swing.GroupLayout;
+import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTree;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import java.awt.*;
+import java.util.HashMap;
 
 
 @SuppressWarnings("serial")
@@ -67,7 +43,6 @@ public class FrameBuildAdvanced extends BaseFrame {
 		renderer.getIconMap().put("binder", IconUtils.getIcon("merge", true));
 		renderer.getIconMap().put("mutex", IconUtils.getIcon("mutex", true));
 		renderer.getIconMap().put("allowed os", IconUtils.getIcon("toolbox", true));
-		renderer.getIconMap().put("plugins", IconUtils.getIcon("plugin", true));
 		renderer.getIconMap().put("timeout", IconUtils.getIcon("timeout", true));
 		renderer.getIconMap().put("delay", IconUtils.getIcon("timer", true));
 		renderer.getIconMap().put("host file", IconUtils.getIcon("leaf"));
@@ -147,7 +122,6 @@ public class FrameBuildAdvanced extends BaseFrame {
 		n.add(new DefaultMutableTreeNode("Timeout"));
 		n.add(new DefaultMutableTreeNode("Delay"));
 		n.add(new DefaultMutableTreeNode("Host File"));
-		n.add(new DefaultMutableTreeNode("Plugins"));
 		n.add(new DefaultMutableTreeNode("Error Handling"));
 		n.add(new DefaultMutableTreeNode("Tray Icon"));
 		n.add(new DefaultMutableTreeNode("Persistance"));
@@ -177,7 +151,6 @@ public class FrameBuildAdvanced extends BaseFrame {
 		panels.put("binder", new PanelBuildBinder());
 		panels.put("mutex", new PanelBuildMutex());
 		panels.put("allowed os", new PanelBuildOS());
-		panels.put("plugins", new PanelBuildPlugins());
 		panels.put("timeout", new PanelBuildTimeout());
 		panels.put("delay", new PanelBuildDelay());
 		panels.put("host file", new PanelBuildHostFile());

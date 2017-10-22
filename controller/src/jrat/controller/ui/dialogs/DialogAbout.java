@@ -4,19 +4,11 @@ import jrat.common.Version;
 import jrat.controller.Main;
 import jrat.controller.VersionChecker;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Toolkit;
 import javax.imageio.ImageIO;
-import javax.swing.GroupLayout;
+import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
-import javax.swing.JDialog;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.*;
 
 @SuppressWarnings("serial")
 public class DialogAbout extends JDialog {

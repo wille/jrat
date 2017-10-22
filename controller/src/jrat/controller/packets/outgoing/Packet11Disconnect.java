@@ -2,6 +2,7 @@ package jrat.controller.packets.outgoing;
 
 import jrat.controller.Slave;
 import jrat.controller.exceptions.CloseException;
+
 import java.io.DataOutputStream;
 
 
