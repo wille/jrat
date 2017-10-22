@@ -63,7 +63,7 @@ public class Frame extends BaseFrame {
 	private int pingMode;
 	private TrayIcon trayIcon;
 
-	private PanelMainClients panelClients;
+	public static PanelMainClients panelClients;
 	private PanelMainStats panelStats;
 	private PanelMainNetwork panelNetwork;
 	private PanelMainOnConnect panelOnConnect;

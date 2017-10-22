@@ -1,4 +1,4 @@
-package io.jrat.controller.ui.frames;
+package jrat.module.registry;
 
 import com.redpois0n.pathtree.FolderTreeNode;
 import com.redpois0n.pathtree.NodeClickListener;
@@ -7,11 +7,9 @@ import com.redpois0n.pathtree.PathTreeModel;
 import com.redpois0n.pathtree.PathTreeNode;
 import iconlib.IconUtils;
 import io.jrat.controller.Slave;
-import io.jrat.controller.packets.outgoing.Packet79BrowseRegistry;
-import io.jrat.controller.packets.outgoing.Packet97RegistryAdd;
-import io.jrat.controller.packets.outgoing.Packet99RegistryDelete;
 import io.jrat.controller.ui.components.TableModel;
 import io.jrat.controller.ui.dialogs.DialogCustomRegQuery;
+import io.jrat.controller.ui.frames.BaseFrame;
 import io.jrat.controller.ui.renderers.table.RegistryTableRenderer;
 import io.jrat.controller.utils.Utils;
 import java.awt.BorderLayout;

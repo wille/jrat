@@ -690,13 +690,6 @@ public class FrameControlPanel extends BaseFrame {
 			}
 		});
 
-		actions.put("registry", new Performable() {
-			public void perform() {
-				FrameRemoteRegistry frame = new FrameRemoteRegistry(slave);
-				frame.setVisible(true);
-			}
-		});
-
 		actions.put("notes", new Performable() {
 			public void perform() {
 				FrameNotes frame = new FrameNotes(slave);

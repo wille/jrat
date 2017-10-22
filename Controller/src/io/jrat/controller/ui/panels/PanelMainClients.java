@@ -26,14 +26,13 @@ import io.jrat.controller.ui.frames.FrameNotes;
 import io.jrat.controller.ui.frames.FrameRemoteChat;
 import io.jrat.controller.ui.frames.FrameRemoteFiles;
 import io.jrat.controller.ui.frames.FrameRemoteProcess;
-import io.jrat.controller.ui.frames.FrameRemoteRegistry;
 import io.jrat.controller.ui.frames.FrameRemoteScreen;
 import io.jrat.controller.ui.frames.FrameRemoteShell;
 import io.jrat.controller.ui.frames.FrameRename;
 import io.jrat.controller.ui.frames.FrameSystemInfo;
 import io.jrat.controller.utils.NetUtils;
 import io.jrat.controller.utils.Utils;
-import java.awt.Color;
+
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -85,6 +84,8 @@ public abstract class PanelMainClients extends JScrollPane {
 	 * @return
 	 */
 	public abstract List<JMenuItem> getConfigMenu();
+
+	public JMenu mnQuickOpen;
 	
 	/**
 	 * Returns the default popup menu for each {@link AbstractSlave}
@@ -256,7 +257,7 @@ public abstract class PanelMainClients extends JScrollPane {
 			}
 		});
 
-		JMenu mnQuickOpen = new JMenu("Quick Open");
+		mnQuickOpen = new JMenu("Quick Open");
 		mnQuickOpen.setIcon(IconUtils.getIcon("application-import"));
 		popupMenu.add(mnQuickOpen);
 
@@ -317,18 +318,7 @@ public abstract class PanelMainClients extends JScrollPane {
 			}
 		});
 
-		final JMenuItem mntmRemoteRegistry = new JMenuItem("Remote Registry");
-		mntmRemoteRegistry.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				AbstractSlave slave = getSelectedSlave();
-				if (slave != null && slave instanceof Slave) {
-					FrameRemoteRegistry frame = new FrameRemoteRegistry((Slave) slave);
-					frame.setVisible(true);
-				}
-			}
-		});
-		mntmRemoteRegistry.setIcon(IconUtils.getIcon("registry"));
-		mnQuickOpen.add(mntmRemoteRegistry);
+
 		mntmFileManager.setIcon(IconUtils.getIcon("folder-go"));
 		mnQuickOpen.add(mntmFileManager);
 
@@ -636,13 +626,6 @@ public abstract class PanelMainClients extends JScrollPane {
 			public void popupMenuWillBecomeVisible(PopupMenuEvent arg0) {
 				try {
 					final List<AbstractSlave> list = getSelectedSlaves();
-					if (list.size() == 1) {
-						AbstractSlave slave = list.get(0);
-
-						mntmRemoteRegistry.setEnabled(slave.getOperatingSystem() != null && slave.getOperatingSystem().getType() == OperatingSystem.WINDOWS); // TODO - OfflineSlave OS is always null
-					} else {
-						mntmRemoteRegistry.setEnabled(true);
-					}
 
 					if (list.size() > 0) {
 						boolean offlineExists = false;

