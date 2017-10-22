@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <p align="center">
 <img src="Controller/src/files/logo.png">
 </p>
