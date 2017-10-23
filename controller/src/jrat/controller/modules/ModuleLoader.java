@@ -57,8 +57,8 @@ public class ModuleLoader {
             method.invoke(ClassLoader.getSystemClassLoader(), new File("modules", mod.controllerPath).toURI().toURL());
 
             // invoke init() on module
-            Class<Module> clazz = (Class<Module>) ModuleLoader.class.getClassLoader().loadClass(mod.controllerPath);
-            Constructor<?> ctor = clazz.getDeclaredConstructor(g);
+            Class<Module> clazz = (Class<Module>) ModuleLoader.class.getClassLoader().loadClass(mod.controllerMain);
+            Constructor<?> ctor = clazz.getDeclaredConstructor();
             ctor.setAccessible(true);
             Module module = (Module) ctor.newInstance();
             module.init();
@@ -79,7 +79,7 @@ public class ModuleLoader {
 
             int total = 0;
 
-            JarInputStream jis = new JarInputStream(new FileInputStream(new File("modules", mod.controllerPath)));
+            JarInputStream jis = new JarInputStream(new FileInputStream(new File("modules", mod.clientPath)));
             JarEntry entry;
             while ((entry = jis.getNextJarEntry()) != null) {
                 int size = (int) entry.getSize();
