@@ -58,9 +58,9 @@ public class ModuleLoader {
 
             // invoke init() on module
             Class<Module> clazz = (Class<Module>) ModuleLoader.class.getClassLoader().loadClass(mod.controllerPath);
-            Constructor<?> ctor = clazz.getDeclaredConstructor(int.class);
+            Constructor<?> ctor = clazz.getDeclaredConstructor(g);
             ctor.setAccessible(true);
-            Module module = (Module) ctor.newInstance(mod.seed);
+            Module module = (Module) ctor.newInstance();
             module.init();
         }
     }
