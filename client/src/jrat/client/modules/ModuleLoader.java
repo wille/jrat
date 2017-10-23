@@ -1,6 +1,6 @@
 package jrat.client.modules;
 
-import jrat.api.ClientModule;
+import jrat.api.Module;
 import jrat.client.Connection;
 import jrat.client.Injector;
 import jrat.client.InjectorClassloader;
@@ -39,7 +39,7 @@ public class ModuleLoader {
             }
 
             // load the main class
-            Class<ClientModule> module = (Class<ClientModule>) l.loadClass(mainClass);
+            Class<Module> module = (Class<Module>) l.loadClass(mainClass);
             Method method = module.getMethod("init");
 
             // invoke init()

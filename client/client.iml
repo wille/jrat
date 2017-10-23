@@ -12,15 +12,6 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../lib/API.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
           <root url="jar://$MODULE_DIR$/../lib/graphslib.jar!/" />
         </CLASSES>
         <JAVADOC />
@@ -82,6 +73,6 @@
       </library>
     </orderEntry>
     <orderEntry type="module" module-name="startuplib" />
-    <orderEntry type="module" module-name="client-api" />
+    <orderEntry type="module" module-name="api" />
   </component>
 </module>

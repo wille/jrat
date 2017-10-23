@@ -18,6 +18,6 @@
       </library>
     </orderEntry>
     <orderEntry type="module" module-name="client" />
-    <orderEntry type="module" module-name="client-api" />
+    <orderEntry type="module" module-name="api" />
   </component>
 </module>

