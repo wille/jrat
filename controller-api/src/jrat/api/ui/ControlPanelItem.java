@@ -1,4 +1,4 @@
-package jrat.api;
+package jrat.api.ui;
 
 import javax.swing.*;
 

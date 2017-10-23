@@ -4,7 +4,6 @@ import jrat.controller.Slave;
 import oslib.OperatingSystem;
 
 import javax.swing.*;
-import java.net.URL;
 
 
 @SuppressWarnings("serial")

