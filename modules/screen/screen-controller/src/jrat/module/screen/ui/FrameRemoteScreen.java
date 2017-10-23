@@ -20,14 +20,10 @@ import javax.swing.event.ChangeListener;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
 
 
 @SuppressWarnings("serial")
 public class FrameRemoteScreen extends BaseFrame {
-	
-	public static final Map<Slave, FrameRemoteScreen> INSTANCES = new HashMap<Slave, FrameRemoteScreen>();
 
 	private BufferedImage buffer;
 	
@@ -79,9 +75,7 @@ public class FrameRemoteScreen extends BaseFrame {
 		setIconImage(Resources.getIcon("monitor").getImage());
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 673, 446);
-		
-		INSTANCES.put(sl, this);
-		
+
 		toolBarTop = new JToolBar();
 		toolBarTop.setFloatable(false);
 		
@@ -306,7 +300,6 @@ public class FrameRemoteScreen extends BaseFrame {
 	}
 	
 	public void exit() {
-		INSTANCES.remove(slave);
 		threadFps.stopRunning();
 
 		slave.addToSendQueue(new Packet27ToggleMouseLock(false));

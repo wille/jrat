@@ -4,10 +4,12 @@ import jrat.controller.Slave;
 import oslib.OperatingSystem;
 
 import javax.swing.*;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 
 @SuppressWarnings("serial")
-public abstract class BaseFrame extends JFrame {
+public abstract class BaseFrame extends JFrame implements WindowListener {
 
 	protected Slave slave;
 	
@@ -17,6 +19,12 @@ public abstract class BaseFrame extends JFrame {
 	
 	public BaseFrame(Slave slave) {
 		this.slave = slave;
+
+		super.addWindowListener(this);
+
+		if (slave != null) {
+            slave.addFrame(getClass(), this);
+        }
 	}
 
 	@Override
@@ -40,4 +48,21 @@ public abstract class BaseFrame extends JFrame {
 		return slave;
 	}
 
+    public void windowClosing(WindowEvent event) {
+        if (slave != null) {
+            slave.removeFrame(getClass());
+        }
+    }
+
+    public void windowOpened(WindowEvent e) { }
+
+    public void windowClosed(WindowEvent e) { }
+
+    public void windowIconified(WindowEvent e) { }
+
+    public void windowDeiconified(WindowEvent e) { }
+
+    public void windowActivated(WindowEvent e) { }
+
+    public void windowDeactivated(WindowEvent e) { }
 }

@@ -21,7 +21,7 @@ public class PacketRemoteScreenCompleted extends AbstractIncomingPacket {
 		int mouseX = slave.readInt();
 		int mouseY = slave.readInt();
 				
-		FrameRemoteScreen frame = FrameRemoteScreen.INSTANCES.get(slave);
+		FrameRemoteScreen frame = (FrameRemoteScreen) slave.getFrame(FrameRemoteScreen.class);
 		
 		if (frame != null) {
 			BufferedImage buffer = frame.getBuffer();

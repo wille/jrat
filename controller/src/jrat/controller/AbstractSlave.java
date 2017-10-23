@@ -20,6 +20,7 @@ import jrat.controller.settings.Settings;
 import jrat.controller.settings.SettingsCustomID;
 import jrat.controller.settings.StatisticsCountry;
 import jrat.controller.threads.NetworkCounter;
+import jrat.controller.ui.frames.BaseFrame;
 import jrat.controller.ui.panels.PanelMainClients;
 import jrat.controller.utils.FlagUtils;
 import jrat.controller.utils.TrayIconUtils;
@@ -34,12 +35,16 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.Socket;
 import java.security.PublicKey;
-import java.util.Random;
+import java.util.*;
 import java.util.Timer;
-import java.util.TimerTask;
 
 public abstract class AbstractSlave implements Runnable {
-	
+
+    /**
+     * Frames belonging to this client that are currently active
+     */
+    private Map<Class<? extends BaseFrame>, BaseFrame> frames = new HashMap<Class<? extends BaseFrame>, BaseFrame>();
+
 	/**
 	 * Unique random assigned ID for this client, between 0 and {@link Integer#MAX_VALUE}
 	 */
@@ -756,7 +761,33 @@ public abstract class AbstractSlave implements Runnable {
 		this.update();
 	}
 
-	/**
+    /**
+     * Adds a frame for this client
+     * @param clazz the class of the frame
+     * @param frame
+     */
+    public void addFrame(Class<? extends BaseFrame> clazz, BaseFrame frame) {
+        frames.put(clazz, frame);
+    }
+
+    /**
+     * Get an active frame for this client
+     * @param clazz the class of the frame
+     * @return the frame
+     */
+    public BaseFrame getFrame(Class<? extends BaseFrame> clazz) {
+        return frames.get(clazz);
+    }
+
+    /**
+     * Remove an active frame and do not reuse it
+     * @param clazz
+     */
+    public void removeFrame(Class<? extends BaseFrame> clazz) {
+        frames.remove(clazz);
+    }
+
+    /**
 	 * Searches connected clients from {@link #uniqueId}
 	 * @param id
 	 * @return the client found with the ID, or null if nothing found

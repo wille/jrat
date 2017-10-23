@@ -16,7 +16,7 @@ public class PacketResult extends AbstractIncomingPacket {
 	public void read(Slave slave, DataInputStream dis) throws Exception {
 		String path = slave.readLine();
 
-		FrameRemoteRegistry frame = FrameRemoteRegistry.INSTANCES.get(slave);
+		FrameRemoteRegistry frame = (FrameRemoteRegistry) slave.getFrame(FrameRemoteRegistry.class);
 
 		while (dis.readBoolean()) {
 			String line = slave.readLine();

