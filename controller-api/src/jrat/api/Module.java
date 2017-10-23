@@ -1,7 +1,5 @@
 package jrat.api;
 
-import java.util.Random;
-
 public abstract class Module {
 
     /**

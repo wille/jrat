@@ -105,7 +105,6 @@ public class ModuleLoader {
 
                 slave.writeBoolean(true);
                 slave.writeLine(entry.getName());
-                slave.writeLong(mod.seed);
                 slave.writeInt(array.length);
                 slave.getDataOutputStream().write(array);
             }

