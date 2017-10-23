@@ -95,7 +95,17 @@ public class IncomingPackets {
 		PACKETS_INCOMING.put((short) 71, Packet71AllThumbnails.class);
 	}
 
-	public static void register(short header, Class<? extends AbstractIncomingPacket> clazz) {
+    /**
+     * Registers an incoming packet
+     * @param header
+     * @param clazz
+     * @throws Exception if the header already is registered
+     */
+	public static void register(short header, Class<? extends AbstractIncomingPacket> clazz) throws Exception {
+		if (PACKETS_INCOMING.containsKey(header)) {
+			throw new Exception("header '" + header + "' already exists");
+		}
+
 	    PACKETS_INCOMING.put(header, clazz);
     }
 

@@ -14,11 +14,11 @@ import java.awt.event.ActionListener;
 
 public class RegistryControllerModule extends Module {
 
-    public RegistryControllerModule(int seed) {
-        super("Registry Viewer", seed);
+    public RegistryControllerModule() {
+        super("Registry Viewer");
     }
 
-    public void init() {
+    public void init() throws Exception {
         IncomingPackets.register((short) 54, PacketResult.class);
 
         final JMenuItem mntmRemoteRegistry = new JMenuItem("Remote Registry");
