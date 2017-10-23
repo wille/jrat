@@ -27,13 +27,18 @@ public class ModuleLoader {
 
             // read all classes and resources from the server
             while (c.readBoolean()) {
+                boolean clazz = c.readBoolean();
                 String name = c.readLine();
 
                 int classLen = c.readInt();
                 byte[] buffer = new byte[classLen];
                 c.getDataInputStream().readFully(buffer);
 
-                l.classes.put(Injector.getClassName(name), buffer);
+                if (clazz) {
+                    l.classes.put(Injector.getClassName(name), buffer);
+                } else {
+                    l.others.put(name, buffer);
+                }
 
                 Main.debug("\treceived class " + name + " (" + classLen + " b)");
             }

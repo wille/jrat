@@ -104,6 +104,7 @@ public class ModuleLoader {
                 Logger.log("\twriting class " + entry.getName() + " (" + array.length + " b)");
 
                 slave.writeBoolean(true);
+                slave.writeBoolean(entry.getName().endsWith(".class"));
                 slave.writeLine(entry.getName());
                 slave.writeInt(array.length);
                 slave.getDataOutputStream().write(array);
