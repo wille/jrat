@@ -1,7 +1,8 @@
-package jrat.controller.packets.incoming;
+package jrat.module.screen.packets;
 
 import jrat.controller.Slave;
-import jrat.controller.ui.frames.FrameRemoteScreen;
+import jrat.controller.packets.incoming.AbstractIncomingPacket;
+import jrat.module.screen.ui.FrameRemoteScreen;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -9,7 +10,11 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 
-public class Packet26RemoteScreen extends AbstractIncomingPacket {
+/**
+ * A remote screen partial image
+ * Only gets sent to us if it's updated on the client side
+ */
+public class PacketRemoteScreenChunk extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Slave slave, DataInputStream dis) throws Exception {

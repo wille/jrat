@@ -1,17 +1,21 @@
-package jrat.controller.packets.incoming;
+package jrat.module.screen.packets;
 
 import graphslib.monitors.PanelMonitors.PanelMonitor;
 import jrat.common.utils.ImageUtils;
 import jrat.controller.Slave;
-import jrat.controller.ui.dialogs.DialogPickMonitor;
+import jrat.controller.packets.incoming.AbstractIncomingPacket;
 import jrat.controller.ui.frames.FrameControlPanel;
 import jrat.controller.ui.panels.PanelControlMonitors;
+import jrat.module.screen.ui.DialogPickMonitor;
 
 import java.awt.image.BufferedImage;
 import java.io.DataInputStream;
 import java.util.List;
 
-public class Packet71AllThumbnails extends AbstractIncomingPacket {
+/**
+ * Packet contains a thumbnail for each available monitor
+ */
+public class PacketReceiveAllThumbnails extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Slave slave, DataInputStream dis) throws Exception {
@@ -26,7 +30,7 @@ public class Packet71AllThumbnails extends AbstractIncomingPacket {
 			
 			BufferedImage image = ImageUtils.decodeImage(buffer);
 			
-			DialogPickMonitor dialog = DialogPickMonitor.instances.get(slave);			
+			DialogPickMonitor dialog = DialogPickMonitor.instances.get(slave);
 			if (dialog != null) {
 				List<PanelMonitor> panels = dialog.getPanelMonitors().getPanels();
 				panels.get(i).setThumbnail(image);

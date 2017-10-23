@@ -232,16 +232,6 @@ public abstract class PanelMainClients extends JScrollPane {
 		mnQuickOpen.setIcon(IconUtils.getIcon("application-import"));
 		popupMenu.add(mnQuickOpen);
 
-		JMenuItem mntmRemoteScreen = new JMenuItem("Remote Screen");
-		mntmRemoteScreen.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				AbstractSlave slave = getSelectedSlave();
-				if (slave != null && slave instanceof Slave) {
-					FrameRemoteScreen.show((Slave) slave);
-				}
-			}
-		});
-
 		JMenuItem mntmVisitUrl = new JMenuItem("Visit URL");
 		mnQuickOpen.add(mntmVisitUrl);
 		mntmVisitUrl.addActionListener(new ActionListener() {
@@ -275,8 +265,6 @@ public abstract class PanelMainClients extends JScrollPane {
 			}
 		});
 		mntmVisitUrl.setIcon(IconUtils.getIcon("application-browser"));
-		mntmRemoteScreen.setIcon(IconUtils.getIcon("screen"));
-		mnQuickOpen.add(mntmRemoteScreen);
 
 		JMenuItem mntmFileManager = new JMenuItem("File Manager");
 		mntmFileManager.addActionListener(new ActionListener() {

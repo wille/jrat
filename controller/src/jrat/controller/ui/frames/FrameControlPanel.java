@@ -462,13 +462,6 @@ public class FrameControlPanel extends BaseFrame {
 			}
 		});
 
-		actions.put("remote screen", new Performable() {
-			@Override
-			public void perform() {
-				FrameRemoteScreen.show(slave);
-			}
-		});
-
 		actions.put("file manager", new Performable() {
 			public void perform() {
 				FrameRemoteFiles frame = new FrameRemoteFiles(slave);

@@ -1,24 +1,22 @@
-package jrat.controller.ui.frames;
+package jrat.module.screen.ui;
 
 import graphslib.monitors.RemoteMonitor;
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.common.utils.DataUnits;
 import jrat.controller.ErrorDialog;
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.*;
 import jrat.controller.threads.ThreadFPS;
-import jrat.controller.threads.ThreadRecordButton;
 import jrat.controller.ui.components.JRemoteScreenPane;
-import jrat.controller.ui.dialogs.DialogMonitors;
-import jrat.controller.ui.dialogs.DialogRecordRemoteScreen;
+import jrat.controller.ui.frames.BaseFrame;
 import jrat.controller.ui.renderers.JComboBoxIconRenderer;
+import jrat.module.screen.packets.PacketRemoteScreenStop;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -30,8 +28,7 @@ import java.util.Map;
 public class FrameRemoteScreen extends BaseFrame {
 	
 	public static final Map<Slave, FrameRemoteScreen> INSTANCES = new HashMap<Slave, FrameRemoteScreen>();
-	public static final ImageIcon DEFAULT_RECORD_ICON = IconUtils.getIcon("camera-black");
-	
+
 	private BufferedImage buffer;
 	
 	private int transmitted;
@@ -46,8 +43,7 @@ public class FrameRemoteScreen extends BaseFrame {
 			lblFps.setText("    FPS: " + fps + "    ");
 		}
 	};
-	private DialogRecordRemoteScreen recordFrame = new DialogRecordRemoteScreen(this);
-	
+
 	private JToolBar toolBarTop;
 	private JToolBar toolBarBottom;
 	private JRemoteScreenPane screenPane;
@@ -55,16 +51,13 @@ public class FrameRemoteScreen extends BaseFrame {
 	private JButton btnStart;
 	private JButton btnStop;
 	private JLabel lblFps;
-	private JButton btnCapture;
-	private JButton btnRecord;
-	private ThreadRecordButton threadRecordButton;
 	private JSlider sliderSize;
 	private JLabel lblSize;
 	private JToggleButton tglbtnToggleMouse;
 	private JToggleButton tglbtnToggleMouseLock;
 	private JToggleButton tglbtnToggleKeyboard;
 	private JToggleButton tglbtnToggleMovement;
-	private JComboBox<String> cbMonitors;
+	private JComboBox cbMonitors;
 	private JLabel lblMonitor;
 	private JLabel lblQuality;
 	private JSlider sliderQuality;
@@ -83,7 +76,7 @@ public class FrameRemoteScreen extends BaseFrame {
 		threadFps.start();
 		
 		setTitle("Remote Screen");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRemoteScreen.class.getResource("/icons/screen.png")));
+		setIconImage(Resources.getIcon("monitor").getImage());
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 673, 446);
 		
@@ -156,25 +149,25 @@ public class FrameRemoteScreen extends BaseFrame {
 		toolBarBottom.addSeparator();
 		
 		lblMonitor = new JLabel("Monitor:  ");
-		lblMonitor.setIcon(IconUtils.getIcon("monitor"));
+		lblMonitor.setIcon(Resources.getIcon("monitor"));
 		toolBarBottom.add(lblMonitor);
 		
-		cbMonitors = new JComboBox<String>();
+		cbMonitors = new JComboBox();
 		cbMonitors.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				monitor = cbMonitors.getSelectedIndex() - 1;
 				sendUpdate();
 			}
 		});
-		DefaultComboBoxModel<String> model = new DefaultComboBoxModel<String>();
+		DefaultComboBoxModel model = new DefaultComboBoxModel();
 		cbMonitors.setModel(model);
 		JComboBoxIconRenderer renderer = new JComboBoxIconRenderer();
 		cbMonitors.setRenderer(renderer);
 		model.removeAllElements();
 		model.addElement("Default");
-		renderer.addIcon("default", IconUtils.getIcon("monitor-arrow"));
+		renderer.addIcon("default", Resources.getIcon("monitor-arrow"));
 
-		ImageIcon icon = IconUtils.getIcon("monitor");
+		ImageIcon icon = Resources.getIcon("monitor");
 
 		for (RemoteMonitor monitor : slave.getMonitors()) {
 			renderer.addIcon(monitor.getLabel(), icon);
@@ -195,7 +188,7 @@ public class FrameRemoteScreen extends BaseFrame {
 		
 		btnStart = new JButton("");
 		btnStart.setToolTipText("Start");
-		btnStart.setIcon(IconUtils.getIcon("start"));
+		btnStart.setIcon(Resources.getIcon("start"));
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				start();
@@ -205,7 +198,7 @@ public class FrameRemoteScreen extends BaseFrame {
 		
 		btnStop = new JButton("");
 		btnStop.setToolTipText("Stop");
-		btnStop.setIcon(IconUtils.getIcon("stop"));
+		btnStop.setIcon(Resources.getIcon("stop"));
 		btnStop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				stop();
@@ -216,31 +209,8 @@ public class FrameRemoteScreen extends BaseFrame {
 		
 		toolBarTop.addSeparator();
 		
-		btnCapture = new JButton("");
-		btnCapture.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				capture();
-			}
-		});
-		btnCapture.setToolTipText("Capture");
-		btnCapture.setIcon(DEFAULT_RECORD_ICON);
-		toolBarTop.add(btnCapture);
-		
-		btnRecord = new JButton("");
-		btnRecord.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				recordFrame.setVisible(true);
-			}
-		});
-		btnRecord.setIcon(IconUtils.getIcon("record"));
-		btnRecord.setToolTipText("Record");
-		threadRecordButton = new ThreadRecordButton(btnRecord);
-		
-		toolBarTop.add(btnRecord);
-		toolBarTop.addSeparator();
-		
 		lblSize = new JLabel("Size: " + size + "%");
-		lblSize.setIcon(IconUtils.getIcon("application-resize"));
+		lblSize.setIcon(Resources.getIcon("application-resize"));
 		toolBarTop.add(lblSize);
 		
 		sliderSize = new JSlider();
@@ -257,7 +227,7 @@ public class FrameRemoteScreen extends BaseFrame {
 		
 		lblQuality = new JLabel("Quality: " + quality);
 		toolBarTop.add(lblQuality);
-		lblQuality.setIcon(IconUtils.getIcon("monitor-plus"));
+		lblQuality.setIcon(Resources.getIcon("monitor-plus"));
 		
 		sliderQuality = new JSlider();
 		sliderQuality.addChangeListener(new ChangeListener() {
@@ -274,11 +244,11 @@ public class FrameRemoteScreen extends BaseFrame {
 		
 		tglbtnToggleMouse = new JToggleButton("");
 		tglbtnToggleMouse.setSelected(true);
-		tglbtnToggleMouse.setIcon(IconUtils.getIcon("mouse"));
+		tglbtnToggleMouse.setIcon(Resources.getIcon("mouse"));
 		toolBarTop.add(tglbtnToggleMouse);
 
 		tglbtnToggleMouseLock = new JToggleButton("");
-		tglbtnToggleMouseLock.setIcon(IconUtils.getIcon("mouse_disabled"));
+		tglbtnToggleMouseLock.setIcon(Resources.getIcon("mouse_disabled"));
 		tglbtnToggleMouseLock.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -291,11 +261,11 @@ public class FrameRemoteScreen extends BaseFrame {
 		
 		tglbtnToggleKeyboard = new JToggleButton("");
 		tglbtnToggleKeyboard.setSelected(true);
-		tglbtnToggleKeyboard.setIcon(IconUtils.getIcon("keyboard"));
+		tglbtnToggleKeyboard.setIcon(Resources.getIcon("keyboard"));
 		toolBarTop.add(tglbtnToggleKeyboard);
 		
 		tglbtnToggleMovement = new JToggleButton("");
-		tglbtnToggleMovement.setIcon(IconUtils.getIcon("arrow-move"));
+		tglbtnToggleMovement.setIcon(Resources.getIcon("arrow-move"));
 		toolBarTop.add(tglbtnToggleMovement);
 		
 		toolBarTop.addSeparator();
@@ -332,7 +302,7 @@ public class FrameRemoteScreen extends BaseFrame {
 		btnStop.setEnabled(false);
 		
 		transmitted = 0;
-		slave.addToSendQueue(new Packet26StopRemoteScreen());
+		slave.addToSendQueue(new PacketRemoteScreenStop());
 	}
 	
 	public void exit() {
@@ -340,7 +310,7 @@ public class FrameRemoteScreen extends BaseFrame {
 		threadFps.stopRunning();
 
 		slave.addToSendQueue(new Packet27ToggleMouseLock(false));
-		slave.addToSendQueue(new Packet26StopRemoteScreen());
+		slave.addToSendQueue(new PacketRemoteScreenStop());
 	}
 	
 	public void capture() {
@@ -363,10 +333,6 @@ public class FrameRemoteScreen extends BaseFrame {
 	public void drawOverlay(BufferedImage image) {
 		screenPane.update(image);
 		threadFps.increase();
-		
-		if (recordFrame.isRecording()) {
-			recordFrame.update(image);
-		}
 	}
 	
 	public void update(BufferedImage image) {
@@ -377,7 +343,7 @@ public class FrameRemoteScreen extends BaseFrame {
 		FrameRemoteScreen frame = new FrameRemoteScreen(sl);
 		frame.setVisible(true);
 		
-		if (sl.getMonitors().length == 1) {
+		if (sl.getMonitors().length != 1) {
 			DialogMonitors dialog = new DialogMonitors(frame, sl);
 			dialog.setVisible(true);
 		}
@@ -426,27 +392,15 @@ public class FrameRemoteScreen extends BaseFrame {
 		return progressBar;
 	}
 
-	public ThreadRecordButton getThreadRecordButton() {
-		return threadRecordButton;
-	}
-
-	public void setThreadRecordButton(ThreadRecordButton threadRecordButton) {
-		this.threadRecordButton = threadRecordButton;
-	}
-
 	public Slave getSlave() {
 		return slave;
-	}
-
-	public JButton getRecordButton() {
-		return btnRecord;
 	}
 
 	public JSlider getSliderSize() {
 		return sliderSize;
 	}
 
-	public JComboBox<String> getCbMonitors() {
+	public JComboBox getCbMonitors() {
 		return cbMonitors;
 	}
 

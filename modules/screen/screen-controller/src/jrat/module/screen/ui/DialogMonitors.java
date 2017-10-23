@@ -1,10 +1,10 @@
-package jrat.controller.ui.dialogs;
+package jrat.module.screen.ui;
 
 import graphslib.monitors.RemoteMonitor;
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.Slave;
 import jrat.controller.listeners.PickMonitorListener;
-import jrat.controller.ui.frames.FrameRemoteScreen;
+import jrat.controller.ui.dialogs.BaseDialog;
 import jrat.controller.ui.renderers.JComboBoxIconRenderer;
 
 import javax.swing.*;
@@ -29,15 +29,15 @@ public class DialogMonitors extends BaseDialog {
 
 	private JPanel contentPane;
 	private FrameRemoteScreen parent;
-	private JComboBox<String> cbMonitors;
+	private JComboBox cbMonitors;
 	private JComboBoxIconRenderer renderer;
 	private JPanel panel_1;
 	private JSlider slQuality;
 	private JSlider sdSize;
 	private JLabel lblResize;
 
-	public DefaultComboBoxModel<String> getModel() {
-		return (DefaultComboBoxModel<String>) cbMonitors.getModel();
+	public DefaultComboBoxModel getModel() {
+		return (DefaultComboBoxModel) cbMonitors.getModel();
 	}
 
 	public JComboBoxIconRenderer getRenderer() {
@@ -86,7 +86,7 @@ public class DialogMonitors extends BaseDialog {
 				dispose();
 			}
 		});
-		btnOpen.setIcon(IconUtils.getIcon("monitor-arrow"));
+		btnOpen.setIcon(Resources.getIcon("monitor-arrow"));
 
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addActionListener(new ActionListener() {
@@ -98,13 +98,13 @@ public class DialogMonitors extends BaseDialog {
 				instances.remove(slave);
 			}
 		});
-		btnCancel.setIcon(IconUtils.getIcon("monitor-minus"));
+		btnCancel.setIcon(Resources.getIcon("monitor-minus"));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addGroup(gl_contentPane.createSequentialGroup().addContainerGap(60, Short.MAX_VALUE).addComponent(btnCancel).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnOpen).addContainerGap()).addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup().addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE).addComponent(panel_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)).addGap(5)));
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(panel, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(btnOpen).addComponent(btnCancel)).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 
 		JLabel lblQuality = new JLabel("Quality");
-		lblQuality.setIcon(IconUtils.getIcon("monitor-plus"));
+		lblQuality.setIcon(Resources.getIcon("monitor-plus"));
 
 		slQuality = new JSlider();
 		slQuality.setMinorTickSpacing(1);
@@ -132,8 +132,8 @@ public class DialogMonitors extends BaseDialog {
 		);
 		panel_1.setLayout(gl_panel_1);
 
-		cbMonitors = new JComboBox<String>();
-		cbMonitors.setModel(new DefaultComboBoxModel<String>());
+		cbMonitors = new JComboBox();
+		cbMonitors.setModel(new DefaultComboBoxModel());
 		renderer = new JComboBoxIconRenderer();
 		cbMonitors.setRenderer(renderer);
 
@@ -143,10 +143,10 @@ public class DialogMonitors extends BaseDialog {
 				reload();
 			}
 		});
-		btnReload.setIcon(IconUtils.getIcon("monitor-arrow"));
+		btnReload.setIcon(Resources.getIcon("monitor-arrow"));
 
 		lblResize = new JLabel("Size 50%");
-		lblResize.setIcon(IconUtils.getIcon("application-resize"));
+		lblResize.setIcon(Resources.getIcon("application-resize"));
 
 		sdSize = new JSlider();
 		sdSize.setMinorTickSpacing(5);
@@ -166,7 +166,7 @@ public class DialogMonitors extends BaseDialog {
 					@Override
 					public void monitorPick(RemoteMonitor monitor) {
 						for (int i = 0; i < cbMonitors.getItemCount(); i++) {
-							if (getModel().getElementAt(i).equalsIgnoreCase(monitor.getLabel())) {
+							if (getModel().getElementAt(i).toString().equalsIgnoreCase(monitor.getLabel())) {
 								cbMonitors.setSelectedIndex(i);
 								break;
 							}
@@ -220,9 +220,9 @@ public class DialogMonitors extends BaseDialog {
 	public void reload() {
 		getModel().removeAllElements();
 		getModel().addElement("Default");
-		getRenderer().addIcon("default", IconUtils.getIcon("monitor-arrow"));
+		getRenderer().addIcon("default", Resources.getIcon("monitor-arrow"));
 
-		ImageIcon icon = IconUtils.getIcon("monitor");
+		ImageIcon icon = Resources.getIcon("monitor");
 
 		for (RemoteMonitor monitor : slave.getMonitors()) {
 			getRenderer().addIcon(monitor.getLabel(), icon);
