@@ -31,7 +31,7 @@ public class ControlPanelTreeRenderer extends DefaultJTreeCellRenderer {
 		if (same && icon != null && leaf) {
 			label.setIcon(icon);
 		} else {
-			ImageIcon icon = icons.get(value.toString().toLowerCase());
+			ImageIcon icon = icons.get(value.toString());
 			if (icon != null) {
 				label.setIcon(icon);
 			}

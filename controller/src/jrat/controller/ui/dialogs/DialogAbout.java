@@ -30,7 +30,7 @@ public class DialogAbout extends JDialog {
 
 	public DialogAbout() {
 		setResizable(false);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(DialogAbout.class.getResource("/icons/info.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DialogAbout.class.getResource("/system-info.png")));
 		setBounds(100, 100, 700, 400);
         contentPane = new JPanel() {
             @Override

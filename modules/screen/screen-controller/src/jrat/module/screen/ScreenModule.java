@@ -24,5 +24,14 @@ public class ScreenModule extends Module {
         });
 
         ClientMenu.addItem(ClientMenu.Category.QUICK_OPEN, item);
+
+        ControlPanelAction action = new ControlPanelAction(ControlPanel.Category.SYSTEM, "View Screen", Resources.getIcon("screen"));
+        action.setAction(new ControlPanelListener() {
+            public void onClick(AbstractSlave slave) {
+                FrameRemoteScreen.show((Slave) slave);
+            }
+        });
+
+        ControlPanel.items.add(action);
     }
 }
