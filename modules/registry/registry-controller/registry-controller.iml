@@ -27,6 +27,6 @@
       </library>
     </orderEntry>
     <orderEntry type="module" module-name="controller" />
-    <orderEntry type="module" module-name="api" />
+    <orderEntry type="module" module-name="controller-api" />
   </component>
 </module>

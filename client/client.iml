@@ -73,6 +73,6 @@
       </library>
     </orderEntry>
     <orderEntry type="module" module-name="startuplib" />
-    <orderEntry type="module" module-name="api" />
+    <orderEntry type="module" module-name="client-api" />
   </component>
 </module>
