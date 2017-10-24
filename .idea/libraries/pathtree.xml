@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="pathtree">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/pathtree.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
