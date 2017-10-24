@@ -305,18 +305,6 @@ public abstract class PanelMainClients extends JScrollPane {
 			}
 		});
 
-		JMenuItem mntmRemoteProcess = new JMenuItem("Remote Process");
-		mntmRemoteProcess.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				AbstractSlave slave = getSelectedSlave();
-				if (slave != null && slave instanceof Slave) {
-					FrameRemoteProcess frame = new FrameRemoteProcess((Slave) slave);
-					frame.setVisible(true);
-				}
-			}
-		});
-		mntmRemoteProcess.setIcon(IconUtils.getIcon("process-go"));
-		mnQuickOpen.add(mntmRemoteProcess);
 		mntmRemoteChat.setIcon(IconUtils.getIcon("chat"));
 		mnQuickOpen.add(mntmRemoteChat);
 

@@ -46,7 +46,7 @@ public class IncomingPackets {
 		PACKETS_INCOMING.put((short) 22, Packet22ListFiles.class);
 		//23
 		PACKETS_INCOMING.put((short) 24, Packet24UsedMemory.class);
-		PACKETS_INCOMING.put((short) 25, Packet25Process.class);
+
 		PACKETS_INCOMING.put((short) 27, Packet27URLStatus.class);
 		//28
 		PACKETS_INCOMING.put((short) 29, Packet29ServerDownloadPart.class);		

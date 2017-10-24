@@ -44,6 +44,7 @@ public class ModuleLoader {
     static {
         modules.add(new ModuleData( "registry-controller.jar", "registry-client.jar","jrat.module.registry.RegistryControllerModule", "jrat.module.registry.RegistryClientModule"));
         modules.add(new ModuleData("screen-controller.jar", "screen-client.jar", "jrat.module.screen.ScreenModule", "jrat.module.screen.ScreenModule"));
+        modules.add(new ModuleData("process-controller.jar", "process-client.jar", "jrat.module.process.ProcessModule", "jrat.module.process.ProcessModule"));
     }
 
     /**

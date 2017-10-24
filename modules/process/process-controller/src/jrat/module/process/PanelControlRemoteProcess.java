@@ -1,12 +1,11 @@
-package jrat.controller.ui.panels;
+package jrat.module.process;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.Slave;
-import jrat.controller.packets.outgoing.Packet19ListProcesses;
-import jrat.controller.packets.outgoing.Packet20KillProcess;
 import jrat.controller.packets.outgoing.Packet38RunCommand;
 import jrat.controller.ui.DefaultJTable;
 import jrat.controller.ui.components.TableModel;
+import jrat.controller.ui.panels.PanelControlParent;
 import jrat.controller.ui.renderers.table.ProcessTableRenderer;
 import jrat.controller.utils.Utils;
 import oslib.OperatingSystem;
@@ -41,16 +40,14 @@ public class PanelControlRemoteProcess extends PanelControlParent {
 		toolBar.add(btnClearList);
 		btnClearList.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				while (model.getRowCount() > 0) {
-					model.removeRow(0);
-				}
+				clear();
 			}
 		});
-		btnClearList.setIcon(IconUtils.getIcon("clear"));
+		btnClearList.setIcon(Resources.getIcon("clear"));
 
 		JButton btnCreateProcess = new JButton("Create process");
 		toolBar.add(btnCreateProcess);
-		btnCreateProcess.setIcon(IconUtils.getIcon("process-go"));
+		btnCreateProcess.setIcon(Resources.getIcon("process-go"));
 
 		JButton btnKillSelected = new JButton("Kill selected");
 		toolBar.add(btnKillSelected);
@@ -64,41 +61,28 @@ public class PanelControlRemoteProcess extends PanelControlParent {
 						process = model.getValueAt(table.getSelectedRow(), 1).toString();
 					}
 
-					while (model.getRowCount() > 0) {
-						model.removeRow(0);
-					}
+					clear();
 
-					sl.addToSendQueue(new Packet20KillProcess(process));
+					sl.addToSendQueue(new PacketKillProcess(process));
 
-					sl.addToSendQueue(new Packet19ListProcesses());
+					sl.addToSendQueue(new PacketQueryProcesses());
 				}
 			}
 		});
-		btnKillSelected.setIcon(IconUtils.getIcon("delete"));
+		btnKillSelected.setIcon(Resources.getIcon("delete"));
 
 		JButton btnRefresh = new JButton("Refresh");
 		toolBar.add(btnRefresh);
 		btnRefresh.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				while (model.getRowCount() > 0) {
-					model.removeRow(0);
-				}
-				sl.addToSendQueue(new Packet19ListProcesses());
+				clear();
+				sl.addToSendQueue(new PacketQueryProcesses());
 			}
 		});
-		btnRefresh.setIcon(IconUtils.getIcon("update"));
+		btnRefresh.setIcon(Resources.getIcon("update"));
 		btnCreateProcess.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String proc = Utils.showDialog("Create process", "Input name of process");
-				if (proc == null) {
-					return;
-				}
-				proc = proc.trim();
-				sl.addToSendQueue(new Packet38RunCommand(proc));
-				while (model.getRowCount() > 0) {
-					model.removeRow(0);
-				}
-				sl.addToSendQueue(new Packet19ListProcesses());
+				onRunCommand();
 			}
 		});
 
@@ -115,4 +99,22 @@ public class PanelControlRemoteProcess extends PanelControlParent {
 
 		add(scrollPane, BorderLayout.CENTER);
 	}
+
+	private void clear() {
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+    }
+
+	private void onRunCommand() {
+        String proc = Utils.showDialog("Create process", "Input name of process");
+        if (proc == null) {
+            return;
+        }
+        proc = proc.trim();
+
+        clear();
+        slave.addToSendQueue(new Packet38RunCommand(proc));
+        slave.addToSendQueue(new PacketQueryProcesses());
+    }
 }
