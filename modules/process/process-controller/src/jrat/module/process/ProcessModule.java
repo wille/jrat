@@ -23,9 +23,8 @@ public class ProcessModule extends Module {
 
         ClientMenu.addItem(ClientMenu.Category.QUICK_OPEN, item);
 
-        /*ControlPanelTab action = new ControlPanelTab(ControlPanel.Category.SYSTEM, "View Screen", Resources.getIcon("screen"));
-        action.setAction(new PanelControlRemoteProcess());
+        ControlPanelTab action = new ControlPanelTab(ControlPanel.Category.SYSTEM, "Processes", Resources.getIcon("process"), PanelControlRemoteProcess.class);
 
-        ControlPanel.ITEMS.add(action);*/
+        ControlPanel.ITEMS.add(action);
     }
 }

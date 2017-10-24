@@ -105,7 +105,7 @@ public class FrameControlPanel extends BaseFrame implements TreeSelectionListene
 
         for (ControlPanelItem item : ControlPanel.ITEMS) {
             if (item.category.text.equals(currentLabel) && item instanceof ControlPanelTab) {
-                tabbedPane.addTab(item.text, item.icon, (JPanel) item.getAction());
+                tabbedPane.addTab(item.text, item.icon, ((ControlPanelTab) item).createPanel(slave));
             }
         }
 	}
@@ -143,10 +143,10 @@ public class FrameControlPanel extends BaseFrame implements TreeSelectionListene
             for (ControlPanelItem item : ControlPanel.ITEMS) {
                 if (item.text.equals(what)) {
                     if (item instanceof ControlPanelTab) {
-                        JPanel p = (JPanel) item.getAction();
+                        JPanel p = ((ControlPanelTab) item).createPanel(slave);
                         tabbedPane.setSelectedComponent(p);
                     } else if (item instanceof ControlPanelAction) {
-                        ClientEventListener listener = (ClientEventListener) item.getAction();
+                        ClientEventListener listener = (ClientEventListener) item.item;
                         listener.emit(getSlave());
                     }
                 }

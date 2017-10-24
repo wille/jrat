@@ -29,8 +29,7 @@ public class ScreenModule extends Module {
 
         ClientMenu.addItem(ClientMenu.Category.QUICK_OPEN, item);
 
-        ControlPanelAction action = new ControlPanelAction(ControlPanel.Category.SYSTEM, "View Screen", Resources.getIcon("screen"));
-        action.setAction(new ClientEventListener() {
+        ControlPanelAction action = new ControlPanelAction(ControlPanel.Category.SYSTEM, "View Screen", Resources.getIcon("screen"), new ClientEventListener() {
             public void emit(AbstractSlave slave) {
                 FrameRemoteScreen.show((Slave) slave);
             }

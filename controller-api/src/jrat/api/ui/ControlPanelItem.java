@@ -8,19 +8,12 @@ public abstract class ControlPanelItem<T> {
     public final String text;
     public final ImageIcon icon;
 
-    private T action;
+    public final T item;
 
-    public ControlPanelItem(ControlPanel.Category category, String text, ImageIcon icon) {
+    public ControlPanelItem(ControlPanel.Category category, String text, ImageIcon icon, T item) {
         this.category = category;
         this.text = text;
         this.icon = icon;
-    }
-
-    public void setAction(T action) {
-        this.action = action;
-    }
-
-    public T getAction() {
-        return this.action;
+        this.item = item;
     }
 }

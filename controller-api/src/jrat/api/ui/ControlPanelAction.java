@@ -9,7 +9,7 @@ import javax.swing.*;
  */
 public class ControlPanelAction extends ControlPanelItem<ClientEventListener> {
 
-    public ControlPanelAction(ControlPanel.Category category, String text, ImageIcon icon) {
-        super(category, text, icon);
+    public ControlPanelAction(ControlPanel.Category category, String text, ImageIcon icon, ClientEventListener listener) {
+        super(category, text, icon, listener);
     }
 }
