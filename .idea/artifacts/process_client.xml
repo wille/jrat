@@ -4,7 +4,7 @@
     <root id="archive" name="process-client.jar">
       <element id="module-output" name="process-client" />
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/modules/process/process-client/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/modules/process-client/META-INF/MANIFEST.MF" />
       </element>
     </root>
   </artifact>

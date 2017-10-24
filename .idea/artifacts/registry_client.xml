@@ -4,7 +4,7 @@
     <root id="archive" name="registry-client.jar">
       <element id="module-output" name="registry-client" />
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/modules/registry/registry-client/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/modules/registry-client/META-INF/MANIFEST.MF" />
       </element>
     </root>
   </artifact>

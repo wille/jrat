@@ -4,7 +4,7 @@
     <root id="archive" name="screen-client.jar">
       <element id="module-output" name="screen-client" />
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/modules/screen/screen-client/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/modules/screen-client/META-INF/MANIFEST.MF" />
       </element>
     </root>
   </artifact>
