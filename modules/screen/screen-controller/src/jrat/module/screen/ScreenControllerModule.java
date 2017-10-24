@@ -10,7 +10,7 @@ import jrat.module.screen.packets.PacketRemoteScreenCompleted;
 import jrat.module.screen.packets.PacketReceiveAllThumbnails;
 import jrat.module.screen.ui.PanelScreenController;
 
-public class ScreenModule extends Module {
+public class ScreenControllerModule extends Module {
 
     public void init() throws Exception {
         IncomingPackets.register((short) 68, PacketRemoteScreenCompleted.class);

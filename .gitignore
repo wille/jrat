@@ -40,7 +40,6 @@ API Stub/
 Remover/
 Reverser/
 Plugins/
-VPS Backup/
 help/
 lib/
 Docs/
@@ -54,6 +53,5 @@ Readmes/
 Scripts/
 out/
 .idea/
-META-INF/
 Manuals/
 license.json
