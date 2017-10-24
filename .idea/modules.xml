@@ -13,7 +13,6 @@
       <module fileurl="file://$PROJECT_DIR$/modules/registry-controller/registry-controller.iml" filepath="$PROJECT_DIR$/modules/registry-controller/registry-controller.iml" group="modules" />
       <module fileurl="file://$PROJECT_DIR$/modules/screen-client/screen-client.iml" filepath="$PROJECT_DIR$/modules/screen-client/screen-client.iml" group="modules" />
       <module fileurl="file://$PROJECT_DIR$/modules/screen-controller/screen-controller.iml" filepath="$PROJECT_DIR$/modules/screen-controller/screen-controller.iml" group="modules" />
-      <module fileurl="file://$PROJECT_DIR$/../startuplib/startuplib.iml" filepath="$PROJECT_DIR$/../startuplib/startuplib.iml" />
     </modules>
   </component>
 </project>

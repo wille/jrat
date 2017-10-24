@@ -10,5 +10,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="controller" />
     <orderEntry type="module" module-name="controller-api" />
+    <orderEntry type="library" name="pathtree" level="project" />
   </component>
 </module>
