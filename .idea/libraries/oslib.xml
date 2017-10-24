@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="oslib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/oslib.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

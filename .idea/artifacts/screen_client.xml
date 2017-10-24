@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="screen-client">
+    <output-path>$PROJECT_DIR$/controller/modules</output-path>
+    <root id="archive" name="screen-client.jar">
+      <element id="module-output" name="screen-client" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/modules/screen/screen-client/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>

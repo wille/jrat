@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/client/client.iml" filepath="$PROJECT_DIR$/client/client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/client-api/client-api.iml" filepath="$PROJECT_DIR$/client-api/client-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/controller/controller.iml" filepath="$PROJECT_DIR$/controller/controller.iml" />
+      <module fileurl="file://$PROJECT_DIR$/controller-api/controller-api.iml" filepath="$PROJECT_DIR$/controller-api/controller-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/process-client/process-client.iml" filepath="$PROJECT_DIR$/modules/process-client/process-client.iml" group="modules" />
+      <module fileurl="file://$PROJECT_DIR$/modules/process-controller/process-controller.iml" filepath="$PROJECT_DIR$/modules/process-controller/process-controller.iml" group="modules" />
+      <module fileurl="file://$PROJECT_DIR$/modules/registry-client/registry-client.iml" filepath="$PROJECT_DIR$/modules/registry-client/registry-client.iml" group="modules" />
+      <module fileurl="file://$PROJECT_DIR$/modules/registry-controller/registry-controller.iml" filepath="$PROJECT_DIR$/modules/registry-controller/registry-controller.iml" group="modules" />
+      <module fileurl="file://$PROJECT_DIR$/modules/screen-client/screen-client.iml" filepath="$PROJECT_DIR$/modules/screen-client/screen-client.iml" group="modules" />
+      <module fileurl="file://$PROJECT_DIR$/modules/screen-controller/screen-controller.iml" filepath="$PROJECT_DIR$/modules/screen-controller/screen-controller.iml" group="modules" />
+      <module fileurl="file://$PROJECT_DIR$/../startuplib/startuplib.iml" filepath="$PROJECT_DIR$/../startuplib/startuplib.iml" />
+    </modules>
+  </component>
+</project>

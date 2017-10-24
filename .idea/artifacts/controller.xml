@@ -1,0 +1,20 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="controller">
+    <output-path>$PROJECT_DIR$/controller</output-path>
+    <root id="archive" name="controller.jar">
+      <element id="module-output" name="controller" />
+      <element id="module-output" name="common" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/controller/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/graphslib.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/iconlib.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/json-io.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/jterminal.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/oslib.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/pathtree.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/pluginlib.jar" path-in-jar="/" />
+      <element id="module-output" name="controller-api" />
+    </root>
+  </artifact>
+</component>

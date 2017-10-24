@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="registry-client">
+    <output-path>$PROJECT_DIR$/controller/modules</output-path>
+    <root id="archive" name="registry-client.jar">
+      <element id="module-output" name="registry-client" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/modules/registry/registry-client/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>
