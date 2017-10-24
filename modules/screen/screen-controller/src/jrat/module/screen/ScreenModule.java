@@ -1,17 +1,14 @@
 package jrat.module.screen;
 
 import jrat.api.*;
-import jrat.api.ui.ClientMenu;
-import jrat.api.ui.ClientMenuItem;
-import jrat.api.ui.ControlPanel;
-import jrat.api.ui.ControlPanelAction;
+import jrat.api.ui.*;
 import jrat.controller.AbstractSlave;
 import jrat.controller.Slave;
 import jrat.controller.packets.incoming.IncomingPackets;
 import jrat.module.screen.packets.PacketRemoteScreenChunk;
 import jrat.module.screen.packets.PacketRemoteScreenCompleted;
 import jrat.module.screen.packets.PacketReceiveAllThumbnails;
-import jrat.module.screen.ui.FrameRemoteScreen;
+import jrat.module.screen.ui.PanelScreenController;
 
 public class ScreenModule extends Module {
 
@@ -23,17 +20,13 @@ public class ScreenModule extends Module {
         ClientMenuItem item = new ClientMenuItem("View Screen", Resources.getIcon("screen"), new ClientEventListener() {
             @Override
             public void emit(AbstractSlave slave) {
-                FrameRemoteScreen.show((Slave) slave);
+                new PanelScreenController((Slave) slave).displayFrame();
             }
         });
 
         ClientMenu.addItem(ClientMenu.Category.QUICK_OPEN, item);
 
-        ControlPanelAction action = new ControlPanelAction(ControlPanel.Category.SYSTEM, "View Screen", Resources.getIcon("screen"), new ClientEventListener() {
-            public void emit(AbstractSlave slave) {
-                FrameRemoteScreen.show((Slave) slave);
-            }
-        });
+        ControlPanelTab action = new ControlPanelTab(ControlPanel.Category.SYSTEM, "View Screen", Resources.getIcon("screen"), PanelScreenController.class);
 
         ControlPanel.ITEMS.add(action);
     }

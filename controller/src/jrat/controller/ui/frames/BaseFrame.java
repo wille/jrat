@@ -19,12 +19,6 @@ public abstract class BaseFrame extends JFrame implements WindowListener {
 	
 	public BaseFrame(Slave slave) {
 		this.slave = slave;
-
-		super.addWindowListener(this);
-
-		if (slave != null) {
-            slave.addFrame(getClass(), this);
-        }
 	}
 
 	@Override
@@ -48,10 +42,8 @@ public abstract class BaseFrame extends JFrame implements WindowListener {
 		return slave;
 	}
 
-    public void windowClosing(WindowEvent event) {
-        if (slave != null) {
-            slave.removeFrame(getClass());
-        }
+    public void windowClosing(WindowEvent e) {
+
     }
 
     public void windowOpened(WindowEvent e) { }
@@ -65,4 +57,5 @@ public abstract class BaseFrame extends JFrame implements WindowListener {
     public void windowActivated(WindowEvent e) { }
 
     public void windowDeactivated(WindowEvent e) { }
+
 }

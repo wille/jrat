@@ -28,7 +28,7 @@ public class DialogMonitors extends BaseDialog {
 	public static final Map<Slave, DialogMonitors> instances = new HashMap<Slave, DialogMonitors>();
 
 	private JPanel contentPane;
-	private FrameRemoteScreen parent;
+	private PanelScreenController parent;
 	private JComboBox cbMonitors;
 	private JComboBoxIconRenderer renderer;
 	private JPanel panel_1;
@@ -44,7 +44,7 @@ public class DialogMonitors extends BaseDialog {
 		return renderer;
 	}
 
-	public DialogMonitors(FrameRemoteScreen p, Slave sl) {
+	public DialogMonitors(PanelScreenController p, Slave sl) {
 		super(sl);
 		setModal(true);
 		this.parent = p;

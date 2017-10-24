@@ -1,10 +1,7 @@
 package jrat.controller.ui.frames;
 
 import jrat.api.*;
-import jrat.api.ui.ControlPanel;
-import jrat.api.ui.ControlPanelAction;
-import jrat.api.ui.ControlPanelItem;
-import jrat.api.ui.ControlPanelTab;
+import jrat.api.ui.*;
 import jrat.controller.Slave;
 import jrat.controller.listeners.Performable;
 import jrat.controller.ui.components.DisabledDefaultMutableTreeNode;
@@ -19,6 +16,7 @@ import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import java.awt.*;
+import java.awt.event.WindowEvent;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -101,7 +99,7 @@ public class FrameControlPanel extends BaseFrame implements TreeSelectionListene
      * @param currentLabel category text (current treenode text)
      */
 	public void addTabs(String currentLabel) {
-        tabbedPane.removeAll();
+        clearPanels();
 
         for (ControlPanelItem item : ControlPanel.ITEMS) {
             if (item.category.text.equals(currentLabel) && item instanceof ControlPanelTab) {
@@ -167,4 +165,26 @@ public class FrameControlPanel extends BaseFrame implements TreeSelectionListene
 			return new DisabledDefaultMutableTreeNode(s);
 		}
 	}
+
+    /**
+     * Removes all tabs and disposes the client panels
+     */
+	private void clearPanels() {
+	    for (Component c : tabbedPane.getComponents()) {
+	        if (c instanceof ClientPanel) {
+	            ClientPanel panel = (ClientPanel) c;
+
+	            panel.dispose();
+            }
+        }
+
+        tabbedPane.removeAll();
+    }
+
+	@Override
+    public void windowClosing(WindowEvent e) {
+	    super.windowClosing(e);
+
+	    clearPanels();
+    }
 }

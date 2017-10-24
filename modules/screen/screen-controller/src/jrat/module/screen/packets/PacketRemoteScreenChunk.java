@@ -2,7 +2,7 @@ package jrat.module.screen.packets;
 
 import jrat.controller.Slave;
 import jrat.controller.packets.incoming.AbstractIncomingPacket;
-import jrat.module.screen.ui.FrameRemoteScreen;
+import jrat.module.screen.ui.PanelScreenController;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -30,7 +30,7 @@ public class PacketRemoteScreenChunk extends AbstractIncomingPacket {
 		byte[] buffer = new byte[blen];
 		slave.getDataInputStream().readFully(buffer);
 
-        FrameRemoteScreen frame = (FrameRemoteScreen) slave.getFrame(FrameRemoteScreen.class);
+        PanelScreenController frame = (PanelScreenController) slave.getPanel(PanelScreenController.class);
 
 		if (frame != null) {
 			frame.setTransmitted(frame.getTransmitted() + blen);

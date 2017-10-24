@@ -4,7 +4,7 @@ import jrat.controller.Slave;
 import jrat.controller.packets.incoming.AbstractIncomingPacket;
 import jrat.controller.packets.outgoing.Packet12RemoteScreen;
 import jrat.controller.utils.CursorUtils;
-import jrat.module.screen.ui.FrameRemoteScreen;
+import jrat.module.screen.ui.PanelScreenController;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -21,7 +21,7 @@ public class PacketRemoteScreenCompleted extends AbstractIncomingPacket {
 		int mouseX = slave.readInt();
 		int mouseY = slave.readInt();
 				
-		FrameRemoteScreen frame = (FrameRemoteScreen) slave.getFrame(FrameRemoteScreen.class);
+		PanelScreenController frame = (PanelScreenController) slave.getPanel(PanelScreenController.class);
 		
 		if (frame != null) {
 			BufferedImage buffer = frame.getBuffer();
