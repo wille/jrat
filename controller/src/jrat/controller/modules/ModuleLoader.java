@@ -27,11 +27,9 @@ public class ModuleLoader {
     private static class ModuleData {
 
         public String pathPrefix;
-        public String controllerMain;
 
-        public ModuleData(String pathPrefix, String controllerMain) {
+        public ModuleData(String pathPrefix) {
             this.pathPrefix = pathPrefix;
-            this.controllerMain = controllerMain;
         }
 
         public File getControllerFile() {
@@ -46,10 +44,10 @@ public class ModuleLoader {
     private static final List<ModuleData> modules = new ArrayList<ModuleData>();
 
     static {
-        modules.add(new ModuleData("registry", "jrat.module.registry.RegistryControllerModule"));
-        modules.add(new ModuleData("screen", "jrat.module.screen.ScreenControllerModule"));
-        modules.add(new ModuleData("process", "jrat.module.process.ProcessControllerModule"));
-        modules.add(new ModuleData("fs", "jrat.module.fs.FileSystemControllerModule"));
+        modules.add(new ModuleData("registry"));
+        modules.add(new ModuleData("screen"));
+        modules.add(new ModuleData("process"));
+        modules.add(new ModuleData("fs"));
     }
 
     /**
@@ -60,13 +58,20 @@ public class ModuleLoader {
 
         for (ModuleData mod : modules) {
             try {
+                File jar = mod.getControllerFile();
+
+                JarInputStream jis = new JarInputStream(new FileInputStream(jar));
+                Manifest mf = jis.getManifest();
+                String mainClass = mf.getMainAttributes().getValue("Main-Class");
+                jis.close();
+
                 // add module JAR to classpath
                 Method method = URLClassLoader.class.getDeclaredMethod("addURL", URL.class);
                 method.setAccessible(true);
-                method.invoke(ClassLoader.getSystemClassLoader(), mod.getControllerFile().toURI().toURL());
+                method.invoke(ClassLoader.getSystemClassLoader(), jar.toURI().toURL());
 
                 // invoke init() on module
-                Class<Module> clazz = (Class<Module>) ModuleLoader.class.getClassLoader().loadClass(mod.controllerMain);
+                Class<Module> clazz = (Class<Module>) ModuleLoader.class.getClassLoader().loadClass(mainClass);
                 Constructor<?> ctor = clazz.getDeclaredConstructor();
                 ctor.setAccessible(true);
                 Module module = (Module) ctor.newInstance();
