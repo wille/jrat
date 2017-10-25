@@ -35,7 +35,7 @@ public class FramePreviewFile extends BaseFrame {
 	public FramePreviewFile(Slave slave, String f) {
 		super(slave);
 		final Slave sl = slave;
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FramePreviewFile.class.getResource("/icons/file.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FramePreviewFile.class.getResource("/file.png")));
 		setTitle("Preview file - " + f);
 		this.file = f;
 		addWindowListener(new WindowAdapter() {

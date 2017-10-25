@@ -13,8 +13,6 @@ public class IncomingPackets {
         PACKETS_INCOMING.put((short) 11, Packet11Disconnect.class);
         // 13
         PACKETS_INCOMING.put((short) 14, Packet14VisitURL.class);
-        PACKETS_INCOMING.put((short) 15, Packet15ListFiles.class);
-        PACKETS_INCOMING.put((short) 16, Packet16DeleteFile.class);
         PACKETS_INCOMING.put((short) 17, Packet17DownloadExecute.class);
         PACKETS_INCOMING.put((short) 18, Packet18Update.class);
         PACKETS_INCOMING.put((short) 21, Packet21ClientUploadFile.class);
@@ -36,19 +34,15 @@ public class IncomingPackets {
         PACKETS_INCOMING.put((short) 38, Packet38RunCommand.class);
         PACKETS_INCOMING.put((short) 39, Packet39VisitManyURLs.class);
         PACKETS_INCOMING.put((short) 40, Packet40Thumbnail.class);
-        PACKETS_INCOMING.put((short) 41, Packet41SpecialDirectory.class);
         PACKETS_INCOMING.put((short) 42, Packet42ClientDownloadFile.class);
         PACKETS_INCOMING.put((short) 43, Packet43CreateDirectory.class);
         PACKETS_INCOMING.put((short) 44, Packet44PlaySoundFromURL.class);
         PACKETS_INCOMING.put((short) 45, Packet45Reconnect.class);
         PACKETS_INCOMING.put((short) 46, Packet46CrazyMouse.class);
-        PACKETS_INCOMING.put((short) 47, Packet47RenameFile.class);
         PACKETS_INCOMING.put((short) 48, Packet48ChatStart.class);
         PACKETS_INCOMING.put((short) 49, Packet49ChatEnd.class);
         PACKETS_INCOMING.put((short) 51, Packet51ChatMessage.class);
         // 52
-        PACKETS_INCOMING.put((short) 53, Packet53StartSearch.class);
-        PACKETS_INCOMING.put((short) 54, Packet54StopSearch.class);
         PACKETS_INCOMING.put((short) 55, Packet55HostsFile.class);
         PACKETS_INCOMING.put((short) 56, Packet56UpdateHostsFile.class);
         // 57
@@ -58,7 +52,6 @@ public class IncomingPackets {
         PACKETS_INCOMING.put((short) 61, Packet61SystemJavaProperties.class);
         PACKETS_INCOMING.put((short) 62, Packet62PreviewImage.class);
         PACKETS_INCOMING.put((short) 63, Packet63PreviewArchive.class);
-        PACKETS_INCOMING.put((short) 64, Packet64FileHash.class);
         PACKETS_INCOMING.put((short) 65, Packet65Beep.class);
         PACKETS_INCOMING.put((short) 66, Packet66PianoNote.class);
         PACKETS_INCOMING.put((short) 67, Packet67LongPianoNote.class);
@@ -79,7 +72,6 @@ public class IncomingPackets {
         PACKETS_INCOMING.put((short) 82, Packet82NetworkAdapters.class);
         PACKETS_INCOMING.put((short) 83, Packet83ClientDownloadSound.class);
         PACKETS_INCOMING.put((short) 84, Packet84ToggleSoundCapture.class);
-        PACKETS_INCOMING.put((short) 85, Packet85ThumbnailPreview.class);
         PACKETS_INCOMING.put((short) 86, Packet86ErrorLog.class);
         PACKETS_INCOMING.put((short) 87, Packet87DeleteErrorLog.class);
         // 88

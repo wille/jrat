@@ -10,7 +10,7 @@ public class DialogImage extends JDialog {
 
 	public DialogImage(Image img) {
 		setModal(true);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(DialogImage.class.getResource("/icons/images-stack.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DialogImage.class.getResource("/images-stack.png")));
 		setTitle("Preview");
 		this.image = img;
 

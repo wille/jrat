@@ -1,6 +1,4 @@
-package jrat.controller.ui.renderers;
-
-import jrat.controller.ui.panels.PanelThumbView;
+package jrat.module.fs.ui;
 
 import javax.swing.*;
 import java.awt.*;

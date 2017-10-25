@@ -1,7 +1,7 @@
-package jrat.controller.ui.panels;
+package jrat.module.fs.ui;
 
 import iconlib.FileIconUtils;
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.common.DropLocations;
 import jrat.common.io.FileCache;
 import jrat.common.io.TransferData;
@@ -16,8 +16,10 @@ import jrat.controller.ui.components.FileTable;
 import jrat.controller.ui.frames.FramePreviewFile;
 import jrat.controller.ui.frames.FramePreviewImage;
 import jrat.controller.ui.frames.FramePreviewZip;
-import jrat.controller.ui.frames.FrameRemoteFiles;
+import jrat.controller.ui.panels.PanelFileTransfers;
 import jrat.controller.utils.Utils;
+import jrat.module.fs.packets.Packet15ListFiles;
+import jrat.module.fs.packets.Packet47RenameFile;
 import oslib.OperatingSystem;
 
 import javax.swing.*;
@@ -77,7 +79,7 @@ public class PanelRemoteFiles extends JPanel {
 			listRoots();
 			
 			JButton btnUpload = new JButton("Upload");
-			btnUpload.setIcon(IconUtils.getIcon("arrow-up"));
+			btnUpload.setIcon(Resources.getIcon("arrow-up"));
 			btnUpload.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
@@ -197,7 +199,7 @@ public class PanelRemoteFiles extends JPanel {
 			super(slave);
 			for (Drive drive : slave.getDrives()) {
 				driveComboModel.addElement(drive.getName());
-				renderer.addIcon(drive.getName(), IconUtils.getIcon("drive"));
+				renderer.addIcon(drive.getName(), Resources.getIcon("drive"));
 			}
 			driveComboBox.setRenderer(renderer);
 			
@@ -209,7 +211,7 @@ public class PanelRemoteFiles extends JPanel {
 			});
 						
 			JButton btnDownload = new JButton("Download");
-			btnDownload.setIcon(IconUtils.getIcon("arrow-down"));
+			btnDownload.setIcon(Resources.getIcon("arrow-down"));
 			btnDownload.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
@@ -219,7 +221,7 @@ public class PanelRemoteFiles extends JPanel {
 			toolBar.add(btnDownload, 0);
 
 			JButton btnSearch = new JButton();
-			btnSearch.setIcon(IconUtils.getIcon("search"));
+			btnSearch.setIcon(Resources.getIcon("search"));
 			btnSearch.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent actionEvent) {
@@ -234,7 +236,7 @@ public class PanelRemoteFiles extends JPanel {
 			addPopup(popupMenuRemote);
 
 			JMenuItem mntmRun = new JMenuItem("Run");
-			mntmRun.setIcon(IconUtils.getIcon("execute"));
+			mntmRun.setIcon(Resources.getIcon("execute"));
 			mntmRun.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
@@ -248,7 +250,7 @@ public class PanelRemoteFiles extends JPanel {
 			});
 
 			JMenu mnQuickJump = new JMenu("Quick Jump");
-			mnQuickJump.setIcon(IconUtils.getIcon("folder-shortcut"));
+			mnQuickJump.setIcon(Resources.getIcon("folder-shortcut"));
 			popupMenuRemote.add(mnQuickJump);
 
 			popupMenuRemote.addSeparator();
@@ -276,7 +278,7 @@ public class PanelRemoteFiles extends JPanel {
 			popupMenuRemote.add(mntmRun);
 
 			JMenuItem mntmPreviewFiletext = new JMenuItem("Preview file (Text, ZIP, Image)");
-			mntmPreviewFiletext.setIcon(IconUtils.getIcon("preview"));
+			mntmPreviewFiletext.setIcon(Resources.getIcon("preview"));
 			mntmPreviewFiletext.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
@@ -301,7 +303,7 @@ public class PanelRemoteFiles extends JPanel {
 			popupMenuRemote.add(mntmPreviewFiletext);
 
 			JMenuItem mntmDownloadFile = new JMenuItem("Download File(s)");
-			mntmDownloadFile.setIcon(IconUtils.getIcon("arrow-left"));
+			mntmDownloadFile.setIcon(Resources.getIcon("arrow-left"));
 			mntmDownloadFile.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -311,7 +313,7 @@ public class PanelRemoteFiles extends JPanel {
 			popupMenuRemote.add(mntmDownloadFile);
 
 			JMenuItem mntmExploreImages = new JMenuItem("Explore(.png, .jpg, .gif)");
-			mntmExploreImages.setIcon(IconUtils.getIcon("images-stack"));
+			mntmExploreImages.setIcon(Resources.getIcon("images-stack"));
 			mntmExploreImages.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					List<String> files = new ArrayList<String>();
@@ -338,7 +340,7 @@ public class PanelRemoteFiles extends JPanel {
 			popupMenuRemote.addSeparator();
 
 			JMenuItem mntmNewFolder = new JMenuItem("New Folder");
-			mntmNewFolder.setIcon(IconUtils.getIcon("folder-add"));
+			mntmNewFolder.setIcon(Resources.getIcon("folder-add"));
 			mntmNewFolder.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -353,7 +355,7 @@ public class PanelRemoteFiles extends JPanel {
 			popupMenuRemote.add(mntmNewFolder);
 
 			JMenuItem mntmDelete = new JMenuItem("Delete");
-			mntmDelete.setIcon(IconUtils.getIcon("delete"));
+			mntmDelete.setIcon(Resources.getIcon("delete"));
 			mntmDelete.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -363,7 +365,7 @@ public class PanelRemoteFiles extends JPanel {
 			popupMenuRemote.add(mntmDelete);
 
 			JMenuItem mntmRename = new JMenuItem("Rename");
-			mntmRename.setIcon(IconUtils.getIcon("rename"));
+			mntmRename.setIcon(Resources.getIcon("rename"));
 			mntmRename.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -380,7 +382,7 @@ public class PanelRemoteFiles extends JPanel {
 			popupMenuRemote.add(mntmRename);
 
 			JMenuItem mntmMdHash = new JMenuItem("File Hash");
-			mntmMdHash.setIcon(IconUtils.getIcon("barcode"));
+			mntmMdHash.setIcon(Resources.getIcon("barcode"));
 			mntmMdHash.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
@@ -402,13 +404,13 @@ public class PanelRemoteFiles extends JPanel {
 					}
 				}
 			});
-			mntmCorrupt.setIcon(IconUtils.getIcon("broken_document"));
+			mntmCorrupt.setIcon(Resources.getIcon("broken_document"));
 			popupMenuRemote.add(mntmCorrupt);
 
 			popupMenuRemote.addSeparator();
 
 			JMenu mnBookmarks = new JMenu("Bookmarks");
-			mnBookmarks.setIcon(IconUtils.getIcon("bookmark-go"));
+			mnBookmarks.setIcon(Resources.getIcon("bookmark-go"));
 			popupMenuRemote.add(mnBookmarks);
 			
 			mnAdd = new JMenuItem("Add");
@@ -417,7 +419,7 @@ public class PanelRemoteFiles extends JPanel {
 					StoreFileBookmarks.getGlobal().getBookmarks().add(new File(txtDir.getText()));
 				}
 			});
-			mnAdd.setIcon(IconUtils.getIcon("bookmark-add"));
+			mnAdd.setIcon(Resources.getIcon("bookmark-add"));
 			popupMenuRemote.add(mnAdd);
 			
 			mnRemove = new JMenuItem("Remove");
@@ -449,7 +451,7 @@ public class PanelRemoteFiles extends JPanel {
 				}
 			});
 			
-			mnRemove.setIcon(IconUtils.getIcon("bookmark-remove"));
+			mnRemove.setIcon(Resources.getIcon("bookmark-remove"));
 			popupMenuRemote.add(mnRemove);
 
 			popupMenuRemote.addSeparator();
@@ -468,7 +470,7 @@ public class PanelRemoteFiles extends JPanel {
 					table.getSelectionModel().setSelectionInterval(0, row);
 				}
 			});
-			mntmSelectAllFolders.setIcon(IconUtils.getIcon("folders-stack"));
+			mntmSelectAllFolders.setIcon(Resources.getIcon("folders-stack"));
 			popupMenuRemote.add(mntmSelectAllFolders);
 
 			JMenuItem mntmSelectAllFiles = new JMenuItem("Select all files");
@@ -485,7 +487,7 @@ public class PanelRemoteFiles extends JPanel {
 					table.getSelectionModel().setSelectionInterval(row, getTableModel().getRowCount());
 				}
 			});
-			mntmSelectAllFiles.setIcon(IconUtils.getIcon("documents-stack"));
+			mntmSelectAllFiles.setIcon(Resources.getIcon("documents-stack"));
 			popupMenuRemote.add(mntmSelectAllFiles);
 
 			popupMenuRemote.addSeparator();
@@ -500,7 +502,7 @@ public class PanelRemoteFiles extends JPanel {
 					slave.addToSendQueue(new Packet15ListFiles(txtDir.getText()));
 				}
 			});
-			mntmRefresh.setIcon(IconUtils.getIcon("refresh"));
+			mntmRefresh.setIcon(Resources.getIcon("refresh"));
 			popupMenuRemote.add(mntmRefresh);
 		}
 		

