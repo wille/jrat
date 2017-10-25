@@ -45,6 +45,7 @@ public class ModuleLoader {
         modules.add(new ModuleData( "registry-controller.jar", "registry-client.jar","jrat.module.registry.RegistryControllerModule", "jrat.module.registry.RegistryClientModule"));
         modules.add(new ModuleData("screen-controller.jar", "screen-client.jar", "jrat.module.screen.ScreenControllerModule", "jrat.module.screen.ScreenClientModule"));
         modules.add(new ModuleData("process-controller.jar", "process-client.jar", "jrat.module.process.ProcessControllerModule", "jrat.module.process.ProcessClientModule"));
+        modules.add(new ModuleData("fs-controller.jar", "fs-client.jar", "jrat.module.fs.FileSystemControllerModule", "jrat.module.fs.FileSystemClientModule"));
     }
 
     /**
