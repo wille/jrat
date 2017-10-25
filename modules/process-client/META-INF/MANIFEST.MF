@@ -1,3 +1,3 @@
 Manifest-Version: 1.0
-Main-Class: jrat.module.process.ProcessControllerModule
+Main-Class: jrat.module.process.ProcessClientModule
 
