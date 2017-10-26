@@ -19,7 +19,6 @@ public class FileSystemControllerModule extends Module {
         IncomingPackets.register((short) 34, Packet34CustomDirectory.class);
         IncomingPackets.register((short) 22, Packet22ListFiles.class);
         IncomingPackets.register((short) 37, Packet37SearchResult.class);
-        IncomingPackets.register((short) 46, Packet46FileHash.class);
         IncomingPackets.register((short) 59, Packet59ThumbnailPreview.class);
 
         ClientMenuItem item = new ClientMenuItem("File Browser", Resources.getIcon("folder-tree"), new ClientEventListener() {

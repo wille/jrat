@@ -12,7 +12,6 @@ public class FileSystemClientModule extends Module {
         IncomingPackets.register((short) 54, Packet54StopSearch.class);
         IncomingPackets.register((short) 16, Packet16DeleteFile.class);
         IncomingPackets.register((short) 47, Packet47RenameFile.class);
-        IncomingPackets.register((short) 64, Packet64FileHash.class);
         IncomingPackets.register((short) 85, Packet85ThumbnailPreview.class);
     }
 }

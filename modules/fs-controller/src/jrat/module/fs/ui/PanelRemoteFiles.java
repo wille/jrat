@@ -381,20 +381,6 @@ public class PanelRemoteFiles extends JPanel {
 			});
 			popupMenuRemote.add(mntmRename);
 
-			JMenuItem mntmMdHash = new JMenuItem("File Hash");
-			mntmMdHash.setIcon(Resources.getIcon("barcode"));
-			mntmMdHash.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent arg0) {
-					String file = getTableModel().getValueAt(table.getSelectedRow(), 0).toString();
-					if (file != null) {
-						slave.addToSendQueue(new Packet64FileHash(file));
-						waitingForHash = true;
-					}
-				}
-			});
-			popupMenuRemote.add(mntmMdHash);
-
 			JMenuItem mntmCorrupt = new JMenuItem("Corrupt");
 			mntmCorrupt.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
