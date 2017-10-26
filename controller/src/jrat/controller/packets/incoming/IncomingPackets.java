@@ -1,6 +1,5 @@
 package jrat.controller.packets.incoming;
 
-import jrat.common.PacketRange;
 import jrat.controller.Slave;
 
 import java.util.HashMap;
@@ -111,7 +110,7 @@ public class IncomingPackets {
 				}
 			}
 
-			if (ac != null && header >= 0 && header <= PacketRange.RANGE_INCOMING) {
+			if (ac != null) {
 				ac.read(slave, slave.getDataInputStream());
 			}
 
