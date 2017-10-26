@@ -7,7 +7,6 @@ import jrat.controller.Slave;
 import jrat.controller.ui.DefaultJTable;
 import jrat.controller.ui.components.TableModel;
 import jrat.controller.ui.dialogs.DialogCustomRegQuery;
-import jrat.controller.ui.frames.BaseFrame;
 import jrat.controller.utils.Utils;
 import jrat.module.registry.PacketAdd;
 import jrat.module.registry.PacketDelete;

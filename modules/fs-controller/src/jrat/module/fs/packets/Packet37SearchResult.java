@@ -7,7 +7,6 @@ import jrat.module.fs.ui.FrameRemoteFiles;
 import jrat.module.fs.ui.PanelSearchFiles;
 
 import javax.swing.*;
-import java.io.DataInputStream;
 
 public class Packet37SearchResult extends AbstractIncomingPacket {
 

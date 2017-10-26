@@ -8,7 +8,6 @@ import jrat.module.process.ui.PanelProcesses;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
-import java.io.DataInputStream;
 
 public class PacketProcessData extends AbstractIncomingPacket {
 

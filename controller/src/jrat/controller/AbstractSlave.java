@@ -481,6 +481,18 @@ public abstract class AbstractSlave implements Runnable {
 	public void readFully(byte[] b) throws Exception {
 	    dis.readFully(b);
     }
+
+    public void writeChar(char c) throws Exception {
+	    dos.writeChar(c);
+    }
+
+    public void write(byte[] b) throws Exception {
+        dos.write(b);
+    }
+
+    public void write(byte[] b, int off, int len) throws Exception {
+	    dos.write(b, off, len);
+    }
 	
 	public byte[] getKey() {
 		return key;

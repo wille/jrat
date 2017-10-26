@@ -2,13 +2,13 @@ package jrat.module.fs.ui;
 
 import jrat.api.Resources;
 import jrat.controller.Slave;
-import jrat.module.fs.packets.Packet53StartSearch;
-import jrat.module.fs.packets.Packet54StopSearch;
 import jrat.controller.ui.DefaultJTable;
 import jrat.controller.ui.components.TableModel;
 import jrat.controller.ui.panels.PanelControlParent;
 import jrat.controller.ui.renderers.table.FileSearchTableRenderer;
 import jrat.controller.utils.Utils;
+import jrat.module.fs.packets.Packet53StartSearch;
+import jrat.module.fs.packets.Packet54StopSearch;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;

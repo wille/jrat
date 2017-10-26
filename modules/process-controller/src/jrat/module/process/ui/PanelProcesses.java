@@ -6,7 +6,6 @@ import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet38RunCommand;
 import jrat.controller.ui.DefaultJTable;
 import jrat.controller.ui.components.TableModel;
-import jrat.controller.ui.panels.PanelControlParent;
 import jrat.controller.ui.renderers.table.ProcessTableRenderer;
 import jrat.controller.utils.Utils;
 import jrat.module.process.PacketKillProcess;

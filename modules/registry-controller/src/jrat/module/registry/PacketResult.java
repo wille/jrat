@@ -4,8 +4,6 @@ import jrat.controller.Slave;
 import jrat.controller.packets.incoming.AbstractIncomingPacket;
 import jrat.module.registry.ui.PanelRegistry;
 
-import java.io.DataInputStream;
-
 public class PacketResult extends AbstractIncomingPacket {
 
 	@Override

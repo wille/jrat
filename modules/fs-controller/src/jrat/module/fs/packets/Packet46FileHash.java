@@ -5,7 +5,6 @@ import jrat.controller.packets.incoming.AbstractIncomingPacket;
 import jrat.module.fs.ui.FrameRemoteFiles;
 
 import javax.swing.*;
-import java.io.DataInputStream;
 
 
 public class Packet46FileHash extends AbstractIncomingPacket {

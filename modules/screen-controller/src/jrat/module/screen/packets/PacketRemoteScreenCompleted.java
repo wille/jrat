@@ -8,7 +8,6 @@ import jrat.module.screen.ui.PanelScreenController;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.DataInputStream;
 
 /**
  * Received when a frame has successfully transferred

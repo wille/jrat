@@ -2,8 +2,6 @@ package jrat.controller.packets.outgoing;
 
 import jrat.controller.Slave;
 
-import java.io.DataOutputStream;
-
 
 public class Packet66PianoNote extends AbstractOutgoingPacket {
 
@@ -16,9 +14,9 @@ public class Packet66PianoNote extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public void write(Slave slave, DataOutputStream dos) throws Exception {
-		dos.writeInt(note);
-		dos.writeBoolean(buzz);
+	public void write(Slave slave) throws Exception {
+		slave.writeInt(note);
+		slave.writeBoolean(buzz);
 	}
 
 	@Override

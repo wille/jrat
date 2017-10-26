@@ -9,7 +9,6 @@ import jrat.controller.ui.panels.PanelControlMonitors;
 import jrat.module.screen.ui.DialogPickMonitor;
 
 import java.awt.image.BufferedImage;
-import java.io.DataInputStream;
 import java.util.List;
 
 /**

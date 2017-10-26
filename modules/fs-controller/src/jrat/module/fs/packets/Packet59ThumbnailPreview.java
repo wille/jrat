@@ -7,7 +7,6 @@ import jrat.module.fs.ui.FrameRemoteFiles;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.DataInputStream;
 
 public class Packet59ThumbnailPreview extends AbstractIncomingPacket {
 
