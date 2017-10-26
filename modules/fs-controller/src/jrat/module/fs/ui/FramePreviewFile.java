@@ -1,8 +1,9 @@
-package jrat.controller.ui.frames;
+package jrat.module.fs.ui;
 
 import iconlib.IconUtils;
 import jrat.controller.Slave;
-import jrat.controller.packets.outgoing.Packet60PreviewFile;
+import jrat.controller.ui.frames.BaseFrame;
+import jrat.module.fs.packets.Packet60PreviewFile;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;

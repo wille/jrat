@@ -1,9 +1,10 @@
-package jrat.controller.packets.incoming;
+package jrat.module.fs.packets;
 
 import iconlib.FileIconUtils;
 import jrat.common.utils.DataUnits;
 import jrat.controller.Slave;
-import jrat.controller.ui.frames.FramePreviewZip;
+import jrat.controller.packets.incoming.AbstractIncomingPacket;
+import jrat.module.fs.ui.FramePreviewZip;
 
 import javax.swing.*;
 

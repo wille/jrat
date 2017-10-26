@@ -1,7 +1,8 @@
-package jrat.controller.packets.incoming;
+package jrat.module.fs.packets;
 
 import jrat.controller.Slave;
-import jrat.controller.ui.frames.FramePreviewFile;
+import jrat.controller.packets.incoming.AbstractIncomingPacket;
+import jrat.module.fs.ui.FramePreviewFile;
 
 
 public class Packet42PreviewFile extends AbstractIncomingPacket {

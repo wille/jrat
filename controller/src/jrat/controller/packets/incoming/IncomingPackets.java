@@ -57,10 +57,8 @@ public class IncomingPackets {
 		PACKETS_INCOMING.put((short) 39, Packet39HostEditResult.class);
 		// 40
 		PACKETS_INCOMING.put((short) 41, Packet41Clipboard.class);
-		PACKETS_INCOMING.put((short) 42, Packet42PreviewFile.class);
-		PACKETS_INCOMING.put((short) 43, Packet43PreviewImage.class);
+
 		PACKETS_INCOMING.put((short) 44, Packet44SystemJavaProperty.class);
-		PACKETS_INCOMING.put((short) 45, Packet45ArchivePreview.class);
 		// 48
 		PACKETS_INCOMING.put((short) 49, Packet49LanDevices.class);
 		PACKETS_INCOMING.put((short) 51, Packet51ActivePort.class);
