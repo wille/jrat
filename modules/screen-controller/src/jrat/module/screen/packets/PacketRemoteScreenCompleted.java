@@ -17,7 +17,7 @@ import java.io.DataInputStream;
 public class PacketRemoteScreenCompleted extends AbstractIncomingPacket {
 
 	@Override
-	public void read(Slave slave, DataInputStream dis) throws Exception {
+	public void read(Slave slave) throws Exception {
 		int mouseX = slave.readInt();
 		int mouseY = slave.readInt();
 				

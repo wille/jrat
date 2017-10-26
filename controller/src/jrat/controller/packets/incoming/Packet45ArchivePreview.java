@@ -6,12 +6,11 @@ import jrat.controller.Slave;
 import jrat.controller.ui.frames.FramePreviewZip;
 
 import javax.swing.*;
-import java.io.DataInputStream;
 
 public class Packet45ArchivePreview extends AbstractIncomingPacket {
 
 	@Override
-	public void read(Slave slave, DataInputStream dis) throws Exception {
+	public void read(Slave slave) throws Exception {
 		boolean dir = slave.readBoolean();
 		String name = slave.readLine();
 		String filesize = DataUnits.getAsString(slave.readLong());

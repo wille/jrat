@@ -14,18 +14,18 @@ import java.util.List;
 public class Packet22ListFiles extends AbstractIncomingPacket {
 
 	@Override
-	public void read(Slave slave, DataInputStream dis) throws Exception {
+	public void read(Slave slave) throws Exception {
 		List<FileObject> files = new ArrayList<FileObject>();
 		List<FileObject> dirs = new ArrayList<FileObject>();
 
-		int len = dis.readInt();
+		int len = slave.readInt();
 
 		for (int i = 0; i < len; i++) {
 			String path = slave.readLine();
 			FileObject fo = new FileObject(path);
 
-			boolean dir = dis.readBoolean();
-			boolean hidden = dis.readBoolean();
+			boolean dir = slave.readBoolean();
+			boolean hidden = slave.readBoolean();
 			
 			fo.setHidden(hidden);
 			fo.setIcon(FileIconUtils.getIconFromExtension(path, dir));

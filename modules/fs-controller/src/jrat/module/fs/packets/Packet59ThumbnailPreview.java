@@ -12,9 +12,9 @@ import java.io.DataInputStream;
 public class Packet59ThumbnailPreview extends AbstractIncomingPacket {
 
 	@Override
-	public void read(Slave slave, DataInputStream dis) throws Exception {
+	public void read(Slave slave) throws Exception {
 		String path = slave.readLine();
-		int imageSize = dis.readInt();
+		int imageSize = slave.readInt();
 
 		int w = 150;
 		int h = 100;

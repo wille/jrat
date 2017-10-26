@@ -17,7 +17,7 @@ import java.io.DataInputStream;
 public class PacketRemoteScreenChunk extends AbstractIncomingPacket {
 
 	@Override
-	public void read(Slave slave, DataInputStream dis) throws Exception {
+	public void read(Slave slave) throws Exception {
 		int chunkWidth = slave.readInt();
 		int chunkHeight = slave.readInt();
 		int x = slave.readInt();

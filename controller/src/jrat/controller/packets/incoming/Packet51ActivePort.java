@@ -4,13 +4,11 @@ import jrat.controller.Slave;
 import jrat.controller.ui.frames.FrameControlPanel;
 import jrat.controller.ui.panels.PanelControlActivePorts;
 
-import java.io.DataInputStream;
-
 
 public class Packet51ActivePort extends AbstractIncomingPacket {
 
 	@Override
-	public void read(Slave slave, DataInputStream dis) throws Exception {
+	public void read(Slave slave) throws Exception {
 		String prot = slave.readLine();
 		String la = slave.readLine();
 		String status = slave.readLine();

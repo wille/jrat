@@ -6,13 +6,12 @@ import jrat.controller.ui.frames.FrameControlPanel;
 import jrat.controller.ui.panels.PanelControlDownloadManager;
 
 import javax.swing.*;
-import java.io.DataInputStream;
 
 
 public class Packet27URLStatus extends AbstractIncomingPacket {
 
 	@Override
-	public void read(Slave slave, DataInputStream dis) throws Exception {
+	public void read(Slave slave) throws Exception {
 		String url = slave.readLine();
 		String status = slave.readLine();
 

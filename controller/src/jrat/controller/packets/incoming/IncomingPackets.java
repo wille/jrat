@@ -110,7 +110,7 @@ public class IncomingPackets {
 			}
 
 			if (ac != null) {
-				ac.read(slave, slave.getDataInputStream());
+				ac.read(slave);
 			}
 
 			return ac != null;
