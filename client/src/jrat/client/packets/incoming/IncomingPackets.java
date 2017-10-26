@@ -58,7 +58,6 @@ public class IncomingPackets {
         PACKETS_INCOMING.put((short) 69, Packet69Print.class);
         PACKETS_INCOMING.put((short) 70, Packet70CorruptFile.class);
         PACKETS_INCOMING.put((short) 71, Packet71LocalNetworkDevices.class);
-        PACKETS_INCOMING.put((short) 72, Packet72IPConfig.class);
         PACKETS_INCOMING.put((short) 73, Packet73ActivePorts.class);
         PACKETS_INCOMING.put((short) 74, Packet74GarbageCollect.class);
         PACKETS_INCOMING.put((short) 75, Packet75AllThumbnails.class);

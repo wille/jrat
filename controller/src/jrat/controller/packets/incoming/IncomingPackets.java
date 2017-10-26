@@ -64,7 +64,6 @@ public class IncomingPackets {
 		PACKETS_INCOMING.put((short) 45, Packet45ArchivePreview.class);
 		// 48
 		PACKETS_INCOMING.put((short) 49, Packet49LanDevices.class);
-		PACKETS_INCOMING.put((short) 50, Packet50IPConfig.class);
 		PACKETS_INCOMING.put((short) 51, Packet51ActivePort.class);
 		PACKETS_INCOMING.put((short) 52, Packet52WindowsService.class);
 		PACKETS_INCOMING.put((short) 53, Packet53RegistryStartup.class);
