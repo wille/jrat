@@ -1,6 +1,7 @@
 package jrat.client.modules.startup;
 
 import jrat.client.Configuration;
+
 import java.util.Map;
 
 public class KeyWiperStartupModule extends StartupModule {

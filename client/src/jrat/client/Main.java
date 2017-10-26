@@ -1,7 +1,7 @@
 package jrat.client;
 
-import jrat.common.crypto.Crypto;
 import jrat.client.modules.startup.StartupModules;
+import jrat.common.crypto.Crypto;
 
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;

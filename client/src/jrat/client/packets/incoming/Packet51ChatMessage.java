@@ -2,11 +2,11 @@ package jrat.client.packets.incoming;
 
 import jrat.client.Connection;
 
-import java.awt.Color;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
+import java.awt.*;
 
 
 public class Packet51ChatMessage extends AbstractIncomingPacket {

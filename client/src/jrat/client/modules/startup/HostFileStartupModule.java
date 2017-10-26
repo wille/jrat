@@ -1,19 +1,15 @@
 package jrat.client.modules.startup;
 
-import jrat.common.crypto.CryptoUtils;
 import jrat.client.Configuration;
 import jrat.client.Main;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.Map;
+import jrat.common.crypto.CryptoUtils;
+import oslib.OperatingSystem;
+
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
 import javax.crypto.spec.SecretKeySpec;
-import oslib.OperatingSystem;
+import java.io.*;
+import java.util.Map;
 
 public class HostFileStartupModule extends StartupModule {
 

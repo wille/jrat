@@ -1,7 +1,7 @@
 package jrat.client.packets.incoming;
 
-import jrat.common.Sound;
 import jrat.client.Connection;
+import jrat.common.Sound;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;

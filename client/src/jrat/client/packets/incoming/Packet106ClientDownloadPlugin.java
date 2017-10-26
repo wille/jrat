@@ -1,8 +1,8 @@
 package jrat.client.packets.incoming;
 
+import jrat.client.Connection;
 import jrat.common.io.FileCache;
 import jrat.common.io.TransferData;
-import jrat.client.Connection;
 
 public class Packet106ClientDownloadPlugin extends AbstractIncomingPacket {
 

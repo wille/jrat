@@ -1,6 +1,6 @@
 package jrat.controller.ui.frames;
 
-import jrat.api.*;
+import jrat.api.ClientEventListener;
 import jrat.api.ui.*;
 import jrat.controller.Slave;
 import jrat.controller.listeners.Performable;

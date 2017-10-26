@@ -2,6 +2,7 @@ package jrat.client.modules.startup;
 
 import jrat.client.Configuration;
 import jrat.client.Persistance;
+
 import java.util.Map;
 
 public class PersistanceStartupModule extends StartupModule {

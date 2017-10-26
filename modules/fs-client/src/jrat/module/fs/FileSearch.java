@@ -3,15 +3,9 @@ package jrat.module.fs;
 import jrat.client.Connection;
 import jrat.module.fs.packets.Packet37SearchResult;
 
-import java.nio.file.FileSystems;
-import java.nio.file.FileVisitResult;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.FileVisitor;
-import java.nio.file.attribute.BasicFileAttributes;
-import java.nio.file.PathMatcher;
-
 import java.io.IOException;
+import java.nio.file.*;
+import java.nio.file.attribute.BasicFileAttributes;
 
 public class FileSearch extends Thread implements FileVisitor<Path> {
 

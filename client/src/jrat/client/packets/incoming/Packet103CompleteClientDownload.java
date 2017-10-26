@@ -1,7 +1,7 @@
 package jrat.client.packets.incoming;
 
-import jrat.common.io.FileCache;
 import jrat.client.Connection;
+import jrat.common.io.FileCache;
 
 
 public class Packet103CompleteClientDownload extends AbstractIncomingPacket {

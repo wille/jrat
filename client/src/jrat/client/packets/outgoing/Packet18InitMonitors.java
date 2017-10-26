@@ -1,21 +1,19 @@
 package jrat.client.packets.outgoing;
 
-import jrat.common.io.StringWriter;
+import jrat.client.Connection;
 import jrat.common.utils.Utils;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
-import java.awt.Rectangle;
-import java.io.DataOutputStream;
+
+import java.awt.*;
 
 
 public class Packet18InitMonitors extends AbstractOutgoingPacket {
 
 	@Override
-	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
+	public void write(Connection con) throws Exception {
 		if (!Utils.isHeadless()) {		
 			GraphicsDevice[] monitors = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices();
-			
-			dos.writeInt(monitors.length);
+
+            con.writeInt(monitors.length);
 
 			for (GraphicsDevice device : monitors) {
 				Rectangle bounds = device.getDefaultConfiguration().getBounds();
@@ -23,15 +21,15 @@ public class Packet18InitMonitors extends AbstractOutgoingPacket {
 				if (id.startsWith("\\")) {
 					id = id.substring(1, id.length());
 				}
-				
-				sw.writeLine(device.getIDstring());
-				dos.writeInt(bounds.x);
-				dos.writeInt(bounds.y);
-				dos.writeInt(bounds.width);
-				dos.writeInt(bounds.height);
+
+                con.writeLine(id);
+                con.writeInt(bounds.x);
+                con.writeInt(bounds.y);
+                con.writeInt(bounds.width);
+                con.writeInt(bounds.height);
 			}
 		} else {
-			dos.writeInt(0);
+            con.writeInt(0);
 		}
 	}
 

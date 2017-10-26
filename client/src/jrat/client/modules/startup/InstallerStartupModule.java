@@ -1,10 +1,17 @@
 package jrat.client.modules.startup;
 
-import jrat.common.DropLocations;
-import jrat.common.crypto.CryptoUtils;
 import jrat.client.Configuration;
 import jrat.client.utils.Utils;
-import java.awt.Desktop;
+import jrat.common.DropLocations;
+import jrat.common.crypto.CryptoUtils;
+import oslib.OperatingSystem;
+import startuplib.Startup;
+
+import javax.crypto.Cipher;
+import javax.crypto.CipherInputStream;
+import javax.crypto.spec.SecretKeySpec;
+import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -13,13 +20,6 @@ import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
-import javax.crypto.Cipher;
-import javax.crypto.CipherInputStream;
-import javax.crypto.spec.SecretKeySpec;
-import javax.swing.JOptionPane;
-import javax.swing.UIManager;
-import oslib.OperatingSystem;
-import startuplib.Startup;
 
 public class InstallerStartupModule extends StartupModule {
 	

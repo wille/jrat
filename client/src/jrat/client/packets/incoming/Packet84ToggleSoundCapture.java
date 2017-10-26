@@ -1,8 +1,8 @@
 package jrat.client.packets.incoming;
 
-import jrat.common.SoundWriter;
 import jrat.client.Connection;
 import jrat.client.packets.outgoing.Packet58ClientUploadSoundCapture;
+import jrat.common.SoundWriter;
 
 public class Packet84ToggleSoundCapture extends AbstractIncomingPacket {
 

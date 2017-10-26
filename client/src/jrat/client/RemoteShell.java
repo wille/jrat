@@ -1,10 +1,10 @@
 package jrat.client;
 
 import jrat.client.packets.outgoing.Packet21RemoteShell;
+import oslib.Shell;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-
-import oslib.Shell;
 
 public class RemoteShell extends Thread {
 

@@ -1,16 +1,16 @@
 package jrat.client;
 
+import jrat.client.packets.Temp;
 import jrat.common.Constants;
 import jrat.common.downloadable.Downloadable;
-import jrat.client.packets.Temp;
+import oslib.OperatingSystem;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Random;
-
-import oslib.OperatingSystem;
 
 
 public class Downloader extends Thread {

@@ -1,8 +1,8 @@
 package jrat.controller.modules;
 
+import jrat.api.Module;
 import jrat.common.Logger;
 import jrat.controller.AbstractSlave;
-import jrat.api.Module;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -13,8 +13,6 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.jar.Attributes;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
 import java.util.jar.Manifest;

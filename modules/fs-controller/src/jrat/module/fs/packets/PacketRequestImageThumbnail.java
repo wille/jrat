@@ -6,11 +6,11 @@ import jrat.controller.packets.outgoing.AbstractOutgoingPacket;
 import java.io.DataOutputStream;
 
 
-public class Packet85ThumbnailPreview extends AbstractOutgoingPacket {
+public class PacketRequestImageThumbnail extends AbstractOutgoingPacket {
 
 	private String file;
 
-	public Packet85ThumbnailPreview(String file) {
+	public PacketRequestImageThumbnail(String file) {
 		this.file = file;
 	}
 

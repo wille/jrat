@@ -1,11 +1,12 @@
 package jrat.client;
 
 import jrat.common.utils.Utils;
+import oslib.OperatingSystem;
+import oslib.Shell;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.util.Random;
-import oslib.OperatingSystem;
-import oslib.Shell;
 
 public class Uninstaller extends Thread {
 	

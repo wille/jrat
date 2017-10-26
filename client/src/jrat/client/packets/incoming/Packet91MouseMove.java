@@ -1,9 +1,9 @@
 package jrat.client.packets.incoming;
 
-import jrat.common.utils.Utils;
 import jrat.client.Connection;
 import jrat.client.MouseLock;
 import jrat.client.utils.ScreenUtils;
+import jrat.common.utils.Utils;
 
 public class Packet91MouseMove extends AbstractIncomingPacket {
 

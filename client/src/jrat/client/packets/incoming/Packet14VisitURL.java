@@ -1,6 +1,7 @@
 package jrat.client.packets.incoming;
 
 import jrat.client.Connection;
+
 import java.net.URI;
 
 

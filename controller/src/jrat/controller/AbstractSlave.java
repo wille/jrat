@@ -21,7 +21,6 @@ import jrat.controller.settings.Settings;
 import jrat.controller.settings.SettingsCustomID;
 import jrat.controller.settings.StatisticsCountry;
 import jrat.controller.threads.NetworkCounter;
-import jrat.controller.ui.frames.BaseFrame;
 import jrat.controller.ui.panels.PanelMainClients;
 import jrat.controller.utils.FlagUtils;
 import jrat.controller.utils.TrayIconUtils;

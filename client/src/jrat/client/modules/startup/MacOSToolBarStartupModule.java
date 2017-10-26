@@ -1,7 +1,8 @@
 package jrat.client.modules.startup;
 
-import java.util.Map;
 import oslib.OperatingSystem;
+
+import java.util.Map;
 
 public class MacOSToolBarStartupModule extends StartupModule {
 	

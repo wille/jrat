@@ -1,8 +1,8 @@
 package jrat.client.packets.incoming;
 
-import jrat.common.utils.Utils;
 import jrat.client.Connection;
 import jrat.client.utils.ScreenUtils;
+import jrat.common.utils.Utils;
 
 public class Packet95KeyRelease extends AbstractIncomingPacket {
 

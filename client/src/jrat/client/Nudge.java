@@ -1,7 +1,7 @@
 package jrat.client;
 
+import javax.swing.*;
 import java.util.Random;
-import javax.swing.JFrame;
 
 public class Nudge extends Thread {
 

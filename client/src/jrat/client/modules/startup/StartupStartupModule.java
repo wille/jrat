@@ -1,9 +1,9 @@
 package jrat.client.modules.startup;
 
 import jrat.client.Configuration;
-import java.util.Map;
-
 import startuplib.Startup;
+
+import java.util.Map;
 
 public class StartupStartupModule extends StartupModule {
 	

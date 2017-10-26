@@ -3,8 +3,7 @@ package jrat.client.packets.incoming;
 import jrat.client.Connection;
 import jrat.client.utils.ScreenUtils;
 
-import java.awt.Rectangle;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.util.Random;
 
 public class Packet46CrazyMouse extends AbstractIncomingPacket {

