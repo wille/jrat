@@ -18,8 +18,7 @@ import java.io.FileWriter;
 @SuppressWarnings("serial")
 public abstract class FrameTextPane extends BaseFrame {
 
-	private JPanel contentPane;
-	private JTextPane txt;
+    private JTextPane txt;
 
 	public JTextPane getPane() {
 		return txt;
@@ -43,7 +42,7 @@ public abstract class FrameTextPane extends BaseFrame {
 		});
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
+        JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 

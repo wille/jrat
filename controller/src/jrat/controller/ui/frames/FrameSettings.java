@@ -27,9 +27,8 @@ import java.util.Map;
 @SuppressWarnings("serial")
 public class FrameSettings extends BaseFrame {
 
-	private JPanel contentPane;
-	public HashMap<String, JPanel> panels = new HashMap<String, JPanel>();
-	public HashMap<String, Performable> actions = new HashMap<String, Performable>();
+    public HashMap<String, JPanel> panels = new HashMap<>();
+	public HashMap<String, Performable> actions = new HashMap<>();
 	private JPanel panel;
 
 	public FrameSettings() {
@@ -44,7 +43,7 @@ public class FrameSettings extends BaseFrame {
 		setTitle("Settings - " + Version.getVersion());
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 643, 370);
-		contentPane = new JPanel();
+        JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 

@@ -16,8 +16,7 @@ import java.awt.event.ActionListener;
 @SuppressWarnings({ "serial", "rawtypes", "unchecked" })
 public class DialogCustomRegQuery extends BaseDialog {
 
-	private JPanel contentPane;
-	private JComboBox comboBox;
+    private JComboBox comboBox;
 
 	public DialogCustomRegQuery(Slave sl) {
 		super(sl);
@@ -27,7 +26,7 @@ public class DialogCustomRegQuery extends BaseDialog {
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 385, 119);
-		contentPane = new JPanel();
+        JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 

@@ -12,7 +12,7 @@ import java.util.List;
 public class BasicIconUtils {
 
 	public static List<? extends Image> getFrameIconList(String name) {
-		List<Image> list = new ArrayList<Image>();
+		List<Image> list = new ArrayList<>();
 
 		String[] order = new String[] { "16x16", "32x32", "64x64", "128x128" };
 

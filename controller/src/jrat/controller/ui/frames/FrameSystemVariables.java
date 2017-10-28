@@ -26,11 +26,9 @@ import java.util.Map;
 @SuppressWarnings("serial")
 public class FrameSystemVariables extends BaseFrame {
 
-	public static final Map<Slave, FrameSystemVariables> INSTANCES = new HashMap<Slave, FrameSystemVariables>();
+	public static final Map<Slave, FrameSystemVariables> INSTANCES = new HashMap<>();
 
-	private JPanel contentPane;
-	private JTable table;
-	private TableModel model;
+    private TableModel model;
 	private Constants.VariableMode mode;
 
 	public FrameSystemVariables(Constants.VariableMode mode, Slave s) {
@@ -58,7 +56,7 @@ public class FrameSystemVariables extends BaseFrame {
 		
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 302);
-		contentPane = new JPanel();
+        JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
@@ -107,7 +105,7 @@ public class FrameSystemVariables extends BaseFrame {
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 433, GroupLayout.PREFERRED_SIZE).addGroup(gl_contentPane.createSequentialGroup().addComponent(btnReload, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(btnClose, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE))).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 218, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(btnReload).addComponent(btnSave).addComponent(btnClose)).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 
-		table = new DefaultJTable();
+        JTable table = new DefaultJTable();
 		table.setModel(model = new TableModel(new Object[][] {}, new String[] { "Key", "Value" }));
 		table.getColumnModel().getColumn(0).setPreferredWidth(163);
 		table.getColumnModel().getColumn(1).setPreferredWidth(268);

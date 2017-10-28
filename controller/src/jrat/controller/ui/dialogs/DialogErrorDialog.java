@@ -17,8 +17,7 @@ import java.io.Writer;
 @SuppressWarnings("serial")
 public class DialogErrorDialog extends JDialog {
 
-	private JPanel contentPane;
-	public Dimension originalSize;
+    public Dimension originalSize;
 	public Dimension extendedSize;
 	private JTextPane txtReason;
 	private int state = DialogErrorDialog.STATE_NORMAL;
@@ -41,7 +40,7 @@ public class DialogErrorDialog extends JDialog {
 		setTitle("Error occured");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 304);
-		contentPane = new JPanel();
+        JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 

@@ -43,7 +43,7 @@ public abstract class AbstractSlave implements Runnable {
     /**
      * Frames belonging to this client that are currently active
      */
-    private Map<Class<? extends ClientPanel>, ClientPanel> frames = new HashMap<Class<? extends ClientPanel>, ClientPanel>();
+    private Map<Class<? extends ClientPanel>, ClientPanel> frames = new HashMap<>();
 
 	/**
 	 * Unique random assigned ID for this client, between 0 and {@link Integer#MAX_VALUE}

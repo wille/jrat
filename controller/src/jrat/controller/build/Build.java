@@ -113,7 +113,7 @@ public class Build {
 				CipherOutputStream cios = new CipherOutputStream(baos, cipher);
 				BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(cios));
 
-				Map<String, Object> config = new HashMap<String, Object>();
+				Map<String, Object> config = new HashMap<>();
 
 				config.put("addresses", addressString);
 				config.put("id", id);

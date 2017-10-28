@@ -21,9 +21,8 @@ import java.util.Map;
 @SuppressWarnings("serial")
 public class FrameRemoteChat extends BaseFrame {
 
-	private JPanel contentPane;
-	public Slave slave;
-	public static final Map<Slave, FrameRemoteChat> instances = new HashMap<Slave, FrameRemoteChat>();
+    public Slave slave;
+	public static final Map<Slave, FrameRemoteChat> instances = new HashMap<>();
 	public JTextField txtMsg;
 	public JTextPane txtChat;
 
@@ -42,7 +41,7 @@ public class FrameRemoteChat extends BaseFrame {
 		});
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
+        JPanel contentPane = new JPanel();
 		setContentPane(contentPane);
 
 		JScrollPane scrollPane = new JScrollPane();

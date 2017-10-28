@@ -137,8 +137,8 @@ public class PanelBuildNetwork extends JPanel {
 		mntmGetWanAddress.setIcon(Resources.getIcon("network-ip"));
 		popupMenu.add(mntmGetWanAddress);
 
-		model = new DefaultListModel<String>();
-		list = new JList<String>(model);
+		model = new DefaultListModel<>();
+		list = new JList<>(model);
 
 		scrollPane.setViewportView(list);
 		setLayout(groupLayout);

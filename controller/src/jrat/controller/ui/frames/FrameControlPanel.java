@@ -26,16 +26,14 @@ public class FrameControlPanel extends BaseFrame implements TreeSelectionListene
     /**
      * Contains the category treenodes
      */
-    private Map<ControlPanel.Category, DefaultMutableTreeNode> categoryNodes = new HashMap<ControlPanel.Category, DefaultMutableTreeNode>();
+    private Map<ControlPanel.Category, DefaultMutableTreeNode> categoryNodes = new HashMap<>();
 
-	private JPanel contentPane;
-	private JPanel panel;
-	private JTree tree;
+    private JTree tree;
 
-	public static final Map<Slave, FrameControlPanel> instances = new HashMap<Slave, FrameControlPanel>();
+	public static final Map<Slave, FrameControlPanel> instances = new HashMap<>();
 
-	public HashMap<String, JPanel> panels = new HashMap<String, JPanel>();
-	public HashMap<String, Performable> actions = new HashMap<String, Performable>();
+	public HashMap<String, JPanel> panels = new HashMap<>();
+	public HashMap<String, Performable> actions = new HashMap<>();
 	private JTabbedPane tabbedPane;
 
 	private ControlPanelTreeRenderer treeRenderer;
@@ -59,11 +57,11 @@ public class FrameControlPanel extends BaseFrame implements TreeSelectionListene
 		setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 807, 414);
-		contentPane = new JPanel();
+        JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
-		panel = new JPanel();
+        JPanel panel = new JPanel();
 		panel.setSize(600, 350);
 
 		JScrollPane scrollPane = new JScrollPane();

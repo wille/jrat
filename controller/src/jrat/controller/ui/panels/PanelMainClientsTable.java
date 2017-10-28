@@ -26,7 +26,7 @@ import java.util.List;
 @SuppressWarnings("serial")
 public class PanelMainClientsTable extends PanelMainClients {
 	
-	private final List<String> columns = new ArrayList<String>();
+	private final List<String> columns = new ArrayList<>();
 
 	private JTable table;
 	private TableModel model;
@@ -142,7 +142,7 @@ public class PanelMainClientsTable extends PanelMainClients {
 	
 	@Override
 	public List<AbstractSlave> getSelectedSlaves() {
-		List<AbstractSlave> list = new ArrayList<AbstractSlave>();
+		List<AbstractSlave> list = new ArrayList<>();
 		for (int i = 0; i < model.getRowCount(); i++) {
 			AbstractSlave slave = getSlave(i);
 			
@@ -331,7 +331,7 @@ public class PanelMainClientsTable extends PanelMainClients {
 
 	@Override
 	public List<JMenuItem> getConfigMenu() {
-		List<JMenuItem> menu = new ArrayList<JMenuItem>();
+		List<JMenuItem> menu = new ArrayList<>();
 		
 		JMenu mnColumns = new JMenu("Columns");
 		mnColumns.setIcon(Resources.getIcon("application-table"));

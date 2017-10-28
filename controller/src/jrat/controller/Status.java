@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class Status {
 
-	private static final Map<Integer, String> STATUSES = new HashMap<Integer, String>();
+	private static final Map<Integer, String> STATUSES = new HashMap<>();
 
 	static {
 		STATUSES.put(Constants.STATUS_EXECUTED_FILE, "Executed file");

@@ -8,7 +8,7 @@ import java.util.Map;
 @SuppressWarnings("serial")
 public class JTreeIconsRenderer extends DefaultJTreeCellRenderer {
 
-	private Map<String, Icon> icons = new HashMap<String, Icon>();
+	private Map<String, Icon> icons = new HashMap<>();
 	private boolean same;
 	private Icon icon;
 

@@ -16,19 +16,15 @@ public class PanelBuildOutput extends JPanel {
 
 	public FrameExecutableInfo frameExecutableInfo = new FrameExecutableInfo();
 	public FrameAppInfo frameAppInfo = new FrameAppInfo();
-	
-	private final ButtonGroup buttonGroup = new ButtonGroup();
-	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
-	private JRadioButton rdbtnShellcode;
-	private JRadioButton rdbtnjarjavaArchive;
-	private JRadioButton rdbtnCcArray;
+
+    private JRadioButton rdbtnShellcode;
+    private JRadioButton rdbtnCcArray;
 	private JRadioButton rdbtnPythonArray;
 	private JRadioButton rdbtnDelphiArray;
 	private JRadioButton rdbtnJavaArray;
 	private JRadioButton rdbtnCArray;
 	private JRadioButton rdbtnexenetExecutable;
-	private JButton btnAssemblyInfo;
-	private JRadioButton rdbtnapposX;
+    private JRadioButton rdbtnapposX;
 
 	public boolean useShellcode() {
 		return rdbtnShellcode.isSelected();
@@ -62,7 +58,7 @@ public class PanelBuildOutput extends JPanel {
 	}
 	
 	public PanelBuildOutput() {
-		rdbtnjarjavaArchive = new JRadioButton(".jar (Java Archive)");
+        JRadioButton rdbtnjarjavaArchive = new JRadioButton(".jar (Java Archive)");
 		rdbtnjarjavaArchive.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JRadioButton btn = (JRadioButton) arg0.getSource();
@@ -74,7 +70,8 @@ public class PanelBuildOutput extends JPanel {
 				rdbtnCArray.setEnabled(b);
 			}
 		});
-		buttonGroup.add(rdbtnjarjavaArchive);
+        ButtonGroup buttonGroup = new ButtonGroup();
+        buttonGroup.add(rdbtnjarjavaArchive);
 		rdbtnjarjavaArchive.setSelected(true);
 
 		rdbtnShellcode = new JRadioButton("Shellcode");
@@ -93,7 +90,8 @@ public class PanelBuildOutput extends JPanel {
 
 		rdbtnCcArray = new JRadioButton("C/C++ Array");
 		rdbtnCcArray.setEnabled(false);
-		buttonGroup_1.add(rdbtnCcArray);
+        ButtonGroup buttonGroup_1 = new ButtonGroup();
+        buttonGroup_1.add(rdbtnCcArray);
 
 		rdbtnPythonArray = new JRadioButton("Python Array");
 		rdbtnPythonArray.setEnabled(false);
@@ -112,7 +110,7 @@ public class PanelBuildOutput extends JPanel {
 		rdbtnCArray.setEnabled(false);
 		buttonGroup_1.add(rdbtnCArray);
 
-		btnAssemblyInfo = new JButton("Assembly Info");
+        JButton btnAssemblyInfo = new JButton("Assembly Info");
 		btnAssemblyInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frameExecutableInfo.setVisible(true);

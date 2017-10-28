@@ -9,11 +9,9 @@ import javax.swing.GroupLayout.Alignment;
 @SuppressWarnings("serial")
 public class PanelSettingsFlags extends JPanel {
 
-	private JRadioButton rdbtnUseSystemLanguage;
-	private JRadioButton rdbtnUseLocationTo;
-	private final ButtonGroup buttonGroup = new ButtonGroup();
+    private JRadioButton rdbtnUseLocationTo;
 
-	public Object useWeb() {
+    public Object useWeb() {
 		return rdbtnUseLocationTo.isSelected();
 	}
 
@@ -27,10 +25,11 @@ public class PanelSettingsFlags extends JPanel {
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(panel, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE).addContainerGap(13, Short.MAX_VALUE)));
 
 		rdbtnUseLocationTo = new JRadioButton("Use IP to Country library to get flag");
-		buttonGroup.add(rdbtnUseLocationTo);
+        ButtonGroup buttonGroup = new ButtonGroup();
+        buttonGroup.add(rdbtnUseLocationTo);
 		rdbtnUseLocationTo.setSelected(Settings.getGlobal().getBoolean(Settings.KEY_USE_COUNTRY_DB));
 
-		rdbtnUseSystemLanguage = new JRadioButton("Use system locale to get flag");
+        JRadioButton rdbtnUseSystemLanguage = new JRadioButton("Use system locale to get flag");
 		rdbtnUseSystemLanguage.setSelected(!Settings.getGlobal().getBoolean(Settings.KEY_USE_COUNTRY_DB));
 		buttonGroup.add(rdbtnUseSystemLanguage);
 		GroupLayout gl_panel = new GroupLayout(panel);

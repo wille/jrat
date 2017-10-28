@@ -9,7 +9,7 @@ import java.util.List;
 
 public abstract class PortListener implements Runnable {
 	
-	public static List<PortListener> listeners = new ArrayList<PortListener>();
+	public static List<PortListener> listeners = new ArrayList<>();
 
 	protected ServerSocket server;
 	protected int timeout = 15 * 1000;

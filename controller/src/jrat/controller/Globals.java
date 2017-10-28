@@ -7,70 +7,70 @@ public class Globals {
 	/**
 	 * @return global file directory
 	 */
-	public static final File getFileDirectory() {
+	public static File getFileDirectory() {
 		return new File("files/");
 	}
 
 	/**
 	 * @return help documents directory in {@link #getFileDirectory()}
 	 */
-	public static final File getHelpDocDirectory() {
+	public static File getHelpDocDirectory() {
 		return new File(getFileDirectory(), "help/");
 	}
 
 	/**
 	 * @return plugin directory in {@link #getFileDirectory()}
 	 */
-	public static final File getPluginDirectory() {
+	public static File getPluginDirectory() {
 		return new File(getFileDirectory(), "plugins/");
 	}
 
 	/**
 	 * @return plugin stubs directory in {@link #getFileDirectory()}
 	 */
-	public static final File getPluginStubDirectory() {
+	public static File getPluginStubDirectory() {
 		return new File(getPluginDirectory(), "stubs/");
 	}
 	
 	/**
 	 * @return notes directory in {@link #getFileDirectory()}
 	 */
-	public static final File getNotesDirectory() {
+	public static File getNotesDirectory() {
 		return new File(getFileDirectory(), "notes/");
 	}
 	
 	/**
 	 * @return settings directory in {@link #getFileDirectory()}
 	 */
-	public static final File getSettingsDirectory() {
+	public static File getSettingsDirectory() {
 		return new File(getFileDirectory(), "settings/");
 	}
 	
 	/**
 	 * @return keypair directory in {@link #getFileDirectory()}
 	 */
-	public static final File getRSAKeysDirectory() {
+	public static File getRSAKeysDirectory() {
 		return new File(getFileDirectory(), "rsakeys/");
 	}
 	
 	/**
 	 * @return library directory in {@link #getFileDirectory()}
 	 */
-	public static final File getLibDirectory() {
+	public static File getLibDirectory() {
 		return new File(getFileDirectory(), "lib/");
 	}
 	
 	/**
 	 * @return stub file in {@link #getFileDirectory()}
 	 */
-	public static final File getStub() {
+	public static File getStub() {
 		return new File(getFileDirectory(), "Stub.jar");
 	}
 	
 	/**
 	 * @return default keyfile jrat.key in {@link #getFileDirectory()}
 	 */
-	public static final File getKeyFile() {
+	public static File getKeyFile() {
 		return getKeyFile("");
 	}
 	
@@ -78,21 +78,21 @@ public class Globals {
 	 * @param s string between jrat and .key
 	 * @return key file in {@link #getFileDirectory()}
 	 */
-	public static final File getKeyFile(String s) {
+	public static File getKeyFile(String s) {
 		return new File("license" + s + ".json");
 	}
 	
 	/**
 	 * @return Updater file in {@link #getFileDirectory()}
 	 */
-	public static final File getUpdater() {
+	public static File getUpdater() {
 		return new File(getFileDirectory(), "Updater.jar");
 	}
 
 	/**
 	 * @return Lockfile in .
      */
-	public static final File getLockFile() {
+	public static File getLockFile() {
 		return new File(".lock");
 	}
 

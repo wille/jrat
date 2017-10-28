@@ -13,7 +13,7 @@ public class GroupTreeRenderer extends DefaultJTreeCellRenderer {
 
 	public static final ImageIcon ICON_GROUP = Resources.getIcon("group");
 	
-	private Map<String, ImageIcon> icons = new HashMap<String, ImageIcon>();
+	private Map<String, ImageIcon> icons = new HashMap<>();
 	
 	public Map<String, ImageIcon> getIconMap() {
 		return icons;

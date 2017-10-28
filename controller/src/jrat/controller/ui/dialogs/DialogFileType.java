@@ -15,8 +15,7 @@ public class DialogFileType extends JDialog {
 
 	public JTextField txtExtension;
 
-	private JPanel contentPane;
-	private JComboBox<String> comboBox;
+    private JComboBox<String> comboBox;
 	private JButton btnOk;
 
 	public DialogFileType() {
@@ -26,13 +25,13 @@ public class DialogFileType extends JDialog {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 340, 182);
-		contentPane = new JPanel();
+        JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
 		JLabel lblPickAFile = new JLabel("Pick a file type:");
 
-		comboBox = new JComboBox<String>();
+		comboBox = new JComboBox<>();
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (comboBox.getSelectedIndex() == 0) {
@@ -47,7 +46,7 @@ public class DialogFileType extends JDialog {
 				}
 			}
 		});
-		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "Windows Executable (.exe)", "Java Archive (.jar)", "Other" }));
+		comboBox.setModel(new DefaultComboBoxModel<>(new String[]{"Windows Executable (.exe)", "Java Archive (.jar)", "Other"}));
 
 		JLabel lblExtension = new JLabel("Extension:");
 

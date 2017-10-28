@@ -10,7 +10,7 @@ import java.util.Map;
 @SuppressWarnings("serial")
 public class ControlPanelTreeRenderer extends DefaultJTreeCellRenderer {
 	
-	public final Map<String, ImageIcon> icons = new HashMap<String, ImageIcon>();
+	public final Map<String, ImageIcon> icons = new HashMap<>();
 	public boolean same;
 	public ImageIcon icon;
 

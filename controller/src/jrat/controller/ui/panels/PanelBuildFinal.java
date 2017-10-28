@@ -36,7 +36,7 @@ public class PanelBuildFinal extends JPanel {
 	private JLabel lblStatus;
 	private PanelBuildFinal frame;
 	private JButton btnBuild;
-	private LinkedHashMap<String, BuildStatus> statuses = new LinkedHashMap<String, BuildStatus>();
+	private LinkedHashMap<String, BuildStatus> statuses = new LinkedHashMap<>();
 	private JTable table;
 
 	public TableModel getModel() {

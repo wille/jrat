@@ -49,8 +49,8 @@ public class PanelSettingsProxy extends JPanel {
 
 		JLabel lblType = new JLabel("Type:");
 
-		cbType = new JComboBox<String>();
-		cbType.setModel(new DefaultComboBoxModel<String>(new String[] { "SOCKS", "HTTP" }));
+		cbType = new JComboBox<>();
+		cbType.setModel(new DefaultComboBoxModel<>(new String[]{"SOCKS", "HTTP"}));
 		cbType.setSelectedIndex((Boolean) proxySettings.get(Settings.KEY_PROXY_SOCKS) ? 0 : 1);
 
 		JButton btnTest = new JButton("Test");

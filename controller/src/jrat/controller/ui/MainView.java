@@ -9,7 +9,7 @@ import java.util.List;
 
 public class MainView {
 	
-	public static final List<PanelMainClients> VIEWS = new ArrayList<PanelMainClients>();
+	public static final List<PanelMainClients> VIEWS = new ArrayList<>();
 	
 	static {
 		VIEWS.add(new PanelMainClientsTable());

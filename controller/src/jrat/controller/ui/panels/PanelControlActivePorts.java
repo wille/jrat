@@ -16,8 +16,7 @@ import java.awt.event.ActionListener;
 @SuppressWarnings("serial")
 public class PanelControlActivePorts extends PanelControlParent {
 
-	private JTable table;
-	private TableModel model;
+    private TableModel model;
 
 	public TableModel getModel() {
 		return model;
@@ -68,7 +67,7 @@ public class PanelControlActivePorts extends PanelControlParent {
 					.addGap(18))
 		);
 
-		table = new DefaultJTable();
+        JTable table = new DefaultJTable();
 		table.setModel(model = new TableModel(new Object[][] {}, new String[] { "Protocol", "Local address", "External address", "Status" }));
 		table.getColumnModel().getColumn(1).setPreferredWidth(168);
 		table.getColumnModel().getColumn(2).setPreferredWidth(225);

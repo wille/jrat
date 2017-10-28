@@ -19,7 +19,7 @@ public class Slave extends AbstractSlave {
 
 	public static final short HEADER_HANDSHAKE = 1;
 
-	private final List<String> queue = new ArrayList<String>();
+	private final List<String> queue = new ArrayList<>();
 	private Drive[] drives;
 	private RemoteMonitor[] monitors;
 	private String[] plugins;

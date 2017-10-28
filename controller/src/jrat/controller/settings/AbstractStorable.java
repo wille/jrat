@@ -6,7 +6,7 @@ import java.util.List;
 
 public abstract class AbstractStorable {
 
-	private static final List<AbstractStorable> globalSettings = new ArrayList<AbstractStorable>();
+	private static final List<AbstractStorable> globalSettings = new ArrayList<>();
 	
 	public static void loadAllGlobals() {
 		if (globalSettings.size() == 0) {

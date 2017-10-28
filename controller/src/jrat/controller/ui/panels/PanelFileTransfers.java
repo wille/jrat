@@ -36,13 +36,11 @@ public class PanelFileTransfers extends JPanel {
 	}
 
 	private JTable table;
-	private JScrollPane scrollPane;
-	private TableModel model;
+    private TableModel model;
 
 	private JMenuItem btnPause;
-	private JMenuItem btnCancel;
 
-	public void load(String name) {
+    public void load(String name) {
 		Icon icon = FileIconUtils.getIconFromExtension(name);
 		String status = "0";
 
@@ -52,7 +50,7 @@ public class PanelFileTransfers extends JPanel {
 	public PanelFileTransfers() {
 		setLayout(new BorderLayout(0, 0));
 
-		scrollPane = new JScrollPane();
+        JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
 
@@ -102,8 +100,8 @@ public class PanelFileTransfers extends JPanel {
 		});
 		
 		menu.add(btnPause);
-		
-		btnCancel = new JMenuItem("Cancel");
+
+        JMenuItem btnCancel = new JMenuItem("Cancel");
 		btnCancel.setIcon(Resources.getIcon("delete"));
 		btnCancel.addActionListener(new ActionListener() {
 			@Override
@@ -199,7 +197,7 @@ public class PanelFileTransfers extends JPanel {
 	}
 
 	public List<TransferData> getTransfers() {
-		List<TransferData> list = new ArrayList<TransferData>();
+		List<TransferData> list = new ArrayList<>();
 		
 		for (int i = 0; i < model.getRowCount(); i++) {
 			list.add((TransferData) table.getValueAt(i, 0));

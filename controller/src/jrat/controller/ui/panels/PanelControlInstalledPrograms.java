@@ -18,8 +18,7 @@ import java.awt.event.ActionListener;
 @SuppressWarnings("serial")
 public class PanelControlInstalledPrograms extends PanelControlParent {
 
-	private JTable table;
-	private TableModel model;
+    private TableModel model;
 	private JComboBox<String> comboBox;
 
 	public TableModel getModel() {
@@ -57,9 +56,9 @@ public class PanelControlInstalledPrograms extends PanelControlParent {
 		});
 		btnClear.setIcon(Resources.getIcon("clear"));
 
-		comboBox = new JComboBox<String>();
+		comboBox = new JComboBox<>();
 		comboBox.setVisible(slave.getOperatingSystem().getType() == OperatingSystem.WINDOWS);
-		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "HKEY_CURRENT_USER", "HKEY_LOCAL_MACHINE" }));
+		comboBox.setModel(new DefaultComboBoxModel<>(new String[]{"HKEY_CURRENT_USER", "HKEY_LOCAL_MACHINE"}));
 		comboBox.setRenderer(getRenderer());
 
 		GroupLayout groupLayout = new GroupLayout(this);
@@ -89,7 +88,7 @@ public class PanelControlInstalledPrograms extends PanelControlParent {
 					.addContainerGap(14, Short.MAX_VALUE))
 		);
 
-		table = new DefaultJTable();
+        JTable table = new DefaultJTable();
 		table.setModel(model = new TableModel(new Object[][] {}, new String[] { "Installed Programs" }));
 		table.setRowHeight(25);
 		table.getColumnModel().getColumn(0).setPreferredWidth(588);

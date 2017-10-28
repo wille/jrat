@@ -14,8 +14,8 @@ import java.util.List;
 
 public class NetworkCounter implements Runnable {
 	
-	private static final List<NetworkMonitorListener> INDIVIDUAL_LISTENERS = new ArrayList<NetworkMonitorListener>();
-	private static final List<GlobalNetworkMonitorListener> GLOBAL_LISTENERS = new ArrayList<GlobalNetworkMonitorListener>();
+	private static final List<NetworkMonitorListener> INDIVIDUAL_LISTENERS = new ArrayList<>();
+	private static final List<GlobalNetworkMonitorListener> GLOBAL_LISTENERS = new ArrayList<>();
 	
 	/**
 	 * Total bandwidth this session

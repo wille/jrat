@@ -12,8 +12,8 @@ import java.util.Map;
 
 public class FlagUtils {
 
-	public static final HashMap<String, ImageIcon> FLAGS = new HashMap<String, ImageIcon>();
-	public static final Map<String, String> COUNTRIES = new HashMap<String, String>();
+	public static final HashMap<String, ImageIcon> FLAGS = new HashMap<>();
+	public static final Map<String, String> COUNTRIES = new HashMap<>();
 
 	private static IP2Country ip2c;
 

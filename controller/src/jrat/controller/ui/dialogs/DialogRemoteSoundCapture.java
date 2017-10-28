@@ -22,10 +22,9 @@ import java.util.Map;
 @SuppressWarnings({ "serial", "rawtypes", "unchecked" })
 public class DialogRemoteSoundCapture extends BaseDialog {
 
-	public static Map<Slave, DialogRemoteSoundCapture> INSTANCES = new HashMap<Slave, DialogRemoteSoundCapture>();
+	public static Map<Slave, DialogRemoteSoundCapture> INSTANCES = new HashMap<>();
 
-	private JPanel contentPane;
-	private JButton btnStartListen;
+    private JButton btnStartListen;
 	private JButton btnStopListen;
 
 	private JComboBox comboBox;
@@ -46,7 +45,7 @@ public class DialogRemoteSoundCapture extends BaseDialog {
 		setTitle("Microphone");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 332, 114);
-		contentPane = new JPanel();
+        JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 

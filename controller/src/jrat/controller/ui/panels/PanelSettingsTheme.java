@@ -14,8 +14,7 @@ import java.awt.event.ActionListener;
 @SuppressWarnings("serial")
 public class PanelSettingsTheme extends JPanel {
 
-	private DefaultListModel<String> model;
-	private JTextField txtTheme;
+    private JTextField txtTheme;
 	private JList<String> list;
 	public JFrame parent;
 
@@ -75,8 +74,8 @@ public class PanelSettingsTheme extends JPanel {
 		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addContainerGap().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_panel.createParallelGroup(Alignment.TRAILING).addComponent(txtTheme, GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE).addComponent(lblTheme).addComponent(btnSelect, GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE).addComponent(btnDefault, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)).addContainerGap()));
 		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false).addGroup(gl_panel.createSequentialGroup().addContainerGap().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 225, GroupLayout.PREFERRED_SIZE)).addGroup(gl_panel.createSequentialGroup().addGap(8).addComponent(lblTheme).addPreferredGap(ComponentPlacement.RELATED).addComponent(txtTheme, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(btnDefault).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnSelect))).addContainerGap(15, Short.MAX_VALUE)));
 
-		list = new JList<String>();
-		model = new DefaultListModel<String>();
+		list = new JList<>();
+        DefaultListModel<String> model = new DefaultListModel<>();
 		list.setModel(model);
 
 		model.clear();

@@ -138,7 +138,7 @@ public class Settings extends AbstractStorable {
 			for (int i = 0; i < PortListener.listeners.size(); i++) {
 				PortListener pl = PortListener.listeners.get(i);
 
-				Map<String, Object> socketData = new HashMap<String, Object>();
+				Map<String, Object> socketData = new HashMap<>();
 				sockets.put(pl.getName(), socketData);
 
 				socketData.put("port", pl.getPort());
@@ -180,7 +180,7 @@ public class Settings extends AbstractStorable {
 		set(KEY_MAXIMUM_CONNECTIONS, -1); // TODO make sure it's implemented
 		set(KEY_USE_COUNTRY_DB, true);
 
-		Map<String, Object> proxy = new HashMap<String, Object>();
+		Map<String, Object> proxy = new HashMap<>();
 		proxy.put(KEY_ENABLE_PROXY, false);
 		proxy.put(KEY_PROXY_HOST, "127.0.0.1");
 		proxy.put(KEY_PROXY_PORT, 9050);
@@ -190,7 +190,7 @@ public class Settings extends AbstractStorable {
 
 		settings.put(KEY_PROXY, proxy);
 
-		Map<String, Boolean> columns = new HashMap<String, Boolean>();
+		Map<String, Boolean> columns = new HashMap<>();
 		set(KEY_COLUMNS, columns);
 
 		for (Columns c : Columns.values()) {

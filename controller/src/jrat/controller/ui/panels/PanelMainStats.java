@@ -22,10 +22,7 @@ public class PanelMainStats extends JScrollPane {
 	private TableModel countryModel;
 	private TableModel osModel;
 
-	private JTable countryTable;
-	private JTable osTable;
-
-	private int width = 630;
+    private int width = 630;
 	private int height = 320;
 
 	private boolean initialized;
@@ -105,7 +102,7 @@ public class PanelMainStats extends JScrollPane {
 						countryModel.removeRow(0);
 					}
 
-					List<GraphEntry> added = new ArrayList<GraphEntry>();
+					List<GraphEntry> added = new ArrayList<>();
 					for (GraphEntry entry : list) {
 						if (added.contains(entry)) {
 							continue;
@@ -120,7 +117,7 @@ public class PanelMainStats extends JScrollPane {
 			countryScrollPane = new JScrollPane(countryGraph);
 			add(countryScrollPane);
 			countryModel = new TableModel(new Object[][] {}, new String[] { "Countries" });
-			countryTable = new DefaultJTable(countryModel);
+            JTable countryTable = new DefaultJTable(countryModel);
 			countryTable.setDefaultRenderer(Object.class, flagRenderer);
 			countryTable.setRowHeight(20);
 			countryTableScrollPane = new JScrollPane();
@@ -128,7 +125,7 @@ public class PanelMainStats extends JScrollPane {
 			countryTableScrollPane.setViewportView(countryTable);
 
 			osModel = new TableModel(new Object[][] {}, new String[] { "Operating Systems" });
-			osTable = new DefaultJTable(osModel);
+            JTable osTable = new DefaultJTable(osModel);
 			osTable.setDefaultRenderer(Object.class, osRenderer);
 			osTable.setRowHeight(20);
 			osTableScrollPane = new JScrollPane();

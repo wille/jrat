@@ -21,8 +21,7 @@ import java.util.Random;
 @SuppressWarnings("serial")
 public class FrameAddSocket extends BaseFrame {
 
-	private JPanel contentPane;
-	private JTextField txtPass;
+    private JTextField txtPass;
 	private JSpinner sTimeout;
 	private JSpinner sPort;
 	private JTextField txtName;
@@ -34,7 +33,7 @@ public class FrameAddSocket extends BaseFrame {
 		setTitle("Add socket");
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 299, 217);
-		contentPane = new JPanel();
+        JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
@@ -71,8 +70,8 @@ public class FrameAddSocket extends BaseFrame {
 		
 		JLabel lblType = new JLabel("Type:");
 		
-		cbType = new JComboBox<String>();
-		cbType.setModel(new DefaultComboBoxModel<String>(new String[] {"Client Listener", "Web Panel Listener"}));
+		cbType = new JComboBox<>();
+		cbType.setModel(new DefaultComboBoxModel<>(new String[]{"Client Listener", "Web Panel Listener"}));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)

@@ -31,12 +31,9 @@ import java.util.List;
 @SuppressWarnings("serial")
 public class FrameHelp extends BaseFrame {
 
-	private JPanel contentPane;
-	private JTree tree;
+    private JTree tree;
 	private JEditorPane com;
-	private JPopupMenu popupMenu;
-	private JMenuItem mntmOpenLatestOn;
-	private String currentFile;
+    private String currentFile;
 
 	public DefaultTreeModel getModel() {
 		return (DefaultTreeModel) tree.getModel();
@@ -47,7 +44,7 @@ public class FrameHelp extends BaseFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameHelp.class.getResource("/help.png")));
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 672, 384);
-		contentPane = new JPanel();
+        JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
@@ -81,10 +78,10 @@ public class FrameHelp extends BaseFrame {
 		com.setContentType("text/html");
 		scrollPane_1.setViewportView(com);
 
-		popupMenu = new JPopupMenu();
+        JPopupMenu popupMenu = new JPopupMenu();
 		addPopup(com, popupMenu);
 
-		mntmOpenLatestOn = new JMenuItem("Open latest on internet");
+        JMenuItem mntmOpenLatestOn = new JMenuItem("Open latest on internet");
 		mntmOpenLatestOn.setIcon(Resources.getIcon("url"));
 		mntmOpenLatestOn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -161,38 +158,37 @@ public class FrameHelp extends BaseFrame {
 			getModel().insertNodeInto(curDir, curTop, 0);
 		}
 
-		List<String> ol = new ArrayList<String>();
+		List<String> ol = new ArrayList<>();
 
 		String[] tmp = dir.list();
 
-		for (int i = 0; i < tmp.length; i++) {
-			ol.add(tmp[i]);
-		}
+        for (String aTmp : tmp) {
+            ol.add(aTmp);
+        }
 
 		Collections.sort(ol, String.CASE_INSENSITIVE_ORDER);
 		File f;
 
-		List<String> files = new ArrayList<String>();
+		List<String> files = new ArrayList<>();
 
-		for (int i = 0; i < ol.size(); i++) {
-			String thisObject = ol.get(i);
-			String newPath;
-			if (curPath.equals(".")) {
-				newPath = thisObject;
-			} else {
-				newPath = curPath + File.separator + thisObject;
-			}
+        for (String thisObject : ol) {
+            String newPath;
+            if (curPath.equals(".")) {
+                newPath = thisObject;
+            } else {
+                newPath = curPath + File.separator + thisObject;
+            }
 
-			if ((f = new File(newPath)).isDirectory()) {
-				addFolder(curDir, f);
-			} else if (f.getName().endsWith(".txt")) {
-				files.add(thisObject);
-			}
-		}
+            if ((f = new File(newPath)).isDirectory()) {
+                addFolder(curDir, f);
+            } else if (f.getName().endsWith(".txt")) {
+                files.add(thisObject);
+            }
+        }
 
-		for (int fnum = 0; fnum < files.size(); fnum++) {
-			getModel().insertNodeInto(new DefaultMutableTreeNode(files.get(fnum).substring(0, files.get(fnum).lastIndexOf("."))), curDir, curDir.getChildCount());
-		}
+        for (String file : files) {
+            getModel().insertNodeInto(new DefaultMutableTreeNode(file.substring(0, file.lastIndexOf("."))), curDir, curDir.getChildCount());
+        }
 	}
 
 	public DefaultMutableTreeNode getNode(String str) {

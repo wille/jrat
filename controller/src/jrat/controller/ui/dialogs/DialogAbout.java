@@ -23,16 +23,14 @@ public class DialogAbout extends JDialog {
             BACKGROUND = null;
         }
     }
-	
-	private JPanel contentPane;
-	private JLabel lblVersion;
-	private JLabel lblUpToDate;
+
+    private JLabel lblUpToDate;
 
 	public DialogAbout() {
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(DialogAbout.class.getResource("/system-info.png")));
 		setBounds(100, 100, 700, 400);
-        contentPane = new JPanel() {
+        JPanel contentPane = new JPanel() {
             @Override
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
@@ -52,8 +50,8 @@ public class DialogAbout extends JDialog {
 		JLabel lblJrat = new JLabel("jRAT");
 		lblJrat.setForeground(Color.GRAY);
 		lblJrat.setFont(new Font("Tahoma", Font.BOLD, 35));
-		
-		lblVersion = new JLabel("Version " + Version.getVersion());
+
+        JLabel lblVersion = new JLabel("Version " + Version.getVersion());
 		
 		lblUpToDate = new JLabel("Loading...");
 		lblUpToDate.setForeground(Color.LIGHT_GRAY);

@@ -11,7 +11,7 @@ import java.util.Map;
 @SuppressWarnings("serial")
 public class DrivesTableRenderer extends DefaultJTableCellRenderer {
 
-	private final Map<String, Icon> drives = new HashMap<String, Icon>();
+	private final Map<String, Icon> drives = new HashMap<>();
 
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 		JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);

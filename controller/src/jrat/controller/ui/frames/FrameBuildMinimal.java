@@ -31,8 +31,7 @@ import java.util.LinkedHashMap;
 @SuppressWarnings("serial")
 public class FrameBuildMinimal extends BaseFrame {
 
-	private JPanel contentPane;
-	private JLabel lblStatus;
+    private JLabel lblStatus;
 	private JTextField txtHost;
 	private JSpinner spPort;
 	private JTextField txtId;
@@ -41,7 +40,7 @@ public class FrameBuildMinimal extends BaseFrame {
 	private JComboBox cbLocation;
 	private JProgressBar progressBar;
 	private JButton btnBuild;
-	private LinkedHashMap<String, BuildStatus> statuses = new LinkedHashMap<String, BuildStatus>();
+	private LinkedHashMap<String, BuildStatus> statuses = new LinkedHashMap<>();
 
 	public FrameBuildMinimal() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameBuildMinimal.class.getResource("/bug-edit.png")));
@@ -49,7 +48,7 @@ public class FrameBuildMinimal extends BaseFrame {
 		setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 376, 329);
-		contentPane = new JPanel();
+        JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 

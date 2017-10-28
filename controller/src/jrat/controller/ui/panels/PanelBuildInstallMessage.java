@@ -16,8 +16,7 @@ import java.awt.event.ActionListener;
 @SuppressWarnings("serial")
 public class PanelBuildInstallMessage extends JPanel {
 
-	private final ButtonGroup buttonGroup = new ButtonGroup();
-	private JTextField txtTitle;
+    private JTextField txtTitle;
 	private JCheckBox chckbxEnableInstallMessage;
 	private JTextPane txtMsg;
 	private JToggleButton btnError;
@@ -25,9 +24,8 @@ public class PanelBuildInstallMessage extends JPanel {
 	private JToggleButton btnNone;
 	private JToggleButton btnWarning;
 	private JToggleButton btnQuestion;
-	private JButton button_1;
 
-	public boolean shouldShowDialog() {
+    public boolean shouldShowDialog() {
 		return chckbxEnableInstallMessage.isSelected();
 	}
 
@@ -67,7 +65,8 @@ public class PanelBuildInstallMessage extends JPanel {
 		chckbxEnableInstallMessage.setToolTipText("Message to popup when ran");
 
 		btnInfo = new JToggleButton("");
-		buttonGroup.add(btnInfo);
+        ButtonGroup buttonGroup = new ButtonGroup();
+        buttonGroup.add(btnInfo);
 		btnInfo.setIcon(Resources.getIcon("big-info"));
 
 		btnError = new JToggleButton("");
@@ -105,7 +104,7 @@ public class PanelBuildInstallMessage extends JPanel {
 		});
 		button.setIcon(Resources.getIcon("messagebox"));
 
-		button_1 = new JButton("");
+        JButton button_1 = new JButton("");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Help.help("Messagebox to be ran on execution, only once using installer");

@@ -24,15 +24,11 @@ public class DialogSummary extends JDialog {
 	private String id;
 	private LinkedHashMap<String, BuildStatus> statuses;
 
-	private JPanel contentPane;
-	private JTable table;
-	private TableModel infomodel;
+    private TableModel infomodel;
 	private TableModel generalmodel;
 	private TableModel logmodel;
-	private JTable table_1;
-	private JTable table_2;
 
-	public DialogSummary(File file, String hosts, String pass, String id, LinkedHashMap<String, BuildStatus> statuses) {
+    public DialogSummary(File file, String hosts, String pass, String id, LinkedHashMap<String, BuildStatus> statuses) {
 		this.file = file;
 		this.hosts = hosts;
 		this.pass = pass;
@@ -44,7 +40,7 @@ public class DialogSummary extends JDialog {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
+        JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.X_AXIS));
@@ -59,7 +55,7 @@ public class DialogSummary extends JDialog {
 		JScrollPane scrollPane_1 = new JScrollPane();
 		panel_1.add(scrollPane_1);
 
-		table_1 = new DefaultJTable();
+        JTable table_1 = new DefaultJTable();
 		table_1.setModel(new TableModel(new Object[][] {}, new String[] { "Property", "Value" }));
 		table_1.setRowHeight(25);
 		generalmodel = (TableModel) table_1.getModel();
@@ -73,7 +69,7 @@ public class DialogSummary extends JDialog {
 		JScrollPane scrollPane = new JScrollPane();
 		panel.add(scrollPane);
 
-		table = new DefaultJTable();
+        JTable table = new DefaultJTable();
 		table.setModel(new TableModel(new Object[][] {}, new String[] { "Property", "Value" }));
 		table.setRowHeight(25);
 
@@ -87,7 +83,7 @@ public class DialogSummary extends JDialog {
 		JScrollPane scrollPane_2 = new JScrollPane();
 		panel_2.add(scrollPane_2);
 
-		table_2 = new DefaultJTable();
+        JTable table_2 = new DefaultJTable();
 		table_2.setDefaultRenderer(Object.class, new BuildTableRenderer(statuses));
 		table_2.setModel(new TableModel(new Object[][] {}, new String[] { "Action" }));
 		table_2.setRowHeight(25);

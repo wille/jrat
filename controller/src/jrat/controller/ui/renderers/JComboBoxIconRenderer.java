@@ -8,7 +8,7 @@ import java.util.Map;
 @SuppressWarnings("serial")
 public class JComboBoxIconRenderer extends DefaultListCellRenderer {
 
-	private Map<String, Icon> map = new HashMap<String, Icon>();
+	private Map<String, Icon> map = new HashMap<>();
 
 	public JComboBoxIconRenderer() {
 

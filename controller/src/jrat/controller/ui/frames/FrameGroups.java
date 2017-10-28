@@ -20,8 +20,7 @@ import java.util.List;
 @SuppressWarnings("serial")
 public class FrameGroups extends BaseFrame {
 
-	private JPanel contentPane;
-	private DefaultMutableTreeNode root;
+    private DefaultMutableTreeNode root;
 	private JTree tree;
 
 	public FrameGroups() {
@@ -29,7 +28,7 @@ public class FrameGroups extends BaseFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameGroups.class.getResource("/group.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
+        JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
@@ -68,7 +67,7 @@ public class FrameGroups extends BaseFrame {
 
 		GroupTreeRenderer renderer = (GroupTreeRenderer) tree.getCellRenderer();
 
-		HashMap<String, DefaultMutableTreeNode> nodes = new HashMap<String, DefaultMutableTreeNode>();
+		HashMap<String, DefaultMutableTreeNode> nodes = new HashMap<>();
 
 		List<AbstractSlave> list = Main.connections;
 

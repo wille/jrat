@@ -10,7 +10,7 @@ import java.util.HashMap;
 @SuppressWarnings("serial")
 public class JColorBoxRenderer extends DefaultListCellRenderer {
 
-	public HashMap<String, ImageIcon> map = new HashMap<String, ImageIcon>();
+	public HashMap<String, ImageIcon> map = new HashMap<>();
 
 	public JColorBoxRenderer() {
 		map.clear();

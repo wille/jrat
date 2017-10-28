@@ -32,7 +32,7 @@ public class Main {
 	public static boolean hideTitle;
 	public static boolean headless;
 
-	public static final List<AbstractSlave> connections = new ArrayList<AbstractSlave>();
+	public static final List<AbstractSlave> connections = new ArrayList<>();
 	public static Frame instance;
 
 	public static void main(String[] args) throws Exception {	

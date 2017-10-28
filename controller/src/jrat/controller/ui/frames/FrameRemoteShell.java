@@ -17,12 +17,11 @@ import java.util.Map;
 @SuppressWarnings("serial")
 public class FrameRemoteShell extends BaseFrame {
 
-	public static final Map<Slave, FrameRemoteShell> INSTANCES = new HashMap<Slave, FrameRemoteShell>();
+	public static final Map<Slave, FrameRemoteShell> INSTANCES = new HashMap<>();
 	
 	private JTerminal terminal;
-	private JScrollPane scrollPane;
 
-	public FrameRemoteShell(Slave s) {
+    public FrameRemoteShell(Slave s) {
 		super(s);
 		INSTANCES.put(slave, this);
 		addWindowListener(new WindowAdapter() {
@@ -36,7 +35,7 @@ public class FrameRemoteShell extends BaseFrame {
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 499, 302);
 
-		scrollPane = new JScrollPane();
+        JScrollPane scrollPane = new JScrollPane();
 		terminal = new JTerminal();
 		scrollPane.setViewportView(terminal);
 

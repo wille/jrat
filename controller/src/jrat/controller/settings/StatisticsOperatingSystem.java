@@ -19,7 +19,7 @@ public class StatisticsOperatingSystem extends AbstractStorable implements Seria
 
 	private static final StatisticsOperatingSystem instance = new StatisticsOperatingSystem();
 
-	private transient List<OperatingSystemStatEntry> list = new ArrayList<OperatingSystemStatEntry>();
+	private transient List<OperatingSystemStatEntry> list = new ArrayList<>();
 
 	public static StatisticsOperatingSystem getGlobal() {
 		return instance;
@@ -134,7 +134,7 @@ public class StatisticsOperatingSystem extends AbstractStorable implements Seria
 		private AbstractOperatingSystem os;
 		private Integer connects = 0;
 		
-		private List<String> list = new ArrayList<String>();
+		private List<String> list = new ArrayList<>();
 
 		public List<String> getList() {
 			return list;

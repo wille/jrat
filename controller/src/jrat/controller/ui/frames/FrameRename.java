@@ -17,12 +17,9 @@ import java.awt.event.ActionListener;
 @SuppressWarnings("serial")
 public class FrameRename extends BaseFrame {
 
-	private JPanel contentPane;
-	private JTextField txtOldID;
-	private JTextField txtNewID;
-	private JButton btnRename;
+    private JTextField txtNewID;
 
-	public FrameRename(Slave slave) {
+    public FrameRename(Slave slave) {
 		super(slave);
 		final AbstractSlave sl = slave;
 		setTitle("Rename");
@@ -30,13 +27,13 @@ public class FrameRename extends BaseFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRename.class.getResource("/rename.png")));
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 293, 126);
-		contentPane = new JPanel();
+        JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
 		JLabel lblOldId = new JLabel("Old ID:");
 
-		txtOldID = new JTextField(slave.getID());
+        JTextField txtOldID = new JTextField(slave.getID());
 		txtOldID.setEditable(false);
 		txtOldID.setColumns(10);
 
@@ -45,7 +42,7 @@ public class FrameRename extends BaseFrame {
 		txtNewID = new JTextField();
 		txtNewID.setColumns(10);
 
-		btnRename = new JButton("Rename");
+        JButton btnRename = new JButton("Rename");
 		btnRename.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				SettingsCustomID.getGlobal().add(txtNewID.getText(), sl.getID(), sl.getRawIP());

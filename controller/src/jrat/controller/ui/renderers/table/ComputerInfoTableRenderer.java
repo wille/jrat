@@ -9,7 +9,7 @@ import java.util.HashMap;
 @SuppressWarnings("serial")
 public class ComputerInfoTableRenderer extends DefaultJTableCellRenderer {
 
-	public final HashMap<String, ImageIcon> icons = new HashMap<String, ImageIcon>();
+	public final HashMap<String, ImageIcon> icons = new HashMap<>();
 
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 		JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);

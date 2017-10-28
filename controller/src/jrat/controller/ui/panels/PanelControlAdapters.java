@@ -16,8 +16,7 @@ import java.awt.event.ActionListener;
 @SuppressWarnings("serial")
 public class PanelControlAdapters extends PanelControlParent {
 
-	private JTable table;
-	private TableModel model;
+    private TableModel model;
 
 	public TableModel getModel() {
 		return model;
@@ -67,7 +66,7 @@ public class PanelControlAdapters extends PanelControlParent {
 					.addContainerGap(17, Short.MAX_VALUE))
 		);
 
-		table = new DefaultJTable();
+        JTable table = new DefaultJTable();
 		table.setModel(model = new TableModel(new Object[][] {}, new String[] { "Display name", "Name", "InetAddresses" }));
 		table.setRowHeight(25);
 		table.getColumnModel().getColumn(0).setPreferredWidth(176);

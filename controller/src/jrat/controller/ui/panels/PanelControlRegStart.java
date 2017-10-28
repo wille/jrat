@@ -16,8 +16,7 @@ import java.awt.event.ActionListener;
 @SuppressWarnings("serial")
 public class PanelControlRegStart extends PanelControlParent {
 
-	private JTable table;
-	private TableModel model;
+    private TableModel model;
 
 	public static final ImageIcon ICON = Resources.getIcon("registry-string");
 
@@ -72,16 +71,16 @@ public class PanelControlRegStart extends PanelControlParent {
 					.addContainerGap(13, Short.MAX_VALUE))
 		);
 
-		table = new DefaultJTable() {
-			@SuppressWarnings({ "unchecked", "rawtypes" })
-			@Override
-			public Class getColumnClass(int column) {
-				if (column == 0) {
-					return ImageIcon.class;
-				}
-				return super.getColumnClass(column);
-			}
-		};
+        JTable table = new DefaultJTable() {
+            @SuppressWarnings({"unchecked", "rawtypes"})
+            @Override
+            public Class getColumnClass(int column) {
+                if (column == 0) {
+                    return ImageIcon.class;
+                }
+                return super.getColumnClass(column);
+            }
+        };
 
 		table.setRowHeight(25);
 

@@ -84,7 +84,7 @@ public class PanelMainClientsBoxes extends PanelMainClients {
 	
 	@Override
 	public List<AbstractSlave> getSelectedSlaves() {
-		List<AbstractSlave> list = new ArrayList<AbstractSlave>();
+		List<AbstractSlave> list = new ArrayList<>();
 
 		AbstractSlave selected = getSelectedSlave();
 		
@@ -122,7 +122,7 @@ public class PanelMainClientsBoxes extends PanelMainClients {
 
 	@Override
 	public List<JMenuItem> getConfigMenu() {
-		List<JMenuItem> menu = new ArrayList<JMenuItem>();
+		List<JMenuItem> menu = new ArrayList<>();
 		
 		JMenuItem mntmAlign = new JMenuItem("Align");
 		mntmAlign.setIcon(Resources.getIcon("application-tiles"));

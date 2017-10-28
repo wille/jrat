@@ -21,15 +21,13 @@ import java.net.URL;
 @SuppressWarnings("serial")
 public class FrameChangelog extends BaseFrame {
 
-    private JPanel contentPane;
-
     public FrameChangelog() {
         setResizable(false);
         setIconImage(Resources.getIcon("changelog").getImage());
         setTitle("Changelog");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 527, 295);
-        contentPane = new JPanel();
+        JPanel contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
 

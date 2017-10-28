@@ -39,7 +39,7 @@ public class ModuleLoader {
         }
     }
 
-    private static final List<ModuleData> modules = new ArrayList<ModuleData>();
+    private static final List<ModuleData> modules = new ArrayList<>();
 
     static {
         modules.add(new ModuleData("registry"));

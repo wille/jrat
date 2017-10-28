@@ -14,8 +14,7 @@ import java.awt.event.ActionListener;
 @SuppressWarnings("serial")
 public class PanelControlMessagebox extends PanelControlParent {
 
-	private final ButtonGroup buttonGroup = new ButtonGroup();
-	private JTextField txtTitle;
+    private JTextField txtTitle;
 	private JTextPane txtMsg;
 	private JToggleButton btnError;
 	private JToggleButton btnInfo;
@@ -97,7 +96,8 @@ public class PanelControlMessagebox extends PanelControlParent {
 		panel_1.setLayout(gl_panel_1);
 
 		btnInfo = new JToggleButton("");
-		buttonGroup.add(btnInfo);
+        ButtonGroup buttonGroup = new ButtonGroup();
+        buttonGroup.add(btnInfo);
 		btnInfo.setIcon(Resources.getIcon("big-info"));
 
 		btnQuestion = new JToggleButton("");

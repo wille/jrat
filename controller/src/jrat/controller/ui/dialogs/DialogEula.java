@@ -21,9 +21,7 @@ import java.awt.event.WindowEvent;
 @SuppressWarnings("serial")
 public class DialogEula extends JDialog {
 
-	private JPanel contentPane;
-
-	public DialogEula(final boolean view) {
+    public DialogEula(final boolean view) {
 		super();
 		setModal(true);
 		setAlwaysOnTop(true);
@@ -42,7 +40,7 @@ public class DialogEula extends JDialog {
 		setTitle(Constants.NAME + " " + Version.getVersion() + " EULA");
 		setResizable(false);
 		setBounds(100, 100, 468, 348);
-		contentPane = new JPanel();
+        JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 

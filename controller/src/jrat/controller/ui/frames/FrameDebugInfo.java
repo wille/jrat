@@ -20,14 +20,13 @@ import java.util.Date;
 @SuppressWarnings("serial")
 public class FrameDebugInfo extends BaseFrame {
 
-	private JPanel contentPane;
-	private JTextPane textPane;
+    private JTextPane textPane;
 
 	public FrameDebugInfo() {
 		setTitle("Debug Information");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 439, 370);
-		contentPane = new JPanel();
+        JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 

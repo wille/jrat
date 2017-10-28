@@ -8,7 +8,7 @@ import java.util.List;
 
 public final class OSConfig {
 
-	private final List<OperatingSystem> osList = new ArrayList<OperatingSystem>();
+	private final List<OperatingSystem> osList = new ArrayList<>();
 
 	public boolean isAllowed(OperatingSystem os) {
 		return this.osList.indexOf(os) >= 0;
@@ -22,7 +22,7 @@ public final class OSConfig {
 		return this.osList.size();
 	}
 
-	public static final String generateString(OSConfig c) {
+	public static String generateString(OSConfig c) {
 		String str = "";
 
 		if (c.isAllowed(OperatingSystem.WINDOWS)) {

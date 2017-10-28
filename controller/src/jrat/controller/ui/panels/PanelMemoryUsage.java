@@ -14,8 +14,7 @@ import java.awt.event.ActionListener;
 public class PanelMemoryUsage extends PanelControlParent {
 
 	private SmoothGraph graph;
-	private JPanel panel;
-	private boolean needRam = false;
+    private boolean needRam = false;
 	private JProgressBar progressBar;
 
 	public PanelMemoryUsage(Slave slave) {
@@ -24,7 +23,7 @@ public class PanelMemoryUsage extends PanelControlParent {
 
 		graph = new SmoothGraph();
 
-		panel = new JPanel();
+        JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 		panel.add(graph);
 

@@ -20,9 +20,8 @@ public class PanelBuildGeneral extends JPanel {
 
 	public JPasswordField passPass;
 	public JTextField txtID;
-	private JComboBox<?> comboBox;
 
-	public String getPass() {
+    public String getPass() {
 		return new String(passPass.getPassword());
 	}
 
@@ -108,12 +107,12 @@ public class PanelBuildGeneral extends JPanel {
 		button.setIcon(Resources.getIcon("help"));
 		setLayout(groupLayout);
 
-		comboBox = new PortListenerJComboBox(new SocketComboBoxListener() {
-			@Override
-			public void onChange(PortListener pl) {
-				passPass.setText(pl.getPass());
-			}
-		});
+        JComboBox<?> comboBox = new PortListenerJComboBox(new SocketComboBoxListener() {
+            @Override
+            public void onChange(PortListener pl) {
+                passPass.setText(pl.getPass());
+            }
+        });
 
 		JLabel lblLoad = new JLabel("Load");
 		lblLoad.setHorizontalAlignment(SwingConstants.TRAILING);

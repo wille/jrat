@@ -22,8 +22,7 @@ import java.io.InputStreamReader;
 @SuppressWarnings("serial")
 public class FrameNotes extends BaseFrame {
 
-	private JPanel contentPane;
-	private JTextPane txt;
+    private JTextPane txt;
 
 	public FrameNotes(Slave sl) {
 		super(sl);
@@ -37,7 +36,7 @@ public class FrameNotes extends BaseFrame {
 		setTitle("Notes");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 367, 285);
-		contentPane = new JPanel();
+        JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 

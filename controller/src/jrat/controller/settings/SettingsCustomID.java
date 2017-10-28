@@ -11,7 +11,7 @@ public class SettingsCustomID extends AbstractStorable implements Serializable {
 
 	private static final long serialVersionUID = 720261533636222207L;
 
-	private transient List<CustomIDEntry> list = new ArrayList<CustomIDEntry>();
+	private transient List<CustomIDEntry> list = new ArrayList<>();
 
 	private static final SettingsCustomID instance = new SettingsCustomID();
 

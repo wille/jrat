@@ -13,8 +13,7 @@ import java.io.File;
 @SuppressWarnings("serial")
 public class FrameExecutableInfo extends BaseFrame {
 
-	private JPanel contentPane;
-	private JTextField txtTitle;
+    private JTextField txtTitle;
 	private JTextField txtDescription;
 	private JTextField txtCompany;
 	private JTextField txtProduct;
@@ -30,9 +29,8 @@ public class FrameExecutableInfo extends BaseFrame {
 	private JTextField a3;
 	private JCheckBox cbIcon;
 	private JTextField txtIcon;
-	private JButton btnBrowse;
 
-	public boolean useIcon() {
+    public boolean useIcon() {
 		return cbIcon.isSelected();
 	}
 
@@ -95,7 +93,7 @@ public class FrameExecutableInfo extends BaseFrame {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 342, 344);
-		contentPane = new JPanel();
+        JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
@@ -195,7 +193,7 @@ public class FrameExecutableInfo extends BaseFrame {
 		txtIcon.setEditable(false);
 		txtIcon.setColumns(10);
 
-		btnBrowse = new JButton("...");
+        JButton btnBrowse = new JButton("...");
 		btnBrowse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JFileChooser c = new JFileChooser();

@@ -17,7 +17,7 @@ public final class License {
 
 	private static byte[] systemId = null;
 
-	public static final byte[] generateBinary() throws Exception {
+	public static byte[] generateBinary() throws Exception {
 		Random rn = new Random();
 
 		String data = "";

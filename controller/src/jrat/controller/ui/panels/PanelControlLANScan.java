@@ -17,8 +17,7 @@ import java.awt.event.ActionListener;
 @SuppressWarnings("serial")
 public class PanelControlLANScan extends PanelControlParent {
 
-	private JTable table;
-	private TableModel model;
+    private TableModel model;
 	private JProgressBar progressBar;
 	private JLabel label;
 
@@ -108,7 +107,7 @@ public class PanelControlLANScan extends PanelControlParent {
 					.addContainerGap(16, Short.MAX_VALUE))
 		);
 
-		table = new DefaultJTable();
+        JTable table = new DefaultJTable();
 		table.setModel(model = new TableModel(new Object[][] {}, new String[] { "Local IP", "Computer/Device name" }));
 		table.setRowHeight(25);
 		table.getColumnModel().getColumn(0).setPreferredWidth(175);

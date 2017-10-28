@@ -17,7 +17,7 @@ public class StatisticsCountry extends AbstractStorable implements Serializable 
 
 	private static final StatisticsCountry instance = new StatisticsCountry();
 
-	private transient List<CountryStatEntry> list = new ArrayList<CountryStatEntry>();
+	private transient List<CountryStatEntry> list = new ArrayList<>();
 
 	public static StatisticsCountry getGlobal() {
 		return instance;
@@ -140,7 +140,7 @@ public class StatisticsCountry extends AbstractStorable implements Serializable 
 		private String country = "Unknown";
 		private String longcountry = "Unknown";
 		private Integer connects = 0;
-		private List<String> list = new ArrayList<String>();
+		private List<String> list = new ArrayList<>();
 
 		public String getCountry() {
 			return country;

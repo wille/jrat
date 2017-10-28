@@ -47,7 +47,7 @@ public class GeoIP {
 
 		String[] indexes = s.split(",");
 		
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, String> map = new HashMap<>();
 
 		for (int i = 0; i < indexes.length; i++) {
 			String[] v = indexes[i].replace("\"", "").split(":");

@@ -16,7 +16,7 @@ import java.util.List;
 
 public class StoreOfflineSlaves extends AbstractStorable {
 	
-	private static final List<AbstractSlave> LIST = new ArrayList<AbstractSlave>();
+	private static final List<AbstractSlave> LIST = new ArrayList<>();
 	private static final StoreOfflineSlaves INSTANCE = new StoreOfflineSlaves();
 	private static final long TIME_TO_LIVE = 1000L * 60L * 60L * 24L * 7L; // 1 week
 	

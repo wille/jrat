@@ -20,7 +20,7 @@ public class PortListenerJComboBox extends JComboBox<Object> {
 		super();
 		this.listener = listener;
 
-		List<String> names = new ArrayList<String>();
+		List<String> names = new ArrayList<>();
 
 		for (PortListener pl : PortListener.listeners) {
 			names.add(pl.getName());
