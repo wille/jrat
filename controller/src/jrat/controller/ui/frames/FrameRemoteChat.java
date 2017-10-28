@@ -1,6 +1,6 @@
 package jrat.controller.ui.frames;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet48ChatStart;
 import jrat.controller.packets.outgoing.Packet49ChatEnd;
@@ -30,7 +30,7 @@ public class FrameRemoteChat extends BaseFrame {
 	public FrameRemoteChat(Slave slave) {
 		super(slave);
 		setTitle("Chat - " + "[" + slave.getDisplayName() + "] - " + slave.getIP());
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRemoteChat.class.getResource("/icons/chat.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRemoteChat.class.getResource("/chat.png")));
 		this.slave = slave;
 		final Slave sl = slave;
 		instances.put(slave, this);
@@ -65,11 +65,11 @@ public class FrameRemoteChat extends BaseFrame {
 
 		JButton btnSend = new JButton("Send");
 		toolBar.add(btnSend);
-		btnSend.setIcon(IconUtils.getIcon("arrow-right"));
+		btnSend.setIcon(Resources.getIcon("arrow-right"));
 
 		JButton btnNudge = new JButton("Nudge");
 		toolBar.add(btnNudge);
-		btnNudge.setIcon(IconUtils.getIcon("nudge"));
+		btnNudge.setIcon(Resources.getIcon("nudge"));
 		btnNudge.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				sl.addToSendQueue(new Packet58NudgeChat());

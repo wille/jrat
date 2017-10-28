@@ -56,7 +56,7 @@ public class DialogMonitors extends BaseDialog {
 			}
 		});
 		instances.put(sl, this);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(DialogMonitors.class.getResource("/icons/screen.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DialogMonitors.class.getResource("/screen.png")));
 		setTitle("Monitors");
 		setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);

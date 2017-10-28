@@ -1,6 +1,6 @@
 package jrat.controller.ui.frames;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.Constants;
 import jrat.controller.Globals;
 import jrat.controller.Help;
@@ -44,7 +44,7 @@ public class FrameHelp extends BaseFrame {
 
 	public FrameHelp() {
 		setTitle(Constants.NAME + " help");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameHelp.class.getResource("/icons/help.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameHelp.class.getResource("/help.png")));
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 672, 384);
 		contentPane = new JPanel();
@@ -85,7 +85,7 @@ public class FrameHelp extends BaseFrame {
 		addPopup(com, popupMenu);
 
 		mntmOpenLatestOn = new JMenuItem("Open latest on internet");
-		mntmOpenLatestOn.setIcon(IconUtils.getIcon("url"));
+		mntmOpenLatestOn.setIcon(Resources.getIcon("url"));
 		mntmOpenLatestOn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (currentFile == null) {

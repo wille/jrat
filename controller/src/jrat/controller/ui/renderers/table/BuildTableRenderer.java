@@ -1,6 +1,6 @@
 package jrat.controller.ui.renderers.table;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.build.BuildStatus;
 import jrat.controller.ui.DefaultJTableCellRenderer;
 
@@ -14,9 +14,9 @@ public class BuildTableRenderer extends DefaultJTableCellRenderer {
 
 	private Map<String, BuildStatus> statuses;
 
-	public static final ImageIcon ICON_INFO = IconUtils.getIcon("log-info");
-	public static final ImageIcon ICON_ERROR = IconUtils.getIcon("log-error");
-	public static final ImageIcon ICON_TICK = IconUtils.getIcon("tick");
+	public static final ImageIcon ICON_INFO = Resources.getIcon("log-info");
+	public static final ImageIcon ICON_ERROR = Resources.getIcon("log-error");
+	public static final ImageIcon ICON_TICK = Resources.getIcon("tick");
 
 	public BuildTableRenderer(Map<String, BuildStatus> statuses) {
 		this.statuses = statuses;

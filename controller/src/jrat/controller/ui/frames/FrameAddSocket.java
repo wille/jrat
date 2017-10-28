@@ -1,6 +1,6 @@
 package jrat.controller.ui.frames;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.ErrorDialog;
 import jrat.controller.net.PortListener;
 import jrat.controller.net.ServerListener;
@@ -29,7 +29,7 @@ public class FrameAddSocket extends BaseFrame {
 	private JComboBox<String> cbType;
 
 	public FrameAddSocket() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameAddSocket.class.getResource("/icons/socket-add.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameAddSocket.class.getResource("/socket-add.png")));
 		setResizable(false);
 		setTitle("Add socket");
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -56,7 +56,7 @@ public class FrameAddSocket extends BaseFrame {
 		txtPass.setColumns(10);
 
 		JButton btnListen = new JButton("Listen");
-		btnListen.setIcon(IconUtils.getIcon("socket-add"));
+		btnListen.setIcon(Resources.getIcon("socket-add"));
 		btnListen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				addSocket();

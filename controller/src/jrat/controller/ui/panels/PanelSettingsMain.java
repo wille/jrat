@@ -1,6 +1,6 @@
 package jrat.controller.ui.panels;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.settings.Settings;
 import jrat.controller.settings.SettingsCustomID;
 
@@ -51,13 +51,13 @@ public class PanelSettingsMain extends JPanel {
 		chckbxRequestScreenOn.setSelected(Settings.getGlobal().getBoolean(Settings.KEY_START_REMOTE_SCREEN_DIRECTLY));
 
 		JLabel label = new JLabel("");
-		label.setIcon(IconUtils.getIcon("screen"));
+		label.setIcon(Resources.getIcon("screen"));
 
 		chckbxTrayIcon = new JCheckBox("Tray Icon");
 		chckbxTrayIcon.setSelected(Settings.getGlobal().getBoolean(Settings.KEY_USE_TRAY_ICON));
 
 		JLabel label_2 = new JLabel("");
-		label_2.setIcon(IconUtils.getIcon("icon-16x16"));
+		label_2.setIcon(Resources.getIcon("icon-16x16"));
 
 		JButton btnClearRenamedServers = new JButton("Clear renamed connections");
 		btnClearRenamedServers.addActionListener(new ActionListener() {
@@ -67,15 +67,15 @@ public class PanelSettingsMain extends JPanel {
 				}
 			}
 		});
-		btnClearRenamedServers.setIcon(IconUtils.getIcon("delete"));
+		btnClearRenamedServers.setIcon(Resources.getIcon("delete"));
 
 		JLabel label_1 = new JLabel("");
-		label_1.setIcon(IconUtils.getIcon("question"));
+		label_1.setIcon(Resources.getIcon("question"));
 
 		chckbxAskBeforeConnect = new JCheckBox("Ask before connect", Settings.getGlobal().getBoolean(Settings.KEY_REQUEST_DIALOG));
 
 		JLabel label_3 = new JLabel("");
-		label_3.setIcon(IconUtils.getIcon("computer"));
+		label_3.setIcon(Resources.getIcon("computer"));
 
 		chckbxMaximum = new JCheckBox("Maximum amount of connections", Settings.getGlobal().getInt(Settings.KEY_MAXIMUM_CONNECTIONS) != -1);
 		chckbxMaximum.addActionListener(new ActionListener() {

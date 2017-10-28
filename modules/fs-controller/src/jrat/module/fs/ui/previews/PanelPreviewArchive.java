@@ -1,7 +1,7 @@
 package jrat.module.fs.ui.previews;
 
 import iconlib.FileIconUtils;
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.api.Resources;
 import jrat.common.utils.DataUnits;
 import jrat.controller.Slave;

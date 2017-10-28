@@ -1,6 +1,6 @@
 package jrat.controller.ui.panels;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.ErrorDialog;
 import jrat.controller.settings.Settings;
 import jrat.controller.ui.components.JPlaceholderTextField;
@@ -69,7 +69,7 @@ public class PanelBuildNetwork extends JPanel {
 				model.addElement(addr);
 			}
 		});
-		btnAdd.setIcon(IconUtils.getIcon("socket-add"));
+		btnAdd.setIcon(Resources.getIcon("socket-add"));
 
 		JButton btnMoveDown = new JButton("Move Down");
 		btnMoveDown.addActionListener(new ActionListener() {
@@ -120,7 +120,7 @@ public class PanelBuildNetwork extends JPanel {
 				}
 			}
 		});
-		mntmGetLanAddress.setIcon(IconUtils.getIcon("network-ip-local"));
+		mntmGetLanAddress.setIcon(Resources.getIcon("network-ip-local"));
 		popupMenu.add(mntmGetLanAddress);
 
 		JMenuItem mntmGetWanAddress = new JMenuItem("Get WAN address");
@@ -134,7 +134,7 @@ public class PanelBuildNetwork extends JPanel {
 				}
 			}
 		});
-		mntmGetWanAddress.setIcon(IconUtils.getIcon("network-ip"));
+		mntmGetWanAddress.setIcon(Resources.getIcon("network-ip"));
 		popupMenu.add(mntmGetWanAddress);
 
 		model = new DefaultListModel<String>();

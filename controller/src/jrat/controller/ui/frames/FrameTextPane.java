@@ -1,6 +1,6 @@
 package jrat.controller.ui.frames;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.ErrorDialog;
 
 import javax.swing.*;
@@ -61,7 +61,7 @@ public abstract class FrameTextPane extends BaseFrame {
 				dispose();
 			}
 		});
-		btnOk.setIcon(IconUtils.getIcon("enabled"));
+		btnOk.setIcon(Resources.getIcon("enabled"));
 
 		JButton btnSave = new JButton("Save");
 		btnSave.addActionListener(new ActionListener() {
@@ -81,7 +81,7 @@ public abstract class FrameTextPane extends BaseFrame {
 				}
 			}
 		});
-		btnSave.setIcon(IconUtils.getIcon("save"));
+		btnSave.setIcon(Resources.getIcon("save"));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addGroup(gl_contentPane.createSequentialGroup().addGap(248).addComponent(btnSave).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnOk, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)).addComponent(scrollPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)).addGap(0)));
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(btnOk).addComponent(btnSave)).addGap(4)));

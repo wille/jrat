@@ -1,6 +1,6 @@
 package jrat.controller.ui.panels;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
@@ -26,7 +26,7 @@ public class PanelBuildDebugMessages extends JPanel {
 		chckbxKeepDebugMessages.setSelected(true);
 
 		JLabel label = new JLabel("");
-		label.setIcon(IconUtils.getIcon("application-detail"));
+		label.setIcon(Resources.getIcon("application-detail"));
 
 		JLabel lblWillPrintOut = new JLabel("Will print out debug messages");
 		GroupLayout gl_panel = new GroupLayout(panel);

@@ -1,7 +1,7 @@
 package jrat.controller.ui.renderers.table;
 
 import iconlib.FileIconUtils;
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.common.ProcessData;
 import jrat.controller.ui.DefaultJTableCellRenderer;
 import oslib.OperatingSystem;
@@ -19,7 +19,7 @@ public class ProcessTableRenderer extends DefaultJTableCellRenderer {
 		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 			ICON_DEFAULT = FileIconUtils.getIconFromExtension(".exe");
 		} else {
-			ICON_DEFAULT = IconUtils.getIcon("process-go");
+			ICON_DEFAULT = Resources.getIcon("process-go");
 		}
 	}
 	

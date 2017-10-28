@@ -1,6 +1,6 @@
 package jrat.controller.ui.panels;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.ErrorDialog;
 import jrat.controller.net.PortListener;
 import jrat.controller.ui.DefaultJTable;
@@ -52,7 +52,7 @@ public class PanelMainSockets extends JPanel {
 		addPopup(table, popupMenu);
 
 		JMenuItem mntmAddSocket = new JMenuItem("Add Socket");
-		mntmAddSocket.setIcon(IconUtils.getIcon("socket-add"));
+		mntmAddSocket.setIcon(Resources.getIcon("socket-add"));
 		mntmAddSocket.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				FrameAddSocket frame = new FrameAddSocket();
@@ -64,7 +64,7 @@ public class PanelMainSockets extends JPanel {
 		popupMenu.addSeparator();
 
 		JMenuItem mntmCloseSocket = new JMenuItem("Close Socket");
-		mntmCloseSocket.setIcon(IconUtils.getIcon("socket-remove"));
+		mntmCloseSocket.setIcon(Resources.getIcon("socket-remove"));
 		mntmCloseSocket.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -90,7 +90,7 @@ public class PanelMainSockets extends JPanel {
 		popupMenu.add(mntmCloseSocket);
 
 		JMenuItem mntmCloseAllSockets = new JMenuItem("Close all Sockets");
-		mntmCloseAllSockets.setIcon(IconUtils.getIcon("socket-remove"));
+		mntmCloseAllSockets.setIcon(Resources.getIcon("socket-remove"));
 		mntmCloseAllSockets.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				while (model.getRowCount() > 0) {
@@ -119,7 +119,7 @@ public class PanelMainSockets extends JPanel {
 				copy(table.getSelectedRow(), 4);
 			}
 		});
-		mntmPassword.setIcon(IconUtils.getIcon("clipboard"));
+		mntmPassword.setIcon(Resources.getIcon("clipboard"));
 
 		table.setRowHeight(25);
 		scrollPane.setViewportView(table);

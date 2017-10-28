@@ -1,6 +1,6 @@
 package jrat.controller.ui.dialogs;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.common.hash.Md5;
 import jrat.common.hash.Sha1;
 import jrat.common.utils.DataUnits;
@@ -53,7 +53,7 @@ public class DialogSummary extends JDialog {
 		contentPane.add(tabbedPane);
 
 		JPanel panel_1 = new JPanel();
-		tabbedPane.addTab("General", IconUtils.getIcon("id"), panel_1, null);
+		tabbedPane.addTab("General", Resources.getIcon("id"), panel_1, null);
 		panel_1.setLayout(new BoxLayout(panel_1, BoxLayout.X_AXIS));
 
 		JScrollPane scrollPane_1 = new JScrollPane();
@@ -67,7 +67,7 @@ public class DialogSummary extends JDialog {
 
 		JPanel panel = new JPanel();
 
-		tabbedPane.addTab("File Information", IconUtils.getIcon("file"), panel, null);
+		tabbedPane.addTab("File Information", Resources.getIcon("file"), panel, null);
 		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 
 		JScrollPane scrollPane = new JScrollPane();
@@ -81,7 +81,7 @@ public class DialogSummary extends JDialog {
 		scrollPane.setViewportView(table);
 
 		JPanel panel_2 = new JPanel();
-		tabbedPane.addTab("Log", IconUtils.getIcon("log"), panel_2, null);
+		tabbedPane.addTab("Log", Resources.getIcon("log"), panel_2, null);
 		panel_2.setLayout(new BoxLayout(panel_2, BoxLayout.X_AXIS));
 
 		JScrollPane scrollPane_2 = new JScrollPane();

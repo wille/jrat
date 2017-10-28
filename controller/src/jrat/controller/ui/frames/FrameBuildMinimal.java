@@ -1,6 +1,6 @@
 package jrat.controller.ui.frames;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.common.DropLocations;
 import jrat.controller.Constants;
 import jrat.controller.ErrorDialog;
@@ -44,7 +44,7 @@ public class FrameBuildMinimal extends BaseFrame {
 	private LinkedHashMap<String, BuildStatus> statuses = new LinkedHashMap<String, BuildStatus>();
 
 	public FrameBuildMinimal() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameBuildMinimal.class.getResource("/icons/bug-edit.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameBuildMinimal.class.getResource("/bug-edit.png")));
 		setTitle("Minimal Builder");
 		setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -63,7 +63,7 @@ public class FrameBuildMinimal extends BaseFrame {
 				build();
 			}
 		});
-		btnBuild.setIcon(IconUtils.getIcon("final"));
+		btnBuild.setIcon(Resources.getIcon("final"));
 
 		JLabel lblHost = new JLabel("Host:");
 
@@ -209,7 +209,7 @@ public class FrameBuildMinimal extends BaseFrame {
 				}
 			}
 		});
-		btnLocal.setIcon(IconUtils.getIcon("network-ip-local"));
+		btnLocal.setIcon(Resources.getIcon("network-ip-local"));
 		toolBar.add(btnLocal);
 
 		JButton btnWan = new JButton("");
@@ -223,7 +223,7 @@ public class FrameBuildMinimal extends BaseFrame {
 				}
 			}
 		});
-		btnWan.setIcon(IconUtils.getIcon("network-ip"));
+		btnWan.setIcon(Resources.getIcon("network-ip"));
 		toolBar.add(btnWan);
 		contentPane.setLayout(gl_contentPane);
 	}

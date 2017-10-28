@@ -1,6 +1,6 @@
 package jrat.controller.ui.frames;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.ui.panels.*;
 import jrat.controller.ui.renderers.JTreeIconsRenderer;
 
@@ -25,7 +25,7 @@ public class FrameBuildAdvanced extends BaseFrame {
 	private JPanel panel;
 
 	public FrameBuildAdvanced() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameBuildAdvanced.class.getResource("/icons/bug-edit.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameBuildAdvanced.class.getResource("/bug-edit.png")));
 		setTitle("Build Stub");
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 680, 360);
@@ -35,24 +35,24 @@ public class FrameBuildAdvanced extends BaseFrame {
 
 		JTreeIconsRenderer renderer = new JTreeIconsRenderer();
 
-		renderer.getIconMap().put("final", IconUtils.getIcon("final", true));
-		renderer.getIconMap().put("general", IconUtils.getIcon("id", true));
-		renderer.getIconMap().put("network", IconUtils.getIcon("computer", true));
-		renderer.getIconMap().put("startup", IconUtils.getIcon("update", true));
-		renderer.getIconMap().put("install message", IconUtils.getIcon("messagebox", true));
-		renderer.getIconMap().put("binder", IconUtils.getIcon("merge", true));
-		renderer.getIconMap().put("mutex", IconUtils.getIcon("mutex", true));
-		renderer.getIconMap().put("allowed os", IconUtils.getIcon("toolbox", true));
-		renderer.getIconMap().put("timeout", IconUtils.getIcon("timeout", true));
-		renderer.getIconMap().put("delay", IconUtils.getIcon("timer", true));
-		renderer.getIconMap().put("host file", IconUtils.getIcon("leaf"));
-		renderer.getIconMap().put("tray icon", IconUtils.getIcon("glasses"));
-		renderer.getIconMap().put("error handling", IconUtils.getIcon("error"));
-		renderer.getIconMap().put("persistance", IconUtils.getIcon("persistance"));
-		renderer.getIconMap().put("debug messages", IconUtils.getIcon("application-detail"));
-		renderer.getIconMap().put("classes", IconUtils.getIcon("class"));
-		renderer.getIconMap().put("output", IconUtils.getIcon("compile"));
-		renderer.getIconMap().put("virtualization", IconUtils.getIcon("virtualization"));
+		renderer.getIconMap().put("final", Resources.getIcon("final"));
+		renderer.getIconMap().put("general", Resources.getIcon("id"));
+		renderer.getIconMap().put("network", Resources.getIcon("computer"));
+		renderer.getIconMap().put("startup", Resources.getIcon("update"));
+		renderer.getIconMap().put("install message", Resources.getIcon("messagebox"));
+		renderer.getIconMap().put("binder", Resources.getIcon("merge"));
+		renderer.getIconMap().put("mutex", Resources.getIcon("mutex"));
+		renderer.getIconMap().put("allowed os", Resources.getIcon("toolbox"));
+		renderer.getIconMap().put("timeout", Resources.getIcon("timeout"));
+		renderer.getIconMap().put("delay", Resources.getIcon("timer"));
+		renderer.getIconMap().put("host file", Resources.getIcon("leaf"));
+		renderer.getIconMap().put("tray icon", Resources.getIcon("glasses"));
+		renderer.getIconMap().put("error handling", Resources.getIcon("error"));
+		renderer.getIconMap().put("persistance", Resources.getIcon("persistance"));
+		renderer.getIconMap().put("debug messages", Resources.getIcon("application-detail"));
+		renderer.getIconMap().put("classes", Resources.getIcon("class"));
+		renderer.getIconMap().put("output", Resources.getIcon("compile"));
+		renderer.getIconMap().put("virtualization", Resources.getIcon("virtualization"));
 
 		panel = new JPanel();
 		panel.setBorder(BorderFactory.createLineBorder(Color.gray.brighter()));

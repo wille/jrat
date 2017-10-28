@@ -1,6 +1,6 @@
 package jrat.controller.ui.panels;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.Help;
 import jrat.controller.listeners.SocketComboBoxListener;
 import jrat.controller.net.PortListener;
@@ -55,7 +55,7 @@ public class PanelBuildGeneral extends JPanel {
 				Help.help("Name of stub on connect, like \"Brother\"");
 			}
 		});
-		btnHelp.setIcon(IconUtils.getIcon("help"));
+		btnHelp.setIcon(Resources.getIcon("help"));
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
@@ -105,7 +105,7 @@ public class PanelBuildGeneral extends JPanel {
 				Help.help("Password to authenticate clients");
 			}
 		});
-		button.setIcon(IconUtils.getIcon("help"));
+		button.setIcon(Resources.getIcon("help"));
 		setLayout(groupLayout);
 
 		comboBox = new PortListenerJComboBox(new SocketComboBoxListener() {

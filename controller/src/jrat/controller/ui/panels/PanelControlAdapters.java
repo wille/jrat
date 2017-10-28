@@ -1,6 +1,6 @@
 package jrat.controller.ui.panels;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet82NetworkAdapters;
 import jrat.controller.ui.DefaultJTable;
@@ -30,7 +30,7 @@ public class PanelControlAdapters extends PanelControlParent {
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
 		JButton btnReloadList = new JButton("Reload list");
-		btnReloadList.setIcon(IconUtils.getIcon("cpu"));
+		btnReloadList.setIcon(Resources.getIcon("cpu"));
 		btnReloadList.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				clear();
@@ -39,7 +39,7 @@ public class PanelControlAdapters extends PanelControlParent {
 		});
 
 		JButton btnClear = new JButton("Clear");
-		btnClear.setIcon(IconUtils.getIcon("clear"));
+		btnClear.setIcon(Resources.getIcon("clear"));
 		btnClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				clear();

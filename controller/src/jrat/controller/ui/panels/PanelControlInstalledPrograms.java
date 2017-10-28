@@ -1,6 +1,6 @@
 package jrat.controller.ui.panels;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet81InstalledPrograms;
 import jrat.controller.ui.DefaultJTable;
@@ -47,7 +47,7 @@ public class PanelControlInstalledPrograms extends PanelControlParent {
 				slave.addToSendQueue(new Packet81InstalledPrograms(location));
 			}
 		});
-		btnReload.setIcon(IconUtils.getIcon("update"));
+		btnReload.setIcon(Resources.getIcon("update"));
 
 		JButton btnClear = new JButton("Clear");
 		btnClear.addActionListener(new ActionListener() {
@@ -55,7 +55,7 @@ public class PanelControlInstalledPrograms extends PanelControlParent {
 				clear();
 			}
 		});
-		btnClear.setIcon(IconUtils.getIcon("clear"));
+		btnClear.setIcon(Resources.getIcon("clear"));
 
 		comboBox = new JComboBox<String>();
 		comboBox.setVisible(slave.getOperatingSystem().getType() == OperatingSystem.WINDOWS);
@@ -106,7 +106,7 @@ public class PanelControlInstalledPrograms extends PanelControlParent {
 	public JComboBoxIconRenderer getRenderer() {
 		JComboBoxIconRenderer renderer = new JComboBoxIconRenderer();
 
-		ImageIcon icon = IconUtils.getIcon("folder-network");
+		ImageIcon icon = Resources.getIcon("folder-network");
 		renderer.addIcon("HKEY_CURRENT_USER", icon);
 		renderer.addIcon("HKEY_LOCAL_MACHINE", icon);
 

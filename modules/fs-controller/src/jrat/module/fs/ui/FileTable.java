@@ -1,6 +1,6 @@
 package jrat.module.fs.ui;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.AbstractSlave;
 import jrat.controller.io.FileObject;
 import jrat.controller.ui.DefaultJTable;
@@ -71,7 +71,7 @@ public abstract class FileTable extends JPanel {
 				onBack();
 			}
 		});
-		btnBack.setIcon(IconUtils.getIcon("arrow-left"));
+		btnBack.setIcon(Resources.getIcon("arrow-left"));
 		
 		JButton btnRefresh = new JButton("");
 		toolBar.add(btnRefresh);
@@ -82,7 +82,7 @@ public abstract class FileTable extends JPanel {
 				onReload();
 			}
 		});
-		btnRefresh.setIcon(IconUtils.getIcon("refresh"));
+		btnRefresh.setIcon(Resources.getIcon("refresh"));
 		
 		JButton btnDelete = new JButton("");
 		toolBar.add(btnDelete);
@@ -92,7 +92,7 @@ public abstract class FileTable extends JPanel {
 				onDelete();
 			}
 		});
-		btnDelete.setIcon(IconUtils.getIcon("delete"));
+		btnDelete.setIcon(Resources.getIcon("delete"));
 		
 		JButton btnNewFolder = new JButton("");
 		btnNewFolder.setToolTipText("New Folder");
@@ -101,7 +101,7 @@ public abstract class FileTable extends JPanel {
 				onCreateFolder();
 			}
 		});
-		btnNewFolder.setIcon(IconUtils.getIcon("folder-add"));
+		btnNewFolder.setIcon(Resources.getIcon("folder-add"));
 		toolBar.add(btnNewFolder);
 		
 		driveComboBox = new JComboBox<String>();

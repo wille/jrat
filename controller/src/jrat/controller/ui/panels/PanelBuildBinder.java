@@ -1,6 +1,6 @@
 package jrat.controller.ui.panels;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.common.DropLocations;
 import jrat.controller.Help;
 
@@ -63,7 +63,7 @@ public class PanelBuildBinder extends JPanel {
 				}
 			}
 		});
-		button.setIcon(IconUtils.getIcon("folder"));
+		button.setIcon(Resources.getIcon("folder"));
 
 		JLabel lblDropPath = new JLabel("Install path");
 
@@ -82,7 +82,7 @@ public class PanelBuildBinder extends JPanel {
 				Help.help("A file to be executed when program is launched");
 			}
 		});
-		button_1.setIcon(IconUtils.getIcon("help"));
+		button_1.setIcon(Resources.getIcon("help"));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addContainerGap().addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addComponent(chckbxBindFileTo).addPreferredGap(ComponentPlacement.RELATED).addComponent(button_1, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)).addGroup(gl_panel.createSequentialGroup().addGap(12).addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addComponent(lblDropPath).addComponent(lblName).addComponent(lblPath)).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false).addComponent(txtName).addComponent(txtPath, GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)).addPreferredGap(ComponentPlacement.RELATED).addComponent(button)).addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 153, GroupLayout.PREFERRED_SIZE)))).addGap(31)));
 		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addGroup(gl_panel.createParallelGroup(Alignment.TRAILING).addComponent(button).addGroup(gl_panel.createSequentialGroup().addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(chckbxBindFileTo).addComponent(button_1, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(txtPath, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(lblPath)))).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(lblName).addComponent(txtName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(lblDropPath).addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addContainerGap(102, Short.MAX_VALUE)));

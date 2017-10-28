@@ -1,6 +1,6 @@
 package jrat.controller.ui.dialogs;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.common.SoundWriter;
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet83ServerUploadSound;
@@ -41,7 +41,7 @@ public class DialogRemoteSoundCapture extends BaseDialog {
 			}
 		});
 		setResizable(false);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(DialogRemoteSoundCapture.class.getResource("/icons/microphone.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DialogRemoteSoundCapture.class.getResource("/microphone.png")));
 		INSTANCES.put(slave, this);
 		setTitle("Microphone");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -59,7 +59,7 @@ public class DialogRemoteSoundCapture extends BaseDialog {
 				comboBox.setEnabled(false);				
 			}
 		});
-		btnStartListen.setIcon(IconUtils.getIcon("microphone-plus"));
+		btnStartListen.setIcon(Resources.getIcon("microphone-plus"));
 
 		btnStopListen = new JButton("Stop");
 		btnStopListen.addActionListener(new ActionListener() {
@@ -71,13 +71,13 @@ public class DialogRemoteSoundCapture extends BaseDialog {
 			}
 		});
 		btnStopListen.setEnabled(false);
-		btnStopListen.setIcon(IconUtils.getIcon("microphone-minus"));
+		btnStopListen.setIcon(Resources.getIcon("microphone-minus"));
 
 		comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] { "16000", "12000", "8000", "4000", "2000" }));
 		
 		btnStartRecording = new JButton("Start Recording");
-		btnStartRecording.setIcon(IconUtils.getIcon("microphone-plus"));
+		btnStartRecording.setIcon(Resources.getIcon("microphone-plus"));
 		btnStartRecording.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				btnStartRecording.setEnabled(false);
@@ -100,7 +100,7 @@ public class DialogRemoteSoundCapture extends BaseDialog {
 			}
 		});
 		btnStopRecord.setEnabled(false);
-		btnStopRecord.setIcon(IconUtils.getIcon("microphone-minus"));
+		btnStopRecord.setIcon(Resources.getIcon("microphone-minus"));
 
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(

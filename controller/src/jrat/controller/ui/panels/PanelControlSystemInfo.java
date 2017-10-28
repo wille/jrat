@@ -1,6 +1,6 @@
 package jrat.controller.ui.panels;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.common.utils.DataUnits;
 import jrat.controller.Slave;
 import jrat.controller.ui.DefaultJTable;
@@ -42,7 +42,7 @@ public class PanelControlSystemInfo extends PanelControlParent {
 	}
 
 	public void addRow(String icon, String key, String value) {
-		addRow(IconUtils.getIcon(icon), key, value);
+		addRow(Resources.getIcon(icon), key, value);
 	}
 
 	public void addRow(ImageIcon icon, String key, String value) {

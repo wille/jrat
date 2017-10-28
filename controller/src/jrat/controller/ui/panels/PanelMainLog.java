@@ -1,6 +1,6 @@
 package jrat.controller.ui.panels;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.AbstractSlave;
 import jrat.controller.LogAction;
 import jrat.controller.LogEntry;
@@ -66,7 +66,7 @@ public class PanelMainLog extends JPanel {
 				}
 			}
 		});
-		mntmRemove.setIcon(IconUtils.getIcon("application-minus"));
+		mntmRemove.setIcon(Resources.getIcon("application-minus"));
 		popupMenu.add(mntmRemove);
 
 		JMenuItem mntmRemoveAll = new JMenuItem("Remove all");
@@ -77,7 +77,7 @@ public class PanelMainLog extends JPanel {
 				}
 			}
 		});
-		mntmRemoveAll.setIcon(IconUtils.getIcon("application-minus"));
+		mntmRemoveAll.setIcon(Resources.getIcon("application-minus"));
 		popupMenu.add(mntmRemoveAll);
 
 		scrollPane.setViewportView(table);

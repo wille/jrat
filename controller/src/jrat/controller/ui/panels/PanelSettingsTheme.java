@@ -1,6 +1,6 @@
 package jrat.controller.ui.panels;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.settings.Settings;
 
 import javax.swing.*;
@@ -40,7 +40,7 @@ public class PanelSettingsTheme extends JPanel {
 		JLabel lblTheme = new JLabel("Theme:");
 
 		JButton btnDefault = new JButton("Default");
-		btnDefault.setIcon(IconUtils.getIcon("all"));
+		btnDefault.setIcon(Resources.getIcon("all"));
 		btnDefault.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -54,7 +54,7 @@ public class PanelSettingsTheme extends JPanel {
 		});
 
 		JButton btnSelect = new JButton("Select");
-		btnSelect.setIcon(IconUtils.getIcon("themes"));
+		btnSelect.setIcon(Resources.getIcon("themes"));
 		btnSelect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {

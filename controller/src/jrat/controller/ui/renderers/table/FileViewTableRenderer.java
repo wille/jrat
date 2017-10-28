@@ -1,6 +1,6 @@
 package jrat.controller.ui.renderers.table;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.common.utils.DataUnits;
 import jrat.controller.AbstractSlave;
 import jrat.controller.io.FileObject;
@@ -17,7 +17,7 @@ import java.util.HashMap;
 @SuppressWarnings("serial")
 public class FileViewTableRenderer extends DefaultJTableCellRenderer {
 
-	public static final ImageIcon ICON_BOOKMARK = IconUtils.getIcon("bookmark");
+	public static final ImageIcon ICON_BOOKMARK = Resources.getIcon("bookmark");
 
 	public HashMap<String, Icon> icons = new HashMap<String, Icon>();
 

@@ -1,6 +1,6 @@
 package jrat.controller.ui.panels;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.AbstractSlave;
 import jrat.controller.OfflineSlave;
 import jrat.controller.Slave;
@@ -41,7 +41,7 @@ public class PanelMainClientsBoxes extends PanelMainClients {
 	
 	@Override
 	public Icon getIcon() {
-		return IconUtils.getIcon("application-tile");
+		return Resources.getIcon("application-tile");
 	}
 	
 	@Override
@@ -125,7 +125,7 @@ public class PanelMainClientsBoxes extends PanelMainClients {
 		List<JMenuItem> menu = new ArrayList<JMenuItem>();
 		
 		JMenuItem mntmAlign = new JMenuItem("Align");
-		mntmAlign.setIcon(IconUtils.getIcon("application-tiles"));
+		mntmAlign.setIcon(Resources.getIcon("application-tiles"));
 		
 		mntmAlign.addActionListener(new ActionListener() {
 			@Override

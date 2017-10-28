@@ -1,7 +1,7 @@
 package jrat.controller.settings;
 
 import graphslib.graph.GraphEntry;
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.AbstractSlave;
 import jrat.controller.Globals;
 import jrat.controller.Main;
@@ -99,7 +99,7 @@ public class StatisticsOperatingSystem extends AbstractStorable implements Seria
 				OperatingSystemStatEntry entry = list.get(i);
 				try {
 					String icon = Icons.getIconString(entry.os);
-					GraphEntry total = new GraphEntry(entry.getOperatingSystem().getDisplayString(), entry.getConnects(), IconUtils.getIcon(icon));
+					GraphEntry total = new GraphEntry(entry.getOperatingSystem().getDisplayString(), entry.getConnects(), Resources.getIcon(icon));
 					
 					total.setNumberColor(Color.gray);
 					Main.instance.getPanelStats().osGraph.add(total);

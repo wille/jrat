@@ -1,6 +1,6 @@
 package jrat.controller.ui.panels;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.Help;
 import jrat.controller.OSConfig;
 import oslib.OperatingSystem;
@@ -81,13 +81,13 @@ public class PanelBuildOS extends JPanel {
 		chckbxLinux.setSelected(true);
 
 		JLabel label = new JLabel("");
-		label.setIcon(IconUtils.getIcon("os_win"));
+		label.setIcon(Resources.getIcon("os_win"));
 
 		JLabel label_1 = new JLabel("");
-		label_1.setIcon(IconUtils.getIcon("os_macosx"));
+		label_1.setIcon(Resources.getIcon("os_macosx"));
 
 		JLabel label_2 = new JLabel("");
-		label_2.setIcon(IconUtils.getIcon("os_linux"));
+		label_2.setIcon(Resources.getIcon("os_linux"));
 
 		JButton button = new JButton("");
 		button.addActionListener(new ActionListener() {
@@ -95,19 +95,19 @@ public class PanelBuildOS extends JPanel {
 				Help.help("Selects what operating systems the stub is allowed to execute on");
 			}
 		});
-		button.setIcon(IconUtils.getIcon("help"));
+		button.setIcon(Resources.getIcon("help"));
 
 		chckbxBSD = new JCheckBox("*BSD");
 		chckbxBSD.setSelected(true);
 
 		JLabel label_3 = new JLabel("");
-		label_3.setIcon(IconUtils.getIcon("bsd_unknown"));
+		label_3.setIcon(Resources.getIcon("bsd_unknown"));
 
 		chckbxSolaris = new JCheckBox("Solaris");
 		chckbxSolaris.setSelected(true);
 
 		JLabel label_5 = new JLabel("");
-		label_5.setIcon(IconUtils.getIcon("os_solaris"));
+		label_5.setIcon(Resources.getIcon("os_solaris"));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)

@@ -1,6 +1,6 @@
 package jrat.controller.ui.panels;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet73ActivePorts;
 import jrat.controller.ui.DefaultJTable;
@@ -30,7 +30,7 @@ public class PanelControlActivePorts extends PanelControlParent {
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
 		JButton btnReload = new JButton("Reload");
-		btnReload.setIcon(IconUtils.getIcon("update"));
+		btnReload.setIcon(Resources.getIcon("update"));
 		btnReload.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				clear();
@@ -39,7 +39,7 @@ public class PanelControlActivePorts extends PanelControlParent {
 		});
 
 		JButton btnClear = new JButton("Clear");
-		btnClear.setIcon(IconUtils.getIcon("clear"));
+		btnClear.setIcon(Resources.getIcon("clear"));
 		btnClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				clear();

@@ -1,6 +1,6 @@
 package jrat.controller.ui.panels;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet61SystemJavaProperties;
 import jrat.controller.ui.DefaultJTable;
@@ -36,7 +36,7 @@ public class PanelControlJVMProperties extends PanelControlParent {
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
 		JButton btnReload = new JButton("Reload");
-		btnReload.setIcon(IconUtils.getIcon("update"));
+		btnReload.setIcon(Resources.getIcon("update"));
 		btnReload.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				clear();
@@ -50,7 +50,7 @@ public class PanelControlJVMProperties extends PanelControlParent {
 				clear();
 			}
 		});
-		btnClear.setIcon(IconUtils.getIcon("clear"));
+		btnClear.setIcon(Resources.getIcon("clear"));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.TRAILING).addGroup(gl_panel.createSequentialGroup().addContainerGap().addGroup(gl_panel.createParallelGroup(Alignment.TRAILING).addComponent(scrollPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE).addGroup(gl_panel.createSequentialGroup().addComponent(btnClear).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnReload))).addContainerGap()));
 		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup().addContainerGap().addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(btnReload).addComponent(btnClear)).addContainerGap()));

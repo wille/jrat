@@ -31,7 +31,7 @@ public class FrameRemoteShell extends BaseFrame {
 				exit();
 			}
 		});
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRemoteShell.class.getResource("/icons/terminal.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRemoteShell.class.getResource("/terminal.png")));
 		setTitle("Remote Shell");
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 499, 302);

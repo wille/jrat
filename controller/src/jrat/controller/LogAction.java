@@ -1,16 +1,16 @@
 package jrat.controller;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 
 import javax.swing.*;
 import java.awt.*;
 
 public enum LogAction {
 		
-	CONNECT("Connect", Color.blue, IconUtils.getIcon("log-info")),
-	DISCONNECT("Disconnect", Color.red, IconUtils.getIcon("log-error")),
-	ERROR("Error", Color.red, IconUtils.getIcon("log-error")),
-	WARNING("Warning", IconUtils.getIcon("log-warning"));
+	CONNECT("Connect", Color.blue, Resources.getIcon("log-info")),
+	DISCONNECT("Disconnect", Color.red, Resources.getIcon("log-error")),
+	ERROR("Error", Color.red, Resources.getIcon("log-error")),
+	WARNING("Warning", Resources.getIcon("log-warning"));
 	
 	private String text;
 	private Color color;

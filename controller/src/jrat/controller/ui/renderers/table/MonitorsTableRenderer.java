@@ -1,6 +1,6 @@
 package jrat.controller.ui.renderers.table;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.ui.DefaultJTableCellRenderer;
 
 import javax.swing.*;
@@ -10,7 +10,7 @@ import java.awt.*;
 @SuppressWarnings("serial")
 public class MonitorsTableRenderer extends DefaultJTableCellRenderer {
 
-	public static final ImageIcon ICON_MONITOR = IconUtils.getIcon("monitor");
+	public static final ImageIcon ICON_MONITOR = Resources.getIcon("monitor");
 
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 		JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);

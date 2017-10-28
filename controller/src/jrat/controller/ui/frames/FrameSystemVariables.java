@@ -1,6 +1,6 @@
 package jrat.controller.ui.frames;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.Constants;
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet90SystemProperties;
@@ -47,10 +47,10 @@ public class FrameSystemVariables extends BaseFrame {
 		setResizable(false);
 		
 		if (mode == Constants.VariableMode.ENVIRONMENT_VARIABLES) {
-			setIconImage(Toolkit.getDefaultToolkit().getImage(FrameSystemVariables.class.getResource("/icons/categories.png")));
+			setIconImage(Toolkit.getDefaultToolkit().getImage(FrameSystemVariables.class.getResource("/categories.png")));
 			setTitle("Environment Variables - " + "[" + slave.getDisplayName() + "] - " + slave.getIP());
 		} else if (mode == Constants.VariableMode.SYSTEM_PROPERTIES) {
-			setIconImage(Toolkit.getDefaultToolkit().getImage(FrameSystemVariables.class.getResource("/icons/properties.png")));
+			setIconImage(Toolkit.getDefaultToolkit().getImage(FrameSystemVariables.class.getResource("/properties.png")));
 			setTitle("System Properties - " + "[" + slave.getDisplayName() + "] - " + slave.getIP());
 		} else {
 			throw new RuntimeException("Invalid mode");
@@ -70,7 +70,7 @@ public class FrameSystemVariables extends BaseFrame {
 				reload();
 			}
 		});
-		btnReload.setIcon(IconUtils.getIcon("update"));
+		btnReload.setIcon(Resources.getIcon("update"));
 
 		JButton btnSave = new JButton("Save");
 		btnSave.addActionListener(new ActionListener() {
@@ -94,7 +94,7 @@ public class FrameSystemVariables extends BaseFrame {
 				}
 			}
 		});
-		btnSave.setIcon(IconUtils.getIcon("save"));
+		btnSave.setIcon(Resources.getIcon("save"));
 
 		JButton btnClose = new JButton("Close");
 		btnClose.addActionListener(new ActionListener() {
@@ -102,7 +102,7 @@ public class FrameSystemVariables extends BaseFrame {
 				exit();
 			}
 		});
-		btnClose.setIcon(IconUtils.getIcon("delete"));
+		btnClose.setIcon(Resources.getIcon("delete"));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 433, GroupLayout.PREFERRED_SIZE).addGroup(gl_contentPane.createSequentialGroup().addComponent(btnReload, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(btnClose, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE))).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 218, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(btnReload).addComponent(btnSave).addComponent(btnClose)).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));

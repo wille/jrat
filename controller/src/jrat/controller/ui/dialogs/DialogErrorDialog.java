@@ -1,6 +1,6 @@
 package jrat.controller.ui.dialogs;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.ui.panels.PanelImage;
 
 import javax.swing.*;
@@ -36,7 +36,7 @@ public class DialogErrorDialog extends JDialog {
 
 	public DialogErrorDialog(Exception ex) {
 		setResizable(false);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(DialogErrorDialog.class.getResource("/icons/error.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DialogErrorDialog.class.getResource("/error.png")));
 		setType(Type.POPUP);
 		setTitle("Error occured");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -50,20 +50,20 @@ public class DialogErrorDialog extends JDialog {
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
 		btnDetails = new JButton("Details >>");
-		btnDetails.setIcon(IconUtils.getIcon("expand"));
+		btnDetails.setIcon(Resources.getIcon("expand"));
 		btnDetails.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (state == DialogErrorDialog.STATE_NORMAL) {
 					state = DialogErrorDialog.STATE_EXPANDED;
 					setSize(extendedSize);
 					btnDetails.setText("Details <<");
-					btnDetails.setIcon(IconUtils.getIcon("collapse"));
+					btnDetails.setIcon(Resources.getIcon("collapse"));
 					btnCopyToClipboard.setVisible(true);
 				} else {
 					state = DialogErrorDialog.STATE_NORMAL;
 					setSize(originalSize);
 					btnDetails.setText("Details >>");
-					btnDetails.setIcon(IconUtils.getIcon("expand"));
+					btnDetails.setIcon(Resources.getIcon("expand"));
 					btnCopyToClipboard.setVisible(false);
 				}
 			}
@@ -77,12 +77,12 @@ public class DialogErrorDialog extends JDialog {
 				setVisible(false);
 			}
 		});
-		btnOk.setIcon(IconUtils.getIcon("enabled"));
+		btnOk.setIcon(Resources.getIcon("enabled"));
 		btnOk.setBounds(242, 94, 67, 25);
 
 		PanelImage panel = new PanelImage();
 		panel.setBounds(15, 16, 48, 47);
-		panel.image = IconUtils.getIcon("xbig-error").getImage();
+		panel.image = Resources.getIcon("xbig-error").getImage();
 
 		JLabel lblAErrorOccured = new JLabel("A error occured!");
 		lblAErrorOccured.setBounds(73, 16, 79, 14);
@@ -111,7 +111,7 @@ public class DialogErrorDialog extends JDialog {
 			}
 		});
 		btnCopyToClipboard.setVisible(false);
-		btnCopyToClipboard.setIcon(IconUtils.getIcon("clipboard-go"));
+		btnCopyToClipboard.setIcon(Resources.getIcon("clipboard-go"));
 		btnCopyToClipboard.setBounds(95, 94, 143, 24);
 		contentPane.add(btnCopyToClipboard);
 

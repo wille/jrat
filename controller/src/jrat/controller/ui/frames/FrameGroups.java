@@ -26,7 +26,7 @@ public class FrameGroups extends BaseFrame {
 
 	public FrameGroups() {
 		setTitle("Groups");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameGroups.class.getResource("/icons/group.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameGroups.class.getResource("/group.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

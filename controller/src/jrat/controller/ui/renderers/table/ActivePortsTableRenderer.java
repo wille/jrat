@@ -1,7 +1,7 @@
 package jrat.controller.ui.renderers.table;
 
 import iconlib.FileIconUtils;
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.ui.DefaultJTableCellRenderer;
 
 import javax.swing.*;
@@ -12,7 +12,7 @@ import java.awt.*;
 public class ActivePortsTableRenderer extends DefaultJTableCellRenderer {
 
 	public static final Icon EXE_ICON = FileIconUtils.getIconFromExtension(".exe");
-	public static final Icon PROCESS_ICON = IconUtils.getIcon("process-go");
+	public static final Icon PROCESS_ICON = Resources.getIcon("process-go");
 	
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 		JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);

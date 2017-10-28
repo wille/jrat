@@ -51,7 +51,7 @@ public class FrameControlPanel extends BaseFrame implements TreeSelectionListene
 	public FrameControlPanel(Slave s) {
 		super(s);
 
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameControlPanel.class.getResource("/icons/controlpanel.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameControlPanel.class.getResource("/controlpanel.png")));
 		setTitle("Control Panel");
 		final Slave sl = slave;
 		instances.put(slave, this);

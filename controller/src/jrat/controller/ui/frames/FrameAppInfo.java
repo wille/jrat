@@ -22,7 +22,7 @@ public class FrameAppInfo extends BaseFrame {
 
 	public FrameAppInfo() {
 		setAlwaysOnTop(true);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameAppInfo.class.getResource("/icons/application-detail.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameAppInfo.class.getResource("/application-detail.png")));
 		setTitle("App Information");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

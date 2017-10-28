@@ -1,6 +1,6 @@
 package jrat.controller.utils;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import oslib.OperatingSystem;
 
 import java.awt.*;
@@ -23,6 +23,6 @@ public class CursorUtils {
 			icon = "cursor-default";
 		}
 
-		g.drawImage(IconUtils.getIcon(icon).getImage(), x, y, null);
+		g.drawImage(Resources.getIcon(icon).getImage(), x, y, null);
 	}
 }

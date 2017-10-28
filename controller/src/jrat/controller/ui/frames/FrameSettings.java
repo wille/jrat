@@ -1,6 +1,6 @@
 package jrat.controller.ui.frames;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.common.Version;
 import jrat.controller.ErrorDialog;
 import jrat.controller.listeners.Performable;
@@ -40,7 +40,7 @@ public class FrameSettings extends BaseFrame {
 			}
 		});
 		setResizable(false);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameSettings.class.getResource("/icons/toolbox.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameSettings.class.getResource("/toolbox.png")));
 		setTitle("Settings - " + Version.getVersion());
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 643, 370);
@@ -80,14 +80,14 @@ public class FrameSettings extends BaseFrame {
 
 		JTreeIconsRenderer renderer = new JTreeIconsRenderer();
 
-		renderer.getIconMap().put("main", IconUtils.getIcon("tab-settings"));
-		renderer.getIconMap().put("themes", IconUtils.getIcon("themes"));
-		renderer.getIconMap().put("flags", IconUtils.getIcon("/flags/unknown.png", false));
-		renderer.getIconMap().put("stats", IconUtils.getIcon("statistics"));
-		renderer.getIconMap().put("eula", IconUtils.getIcon("gavel"));
-		renderer.getIconMap().put("changelog", IconUtils.getIcon("changelog"));
-		renderer.getIconMap().put("about", IconUtils.getIcon("info"));
-		renderer.getIconMap().put("proxy", IconUtils.getIcon("server"));
+		renderer.getIconMap().put("main", Resources.getIcon("tab-settings"));
+		renderer.getIconMap().put("themes", Resources.getIcon("themes"));
+		renderer.getIconMap().put("flags", Resources.getIcon("unknown.png"));
+		renderer.getIconMap().put("stats", Resources.getIcon("statistics"));
+		renderer.getIconMap().put("eula", Resources.getIcon("gavel"));
+		renderer.getIconMap().put("changelog", Resources.getIcon("changelog"));
+		renderer.getIconMap().put("about", Resources.getIcon("info"));
+		renderer.getIconMap().put("proxy", Resources.getIcon("server"));
 
 		tree.setCellRenderer(renderer);
 		reload();

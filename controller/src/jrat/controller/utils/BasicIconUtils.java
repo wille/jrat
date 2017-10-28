@@ -1,6 +1,6 @@
 package jrat.controller.utils;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.AbstractSlave;
 import oslib.Icons;
 
@@ -17,7 +17,7 @@ public class BasicIconUtils {
 		String[] order = new String[] { "16x16", "32x32", "64x64", "128x128" };
 
 		for (String s : order) {
-			ImageIcon icon = IconUtils.getIcon(name + "-" + s);
+			ImageIcon icon = Resources.getIcon(name + "-" + s);
 
 			if (icon == null) {
 				break;
@@ -32,9 +32,9 @@ public class BasicIconUtils {
 	public static ImageIcon getOSIcon(AbstractSlave slave) {
 		String str = Icons.getIconString(slave.getOperatingSystem());
 
-		ImageIcon icon = IconUtils.getIcon(str);
+		ImageIcon icon = Resources.getIcon(str);
 		if (icon == null) {
-			icon = IconUtils.getIcon("os_unknown");
+			icon = Resources.getIcon("os_unknown");
 		}
 		return icon;
 	}
@@ -55,7 +55,7 @@ public class BasicIconUtils {
             ping = 5;
         }
 
-        ImageIcon icon = IconUtils.getIcon("ping" + ping);
+        ImageIcon icon = Resources.getIcon("ping" + ping);
         
         return icon;
     }

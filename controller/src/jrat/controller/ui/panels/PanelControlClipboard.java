@@ -1,6 +1,6 @@
 package jrat.controller.ui.panels;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet59Clipboard;
 
@@ -33,7 +33,7 @@ public class PanelControlClipboard extends PanelControlParent {
 				txt.setText("");
 			}
 		});
-		btnClear.setIcon(IconUtils.getIcon("clear"));
+		btnClear.setIcon(Resources.getIcon("clear"));
 
 		JButton btnReloadClipboard = new JButton("Reload clipboard");
 		btnReloadClipboard.addActionListener(new ActionListener() {
@@ -42,7 +42,7 @@ public class PanelControlClipboard extends PanelControlParent {
 				sl.addToSendQueue(new Packet59Clipboard());
 			}
 		});
-		btnReloadClipboard.setIcon(IconUtils.getIcon("clipboard"));
+		btnReloadClipboard.setIcon(Resources.getIcon("clipboard"));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 601, GroupLayout.PREFERRED_SIZE).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(btnClear).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnReloadClipboard))).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 306, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(btnClear).addComponent(btnReloadClipboard)).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));

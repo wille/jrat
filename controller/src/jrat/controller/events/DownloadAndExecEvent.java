@@ -1,6 +1,6 @@
 package jrat.controller.events;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.AbstractSlave;
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet17DownloadExecute;
@@ -12,7 +12,7 @@ import javax.swing.*;
 
 public class DownloadAndExecEvent extends Event {
 
-	public ImageIcon icon = IconUtils.getIcon(getIcon());
+	public ImageIcon icon = Resources.getIcon(getIcon());
 	public String url;
 	public boolean jar;
 

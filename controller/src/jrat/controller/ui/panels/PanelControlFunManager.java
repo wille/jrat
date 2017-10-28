@@ -1,6 +1,6 @@
 package jrat.controller.ui.panels;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet39VisitManyURLs;
 import jrat.controller.packets.outgoing.Packet44PlaySoundFromURL;
@@ -70,7 +70,7 @@ public class PanelControlFunManager extends PanelControlParent {
 				sl.addToSendQueue(new Packet44PlaySoundFromURL(txtURLwav.getText().trim(), (Integer) spinnerwav.getValue()));
 			}
 		});
-		btnPlay.setIcon(IconUtils.getIcon("start"));
+		btnPlay.setIcon(Resources.getIcon("start"));
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
 		gl_panel_2.setHorizontalGroup(gl_panel_2.createParallelGroup(Alignment.LEADING).addGroup(gl_panel_2.createSequentialGroup().addContainerGap().addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING).addGroup(gl_panel_2.createSequentialGroup().addGroup(gl_panel_2.createParallelGroup(Alignment.TRAILING).addComponent(lblLoop).addComponent(lblUrl_1)).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING).addComponent(txtURLwav, GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE).addGroup(gl_panel_2.createSequentialGroup().addComponent(spinnerwav, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(lblTimes)))).addComponent(btnPlay, Alignment.TRAILING)).addContainerGap()));
 		gl_panel_2.setVerticalGroup(gl_panel_2.createParallelGroup(Alignment.LEADING).addGroup(gl_panel_2.createSequentialGroup().addContainerGap().addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE).addComponent(lblUrl_1).addComponent(txtURLwav, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE).addComponent(lblLoop).addComponent(spinnerwav, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(lblTimes)).addGap(18).addComponent(btnPlay).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
@@ -89,7 +89,7 @@ public class PanelControlFunManager extends PanelControlParent {
 		JLabel lblTimes_1 = new JLabel("times");
 
 		JButton btnOpen = new JButton("Open");
-		btnOpen.setIcon(IconUtils.getIcon("url"));
+		btnOpen.setIcon(Resources.getIcon("url"));
 		btnOpen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -126,7 +126,7 @@ public class PanelControlFunManager extends PanelControlParent {
 				sl.addToSendQueue(new Packet46CrazyMouse(seconds));
 			}
 		});
-		btnCrazyMouse.setIcon(IconUtils.getIcon("mouse"));
+		btnCrazyMouse.setIcon(Resources.getIcon("mouse"));
 
 		JButton btnBeep = new JButton("Beep");
 		btnBeep.addActionListener(new ActionListener() {
@@ -134,7 +134,7 @@ public class PanelControlFunManager extends PanelControlParent {
 				sl.addToSendQueue(new Packet65Beep());
 			}
 		});
-		btnBeep.setIcon(IconUtils.getIcon("sound"));
+		btnBeep.setIcon(Resources.getIcon("sound"));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addContainerGap().addGroup(gl_panel.createParallelGroup(Alignment.TRAILING, false).addComponent(btnBeep, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(btnCrazyMouse, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)).addContainerGap(143, Short.MAX_VALUE)));
 		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addContainerGap().addComponent(btnCrazyMouse).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnBeep).addContainerGap(46, Short.MAX_VALUE)));

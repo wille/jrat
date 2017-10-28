@@ -1,6 +1,6 @@
 package jrat.controller.ui.panels;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet10Messagebox;
 
@@ -75,10 +75,10 @@ public class PanelControlMessagebox extends PanelControlParent {
 				}
 			}
 		});
-		btnSend.setIcon(IconUtils.getIcon("arrow-right"));
+		btnSend.setIcon(Resources.getIcon("arrow-right"));
 
 		JButton btnTest = new JButton("Test");
-		btnTest.setIcon(IconUtils.getIcon("messagebox"));
+		btnTest.setIcon(Resources.getIcon("messagebox"));
 		btnTest.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JOptionPane.showMessageDialog(null, txtMsg.getText(), txtTitle.getText(), getIcon());
@@ -98,19 +98,19 @@ public class PanelControlMessagebox extends PanelControlParent {
 
 		btnInfo = new JToggleButton("");
 		buttonGroup.add(btnInfo);
-		btnInfo.setIcon(IconUtils.getIcon("big-info"));
+		btnInfo.setIcon(Resources.getIcon("big-info"));
 
 		btnQuestion = new JToggleButton("");
 		buttonGroup.add(btnQuestion);
-		btnQuestion.setIcon(IconUtils.getIcon("big-question"));
+		btnQuestion.setIcon(Resources.getIcon("big-question"));
 
 		btnWarning = new JToggleButton("");
 		buttonGroup.add(btnWarning);
-		btnWarning.setIcon(IconUtils.getIcon("big-warning"));
+		btnWarning.setIcon(Resources.getIcon("big-warning"));
 
 		btnError = new JToggleButton("");
 		buttonGroup.add(btnError);
-		btnError.setIcon(IconUtils.getIcon("big-error"));
+		btnError.setIcon(Resources.getIcon("big-error"));
 
 		btnNone = new JToggleButton("None");
 		buttonGroup.add(btnNone);

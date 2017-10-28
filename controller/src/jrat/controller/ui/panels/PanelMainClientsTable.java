@@ -1,6 +1,6 @@
 package jrat.controller.ui.panels;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.common.Version;
 import jrat.common.utils.DataUnits;
 import jrat.controller.*;
@@ -73,7 +73,7 @@ public class PanelMainClientsTable extends PanelMainClients {
 	
 	@Override
 	public Icon getIcon() {
-		return IconUtils.getIcon("list");
+		return Resources.getIcon("list");
 	}
 	
 	public void reloadTable() {
@@ -230,9 +230,9 @@ public class PanelMainClientsTable extends PanelMainClients {
 					String country = slave.getCountry();
 								
 					if (country != null) {
-						path = "/flags/" + country.toLowerCase() + ".png";
+						path = "/" + country.toLowerCase() + ".png";
 					} else {
-						path = "/flags/unknown.png";
+						path = "/unknown.png";
 					}
 					
 					JCheckBox b = new JCheckBox(country, slave.isSelected());
@@ -243,7 +243,7 @@ public class PanelMainClientsTable extends PanelMainClients {
 					URL url = Main.class.getResource(path);
 
 					if (url == null) {
-						url = Main.class.getResource("/flags/unknown.png");
+						url = Main.class.getResource("/unknown.png");
 					}
 
 					b.setText("<html><table cellpadding=0><tr><td><img src=\"" + url.toString() + "\"/></td><td width=3><td><font color=\"#" + color + "\">" + country + "</font></td></tr></table></html>");
@@ -334,7 +334,7 @@ public class PanelMainClientsTable extends PanelMainClients {
 		List<JMenuItem> menu = new ArrayList<JMenuItem>();
 		
 		JMenu mnColumns = new JMenu("Columns");
-		mnColumns.setIcon(IconUtils.getIcon("application-table"));
+		mnColumns.setIcon(Resources.getIcon("application-table"));
 		menu.add(mnColumns);
 		
 		for (Columns s : Columns.values()) {
@@ -386,7 +386,7 @@ public class PanelMainClientsTable extends PanelMainClients {
 		
 		JMenu mnTableResizeBehaviour = new JMenu("Table resize behaviour");
 		menu.add(mnTableResizeBehaviour);
-		mnTableResizeBehaviour.setIcon(IconUtils.getIcon("application-table"));
+		mnTableResizeBehaviour.setIcon(Resources.getIcon("application-table"));
 
 		JMenuItem mntmResizeOff = new JMenuItem("Resize off");
 		mntmResizeOff.addActionListener(new ActionListener() {
@@ -394,7 +394,7 @@ public class PanelMainClientsTable extends PanelMainClients {
 				getTable().setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 			}
 		});
-		mntmResizeOff.setIcon(IconUtils.getIcon("application-resize"));
+		mntmResizeOff.setIcon(Resources.getIcon("application-resize"));
 		mnTableResizeBehaviour.add(mntmResizeOff);
 
 		JMenuItem mntmFit = new JMenuItem("Fit");
@@ -403,7 +403,7 @@ public class PanelMainClientsTable extends PanelMainClients {
 				getTable().setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 			}
 		});
-		mntmFit.setIcon(IconUtils.getIcon("application-resize"));
+		mntmFit.setIcon(Resources.getIcon("application-resize"));
 		mnTableResizeBehaviour.add(mntmFit);
 
 		JMenuItem mntmRowHeight = new JMenuItem("Row height");
@@ -426,7 +426,7 @@ public class PanelMainClientsTable extends PanelMainClients {
 				Settings.getGlobal().set(Settings.KEY_ROW_HEIGHT, h);
 			}
 		});
-		mntmRowHeight.setIcon(IconUtils.getIcon("application-dock"));
+		mntmRowHeight.setIcon(Resources.getIcon("application-dock"));
 		
 		return menu;
 	}

@@ -1,6 +1,6 @@
 package jrat.controller.ui.frames;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.common.Version;
 import jrat.common.utils.DataUnits;
 import jrat.common.utils.IOUtils;
@@ -72,11 +72,11 @@ public class Frame extends BaseFrame {
 				frame.setVisible(true);
 			}
 		});
-		mntmAddSocket.setIcon(IconUtils.getIcon("socket-add"));
+		mntmAddSocket.setIcon(Resources.getIcon("socket-add"));
 		mnMain.add(mntmAddSocket);
 
 		mnMain.addSeparator();
-		mntmClientSettings.setIcon(IconUtils.getIcon("toolbox"));
+		mntmClientSettings.setIcon(Resources.getIcon("toolbox"));
 		mnMain.add(mntmClientSettings);
 		mnMain.addSeparator();
 
@@ -86,7 +86,7 @@ public class Frame extends BaseFrame {
 		mnMain.addSeparator();
 
 		JMenu mnServerModule = new JMenu("Stub Module");
-		mnServerModule.setIcon(IconUtils.getIcon("bug"));
+		mnServerModule.setIcon(Resources.getIcon("bug"));
 		mnMain.add(mnServerModule);
 		mnMain.addSeparator();
 
@@ -96,7 +96,7 @@ public class Frame extends BaseFrame {
 				new FrameBuildMinimal().setVisible(true);
 			}
 		});
-		mntmBuildServer.setIcon(IconUtils.getIcon("info-button"));
+		mntmBuildServer.setIcon(Resources.getIcon("info-button"));
 		mnServerModule.add(mntmBuildServer);
 
 		JMenuItem mntmAdvancedBuild = new JMenuItem("Advanced Builder");
@@ -106,7 +106,7 @@ public class Frame extends BaseFrame {
 				frame.setVisible(true);
 			}
 		});
-		mntmAdvancedBuild.setIcon(IconUtils.getIcon("info-button"));
+		mntmAdvancedBuild.setIcon(Resources.getIcon("info-button"));
 		mnServerModule.add(mntmAdvancedBuild);
 
 		JMenu mnKeys = new JMenu("Keys");
@@ -137,10 +137,10 @@ public class Frame extends BaseFrame {
 				}
 			}
 		});
-		mntmImportKey.setIcon(IconUtils.getIcon("key-arrow"));
+		mntmImportKey.setIcon(Resources.getIcon("key-arrow"));
 
 		JMenuItem mntmHelp = new JMenuItem("Help");
-		mntmHelp.setIcon(IconUtils.getIcon("info-button"));
+		mntmHelp.setIcon(Resources.getIcon("info-button"));
 		mntmHelp.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -155,7 +155,7 @@ public class Frame extends BaseFrame {
 				NetUtils.openUrl("https://twitter.com/java_rat");
 			}
 		});
-		mntmTwitter.setIcon(IconUtils.getIcon("twitter"));
+		mntmTwitter.setIcon(Resources.getIcon("twitter"));
 		mnMain.add(mntmTwitter);
 
 		mnMain.addSeparator();
@@ -175,9 +175,9 @@ public class Frame extends BaseFrame {
 				Updater.runUpdater();
 			}
 		});
-		mntmUpdate.setIcon(IconUtils.getIcon("update"));
+		mntmUpdate.setIcon(Resources.getIcon("update"));
 		mnMain.add(mntmUpdate);
-		mntmExit.setIcon(IconUtils.getIcon("exit"));
+		mntmExit.setIcon(Resources.getIcon("exit"));
 		mnMain.add(mntmExit);
 		
 		mnView = new JMenu("View");
@@ -215,14 +215,14 @@ public class Frame extends BaseFrame {
 		});
 
 		JMenu mnLook = new JMenu("Look");
-		mnLook.setIcon(IconUtils.getIcon("gui"));
+		mnLook.setIcon(Resources.getIcon("gui"));
 		mnTools.add(mnLook);
 
 		mnTools.addSeparator();
 
 		JMenu mnTabPlacement = new JMenu("Tab placement");
 		mnLook.add(mnTabPlacement);
-		mnTabPlacement.setIcon(IconUtils.getIcon("application-tabs"));
+		mnTabPlacement.setIcon(Resources.getIcon("application-tabs"));
 
 		JMenuItem mntmTop = new JMenuItem("Top");
 		mntmTop.addActionListener(new ActionListener() {
@@ -230,7 +230,7 @@ public class Frame extends BaseFrame {
 				tabbedPane.setTabPlacement(JTabbedPane.TOP);
 			}
 		});
-		mntmTop.setIcon(IconUtils.getIcon("ui-tab"));
+		mntmTop.setIcon(Resources.getIcon("ui-tab"));
 		mnTabPlacement.add(mntmTop);
 
 		JMenuItem mntmBottom = new JMenuItem("Bottom");
@@ -239,7 +239,7 @@ public class Frame extends BaseFrame {
 				tabbedPane.setTabPlacement(JTabbedPane.BOTTOM);
 			}
 		});
-		mntmBottom.setIcon(IconUtils.getIcon("ui-tab-bottom"));
+		mntmBottom.setIcon(Resources.getIcon("ui-tab-bottom"));
 		mnTabPlacement.add(mntmBottom);
 
 		JMenuItem mntmLeft = new JMenuItem("Left");
@@ -248,7 +248,7 @@ public class Frame extends BaseFrame {
 				tabbedPane.setTabPlacement(JTabbedPane.LEFT);
 			}
 		});
-		mntmLeft.setIcon(IconUtils.getIcon("ui-tab-side"));
+		mntmLeft.setIcon(Resources.getIcon("ui-tab-side"));
 		mnTabPlacement.add(mntmLeft);
 
 		JMenuItem mntmRight = new JMenuItem("Right");
@@ -257,7 +257,7 @@ public class Frame extends BaseFrame {
 				tabbedPane.setTabPlacement(JTabbedPane.RIGHT);
 			}
 		});
-		mntmRight.setIcon(IconUtils.getIcon("ui-tab-side-right"));
+		mntmRight.setIcon(Resources.getIcon("ui-tab-side-right"));
 		mnTabPlacement.add(mntmRight);
 
 		JMenuItem mntmGroups = new JMenuItem("Groups");
@@ -268,11 +268,11 @@ public class Frame extends BaseFrame {
 				frame.setVisible(true);
 			}
 		});
-		mntmGroups.setIcon(IconUtils.getIcon("group"));
+		mntmGroups.setIcon(Resources.getIcon("group"));
 		
 				JMenuItem mntmReloadAllshowThumbnails = new JMenuItem("Reload all Thumbnails");
 				mnTools.add(mntmReloadAllshowThumbnails);
-				mntmReloadAllshowThumbnails.setIcon(IconUtils.getIcon("image"));
+				mntmReloadAllshowThumbnails.setIcon(Resources.getIcon("image"));
 				mntmReloadAllshowThumbnails.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						for (int i = 0; i < Main.connections.size(); i++) {
@@ -286,7 +286,7 @@ public class Frame extends BaseFrame {
 
 		JMenuItem mntmSampleMode = new JMenuItem("Sample Mode");
 		mnTools.add(mntmSampleMode);
-		mntmSampleMode.setIcon(IconUtils.getIcon("camera"));
+		mntmSampleMode.setIcon(Resources.getIcon("camera"));
 		mntmSampleMode.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (Utils.yesNo("Confirm", "This will break " + Constants.NAME + " until restarted and begin a photo friendly session")) {
@@ -294,7 +294,7 @@ public class Frame extends BaseFrame {
 				}
 			}
 		});
-		mntmGarbageCollector.setIcon(IconUtils.getIcon("garbage"));
+		mntmGarbageCollector.setIcon(Resources.getIcon("garbage"));
 		mnTools.add(mntmGarbageCollector);
 
 		JMenu mnServers = new JMenu("Clients");
@@ -306,7 +306,7 @@ public class Frame extends BaseFrame {
 				selectAll();
 			}
 		});
-		mntmSelectAll.setIcon(IconUtils.getIcon("select-all"));
+		mntmSelectAll.setIcon(Resources.getIcon("select-all"));
 		mnServers.add(mntmSelectAll);
 
 		JMenuItem mntmSelectX = new JMenuItem("Select X");
@@ -336,7 +336,7 @@ public class Frame extends BaseFrame {
 				repaint();
 			}
 		});
-		mntmSelectX.setIcon(IconUtils.getIcon("select-x"));
+		mntmSelectX.setIcon(Resources.getIcon("select-x"));
 		mnServers.add(mntmSelectX);
 
 		JMenuItem mntmUnselectAll = new JMenuItem("Unselect all");
@@ -368,7 +368,7 @@ public class Frame extends BaseFrame {
 				}
 			}
 		});
-		mntmRestartAll.setIcon(IconUtils.getIcon("refresh"));
+		mntmRestartAll.setIcon(Resources.getIcon("refresh"));
 		mnServers.add(mntmRestartAll);
 
 		JMenuItem mntmDisconnectAll = new JMenuItem("Disconnect all");
@@ -412,9 +412,9 @@ public class Frame extends BaseFrame {
 				}
 			}
 		});
-		mntmReconnectAll.setIcon(IconUtils.getIcon("refresh-blue"));
+		mntmReconnectAll.setIcon(Resources.getIcon("refresh-blue"));
 		mnServers.add(mntmReconnectAll);
-		mntmDisconnectAll.setIcon(IconUtils.getIcon("delete"));
+		mntmDisconnectAll.setIcon(Resources.getIcon("delete"));
 		mnServers.add(mntmDisconnectAll);
 
 		JMenuItem mntmUninstallAll = new JMenuItem("Uninstall all");
@@ -437,7 +437,7 @@ public class Frame extends BaseFrame {
 				}
 			}
 		});
-		mntmUninstallAll.setIcon(IconUtils.getIcon("exit"));
+		mntmUninstallAll.setIcon(Resources.getIcon("exit"));
 		mnServers.add(mntmUninstallAll);
 		mnServers.addSeparator();
 
@@ -470,7 +470,7 @@ public class Frame extends BaseFrame {
 				JOptionPane.showMessageDialog(null, "Updated on " + clients + " outdated connections");
 			}
 		});
-		mntmUpdateAllOutdated.setIcon(IconUtils.getIcon("update"));
+		mntmUpdateAllOutdated.setIcon(Resources.getIcon("update"));
 		mnServers.add(mntmUpdateAllOutdated);
 
 		JMenu mnAbout = new JMenu("Help");
@@ -508,7 +508,7 @@ public class Frame extends BaseFrame {
 		});
 		mnAbout.add(mntmDebugerrorReportInfo);
 		mnAbout.addSeparator();
-		menuItem.setIcon(IconUtils.getIcon("info"));
+		menuItem.setIcon(Resources.getIcon("info"));
 		mnAbout.add(menuItem);
 
 		tabbedPane = new DraggableTabbedPane(JTabbedPane.TOP);
@@ -528,11 +528,11 @@ public class Frame extends BaseFrame {
 		panelLog = new PanelMainLog();
 
 		updateClientsView(panelClients);
-		tabbedPane.addTab("Statistics", IconUtils.getIcon("statistics"), panelStats);
-		tabbedPane.addTab("Network Usage", IconUtils.getIcon("network"), panelNetwork);
-		tabbedPane.addTab("On Connect", IconUtils.getIcon("schedule"), panelOnConnect);
-		tabbedPane.addTab("Sockets", IconUtils.getIcon("sockets"), panelSockets);
-		tabbedPane.addTab("Log", IconUtils.getIcon("list"), panelLog);
+		tabbedPane.addTab("Statistics", Resources.getIcon("statistics"), panelStats);
+		tabbedPane.addTab("Network Usage", Resources.getIcon("network"), panelNetwork);
+		tabbedPane.addTab("On Connect", Resources.getIcon("schedule"), panelOnConnect);
+		tabbedPane.addTab("Sockets", Resources.getIcon("sockets"), panelSockets);
+		tabbedPane.addTab("Log", Resources.getIcon("list"), panelLog);
 
 		getContentPane().add(tabbedPane);
 	}

@@ -1,6 +1,6 @@
 package jrat.controller.ui.panels;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.Help;
 
 import javax.swing.*;
@@ -46,7 +46,7 @@ public class PanelBuildTimeout extends JPanel {
 				spinner.setValue((new Random()).nextInt(9999));
 			}
 		});
-		btnRandom.setIcon(IconUtils.getIcon("random"));
+		btnRandom.setIcon(Resources.getIcon("random"));
 
 		JLabel lblSetsTheSocket = new JLabel("Sets the socket timeout");
 
@@ -58,7 +58,7 @@ public class PanelBuildTimeout extends JPanel {
 				Help.help("Sets the default socket timeout.");
 			}
 		});
-		btnHelp.setIcon(IconUtils.getIcon("help"));
+		btnHelp.setIcon(Resources.getIcon("help"));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addGap(66).addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addComponent(lblDefaultSeconds).addComponent(lblSetsTheSocket).addGroup(gl_panel.createSequentialGroup().addComponent(lblSeconds).addPreferredGap(ComponentPlacement.RELATED).addComponent(spinner, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnRandom).addGap(6).addComponent(btnHelp)).addComponent(chckbxEnableTimeout)).addContainerGap(96, Short.MAX_VALUE)));
 		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addContainerGap().addComponent(chckbxEnableTimeout).addPreferredGap(ComponentPlacement.RELATED).addComponent(lblSetsTheSocket).addPreferredGap(ComponentPlacement.RELATED).addComponent(lblDefaultSeconds).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addGap(18).addComponent(lblSeconds)).addGroup(gl_panel.createSequentialGroup().addGap(15).addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addComponent(btnHelp).addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(spinner, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(btnRandom))))).addContainerGap(147, Short.MAX_VALUE)));

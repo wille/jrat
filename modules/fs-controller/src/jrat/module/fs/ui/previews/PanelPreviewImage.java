@@ -1,6 +1,6 @@
 package jrat.module.fs.ui.previews;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.api.Resources;
 import jrat.controller.Slave;
 import jrat.controller.ui.panels.PanelImage;
@@ -45,7 +45,7 @@ public class PanelPreviewImage extends PreviewPanel<BufferedImage> {
 				btnReloadImage.setEnabled(false);
 			}
 		});
-		btnReloadImage.setIcon(IconUtils.getIcon("update"));
+		btnReloadImage.setIcon(Resources.getIcon("update"));
 
 		JButton btnSave = new JButton("Save");
 		btnSave.addActionListener(new ActionListener() {
@@ -63,7 +63,7 @@ public class PanelPreviewImage extends PreviewPanel<BufferedImage> {
 				}
 			}
 		});
-		btnSave.setIcon(IconUtils.getIcon("save"));
+		btnSave.setIcon(Resources.getIcon("save"));
 		GroupLayout gl_contentPane = new GroupLayout(this);
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(btnReloadImage).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnSave).addGap(342)).addGroup(gl_contentPane.createSequentialGroup().addComponent(panel, GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE).addContainerGap()));
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup().addComponent(panel, GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(btnReloadImage).addComponent(btnSave)).addGap(10)));

@@ -1,6 +1,6 @@
 package jrat.controller.ui.panels;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.Globals;
 import jrat.controller.ui.renderers.JTreeIconRenderer;
 
@@ -31,7 +31,7 @@ public class PanelBuildClasses extends JPanel {
 				addNodes(this);
 			}
 		}));
-		tree.setCellRenderer(new JTreeIconRenderer(IconUtils.getIcon("class")));
+		tree.setCellRenderer(new JTreeIconRenderer(Resources.getIcon("class")));
 		scrollPane.setViewportView(tree);
 		setLayout(groupLayout);
 

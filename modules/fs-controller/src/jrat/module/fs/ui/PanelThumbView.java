@@ -1,6 +1,6 @@
 package jrat.module.fs.ui;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.Slave;
 import jrat.controller.utils.Utils;
 import jrat.module.fs.packets.PacketRequestImageThumbnail;
@@ -77,7 +77,7 @@ public class PanelThumbView extends JPanel {
 				reload(files);
 			}
 		});
-		mntmReloadAll.setIcon(IconUtils.getIcon("update"));
+		mntmReloadAll.setIcon(Resources.getIcon("update"));
 		popupMenu.add(mntmReloadAll);
 
 		mntmClear = new JMenuItem("Clear");
@@ -91,7 +91,7 @@ public class PanelThumbView extends JPanel {
 				getCount().setText("0/0");
 			}
 		});
-		mntmClear.setIcon(IconUtils.getIcon("clear"));
+		mntmClear.setIcon(Resources.getIcon("clear"));
 		popupMenu.add(mntmClear);
 
 		popupMenu.addSeparator();
@@ -121,7 +121,7 @@ public class PanelThumbView extends JPanel {
 				}
 			}
 		});
-		mntmSaveSelectedx.setIcon(IconUtils.getIcon("images-stack"));
+		mntmSaveSelectedx.setIcon(Resources.getIcon("images-stack"));
 		popupMenu.add(mntmSaveSelectedx);
 	}
 	

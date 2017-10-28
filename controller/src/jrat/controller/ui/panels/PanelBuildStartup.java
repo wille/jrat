@@ -1,6 +1,6 @@
 package jrat.controller.ui.panels;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.common.DropLocations;
 import jrat.controller.Help;
 import jrat.controller.settings.Settings;
@@ -90,14 +90,14 @@ public class PanelBuildStartup extends JPanel {
 				Help.help("Required for installed stub to come back on system reboot");
 			}
 		});
-		button.setIcon(IconUtils.getIcon("help"));
+		button.setIcon(Resources.getIcon("help"));
 
 		chckbxHideInstalledFile = new JCheckBox("Hide installed file");
 		
 		chckbxRunNextStart = new JCheckBox("Run next start");
 		
 		JLabel label = new JLabel("");
-		label.setIcon(IconUtils.getIcon("os_win"));
+		label.setIcon(Resources.getIcon("os_win"));
 		
 		chckbxDisableInstalling = new JCheckBox("Disable installing");
 		chckbxDisableInstalling.setForeground(Color.RED);

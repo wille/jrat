@@ -1,6 +1,6 @@
 package jrat.controller.ui.renderers.table;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.ui.DefaultJTableCellRenderer;
 
 import javax.swing.*;
@@ -21,7 +21,7 @@ public class DrivesTableRenderer extends DefaultJTableCellRenderer {
 			if (drives.containsKey(value.toString())) {
 				icon = drives.get(value.toString());
 			} else {
-				icon = IconUtils.getIcon("drive");
+				icon = Resources.getIcon("drive");
 				drives.put(value.toString(), icon);
 			}
 

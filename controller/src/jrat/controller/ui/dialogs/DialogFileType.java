@@ -22,7 +22,7 @@ public class DialogFileType extends JDialog {
 	public DialogFileType() {
 		setModal(true);
 		setTitle("File type");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(DialogFileType.class.getResource("/icons/application-detail.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DialogFileType.class.getResource("/application-detail.png")));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 340, 182);

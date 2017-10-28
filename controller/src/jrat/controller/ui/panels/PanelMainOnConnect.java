@@ -1,6 +1,6 @@
 package jrat.controller.ui.panels;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.AbstractSlave;
 import jrat.controller.Main;
 import jrat.controller.events.Event;
@@ -31,7 +31,7 @@ public class PanelMainOnConnect extends JPanel {
 			}
 		});
 
-		btnAdd.setIcon(IconUtils.getIcon("calendar-add"));
+		btnAdd.setIcon(Resources.getIcon("calendar-add"));
 
 		final JButton btnDelete = new JButton("Delete");
 		btnDelete.setToolTipText("Delete selected event");
@@ -44,7 +44,7 @@ public class PanelMainOnConnect extends JPanel {
 				}
 			}
 		});
-		btnDelete.setIcon(IconUtils.getIcon("calendar-remove"));
+		btnDelete.setIcon(Resources.getIcon("calendar-remove"));
 
 		JButton btnPerform = new JButton("Perform");
 		btnPerform.setToolTipText("Perform selected event on all connections");
@@ -61,7 +61,7 @@ public class PanelMainOnConnect extends JPanel {
 				}
 			}
 		});
-		btnPerform.setIcon(IconUtils.getIcon("calendar-perform"));
+		btnPerform.setIcon(Resources.getIcon("calendar-perform"));
 
 		JButton btnEdit = new JButton("Edit");
 		btnEdit.setToolTipText("Edit selected event");
@@ -79,7 +79,7 @@ public class PanelMainOnConnect extends JPanel {
 				}
 			}
 		});
-		btnEdit.setIcon(IconUtils.getIcon("calendar-edit"));
+		btnEdit.setIcon(Resources.getIcon("calendar-edit"));
 		
 		table = new DefaultJTable() {
 			@SuppressWarnings({ "unchecked", "rawtypes" })

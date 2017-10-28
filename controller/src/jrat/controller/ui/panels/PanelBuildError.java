@@ -1,6 +1,6 @@
 package jrat.controller.ui.panels;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
@@ -25,7 +25,7 @@ public class PanelBuildError extends JPanel {
 		chckbxEnableErrorLogging = new JCheckBox("Enable error logging");
 
 		JLabel label = new JLabel("");
-		label.setIcon(IconUtils.getIcon("error"));
+		label.setIcon(Resources.getIcon("error"));
 
 		JLabel lblWhenTheServer = new JLabel("When the stub crashes, it will make a error log in log.dat");
 

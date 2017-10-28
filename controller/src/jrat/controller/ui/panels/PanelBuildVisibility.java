@@ -1,6 +1,6 @@
 package jrat.controller.ui.panels;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.Constants;
 import jrat.controller.ErrorDialog;
 import jrat.controller.ui.components.JPlaceholderTextField;
@@ -57,7 +57,7 @@ public class PanelBuildVisibility extends JPanel {
 		chckbxUseTrayIcon.setSelected(true);
 
 		JLabel label = new JLabel("");
-		label.setIcon(IconUtils.getIcon("glasses"));
+		label.setIcon(Resources.getIcon("glasses"));
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(BorderFactory.createLineBorder(Color.gray.brighter()));
@@ -69,7 +69,7 @@ public class PanelBuildVisibility extends JPanel {
 		txtIcon.setColumns(10);
 
 		JButton button = new JButton("");
-		button.setIcon(IconUtils.getIcon("folder-go"));
+		button.setIcon(Resources.getIcon("folder-go"));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JFileChooser c = new JFileChooser();
@@ -93,13 +93,13 @@ public class PanelBuildVisibility extends JPanel {
 		JButton btnDefault = new JButton("Default");
 		btnDefault.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ImageIcon icon = IconUtils.getIcon("icon-16x16");
+				ImageIcon icon = Resources.getIcon("icon-16x16");
 				panelImage.image = icon.getImage();
 				txtIcon.setText("default");
 				repaint();
 			}
 		});
-		btnDefault.setIcon(IconUtils.getIcon("icon-16x16"));
+		btnDefault.setIcon(Resources.getIcon("icon-16x16"));
 
 		JLabel lblMessages = new JLabel("Messages:");
 
@@ -108,7 +108,7 @@ public class PanelBuildVisibility extends JPanel {
 		panel_1.setLayout(new BorderLayout(0, 0));
 
 		panelImage = new PanelImage();
-		panelImage.image = IconUtils.getIcon("icon-16x16").getImage();
+		panelImage.image = Resources.getIcon("icon-16x16").getImage();
 		panel_1.add(panelImage, BorderLayout.CENTER);
 
 		txtDisconnect = new JPlaceholderTextField("You are now disconnected!");

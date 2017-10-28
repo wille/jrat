@@ -1,7 +1,7 @@
 package jrat.controller.ui.panels;
 
 import iconlib.FileIconUtils;
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.common.io.FileCache;
 import jrat.common.io.TransferData;
 import jrat.common.io.TransferData.State;
@@ -75,7 +75,7 @@ public class PanelFileTransfers extends JPanel {
 		JPopupMenu menu = new JPopupMenu();
 		
 		btnPause = new JMenuItem("Pause");
-		btnPause.setIcon(IconUtils.getIcon("pause"));
+		btnPause.setIcon(Resources.getIcon("pause"));
 		btnPause.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -104,7 +104,7 @@ public class PanelFileTransfers extends JPanel {
 		menu.add(btnPause);
 		
 		btnCancel = new JMenuItem("Cancel");
-		btnCancel.setIcon(IconUtils.getIcon("delete"));
+		btnCancel.setIcon(Resources.getIcon("delete"));
 		btnCancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -147,17 +147,17 @@ public class PanelFileTransfers extends JPanel {
 				
 				if (selected.length == 1) {
 					if (selected[0].getState() == State.PAUSED) {
-						btnPause.setIcon(IconUtils.getIcon("start"));
+						btnPause.setIcon(Resources.getIcon("start"));
 						btnPause.setText("Continue");
 					} else {
-						btnPause.setIcon(IconUtils.getIcon("pause"));
+						btnPause.setIcon(Resources.getIcon("pause"));
 						btnPause.setText("Pause");
 					}
 					
 					btnPause.setEnabled(selected[0].getState() != State.COMPLETED && selected[0].getState() != State.ERROR);
 				} else {
 					btnPause.setEnabled(false);
-					btnPause.setIcon(IconUtils.getIcon("pause"));
+					btnPause.setIcon(Resources.getIcon("pause"));
 					btnPause.setText("Pause");
 				}
 			}
@@ -224,14 +224,14 @@ public class PanelFileTransfers extends JPanel {
 			
 			if (column == 1) {
 				if (data.getState() == State.ERROR) {
-					setIcon(IconUtils.getIcon("error"));
+					setIcon(Resources.getIcon("error"));
 					setForeground(Color.red);
 					setText("Terminated");
 				} else if (data.getState() == State.IN_PROGRESS) {
 					if (data.isUpload()) {
-						setIcon(IconUtils.getIcon("arrow-up"));
+						setIcon(Resources.getIcon("arrow-up"));
 					} else {
-						setIcon(IconUtils.getIcon("arrow-down"));
+						setIcon(Resources.getIcon("arrow-down"));
 					}
 					setForeground(Color.black);
 					if (data.isUpload()) {
@@ -240,10 +240,10 @@ public class PanelFileTransfers extends JPanel {
 						setText("Downloading");
 					}
 				} else if (data.getState() == State.PAUSED) {
-					setIcon(IconUtils.getIcon("pause"));
+					setIcon(Resources.getIcon("pause"));
 					setText("Paused");
 				} else if (data.getState() == State.COMPLETED) {
-					setIcon(IconUtils.getIcon("tick"));
+					setIcon(Resources.getIcon("tick"));
 					setForeground(Color.green.darker());
 					setText("Completed");
 				} else if (isSelected) {

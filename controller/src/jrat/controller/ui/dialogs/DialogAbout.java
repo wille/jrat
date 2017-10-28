@@ -47,7 +47,7 @@ public class DialogAbout extends JDialog {
 		setContentPane(contentPane);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(DialogAbout.class.getResource("/icons/icon-128x128.png")));
+		label.setIcon(new ImageIcon(DialogAbout.class.getResource("/icon-128x128.png")));
 		
 		JLabel lblJrat = new JLabel("jRAT");
 		lblJrat.setForeground(Color.GRAY);

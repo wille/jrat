@@ -1,6 +1,6 @@
 package jrat.controller.ui.panels;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
@@ -37,7 +37,7 @@ public class PanelBuildVirtualization extends JPanel {
 		chckbxDisableVm = new JCheckBox("Disable running in virtual machines");
 
 		JLabel label = new JLabel("");
-		label.setIcon(IconUtils.getIcon("virtualization"));
+		label.setIcon(Resources.getIcon("virtualization"));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)

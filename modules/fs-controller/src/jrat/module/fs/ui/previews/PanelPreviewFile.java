@@ -1,6 +1,6 @@
 package jrat.module.fs.ui.previews;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.api.Resources;
 import jrat.controller.Slave;
 import jrat.module.fs.packets.Packet60PreviewFile;
@@ -41,7 +41,7 @@ public class PanelPreviewFile extends PreviewPanel<String> {
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
 		JButton btnReadMore = new JButton("Read more");
-		btnReadMore.setIcon(IconUtils.getIcon("transfer"));
+		btnReadMore.setIcon(Resources.getIcon("transfer"));
 		btnReadMore.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				slave.addToSendQueue(new Packet60PreviewFile(file, line++));
@@ -55,7 +55,7 @@ public class PanelPreviewFile extends PreviewPanel<String> {
 				line = 0;
 			}
 		});
-		btnClearreset.setIcon(IconUtils.getIcon("clear"));
+		btnClearreset.setIcon(Resources.getIcon("clear"));
 		GroupLayout gl_contentPane = new GroupLayout(this);
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE).addGroup(gl_contentPane.createSequentialGroup().addComponent(btnReadMore).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnClearreset))).addGap(1)));
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(btnReadMore).addComponent(btnClearreset)).addGap(4)));

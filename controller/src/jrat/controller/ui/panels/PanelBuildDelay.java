@@ -1,6 +1,6 @@
 package jrat.controller.ui.panels;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.Help;
 
 import javax.swing.*;
@@ -49,7 +49,7 @@ public class PanelBuildDelay extends JPanel {
 				spinner.setValue((new Random()).nextInt(9999));
 			}
 		});
-		btnRandom.setIcon(IconUtils.getIcon("random"));
+		btnRandom.setIcon(Resources.getIcon("random"));
 
 		JButton btnHelp = new JButton("");
 		btnHelp.addActionListener(new ActionListener() {
@@ -57,7 +57,7 @@ public class PanelBuildDelay extends JPanel {
 				Help.help("Selects the second the dropper will wait until it is dropping all files.");
 			}
 		});
-		btnHelp.setIcon(IconUtils.getIcon("help"));
+		btnHelp.setIcon(Resources.getIcon("help"));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addGap(61).addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addComponent(lblSeconds).addPreferredGap(ComponentPlacement.RELATED).addComponent(spinner, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnRandom).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnHelp)).addComponent(lblAndExecutingServer).addComponent(lblWillWaitSelected).addComponent(chckbxEnableDelay)).addContainerGap(112, Short.MAX_VALUE)));
 		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addContainerGap().addComponent(chckbxEnableDelay).addPreferredGap(ComponentPlacement.RELATED).addComponent(lblWillWaitSelected).addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_panel.createParallelGroup(Alignment.TRAILING).addGroup(gl_panel.createSequentialGroup().addComponent(lblAndExecutingServer).addGap(18).addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(lblSeconds).addComponent(spinner, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))).addComponent(btnHelp).addComponent(btnRandom)).addContainerGap(141, Short.MAX_VALUE)));

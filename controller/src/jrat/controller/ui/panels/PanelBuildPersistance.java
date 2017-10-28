@@ -1,6 +1,6 @@
 package jrat.controller.ui.panels;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.Help;
 
 import javax.swing.*;
@@ -47,7 +47,7 @@ public class PanelBuildPersistance extends JPanel {
 				Help.help("The interval in seconds between each startup check");
 			}
 		});
-		button.setIcon(IconUtils.getIcon("help"));
+		button.setIcon(Resources.getIcon("help"));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addGap(47).addComponent(chckbxEnableRegistryPersistance)).addGroup(gl_panel.createSequentialGroup().addContainerGap().addComponent(lblCheckingInterval).addPreferredGap(ComponentPlacement.UNRELATED).addComponent(spinner, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(lblSeconds).addPreferredGap(ComponentPlacement.RELATED).addComponent(button))).addContainerGap(141, Short.MAX_VALUE)));
 		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addGap(8).addComponent(chckbxEnableRegistryPersistance).addGap(18).addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(lblCheckingInterval).addComponent(spinner, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(lblSeconds).addComponent(button)).addContainerGap(86, Short.MAX_VALUE)));

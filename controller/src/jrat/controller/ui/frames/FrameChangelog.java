@@ -1,6 +1,6 @@
 package jrat.controller.ui.frames;
 
-import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.common.Version;
 import jrat.controller.Constants;
 import jrat.controller.ErrorDialog;
@@ -25,7 +25,7 @@ public class FrameChangelog extends BaseFrame {
 
     public FrameChangelog() {
         setResizable(false);
-        setIconImage(IconUtils.getIcon("changelog").getImage());
+        setIconImage(Resources.getIcon("changelog").getImage());
         setTitle("Changelog");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 527, 295);
@@ -46,7 +46,7 @@ public class FrameChangelog extends BaseFrame {
                 }
             }
         });
-        btnDownloadLatestUpdate.setIcon(IconUtils.getIcon("drive-download"));
+        btnDownloadLatestUpdate.setIcon(Resources.getIcon("drive-download"));
 
         JLabel lblYourVersion = new JLabel("Your version: " + Version.getVersion());
 
@@ -57,7 +57,7 @@ public class FrameChangelog extends BaseFrame {
                 dispose();
             }
         });
-        btnClose.setIcon(IconUtils.getIcon("delete"));
+        btnClose.setIcon(Resources.getIcon("delete"));
         GroupLayout gl_contentPane = new GroupLayout(contentPane);
         gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(btnDownloadLatestUpdate).addPreferredGap(ComponentPlacement.RELATED, 304, Short.MAX_VALUE).addComponent(lblYourVersion).addPreferredGap(ComponentPlacement.UNRELATED).addComponent(btnClose)).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE));
         gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 218, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(btnDownloadLatestUpdate).addComponent(btnClose).addComponent(lblYourVersion)).addGap(30)));
