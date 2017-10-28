@@ -14,152 +14,81 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import java.awt.*;
 import java.util.HashMap;
+import java.util.Map;
 
 
 @SuppressWarnings("serial")
 public class FrameBuildAdvanced extends BaseFrame {
 
-	public JTree tree;
-	public HashMap<String, JPanel> panels = new HashMap<String, JPanel>();
-	private JPanel contentPane;
-	private JPanel panel;
+    public enum Category {
+        GENERAL("id"),
+        NETWORK("computer"),
+        STARTUP("update"),
+        NOTICE("messagebox"),
+        MUTEX("mutex"),
+        TIMEOUT("timeout"),
+        DELAY("timer"),
+        TRAY_ICON("glasses"),
+        PERSISTANCE("persistance"),
+        OUTPUT("compile"),
+        VIRTUALIZATION("virtualization"),
+        EXPORT("final");
+
+        private String icon;
+
+        Category(String icon) {
+            this.icon = icon;
+        }
+
+        public ImageIcon getIcon() {
+            return Resources.getIcon(this.icon);
+        }
+    }
+
+    private final Map<Category, JPanel> components = new HashMap<>();
+    private final JTabbedPane tabs;
 
 	public FrameBuildAdvanced() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameBuildAdvanced.class.getResource("/bug-edit.png")));
 		setTitle("Build Stub");
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 680, 360);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
 
-		JTreeIconsRenderer renderer = new JTreeIconsRenderer();
+		setLayout(new BorderLayout(0, 0));
 
-		renderer.getIconMap().put("final", Resources.getIcon("final"));
-		renderer.getIconMap().put("general", Resources.getIcon("id"));
-		renderer.getIconMap().put("network", Resources.getIcon("computer"));
-		renderer.getIconMap().put("startup", Resources.getIcon("update"));
-		renderer.getIconMap().put("install message", Resources.getIcon("messagebox"));
-		renderer.getIconMap().put("binder", Resources.getIcon("merge"));
-		renderer.getIconMap().put("mutex", Resources.getIcon("mutex"));
-		renderer.getIconMap().put("allowed os", Resources.getIcon("toolbox"));
-		renderer.getIconMap().put("timeout", Resources.getIcon("timeout"));
-		renderer.getIconMap().put("delay", Resources.getIcon("timer"));
-		renderer.getIconMap().put("host file", Resources.getIcon("leaf"));
-		renderer.getIconMap().put("tray icon", Resources.getIcon("glasses"));
-		renderer.getIconMap().put("error handling", Resources.getIcon("error"));
-		renderer.getIconMap().put("persistance", Resources.getIcon("persistance"));
-		renderer.getIconMap().put("debug messages", Resources.getIcon("application-detail"));
-		renderer.getIconMap().put("classes", Resources.getIcon("class"));
-		renderer.getIconMap().put("output", Resources.getIcon("compile"));
-		renderer.getIconMap().put("virtualization", Resources.getIcon("virtualization"));
+		tabs = new JTabbedPane();
+		add(tabs, BorderLayout.CENTER);
 
-		panel = new JPanel();
-		panel.setBorder(BorderFactory.createLineBorder(Color.gray.brighter()));
+        addTab(Category.GENERAL, new PanelBuildGeneral());
+        addTab(Category.NETWORK, new PanelBuildNetwork());
+        addTab(Category.STARTUP, new PanelBuildStartup());
+        addTab(Category.NOTICE, new PanelBuildInstallMessage());
+        addTab(Category.MUTEX, new PanelBuildMutex());
+        addTab(Category.TIMEOUT, new PanelBuildTimeout());
+        addTab(Category.DELAY, new PanelBuildDelay());
+        addTab(Category.TRAY_ICON, new PanelBuildVisibility());
+        addTab(Category.PERSISTANCE, new PanelBuildPersistance());
+        addTab(Category.OUTPUT, new PanelBuildOutput());
+        addTab(Category.VIRTUALIZATION, new PanelBuildVirtualization());
+        addTab(Category.EXPORT, new PanelBuildFinal(this));
+    }
 
-		JScrollPane scrollPane = new JScrollPane();
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE))
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
-						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE))
-					.addGap(0))
-		);
+    /**
+     * Adds a new category/tab
+     * @param category
+     * @param panel
+     */
+    private void addTab(Category category, JPanel panel) {
+        this.components.put(category, panel);
+        this.tabs.addTab(category.toString(), category.getIcon(), panel);
+    }
 
-		tree = new JTree();
-		scrollPane.setViewportView(tree);
-		tree.setShowsRootHandles(true);
-		tree.addTreeSelectionListener(new TreeSelectionListener() {
-			public void valueChanged(TreeSelectionEvent arg0) {
-				Object[] name = arg0.getPath().getPath();
-				final JPanel pan = getPanelFromString(name);
-				if (pan != null) {
-					Runnable test = new Runnable() {
-						public void run() {
-							panel.removeAll();
-							panel.add(pan);
-							panel.revalidate();
-							panel.repaint();
-						}
-					};
-					SwingUtilities.invokeLater(test);
-				}
-			}
-		});
-		tree.setModel(new DefaultTreeModel(new DefaultMutableTreeNode("Build Stub\t") {
-			{
-				addNodes(this);
-			}
-		}));
-
-		tree.setRootVisible(false);
-
-		tree.setCellRenderer(renderer);
-		contentPane.setLayout(gl_contentPane);
-
-		loadPanels();
-
-		panel.add(panels.get("general"));
-	}
-
-	public void addNodes(DefaultMutableTreeNode n) {
-		n.add(new DefaultMutableTreeNode("General"));
-		n.add(new DefaultMutableTreeNode("Network"));
-		n.add(new DefaultMutableTreeNode("Startup"));
-		n.add(new DefaultMutableTreeNode("Install Message"));
-		n.add(new DefaultMutableTreeNode("Binder"));
-		n.add(new DefaultMutableTreeNode("Mutex"));
-		n.add(new DefaultMutableTreeNode("Allowed OS"));
-		n.add(new DefaultMutableTreeNode("Timeout"));
-		n.add(new DefaultMutableTreeNode("Delay"));
-		n.add(new DefaultMutableTreeNode("Host File"));
-		n.add(new DefaultMutableTreeNode("Error Handling"));
-		n.add(new DefaultMutableTreeNode("Tray Icon"));
-		n.add(new DefaultMutableTreeNode("Persistance"));
-		n.add(new DefaultMutableTreeNode("Virtualization"));
-		n.add(new DefaultMutableTreeNode("Debug Messages"));
-		n.add(new DefaultMutableTreeNode("Classes"));
-		n.add(new DefaultMutableTreeNode("Output"));
-		n.add(new DefaultMutableTreeNode("Final"));
-	}
-
-	public JPanel getPanelFromString(Object[] obj) {
-		if (obj.length == 2) {
-			String s = obj[1].toString();
-			return panels.get(s.toLowerCase());
-		} else {
-			return null;
-		}
-	}
-
-	public void loadPanels() {
-		panels.clear();
-		panels.put("general", new PanelBuildGeneral());
-		panels.put("network", new PanelBuildNetwork());
-		panels.put("final", new PanelBuildFinal(this));
-		panels.put("startup", new PanelBuildStartup());
-		panels.put("install message", new PanelBuildInstallMessage());
-		panels.put("binder", new PanelBuildBinder());
-		panels.put("mutex", new PanelBuildMutex());
-		panels.put("allowed os", new PanelBuildOS());
-		panels.put("timeout", new PanelBuildTimeout());
-		panels.put("delay", new PanelBuildDelay());
-		panels.put("host file", new PanelBuildHostFile());
-		panels.put("tray icon", new PanelBuildVisibility());
-		panels.put("error handling", new PanelBuildError());
-		panels.put("persistance", new PanelBuildPersistance());
-		panels.put("debug messages", new PanelBuildDebugMessages());
-		panels.put("classes", new PanelBuildClasses());
-		panels.put("output", new PanelBuildOutput());
-		panels.put("virtualization", new PanelBuildVirtualization());
-	}
+    /**
+     * Returns a building panel component
+     * @param category
+     * @return
+     */
+    public JPanel getComponent(Category category) {
+	    return this.components.get(category);
+    }
 }

