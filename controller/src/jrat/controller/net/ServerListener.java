@@ -36,14 +36,9 @@ public class ServerListener extends PortListener implements Runnable {
 				}
 
 				int type = socket.getInputStream().read();
+				assert type == 0;
 
-				AbstractSlave slave;
-
-				if (type < 0 || type > 1) {
-					slave = new Slave(this, socket);
-					Main.instance.getPanelLog().addEntry(LogAction.ERROR, slave, "Invalid connection type, accepting anyways");
-					continue;
-				}
+				new Slave(this, socket);
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
