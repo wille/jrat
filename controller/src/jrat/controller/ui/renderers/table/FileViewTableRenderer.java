@@ -4,7 +4,6 @@ import jrat.api.Resources;
 import jrat.common.utils.DataUnits;
 import jrat.controller.AbstractSlave;
 import jrat.controller.io.FileObject;
-import jrat.controller.settings.StoreFileBookmarks;
 import jrat.controller.ui.DefaultJTableCellRenderer;
 import jrat.controller.utils.Utils;
 
@@ -17,9 +16,7 @@ import java.util.HashMap;
 @SuppressWarnings("serial")
 public class FileViewTableRenderer extends DefaultJTableCellRenderer {
 
-	public static final ImageIcon ICON_BOOKMARK = Resources.getIcon("bookmark");
-
-	public HashMap<String, Icon> icons = new HashMap<String, Icon>();
+	public HashMap<String, Icon> icons = new HashMap<>();
 
 	private final AbstractSlave slave;
 
@@ -46,9 +43,6 @@ public class FileViewTableRenderer extends DefaultJTableCellRenderer {
 
 		if (fo.isHidden()) {
 			label.setForeground(Color.blue);
-		} else if (column == 1 && StoreFileBookmarks.getGlobal().contains(fo.getPath())) {
-			label.setForeground(Color.red);
-			label.setIcon(ICON_BOOKMARK);
 		}
 	
 		String sep = slave == null ? File.separator : slave.getFileSeparator();

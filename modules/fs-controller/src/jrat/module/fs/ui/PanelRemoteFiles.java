@@ -10,7 +10,6 @@ import jrat.controller.Slave;
 import jrat.controller.io.FileObject;
 import jrat.controller.listeners.DirListener;
 import jrat.controller.packets.outgoing.*;
-import jrat.controller.settings.StoreFileBookmarks;
 import jrat.controller.ui.panels.PanelFileTransfers;
 import jrat.controller.utils.Utils;
 import jrat.module.fs.FileSystem;
@@ -188,9 +187,6 @@ public class PanelRemoteFiles extends JPanel {
 	}
 	
 	public class RemoteFileTable extends FileTable {
-		
-		private final JMenuItem mnAdd;
-		private final JMenuItem mnRemove;
 
 		public RemoteFileTable() {
 			super(slave);
@@ -363,53 +359,6 @@ public class PanelRemoteFiles extends JPanel {
 				}
 			});
             popupMenuRemote.add(mntmRename);
-
-			popupMenuRemote.addSeparator();
-
-			JMenu mnBookmarks = new JMenu("Bookmarks");
-			mnBookmarks.setIcon(Resources.getIcon("bookmark-go"));
-			popupMenuRemote.add(mnBookmarks);
-			
-			mnAdd = new JMenuItem("Add");
-			mnAdd.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					StoreFileBookmarks.getGlobal().getBookmarks().add(new File(txtDir.getText()));
-				}
-			});
-			mnAdd.setIcon(Resources.getIcon("bookmark-add"));
-			popupMenuRemote.add(mnAdd);
-			
-			mnRemove = new JMenuItem("Remove");
-			mnRemove.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					StoreFileBookmarks.getGlobal().remove(new File(txtDir.getText()));
-				}
-			});
-			
-			popupMenuRemote.addPopupMenuListener(new PopupMenuListener() {
-				public void popupMenuCanceled(PopupMenuEvent arg0) {
-
-				}
-
-				public void popupMenuWillBecomeInvisible(PopupMenuEvent arg0) {
-
-				}
-
-				public void popupMenuWillBecomeVisible(PopupMenuEvent arg0) {
-					File bm = new File(txtDir.getText());
-
-					if (StoreFileBookmarks.getGlobal().contains(bm)) {
-						mnAdd.setEnabled(false);
-						mnRemove.setEnabled(true);
-					} else {
-						mnAdd.setEnabled(true);
-						mnRemove.setEnabled(false);
-					}
-				}
-			});
-			
-			mnRemove.setIcon(Resources.getIcon("bookmark-remove"));
-			popupMenuRemote.add(mnRemove);
 
 			popupMenuRemote.addSeparator();
 
