@@ -14,7 +14,7 @@ import java.util.HashMap;
 
 @SuppressWarnings("serial")
 public class FileViewTableRenderer extends DefaultJTableCellRenderer {
-    
+
 	private final AbstractSlave slave;
 
 	public FileViewTableRenderer(AbstractSlave slave) {

@@ -17,6 +17,5 @@
     <orderEntry type="library" name="jterminal" level="project" />
     <orderEntry type="library" name="oslib" level="project" />
     <orderEntry type="library" name="pathtree" level="project" />
-    <orderEntry type="library" name="pluginlib" level="project" />
   </component>
 </module>

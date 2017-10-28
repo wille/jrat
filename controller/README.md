@@ -51,8 +51,6 @@ Typed in the terminal
 
 ## Dependencies
 
-- [jrat-api](https://github.com/java-rat/api)
-- [pluginlib](https://github.com/redpois0n/pluginlib)
 - [graphslib](https://github.com/redpois0n/graphslib)
 - [iconlib](https://github.com/redpois0n/iconlib)
 - [oslib](https://github.com/redpois0n/oslib)
