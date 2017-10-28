@@ -37,7 +37,6 @@ public class Frame extends BaseFrame {
 	public static PanelMainClients panelClients;
 	private PanelMainStats panelStats;
 	private PanelMainNetwork panelNetwork;
-	private PanelMainOnConnect panelOnConnect;
 	private PanelMainSockets panelSockets;
 	private PanelMainLog panelLog;
 
@@ -523,14 +522,12 @@ public class Frame extends BaseFrame {
 		panelClients = MainView.get("Table"); // TODO
 		panelStats = new PanelMainStats();
 		panelNetwork = new PanelMainNetwork();
-		panelOnConnect = new PanelMainOnConnect();
 		panelSockets = new PanelMainSockets();
 		panelLog = new PanelMainLog();
 
 		updateClientsView(panelClients);
 		tabbedPane.addTab("Statistics", Resources.getIcon("statistics"), panelStats);
 		tabbedPane.addTab("Network Usage", Resources.getIcon("network"), panelNetwork);
-		tabbedPane.addTab("On Connect", Resources.getIcon("schedule"), panelOnConnect);
 		tabbedPane.addTab("Sockets", Resources.getIcon("sockets"), panelSockets);
 		tabbedPane.addTab("Log", Resources.getIcon("list"), panelLog);
 
@@ -595,10 +592,6 @@ public class Frame extends BaseFrame {
 
 	public PanelMainSockets getPanelSockets() {
 		return panelSockets;
-	}
-
-	public PanelMainOnConnect getPanelOnConnect() {
-		return panelOnConnect;
 	}
 
 	public JTabbedPane getTabbedPane() {
