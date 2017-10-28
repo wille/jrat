@@ -27,7 +27,7 @@ public class FrameRename extends BaseFrame {
 		final AbstractSlave sl = slave;
 		setTitle("Rename");
 		setResizable(false);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRename.class.getResource("/icons/rename.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRename.class.getResource("/rename.png")));
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 293, 126);
 		contentPane = new JPanel();
