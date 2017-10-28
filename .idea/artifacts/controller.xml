@@ -13,7 +13,6 @@
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/jterminal.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/oslib.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/pathtree.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/lib/pluginlib.jar" path-in-jar="/" />
       <element id="module-output" name="controller-api" />
     </root>
   </artifact>
