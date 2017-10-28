@@ -15,7 +15,7 @@ public class Packet62PreviewImage extends AbstractIncomingPacket {
 
 		BufferedImage image = ImageIO.read(new File(file));
 
-		con.addToSendQueue(new Packet43PreviewImage(image));
+		con.addToSendQueue(new Packet43PreviewImage(file, image));
 	}
 
 }

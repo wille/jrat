@@ -8,14 +8,18 @@ import java.awt.image.BufferedImage;
 
 public class Packet43PreviewImage extends AbstractOutgoingPacket {
 
+    private String path;
 	private BufferedImage image;
 
-	public Packet43PreviewImage(BufferedImage image) {
+	public Packet43PreviewImage(String path, BufferedImage image) {
+	    this.path = path;
 		this.image = image;
 	}
 
 	@Override
 	public void write(Connection dos) throws Exception {
+	    dos.writeLine(path);
+
 		byte[] buffer = ImageUtils.encode(image);
 		
 		dos.writeInt(buffer.length);
