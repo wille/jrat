@@ -3,7 +3,7 @@ package jrat.controller.packets.outgoing;
 import jrat.controller.Slave;
 
 
-public class Packet76Speech extends AbstractOutgoingPacket {
+public class Packet76Speech implements OutgoingPacket {
 
 	private String text;
 

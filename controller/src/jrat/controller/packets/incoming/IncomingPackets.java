@@ -9,11 +9,7 @@ import java.util.Set;
 
 public class IncomingPackets {
 
-	private static final Map<Short, Class<? extends AbstractIncomingPacket>> PACKETS_INCOMING = new HashMap<Short, Class<? extends AbstractIncomingPacket>>();
-
-	public static Map<Short, Class<? extends AbstractIncomingPacket>> getIncomingPackets() {
-		return PACKETS_INCOMING;
-	}
+	private static final Map<Short, Class<? extends IncomingPacket>> PACKETS_INCOMING = new HashMap<>();
 
 	static {
 		reload();
@@ -86,7 +82,7 @@ public class IncomingPackets {
      * @param clazz
      * @throws Exception if the header already is registered
      */
-	public static void register(short header, Class<? extends AbstractIncomingPacket> clazz) throws Exception {
+	public static void register(short header, Class<? extends IncomingPacket> clazz) throws Exception {
 		if (PACKETS_INCOMING.containsKey(header)) {
 			throw new Exception("header '" + header + "' already exists");
 		}
@@ -96,7 +92,7 @@ public class IncomingPackets {
 
 	public static boolean execute(short header, Slave slave) {
 		try {
-			AbstractIncomingPacket ac = null;
+			IncomingPacket ac = null;
 			Set<Short> set = PACKETS_INCOMING.keySet();
 
 			for (Short s : set) {

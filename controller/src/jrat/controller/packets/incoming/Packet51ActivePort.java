@@ -5,7 +5,7 @@ import jrat.controller.ui.frames.FrameControlPanel;
 import jrat.controller.ui.panels.PanelControlActivePorts;
 
 
-public class Packet51ActivePort extends AbstractIncomingPacket {
+public class Packet51ActivePort implements IncomingPacket {
 
 	@Override
 	public void read(Slave slave) throws Exception {

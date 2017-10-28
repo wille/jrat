@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.Enumeration;
 
 
-public class Packet82NetworkAdapters extends AbstractIncomingPacket {
+public class Packet82NetworkAdapters implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {

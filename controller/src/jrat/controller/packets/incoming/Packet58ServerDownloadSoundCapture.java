@@ -12,7 +12,7 @@ import javax.sound.sampled.DataLine;
 import javax.sound.sampled.SourceDataLine;
 
 
-public class Packet58ServerDownloadSoundCapture extends AbstractIncomingPacket {
+public class Packet58ServerDownloadSoundCapture implements IncomingPacket {
 
 	private static DataLine.Info info;
 	private static SourceDataLine line;

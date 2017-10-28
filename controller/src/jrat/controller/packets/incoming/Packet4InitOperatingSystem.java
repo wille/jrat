@@ -12,7 +12,7 @@ import oslib.macos.MacOSVersion;
 import oslib.solaris.SolarisOperatingSystem;
 import oslib.windows.WindowsOperatingSystem;
 
-public class Packet4InitOperatingSystem extends AbstractIncomingPacket {
+public class Packet4InitOperatingSystem implements IncomingPacket {
 
 	@Override
 	public void read(Slave slave) throws Exception {

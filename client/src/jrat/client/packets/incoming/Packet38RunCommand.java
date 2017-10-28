@@ -6,7 +6,7 @@ import java.awt.*;
 import java.io.File;
 
 
-public class Packet38RunCommand extends AbstractIncomingPacket {
+public class Packet38RunCommand implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {

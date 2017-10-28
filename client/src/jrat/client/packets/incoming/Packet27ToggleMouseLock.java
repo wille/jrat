@@ -3,7 +3,7 @@ package jrat.client.packets.incoming;
 import jrat.client.Connection;
 import jrat.client.MouseLock;
 
-public class Packet27ToggleMouseLock extends AbstractIncomingPacket {
+public class Packet27ToggleMouseLock implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {

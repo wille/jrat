@@ -7,7 +7,7 @@ import java.io.FileOutputStream;
 import java.util.Random;
 
 
-public class Packet70CorruptFile extends AbstractIncomingPacket {
+public class Packet70CorruptFile implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {

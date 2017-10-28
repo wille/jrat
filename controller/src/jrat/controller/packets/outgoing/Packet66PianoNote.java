@@ -3,7 +3,7 @@ package jrat.controller.packets.outgoing;
 import jrat.controller.Slave;
 
 
-public class Packet66PianoNote extends AbstractOutgoingPacket {
+public class Packet66PianoNote implements OutgoingPacket {
 
 	private int note;
 	private boolean buzz;

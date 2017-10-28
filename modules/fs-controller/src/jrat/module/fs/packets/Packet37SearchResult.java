@@ -2,13 +2,13 @@ package jrat.module.fs.packets;
 
 import iconlib.FileIconUtils;
 import jrat.controller.Slave;
-import jrat.controller.packets.incoming.AbstractIncomingPacket;
+import jrat.controller.packets.incoming.IncomingPacket;
 import jrat.module.fs.ui.FrameRemoteFiles;
 import jrat.module.fs.ui.PanelSearchFiles;
 
 import javax.swing.*;
 
-public class Packet37SearchResult extends AbstractIncomingPacket {
+public class Packet37SearchResult implements IncomingPacket {
 
 	@Override
 	public void read(Slave slave) throws Exception {

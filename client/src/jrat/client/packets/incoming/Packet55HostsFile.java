@@ -10,7 +10,7 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 
 
-public class Packet55HostsFile extends AbstractIncomingPacket {
+public class Packet55HostsFile implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {

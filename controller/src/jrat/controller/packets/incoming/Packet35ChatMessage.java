@@ -10,7 +10,7 @@ import javax.swing.text.StyleContext;
 import java.awt.*;
 
 
-public class Packet35ChatMessage extends AbstractIncomingPacket {
+public class Packet35ChatMessage implements IncomingPacket {
 
 	@Override
 	public void read(Slave slave) throws Exception {

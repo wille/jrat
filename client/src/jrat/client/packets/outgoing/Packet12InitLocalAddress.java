@@ -6,7 +6,7 @@ import oslib.OperatingSystem;
 import java.net.InetAddress;
 
 
-public class Packet12InitLocalAddress extends AbstractOutgoingPacket {
+public class Packet12InitLocalAddress implements OutgoingPacket {
 
 	@Override
 	public void write(Connection con) throws Exception {

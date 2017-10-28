@@ -6,7 +6,7 @@ import java.net.InetAddress;
 import java.util.ArrayList;
 
 
-public class Packet56NetworkAdapter extends AbstractOutgoingPacket {
+public class Packet56NetworkAdapter implements OutgoingPacket {
 
 	private String displayName;
 	private String name;

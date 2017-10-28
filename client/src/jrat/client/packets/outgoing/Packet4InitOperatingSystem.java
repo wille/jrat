@@ -9,7 +9,7 @@ import oslib.bsd.BSDOperatingSystem;
 import oslib.linux.LinuxOperatingSystem;
 import oslib.macos.MacOSOperatingSystem;
 
-public class Packet4InitOperatingSystem extends AbstractOutgoingPacket {
+public class Packet4InitOperatingSystem implements OutgoingPacket {
 
 	@Override
 	public void write(Connection con) throws Exception {

@@ -3,7 +3,7 @@ package jrat.controller.packets.outgoing;
 import jrat.controller.Slave;
 
 
-public class Packet67LongPianoNote extends AbstractOutgoingPacket {
+public class Packet67LongPianoNote implements OutgoingPacket {
 
 	private int note;
 	private int seconds;

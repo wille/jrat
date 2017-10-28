@@ -7,7 +7,7 @@ import oslib.OperatingSystem;
 import java.io.File;
 import java.io.FileWriter;
 
-public class Packet56UpdateHostsFile extends AbstractIncomingPacket {
+public class Packet56UpdateHostsFile implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {

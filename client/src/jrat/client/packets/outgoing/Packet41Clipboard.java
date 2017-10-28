@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
 
 
-public class Packet41Clipboard extends AbstractOutgoingPacket {
+public class Packet41Clipboard implements OutgoingPacket {
 
 	@Override
 	public void write(Connection con) throws Exception {

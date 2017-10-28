@@ -4,7 +4,7 @@ import jrat.controller.Drive;
 import jrat.controller.Slave;
 
 
-public class Packet17InitDrives extends AbstractIncomingPacket {
+public class Packet17InitDrives implements IncomingPacket {
 
 	@Override
 	public void read(Slave slave) throws Exception {

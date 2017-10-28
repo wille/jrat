@@ -1,10 +1,10 @@
 package jrat.module.registry;
 
 import jrat.controller.Slave;
-import jrat.controller.packets.incoming.AbstractIncomingPacket;
+import jrat.controller.packets.incoming.IncomingPacket;
 import jrat.module.registry.ui.PanelRegistry;
 
-public class PacketResult extends AbstractIncomingPacket {
+public class PacketResult implements IncomingPacket {
 
 	@Override
 	public void read(Slave slave) throws Exception {

@@ -5,7 +5,7 @@ import jrat.controller.ui.frames.FrameControlPanel;
 import jrat.controller.ui.panels.PanelControlAdapters;
 
 
-public class Packet56NetworkAdapter extends AbstractIncomingPacket {
+public class Packet56NetworkAdapter implements IncomingPacket {
 
 	@Override
 	public void read(Slave slave) throws Exception {

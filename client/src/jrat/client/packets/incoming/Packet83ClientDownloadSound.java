@@ -8,7 +8,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.SourceDataLine;
 
-public class Packet83ClientDownloadSound extends AbstractIncomingPacket {
+public class Packet83ClientDownloadSound implements IncomingPacket {
 
 	private static DataLine.Info info;
 	private static SourceDataLine line;

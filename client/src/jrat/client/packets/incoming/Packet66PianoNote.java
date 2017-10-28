@@ -8,7 +8,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.SourceDataLine;
 
 
-public class Packet66PianoNote extends AbstractIncomingPacket {
+public class Packet66PianoNote implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {

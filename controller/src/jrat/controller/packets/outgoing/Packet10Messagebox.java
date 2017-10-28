@@ -3,7 +3,7 @@ package jrat.controller.packets.outgoing;
 import jrat.controller.Slave;
 
 
-public class Packet10Messagebox extends AbstractOutgoingPacket {
+public class Packet10Messagebox implements OutgoingPacket {
 
 	private boolean laf;
 	private int icon;

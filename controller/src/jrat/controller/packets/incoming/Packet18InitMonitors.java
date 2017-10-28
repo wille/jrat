@@ -4,7 +4,7 @@ import graphslib.monitors.RemoteMonitor;
 import jrat.controller.Slave;
 
 
-public class Packet18InitMonitors extends AbstractIncomingPacket {
+public class Packet18InitMonitors implements IncomingPacket {
 
 	@Override
 	public void read(Slave slave) throws Exception {

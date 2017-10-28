@@ -5,7 +5,7 @@ import jrat.controller.ui.frames.FrameControlPanel;
 import jrat.controller.ui.panels.PanelControlErrorLog;
 
 
-public class Packet65ErrorLog extends AbstractIncomingPacket {
+public class Packet65ErrorLog implements IncomingPacket {
 
 	@Override
 	public void read(Slave slave) throws Exception {

