@@ -6,7 +6,6 @@ import jrat.controller.AbstractSlave;
 import jrat.controller.LogAction;
 import jrat.controller.Main;
 import jrat.controller.Slave;
-import jrat.controller.android.AndroidSlave;
 import jrat.controller.settings.Settings;
 
 import java.net.Socket;
@@ -39,12 +38,6 @@ public class ServerListener extends PortListener implements Runnable {
 				int type = socket.getInputStream().read();
 
 				AbstractSlave slave;
-
-				if (type == ConnectionCodes.ANDROID_SLAVE) {
-					slave = new AndroidSlave(this, socket);
-				} else if (type == ConnectionCodes.DESKTOP_SLAVE) {
-					slave = new Slave(this, socket);
-				}
 
 				if (type < 0 || type > 1) {
 					slave = new Slave(this, socket);
