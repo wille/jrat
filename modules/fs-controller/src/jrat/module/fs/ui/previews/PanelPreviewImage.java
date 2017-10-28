@@ -20,14 +20,14 @@ import java.io.IOException;
 
 
 @SuppressWarnings("serial")
-public class FramePreviewImage extends FilePreview<BufferedImage> {
+public class PanelPreviewImage extends PreviewPanel<BufferedImage> {
 
 	private String file;
 
 	private PanelImage imagePanel;
 	private JButton btnReloadImage;
 
-	public FramePreviewImage(Slave slave, String f) {
+	public PanelPreviewImage(Slave slave, String f) {
 		super(slave, "Image Preview - " + f, Resources.getIcon("image"));
 		this.file = f;
 		this.slave = slave;

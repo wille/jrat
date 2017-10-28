@@ -4,7 +4,7 @@ import jrat.api.Resources;
 import jrat.api.ui.ClientPanel;
 import jrat.controller.Slave;
 import jrat.controller.ui.panels.PanelFileTransfers;
-import jrat.module.fs.ui.previews.FilePreview;
+import jrat.module.fs.ui.previews.PreviewPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +17,7 @@ public class FrameRemoteFiles extends ClientPanel {
     /**
      * All file previewing handlers
      */
-    private final Map<Object, FilePreview> previewHandlers = new HashMap<>();
+    private final Map<Object, PreviewPanel> previewHandlers = new HashMap<>();
 
     private JTabbedPane tabbedPane;
 	private PanelRemoteFiles remoteFiles;
@@ -48,12 +48,12 @@ public class FrameRemoteFiles extends ClientPanel {
      * @param key
      * @param preview
      */
-	void addPreview(Object key, FilePreview preview) {
+	void addPreview(Object key, PreviewPanel preview) {
 	    previewHandlers.put(key, preview);
 	    tabbedPane.addTab(preview.title, preview.icon, preview);
     }
 
-    public FilePreview getPreviewHandler(Object key) {
+    public PreviewPanel getPreviewHandler(Object key) {
         return previewHandlers.get(key);
     }
 

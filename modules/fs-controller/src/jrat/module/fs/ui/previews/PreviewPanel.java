@@ -5,9 +5,9 @@ import jrat.controller.Slave;
 
 import javax.swing.*;
 
-public abstract class FilePreview<T> extends ClientPanel {
+public abstract class PreviewPanel<T> extends ClientPanel {
 
-    public FilePreview(Slave slave, String title, ImageIcon icon) {
+    public PreviewPanel(Slave slave, String title, ImageIcon icon) {
         super(slave, title, icon);
     }
 

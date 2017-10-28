@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 
 
 @SuppressWarnings("serial")
-public class FramePreviewFile extends FilePreview<String> {
+public class PanelPreviewFile extends PreviewPanel<String> {
 
     /**
      * current line in file we're looking at
@@ -30,8 +30,8 @@ public class FramePreviewFile extends FilePreview<String> {
      * @param s slave
      * @param f remote file
      */
-	public FramePreviewFile(Slave s, String f) {
-		super(s, "FilePreview file - " + f, Resources.getIcon("file"));
+	public PanelPreviewFile(Slave s, String f) {
+		super(s, "PreviewPanel file - " + f, Resources.getIcon("file"));
 
 		this.file = f;
 

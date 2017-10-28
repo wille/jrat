@@ -19,13 +19,13 @@ import java.util.zip.ZipEntry;
 
 
 @SuppressWarnings("serial")
-public class FramePreviewZip extends FilePreview<ZipEntry> {
+public class PanelPreviewArchive extends PreviewPanel<ZipEntry> {
 
 	private JTable table;
 	private TableModel model;
 	private String file;
 
-	public FramePreviewZip(Slave s, String f) {
+	public PanelPreviewArchive(Slave s, String f) {
 		super(s, "Archive Preview - " + f, Resources.getIcon("archive"));
 
 		this.file = f;

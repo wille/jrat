@@ -3,7 +3,7 @@ package jrat.module.fs.packets;
 import jrat.controller.Slave;
 import jrat.controller.packets.incoming.AbstractIncomingPacket;
 import jrat.module.fs.ui.FrameRemoteFiles;
-import jrat.module.fs.ui.previews.FramePreviewZip;
+import jrat.module.fs.ui.previews.PanelPreviewArchive;
 
 import java.util.zip.ZipEntry;
 
@@ -20,7 +20,7 @@ public class Packet45ArchivePreview extends AbstractIncomingPacket {
 
 		if (panel != null) {
 
-			FramePreviewZip preview = (FramePreviewZip) panel.getPreviewHandler(path);
+			PanelPreviewArchive preview = (PanelPreviewArchive) panel.getPreviewHandler(path);
 
             if (preview != null) {
                 ZipEntry zip = new ZipEntry(name);
