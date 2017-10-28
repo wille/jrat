@@ -1,4 +1,4 @@
-package jrat.module.fs.ui;
+package jrat.module.fs.ui.previews;
 
 import iconlib.IconUtils;
 import jrat.api.Resources;
@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 
 
 @SuppressWarnings("serial")
-public class FramePreviewFile extends FilePreview {
+public class FramePreviewFile extends FilePreview<String> {
 
     /**
      * current line in file we're looking at
@@ -67,11 +67,10 @@ public class FramePreviewFile extends FilePreview {
 
     /**
      * Appends text contents of a remote file to the text area
-     * @param content
      */
-	public void addContent(String content) {
+	public void addData(String data) {
         try {
-            textPane.getDocument().insertString(textPane.getDocument().getLength(), content + "\n", null);
+            textPane.getDocument().insertString(textPane.getDocument().getLength(), data + "\n", null);
         } catch (Exception ex) {
             ex.printStackTrace();
         }

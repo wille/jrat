@@ -8,14 +8,17 @@ import jrat.common.io.TransferData;
 import jrat.controller.Drive;
 import jrat.controller.Slave;
 import jrat.controller.io.FileObject;
-import jrat.module.fs.FileSystem;
 import jrat.controller.listeners.DirListener;
 import jrat.controller.packets.outgoing.*;
 import jrat.controller.settings.StoreFileBookmarks;
 import jrat.controller.ui.panels.PanelFileTransfers;
 import jrat.controller.utils.Utils;
+import jrat.module.fs.FileSystem;
 import jrat.module.fs.packets.Packet15ListFiles;
 import jrat.module.fs.packets.Packet47RenameFile;
+import jrat.module.fs.ui.previews.FilePreview;
+import jrat.module.fs.ui.previews.FramePreviewFile;
+import jrat.module.fs.ui.previews.FramePreviewZip;
 import oslib.OperatingSystem;
 
 import javax.swing.*;
@@ -501,7 +504,7 @@ public class PanelRemoteFiles extends JPanel {
                             break;
                         case ".zip":
                         case ".jar":
-                            //preview = new FramePreviewZip(slave, file);
+                            preview = new FramePreviewZip(slave, file);
                             break;
                         default:
                             preview = new FramePreviewFile(slave, file);

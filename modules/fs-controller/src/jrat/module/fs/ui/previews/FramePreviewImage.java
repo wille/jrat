@@ -1,4 +1,4 @@
-package jrat.module.fs.ui;
+package jrat.module.fs.ui.previews;
 
 import iconlib.IconUtils;
 import jrat.controller.Slave;

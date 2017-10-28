@@ -4,6 +4,7 @@ import jrat.api.Resources;
 import jrat.api.ui.ClientPanel;
 import jrat.controller.Slave;
 import jrat.controller.ui.panels.PanelFileTransfers;
+import jrat.module.fs.ui.previews.FilePreview;
 
 import javax.swing.*;
 import java.awt.*;

