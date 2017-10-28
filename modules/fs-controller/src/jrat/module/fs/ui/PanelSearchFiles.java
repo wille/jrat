@@ -26,7 +26,7 @@ public class PanelSearchFiles extends PanelControlParent {
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JTextField txtSearchRoot;
 	private FileSearchTableRenderer renderer;
-	private FrameRemoteFiles parent;
+	private PanelFileSystem parent;
 
 	public TableModel getModel() {
 		return model;
@@ -36,7 +36,7 @@ public class PanelSearchFiles extends PanelControlParent {
 		return renderer;
 	}
 
-	public PanelSearchFiles(Slave slave, FrameRemoteFiles parentFrame) {
+	public PanelSearchFiles(Slave slave, PanelFileSystem parentFrame) {
 		super(slave);
 		this.parent = parentFrame;
 		final Slave sl = slave;
@@ -177,9 +177,9 @@ public class PanelSearchFiles extends PanelControlParent {
 	public void open() {
         int row = table.getSelectedRow();
         if (row != -1) {
-            FrameRemoteFiles frame = (FrameRemoteFiles) slave.getPanel(FrameRemoteFiles.class);
+            PanelFileSystem frame = (PanelFileSystem) slave.getPanel(PanelFileSystem.class);
             if (frame == null) {
-                frame = new FrameRemoteFiles(slave);
+                frame = new PanelFileSystem(slave);
                 frame.displayFrame();
             }
 

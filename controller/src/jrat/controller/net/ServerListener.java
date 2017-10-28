@@ -1,9 +1,6 @@
 package jrat.controller.net;
 
-import jrat.common.ConnectionCodes;
 import jrat.common.Logger;
-import jrat.controller.AbstractSlave;
-import jrat.controller.LogAction;
 import jrat.controller.Main;
 import jrat.controller.Slave;
 import jrat.controller.settings.Settings;

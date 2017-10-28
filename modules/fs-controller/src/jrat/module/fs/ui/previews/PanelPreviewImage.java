@@ -1,7 +1,6 @@
 package jrat.module.fs.ui.previews;
 
 import jrat.api.Resources;
-import jrat.api.Resources;
 import jrat.controller.Slave;
 import jrat.controller.ui.panels.PanelImage;
 import jrat.module.fs.packets.Packet62PreviewImage;

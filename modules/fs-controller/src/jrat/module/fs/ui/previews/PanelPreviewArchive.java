@@ -2,7 +2,6 @@ package jrat.module.fs.ui.previews;
 
 import iconlib.FileIconUtils;
 import jrat.api.Resources;
-import jrat.api.Resources;
 import jrat.common.utils.DataUnits;
 import jrat.controller.Slave;
 import jrat.controller.ui.DefaultJTable;
@@ -11,12 +10,7 @@ import jrat.controller.ui.renderers.table.IconRenderer;
 import jrat.module.fs.packets.Packet63PreviewArchive;
 
 import javax.swing.*;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.zip.ZipEntry;
 
 

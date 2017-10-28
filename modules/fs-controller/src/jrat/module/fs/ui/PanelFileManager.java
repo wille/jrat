@@ -15,14 +15,12 @@ import jrat.controller.utils.Utils;
 import jrat.module.fs.FileSystem;
 import jrat.module.fs.packets.Packet15ListFiles;
 import jrat.module.fs.packets.Packet47RenameFile;
-import jrat.module.fs.ui.previews.PreviewPanel;
-import jrat.module.fs.ui.previews.PanelPreviewFile;
 import jrat.module.fs.ui.previews.PanelPreviewArchive;
+import jrat.module.fs.ui.previews.PanelPreviewFile;
+import jrat.module.fs.ui.previews.PreviewPanel;
 import oslib.OperatingSystem;
 
 import javax.swing.*;
-import javax.swing.event.PopupMenuEvent;
-import javax.swing.event.PopupMenuListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,13 +29,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("serial")
-public class PanelRemoteFiles extends JPanel {
+public class PanelFileManager extends JPanel {
 
 	private final Slave slave;
 	private final RemoteFileTable remoteTable;
-	private final FrameRemoteFiles parent;
+	private final PanelFileSystem parent;
 	
-	public PanelRemoteFiles(Slave slave, FrameRemoteFiles parent) {
+	public PanelFileManager(Slave slave, PanelFileSystem parent) {
 		this.slave = slave;
 		this.parent = parent;
 		

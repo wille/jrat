@@ -1,6 +1,5 @@
 package jrat.controller.ui.renderers.table;
 
-import jrat.api.Resources;
 import jrat.common.utils.DataUnits;
 import jrat.controller.AbstractSlave;
 import jrat.controller.io.FileObject;

