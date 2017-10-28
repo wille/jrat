@@ -7,11 +7,18 @@ import jrat.controller.ui.panels.PanelFileTransfers;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
 
 @SuppressWarnings("serial")
 public class FrameRemoteFiles extends ClientPanel {
-	
-	private JTabbedPane tabbedPane;
+
+    /**
+     * All file previewing handlers
+     */
+    private final Map<Object, FilePreview> previewHandlers = new HashMap<>();
+
+    private JTabbedPane tabbedPane;
 	private PanelRemoteFiles remoteFiles;
 	private PanelSearchFiles searchPanel;
 	private PanelThumbView thumbPanel;
@@ -35,7 +42,21 @@ public class FrameRemoteFiles extends ClientPanel {
 		add(tabbedPane, BorderLayout.CENTER);	
 	}
 
-	public PanelRemoteFiles getFilesPanel() {
+    /**
+     *
+     * @param key
+     * @param preview
+     */
+	void addPreview(Object key, FilePreview preview) {
+	    previewHandlers.put(key, preview);
+	    tabbedPane.addTab(preview.title, preview.icon, preview);
+    }
+
+    public FilePreview getPreviewHandler(Object key) {
+        return previewHandlers.get(key);
+    }
+
+    public PanelRemoteFiles getFilesPanel() {
 		return remoteFiles;
 	}
 

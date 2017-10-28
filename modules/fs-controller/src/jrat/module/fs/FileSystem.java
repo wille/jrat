@@ -1,7 +1,8 @@
-package jrat.controller.io;
+package jrat.module.fs;
 
 import iconlib.FileIconUtils;
-import jrat.controller.ui.components.FileTable;
+import jrat.controller.io.FileObject;
+import jrat.module.fs.ui.FileTable;
 
 import java.io.File;
 import java.util.ArrayList;
