@@ -29,11 +29,11 @@ public class Packet63PreviewArchive extends AbstractIncomingPacket {
 		}
 
 		for (ZipEntry entry : folders) {
-			con.addToSendQueue(new Packet45ArchivePreview(file,true, entry.getName(), 0L));
+			con.addToSendQueue(new Packet45ArchivePreview(file, entry.getName(), 0L));
 		}
 
 		for (ZipEntry entry : files) {
-			con.addToSendQueue(new Packet45ArchivePreview(file, false, entry.getName(), entry.getSize() / 1024L));
+			con.addToSendQueue(new Packet45ArchivePreview(file, entry.getName(), entry.getSize() / 1024L));
 		}
 
 		zip.close();

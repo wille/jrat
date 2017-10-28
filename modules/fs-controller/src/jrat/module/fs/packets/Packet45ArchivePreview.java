@@ -13,7 +13,6 @@ public class Packet45ArchivePreview extends AbstractIncomingPacket {
 	public void read(Slave slave) throws Exception {
 	    String path = slave.readLine(); // path to archive file
 
-		boolean dir = slave.readBoolean();
 		String name = slave.readLine();
 		long size = slave.readLong();
 
