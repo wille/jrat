@@ -16,6 +16,7 @@ public class FileSystemClientModule extends Module {
         IncomingPackets.register((short) 85, Packet85ThumbnailPreview.class);
         IncomingPackets.register((short) 62, Packet62PreviewImage.class);
         IncomingPackets.register((short) 63, Packet63PreviewArchive.class);
+        IncomingPackets.register((short) 41, Packet41SpecialDirectory.class);
 
     }
 }
