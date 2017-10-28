@@ -1,4 +1,4 @@
-package jrat.controller.ui.renderers.table;
+package jrat.module.fs.ui;
 
 import jrat.common.utils.DataUnits;
 import jrat.controller.AbstractSlave;
@@ -14,9 +14,7 @@ import java.util.HashMap;
 
 @SuppressWarnings("serial")
 public class FileViewTableRenderer extends DefaultJTableCellRenderer {
-
-	public HashMap<String, Icon> icons = new HashMap<>();
-
+    
 	private final AbstractSlave slave;
 
 	public FileViewTableRenderer(AbstractSlave slave) {

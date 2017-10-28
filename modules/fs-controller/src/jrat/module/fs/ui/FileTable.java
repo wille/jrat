@@ -6,7 +6,6 @@ import jrat.controller.io.FileObject;
 import jrat.controller.ui.DefaultJTable;
 import jrat.controller.ui.components.TableModel;
 import jrat.controller.ui.renderers.JComboBoxIconRenderer;
-import jrat.controller.ui.renderers.table.FileViewTableRenderer;
 import jrat.controller.utils.Utils;
 
 import javax.swing.*;
