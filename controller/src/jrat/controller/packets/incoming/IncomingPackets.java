@@ -47,7 +47,6 @@ public class IncomingPackets {
 		//32
 		PACKETS_INCOMING.put((short) 32, Packet32SystemProperties.class);
 		PACKETS_INCOMING.put((short) 33, Packet33Thumbnail.class);
-		PACKETS_INCOMING.put((short) 35, Packet35ChatMessage.class);
 		//36
 		PACKETS_INCOMING.put((short) 38, Packet38HostFile.class);
 		PACKETS_INCOMING.put((short) 39, Packet39HostEditResult.class);

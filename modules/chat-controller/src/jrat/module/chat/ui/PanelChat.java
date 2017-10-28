@@ -1,11 +1,10 @@
-package jrat.controller.ui.frames;
+package jrat.module.chat.ui;
 
 import jrat.api.Resources;
+import jrat.api.ui.ClientPanel;
 import jrat.controller.Slave;
-import jrat.controller.packets.outgoing.Packet48ChatStart;
-import jrat.controller.packets.outgoing.Packet49ChatEnd;
-import jrat.controller.packets.outgoing.Packet51ChatMessage;
-import jrat.controller.packets.outgoing.Packet58NudgeChat;
+import jrat.module.chat.PacketChatAction;
+import jrat.module.chat.Type;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
@@ -14,35 +13,23 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 import java.awt.*;
-import java.awt.event.*;
-import java.util.HashMap;
-import java.util.Map;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 @SuppressWarnings("serial")
-public class FrameRemoteChat extends BaseFrame {
+public class PanelChat extends ClientPanel {
 
     public Slave slave;
-	public static final Map<Slave, FrameRemoteChat> instances = new HashMap<>();
 	public JTextField txtMsg;
 	public JTextPane txtChat;
 
-	public FrameRemoteChat(Slave slave) {
-		super(slave);
-		setTitle("Chat - " + "[" + slave.getDisplayName() + "] - " + slave.getIP());
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRemoteChat.class.getResource("/chat.png")));
+	public PanelChat(Slave slave) {
+		super(slave, "Chat", Resources.getIcon("chat"));
 		this.slave = slave;
-		final Slave sl = slave;
-		instances.put(slave, this);
-		addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent arg0) {
-				exit();
-			}
-		});
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
 		setBounds(100, 100, 450, 300);
-        JPanel contentPane = new JPanel();
-		setContentPane(contentPane);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -71,7 +58,7 @@ public class FrameRemoteChat extends BaseFrame {
 		btnNudge.setIcon(Resources.getIcon("nudge"));
 		btnNudge.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				sl.addToSendQueue(new Packet58NudgeChat());
+				send(Type.NUDGE);
 			}
 		});
 		btnSend.addActionListener(new ActionListener() {
@@ -82,20 +69,32 @@ public class FrameRemoteChat extends BaseFrame {
 
 		txtChat = new JTextPane();
 		scrollPane.setViewportView(txtChat);
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		GroupLayout gl_contentPane = new GroupLayout(this);
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 434, GroupLayout.PREFERRED_SIZE).addComponent(toolBar, GroupLayout.PREFERRED_SIZE, 434, GroupLayout.PREFERRED_SIZE));
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 236, GroupLayout.PREFERRED_SIZE).addComponent(toolBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)));
-		contentPane.setLayout(gl_contentPane);
+		setLayout(gl_contentPane);
 
-		slave.addToSendQueue(new Packet48ChatStart());
+		send(Type.START);
 	}
+
+	public void addRemoteMessage(String message) {
+        try {
+            StyleContext sc = StyleContext.getDefaultStyleContext();
+            AttributeSet set = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, Color.red);
+            txtChat.getDocument().insertString(txtChat.getDocument().getLength(), "Remote: " + message + "\n", set);
+            txtChat.setSelectionEnd(txtChat.getText().length());
+            txtChat.setSelectionStart(txtChat.getText().length());
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 
 	public void send() {
 		try {
 			if (txtMsg.getText().length() > 0) {
 				String msg = txtMsg.getText().trim();
 
-				slave.addToSendQueue(new Packet51ChatMessage(msg));
+				send(msg);
 
 				StyleContext sc = StyleContext.getDefaultStyleContext();
 				AttributeSet set = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, Color.blue);
@@ -109,9 +108,17 @@ public class FrameRemoteChat extends BaseFrame {
 		}
 	}
 
-	public void exit() {
-		slave.addToSendQueue(new Packet49ChatEnd());
-		instances.remove(slave);
-		slave = null;
+	private void send(String message) {
+	    slave.addToSendQueue(new PacketChatAction(Type.MESSAGE, message));
+    }
+
+    private void send(Type type) {
+	    slave.addToSendQueue(new PacketChatAction(type));
+    }
+
+	@Override
+	public void dispose() {
+	    super.dispose();
+		send(Type.END);
 	}
 }

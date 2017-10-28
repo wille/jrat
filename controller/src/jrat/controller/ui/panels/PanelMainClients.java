@@ -279,20 +279,6 @@ public abstract class PanelMainClients extends JScrollPane {
 		mntmRemoteCmd.setIcon(Resources.getIcon("terminal"));
 		mnQuickOpen.add(mntmRemoteCmd);
 
-		final JMenuItem mntmRemoteChat = new JMenuItem("Remote Chat");
-		mntmRemoteChat.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				AbstractSlave slave = getSelectedSlave();
-				if (slave != null && slave instanceof Slave) {
-					FrameRemoteChat frame = new FrameRemoteChat((Slave) slave);
-					frame.setVisible(true);
-				}
-			}
-		});
-
-		mntmRemoteChat.setIcon(Resources.getIcon("chat"));
-		mnQuickOpen.add(mntmRemoteChat);
-
 		JMenuItem mntmNotes = new JMenuItem("Notes");
 		mntmNotes.setIcon(Resources.getIcon("notes"));
 		mntmNotes.addActionListener(new ActionListener() {

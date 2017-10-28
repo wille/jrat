@@ -28,7 +28,6 @@ import java.security.PublicKey;
 public class Connection implements Runnable {
 
 	private Socket socket;
-	private FrameChat frameChat;
 
 	private InputStream inputStream;
 	private OutputStream outputStream;
@@ -253,14 +252,6 @@ public class Connection implements Runnable {
 	
 	public DataOutputStream getDataOutputStream() {
 		return dos;
-	}
-	
-	public void setFrameChat(FrameChat frame) {
-		this.frameChat = frame;
-	}
-	
-	public FrameChat getFrameChat() {
-		return this.frameChat;
 	}
 
 	public Socket getSocket() {

