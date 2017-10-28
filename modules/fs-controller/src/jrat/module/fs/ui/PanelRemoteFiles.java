@@ -362,19 +362,7 @@ public class PanelRemoteFiles extends JPanel {
 					}
 				}
 			});
-			popupMenuRemote.add(mntmRename);
-
-			JMenuItem mntmCorrupt = new JMenuItem("Corrupt");
-			mntmCorrupt.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					String file = getTableModel().getValueAt(table.getSelectedRow(), 0).toString();
-					if (file != null) {
-						slave.addToSendQueue(new Packet70CorruptFile(file));
-					}
-				}
-			});
-			mntmCorrupt.setIcon(Resources.getIcon("broken_document"));
-			popupMenuRemote.add(mntmCorrupt);
+            popupMenuRemote.add(mntmRename);
 
 			popupMenuRemote.addSeparator();
 
