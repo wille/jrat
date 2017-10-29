@@ -283,19 +283,6 @@ public abstract class PanelMainClients extends JScrollPane {
 		mntmRemoteCmd.setIcon(Resources.getIcon("terminal"));
 		mnQuickOpen.add(mntmRemoteCmd);
 
-		JMenuItem mntmNotes = new JMenuItem("Notes");
-		mntmNotes.setIcon(Resources.getIcon("notes"));
-		mntmNotes.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				AbstractSlave slave = getSelectedSlave();
-				if (slave != null && slave instanceof Slave) {
-					FrameNotes frame = new FrameNotes((Slave) slave);
-					frame.setVisible(true);
-				}
-			}
-		});
-		mnQuickOpen.add(mntmNotes);
-		
 		JMenu mnTools_1 = new JMenu("Tools");
 		mnTools_1.setIcon(Resources.getIcon("toolbox"));
 		popupMenu.add(mnTools_1);
