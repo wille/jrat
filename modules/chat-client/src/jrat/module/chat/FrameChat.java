@@ -51,6 +51,7 @@ public class FrameChat extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 
 		textField = new JTextField();
+		textField.setEditable(false);
 		textField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent arg0) {

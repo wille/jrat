@@ -73,6 +73,7 @@ public class PanelChat extends ClientPanel {
 		});
 
 		txtChat = new JTextPane();
+		txtChat.setEditable(false);
 		scrollPane.setViewportView(txtChat);
 		GroupLayout gl_contentPane = new GroupLayout(this);
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 434, GroupLayout.PREFERRED_SIZE).addComponent(toolBar, GroupLayout.PREFERRED_SIZE, 434, GroupLayout.PREFERRED_SIZE));
