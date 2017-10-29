@@ -1,5 +1,6 @@
 package jrat.module.chat;
 
+import jrat.api.Resources;
 import jrat.client.Connection;
 import jrat.client.Nudge;
 import jrat.client.packets.outgoing.Packet35ChatMessage;
@@ -37,6 +38,9 @@ public class FrameChat extends JFrame {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
+
+		setIconImage(Resources.getIcon("chat").getImage());
+
 		setAlwaysOnTop(true);
 		setResizable(false);
 		setTitle("Chat");
