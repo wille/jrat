@@ -13,7 +13,7 @@ import java.util.jar.JarInputStream;
 public class InjectorClassloader extends ClassLoader {
 
 	public final HashMap<String, byte[]> classes = new HashMap<String, byte[]>();
-    public final HashMap<String, byte[]> others = new HashMap<String, byte[]>();
+    public static final HashMap<String, byte[]> others = new HashMap<String, byte[]>();
 
 	public InjectorClassloader(ClassLoader parent, JarInputStream stream) {
 		super(parent);
