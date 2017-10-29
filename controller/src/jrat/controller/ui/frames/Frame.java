@@ -84,7 +84,7 @@ public class Frame extends BaseFrame {
 
 		mnMain.addSeparator();
 
-		JMenu mnServerModule = new JMenu("Stub Module");
+		JMenu mnServerModule = new JMenu("Stub ControllerModule");
 		mnServerModule.setIcon(Resources.getIcon("bug"));
 		mnMain.add(mnServerModule);
 		mnMain.addSeparator();

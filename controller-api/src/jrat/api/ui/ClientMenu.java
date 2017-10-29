@@ -15,15 +15,14 @@ public class ClientMenu {
 
     /**
      * Adds an item to the specified category
-     * @param category
-     * @param menuItem
+n     * @param menuItem
      */
-    public static void addItem(Category category, ClientMenuItem menuItem) {
+    public static void addItem(ClientMenuItem menuItem) {
         JMenuItem item = menuItem.getJMenuItem();
 
         JMenu menu = null;
 
-        switch (category) {
+        switch (menuItem.category) {
             case QUICK_OPEN:
                 menu = Frame.panelClients.mnQuickOpen;
                 break;

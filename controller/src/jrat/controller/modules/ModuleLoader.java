@@ -1,6 +1,6 @@
 package jrat.controller.modules;
 
-import jrat.api.Module;
+import jrat.api.ControllerModule;
 import jrat.common.Logger;
 import jrat.common.compress.QuickLZ;
 import jrat.controller.AbstractSlave;
@@ -27,6 +27,8 @@ public class ModuleLoader {
 
         public String pathPrefix;
 
+        private ControllerModule instance;
+
         public ModuleData(String pathPrefix) {
             this.pathPrefix = pathPrefix;
         }
@@ -37,6 +39,14 @@ public class ModuleLoader {
 
         public File getClientFile() {
             return new File("modules", this.pathPrefix + "-client.jar");
+        }
+
+        public ControllerModule getInstance() {
+            return this.instance;
+        }
+
+        public void setInstance(ControllerModule module) {
+            this.instance = module;
         }
     }
 
@@ -71,11 +81,13 @@ public class ModuleLoader {
                 method.invoke(ClassLoader.getSystemClassLoader(), jar.toURI().toURL());
 
                 // invoke init() on module
-                Class<Module> clazz = (Class<Module>) ModuleLoader.class.getClassLoader().loadClass(mainClass);
+                Class<ControllerModule> clazz = (Class<ControllerModule>) ModuleLoader.class.getClassLoader().loadClass(mainClass);
                 Constructor<?> ctor = clazz.getDeclaredConstructor();
                 ctor.setAccessible(true);
-                Module module = (Module) ctor.newInstance();
+                ControllerModule module = (ControllerModule) ctor.newInstance();
                 module.init();
+
+                mod.setInstance(module);
                 Logger.log("\t" + mod.getControllerFile());
             } catch (Exception ex) {
                 Logger.log("\t" + mod.getControllerFile() + " failed");
@@ -137,13 +149,15 @@ public class ModuleLoader {
                 slave.writeBoolean(entry.getName().endsWith(".class"));
                 slave.writeLine(entry.getName());
                 slave.writeInt(array.length);
-                slave.getDataOutputStream().write(array);
+                slave.write(array);
             }
             jis.close();
 
             // indicate that there are no entries left for this module
             slave.writeBoolean(false);
             Logger.log("\ttotal: " + total + " bytes (" + (((float) total / (float) totalUncompressed) * 100f) + "%)");
+
+            slave.loadedModules.add(mod.getInstance());
         }
     }
 }

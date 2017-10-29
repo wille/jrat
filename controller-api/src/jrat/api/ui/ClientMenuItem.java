@@ -14,11 +14,14 @@ import java.util.List;
  */
 public class ClientMenuItem {
 
+    public final ClientMenu.Category category;
+
     private String text;
     private ImageIcon icon;
     private ClientEventListener listener;
 
-    public ClientMenuItem(String name, ImageIcon icon, ClientEventListener listener) {
+    public ClientMenuItem(ClientMenu.Category category, String name, ImageIcon icon, ClientEventListener listener) {
+        this.category = category;
         this.text = name;
         this.icon = icon;
         this.listener = listener;

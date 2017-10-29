@@ -60,9 +60,26 @@ public class PanelMainClientsTable extends PanelMainClients {
 		});
 		
 		resetRowHeight();
-		
-		Utils.addPopup(table, getPopupMenu());
-		
+
+        table.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                if (e.isPopupTrigger()) {
+                    showMenu(e);
+                }
+            }
+
+            public void mouseReleased(MouseEvent e) {
+                if (e.isPopupTrigger()) {
+                    showMenu(e);
+                }
+            }
+
+            private void showMenu(MouseEvent e) {
+                JPopupMenu popup = getPopupMenu();
+                popup.show(e.getComponent(), e.getX(), e.getY());
+            }
+        });
+
 		setViewportView(table);
 	}
 	

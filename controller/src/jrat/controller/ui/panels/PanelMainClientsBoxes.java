@@ -9,10 +9,7 @@ import jrat.controller.utils.Utils;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
+import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,8 +47,26 @@ public class PanelMainClientsBoxes extends PanelMainClients {
 		box.setVisible(true);
 		
 		pane.add(box);
-		
-		Utils.addPopup(box, getPopupMenu());
+
+		// build a new popup menu for this client
+        box.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                if (e.isPopupTrigger()) {
+                    showMenu(e);
+                }
+            }
+
+            public void mouseReleased(MouseEvent e) {
+                if (e.isPopupTrigger()) {
+                    showMenu(e);
+                }
+            }
+
+            private void showMenu(MouseEvent e) {
+                JPopupMenu popup = getPopupMenu();
+                popup.show(e.getComponent(), e.getX(), e.getY());
+            }
+        });
 		
 		align();
 		

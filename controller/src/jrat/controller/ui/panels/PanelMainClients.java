@@ -1,6 +1,9 @@
 package jrat.controller.ui.panels;
 
+import jrat.api.ControllerModule;
 import jrat.api.Resources;
+import jrat.api.ui.ClientMenu;
+import jrat.api.ui.ClientMenuItem;
 import jrat.common.downloadable.Downloadable;
 import jrat.controller.AbstractSlave;
 import jrat.controller.OfflineSlave;
@@ -21,13 +24,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("serial")
 public abstract class PanelMainClients extends JScrollPane {
 
 	public PanelMainClients() {
-		
+
 	}
 	
 	/**
@@ -519,11 +523,11 @@ public abstract class PanelMainClients extends JScrollPane {
 		popupMenu.add(mntmUninstall);
 		
 		popupMenu.addPopupMenuListener(new PopupMenuListener() {
-			public void popupMenuCanceled(PopupMenuEvent arg0) {
+			public void popupMenuCanceled(PopupMenuEvent e) {
 
 			}
 
-			public void popupMenuWillBecomeInvisible(PopupMenuEvent arg0) {
+			public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
 				try {
 					for (int i = 0; i < popupMenu.getComponents().length; i++) {
 						Component child = popupMenu.getComponents()[i];
@@ -541,10 +545,10 @@ public abstract class PanelMainClients extends JScrollPane {
 				}
 			}
 
-			public void popupMenuWillBecomeVisible(PopupMenuEvent arg0) {
-				try {
-					final List<AbstractSlave> list = getSelectedSlaves();
+			public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
+                final List<AbstractSlave> list = getSelectedSlaves();
 
+                try {
 					if (list.size() > 0) {
 						boolean offlineExists = false;
 
@@ -583,6 +587,23 @@ public abstract class PanelMainClients extends JScrollPane {
 				} catch (Exception ex) {
 					ex.printStackTrace();
 				}
+
+				// all items that should be loaded
+                // should be some kind of algo to only view items for all common loaded modules
+				List<ClientMenuItem> items = new ArrayList<>();
+				for (AbstractSlave slave : list) {
+                    for (ControllerModule mod : slave.loadedModules) {
+                        for (ClientMenuItem item : mod.getClientMenuItems()) {
+                            if (!items.contains(item)) {
+                                items.add(item);
+                            }
+                        }
+                    }
+                }
+
+                for (ClientMenuItem item : items) {
+                    ClientMenu.addItem(item);
+                }
 			}
 		});
 
