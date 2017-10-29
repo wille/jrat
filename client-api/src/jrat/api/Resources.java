@@ -1,9 +1,8 @@
 package jrat.api;
 
-import jrat.client.InjectorClassloader;
+import jrat.client.MemoryClassLoader;
 
 import javax.swing.*;
-import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
 public class Resources {
@@ -16,7 +15,7 @@ public class Resources {
     public static ImageIcon getIcon(String name) {
         name = name + ".png";
 
-        byte[] data = InjectorClassloader.others.get(name);
+        byte[] data = MemoryClassLoader.getResourceData(name);
 
         ImageIcon icon = null;
 
@@ -33,6 +32,6 @@ public class Resources {
      * @return
      */
     public static InputStream getInputStream(String name) {
-        return new ByteArrayInputStream(InjectorClassloader.others.get(name));
+        return MemoryClassLoader.getResourceStream(name);
     }
 }

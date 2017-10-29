@@ -59,7 +59,7 @@ public class Injector {
 		
 		ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
 		
-		InjectorClassloader classLoader = new InjectorClassloader(Injector.class.getClassLoader(), new JarInputStream(bais));
+		MemoryClassLoader classLoader = new MemoryClassLoader(Injector.class.getClassLoader(), new JarInputStream(bais));
 	
 		final Class<?> classToLoad = classLoader.loadClass(mainClass);
 		final Method method = classToLoad.getMethod("main", String[].class);
@@ -74,9 +74,5 @@ public class Injector {
 				}
 			}
 		}).start();
-	}
-	
-	public static String getClassName(String fileName) {
-		return fileName.substring(0, fileName.length() - 6).replace('/', '.');
 	}
 }
