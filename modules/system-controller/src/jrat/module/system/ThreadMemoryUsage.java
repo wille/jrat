@@ -1,9 +1,8 @@
-package jrat.controller.threads;
+package jrat.module.system;
 
 import jrat.controller.Slave;
-import jrat.controller.packets.outgoing.Packet33UsedMemory;
 import jrat.controller.ui.frames.FrameControlPanel;
-import jrat.controller.ui.panels.PanelMemoryUsage;
+import jrat.module.system.ui.PanelMemoryUsage;
 
 public class ThreadMemoryUsage extends Thread {
 
@@ -16,11 +15,9 @@ public class ThreadMemoryUsage extends Thread {
 
 	public void run() {
 		while (true) {
-			FrameControlPanel frame = FrameControlPanel.instances.get(slave);
+			PanelMemoryUsage panel = (PanelMemoryUsage) slave.getPanel(PanelMemoryUsage.class);
 			
-			if (frame != null) {
-				PanelMemoryUsage panel = (PanelMemoryUsage) frame.panels.get("memory usage");
-
+			if (panel != null) {
 				if (panel.shouldSend()) {
 					slave.addToSendQueue(new Packet33UsedMemory());
 				} else {

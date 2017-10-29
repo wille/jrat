@@ -1,8 +1,11 @@
-package jrat.controller.ui.panels;
+package jrat.module.system.ui;
 
 import graphslib.smooth.SmoothGraph;
+import jrat.api.Resources;
+import jrat.api.ui.ClientPanel;
 import jrat.controller.Slave;
-import jrat.controller.threads.ThreadMemoryUsage;
+import jrat.controller.ui.panels.PanelControlParent;
+import jrat.module.system.ThreadMemoryUsage;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
@@ -11,14 +14,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 @SuppressWarnings("serial")
-public class PanelMemoryUsage extends PanelControlParent {
+public class PanelMemoryUsage extends ClientPanel {
 
 	private SmoothGraph graph;
     private boolean needRam = false;
 	private JProgressBar progressBar;
 
 	public PanelMemoryUsage(Slave slave) {
-		super(slave);
+		super(slave, "Resources", Resources.getIcon("memory"));
 		final Slave sl = slave;
 
 		graph = new SmoothGraph();

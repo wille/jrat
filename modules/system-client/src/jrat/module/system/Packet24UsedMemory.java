@@ -1,7 +1,8 @@
-package jrat.client.packets.outgoing;
+package jrat.module.system;
 
 import com.sun.management.OperatingSystemMXBean;
 import jrat.client.Connection;
+import jrat.client.packets.outgoing.OutgoingPacket;
 
 import java.lang.management.ManagementFactory;
 

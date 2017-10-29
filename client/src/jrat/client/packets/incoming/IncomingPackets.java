@@ -29,7 +29,6 @@ public class IncomingPackets {
         PACKETS_INCOMING.put((short) 30, Packet30LogoutComputer.class);
         PACKETS_INCOMING.put((short) 31, Packet31ComputerSleep.class);
         PACKETS_INCOMING.put((short) 32, Packet32LockComputer.class);
-        PACKETS_INCOMING.put((short) 33, Packet33UsedMemory.class);
         PACKETS_INCOMING.put((short) 36, Packet36Uninstall.class);
         PACKETS_INCOMING.put((short) 37, Packet37RestartJavaProcess.class);
         PACKETS_INCOMING.put((short) 38, Packet38RunCommand.class);

