@@ -1,7 +1,5 @@
 package jrat.controller.build;
 
-import jrat.common.codec.Base64;
-import jrat.common.codec.Hex;
 import jrat.common.crypto.CryptoUtils;
 import jrat.common.hash.Md5;
 import jrat.common.hash.Sha1;
@@ -9,7 +7,6 @@ import jrat.common.utils.DataUnits;
 import jrat.controller.Constants;
 import jrat.controller.ErrorDialog;
 import jrat.controller.Main;
-import jrat.controller.OSConfig;
 import jrat.controller.listeners.BuildListener;
 import jrat.controller.ui.dialogs.DialogSummary;
 

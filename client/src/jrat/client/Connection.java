@@ -29,10 +29,7 @@ public class Connection implements Runnable {
 
 	private Socket socket;
 
-	private InputStream inputStream;
-	private OutputStream outputStream;
-
-	private DataInputStream dis;
+    private DataInputStream dis;
 	private DataOutputStream dos;
 
 	private float protocolVersion;
@@ -47,8 +44,8 @@ public class Connection implements Runnable {
 
 			socket.setSoTimeout(Configuration.getTimeout());
 
-			this.inputStream = socket.getInputStream();
-			this.outputStream = socket.getOutputStream();
+            InputStream inputStream = socket.getInputStream();
+            OutputStream outputStream = socket.getOutputStream();
 
 			this.dis = new DataInputStream(inputStream);
 			this.dos = new DataOutputStream(outputStream);
@@ -85,8 +82,8 @@ public class Connection implements Runnable {
 			Cipher inCipher = CryptoUtils.getStreamCipher(Cipher.DECRYPT_MODE, secretKey, ivIn);
 			Cipher outCipher = CryptoUtils.getStreamCipher(Cipher.ENCRYPT_MODE, secretKey, ivOut);
 			
-			this.inputStream = new CipherInputStream(socket.getInputStream(), inCipher);
-			this.outputStream = new CipherOutputStream(socket.getOutputStream(), outCipher);
+			inputStream = new CipherInputStream(socket.getInputStream(), inCipher);
+			outputStream = new CipherOutputStream(socket.getOutputStream(), outCipher);
 
 			this.dis = new DataInputStream(inputStream);
 			this.dos = new DataOutputStream(outputStream);

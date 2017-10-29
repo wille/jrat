@@ -27,12 +27,10 @@ public class DialogMonitors extends BaseDialog {
 
 	public static final Map<Slave, DialogMonitors> instances = new HashMap<Slave, DialogMonitors>();
 
-	private JPanel contentPane;
-	private PanelScreenController parent;
+    private PanelScreenController parent;
 	private JComboBox cbMonitors;
 	private JComboBoxIconRenderer renderer;
-	private JPanel panel_1;
-	private JSlider slQuality;
+    private JSlider slQuality;
 	private JSlider sdSize;
 	private JLabel lblResize;
 
@@ -61,14 +59,14 @@ public class DialogMonitors extends BaseDialog {
 		setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 271, 339);
-		contentPane = new JPanel();
+        JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
 		JPanel panel = new JPanel();
 		panel.setBorder(BorderFactory.createTitledBorder("Monitors"));
 
-		panel_1 = new JPanel();
+        JPanel panel_1 = new JPanel();
 		panel_1.setBorder(BorderFactory.createTitledBorder("Other"));
 
 		JButton btnOpen = new JButton("Open");

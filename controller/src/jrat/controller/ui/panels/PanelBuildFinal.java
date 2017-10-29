@@ -4,7 +4,6 @@ import jrat.api.Resources;
 import jrat.common.utils.DataUnits;
 import jrat.controller.ErrorDialog;
 import jrat.controller.Globals;
-import jrat.controller.OSConfig;
 import jrat.controller.ShellcodeGenerator;
 import jrat.controller.build.Build;
 import jrat.controller.build.BuildApp;

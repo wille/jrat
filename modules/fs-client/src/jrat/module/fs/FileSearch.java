@@ -14,14 +14,13 @@ public class FileSearch extends Thread implements FileVisitor<Path> {
 	private Connection con;
 	private String searchRoot;
 	private String name;
-	private boolean dir;
-	private PathMatcher matcher;
+    private PathMatcher matcher;
 
 	public FileSearch(Connection con, String searchRoot, String pattern, boolean dir) {
 		this.con = con;
 		this.searchRoot = searchRoot;
 		this.name = pattern;
-		this.dir = dir;
+        boolean dir1 = dir;
 
 		matcher = FileSystems.getDefault().getPathMatcher("glob:" + pattern);
 	}

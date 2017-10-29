@@ -40,9 +40,7 @@ public class PanelScreenController extends ClientPanel {
 		}
 	};
 
-	private JToolBar toolBarTop;
-	private JToolBar toolBarBottom;
-	private JRemoteScreenPane screenPane;
+    private JRemoteScreenPane screenPane;
 	private JProgressBar progressBar;
 	private JButton btnStart;
 	private JButton btnStop;
@@ -51,11 +49,9 @@ public class PanelScreenController extends ClientPanel {
 	private JLabel lblSize;
 	private JToggleButton tglbtnToggleMouse;
 	private JToggleButton tglbtnToggleMouseLock;
-	private JToggleButton tglbtnToggleKeyboard;
-	private JToggleButton tglbtnToggleMovement;
+    private JToggleButton tglbtnToggleMovement;
 	private JComboBox cbMonitors;
-	private JLabel lblMonitor;
-	private JLabel lblQuality;
+    private JLabel lblQuality;
 	private JSlider sliderQuality;
 	private JLabel lblBlockSize;
 	private JLabel lblChunks;
@@ -66,10 +62,10 @@ public class PanelScreenController extends ClientPanel {
 		slave = sl;
 		threadFps.start();
 
-		toolBarTop = new JToolBar();
+        JToolBar toolBarTop = new JToolBar();
 		toolBarTop.setFloatable(false);
-		
-		toolBarBottom = new JToolBar();
+
+        JToolBar toolBarBottom = new JToolBar();
 		toolBarBottom.setFloatable(false);
 		
 		screenPane = new JRemoteScreenPane();
@@ -131,8 +127,8 @@ public class PanelScreenController extends ClientPanel {
 		progressBar = new JProgressBar();
 		toolBarBottom.add(progressBar);
 		toolBarBottom.addSeparator();
-		
-		lblMonitor = new JLabel("Monitor:  ");
+
+        JLabel lblMonitor = new JLabel("Monitor:  ");
 		lblMonitor.setIcon(Resources.getIcon("monitor"));
 		toolBarBottom.add(lblMonitor);
 		
@@ -242,8 +238,8 @@ public class PanelScreenController extends ClientPanel {
 		toolBarTop.add(tglbtnToggleMouseLock);
 
 		toolBarTop.addSeparator();
-		
-		tglbtnToggleKeyboard = new JToggleButton("");
+
+        JToggleButton tglbtnToggleKeyboard = new JToggleButton("");
 		tglbtnToggleKeyboard.setSelected(true);
 		tglbtnToggleKeyboard.setIcon(Resources.getIcon("keyboard"));
 		toolBarTop.add(tglbtnToggleKeyboard);

@@ -28,12 +28,8 @@ public class PanelThumbView extends JPanel {
 	private JList list;
 	private JLabel lblCount;
 	private JProgressBar progressBar;
-	private JPopupMenu popupMenu;
-	private JMenuItem mntmReloadAll;
-	private JMenuItem mntmSaveSelectedx;
-	private JMenuItem mntmClear;
 
-	public JProgressBar getBar() {
+    public JProgressBar getBar() {
 		return progressBar;
 	}
 
@@ -68,10 +64,10 @@ public class PanelThumbView extends JPanel {
 		bar.add(lblCount);
 		bar.add(progressBar);
 
-		popupMenu = new JPopupMenu();
+        JPopupMenu popupMenu = new JPopupMenu();
 		Utils.addPopup(list, popupMenu);
 
-		mntmReloadAll = new JMenuItem("Reload all");
+        JMenuItem mntmReloadAll = new JMenuItem("Reload all");
 		mntmReloadAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				reload(files);
@@ -80,7 +76,7 @@ public class PanelThumbView extends JPanel {
 		mntmReloadAll.setIcon(Resources.getIcon("update"));
 		popupMenu.add(mntmReloadAll);
 
-		mntmClear = new JMenuItem("Clear");
+        JMenuItem mntmClear = new JMenuItem("Clear");
 		mntmClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				thumbs.clear();
@@ -96,7 +92,7 @@ public class PanelThumbView extends JPanel {
 
 		popupMenu.addSeparator();
 
-		mntmSaveSelectedx = new JMenuItem("Save selected (150x100)");
+        JMenuItem mntmSaveSelectedx = new JMenuItem("Save selected (150x100)");
 		mntmSaveSelectedx.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				List<String> en = (List<String>)list.getSelectedValuesList();

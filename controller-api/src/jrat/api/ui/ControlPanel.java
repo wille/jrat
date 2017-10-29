@@ -1,11 +1,8 @@
 package jrat.api.ui;
 
 import jrat.api.Resources;
-import jrat.api.ui.ControlPanelItem;
 
 import javax.swing.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ControlPanel {
 

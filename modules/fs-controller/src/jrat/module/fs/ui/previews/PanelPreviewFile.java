@@ -22,7 +22,6 @@ public class PanelPreviewFile extends PreviewPanel<String> {
 
     private String file;
 	private JTextPane textPane;
-	private JButton btnClearreset;
 
     /**
      * Component for displaying partial text content of a remote file
@@ -47,7 +46,7 @@ public class PanelPreviewFile extends PreviewPanel<String> {
 			}
 		});
 
-		btnClearreset = new JButton("Clear/Reset");
+        JButton btnClearreset = new JButton("Clear/Reset");
 		btnClearreset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textPane.setText("");

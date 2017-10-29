@@ -22,9 +22,8 @@ public class PanelProcesses extends ClientPanel {
 
 	private JTable table;
 	private TableModel model;
-	private JToolBar toolBar;
 
-	public TableModel getModel() {
+    public TableModel getModel() {
 		return model;
 	}
 
@@ -34,7 +33,7 @@ public class PanelProcesses extends ClientPanel {
 
 		setLayout(new BorderLayout(0, 0));
 
-		toolBar = new JToolBar();
+        JToolBar toolBar = new JToolBar();
 		toolBar.setFloatable(false);
 		add(toolBar, BorderLayout.SOUTH);
 

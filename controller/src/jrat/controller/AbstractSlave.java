@@ -31,7 +31,6 @@ import oslib.OperatingSystem;
 
 import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;
-import javax.naming.ldap.Control;
 import javax.swing.*;
 import java.awt.*;
 import java.io.DataInputStream;

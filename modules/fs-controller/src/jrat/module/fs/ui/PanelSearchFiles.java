@@ -23,8 +23,7 @@ public class PanelSearchFiles extends PanelControlParent {
 
 	private TableModel model;
 	private JTextField txt;
-	private final ButtonGroup buttonGroup = new ButtonGroup();
-	private JTextField txtSearchRoot;
+    private JTextField txtSearchRoot;
 	private FileSearchTableRenderer renderer;
 	private PanelFileSystem parent;
 
@@ -53,7 +52,8 @@ public class PanelSearchFiles extends PanelControlParent {
 
 		JToggleButton tglbtnNameContains = new JToggleButton("Name contains");
 		tglbtnNameContains.setIcon(Resources.getIcon("file"));
-		buttonGroup.add(tglbtnNameContains);
+        ButtonGroup buttonGroup = new ButtonGroup();
+        buttonGroup.add(tglbtnNameContains);
 
 		final JToggleButton tglbtnPathContains = new JToggleButton("Path contains");
 		tglbtnPathContains.setIcon(Resources.getIcon("folder"));

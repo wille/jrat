@@ -4,7 +4,6 @@ import graphslib.smooth.SmoothGraph;
 import jrat.api.Resources;
 import jrat.api.ui.ClientPanel;
 import jrat.controller.Slave;
-import jrat.controller.ui.panels.PanelControlParent;
 import jrat.module.system.ThreadMemoryUsage;
 
 import javax.swing.*;

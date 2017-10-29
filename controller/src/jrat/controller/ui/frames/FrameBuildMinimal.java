@@ -283,11 +283,7 @@ public class FrameBuildMinimal extends BaseFrame {
 		}.start();
 	}
 
-	public void log() {
-
-	}
-
-	public JLabel getStatusLabel() {
+    public JLabel getStatusLabel() {
 		return lblStatus;
 	}
 

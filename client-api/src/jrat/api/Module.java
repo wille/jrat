@@ -2,17 +2,15 @@ package jrat.api;
 
 public abstract class Module {
 
-    /**
-     * The common name of this module
-     */
-    private String name;
-
     public Module() {
 
     }
 
     public Module(String name) {
-        this.name = name;
+        /*
+      The common name of this module
+     */
+        String name1 = name;
     }
 
     public abstract void init() throws Exception;

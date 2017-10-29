@@ -38,12 +38,6 @@ public class PanelRegistry extends ClientPanel {
     private TableModel model;
     private JTable table;
     private JTextField txt;
-    private JPopupMenu popupMenu;
-    private JMenuItem mntmAdd;
-    private JMenuItem mntmDelete;
-    private JMenuItem mntmEditValue;
-    private JMenu mnBrowse;
-    private JMenuItem mntmStartup;
     private RegistryTableRenderer renderer;
     private PathJTree tree;
 
@@ -91,11 +85,11 @@ public class PanelRegistry extends ClientPanel {
         renderer = new RegistryTableRenderer();
         table.setDefaultRenderer(Object.class, renderer);
 
-        popupMenu = new JPopupMenu();
+        JPopupMenu popupMenu = new JPopupMenu();
 
         Utils.addPopup(table, popupMenu);
 
-        mntmAdd = new JMenuItem("Add Value");
+        JMenuItem mntmAdd = new JMenuItem("Add Value");
         mntmAdd.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 addValue();
@@ -104,7 +98,7 @@ public class PanelRegistry extends ClientPanel {
         mntmAdd.setIcon(Resources.getIcon("key-plus"));
         popupMenu.add(mntmAdd);
 
-        mntmDelete = new JMenuItem("Delete Value");
+        JMenuItem mntmDelete = new JMenuItem("Delete Value");
         mntmDelete.setIcon(Resources.getIcon("key-minus"));
         mntmDelete.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
@@ -114,7 +108,7 @@ public class PanelRegistry extends ClientPanel {
         popupMenu.add(mntmDelete);
         popupMenu.addSeparator();
 
-        mntmEditValue = new JMenuItem("Edit Value");
+        JMenuItem mntmEditValue = new JMenuItem("Edit Value");
         mntmEditValue.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 editValue();
@@ -124,11 +118,11 @@ public class PanelRegistry extends ClientPanel {
         popupMenu.add(mntmEditValue);
         popupMenu.addSeparator();
 
-        mnBrowse = new JMenu("Browse");
+        JMenu mnBrowse = new JMenu("Browse");
         mnBrowse.setIcon(Resources.getIcon("bookmark-go"));
         popupMenu.add(mnBrowse);
 
-        mntmStartup = new JMenuItem("Startup");
+        JMenuItem mntmStartup = new JMenuItem("Startup");
         mnBrowse.add(mntmStartup);
         scrollPane.setViewportView(table);
 

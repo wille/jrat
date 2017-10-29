@@ -1,7 +1,6 @@
 package jrat.module.system;
 
 import jrat.controller.Slave;
-import jrat.controller.ui.frames.FrameControlPanel;
 import jrat.module.system.ui.PanelMemoryUsage;
 
 public class ThreadMemoryUsage extends Thread {

@@ -9,7 +9,6 @@ import jrat.controller.utils.Utils;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
-import java.util.HashMap;
 
 
 @SuppressWarnings("serial")

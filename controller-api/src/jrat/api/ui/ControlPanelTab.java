@@ -1,7 +1,6 @@
 package jrat.api.ui;
 
 import jrat.controller.Slave;
-import jrat.controller.ui.panels.PanelControlParent;
 
 import javax.swing.*;
 import java.lang.reflect.Constructor;

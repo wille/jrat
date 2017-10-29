@@ -2,16 +2,8 @@ package jrat.controller.ui.frames;
 
 import jrat.api.Resources;
 import jrat.controller.ui.panels.*;
-import jrat.controller.ui.renderers.JTreeIconsRenderer;
 
 import javax.swing.*;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.border.EmptyBorder;
-import javax.swing.event.TreeSelectionEvent;
-import javax.swing.event.TreeSelectionListener;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;

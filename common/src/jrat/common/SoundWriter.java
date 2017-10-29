@@ -10,9 +10,8 @@ public abstract class SoundWriter implements Runnable {
 	public static SoundWriter instance;
 
 	protected int quality;
-	
-	private DataLine.Info info;
-	private TargetDataLine line;
+
+    private TargetDataLine line;
 	private AudioFormat format;
 	private boolean running;
 
@@ -28,7 +27,7 @@ public abstract class SoundWriter implements Runnable {
 		}
 		
 		running = true;
-		info = new DataLine.Info(TargetDataLine.class, format);
+        DataLine.Info info = new DataLine.Info(TargetDataLine.class, format);
 		line = (TargetDataLine) AudioSystem.getLine(info);
 		line.open();
 		line.start();

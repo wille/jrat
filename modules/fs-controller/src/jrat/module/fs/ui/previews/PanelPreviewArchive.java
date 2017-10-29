@@ -17,8 +17,7 @@ import java.util.zip.ZipEntry;
 @SuppressWarnings("serial")
 public class PanelPreviewArchive extends PreviewPanel<ZipEntry> {
 
-	private JTable table;
-	private TableModel model;
+    private TableModel model;
 	private String file;
 
 	private IconRenderer renderer = new IconRenderer();
@@ -33,7 +32,7 @@ public class PanelPreviewArchive extends PreviewPanel<ZipEntry> {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
-		table = new DefaultJTable();
+        JTable table = new DefaultJTable();
 		table.setModel(model = new TableModel(new Object[][] {}, new String[] { "File name", "Size" }) {
 			public boolean isCellEditable(int row, int column) {
 				return false;
