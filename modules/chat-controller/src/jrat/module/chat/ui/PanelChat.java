@@ -21,9 +21,14 @@ import java.awt.event.KeyEvent;
 @SuppressWarnings("serial")
 public class PanelChat extends ClientPanel {
 
-    public Slave slave;
-	public JTextField txtMsg;
-	public JTextPane txtChat;
+    private Slave slave;
+	private JTextField txtMsg;
+	private JTextPane txtChat;
+
+    /**
+     * Set once first message from controller is sent
+     */
+	private boolean started = false;
 
 	public PanelChat(Slave slave) {
 		super(slave, "Chat", Resources.getIcon("chat"));
@@ -73,9 +78,7 @@ public class PanelChat extends ClientPanel {
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 434, GroupLayout.PREFERRED_SIZE).addComponent(toolBar, GroupLayout.PREFERRED_SIZE, 434, GroupLayout.PREFERRED_SIZE));
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 236, GroupLayout.PREFERRED_SIZE).addComponent(toolBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)));
 		setLayout(gl_contentPane);
-
-		send(Type.START);
-	}
+    }
 
 	public void addRemoteMessage(String message) {
         try {
@@ -89,7 +92,12 @@ public class PanelChat extends ClientPanel {
         }
     }
 
-	public void send() {
+	private void send() {
+	    if (!started) {
+	        started = true;
+	        send(Type.START);
+        }
+
 		try {
 			if (txtMsg.getText().length() > 0) {
 				String msg = txtMsg.getText().trim();
