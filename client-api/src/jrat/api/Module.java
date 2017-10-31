@@ -2,20 +2,10 @@ package jrat.api;
 
 public abstract class Module {
 
-    public Module() {
-
-    }
-
-    public Module(String name) {
-        /*
-      The common name of this module
+    /**
+     * Called when the module is first initialized.
+     * If an exception is thrown, the module will be considered disabled.
+     * @throws Exception
      */
-        String name1 = name;
-    }
-
     public abstract void init() throws Exception;
-
-    public String getName() {
-        return this.getName();
-    }
 }
