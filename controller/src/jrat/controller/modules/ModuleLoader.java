@@ -59,6 +59,7 @@ public class ModuleLoader {
         modules.add(new ModuleData("fs"));
         modules.add(new ModuleData("chat"));
         modules.add(new ModuleData("system"));
+        modules.add(new ModuleData("keys"));
     }
 
     /**

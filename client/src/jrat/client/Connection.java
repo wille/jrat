@@ -107,6 +107,7 @@ public class Connection implements Runnable {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			throw new RuntimeException(ex);
 		}
 	}
 
