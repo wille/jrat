@@ -12,6 +12,7 @@ import jrat.common.crypto.CryptoUtils;
 import jrat.common.crypto.ObfuscatedStreamKeyExchanger;
 import jrat.common.crypto.StreamKeyExchanger;
 import jrat.common.io.StringWriter;
+import jrat.common.listeners.ConnectionListener;
 
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
@@ -24,13 +25,16 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.security.PublicKey;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Connection implements Runnable {
 
 	private Socket socket;
-
     private DataInputStream dis;
 	private DataOutputStream dos;
+
+	private final List<ConnectionListener> connectionListeners = new ArrayList<>();
 
 	private float protocolVersion;
 
@@ -107,7 +111,10 @@ public class Connection implements Runnable {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			throw new RuntimeException(ex);
+
+			for (ConnectionListener listener : connectionListeners) {
+			    listener.onDisconnect(ex);
+            }
 		}
 	}
 
@@ -264,4 +271,12 @@ public class Connection implements Runnable {
 			}
 		};
 	}
+
+	public void addConnectionListener(ConnectionListener listener) {
+	    connectionListeners.add(listener);
+    }
+
+    public void removeConnectionListener(ConnectionListener listener) {
+	    connectionListeners.remove(listener);
+    }
 }
