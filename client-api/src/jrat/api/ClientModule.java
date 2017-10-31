@@ -1,6 +1,6 @@
 package jrat.api;
 
-public abstract class Module {
+public abstract class ClientModule {
 
     /**
      * Called when the module is first initialized.

