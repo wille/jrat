@@ -13,14 +13,11 @@ public class FileSearch extends Thread implements FileVisitor<Path> {
 
 	private Connection con;
 	private String searchRoot;
-	private String name;
     private PathMatcher matcher;
 
 	public FileSearch(Connection con, String searchRoot, String pattern, boolean dir) {
 		this.con = con;
 		this.searchRoot = searchRoot;
-		this.name = pattern;
-        boolean dir1 = dir;
 
 		matcher = FileSystems.getDefault().getPathMatcher("glob:" + pattern);
 	}
@@ -28,13 +25,13 @@ public class FileSearch extends Thread implements FileVisitor<Path> {
 	public void run() {
 		running = true;
 		try {
-			search(name);
+			search();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 	}
 
-	public void search(String dir) throws Exception {
+	public void search() throws Exception {
 		Path path = FileSystems.getDefault().getPath(searchRoot);
 
 		Files.walkFileTree(path, this);
