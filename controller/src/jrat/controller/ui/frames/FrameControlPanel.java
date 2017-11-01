@@ -3,8 +3,7 @@ package jrat.controller.ui.frames;
 import jrat.api.ClientEventListener;
 import jrat.api.ui.*;
 import jrat.controller.Slave;
-import jrat.controller.ui.components.DisabledDefaultMutableTreeNode;
-import jrat.controller.ui.renderers.ControlPanelTreeRenderer;
+import jrat.controller.ui.renderers.DefaultJTreeCellRenderer;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
@@ -28,6 +27,7 @@ public class FrameControlPanel extends BaseFrame implements TreeSelectionListene
      * Contains the category treenodes
      */
     private Map<ControlPanel.Category, DefaultMutableTreeNode> categoryNodes = new HashMap<>();
+    private Map<String, ClientPanel> panelInstances = new HashMap<>();
 
     /**
      * All control panel items from modules sent to client
@@ -42,10 +42,6 @@ public class FrameControlPanel extends BaseFrame implements TreeSelectionListene
 	private JTabbedPane tabbedPane;
 
 	private ControlPanelTreeRenderer treeRenderer;
-
-	public JTabbedPane getTabbedPane() {
-		return tabbedPane;
-	}
 
 	public JTree getTree() {
 		return tree;
@@ -108,7 +104,9 @@ public class FrameControlPanel extends BaseFrame implements TreeSelectionListene
 
         for (ControlPanelItem item : loadedItems) {
             if (item.category.text.equals(currentLabel) && item instanceof ControlPanelTab) {
-                tabbedPane.addTab(item.text, item.icon, ((ControlPanelTab) item).createPanel(slave));
+                ClientPanel panel = ((ControlPanelTab) item).createPanel(slave);
+                panelInstances.put(item.text, panel);
+                tabbedPane.addTab(item.text, item.icon, panel);
             }
         }
 	}
@@ -123,35 +121,32 @@ public class FrameControlPanel extends BaseFrame implements TreeSelectionListene
 
 	        // if not category node has been created, create it and add it to the parent
             if (!categoryNodes.containsKey(item.category)) {
-                categoryNodes.put(item.category, getTreeNode(item.category.text));
+                categoryNodes.put(item.category, new CategoryTreeNode(item.category));
                 n.add(categoryNodes.get(item.category));
-
-                treeRenderer.icons.put(item.category.text, item.category.icon);
             }
 
             parent = categoryNodes.get(item.category);
-            parent.add(getTreeNode(item.text));
-
-            treeRenderer.icons.put(item.text, item.icon);
+            parent.add(getTreeNode(item));
         }
 	}
 
     public void valueChanged(TreeSelectionEvent e) {
         try {
             addTabs(e.getPath().getPath()[1].toString());
-            String what = e.getPath().getPath()[2].toString();
 
-            //boolean disabled = e.getPath().getLastPathComponent() instanceof DisabledDefaultMutableTreeNode;
+            Object clicked = e.getPath().getLastPathComponent();
 
-            for (ControlPanelItem item : loadedItems) {
-                if (item.text.equals(what)) {
-                    if (item instanceof ControlPanelTab) {
-                        JPanel p = ((ControlPanelTab) item).createPanel(slave);
-                        tabbedPane.setSelectedComponent(p);
-                    } else if (item instanceof ControlPanelAction) {
-                        ClientEventListener listener = (ClientEventListener) item.item;
-                        listener.emit(getSlave());
-                    }
+            if (clicked instanceof ControlPanelTreeNode) {
+                ControlPanelTreeNode node = (ControlPanelTreeNode) clicked;
+
+                if (node.item instanceof ControlPanelTab) {
+                    ClientPanel p = panelInstances.get(node.item.text);
+                    tabbedPane.setSelectedComponent(p);
+
+                    p.opened();
+                } else if (node.item instanceof ControlPanelAction) {
+                    ClientEventListener listener = (ClientEventListener) node.item.item;
+                    listener.emit(getSlave());
                 }
             }
         } catch (Exception ex) {
@@ -159,15 +154,15 @@ public class FrameControlPanel extends BaseFrame implements TreeSelectionListene
         }
     }
 	
-	private DefaultMutableTreeNode getTreeNode(String s) {
-		return getTreeNode(s, true);
+	private DefaultMutableTreeNode getTreeNode(ControlPanelItem item) {
+		return getTreeNode(item, true);
 	}
 	
-	private DefaultMutableTreeNode getTreeNode(String s, boolean enabled) {
+	private DefaultMutableTreeNode getTreeNode(ControlPanelItem item, boolean enabled) {
 		if (enabled) {
-			return new DefaultMutableTreeNode(s);
+			return new ControlPanelTreeNode(item);
 		} else {
-			return new DisabledDefaultMutableTreeNode(s);
+			return null; //new DisabledDefaultMutableTreeNode(s);
 		}
 	}
 
@@ -191,5 +186,65 @@ public class FrameControlPanel extends BaseFrame implements TreeSelectionListene
 	    super.windowClosing(e);
 
 	    clearPanels();
+    }
+
+    private class ControlPanelTreeNode extends DefaultMutableTreeNode {
+
+        private ControlPanelItem item;
+
+        public ControlPanelTreeNode(ControlPanelItem item) {
+            super(item);
+
+            this.item = item;
+        }
+
+        public String toString() {
+            return this.item.text;
+        }
+    }
+
+    private class CategoryTreeNode extends DefaultMutableTreeNode {
+
+        private ControlPanel.Category category;
+
+        public CategoryTreeNode(ControlPanel.Category category) {
+            super(category);
+
+            this.category = category;
+        }
+
+        public String toString() {
+            return this.category.text;
+        }
+    }
+
+    private class ControlPanelTreeRenderer extends DefaultJTreeCellRenderer {
+
+	    private Font defaultFont;
+	    private Font bold;
+
+        public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf, int row, boolean hasFocus) {
+            JLabel label = (JLabel) super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
+
+            if (defaultFont == null) {
+                defaultFont = super.getFont();
+                bold = new Font(defaultFont.getName(), Font.BOLD, defaultFont.getSize());
+            }
+
+            if (value instanceof ControlPanelTreeNode) {
+                ControlPanelTreeNode node = (ControlPanelTreeNode) value;
+
+                label.setIcon(node.item.icon);
+
+                label.setFont(defaultFont);
+            } else if (value instanceof CategoryTreeNode) {
+                CategoryTreeNode node = (CategoryTreeNode) value;
+                label.setIcon(node.category.icon);
+
+                label.setFont(bold);
+            }
+
+            return label;
+        }
     }
 }
