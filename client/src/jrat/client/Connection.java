@@ -92,8 +92,6 @@ public class Connection implements Runnable {
 			this.dis = new DataInputStream(inputStream);
 			this.dos = new DataOutputStream(outputStream);
 
-            ModuleLoader.read(this);
-
 			initialize();
 
 			status(Constants.STATUS_READY);
@@ -122,7 +120,9 @@ public class Connection implements Runnable {
 		addToSendQueue(new Packet1InitHandshake());	
 		refreshInit();		
 		addToSendQueue(new Packet3Initialized());
-	}
+
+        ModuleLoader.read(this);
+    }
 	
 	public void refreshInit() {
 		addToSendQueue(new Packet4InitOperatingSystem());
