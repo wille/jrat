@@ -75,9 +75,8 @@ public class PanelProcesses extends ClientPanel {
 		JButton btnRefresh = new JButton("Refresh");
 		toolBar.add(btnRefresh);
 		btnRefresh.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				clear();
-				sl.addToSendQueue(new PacketQueryProcesses());
+			public void actionPerformed(ActionEvent e) {
+			    reload();
 			}
 		});
 		btnRefresh.setIcon(Resources.getIcon("update"));
@@ -100,6 +99,15 @@ public class PanelProcesses extends ClientPanel {
 
 		add(scrollPane, BorderLayout.CENTER);
 	}
+
+	public void opened() {
+        reload();
+    }
+
+	private void reload() {
+        clear();
+        slave.addToSendQueue(new PacketQueryProcesses());
+    }
 
 	private void clear() {
         while (model.getRowCount() > 0) {
