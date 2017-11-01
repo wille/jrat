@@ -12,7 +12,6 @@ import java.util.Map;
 
 public class FlagUtils {
 
-	public static final HashMap<String, ImageIcon> FLAGS = new HashMap<>();
 	public static final Map<String, String> COUNTRIES = new HashMap<>();
 
 	private static IP2Country ip2c;
@@ -204,8 +203,6 @@ public class FlagUtils {
 		COUNTRIES.put("RO", "Romania");
 		COUNTRIES.put("RU", "Russian Federation");
 		COUNTRIES.put("RW", "Rwanda");
-		COUNTRIES.put("RE", "R�union");
-		COUNTRIES.put("BL", "Saint Barth�lemy");
 		COUNTRIES.put("SH", "Saint Helena, Ascension and Tristan Da Cunha");
 		COUNTRIES.put("KN", "Saint Kitts And Nevis");
 		COUNTRIES.put("LC", "Saint Lucia");
@@ -269,7 +266,6 @@ public class FlagUtils {
 		COUNTRIES.put("YE", "Yemen");
 		COUNTRIES.put("ZM", "Zambia");
 		COUNTRIES.put("ZW", "Zimbabwe");
-		COUNTRIES.put("AX", "�land Islands");
 	}
 
 	public static String getStringFromIso2(String iso2) {
@@ -280,16 +276,6 @@ public class FlagUtils {
 		}
 
 		return country;
-	}
-
-	public static String getIso2FromString(String str) {
-		for (String key : COUNTRIES.keySet()) {
-			if (COUNTRIES.get(key).equalsIgnoreCase(str)) {
-				return key.toLowerCase();
-			}
-		}
-
-		return str;
 	}
 
 	public static Country getCountry(AbstractSlave abstractSlave) {
