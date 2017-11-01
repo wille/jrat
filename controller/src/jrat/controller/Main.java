@@ -146,7 +146,7 @@ public class Main {
 		new ThreadTransferSpeed().start();
 		new ThreadSaveCycle().start();
 
-        ModuleLoader.load();
+        ModuleLoader.loadAll();
 
 		Logger.log("Loading tray icon...");
 		TrayIconUtils.initialize();

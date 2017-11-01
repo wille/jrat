@@ -319,7 +319,7 @@ public abstract class AbstractSlave implements Runnable {
 		this.dis = new DataInputStream(new CipherInputStream(new CountingInputStream(inputStream), inCipher));
 		this.dos = new DataOutputStream(new CipherOutputStream(new CountingOutputStream(outputStream), outCipher));
 
-        ModuleLoader.send(this);
+        ModuleLoader.sendAll(this);
 	}
 	
 	public void update() {
