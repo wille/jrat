@@ -24,8 +24,18 @@ public abstract class ClientPanel extends JPanel {
         this.icon = icon;
     }
 
+    /**
+     * Called when the panel is not used anymore or the frame is manually closed
+     */
     public void dispose() {
         this.slave.removePanel(this.getClass());
+    }
+
+    /**
+     * Called when the panel is shown or the frame is opened
+     */
+    public void opened() {
+
     }
 
     /**
@@ -35,6 +45,7 @@ public abstract class ClientPanel extends JPanel {
         Frame frame = new Frame(this);
         frame.setBounds(0, 0, 500, 300);
         frame.setVisible(true);
+        this.opened();
 
         return frame;
     }
