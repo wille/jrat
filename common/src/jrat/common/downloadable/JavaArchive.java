@@ -23,7 +23,7 @@ public class JavaArchive extends Downloadable {
 		if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.WINDOWS) {
 			Runtime.getRuntime().exec(new String[] { javaHome + "\\bin\\javaw.exe", "-jar", file.getAbsolutePath() });
 		} else {
-			Runtime.getRuntime().exec(new String[] { "java", "-jar", file.getAbsolutePath() });
+			Runtime.getRuntime().exec(new String[] { javaHome + "/java", "-jar", file.getAbsolutePath() });
 		}
 	}
 
