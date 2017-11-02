@@ -63,11 +63,6 @@ public class Configuration {
 	 */
 	private static String name;
 	
-	/**
-	 * Prevent all possible debug messages from reaching stdout
-	 */
-	private static boolean debugMessages = true;
-	
 	public static Map<String, String> getConfig() throws Exception {
 		if (config != null) {
 			return config;
@@ -135,7 +130,6 @@ public class Configuration {
 		pass = config.get("pass");
 		connectionDelay = Long.parseLong(config.get("reconsec"));
 		name = config.get("name");
-		debugMessages = Boolean.parseBoolean(config.get("debugmsg"));
 
 		return config;
 	}
@@ -193,9 +187,5 @@ public class Configuration {
 	
 	public static String getInstallationDate() {
 		return installationDate;
-	}
-
-	public static boolean showDebugMessages() {
-		return debugMessages;
 	}
 }

@@ -30,10 +30,6 @@ public class Main {
 	}
 
 	public static String debug(Object s) {
-		if (!Configuration.showDebugMessages()) {
-			return null;
-		}
-		
 		if (s == null) {
 			s = "null";
 		}
