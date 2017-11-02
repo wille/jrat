@@ -18,7 +18,6 @@ public class FrameBuildAdvanced extends BaseFrame {
         STARTUP("Installation", "update"),
         NOTICE("Message", "messagebox"),
         MUTEX("Mutex", "mutex"),
-        TIMEOUT("Timeout", "timeout"),
         DELAY("Delay", "timer"),
         TRAY_ICON("Tray Icon", "glasses"),
         PERSISTANCE("Persistance", "persistance"),
@@ -59,7 +58,6 @@ public class FrameBuildAdvanced extends BaseFrame {
         addTab(Category.STARTUP, new PanelBuildStartup());
         addTab(Category.NOTICE, new PanelBuildInstallMessage());
         addTab(Category.MUTEX, new PanelBuildMutex());
-        addTab(Category.TIMEOUT, new PanelBuildTimeout());
         addTab(Category.DELAY, new PanelBuildDelay());
         addTab(Category.TRAY_ICON, new PanelBuildVisibility());
         addTab(Category.PERSISTANCE, new PanelBuildPersistance());

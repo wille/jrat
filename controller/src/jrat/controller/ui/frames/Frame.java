@@ -2,7 +2,6 @@ package jrat.controller.ui.frames;
 
 import jrat.api.Resources;
 import jrat.common.Version;
-import jrat.common.utils.DataUnits;
 import jrat.common.utils.IOUtils;
 import jrat.controller.*;
 import jrat.controller.packets.outgoing.*;

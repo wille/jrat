@@ -62,11 +62,6 @@ public class Configuration {
 	 * File working name
 	 */
 	private static String name;
-
-	/**
-	 * Socket timeout
-	 */
-	private static int timeout = 15000;
 	
 	/**
 	 * Prevent all possible debug messages from reaching stdout
@@ -142,10 +137,6 @@ public class Configuration {
 		name = config.get("name");
 		debugMessages = Boolean.parseBoolean(config.get("debugmsg"));
 
-		if (Boolean.parseBoolean(config.get("timeout"))) {
-			timeout = Integer.parseInt(config.get("toms"));
-		}
-
 		return config;
 	}
 	
@@ -207,9 +198,4 @@ public class Configuration {
 	public static boolean showDebugMessages() {
 		return debugMessages;
 	}
-	
-	public static int getTimeout() {
-		return timeout;
-	}
-
 }
