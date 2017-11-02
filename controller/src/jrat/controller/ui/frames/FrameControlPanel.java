@@ -9,6 +9,8 @@ import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -21,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 @SuppressWarnings("serial")
-public class FrameControlPanel extends BaseFrame implements TreeSelectionListener {
+public class FrameControlPanel extends BaseFrame implements TreeSelectionListener, ChangeListener {
 
     /**
      * Contains the category treenodes
@@ -91,8 +93,14 @@ public class FrameControlPanel extends BaseFrame implements TreeSelectionListene
 
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		panel.add(tabbedPane, BorderLayout.CENTER);
+		tabbedPane.addChangeListener(this);
 
-		addTabs("System");
+        for (ControlPanelItem item : loadedItems) {
+            ClientPanel cp = ((ControlPanelTab) item).createPanel(slave);
+            panelInstances.put(item.text, cp);
+        }
+
+        addTabs("System");
 	}
 
     /**
@@ -104,9 +112,7 @@ public class FrameControlPanel extends BaseFrame implements TreeSelectionListene
 
         for (ControlPanelItem item : loadedItems) {
             if (item.category.text.equals(currentLabel) && item instanceof ControlPanelTab) {
-                ClientPanel panel = ((ControlPanelTab) item).createPanel(slave);
-                panelInstances.put(item.text, panel);
-                tabbedPane.addTab(item.text, item.icon, panel);
+                tabbedPane.addTab(item.text, item.icon, panelInstances.get(item.text));
             }
         }
 	}
@@ -170,15 +176,12 @@ public class FrameControlPanel extends BaseFrame implements TreeSelectionListene
      * Removes all tabs and disposes the client panels
      */
 	private void clearPanels() {
-	    for (Component c : tabbedPane.getComponents()) {
-	        if (c instanceof ClientPanel) {
-	            ClientPanel panel = (ClientPanel) c;
-
-	            panel.dispose();
-            }
-        }
-
         tabbedPane.removeAll();
+    }
+
+    public void stateChanged(ChangeEvent event) {
+	    ClientPanel panel = (ClientPanel) tabbedPane.getSelectedComponent();
+	    panel.opened();
     }
 
 	@Override
@@ -186,6 +189,14 @@ public class FrameControlPanel extends BaseFrame implements TreeSelectionListene
 	    super.windowClosing(e);
 
 	    clearPanels();
+
+        for (Component c : tabbedPane.getComponents()) {
+            if (c instanceof ClientPanel) {
+                ClientPanel panel = (ClientPanel) c;
+
+                panel.dispose();
+            }
+        }
     }
 
     private class ControlPanelTreeNode extends DefaultMutableTreeNode {
