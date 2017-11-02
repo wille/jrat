@@ -13,7 +13,10 @@ import jrat.controller.packets.outgoing.*;
 import jrat.controller.settings.StoreOfflineSlaves;
 import jrat.controller.threads.ThreadUploadFile;
 import jrat.controller.ui.dialogs.DialogFileType;
-import jrat.controller.ui.frames.*;
+import jrat.controller.ui.frames.FrameControlPanel;
+import jrat.controller.ui.frames.FrameRemoteShell;
+import jrat.controller.ui.frames.FrameRename;
+import jrat.controller.ui.frames.FrameSystemInfo;
 import jrat.controller.utils.NetUtils;
 import jrat.controller.utils.Utils;
 

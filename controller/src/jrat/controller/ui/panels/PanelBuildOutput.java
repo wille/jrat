@@ -1,7 +1,6 @@
 package jrat.controller.ui.panels;
 
 import jrat.controller.Help;
-import jrat.controller.ShellcodeGenerator;
 import jrat.controller.ui.frames.FrameAppInfo;
 import jrat.controller.ui.frames.FrameExecutableInfo;
 
@@ -17,98 +16,23 @@ public class PanelBuildOutput extends JPanel {
 	public FrameExecutableInfo frameExecutableInfo = new FrameExecutableInfo();
 	public FrameAppInfo frameAppInfo = new FrameAppInfo();
 
-    private JRadioButton rdbtnShellcode;
-    private JRadioButton rdbtnCcArray;
-	private JRadioButton rdbtnPythonArray;
-	private JRadioButton rdbtnDelphiArray;
-	private JRadioButton rdbtnJavaArray;
-	private JRadioButton rdbtnCArray;
 	private JRadioButton rdbtnexenetExecutable;
     private JRadioButton rdbtnapposX;
-
-	public boolean useShellcode() {
-		return rdbtnShellcode.isSelected();
-	}
 
 	public boolean useExe() {
 		return rdbtnexenetExecutable.isSelected();
 	}
 
-	public int getShellcode() {
-		if (!useShellcode()) {
-			return -1;
-		}
-		if (rdbtnCcArray.isSelected()) {
-			return ShellcodeGenerator.CCPP;
-		} else if (rdbtnPythonArray.isSelected()) {
-			return ShellcodeGenerator.PYTHON;
-		} else if (rdbtnDelphiArray.isSelected()) {
-			return ShellcodeGenerator.DELPHI;
-		} else if (rdbtnJavaArray.isSelected()) {
-			return ShellcodeGenerator.JAVA;
-		} else if (rdbtnCArray.isSelected()) {
-			return ShellcodeGenerator.CSHARP;
-		} else {
-			return -1;
-		}
-	}
-	
 	public boolean useApp() {
 		return rdbtnapposX.isSelected();
 	}
 	
 	public PanelBuildOutput() {
         JRadioButton rdbtnjarjavaArchive = new JRadioButton(".jar (Java Archive)");
-		rdbtnjarjavaArchive.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				JRadioButton btn = (JRadioButton) arg0.getSource();
-				boolean b = !btn.isSelected();
-				rdbtnCcArray.setEnabled(b);
-				rdbtnPythonArray.setEnabled(b);
-				rdbtnDelphiArray.setEnabled(b);
-				rdbtnJavaArray.setEnabled(b);
-				rdbtnCArray.setEnabled(b);
-			}
-		});
+
         ButtonGroup buttonGroup = new ButtonGroup();
         buttonGroup.add(rdbtnjarjavaArchive);
 		rdbtnjarjavaArchive.setSelected(true);
-
-		rdbtnShellcode = new JRadioButton("Shellcode");
-		rdbtnShellcode.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				JRadioButton btn = (JRadioButton) arg0.getSource();
-				boolean b = btn.isSelected();
-				rdbtnCcArray.setEnabled(b);
-				rdbtnPythonArray.setEnabled(b);
-				rdbtnDelphiArray.setEnabled(b);
-				rdbtnJavaArray.setEnabled(b);
-				rdbtnCArray.setEnabled(b);
-			}
-		});
-		buttonGroup.add(rdbtnShellcode);
-
-		rdbtnCcArray = new JRadioButton("C/C++ Array");
-		rdbtnCcArray.setEnabled(false);
-        ButtonGroup buttonGroup_1 = new ButtonGroup();
-        buttonGroup_1.add(rdbtnCcArray);
-
-		rdbtnPythonArray = new JRadioButton("Python Array");
-		rdbtnPythonArray.setEnabled(false);
-		buttonGroup_1.add(rdbtnPythonArray);
-
-		rdbtnJavaArray = new JRadioButton("Java Array");
-		rdbtnJavaArray.setEnabled(false);
-		rdbtnJavaArray.setSelected(true);
-		buttonGroup_1.add(rdbtnJavaArray);
-
-		rdbtnDelphiArray = new JRadioButton("Delphi Array");
-		rdbtnDelphiArray.setEnabled(false);
-		buttonGroup_1.add(rdbtnDelphiArray);
-
-		rdbtnCArray = new JRadioButton("C# Array");
-		rdbtnCArray.setEnabled(false);
-		buttonGroup_1.add(rdbtnCArray);
 
         JButton btnAssemblyInfo = new JButton("Assembly Info");
 		btnAssemblyInfo.addActionListener(new ActionListener() {
@@ -138,72 +62,38 @@ public class PanelBuildOutput extends JPanel {
 		});
 		
 		
-		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(58)
-							.addComponent(rdbtnCcArray))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(58)
-							.addComponent(rdbtnJavaArray))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(58)
-							.addComponent(rdbtnDelphiArray))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(58)
-							.addComponent(rdbtnCArray))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(58)
-							.addComponent(rdbtnPythonArray))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(37)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(rdbtnShellcode)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(rdbtnexenetExecutable)
-										.addComponent(rdbtnjarjavaArchive)
-										.addComponent(rdbtnapposX, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE))
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-										.addComponent(btnProperties, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(btnAssemblyInfo, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(button)))))
-					.addContainerGap(126, Short.MAX_VALUE))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(34)
-					.addComponent(rdbtnjarjavaArchive)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(rdbtnexenetExecutable)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-							.addComponent(btnAssemblyInfo)
-							.addComponent(button)))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(rdbtnapposX)
-						.addComponent(btnProperties))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(rdbtnShellcode)
-					.addGap(3)
-					.addComponent(rdbtnCcArray)
-					.addGap(3)
-					.addComponent(rdbtnPythonArray)
-					.addGap(3)
-					.addComponent(rdbtnJavaArray)
-					.addGap(3)
-					.addComponent(rdbtnDelphiArray)
-					.addGap(3)
-					.addComponent(rdbtnCArray))
-		);
-		setLayout(groupLayout);
+        GroupLayout groupLayout = new GroupLayout(this);
+        groupLayout.setHorizontalGroup(
+                groupLayout.createParallelGroup(Alignment.LEADING)
 
-	}
+                        .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+                                .addGroup(groupLayout.createSequentialGroup()
+                                        .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+                                                .addComponent(rdbtnexenetExecutable)
+                                                .addComponent(rdbtnjarjavaArchive)
+                                                .addComponent(rdbtnapposX, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(ComponentPlacement.RELATED)
+                                        .addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+                                                .addComponent(btnProperties, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(btnAssemblyInfo, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addPreferredGap(ComponentPlacement.RELATED)
+                                        .addComponent(button))));
+        groupLayout.setVerticalGroup(
+                groupLayout.createParallelGroup(Alignment.LEADING)
+                        .addGroup(groupLayout.createSequentialGroup()
+                                .addGap(34)
+                                .addComponent(rdbtnjarjavaArchive)
+                                .addPreferredGap(ComponentPlacement.RELATED)
+                                .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+                                        .addComponent(rdbtnexenetExecutable)
+                                        .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+                                                .addComponent(btnAssemblyInfo)
+                                                .addComponent(button)))
+                                .addPreferredGap(ComponentPlacement.RELATED)
+                                .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+                                        .addComponent(rdbtnapposX)
+                                        .addComponent(btnProperties))));
+        setLayout(groupLayout);
+
+    }
 }

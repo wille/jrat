@@ -16,7 +16,6 @@ import jrat.controller.io.CountingInputStream;
 import jrat.controller.io.CountingOutputStream;
 import jrat.controller.ip2c.Country;
 import jrat.controller.ip2c.IP2Country;
-import jrat.controller.modules.ModuleLoader;
 import jrat.controller.net.ConnectionHandler;
 import jrat.controller.net.ServerListener;
 import jrat.controller.settings.Settings;

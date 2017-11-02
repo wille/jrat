@@ -4,7 +4,6 @@ import jrat.api.Resources;
 import jrat.common.utils.DataUnits;
 import jrat.controller.ErrorDialog;
 import jrat.controller.Globals;
-import jrat.controller.ShellcodeGenerator;
 import jrat.controller.build.Build;
 import jrat.controller.build.BuildApp;
 import jrat.controller.build.BuildExecutable;
@@ -192,17 +191,7 @@ public class PanelBuildFinal extends JPanel {
 						throw new IOException("Invalid output file");
 					}
 
-					if (out.useShellcode()) {
-						File temp = File.createTempFile("jratbuild", ".jar");
-						Build.build(new AdvancedBuildListener(frame), Globals.getStub(), temp, addresses, ID, pass, dontInstall, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, runNextBoot, hiddenFile, usemutex, mutexport, timeout, timeoutms, delay, delayms, trayicon, icon, traymsg, traymsgfail, traytitle, persistance, persistancems, true, antivm);
-
-						if (!file.endsWith(".jar")) {
-							file = file + ".jar";
-						}
-
-						ShellcodeGenerator.generate(temp, new File(file), out.getShellcode(), "byteArray");
-						temp.delete();
-					} else if (out.useExe()) {
+					if (out.useExe()) {
 						File temp = File.createTempFile("jratbuild", ".jar");
 
 						Build.build(new AdvancedBuildListener(frame), Globals.getStub(), temp, addresses, ID, pass, dontInstall, droppath, reconSec, name, fakewindow, faketitle, fakemessage, fakeicon, melt, runNextBoot, hiddenFile, usemutex, mutexport, timeout, timeoutms, delay, delayms, trayicon, icon, traymsg, traymsgfail, traytitle, persistance, persistancems, true, antivm);

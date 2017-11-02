@@ -1,22 +1,10 @@
 package jrat.controller.modules;
 
-import jrat.api.ControllerModule;
 import jrat.common.Logger;
-import jrat.common.compress.QuickLZ;
 import jrat.controller.AbstractSlave;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Method;
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.jar.JarEntry;
-import java.util.jar.JarInputStream;
-import java.util.jar.Manifest;
 
 public class ModuleLoader {
 
