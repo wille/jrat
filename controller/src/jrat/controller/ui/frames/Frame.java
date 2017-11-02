@@ -201,18 +201,6 @@ public class Frame extends BaseFrame {
 		JMenu mnTools = new JMenu("Tools");
 		menuBar.add(mnTools);
 
-		JMenuItem mntmGarbageCollector = new JMenuItem("Garbage Collector");
-		mntmGarbageCollector.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				long start = Runtime.getRuntime().freeMemory();
-				System.gc();
-				long end = Runtime.getRuntime().freeMemory();
-				long result = end - start;
-				String r = DataUnits.getAsString(result);
-				JOptionPane.showMessageDialog(null, "Saved " + r + "  memory", "Garbage Collector", JOptionPane.INFORMATION_MESSAGE);
-			}
-		});
-
 		JMenu mnLook = new JMenu("Look");
 		mnLook.setIcon(Resources.getIcon("gui"));
 		mnTools.add(mnLook);
@@ -293,8 +281,6 @@ public class Frame extends BaseFrame {
 				}
 			}
 		});
-		mntmGarbageCollector.setIcon(Resources.getIcon("garbage"));
-		mnTools.add(mntmGarbageCollector);
 
 		JMenu mnServers = new JMenu("Clients");
 		menuBar.add(mnServers);
