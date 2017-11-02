@@ -6,7 +6,6 @@ import jrat.api.ui.ClientPanel;
 import jrat.controller.Slave;
 import jrat.controller.ui.DefaultJTable;
 import jrat.controller.ui.components.TableModel;
-import jrat.controller.ui.dialogs.DialogCustomRegQuery;
 import jrat.controller.utils.Utils;
 import jrat.module.registry.PacketAdd;
 import jrat.module.registry.PacketDelete;
@@ -195,15 +194,6 @@ public class PanelRegistry extends ClientPanel {
         });
         btnEdit.setIcon(Resources.getIcon("key-pencil"));
 
-        JButton btnCustomCommand = new JButton("Custom");
-        btnCustomCommand.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                DialogCustomRegQuery frame = new DialogCustomRegQuery(slave);
-                frame.setVisible(true);
-            }
-        });
-        btnCustomCommand.setIcon(Resources.getIcon("key-arrow"));
-        toolBar.add(btnCustomCommand);
         add(toolBar, BorderLayout.NORTH);
 
         tree.expandRow(0);
