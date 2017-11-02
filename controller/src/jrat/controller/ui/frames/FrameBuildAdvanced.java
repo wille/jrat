@@ -13,22 +13,25 @@ import java.util.Map;
 public class FrameBuildAdvanced extends BaseFrame {
 
     public enum Category {
-        GENERAL("id"),
-        NETWORK("computer"),
-        STARTUP("update"),
-        NOTICE("messagebox"),
-        MUTEX("mutex"),
-        TIMEOUT("timeout"),
-        DELAY("timer"),
-        TRAY_ICON("glasses"),
-        PERSISTANCE("persistance"),
-        OUTPUT("compile"),
-        VIRTUALIZATION("virtualization"),
-        EXPORT("final");
+        GENERAL("General", "id"),
+        NETWORK("Network", "computer"),
+        STARTUP("Installation", "update"),
+        NOTICE("Message", "messagebox"),
+        MUTEX("Mutex", "mutex"),
+        TIMEOUT("Timeout", "timeout"),
+        DELAY("Delay", "timer"),
+        TRAY_ICON("Tray Icon", "glasses"),
+        PERSISTANCE("Persistance", "persistance"),
+        OUTPUT("File", "compile"),
+        VIRTUALIZATION("Virtualization", "virtualization"),
+        EXPORT("Export", "final");
+
+        public final String text;
 
         private String icon;
 
-        Category(String icon) {
+        Category(String text, String icon) {
+            this.text = text;
             this.icon = icon;
         }
 
@@ -72,7 +75,7 @@ public class FrameBuildAdvanced extends BaseFrame {
      */
     private void addTab(Category category, JPanel panel) {
         this.components.put(category, panel);
-        this.tabs.addTab(category.toString(), category.getIcon(), panel);
+        this.tabs.addTab(category.text, category.getIcon(), panel);
     }
 
     /**
