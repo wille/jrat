@@ -19,10 +19,6 @@ public class IncomingPackets {
         PACKETS_INCOMING.put((short) 17, Packet17DownloadExecute.class);
         PACKETS_INCOMING.put((short) 18, Packet18Update.class);
         PACKETS_INCOMING.put((short) 21, Packet21ClientUploadFile.class);
-        PACKETS_INCOMING.put((short) 22, Packet22RemoteShellTyped.class);
-        PACKETS_INCOMING.put((short) 23, Packet23RemoteShellStart.class);
-        PACKETS_INCOMING.put((short) 24, Packet24RemoteShellStop.class);
-        PACKETS_INCOMING.put((short) 25, Packet25RemoteShellExecute.class);
         PACKETS_INCOMING.put((short) 27, Packet27ToggleMouseLock.class);
         PACKETS_INCOMING.put((short) 28, Packet28ShutdownComputer.class);
         PACKETS_INCOMING.put((short) 29, Packet29RestartComputer.class);

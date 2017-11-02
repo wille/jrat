@@ -1,6 +1,7 @@
-package jrat.client.packets.outgoing;
+package jrat.module.shell.packets;
 
 import jrat.client.Connection;
+import jrat.client.packets.outgoing.OutgoingPacket;
 
 
 public class Packet21RemoteShell implements OutgoingPacket {

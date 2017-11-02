@@ -1,7 +1,8 @@
-package jrat.client.packets.incoming;
+package jrat.module.shell.packets;
 
 import jrat.client.Connection;
-import jrat.client.RemoteShell;
+import jrat.module.shell.RemoteShell;
+import jrat.client.packets.incoming.IncomingPacket;
 
 import java.io.PrintWriter;
 

