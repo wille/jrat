@@ -2,7 +2,6 @@ package jrat.controller.ui.frames;
 
 import jrat.api.Resources;
 import jrat.common.Version;
-import jrat.common.utils.IOUtils;
 import jrat.controller.*;
 import jrat.controller.packets.outgoing.*;
 import jrat.controller.settings.StoreOfflineSlaves;
@@ -20,9 +19,6 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.util.List;
 
 @SuppressWarnings("serial")
@@ -106,36 +102,6 @@ public class Frame extends BaseFrame {
 		});
 		mntmAdvancedBuild.setIcon(Resources.getIcon("info-button"));
 		mnServerModule.add(mntmAdvancedBuild);
-
-		JMenu mnKeys = new JMenu("Keys");
-		mnMain.add(mnKeys);
-
-		JMenuItem mntmImportKey = new JMenuItem("Import key");
-		mnKeys.add(mntmImportKey);
-		mntmImportKey.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				JFileChooser chooser = new JFileChooser();
-				chooser.showOpenDialog(null);
-
-				File file = chooser.getSelectedFile();
-
-				if (file != null) {
-					try {
-						FileInputStream fis = new FileInputStream(file);
-						FileOutputStream fos = new FileOutputStream(new File(Globals.getFileDirectory(), "jrat.key"));
-						IOUtils.copy(fis, fos);
-						fis.close();
-						fos.close();
-
-						JOptionPane.showMessageDialog(null, "Imported key, please restart", "Import key", JOptionPane.WARNING_MESSAGE);
-					} catch (Exception ex) {
-						ex.printStackTrace();
-						ErrorDialog.create(ex);
-					}
-				}
-			}
-		});
-		mntmImportKey.setIcon(Resources.getIcon("key-arrow"));
 
 		JMenuItem mntmHelp = new JMenuItem("Help");
 		mntmHelp.setIcon(Resources.getIcon("info-button"));
