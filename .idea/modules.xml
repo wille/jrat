@@ -19,6 +19,8 @@
       <module fileurl="file://$PROJECT_DIR$/modules/registry-controller/registry-controller.iml" filepath="$PROJECT_DIR$/modules/registry-controller/registry-controller.iml" group="modules" />
       <module fileurl="file://$PROJECT_DIR$/modules/screen-client/screen-client.iml" filepath="$PROJECT_DIR$/modules/screen-client/screen-client.iml" group="modules" />
       <module fileurl="file://$PROJECT_DIR$/modules/screen-controller/screen-controller.iml" filepath="$PROJECT_DIR$/modules/screen-controller/screen-controller.iml" group="modules" />
+      <module fileurl="file://$PROJECT_DIR$/modules/shell-client/shell-client.iml" filepath="$PROJECT_DIR$/modules/shell-client/shell-client.iml" group="modules" />
+      <module fileurl="file://$PROJECT_DIR$/modules/shell-controller/shell-controller.iml" filepath="$PROJECT_DIR$/modules/shell-controller/shell-controller.iml" group="modules" />
       <module fileurl="file://$PROJECT_DIR$/modules/system-client/system-client.iml" filepath="$PROJECT_DIR$/modules/system-client/system-client.iml" group="modules" />
       <module fileurl="file://$PROJECT_DIR$/modules/system-controller/system-controller.iml" filepath="$PROJECT_DIR$/modules/system-controller/system-controller.iml" group="modules" />
     </modules>

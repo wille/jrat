@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="shell-controller">
+    <output-path>$PROJECT_DIR$/controller/modules</output-path>
+    <root id="archive" name="shell-controller.jar">
+      <element id="module-output" name="shell-controller" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/modules/shell-controller/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>

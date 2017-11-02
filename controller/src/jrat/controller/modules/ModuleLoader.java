@@ -8,8 +8,6 @@ import java.util.List;
 
 public class ModuleLoader {
 
-
-
     private static final List<Module> modules = new ArrayList<>();
 
     static {
@@ -20,6 +18,7 @@ public class ModuleLoader {
         modules.add(new Module("chat"));
         modules.add(new Module("system"));
         modules.add(new Module("keys"));
+        modules.add(new Module("shell"));
     }
 
     /**
