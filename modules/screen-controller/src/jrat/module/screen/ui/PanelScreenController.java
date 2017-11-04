@@ -57,7 +57,7 @@ public class PanelScreenController extends ClientPanel {
 	private JLabel lblChunks;
 
 	public PanelScreenController(Slave sl) {
-		super(sl, "Screen", Resources.getIcon("screen"));
+		super(sl, "Screen", Resources.getIcon("desktop"));
 
 		slave = sl;
 		threadFps.start();

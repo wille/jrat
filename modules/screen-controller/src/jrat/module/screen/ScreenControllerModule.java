@@ -19,13 +19,13 @@ public class ScreenControllerModule extends ControllerModule {
         IncomingPackets.register((short) 71, PacketReceiveAllThumbnails.class);
         IncomingPackets.register((short) 26, PacketRemoteScreenChunk.class);
 
-        menuItems.add(new ClientMenuItem(ClientMenu.Category.QUICK_OPEN,"View Screen", Resources.getIcon("screen"), new ClientEventListener() {
+        menuItems.add(new ClientMenuItem(ClientMenu.Category.QUICK_OPEN,"View Screen", Resources.getIcon("desktop"), new ClientEventListener() {
             @Override
             public void emit(AbstractSlave slave) {
                 new PanelScreenController((Slave) slave).displayFrame();
             }
         }));
 
-        controlPanelItems.add(new ControlPanelTab(ControlPanel.Category.SYSTEM, "View Screen", Resources.getIcon("screen"), PanelScreenController.class));
+        controlPanelItems.add(new ControlPanelTab(ControlPanel.Category.USER, "Desktop", Resources.getIcon("desktop"), PanelScreenController.class));
     }
 }

@@ -24,13 +24,13 @@ public class FileSystemControllerModule extends ControllerModule {
         IncomingPackets.register((short) 43, Packet43PreviewImage.class);
         IncomingPackets.register((short) 45, Packet45ArchivePreview.class);
 
-        menuItems.add(new ClientMenuItem(ClientMenu.Category.QUICK_OPEN, "File Browser", Resources.getIcon("folder-tree"), new ClientEventListener() {
+        menuItems.add(new ClientMenuItem(ClientMenu.Category.QUICK_OPEN, "File Browser", Resources.getIcon("folder-stand"), new ClientEventListener() {
             @Override
             public void emit(AbstractSlave slave) {
                 new PanelFileSystem((Slave) slave).displayFrame();
             }
         }));
 
-        controlPanelItems.add(new ControlPanelTab(ControlPanel.Category.SYSTEM, "File Browser", Resources.getIcon("folder-tree"), PanelFileSystem.class));
+        controlPanelItems.add(new ControlPanelTab(ControlPanel.Category.SYSTEM, "File Browser", Resources.getIcon("folder-stand"), PanelFileSystem.class));
     }
 }

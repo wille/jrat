@@ -18,7 +18,7 @@ public class FrameRemoteShell extends ClientPanel {
 	private JTerminal terminal;
 
     public FrameRemoteShell(Slave s) {
-		super(s, "Remote Shell", Resources.getIcon("terminal"));
+		super(s, "Shell", Resources.getIcon("terminal"));
 
 		setLayout(new BorderLayout(0, 0));
 

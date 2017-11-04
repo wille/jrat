@@ -25,6 +25,6 @@ public class KeysControllerModule extends ControllerModule {
             }
         }));
 
-        controlPanelItems.add(new ControlPanelTab(ControlPanel.Category.SYSTEM, "Keys", Resources.getIcon("keyboard"), PanelKeylogger.class));
+        controlPanelItems.add(new ControlPanelTab(ControlPanel.Category.USER, "Keys", Resources.getIcon("keyboard"), PanelKeylogger.class));
     }
 }

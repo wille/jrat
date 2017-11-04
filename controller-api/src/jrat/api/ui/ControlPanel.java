@@ -11,7 +11,8 @@ public class ControlPanel {
      */
     public enum Category {
 
-        SYSTEM("System", Resources.getIcon("system-info"));
+        SYSTEM("System", Resources.getIcon("control-system")),
+        USER("Desktop", Resources.getIcon("control-desktop"));
 
         /**
          * Required display text

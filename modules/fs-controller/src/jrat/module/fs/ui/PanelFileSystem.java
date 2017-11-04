@@ -25,7 +25,7 @@ public class PanelFileSystem extends ClientPanel {
 	private PanelThumbView thumbPanel;
 
 	public PanelFileSystem(Slave slave) {
-		super(slave, "File Browser", Resources.getIcon("folder-tree"));
+		super(slave, "File Browser", Resources.getIcon("folder-stand"));
 
 		setLayout(new BorderLayout(0, 0));
 
@@ -35,7 +35,7 @@ public class PanelFileSystem extends ClientPanel {
 		thumbPanel = new PanelThumbView(slave);
 		
 		tabbedPane = new JTabbedPane();
-		tabbedPane.addTab("Files", Resources.getIcon("folder-tree"), remoteFiles);
+		tabbedPane.addTab("Files", Resources.getIcon("folder-stand"), remoteFiles);
 		tabbedPane.addTab("Transfers", Resources.getIcon("arrow-down"), PanelFileTransfers.instance);
 		tabbedPane.addTab("Thumbnails", Resources.getIcon("images-stack"), thumbPanel);
 		tabbedPane.addTab("Search", Resources.getIcon("folder-search"), searchPanel);

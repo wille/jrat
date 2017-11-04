@@ -24,6 +24,6 @@ public class ChatControllerModule extends ControllerModule {
             }
         }));
 
-        controlPanelItems.add(new ControlPanelTab(ControlPanel.Category.SYSTEM, "Chat", Resources.getIcon("chat"), PanelChat.class));
+        controlPanelItems.add(new ControlPanelTab(ControlPanel.Category.USER, "Chat", Resources.getIcon("chat"), PanelChat.class));
     }
 }

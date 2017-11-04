@@ -18,13 +18,13 @@ public class ShellControllerModule extends ControllerModule {
     public void init() throws Exception {
         IncomingPackets.register((short) 21, Packet21RemoteShell.class);
 
-        menuItems.add(new ClientMenuItem(ClientMenu.Category.QUICK_OPEN,"Remote Shell", Resources.getIcon("terminal"), new ClientEventListener() {
+        menuItems.add(new ClientMenuItem(ClientMenu.Category.QUICK_OPEN,"Shell", Resources.getIcon("terminal"), new ClientEventListener() {
             @Override
             public void emit(AbstractSlave slave) {
                 new FrameRemoteShell((Slave) slave).displayFrame();
             }
         }));
 
-        controlPanelItems.add(new ControlPanelTab(ControlPanel.Category.SYSTEM, "Remote Shell", Resources.getIcon("terminal"), FrameRemoteShell.class));
+        controlPanelItems.add(new ControlPanelTab(ControlPanel.Category.SYSTEM, "Shell", Resources.getIcon("terminal"), FrameRemoteShell.class));
     }
 }
