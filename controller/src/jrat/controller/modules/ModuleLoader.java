@@ -8,17 +8,23 @@ import java.util.List;
 
 public class ModuleLoader {
 
+    private static final String[] moduleNames = {
+            "registry",
+            "screen",
+            "process",
+            "fs",
+            "chat",
+            "system",
+            "keys",
+            "shell"
+    };
+
     private static final List<Module> modules = new ArrayList<>();
 
     static {
-        modules.add(new Module("registry"));
-        modules.add(new Module("screen"));
-        modules.add(new Module("process"));
-        modules.add(new Module("fs"));
-        modules.add(new Module("chat"));
-        modules.add(new Module("system"));
-        modules.add(new Module("keys"));
-        modules.add(new Module("shell"));
+        for (String name : moduleNames) {
+            modules.add(new Module(name));
+        }
     }
 
     /**
