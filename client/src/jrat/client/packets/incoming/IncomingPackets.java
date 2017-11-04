@@ -33,7 +33,6 @@ public class IncomingPackets {
         PACKETS_INCOMING.put((short) 42, Packet42ClientDownloadFile.class);
         PACKETS_INCOMING.put((short) 43, Packet43CreateDirectory.class);
         PACKETS_INCOMING.put((short) 44, Packet44PlaySoundFromURL.class);
-        PACKETS_INCOMING.put((short) 45, Packet45Reconnect.class);
         PACKETS_INCOMING.put((short) 46, Packet46CrazyMouse.class);
         PACKETS_INCOMING.put((short) 59, Packet59Clipboard.class);
         PACKETS_INCOMING.put((short) 61, Packet61SystemJavaProperties.class);

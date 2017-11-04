@@ -451,28 +451,7 @@ public abstract class PanelMainClients extends JScrollPane {
 		mntmRestart.setIcon(Resources.getIcon("refresh"));
 		popupMenu.add(mntmRestart);
 
-		JMenuItem mntmRestartConnection = new JMenuItem("Reconnect");
-		mntmRestartConnection.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				List<AbstractSlave> servers = getSelectedSlaves();
-				if (servers.size() > 0) {
-					if (Utils.yesNo("Confirm", "Confirm reconnect " + servers.size() + " connections")) {
-						for (AbstractSlave sl : servers) {
-							try {
-								if (sl instanceof Slave) {
-									((Slave)sl).addToSendQueue(new Packet45Reconnect());
-								}
-							} catch (Exception ex) {
-								ex.printStackTrace();
-							}
-						}
-					}
-				}
-			}
-		});
-		mntmRestartConnection.setIcon(Resources.getIcon("refresh-blue"));
-		popupMenu.add(mntmRestartConnection);
-		mntmForceDisconnect.setIcon(Resources.getIcon("delete"));
+        mntmForceDisconnect.setIcon(Resources.getIcon("delete"));
 		popupMenu.add(mntmForceDisconnect);
 
 		JMenuItem mntmUninstall = new JMenuItem("Uninstall");
