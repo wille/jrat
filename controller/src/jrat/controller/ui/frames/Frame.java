@@ -52,13 +52,6 @@ public class Frame extends BaseFrame {
 		JMenu mnMain = new JMenu("Main");
 		menuBar.add(mnMain);
 
-		JMenuItem mntmClientSettings = new JMenuItem("Settings");
-		mntmClientSettings.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				new FrameSettings().setVisible(true);
-			}
-		});
-
 		JMenuItem mntmAddSocket = new JMenuItem("Add Socket                ");
 		mntmAddSocket.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -69,9 +62,6 @@ public class Frame extends BaseFrame {
 		mntmAddSocket.setIcon(Resources.getIcon("socket-add"));
 		mnMain.add(mntmAddSocket);
 
-		mnMain.addSeparator();
-		mntmClientSettings.setIcon(Resources.getIcon("toolbox"));
-		mnMain.add(mntmClientSettings);
 		mnMain.addSeparator();
 
 		JMenu mnShow = new JMenu("Show");
