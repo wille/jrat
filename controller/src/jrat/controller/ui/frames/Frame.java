@@ -3,7 +3,7 @@ package jrat.controller.ui.frames;
 import jrat.api.Resources;
 import jrat.common.Version;
 import jrat.controller.*;
-import jrat.controller.packets.outgoing.*;
+import jrat.controller.packets.outgoing.Packet40Thumbnail;
 import jrat.controller.settings.StoreOfflineSlaves;
 import jrat.controller.ui.MainView;
 import jrat.controller.ui.components.DraggableTabbedPane;

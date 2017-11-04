@@ -31,11 +31,6 @@ public class Settings extends AbstractStorable {
 	public static final String KEY_REQUEST_DIALOG = "request_dialog";
 	public static final String KEY_MAXIMUM_CONNECTIONS = "maximum_connections";
 	public static final String KEY_USE_COUNTRY_DB = "use_country_db";
-	public static final String KEY_PROXY = "proxy";
-	public static final String KEY_ENABLE_PROXY = "enabled";
-	public static final String KEY_PROXY_HOST = "host";
-	public static final String KEY_PROXY_PORT = "port";
-	public static final String KEY_PROXY_SOCKS = "socks";
 	public static final String KEY_LAF = "theme";
 	public static final String KEY_TRANSFER_PLUGINS = "transfer_plugins_on_connect";
 	public static final String KEY_ROW_HEIGHT = "row_height";
@@ -109,10 +104,6 @@ public class Settings extends AbstractStorable {
 		return null;
 	}
 
-	public Map<String, Object> getProxySettings() {
-		return (HashMap<String, Object>) settings.get(KEY_PROXY);
-	}
-
 	public void load() throws Exception {
 		try {
 			Map args = new HashMap();
@@ -180,15 +171,8 @@ public class Settings extends AbstractStorable {
 		set(KEY_MAXIMUM_CONNECTIONS, -1); // TODO make sure it's implemented
 		set(KEY_USE_COUNTRY_DB, true);
 
-		Map<String, Object> proxy = new HashMap<>();
-		proxy.put(KEY_ENABLE_PROXY, false);
-		proxy.put(KEY_PROXY_HOST, "127.0.0.1");
-		proxy.put(KEY_PROXY_PORT, 9050);
-		proxy.put(KEY_PROXY_SOCKS, true);
 		set(KEY_TRANSFER_PLUGINS, false);
 		set(KEY_ROW_HEIGHT, 30);
-
-		settings.put(KEY_PROXY, proxy);
 
 		Map<String, Boolean> columns = new HashMap<>();
 		set(KEY_COLUMNS, columns);

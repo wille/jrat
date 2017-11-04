@@ -6,9 +6,6 @@ import jrat.controller.Slave;
 import jrat.controller.ui.renderers.DefaultJTreeCellRenderer;
 
 import javax.swing.*;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.TreeSelectionEvent;

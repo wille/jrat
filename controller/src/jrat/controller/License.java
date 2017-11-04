@@ -4,10 +4,10 @@ import com.cedarsoftware.util.io.JsonObject;
 import com.cedarsoftware.util.io.JsonReader;
 import jrat.common.hash.Sha256;
 import jrat.controller.exceptions.InvalidKeyException;
-import jrat.controller.net.WebRequest;
 
 import java.io.FileInputStream;
 import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -44,7 +44,7 @@ public final class License {
 		Map<String, String> license = getLicense();
 		String key = license.get("key");
 
-		HttpURLConnection archiveConnection = WebRequest.getConnection(Constants.HOST + "/api/validate.php?k=" + key, true);
+		HttpURLConnection archiveConnection = (HttpURLConnection) new URL(Constants.HOST + "/api/validate.php?k=" + key).openConnection();
 		archiveConnection.connect();
 
 		int response = archiveConnection.getResponseCode();

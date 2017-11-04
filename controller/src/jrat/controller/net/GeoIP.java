@@ -30,7 +30,7 @@ public class GeoIP {
 	}
 	
 	public static BufferedImage getMap(int zoom, double lat, double lon, boolean drawNeedle) throws Exception {
-		BufferedImage image = ImageIO.read(WebRequest.getUrl("https://maps.googleapis.com/maps/api/staticmap?center=" + lat + "," + lon + "&zoom=" + zoom + "&size=600x350"));
+		BufferedImage image = ImageIO.read(new URL("https://maps.googleapis.com/maps/api/staticmap?center=" + lat + "," + lon + "&zoom=" + zoom + "&size=600x350"));
 		
 		if (drawNeedle) {
 			Graphics g = image.createGraphics();
