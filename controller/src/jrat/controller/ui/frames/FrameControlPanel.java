@@ -41,7 +41,7 @@ public class FrameControlPanel extends BaseFrame implements TreeSelectionListene
 	public static final Map<Slave, FrameControlPanel> instances = new HashMap<>();
 
 	public HashMap<String, JPanel> panels = new HashMap<>();
-	private JTabbedPane tabbedPane;
+	private TabbedPane tabbedPane;
 
 	private ControlPanelTreeRenderer treeRenderer;
 
@@ -91,7 +91,7 @@ public class FrameControlPanel extends BaseFrame implements TreeSelectionListene
 
 		panel.setLayout(new BorderLayout(0, 0));
 
-		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane = new TabbedPane();
 		panel.add(tabbedPane, BorderLayout.CENTER);
 		tabbedPane.addChangeListener(this);
 
@@ -138,6 +138,12 @@ public class FrameControlPanel extends BaseFrame implements TreeSelectionListene
 
     public void valueChanged(TreeSelectionEvent e) {
         try {
+            ClientPanel current = (ClientPanel) tabbedPane.getSelectedComponent();
+
+            if (current != null) {
+                current.lostFocus();
+            }
+
             addTabs(e.getPath().getPath()[1].toString());
 
             Object clicked = e.getPath().getLastPathComponent();
@@ -148,15 +154,13 @@ public class FrameControlPanel extends BaseFrame implements TreeSelectionListene
                 if (node.item instanceof ControlPanelTab) {
                     ClientPanel p = panelInstances.get(node.item.text);
                     tabbedPane.setSelectedComponent(p);
-
-                    p.opened();
                 } else if (node.item instanceof ControlPanelAction) {
                     ClientEventListener listener = (ClientEventListener) node.item.item;
                     listener.emit(getSlave());
                 }
             }
         } catch (Exception ex) {
-
+            ex.printStackTrace();
         }
     }
 	
@@ -181,7 +185,10 @@ public class FrameControlPanel extends BaseFrame implements TreeSelectionListene
 
     public void stateChanged(ChangeEvent event) {
 	    ClientPanel panel = (ClientPanel) tabbedPane.getSelectedComponent();
-	    panel.opened();
+
+	    if (panel != null) {
+            panel.opened();
+        }
     }
 
 	@Override
@@ -196,6 +203,23 @@ public class FrameControlPanel extends BaseFrame implements TreeSelectionListene
 
                 panel.dispose();
             }
+        }
+    }
+
+    private class TabbedPane extends JTabbedPane {
+
+	    public TabbedPane() {
+	        super(JTabbedPane.TOP);
+        }
+
+	    public void setSelectedIndex(int index) {
+	        ClientPanel current = (ClientPanel) getSelectedComponent();
+
+	        if (current != null) {
+	            current.lostFocus();
+            }
+
+	        super.setSelectedIndex(index);
         }
     }
 

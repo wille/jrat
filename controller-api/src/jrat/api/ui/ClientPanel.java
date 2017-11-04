@@ -28,6 +28,7 @@ public abstract class ClientPanel extends JPanel {
      * Called when the panel is not used anymore or the frame is manually closed
      */
     public void dispose() {
+        this.lostFocus();
         this.slave.removePanel(this.getClass());
     }
 
@@ -35,6 +36,13 @@ public abstract class ClientPanel extends JPanel {
      * Called when the panel is shown or the frame is opened
      */
     public void opened() {
+
+    }
+
+    /**
+     * Called if this panel is a tab in the control panel and it has lost focus or it has been disposed
+     */
+    public void lostFocus() {
 
     }
 
