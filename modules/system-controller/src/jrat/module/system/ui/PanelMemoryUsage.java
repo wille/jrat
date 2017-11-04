@@ -18,10 +18,10 @@ public class PanelMemoryUsage extends ClientPanel {
 	private SmoothGraph graph;
     private boolean needRam = false;
 	private JProgressBar progressBar;
+	private JCheckBox chckbxActiveRamMonitor;
 
 	public PanelMemoryUsage(Slave slave) {
 		super(slave, "Resources", Resources.getIcon("memory"));
-		final Slave sl = slave;
 
 		graph = new SmoothGraph();
 
@@ -29,17 +29,10 @@ public class PanelMemoryUsage extends ClientPanel {
 		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 		panel.add(graph);
 
-		JCheckBox chckbxActiveRamMonitor = new JCheckBox("Active usage monitor");
+		chckbxActiveRamMonitor = new JCheckBox("Active usage monitor");
 		chckbxActiveRamMonitor.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				JCheckBox src = (JCheckBox) arg0.getSource();
-				boolean checked = src.isSelected();
-				if (checked) {
-					needRam = true;
-					new ThreadMemoryUsage(sl).start();
-				} else {
-					needRam = false;
-				}
+			public void actionPerformed(ActionEvent e) {
+				toggle(chckbxActiveRamMonitor.isSelected());
 			}
 		});
 
@@ -78,4 +71,25 @@ public class PanelMemoryUsage extends ClientPanel {
 	public JProgressBar getProgressBar() {
 		return progressBar;
 	}
+
+	private void toggle(boolean enabled) {
+        if (enabled) {
+            needRam = true;
+            new ThreadMemoryUsage(slave).start();
+        } else {
+            needRam = false;
+        }
+    }
+
+    @Override
+	public void opened() {
+	    toggle(true);
+        chckbxActiveRamMonitor.setSelected(true);
+    }
+
+    @Override
+    public void lostFocus() {
+	    toggle(false);
+        chckbxActiveRamMonitor.setSelected(false);
+    }
 }
