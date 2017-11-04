@@ -82,15 +82,9 @@ public class Main {
 		Settings.getGlobal().load();
 
 		try {
-			String theme = (String) Settings.getGlobal().get("theme");
-
-			if (theme == null) {
-				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-			} else {
-				UIManager.setLookAndFeel(theme);
-			}
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception ex) {
-			Logger.warn("Could not use LAF " + Settings.getGlobal().get(Settings.KEY_LAF) + ", setting default system LAF");
+			Logger.warn("Could not set native theme, setting default");
 			ex.printStackTrace();
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		}

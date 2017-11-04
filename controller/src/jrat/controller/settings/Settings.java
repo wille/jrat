@@ -31,7 +31,6 @@ public class Settings extends AbstractStorable {
 	public static final String KEY_REQUEST_DIALOG = "request_dialog";
 	public static final String KEY_MAXIMUM_CONNECTIONS = "maximum_connections";
 	public static final String KEY_USE_COUNTRY_DB = "use_country_db";
-	public static final String KEY_LAF = "theme";
 	public static final String KEY_TRANSFER_PLUGINS = "transfer_plugins_on_connect";
 	public static final String KEY_ROW_HEIGHT = "row_height";
 	public static final String KEY_COLUMNS = "columns";
@@ -146,8 +145,6 @@ public class Settings extends AbstractStorable {
 				className = null;
 			}
 
-			settings.put(KEY_LAF, className);
-
 			Map args = new HashMap();
 			args.put(JsonWriter.TYPE, false);
 			pw.print(JsonWriter.formatJson(JsonWriter.objectToJson(settings, args)));
@@ -183,7 +180,6 @@ public class Settings extends AbstractStorable {
 
 		settings.put(KEY_SOCKETS, new HashMap());
 
-		settings.put(KEY_LAF, null);
 		settings.put(KEY_STATE_DELAY, 2000);
 	}
 
