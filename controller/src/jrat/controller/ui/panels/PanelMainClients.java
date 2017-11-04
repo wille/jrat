@@ -451,7 +451,7 @@ public abstract class PanelMainClients extends JScrollPane {
 		mntmRestart.setIcon(Resources.getIcon("refresh"));
 		popupMenu.add(mntmRestart);
 
-        mntmForceDisconnect.setIcon(Resources.getIcon("delete"));
+        mntmForceDisconnect.setIcon(Resources.getIcon("cross"));
 		popupMenu.add(mntmForceDisconnect);
 
 		JMenuItem mntmUninstall = new JMenuItem("Uninstall");
@@ -517,7 +517,7 @@ public abstract class PanelMainClients extends JScrollPane {
 							popupMenu.addSeparator();
 
 							JMenuItem mntmRemove = new JMenuItem("Remove");
-							mntmRemove.setIcon(Resources.getIcon("delete"));
+							mntmRemove.setIcon(Resources.getIcon("cross"));
 
 							mntmRemove.addActionListener(new ActionListener() {
 								@Override
