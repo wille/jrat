@@ -36,10 +36,8 @@ public class ModuleLoader {
         for (Module mod : modules) {
             try {
                 mod.load();
-
-                Logger.log("\t" + mod);
             } catch (Exception ex) {
-                Logger.log("\t" + mod + " failed");
+                Logger.warn("loading " + mod + " failed");
                 ex.printStackTrace();
             }
         }
@@ -51,7 +49,6 @@ public class ModuleLoader {
      * @throws Exception
      */
     public static void sendAll(AbstractSlave slave) throws Exception {
-        Logger.log("Writing " + modules.size() + " modules...");
         slave.writeInt(modules.size());
 
         for (Module mod : modules) {

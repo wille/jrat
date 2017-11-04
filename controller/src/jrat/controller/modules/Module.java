@@ -57,7 +57,6 @@ public final class Module {
      */
     public void write(AbstractSlave slave) throws Exception {
         int total = 0;
-        int totalUncompressed = 0;
 
         slave.writeLine(client.getMainClass());
 
@@ -111,6 +110,7 @@ public final class Module {
             }
 
             byte[] data = resources.get(name);
+            total += data.length;
 
             slave.writeBoolean(true);
             slave.writeBoolean(name.endsWith(".class"));
@@ -121,8 +121,15 @@ public final class Module {
 
         // indicate that there are no entries left for this module
         slave.writeBoolean(false);
-        Logger.log("\ttotal: " + total + " bytes (" + (((float) total / (float) totalUncompressed) * 100f) + "%)");
 
+        Logger.log("sent module " + name + " (" + total + " bytes)");
+
+        // add this loaded module to the client so we know what modules are available and not
         slave.loadedModules.add(controller.getInstance());
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
     }
 }

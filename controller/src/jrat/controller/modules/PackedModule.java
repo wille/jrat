@@ -36,7 +36,7 @@ public class PackedModule extends BaseModuleLoader {
         Manifest mf = jis.getManifest();
         this.mainClass = mf.getMainAttributes().getValue("Main-Class");
 
-        Logger.log(mainClass);
+        Logger.log("packing " + file.getName());
 
         JarEntry entry;
         while ((entry = jis.getNextJarEntry()) != null) {
