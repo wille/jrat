@@ -56,24 +56,16 @@ public class FrameControlPanel extends BaseFrame implements TreeSelectionListene
 
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameControlPanel.class.getResource("/controlpanel.png")));
 		setTitle("Control Panel");
-		final Slave sl = slave;
 		instances.put(slave, this);
 
-		setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 807, 414);
-        JPanel contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
 
-        JPanel panel = new JPanel();
-		panel.setSize(600, 350);
+        JPanel panel = new JPanel(new GridBagLayout());
+        setContentPane(panel);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(panel, GroupLayout.PREFERRED_SIZE, 607, GroupLayout.PREFERRED_SIZE).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
-		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false).addComponent(scrollPane, Alignment.LEADING).addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)).addContainerGap(12, Short.MAX_VALUE)));
 
 		tree = new JTree();
 		tree.setShowsRootHandles(true);
@@ -87,13 +79,26 @@ public class FrameControlPanel extends BaseFrame implements TreeSelectionListene
 			}
 		}));
 		scrollPane.setViewportView(tree);
-		contentPane.setLayout(gl_contentPane);
 
-		panel.setLayout(new BorderLayout(0, 0));
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.ipadx = 100;
+        constraints.weightx = 0.1;
+        constraints.weighty = 1;
+        constraints.fill = GridBagConstraints.BOTH;
+        constraints.gridwidth = 1;
+        constraints.gridx = 0;
+        panel.add(scrollPane, constraints);
 
 		tabbedPane = new TabbedPane();
-		panel.add(tabbedPane, BorderLayout.CENTER);
 		tabbedPane.addChangeListener(this);
+
+		constraints = new GridBagConstraints();
+		constraints.weightx = 1;
+		constraints.weighty = 1;
+		constraints.fill = GridBagConstraints.BOTH;
+		constraints.gridwidth = GridBagConstraints.REMAINDER;
+        constraints.gridx = 1;
+		panel.add(tabbedPane, constraints);
 
         for (ControlPanelItem item : loadedItems) {
             ClientPanel cp = ((ControlPanelTab) item).createPanel(slave);
