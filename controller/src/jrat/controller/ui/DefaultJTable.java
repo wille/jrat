@@ -18,6 +18,7 @@ public class DefaultJTable extends JTable {
 		setIntercellSpacing(new Dimension(0, 0));
 		setFillsViewportHeight(true);
 		setDefaultRenderer(Object.class, new DefaultJTableCellRenderer());
+		getTableHeader().setReorderingAllowed(false);
 	}
 
 }
