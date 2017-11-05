@@ -98,8 +98,13 @@ public class FrameControlPanel extends BaseFrame implements TreeSelectionListene
 		panel.add(tabbedPane, constraints);
 
         for (ControlPanelItem item : loadedItems) {
-            ClientPanel cp = ((ControlPanelTab) item).createPanel(slave);
-            panelInstances.put(item.text, cp);
+            if (item instanceof ControlPanelTab) {
+                ClientPanel cp = ((ControlPanelTab) item).createPanel(slave);
+                panelInstances.put(item.text, cp);
+            } else if (item instanceof StaticControlPanelTab) {
+                ClientPanel cp = ((StaticControlPanelTab) item).getPanel();
+                panelInstances.put(item.text, cp);
+            }
         }
 
         addTabs("System");
@@ -113,7 +118,7 @@ public class FrameControlPanel extends BaseFrame implements TreeSelectionListene
         clearPanels();
 
         for (ControlPanelItem item : loadedItems) {
-            if (item.category.text.equals(currentLabel) && item instanceof ControlPanelTab) {
+            if (item.category.text.equals(currentLabel) && (item instanceof ControlPanelTab || item instanceof StaticControlPanelTab)) {
                 tabbedPane.addTab(item.text, item.icon, panelInstances.get(item.text));
             }
         }
@@ -159,6 +164,9 @@ public class FrameControlPanel extends BaseFrame implements TreeSelectionListene
                 } else if (node.item instanceof ControlPanelAction) {
                     ClientEventListener listener = (ClientEventListener) node.item.item;
                     listener.emit(getSlave());
+                } else if (node.item instanceof StaticControlPanelTab) {
+                    StaticControlPanelTab tab = (StaticControlPanelTab) node.item;
+                    tabbedPane.setSelectedComponent(tab.item);
                 }
             }
         } catch (Exception ex) {

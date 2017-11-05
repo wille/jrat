@@ -2,6 +2,7 @@ package jrat.controller.ui.panels;
 
 import iconlib.FileIconUtils;
 import jrat.api.Resources;
+import jrat.api.ui.ClientPanel;
 import jrat.common.io.FileCache;
 import jrat.common.io.TransferData;
 import jrat.common.io.TransferData.State;
@@ -27,7 +28,7 @@ import java.util.List;
 
 
 @SuppressWarnings("serial")
-public class PanelFileTransfers extends JPanel {
+public class PanelFileTransfers extends ClientPanel {
 
 	public static PanelFileTransfers instance;
 	
@@ -41,6 +42,7 @@ public class PanelFileTransfers extends JPanel {
 	private JMenuItem btnPause;
 
 	public PanelFileTransfers() {
+	    super("Transfers", null);
 		setLayout(new BorderLayout(0, 0));
 
         JScrollPane scrollPane = new JScrollPane();

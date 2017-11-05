@@ -1,5 +1,6 @@
 package jrat.api.ui;
 
+import com.sun.org.apache.regexp.internal.RE;
 import jrat.api.Resources;
 
 import javax.swing.*;
@@ -12,7 +13,8 @@ public class ControlPanel {
     public enum Category {
 
         SYSTEM("System", Resources.getIcon("control-system")),
-        USER("Desktop", Resources.getIcon("control-desktop"));
+        USER("Desktop", Resources.getIcon("control-desktop")),
+        FILES("Files", Resources.getIcon("control-files"));
 
         /**
          * Required display text

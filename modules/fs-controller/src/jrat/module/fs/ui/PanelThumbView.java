@@ -1,6 +1,7 @@
 package jrat.module.fs.ui;
 
 import jrat.api.Resources;
+import jrat.api.ui.ClientPanel;
 import jrat.controller.Slave;
 import jrat.controller.utils.Utils;
 import jrat.module.fs.packets.PacketRequestImageThumbnail;
@@ -18,13 +19,11 @@ import java.util.Map;
 
 
 @SuppressWarnings("serial")
-public class PanelThumbView extends JPanel {
+public class PanelThumbView extends ClientPanel {
 
-	public static final Map<Slave, PanelThumbView> INSTANCES = new HashMap<Slave, PanelThumbView>();
-	private Map<String, ImageIcon> thumbs = new HashMap<String, ImageIcon>();
+	private Map<String, ImageIcon> thumbs = new HashMap<>();
 
 	private String[] files;
-	private Slave slave;
 	private JList list;
 	private JLabel lblCount;
 	private JProgressBar progressBar;
@@ -42,7 +41,8 @@ public class PanelThumbView extends JPanel {
 	}
 
 	public PanelThumbView(Slave s) {
-		this.slave = s;
+		super(s, "Thumbnails", Resources.getIcon("images-stack"));
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		setLayout(new BorderLayout(0, 0));
@@ -146,10 +146,6 @@ public class PanelThumbView extends JPanel {
 	public void addImage(String path, BufferedImage image) {
 		thumbs.put(path, new ImageIcon(image));
 		getModel().addElement(path);
-	}
-
-	public void exit() {
-		INSTANCES.remove(slave);
 	}
 
 	public int getProgress() {

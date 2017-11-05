@@ -29,9 +29,9 @@ public class PanelFileSystem extends ClientPanel {
 
 		setLayout(new BorderLayout(0, 0));
 
-		remoteFiles = new PanelFileManager(slave, this);
+		remoteFiles = new PanelFileManager(slave);
 		
-		searchPanel = new PanelSearchFiles(slave, this);
+		searchPanel = new PanelSearchFiles(slave);
 		thumbPanel = new PanelThumbView(slave);
 		
 		tabbedPane = new JTabbedPane();

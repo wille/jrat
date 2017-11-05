@@ -16,12 +16,16 @@ public abstract class ClientPanel extends JPanel {
     public final String title;
     public final ImageIcon icon;
 
-    public ClientPanel(Slave slave, String title, ImageIcon icon) {
-        this.slave = slave;
-        this.slave.addFrame(getClass(), this);
-
+    public ClientPanel(String title, ImageIcon icon) {
         this.title = title;
         this.icon = icon;
+    }
+
+    public ClientPanel(Slave slave, String title, ImageIcon icon) {
+        this(title, icon);
+
+        this.slave = slave;
+        this.slave.addFrame(getClass(), this);
     }
 
     /**
@@ -29,7 +33,10 @@ public abstract class ClientPanel extends JPanel {
      */
     public void dispose() {
         this.lostFocus();
-        this.slave.removePanel(this.getClass());
+
+        if (this.slave != null) {
+            this.slave.removePanel(this.getClass());
+        }
     }
 
     /**

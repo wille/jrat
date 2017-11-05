@@ -29,16 +29,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("serial")
-public class PanelFileManager extends JPanel {
+public class PanelFileManager extends FileSubPanel {
 
-	private final Slave slave;
 	private final RemoteFileTable remoteTable;
-	private final PanelFileSystem parent;
-	
-	public PanelFileManager(Slave slave, PanelFileSystem parent) {
-		this.slave = slave;
-		this.parent = parent;
-		
+
+	public PanelFileManager(Slave slave) {
+		super(slave, "Files", Resources.getIcon("folder-stand"));
+
 		setLayout(new BorderLayout(0, 0));
 		
 		final JSplitPane sp = new JSplitPane();
@@ -179,7 +176,7 @@ public class PanelFileManager extends JPanel {
 			}
 			
 			if (getSelectedItems().length > 0) {
-				parent.setTab(PanelFileTransfers.instance);
+				getParentPanel().setTab(PanelFileTransfers.instance);
 			}
 		}
 	}
@@ -216,7 +213,8 @@ public class PanelFileManager extends JPanel {
 			btnSearch.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent actionEvent) {
-					parent.getSearchPanel().setSearchRoot(getCurrentDirectory());
+				    PanelFileSystem parent = getParentPanel();
+                    parent.getSearchPanel().setSearchRoot(getCurrentDirectory());
 					parent.setTab(parent.getSearchPanel());
 				}
 			});
@@ -307,6 +305,9 @@ public class PanelFileManager extends JPanel {
 						for (int i = 0; i < files.size(); i++) {
 							paths[i] = files.get(i);
 						}
+
+						PanelFileSystem parent = getParentPanel();
+
 						parent.getThumbPanel().reload(paths);
 						parent.setTab(parent.getThumbPanel());
 					}
@@ -446,7 +447,7 @@ public class PanelFileManager extends JPanel {
                             break;
                     }
 
-                    parent.addPreview(file, preview);
+                    getParentPanel().addPreview(file, preview);
                 }
             }
         }
@@ -537,7 +538,7 @@ public class PanelFileManager extends JPanel {
 					PanelFileTransfers.instance.add(data);
 					FileCache.put(fo.getPath(), data);
 					slave.addToSendQueue(new Packet21ServerDownloadFile(fo.getPath()));
-					parent.setTab(PanelFileTransfers.instance);
+					getParentPanel().setTab(PanelFileTransfers.instance);
 				}
 			}
 		}

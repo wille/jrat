@@ -4,7 +4,6 @@ import jrat.api.Resources;
 import jrat.controller.Slave;
 import jrat.controller.ui.DefaultJTable;
 import jrat.controller.ui.components.TableModel;
-import jrat.controller.ui.panels.PanelControlParent;
 import jrat.controller.ui.renderers.table.FileSearchTableRenderer;
 import jrat.controller.utils.Utils;
 import jrat.module.fs.packets.Packet53StartSearch;
@@ -17,7 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 @SuppressWarnings("serial")
-public class PanelSearchFiles extends PanelControlParent {
+public class PanelSearchFiles extends FileSubPanel {
 
 	private JTable table;
 
@@ -25,7 +24,6 @@ public class PanelSearchFiles extends PanelControlParent {
 	private JTextField txt;
     private JTextField txtSearchRoot;
 	private FileSearchTableRenderer renderer;
-	private PanelFileSystem parent;
 
 	public TableModel getModel() {
 		return model;
@@ -35,9 +33,8 @@ public class PanelSearchFiles extends PanelControlParent {
 		return renderer;
 	}
 
-	public PanelSearchFiles(Slave slave, PanelFileSystem parentFrame) {
-		super(slave);
-		this.parent = parentFrame;
+	public PanelSearchFiles(Slave slave) {
+		super(slave, "Search", Resources.getIcon("folder-search"));
 		final Slave sl = slave;
 
 		JScrollPane scrollPane = new JScrollPane();
@@ -87,8 +84,10 @@ public class PanelSearchFiles extends PanelControlParent {
 		JMenuItem mntmOpenInFile = new JMenuItem("Open in file manager");
 		mntmOpenInFile.setIcon(Resources.getIcon("folder-go"));
 		mntmOpenInFile.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 				int row = table.getSelectedRow();
+
+				PanelFileSystem parent = getParentPanel();
 				if (row != -1) {
 					String val = model.getValueAt(row, 0).toString();
 					parent.getFilesPanel().getRemoteTable().setDirectory(val);

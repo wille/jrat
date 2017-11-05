@@ -3,15 +3,16 @@ package jrat.module.fs;
 import jrat.api.ClientEventListener;
 import jrat.api.ControllerModule;
 import jrat.api.Resources;
-import jrat.api.ui.ClientMenu;
-import jrat.api.ui.ClientMenuItem;
-import jrat.api.ui.ControlPanel;
-import jrat.api.ui.ControlPanelTab;
+import jrat.api.ui.*;
 import jrat.controller.AbstractSlave;
 import jrat.controller.Slave;
 import jrat.controller.packets.incoming.IncomingPackets;
+import jrat.controller.ui.panels.PanelFileTransfers;
 import jrat.module.fs.packets.*;
+import jrat.module.fs.ui.PanelFileManager;
 import jrat.module.fs.ui.PanelFileSystem;
+import jrat.module.fs.ui.PanelSearchFiles;
+import jrat.module.fs.ui.PanelThumbView;
 
 public class FileSystemControllerModule extends ControllerModule {
 
@@ -31,6 +32,9 @@ public class FileSystemControllerModule extends ControllerModule {
             }
         }));
 
-        controlPanelItems.add(new ControlPanelTab(ControlPanel.Category.SYSTEM, "File Browser", Resources.getIcon("folder-stand"), PanelFileSystem.class));
+        controlPanelItems.add(new ControlPanelTab(ControlPanel.Category.FILES, "Files", Resources.getIcon("folder-stand"), PanelFileManager.class));
+        controlPanelItems.add(new StaticControlPanelTab(ControlPanel.Category.FILES, "Transfers", Resources.getIcon("arrow-down"), PanelFileTransfers.instance));
+        controlPanelItems.add(new ControlPanelTab(ControlPanel.Category.FILES, "Thumbnails", Resources.getIcon("images-stack"), PanelThumbView.class));
+        controlPanelItems.add(new ControlPanelTab(ControlPanel.Category.FILES, "Search", Resources.getIcon("folder-search"), PanelSearchFiles.class));
     }
 }
