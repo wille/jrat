@@ -15,6 +15,10 @@ public class PacketResult implements IncomingPacket {
 		while (slave.readBoolean()) {
 			String line = slave.readLine();
 
+			if (line.length() == 0) {
+			    continue;
+            }
+
 			String[] args = line.trim().split("    ");
 
 			String name = args[0];
