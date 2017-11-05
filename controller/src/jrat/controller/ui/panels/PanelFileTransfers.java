@@ -40,13 +40,6 @@ public class PanelFileTransfers extends JPanel {
 
 	private JMenuItem btnPause;
 
-    public void load(String name) {
-		Icon icon = FileIconUtils.getIconFromExtension(name);
-		String status = "0";
-
-		model.addRow(new Object[] { icon, name, status });
-	}
-
 	public PanelFileTransfers() {
 		setLayout(new BorderLayout(0, 0));
 
@@ -176,14 +169,9 @@ public class PanelFileTransfers extends JPanel {
 		
 		return td;
 	}
-
-	public void reset() {
-		while (model.getRowCount() > 0) {
-			model.removeRow(0);
-		}
-	}
 	
 	public void add(TransferData data) {
+	    data.setState(State.IN_PROGRESS);
 		model.insertRow(0, new Object[] { data });
 	}
 
