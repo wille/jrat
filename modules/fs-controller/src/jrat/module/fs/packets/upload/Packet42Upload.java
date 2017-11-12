@@ -1,4 +1,4 @@
-package jrat.module.fs.packets;
+package jrat.module.fs.packets.upload;
 
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.OutgoingPacket;
@@ -6,29 +6,22 @@ import jrat.module.fs.ThreadUploadFile;
 
 import java.io.File;
 
-public class Packet42ServerUploadFile implements OutgoingPacket {
+public class Packet42Upload implements OutgoingPacket {
 
 	protected File file;
 	protected String remoteFile;
 	protected boolean temp;
 	protected ThreadUploadFile thread;
 
-	public Packet42ServerUploadFile(File file, String remoteFile) {
+	public Packet42Upload(File file, String remoteFile) {
 		this(file, remoteFile, false);
 	}
 	
-	public Packet42ServerUploadFile(File file, String remoteFile, boolean temp) {
+	public Packet42Upload(File file, String remoteFile, boolean temp) {
 		this.file = file;
 		this.remoteFile = remoteFile;
 		this.temp = temp;
 		this.thread = new ThreadUploadFile(null, remoteFile, file);
-	}
-	
-	public Packet42ServerUploadFile(File file, String remoteFile, boolean temp, ThreadUploadFile thread) {
-		this.file = file;
-		this.remoteFile = remoteFile;
-		this.temp = temp;
-		this.thread = thread;
 	}
 	
 	@Override

