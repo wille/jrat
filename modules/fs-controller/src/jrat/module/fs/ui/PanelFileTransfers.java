@@ -3,7 +3,6 @@ package jrat.module.fs.ui;
 import iconlib.FileIconUtils;
 import jrat.api.Resources;
 import jrat.api.ui.ClientPanel;
-import jrat.common.Transfer;
 import jrat.common.io.FileCache;
 import jrat.common.io.TransferData;
 import jrat.common.io.TransferData.State;
@@ -177,7 +176,7 @@ public class PanelFileTransfers extends ClientPanel {
                 if (d.isUpload()) {
                     d.getRunnable().pause();
                 } else {
-                    ((Slave)d.getObject()).addToSendQueue(new Packet102UploadState(Transfer.PAUSE, d.getRemoteFile()));
+                    ((Slave)d.getObject()).addToSendQueue(new Packet102UploadState(State.PAUSED, d.getRemoteFile()));
                 }
             }
         }
@@ -194,10 +193,10 @@ public class PanelFileTransfers extends ClientPanel {
 
                 if (d.isUpload()) {
                     d.getRunnable().interrupt();
-                    ((Slave)d.getObject()).addToSendQueue(new Packet102UploadState(Transfer.Complete, d.getRemoteFile()));
+                    ((Slave)d.getObject()).addToSendQueue(new Packet102UploadState(State.COMPLETED, d.getRemoteFile()));
                 } else {
                     FileCache.remove(d.getLocalFile().getAbsolutePath());
-                    ((Slave)d.getObject()).addToSendQueue(new Packet102UploadState(Transfer.CANCEL, d.getRemoteFile()));
+                    ((Slave)d.getObject()).addToSendQueue(new Packet102UploadState(State.CANCELLED, d.getRemoteFile()));
                 }
             }
         }

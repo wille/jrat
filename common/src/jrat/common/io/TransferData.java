@@ -10,7 +10,7 @@ import java.io.OutputStream;
 public class TransferData {
 	
 	public enum State {
-		IN_PROGRESS, PAUSED, COMPLETED, ERROR
+		IN_PROGRESS, PAUSED, COMPLETED, ERROR, CANCELLED
     }
 	
 	private State state;

