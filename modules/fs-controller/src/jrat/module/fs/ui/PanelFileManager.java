@@ -44,7 +44,6 @@ public class PanelFileManager extends FileSubPanel {
 		sp.setLeftComponent(localTable);
 		
 		remoteTable = new RemoteFileTable();
-		remoteTable.initialize();
 		sp.setRightComponent(remoteTable);
 		
 		add(sp, BorderLayout.CENTER);
@@ -410,14 +409,6 @@ public class PanelFileManager extends FileSubPanel {
 			mntmRefresh.setIcon(Resources.getIcon("refresh"));
 			popupMenuRemote.add(mntmRefresh);
 		}
-		
-		public void initialize() {
-			if (slave.getOperatingSystem().getType() != OperatingSystem.WINDOWS) {
-				setDirectory("/");
-			} else {
-				setDirectory("");
-			}
-		}
 
         /**
          * Summon file previewing of current selected files
@@ -548,4 +539,9 @@ public class PanelFileManager extends FileSubPanel {
 		return remoteTable;
 	}
 
+    @Override
+    public void opened() {
+	    System.out.println("opened file tab");
+        remoteTable.setDirectory(null);
+    }
 }

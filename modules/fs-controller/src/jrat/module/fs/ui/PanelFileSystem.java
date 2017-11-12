@@ -1,5 +1,6 @@
 package jrat.module.fs.ui;
 
+import com.sun.security.ntlm.Client;
 import jrat.api.Resources;
 import jrat.api.ui.ClientPanel;
 import jrat.controller.Slave;
@@ -29,7 +30,6 @@ public class PanelFileSystem extends ClientPanel {
 		setLayout(new BorderLayout(0, 0));
 
 		remoteFiles = new PanelFileManager(slave);
-		
 		searchPanel = new PanelSearchFiles(slave);
 		thumbPanel = new PanelThumbView(slave);
 		
@@ -38,9 +38,26 @@ public class PanelFileSystem extends ClientPanel {
 		tabbedPane.addTab("Transfers", Resources.getIcon("arrow-down"), PanelFileTransfers.instance);
 		tabbedPane.addTab("Thumbnails", Resources.getIcon("images-stack"), thumbPanel);
 		tabbedPane.addTab("Search", Resources.getIcon("folder-search"), searchPanel);
+
+		for (Component c : tabbedPane.getComponents()) {
+		    if (c instanceof ClientPanel) {
+                ((ClientPanel) c).opened();
+            }
+        }
 		
 		add(tabbedPane, BorderLayout.CENTER);	
 	}
+
+    @Override
+    public void dispose() {
+        super.dispose();
+
+        for (Component c : tabbedPane.getComponents()) {
+            if (c instanceof ClientPanel) {
+                ((ClientPanel) c).dispose();
+            }
+        }
+    }
 
     /**
      *
