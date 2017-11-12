@@ -3,7 +3,6 @@ package jrat.module.fs.ui;
 import jrat.api.Resources;
 import jrat.api.ui.ClientPanel;
 import jrat.controller.Slave;
-import jrat.controller.ui.panels.PanelFileTransfers;
 import jrat.module.fs.ui.previews.PreviewPanel;
 
 import javax.swing.*;

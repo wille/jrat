@@ -137,7 +137,6 @@ public class Main {
 		new Thread(new NetworkCounter()).start();
 		new ThreadCheckVersion().start();
 		new ThreadPing().start();
-		new ThreadTransferSpeed().start();
 		new ThreadSaveCycle().start();
 
         ModuleLoader.loadAll();

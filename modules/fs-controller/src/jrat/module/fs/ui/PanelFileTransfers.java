@@ -1,4 +1,4 @@
-package jrat.controller.ui.panels;
+package jrat.module.fs.ui;
 
 import iconlib.FileIconUtils;
 import jrat.api.Resources;
@@ -10,12 +10,12 @@ import jrat.common.io.TransferData.State;
 import jrat.common.utils.DataUnits;
 import jrat.common.utils.MathUtils;
 import jrat.controller.Slave;
-import jrat.controller.packets.outgoing.Packet102ServerUpload;
 import jrat.controller.packets.outgoing.Packet103CompleteServerUpload;
 import jrat.controller.ui.DefaultJTable;
 import jrat.controller.ui.DefaultJTableCellRenderer;
 import jrat.controller.ui.components.TableModel;
 import jrat.controller.utils.Utils;
+import jrat.module.fs.packets.Packet102ServerUpload;
 
 import javax.swing.*;
 import javax.swing.event.PopupMenuEvent;

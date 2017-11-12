@@ -62,7 +62,6 @@ public class IncomingPackets {
         PACKETS_INCOMING.put((short) 96, Packet96EnvironmentVariables.class);
         PACKETS_INCOMING.put((short) 98, Packet98InjectJAR.class);
         PACKETS_INCOMING.put((short) 100, Packet100RequestElevation.class);
-        PACKETS_INCOMING.put((short) 102, Packet102ClientDownload.class);
         PACKETS_INCOMING.put((short) 103, Packet103CompleteClientDownload.class);
         PACKETS_INCOMING.put((short) 104, Packet104ClientDownloadPart.class);
         PACKETS_INCOMING.put((short) 106, Packet106ClientDownloadPlugin.class);

@@ -35,9 +35,6 @@ public class IncomingPackets {
 		PACKETS_INCOMING.put((short) 18, Packet18InitMonitors.class);	
 		PACKETS_INCOMING.put((short) 19, Packet19InitCPU.class);
 		PACKETS_INCOMING.put((short) 20, Packet20Headless.class);
-        PACKETS_INCOMING.put((short) 29, Packet29ServerDownloadPart.class);
-		PACKETS_INCOMING.put((short) 30, Packet30BeginServerDownload.class);
-		PACKETS_INCOMING.put((short) 31, Packet31CompleteServerDownload.class);
 		PACKETS_INCOMING.put((short) 32, Packet32SystemProperties.class);
 		PACKETS_INCOMING.put((short) 33, Packet33Thumbnail.class);
 		PACKETS_INCOMING.put((short) 41, Packet41Clipboard.class);

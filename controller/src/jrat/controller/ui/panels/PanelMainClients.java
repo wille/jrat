@@ -4,14 +4,12 @@ import jrat.api.ControllerModule;
 import jrat.api.Resources;
 import jrat.api.ui.ClientMenu;
 import jrat.api.ui.ClientMenuItem;
-import jrat.common.downloadable.Downloadable;
 import jrat.controller.AbstractSlave;
 import jrat.controller.OfflineSlave;
 import jrat.controller.Slave;
 import jrat.controller.net.URLParser;
 import jrat.controller.packets.outgoing.*;
 import jrat.controller.settings.StoreOfflineSlaves;
-import jrat.controller.threads.ThreadUploadFile;
 import jrat.controller.ui.dialogs.DialogFileType;
 import jrat.controller.ui.frames.FrameControlPanel;
 import jrat.controller.ui.frames.FrameRename;
@@ -96,7 +94,7 @@ public abstract class PanelMainClients extends JScrollPane {
 
 		JMenuItem mntmUploadAndExecute = new JMenuItem("Upload and Execute");
 		mntmUploadAndExecute.setIcon(Resources.getIcon("drive-upload"));
-		mntmUploadAndExecute.addActionListener(new ActionListener() {
+		/*mntmUploadAndExecute.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				List<AbstractSlave> servers = getSelectedSlaves();
 				if (servers.size() > 0) {
@@ -122,7 +120,7 @@ public abstract class PanelMainClients extends JScrollPane {
 					}
 				}
 			}
-		});
+		});*/
 		mnNetworking.add(mntmUploadAndExecute);
 
 		mnNetworking.addSeparator();
@@ -133,7 +131,7 @@ public abstract class PanelMainClients extends JScrollPane {
 
 		JMenuItem mntmUpdateFromFile = new JMenuItem("Update from File");
 		mntmUpdateFromFile.setIcon(Resources.getIcon("drive-upload"));
-		mntmUpdateFromFile.addActionListener(new ActionListener() {
+		/*mntmUpdateFromFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				List<AbstractSlave> servers = getSelectedSlaves();
 				if (servers.size() > 0) {
@@ -160,7 +158,7 @@ public abstract class PanelMainClients extends JScrollPane {
 					}
 				}
 			}
-		});
+		});*/
 		mnNetworking.add(mntmUpdateFromFile);
 
 		mnNetworking.addSeparator();

