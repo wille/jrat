@@ -11,31 +11,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FileIO {
-	
-	public static final Map<File, OutputStream> CURRENT = new HashMap<File, OutputStream>();
-	
-	public static OutputStream getOutputStream(File file) {
-		return CURRENT.get(file);
-	}
 
-	public static final int CHUNKSIZE = 1024;
-
-	public boolean enabled = true;
-
-	public void writeFile(File file, Socket socket, DataOutputStream dos, DataInputStream dis, TransferListener listener, byte[] key) throws Exception {
-		int timeout = socket.getSoTimeout();
-		socket.setSoTimeout(0);
-
+	public static void writeFile(File file, DataOutputStream dos, TransferListener listener) throws Exception {
 		FileInputStream fileInput = new FileInputStream(file);
 
-		byte[] chunk = new byte[CHUNKSIZE];
+        byte[] chunk = new byte[1024];
 
 		long fileSize = file.length();
 		dos.writeLong(fileSize);
 
-		for (long pos = 0; pos < fileSize; pos += CHUNKSIZE) {
+		for (long pos = 0; pos < fileSize; pos += 1024) {
 			int read = fileInput.read(chunk);
-			
+
 			dos.writeInt(read);
 			
 			if (read == -1) {
@@ -51,13 +38,9 @@ public class FileIO {
 		fileInput.close();
 
 		dos.writeInt(-1);
+    }
 
-		socket.setSoTimeout(timeout);
-	}
-
-	public void readFile(File output, Socket socket, DataInputStream dis, DataOutputStream dos, TransferListener listener, byte[] key) throws Exception {
-		FileOutputStream fileOutput = new FileOutputStream(output);
-
+	public static void readFile(OutputStream output, DataInputStream dis, TransferListener listener) throws Exception {
 		int read = 0;
 		int chunkSize;
 
@@ -69,15 +52,15 @@ public class FileIO {
 			read += chunkSize;
 
 			dis.readFully(chunk);
-			
-			fileOutput.write(chunk);
+
+			output.write(chunk);
 
 			if (listener != null) {
 				listener.transferred(chunk.length, read, size);
 			}
 		}
 
-		fileOutput.close();
+		output.close();
 	}
 
 }
