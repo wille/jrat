@@ -564,7 +564,6 @@ public class PanelFileManager extends FileSubPanel {
 
     @Override
     public void opened() {
-	    System.out.println("opened file tab");
         remoteTable.setDirectory(null);
     }
 }

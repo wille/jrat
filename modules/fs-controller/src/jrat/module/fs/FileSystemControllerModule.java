@@ -38,7 +38,7 @@ public class FileSystemControllerModule extends ControllerModule {
             }
         }));
 
-        controlPanelItems.add(new ControlPanelTab(ControlPanel.Category.FILES, "Files", Resources.getIcon("folder-stand"), PanelFileManager.class));
+        controlPanelItems.add(new ControlPanelTab(ControlPanel.Category.FILES, "Files", Resources.getIcon("folders-stack"), PanelFileManager.class));
         controlPanelItems.add(new StaticControlPanelTab(ControlPanel.Category.FILES, "Transfers", Resources.getIcon("arrow-down"), PanelFileTransfers.instance));
         controlPanelItems.add(new ControlPanelTab(ControlPanel.Category.FILES, "Thumbnails", Resources.getIcon("images-stack"), PanelThumbView.class));
         controlPanelItems.add(new ControlPanelTab(ControlPanel.Category.FILES, "Search", Resources.getIcon("folder-search"), PanelSearchFiles.class));
