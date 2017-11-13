@@ -9,6 +9,8 @@ import java.net.Socket;
 
 public class ServerThread extends Thread {
 
+    private static ProxyServer server;
+
     private String user;
     private String pass;
     private boolean socks5;
@@ -27,7 +29,7 @@ public class ServerThread extends Thread {
 
     public void run() {
         try {
-            ProxyServer server = new ProxyServer(socks5 && auth ? new UserPasswordAuthenticator(new UserValidation() {
+            server = new ProxyServer(socks5 && auth ? new UserPasswordAuthenticator(new UserValidation() {
                 @Override
                 public boolean isUserValid(String username, String password, Socket connection) {
                     if (!auth) {
@@ -42,5 +44,9 @@ public class ServerThread extends Thread {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    public static void stopProxy() {
+        server.stop();
     }
 }

