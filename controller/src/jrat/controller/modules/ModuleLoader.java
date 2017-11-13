@@ -16,7 +16,8 @@ public class ModuleLoader {
             "chat",
             "system",
             "keys",
-            "shell"
+            "shell",
+            "socks"
     };
 
     private static final List<Module> modules = new ArrayList<>();
