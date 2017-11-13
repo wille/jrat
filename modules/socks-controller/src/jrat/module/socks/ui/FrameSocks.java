@@ -4,6 +4,7 @@ import jrat.api.ui.ClientPanel;
 import jrat.controller.Slave;
 import jrat.module.socks.ClientThread;
 import jrat.module.socks.PacketControl;
+import socks.Socks5Proxy;
 
 import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
@@ -19,8 +20,10 @@ import javax.swing.SpinnerNumberModel;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.*;
 
 @SuppressWarnings("serial")
 public class FrameSocks extends ClientPanel {
@@ -93,6 +96,14 @@ public class FrameSocks extends ClientPanel {
 			}
 		});
 		btnStop.setEnabled(false);
+
+		JButton btnTest = new JButton("Test");
+		btnTest.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                test();
+            }
+        });
 		
 		spinner_1 = new JSpinner();
 		spinner_1.setModel(new SpinnerNumberModel(1081, 0, 65535, 1));
@@ -109,6 +120,8 @@ public class FrameSocks extends ClientPanel {
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addComponent(lbl)
 									.addPreferredGap(ComponentPlacement.RELATED, 179, Short.MAX_VALUE)
+                                    .addComponent(btnTest)
+                                    .addPreferredGap(ComponentPlacement.RELATED)
 									.addComponent(btnStop)
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addComponent(btnStart))
@@ -171,7 +184,8 @@ public class FrameSocks extends ClientPanel {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnStart)
 						.addComponent(lbl)
-						.addComponent(btnStop))
+						.addComponent(btnStop)
+                        .addComponent(btnTest))
 					.addContainerGap())
 		);
 		setLayout(gl_contentPane);
@@ -235,11 +249,19 @@ public class FrameSocks extends ClientPanel {
 		}
 	}
 
-	public void setLabelColor(Color color) {
-		lbl.setForeground(color);
-	}
+	private void test() {
+        try {
+            SocketAddress addr = new InetSocketAddress("127.0.0.1", (Integer) spinner_1.getValue());
+            Proxy proxy = new Proxy(Proxy.Type.SOCKS, addr);
 
-	public void setLabelText(String s) {
-		lbl.setText(s);
-	}
+            URL url = new URL("https://jrat.io/getip.php");
+            URLConnection conn = url.openConnection(proxy);
+            conn.connect();
+
+            lbl.setText("Connected!");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            lbl.setText("Failed to connect");
+        }
+    }
 }
