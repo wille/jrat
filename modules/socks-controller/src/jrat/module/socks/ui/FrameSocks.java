@@ -28,7 +28,6 @@ public class FrameSocks extends ClientPanel {
 	private JRadioButton rdbtnSocks5;
 	private JRadioButton rdbtnSocks4;
 	private ButtonGroup socksGroup = new ButtonGroup();
-	private JTextField txtHost;
 	private JTextField txtUser;
 	private JTextField txtPass;
 	private JCheckBox chckbxUseAuthentication;
@@ -61,16 +60,7 @@ public class FrameSocks extends ClientPanel {
 			}
 		});
 		
-		JLabel lblHost = new JLabel("Host:");
-		
-		txtHost = new JTextField();
-		txtHost.setColumns(10);
-
-		try {
-			txtHost.setText("127.0.0.1"); // TODO
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
+		JLabel lblHost = new JLabel("Incoming connection port:");
 		
 		spinner = new JSpinner();
 		spinner.setModel(new SpinnerNumberModel(1080, 1, 65535, 1));
@@ -107,7 +97,7 @@ public class FrameSocks extends ClientPanel {
 		spinner_1 = new JSpinner();
 		spinner_1.setModel(new SpinnerNumberModel(1081, 0, 65535, 1));
 		
-		JLabel lblIncomingPort = new JLabel("Local Server Port:");
+		JLabel lblIncomingPort = new JLabel("Local Proxy Port:");
 		GroupLayout gl_contentPane = new GroupLayout(this);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -128,8 +118,6 @@ public class FrameSocks extends ClientPanel {
 									.addComponent(spinner_1, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE))
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addComponent(lblHost)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(txtHost, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addComponent(spinner, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 							.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -158,7 +146,6 @@ public class FrameSocks extends ClientPanel {
 					.addContainerGap()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblHost)
-						.addComponent(txtHost, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(spinner, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
