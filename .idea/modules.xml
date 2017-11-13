@@ -22,6 +22,7 @@
       <module fileurl="file://$PROJECT_DIR$/modules/shell-client/shell-client.iml" filepath="$PROJECT_DIR$/modules/shell-client/shell-client.iml" group="modules" />
       <module fileurl="file://$PROJECT_DIR$/modules/shell-controller/shell-controller.iml" filepath="$PROJECT_DIR$/modules/shell-controller/shell-controller.iml" group="modules" />
       <module fileurl="file://$PROJECT_DIR$/modules/socks-client/socks-client.iml" filepath="$PROJECT_DIR$/modules/socks-client/socks-client.iml" group="modules" />
+      <module fileurl="file://$PROJECT_DIR$/modules/socks-common/socks-common.iml" filepath="$PROJECT_DIR$/modules/socks-common/socks-common.iml" group="modules" />
       <module fileurl="file://$PROJECT_DIR$/modules/socks-controller/socks-controller.iml" filepath="$PROJECT_DIR$/modules/socks-controller/socks-controller.iml" group="modules" />
       <module fileurl="file://$PROJECT_DIR$/modules/system-client/system-client.iml" filepath="$PROJECT_DIR$/modules/system-client/system-client.iml" group="modules" />
       <module fileurl="file://$PROJECT_DIR$/modules/system-controller/system-controller.iml" filepath="$PROJECT_DIR$/modules/system-controller/system-controller.iml" group="modules" />
