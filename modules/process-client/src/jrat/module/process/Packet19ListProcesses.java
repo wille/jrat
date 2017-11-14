@@ -123,7 +123,13 @@ public class Packet19ListProcesses implements IncomingPacket {
 			line = line.trim().replaceAll("( )+", " ");
 			String[] args = line.split(" ");
 
-			data[0] = args[args.length - 1];
+			String name = "";
+
+			for (int i = 10; i < args.length; i++) {
+			    name += args[i] + " ";
+            }
+
+			data[0] = name;
 			data[1] = args[2];
 			data[2] = args[0];
 			data[3] = args[3];
