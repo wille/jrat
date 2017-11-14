@@ -19,6 +19,7 @@ import jrat.module.fs.packets.upload.Packet42Upload;
 import jrat.module.fs.packets.Packet47RenameFile;
 import jrat.module.fs.ui.previews.PanelPreviewArchive;
 import jrat.module.fs.ui.previews.PanelPreviewFile;
+import jrat.module.fs.ui.previews.PanelPreviewImage;
 import jrat.module.fs.ui.previews.PreviewPanel;
 import oslib.OperatingSystem;
 
@@ -430,7 +431,7 @@ public class PanelFileManager extends FileSubPanel {
                         case ".jpg":
                         case ".jpeg":
                         case ".gif":
-                            //preview = new PanelPreviewImage(slave, file);
+                            preview = new PanelPreviewImage(slave, file);
                             break;
                         case ".zip":
                         case ".jar":
