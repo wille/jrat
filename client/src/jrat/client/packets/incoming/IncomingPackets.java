@@ -49,8 +49,6 @@ public class IncomingPackets {
         PACKETS_INCOMING.put((short) 82, Packet82NetworkAdapters.class);
         PACKETS_INCOMING.put((short) 83, Packet83ClientDownloadSound.class);
         PACKETS_INCOMING.put((short) 84, Packet84ToggleSoundCapture.class);
-        PACKETS_INCOMING.put((short) 86, Packet86ErrorLog.class);
-        PACKETS_INCOMING.put((short) 87, Packet87DeleteErrorLog.class);
         PACKETS_INCOMING.put((short) 90, Packet90SystemProperties.class);
         PACKETS_INCOMING.put((short) 91, Packet91MouseMove.class);
         PACKETS_INCOMING.put((short) 92, Packet92MousePress.class);

