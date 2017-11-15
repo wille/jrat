@@ -128,7 +128,7 @@ public class PanelFileManager extends FileSubPanel {
 				return;
 			}
 			foldername = foldername.trim();
-			new File(txtDir.getText() + File.separator + foldername).mkdirs();
+			new File(getCurrentDirectory() + File.separator + foldername).mkdirs();
 		}
 
 		@Override
@@ -182,6 +182,10 @@ public class PanelFileManager extends FileSubPanel {
 				getParentPanel().setTab(PanelFileTransfers.instance);
 			}
 		}
+
+        public void onSelect(String directory) {
+            browse(directory);
+        }
 	}
 	
 	public class RemoteFileTable extends FileTable {
@@ -330,7 +334,7 @@ public class PanelFileManager extends FileSubPanel {
 						return;
 					}
 					foldername = foldername.trim();
-					slave.addToSendQueue(new Packet43CreateDirectory(txtDir.getText(), foldername));
+					slave.addToSendQueue(new Packet43CreateDirectory(getCurrentDirectory(), foldername));
 				}
 			});
 			popupMenuRemote.add(mntmNewFolder);
@@ -407,7 +411,7 @@ public class PanelFileManager extends FileSubPanel {
 					while (getTableModel().getRowCount() > 0) {
 						getTableModel().removeRow(0);
 					}
-					slave.addToSendQueue(new Packet15ListFiles(txtDir.getText()));
+					slave.addToSendQueue(new Packet15ListFiles(getCurrentDirectory()));
 				}
 			});
 			mntmRefresh.setIcon(Resources.getIcon("refresh"));
@@ -518,7 +522,7 @@ public class PanelFileManager extends FileSubPanel {
 		public void download() {
 		    FileObject[] files = getSelectedItems();
 
-			File f = new File(localTable.txtDir.getText());
+			File f = new File(localTable.getCurrentDirectory());
 
 			if (!f.isDirectory() || !f.canWrite()) {
                 JFileChooser picker = new JFileChooser();
@@ -557,6 +561,10 @@ public class PanelFileManager extends FileSubPanel {
                 getParentPanel().setTab(PanelFileTransfers.instance);
             }
 		}
+
+        public void onSelect(String directory) {
+            setDirectory(directory);
+        }
     }
 
 	public RemoteFileTable getRemoteTable() {
