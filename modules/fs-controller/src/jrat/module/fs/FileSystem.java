@@ -6,6 +6,8 @@ import jrat.module.fs.ui.FileTable;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class FileSystem {
@@ -17,8 +19,8 @@ public class FileSystem {
 	public static void addDir(File folder, FileTable table) {
 		if (folder.exists()) {
 			File[] childs = folder.listFiles();
-			List<File> files = new ArrayList<File>();
-			List<File> dirs = new ArrayList<File>();
+			List<File> files = new ArrayList<>();
+			List<File> dirs = new ArrayList<>();
 
 			if (childs != null) {
 				for (File file : childs) {
@@ -30,6 +32,7 @@ public class FileSystem {
 				}
 			}
 
+			sort(dirs);
 			for (File file : dirs) {
 				FileObject fo = new FileObject(file.getAbsolutePath());
 				fo.setHidden(file.isHidden());
@@ -38,6 +41,7 @@ public class FileSystem {
 				table.addFileObject(fo);
 			}
 
+			sort(files);
 			for (File file : files) {
 				FileObject fo = new FileObject(file.getAbsolutePath());
 				fo.setHidden(file.isHidden());
@@ -49,5 +53,14 @@ public class FileSystem {
 			}
 		}
 	}
+
+	private static void sort(List<File> files) {
+        Collections.sort(files, new Comparator() {
+            @Override
+            public int compare(Object a, Object b) {
+                return ((File)a).getName().compareTo(((File)b).getName());
+            }
+        });
+    }
 
 }
