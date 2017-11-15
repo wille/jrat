@@ -8,6 +8,8 @@ import jrat.module.fs.ui.PanelFileManager;
 import jrat.module.fs.ui.PanelFileSystem;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -47,13 +49,24 @@ public class Packet22ListFiles implements IncomingPacket {
 		if (panel != null) {
 			panel.getRemoteTable().clear();
 
+			sort(dirs);
 			for (FileObject fo : dirs) {
                 panel.getRemoteTable().addFileObject(fo);
 			}
-			
+
+			sort(files);
 			for (FileObject fo : files) {
                 panel.getRemoteTable().addFileObject(fo);
 			}
 		}
 	}
+
+	private static void sort(List<FileObject> list) {
+        Collections.sort(list, new Comparator() {
+            @Override
+            public int compare(Object a, Object b) {
+                return ((FileObject)a).getPath().compareTo(((FileObject)b).getPath());
+            }
+        });
+    }
 }
