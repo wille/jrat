@@ -27,7 +27,8 @@ public abstract class FileTable extends JPanel {
 	protected DefaultComboBoxModel driveComboModel;
 	protected JComboBoxIconRenderer renderer;
 	
-	protected JTextField txtDir;
+	private JTextField txtDir;
+	private String currentDirectory;
 	
 	public FileTable() {
 		this(null);
@@ -115,7 +116,6 @@ public abstract class FileTable extends JPanel {
 		toolBar.add(driveComboBox);
 		
 		txtDir = new JTextField();
-		txtDir.setEditable(false);
 		toolBar.add(txtDir);
 	}
 	
@@ -147,11 +147,12 @@ public abstract class FileTable extends JPanel {
 	public abstract void onItemClick(FileObject fo);
 	
 	public void setDirectory(String directory) {
-		txtDir.setText(directory);
+		currentDirectory = directory;
+	    txtDir.setText(directory);
 	}
 
 	public String getCurrentDirectory() {
-		return txtDir.getText();
+		return currentDirectory;
 	}
 	
 	public void clear() {
