@@ -16,6 +16,7 @@ public class PathComponent extends JPanel {
     public PathComponent(String separator) {
         this.separator = separator;
         setLayout(new FlowLayout());
+        setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
     }
 
     /**
@@ -47,6 +48,8 @@ public class PathComponent extends JPanel {
 
             addSeparator();
         }
+
+        revalidate();
     }
 
     public void addListener(DirectorySelectListener l) {
