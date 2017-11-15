@@ -182,6 +182,10 @@ public class PanelFileManager extends FileSubPanel {
 				getParentPanel().setTab(PanelFileTransfers.instance);
 			}
 		}
+
+        public void onSelect(String directory) {
+            browse(directory);
+        }
 	}
 	
 	public class RemoteFileTable extends FileTable {
@@ -557,6 +561,10 @@ public class PanelFileManager extends FileSubPanel {
                 getParentPanel().setTab(PanelFileTransfers.instance);
             }
 		}
+
+        public void onSelect(String directory) {
+            setDirectory(directory);
+        }
     }
 
 	public RemoteFileTable getRemoteTable() {

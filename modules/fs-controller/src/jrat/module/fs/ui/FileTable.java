@@ -14,9 +14,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 
 @SuppressWarnings("serial")
-public abstract class FileTable extends JPanel {
+public abstract class FileTable extends JPanel implements PathComponent.DirectorySelectListener {
 
 	protected JToolBar toolBar;
 	protected JTable table;
@@ -26,8 +27,8 @@ public abstract class FileTable extends JPanel {
 	protected JComboBox driveComboBox;
 	protected DefaultComboBoxModel driveComboModel;
 	protected JComboBoxIconRenderer renderer;
-	
-	private JTextField txtDir;
+
+	private PathComponent path;
 	private String currentDirectory;
 	
 	public FileTable() {
@@ -115,8 +116,9 @@ public abstract class FileTable extends JPanel {
 		
 		toolBar.add(driveComboBox);
 		
-		txtDir = new JTextField();
-		toolBar.add(txtDir);
+		path = new PathComponent(slave != null ? slave.getFileSeparator() : File.separator + "");
+		path.addListener(this);
+		toolBar.add(path);
 	}
 	
 	public FileObject[] getSelectedItems() {
@@ -135,8 +137,8 @@ public abstract class FileTable extends JPanel {
 		
 		return (FileObject) table.getValueAt(i, 0);
 	}
-	
-	public abstract void onBack();
+
+    public abstract void onBack();
 	
 	public abstract void onReload();
 	
@@ -148,7 +150,7 @@ public abstract class FileTable extends JPanel {
 	
 	public void setDirectory(String directory) {
 		currentDirectory = directory;
-	    txtDir.setText(directory);
+	    path.setDirectory(directory);
 	}
 
 	public String getCurrentDirectory() {
