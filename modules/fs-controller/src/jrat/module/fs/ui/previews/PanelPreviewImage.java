@@ -3,6 +3,7 @@ package jrat.module.fs.ui.previews;
 import jrat.api.Resources;
 import jrat.controller.Slave;
 import jrat.controller.ui.panels.PanelImage;
+import jrat.controller.utils.Utils;
 import jrat.module.fs.packets.Packet62PreviewImage;
 
 import javax.imageio.ImageIO;
@@ -32,15 +33,31 @@ public class PanelPreviewImage extends PreviewPanel<BufferedImage> {
 		setLayout(new BorderLayout());
 
 		imagePanel = new PanelImage();
-		imagePanel.addMouseListener(new MouseAdapter() {
+        add(imagePanel, BorderLayout.CENTER);
+
+		JPopupMenu menu = new JPopupMenu();
+
+		JMenuItem itemSave = new JMenuItem("Save");
+		itemSave.addActionListener(new ActionListener() {
             @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
+            public void actionPerformed(ActionEvent actionEvent) {
                 save();
             }
         });
-		add(imagePanel, BorderLayout.CENTER);
+		menu.add(itemSave);
 
-		reload();
+		JMenuItem itemClose = new JMenuItem("Close");
+		itemClose.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                close();
+            }
+        });
+        menu.add(itemClose);
+
+        Utils.addPopup(imagePanel, menu);
+
+        reload();
 	}
 
     private void save() {
