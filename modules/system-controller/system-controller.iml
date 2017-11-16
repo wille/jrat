@@ -12,5 +12,6 @@
     <orderEntry type="module" module-name="controller-api" />
     <orderEntry type="library" name="graphslib" level="project" />
     <orderEntry type="module" module-name="common" />
+    <orderEntry type="library" name="oslib" level="project" />
   </component>
 </module>

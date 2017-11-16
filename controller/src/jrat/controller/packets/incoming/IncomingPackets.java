@@ -38,12 +38,9 @@ public class IncomingPackets {
 		PACKETS_INCOMING.put((short) 32, Packet32SystemProperties.class);
 		PACKETS_INCOMING.put((short) 33, Packet33Thumbnail.class);
 		PACKETS_INCOMING.put((short) 41, Packet41Clipboard.class);
-		PACKETS_INCOMING.put((short) 44, Packet44SystemJavaProperty.class);
 		PACKETS_INCOMING.put((short) 49, Packet49LanDevices.class);
 		PACKETS_INCOMING.put((short) 51, Packet51ActivePort.class);
 		PACKETS_INCOMING.put((short) 52, Packet52WindowsService.class);
-		PACKETS_INCOMING.put((short) 53, Packet53RegistryStartup.class);
-		PACKETS_INCOMING.put((short) 55, Packet55InstalledProgram.class);
 		PACKETS_INCOMING.put((short) 56, Packet56NetworkAdapter.class);
 		PACKETS_INCOMING.put((short) 58, Packet58ServerDownloadSoundCapture.class);
 	}

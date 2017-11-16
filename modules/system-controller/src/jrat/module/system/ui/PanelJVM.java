@@ -1,10 +1,12 @@
-package jrat.controller.ui.panels;
+package jrat.module.system.ui;
 
 import jrat.api.Resources;
+import jrat.api.ui.ClientPanel;
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet61SystemJavaProperties;
 import jrat.controller.ui.DefaultJTable;
 import jrat.controller.ui.components.TableModel;
+import jrat.controller.ui.panels.PanelControlParent;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
@@ -14,7 +16,7 @@ import java.awt.event.ActionListener;
 
 
 @SuppressWarnings("serial")
-public class PanelControlJVMProperties extends PanelControlParent {
+public class PanelJVM extends ClientPanel {
 
     private TableModel model;
 
@@ -22,9 +24,9 @@ public class PanelControlJVMProperties extends PanelControlParent {
 		return model;
 	}
 
-	public PanelControlJVMProperties(Slave sl) {
-		super(sl);
-		this.slave = sl;
+	public PanelJVM(Slave s) {
+		super(s, "JVM", Resources.getIcon("java"));
+
 		JPanel panel = new JPanel();
 		panel.setBorder(BorderFactory.createTitledBorder("Raw data"));
 		GroupLayout groupLayout = new GroupLayout(this);

