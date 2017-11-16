@@ -52,18 +52,20 @@ public class ImageUtils {
 	}
 
 	public static byte[] encode(BufferedImage image) throws Exception {
-		return encode(image, 0.25F);
+		return encode(image, 0.25F, "jpeg");
 	}
 
-	public static byte[] encode(BufferedImage image, float quality) throws Exception {
+	public static byte[] encode(BufferedImage image, float quality, String format) throws Exception {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		GZIPOutputStream bss = new GZIPOutputStream(baos);
 		ImageOutputStream ios = ImageIO.createImageOutputStream(bss);
-		Iterator<ImageWriter> iter = ImageIO.getImageWritersByFormatName("jpeg");
+		Iterator<ImageWriter> iter = ImageIO.getImageWritersByFormatName(format);
 		ImageWriter writer = iter.next();
 		ImageWriteParam iwp = writer.getDefaultWriteParam();
-		iwp.setCompressionMode(2);
-		iwp.setCompressionQuality(quality);
+		if (iwp.canWriteCompressed()) {
+            iwp.setCompressionMode(2);
+            iwp.setCompressionQuality(quality);
+        }
 		writer.setOutput(ios);
 		writer.write(null, new IIOImage(image, null, null), iwp);
 		writer.dispose();

