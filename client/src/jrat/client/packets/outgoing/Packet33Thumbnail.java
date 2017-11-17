@@ -24,7 +24,7 @@ public class Packet33Thumbnail implements OutgoingPacket {
 			BufferedImage screenShot = new Robot().createScreenCapture(screenRect);
 			screenShot = ImageUtils.resize(screenShot, width, height);
 
-			byte[] buffer = ImageUtils.encode(screenShot, 0.5F);
+			byte[] buffer = ImageUtils.encode(screenShot, 0.5F, "jpeg");
 			con.writeInt(buffer.length);
 			con.write(buffer);
 		}

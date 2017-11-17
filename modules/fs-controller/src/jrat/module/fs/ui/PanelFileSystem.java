@@ -64,7 +64,14 @@ public class PanelFileSystem extends ClientPanel {
      * @param key
      * @param preview
      */
-	void addPreview(Object key, PreviewPanel preview) {
+	void addPreview(final Object key, final PreviewPanel preview) {
+	    preview.addCloseListener(new PreviewPanel.CloseListener() {
+            @Override
+            public void close() {
+                tabbedPane.remove(preview);
+                previewHandlers.remove(key);
+            }
+        });
 	    previewHandlers.put(key, preview);
 	    tabbedPane.addTab(preview.title, preview.icon, preview);
     }
