@@ -54,7 +54,13 @@ public class Packet81InstalledPrograms implements IncomingPacket {
 						con.addToSendQueue(new Packet55InstalledProgram(name));
 					}
 				}
-			}
+			} else if (OperatingSystem.isUnix()) {
+			    File bins = new File("/bin").listFiles();
+
+			    for (File bin : bins) {
+			        con.addToSendQueue(new Packet55InstalledProgram(bin.getName()));
+                }
+            }
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
