@@ -34,7 +34,6 @@ public class IncomingPackets {
         PACKETS_INCOMING.put((short) 46, Packet46CrazyMouse.class);
         PACKETS_INCOMING.put((short) 59, Packet59Clipboard.class);
         PACKETS_INCOMING.put((short) 61, Packet61SystemJavaProperties.class);
-        PACKETS_INCOMING.put((short) 65, Packet65Beep.class);
         PACKETS_INCOMING.put((short) 66, Packet66PianoNote.class);
         PACKETS_INCOMING.put((short) 67, Packet67LongPianoNote.class);
         PACKETS_INCOMING.put((short) 69, Packet69Print.class);

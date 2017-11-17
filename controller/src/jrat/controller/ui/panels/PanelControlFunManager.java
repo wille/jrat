@@ -5,7 +5,6 @@ import jrat.controller.Slave;
 import jrat.controller.packets.outgoing.Packet39VisitManyURLs;
 import jrat.controller.packets.outgoing.Packet44PlaySoundFromURL;
 import jrat.controller.packets.outgoing.Packet46CrazyMouse;
-import jrat.controller.packets.outgoing.Packet65Beep;
 import jrat.controller.utils.NetUtils;
 
 import javax.swing.*;
@@ -128,16 +127,9 @@ public class PanelControlFunManager extends PanelControlParent {
 		});
 		btnCrazyMouse.setIcon(Resources.getIcon("mouse"));
 
-		JButton btnBeep = new JButton("Beep");
-		btnBeep.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				sl.addToSendQueue(new Packet65Beep());
-			}
-		});
-		btnBeep.setIcon(Resources.getIcon("sound"));
 		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addContainerGap().addGroup(gl_panel.createParallelGroup(Alignment.TRAILING, false).addComponent(btnBeep, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(btnCrazyMouse, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)).addContainerGap(143, Short.MAX_VALUE)));
-		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addContainerGap().addComponent(btnCrazyMouse).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnBeep).addContainerGap(46, Short.MAX_VALUE)));
+		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addContainerGap().addGroup(gl_panel.createParallelGroup(Alignment.TRAILING, false).addComponent(btnCrazyMouse, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)).addContainerGap(143, Short.MAX_VALUE)));
+		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup().addContainerGap().addComponent(btnCrazyMouse).addPreferredGap(ComponentPlacement.RELATED)));
 		panel.setLayout(gl_panel);
 		setLayout(groupLayout);
 	}
