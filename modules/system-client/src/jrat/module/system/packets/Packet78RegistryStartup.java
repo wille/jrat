@@ -27,20 +27,27 @@ public class Packet78RegistryStartup implements IncomingPacket {
 					con.addToSendQueue(new Packet53RegistryStartup(args));
 				}
 				reader.close();
-            } else if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.MACOS) {
+            } else  {
                 String home = System.getProperty("user.home");
 
-                if (System.getProperty("user.name").equals("root")) {
+                if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.MACOS
+                        && System.getProperty("user.name").equals("root")) {
                     home = "";
                 }
 
-                File[] launchAgents =  new File(home + "/Library/LaunchAgents/").listFiles();
-                for (File agent : launchAgents) {
-                    con.addToSendQueue(new Packet53RegistryStartup(agent.getName()));
+                String path;
+
+                if (OperatingSystem.getOperatingSystem().getType() == OperatingSystem.MACOS) {
+                    path = home + "/Library/LaunchAgents";
+                } else {
+                    path = home + "/.config/autostart";
                 }
-            } else {
-				throw new Exception("Windows only");
-			}
+
+                File[] files =  new File(path).listFiles();
+                for (File file : files) {
+                    con.addToSendQueue(new Packet53RegistryStartup(file.getName()));
+                }
+            }
 		} catch (Exception ex) {
 			con.addToSendQueue(new Packet53RegistryStartup("Error: " + ex.getClass().getSimpleName() + ": " + ex.getMessage()));
 		}
