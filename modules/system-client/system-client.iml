@@ -9,5 +9,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="client" />
     <orderEntry type="module" module-name="client-api" />
+    <orderEntry type="library" name="oslib" level="project" />
   </component>
 </module>

