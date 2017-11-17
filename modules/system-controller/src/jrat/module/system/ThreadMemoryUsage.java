@@ -1,6 +1,7 @@
 package jrat.module.system;
 
 import jrat.controller.Slave;
+import jrat.module.system.packets.Packet33UsedMemory;
 import jrat.module.system.ui.PanelMemoryUsage;
 
 public class ThreadMemoryUsage extends Thread {

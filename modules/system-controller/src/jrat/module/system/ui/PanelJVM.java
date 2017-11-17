@@ -3,10 +3,9 @@ package jrat.module.system.ui;
 import jrat.api.Resources;
 import jrat.api.ui.ClientPanel;
 import jrat.controller.Slave;
-import jrat.controller.packets.outgoing.Packet61SystemJavaProperties;
+import jrat.module.system.packets.Packet61SystemJavaProperties;
 import jrat.controller.ui.DefaultJTable;
 import jrat.controller.ui.components.TableModel;
-import jrat.controller.ui.panels.PanelControlParent;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
