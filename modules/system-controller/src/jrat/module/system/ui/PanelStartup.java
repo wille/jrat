@@ -19,8 +19,6 @@ public class PanelStartup extends ClientPanel {
 
     private TableModel model;
 
-	public static final ImageIcon ICON = Resources.getIcon("registry-string");
-
 	public TableModel getModel() {
 		return model;
 	}
@@ -72,29 +70,16 @@ public class PanelStartup extends ClientPanel {
 					.addContainerGap(13, Short.MAX_VALUE))
 		);
 
-        JTable table = new DefaultJTable() {
-            @SuppressWarnings({"unchecked", "rawtypes"})
-            @Override
-            public Class getColumnClass(int column) {
-                if (column == 0) {
-                    return ImageIcon.class;
-                }
-                return super.getColumnClass(column);
-            }
-        };
+        JTable table = new DefaultJTable();
 
 		table.setRowHeight(25);
 
-		table.setModel(model = new TableModel(new Object[][] {}, new String[] { " ", "Name", "Type", "Path" }));
-		table.getColumnModel().getColumn(0).setPreferredWidth(25);
-		table.getColumnModel().getColumn(1).setPreferredWidth(140);
-		table.getColumnModel().getColumn(2).setPreferredWidth(99);
-		table.getColumnModel().getColumn(3).setPreferredWidth(318);
+		table.setModel(model = new TableModel(new Object[][] {}, new String[] { "Application" }));
 		scrollPane.setViewportView(table);
 		setLayout(groupLayout);
 	}
 
-	public void clear() {
+	private void clear() {
 		while (model.getRowCount() > 0) {
 			model.removeRow(0);
 		}
