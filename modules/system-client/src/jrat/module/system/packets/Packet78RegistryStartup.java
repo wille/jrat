@@ -24,7 +24,7 @@ public class Packet78RegistryStartup implements IncomingPacket {
 				while ((line = reader.readLine()) != null) {
 					String[] args = line.trim().split("    ");
 
-					con.addToSendQueue(new Packet53RegistryStartup(args));
+					con.addToSendQueue(new Packet53RegistryStartup(args[0]));
 				}
 				reader.close();
             } else  {

