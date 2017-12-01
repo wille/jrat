@@ -1,4 +1,4 @@
-package jrat.module.system;
+package jrat.module.system.packets;
 
 import jrat.common.utils.MathUtils;
 import jrat.controller.Slave;

