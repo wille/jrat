@@ -82,24 +82,11 @@ public class Settings extends AbstractStorable {
 	}
 
 	public void setBuildPassword(String password) {
-		try {
-			String encrypted = Crypto.encrypt(password, KeyUtils.STATIC_KEY.getEncoded());
-			settings.put(KEY_BUILD_PASSWORD, encrypted);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			// TODO error message
-		}
+        settings.put(KEY_BUILD_PASSWORD, password);
 	}
 
 	public String getBuildPassword() {
-		try {
-			return Crypto.decrypt((String) settings.get(KEY_BUILD_PASSWORD), KeyUtils.STATIC_KEY.getEncoded());
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			// TODO error message
-		}
-
-		return null;
+        return (String) settings.get(KEY_BUILD_PASSWORD);
 	}
 
 	public void load() throws Exception {
@@ -133,7 +120,7 @@ public class Settings extends AbstractStorable {
 				socketData.put("port", pl.getPort());
 				socketData.put("timeout", pl.getTimeout());
 				socketData.put("type", pl.getType());
-				socketData.put("pass", Crypto.encrypt(pl.getPass(), KeyUtils.STATIC_KEY.getEncoded()));
+				socketData.put("pass", pl.getPass());
 			}
 
 			String[] themeargs = UIManager.getLookAndFeel().toString().split(" - ");
@@ -197,7 +184,7 @@ public class Settings extends AbstractStorable {
 				int port = ((Long) socket.get("port")).intValue();
 				int timeout = ((Long) socket.get("timeout")).intValue();
 				int type = ((Long) socket.get("type")).intValue();
-				String pass = Crypto.decrypt((String) socket.get("pass"), KeyUtils.STATIC_KEY.getEncoded());
+				String pass = (String) socket.get("pass");
 
 				Settings.SocketEntry se = new Settings.SocketEntry(key, port, timeout, pass, type);
 				se.start();

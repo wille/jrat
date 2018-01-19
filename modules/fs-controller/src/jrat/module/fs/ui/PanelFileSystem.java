@@ -1,6 +1,5 @@
 package jrat.module.fs.ui;
 
-import com.sun.security.ntlm.Client;
 import jrat.api.Resources;
 import jrat.api.ui.ClientPanel;
 import jrat.controller.Slave;

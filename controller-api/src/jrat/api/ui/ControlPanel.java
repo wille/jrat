@@ -1,6 +1,5 @@
 package jrat.api.ui;
 
-import com.sun.org.apache.regexp.internal.RE;
 import jrat.api.Resources;
 
 import javax.swing.*;
