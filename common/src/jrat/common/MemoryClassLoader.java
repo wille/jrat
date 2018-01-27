@@ -1,4 +1,4 @@
-package jrat.client;
+package jrat.common;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -61,7 +61,7 @@ public class MemoryClassLoader extends ClassLoader {
 		byte[] data = classes.remove(name);
 
 		if (data != null) {
-			return defineClass(name, data, 0, data.length, Injector.class.getProtectionDomain());
+			return defineClass(name, data, 0, data.length, MemoryClassLoader.class.getProtectionDomain());
 		} else {
 			throw new ClassNotFoundException(name);
 		}

