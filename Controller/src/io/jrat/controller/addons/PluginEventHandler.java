@@ -20,19 +20,11 @@ public class PluginEventHandler {
 	}
 
 	public static void onConnect(AbstractSlave slave) {
-		OnConnectEvent e = new OnConnectEvent(ClientFormat.format(slave));
-		
-		for (Event event : Event.getHandler().getEvents(EventType.EVENT_CLIENT_CONNECT)) {
-			event.perform(e);
-		}
+
 	}
 
 	public static void onDisconnect(AbstractSlave slave) {
-		OnDisconnectEvent e = new OnDisconnectEvent(ClientFormat.format(slave));
-		
-		for (Event event : Event.getHandler().getEvents(EventType.EVENT_CLIENT_DISCONNECT)) {
-			event.perform(e);
-		}
+
 	}
 
 	public static void onSendPacket(short id, AbstractSlave slave) {

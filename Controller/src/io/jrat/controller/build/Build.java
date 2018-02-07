@@ -1,6 +1,5 @@
 package io.jrat.controller.build;
 
-import io.jrat.common.codec.Base64;
 import io.jrat.common.codec.Hex;
 import io.jrat.common.crypto.CryptoUtils;
 import io.jrat.common.hash.Md5;
@@ -351,7 +350,6 @@ public class Build {
 
 	public static byte[] encode(String s) throws Exception {
 		s = Hex.encode(s);
-		s = Base64.encode(s);
 		return s.getBytes("UTF-8");
 	}
 
