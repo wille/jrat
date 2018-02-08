@@ -46,19 +46,7 @@ public class WebRequest {
 
 		HttpURLConnection connection = null;
 
-		Map<String, Object> proxySettings = Settings.getGlobal().getProxySettings();
-		boolean enabled = (Boolean) proxySettings.get(Settings.KEY_ENABLE_PROXY);
-
-		if (enabled) {
-			boolean socks = (Boolean) proxySettings.get(Settings.KEY_PROXY_SOCKS);
-			String host = (String) proxySettings.get(Settings.KEY_PROXY_HOST);
-			int port = ((Number) proxySettings.get(Settings.KEY_PROXY_PORT)).intValue();
-
-			Proxy proxy = new Proxy(socks ? Proxy.Type.SOCKS : Proxy.Type.HTTP, new InetSocketAddress(host, port));
-			connection = (HttpURLConnection) url.openConnection(proxy);
-		} else {
-			connection = (HttpURLConnection) url.openConnection();
-		}
+        connection = (HttpURLConnection) url.openConnection();
 
 		connection.setReadTimeout(2500);
 		connection.connect();
