@@ -1,56 +1,59 @@
 package io.jrat.controller.net;
 
-import io.jrat.controller.Constants;
-import io.jrat.controller.exceptions.RequestNotAllowedException;
-import io.jrat.controller.settings.Settings;
-import io.jrat.controller.utils.Utils;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 import java.net.HttpURLConnection;
-import java.net.InetSocketAddress;
-import java.net.Proxy;
 import java.net.URL;
-import java.util.Map;
 
 public class WebRequest {
 
-	public static URL getUrl(String surl) throws Exception {
-		return getUrl(surl, false);
-	}
+    public static URL getUrl(String surl) throws Exception {
+        return getUrl(surl, false);
+    }
 
-	public static URL getUrl(String turl, boolean ignoreask) throws Exception {
-		URL url = null;
+    public static URL getUrl(String turl, boolean ignoreask) throws Exception {
+        return new URL(turl);
+    }
 
-		if (ignoreask) {
-			return url = new URL(turl);
-		}
+    public static HttpURLConnection getConnection(String surl) throws Exception {
+        return getConnection(surl, false);
+    }
 
-		if (Settings.getGlobal().getBoolean(Settings.KEY_REQUEST_DIALOG)) {
-			if (Utils.yesNo("HTTP Request", Constants.NAME + " tries to connect to:\n\r\n\r" + turl
-					+ "\n\r\n\rDo you want to accept it?\n\r\n\r(You can turn off this notification in settings)")) {
-				url = new URL(turl);
-			} else {
-				throw new RequestNotAllowedException(turl);
-			}
-		} else {
-			url = new URL(turl);
-		}
+    public static HttpURLConnection getConnection(String surl, boolean ignoreask) throws Exception {
+        // Create a trust manager that does not validate certificate chains
+        TrustManager[] trustAllCerts = new TrustManager[] {
+                new X509TrustManager() {
+                    public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                        return null;
+                    }
 
-		return url;
-	}
+                    public void checkClientTrusted(java.security.cert.X509Certificate[] certs, String authType) {
 
-	public static HttpURLConnection getConnection(String surl) throws Exception {
-		return getConnection(surl, false);
-	}
+                    }
 
-	public static HttpURLConnection getConnection(String surl, boolean ignoreask) throws Exception {
-		URL url = getUrl(surl, ignoreask);
+                    public void checkServerTrusted(java.security.cert.X509Certificate[] certs, String authType) {
 
-		HttpURLConnection connection = null;
+                    }
+                }
+        };
+
+        try {
+            SSLContext sc = SSLContext.getInstance("SSL");
+            sc.init(null, trustAllCerts, new java.security.SecureRandom());
+            HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+        } catch (Exception e) {
+        }
+        URL url = getUrl(surl, ignoreask);
+
+        HttpURLConnection connection = null;
 
         connection = (HttpURLConnection) url.openConnection();
 
-		connection.setReadTimeout(2500);
-		connection.connect();
+        connection.setReadTimeout(2500);
+        connection.connect();
 
-		return connection;
-	}
+        return connection;
+    }
 }
