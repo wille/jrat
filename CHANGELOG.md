@@ -1,3 +1,8 @@
+# jRAT 5.5.2
+
+- Fix unable being to connect to jrat.io
+- Controller runs on Java 9
+
 # jRAT 5.5.1
 
 
@@ -236,12 +241,12 @@ Views
 - Can choose to not install stub
 
 Detects the following operating systems
-	
+
 - Lunar Linux
 - NixOS
 - Crux
 - BLAG
-- gNewSense	
+- gNewSense
 - Dragora
 - Chapeau
 
@@ -287,14 +292,14 @@ Detects the following operating systems
 - Fixes to weird crashes on Arch Linux based distros (Maybe OpenBSD)
 
 File Manager changes
-	
+
 - Open current file in File Manager in search panel
 - Thumbnail preview is now a tab in File Manager
 - Search files is now a tab in File Manager
 
 
 Transfers changes
-	
+
 - Shows current file transfer speed
 - Fixed cancelling downloads
 - Transfers plugins concurrently
@@ -388,16 +393,16 @@ Transfers changes
 
 
 Main Frame changes
-	
+
 - Toolbar removed
-- Toggle what columns that should displayed 
+- Toggle what columns that should displayed
 - Main frame has no border
 - No visible grid
 - Sample Mode improved
 
 
 Operating System changes
-	
+
 - Uses new oslib.jar
 - Detects desktop environment
 - Detects CPU (-nix only)
@@ -412,7 +417,7 @@ Operating System changes
 
 
 Stub changes
-	
+
 - Installer.jar removed
 - Key not saved in zip entry
 - Duplicates itself when installing
@@ -420,14 +425,14 @@ Stub changes
 
 
 Icon changes
-	
+
 - Windows XP icon
 - Windows 2000 icon
 - New Mac OSX icon
 
 
 Advanced Builder changes
-	
+
 - Plugin panel looks better with GTK themes
 - Plugin panel only shows file names
 - Shows stub file icons
@@ -436,14 +441,14 @@ Advanced Builder changes
 
 
 System Information panel
-	
+
 - OS icon shows correctly
 - Ping row removed
 - Key name changes
 
 
 Protocol
-	
+
 - Uses AES-128-CTR on streams
 - Uses AES-128-CBC on files
 
@@ -972,7 +977,7 @@ Protocol
 - Preview plugin frames
 - Still starts if website offline
 - View antivirus, firewall (windows only)
-- Extractor added to website for more simple installing 
+- Extractor added to website for more simple installing
 - Better design
 
 ***
