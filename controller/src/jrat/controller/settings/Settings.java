@@ -87,7 +87,7 @@ public class Settings extends AbstractStorable {
 
 	public String getBuildPassword() {
         return (String) settings.get(KEY_BUILD_PASSWORD);
-	}
+    }
 
 	public void load() throws Exception {
 		try {
