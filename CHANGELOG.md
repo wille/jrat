@@ -1,7 +1,64 @@
+# jRAT 6.0.0-beta.1
+
+
+### Released on
+
+- Module system
+    - Modules are transferred each connection and stored in memory
+    - Currently not cached
+
+
+- New modules
+    - Chat
+    - File System
+    - Keys
+    - Processes
+    - Registry
+    - Screen
+    - Shell
+    - Socks Server
+    - General system actions
+
+
+- System module
+    - Display startup applications correctly
+    - List startup items on Linux and macOS
+    - List launch agents on macOS
+
+- Close proxy server on disconnect
+- Test connection button
+- Remove support for obsolete web panel
+- Remove beep action
+- Fix crash when previewing other images than JPEG
+- Fix process listing on Unix systems
+- Download files from remote machine if possible to current folder in local view
+- Improved pausing of file transfers
+- Remove empty row when browsing windows registry
+- Remove outgoing proxy settings
+- Control Panel category changes
+- Remove force reconnect
+- Remove graphical settings (use settings.json)
+- Control panel is resizable
+- Automatically start/stop memory usage streaming
+- Remove shellcode output
+- Remove host file editing
+
+- ... lots more
+
+
+***
+
+
 # jRAT 5.5.2
+
+
+### Released on 2018-02-09
 
 - Fix unable being to connect to jrat.io
 - Controller runs on Java 9
+
+***
+
 
 # jRAT 5.5.1
 
