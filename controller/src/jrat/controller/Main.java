@@ -90,7 +90,7 @@ public class Main {
 		}
 		
 		try {
-			boolean validated = License.validate(argsContains(args, "--showhexkey"));
+			boolean validated = License.validate();
 
 			if (!validated) {
 				throw new Exception();
