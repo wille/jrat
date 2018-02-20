@@ -14,9 +14,7 @@ import java.util.Random;
 
 
 public final class License {
-
-	private static byte[] systemId = null;
-
+    
 	public static byte[] generateBinary() throws Exception {
 		Random rn = new Random();
 
