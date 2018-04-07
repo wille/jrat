@@ -44,7 +44,7 @@ public final class License {
 		Map<String, String> license = getLicense();
 		String key = license.get("key");
 
-		HttpURLConnection archiveConnection = (HttpURLConnection) new URL(Constants.HOST + "/api/validate.php?k=" + key).openConnection();
+		HttpURLConnection archiveConnection = (HttpURLConnection) new URL(Constants.HOST + "/api/validate/" + key).openConnection();
 		archiveConnection.connect();
 
 		int response = archiveConnection.getResponseCode();
