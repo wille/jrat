@@ -98,7 +98,7 @@ public class Frame extends BaseFrame {
 		mntmHelp.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				NetUtils.openUrl(Constants.HOST + "/docs.php");
+				NetUtils.openUrl(Constants.HOST + "/support");
 			}
 		});
 		mnMain.add(mntmHelp);

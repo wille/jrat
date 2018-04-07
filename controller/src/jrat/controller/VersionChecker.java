@@ -13,7 +13,7 @@ public class VersionChecker {
 
 	public boolean isUpToDate() {
 		try {
-			URLConnection uc = new URL(Constants.HOST + "/api/version.txt").openConnection();
+			URLConnection uc = new URL(Constants.HOST + "/api/version").openConnection();
 			uc.connect();
 
 			BufferedReader dis = new BufferedReader(new InputStreamReader(uc.getInputStream()));

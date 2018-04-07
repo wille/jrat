@@ -23,7 +23,7 @@ public class NetUtils {
 	}
 
 	public static String getIP() throws Exception {
-		URLConnection uc = new URL(Constants.HOST + "/getip.php").openConnection();
+		URLConnection uc = new URL(Constants.HOST + "/api/ip").openConnection();
 		uc.connect();
 
 		BufferedReader reader = new BufferedReader(new InputStreamReader(uc.getInputStream()));
