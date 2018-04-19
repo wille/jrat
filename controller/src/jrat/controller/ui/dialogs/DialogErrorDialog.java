@@ -1,5 +1,6 @@
 package jrat.controller.ui.dialogs;
 
+import iconlib.IconUtils;
 import jrat.api.Resources;
 import jrat.controller.ui.panels.PanelImage;
 
@@ -35,7 +36,7 @@ public class DialogErrorDialog extends JDialog {
 
 	public DialogErrorDialog(Exception ex) {
 		setResizable(false);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(DialogErrorDialog.class.getResource("/error.png")));
+		setIconImage(IconUtils.getIcon("error").getImage());
 		setType(Type.POPUP);
 		setTitle("Error occured");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
