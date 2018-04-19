@@ -19,7 +19,7 @@ public class Constants {
     /**
      *
      */
-    public static String CHANGELOG_URL = HOST + "/api/changelog.php";
+    public static String CHANGELOG_URL = HOST + "/api/changelog";
 
 	/**
 	 * Global software name
