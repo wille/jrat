@@ -123,14 +123,6 @@ public class Frame extends BaseFrame {
 			}
 		});
 
-		JMenuItem mntmUpdate = new JMenuItem("Update");
-		mntmUpdate.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				Updater.runUpdater();
-			}
-		});
-		mntmUpdate.setIcon(Resources.getIcon("update"));
-		mnMain.add(mntmUpdate);
 		mntmExit.setIcon(Resources.getIcon("exit"));
 		mnMain.add(mntmExit);
 		

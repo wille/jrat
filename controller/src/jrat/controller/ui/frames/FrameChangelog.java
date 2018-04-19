@@ -4,7 +4,6 @@ import jrat.api.Resources;
 import jrat.common.Version;
 import jrat.controller.Constants;
 import jrat.controller.ErrorDialog;
-import jrat.controller.Updater;
 import jrat.controller.utils.NetUtils;
 
 import javax.swing.*;
@@ -34,17 +33,6 @@ public class FrameChangelog extends BaseFrame {
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
-        JButton btnDownloadLatestUpdate = new JButton("Update");
-        btnDownloadLatestUpdate.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-                try {
-                    Updater.runUpdater();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        btnDownloadLatestUpdate.setIcon(Resources.getIcon("drive-download"));
 
         JLabel lblYourVersion = new JLabel("Your version: " + Version.getVersion());
 
@@ -57,8 +45,8 @@ public class FrameChangelog extends BaseFrame {
         });
         btnClose.setIcon(Resources.getIcon("delete"));
         GroupLayout gl_contentPane = new GroupLayout(contentPane);
-        gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addComponent(btnDownloadLatestUpdate).addPreferredGap(ComponentPlacement.RELATED, 304, Short.MAX_VALUE).addComponent(lblYourVersion).addPreferredGap(ComponentPlacement.UNRELATED).addComponent(btnClose)).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE));
-        gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 218, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(btnDownloadLatestUpdate).addComponent(btnClose).addComponent(lblYourVersion)).addGap(30)));
+        gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane.createSequentialGroup().addPreferredGap(ComponentPlacement.RELATED, 304, Short.MAX_VALUE).addComponent(lblYourVersion).addPreferredGap(ComponentPlacement.UNRELATED).addComponent(btnClose)).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE));
+        gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 218, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(btnClose).addComponent(lblYourVersion)).addGap(30)));
 
         contentPane.setLayout(gl_contentPane);
 
