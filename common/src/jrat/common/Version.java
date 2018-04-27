@@ -3,7 +3,7 @@ package jrat.common;
 public final class Version {
 
 	public static final String getVersion() {
-		return "5.5.2";
+		return "6.0.0-beta.1";
 	}
 
 	public static final int getProtocolVersion() {
