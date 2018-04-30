@@ -61,6 +61,10 @@ public final class Module {
         slave.writeLine(client.getMainClass());
         slave.write(client.getSum());
 
+        if (slave.readBoolean()) {
+            return;
+        }
+
         Map<String, byte[]> resources = client.getPackedResources();
 
         for (String name : resources.keySet()) {
