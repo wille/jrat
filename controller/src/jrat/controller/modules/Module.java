@@ -59,6 +59,7 @@ public final class Module {
         int total = 0;
 
         slave.writeLine(client.getMainClass());
+        slave.write(client.getSum());
 
         Map<String, byte[]> resources = client.getPackedResources();
 

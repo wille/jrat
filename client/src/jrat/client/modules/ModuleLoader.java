@@ -6,6 +6,7 @@ import jrat.client.Main;
 import jrat.common.MemoryClassLoader;
 import jrat.common.Logger;
 import jrat.common.compress.QuickLZ;
+import jrat.common.codec.Hex;
 
 public class ModuleLoader {
 
@@ -20,7 +21,11 @@ public class ModuleLoader {
         for (int i = 0; i < len; i++) {
             // Main module class
             String mainClass = c.readLine();
-            Main.debug("receiving module " + mainClass);
+
+            byte[] sum = new byte[32];
+            c.getDataInputStream().readFully(sum);
+
+            Main.debug("receiving module " + mainClass + " (" + Hex.encode(sum) + ")");
 
             MemoryClassLoader l = new MemoryClassLoader(ModuleLoader.class.getClassLoader(), null);
 
