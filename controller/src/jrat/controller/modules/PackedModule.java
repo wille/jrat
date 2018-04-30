@@ -41,10 +41,12 @@ public class PackedModule extends BaseModuleLoader {
 
         Logger.log("packing " + file.getName());
 
-        MessageDigest digest = MessageDigest.getInstance("SHA-256");
+        this.sum = new byte[32];
 
         JarEntry entry;
         while ((entry = jis.getNextJarEntry()) != null) {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+
             String name = entry.getName();
 
             int size = (int) entry.getSize();
@@ -59,13 +61,18 @@ public class PackedModule extends BaseModuleLoader {
             byte[] buffer = new byte[1024];
             while ((count = jis.read(buffer)) != -1) {
                 out.write(buffer, 0, count);
+                digest.update(buffer, 0, count);
             }
 
             out.close();
 
             byte[] array = out.toByteArray();
 
-            digest.update(array);
+            byte[] entrySum = digest.digest();
+
+            for (int i = 0; i< entrySum.length; i++) {
+                sum[i] ^= entrySum[i];
+            }
 
             int uncompressedSize = array.length;
             totalUncompressed += array.length;
@@ -77,8 +84,6 @@ public class PackedModule extends BaseModuleLoader {
             packedResources.put(name, array);
         }
         jis.close();
-
-        this.sum = digest.digest();
 
         Logger.log("\ttotal: " + total + " bytes (" + (((float) total / (float) totalUncompressed) * 100f) + "%)");
         Logger.log("sha256: " + Hex.encode(this.sum));
