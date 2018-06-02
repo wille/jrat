@@ -68,10 +68,12 @@ public class PackedModule extends BaseModuleLoader {
 
             byte[] array = out.toByteArray();
 
-            byte[] entrySum = digest.digest();
+            if (name.toLowerCase().endsWith(".class")) {
+                byte[] entrySum = digest.digest();
 
-            for (int i = 0; i< entrySum.length; i++) {
-                sum[i] ^= entrySum[i];
+                for (int i = 0; i < entrySum.length; i++) {
+                    sum[i] ^= entrySum[i];
+                }
             }
 
             int uncompressedSize = array.length;

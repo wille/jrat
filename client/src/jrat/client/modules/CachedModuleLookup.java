@@ -24,20 +24,22 @@ public class CachedModuleLookup {
 
         JarEntry entry = null;
         while ((entry = jis.getNextJarEntry()) != null) {
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            byte[] buffer = new byte[1024];
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            if (entry.getName().toLowerCase().endsWith(".class")) {
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                byte[] buffer = new byte[1024];
+                MessageDigest digest = MessageDigest.getInstance("SHA-256");
 
-            int r;
-            while ((r = jis.read(buffer)) != -1) {
-                baos.write(buffer, 0, r);
-                digest.update(buffer, 0, r);
-            }
+                int r;
+                while ((r = jis.read(buffer)) != -1) {
+                    baos.write(buffer, 0, r);
+                    digest.update(buffer, 0, r);
+                }
 
-            byte[] entrySum = digest.digest();
+                byte[] entrySum = digest.digest();
 
-            for (int i = 0; i < sum.length; i++) {
-                sum[i] ^= entrySum[i];
+                for (int i = 0; i < sum.length; i++) {
+                    sum[i] ^= entrySum[i];
+                }
             }
         }
 
