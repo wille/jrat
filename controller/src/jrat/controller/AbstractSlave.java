@@ -150,7 +150,7 @@ public abstract class AbstractSlave implements Runnable {
 	/**
 	 * Current status code
 	 */
-	protected int status;
+	protected String status;
 	
 	/**
 	 * Bytes of RAM
@@ -667,14 +667,19 @@ public abstract class AbstractSlave implements Runnable {
 		this.localip = localip;
 	}
 
-	public int getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
 	public void setStatus(int status) {
-		this.status = status;
+		this.setStatus(Status.getStatusFromID(status));
 		update();
 	}
+
+	public void setStatus(String status) {
+	    this.status = status;
+	    update();
+    }
 
 	public long getMemory() {
 		return memory;
