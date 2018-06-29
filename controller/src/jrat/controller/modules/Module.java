@@ -57,6 +57,9 @@ public final class Module {
      */
     public void write(AbstractSlave slave) throws Exception {
         int total = 0;
+        int n = 0;
+
+        slave.setStatus("Modules...");
 
         slave.writeLine(client.getMainClass());
         slave.write(client.getSum());
@@ -122,6 +125,8 @@ public final class Module {
             slave.writeLine(name);
             slave.writeInt(data.length);
             slave.write(data);
+
+            slave.setStatus("Module (" + ++n + "/" + resources.keySet().size() + ")");
         }
 
         // indicate that there are no entries left for this module
