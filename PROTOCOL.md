@@ -1,9 +1,13 @@
 # Protocol
 
+## Version 7
+
+- Modules
+
 ## Version 6
 
-Different IV for input/output
+- Different IV for input/output
 
 ## Version 5
 
-Introduced protocol versions, which ensures better backwards compatibility
+- Introduced protocol versions, which ensures better backwards compatibility
