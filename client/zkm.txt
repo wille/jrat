@@ -1,0 +1,16 @@
+classpath   "./client.jar";
+
+open        "./client.jar"
+            "./modules/*-client.jar";
+
+obfuscate   obfuscateFlow=light
+            exceptionObfuscation=light
+            encryptStringLiterals=enhanced
+            aggressiveMethodRenaming=true
+            assumeRuntimeVersion="7"
+            lineNumbers=delete
+            localVariables=delete
+            randomize=true;
+
+saveAll     archiveCompression=asIs
+            "./out";

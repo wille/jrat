@@ -1,0 +1,16 @@
+classpath   "./controller.jar";
+
+open        "./controller.jar"
+            "./modules/*-controller.jar";
+
+obfuscate   obfuscateFlow=extraAggressive
+            exceptionObfuscation=light
+            encryptStringLiterals=aggressive
+            aggressiveMethodRenaming=true
+            assumeRuntimeVersion="7"
+            lineNumbers=delete
+            localVariables=delete
+            randomize=true;
+
+saveAll     archiveCompression=asIs
+            "./out";
