@@ -1,43 +1,39 @@
 # jRAT 6.0.0-rc.1
 
-### Released on
+### Released on 2018-07-20
 
 - Remove deprecated auto updater
 - Cached modules on client systems
-    - Integrity check
-    - Currently blocking until complete
-    - Shows up in status column
+  - Integrity check
+  - Currently blocking until complete
+  - Shows up in status column
 
-
-***
-
+---
 
 # jRAT 6.0.0-beta.1
 
-
-### Released on Feb 20 2018
+### Released on 2018-02-20
 
 - Module system
-    - Modules are transferred each connection and stored in memory
-    - Currently not cached
+  - Modules are transferred each connection and stored in memory
+  - Currently not cached
 
-
-- New modules
-    - Chat
-    - File System
-    - Keys
-    - Processes
-    - Registry
-    - Screen
-    - Shell
-    - Socks Server
-    - General system actions
-
+* New modules
+  - Chat
+  - File System
+  - Keys
+  - Processes
+  - Registry
+  - Screen
+  - Shell
+  - Socks Server
+  - General system actions
 
 - System module
-    - Display startup applications correctly
-    - List startup items on Linux and macOS
-    - List launch agents on macOS
+
+  - Display startup applications correctly
+  - List startup items on Linux and macOS
+  - List launch agents on macOS
 
 - Close proxy server on disconnect
 - Test connection button
@@ -59,23 +55,18 @@
 
 - ... lots more
 
-
-***
-
+---
 
 # jRAT 5.5.2
-
 
 ### Released on 2018-02-09
 
 - Fix unable being to connect to jrat.io
 - Controller runs on Java 9
 
-***
-
+---
 
 # jRAT 5.5.1
-
 
 ### Released on 2017-03-17
 
@@ -83,17 +74,15 @@
 - Print authentication error
 - Print JVM version on start
 
-***
-
+---
 
 # jRAT 5.5
-
 
 ### Released on 2017-01-29
 
 - Display colors on a client
-    - When freshly connected (green)
-    - When disconnected (red)
+  - When freshly connected (green)
+  - When disconnected (red)
 - Does not crash when disabling plugins on exit
 - Saves settings each 30 seconds
 - Fix some menu items in main window
@@ -101,11 +90,9 @@
 - Mac OS X > macOS (if 10.12 Sierra or above)
 - New type of license
 
-***
-
+---
 
 # jRAT 5.4
-
 
 ### Released on 2016-10-07
 
@@ -121,21 +108,17 @@
 - Search button in remote files panel
 - Automatically change to thumbnails tab when clicking "explore files"
 
-***
-
+---
 
 # jRAT 5.3.1
-
 
 ### Released on 2016-07-10
 
 - Fix crash caused when no country statistics file exists
 
-***
-
+---
 
 # jRAT 5.3
-
 
 ### Released on 2016-07-09
 
@@ -144,7 +127,7 @@
 - Settings now saved as JSON in ./settings.json
 - Implement maximum connection limit again (see settings)
 - Passwords are encrypted in settings file
-- Maximum connection attempt delay  is 1 hour instead of 2 minutes
+- Maximum connection attempt delay is 1 hour instead of 2 minutes
 - Socket storage (.sockets) is now in settings.json
 - LAF classname (.theme) is now in settings.json
 - Column settings (.columns) is now loaded from settings.json
@@ -157,20 +140,16 @@
 - Detects KDE Neon, Oracle Linux, Qubes OS
 - Mouse Lock in Remote Desktop (client cannot move cursor)
 
-***
-
+---
 
 # jRAT 5.2.1
-
 
 ### Released on 2016-03-13
 
 - jrat.key may be in the root directory (or "files" folder as before)
-- Download plugins without issues***
-
+- Download plugins without issues\*\*\*
 
 # jRAT 5.2
-
 
 ### Released on 2016-02-14
 
@@ -189,11 +168,9 @@
 - Password Recovery plugin
 - Darcula Theme plugin
 
-***
-
+---
 
 # jRAT 5.1.3
-
 
 ### Released on 2016-01-05
 
@@ -206,11 +183,9 @@
 - Do not try to load plugin main class from manifest
 - Invokes onConnect() correctly on plugin transfer
 - Fix headless errors (Do not show EULA frame if headless)
-- If download fails, error will show correctly***
-
+- If download fails, error will show correctly\*\*\*
 
 # jRAT 5.1.2
-
 
 ### Released on 2015-10-19
 
@@ -232,11 +207,9 @@
 - Lite version tray messages changed
 - Wipes encryption keys on start
 
-***
-
+---
 
 # jRAT 5.1.1
-
 
 ### Released on 2015-07-31
 
@@ -245,26 +218,23 @@ Views
 - Can have more than one view (default is Table)
 - New view introduced, Boxes
 
+* New version of swing-terminal, supports colors
+* Listing processes now shows icons (Windows Vista and above only)
+* Fix minimal builder making advanced builder not open
+* Anti virtualization now detects disk with space less than 50 GB
+* C/C++ shellcode exporting fixed
+* Binding fixed
+* Install message will not block execution of client
+* Multiline install message
+* Client will not break if any property contains a newline character
+* .app properties dialog fixed
+* EULA countdown removed
+* --nomenubar argument, can be used to run jRAT if it can't use the OS X native menu bar
+* Fix frames not showing all components on OS X
 
-- New version of swing-terminal, supports colors
-- Listing processes now shows icons (Windows Vista and above only)
-- Fix minimal builder making advanced builder not open
-- Anti virtualization now detects disk with space less than 50 GB
-- C/C++ shellcode exporting fixed
-- Binding fixed
-- Install message will not block execution of client
-- Multiline install message
-- Client will not break if any property contains a newline character
-- .app properties dialog fixed
-- EULA countdown removed
-- --nomenubar argument, can be used to run jRAT if it can't use the OS X native menu bar
-- Fix frames not showing all components on OS X
-
-***
-
+---
 
 # jRAT 5.1
-
 
 ### Released on 2015-07-06
 
@@ -286,11 +256,9 @@ Views
 - Fix network counter
 - Fix network download speed
 
-***
-
+---
 
 # jRAT 5.1rc2
-
 
 ### Released on 2015-05-17
 
@@ -321,11 +289,9 @@ Detects the following operating systems
 - Dragora
 - Chapeau
 
-***
-
+---
 
 # jRAT 5.1rc1
-
 
 ### Released on 2015-04-09
 
@@ -368,7 +334,6 @@ File Manager changes
 - Thumbnail preview is now a tab in File Manager
 - Search files is now a tab in File Manager
 
-
 Transfers changes
 
 - Shows current file transfer speed
@@ -383,11 +348,9 @@ Transfers changes
 - Selects transfer tab automatically when downloading/uploading
 - Can download multiple files at once
 
-***
-
+---
 
 # jRAT 5.1b2
-
 
 ### Released on 2015-04-03
 
@@ -404,11 +367,9 @@ Transfers changes
 - Error message removed from opening Remote Screen
 - Clients table drawing bug fixed
 
-***
-
+---
 
 # jRAT 5.1b
-
 
 ### Released on 2015-03-27
 
@@ -462,7 +423,6 @@ Transfers changes
 - On connect panel fixed
 - Can now download files not only from http
 
-
 Main Frame changes
 
 - Toolbar removed
@@ -470,7 +430,6 @@ Main Frame changes
 - Main frame has no border
 - No visible grid
 - Sample Mode improved
-
 
 Operating System changes
 
@@ -486,7 +445,6 @@ Operating System changes
 - Better BSD detecting
 - Better OS X detecting
 
-
 Stub changes
 
 - Installer.jar removed
@@ -494,13 +452,11 @@ Stub changes
 - Duplicates itself when installing
 - Loops through startup locations if failing to write to specified
 
-
 Icon changes
 
 - Windows XP icon
 - Windows 2000 icon
 - New Mac OSX icon
-
 
 Advanced Builder changes
 
@@ -510,24 +466,20 @@ Advanced Builder changes
 - General panel label fix for GTK themes
 - Not showing up with default GTK theme on Linux fixed
 
-
 System Information panel
 
 - OS icon shows correctly
 - Ping row removed
 - Key name changes
 
-
 Protocol
 
 - Uses AES-128-CTR on streams
 - Uses AES-128-CBC on files
 
-***
-
+---
 
 # jRAT 5
-
 
 ### Released on 2015-01-10
 
@@ -558,11 +510,9 @@ Protocol
 - Detects Raspbian
 - domains.txt removed jrat.me
 
-***
-
+---
 
 # jRAT 4.5
-
 
 ### Released on 2014-12-14
 
@@ -579,11 +529,9 @@ Protocol
 - Webcam plugin updated to support selecting of webcam
 - Remote SOCKS plugin added
 
-***
-
+---
 
 # jRAT 4.4.4
-
 
 ### Released on 2014-12-02
 
@@ -595,11 +543,9 @@ Protocol
 - Windows XP startup working
 - Better vBox and VMware detection
 
-***
-
+---
 
 # jRAT 4.4.3
-
 
 ### Released on 2014-11-25
 
@@ -611,11 +557,9 @@ Protocol
 - Active ports control panel shows blue on connecting
 - .app output option
 
-***
-
+---
 
 # jRAT 4.4.2
-
 
 ### Released on 2014-10-03
 
@@ -623,11 +567,9 @@ Protocol
 - New online plugin system, developers can host their own files and have it download through the gallery
 - -nossl parameter, doesn't connect through HTTPS
 
-***
-
+---
 
 # jRAT 4.4.1
-
 
 ### Released on 2014-10-16
 
@@ -642,11 +584,9 @@ Protocol
 - Sockets will not disappear if failing to bind
 - Most settings loads in plain text
 
-***
-
+---
 
 # jRAT 4.4
-
 
 ### Released on 2014-09-21
 
@@ -658,11 +598,9 @@ Protocol
 - Slowloris added
 - Under the hood changes
 
-***
-
+---
 
 # jRAT 4.3.3
-
 
 ### Released on 2014-08-23
 
@@ -673,22 +611,18 @@ Protocol
 - On connect event fixed
 - Host file related actions works on OS X and Linux too
 
-***
-
+---
 
 # jRAT 4.3.2_1
-
 
 ### Released on 2014-06-23
 
 - Advanced builder bug fix
 - Plugin install bug fix
 
-***
-
+---
 
 # jRAT 4.3.2
-
 
 ### Released on 2014-06-15
 
@@ -697,11 +631,9 @@ Protocol
 - 300 seconds notification when not premium
 - Advanced builder only if premium
 
-***
-
+---
 
 # jRAT 4.3.1
-
 
 ### Released on 2014-06-05
 
@@ -709,11 +641,9 @@ Protocol
 - New icons
 - Warns if port is used
 
-***
-
+---
 
 # jRAT 4.3
-
 
 ### Released on 2014-05-28
 
@@ -726,33 +656,27 @@ Protocol
 - Windows delete file on uninstall re-made
 - Prevent from running in VMware (More software to come)
 
-***
-
+---
 
 # jRAT 4.2.2_2
-
 
 ### Released on 2014-05-12
 
 - Not being able to use plugins fixed
 - .app for OS X
 
-***
-
+---
 
 # jRAT 4.2.2_1
-
 
 ### Released on 2014-05-04
 
 - Encryption text fields removed
 - Bug making all connections crash fixed
 
-***
-
+---
 
 # jRAT 4.2.2
-
 
 ### Released on 2014-05-02
 
@@ -767,11 +691,9 @@ Protocol
 - Active ports only executes on Windows
 - Lots of under the hood changes
 
-***
-
+---
 
 # jRAT 4.2.1
-
 
 ### Released on 2014-02-23
 
@@ -780,31 +702,25 @@ Protocol
 - Ad frame removed, FrameAbout cleared
 - Plugins working
 
-***
-
+---
 
 # jRAT 4.2
-
 
 ### Released on 2014-02-18
 
 - New domains
 
-***
-
+---
 
 # jRAT 4.1.5_1
-
 
 ### Released on 2014-01-13
 
 - Build fix
 
-***
-
+---
 
 # jRAT 4.1.5
-
 
 ### Released on 2014-01-12
 
@@ -818,21 +734,17 @@ Protocol
 - ZKM support integrated for custom builds
 - Rest is under the hood fixes
 
-***
-
+---
 
 # jRAT 4.1.4_4
-
 
 ### Released on 2013-12-08
 
 - Small global crash fix
 
-***
-
+---
 
 # jRAT 4.1.4_3
-
 
 ### Released on 2013-12-08
 
@@ -840,31 +752,25 @@ Protocol
 - Small change to allow well requested plugin
 - Sample Mode fixed
 
-***
-
+---
 
 # jRAT 4.1.4_2
-
 
 ### Released on 2013-11-21
 
 - Plugin download/build bug fixed
 
-***
-
+---
 
 # jRAT 4.1.4_1
-
 
 ### Released on 2013-11-20
 
 - Plugin gallery working
 
-***
-
+---
 
 # jRAT 4.1.4
-
 
 ### Released on 2013-11-20
 
@@ -873,11 +779,9 @@ Protocol
 - Redirect removed
 - Online gallery now includes plugins
 
-***
-
+---
 
 # jRAT 4.1.3
-
 
 ### Released on 2013-10-26
 
@@ -889,11 +793,9 @@ Protocol
 - Debug Info now includes os version and os arch
 - Executable output improved a lot from what it was before
 
-***
-
+---
 
 # jRAT 4.1.2_1
-
 
 ### Released on 2013-09-22
 
@@ -901,11 +803,9 @@ Protocol
 - Install in root drive is now not default
 - Update button fixed
 
-***
-
+---
 
 # jRAT 4.1.2
-
 
 ### Released on 2013-09-22
 
@@ -923,11 +823,9 @@ Protocol
 - Run Command now also opens files
 - Geo Location fixed
 
-***
-
+---
 
 # jRAT 4.1.1
-
 
 ### Released on 2013-08-15
 
@@ -936,11 +834,9 @@ Protocol
 - Safer updating & downloading, asks for file type, tested on ge.tt
 - Argument added
 
-***
-
+---
 
 # jRAT 4.1
-
 
 ### Released on 2013-08-13
 
@@ -954,21 +850,17 @@ Protocol
 - Keylogger works without root on Linux (Ubuntu tested)
 - OnStart method instead of onEnable for plugins
 
-***
-
+---
 
 # jRAT 4.0.3_1
-
 
 ### Released on 2013-08-10
 
 - Changelog small bug fixed
 
-***
-
+---
 
 # jRAT 4.0.3
-
 
 ### Released on 2013-08-10
 
@@ -981,22 +873,18 @@ Protocol
 - Small note on how to disable HTTP question dialogs
 - Update warning about not loosing jrat.key
 
-***
-
+---
 
 # jRAT 4.0.2
-
 
 ### Released on 2013-07-27
 
 - Update from URL improved/fixed
 - Thumbnail bug fixed
 
-***
-
+---
 
 # jRAT 4.0.1
-
 
 ### Released on 2013-07-15
 
@@ -1006,11 +894,9 @@ Protocol
 - Control Panel close bug
 - Upgrade menu item
 
-***
-
+---
 
 # jRAT 4.0
-
 
 ### Released on 2013-07-12
 
@@ -1019,11 +905,9 @@ Protocol
 - Text to Speech improved
 - ID added for premium
 
-***
-
+---
 
 # jRAT 3.4.1
-
 
 ### Released on 2013-07-03
 
@@ -1034,11 +918,9 @@ Protocol
 - Thumbnail preview now supports transparency
 - Linux icon fix
 
-***
-
+---
 
 # jRAT 3.4
-
 
 ### Released on 2013-07-02
 
@@ -1051,32 +933,26 @@ Protocol
 - Extractor added to website for more simple installing
 - Better design
 
-***
-
+---
 
 # jRAT 3.3_3
-
 
 ### Released on 2013-06-22
 
 - API fixes and changes
 - Example API
 
-***
-
+---
 
 # jRAT 3.3_2
-
 
 ### Released on 2013-06-21
 
 - Date null pointer fixed
 
-***
-
+---
 
 # jRAT 3.3_1
-
 
 ### Released on 2013-06-21
 
@@ -1086,11 +962,9 @@ Protocol
 - File transfers now compresses using GZip
 - Will ask for directory if launched in home dir (double click)
 
-***
-
+---
 
 # jRAT 3.3
-
 
 ### Released on 2013-10-20
 
@@ -1105,11 +979,9 @@ Protocol
 - Ping timeout problem if big transfer is occuring
 - More compression in work
 
-***
-
+---
 
 # jRAT 3.2.5_1
-
 
 ### Released on 2013-06-10
 
@@ -1117,11 +989,9 @@ Protocol
 - Compression on remote screen, soon to be more
 - Annoying bug with ping fixed
 
-***
-
+---
 
 # jRAT 3.2.5
-
 
 ### Released on 2013-06-10
 
@@ -1136,185 +1006,141 @@ Protocol
 - Frame for installing plugins removed
 - Using .bookmarks, .settings in config files
 
-***
-
+---
 
 # jRAT 3.2.4
 
-
 - API changes
 
-***
-
+---
 
 # jRAT 3.2.3.9
 
-
 - Timeout now default
 
-***
-
+---
 
 # jRAT 3.2.3.8
-
 
 - Quick Remote Desktop added
 - Fix for plugin loading fail, use "Do not load classes"
 - Other small fixes
 
-***
-
+---
 
 # jRAT 3.2.3.7
-
 
 - Sound capture fixed
 - Better execution methods
 
-***
-
+---
 
 # jRAT 3.2.3.6
 
-
 - Small fixes.
 
-***
-
+---
 
 # jRAT 3.2.3.5
 
-
 - Plugins out and working
 
-***
-
+---
 
 # jRAT 3.2.3_4
 
-
 - API ready for plugins
 
-***
-
+---
 
 # jRAT 3.2.3_3
-
 
 - Uninstall now removes jar
 - API functional
 
-***
-
+---
 
 # jRAT 3.2.3_2
 
-
 - Version URL changed
 
-***
-
+---
 
 # jRAT 3.2.3_1
 
-
 - Protocol fixes
 
-***
-
+---
 
 # jRAT 3.2.3
 
-
 - Temporary release
 
-***
-
+---
 
 # jRAT 3.2.2_2
 
-
 - Advanced Build error fixed
 
-***
-
+---
 
 # jRAT 3.2.2_1
 
-
 - Line number tables added for debugging
 
-***
-
+---
 
 # jRAT 3.2.2
 
-
 - Critical build and settings bug fixed
 
-***
-
+---
 
 # jRAT 3.2.1
-
 
 - Small bug fixes
 - API working
 
-***
-
+---
 
 # jRAT 3.1
-
 
 - Full Mac OS X functionality
 - Does not work with previous jRAT versions
 
-***
-
+---
 
 # jRAT 2.3
 
-
 - Unknown
 
-***
-
+---
 
 # jRAT 2.2
 
-
 - Unknown
 
-***
-
+---
 
 # jRAT 2.1
 
-
 - Not backwards compatible
 
-***
-
+---
 
 # jRAT 2.0
 
-
 Unknown
 
-***
-
+---
 
 # jRAT 1.2
 
-
 None
 
-***
-
+---
 
 # jRAT 1.1
-
 
 - Mac+Linux more functions working.
 - NOTE: Mac shows in taskbar
@@ -1329,10 +1155,8 @@ None
 - Play sound from url
 - Better log (Not finished)
 
-***
-
+---
 
 # jRAT 1.0
-
 
 - Initial release
