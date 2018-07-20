@@ -836,4 +836,8 @@ public abstract class AbstractSlave implements Runnable {
 		
 		return null;
 	}
+
+    public int getProtocolVersion() {
+        return protocolVersion;
+    }
 }

@@ -13,7 +13,9 @@ public class Packet3Initialized implements IncomingPacket {
 	public void read(final Slave slave) throws Exception {
 		ConnectionHandler.addSlave(slave);
 
-        ModuleLoader.sendAll(slave);
+		if (slave.getProtocolVersion() >= 7) {
+            ModuleLoader.sendAll(slave);
+        }
 
         StoreOfflineSlaves.getGlobal().add(new OfflineSlave(slave));
 		StatisticsOperatingSystem.getGlobal().add(slave);
