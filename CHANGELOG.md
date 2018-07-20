@@ -1,7 +1,21 @@
+# jRAT 6.0.0-rc.1
+
+### Released on
+
+- Remove deprecated auto updater
+- Cached modules on client systems
+    - Integrity check
+    - Currently blocking until complete
+    - Shows up in status column
+
+
+***
+
+
 # jRAT 6.0.0-beta.1
 
 
-### Released on
+### Released on Feb 20 2018
 
 - Module system
     - Modules are transferred each connection and stored in memory
