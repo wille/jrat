@@ -64,7 +64,7 @@ public class Globals {
 	 * @return stub file in {@link #getFileDirectory()}
 	 */
 	public static File getStub() {
-		return new File(getFileDirectory(), "Stub.jar");
+		return new File(getFileDirectory(), "client.jar");
 	}
 	
 	/**
